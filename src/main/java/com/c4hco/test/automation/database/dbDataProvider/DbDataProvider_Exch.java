@@ -23,6 +23,7 @@ public class DbDataProvider_Exch {
     Ib834Handler ib834Handler = new Ib834Handler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
+    EsManualVerifRequestDbHandler manualVerifRequestDbHandler = new EsManualVerifRequestDbHandler();
     PostgresHandler postgresHandler = new PostgresHandler();
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
@@ -191,14 +192,12 @@ public class DbDataProvider_Exch {
         return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessQ(eventType));
     }
 
-
     public List<String> getPolicyId(){
         return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());
     }
     public List<String> getApplicationId(){
         return postgresHandler.getResultListFor("application_id", exchDbQueries.appIdFromEnPolicyAh());
     }
-
 
     public List<String> getAccount_holder_fn() {
 
@@ -252,6 +251,7 @@ public class DbDataProvider_Exch {
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }
+
     public List<EnMemberCoverageFinancialAhEntity> getEn_Mem_Cov_Fin_Ah_details(){
         return enMemberCoverageFinancialAhHandler.getEnMemberCoverageFinAhTableDetails(exchDbQueries.enMem_Coverage_FinancialAh());
     }
@@ -264,6 +264,10 @@ public class DbDataProvider_Exch {
     }
     public List<EnPolicyMemberAhEntity> getEnPol_mem_ah_details(){
         return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
+	}
+
+    public EsManualVerifRequestEntity getEsMVR_options(){
+        return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR());
     }
 
     public List<EsMemberHouseholdEntity> getCountOfPersonIds(){

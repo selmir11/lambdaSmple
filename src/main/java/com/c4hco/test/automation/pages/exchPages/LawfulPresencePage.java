@@ -37,7 +37,7 @@ public class LawfulPresencePage {
     @FindBy(id = "nonCitizenYes")
     WebElement rdobtnEligibleImmigrantYes;
 
-    @FindBy(id = "nonCitzenNo")
+    @FindBy(id = "nonCitizenNo")
     WebElement rdobtnEligibleImmigrantNo;
 
     @FindBy(css = "select#documentType")
@@ -99,6 +99,15 @@ public class LawfulPresencePage {
 
     @FindBy(css = ".back-button-link")
     WebElement btnBack;
+
+    @FindBy(css = "p.information-box-text")
+    WebElement textNonCitizenInfoBox;
+
+    @FindBy(css = "span.undocumented-citizen-info-text")
+    List<WebElement> textUndocumentedCitizenInfo;
+
+    @FindBy(css = ".linkText1")
+    List<WebElement> linkUndocumentedCitizenInfo;
 
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
@@ -291,8 +300,9 @@ public class LawfulPresencePage {
     private void validateVerbiageEligibleImmigrationStaus(List<String> data) {
 
         softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), data.get(0), "Immigration status Question text mismatch");
-        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), data.get(1), "Immigration status - Yes RadioButton text mismatch");
-        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), data.get(2), "Immigration status - No RadioButton text mismatch");
+        softAssert.assertEquals(textNonCitizenInfoBox.getText(), data.get(1), "Immigration status - information text box");
+        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), data.get(2), "Immigration status - Yes RadioButton text mismatch");
+        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), data.get(3), "Immigration status - No RadioButton text mismatch");
 
         softAssert.assertAll();
     }
@@ -333,4 +343,37 @@ public class LawfulPresencePage {
 
         softAssert.assertAll();
     }
+
+    public void validateUndocumentedCitizenInfoText(String language) {
+        basicActions.waitForElementToBePresent(citizenshipImmigrationStatusHeader, 10);
+        switch (language) {
+            case "English":
+                validateUndocumentedCitizenInfoTextEnglish();
+                break;
+            case "Spanish":
+                validateUndocumentedCitizenInfoTextSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void validateUndocumentedCitizenInfoTextEnglish() {
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(0).getText(), "If you are undocumented, you may qualify for other coverage options and financial help, such as");
+        softAssert.assertEquals(linkUndocumentedCitizenInfo.get(1).getText(), "OmniSalud");
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(1).getText(), ". In 2025, there are also new coverage options for undocumented people who are pregnant or under age 19. To find the best option for you, you can");
+        softAssert.assertEquals(linkUndocumentedCitizenInfo.get(2).getText(), "get free, expert help");
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(2).getText(), ".");
+        softAssert.assertAll();
+    }
+
+    public void validateUndocumentedCitizenInfoTextSpanish() {
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(0).getText(), "Si es una persona indocumentada, puede calificar para otras opciones de cobertura y ayuda financiera, tal como");
+        softAssert.assertEquals(linkUndocumentedCitizenInfo.get(1).getText(), "OmniSalud");
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(1).getText(), ". En 2025, tambi\u00E9n hay nuevas opciones de cobertura para personas indocumentadas que est\u00E1n embarazadas o son menores de 19 a\u00F1os. Para encontrar la mejor opci\u00F3n para usted, puede");
+        softAssert.assertEquals(linkUndocumentedCitizenInfo.get(2).getText(), "obtener ayuda de un experto sin costo");
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(2).getText(), ".");
+        softAssert.assertAll();
+    }
+
 }

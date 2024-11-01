@@ -35,7 +35,7 @@ Feature: Verify the Your Information page of Broker Portal
     And I click No to the Book of Business question
     Then I validate the no invitation code checkbox error message
     Then I validate the invitation code error message
-
+    Then I validate the error message for the license expiration date
     Then I click Go Back on the Your Information page
     And I click Agency Complete Profile
     And I click Yes to the Book of Business question
