@@ -56,7 +56,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Marriage" life change event with event date of "Today"
+    And I select "Marriage" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -80,7 +80,7 @@ Feature: Verify COCO Medical Plan results
 
    # ////////////////////////////////  under construction ///////////////////////////////////
 
-  @SCLR-360 @sirtest
+  @SCLR-360
   Scenario: SCLR-360 - This will track the Plan Compare path and verify that the Plan detail link works
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -130,7 +130,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Marriage" life change event with event date of "Today"
+    And I select "Marriage" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -143,21 +143,17 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
 
-    Then I validate I am on the "Medical Plan Results" page
+    Then I validate I am on the "CoCo Medical Plan Results" page
     And I select initial 3 plans and click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
     And I validate and click the COCO Medical Compare Plan Detail link
-
-    #Then I validate I am on the "Medical Plan Detail CoCo" page
-    And I select the Go Back button on the coco Medical Plan Detail page
     And I click on Sign Out in the Header for "MedicalDetail"
-
 
   # ////////////////////////////////  under construction ///////////////////////////////////
 
-  @SLCR-90  @COCOFilterMedicalResults_CompareInNetworkHeaders
-  Scenario Outline: SLCR-90 - This will verify the COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
+  @SLCR-90  @COCOFilterMedicalResults_CompareInNetworkHeadersEnglish
+  Scenario Outline: SLCR-90 - This will verify the English COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -207,7 +203,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Marriage" life change event with event date of "Today"
+    And I select "Marriage" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -233,8 +229,8 @@ Feature: Verify COCO Medical Plan results
 
    # ////////////////////////////////  under construction ///////////////////////////////////
 
-  @SLCR-90  @COCOFilterMedicalResults_CompareInNetworkHeaders
-  Scenario Outline: SLCR-90 - This will verify the COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
+  @SLCR-??_WIP  @COCOFilterMedicalResults_CompareInNetworkHeadersSpanish
+  Scenario Outline: SLCR-90 - This will verify the Spanish COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -854,7 +850,7 @@ Feature: Verify COCO Medical Plan results
 
       # ////////////////////////////////  under construction ///////////////////////////////////
     # ////////////////////////////////  this test doesnt do what the description says  ///////////////////////////////////
-  @SLCR-287 @CoCo_RegressionTest
+  @SLCR-287 @CoCo_RegressionTest @sirtest
   Scenario: SLCR-287 - This will verify Text and Dropdown in COCO Compare plan page from medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page

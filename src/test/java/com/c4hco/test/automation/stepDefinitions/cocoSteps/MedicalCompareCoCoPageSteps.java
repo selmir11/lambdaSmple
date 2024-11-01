@@ -53,6 +53,9 @@ public class MedicalCompareCoCoPageSteps {
     @And ("I validate the {string} text on the Medical Compare COCO page")
     public void validateTextComparePlanCoCoPage(String language) {medicalCompareCoCoPage.validateTextComparePlanCoCoPage(language);}
 
+    // could use for new test on network tab navigation
+    @And("I validate the Network tabs can be utilized")
+    public void validateNetworkTierTabs() {medicalCompareCoCoPage.validateNetworkTierTabs();}
 
 
 }
