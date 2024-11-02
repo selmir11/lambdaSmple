@@ -5,7 +5,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-    @MVRWIP
+    @SLER-1217
   Scenario: Income MVR
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -21,7 +21,13 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
-    Then I validate I am on the "Find Expert Help" page
+    Then I validate I am on the "Find Expert Help Exch" page
+    And I click on Find a Broker
+    Then I Search authorized Broker "Maggie Walker"
+    And I click on Search button in find certified broker page
+    And I click more details from the first broker result container
+    And I click Authorized broker
+    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -68,33 +74,34 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate that my APTC value is "$0.00/mo"
-
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
       |Income                  |Open               |
 
-#    Then I click on view results and shop
-#    And I click continue on application results page
-#    And I wait for hold on content to disappear
-#    Then I validate I am on the "Start Shopping" page
-#    Then I click continue on start shopping page
-#    And I validate I am on the "Medical Plan Results" page
-#    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-#    Then I click continue on medical plan results page
-#    And I validate I am on the "Dental Plan Results" page
-#    And I select "Anthem Dental Family" plan
-#    Then I click continue on dental plan results page
-#    Then I validate I am on the "planSummaryMedicalDental" page
-#    And I click continue on plan summary page
-#    And I select the terms and agreements checkbox
-#    And I enter householder signature on the Financial Help Agreements page
-#    And I click continue on Financial Help Agreements page
-#    And I select "Terms of Use" agreement checkbox
-#    And I select "Privacy Policy" agreement checkbox
-#    And I select "Understand Law" agreement checkbox
-#    And I enter householder signature on the Enrollment Agreements page
-#    And I click continue on Enrollment Agreements page
-#    Then I click all done from payment portal page
+    Then I click on view results and shop
+    And I click continue on application results page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on start shopping page
+    And I validate I am on the "Medical Plan Results" page
+    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
+    Then I click continue on medical plan results page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Anthem Dental Family" plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
+    Then I click on Sign Out in the Header for "NonElmo"
 
     Then I log into the CRM system
     Then I search for user's Email
