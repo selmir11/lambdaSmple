@@ -14,11 +14,6 @@ import java.util.Objects;
 
 public class CRMDashboardPage {
 
-    @FindBy(xpath = "//a[@aria-label='C4HCO CS Hub']")
-    WebElement lblCRMDashHeaderText;
-
-    @FindBy(id = "id-49")
-    WebElement TryToClickThis;
     @FindBy(id = "GlobalSearchBox")
     WebElement txtCRMDashSearchBox;
 
@@ -32,6 +27,9 @@ public class CRMDashboardPage {
     public void CRMDashboardSearchUserEmailandOpenFirst(){
         basicActions.wait(5000);
         basicActions.waitForElementToBePresentWithRetries(txtCRMDashSearchBox, 60);
-        txtCRMDashSearchBox.sendKeys(SharedData.getPrimaryMember().getEmailId(), Keys.RETURN);
+        txtCRMDashSearchBox.sendKeys(SharedData.getPrimaryMember().getEmailId());
+        basicActions.wait(1000);
+        txtCRMDashSearchBox.sendKeys(Keys.RETURN);
+
     }
 }
