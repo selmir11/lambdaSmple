@@ -124,6 +124,7 @@ public class LifeChangeEventsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
+
         basicActions.scrollToElement(saveAndContinueOnlyButton);
         saveAndContinueOnlyButton.click();
     }

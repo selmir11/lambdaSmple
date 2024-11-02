@@ -245,24 +245,5 @@ Feature: Enroll a in a plan (FAMILY OF 3)
 
     And I download the medical and dental files from sftp server with location "/outboundedi/"
 
-#    And I validate the ob834 "medical" file should have the values
-#       | LX | N1 75              | REF                                      |
-#       | 1  | PRE AMT 1          | 303.84                                   |
-#       | 2  | APTC AMT           | 671.69                                   |
-#       | 3  | CSR AMT            | 0.00                                     |
-#       | 4  | RATING AREA        | 3                                        |
-#       | 5  | SOURCE EXCHANGE ID | COHBE                                    |
-#       | 6  | TOT RES AMT        | 119.81                                   |
-#       | 7  | PRE AMT TOT        | 791.50                                   |
-#       | 8  | SEP REASON         | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
-#    And I validate the ob834 "dental" file should have the values
-#       | LX | N1 75              | REFDEN                                   |
-#       | 1  | PRE AMT 1          | 23.00                                    |
-#       | 2  | APTC AMT           | 0.00                                     |
-#       | 3  | CSR AMT            | 0.00                                     |
-#       | 4  | RATING AREA        | 3                                        |
-#       | 5  | SOURCE EXCHANGE ID | COHBE                                    |
-#       | 6  | TOT RES AMT        | 62.00                                    |
-#       | 7  | PRE AMT TOT        | 62.00                                    |
-#       | 8  | SEP REASON         | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
-
+    And I validate the ob834 "medical" file should have the values
+    And I validate the ob834 "dental" file should have the values

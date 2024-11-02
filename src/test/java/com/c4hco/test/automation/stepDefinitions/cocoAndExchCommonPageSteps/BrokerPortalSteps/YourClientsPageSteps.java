@@ -172,5 +172,30 @@ public class YourClientsPageSteps {
     public void iValidateClientOptionsNotDisplayed(String clientOption) {
         yourClientsPage.validateClientOptionsNotDisplayed(clientOption);
     }
+
+    @And("I validate the {string} header option is not displayed")
+    public void iValidateHeaderOptionsNotDisplayed(String headerOption) {
+        yourClientsPage.validateHeaderOptionsNotDisplayed(headerOption);
+    }
+
+    @And("I validate the {string} header option is displayed")
+    public void iValidateHeaderOptionsDisplayed(String headerOption) {
+        yourClientsPage.validateHeaderOptionsDisplayed(headerOption);
+    }
+
+    @Then("I verify that a total of {string} clients have been selected")
+    public void iValidateTotalSelectedClientCount(String expectedCount) {
+        yourClientsPage.validateTotalSelectedClientCount(expectedCount);
+    }
+
+    @Then("I select a random client's checkbox")
+    public void iSelectRandomClientCheckbox() {
+        yourClientsPage.selectRandomClientCheckbox();
+    }
+
+    @And("I verify that the check all clients checkbox is disabled")
+    public void iVerifyCheckAllClientsCheckboxDisabled() {
+        yourClientsPage.verifyCheckAllClientsCheckboxDisabled();
+    }
 }
 

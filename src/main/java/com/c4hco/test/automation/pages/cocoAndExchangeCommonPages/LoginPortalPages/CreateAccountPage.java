@@ -264,6 +264,7 @@ public class CreateAccountPage {
         return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
+
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
@@ -273,6 +274,7 @@ public class CreateAccountPage {
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
+
 
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();

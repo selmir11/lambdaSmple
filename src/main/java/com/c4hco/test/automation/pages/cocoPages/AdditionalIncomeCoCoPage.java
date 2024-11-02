@@ -4,9 +4,12 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -17,6 +20,8 @@ import java.util.List;
 
 public class AdditionalIncomeCoCoPage {
     private BasicActions basicActions;
+
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -111,6 +116,12 @@ public class AdditionalIncomeCoCoPage {
 
     @FindBy(css = "lib-dropdown .error-message")
     List<WebElement> additlIncomeFrequencyError;
+
+    @FindBy(css = ".additional-income-row label")
+    List<WebElement> additlIncomeBoxes;
+
+    @FindBy(css = ".additional-income-row button")
+    List<WebElement> additlIncomeCheckboxes;
 
     @FindBy(id = "AdditionalIncome-SaveAndContinue")
     WebElement saveAndContinueButton;
@@ -469,6 +480,102 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
+    }
+
+    public void verifyAddtlIncomeOptionCheckboxCOCO(String state){
+        switch (state){
+            case "Selected":
+                verifySelectedStateOfCheckboxesCOCO();
+                break;
+            case "Hover":
+                verifyHoverStateOfCheckboxesCOCO();
+                break;
+            case "Focus":
+                verifyFocusStateOfCheckboxesCOCO();
+                break;
+            case "Not Selected":
+                verifyNotSelectedStateOfCheckboxesCOCO();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + state);
+        }
+    }
+
+    public void verifyNotSelectedStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(additlIncomeCheckboxes, 15);
+        for (int i = 0; i < additlIncomeCheckboxes.size(); i++) {
+            WebElement element1 = additlIncomeCheckboxes.get(i);
+            WebElement element2 = additlIncomeBoxes.get(i);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(55, 55, 55)");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyFocusStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(additlIncomeCheckboxes, 15);
+        for (int i = 0; i < additlIncomeCheckboxes.size(); i++) {
+            WebElement element = additlIncomeCheckboxes.get(i);
+            element.sendKeys(Keys.SHIFT);
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element.getCssValue("box-shadow"), "rgb(112, 163, 0) 0px 0px 7px 3px");
+            softAssert.assertAll();
+            hdr_AdditionalIncome.click();
+        }
+    }
+
+    public void verifyHoverStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(additlIncomeCheckboxes, 15);
+        for (int i = 0; i < additlIncomeCheckboxes.size(); i++) {
+            WebElement element = additlIncomeCheckboxes.get(i);
+            actions.moveToElement(element).perform();
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertAll();
+            hdr_AdditionalIncome.click();
+        }
+    }
+
+    public void verifySelectedStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(additlIncomeCheckboxes, 15);
+        for (int i = 0; i < additlIncomeCheckboxes.size(); i++) {
+            WebElement element1 = additlIncomeCheckboxes.get(i);
+            WebElement element2 = additlIncomeBoxes.get(i);
+            element1.click();
+            hdr_AdditionalIncome.click();
+            basicActions.wait(300);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container checked"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(112, 163, 0)");
+            softAssert.assertAll();
+            element1.click();
+            hdr_AdditionalIncome.click();
         }
     }
 
