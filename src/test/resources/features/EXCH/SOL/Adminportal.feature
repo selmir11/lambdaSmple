@@ -503,7 +503,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I Declare as Tax Household 1
     And I Declare as Tax Household 2
