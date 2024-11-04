@@ -293,7 +293,7 @@ Feature: Page validation - Life Change Event page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Past" error does exist in "English"
     #Step6
-    Then I set date for all members of "Marriage" Life Change Event to event date of "Future 61"
+    Then I set date for all members of "Marriage" Life Change Event to event date of "Future 1"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Future" error does exist in "English"
@@ -327,7 +327,7 @@ Feature: Page validation - Life Change Event page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Past" error does exist in "Spanish"
     #Step6
-    Then I set date for all members of "Marriage" Life Change Event to event date of "Future 61"
+    Then I set date for all members of "Marriage" Life Change Event to event date of "Future 1"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo life change event" page
     Then I verify "Event date Future" error does exist in "Spanish"
