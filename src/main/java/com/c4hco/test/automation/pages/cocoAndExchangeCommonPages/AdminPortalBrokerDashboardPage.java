@@ -64,6 +64,38 @@ public class AdminPortalBrokerDashboardPage {
     WebElement goBack;
     @FindBy(xpath = "//div[@class='nodata']")
     WebElement noClientInfo;
+    @FindBy(xpath = "//*[@id='form-edit-certification']")
+    WebElement manageCertificationContainer;
+    @FindBy(css = "#form-edit-certification > h3")
+    WebElement manageCertificationHeader;
+    @FindBy(css = "#form-edit-certification > label.body-text-2.license-status")
+    WebElement labelLicenseStatus;
+    @FindBy(xpath = "//app-drop-down-select[@id='license-status']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement licenseStatusDisplayed;
+    @FindBy(css = "#form-edit-certification > label.body-text-2.certification-status")
+    WebElement labelCertStatus;
+    @FindBy(css = "app-drop-down-select[id='certification-status'] div[class='drop-down-option drop-down-option-selected']")
+    WebElement certStatusDisplayed;
+    @FindBy(css = "label[for='license-expiration-date']")
+    WebElement labelExpirationDate;
+    @FindBy(xpath = "//input[@id='expiration-date']")
+    WebElement licenseDateDisplayed;
+    @FindBy(css = "#option_2")
+    WebElement licenseOptionNotApproved;
+    @FindBy(css = "#option_2")
+    WebElement certStatusNotApproved;
+    @FindBy(xpath = "//button[normalize-space()='Save']")
+    WebElement buttonSave;
+    @FindBy(xpath = "//button[normalize-space()='Cancel']")
+    WebElement buttonCancel;
+    @FindBy(css = "div[class='drop-down-secondary-options'] div[class='drop-down-option']")
+    WebElement licenseOptionApproved;
+    @FindBy(css = "div[class='drop-down-secondary-options'] div[class='drop-down-option']")
+    WebElement certStatusApproved;
+    @FindBy(css = "body > app-root > div > div > app-activity-report > div.table-container.group-box > h2")
+    WebElement accountActivityTitle;
+    @FindBy(xpath = "//div/app-account-activity/div/a/button")
+    WebElement buttonViewReport;
 
     public void validateAPBrokerDashboardHeader(String qaName, String qaID, String qaUserType, String stgName, String stgID, String stgUserType) {
         if (SharedData.getEnv().equals("staging")){
@@ -179,6 +211,86 @@ public class AdminPortalBrokerDashboardPage {
         basicActions.waitForElementToBePresent(clientInformationText,20);
         softAssert.assertEquals(clientInformationText.getText(),"Client Information");
         softAssert.assertEquals(noClientInfo.getText(),"There is no client information.");
+        softAssert.assertAll();
+    }
+    public void clickManageCertification() {
+        basicActions.waitForElementToBePresent(manageCertifications, 10);
+        manageCertifications.click();
+    }
+    public void VerifyBrokerLicenseStatusAndLicenseExpirationDateWithCertificationStatus(String licenseStatus, String licenseDate, String certificationStatus){
+        basicActions.waitForElementToBePresent(manageCertificationContainer, 10);
+        softAssert.assertEquals(manageCertificationHeader.getText(),"Manage Certification\n" +
+                "Information");
+        softAssert.assertEquals(labelLicenseStatus.getText(),"License Status:");
+        softAssert.assertEquals(licenseStatusDisplayed.getText(), licenseStatus);
+        softAssert.assertEquals(labelExpirationDate.getText(),"License Expiration Date:");
+        softAssert.assertEquals(licenseDateDisplayed.getText(), licenseDate);
+        softAssert.assertEquals(labelCertStatus.getText(),"Certification Status:");
+        softAssert.assertEquals(certStatusDisplayed.getText(),certificationStatus);
+        softAssert.assertAll();
+    }
+    public void changeStatusesThenClickSaveButton() {
+        basicActions.waitForElementToBePresent(buttonSave, 10);
+        licenseStatusDisplayed.click();
+        licenseOptionNotApproved.click();
+        certStatusDisplayed.click();
+        certStatusNotApproved.click();
+        buttonSave.click();
+    }
+    public void verifyExpectedStatuses(){
+        basicActions.waitForElementToBePresent(labelLicenseStatus, 10);
+        softAssert.assertTrue(labelLicenseStatus.isDisplayed());
+         softAssert.assertAll();
+    }
+    public void clickCancelButton() {
+        basicActions.waitForElementToBePresent(buttonCancel, 10);
+        buttonCancel.click();
+    }
+    public void changeStatusesBack() {
+        basicActions.waitForElementToBePresent(buttonSave, 10);
+        licenseStatusDisplayed.click();
+        licenseOptionApproved.click();
+        certStatusDisplayed.click();
+        certStatusApproved.click();
+        buttonSave.click();
+    }
+    public void clickViewReportButton() {
+        basicActions.waitForElementToBePresent(buttonViewReport, 10);
+        buttonViewReport.click();
+        basicActions.switchtoactiveTab();
+    }
+    public void verifyBrokerActivityInfo() {
+        WebElement table = basicActions.getDriver().findElement(By.xpath("//div[contains(@class, 'table-div')]"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+        String[][] QAExpectedData = {
+                {"", "", "SP_BROKER_CERTIFIED", "2024-11-04T15:16:34", "AGENCY-SERVICE", "Broker certified", "Account Id", "7660020008"}
+        };
+        String[][] STGExpectedData = {
+                {"", "", "SP_BROKER_CERTIFIED", "2024-11-04T14:42:16", "AGENCY-SERVICE", "Broker certified", "Account Id", "8363832700"}
+        };
+        if (SharedData.getEnv().equals("qa")) {
+            for (int i = 0; i < QAExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < QAExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        } else {
+            for (int i = 0; i < STGExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < STGExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        }
+    }
+    public void verifyTableTitle() {
+        basicActions.waitForElementToBePresent(accountActivityTitle, 20);
+        softAssert.assertTrue(accountActivityTitle.isDisplayed());
         softAssert.assertAll();
     }
 }

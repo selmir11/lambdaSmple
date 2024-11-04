@@ -44,4 +44,40 @@ public class AdminPortalBrokerDashboardSteps {
     public void iVerifyBrokerClientInformationContainerNoClients() {
         adminPortalBrokerDashboardPage.VerifyBrokerClientInformationContainerNoClients();
     }
+    @Then("I click Manage Certification button")
+    public void iClickManageCertification() {
+        adminPortalBrokerDashboardPage.clickManageCertification();      }
+
+    @And("I validate current Broker License Status: {string} and License Expiration Date: {string} with Certification Status: {string}")
+    public void iVerifyBrokerLicenseStatusAndLicenseExpirationDateWithCertificationStatus(String licenseStatus, String licenseDate, String certificationStatus) {
+        adminPortalBrokerDashboardPage.VerifyBrokerLicenseStatusAndLicenseExpirationDateWithCertificationStatus(licenseStatus, licenseDate, certificationStatus);
+    }
+    @Then("I change statuses and click Save button in manage certification container")
+    public void iChangeStatusesThenClickSaveButton() {
+        adminPortalBrokerDashboardPage.changeStatusesThenClickSaveButton();
+    }
+    @Then("I verify expected statuses are displayed")
+    public void iVerifyExpectedStatuses() {
+        adminPortalBrokerDashboardPage.verifyExpectedStatuses();
+    }
+    @Then("I click Cancel button")
+    public void iClickCancelButton() {
+        adminPortalBrokerDashboardPage.clickCancelButton();
+    }
+    @And("I change statuses back and click Save")
+    public void iChangeStatusesBack() {
+        adminPortalBrokerDashboardPage.changeStatusesBack();
+    }
+    @Then("I click View Report button")
+    public void iClickViewReportButton() {
+        adminPortalBrokerDashboardPage.clickViewReportButton();
+    }
+    @Then("I verify Account Activity title")
+    public void iVerifyTableTitle() {
+        adminPortalBrokerDashboardPage.verifyTableTitle();
+    }
+    @And("I Verify Broker Account Activity latest information")
+    public void iVerifyBrokerActivityInformation() {
+        adminPortalBrokerDashboardPage.verifyBrokerActivityInfo();
+    }
 }
