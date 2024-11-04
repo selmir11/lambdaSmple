@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -117,7 +118,8 @@ public class AddAddressPage {
                 rdobtnDifferentResidentialAddress.click();
                 break;
             case "recent option":
-                rdobtnHouseholdResidentialAddress.get(rdobtnHouseholdResidentialAddress.size()-1).click();
+                WebElement recentAddressSelection = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+SharedData.getMembers().get(SharedData.getMembers().size()-2).getResAddress().getAddressZipcode()+"')]/ancestor::div[@class='form-check'] //input[@id='retrieveResidentialAddress']"));
+                recentAddressSelection.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + index);

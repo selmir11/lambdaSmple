@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -177,14 +178,19 @@ public class AccountOverviewPage {
         List<String> expectedMemberNames = new ArrayList<>();
         List<String> actualMemberNames = new ArrayList<>();
         expectedMemberNames.add(primaryMember.getSignature());
-        actualMemberNames.add(medicalMemberNames.get(0).getText());
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
 
         if(memberDetailsList !=null) {
             for (int i = 0; i < memberDetailsList.size(); i++) {
                 MemberDetails member = SharedData.getMembers().get(i);
                 expectedMemberNames.add(member.getFirstName()+" "+member.getLastName());
-                actualMemberNames.add(planInformationTable.get(i+2).getText());
+            }
+
+            for (int k = 1; k <= SharedData.getScenarioDetails().getTotalGroups(); k++) {
+                List<WebElement> getactualMemberNames = basicActions.getDriver().findElements(By.cssSelector(".table-bordered tr:nth-child(" + k + ") td:nth-child(2) span b"));
+                for (WebElement member : getactualMemberNames) {
+                    actualMemberNames.add(member.getText());
+                }
             }
         }
         softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size()==expectedMemberNames.size());
