@@ -2,7 +2,7 @@
   # SLER-778 formerly RT-1618
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
-  @SLER-778 @test
+  @SLER-778
   Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
 
     Given I open the login page on the "admin" portal

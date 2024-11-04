@@ -401,7 +401,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
 
-  @SLER-GroupOf4-WIP-PASS @test
+  @SLER-GroupOf4-WIP-PASS
     #review  - grouping failed
   Scenario: GroupOf4 - APTCRules - group of 4  - 60K to 80K
     When I click create a new account on login page
@@ -802,7 +802,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
 
-  @Group6ReEnroll-WIP-PASS @test
+  @Group6ReEnroll-WIP-PASS
     #review grouping failure
  Scenario: Group6ReEnroll - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page

@@ -1386,7 +1386,7 @@ Feature: UI Tests related to APTC after second enrollment change
       |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
       |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
 
-  @SLER-1007 @test
+  @SLER-1007
   Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2345
     When I click create a new account on login page
     Then I click create my account from pre-screen page
