@@ -540,17 +540,17 @@ public class BasicActions {
     public String getTodayDate() {// Today
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
-        return date.toString();
+        return date.format(formatter);
     }
     public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
-        return date.toString();
+        return date.format(formatter);
     }
     public String getPastDate(int daysToMove) {
         LocalDate date = LocalDate.now().minusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
-        return date.toString();
+        return date.format(formatter);
     }
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
