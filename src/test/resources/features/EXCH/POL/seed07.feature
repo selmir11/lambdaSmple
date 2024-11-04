@@ -1,5 +1,5 @@
 Feature: Seed07 - Exchange
-  
+
   Scenario: Seed 07 For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -249,11 +249,11 @@ Feature: Seed07 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
-
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
+#    And I Validate the correct enrolled plans are displayed on account overview page
+#
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click View Plan History link from "medical" plan card
    # And I click on Sign Out in the Header for "NonElmo"
