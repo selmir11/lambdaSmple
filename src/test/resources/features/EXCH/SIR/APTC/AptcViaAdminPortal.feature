@@ -273,7 +273,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link

@@ -67,7 +67,7 @@ Feature: Page Navigation-Additional Income Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    Then I click on the Member Row 0
+    And I click on "Primary" to edit information from household page
     Then I select the Edit Income link
     And I click continue on the Employment Info Page
 
