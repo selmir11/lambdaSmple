@@ -46,4 +46,7 @@ public class LifeChangeEventsCoCoPageSteps {
     @Then("I verify {string} error does exist in {string}")
     public void iVerifyErrorMessage(String errorType, String language){lifeChangeEventsCoCoPage.verifyErrorMessage(errorType, language);}
 
+    @Then("I verify LCE checkbox COCO in {string} state")
+    public void iVerifyStateOfLCECheckboxesCOCO(String state){
+        lifeChangeEventsCoCoPage.verifyLCECheckboxesCOCO(state);}
 }

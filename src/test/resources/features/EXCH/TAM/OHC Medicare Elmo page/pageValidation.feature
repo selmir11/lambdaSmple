@@ -150,8 +150,8 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |            0           |                            |                            |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -168,8 +168,8 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |                  |        250.00         |                            |            1           |             1              |                            |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -186,8 +186,8 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |        1         |                       |                            |            1           |                            |              1             |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -205,8 +205,8 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         1        |        300.00         |                            |            0           |             1              |               0            |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -222,8 +222,8 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         0        |                       |              1             |            1           |             0              |                            |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -316,8 +316,8 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page

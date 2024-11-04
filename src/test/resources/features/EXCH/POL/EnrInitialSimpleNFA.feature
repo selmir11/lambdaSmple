@@ -102,6 +102,23 @@ Feature: Simple NFA - Single Applicant
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
+
+#    @SLER-1069  # RT-1262
+#    Scenario: validate both medical and dental ob834 files
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file should have the values
+    And I validate the ob834 "dental" file should have the values
+
+#      # RT-1276
+    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+
     #Email Notice Validation
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
@@ -115,41 +132,9 @@ Feature: Simple NFA - Single Applicant
     And I sign out of Outlook
     And I switch to the tab number 0
 
-#    @SLER-1069  # RT-1262
-#    Scenario: validate both medical and dental ob834 files
-    And I validate "medical" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I validate "dental" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I download the medical and dental files from sftp server with location "/outboundedi/"
-
-    And I validate the ob834 "medical" file should have the values
-      | LX | N1 75              | REF       |
-      | 1  | PRE AMT 1          | 291.02    |
-      | 2  | APTC AMT           | 0.00      |
-      | 3  | CSR AMT            | 0.00      |
-      | 4  | RATING AREA        | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     |
-      | 6  | TOT RES AMT        | 291.02    |
-      | 7  | PRE AMT TOT        | 291.02    |
-      | 8  | SEP REASON         | NEW_CO_RESIDENT |
-    And I validate the ob834 "dental" file should have the values
-      | LX | N1 75              | REFDEN          |
-      | 1  | PRE AMT 1          | 21.00           |
-      | 2  | APTC AMT           | 0.00            |
-      | 3  | CSR AMT            | 0.00            |
-      | 4  | RATING AREA        | 3               |
-      | 5  | SOURCE EXCHANGE ID | COHBE           |
-      | 6  | TOT RES AMT        | 21.00           |
-      | 7  | PRE AMT TOT        | 21.00           |
-      | 8  | SEP REASON         | NEW_CO_RESIDENT |
-
-#      # RT-1276
-    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I set ib999 entites for both medical and dental files
+#    Ib999 file validation
+    And I validate ib999 "medical" details in database
+    And I validate ib999 "dental" details in database
     And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
     And I validate the contents of ib999 medical file

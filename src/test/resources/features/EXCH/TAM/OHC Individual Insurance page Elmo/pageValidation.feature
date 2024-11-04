@@ -133,8 +133,8 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          0           |                           |                           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -153,8 +153,8 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             0             |                           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -169,8 +169,8 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             1             |               0           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -183,8 +183,8 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             1             |               1           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -197,8 +197,8 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             0             |                           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page

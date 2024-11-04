@@ -1,17 +1,24 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class LifeChangeEventsCoCoPage {
 
     private BasicActions basicActions;
+
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -104,6 +111,16 @@ public class LifeChangeEventsCoCoPage {
     @FindBy(id = "LceOverview-GoBack")
     WebElement goBackButton;
 
+    @FindBy(css = "lib-checkbox-control label")
+    List<WebElement> boxesLCE;
+
+    @FindBy(css = "label button")
+    List<WebElement> checkboxesLCE;
+
+    //lib-checkbox-control label
+    @FindBy(css = "lib-checkbox-control label span")
+    List<WebElement> checkboxesLabelsLCE;
+
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
@@ -111,7 +128,8 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToDisappear(spinner, 20);
         switch (LCEType) {
             case "InsuranceLoss":
-                handleLCESelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType);
+//                handleLCESelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType); //bug TAM-4777
+                handleLCEInsuranceLossSelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType);
                 break;
             case "Birth":
                 handleLCESelection(birthLCE, allMembersBirthCheckbox, birthEventDate, dateType);
@@ -140,6 +158,19 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+
+        for (int i = 0; i < checkboxes.size(); i++) {
+            checkboxes.get(i).click();
+            eventDates.get(i).sendKeys(dateValue);
+        }
+    }
+
+    private void handleLCEInsuranceLossSelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
+        basicActions.waitForElementToBeClickable(lceElement, 10);
+        lceElement.click();
+        LocalDate date = LocalDate.parse(basicActions.getDateBasedOnRequirement(dateType));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String dateValue = date.format(formatter);
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
@@ -243,7 +274,8 @@ public class LifeChangeEventsCoCoPage {
     public void setDateForLCE(String LCEType, String dateType) {
         switch (LCEType) {
             case "InsuranceLoss":
-                setDateForCheckboxes(insuranceLossEventDate, dateType);
+//                setDateForCheckboxes(insuranceLossEventDate, dateType); //bug TAM-4777
+                setDateForInsuranceLossCheckboxes(insuranceLossEventDate, dateType);
                 break;
             case "Birth":
                 setDateForCheckboxes(birthEventDate, dateType);
@@ -270,6 +302,16 @@ public class LifeChangeEventsCoCoPage {
 
     private void setDateForCheckboxes(List<WebElement> eventDates, String dateType) {
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        for (int i = 0; i < eventDates.size(); i++) {
+            basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
+            eventDates.get(i).sendKeys(dateValue);
+        }
+    }
+
+    private void setDateForInsuranceLossCheckboxes(List<WebElement> eventDates, String dateType) {
+        LocalDate date = LocalDate.parse(basicActions.getDateBasedOnRequirement(dateType));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String dateValue = date.format(formatter);
         for (int i = 0; i < eventDates.size(); i++) {
             basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
             eventDates.get(i).sendKeys(dateValue);
@@ -696,6 +738,105 @@ public class LifeChangeEventsCoCoPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyLCECheckboxesCOCO(String state){
+        switch (state){
+            case "Selected":
+                verifySelectedStateOfCheckboxesCOCO();
+                break;
+            case "Hover":
+                verifyHoverStateOfCheckboxesCOCO();
+                break;
+            case "Focus":
+                verifyFocusStateOfCheckboxesCOCO();
+                break;
+            case "Not Selected":
+                verifyNotSelectedStateOfCheckboxesCOCO();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + state);
+        }
+    }
+
+    public void verifyNotSelectedStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(checkboxesLCE, 15);
+        for (int i = 0; i < checkboxesLCE.size(); i++) {
+            WebElement element1 = checkboxesLCE.get(i);
+            WebElement element2 = boxesLCE.get(i);
+            //basicActions.wait(100);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
+            //softAssert.assertEquals(element1.getCssValue("width"), "40px");
+            //softAssert.assertEquals(element1.getCssValue("height"), "40px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(55, 55, 55)");
+            softAssert.assertAll();
+            element1.click();
+            basicActions.wait(100);
+        }
+    }
+
+    public void verifyFocusStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(checkboxesLCE, 15);
+        for (int i = 0; i < checkboxesLCE.size(); i++) {
+            WebElement element = checkboxesLCE.get(i);
+            element.sendKeys(Keys.SHIFT);
+            basicActions.wait(200);
+            //softAssert.assertEquals(element.getCssValue("width"), "40px");
+            //softAssert.assertEquals(element.getCssValue("height"), "40px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element.getCssValue("box-shadow"), "rgb(112, 163, 0) 0px 0px 7px 3px");
+            softAssert.assertAll();
+            element.click();
+            basicActions.wait(200);
+        }
+    }
+
+    public void verifyHoverStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(checkboxesLCE, 15);
+        for (int i = 0; i < checkboxesLCE.size(); i++) {
+            WebElement element = checkboxesLCE.get(i);
+            actions.moveToElement(element).perform();
+            basicActions.wait(300);
+            //softAssert.assertEquals(element.getCssValue("width"), "40px");
+            //softAssert.assertEquals(element.getCssValue("height"), "40px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertAll();
+            element.click();
+            basicActions.wait(300);
+        }
+    }
+
+    public void verifySelectedStateOfCheckboxesCOCO() {
+        basicActions.waitForElementListToBePresent(checkboxesLCE, 15);
+        for (int i = 0; i < checkboxesLCE.size(); i++) {
+            WebElement element1 = checkboxesLCE.get(i);
+            WebElement element2 = boxesLCE.get(i);
+            element1.click();
+            basicActions.wait(200);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container checked"));
+            //softAssert.assertEquals(element1.getCssValue("width"), "40px");
+            //softAssert.assertEquals(element1.getCssValue("height"), "40px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(112, 163, 0)");
+            softAssert.assertAll();
+            basicActions.wait(200);
         }
     }
 }
