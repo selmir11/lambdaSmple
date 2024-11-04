@@ -446,14 +446,15 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
-      | Primary:Spouse |
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "03052000", "Female" and applying "Yes"
+      | Primary:Daughter |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+    Then I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -478,7 +479,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I select the projected income option "No" and continue
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "101 Main dr" and city as "Denver" and state as "CO" and zipcode as "80020" and income "1000000" at frequency "Annually"
+    Then I enter company details with addressline1 as "101 Main dr" and city as "Denver" and state as "CO" and zipcode as "80020" and income "3200000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -489,8 +490,12 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I select the projected income option "No" and continue
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
@@ -501,6 +506,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I select "NoneOfThese" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I Declare as Tax Household 1
+    And I Declare as Tax Household 2
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
