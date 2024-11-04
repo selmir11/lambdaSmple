@@ -208,7 +208,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Family Overview" page
 #Step 4
-    Then I click on the Member Row 0
+    And I click on "Primary" to edit information from household page
     Then I select the Edit Income link
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page

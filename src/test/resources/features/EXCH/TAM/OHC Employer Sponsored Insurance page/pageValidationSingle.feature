@@ -74,8 +74,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter the end date as "Current Month" on the ESI page
     Then I select the Are you voluntarily ending "Yes" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -105,8 +105,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter the end date as "Today" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -136,8 +136,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter the end date as "Current Month" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -165,8 +165,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -192,8 +192,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -219,8 +219,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -246,8 +246,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -272,8 +272,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "506.03" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -297,8 +297,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "257.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -322,8 +322,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "475.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -382,8 +382,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -517,8 +517,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I validate I am on the "Deductions" page
@@ -576,8 +576,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I validate I am on the "Deductions" page
@@ -639,8 +639,8 @@ Feature: Page Text-Other Health Coverage Page
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.80             |                                     |                               |            0            |            1            |                                |                                |
 #    Step 5
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -657,8 +657,8 @@ Feature: Page Text-Other Health Coverage Page
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          174.79             |                                     |                               |            1            |            1            |                                |                                |
 #    Step 7
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     And I validate I am on the "Deductions" page
@@ -798,8 +798,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page

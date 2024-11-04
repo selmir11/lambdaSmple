@@ -225,10 +225,6 @@ public class GroupingMembersMedicalPage {
         }
 
         SharedData.setGroupingDetails(groupDetailsMap);
-        System.out.println(groupDetailsMap);
-
     }
-
-
 
 }

@@ -170,7 +170,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -399,7 +399,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -639,7 +639,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -865,7 +865,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -1093,7 +1093,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -1320,7 +1320,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -1548,7 +1548,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -1774,7 +1774,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -1999,7 +1999,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -2083,7 +2083,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-     #And I report "Birth" and click continue
+#     And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -2224,7 +2224,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -2449,7 +2449,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -2677,7 +2677,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Family Overview" page
 
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link

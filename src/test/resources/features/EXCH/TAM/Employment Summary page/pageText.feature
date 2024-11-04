@@ -64,8 +64,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     Then I validate I am on the "Employment Summary" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -80,8 +80,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     Then I validate I am on the "Employment Summary" page
     And I click on Find a Plan in the "Elmo" Header
@@ -97,8 +97,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     Then I validate I am on the "Employment Summary" page
     And I click on My Account in the "Elmo" Header
@@ -113,8 +113,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     Then I validate I am on the "Employment Summary" page
     And I click on Learn More in the Header
@@ -140,8 +140,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     Then I validate I am on the "Employment Summary" page
     And I click on the Username in the "Exch" Header
@@ -157,8 +157,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     Then I validate I am on the "Employment Summary" page
 #    And I set the browser resolution to 1200 x 800
@@ -214,8 +214,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Employment Summary" page
@@ -232,8 +232,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Employment Summary" page
@@ -251,8 +251,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Employment Summary" page
@@ -269,8 +269,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Employment Summary" page
@@ -300,8 +300,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Employment Summary" page
@@ -319,8 +319,8 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
 
     And I validate I am on the "Employment Summary" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
