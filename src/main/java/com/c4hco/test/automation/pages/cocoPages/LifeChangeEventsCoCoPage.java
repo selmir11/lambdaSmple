@@ -157,9 +157,7 @@ public class LifeChangeEventsCoCoPage {
     private void handleLCESelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
-        LocalDate date = LocalDate.parse(basicActions.getDateBasedOnRequirement(dateType));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
-        String dateValue = date.format(formatter);
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
