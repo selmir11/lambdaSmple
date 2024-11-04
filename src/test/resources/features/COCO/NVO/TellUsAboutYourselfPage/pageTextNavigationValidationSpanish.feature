@@ -14,7 +14,7 @@ Feature: Spanish- Tell us about yourself page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     And  I change the language from header to "Spanish"
     Then I validate errors are displaying on Tell Us About Yourself Page CoCo "Spanish"
     Then I enter first name and last name on Tell Us About Yourself Page Coco
@@ -59,7 +59,7 @@ Feature: Spanish- Tell us about yourself page
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I validate the page text on Tell us about Yourself "Spanish"
     Then I click Save and Continue only on the tell us about yourself page

@@ -100,7 +100,7 @@ public class HouseholdPage {
         button.click();
     }
 
-    public void clickBasicInfoMember1Button(String namePrefix) {
+    public void clickBasicInfoMemberButton(String namePrefix) {
         basicActions.waitForElementListToBePresent(memberBasicInformation, 15);
         String xpath = String.format("//*[contains(@value,'"+namePrefix+"')]//following::*[@id='editBasicInfo'][1]");
         WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));

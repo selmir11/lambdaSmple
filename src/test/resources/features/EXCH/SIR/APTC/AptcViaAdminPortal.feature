@@ -2,7 +2,7 @@
   # SLER-778 formerly RT-1618
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
-  @SLER-778
+  @SLER-778 @test
   Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
 
     Given I open the login page on the "admin" portal
@@ -273,7 +273,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link

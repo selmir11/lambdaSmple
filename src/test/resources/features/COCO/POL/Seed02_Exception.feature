@@ -18,7 +18,7 @@ Feature: Seed02 with exception - Coco
     And I click more details from the first broker result container
     Then I click Authorized broker
     Then I click Continue with my application
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11181993", "Male", and applying "Yes"
     And I enter my residential address "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for mailing address option

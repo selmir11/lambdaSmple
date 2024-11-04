@@ -23,7 +23,7 @@ public class PaymentPortalPage {
     @FindBy(id = "SOL-PayNow-AllDone-Indv")
     WebElement allDone;
 
-    @FindBy(id = "SOL-PayNow-AllDone-Obo")
+    @FindBy(css = "[id*='SOL-PayNow-AllDone']")
     WebElement allDoneObo;
 
     @FindBy(css = "#SOL-PayNow-PayNow-Medical-0")

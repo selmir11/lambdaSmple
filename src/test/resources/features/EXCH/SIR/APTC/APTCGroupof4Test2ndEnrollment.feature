@@ -401,7 +401,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
 
 
-  @SLER-GroupOf4-WIP-PASS
+  @SLER-GroupOf4-WIP-PASS @test
     #review  - grouping failed
   Scenario: GroupOf4 - APTCRules - group of 4  - 60K to 80K
     When I click create a new account on login page
@@ -716,7 +716,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -802,7 +802,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
 
-  @Group6ReEnroll-WIP-PASS
+  @Group6ReEnroll-WIP-PASS @test
     #review grouping failure
  Scenario: Group6ReEnroll - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
@@ -1202,7 +1202,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1211,7 +1211,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    Then I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -1345,7 +1345,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I select "Yes" for Citizen option

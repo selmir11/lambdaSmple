@@ -24,14 +24,14 @@ public class HouseHoldPageSteps {
     @And("I click on {string} to edit information from household page")
     public void clickMemberToEdit(String memName){houseHoldPage.clickMember(memName);}
 
-    @And("I click + next to member on household page for {string}")
+    @And("I click plus icon next to member on household page for {string}")
     public void iClickTableItem(String namePrefix) {houseHoldPage.iClickTableItem(namePrefix);}
 
     @And("I click the edit income icon on household page for {string}")
     public void iClickEditIncomeLink(String namePrefix) {houseHoldPage.iClickEditIncomeLink(namePrefix);}
 
     @Then("I click edit basic information icon on household page for {string}")
-    public void iclickBasicInformationIcon(String namePrefix) {houseHoldPage.clickBasicInfoMember1Button(namePrefix);}
+    public void iclickBasicInformationIcon(String namePrefix) {houseHoldPage.clickBasicInfoMemberButton(namePrefix);}
 
     @Then("I click on Remove this Member")
     public void iClickRemoveMember() {houseHoldPage.clickRemoveMember();}
