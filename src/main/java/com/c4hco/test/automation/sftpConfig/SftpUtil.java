@@ -179,8 +179,7 @@ public class SftpUtil {
     public void readEdiFromLocal(){
         try{
             ClassLoader classLoader = getClass().getClassLoader();
-           // InputStream inputStream = classLoader.getResourceAsStream("4STMultiINS");
-           InputStream inputStream = classLoader.getResourceAsStream("1ST1INS1LS");
+            InputStream inputStream = classLoader.getResourceAsStream("SLER41Med");
 
             if (inputStream != null) {
                 System.out.println("File found");
