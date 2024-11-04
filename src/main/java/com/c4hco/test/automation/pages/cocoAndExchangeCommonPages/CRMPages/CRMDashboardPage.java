@@ -25,10 +25,10 @@ public class CRMDashboardPage {
     }
 
     public void CRMDashboardSearchUserEmailandOpenFirst(){
-        basicActions.wait(5000);
+        basicActions.wait(10000);
         basicActions.waitForElementToBePresentWithRetries(txtCRMDashSearchBox, 60);
         txtCRMDashSearchBox.sendKeys(SharedData.getPrimaryMember().getEmailId());
-        basicActions.wait(1000);
+        basicActions.wait(3000);
         txtCRMDashSearchBox.sendKeys(Keys.RETURN);
 
     }
