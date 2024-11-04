@@ -509,3 +509,15 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-1221
+  Scenario: SLER-1221 I verify that other-health-coverage portal uses common components from ng-common on the main OHC page
+    Then I verify main OHC checkbox in "Not Selected" state
+    And I refresh the page
+    Then I verify main OHC checkbox in "Selected" state
+    And I refresh the page
+    Then I verify main OHC checkbox in "Focus" state
+    And I refresh the page
+    Then I verify main OHC checkbox in "Hover" state
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
