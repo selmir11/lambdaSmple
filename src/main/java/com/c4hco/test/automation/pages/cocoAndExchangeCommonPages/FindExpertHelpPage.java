@@ -8,6 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class FindExpertHelpPage {
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
@@ -155,6 +159,9 @@ public class FindExpertHelpPage {
 
     @FindBy(id = "lbl-previous-helper-status")
     WebElement prevStatusColumnHeader;
+
+    @FindBy(id = "previous-helper-orgName")
+    List<WebElement> prevBrokerAssisterNames;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
@@ -400,6 +407,11 @@ public class FindExpertHelpPage {
         }
     }
 
+    public void clickChangeBrokerButton(){
+            basicActions.waitForElementToBePresent(ChangeBroker,30);
+            ChangeBroker.click();
+    }
+
     public void validateHaveABrokerCallYouButtonExists(){
         basicActions.waitForElementToBePresent(HaveBrokerCallYou,30);
         softAssert.assertAll();
@@ -466,7 +478,7 @@ public class FindExpertHelpPage {
     public void clickContinueOnMyOwnButton() {
         basicActions.waitForElementToDisappear(spinner,70);
         basicActions.waitForElementToBePresent(assistanceText, 20);
-        basicActions.waitForElementToBePresent(continueOnMyOwnButton, 50);
+        basicActions.waitForElementToBePresentWithRetries(continueOnMyOwnButton, 50);
         basicActions.scrollToElement(continueOnMyOwnButton);
         continueOnMyOwnButton.click();
     }
@@ -567,6 +579,23 @@ public class FindExpertHelpPage {
 
     public void validatePreviousBrokerAssisterTableAbsent(){
         softAssert.assertFalse(basicActions.waitForElementPresence(prevNameColumnHeader,10));
+        softAssert.assertAll();
+    }
+
+    public void validatePreviousBrokerAssisterTableAlphabeticalOrder(){
+        basicActions.waitForElementListToBePresentWithRetries(prevBrokerAssisterNames, 1000);
+
+        List<String> originalList = new ArrayList<>();
+        System.out.println("The following list of previous brokers or assisters was found");
+        for(WebElement clientName : prevBrokerAssisterNames){
+            System.out.println(clientName.getText());
+            originalList.add(clientName.getText());
+        }
+
+        List<String> sortedList = new ArrayList<>(originalList);
+        Collections.sort(sortedList);
+
+        softAssert.assertEquals(sortedList,originalList);
         softAssert.assertAll();
     }
 

@@ -15,7 +15,7 @@ Feature: End to End Testing
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
 
   @SLCR-70 @EndToEndHIAE
   Scenario: SLCR-70 Check Primary Member HIAE, Off-Exchange eligible
@@ -260,7 +260,7 @@ Feature: End to End Testing
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I validate the Total Income on the Family Overview page equals "14,088.00"
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page

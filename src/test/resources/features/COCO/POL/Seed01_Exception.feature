@@ -13,7 +13,7 @@ Feature: Regression Tests that require Seed 1 without exception
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
