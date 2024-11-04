@@ -35,7 +35,7 @@ public class MedicalCompareCoCoPageSteps {
 
     // used for SCLR-90
     @And( "I validate the {string} Medical Compare page In-Network headers and subheaders" )
-    public void verifyTxtCompareInNetwork(String language){medicalCompareCoCoPage.validateTextComparePlanCoCoPage(language);}
+    public void verifyTxtCompareInNetwork(String language){medicalCompareCoCoPage.validateTextComparePlanCoCoPageInNetwork(language);}
 
     // old SCLR-90
     @And( "I verify the Medical Compare page In-Network headers and subheaders" )
@@ -43,19 +43,16 @@ public class MedicalCompareCoCoPageSteps {
 
     // used for SCLR-93
     @And( "I validate the {string} Medical Compare page Out-Network headers and subheaders" )
-    public void verifyTxtCompareOutOfNetworkCoCoPage(String language){medicalCompareCoCoPage.validateTextComparePlanCoCoPage(language);}
+    public void verifyTxtCompareOutOfNetworkCoCoPage(String language){medicalCompareCoCoPage.validateTextComparePlanCoCoPageOutNetwork(language);}
 
     // old SCLR-93
     @And( "I verify the Medical Compare page Out-Network headers and subheaders" )
     public void verifyTxtOutofNetworkHeader(){medicalCompareCoCoPage.verifyTxtOutofNetworkCompareHeader();}
 
-    // could used for one big test
-    @And ("I validate the {string} text on the Medical Compare COCO page")
-    public void validateTextComparePlanCoCoPage(String language) {medicalCompareCoCoPage.validateTextComparePlanCoCoPage(language);}
 
     // could use for new test on network tab navigation
-    @And("I validate the Network tabs can be utilized")
-    public void validateNetworkTierTabs() {medicalCompareCoCoPage.validateNetworkTierTabs();}
+    @And("I validate the 2 Network tabs can be utilized when available")
+    public void validateNetworkTierTabs() {medicalCompareCoCoPage.validate2InNetworkTierTabs();}
 
 
 }

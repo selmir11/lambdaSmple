@@ -152,7 +152,8 @@ Feature: Verify COCO Medical Plan results
 
   # ////////////////////////////////  under construction ///////////////////////////////////
 
-  @SLCR-90  @COCOFilterMedicalResults_CompareInNetworkHeadersEnglish
+# PASSED but need more work from ben
+ @SLCR-90  @COCOMedicalCompareInNetworkHeadersEnglish
   Scenario Outline: SLCR-90 - This will verify the English COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -220,6 +221,7 @@ Feature: Verify COCO Medical Plan results
     And I select the COCO Insurance Company dropdown
     And I select "<carrierOption>" to filter for desired COCO plan provider
     And I select initial 3 plans and click the Compare button
+
     Then I validate I am on the "Medical Plan Compare" page
     And I validate the "English" Medical Compare page In-Network headers and subheaders
     And I click on Sign Out in the Header for "Elmo"
@@ -229,7 +231,7 @@ Feature: Verify COCO Medical Plan results
 
    # ////////////////////////////////  under construction ///////////////////////////////////
 
-  @SLCR-??_WIP  @COCOFilterMedicalResults_CompareInNetworkHeadersSpanish
+  @SLCR-??_WIP  @COCOMedicalCompareInNetworkHeadersSpanish @sirtest
   Scenario Outline: SLCR-90 - This will verify the Spanish COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -280,7 +282,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Marriage" Life Change Event to event date of "Past 1"
+    And I select "Marriage" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -297,7 +299,11 @@ Feature: Verify COCO Medical Plan results
     And I select the COCO Insurance Company dropdown
     And I select "<carrierOption>" to filter for desired COCO plan provider
     And I select initial 3 plans and click the Compare button
+
     Then I validate I am on the "Medical Plan Compare" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify text on the "CoCo" "Header" in "Spanish"
+    And I verify text on the "CoCo" "Footer" in "Spanish"
     And I validate the "Spanish" Medical Compare page In-Network headers and subheaders
     And I click on Sign Out in the Header for "Elmo"
     Examples:
@@ -306,7 +312,7 @@ Feature: Verify COCO Medical Plan results
 
       # ////////////////////////////////  under construction ///////////////////////////////////
 
-  @SLCR-93 @COCOFilterMedicalResults_CompareOutNetworkHeaders
+  @SLCR-93 @COCOFilterMedicalCompareOutNetworkHeadersEnglish
   Scenario: This will verify the COCO Compare Out of Network Headers are actionable and exist- formerly CCRT-398
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -357,7 +363,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "Marriage" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -377,14 +383,13 @@ Feature: Verify COCO Medical Plan results
     And I change the language from Elmo header to "English" if it isn't already in that language
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"
-    And I validate the "English" text on the Medical Compare COCO page
     And I validate the "English" Medical Compare page Out-Network headers and subheaders
     And I click on Sign Out in the Header for "Elmo"
 
   # ////////////////////////////////  under construction ///////////////////////////////////
   # Spanish version of the same above
 
-  @SLCR-93 @COCOFilterMedicalResults_CompareOutNetworkHeaders
+  @SLCR-93 @COCOFilterMedicalCompareOutNetworkHeadersSpanish
   Scenario: This will verify the COCO Compare Out of Network Headers are actionable and exist- formerly CCRT-398
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -435,7 +440,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "Move" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -455,7 +460,6 @@ Feature: Verify COCO Medical Plan results
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
-    And I validate the "Spanish" text on the Medical Compare COCO page
     And I validate the "Spanish" Medical Compare page Out-Network headers and subheaders
     And I click on Sign Out in the Header for "Elmo"
 
@@ -515,7 +519,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "Move" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -586,7 +590,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "Move" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -779,7 +783,7 @@ Feature: Verify COCO Medical Plan results
     # ////////////////////////////////  this test doesnt do what the description says - review description ///////////////////////////////////
 
   @SLCR-286 @CoCo_RegressionTest @ComparePlan_FromMultiplePage
-  Scenario: SLCR-286 - This will verify the COCO Compare plan page from medical plan page
+  Scenario: SLCR-286 - This will verify the COCO Compare plan page from medical plan page (Actual: This will select plans on two different pages and verify on Compare page)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -829,7 +833,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -850,7 +854,7 @@ Feature: Verify COCO Medical Plan results
 
       # ////////////////////////////////  under construction ///////////////////////////////////
     # ////////////////////////////////  this test doesnt do what the description says  ///////////////////////////////////
-  @SLCR-287 @CoCo_RegressionTest @sirtest
+  @SLCR-287 @CoCo_RegressionTest
   Scenario: SLCR-287 - This will verify Text and Dropdown in COCO Compare plan page from medical plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -901,7 +905,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
