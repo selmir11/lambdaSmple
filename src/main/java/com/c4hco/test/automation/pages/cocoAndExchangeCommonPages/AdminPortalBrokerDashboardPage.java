@@ -78,7 +78,7 @@ public class AdminPortalBrokerDashboardPage {
     WebElement certStatusDisplayed;
     @FindBy(css = "label[for='license-expiration-date']")
     WebElement labelExpirationDate;
-    @FindBy(xpath = "//input[@id='expiration-date']")
+    @FindBy(css = "#expiration-date")
     WebElement licenseDateDisplayed;
     @FindBy(css = "#option_2")
     WebElement licenseOptionNotApproved;
@@ -94,8 +94,18 @@ public class AdminPortalBrokerDashboardPage {
     WebElement certStatusApproved;
     @FindBy(css = "body > app-root > div > div > app-activity-report > div.table-container.group-box > h2")
     WebElement accountActivityTitle;
-    @FindBy(xpath = "//div/app-account-activity/div/a/button")
+    @FindBy(xpath = "//button[normalize-space()='View Report']")
     WebElement buttonViewReport;
+    @FindBy(css = "#Event\\ Code_1")
+    WebElement eventCode;
+    @FindBy(css = "#Time_1")
+    WebElement timeDate;
+    @FindBy(css = "#Username_1")
+    WebElement userName;
+    @FindBy(css = "#Description_1")
+    WebElement eventDescription;
+    @FindBy(css = "#Detail\\ Value_1 > span")
+    WebElement detailValue;
 
     public void validateAPBrokerDashboardHeader(String qaName, String qaID, String qaUserType, String stgName, String stgID, String stgUserType) {
         if (SharedData.getEnv().equals("staging")){
@@ -224,6 +234,7 @@ public class AdminPortalBrokerDashboardPage {
         softAssert.assertEquals(labelLicenseStatus.getText(),"License Status:");
         softAssert.assertEquals(licenseStatusDisplayed.getText(), licenseStatus);
         softAssert.assertEquals(labelExpirationDate.getText(),"License Expiration Date:");
+        licenseDateDisplayed.click();
         softAssert.assertEquals(licenseDateDisplayed.getText(), licenseDate);
         softAssert.assertEquals(labelCertStatus.getText(),"Certification Status:");
         softAssert.assertEquals(certStatusDisplayed.getText(),certificationStatus);
@@ -291,6 +302,17 @@ public class AdminPortalBrokerDashboardPage {
     public void verifyTableTitle() {
         basicActions.waitForElementToBePresent(accountActivityTitle, 20);
         softAssert.assertTrue(accountActivityTitle.isDisplayed());
+        softAssert.assertAll();
+    }
+    public void verifyBrokerAccountActivityReport(String eventCodeData, String dateDynamic, String nameOfUser, String description, String valueForAccountId){
+        String dateOnly = dateDynamic.split("T")[0];
+        System.out.println(dateOnly);
+        basicActions.waitForElementToBePresent(eventCode, 10);
+        softAssert.assertEquals(eventCode.getText(),eventCodeData);
+        softAssert.assertEquals(dateDynamic, dateOnly);
+        softAssert.assertEquals(userName.getText(), nameOfUser);
+        softAssert.assertEquals(eventDescription.getText(),description);
+        softAssert.assertEquals(detailValue.getText(), valueForAccountId);
         softAssert.assertAll();
     }
 }
