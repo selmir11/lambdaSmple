@@ -44,6 +44,12 @@ public class YourClientsPage {
     WebElement okBtn;
     @FindBy(xpath = "//button[.='Cancel']")
     WebElement cancelBtn;
+    @FindBy(xpath = "//div[normalize-space()='Remove Client(s)?']")
+    WebElement removeClientModalTitle;
+    @FindBy(xpath = "//div[contains(text(), 'Removing a total')]")
+    WebElement removeClientModalCountText;
+    @FindBy(xpath = "//div[@class='cdk-overlay-container']//div[@id='client-information-table']//div[2]")
+    WebElement removeClientModalConfirmationText;
     @FindBy(xpath = "//*[@id='client-information-table']/app-view-clients-table/div[2]")
     WebElement emptyTable;
     @FindBy(xpath = "//*[@id='clientCheck-checkAll']")
@@ -279,6 +285,34 @@ public class YourClientsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + popupBtn);
         }
+    }
+
+    public void validateRemoveClientModalTitle() {
+        basicActions.waitForElementToBePresent( removeClientModalTitle,100);
+        softAssert.assertEquals(removeClientModalTitle.getText(), "Remove Client(s)?");
+        softAssert.assertAll();
+    }
+
+    public void validateRemoveClientModalCountText() {
+        basicActions.waitForElementToBePresent( removeClientModalCountText,100);
+        softAssert.assertEquals(removeClientModalCountText.getText(), "Removing a total of 1 client(s).");
+        softAssert.assertAll();
+    }
+
+    public void validateRemoveClientModalConfirmationText() {
+        basicActions.waitForElementToBePresent( removeClientModalConfirmationText,100);
+        softAssert.assertEquals(removeClientModalConfirmationText.getText(), "Are you sure you want to end the client's relationship with the Agency?");
+        softAssert.assertAll();
+    }
+
+    public void validateRemoveClientCountMatchesSelectedClients() {
+        basicActions.waitForElementToBePresent( selectedClientCount,100);
+        String selectedClients = selectedClientCount.getText().replace(" Clients Selected", "");
+        removedSelectedClients.click();
+
+        basicActions.waitForElementToBePresent( removeClientModalCountText,100);
+        softAssert.assertEquals(removeClientModalCountText.getText(), "Removing a total of " + selectedClients + " client(s).");
+        softAssert.assertAll();
     }
 
     public void validateClientIsRemoved() {

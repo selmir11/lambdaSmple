@@ -88,10 +88,11 @@ public class GroupingMembersMedicalPage {
         int groupsSize = noOfGroups.size();
         if(SharedData.getScenarioDetails()!=null){
             SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        } else {
+            ScenarioDetails scenarioDetails = new ScenarioDetails();
+            scenarioDetails.setTotalGroups(groupsSize);
+            SharedData.setScenarioDetails(scenarioDetails);
         }
-        ScenarioDetails scenarioDetails = new ScenarioDetails();
-        scenarioDetails.setTotalGroups(groupsSize);
-        SharedData.setScenarioDetails(scenarioDetails);
         softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
         softAssert.assertAll();
     }
@@ -209,10 +210,11 @@ public class GroupingMembersMedicalPage {
         int groupsSize = noOfGroups.size();
         if(SharedData.getScenarioDetails()!=null){
             SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        } else {
+            ScenarioDetails scenarioDetails = new ScenarioDetails();
+            scenarioDetails.setTotalGroups(groupsSize);
+            SharedData.setScenarioDetails(scenarioDetails);
         }
-        ScenarioDetails scenarioDetails = new ScenarioDetails();
-        scenarioDetails.setTotalGroups(groupsSize);
-        SharedData.setScenarioDetails(scenarioDetails);
         for (int i = 1; i <= groupsSize; i++) {
             List<WebElement> details = basicActions.getDriver().findElements(By.xpath("//th[contains(text(),'Medical Group # " + i + "')]/../../following-sibling::tbody//td"));
             List<String> newDetails = new ArrayList<>();
@@ -225,10 +227,6 @@ public class GroupingMembersMedicalPage {
         }
 
         SharedData.setGroupingDetails(groupDetailsMap);
-        System.out.println(groupDetailsMap);
-
     }
-
-
 
 }

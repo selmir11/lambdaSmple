@@ -21,7 +21,7 @@ Feature: Verify COCO Medical Plan results
   And I click Continue on my own button from Manage who helps you page
 
   Then I validate I am on the "CoCo Family Overview" page
-  Then I click EditUpdate on Family Overview page for "Primay"
+  Then I click EditUpdate on Family Overview page for "Primary"
   And I click Go Back on the tell us about yourself page
 
   Then I validate I am on the "CoCo Family Overview" page
@@ -31,7 +31,7 @@ Feature: Verify COCO Medical Plan results
   Then I validate I am on the "Find Expert Help" page
   And I click Continue on my own button from Manage who helps you page
 
-  Then I click EditUpdate on Family Overview page for "Primay"
+  Then I click EditUpdate on Family Overview page for "Primary"
   Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
   And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
   And I select "Yes" for mailing address option
@@ -97,7 +97,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I click Continue on my own button from Manage who helps you page
 
   Then I validate I am on the "CoCo Family Overview" page
-  Then I click EditUpdate on Family Overview page for "Primay"
+  Then I click EditUpdate on Family Overview page for "Primary"
   And I click Go Back on the tell us about yourself page
 
   Then I validate I am on the "CoCo Family Overview" page
@@ -107,7 +107,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   Then I validate I am on the "Find Expert Help" page
   And I click Continue on my own button from Manage who helps you page
 
-  Then I click EditUpdate on Family Overview page for "Primay"
+  Then I click EditUpdate on Family Overview page for "Primary"
   Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
   And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
   And I select "Yes" for mailing address option
@@ -182,7 +182,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -264,7 +264,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     And I click Go Back on the tell us about yourself page
 
     Then I validate I am on the "CoCo Family Overview" page
@@ -274,7 +274,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
 
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -342,7 +342,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -542,7 +542,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
 
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
@@ -740,7 +740,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
@@ -899,7 +899,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     Then I enter details on tell us about yourself page and continue with "01162010", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
