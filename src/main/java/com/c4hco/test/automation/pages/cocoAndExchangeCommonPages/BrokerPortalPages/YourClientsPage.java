@@ -112,6 +112,9 @@ public class YourClientsPage {
     @FindBy(xpath = "//input[contains(@id, 'clientCheck')]")
     List<WebElement> clientCheckboxes;
 
+    @FindBy(xpath = "//*[@id='view-your-clients-table']/form/div")
+    WebElement clientTransferSuccessfulMessage;
+
     public void validateYourClientsPageTitle(){
         basicActions.waitForElementToBePresent(yourClientsTitle, 10);
         softAssert.assertEquals(yourClientsTitle.getText(),"Your Clients");
@@ -514,6 +517,13 @@ public class YourClientsPage {
         basicActions.waitForElementToBePresent(allClientsCheckBox,30);
 
         softAssert.assertEquals(allClientsCheckBox.getAttribute("class"),"mat-mdc-checkbox mat-accent mdc-checkbox--disabled mat-mdc-checkbox-disabled mat-mdc-checkbox-checked");
+        softAssert.assertAll();
+    }
+
+    public void validateClientTransferSuccessfulMessage(){
+        basicActions.waitForElementToBePresent(clientTransferSuccessfulMessage,30);
+
+        softAssert.assertEquals(clientTransferSuccessfulMessage.getText(), "Client Transfer Successful");
         softAssert.assertAll();
     }
 }
