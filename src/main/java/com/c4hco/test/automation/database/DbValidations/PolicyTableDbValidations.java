@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PolicyDbValidations_new {
+public class PolicyTableDbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     BasicActions basicActions = new BasicActions();
     SoftAssert softAssert = new SoftAssert();
