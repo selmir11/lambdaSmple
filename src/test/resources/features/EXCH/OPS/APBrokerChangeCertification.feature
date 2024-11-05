@@ -7,7 +7,7 @@ Feature: Broker Dashboard- Change license and certification statuses
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I select "Broker" checkbox on Admin Portal Dashboard
-    Then I enter an accountId in any Env "8363832700" "7660020008" to search user
+    Then I enter an accountId in any Env "4007335519" "4007335519" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "AP Broker dashboard" page
@@ -24,4 +24,20 @@ Feature: Broker Dashboard- Change license and certification statuses
     Then I verify Account Activity title
     Then I wait for 700 milliseconds
    # And I Verify Broker Account Activity latest information
-    And I validate latest Broker Account Activity Report Event Code: "SP_BROKER_CERTIFIED" and Date: "2024-11-04" then Username: "AGENCY-SERVICE" with Description: "Broker certified" and finally Detail Value: "7660020008"
+    And I validate latest Broker Account Activity Report Event Code: "SP_BROKER_CERTIFIED" and Date: "2024-11-05" then Username: "AGENCY-SERVICE" with Description: "Broker certified" and finally Detail Value: "4007335519"
+    And I logout from Admin Portal
+  @SLER-748
+  Scenario: Verify in Broker portal status is Approved
+    Given I open the login page on the "broker" portal
+    And I validate I am on the "Login" page
+    And I login as Broker User any environment "acctsforc4testing+peF8qXUj3@gmail.com" password "ALaska12!" and "johnc4hcoautomation+1734qaage@gmail.com" password "ALaska13!"
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "eluniaxm@outlook.com" and "ALaska12!"
+    Then I open the MFA notice
+    And I get the MFA code
+    And I delete the open notice
+    Then I sign out of Outlook
+    Then I enter the MFA code and click Verify
+    Then I click Agency Dashboard
+    And I validate in Broker portal Certification Status: "APPROVED"
+    Then I click on broker userName and logout

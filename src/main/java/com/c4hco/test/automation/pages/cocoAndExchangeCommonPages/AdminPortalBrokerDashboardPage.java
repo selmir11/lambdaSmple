@@ -106,6 +106,10 @@ public class AdminPortalBrokerDashboardPage {
     WebElement eventDescription;
     @FindBy(css = "#Detail\\ Value_1 > span")
     WebElement detailValue;
+    @FindBy(css = "#accountSummary-label-agencyCertification")
+    WebElement labelCertificationAgencyPortal;
+    @FindBy(css = "#accountSummary-data-agencyCertification")
+    WebElement certStatusAgencyPortal;
 
     public void validateAPBrokerDashboardHeader(String qaName, String qaID, String qaUserType, String stgName, String stgID, String stgUserType) {
         if (SharedData.getEnv().equals("staging")){
@@ -313,6 +317,12 @@ public class AdminPortalBrokerDashboardPage {
         softAssert.assertEquals(userName.getText(), nameOfUser);
         softAssert.assertEquals(eventDescription.getText(),description);
         softAssert.assertEquals(detailValue.getText(), valueForAccountId);
+        softAssert.assertAll();
+    }
+    public void verifyInBrokerPortalStatusIsChanged(String certificationStatusBrokerPortal) {
+        basicActions.waitForElementToBePresent(labelCertificationAgencyPortal, 10);
+        softAssert.assertEquals(labelCertificationAgencyPortal.getText(),"Agency Certification:");
+        softAssert.assertEquals(certStatusAgencyPortal.getText(), certificationStatusBrokerPortal);
         softAssert.assertAll();
     }
 }

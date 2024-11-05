@@ -84,4 +84,8 @@ public class AdminPortalBrokerDashboardSteps {
     public void iVerifyBrokerAccountActivityReport(String eventCode, String dateDynamic, String nameOfUser, String description, String valueForAccountId) {
         adminPortalBrokerDashboardPage.verifyBrokerAccountActivityReport(eventCode, dateDynamic, nameOfUser, description, valueForAccountId);
     }
+    @And("I validate in Broker portal Certification Status: {string}")
+    public void iVerifyInBrokerPortalStatusIsChanged(String certificationStatusBrokerPortal) {
+        adminPortalBrokerDashboardPage.verifyInBrokerPortalStatusIsChanged(certificationStatusBrokerPortal);
+    }
 }
