@@ -233,13 +233,13 @@ Feature: Tests related to the Additional Income page
     Then I validate I am on the "Login" page
 
   @SLCR-405 @PageTextAdditionalIncome
-  Scenario: I verify the text on the CoCo Additional Income page - English
+  Scenario: SLCR-405 I verify the text on the CoCo Additional Income page - English
     Then I verify the header for Primary Member on the CoCo Additional Income page in "English"
     Then I verify the text on the CoCo Additional Income page in "English"
     Then I verify the navigation buttons on the CoCO Additional Income page in "English"
 
   @SLCR-406 @PageTextAdditionalIncome
-  Scenario: I verify the text on the CoCo Additional Income page - Spanish
+  Scenario: SLCR-406 I verify the text on the CoCo Additional Income page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify the header for Primary Member on the CoCo Additional Income page in "Spanish"
     Then I verify the text on the CoCo Additional Income page in "Spanish"
