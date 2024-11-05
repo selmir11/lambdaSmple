@@ -69,5 +69,7 @@ public class OtherHealthCoverageSteps_Elmo {
     @Then("I verify help drawer footer text in {string} on the Other Health Coverage page")
     public void iVerifyHelpDrawerFooter(String language){otherHealthCoveragePage_Elmo.verifyHelpDrawerFooterText(language);}
 
-
+    @Then("I verify main OHC checkbox in {string} state")
+    public void iVerifyStateOfMainOHCCheckboxes(String state){
+        otherHealthCoveragePage_Elmo.verifyMainOHCCheckboxes(state);}
 }

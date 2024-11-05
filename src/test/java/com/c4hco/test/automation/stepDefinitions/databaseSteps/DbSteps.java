@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.*;
-import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -11,28 +10,16 @@ import java.util.Map;
 public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
-private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
-private final Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
    }
 
-   @And("I validate the member details from policy tables")
-   public void validateFromPolicyTables(){
-      policyTableDBValidations.validateDataFromPolicyTables();
-   }
-
    @And("I validate member details from ob834_details table")
    public void validateOb834Details(List<Map<String, String>> expectedValues){
       dbValidations.validateOb834FromDb(expectedValues);
    }
-   @And("I set ib999 entites for both medical and dental files")
-   public void setib999(){
-      ib999FileValidations.setIb999DetailsEntity();
-   }
-
    @And("I verify the OHI info in the DB for {string}")
    public void validateOhiInfo(String memberId){dbValidations.validateOhiDetails(memberId);}
 
@@ -62,6 +49,9 @@ private final Ib999FileValidations ib999FileValidations = new Ib999FileValidatio
    public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {
       dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
    }
+
+   @And("I validate MVR details for account")
+   public void iValidateMVRDetails(List<Map<String, String>> expectedValues){dbValidations.validateMVR(expectedValues);}
 
    @And("I verify the client application submission in BoB DB")
    public void iVerifyApplicationSubmissionBobDb() {
@@ -145,3 +135,4 @@ private final Ib999FileValidations ib999FileValidations = new Ib999FileValidatio
       dbValidations.validateTheSecondDentalPoliciyForTheYearDB(year);
    }
 }
+

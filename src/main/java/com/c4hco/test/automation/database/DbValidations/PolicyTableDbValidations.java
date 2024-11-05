@@ -13,7 +13,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PolicyDbValidations_new {
+public class PolicyTableDbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     BasicActions basicActions = new BasicActions();
     SoftAssert softAssert = new SoftAssert();
@@ -23,11 +23,8 @@ public class PolicyDbValidations_new {
     PlanDbData medicalPlanDbData = new PlanDbData();
     PlanDbData dentalPlanDbData = new PlanDbData();
 
-    public PolicyDbValidations_new() {
-        setData();
-    }
-
     public void recordsValidations(String recordType) {
+        setData();
         switch (recordType) {
             case "medical":
                 medicalRecordsValidations();
@@ -107,7 +104,7 @@ public class PolicyDbValidations_new {
         softAssert.assertTrue(policyTablesEntity.getBirth_date().contains(basicActions.changeDateFormat(member.getDob(), "MMddyyyy", "yyyy-MM-dd")), "DOB does not match");
         softAssert.assertNull(policyTablesEntity.getTobacco_use(), "Tobacco use field is obsolete in policy tables. So, it should be null always. We got a non-null value");
         softAssert.assertEquals(policyTablesEntity.getPlan_year(), SharedData.getPlanYear(), " Plan year does not match");
-        softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Coverage type 1, effectuated indicator does not match in en policy ah");
+        softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "effectuated indicator does not match in en policy ah");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
         softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
         softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), "SUBMITTED", "Dental member coverage status does not match");
@@ -162,7 +159,7 @@ public class PolicyDbValidations_new {
         softAssert.assertEquals(basicActions.doubleAmountFormat(policyTablesEntity.getTotal_premium_reduction_amt()), basicActions.doubleAmountFormat(subscriber.getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : subscriber.getMedicalAptcAmt()), "Subscriber Medical APTC amount does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), subscriber.getFinancialHelp() ? "APTC" : "null", "Subscriber Medical Policy premium reduction type does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), subscriber.getFinancialHelp() ? "APTC" : "null", "premium reduction type in en policy financial ah table does not match");
-        softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getTotalMedAmtAfterReduction(), "--Medical Policy total responsible amount does not match");
+        softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getTotalMedAmtAfterReduction(), "Medical Policy total responsible amount does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), medicalPlanDbData.getCsrAmt(), "Medical Policy total CSR amount does not match");
         softAssert.assertAll();
     }

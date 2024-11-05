@@ -17,7 +17,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
 
 
   @SLCR-161 @groupingbysiblingswithoutparents

@@ -88,6 +88,27 @@ public class YourClientsPageSteps {
     public void iClickRemoveClient(String popupOption) {
         yourClientsPage.clickPOPUPOption(popupOption);
     }
+
+    @Then("I validate the Remove Client modal title")
+    public void iValidateRemoveClientModalTitle() {
+        yourClientsPage.validateRemoveClientModalTitle();
+    }
+
+    @Then("I validate the Remove Client modal client count text")
+    public void iValidateRemoveClientModalCountText() {
+        yourClientsPage.validateRemoveClientModalCountText();
+    }
+
+    @Then("I validate the Remove Client modal confirmation text")
+    public void iValidateRemoveClientModalConfirmationText() {
+        yourClientsPage.validateRemoveClientModalConfirmationText();
+    }
+
+    @Then("I validate the Remove Client modal client count matches the selected client count")
+    public void iValidateRemoveClientCountMatchesSelectedClients() {
+        yourClientsPage.validateRemoveClientCountMatchesSelectedClients();
+    }
+
     @Then("I validate The Client is removed successfully")
     public void IValidateTheClientIsRemovedSuccessfully() {
         yourClientsPage.validateClientIsRemoved();
@@ -171,6 +192,36 @@ public class YourClientsPageSteps {
     @Then("I validate the {string} option is not displayed")
     public void iValidateClientOptionsNotDisplayed(String clientOption) {
         yourClientsPage.validateClientOptionsNotDisplayed(clientOption);
+    }
+
+    @And("I validate the {string} header option is not displayed")
+    public void iValidateHeaderOptionsNotDisplayed(String headerOption) {
+        yourClientsPage.validateHeaderOptionsNotDisplayed(headerOption);
+    }
+
+    @And("I validate the {string} header option is displayed")
+    public void iValidateHeaderOptionsDisplayed(String headerOption) {
+        yourClientsPage.validateHeaderOptionsDisplayed(headerOption);
+    }
+
+    @Then("I verify that a total of {string} clients have been selected")
+    public void iValidateTotalSelectedClientCount(String expectedCount) {
+        yourClientsPage.validateTotalSelectedClientCount(expectedCount);
+    }
+
+    @Then("I select a random client's checkbox")
+    public void iSelectRandomClientCheckbox() {
+        yourClientsPage.selectRandomClientCheckbox();
+    }
+
+    @And("I verify that the check all clients checkbox is disabled")
+    public void iVerifyCheckAllClientsCheckboxDisabled() {
+        yourClientsPage.verifyCheckAllClientsCheckboxDisabled();
+    }
+
+    @And("I validate the Client Transfer Successful message")
+    public void iValidateClientTransferSuccessfulMessage() {
+        yourClientsPage.validateClientTransferSuccessfulMessage();
     }
 }
 

@@ -93,8 +93,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click on Add job or self-employment on the Employment Summary Page
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "5160000" at frequency "Annually"
@@ -171,8 +171,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -226,8 +226,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -413,8 +413,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -503,8 +503,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -572,8 +572,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I validate I am on the "Deductions" page
@@ -649,8 +649,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I validate I am on the "Deductions" page
@@ -844,8 +844,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -926,8 +926,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -1046,11 +1046,11 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 2
+    And I click plus icon next to member on household page for "Spouse"
     Then I click on Remove this Member
     Then I click on "OK" in the Remove Member frame
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -1176,8 +1176,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click on Add job or self-employment on the Employment Summary Page
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "5160000" at frequency "Annually"
@@ -1243,8 +1243,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -1300,8 +1300,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -1489,8 +1489,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -1552,8 +1552,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -1623,8 +1623,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I validate I am on the "Deductions" page
@@ -1696,8 +1696,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I validate I am on the "Deductions" page

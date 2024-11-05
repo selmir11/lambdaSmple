@@ -30,6 +30,9 @@ public class DeductionsCoCoPageSteps {
     @And("I verify the header for Primary Member on the CoCo Deductions page in {string}")
     public void iVerifyTextOnDeductionsPage(String language){deductionsCoCoPage.verifyHeadersDeductionsPage(language);}
 
+    @And("I verify the header for additional member on the CoCo Deductions page in {string}")
+    public void iVerifyAdditionalMemberTextOnDeductionsPage(String language) {deductionsCoCoPage.verifyAddtlMemHeadersDeductionsPage(language);}
+
     @Then("I verify error for Deductions no option in {string} CoCo page")
     public void iVerifyDeductionsOptionHdrError(String language){deductionsCoCoPage.verifyDeductionsOptionHdrError(language);}
 
@@ -44,5 +47,15 @@ public class DeductionsCoCoPageSteps {
 
     @Then("I verify {string} as Deductions option with {string} amount at {string} frequency CoCo page")
     public void iVerifyDeductionsEnteredData(String deductionsOption, String Amount, String Frequency) {deductionsCoCoPage.verifyDeductionsEnteredData(deductionsOption, Amount, Frequency);}
+
+    @Then("I verify the text on the deductions coco page in {string}")
+    public void iVerifyDeductionsText(String language) {deductionsCoCoPage.verifyDeductionsText(language);}
+
+    @Then("I verify the navigation buttons on the deductions coco page in {string}")
+    public void iVerifyDeductionsNavigationButtons(String language) {deductionsCoCoPage.verifyDeductionsNavigationButtons(language);}
+
+    @Then("I verify Deductions checkbox COCO in {string} state")
+    public void iVerifyStateOfDeductionsCheckbox(String state){
+        deductionsCoCoPage.verifyDeductionsOptionCheckboxCOCO(state);}
 
 }

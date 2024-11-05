@@ -414,7 +414,7 @@ public class DbValidations {
         for (String key : policyAhId.keySet()) {
             softAssert.assertEquals(policyAhId.get(key), "0", "Doesn't match policyAhId.get(key)");
         }
-       // softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     public void validateBookOfBusinessQ(String eventType) {
@@ -434,17 +434,15 @@ public class DbValidations {
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
-            softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
             policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
             applicationIdListFromBob.add(bookOfBusinessQEntity.getApplicationid());
         }
-
+        softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
         softAssert.assertTrue(new HashSet<>(applicationIdListFromBob).containsAll(applicationIdListFromPolicyAh), "application id mismatch");
         softAssert.assertTrue(new HashSet<>(policyIdListFromBookOfBusinessDb).containsAll(policyIdFromPolicyDB), "Policy Id mismatch ");
         softAssert.assertAll();
 
     }
-
 
     public void validateAccountHolderNameFromBOB() {
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
@@ -588,6 +586,14 @@ public class DbValidations {
         System.out.println("Formatted Date: " + formattedDate);
         String SecondMedicalPolicyDB = denSecondPolicy[0]+ " - " + formattedDate +" - " +denSecondPolicy[2];
         softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectDenSecondPolicyDrp());
+        softAssert.assertAll();
+    }
+	
+	public void validateMVR(List<Map<String, String>> expectedValues){
+        EsManualVerifRequestEntity actualResult = exchDbDataProvider.getEsMVR_options();
+        System.out.println(actualResult);
+
+        softAssert.assertEquals(actualResult.getManual_verification_type(), expectedValues.get(0).get("manual_verification_type"));
         softAssert.assertAll();
     }
 }
