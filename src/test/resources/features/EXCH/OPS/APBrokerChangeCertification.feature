@@ -30,7 +30,7 @@ Feature: Broker Dashboard- Change license and certification statuses
   Scenario: Verify in Broker portal status is Approved
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    And I login as Broker User any environment "acctsforc4testing+peF8qXUj3@gmail.com" password "ALaska12!" and "johnc4hcoautomation+1734qaage@gmail.com" password "ALaska13!"
+    And I login as Broker User any environment "acctsforc4testing+peF8qXUj3@gmail.com" password "ALaska12!" and "acctsforc4testing+dnROHtlJu@gmail.com" password "ALaska12!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "eluniaxm@outlook.com" and "ALaska12!"
     Then I open the MFA notice
