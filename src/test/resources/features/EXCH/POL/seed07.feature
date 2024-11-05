@@ -1,6 +1,9 @@
 Feature: Seed07 - Exchange
 
-  Background: Seed 07 For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
+  Scenario: Seed 07 For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 2           | 4            | 1                 | 3                |   4             |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -202,7 +205,6 @@ Feature: Seed07 - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -213,6 +215,14 @@ Feature: Seed07 - Exchange
 
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
+    Then I click on edit enrollment groups link
+    Then I create new group in edit medical grouping page and drag members to the new group
+      | Primary,Spouse:Group1 |
+      | Son,InLaw:Group2 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
+    Then I validate I am on the "Grouping Members Medical" page
+    And  I get the details of medical group Members
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
     And I select "KP Select CO Bronze 8500/50" plan
@@ -239,4 +249,11 @@ Feature: Seed07 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+#    And I Validate the correct enrolled plans are displayed on account overview page
+#
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click View Plan History link from "medical" plan card
+   # And I click on Sign Out in the Header for "NonElmo"

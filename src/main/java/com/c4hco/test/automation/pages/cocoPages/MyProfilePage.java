@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -57,6 +58,32 @@ public class MyProfilePage {
 
     @FindBy(css = ".error-message")
     WebElement ErrorMessageCoCo;
+
+    @FindBy(css = ".row.header-2.popup-page-header")
+    WebElement headerChangePrimaryCoCo;
+    @FindBy(css = ".action-link.col-sm-2.float-end.ng-star-inserted")
+    WebElement changePrimaryContactCoCo;
+    @FindBy(id = "contactNames")
+    WebElement primaryContactDRPCoCo;
+    @FindBy(css = ".btn.btn-lg.btn-md.btn-sml.primary-action-button.mb-1.ms-3")
+    WebElement savePrimaryContactCoCo;
+
+    @FindBy(xpath = "//*[@id='contactNames']/option[1]")
+    WebElement dpdPrimaryChangeOpt1CoCo;
+
+    @FindBy(xpath = "//*[@id='contactNames']/option[2]")
+    WebElement dpdPrimaryChangeOpt2CoCo;
+
+    @FindBy(xpath = "//button[normalize-space()='Cancel']")
+    WebElement cancelPrimaryPopupCoCo;
+    @FindBy(xpath = "//button[normalize-space()='Cancelar'] ")
+    WebElement getCancelPrimaryPopupSpCoCo;
+
+    @FindBy(css = "a#privacyPolicyLink.action-link1")
+    WebElement privacyPolicyCoCo;
+
+    @FindBy(css = "a#termsOfUseLink.action-link1")
+    WebElement termsOfUseCoCo;
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -337,6 +364,60 @@ public class MyProfilePage {
         PasswordInputCoCo.sendKeys(newPassword);
         PasswordSaveChangesCoCo.click();
         basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 40);
+        softAssert.assertAll();
+    }
+
+    public void ClickChangePrimaryContactOnMyProfilePageCoCo() {
+        basicActions.waitForElementToBePresent(changePrimaryContactCoCo, 80);
+        changePrimaryContactCoCo.click();
+    }
+
+    public void validateChangePrimaryContactPopupCoCo(String language) {
+        switch (language) {
+            case "English":
+                validateChangePrimaryContactpopupEnglish();
+                break;
+            case "Spanish":
+                validateChangePrimaryContactpopupSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void validateChangePrimaryContactpopupEnglish() {
+        basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 2000);
+        softAssert.assertEquals(headerChangePrimaryCoCo.getText(), "Change Primary Contact");
+        primaryContactDRPCoCo.click();
+        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2CoCo.getText(), SharedData.getPrimaryMember().getFullName());
+        String firstName = SharedData.getMembers().get(0).getFirstName();
+        primaryContactDRPCoCo.sendKeys(firstName);
+        primaryContactDRPCoCo.sendKeys(Keys.ENTER);
+        softAssert.assertEquals(cancelPrimaryPopupCoCo.getText(), "Cancel");
+        softAssert.assertEquals(savePrimaryContactCoCo.getText(), "Save");
+        softAssert.assertEquals(privacyPolicyCoCo.getText(), "Privacy Policy");
+        softAssert.assertEquals(termsOfUseCoCo.getText(), "Terms Of Use");
+        cancelPrimaryPopupCoCo.click();
+        softAssert.assertAll();
+    }
+
+
+    public void validateChangePrimaryContactpopupSpanish() {
+        basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 2000);
+        softAssert.assertEquals(headerChangePrimaryCoCo.getText(), "Cambiar el contacto principal");
+        primaryContactDRPCoCo.click();
+        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2CoCo.getText(), SharedData.getPrimaryMember().getFullName());
+        String firstName = SharedData.getMembers().get(0).getFirstName();
+        primaryContactDRPCoCo.sendKeys(firstName);
+        primaryContactDRPCoCo.sendKeys(Keys.ENTER);
+        softAssert.assertEquals(getCancelPrimaryPopupSpCoCo.getText(), "Cancelar");
+        softAssert.assertEquals(savePrimaryContactCoCo.getText(), "Guardar");
+        softAssert.assertEquals(privacyPolicyCoCo.getText(), "Pol\u00EDtica de privacidad");
+        softAssert.assertEquals(termsOfUseCoCo.getText(), "T\u00E9rminos de uso");
+        savePrimaryContactCoCo.click();
         softAssert.assertAll();
     }
 }
