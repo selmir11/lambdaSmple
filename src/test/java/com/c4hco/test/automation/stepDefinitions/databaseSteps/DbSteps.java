@@ -10,16 +10,10 @@ import java.util.Map;
 public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
 private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
-private final PolicyTableDBValidations policyTableDBValidations = new PolicyTableDBValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
-   }
-
-   @And("I validate the member details from policy tables")
-   public void validateFromPolicyTables(){
-      policyTableDBValidations.validateDataFromPolicyTables();
    }
 
    @And("I validate member details from ob834_details table")

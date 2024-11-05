@@ -2,21 +2,21 @@ package com.c4hco.test.automation.stepDefinitions.databaseSteps.POL;
 
 import com.c4hco.test.automation.database.DbValidations.Ib999DbValidations;
 import com.c4hco.test.automation.database.DbValidations.Ob834PreEdiDbValidations;
-import com.c4hco.test.automation.database.DbValidations.PolicyDbValidations_new;
+import com.c4hco.test.automation.database.DbValidations.PolicyTableDbValidations;
 import io.cucumber.java.en.And;
 
 import java.util.List;
 import java.util.Map;
 
 public class DbStepsE2E {
-    private final PolicyDbValidations_new policyTableDBValidations_new = new PolicyDbValidations_new();
+    private final PolicyTableDbValidations policyTableDBValidations = new PolicyTableDbValidations();
     private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
 
 
     @And("I validate {string} entities from policy tables")
     public void validateMedicalRecords(String recordType){
-        policyTableDBValidations_new.recordsValidations(recordType);
+        policyTableDBValidations.recordsValidations(recordType);
     }
 
     @And("I validate {string} entities from pre edi db tables")

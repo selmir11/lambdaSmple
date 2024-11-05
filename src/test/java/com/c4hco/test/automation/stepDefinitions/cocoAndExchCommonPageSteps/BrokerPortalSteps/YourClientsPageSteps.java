@@ -218,5 +218,10 @@ public class YourClientsPageSteps {
     public void iVerifyCheckAllClientsCheckboxDisabled() {
         yourClientsPage.verifyCheckAllClientsCheckboxDisabled();
     }
+
+    @And("I validate the Client Transfer Successful message")
+    public void iValidateClientTransferSuccessfulMessage() {
+        yourClientsPage.validateClientTransferSuccessfulMessage();
+    }
 }
 

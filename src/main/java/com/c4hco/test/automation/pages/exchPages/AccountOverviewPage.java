@@ -248,7 +248,6 @@ public class AccountOverviewPage {
 
         SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
-
     }
 
 
