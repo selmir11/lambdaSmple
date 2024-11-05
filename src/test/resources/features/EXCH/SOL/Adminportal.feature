@@ -417,7 +417,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for the current year
+    And I apply for the next year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -490,7 +490,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I select the projected income option "No" and continue
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
+    And I select "Head of household" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
     And I select the option "No" to claim as dependent
@@ -510,14 +510,15 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
+    And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
     Then I click continue on grouping Members Medical page
-    #And I select "Elevate Health Plans Bronze HDHP" medical plan
+    And I select "Cigna Connect Colorado Option Silver" medical plan
     Then I click continue on medical plan results page
-    And I select the first medical plan
+    And I select "Cigna Connect Colorado Option Silver" medical plan
     Then I click continue on medical plan results page
     Then I validate that there are 2 default groups
     Then I click continue on grouping Members Dental page
