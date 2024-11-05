@@ -232,7 +232,7 @@ Feature: Verify COCO Medical Plan results
    # ////////////////////////////////  under construction ///////////////////////////////////
 
   @SLCR-??_WIP  @COCOMedicalCompareInNetworkHeadersSpanish @sirtest
-  Scenario Outline: SLCR-90 - This will verify the Spanish COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
+  Scenario Outline: SLCR-?? - This will verify the Spanish COCO Compare page In Network headers and dropdowns - this is a clone of CCRT-397 to SCLR-90
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
