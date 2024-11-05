@@ -36,7 +36,7 @@ public class HouseholdPage {
     WebElement addAdditionalMember;
 
     @FindBy(id = "submitButton_Income")
-    List<WebElement> editIncomeLink;
+    WebElement editIncomeLink;
 
     @FindBy(xpath = "//input[@class = 'linkButton']")
     WebElement editPrimaryMember;
