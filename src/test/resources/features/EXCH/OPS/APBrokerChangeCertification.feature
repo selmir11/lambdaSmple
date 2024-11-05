@@ -15,7 +15,7 @@ Feature: Broker Dashboard- Change license and certification statuses
     And I validate current Broker License Status: "APPROVED" and License Expiration Date: "" with Certification Status: "APPROVED"
     Then I change statuses and click Save button in manage certification container
     Then I click Manage Certification button
-    Then I verify expected statuses are displayed
+    Then I verify statuses are displayed in popup window as well
     And I validate current Broker License Status: "Not Approved" and License Expiration Date: "" with Certification Status: "Not Approved"
     Then I click Cancel button
     Then I click Manage Certification button

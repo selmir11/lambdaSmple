@@ -56,9 +56,9 @@ public class AdminPortalBrokerDashboardSteps {
     public void iChangeStatusesThenClickSaveButton() {
         adminPortalBrokerDashboardPage.changeStatusesThenClickSaveButton();
     }
-    @Then("I verify expected statuses are displayed")
+    @Then("I verify statuses are displayed in popup window as well")
     public void iVerifyExpectedStatuses() {
-        adminPortalBrokerDashboardPage.verifyExpectedStatuses();
+        adminPortalBrokerDashboardPage.verifyExpectedStatusesInPopup();
     }
     @Then("I click Cancel button")
     public void iClickCancelButton() {

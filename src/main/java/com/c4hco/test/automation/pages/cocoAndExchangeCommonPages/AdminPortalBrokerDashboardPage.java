@@ -252,10 +252,13 @@ public class AdminPortalBrokerDashboardPage {
         certStatusNotApproved.click();
         buttonSave.click();
     }
-    public void verifyExpectedStatuses(){
+    public void verifyExpectedStatusesInPopup(){
         basicActions.waitForElementToBePresent(labelLicenseStatus, 10);
         softAssert.assertTrue(labelLicenseStatus.isDisplayed());
-         softAssert.assertAll();
+        softAssert.assertTrue(licenseStatusDisplayed.isDisplayed());
+        softAssert.assertTrue(certStatusDisplayed.isDisplayed());
+        softAssert.assertTrue(certStatusNotApproved.isDisplayed());
+        softAssert.assertAll();
     }
     public void clickCancelButton() {
         basicActions.waitForElementToBePresent(buttonCancel, 10);
