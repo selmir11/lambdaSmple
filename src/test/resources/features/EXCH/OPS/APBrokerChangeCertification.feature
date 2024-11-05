@@ -23,7 +23,6 @@ Feature: Broker Dashboard- Change license and certification statuses
     And I click View Report button
     Then I verify Account Activity title
     Then I wait for 700 milliseconds
-   # And I Verify Broker Account Activity latest information
     And I validate latest Broker Account Activity Report Event Code: "SP_BROKER_CERTIFIED" and Date: "2024-11-05" then Username: "AGENCY-SERVICE" with Description: "Broker certified" and finally Detail Value: "4007335519"
     And I logout from Admin Portal
   @SLER-748

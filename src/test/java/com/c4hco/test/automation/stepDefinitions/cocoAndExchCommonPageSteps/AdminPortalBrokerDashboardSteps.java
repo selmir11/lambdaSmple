@@ -76,10 +76,6 @@ public class AdminPortalBrokerDashboardSteps {
     public void iVerifyTableTitle() {
         adminPortalBrokerDashboardPage.verifyTableTitle();
     }
-    @And("I Verify Broker Account Activity latest information")
-    public void iVerifyBrokerActivityInformation() {
-        adminPortalBrokerDashboardPage.verifyBrokerActivityInfo();
-    }
     @And("I validate latest Broker Account Activity Report Event Code: {string} and Date: {string} then Username: {string} with Description: {string} and finally Detail Value: {string}")
     public void iVerifyBrokerAccountActivityReport(String eventCode, String dateDynamic, String nameOfUser, String description, String valueForAccountId) {
         adminPortalBrokerDashboardPage.verifyBrokerAccountActivityReport(eventCode, dateDynamic, nameOfUser, description, valueForAccountId);

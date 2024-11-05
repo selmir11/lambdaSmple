@@ -274,35 +274,6 @@ public class AdminPortalBrokerDashboardPage {
         buttonViewReport.click();
         basicActions.switchtoactiveTab();
     }
-    public void verifyBrokerActivityInfo() {
-        WebElement table = basicActions.getDriver().findElement(By.xpath("//div[contains(@class, 'table-div')]"));
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
-        String[][] QAExpectedData = {
-                {"", "", "SP_BROKER_CERTIFIED", "2024-11-04T15:16:34", "AGENCY-SERVICE", "Broker certified", "Account Id", "7660020008"}
-        };
-        String[][] STGExpectedData = {
-                {"", "", "SP_BROKER_CERTIFIED", "2024-11-04T14:42:16", "AGENCY-SERVICE", "Broker certified", "Account Id", "8363832700"}
-        };
-        if (SharedData.getEnv().equals("qa")) {
-            for (int i = 0; i < QAExpectedData.length; i++) {
-                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-                for (int j = 0; j < QAExpectedData[i].length; j++) {
-                    String cellText = cells.get(j).getText();
-                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
-                    softAssert.assertAll();
-                }
-            }
-        } else {
-            for (int i = 0; i < STGExpectedData.length; i++) {
-                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-                for (int j = 0; j < STGExpectedData[i].length; j++) {
-                    String cellText = cells.get(j).getText();
-                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
-                    softAssert.assertAll();
-                }
-            }
-        }
-    }
     public void verifyTableTitle() {
         basicActions.waitForElementToBePresent(accountActivityTitle, 20);
         softAssert.assertTrue(accountActivityTitle.isDisplayed());
@@ -310,7 +281,6 @@ public class AdminPortalBrokerDashboardPage {
     }
     public void verifyBrokerAccountActivityReport(String eventCodeData, String dateDynamic, String nameOfUser, String description, String valueForAccountId){
         String dateOnly = dateDynamic.split("T")[0];
-        System.out.println(dateOnly);
         basicActions.waitForElementToBePresent(eventCode, 10);
         softAssert.assertEquals(eventCode.getText(),eventCodeData);
         softAssert.assertEquals(dateDynamic, dateOnly);
