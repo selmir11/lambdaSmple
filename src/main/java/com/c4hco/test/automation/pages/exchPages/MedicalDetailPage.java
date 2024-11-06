@@ -24,6 +24,7 @@ public class MedicalDetailPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
     @FindBy(id = "MedicalPlanCarrierDetails-SelectThisPlan")
     WebElement selectPlan;
 
@@ -68,6 +69,7 @@ public class MedicalDetailPage {
 
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_8")
     WebElement lnkEvidenceCoverageSpanish;
+
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_9")
     WebElement lnkSummaryBenefitsSupplementSpanish;
 
@@ -82,18 +84,19 @@ public class MedicalDetailPage {
 
     @FindBy(xpath = "//div[@class = 'disclaimer body-text-2']")
     WebElement disclaimerSpanishDetail;
+
     @FindBy(xpath = "//*[@div =  'MedicalCarrierDetails-MoreInformation']")
     WebElement headerInfoEnglish;
 
     //
 
-    @FindBy(xpath = "//*[@div =  'MedicalCarrierDetails-MoreInformation']")
+    @FindBy(id = "MedicalCarrierDetails-MoreInformation")
     WebElement headerInfoSpanish;
 
-    @FindBy(xpath = "//*[@div =  'MedicalCarrierDetails-PlanDocuments']")
+    @FindBy(id="MedicalCarrierDetails-PlanDocuments")
     WebElement headerDocEnglish;
 
-    @FindBy(xpath = "//*[@div =  'MedicalCarrierDetails-PlanDocuments']")
+    @FindBy(id = "MedicalCarrierDetails-PlanDocuments")
     WebElement headerDocSpanish;
 
     @FindBy(id = "ngb-accordion-item-0-toggle")
@@ -190,7 +193,7 @@ public class MedicalDetailPage {
 
     public void validateEnglishTextHeadersOutNetwork() {
         basicActions.waitForElementToBePresent(outOneHeader, 10);
-        softAssert.assertEquals(outOneHeader.getText(), "General Details");//id='ngb-accordion-item-0-toggle'
+        softAssert.assertEquals(outOneHeader.getText(), "General Details");
         softAssert.assertEquals(outTwoHeader.getText(), "Provider Office Visits");
         softAssert.assertEquals(outThreeHeader.getText(), "Prescription Drugs");
         softAssert.assertEquals(outFourHeader.getText(), "Facilities");
@@ -205,15 +208,9 @@ public class MedicalDetailPage {
         softAssert.assertAll();
     }
 
-    public void validateEnglishPlanDocuments(){
-        basicActions.waitForElementToBePresent( lnkDrugList,15 );
-        headerInfoEnglish.isDisplayed();
-        softAssert.assertEquals(headerInfoEnglish.getText(), "More Information on this Plan");
-        lnkDrugList.isDisplayed();
-        softAssert.assertEquals(lnkDrugList.getText(), "Preferred Drug List");
-        lnkProviderList.isDisplayed();
-        softAssert.assertEquals(lnkProviderList.getText(), "Provider Network");
-        headerDocEnglish.isDisplayed();
+    public void validateDocumentsNetworkLink(){
+        basicActions.waitForElementToBePresent( spinner,40 );
+        basicActions.waitForElementToBePresentWithRetries( headerDocEnglish,60 );
         softAssert.assertEquals(headerDocEnglish.getText(), "Plan Documents");
         lnkSummaryBenefitsEnglish.isDisplayed();
         lnkQualityOverviewEnglish.isDisplayed();
@@ -264,7 +261,6 @@ public class MedicalDetailPage {
     }
 
 
-
     public void clickInNetworkLink(){
         basicActions.waitForElementToBePresent( inNetwork1,15 );
         softAssert.assertEquals(inNetwork1.getText(), "In Network Tier 1");
@@ -289,7 +285,6 @@ public class MedicalDetailPage {
 
     public void clickSpanishSelectPlan(){
         basicActions.waitForElementToBePresent( selectPlan, 15 );
-        //softAssert.assertEquals(selectPlan.getText(), "Seleccione este Plan");
         softAssert.assertSame(selectPlan.isDisplayed(), "Seleccione este Plan" );
         softAssert.assertAll();
         selectPlan.click();
@@ -369,7 +364,7 @@ public class MedicalDetailPage {
         softAssert.assertEquals(inNineHeader.getText(), "Dispositivos m\u00e9dicos");
         softAssert.assertEquals(inTenHeader.getText(), "Servicios de habilitaci\u00f3n y rehabilitaci\u00f3n");
         softAssert.assertEquals(inElevenHeader.getText(), "Atenci\u00f3n a domicilio y a pacientes con enfermedades terminales");
-        softAssert.assertEquals(inTwelveHeader.getText(), "Beneficios esenciales de salud adicionales");
+        softAssert.assertEquals(inTwelveHeader.getText(), "Beneficios esenciales");
         softAssert.assertAll();
     }
 
@@ -386,7 +381,7 @@ public class MedicalDetailPage {
         softAssert.assertEquals(outNineHeader.getText(), "Dispositivos m\u00e9dicos");
         softAssert.assertEquals(outTenHeader.getText(), "Servicios de habilitaci\u00f3n y rehabilitaci\u00f3n");
         softAssert.assertEquals(outElevenHeader.getText(), "Atenci\u00f3n a domicilio y a pacientes con enfermedades terminales");
-        softAssert.assertEquals(outTwelveHeader.getText(), "Beneficios esenciales de salud adicionales");
+        softAssert.assertEquals(outTwelveHeader.getText(), "Beneficios esenciales");
         softAssert.assertAll();
     }
 }

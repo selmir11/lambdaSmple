@@ -54,13 +54,46 @@ public class Ob834FileValidations_new {
         validateLUISeg(entry);
         validateN3N4Segments(entry);
         validateTrnSeg(entry);
+
+    }
+
+    private void validateRefSeg(Member member, Ob834DetailsEntity entry){
+        List<List<String>> refSegListOfList = member.getREF();
+        for(List<String> refSegList: refSegListOfList){
+            if(refSegList.size()==2){
+                // WIP - make sure all cases are present - count!
+                // WIP - Assertions
+                switch(refSegList.get(0)) {
+                    case "OF":
+                        refSegList.get(1);
+                        break;
+                    case "17":
+                        refSegList.get(1);
+                        break;
+                    case "60":
+                        refSegList.get(1);
+                        break;
+                    case "IL":
+                        refSegList.get(1);
+                        break;
+                    case "CE":
+                        refSegList.get(1);
+                        break;
+                    case "E8":
+                        refSegList.get(1);
+                        break;
+                    default:
+                        Assert.fail("Incorrect Case for Member REF Seg - Non LS loop");
+                }
+
+            }
+        }
+
     }
 
     private void validateLxRefN1Seg(Member member, Ob834DetailsEntity entry){
         System.out.println("LXREF SEG");
-
-        // size = 8 for Subscriber and 2 for members
-        // LX size is equal to n1 size
+        // WIP - size = 8 for Subscriber and 2 for members; // LX size is equal to n1 size - Count
         List<List<String>> lxSegment = member.getLX();
         List<List<String>> n1SegListOfList = member.getN1();
         List<List<String>> refSegListOfList = member.getREF();
@@ -79,107 +112,119 @@ public class Ob834FileValidations_new {
                 }
             }
 
-            for(List<String> refSegList: refSegListOfList){
-                if(entry.getMember_first_name().toLowerCase().contains("primary")){
-                    // if else - base of off the member from the file.
-                    if(String.valueOf(refSegList.get(0)).equals("LX"+lxSegCount)){
-                        if(entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) {
-                            switch ("LX" + lxSegCount) {
-                                case "LX1":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()));
-                                    break;
-                                case "LX2":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_reduction_amt()));
-                                    break;
-                                case "LX3":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getCsr_amount()));
-                                    break;
-                                case "LX4":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getRate_area()));
-                                    break;
-                                case "LX5":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals("COHBE"));
-                                    break;
-                                case "LX6":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_responsible_amount()));
-                                    break;
-                                case "LX7":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()));
-                                    break;
-                                case "LX8":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()));
-                                    break;
-                                default:
-                                    Assert.fail("Incorrect LX Case");
-                            }
-                            softAssert.assertAll("LX switch case for sep reason not null");
+            for(List<String> refSegList: refSegListOfList) {
+                System.out.println("refSegList.get(0)::;"+refSegList.get(0));
+                    if (String.valueOf(refSegList.get(0)).equals("LX" + lxSegCount)) {
+                        System.out.println("ref 0 is LX");
+                        if (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) {
+                            validateLxWithSepReason(lxSegCount, refSegList, entry, member);
                         } else {
-                            switch ("LX" + lxSegCount) {
-                                case "LX1":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getAddl_maint_reason()));
-                                    break;
-                                case "LX2":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()));
-                                    break;
-                                case "LX3":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_reduction_amt()));
-                                    break;
-                                case "LX4":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getCsr_amount()));
-                                    break;
-                                case "LX5":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getRate_area()));
-                                    break;
-                                case "LX6":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals("COHBE"));
-                                    break;
-                                case "LX7":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_responsible_amount()));
-                                    break;
-                                case "LX8":
-                                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()));
-                                    break;
-                                default:
-                                    Assert.fail("Incorrect LX Case");
-                            }
-                            softAssert.assertAll("LX switch case for sep reason null");
+                            validateWithoutSepReason(lxSegCount, refSegList, entry, member);
                         }
                         break;
-                    }
-                } else {
-                    // validate for members
-                    System.out.println("validating lx for member with name::"+entry.getMember_first_name());
-                    if(entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) {
-                        switch ("LX" + lxSegCount) {
-                            case "LX1":
-                                softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()));
-                                break;
-                            case "LX2":
-                                softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()));
-                                break;
-                            default:
-                                Assert.fail("Incorrect LX Case");
-                        }
-                        softAssert.assertAll("LX switch case for member sep reason not null");
-                    } else {
-                        switch ("LX" + lxSegCount) {
-                            case "LX1":
-                                softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getAddl_maint_reason()));
-                                break;
-                            case "LX2":
-                                softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()));
-                                break;
-                            default:
-                                Assert.fail("Incorrect LX Case");
-                        }
-                        softAssert.assertAll("LX switch case for member sep reason null");
-                    }
-                    break;
-                }
-            }
+             }
+         }
             lxSegCount++;
         }
         validateMemN1Seg(entry, n1SegList);
+    }
+
+    private void validateWithoutSepReason(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member){
+        System.out.println("member validating without sep for::::"+member.getNM1().get(0).get(3));
+        if(member.getINS().get(0).get(0).equals("Y")) {
+            switch ("LX" + lxSegCount) {
+                case "LX1":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getAddl_maint_reason()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX2":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX3":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_reduction_amt()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX4":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getCsr_amount()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX5":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getRate_area()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX6":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals("COHBE"), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX7":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_responsible_amount()));
+                    break;
+                case "LX8":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()), "LX"+lxSegCount+" did not match");
+                    break;
+                default:
+                    Assert.fail("Incorrect LX Case");
+            }
+        } else {
+            // member
+            switch ("LX" + lxSegCount) {
+                case "LX1":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX" + lxSegCount + " did not match");
+                    break;
+                case "LX2":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()), "LX" + lxSegCount + " did not match");
+                    break;
+                default:
+                    Assert.fail("Incorrect LX Case");
+            }
+        }
+
+        softAssert.assertAll("LX switch case for sep reason null");
+    }
+
+    private void validateLxWithSepReason(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member){
+        System.out.println("member validating with sep for::::"+member.getNM1().get(0).get(3));
+        if(member.getINS().get(0).get(0).equals("Y")){
+            switch ("LX" + lxSegCount) {
+                case "LX1":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX2":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_reduction_amt()), "LX"+lxSegCount+" did not match");
+                    System.out.println("LX2:"+refSegList.get(3)+"    ksdjfj"+entry.getPremium_reduction_amt());
+                    break;
+                case "LX3":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getCsr_amount()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX4":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getRate_area()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX5":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals("COHBE"), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX6":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_responsible_amount()));
+                    break;
+                case "LX7":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()), "LX"+lxSegCount+" did not match");
+                    break;
+                case "LX8":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()), "LX"+lxSegCount+" did not match");
+                    break;
+                default:
+                    Assert.fail("Incorrect LX Case");
+            }
+        } else {
+            // member
+            switch ("LX" + lxSegCount) {
+                case "LX1":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX" + lxSegCount + " did not match");
+                    break;
+                case "LX2":
+                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()), "LX" + lxSegCount + " did not match");
+                    break;
+                default:
+                    Assert.fail("Incorrect LX Case");
+            }
+
+        }
+
+        softAssert.assertAll("LX switch case for sep reason not null");
     }
 
     private void validateMemN1Seg(Ob834DetailsEntity entry, List<String> n1SegList){
@@ -203,6 +248,7 @@ public class Ob834FileValidations_new {
         validateHierarchyLevelSeg(member, entry);
         validateLSLESegment(member);
         validateLxRefN1Seg(member, entry);
+        validateRefSeg(member, entry);
         softAssert.assertAll();
     }
 
@@ -215,7 +261,6 @@ public class Ob834FileValidations_new {
 
     private void validateLSLESegment(Member member){
         System.out.println("LSLE SEG");
-
         List<String> lsSegment = member.getLS().get(0);
         List<String> leSegment = member.getLE().get(0);
         softAssert.assertEquals(lsSegment.get(1), "2700", "Loop Header, the loop ID number given on the transaction set does not match");

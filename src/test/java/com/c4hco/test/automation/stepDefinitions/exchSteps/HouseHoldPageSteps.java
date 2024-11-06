@@ -9,9 +9,7 @@ public class HouseHoldPageSteps {
     HouseholdPage houseHoldPage = new HouseholdPage( WebDriverManager.getDriver() );
 
     @Then("I click continue on family overview page")
-    public void iClickContinue() {
-        houseHoldPage.clickContinue();
-    }
+    public void iClickContinue() {houseHoldPage.clickContinue();    }
 
     @Then("I click Add Another Family Member")
     public void iClickAddFamilyMember() {
