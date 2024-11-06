@@ -65,7 +65,6 @@ public class Ob834FileValidations_new {
     }
 
     private void validateMemberRefSeg(Member member, Ob834DetailsEntity entry){
-        // make a list with size 2
         List<List<String>> refSegListOfList = member.getREF();
         for(List<String> refSegList: refSegListOfList){
             if(refSegList.size()==2){
@@ -129,9 +128,6 @@ public class Ob834FileValidations_new {
                         }
                         break;
              }
-//                    else {
-//                        validateMemberRefSeg(entry, refSegList);
-//                    }
          }
             lxSegCount++;
         }
