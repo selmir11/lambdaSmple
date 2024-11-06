@@ -1,7 +1,7 @@
 Feature: Regression Tests that require Seed 1
 
 
-  @SLCR-137
+  @SLCR-137 # WIP
 Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
 
 Given I set the test scenario details in coco
