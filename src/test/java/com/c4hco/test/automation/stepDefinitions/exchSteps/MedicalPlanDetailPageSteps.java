@@ -19,18 +19,14 @@ import io.cucumber.java.en.Then;
             medicalDetailPage.validateDisclaimerDetail();
         }
 
-        @And("I validate the plan documents")
-        public void validatePlanDocuments() {
-            medicalDetailPage.validateEnglishPlanDocuments();
-        }
-
         @And("I validate the text headers and subheaders for the InNetwork Detail page")
         public void validateTextHeadersInNetwork() {
             medicalDetailPage.validateEnglishTextHeadersInNetwork();
         }
 
         @And("I click the English Plan Detail OutNetwork Link")
-        public void clickOutNetworkLink() {medicalDetailPage.clickOutNetworkLink();
+        public void clickOutNetworkLink() {
+            medicalDetailPage.clickOutNetworkLink();
         }
 
         @And("I validate the text headers and subheaders for the OutNetwork Detail page")
@@ -39,7 +35,8 @@ import io.cucumber.java.en.Then;
         }
 
         @And("I click the English Plan Detail InNetwork Link")
-        public void clickInNetworkLink() {medicalDetailPage.clickInNetworkLink();
+        public void clickInNetworkLink() {
+            medicalDetailPage.clickInNetworkLink();
         }
 
         @And("I click Go Back on the Plan Detail page")
@@ -63,7 +60,8 @@ import io.cucumber.java.en.Then;
         }
 
         @And("I validate the Spanish Plan Detail Disclaimer text")
-        public void validateSpanishDisclaimerText() {medicalDetailPage.validateSpanishDisclaimerText();
+        public void validateSpanishDisclaimerText() {
+            medicalDetailPage.validateSpanishDisclaimerText();
         }
 
         @And("I validate the Spanish plan documents")
@@ -87,17 +85,17 @@ import io.cucumber.java.en.Then;
         }
 
         @And("I click Spanish Go Back on the Plan Detail page")
-        public void clickSpanishGoBackDetail() {medicalDetailPage.clickSpanishGoBackDetail();
-        }
+        public void clickSpanishGoBackDetail() { medicalDetailPage.clickSpanishGoBackDetail(); }
 
         @And("I click the Spanish Plan Detail InNetwork Link")
-        public void clickSpanishInNetworkLink() {medicalDetailPage.clickSpanishInNetworkLink();
-        }
+        public void clickSpanishInNetworkLink() { medicalDetailPage.clickSpanishInNetworkLink();}
 
         @And("I click the Spanish Plan Detail OutNetwork Link")
-        public void clickSpanishOutNetworkLink() {
-            medicalDetailPage.clickSpanishOutNetworkLink();
-        }
-    }
+        public void clickSpanishOutNetworkLink() { medicalDetailPage.clickSpanishOutNetworkLink();}
 
+        @And("I validate the document links for the Network Detail page")
+        public void validateDocumentsNetworkLink() { medicalDetailPage.validateDocumentsNetworkLink();}
+
+
+    }
 
