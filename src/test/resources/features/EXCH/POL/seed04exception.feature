@@ -141,7 +141,7 @@ Feature: Seed04exception - Exchange
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1227-WIP
+  @SLER-1227
   Scenario: RT-2303 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL - ALL MEMBERS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -155,5 +155,31 @@ Feature: Seed04exception - Exchange
     Then I click continue on Cancellation Request page
     Then I click Okay on Thank you popup
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-1229-WIP
+  Scenario: RT-2259 - ENR-EXCH: UPDATE CONTACT INFORMATION - CHANGE MAILING ADDRESS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I select the Different Mailing Address option
+    Then I update mailing address details to AddrLine1 "PO BOX 8575" city "Boulder" state "CO" zip "80020" county "BOULDER"
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+
 
 

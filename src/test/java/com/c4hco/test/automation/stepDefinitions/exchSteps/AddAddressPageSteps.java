@@ -32,6 +32,11 @@ public class AddAddressPageSteps {
     @Then("I enter a new member address with city {string} state {string} zip {string} and county {string}")
     public void addMailingAddressDetails(String city, String state, String zipcode, String county){addAddressPage.newMailingAddress(city, state, zipcode, county);}
 
+    @Then("I select the Different Mailing Address option")
+    public void selectDifferentMailingAddress(){addAddressPage.DifferentMailingAddress();}
+    @Then("I update mailing address details to AddrLine1 {string} city {string} state {string} zip {string} county {string}")
+    public void updateMailingAddressDetails(String AddrLine1, String city, String state, String zipcode, String county){addAddressPage.updateMailingAddressDetails(AddrLine1, city, state, zipcode, county);}
+
     @Then("I select {string} for CO Resident option")
     public void isMemberCOResident(String YNResident){addAddressPage.isColoradoResident(YNResident);}
 

@@ -32,6 +32,9 @@ public class AddAddressPage {
     @FindBy(id = "typeResidentialAddress")
     WebElement rdobtnDifferentResidentialAddress;
 
+    @FindBy(id = "typeMailingAddress")
+    WebElement rdobtnDifferentMailingAddress;
+
     @FindBy(css = ".input-group #mailingAddrLine1")
     WebElement txtMailingAddrLine1;
 
@@ -192,6 +195,33 @@ public class AddAddressPage {
         txtMailingAddrLine1.sendKeys(AddrLine1);
         txtMailingCity.sendKeys(city);
         selectMailingState.sendKeys(state);
+        txtMailingZip.sendKeys(zipcode);
+
+        basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
+        selectMailingCounty.click();
+        Select dropdown = new Select(selectMailingCounty);
+        dropdown.selectByValue(county);
+
+        Address mailinglAddress = new Address();
+        mailinglAddress.setAddressLine1(AddrLine1);
+        mailinglAddress.setAddressCity(city);
+        mailinglAddress.setAddressState(state);
+        mailinglAddress.setAddressZipcode(zipcode);
+        mailinglAddress.setAddressCounty(county);
+
+        SharedData.getPrimaryMember().setMailingAddress(mailinglAddress);
+    }
+
+    public void DifferentMailingAddress(){rdobtnDifferentMailingAddress.click();}
+    public void updateMailingAddressDetails(String AddrLine1, String city, String state, String zipcode, String county){
+        basicActions.waitForElementToBePresent(headerAdditionalInfo, 1);
+        basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
+        txtMailingAddrLine1.clear();
+        txtMailingAddrLine1.sendKeys(AddrLine1);
+        txtMailingCity.clear();
+        txtMailingCity.sendKeys(city);
+        selectMailingState.sendKeys(state);
+        txtMailingZip.clear();
         txtMailingZip.sendKeys(zipcode);
 
         basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
