@@ -64,7 +64,7 @@ public class Ob834FileValidations_new {
       softAssert.assertEquals(String.valueOf(refSeg.get(1)), "COH-INDV1", "subscriber ref is not COH-INDV1");
     }
 
-    private void validateMemberRefSeg(Member member, Ob834DetailsEntity entry, List<String> refSegList){
+    private void validateMemberRefSeg(Ob834DetailsEntity entry, List<String> refSegList){
             if(refSegList.size()==2){
                 // WIP - make sure all cases are present - count!
                 switch(refSegList.get(0)) {
@@ -123,7 +123,7 @@ public class Ob834FileValidations_new {
                         }
                         break;
              } else {
-                        validateMemberRefSeg(member, entry, refSegList);
+                        validateMemberRefSeg(entry, refSegList);
                         break;
                     }
          }
