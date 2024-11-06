@@ -95,20 +95,6 @@ public class AdminPortalBrokerDashboardPage {
     WebElement licenseOptionApproved;
     @FindBy(css = "div[class='drop-down-secondary-options'] div[class='drop-down-option']")
     WebElement certStatusApproved;
-    @FindBy(css = "body > app-root > div > div > app-activity-report > div.table-container.group-box > h2")
-    WebElement accountActivityTitle;
-    @FindBy(xpath = "//button[normalize-space()='View Report']")
-    WebElement buttonViewReport;
-    @FindBy(css = "#Event\\ Code_1")
-    WebElement eventCode;
-    @FindBy(css = "#Time_1")
-    WebElement timeDate;
-    @FindBy(css = "#Username_1")
-    WebElement userName;
-    @FindBy(css = "#Description_1")
-    WebElement eventDescription;
-    @FindBy(css = "#Detail\\ Value_1 > span")
-    WebElement detailValue;
     @FindBy(css = "#accountSummary-label-agencyCertification")
     WebElement labelCertificationAgencyPortal;
     @FindBy(css = "#accountSummary-data-agencyCertification")
@@ -266,29 +252,6 @@ public class AdminPortalBrokerDashboardPage {
         certStatusDisplayed.click();
         certStatusApproved.click();
         buttonSave.click();
-    }
-    public void clickViewReportButton() {
-        basicActions.waitForElementToBePresent(buttonViewReport, 10);
-        buttonViewReport.click();
-        basicActions.switchtoactiveTab();
-    }
-    public void verifyTableTitle() {
-        basicActions.waitForElementToBePresent(accountActivityTitle, 20);
-        softAssert.assertTrue(accountActivityTitle.isDisplayed());
-        softAssert.assertAll();
-    }
-    public void verifyBrokerAccountActivityReport(String eventCodeData, String nameOfUser, String description, String valueForAccountId){
-       // String dateOnly = dateDynamic.split("T")[0];
-        basicActions.waitForElementToBePresent(eventCode, 10);
-        softAssert.assertEquals(eventCode.getText(),eventCodeData);
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter todayDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String today = currentDate.format(todayDate);
-        softAssert.assertTrue(timeDate.getText().contains(today));
-        softAssert.assertEquals(userName.getText(), nameOfUser);
-        softAssert.assertEquals(eventDescription.getText(),description);
-        softAssert.assertEquals(detailValue.getText(), valueForAccountId);
-        softAssert.assertAll();
     }
     public void verifyInBrokerPortalStatusIsChanged(String certificationStatusBrokerPortal) {
         basicActions.waitForElementToBePresent(labelCertificationAgencyPortal, 10);

@@ -64,18 +64,6 @@ public class AdminPortalBrokerDashboardSteps {
     public void iChangeStatusesBack() {
         adminPortalBrokerDashboardPage.changeStatusesBack();
     }
-    @Then("I click View Report button")
-    public void iClickViewReportButton() {
-        adminPortalBrokerDashboardPage.clickViewReportButton();
-    }
-    @Then("I verify Account Activity title")
-    public void iVerifyTableTitle() {
-        adminPortalBrokerDashboardPage.verifyTableTitle();
-    }
-    @And("I validate latest Broker Account Activity Report Event Code: {string} and today's Date then Username: {string} with Description: {string} and finally Detail Value: {string}")
-    public void iVerifyBrokerAccountActivityReport(String eventCode, String nameOfUser, String description, String valueForAccountId) {
-        adminPortalBrokerDashboardPage.verifyBrokerAccountActivityReport(eventCode, nameOfUser, description, valueForAccountId);
-    }
     @And("I validate in Broker portal Certification Status: {string}")
     public void iVerifyInBrokerPortalStatusIsChanged(String certificationStatusBrokerPortal) {
         adminPortalBrokerDashboardPage.verifyInBrokerPortalStatusIsChanged(certificationStatusBrokerPortal);

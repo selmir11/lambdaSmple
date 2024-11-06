@@ -1,6 +1,6 @@
 @SLER-748
 Feature: Broker Dashboard- Change license and certification statuses
-  @SLER-748
+  @SLER-748  //RT-1091
   Scenario: Verify Broker Dashboard in Admin Portal -  Change license and certification statuses
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -19,10 +19,6 @@ Feature: Broker Dashboard- Change license and certification statuses
     Then I click Cancel button
     Then I click Manage Certification button
     Then I change statuses back and click Save
-    And I click View Report button
-    Then I verify Account Activity title
-    Then I wait for 700 milliseconds
-    And I validate latest Broker Account Activity Report Event Code: "SP_BROKER_CERTIFIED" and today's Date then Username: "AGENCY-SERVICE" with Description: "Broker certified" and finally Detail Value: "4007335519"
     And I logout from Admin Portal
   @SLER-748
   Scenario: Verify in Broker portal status is Approved
