@@ -33,11 +33,23 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = "app-show-options button")
     List<WebElement> addIncomeButton;
 
+    @FindBy(css = "div.parent-position > div:nth-child(1)")
+    WebElement additionalIncomeQuestion;
+
+    @FindBy(css = "div.parent-position > div:nth-child(2)")
+    WebElement selectIncomeSentence;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-ALMR-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement alimonyText;
+
     @FindBy(id = "ELIG-AdditionalIncome-ALMR-amountInput")
     WebElement alimonyAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-ALMR-frequencySelect")
     WebElement alimonyFrequency;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-CAPG-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement capGainsText;
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-amountInput")
     WebElement capGainsAmount;
@@ -45,11 +57,17 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-frequencySelect")
     WebElement capGainsFrequency;
 
+    @FindBy(css = "#ELIG-AdditionalIncome-IFRP-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement rentalText;
+
     @FindBy(id = "ELIG-AdditionalIncome-IFRP-amountInput")
     WebElement rentalAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-IFRP-frequencySelect")
     WebElement rentalFrequency;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-PENS-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement pensionText;
 
     @FindBy(id = "ELIG-AdditionalIncome-PENS-amountInput")
     WebElement pensionAmount;
@@ -57,11 +75,17 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "ELIG-AdditionalIncome-PENS-frequencySelect")
     WebElement pensionFrequency;
 
+    @FindBy(css = "#ELIG-AdditionalIncome-RETR-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement retirementText;
+
     @FindBy(id = "ELIG-AdditionalIncome-RETR-amountInput")
     WebElement retirementAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-RETR-frequencySelect")
     WebElement retirementFrequency;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-TTWI-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement socialSecurityText;
 
     @FindBy(id = "ELIG-AdditionalIncome-TTWI-amountInput")
     WebElement socialSecurityAmount;
@@ -69,11 +93,17 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "ELIG-AdditionalIncome-TTWI-frequencySelect")
     WebElement socialSecurityFrequency;
 
+    @FindBy(css = "#ELIG-AdditionalIncome-UNEP-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement unemploymentText;
+
     @FindBy(id = "ELIG-AdditionalIncome-UNEP-amountInput")
     WebElement unemploymentAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-UNEP-frequencySelect")
     WebElement unemploymentFrequency;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-INVI-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement investmentText;
 
     @FindBy(id = "ELIG-AdditionalIncome-INVI-amountInput")
     WebElement investmentAmount;
@@ -81,11 +111,17 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "ELIG-AdditionalIncome-INVI-frequencySelect")
     WebElement investmentFrequency;
 
+    @FindBy(css = "#ELIG-AdditionalIncome-CASP-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement cashSupportText;
+
     @FindBy(id = "ELIG-AdditionalIncome-CASP-amountInput")
     WebElement cashSupportAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-CASP-frequencySelect")
     WebElement cashSupportFrequency;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-UTFI-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement untaxedForeignText;
 
     @FindBy(id = "ELIG-AdditionalIncome-UTFI-amountInput")
     WebElement untaxedForeignAmount;
@@ -93,17 +129,26 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "ELIG-AdditionalIncome-UTFI-frequencySelect")
     WebElement untaxedForeignFrequency;
 
+    @FindBy(css = "#ELIG-AdditionalIncome-RLTI-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement royaltyText;
+
     @FindBy(id = "ELIG-AdditionalIncome-RLTI-amountInput")
     WebElement royaltyAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-RLTI-frequencySelect")
     WebElement royaltyFrequency;
 
+    @FindBy(css = "#ELIG-AdditionalIncome-TRBI-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement taxableText;
+
     @FindBy(id = "ELIG-AdditionalIncome-TRBI-amountInput")
     WebElement taxableAmount;
 
     @FindBy(id = "ELIG-AdditionalIncome-TRBI-frequencySelect")
     WebElement taxableFrequency;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-NoIncome-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
+    WebElement noneOfTheseText;
 
     @FindBy(id = "ELIG-AdditionalIncome-NoIncome-checkBoxButton")
     WebElement noneOfThese;
@@ -364,7 +409,13 @@ public void verifyHeadersAdditionalIncomePage(String language){
     public void verifyHeadersAdditionalIncomePageEnglish(){
         basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
         softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
-        softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional Income");
+        softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-size"), "28px");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertAll();
     }
 
@@ -374,7 +425,137 @@ public void verifyHeadersAdditionalIncomePage(String language){
         basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
         basicActions.waitForElementListToBePresent(addIncomeButton, 90);
         softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-size"), "28px");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertAll();
+    }
+
+    public void verifyAdditionalIncomeTextCoCo(String language){
+        basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(additionalIncomeQuestion.getText(), "Did you receive any of the following income?");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("line-height"), "28px");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("color"), "rgba(43, 49, 60, 1)");
+                softAssert.assertEquals(selectIncomeSentence.getText(), "Select all that apply, and enter the amount of income received.");
+                softAssert.assertEquals(alimonyText.getText(), "Alimony Received");
+                softAssert.assertEquals(capGainsText.getText(), "Capital Gains");
+                softAssert.assertEquals(rentalText.getText(), "Income from rental property");
+                softAssert.assertEquals(pensionText.getText(), "Pension");
+                softAssert.assertEquals(retirementText.getText(), "Private Retirement Income");
+                softAssert.assertEquals(socialSecurityText.getText(), "Income from Social Security");
+                softAssert.assertEquals(unemploymentText.getText(), "Unemployment Insurance Benefit");
+                softAssert.assertEquals(investmentText.getText(), "Investment Income");
+                softAssert.assertEquals(cashSupportText.getText(), "Cash Support");
+                softAssert.assertEquals(untaxedForeignText.getText(), "Untaxed Foreign Income");
+                softAssert.assertEquals(royaltyText.getText(), "Royalty Income");
+                softAssert.assertEquals(taxableText.getText(), "Taxable income from Tribal Sources");
+                softAssert.assertEquals(noneOfTheseText.getText(), "None of these");
+                softAssert.assertAll();
+                verifyBaseTextFormatting(selectIncomeSentence);
+                verifyBaseTextFormatting(alimonyText);
+                verifyBaseTextFormatting(capGainsText);
+                verifyBaseTextFormatting(rentalText);
+                verifyBaseTextFormatting(pensionText);
+                verifyBaseTextFormatting(retirementText);
+                verifyBaseTextFormatting(socialSecurityText);
+                verifyBaseTextFormatting(unemploymentText);
+                verifyBaseTextFormatting(investmentText);
+                verifyBaseTextFormatting(cashSupportText);
+                verifyBaseTextFormatting(untaxedForeignText);
+                verifyBaseTextFormatting(royaltyText);
+                verifyBaseTextFormatting(taxableText);
+                verifyBaseTextFormatting(noneOfTheseText);
+                break;
+            case "Spanish":
+                softAssert.assertEquals(additionalIncomeQuestion.getText(), "\u00bfRecibi\u00f3 alguno de los ingresos siguientes?");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("line-height"), "28px");
+                softAssert.assertEquals(additionalIncomeQuestion.getCssValue("color"), "rgba(43, 49, 60, 1)");
+                softAssert.assertEquals(selectIncomeSentence.getText(), "Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.");
+                softAssert.assertEquals(alimonyText.getText(), "Pensi\u00f3n alimenticia recibida");
+                softAssert.assertEquals(capGainsText.getText(), "Ganancias de capital");
+                softAssert.assertEquals(rentalText.getText(), "Ingresos por renta de propiedades");
+                softAssert.assertEquals(pensionText.getText(), "Pensi\u00f3n");
+                softAssert.assertEquals(retirementText.getText(), "Ingresos privados por retiro");
+                softAssert.assertEquals(socialSecurityText.getText(), "Ingresos por el Seguro Social");
+                softAssert.assertEquals(unemploymentText.getText(), "Beneficio del seguro de desempleo");
+                softAssert.assertEquals(investmentText.getText(), "Ingresos derivados de inversiones");
+                softAssert.assertEquals(cashSupportText.getText(), "Apoyo en efectivo");
+                softAssert.assertEquals(untaxedForeignText.getText(), "Ingresos extranjeros no gravados");
+                softAssert.assertEquals(royaltyText.getText(), "Ingresos por regal\u00edas");
+                softAssert.assertEquals(taxableText.getText(), "Ingresos gravables de origen tribal");
+                softAssert.assertEquals(noneOfTheseText.getText(), "Ninguna de las anteriores");
+                softAssert.assertAll();
+                verifyBaseTextFormatting(selectIncomeSentence);
+                verifyBaseTextFormatting(alimonyText);
+                verifyBaseTextFormatting(capGainsText);
+                verifyBaseTextFormatting(rentalText);
+                verifyBaseTextFormatting(pensionText);
+                verifyBaseTextFormatting(retirementText);
+                verifyBaseTextFormatting(socialSecurityText);
+                verifyBaseTextFormatting(unemploymentText);
+                verifyBaseTextFormatting(investmentText);
+                verifyBaseTextFormatting(cashSupportText);
+                verifyBaseTextFormatting(untaxedForeignText);
+                verifyBaseTextFormatting(royaltyText);
+                verifyBaseTextFormatting(taxableText);
+                verifyBaseTextFormatting(noneOfTheseText);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyAdditionalIncomeNavigationButtonsCoCo(String language){
+        basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
+        switch(language){
+            case "English":
+                softAssert.assertEquals(goBackButton.getText(), "  Go Back");
+                softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(goBackButton.getText(), "  Volver");
+                softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertAll();
+                break;
+        }
+    }
+
+    public void verifyBaseTextFormatting(WebElement BaseText){
+        softAssert.assertEquals(BaseText.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(BaseText.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(BaseText.getCssValue("line-height"), "28px");
+        softAssert.assertEquals(BaseText.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertAll();
     }
 

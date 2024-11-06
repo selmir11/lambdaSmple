@@ -45,7 +45,6 @@ Feature: Seed04exception - Exchange
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
@@ -67,11 +66,9 @@ Feature: Seed04exception - Exchange
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
-
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "1234 Uptown" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "3500000" at frequency "Annually"
@@ -85,12 +82,10 @@ Feature: Seed04exception - Exchange
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
     Then I select the option "Yes" to employment
-    Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "1234 Main" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "3000000" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
-
     And I click continue on the Employment Info Page
     Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
@@ -117,12 +112,10 @@ Feature: Seed04exception - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
-
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
     Then I click continue on grouping Members Medical page
@@ -136,7 +129,6 @@ Feature: Seed04exception - Exchange
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
-
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -148,3 +140,20 @@ Feature: Seed04exception - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-1227-WIP
+  Scenario: RT-2303 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL - ALL MEMBERS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    And I validate I am on the "My Policies" page
+    And I click on "Cancel Medical Plan" button
+    And I validate I am on the "Cancellation Request" page
+    Then I affirm and cancel the active plan
+    Then I click continue on Cancellation Request page
+    Then I click Okay on Thank you popup
+    And I click on Sign Out in the Header for "Elmo"
+
+
