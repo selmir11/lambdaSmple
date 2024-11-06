@@ -191,4 +191,624 @@ Feature: Navigation-Welcome Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
+  @SLCR-389 @PageNavigationWelcomePage
+  Scenario: SLCR-389 I want a message displayed after being navigated to the Welcome page through the ELMO Income page header so that I know to select the apply/make changes button to continue - English
+    #Step2
+    And I apply for the current year in CoCo
+    Then I validate I am on the "FindExpertHelpCoco" page
+    #Step3
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    #Step4
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I wait for 900 milliseconds
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    #Step5
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step6
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step7
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I validate I am on the "CoCo Tell us about yourself" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step8
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step9
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step10
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step11
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "14,052.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step12
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    Then I select "None of these" as additional income option CoCO page
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step13
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Income Summary" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step14
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step15
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    And I select continue on the Family Overview page
+    And I select "InsuranceLoss" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step16
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Daughter", "01011996", "Female", and applying "Yes"
+      |Primary:Child or Other dependent|
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step17
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Daughter"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step18
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Daughter"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I select "None of these" as additional income option CoCO page
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "English"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
 
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-391 @PageNavigationWelcomePage
+  Scenario: SLCR-391 I want a message displayed after being navigated to the Welcome page through the ELMO Income page header so that I know to select the apply/make changes button to continue - Spanish
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    #Step2
+    And I apply for the current year in CoCo
+    Then I validate I am on the "FindExpertHelpCoco" page
+    #Step3
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    #Step4
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I wait for 900 milliseconds
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    #Step5
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step6
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step7
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I validate I am on the "CoCo Tell us about yourself" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step8
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step9
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step10
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step11
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "14,052.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step12
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    Then I select "None of these" as additional income option CoCO page
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step13
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Income Summary" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step14
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step15
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    And I select continue on the Family Overview page
+    And I select "InsuranceLoss" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step16
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select add another family member on the Family Overview page
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "Daughter", "01011996", "Female", and applying "Yes"
+      |Primary:Padre/madre o tutor |
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step17
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Daughter"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+    #Step18
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Daughter"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I select "None of these" as additional income option CoCO page
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 900 milliseconds
+    Then I click Go Back button from chrome browser
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate notification banner on welcome page in "Spanish"
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "FindExpertHelpCoco" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I validate no notification banner on welcome page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

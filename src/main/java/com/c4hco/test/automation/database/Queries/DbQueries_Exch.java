@@ -16,7 +16,7 @@ public class DbQueries_Exch {
                 "epfh.total_premium_reduction_amt, epfh.total_responsible_amt, epfh.premium_reduction_type as premium_reduction_type_epfh, epfh.total_csr_amt, epmch.policy_member_coverage_status,epmh.member_id, epmh.responsible_adult_ind, epmh.subscriber_ind, epmh.created_by, epmh.effectuated_ind as effectuated_ind_epmh, epmch.coverage_start_date, epmch.coverage_end_date, epmch.disenrollment_reason,\n" +
                 "emcfh.csr_level as csr_level_emcfh, emcfh.member_financial_start_date, emcfh.member_financial_end_date,  emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.premium_reduction_type as premium_reduction_type_emcfh, emcfh.responsible_amt, eph.policy_submitted_ts, eph.policy_submitted_by\n" +
                 "from "+dbName+".es_household eh, "+dbName+".es_application ea,  "+dbName+".es_member em,  "+dbName+".en_policy_ah eph,  "+dbName+".en_plan ep2,  "+dbName+".en_policy_member_ah epmh,\n" +
-                " "+dbName+".en_policy_member_coverage_ah epmch,  "+dbName+".en_member_coverage_financial_ah emcfh,  "+dbName+".en_policy_financial_ah epfh,  "+dbName+".en_policy ep\n" +
+                dbName+".en_policy_member_coverage_ah epmch,  "+dbName+".en_member_coverage_financial_ah emcfh,  "+dbName+".en_policy_financial_ah epfh,  "+dbName+".en_policy ep, \n"+
                 "where eh.household_id = ea.household_id\n" +
                 "and ea.application_id = eph.application_id\n" +
                 "and ep.plan_id = ep2.plan_id\n" +
@@ -34,11 +34,11 @@ public class DbQueries_Exch {
 
     public String policyTablesMedicalRecordsQuery() {
         return "select eph.account_id, eph.application_id,em.exch_person_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
-                "eph.policy_status, eph.current_ind, eph.effectuated_ind as effectuated_ind_eph, eph.policy_start_date, eph.policy_end_date, epfh.csr_level as csr_level_epfh, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
+        "eph.policy_status, eph.current_ind, eph.effectuated_ind as effectuated_ind_eph, eph.policy_start_date, eph.policy_end_date, epfh.csr_level as csr_level_epfh, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
                 "epfh.total_premium_reduction_amt, epfh.total_responsible_amt, epfh.premium_reduction_type as premium_reduction_type_epfh, epfh.total_csr_amt, epmch.policy_member_coverage_status,epmh.member_id, epmh.responsible_adult_ind, epmh.subscriber_ind, epmh.created_by, epmh.effectuated_ind as effectuated_ind_epmh, epmch.coverage_start_date, epmch.coverage_end_date, epmch.disenrollment_reason,\n" +
                 "emcfh.csr_level as csr_level_emcfh, emcfh.member_financial_start_date, emcfh.member_financial_end_date,  emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.premium_reduction_type as premium_reduction_type_emcfh, emcfh.responsible_amt, eph.policy_submitted_ts, eph.policy_submitted_by\n" +
-                "from "+dbName+".es_household eh, "+dbName+".es_application ea,  "+dbName+".es_member em,  "+dbName+".en_policy_ah eph,  "+dbName+".en_plan ep2,  "+dbName+".en_policy_member_ah epmh,\n" +
-                " "+dbName+".en_policy_member_coverage_ah epmch,  "+dbName+".en_member_coverage_financial_ah emcfh,  "+dbName+".en_policy_financial_ah epfh,  "+dbName+".en_policy ep\n" +
+                "from "+dbName+".es_household eh, "+dbName+".es_application ea, "+dbName+".es_member em, "+dbName+".en_policy_ah eph, "+dbName+".en_plan ep2, "+dbName+".en_policy_member_ah epmh,\n" +
+                ""+dbName+".en_policy_member_coverage_ah epmch, "+dbName+".en_member_coverage_financial_ah emcfh, "+dbName+".en_policy_financial_ah epfh, "+dbName+".en_policy ep\n" +
                 "where eh.household_id = ea.household_id\n" +
                 "and ea.application_id = eph.application_id\n" +
                 "and ep.plan_id = ep2.plan_id\n" +
@@ -51,17 +51,17 @@ public class DbQueries_Exch {
                 "and ep.policy_id = eph.policy_id\n" +
                 "and ep.policy_id = epfh.policy_id\n" +
                 "and eh.account_id = '"+acctId+"'\n" +
-                "and eph.current_ind = '1'\n"+
-                "and eph.coverage_type= '1'";
+                "and eph.current_ind = '1'\n" +
+                "and ep.coverage_type = '1'";
     }
 
     public String policyTablesDentalRecordsQuery() {
         return "select eph.account_id, eph.application_id,em.exch_person_id, em.first_name, em.last_name, em.birth_date, em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, eph.policy_id,\n" +
-                "eph.policy_status, eph.current_ind, eph.effectuated_ind as effectuated_ind_eph, eph.policy_start_date, eph.policy_end_date, epfh.csr_level as csr_level_epfh, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
+        "eph.policy_status, eph.current_ind, eph.effectuated_ind as effectuated_ind_eph, eph.policy_start_date, eph.policy_end_date, epfh.csr_level as csr_level_epfh, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_plan_premium_amt,\n" +
                 "epfh.total_premium_reduction_amt, epfh.total_responsible_amt, epfh.premium_reduction_type as premium_reduction_type_epfh, epfh.total_csr_amt, epmch.policy_member_coverage_status,epmh.member_id, epmh.responsible_adult_ind, epmh.subscriber_ind, epmh.created_by, epmh.effectuated_ind as effectuated_ind_epmh, epmch.coverage_start_date, epmch.coverage_end_date, epmch.disenrollment_reason,\n" +
                 "emcfh.csr_level as csr_level_emcfh, emcfh.member_financial_start_date, emcfh.member_financial_end_date,  emcfh.plan_premium_amt, emcfh.premium_reduction_amt, emcfh.premium_reduction_type as premium_reduction_type_emcfh, emcfh.responsible_amt, eph.policy_submitted_ts, eph.policy_submitted_by\n" +
-                "from "+dbName+".es_household eh, "+dbName+".es_application ea,  "+dbName+".es_member em,  "+dbName+".en_policy_ah eph,  "+dbName+".en_plan ep2,  "+dbName+".en_policy_member_ah epmh,\n" +
-                " "+dbName+".en_policy_member_coverage_ah epmch,  "+dbName+".en_member_coverage_financial_ah emcfh,  "+dbName+".en_policy_financial_ah epfh,  "+dbName+".en_policy ep\n" +
+                "from "+dbName+".es_household eh, "+dbName+".es_application ea, "+dbName+".es_member em, "+dbName+".en_policy_ah eph, "+dbName+".en_plan ep2, "+dbName+".en_policy_member_ah epmh,\n" +
+                ""+dbName+".en_policy_member_coverage_ah epmch, "+dbName+".en_member_coverage_financial_ah emcfh, "+dbName+".en_policy_financial_ah epfh, "+dbName+".en_policy ep\n" +
                 "where eh.household_id = ea.household_id\n" +
                 "and ea.application_id = eph.application_id\n" +
                 "and ep.plan_id = ep2.plan_id\n" +
@@ -74,8 +74,8 @@ public class DbQueries_Exch {
                 "and ep.policy_id = eph.policy_id\n" +
                 "and ep.policy_id = epfh.policy_id\n" +
                 "and eh.account_id = '"+acctId+"'\n" +
-                "and eph.current_ind = '1'\n"+
-                "and eph.coverage_type= '2'";
+                "and eph.current_ind = '1'\n" +
+                "and ep.coverage_type = '2'";
     }
     public String ob834Details(){
         return "select * from  "+dbName+".ob834_detail\n "+
@@ -93,6 +93,11 @@ public class DbQueries_Exch {
     public String ib999Details(String grpCtlNum){
         return "SELECT * FROM "+dbName+".ib999_detail \n" +
                 "where ak1_group_ctrl_number = '"+grpCtlNum+"'\n " +
+                "ORDER BY created_ts DESC";
+    }
+    public String ib834Details(String grpCtlNum){
+        return "SELECT * FROM "+dbName+".ib834_detail \n " +
+                "where group_ctrl_number = '"+grpCtlNum+"'\n " +
                 "ORDER BY created_ts DESC";
     }
 
@@ -161,7 +166,7 @@ public class DbQueries_Exch {
     }
 
     public String getPolicyDqCheck(){
-        return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId;
+        return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId+" and eph.current_ind = '1'";
     }
 
     public String setEnvForDataQuality(){
@@ -169,8 +174,9 @@ public class DbQueries_Exch {
     }
 
     public String getBookOfBusinessQ(String eventType){
-        return " select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages " +" where application_id = 'book_of_business_q:policy-svc' " +" and message->>'householdAccountId' = '"+acctId+"' " + " and message->>'eventType' ='"+eventType+"' ORDER BY created_ts desc";
+        return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from "+dbName+".rq_queue_messages " +" where application_id = 'book_of_business_q:policy-svc' " +" and message->>'householdAccountId' = '"+acctId+"' " + " and message->>'eventType' ='"+eventType+"' ORDER BY created_ts desc";
     }
+
     public String policyId(){
         return "select ep.policy_id, ep.coverage_type from "+dbName+".en_policy_ah ep " +
                 "where account_id =  '"+acctId+"' " +
@@ -256,12 +262,24 @@ public class DbQueries_Exch {
                 "from "+dbName+".en_policy_member_coverage_ah epmch \n"+
                 "where application_id = '"+ applicationId+"'";
     }
+
     public String enPolicyFinancialAh(){
         return "select * from "+dbName+".en_policy_financial_ah\n " +
                 "where policy_id in (select policy_id from "+dbName+".en_policy where account_id = '"+acctId+"')";
     }
     public String enPolicyMemberAh(){
         return "select * from "+dbName+".en_policy_member_ah \n" +
+                "where application_id = '"+applicationId+"'";
+	}
+
+    public String esMVR(){
+        return "select *\n" +
+                "from "+dbName+".es_manual_verif_request\n"+
+                "where account_id = '"+acctId+"'";
+    }
+
+    public String enMemberEffectiveDates(){
+        return "select * from "+dbName+".en_member_effective_dates \n" +
                 "where application_id = '"+applicationId+"'";
     }
 
@@ -343,4 +361,51 @@ public class DbQueries_Exch {
                 "order by em.member_id";
     }
 
+
+    public String getPlan_marketing_name(String planYear){
+        return "SELECT P.plan_marketing_name FROM "+dbName+".en_policy_ah ESH JOIN "+ dbName+".en_plan P ON ESH.plan_id = P.plan_id WHERE ESH.account_id = '"+ acctId+"' " +
+                "AND ESH.plan_year = '"+planYear+"' AND ESH.coverage_type = '2' ORDER BY ESH.created_ts DESC LIMIT 1";
+    }
+
+    public String getDental_policy_date(){
+        return "Select policy_start_date , policy_end_date From "+dbName+".en_policy_ah ESH Where ESH.account_id = '"+ acctId+"' and coverage_type = '1' and policy_status != 'CANCELLED' order by created_ts desc limit 1;";
+    }
+
+    public String getMedCurrentLatestAppDate(){
+        return "SELECT ESH.policy_submitted_ts\n" +
+                "FROM "+dbName+".en_policy_ah ESH\n" +
+                "JOIN "+dbName+".en_policy EP ON ESH.application_id = EP.application_id\n" +
+                "WHERE ESH.account_id = '"+acctId+"' \n" +
+                "  AND ESH.coverage_type = '1' \n" +
+                "ORDER BY ESH.created_ts DESC \n" +
+                "LIMIT 1;";
+    }
+
+    public String getMedSecondPolicyDB(String year) {
+        return "SELECT EPH.exchange_assigned_policy_id,EPH.policy_start_date, ESH.first_name \n" +
+                " FROM "+dbName+".es_member_ah ESH\n" +
+                "FULL JOIN "+dbName+".en_policy_ah EPH ON ESH.submission_id = EPH.submission_id\n" +
+                "WHERE EPH.account_id = '"+acctId+"'\n" +
+                "AND EPH.coverage_type = '1'\n" +
+                "AND EPH.policy_status != 'CANCELLED'\n" +
+                "AND EPH.plan_year ='"+year+"'\n" +
+                "ORDER BY EPH.exchange_assigned_policy_id ASC\n" +
+                "LIMIT 1;";
+    }
+
+    public String getDentalSecondPolicyDB(String year) {
+        return "SELECT ESH.exchange_assigned_policy_id, ESH.policy_start_date , EMH.first_name\n" +
+                "FROM "+dbName+".en_policy_ah ESH\n" +
+                "JOIN "+dbName+".en_policy_member_ah PMH ON PMH.policy_ah_id = ESH.policy_ah_id\n" +
+                "JOIN "+dbName+".en_policy_member_coverage_ah PMC ON PMC.policy_member_ah_id = PMH.policy_member_ah_id\n" +
+                "JOIN "+dbName+".en_member_coverage_financial_ah MCF ON MCF.policy_member_coverage_ah_id = PMC.policy_member_coverage_ah_id\n" +
+                "JOIN "+dbName+".es_member_ah EMH ON EMH.submission_id = MCF.submission_id AND EMH.household_contact = '1'\n" +
+                "WHERE \n" +
+                "    ESH.account_id = '"+acctId+"'\n" +
+                "    AND ESH.coverage_type = '2'\n" +
+                "    AND ESH.plan_year = '"+year+"'\n" +
+                "ORDER BY \n" +
+                "    ESH.created_ts DESC\n" +
+                "LIMIT 1;";
+    }
 }

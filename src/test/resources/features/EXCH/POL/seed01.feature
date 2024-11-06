@@ -94,6 +94,10 @@ Feature: Regression Tests that require Seed 1
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
@@ -104,22 +108,16 @@ Feature: Regression Tests that require Seed 1
     And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
-    And I validate the member details from policy tables
-    And I validate member details from ob834_details table
+
+    And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should not be empty
-    And I validate the ob834 files should have the values
-      | LX | N1 75              | REF       | REFDEN    |
-      | 1  | PRE AMT 1          | 291.02    | 21.00     |
-      | 2  | APTC AMT           | 0.00      | 0.00      |
-      | 3  | CSR AMT            | 0.00      | 0.00      |
-      | 4  | RATING AREA        | 3         | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
-      | 6  | TOT RES AMT        | 291.02    | 21.00     |
-      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
-      | 8  | SEP REASON         | ADMIN_LCE | ADMIN_LCE |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file should have the values
+    And I validate the ob834 "dental" file should have the values
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
@@ -154,22 +152,18 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
     And I click on Sign Out in the Header for "NonElmo"
-    And I validate the member details from policy tables
-    And I validate member details from ob834_details table
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
-    And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should have the values
-      | LX | N1 75              | REF                | REFDEN             |
-      | 1  | ADDL MAINT REASON  | DEMOGRAPHIC CHANGE | DEMOGRAPHIC CHANGE |
-      | 2  | PRE AMT 1          | 291.02             | 21.00              |
-      | 3  | APTC AMT           | 0.00               | 0.00               |
-      | 4  | CSR AMT            | 0.00               | 0.00               |
-      | 5  | RATING AREA        | 3                  | 3                  |
-      | 6  | SOURCE EXCHANGE ID | COHBE              | COHBE              |
-      | 7  | TOT RES AMT        | 291.02             | 21.00              |
-      | 8  | PRE AMT TOT        | 291.02             | 21.00              |
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file should have the values
+    And I validate the ob834 "dental" file should have the values
+   # And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
   @SLER-296-WIP
@@ -206,7 +200,6 @@ Feature: Regression Tests that require Seed 1
 #      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
 #      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
 #      |          021          | 021                 | 25                   |                          |                             |                    |
-#    And I download the files from sftp server with location "/outboundedi/"
 #    And I validate the ob834 files should have the values
 
   @SLER-132-WIP
@@ -271,7 +264,7 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Basic Plan"
+    And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page

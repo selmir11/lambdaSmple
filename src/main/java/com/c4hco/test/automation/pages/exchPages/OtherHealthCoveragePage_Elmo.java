@@ -2,7 +2,9 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +18,9 @@ import java.util.List;
 public class OtherHealthCoveragePage_Elmo {
     BasicActions basicActions;
     Actions action;
+
+    Actions actions = new Actions(WebDriverManager.getDriver());
+
     SoftAssert softAssert = new SoftAssert();
     private WebDriver driver;
     public OtherHealthCoveragePage_Elmo(WebDriver webDriver){
@@ -41,6 +46,9 @@ public class OtherHealthCoveragePage_Elmo {
 
     @FindBy(css = "span > em")
     WebElement existingHealthInsurancePageTxtPlus;
+
+    @FindBy(css = "lib-checkbox-control label")
+    List<WebElement> insuranceOptionsBox;
 
     @FindBy(css = "label > button")
     List<WebElement> insuranceOptionsCheckBox;
@@ -1432,6 +1440,102 @@ public class OtherHealthCoveragePage_Elmo {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyMainOHCCheckboxes(String state){
+        switch (state){
+            case "Selected":
+                verifySelectedStateOfCheckboxes();
+                break;
+            case "Hover":
+                verifyHoverStateOfCheckboxes();
+                break;
+            case "Focus":
+                verifyFocusStateOfCheckboxes();
+                break;
+            case "Not Selected":
+                verifyNotSelectedStateOfCheckboxes();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + state);
+        }
+    }
+
+    public void verifyNotSelectedStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 15);
+        for (int i = 0; i < insuranceOptionsCheckBox.size(); i++) {
+            WebElement element1 = insuranceOptionsCheckBox.get(i);
+            WebElement element2 = insuranceOptionsBox.get(i);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(55, 55, 55)");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyFocusStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 15);
+        for (int i = 0; i < insuranceOptionsCheckBox.size(); i++) {
+            WebElement element = insuranceOptionsCheckBox.get(i);
+            element.sendKeys(Keys.SHIFT);
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element.getCssValue("box-shadow"), "rgb(112, 163, 0) 0px 0px 7px 3px");
+            softAssert.assertAll();
+            existingHealthInsuranceHeader.click();
+        }
+    }
+
+    public void verifyHoverStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 15);
+        for (int i = 0; i < insuranceOptionsCheckBox.size(); i++) {
+            WebElement element = insuranceOptionsCheckBox.get(i);
+            actions.moveToElement(element).perform();
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertAll();
+            existingHealthInsuranceHeader.click();
+        }
+    }
+
+    public void verifySelectedStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(insuranceOptionsCheckBox, 15);
+        for (int i = 0; i < insuranceOptionsCheckBox.size(); i++) {
+            WebElement element1 = insuranceOptionsCheckBox.get(i);
+            WebElement element2 = insuranceOptionsBox.get(i);
+            element1.click();
+            existingHealthInsuranceHeader.click();
+            basicActions.wait(300);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container checked"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(112, 163, 0)");
+            softAssert.assertAll();
+            element1.click();
+            existingHealthInsuranceHeader.click();
         }
     }
 

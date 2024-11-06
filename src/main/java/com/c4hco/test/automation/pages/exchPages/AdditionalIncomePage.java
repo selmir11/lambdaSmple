@@ -1,8 +1,11 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -13,6 +16,8 @@ import java.util.List;
 
 
 public class AdditionalIncomePage {
+
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     SoftAssert softAssert = new SoftAssert();
     @FindBy(id = "AdditionalIncome-SaveAndContinue")
@@ -26,6 +31,9 @@ public class AdditionalIncomePage {
 
     @FindBy(css = "lib-checkbox-control span")
     List<WebElement> addtlIncomeOptionsName;
+
+    @FindBy(css = "lib-checkbox-control label")
+    List<WebElement> addtlincomeoptionBox;
 
     @FindBy(css = ".monetary-input-container input")
     List<WebElement> addtlIncomeAmount;
@@ -1103,4 +1111,99 @@ public class AdditionalIncomePage {
         softAssert.assertAll();
     }
 
+    public void verifyAddtlIncomeOptionCheckbox(String state){
+        switch (state){
+            case "Selected":
+                verifySelectedStateOfCheckboxes();
+                break;
+            case "Hover":
+                verifyHoverStateOfCheckboxes();
+                break;
+            case "Focus":
+                verifyFocusStateOfCheckboxes();
+                break;
+            case "Not Selected":
+                verifyNotSelectedStateOfCheckboxes();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + state);
+        }
+    }
+
+    public void verifyNotSelectedStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlIncomeOptionsCheckbox, 15);
+        for (int i = 0; i < addtlIncomeOptionsCheckbox.size(); i++) {
+            WebElement element1 = addtlIncomeOptionsCheckbox.get(i);
+            WebElement element2 = addtlincomeoptionBox.get(i);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(55, 55, 55)");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyFocusStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlIncomeOptionsCheckbox, 15);
+        for (int i = 0; i < addtlIncomeOptionsCheckbox.size(); i++) {
+            WebElement element = addtlIncomeOptionsCheckbox.get(i);
+            element.sendKeys(Keys.SHIFT);
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element.getCssValue("box-shadow"), "rgb(112, 163, 0) 0px 0px 7px 3px");
+            softAssert.assertAll();
+            hdr_Income.click();
+        }
+    }
+
+    public void verifyHoverStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlIncomeOptionsCheckbox, 15);
+        for (int i = 0; i < addtlIncomeOptionsCheckbox.size(); i++) {
+            WebElement element = addtlIncomeOptionsCheckbox.get(i);
+            actions.moveToElement(element).perform();
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertAll();
+            hdr_Income.click();
+        }
+    }
+
+    public void verifySelectedStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(addtlIncomeOptionsCheckbox, 15);
+        for (int i = 0; i < addtlIncomeOptionsCheckbox.size(); i++) {
+            WebElement element1 = addtlIncomeOptionsCheckbox.get(i);
+            WebElement element2 = addtlincomeoptionBox.get(i);
+            element1.click();
+            hdr_Income.click();
+            basicActions.wait(300);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container checked"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(112, 163, 0)");
+            softAssert.assertAll();
+            element1.click();
+            hdr_Income.click();
+        }
+    }
 }

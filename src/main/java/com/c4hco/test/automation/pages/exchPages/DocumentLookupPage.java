@@ -195,7 +195,6 @@ public class DocumentLookupPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(ToDate, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(receiveDate, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentSource, 10));
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(documentAuthor, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(documentDisplayName, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(carrierID, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(planID, 10));

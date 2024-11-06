@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -96,6 +97,9 @@ public class YourInformationPage {
 
     @FindBy(id= "agencyOwner-no")
     WebElement disabledBookOfBusinessNo;
+
+    @FindBy(id="valid-to-invalidDate-errorMsg")
+    WebElement invalidErrorMsg;
 
     private BasicActions basicActions;
     public YourInformationPage(WebDriver webDriver){
@@ -265,5 +269,29 @@ public class YourInformationPage {
         basicActions.waitForElementToBePresent(disabledBookOfBusinessYes, 10);
         Assert.assertFalse(disabledBookOfBusinessYes.isEnabled());
         Assert.assertFalse(disabledBookOfBusinessNo.isEnabled());
+    }
+
+    public void validateTheErrorMessageForTheLicenseExpirationDate() {
+        basicActions.waitForElementToBeClickable(continueYourInformation,20);
+        license.sendKeys("789654123");
+        licenseValidFromDate.click();
+        Date todayDate = new Date();
+        licenseValidFromDate.sendKeys(new SimpleDateFormat("MM/dd/yyyy").format(todayDate));
+        licenseValidToDate.sendKeys(new SimpleDateFormat("MM/dd/yyyy").format(todayDate));
+        basicActions.waitForElementToBePresent(invalidErrorMsg,20);
+        continueYourInformation.click();
+        softAssert.assertEquals(invalidErrorMsg.getText(),"(License Valid To) should be set after start date (License Valid From)");
+        licenseValidToDate.clear();
+        licenseValidToDate.sendKeys("10/11/2021");
+        continueYourInformation.click();
+        softAssert.assertEquals(invalidErrorMsg.getText(),"(License Valid To) should be set after start date (License Valid From)");
+        softAssert.assertAll();;
+
+
+
+
+
+
+
     }
 }

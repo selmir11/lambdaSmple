@@ -11,7 +11,7 @@ public class ApplicationSummaryPage {
 
     SoftAssert softAssert = new SoftAssert();
     @FindBy(id = "editBasicInfo")
-    WebElement editBasic;
+    WebElement editBasicInfoButton;
     @FindBy(id = "submitButton_Income")
     WebElement editIncome;
 
@@ -23,7 +23,9 @@ public class ApplicationSummaryPage {
     }
 
     public void clickEditBasicLink(){
-        editBasic.click();
+        basicActions.waitForElementToBePresent(editBasicInfoButton, 30);
+        basicActions.scrollToElement(editBasicInfoButton);
+        editBasicInfoButton.click();
     }
     public void clickEditIncomelink(){
         editIncome.click();

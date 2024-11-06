@@ -20,6 +20,9 @@ public class IncomeSummaryCoCoPageSteps {
     @And("I select the No projected Income button on the Income Summary page")
     public void selectProjectedIncomeNo() {incomeSummaryCoCoPage.clickprojectedIncomeNo();}
 
+    @And("I click on the edit {string} icon on the Income Summary CoCo page")
+    public void iSelectEditIcon(String type) {incomeSummaryCoCoPage.selectEditIcon(type);}
+
 
 
 
@@ -33,5 +36,8 @@ public class IncomeSummaryCoCoPageSteps {
     public void verifyTotalAnnualIncome(String Amount){
         incomeSummaryCoCoPage.verifyTotalAnnualIncome(Amount);
     }
+
+    @Then("I verify the edit icon")
+    public void iVerifyEditIcon(){incomeSummaryCoCoPage.verifyEditIcon();}
 
 }

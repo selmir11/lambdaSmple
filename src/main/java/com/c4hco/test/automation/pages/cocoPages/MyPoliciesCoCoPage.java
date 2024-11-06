@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MyPoliciesCoCoPage {
 
@@ -83,14 +84,8 @@ public class MyPoliciesCoCoPage {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     Set<String> allMemberNames = new HashSet<>();
 
-    public void VerifyPlanDetails(String memberName,String planName){
-        basicActions.waitForElementToDisappear(spinner,30);
-        basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical,10);
-        WebElement planDetails = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+memberName+"')]/ancestor::div[@class='current-policy-data']/parent::div  //div[@class='header-3']"));
-        basicActions.waitForElementToBeClickable(planDetails,30) ;
-        softAssert.assertEquals(planDetails.getText(),planName);
-        softAssert.assertAll();
-    }
+    Set<String> namesFromUI = new HashSet<>();
+
     public void validateEnrolledPlanDetails() {
         // Validating Names
         basicActions.waitForElementListToBePresent(memberNames, 10);
@@ -111,7 +106,31 @@ public class MyPoliciesCoCoPage {
         //Validating Total Premium without SES
         String totalAmtAfterZeroFinancialHelp = primaryMember.getMedicalPremiumAmt();
         String premiumWithoutSes = financialPremiumData.get(5).getText();
-        softAssert.assertEquals(premiumWithoutSes, "$"+totalAmtAfterZeroFinancialHelp+"/mo", "Total Premium amount after APTC reduction does not match from UI and DB");
+        softAssert.assertEquals(premiumWithoutSes, "$"+totalAmtAfterZeroFinancialHelp+"/mo", "Total Premium amount does not match");
+        softAssert.assertAll();
+    }
+    public void clickViewPlanHistoryLink(){
+        basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical, 10);
+        viewPlanHistoryLinkMedical.click();
+    }
+    public void validateMedPlanDetailsFromPlanHistoryCoco(){
+        basicActions.waitForElementToBePresent(planHistoryTitle, 10);
+        basicActions.waitForElementListToBePresent(tableRecord, 10);
+        basicActions.waitForElementListToBePresent(memberNames, 10);
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        namesFromUI = new HashSet<>(memberNames.stream().map(WebElement::getText).collect(Collectors.toList()));
+        softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()), "Medical plan mismatch");
+        String  ses = SharedData.getSes();
+        String openEnrolment = SharedData.getIsOpenEnrollment();
+        if(ses.equals("yes") && openEnrolment.equals("yes")){
+            softAssert.assertTrue(tableRecord.get(2).getText().equals("$" + "0.00"), "Medical amount mismatch");
+            softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + primaryMember.getMedicalPremiumAmt()), "Medical amount mismatch");
+        }else {
+            softAssert.assertTrue(tableRecord.get(2).getText().equals("$" + primaryMember.getMedicalPremiumAmt()), "Medical amount mismatch");
+            softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + "0.00"), "Medical amount mismatch");
+        }
+        softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getPlanStartDate()), "plan start date mismatch");
+        softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getPlanEndDate()), "plan end date mismatch");
         softAssert.assertAll();
     }
 

@@ -33,7 +33,7 @@ Feature: Seed05 - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -41,11 +41,8 @@ Feature: Seed05 - Exchange
     And I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "03051989" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -57,7 +54,7 @@ Feature: Seed05 - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -65,12 +62,9 @@ Feature: Seed05 - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "04212013" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Daughter" as relationship option
-    And I select "Daughter" as relationship one option
-    And I select "Yes" to Is Member Applying
+      Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+        |Primary:Daughter|
+        |Spouse:Daughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -82,7 +76,7 @@ Feature: Seed05 - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -90,12 +84,10 @@ Feature: Seed05 - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "12222016" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Brother" as relationship two option
-    And I select "Yes" to Is Member Applying
+      Then I enter details on tell us about additional members of your household exch page and continue with "Son", "12222016", "Male" and applying "Yes"
+        |Primary:Son|
+        |Spouse:Son|
+        |Daughter:Brother|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -107,7 +99,7 @@ Feature: Seed05 - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+      And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
