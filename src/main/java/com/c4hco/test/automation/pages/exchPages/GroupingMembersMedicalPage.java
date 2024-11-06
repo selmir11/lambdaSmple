@@ -222,10 +222,8 @@ public class GroupingMembersMedicalPage {
             for (WebElement detail : details) {
                 newDetails.add(detail.getText());
             }
-
             groupDetailsMap.put("Medical Group # " + i, newDetails);
         }
-
         SharedData.setGroupingDetails(groupDetailsMap);
     }
 
