@@ -88,6 +88,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.getMedicalPlanMarketNames();
     }
 
+    @And("I validate there are a total {int} MedicalPlans")
+    public void validateTotalMedicalPlans(int expectedCount) {
+        medPlanResultsPage.validateTotalMedicalPlans(expectedCount);
+    }
+
     @And("I click the HSA dropdown")
     public void clickHSADropdown() {
         medPlanResultsPage.clickHSADropdown();

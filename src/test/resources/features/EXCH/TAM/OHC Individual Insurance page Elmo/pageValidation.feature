@@ -120,21 +120,21 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
   @SLER-719 @PageValidationOhiIndividualInsuranceElmo @TAMSmoke
   Scenario: SLER-719 I validate save, update and remove on Individual Insurance are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |            1           |                       |                           |                           |
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |                      |                           |                           |
     Then I click "No" for currently enrolled in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          0           |                           |                           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -145,16 +145,16 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          0           |                           |                           |
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             0             |                           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -166,11 +166,11 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     Then I enter the end date as "Current Month" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             1             |               0           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -180,11 +180,11 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
     Then I click "Yes" for insurance ending voluntary for Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             1             |               1           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -194,11 +194,11 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          1           |             0             |                           |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -208,7 +208,7 @@ Feature: Page Validation-OHI Individual Insurance Elmo Page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
     Then I click "No" for currently enrolled in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|retiree_health_plan_ind|hra_ind|individual_insurance_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|indv_ins_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0          |   0   |             1          |          0           |                           |                           |
 

@@ -7,7 +7,7 @@ public enum Race {
     Black("B"),
     Caucasian("C"),
     NativeAmerican("G"),
-    White("O"),
+    WhiteorEuropean("C"),
     PreferNotToAnswer("7"),
     MiddleEasternorNorthAfrican("E"),
     NativeHawaiianorPacificIslander("J");

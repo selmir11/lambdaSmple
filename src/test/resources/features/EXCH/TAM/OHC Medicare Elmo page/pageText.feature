@@ -72,8 +72,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -94,8 +94,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -117,8 +117,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -139,8 +139,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -172,8 +172,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -195,8 +195,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -257,8 +257,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -281,8 +281,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -306,8 +306,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -330,8 +330,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -367,8 +367,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -392,8 +392,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -465,8 +465,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -480,8 +480,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHC Medicare page
 #Step6
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -499,8 +499,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I enter end date of end of current month for Medicare part "A"
     Then I click continue on the Elmo OHC Medicare page
 #Step8
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -520,8 +520,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I enter end date of end of current month for Medicare part "B"
     Then I click continue on the Elmo OHC Medicare page
 #Step10
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -540,8 +540,8 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click "No" for Part "B" insurance ending in 60 days in Medicare question
     Then I click continue on the Elmo OHC Medicare page
 #Step12
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page

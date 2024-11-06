@@ -120,7 +120,44 @@ public class AdminPortalManagePlansSteps {
     public void iUpdateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
         adminPortalManagePlansPage.updateTheFinancialEndDate(memberFinancialEndDTList);
     }
+    @And("I select the {string} plan year on manage plan")
+    public void iSelectThePlanYearOnManagePlan(String planYear) {
+        adminPortalManagePlansPage.selectThePlanYearOnManagePlan(planYear);
+    }
+    @Then("I update my account_id any Env STG {string} QA {string}")
+    public void iUpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
+        adminPortalManagePlansPage.UpdateMyAccount_idAnyEnv(stgAccountId,qaAccountId);
+    }
 
+    @Then("I validate the text of the Medical Dental container")
+    public void iValidateTheTextOfTheMedicalDentalContainer() {
+        adminPortalManagePlansPage.validateTheTextOfTheMedicalContainer();
+    }
+    @Then("I select the {int} {string} policy Plan")
+    public void iSelectThePolicyPlan(int policyNumber, String planType) {
+        adminPortalManagePlansPage.selectTheMedPolicyPlan(policyNumber,planType);
+    }
+
+    @And("I select Plans Med Active Policy")
+    public void iSelectPlansMedActivePolicy() {
+        adminPortalManagePlansPage.selectPlansMedActivePolicy();
+    }
+
+
+    @And("I select Plans Dental Active Policy")
+    public void iSelectPlansDentalActivePolicy() {
+        adminPortalManagePlansPage.selectPlansDenActivePolicy();
+    }
+
+    @And("I update the second medical and dental policy for the year UI")
+    public void iUpdateTheSecondMedicalAndDentalPolicyForTheYearUI() {
+        adminPortalManagePlansPage.updateTheSecondMedicalPoliciyForTheYearUI();
+    }
+
+    @Then("I unchecked {string} from plan type")
+    public void iUncheckedFromPlanType(String planType) {
+        adminPortalManagePlansPage.uncheckedFromPlanType(planType);
+    }
 
 }
 

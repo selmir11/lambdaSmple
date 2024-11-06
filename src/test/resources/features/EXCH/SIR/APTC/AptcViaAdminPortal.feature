@@ -21,9 +21,10 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-      # Question not asked during Open Enrollment
-      #And I report "Birth" and click continue
+    # Question not asked during Open Enrollment
+    #And I report "Birth" and click continue
 
+    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
   #Husband
     And I am a member with City "Denver" in State "CO" with dob "01011991" in county "DENVER" with zipcode "80205"
@@ -272,7 +273,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click continue on the Citizenship page
 
     Then I validate I am on the "Family Overview" page
-    And I click on the Member Row 1
+    And I click on "Primary" to edit information from household page
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link

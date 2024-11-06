@@ -246,6 +246,14 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + appType);
         }
         submitButton.click();
+        setdbName();
+    }
+
+    private void setdbName(){
+        String env = SharedData.getEnv();
+        String appType = SharedData.getAppType().substring(0, 4);
+        String dbName = env.equals("qa") ? env + "_"+appType : appType;
+        SharedData.setDbName(dbName);
     }
 
     // WIP - Remove from here. We already have this in basicActions
@@ -256,6 +264,7 @@ public class CreateAccountPage {
         return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
+
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
@@ -265,6 +274,7 @@ public class CreateAccountPage {
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
+
 
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();
@@ -306,6 +316,7 @@ public class CreateAccountPage {
     public void sendDetails(){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
+        basicActions.waitForElementToBePresent(phoneNumber, 60);
         firstName.sendKeys(subscriber.getFirstName());
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());

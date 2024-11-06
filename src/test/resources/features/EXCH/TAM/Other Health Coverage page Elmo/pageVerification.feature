@@ -91,7 +91,7 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the text on Other Health Coverage page data in "English"
     Then I click continue on the ELMO health coverage page
     And I verify error message in "English" on the Other Health Coverage page
-    And I verify the OHI info in the DB
+    And I verify the OHI info in the DB for "Primary"
 
     Then I select "Medicare" as ELMO health coverage option
     And I verify error message does not show for Individual Insurance page
@@ -108,7 +108,7 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the text on Other Health Coverage page data in "Spanish"
     Then I click continue on the ELMO health coverage page
     And I verify error message in "Spanish" on the Other Health Coverage page
-    And I verify the OHI info in the DB
+    And I verify the OHI info in the DB for "Primary"
 
     Then I select "Medicare" as ELMO health coverage option
     And I verify error message does not show for Individual Insurance page
@@ -133,7 +133,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ELMO health coverage page
     Then I click Go Back on the Elmo OHC Medicare page
     And I validate I am on the "Elmo Other Health Coverage" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         1            |      1     |         1        |     1   |            1          |     1     |       1       |        1           |             1            |            1           |   1   |
     Then I select "Health First Colorado" as ELMO health coverage option
@@ -141,13 +141,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ELMO health coverage page
     Then I click Go Back on the Elmo OHC Medicare page
     And I validate I am on the "Elmo Other Health Coverage" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         1            |      1     |         1        |     1   |            1          |     1     |       1       |        0           |             0            |            1           |   1   |
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
 
@@ -161,7 +161,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Medicare" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      1     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
     Then I click "Yes" for currently eligible in Medicare question
@@ -171,7 +171,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I check checkbox for Part "B"
     Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |      1     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |         1        |         1        |           250.00         |           1            |              0             |              0             |
 
@@ -186,8 +186,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -196,7 +196,7 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                  |                  |                       |                        |                            |                            |
 
@@ -210,13 +210,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Individual Insurance" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            1           |   0   |
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            1           |   0   |            1          |             0             |
 
@@ -231,8 +231,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -241,7 +241,7 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|indv_ins_enrl_covg_ind3|indv_ins_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                       |                           |
 
@@ -255,7 +255,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "job" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |                            |                          |                      |                         |                             |                                     |                               |                         |                         |
     Then I select the "0" employer for "Primary" member on the ESI page
@@ -264,12 +264,12 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |             1           |           350.00            |                                     |                               |             0           |             0           |
 
-    And I click on the table dropdown 1
-    And I click the edit income 11
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -278,7 +278,7 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            0         |                            |                          |                      |                         |                             |                                     |                               |                         |                         |
 
@@ -292,13 +292,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo COBRA" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     1   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|
       |         0            |      0     |         0        |     1   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |           1        |           0            |
 
@@ -313,8 +313,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -323,7 +323,7 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                    |                        |
 
@@ -337,13 +337,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi VA Healthcare" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         1        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "No" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the Elmo OHC VA Healthcare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|
       |         0            |      0     |         1        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |         1       |         0           |
 
@@ -358,8 +358,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -368,7 +368,7 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|va_enrl_covg_ind3|va_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                 |                     |
 
@@ -382,13 +382,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Retiree" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            1          |     0     |       0       |        0           |             0            |            0           |   0   |
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "No" for insurance ending in 60 days in Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_enrl_covg_ind3|retiree_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            1          |     0     |       0       |        0           |             0            |            0           |   0   |            1         |            0             |
 
@@ -403,8 +403,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -413,7 +413,7 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_enrl_covg_ind3|retiree_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                      |                          |
 
@@ -427,13 +427,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Tricare" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     1     |       0       |        0           |             0            |            0           |   0   |
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "No" for insurance ending in 60 days in Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     1     |       0       |        0           |             0            |            0           |   0   |            1         |            0             |
 
@@ -448,8 +448,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -458,7 +458,7 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                      |                          |
 
@@ -472,13 +472,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohi Peace Corps" page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     0     |       1       |        0           |             0            |            0           |   0   |
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "No" for insurance ending in 60 days in Peace Corps question
     Then I click continue on the Elmo OHC Peace Corps page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       1       |        0           |             0            |            0           |   0   |              1           |              0               |
 
@@ -493,8 +493,8 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Summary Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
@@ -503,9 +503,21 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |                          |                              |
 
     And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-1221
+  Scenario: SLER-1221 I verify that other-health-coverage portal uses common components from ng-common on the main OHC page
+    Then I verify main OHC checkbox in "Not Selected" state
+    And I refresh the page
+    Then I verify main OHC checkbox in "Selected" state
+    And I refresh the page
+    Then I verify main OHC checkbox in "Focus" state
+    And I refresh the page
+    Then I verify main OHC checkbox in "Hover" state
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

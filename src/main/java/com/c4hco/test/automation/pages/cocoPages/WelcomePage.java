@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.ExpectedCalculatedDates;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -14,11 +15,23 @@ import java.util.*;
 
 public class WelcomePage {
 
-    @FindBy(css = ".header-1")
-    WebElement welcomeToConnectText;
+    @FindBy(css = ".c4-alert-icon-column svg")
+    WebElement notificationBannerIcon;
+
+    @FindBy(css = "lib-notification-banner:nth-child(1) > div")
+    WebElement notificationBannerTxt;
+
+    @FindBy(css = "lib-notification-banner .c4-alert-title")
+    WebElement cacBannerHdr;
+
+    @FindBy(css = "lib-notification-banner .c4-alert-content")
+    WebElement cacBannerTxt;
 
     @FindBy(css = "div.c4-alert-content a")
     WebElement takeQuizLnk;
+
+    @FindBy(css = ".header-1")
+    WebElement welcomeToConnectText;
 
     @FindBy(xpath = "//div[contains(@class, 'c4-type-header')]")
     WebElement containerMainHeaderText;
@@ -34,15 +47,19 @@ public class WelcomePage {
 
     @FindBy(xpath = "//*[@id='ELIG-WelcomePage-ApplyForInsurance-2024' or @id='ELIG-WelcomePage-ApplyForInsurance-2024']")
     WebElement applyForCurrentYearButton; //Locator for both QA and Staging
+
     @FindBy(css = "button#ELIG-WelcomePage-ApplyForInsurance-2025")
     WebElement btnApplyForNextYearCoco;
+
     @FindBy(css = ".plan-year-control-container > label")
     WebElement planYearText;
 
     @FindBy(css = "#plan-year-selector")
     WebElement planYearSelectorDp;
+
     @FindBy(css = "#plan-year-selector option")
     List<WebElement> planYearSelectorOptions;
+
     @FindBy(css = "app-plans > div > div")
     WebElement youHaveNotEnrolled;
 
@@ -67,14 +84,6 @@ public class WelcomePage {
     @FindBy(css = ".action-link, .c4-type-links-lg")
     List<WebElement> actionLinks;
 
-    @FindBy(css = "lib-notification-banner .c4-alert-title")
-    WebElement cacBannerHdr;
-
-    @FindBy(css = "lib-notification-banner .c4-alert-content")
-    WebElement cacBannerTxt;
-
-    @FindBy(css = "lib-notification-banner .c4-alert-content a")
-    WebElement cacBannerLnk;
     @FindBy(css = ".plan-member-names-container .plan-member-full-names")
     WebElement medicalMemberNames;
 
@@ -439,6 +448,57 @@ public class WelcomePage {
         scenarioDetails.setTotalGroups(Integer.parseInt(noOfGroups));
         scenarioDetails.setTotalMembers(Integer.parseInt(totalMembers));
         SharedData.setScenarioDetails(scenarioDetails);
+    }
+    public void setDates(List<Map<String, String>> expectedResult) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        ExpectedCalculatedDates expectedCalculatedDates = new ExpectedCalculatedDates();
+
+        String policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
+        String policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
+        String coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
+        String coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
+        String financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
+        String financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
+        String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
+
+        expectedCalculatedDates.setPolicyStartDate(policyStartDate);
+        expectedCalculatedDates.setPolicyEndDate(policyEndDate);
+        expectedCalculatedDates.setCoverageStartDate(coverageStartDate);
+        expectedCalculatedDates.setCoverageEndDate(coverageEndDate);
+        expectedCalculatedDates.setFinancialStartDate(financialStartDate);
+        expectedCalculatedDates.setFinancialEndDate(financialEndDate);
+
+        subscriber.setPlanStartDate(planStartDate);
+        subscriber.setPlanEndDate(planEndDate);
+
+        SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
+        SharedData.setPrimaryMember(subscriber);
+
+    }
+
+    public void validateNotificationBanner(String language) {
+        basicActions.waitForElementToBePresent(containerMainHeaderText, 5);
+
+        softAssert.assertTrue(notificationBannerIcon.getAttribute("class").contains("feather-alert-triangle"));
+        softAssert.assertEquals(notificationBannerIcon.getCssValue("left"), "auto","left error (icon)");
+        if (language.equals("English")){
+            softAssert.assertEquals(notificationBannerTxt.getText(), "Unable to go to the requested page. Please continue with your application.");
+        }else if (language.equals("Spanish")){
+            softAssert.assertEquals(notificationBannerTxt.getText(), "No se puede acceder a la p\u00E1gina solicitada. Contin\u00FAe con su solicitud.");
+        }
+        softAssert.assertEquals(notificationBannerTxt.getCssValue("font"), "16px / 24px \"PT Sans\", sans-serif","font error");
+        softAssert.assertEquals(notificationBannerTxt.getCssValue("color"), "rgba(43, 49, 60, 1)","color error"); //#2b313c
+        softAssert.assertEquals(notificationBannerTxt.getCssValue("border-color"), "rgb(201, 123, 51)","border-color error"); //#C97B33
+        softAssert.assertEquals(notificationBannerTxt.getCssValue("background"), "rgb(248, 239, 229) none repeat scroll 0% 0% / auto padding-box border-box","background error"); //#F8EFE5
+        softAssert.assertEquals(notificationBannerTxt.getCssValue("left"), "auto","left error");
+        softAssert.assertAll();
+    }
+
+    public void validateNoNotificationBanner() {
+        basicActions.waitForElementToBePresent(containerMainHeaderText, 5);
+        basicActions.waitForElementToDisappear(notificationBannerIcon,5);
+        basicActions.waitForElementToDisappear(notificationBannerTxt,5);
     }
 }
 

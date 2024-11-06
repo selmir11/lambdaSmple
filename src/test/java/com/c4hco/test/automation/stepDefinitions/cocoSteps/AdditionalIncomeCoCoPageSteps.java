@@ -13,6 +13,9 @@ public class AdditionalIncomeCoCoPageSteps {
         additionalIncomeCoCoPage.selectAddIncomeOption(addtlIncomeOption, Amount, Frequency);
     }
 
+    @Then("I select {string} as additional income option CoCO page")
+    public void iSelectAddtlIncomeOptionOnly(String addtlIncomeOption){additionalIncomeCoCoPage.selectAddtlIncomeOptionOnly(addtlIncomeOption);}
+
     @And("I select None of these as additional income option")
     public void noneAdditionalIncome() {
         additionalIncomeCoCoPage.selectNoneAddIncomeOption();
@@ -39,6 +42,12 @@ public class AdditionalIncomeCoCoPageSteps {
     @And("I verify the header for Primary Member on the CoCo Additional Income page in {string}")
     public void iVerifyTextOnAdditionalIncomePage(String language){additionalIncomeCoCoPage.verifyHeadersAdditionalIncomePage(language);}
 
+    @Then("I verify the text on the CoCo Additional Income page in {string}")
+    public void iVerifyAdditionalIncomeText(String language){additionalIncomeCoCoPage.verifyAdditionalIncomeTextCoCo(language);}
+
+    @Then("I verify the navigation buttons on the CoCO Additional Income page in {string}")
+    public void iVerifyAdditionalIncomeNavigationButtons(String language) {additionalIncomeCoCoPage.verifyAdditionalIncomeNavigationButtonsCoCo(language);}
+
     @Then("I validate no errors are displayed on the Additional Income CoCo page")
     public void iValidateNoErrorsPresent(){additionalIncomeCoCoPage.verifyNoErrorMessage_AdditionalIncome();}
 
@@ -48,4 +57,22 @@ public class AdditionalIncomeCoCoPageSteps {
     @Then("I validate {string} option is selected on the Additional Income CoCo page")
     public void iValidateOptionSelection(String incomeOption){additionalIncomeCoCoPage.verifyOptionSelected_AdditionalIncome(incomeOption);}
 
+    @Then("I verify error for additional income no option in {string} CoCo page")
+    public void iVerifyAddtlIncomeOptionHdrError(String language){additionalIncomeCoCoPage.verifyAddtlIncomeOptionHdrError(language);}
+
+    @Then("I verify error for additional income option with no amount in {string} CoCo page")
+    public void iVerifyAddtlIncomeOptionAmt1Error(String language){additionalIncomeCoCoPage.verifyAddtlIncomeOptionAmt1Error(language);}
+
+    @Then("I verify error for additional income option with no frequency in {string} CoCo page")
+    public void iVerifyAddtlIncomeOptionFreq1Error(String language){additionalIncomeCoCoPage.verifyAddtlIncomeOptionFreq1Error(language);}
+
+    @Then("I verify no errors show for additional income options CoCo page")
+    public void iVerifyAddtlIncomeOptionNoError(){additionalIncomeCoCoPage.verifyAddtlIncomeOptionNoError();}
+
+    @Then("I verify {string} as additional income option with {string} amount at {string} frequency CoCo page")
+    public void iVerifyAddtlIncomeEnteredData(String addtlIncomeOption, String Amount, String Frequency) {additionalIncomeCoCoPage.verifyAddtlIncomeEnteredData(addtlIncomeOption, Amount, Frequency);}
+
+    @Then("I verify Additional Income checkbox COCO in {string} state")
+    public void iVerifyStateOfAddIncomeCheckboxCOCO(String state){
+        additionalIncomeCoCoPage.verifyAddtlIncomeOptionCheckboxCOCO(state);}
 }

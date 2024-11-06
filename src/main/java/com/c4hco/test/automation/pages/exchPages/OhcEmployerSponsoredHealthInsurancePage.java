@@ -220,6 +220,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void clickMinValueStandard(String minValueStandard){
+        basicActions.waitForElementToBeClickable(esiMinValueStandardYesBtn, 20);
         switch (minValueStandard){
             case "Yes":
                 basicActions.click(esiMinValueStandardYesBtn);

@@ -57,7 +57,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -100,7 +100,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -113,7 +113,7 @@ Feature: Header and Footer validation on Coco application pages
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "English"
     And I click Continue on the Dependent Overview Page CoCo
-    And I select "InsuranceLoss" life change event
+    And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -195,7 +195,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I change the language from header to "English"
@@ -242,7 +242,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
@@ -255,7 +255,7 @@ Feature: Header and Footer validation on Coco application pages
     And I validate I am on the "Contact Us" page and close tab
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I click Continue on the Dependent Overview Page CoCo
-    And I select "InsuranceLoss" life change event
+    And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -306,14 +306,14 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I click on Find a Plan in the "Elmo" Header
@@ -322,7 +322,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I click on My Account in the "Elmo" Header
@@ -331,7 +331,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
 
     #Additional information for yourself
@@ -343,7 +343,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
 
     Then I validate I am on the "CoCo Additional information for yourself" page
@@ -351,7 +351,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
 
     Then I validate I am on the "CoCo Additional information for yourself" page
@@ -361,7 +361,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
 
     Then I validate I am on the "CoCo Additional information for yourself" page
@@ -371,7 +371,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -387,7 +387,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
@@ -396,7 +396,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     Then I validate I am on the "CoCo Additional information for yourself" page
     And I click continue on the Add info for yourself page
@@ -408,7 +408,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
@@ -419,7 +419,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I select "Prefer not to answer" for race and ethnicity option
@@ -432,12 +432,12 @@ Feature: Header and Footer validation on Coco application pages
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select None of these as deductions option
+    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
-    And I select "InsuranceLoss" life change event
+    And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature

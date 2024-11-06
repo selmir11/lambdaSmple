@@ -1,17 +1,15 @@
 package com.c4hco.test.automation.database.DbValidations;
-
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
@@ -22,14 +20,7 @@ public class DbValidations {
     String formattedDate; //formatted in YYYY-MM-DD
     Calendar calendar = Calendar.getInstance();
     int currentYear = calendar.get(Calendar.YEAR);
-
-    public void setIb999DetailsEntity() {
-        // WIP - move this to a new file ib999Validations
-        List<Ib999Entity> ib999MedEntity = exchDbDataProvider.getIb999Details(SharedData.getMedGroupCtlNumber());
-        SharedData.setIb999MedDetailsEntities(ib999MedEntity);
-        List<Ib999Entity> ib999DenEntity = exchDbDataProvider.getIb999Details(SharedData.getDenGroupCtlNumber());
-        SharedData.setIb999DenDetailsEntities(ib999DenEntity);
-    }
+    BasicActions basicActions = new BasicActions();
 
     public void validateOb834FromDb(List<Map<String, String>> expectedValues) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
@@ -340,14 +331,14 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateOhiDetails() {
-        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables();
+    public void validateOhiDetails(String memberId) {
+        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(memberId);
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
-    public void validateOhiOptions(List<Map<String, String>> expectedValues) {
-        EsMemberOhiEntity actualResult = exchDbDataProvider.getOptionsFromOhiDbTables();
+    public void validateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues) {
+        EsMemberOhiEntity actualResult = exchDbDataProvider.getOptionsFromOhiDbTables(basicActions.getMemberId(memPrefix));
         System.out.println(actualResult);
 
         softAssert.assertEquals(actualResult.getEmp_sponsored_covg_ind(), expectedValues.get(0).get("emp_sponsored_covg_ind"));
@@ -443,17 +434,15 @@ public class DbValidations {
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
-            softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
             policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
             applicationIdListFromBob.add(bookOfBusinessQEntity.getApplicationid());
         }
-
+        softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
         softAssert.assertTrue(new HashSet<>(applicationIdListFromBob).containsAll(applicationIdListFromPolicyAh), "application id mismatch");
         softAssert.assertTrue(new HashSet<>(policyIdListFromBookOfBusinessDb).containsAll(policyIdFromPolicyDB), "Policy Id mismatch ");
         softAssert.assertAll();
 
     }
-
 
     public void validateAccountHolderNameFromBOB() {
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
@@ -537,13 +526,74 @@ public class DbValidations {
         System.out.println("Database Email " + actualResult.getEmail());
         softAssert.assertAll();
     }
+
     
     public void validateDatabaseMedicalPlanList() {
         List<String> medicalPlanList = exchDbDataProvider.getDBMedicalPlanList();
         List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
+        softAssert.assertAll();}
+    public void validateCurrentDentalPlanNameForTheYear(String year) {
+        String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
+        softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
+        softAssert.assertAll();
+
+    }
+
+    public void validateCurrentDentalPolicyStartAndEndDateForTheYearDB() {
+        String [] policyDate = exchDbDataProvider.getDentalPolicyDate();
+
+        String dateStr = policyDate[0];
+        String dateEnd = policyDate[1];
+        String formattedDateSTR = basicActions.changeDateFormat(dateStr ,"yyyy-MM-dd","MM/dd/yyyy");
+        String formattedDateEnd = basicActions.changeDateFormat(dateEnd ,"yyyy-MM-dd","MM/dd/yyyy");
+        String coverageDate = formattedDateSTR+" to "+formattedDateEnd;
+        softAssert.assertTrue(SharedData.getManagePlanDentalMedicalPlan().getPolicyCoverageDate().contains(coverageDate));
         softAssert.assertAll();
     }
 
 
+    public void validateDatabaseRaceEthnicity(String expectedRaceEthnicity, String expectedRaceOtherText) {
+        String[] dbValues = exchDbDataProvider.getEsMemberRaceEthnicityDetails();
+        softAssert.assertEquals(dbValues[0], expectedRaceEthnicity, "Race/Ethnicity mismatch");
+
+        if (expectedRaceOtherText.equals("null")) {
+            softAssert.assertNull(dbValues[1], "Race Other Text is null");
+        } else {
+            softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
+        }}
+
+    public void validateTheLatestApplicationDateForTheYearDB() {
+       String medLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
+       softAssert.assertTrue(medLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getMedLatestAppDate()));
+        softAssert.assertAll();
+    }
+
+    public void validateTheSecondMedicalPoliciyForTheYearDB(String year) {
+        String[] medSecondPolicy = exchDbDataProvider.getMedSecondPolicy(year);
+        String inputDate = medSecondPolicy[1];
+        String formattedDate = basicActions.changeDateFormat(inputDate,"yyyy-MM-dd","MM/dd/yyyy");
+        System.out.println("Formatted Date: " + formattedDate);
+        String SecondMedicalPolicyDB = medSecondPolicy[0]+ " - " + formattedDate +" - " +medSecondPolicy[2];
+        softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectMedSecondPolicyDrp());
+        softAssert.assertAll();
+    }
+
+    public void validateTheSecondDentalPoliciyForTheYearDB(String year) {
+        String[] denSecondPolicy = exchDbDataProvider.getDentSecondPolicy(year);
+        String inputDate = denSecondPolicy[1];
+        String formattedDate = basicActions.changeDateFormat(inputDate,"yyyy-MM-dd","MM/dd/yyyy");
+        System.out.println("Formatted Date: " + formattedDate);
+        String SecondMedicalPolicyDB = denSecondPolicy[0]+ " - " + formattedDate +" - " +denSecondPolicy[2];
+        softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectDenSecondPolicyDrp());
+        softAssert.assertAll();
+    }
+	
+	public void validateMVR(List<Map<String, String>> expectedValues){
+        EsManualVerifRequestEntity actualResult = exchDbDataProvider.getEsMVR_options();
+        System.out.println(actualResult);
+
+        softAssert.assertEquals(actualResult.getManual_verification_type(), expectedValues.get(0).get("manual_verification_type"));
+        softAssert.assertAll();
+    }
 }

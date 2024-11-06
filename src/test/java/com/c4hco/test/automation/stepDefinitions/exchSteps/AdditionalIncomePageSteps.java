@@ -65,4 +65,7 @@ public class AdditionalIncomePageSteps {
     @Then("I validate Additional Income help drawer {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language){additionalIncomePage.validateHelpVerbiage(helpText, language);}
 
+    @Then("I verify Additional Income checkbox in {string} state")
+    public void iVerifyStateOfAddIncomeCheckbox(String state){
+        additionalIncomePage.verifyAddtlIncomeOptionCheckbox(state);}
 }

@@ -39,7 +39,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -47,7 +47,7 @@ Feature: FA - 4groups - enroll in plan
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "09051959", "Male" and applying "No"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "09051959", "Male" and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -57,9 +57,13 @@ Feature: FA - 4groups - enroll in plan
       | 456 Trail Ave          | Trail Ave    | Boulder | CO    | 80020   | BOULDER |09051959 |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -85,7 +89,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "Yes" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -109,7 +113,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -136,7 +140,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -162,7 +166,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Nephew"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -189,7 +193,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Niece"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -338,6 +342,7 @@ Feature: FA - 4groups - enroll in plan
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
@@ -353,6 +358,64 @@ Feature: FA - 4groups - enroll in plan
 
     Then I validate I am on the "Account Overview" page
     #APTC AMOUNT
+
+    Then I click on make changes button
+
+    Then I validate I am on the "Let us guide you" page
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click on "Spouse" to edit information from household page
+    Then I select the Basic Edit link
+    And I select "No" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on grouping Members Medical page
+    And I validate I am on the "Medical Plan Results" page
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    Then I validate I am on the "planSummaryMedicalDental" page
+
 
 
 

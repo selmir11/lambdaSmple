@@ -1,4 +1,4 @@
-@QHP
+@QHP @ELIG
 Feature: Testing will verify eligibility rules for Qualified Health Plan
 
   Background: I go the login portal
@@ -34,6 +34,8 @@ Feature: Testing will verify eligibility rules for Qualified Health Plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -76,6 +78,8 @@ Feature: Testing will verify eligibility rules for Qualified Health Plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity
+    And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -116,6 +120,11 @@ Feature: Testing will verify eligibility rules for Qualified Health Plan
       And I select "No" for CO Resident option
       And I select "No" for Federally Recognized Tribe option
       And I click continue on the Add Address page
+      And I select "Prefer not to answer" for race and ethnicity
+      And I click continue on the Race and Ethnicity page
+      Then I select "Yes" for Citizen option
+      And I select "No" for Naturalized Immigrant option
+      And I click continue on the Citizenship page
       Then I click continue on family overview page
       Then I validate I am on the "Financial Help" page
       And I Apply for no financial help

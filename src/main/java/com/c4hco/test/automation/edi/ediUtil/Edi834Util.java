@@ -118,6 +118,9 @@ public class Edi834Util {
                                     memberObject.set("Member-" + previousIndex, jsonNode);
                                     memberArrayNode = objectMapper.createArrayNode();
                                     memberSegmentData = new ArrayListValuedHashMap<>();
+                                    memberArrayNode.add(currentSegmentArray);
+                                    memberSegmentData.put(currentSegmentName, currentSegmentArray);
+
                                     previousIndex = insCount;
                                 }
                             } else{
@@ -213,7 +216,14 @@ public class Edi834Util {
             e.printStackTrace();
         }
         SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-
     }
 
+    public void testLocal(){
+        Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
+        Transaction transaction = edi834TransactionDetails.getTransactionList().get(0);
+        Member member = transaction.getMembersList().get(0);
+        List<List<String>> lxSegment = member.getLX();
+        edi834TransactionDetails.getTransactionList().get(0).getCommonSegments();
+        List<List<String>> nm1Seg1  = member.getNM1();
+    }
 }

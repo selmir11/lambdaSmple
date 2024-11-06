@@ -126,21 +126,21 @@ Feature: Page Validation-OHI COBRA Elmo Page
   @SLER-720 @PageValidationOhiCobraElmo
   Scenario: SLER-720 I validate save, update and remove on Cobra are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |                    |                        |                        |
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |                    |                        |                        |
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |          0         |                        |                        |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -151,16 +151,16 @@ Feature: Page Validation-OHI COBRA Elmo Page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |         0          |                        |                        |
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |          1         |            0           |                        |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -172,11 +172,11 @@ Feature: Page Validation-OHI COBRA Elmo Page
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |        1           |             1          |           0            |
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -186,12 +186,12 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I validate I am on the "Elmo COBRA" page
     Then I click "Yes" for insurance ending voluntary for COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |        1           |             1          |           1            |
 
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -201,12 +201,12 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I validate I am on the "Elmo COBRA" page
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |         1          |             0          |                        |
 
-    And I click on the table dropdown 1
-    And I click the edit income 1
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
@@ -216,7 +216,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I validate I am on the "Elmo COBRA" page
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB
+    And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |          0         |                        |                        |
 

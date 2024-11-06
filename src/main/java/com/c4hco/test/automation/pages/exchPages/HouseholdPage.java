@@ -3,10 +3,12 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
@@ -26,6 +28,7 @@ public class HouseholdPage {
     // update locators to ids and rename methods
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
     @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
@@ -90,30 +93,27 @@ public class HouseholdPage {
         softAssert.assertAll();
     }
 
-
-    public void iEditPrimaryMember(int index) {
-        basicActions.waitForElementToBePresent(editPrimaryMember, 15);
-        basicActions.waitForElementToBeClickableWithRetries(editPrimaryMember, 15);
-        index -= 1;
-        editPrimaryMember.click();
-    }
-
-    public void iClickTableItem(int index) {
+    public void iClickTableItem(String namePrefix) {
         basicActions.waitForElementToBePresent(editPrimaryMember, 30);
         basicActions.waitForElementListToBePresent(tableDropdown, 30);
-        index -= 1;
-        tableDropdown.get(index).click();
+        String xpath = String.format("//*[contains(@value,'"+namePrefix+"')]//preceding::i[2]");
+        WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
+        button.click();
     }
 
-    public void clickBasicInfoMember1Button(int member) {
+    public void clickBasicInfoMemberButton(String namePrefix) {
         basicActions.waitForElementListToBePresent(memberBasicInformation, 15);
-        memberBasicInformation.get(member).click();
+        String xpath = String.format("//*[contains(@value,'"+namePrefix+"')]//following::*[@id='editBasicInfo'][1]");
+        WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
+        button.click();
     }
 
-    public void iClickEditIncomeLink(int index) {
+    public void iClickEditIncomeLink(String namePrefix) {
         basicActions.waitForElementToBePresent(editIncomeLink, 15);
         editIncomeLink.isDisplayed();
-        editIncomeLink.click();
+        String xpath = String.format("//*[contains(@value,'"+namePrefix+"')]//following::*[@id='submitButton_Income'][1]");
+        WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
+        button.click();
     }
 
     public void clickMember(String memNameToClick) {
@@ -124,12 +124,6 @@ public class HouseholdPage {
                 break;
             }
         }
-    }
-
-
-    public void iEditMember(int memberIndex) {
-        basicActions.waitForElementListToBePresent(basicMemberList, 20);
-        basicMemberList.get(memberIndex - 1).click();
     }
 
     public void clickRemoveMember() {
@@ -150,6 +144,10 @@ public class HouseholdPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + option);
         }
+    }
+
+    public void verifyNoErrorMessage_Household() {
+        Assert.assertTrue(basicActions.waitForElementToDisappear(redIcon, 30), "Error is displayed");
     }
 
 }

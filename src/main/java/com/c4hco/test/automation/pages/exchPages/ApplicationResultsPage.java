@@ -57,8 +57,8 @@ public class ApplicationResultsPage {
     @FindBy(css = "b.popup-body-text-2")
     WebElement popUpText;
 
-    @FindBy(css = ".btn-info")
-    WebElement popUpBackButton;
+    @FindBy(xpath = "//*[@id=\"continueButtonPopup\"]/div/div/div[2]/button")
+    WebElement  popUpBackButton;
 
     @FindBy(css = ".tot-sav")
     WebElement totalSavingsSection;
@@ -98,6 +98,7 @@ public class ApplicationResultsPage {
     public void changeTaxHouseHold(int taxHH){
         String taxHouseHold = "Tax Household #"+taxHH+" benefits";
 
+        basicActions.waitForElementToBePresent(selectTaxHouseHold, 10);
         Select dropdown = new Select(selectTaxHouseHold);
         dropdown.selectByVisibleText(taxHouseHold);
     }

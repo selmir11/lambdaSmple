@@ -30,15 +30,17 @@ Feature: Seed09exception - Exchange
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "05052019" date of birth
-    And I select "Female" as member's sex option
-    And I select "Daughter" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "05052019", "Female" and applying "Yes"
+      |Primary:Daughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -50,7 +52,7 @@ Feature: Seed09exception - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option

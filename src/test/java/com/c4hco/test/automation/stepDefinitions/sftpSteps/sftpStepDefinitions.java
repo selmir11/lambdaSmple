@@ -33,30 +33,6 @@ public class sftpStepDefinitions {
         }
     }
 
-    @And("I download the file(s) from sftp server with location {string}")
-    public void downloadFiles(String remoteLocation)  {
-        try{
-            List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
-            String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
-            SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
-
-            for (Ob834DetailsEntity entry : ob834Entries) {
-                if (entry.getInsurance_line_code().equals("HLT")) {
-                    SharedData.setMedicalFileName(entry.getFilename());
-                    sftpUtil.downloadFileWithSftp(remoteLocation, entry.getFilename());
-
-                } else if (entry.getInsurance_line_code().equals("DEN")) {
-                    SharedData.setDentalFileName(entry.getFilename());
-                    sftpUtil.downloadFileWithSftp(remoteLocation, entry.getFilename());
-                }
-            }
-
-        } catch(Exception e){
-            // fail
-        }
-
-    }
-
     @And("I validate the ob834 files should not be empty")
     public void validateOb834RecordsNotNull(){
         sftpUtil.validateFileIsNotEmpty(SharedData.getMedicalFileName());
@@ -65,18 +41,19 @@ public class sftpStepDefinitions {
 
 
     @And("I validate the ob834 {string} file should have the values")
-    public void validateOb834FileDetails(String type, List<Map<String, String>> lxExpectedDetailsFromStep) {
+    public void validateOb834FileDetails(String type) {
         switch (type) {
             case "medical":
                 String medFileName = SharedData.getMedicalFileName();
-                System.out.println("***********Validating Medical EDI File::"+SharedData.getMedicalFileName()+"***********");
+                System.out.println("***********Validating Medical EDI File::"+medFileName+"***********");
                 sftpUtil.readEdiFile(medFileName);
-                ob834Validations_new.validateOb834MedFile(lxExpectedDetailsFromStep);
+                ob834Validations_new.validateOb834MedFile();
                 break;
             case "dental":
                 String denFileName = SharedData.getDentalFileName();
+                System.out.println("***********Validating Dental EDI File::"+denFileName+"***********");
                 sftpUtil.readEdiFile(denFileName);
-                ob834Validations_new.validateOb834DenFile(lxExpectedDetailsFromStep);
+               ob834Validations_new.validateOb834DenFile();
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");
@@ -103,29 +80,16 @@ public class sftpStepDefinitions {
         }
     }
 
-    @And("I read the edi file locally")
-    public void readEdiFile(){
-        sftpUtil.readEdiFromLocal();
-        // edi834Validations.validateOb834Record();
-    }
 
-    @And("I read the edi999 file locally") public void readEdi999File(){
-        sftpUtil.readEdi999FromLocal();
-    }
-
-    @And("I upload medical and dental ob834 edi files to sftp server with location {string}")
-    public void uploadAfileToSftp(String remoteFilePath) throws JSchException {
-        List<Ob834DetailsEntity> ob834Entries = SharedData.getOb834DetailsEntities();
-
-        for (Ob834DetailsEntity entry : ob834Entries) {
-            if (entry.getInsurance_line_code().equals("HLT")) {
+    @And("I upload medical ob834 edi files to sftp server with location {string}")
+    public void uploadMedOb834fileToSftp(String remoteFilePath) throws JSchException {
                 String fileName = SharedData.getMedicalFileName();
                 sftpUtil.uploadFileInSftp(fileName, remoteFilePath);
-            } else if (entry.getInsurance_line_code().equals("DEN")) {
+    }
+    @And("I upload dental ob834 edi files to sftp server with location {string}")
+    public void uploadDenOb834fileToSftp(String remoteFilePath) throws JSchException {
                 String fileName = SharedData.getDentalFileName();
                 sftpUtil.uploadFileInSftp(fileName, remoteFilePath);
-            }
-        }
     }
 
     @And("I get I999 medical file name from DB and download it from sftp server location {string}")
