@@ -106,8 +106,12 @@ public class DbDataProvider_Exch {
         String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
-        String brokerTinNum = getTinNumForBroker();
-        String csrLevel = getCSRLevel();
+        String brokerTinNum = null;
+        String csrLevel = null;
+        if (!"coco".equals(SharedData.getAppType())) {
+            brokerTinNum = getTinNumForBroker();
+            csrLevel = getCSRLevel();
+        }
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
