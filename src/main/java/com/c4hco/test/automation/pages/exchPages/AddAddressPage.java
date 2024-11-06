@@ -192,9 +192,12 @@ public class AddAddressPage {
         // Mailing Address - Only for primary member
         basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
+        txtMailingAddrLine1.clear();
         txtMailingAddrLine1.sendKeys(AddrLine1);
+        txtMailingCity.clear();
         txtMailingCity.sendKeys(city);
         selectMailingState.sendKeys(state);
+        txtMailingZip.clear();
         txtMailingZip.sendKeys(zipcode);
 
         basicActions.waitForElementToBeClickable(selectMailingCounty, 10);

@@ -172,7 +172,7 @@ Feature: Seed04exception - Exchange
     Then I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
     Then I select the Different Mailing Address option
-    Then I update mailing address details to AddrLine1 "PO BOX 8575" city "Boulder" state "CO" zip "80020" county "BOULDER"
+    Then I enter member with address line1 "PO BOX 8575" in city "Boulder" in state "CO" with zipcode "80020" and county "BOULDER"
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
