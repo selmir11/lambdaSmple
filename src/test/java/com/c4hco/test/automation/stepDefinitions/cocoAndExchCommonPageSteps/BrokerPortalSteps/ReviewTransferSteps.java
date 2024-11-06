@@ -22,4 +22,19 @@ public class ReviewTransferSteps {
     public void iClickTransferClientsButton(){
         reviewTransferPage.clickTransferClients();
     }
+
+    @Then("I click the Cancel button on the Review Transfer page")
+    public void iClickCancelButton(){
+        reviewTransferPage.clickCancelTransferClients();
+    }
+
+    @And("I verify the transfer all client message")
+    public void iVerifyTransferAllClientsMessage(){
+        reviewTransferPage.verifyTransferAllClientsMessage();
+    }
+
+    @And("I verify the total number of clients to transfer")
+    public void iTotalClientNumber(){
+        reviewTransferPage.totalClientNumber();
+    }
 }
