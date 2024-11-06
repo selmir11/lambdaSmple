@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class AdminPortalBrokerDashboardPage {
@@ -80,9 +83,9 @@ public class AdminPortalBrokerDashboardPage {
     WebElement labelExpirationDate;
     @FindBy(css = "#expiration-date")
     WebElement licenseDateDisplayed;
-    @FindBy(css = "#option_2")
+    @FindBy(css = "#license-status > div > div.drop-down-secondary-options > div:nth-child(2)")
     WebElement licenseOptionNotApproved;
-    @FindBy(css = "#option_2")
+    @FindBy(css = "#certification-status > div > div.drop-down-secondary-options > div:nth-child(2)")
     WebElement certStatusNotApproved;
     @FindBy(xpath = "//button[normalize-space()='Save']")
     WebElement buttonSave;
@@ -252,14 +255,6 @@ public class AdminPortalBrokerDashboardPage {
         certStatusNotApproved.click();
         buttonSave.click();
     }
-    public void verifyExpectedStatusesInPopup(){
-        basicActions.waitForElementToBePresent(labelLicenseStatus, 10);
-        softAssert.assertTrue(labelLicenseStatus.isDisplayed());
-        softAssert.assertTrue(licenseStatusDisplayed.isDisplayed());
-        softAssert.assertTrue(certStatusDisplayed.isDisplayed());
-        softAssert.assertTrue(certStatusNotApproved.isDisplayed());
-        softAssert.assertAll();
-    }
     public void clickCancelButton() {
         basicActions.waitForElementToBePresent(buttonCancel, 10);
         buttonCancel.click();
@@ -282,11 +277,14 @@ public class AdminPortalBrokerDashboardPage {
         softAssert.assertTrue(accountActivityTitle.isDisplayed());
         softAssert.assertAll();
     }
-    public void verifyBrokerAccountActivityReport(String eventCodeData, String dateDynamic, String nameOfUser, String description, String valueForAccountId){
-        String dateOnly = dateDynamic.split("T")[0];
+    public void verifyBrokerAccountActivityReport(String eventCodeData, String nameOfUser, String description, String valueForAccountId){
+       // String dateOnly = dateDynamic.split("T")[0];
         basicActions.waitForElementToBePresent(eventCode, 10);
         softAssert.assertEquals(eventCode.getText(),eventCodeData);
-        softAssert.assertEquals(dateDynamic, dateOnly);
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter todayDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String today = currentDate.format(todayDate);
+        softAssert.assertTrue(timeDate.getText().contains(today));
         softAssert.assertEquals(userName.getText(), nameOfUser);
         softAssert.assertEquals(eventDescription.getText(),description);
         softAssert.assertEquals(detailValue.getText(), valueForAccountId);

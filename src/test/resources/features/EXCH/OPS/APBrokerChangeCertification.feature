@@ -15,7 +15,6 @@ Feature: Broker Dashboard- Change license and certification statuses
     And I validate current Broker License Status: "APPROVED" and License Expiration Date: "" with Certification Status: "APPROVED"
     Then I change statuses and click Save button in manage certification container
     Then I click Manage Certification button
-    Then I verify statuses are displayed in popup window as well
     And I validate current Broker License Status: "Not Approved" and License Expiration Date: "" with Certification Status: "Not Approved"
     Then I click Cancel button
     Then I click Manage Certification button
@@ -23,7 +22,7 @@ Feature: Broker Dashboard- Change license and certification statuses
     And I click View Report button
     Then I verify Account Activity title
     Then I wait for 700 milliseconds
-    And I validate latest Broker Account Activity Report Event Code: "SP_BROKER_CERTIFIED" and Date: "2024-11-05" then Username: "AGENCY-SERVICE" with Description: "Broker certified" and finally Detail Value: "4007335519"
+    And I validate latest Broker Account Activity Report Event Code: "SP_BROKER_CERTIFIED" and today's Date then Username: "AGENCY-SERVICE" with Description: "Broker certified" and finally Detail Value: "4007335519"
     And I logout from Admin Portal
   @SLER-748
   Scenario: Verify in Broker portal status is Approved

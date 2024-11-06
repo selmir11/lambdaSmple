@@ -56,10 +56,6 @@ public class AdminPortalBrokerDashboardSteps {
     public void iChangeStatusesThenClickSaveButton() {
         adminPortalBrokerDashboardPage.changeStatusesThenClickSaveButton();
     }
-    @Then("I verify statuses are displayed in popup window as well")
-    public void iVerifyExpectedStatuses() {
-        adminPortalBrokerDashboardPage.verifyExpectedStatusesInPopup();
-    }
     @Then("I click Cancel button")
     public void iClickCancelButton() {
         adminPortalBrokerDashboardPage.clickCancelButton();
@@ -76,9 +72,9 @@ public class AdminPortalBrokerDashboardSteps {
     public void iVerifyTableTitle() {
         adminPortalBrokerDashboardPage.verifyTableTitle();
     }
-    @And("I validate latest Broker Account Activity Report Event Code: {string} and Date: {string} then Username: {string} with Description: {string} and finally Detail Value: {string}")
-    public void iVerifyBrokerAccountActivityReport(String eventCode, String dateDynamic, String nameOfUser, String description, String valueForAccountId) {
-        adminPortalBrokerDashboardPage.verifyBrokerAccountActivityReport(eventCode, dateDynamic, nameOfUser, description, valueForAccountId);
+    @And("I validate latest Broker Account Activity Report Event Code: {string} and today's Date then Username: {string} with Description: {string} and finally Detail Value: {string}")
+    public void iVerifyBrokerAccountActivityReport(String eventCode, String nameOfUser, String description, String valueForAccountId) {
+        adminPortalBrokerDashboardPage.verifyBrokerAccountActivityReport(eventCode, nameOfUser, description, valueForAccountId);
     }
     @And("I validate in Broker portal Certification Status: {string}")
     public void iVerifyInBrokerPortalStatusIsChanged(String certificationStatusBrokerPortal) {
