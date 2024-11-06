@@ -64,9 +64,12 @@ public class Ob834FileValidations_new {
       softAssert.assertEquals(String.valueOf(refSeg.get(1)), "COH-INDV1", "subscriber ref is not COH-INDV1");
     }
 
-    private void validateMemberRefSeg(Ob834DetailsEntity entry, List<String> refSegList){
+    private void validateMemberRefSeg(Member member, Ob834DetailsEntity entry){
+        List<List<String>> refSegListOfList = member.getREF();
+        for(List<String> refSegList: refSegListOfList){
             if(refSegList.size()==2){
                 // WIP - make sure all cases are present - count!
+                System.out.println("validateMemberRefSeg - Non LS Loop::"+refSegList.get(0)+":: member - "+entry.getMember_first_name());
                 switch(refSegList.get(0)) {
                     case "0F":
                         softAssert.assertEquals(refSegList.get(1), entry.getSubscriber_id(), "REF 0F segment mismatch");
@@ -81,7 +84,7 @@ public class Ob834FileValidations_new {
                         softAssert.assertEquals(refSegList.get(1), entry.getEap_id(), "REF 1L segment mismatch");
                         break;
                     case "CE":
-                    //    softAssert.assertEquals(refSegList.get(1), "28052CO002000501", "REF CE segment mismatch");
+                        //    softAssert.assertEquals(refSegList.get(1), "28052CO002000501", "REF CE segment mismatch");
                         break;
                     case "E8":
                         softAssert.assertEquals(refSegList.get(1), "COH-INDV1", "REF E8 segment mismatch");
@@ -91,10 +94,11 @@ public class Ob834FileValidations_new {
                 }
 
             }
+        }
+
     }
 
     private void validateLxRefN1Seg(Member member, Ob834DetailsEntity entry){
-        System.out.println("LXREF SEG");
         // WIP - size = 8 for Subscriber and 2 for members; // LX size is equal to n1 size - Count
         List<List<String>> lxSegment = member.getLX();
         List<List<String>> n1SegListOfList = member.getN1();
@@ -115,6 +119,7 @@ public class Ob834FileValidations_new {
             }
 
             for(List<String> refSegList: refSegListOfList) {
+                System.out.println("refSegList:::::"+refSegList.get(0));
                     if (String.valueOf(refSegList.get(0)).equals("LX" + lxSegCount)) {
                         if (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) {
                             validateLxWithSepReason(lxSegCount, refSegList, entry, member);
@@ -122,10 +127,7 @@ public class Ob834FileValidations_new {
                             validateWithoutSepReason(lxSegCount, refSegList, entry, member);
                         }
                         break;
-             } else {
-                        validateMemberRefSeg(entry, refSegList);
-                        break;
-                    }
+             }
          }
             lxSegCount++;
         }
@@ -181,7 +183,6 @@ public class Ob834FileValidations_new {
     }
 
     private void validateLxWithSepReason(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member){
-        System.out.println("member validating with sep for::::"+member.getNM1().get(0).get(3));
         if(member.getINS().get(0).get(0).equals("Y")){
             switch ("LX" + lxSegCount) {
                 case "LX1":
@@ -250,6 +251,7 @@ public class Ob834FileValidations_new {
         validateHierarchyLevelSeg(member, entry);
         validateLSLESegment(member);
         validateLxRefN1Seg(member, entry);
+        validateMemberRefSeg(member, entry);
         softAssert.assertAll();
     }
 
