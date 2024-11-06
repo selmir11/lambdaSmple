@@ -42,6 +42,15 @@ public class AdditionalIncomeCoCoPageSteps {
     @And("I verify the header for Primary Member on the CoCo Additional Income page in {string}")
     public void iVerifyTextOnAdditionalIncomePage(String language){additionalIncomeCoCoPage.verifyHeadersAdditionalIncomePage(language);}
 
+    @Then("I verify the header for additional member on the CoCo Additional Income page in {string}")
+    public void iVerifyAdditionalMemberHeadersOnAdditionalIncomePage(String language){additionalIncomeCoCoPage.verifyAddtlMemHeadersAdditionalIncomeCoCoPage(language);}
+
+    @Then("I verify the text on the CoCo Additional Income page in {string}")
+    public void iVerifyAdditionalIncomeText(String language){additionalIncomeCoCoPage.verifyAdditionalIncomeTextCoCo(language);}
+
+    @Then("I verify the navigation buttons on the CoCO Additional Income page in {string}")
+    public void iVerifyAdditionalIncomeNavigationButtons(String language) {additionalIncomeCoCoPage.verifyAdditionalIncomeNavigationButtonsCoCo(language);}
+
     @Then("I validate no errors are displayed on the Additional Income CoCo page")
     public void iValidateNoErrorsPresent(){additionalIncomeCoCoPage.verifyNoErrorMessage_AdditionalIncome();}
 

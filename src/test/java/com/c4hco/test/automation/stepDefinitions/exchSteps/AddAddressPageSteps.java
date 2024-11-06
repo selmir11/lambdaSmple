@@ -67,5 +67,8 @@ public class AddAddressPageSteps {
     @Then("I add the tribe details")
     public void Addtribedetails(){addAddressPage.Addtribedetails();}
 
+    @Then("I select {string} specific Address")
+    public  void selectspecificaddress(String SpecificAddress){addAddressPage.specificaddress(SpecificAddress); }
+
 }
 

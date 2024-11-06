@@ -134,6 +134,11 @@ public class YourClientsPageSteps {
         yourClientsPage.selectAllTheClientsCheckBox();
     }
 
+    @And("I save the number of clients selected")
+    public void iSaveSelectedClientCount() {
+        yourClientsPage.saveSelectedClientCount();
+    }
+
     @Then("I validate the premium amount displayed for my client")
     public void iValidateClientPremium(){
         yourClientsPage.validateClientPremiumAmount();
@@ -217,6 +222,16 @@ public class YourClientsPageSteps {
     @And("I verify that the check all clients checkbox is disabled")
     public void iVerifyCheckAllClientsCheckboxDisabled() {
         yourClientsPage.verifyCheckAllClientsCheckboxDisabled();
+    }
+
+    @And("I validate the Client Transfer Successful message")
+    public void iValidateClientTransferSuccessfulMessage() {
+        yourClientsPage.validateClientTransferSuccessfulMessage();
+    }
+
+    @Then("I click the Transfer All Clients button")
+    public void iClickTransferAllClientsButton() {
+        yourClientsPage.clickTransferAllClients();
     }
 }
 

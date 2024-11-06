@@ -108,7 +108,8 @@ public class AddAddressPage {
     WebElement tribestate;
     @FindBy(id = "tribeName")
     WebElement tribeName;
-
+    @FindBy(css= ".addressradioGrp.radioGrp")
+    List<WebElement> selectspecificaddress;
 
     public void selectResidentialAddress(String index){
         basicActions.waitForElementListToBePresent(rdobtnHouseholdResidentialAddress, 10);
@@ -399,6 +400,19 @@ public class AddAddressPage {
     }
 
     public void saveContinue(){btnSaveContinue.click();}
+
+
+    public  void specificaddress(String SpecificAddress) {
+        for (int i = 0; i < selectspecificaddress.size(); i++) {
+            String address = selectspecificaddress.get(i).getText();
+            if (address.contains(SpecificAddress)) {
+                WebElement radioElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]/parent::label/parent::div /input"));
+                radioElement.click();
+                break;
+            }
+        }
+    }
+
 
 }
 
