@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans.AdminPortalManagePlansPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -83,6 +84,10 @@ public class AdminPortalManagePlansSteps {
     public void iClickSaveButtonMedical() {
         adminPortalManagePlansPage.clickSaveButton();
     }
+    @And("I click Save Button Dental")
+    public void iClickSaveButtonDental() {
+        adminPortalManagePlansPage.clickSaveButtonDental();
+    }
 
     @And("I update the Coverage Start date of member")
     public void coverageStartDate(List<String> memberCoverageStrtDtList) {
@@ -158,6 +163,51 @@ public class AdminPortalManagePlansSteps {
     public void iUncheckedFromPlanType(String planType) {
         adminPortalManagePlansPage.uncheckedFromPlanType(planType);
     }
+
+    @Then("I verify it displays coverage start date and financial start date error")
+    public void iVerifyItDisplaysCoverageStartDateAndFinancialStartDateError() {
+        adminPortalManagePlansPage.validateStartDateErrors();
+    }
+
+    @Then("I verify it displays coverage end date and financial end date error")
+    public void iVerifyItDisplaysCoverageEndDateAndFinancialEndDateError() {
+        adminPortalManagePlansPage.validateEndDateErrors();
+    }
+
+    @Then("I update the APTC value for")
+    public void iUpdateTheAPTCValueFor(List<String> memberaptctDtList) {
+        adminPortalManagePlansPage.addAPTCvalue(memberaptctDtList);
+    }
+
+    @And("I validate Invalid monetary amount for APTC error is displaying")
+    public void iValidateInvalidMonetaryAmountForAPTCErrorIsDisplaying() {
+        adminPortalManagePlansPage.validateAPTCErrors();
+    }
+
+    @And("I validate APTC entered exceeds EHB amount error is displaying")
+    public void iValidateAPTCEnteredExceedsEHBAmountErrorIsDisplaying() {
+        adminPortalManagePlansPage.validateEHBErrors();
+    }
+
+    @And("I validate Invalid monetary amount for Premium error is displaying")
+    public void iValidateInvalidMonetaryAmountForPremium() {
+        adminPortalManagePlansPage.validatePremiumErrors();
+    }
+
+    @Then("I update the premium value for")
+    public void iUpdateThePremiumValueFor(List<String> memberpremiumList) {
+        adminPortalManagePlansPage.addpremiumvalue(memberpremiumList);
+    }
+
+//    @Then("I update the premium value for {string}")
+//    public void iUpdateThePremiumValueFor(String plantype, DataTable dataTable) {
+//        // Convert DataTable to List<String> (e.g., "1:00.00", "2:100.00")
+//        List<String> memberpremiumList = dataTable.asList(String.class);
+//
+//        // Call the method to update the premium value
+//        adminPortalManagePlansPage.addpremiumvalue(memberpremiumList, plantype);
+//    }
+
 
 }
 

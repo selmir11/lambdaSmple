@@ -119,7 +119,5 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.logoutFromAdminPortalParentPage();
     }
 
-
-
 }
 
