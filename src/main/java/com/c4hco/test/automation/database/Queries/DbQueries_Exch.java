@@ -166,7 +166,7 @@ public class DbQueries_Exch {
     }
 
     public String getPolicyDqCheck(){
-        return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId;
+        return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId+" and eph.current_ind = '1'";
     }
 
     public String setEnvForDataQuality(){

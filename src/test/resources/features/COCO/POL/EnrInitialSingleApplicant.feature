@@ -72,3 +72,4 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
     And I validate "medical" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 1
