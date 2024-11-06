@@ -435,6 +435,40 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertAll();
     }
 
+    public void verifyAddtlMemHeadersAdditionalIncomeCoCoPage(String language){
+        switch (language){
+            case "English":
+                basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
+                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
+                softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
+                basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
+                basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
+                basicActions.waitForElementListToBePresent(addIncomeButton, 90);
+                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Otras fuentes de ingreso");
+                softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
     public void verifyAdditionalIncomeTextCoCo(String language){
         basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
         switch (language) {
