@@ -1,6 +1,6 @@
-@SLER-748
 Feature: Broker Dashboard- Change license and certification statuses
-  @SLER-748  //RT-1091
+
+  @SLER-748
   Scenario: Verify Broker Dashboard in Admin Portal -  Change license and certification statuses
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -20,6 +20,7 @@ Feature: Broker Dashboard- Change license and certification statuses
     Then I click Manage Certification button
     Then I change statuses back and click Save
     And I logout from Admin Portal
+
   @SLER-748
   Scenario: Verify in Broker portal status is Approved
     Given I open the login page on the "broker" portal
