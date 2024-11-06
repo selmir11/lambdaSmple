@@ -65,7 +65,6 @@ public class Ob834FileValidations_new {
     }
 
     private void validateMemberRefSeg(Member member, Ob834DetailsEntity entry, List<String> refSegList){
-        List<List<String>> refSegListOfList = member.getREF();
             if(refSegList.size()==2){
                 // WIP - make sure all cases are present - count!
                 switch(refSegList.get(0)) {
@@ -73,7 +72,6 @@ public class Ob834FileValidations_new {
                         softAssert.assertEquals(refSegList.get(1), entry.getSubscriber_id(), "REF 0F segment mismatch");
                         break;
                     case "17":
-                        // member id or subscriber id?
                         softAssert.assertEquals(refSegList.get(1), entry.getMember_id(), "REF 17 segment mismatch");
                         break;
                     case "6O":
@@ -119,7 +117,7 @@ public class Ob834FileValidations_new {
             for(List<String> refSegList: refSegListOfList) {
                     if (String.valueOf(refSegList.get(0)).equals("LX" + lxSegCount)) {
                         if (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) {
-                            validateLxWithSepReason(lxSegCount, refSegList, entry, member); // check ref seg list
+                            validateLxWithSepReason(lxSegCount, refSegList, entry, member);
                         } else {
                             validateWithoutSepReason(lxSegCount, refSegList, entry, member);
                         }
