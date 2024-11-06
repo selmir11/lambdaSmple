@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -114,6 +115,9 @@ public class YourClientsPage {
 
     @FindBy(xpath = "//*[@id='view-your-clients-table']/form/div")
     WebElement clientTransferSuccessfulMessage;
+
+    @FindBy(id = "transferAllBTN")
+    WebElement transferAllClientsButton;
 
     public void validateYourClientsPageTitle(){
         basicActions.waitForElementToBePresent(yourClientsTitle, 10);
@@ -358,6 +362,15 @@ public class YourClientsPage {
         allClientsCheckBox.click();
     }
 
+    public void saveSelectedClientCount() {
+        basicActions.waitForElementToBePresent(selectedClientCount, 200);
+        String selectedClients = selectedClientCount.getText().replace(" Clients Selected", "");
+
+        BrokerDetails owner = new BrokerDetails();
+        owner.setAgencyClientCount(selectedClients);
+        SharedData.setAgencyOwner(owner);
+    }
+
     public void validateClientPremiumAmount(){
         String premiumAmt =SharedData.getPrimaryMember().getMedicalPremiumAmt();
         String clientName =SharedData.getPrimaryMember().getFullName();
@@ -525,5 +538,10 @@ public class YourClientsPage {
 
         softAssert.assertEquals(clientTransferSuccessfulMessage.getText(), "Client Transfer Successful");
         softAssert.assertAll();
+    }
+
+    public void clickTransferAllClients(){
+        basicActions.waitForElementToBePresent(transferAllClientsButton,30);
+        transferAllClientsButton.click();
     }
 }
