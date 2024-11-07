@@ -132,7 +132,7 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     public void continuePlanSummaryPage(){
-        setPlansPremiumAmnts();//setPlansPremiumAmt();
+        setPlansPremiumAmt();
         getmedGroup1MemNames();
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 30);
@@ -196,9 +196,9 @@ public class PlanSummaryMedicalDentalPage {
         }else {
             //FA
             basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
-            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","").replace(",","");
+            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
-            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "").replace(",","");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
             BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
             BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
@@ -212,7 +212,7 @@ public class PlanSummaryMedicalDentalPage {
                 memberslist.get(i).setMedicalAptcAmt(medAPTCAmt);
                 memberslist.get(i).setTotalMedAmtAfterReduction(String.valueOf(bigDecimalmedPremiumMinusAPTC));
                 memberslist.get(i).setTotalDentalPremAfterReduction(dentalPlanPremiumAmt.getText().replace("$", ""));
-                memberslist.get(i).setDentalAptcAmt("$0");
+                memberslist.get(i).setDentalAptcAmt("0.00");
             }
             }
         }
