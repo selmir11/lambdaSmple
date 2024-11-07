@@ -597,21 +597,32 @@ public class DbValidations {
             EsManualVerifRequestEntity actualResult = exchDbDataProvider.getEsMVR_options(manualVerificationType);
             System.out.println(actualResult);
 
-            softAssert.assertEquals(actualResult.getManual_verification_type(), manualVerificationType, "Validation failed for manual_verification_type at row " + (i + 1));
-            if (row.containsKey("manual_verif_status")) {
-                softAssert.assertEquals(actualResult.getManual_verif_status(), row.get("manual_verif_status"), "Validation failed for manual_verif_status at row " + (i + 1));
-            }
-            if (row.containsKey("manual_verif_date_set")) {
-                softAssert.assertTrue(actualResult.getManual_verif_date_set().contains(addDaysDate(Integer.parseInt(row.get("manual_verif_date_set")))), "Validation failed for manual_verif_date_set at row " + (i + 1));
-            }
-            if (row.containsKey("manual_verif_due_date")) {
-                softAssert.assertTrue(actualResult.getManual_verif_due_date().contains(addDaysDate(Integer.parseInt(row.get("manual_verif_due_date")))), "Validation failed for manual_verif_due_date at row " + (i + 1));
-            }
-            if (row.containsKey("manual_verif_date_expired")) {
-                softAssert.assertTrue(actualResult.getManual_verif_date_expired().contains(addDaysDate(Integer.parseInt(row.get("manual_verif_date_expired")))), "Validation failed for manual_verif_date_expired at row " + (i + 1));
-            }
-            if (row.containsKey("manual_verif_date_closed")) {
-                softAssert.assertEquals(actualResult.getManual_verif_date_closed(), row.get("manual_verif_date_closed"), "Validation failed for manual_verif_date_closed at row " + (i + 1));
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "manual_verification_type":
+                        softAssert.assertEquals(actualResult.getManual_verification_type(), value,"Validation failed for manual_verification_type at row " + (i + 1));
+                        break;
+                    case "manual_verif_status":
+                        softAssert.assertEquals(actualResult.getManual_verif_status(), value, "Validation failed for manual_verif_status at row " + (i + 1));
+                        break;
+                    case "manual_verif_date_set":
+                        softAssert.assertTrue(actualResult.getManual_verif_date_set().contains(addDaysDate(Integer.parseInt(value))),"Validation failed for manual_verif_date_set at row " + (i + 1));
+                        break;
+                    case "manual_verif_due_date":
+                        softAssert.assertTrue(actualResult.getManual_verif_due_date().contains(addDaysDate(Integer.parseInt(value))),"Validation failed for manual_verif_due_date at row " + (i + 1));
+                        break;
+                    case "manual_verif_date_expired":
+                        softAssert.assertTrue(actualResult.getManual_verif_date_expired().contains(addDaysDate(Integer.parseInt(value))),"Validation failed for manual_verif_date_expired at row " + (i + 1));
+                        break;
+                    case "manual_verif_date_closed":
+                        softAssert.assertEquals(actualResult.getManual_verif_date_closed(), value,"Validation failed for manual_verif_date_closed at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
             }
         }
         softAssert.assertAll();
