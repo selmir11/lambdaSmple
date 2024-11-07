@@ -272,10 +272,17 @@ public class DbQueries_Exch {
                 "where application_id = '"+applicationId+"'";
 	}
 
-    public String esMVR(){
+    public String esMVR(String manualVerificationType){
         return "select *\n" +
                 "from "+dbName+".es_manual_verif_request\n"+
-                "where account_id = '"+acctId+"'";
+                "where account_id = '"+acctId+"'\n"+
+                "and manual_verification_type = '"+manualVerificationType+"'";
+    }
+
+    public String esSsaVerification(String memberId){
+        return "select *\n" +
+                "from "+dbName+".es_ssa_verification_req_resp\n"+
+                "where member_id = '"+memberId+"'";
     }
 
     public String enMemberEffectiveDates(){
