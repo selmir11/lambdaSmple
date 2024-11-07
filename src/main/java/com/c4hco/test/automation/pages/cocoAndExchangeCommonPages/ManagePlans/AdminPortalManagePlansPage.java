@@ -223,12 +223,12 @@ public class AdminPortalManagePlansPage{
         softAssert.assertEquals(btnMedReset.getText(), "Reset Changes");
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertAll();     }
-    public void checkPreviousFinancialMedical(){
+    public void checkPreviousFinancialMedicalMessage(){
         basicActions.waitForElementToBePresent(previousFinancialMed,20);
         softAssert.assertEquals(previousFinancialMed.getText(), "Previous Financial Periods - Medical");
         softAssert.assertEquals(previousFinancialNoMed.getText(), "No Past Financial Periods - Medical");
         softAssert.assertAll();     }
-    public void checkPreviousFinancialDental(){
+    public void checkPreviousFinancialDentalMessage(){
         basicActions.waitForElementToBePresent(previousFinancialDental,20);
         softAssert.assertEquals(previousFinancialDental.getText(), "Previous Financial Periods - Dental");
         softAssert.assertEquals(previousFinancialNoDental.getText(), "No Past Financial Periods - Dental");

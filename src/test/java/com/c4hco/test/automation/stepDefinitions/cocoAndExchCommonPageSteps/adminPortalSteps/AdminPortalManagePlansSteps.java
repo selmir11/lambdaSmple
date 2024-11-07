@@ -67,12 +67,12 @@ public class AdminPortalManagePlansSteps {
     public void iContainerTitleLabelsCoco() {
         adminPortalManagePlansPage.containerTitleLabelsCoco();
     }
-    @Then("I check for Previous Medical container display")
+    @Then("I check for Previous Medical container message display")
     public void iCheckPreviousFinancialMedical() {
-        adminPortalManagePlansPage.checkPreviousFinancialMedical();       }
-    @Then("I check for Previous Dental container display")
+        adminPortalManagePlansPage.checkPreviousFinancialMedicalMessage();       }
+    @Then("I check for Previous Dental container message display")
     public void iCheckPreviousFinancialDental() {
-        adminPortalManagePlansPage.checkPreviousFinancialDental();       }
+        adminPortalManagePlansPage.checkPreviousFinancialDentalMessage();       }
     @Then("I verify Years in dropdown starting from {string} as expected")
     public void iValidateYearsDropdown(String lowerYear){
         adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
