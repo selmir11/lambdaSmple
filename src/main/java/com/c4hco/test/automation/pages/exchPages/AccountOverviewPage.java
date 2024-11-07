@@ -317,7 +317,7 @@ public class AccountOverviewPage {
             //Dental
             softAssert.assertEquals(DentalPlanName.getText(), memberInfo.getDentalPlan(), memberInfo.getFirstName()+" Dental Plan Name does not match");
             softAssert.assertEquals(DentalPremiumAmnt.getText(), "$"+basicActions.doubleAmountFormat(memberInfo.getDentalPremiumAmt()), memberInfo.getFirstName()+" Dental Premium amount does not match");
-            softAssert.assertEquals(DentalAPTCAmnt.getText(), memberInfo.getDentalAptcAmt(), memberInfo.getFirstName()+" Dental APTC amount on account overview page mismatch");
+            softAssert.assertEquals(DentalAPTCAmnt.getText(), "$"+memberInfo.getDentalAptcAmt(), memberInfo.getFirstName()+" Dental APTC amount on account overview page mismatch");
         }
         softAssert.assertAll();
     }

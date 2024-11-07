@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 
@@ -137,7 +139,7 @@ public class PlanSummaryMedicalDentalPage {
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
     public void continuePlanSummaryPage(){
-        setPlansPremiumAmt();
+        setPlansPremiumAmnts();//setPlansPremiumAmt();
         getmedGroup1MemNames();
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 30);
         basicActions.scrollToElement( continueBtnOnPlanSummary );
@@ -231,5 +233,57 @@ public class PlanSummaryMedicalDentalPage {
         String buttonClass = continueBtnOnPlanSummary.getAttribute("class");
         softAssert.assertTrue(buttonClass.contains("button-disabled"), "Continue button is enabled, but it should be disabled.");
         softAssert.assertAll();
+    }
+
+    public void setPlansPremiumAmnts(){
+        basicActions.waitForElementToDisappear(spinner, 20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        List<MemberDetails> memberslist = basicActions.getAllMem();
+        Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
+        basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.wait(3000);
+        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        if(!isGettingFinancialHelp){//NFA
+            subscriber.setMedicalAptcAmt("0");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
+            if (memberslist != null) {
+                for (int i = 0; i < memberslist.size(); i++) {
+                    memberslist.get(i).setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+                    memberslist.get(i).setMedicalPremiumAmt(medPremiumMinusAPTC);
+                }
+            }
+        }
+        else {
+            //FA
+            basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
+            if (memberslist != null) {
+                for (int i = 0; i < memberslist.size(); i++) {
+                    //getting group details
+                    int value = Integer.parseInt(memberslist.get(i).getMedGroupInd())-1;
+
+                    //Medical Plan Premium details
+                    WebElement medicalPremiumAfterAPTCAmnt = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumAmount_"+value+""));
+                    WebElement medicalAPTCAmnt = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumReductionAmount_"+value+""));
+                    WebElement medicalPlanName = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+value+""));
+                    memberslist.get(i).setTotalMedAmtAfterReduction(medicalPremiumAfterAPTCAmnt.getText().replace("$", "").replace(",",""));
+                    memberslist.get(i).setMedicalAptcAmt(medicalAPTCAmnt.getText().replace("$", "").replace(",",""));
+                    memberslist.get(i).setMedicalPremiumAmt(String.valueOf(Double.parseDouble((memberslist.get(i).getMedicalAptcAmt())) + Double.parseDouble(memberslist.get(i).getTotalMedAmtAfterReduction())));
+                    BigDecimal premiumAmount = new BigDecimal(memberslist.get(i).getMedicalPremiumAmt()); // or get this from your source
+                    BigDecimal roundedPremiumAmount = premiumAmount.setScale(2, RoundingMode.HALF_UP);
+                    memberslist.get(i).setMedicalPremiumAmt(String.valueOf(roundedPremiumAmount));
+                    memberslist.get(i).setMedicalPlan(medicalPlanName.getText());
+
+                    //Dental Plan Premium details
+                    WebElement dentalPremiumAfterAPTCAmnt = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_"+value+""));
+                    WebElement dentalPlanName = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_"+value+""));
+                    memberslist.get(i).setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmnt.getText().replace("$", "").replace(",",""));
+                    memberslist.get(i).setDentalAptcAmt("0");
+                    memberslist.get(i).setDentalPremiumAmt(memberslist.get(i).getTotalDentalPremAfterReduction());
+                    memberslist.get(i).setDentalPlan(dentalPlanName.getText());
+                }
+            }
+        }
     }
 }

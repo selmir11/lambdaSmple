@@ -61,14 +61,16 @@ public class GroupingMembersDentalPage {
 
     public void clickContinue()  {
         basicActions.waitForElementToDisappear(spinner,15);
-        basicActions.waitForElementToBePresent(continueButton, 10);
-        basicActions.waitForElementToBeClickable(continueButton, 10);
-        basicActions.scrollToElement(continueButton);
+        basicActions.waitForElementToBePresent(continueButton,10);
         List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
         for (MemberDetails memDet : memberInfoDetails){
             WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
-            memDet.setDentalGroupInfo(memGroupInfo.getText().replace("Dental Group #",""));
+            basicActions.waitForElementToBePresentWithRetries(memGroupInfo,10);
+            basicActions.scrollToElement(memGroupInfo);
+            memDet.setDenGroupInd(memGroupInfo.getText().replace("Dental Group #",""));
         }
+        basicActions.waitForElementToBePresent(continueButton, 10);
+        basicActions.scrollToElement(continueButton);
         continueButton.click();
     }
 

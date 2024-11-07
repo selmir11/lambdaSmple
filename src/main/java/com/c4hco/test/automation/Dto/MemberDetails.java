@@ -75,8 +75,8 @@ public class MemberDetails {
     String employerName;
     String prior_subscriber_id;
     Boolean csrEligible=false;
-    String MedicalGroupInfo;
-    String DentalGroupInfo;
+    String medGroupInd;
+    String denGroupInd;
 }
 
 
