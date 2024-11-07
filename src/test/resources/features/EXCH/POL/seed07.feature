@@ -230,13 +230,29 @@ Feature: Seed07 - Exchange
     And I select "Anthem Colorado Option Silver Pathway Std" plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Spouse:Group1 |
+      | Son,InLaw:Group2      |
+    And I click save button to save the dental groups
+    And I click on continue button on success pop-up from edit grouping dental page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Spouse:Group1 |
+      | Son,InLaw:Group2      |
+    And I click save button to save the dental groups
+    And I click on continue button on success pop-up from edit grouping dental page
+    Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
+    And I continue on plan summary page
 
     And I select the terms and agreements checkbox
     And I enter "taxHolder1" signature on the Financial Help Agreements page
@@ -250,7 +266,6 @@ Feature: Seed07 - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 #    And I Validate the correct enrolled plans are displayed on account overview page
-#
 #    Then I click on ClickHere link for "My Plans"
 #    Then I validate I am on the "My Policies" page
 #    And I validate "medical" details on my policies page
