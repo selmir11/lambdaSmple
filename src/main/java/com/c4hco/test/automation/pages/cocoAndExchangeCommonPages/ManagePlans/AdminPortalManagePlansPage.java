@@ -142,6 +142,8 @@ public class AdminPortalManagePlansPage{
     WebElement denPolicyStatus;
     @FindBy(xpath = "//label[@class='form-radio-label body-text-1']")
     WebElement dentalPlanType;
+    @FindBy(xpath = "/html/body/app-root/div/app-header/header/div[2]/div/div[2]/span[1]/a")
+    WebElement searchInHeader;
 
 
     public void validateBluBar(){
@@ -200,10 +202,6 @@ public class AdminPortalManagePlansPage{
     public void clickResetChangesDental() {
         basicActions.waitForElementToBePresent(btnDentalReset, 10);
         btnDentalReset.click();        }
-    public void clickManagePlans() {
-        basicActions.waitForElementToBePresent(btnManagePlans, 10);
-        btnManagePlans.click();
-        basicActions.switchtoactiveTab();       }
     public void validateChangeButtonsNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMedSave, 3));
@@ -509,6 +507,11 @@ public class AdminPortalManagePlansPage{
             softAssert.assertEquals(currentMedicalDentalPlan.size(),1);
             break;
         }
+    }
+    public void clickSearchInAdminPortalBlueHeader() {
+        basicActions.waitForElementToBePresent(searchInHeader, 10);
+        searchInHeader.click();
+        basicActions.switchtoactiveTab();
     }
 
 }

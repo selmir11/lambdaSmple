@@ -143,6 +143,13 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalDentalCoverage;
     @FindBy(css = "#dentalData > div > span.body-text-1")
     WebElement coverageDentalPlan;
+    @FindBy(css = "#groupBox1 > app-plan-year-dropdown > div > app-drop-down-select > div > div.drop-down-option.drop-down-option-selected")
+    WebElement planYearDpd;
+    @FindBy(css = ".drop-down-option.drop-down-option-selected")
+    WebElement dpdCurrentYearMP;
+
+    @FindBy(css = "#groupBox1 > app-plan-year-dropdown > div")
+    List<WebElement> planYearSelectorOptions;
 
 
     public void enterAgencyData(String agencyData, String type) {
@@ -346,5 +353,11 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(renewalDentalCoverage.getText(), dentalCoverage);
         softAssert.assertEquals(coverageDentalPlan.getText(), dentPlanData);
         softAssert.assertAll();    }
+    public void selectMedicalPlanYear(String planYear) {
+        basicActions.waitForElementToBeClickable(dpdCurrentYearMP, 10);
+        basicActions.scrollToElement(dpdCurrentYearMP);
+        dpdCurrentYearMP.click();
+        basicActions.selectValueFromDropdown(dpdCurrentYearMP, planYearSelectorOptions, planYear);
+    }
 }
 

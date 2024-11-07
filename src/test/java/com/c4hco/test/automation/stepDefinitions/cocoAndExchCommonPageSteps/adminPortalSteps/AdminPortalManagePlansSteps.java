@@ -54,9 +54,6 @@ public class AdminPortalManagePlansSteps {
     @And("I click Reset Changes Dental")
     public void iClickResetChangesDental() {
         adminPortalManagePlansPage.clickResetChangesDental();      }
-    @Then("I click Manage Plans button")
-    public void iClickManagePlans() {
-        adminPortalManagePlansPage.clickManagePlans();      }
     @Then("I validate medical and dental buttons does not display on Manage page")
     public void iValidateChangeButtonsNotDisplay() {
         adminPortalManagePlansPage.validateChangeButtonsNotDisplay();       }
@@ -157,6 +154,10 @@ public class AdminPortalManagePlansSteps {
     @Then("I unchecked {string} from plan type")
     public void iUncheckedFromPlanType(String planType) {
         adminPortalManagePlansPage.uncheckedFromPlanType(planType);
+    }
+    @Then("I click Search button in AP blue header")
+    public void iClickSearchInAdminPortalBlueHeader() {
+        adminPortalManagePlansPage.clickSearchInAdminPortalBlueHeader();
     }
 
 }
