@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class AdminPortalBrokerDashboardPage {
@@ -64,6 +67,38 @@ public class AdminPortalBrokerDashboardPage {
     WebElement goBack;
     @FindBy(xpath = "//div[@class='nodata']")
     WebElement noClientInfo;
+    @FindBy(xpath = "//*[@id='form-edit-certification']")
+    WebElement manageCertificationContainer;
+    @FindBy(css = "#form-edit-certification > h3")
+    WebElement manageCertificationHeader;
+    @FindBy(css = "#form-edit-certification > label.body-text-2.license-status")
+    WebElement labelLicenseStatus;
+    @FindBy(xpath = "//app-drop-down-select[@id='license-status']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement licenseStatusDisplayed;
+    @FindBy(css = "#form-edit-certification > label.body-text-2.certification-status")
+    WebElement labelCertStatus;
+    @FindBy(css = "app-drop-down-select[id='certification-status'] div[class='drop-down-option drop-down-option-selected']")
+    WebElement certStatusDisplayed;
+    @FindBy(css = "label[for='license-expiration-date']")
+    WebElement labelExpirationDate;
+    @FindBy(css = "#expiration-date")
+    WebElement licenseDateDisplayed;
+    @FindBy(css = "#license-status > div > div.drop-down-secondary-options > div:nth-child(2)")
+    WebElement licenseOptionNotApproved;
+    @FindBy(css = "#certification-status > div > div.drop-down-secondary-options > div:nth-child(2)")
+    WebElement certStatusNotApproved;
+    @FindBy(xpath = "//button[normalize-space()='Save']")
+    WebElement buttonSave;
+    @FindBy(xpath = "//button[normalize-space()='Cancel']")
+    WebElement buttonCancel;
+    @FindBy(css = "div[class='drop-down-secondary-options'] div[class='drop-down-option']")
+    WebElement licenseOptionApproved;
+    @FindBy(css = "div[class='drop-down-secondary-options'] div[class='drop-down-option']")
+    WebElement certStatusApproved;
+    @FindBy(css = "#accountSummary-label-agencyCertification")
+    WebElement labelCertificationAgencyPortal;
+    @FindBy(css = "#accountSummary-data-agencyCertification")
+    WebElement certStatusAgencyPortal;
 
     public void validateAPBrokerDashboardHeader(String qaName, String qaID, String qaUserType, String stgName, String stgID, String stgUserType) {
         if (SharedData.getEnv().equals("staging")){
@@ -179,6 +214,49 @@ public class AdminPortalBrokerDashboardPage {
         basicActions.waitForElementToBePresent(clientInformationText,20);
         softAssert.assertEquals(clientInformationText.getText(),"Client Information");
         softAssert.assertEquals(noClientInfo.getText(),"There is no client information.");
+        softAssert.assertAll();
+    }
+    public void clickManageCertification() {
+        basicActions.waitForElementToBePresent(manageCertifications, 10);
+        manageCertifications.click();
+    }
+    public void VerifyBrokerLicenseStatusAndLicenseExpirationDateWithCertificationStatus(String licenseStatus, String licenseDate, String certificationStatus){
+        basicActions.waitForElementToBePresent(manageCertificationContainer, 10);
+        softAssert.assertEquals(manageCertificationHeader.getText(),"Manage Certification\n" +
+                "Information");
+        softAssert.assertEquals(labelLicenseStatus.getText(),"License Status:");
+        softAssert.assertEquals(licenseStatusDisplayed.getText(), licenseStatus);
+        softAssert.assertEquals(labelExpirationDate.getText(),"License Expiration Date:");
+        licenseDateDisplayed.click();
+        softAssert.assertEquals(licenseDateDisplayed.getText(), licenseDate);
+        softAssert.assertEquals(labelCertStatus.getText(),"Certification Status:");
+        softAssert.assertEquals(certStatusDisplayed.getText(),certificationStatus);
+        softAssert.assertAll();
+    }
+    public void changeStatusesThenClickSaveButton() {
+        basicActions.waitForElementToBePresent(buttonSave, 10);
+        licenseStatusDisplayed.click();
+        licenseOptionNotApproved.click();
+        certStatusDisplayed.click();
+        certStatusNotApproved.click();
+        buttonSave.click();
+    }
+    public void clickCancelButton() {
+        basicActions.waitForElementToBePresent(buttonCancel, 10);
+        buttonCancel.click();
+    }
+    public void changeStatusesBack() {
+        basicActions.waitForElementToBePresent(buttonSave, 10);
+        licenseStatusDisplayed.click();
+        licenseOptionApproved.click();
+        certStatusDisplayed.click();
+        certStatusApproved.click();
+        buttonSave.click();
+    }
+    public void verifyInBrokerPortalStatusIsChanged(String certificationStatusBrokerPortal) {
+        basicActions.waitForElementToBePresent(labelCertificationAgencyPortal, 10);
+        softAssert.assertEquals(labelCertificationAgencyPortal.getText(),"Agency Certification:");
+        softAssert.assertEquals(certStatusAgencyPortal.getText(), certificationStatusBrokerPortal);
         softAssert.assertAll();
     }
 }

@@ -20,6 +20,9 @@ public class AgencyBrokerTransferPage {
     @FindBy(id = "action-link-transfer")
     WebElement agencyBrokerTransferLink;
 
+    @FindBy(xpath = "//div[contains(text(),'Broker Transfer')]")
+    WebElement agencyBrokerTransferPageTitle;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -43,5 +46,11 @@ public class AgencyBrokerTransferPage {
     public void clickTransferLink(){
         basicActions.waitForElementToBePresent(agencyBrokerTransferLink,10);
         agencyBrokerTransferLink.click();
+    }
+
+    public void validateAgencyBrokerPageTitle(){
+        basicActions.waitForElementToBePresent(agencyBrokerTransferPageTitle,10);
+        softAssert.assertEquals(agencyBrokerTransferPageTitle.getText(), "Agency/Broker Transfer");
+        softAssert.assertAll();
     }
 }

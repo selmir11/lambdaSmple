@@ -45,6 +45,9 @@ public class CancellationRequestPage {
     @FindBy(css=".mdc-checkbox__native-control")
     WebElement decCheckBox;
 
+    @FindBy(id="mat-mdc-checkbox-1-input")
+    WebElement understandCheckBox;
+
     @FindBy(css=".requiredfield.ps-5")
     WebElement validationMessagecheckBox;
 
@@ -53,6 +56,9 @@ public class CancellationRequestPage {
 
     @FindBy(css=".modal-content")
     WebElement popUpCancellationPage;
+
+    @FindBy(id="okayButton")
+    WebElement okaybtn;
 
     @FindBy(css=".modal-content>div>div")
     WebElement popUpheader;
@@ -125,6 +131,18 @@ public class CancellationRequestPage {
         decCheckBox.click();
         String PrimaryMemberFullName = SharedData.getPrimaryMember().getFullName();
         placeHoldertxt.sendKeys(PrimaryMemberFullName);
+    }
+
+    public void cancelPlan() {
+        basicActions.scrollToElement(understandCheckBox);
+        understandCheckBox.click();
+        String PrimaryMemberFullName = SharedData.getPrimaryMember().getFullName();
+        placeHoldertxt.sendKeys(PrimaryMemberFullName);
+    }
+
+    public void  okaybtn(){
+        basicActions.waitForElementToBePresent(okaybtn,10);
+        okaybtn.click();
     }
 
     public void cancellationPlanPoupMessage(List<String> data) throws InterruptedException {

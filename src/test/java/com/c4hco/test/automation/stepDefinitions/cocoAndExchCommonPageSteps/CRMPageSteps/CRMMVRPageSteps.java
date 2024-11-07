@@ -10,4 +10,7 @@ public class CRMMVRPageSteps {
 
     @Then("I check that the MVR has a status of {string}")
     public void checkMVRStatus(String status){crmMVRPage.checkMVRStatus(status);}
+
+    @Then("I check the {string} MVR title for {string}")
+    public void iCheckMVRTitle(String mvrType, String memPrefix){crmMVRPage.checkMVRTitle(mvrType, memPrefix);}
 }

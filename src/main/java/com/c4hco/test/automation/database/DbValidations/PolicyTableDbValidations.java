@@ -120,7 +120,6 @@ public class PolicyTableDbValidations {
         List<MemberDetails> members = SharedData.getMembers();
         for (MemberDetails member : members) {
             if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
-                System.out.println("NAME OF DEPENDENT::::" + member.getFirstName());
                 validateMedDenForDependents(policyTablesEntity, dbData, member);
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), member.getMedicalPremiumAmt(), "Medical Policy total plan premium amount does not match");
@@ -138,7 +137,6 @@ public class PolicyTableDbValidations {
         List<MemberDetails> members = SharedData.getMembers();
         for (MemberDetails member : members) {
             if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
-                System.out.println("NAME OF DEPENDENT::::" + member.getFirstName());
                 validateMedDenForDependents(policyTablesEntity, dbData, member);
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), member.getDentalPremiumAmt(), "Dental Policy total plan premium amount does not match");

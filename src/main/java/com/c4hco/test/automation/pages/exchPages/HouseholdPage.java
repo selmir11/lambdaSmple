@@ -28,6 +28,7 @@ public class HouseholdPage {
     // update locators to ids and rename methods
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
     @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
