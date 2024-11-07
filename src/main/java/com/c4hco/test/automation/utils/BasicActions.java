@@ -158,7 +158,7 @@ public class BasicActions {
                 new WebDriverWait(driver,
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 return true;
-            } catch (StaleElementReferenceException e) {
+            } catch (StaleElementReferenceException|NoSuchElementException e) {
                 retries--;
                 Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
