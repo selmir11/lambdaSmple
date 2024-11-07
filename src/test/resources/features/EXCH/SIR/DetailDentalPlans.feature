@@ -1,5 +1,6 @@
 @dentalPlanDetail @SIR
   # contains SLER-955,
+  # WIPS - SLER-995, SLER-996,
 Feature: Dental Plan Verification test
 
   Background:
