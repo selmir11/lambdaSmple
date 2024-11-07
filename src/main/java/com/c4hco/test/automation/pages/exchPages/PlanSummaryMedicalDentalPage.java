@@ -283,12 +283,12 @@ public class PlanSummaryMedicalDentalPage {
 
 
                 //Dental Plan Premium details
-                WebElement dentalPremiumAfterAPTCAmnt = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_"+groupLocatorIndex+""));
-                WebElement dentalPlanName = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_"+groupLocatorIndex+""));
-                member.setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmnt.getText().replace("$", ""));
+                WebElement dentalPremiumAfterAPTCAmntEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_"+groupLocatorIndex+""));
+                WebElement dentalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_"+groupLocatorIndex+""));
+                member.setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmntEle.getText().replace("$", ""));
                 member.setDentalAptcAmt("0.00");
                 member.setDentalPremiumAmt(member.getTotalDentalPremAfterReduction());
-                member.setDentalPlan(dentalPlanName.getText());
+                member.setDentalPlan(dentalPlanNameEle.getText());
             }
         }
     }
