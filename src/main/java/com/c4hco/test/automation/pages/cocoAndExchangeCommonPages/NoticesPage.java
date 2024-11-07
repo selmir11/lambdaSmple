@@ -230,8 +230,10 @@ public class NoticesPage {
         basicActions.waitForElementToBePresent(EmailDate, 30);
 
         if (basicActions.isElementDisplayed(scannerLogo, 5)) {
+            String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '" + noticeNumber + "')]")).getText();
             basicActions.waitForElementToDisappear(scannerLogo, 10);
-            basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '" + noticeNumber + "')]")).click();
+            softAssert.assertTrue(TitleText.contains(noticeNumber));
+
         }
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '" + noticeNumber + "')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
