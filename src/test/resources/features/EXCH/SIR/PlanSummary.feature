@@ -271,7 +271,7 @@ Feature: Medical and Dental Plan Summary Verification test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1233-WIP @VerifyMedicalDentalPlanSummaryToolTips @sirtest
+  @SLER-1233 @VerifyMedicalDentalPlanSummaryToolTips
   Scenario: SLER-1233 - Validate MedicalDentalPlanSummary Tool Tips areas
     When I click create a new account on login page
 

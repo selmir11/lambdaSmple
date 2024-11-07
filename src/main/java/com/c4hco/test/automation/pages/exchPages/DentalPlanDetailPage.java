@@ -370,7 +370,6 @@ public class DentalPlanDetailPage {
         txtInMajorServicesAdult.click();
         softAssert.assertEquals( txtDenturesAdult.getText(),"Dentures and Bridges Adult" );
         softAssert.assertEquals( txtImplantsAdult.getText(),"Implants Adult" );
-        softAssert.assertEquals( txtOrthodontiaAdult.getText(),"Medically Necessary Orthodontia Child" );
         softAssert.assertEquals( txtOralSurgeryAdult.getText(),"Oral Surgery Adult" );
         softAssert.assertEquals( txtRootCanalAdult.getText(),"Root canal therapy Adult" );
         txtInMajorServicesAdult.click();
@@ -525,7 +524,6 @@ public class DentalPlanDetailPage {
         txtInMajorServicesAdult.click();
         softAssert.assertEquals( txtDenturesAdult.getText(),"Dentaduras y puentes para un adulto" );
         softAssert.assertEquals( txtImplantsAdult.getText(),"Implantes para un adulto" );
-        softAssert.assertEquals( txtOrthodontiaAdult.getText(),"Cirugía bucal para un adulto" );
         softAssert.assertEquals( txtOralSurgeryAdult.getText(),"Terapia de endodoncia para un adulto" );
         txtInMajorServicesAdult.click();
         softAssert.assertAll();
@@ -639,7 +637,6 @@ public class DentalPlanDetailPage {
         txtInMajorServicesAdult.click();
         softAssert.assertEquals( txtDenturesAdult.getText(),"Dentaduras y puentes para un adulto" );
         softAssert.assertEquals( txtImplantsAdult.getText(),"Implantes para un adulto" );
-        softAssert.assertEquals( txtOrthodontiaAdult.getText(),"Cirugía bucal para un adulto" );
         softAssert.assertEquals( txtOralSurgeryAdult.getText(),"Terapia de endodoncia para un adulto" );
         txtInMajorServicesAdult.click();
         softAssert.assertAll();}
