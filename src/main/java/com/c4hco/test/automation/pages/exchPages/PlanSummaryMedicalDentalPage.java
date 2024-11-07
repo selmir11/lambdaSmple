@@ -192,15 +192,16 @@ public class PlanSummaryMedicalDentalPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<MemberDetails> memberslist = SharedData.getMembers();
         Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
-        basicActions.waitForElementToDisappear( spinner, 15 );
-        basicActions.wait( 3000 );
-        basicActions.waitForElementToBePresent( medicalPremiumAfterAPTCAmt, 10 );
+        basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.wait(3000);
+        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
 
-        if (!isGettingFinancialHelp) {//NFA
-            subscriber.setMedicalAptcAmt( "0" );
-            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace( "$", "" );
-            subscriber.setTotalMedAmtAfterReduction( medPremiumMinusAPTC );
-            subscriber.setMedicalPremiumAmt( medPremiumMinusAPTC );
+        if(medicalAPTCAmt.isEmpty()){//NFA
+            subscriber.setMedicalAptcAmt("0");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
             if (memberslist != null) {
                 for (int i = 0; i < memberslist.size(); i++) {
                     memberslist.get( i ).setTotalMedAmtAfterReduction( medPremiumMinusAPTC );
@@ -209,13 +210,12 @@ public class PlanSummaryMedicalDentalPage {
             }
         } else {
             //FA
-            basicActions.waitForElementListToBePresent( medicalAPTCAmt, 10 );
-            String medAPTCAmt = medicalAPTCAmt.get( 0 ).getText().replace( "$", "" );
-            subscriber.setMedicalAptcAmt( medAPTCAmt );
-            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace( "$", "" );
-            subscriber.setTotalMedAmtAfterReduction( medPremiumMinusAPTC );
-            BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal( medPremiumMinusAPTC );
-            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal( medAPTCAmt );
+            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
+            subscriber.setMedicalAptcAmt(medAPTCAmt);
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
 
             BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add( bigDecimalmedAPTCAmt );
             subscriber.setMedicalPremiumAmt( String.valueOf( totalMedicalPremium ) );
