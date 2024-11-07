@@ -75,7 +75,7 @@ Feature: Go Back tests
     Then I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     
     Then I validate I am on the "Enrollment Agreements" page
     And I click Go Back on the Enrollment Agreements page

@@ -6,7 +6,7 @@ Feature: Medical Plan Detail page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @MedicalDetailPlansLink @SLER-835
+  @SLER-835 @MedicalDetailPlansLink
   Scenario: SLER-835 - Validate the Navigation and Functionality of Detail Plans Link (Medical) - new split from RT-1675
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -75,7 +75,7 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Medical Plan Results" page
     Then I click on Sign Out in the Header for "Portal"
 
-  @MedicalDetailTextVerificationEnglish @SLER-769
+  @SLER-769 @MedicalDetailTextVerificationEnglish
   Scenario: SLER-769 - Validate the English text detail information of the Detail Plans page (Medical) - formerly RT-1675
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -151,7 +151,7 @@ Feature: Medical Plan Detail page related tests
     Then I validate I am on the "Medical Plan Results" page
     Then I click on Sign Out in the Header for "Portal"
 
-  @MedicalDetailTextVerificationSpanish @SLER-834
+  @SLER-834 @MedicalDetailTextVerificationSpanish
   Scenario: SLER-834 - Validate the Spanish text detail information of the Detail Plans page (Medical) - formerly CCRT-292
     When I click create a new account on login page
     Then I click create my account from pre-screen page
