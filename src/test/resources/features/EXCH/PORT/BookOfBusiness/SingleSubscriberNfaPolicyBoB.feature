@@ -106,7 +106,7 @@ Feature: Broker Portal BOB - Single Subscriber NFA policy submission
     Then I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
