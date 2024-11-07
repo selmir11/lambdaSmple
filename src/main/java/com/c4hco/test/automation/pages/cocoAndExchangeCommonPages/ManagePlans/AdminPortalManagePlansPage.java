@@ -101,19 +101,6 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@id='financialEndDate_2']//input[1]")
     WebElement financialEndDateSecondMember;
 
-    //APTC and premium amounts
-    @FindBy(xpath = "//div[id='planAPTC_1']//input[type='text']")
-    WebElement member1MedicalAPTC;
-
-    @FindBy(xpath = "//div[id='planAPTC_2']//input[type='text']")
-    WebElement member2MedicalAPTC;
-
-    @FindBy(xpath = "//div[@id='premium_1']//input[@type='text']")
-    WebElement member1MedicalPremium;
-
-    @FindBy(xpath = "//div[@id='premium_1']//input[@type='text']")
-    WebElement member2MedicalPremium;
-
     @FindBy(xpath = "//app-drop-down-select[@id='change-reason']//div[@class='drop-down-option drop-down-option-selected']")
     WebElement reasonForTheChange;
     @FindBy(xpath = "//span[normalize-space()='Recon']")
@@ -169,7 +156,7 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[contains(text(),'The financial end date must be entered within the selected plan year and can not be prior to the financial start date')]")
     WebElement FinEndDateError;
 
-    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for Premium: ')]")
+    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for Premium')]")
     WebElement PremiumInvalidError;
 
     @FindBy(xpath = "//div[contains(text(),'APTC entered exceeds EHB amount: ')]")
@@ -177,10 +164,7 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for APTC: ')]")
     WebElement APTCInvalidError;
-
-    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for APTC')]")
-    WebElement APTCblankInvalidError;
-
+    
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
