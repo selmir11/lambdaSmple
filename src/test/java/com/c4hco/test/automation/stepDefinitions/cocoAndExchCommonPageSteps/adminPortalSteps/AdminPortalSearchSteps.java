@@ -4,8 +4,10 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalSea
 import com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.BasicSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class AdminPortalSearchSteps {
 
@@ -120,6 +122,42 @@ public class AdminPortalSearchSteps {
     }
 
 
+    @Then("I verify error for required at least one search criteria on admin portal search page")
+    public void iVerifyErrorForRequiredAtLeastOneSearchCriteriaOnAdminPortalSearchPage() {
+        adminPortalSearchPage.requiredSearchCriteria();
+    }
 
+    @When("I select {string}")
+    public void iSelect(String text) {
+        adminPortalSearchPage.selectSortOption(text);
+    }
+    @Then("I validate the list is sorted in order by {string} and {string}")
+    public void iValidateTheListIsSortedInOrderByAnd(String category, String sortOrder) {
+        adminPortalSearchPage.verifysort(category, sortOrder);
+    }
+
+    @When("I click on reset button on admin portal search page")
+    public void iClickOnResetButtonOnOnAdminPortalSearchPage() {
+        adminPortalSearchPage.verifyResetButton();
+    }
+
+    @Then("I validate message for over hundred records")
+    public void iValidateMessageForOverHundredRecords() {
+        adminPortalSearchPage.morethan100records();
+    }
+
+    @Then("I verify account results for {string} on admin portal search page")
+    public void iVerifyAccountResultsForOnAdminPortalSearchPage(String category) {
+        adminPortalSearchPage.verifyAccountDetails(category);
+    }
+
+    @When("I enter the following data for QA or STG:")
+    public void iEnterTheFollowingDataForQAOrSTG(DataTable dataTable) {
+        adminPortalSearchPage.entersearchdata(dataTable);
+    }
+
+    @Then("I verify data in {string} field on admin portal search page in QA {string} or STG {string}")
+    public void iVerifyDataInFieldOnAdminPortalSearchPageInQAOrSTG(String arg0, String arg1, String arg2) {
+    }
 }
 
