@@ -162,7 +162,7 @@ Feature: Dental Plan Verification test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-996 @VerifyDentalDetailTextSpanish
-  Scenario: SLER-996 - VerifyDentalDetailTextSpanish
+  Scenario: SLER-996 - VerifyDentalDetailText - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
