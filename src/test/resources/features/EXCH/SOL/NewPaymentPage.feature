@@ -79,7 +79,7 @@ Feature: New payment portal - currently in QA only
     Then I click continue on application results page
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
+    And I select the first medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan"
