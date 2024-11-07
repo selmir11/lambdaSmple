@@ -267,8 +267,8 @@ public class PlanSummaryMedicalDentalPage {
                     WebElement medicalPremiumAfterAPTCAmnt = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumAmount_"+value+""));
                     WebElement medicalAPTCAmnt = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumReductionAmount_"+value+""));
                     WebElement medicalPlanName = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+value+""));
-                    memberslist.get(i).setTotalMedAmtAfterReduction(medicalPremiumAfterAPTCAmnt.getText().replace("$", "").replace(",",""));
-                    memberslist.get(i).setMedicalAptcAmt(medicalAPTCAmnt.getText().replace("$", "").replace(",",""));
+                    memberslist.get(i).setTotalMedAmtAfterReduction(medicalPremiumAfterAPTCAmnt.getText().replace("$", ""));
+                    memberslist.get(i).setMedicalAptcAmt(medicalAPTCAmnt.getText().replace("$", ""));
                     memberslist.get(i).setMedicalPremiumAmt(String.valueOf(Double.parseDouble((memberslist.get(i).getMedicalAptcAmt())) + Double.parseDouble(memberslist.get(i).getTotalMedAmtAfterReduction())));
                     BigDecimal premiumAmount = new BigDecimal(memberslist.get(i).getMedicalPremiumAmt()); // or get this from your source
                     BigDecimal roundedPremiumAmount = premiumAmount.setScale(2, RoundingMode.HALF_UP);
@@ -278,8 +278,8 @@ public class PlanSummaryMedicalDentalPage {
                     //Dental Plan Premium details
                     WebElement dentalPremiumAfterAPTCAmnt = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_"+value+""));
                     WebElement dentalPlanName = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_"+value+""));
-                    memberslist.get(i).setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmnt.getText().replace("$", "").replace(",",""));
-                    memberslist.get(i).setDentalAptcAmt("0");
+                    memberslist.get(i).setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmnt.getText().replace("$", ""));
+                    memberslist.get(i).setDentalAptcAmt("0.00");
                     memberslist.get(i).setDentalPremiumAmt(memberslist.get(i).getTotalDentalPremAfterReduction());
                     memberslist.get(i).setDentalPlan(dentalPlanName.getText());
                 }
