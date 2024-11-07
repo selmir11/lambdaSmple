@@ -8,7 +8,7 @@ public class PlanSummaryMedicalDentalPageSteps {
     PlanSummaryMedicalDentalPage planSummaryMedicalDentalPage = new PlanSummaryMedicalDentalPage(WebDriverManager.getDriver());
 
     // WIP - Remove the below step
-   @And("I click continue on plan summary page")
+    @And("I click continue on plan summary page")
     public void continueButton(){
        planSummaryMedicalDentalPage.continueButton();
     }
@@ -19,10 +19,10 @@ public class PlanSummaryMedicalDentalPageSteps {
     }
 
     @And("I verify medical and dental text on Plan Summary page")
-    public void verifyTextPlanSummaryPage() {
-       planSummaryMedicalDentalPage.verifyTextPlanSummaryPage();
-    }
+    public void verifyTextPlanSummaryPage() {planSummaryMedicalDentalPage.verifyTextPlanSummaryPage(); }
 
+    @And("I validate {string} Tool Tip text on Plan Summary page")
+    public void validateToolTipLanguageTextSummaryPage(String language) {planSummaryMedicalDentalPage.validateToolTipLanguageTextSummaryPage(language); }
 
     @And("I verify no medical and dental plans are selected on plan summary page")
     public void verifyPlanSummaryPage() {
