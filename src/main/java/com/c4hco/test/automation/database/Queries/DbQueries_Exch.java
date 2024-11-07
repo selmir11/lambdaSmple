@@ -166,7 +166,7 @@ public class DbQueries_Exch {
     }
 
     public String getPolicyDqCheck(){
-        return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId;
+        return "select eph.policy_ah_id, "+dbName+".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = "+acctId+" and eph.current_ind = '1'";
     }
 
     public String setEnvForDataQuality(){
@@ -272,10 +272,17 @@ public class DbQueries_Exch {
                 "where application_id = '"+applicationId+"'";
 	}
 
-    public String esMVR(){
+    public String esMVR(String manualVerificationType){
         return "select *\n" +
                 "from "+dbName+".es_manual_verif_request\n"+
-                "where account_id = '"+acctId+"'";
+                "where account_id = '"+acctId+"'\n"+
+                "and manual_verification_type = '"+manualVerificationType+"'";
+    }
+
+    public String esSsaVerification(String memberId){
+        return "select *\n" +
+                "from "+dbName+".es_ssa_verification_req_resp\n"+
+                "where member_id = '"+memberId+"'";
     }
 
     public String enMemberEffectiveDates(){

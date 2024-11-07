@@ -106,8 +106,12 @@ public class DbDataProvider_Exch {
         String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
-        String brokerTinNum = getTinNumForBroker();
-        String csrLevel = getCSRLevel();
+        String brokerTinNum = null;
+        String csrLevel = null;
+        if (!"coco".equals(SharedData.getAppType())) {
+            brokerTinNum = getTinNumForBroker();
+            csrLevel = getCSRLevel();
+        }
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -270,8 +274,12 @@ public class DbDataProvider_Exch {
         return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
 	}
 
-    public EsManualVerifRequestEntity getEsMVR_options(){
-        return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR());
+    public EsManualVerifRequestEntity getEsMVR_options(String manualVerificationType) {
+        return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR(manualVerificationType));
+    }
+
+    public EsSsaVerificationReqEntity getSsaResponseCode(String memberId){
+        return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerification(memberId));
     }
 
     public List<EnMemberEffectiveDatesEntity> getEnMember_eff_dates(){

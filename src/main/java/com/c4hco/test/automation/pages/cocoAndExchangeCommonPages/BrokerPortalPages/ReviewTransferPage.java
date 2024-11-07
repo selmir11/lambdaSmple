@@ -15,8 +15,14 @@ public class ReviewTransferPage {
     @FindBy(xpath = "//button[normalize-space()='Transfer Clients']")
     WebElement transferClientsButton;
 
+    @FindBy(xpath = "//button[normalize-space()='Cancel']")
+    WebElement transferClientsCancelButton;
+
     @FindBy(xpath = "//*[@id='elem']/app-review-transfer/div/div[2]/div[2]")
     WebElement transferClientCount;
+
+    @FindBy(xpath = "//td[contains(text(),'You have selected all of your clients')]")
+    WebElement transferAllClientMessage;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -41,6 +47,23 @@ public class ReviewTransferPage {
     public void clickTransferClients(){
         basicActions.waitForElementToBePresent(transferClientsButton,10);
         transferClientsButton.click();
+    }
+
+    public void clickCancelTransferClients(){
+        basicActions.waitForElementToBePresent(transferClientsCancelButton,10);
+        transferClientsCancelButton.click();
+    }
+
+    public void verifyTransferAllClientsMessage(){
+        basicActions.waitForElementToBePresent(transferAllClientMessage,10);
+        softAssert.assertEquals(transferAllClientMessage.getText(), "You have selected all of your clients to transfer to the above Broker");
+        softAssert.assertAll();
+    }
+
+    public void totalClientNumber(){
+        basicActions.waitForElementToBePresent(transferClientCount,10);
+        softAssert.assertEquals(transferClientCount.getText(), "Transferring a total of " + SharedData.getAgencyOwner().getAgencyClientCount() + " clients(s)");
+        softAssert.assertAll();
     }
 
 }

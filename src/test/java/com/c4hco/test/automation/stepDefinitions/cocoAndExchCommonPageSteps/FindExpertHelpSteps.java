@@ -92,6 +92,11 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.validateBrokerExists();
         }
 
+        @And("I save the broker's details")
+        public void iSaveBrokerDetails() {
+                findExpertHelpPage.saveBrokerDetails();
+        }
+
         @And("I validate the current assister text exists")
         public void iValidateCurrentAssisterTextExists() {
                 findExpertHelpPage.validateAssisterExists();

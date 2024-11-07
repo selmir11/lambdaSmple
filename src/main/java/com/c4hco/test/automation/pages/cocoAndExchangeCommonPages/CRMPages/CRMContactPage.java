@@ -20,8 +20,9 @@ public class CRMContactPage {
     }
 
     public void openMVRDVRTab(){
-        basicActions.waitForElementToBeClickableWithRetries(btnMVRDVR, 60);
-        btnMVRDVR.click();
+        basicActions.wait(7000);
+        basicActions.waitForElementToBePresentWithRetries(btnMVRDVR, 60);
+        basicActions.clickElementWithRetries(btnMVRDVR, 60);
     }
 
     public void openMVRByTypeName(String mvrType){
