@@ -8,12 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class TellUsAboutYourselfPage {
 
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
     public TellUsAboutYourselfPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -61,6 +63,9 @@ public class TellUsAboutYourselfPage {
 
     @FindBy(css = "isPregnantTrue")
     WebElement rdobtnPregnantYes;
+
+    @FindBy(css = "div:nth-child(5) p")
+    WebElement hdrSsaError;
 
     
 
@@ -173,6 +178,12 @@ public class TellUsAboutYourselfPage {
         dob.sendKeys(newDob);
         SharedData.getPrimaryMember().setDob(newDob);
         System.out.println("dob updated");
+    }
+
+    public void validateSsaError(){
+        basicActions.waitForElementToBePresent(hdrSsaError, 20);
+        softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name and the Social Security number you entered match your Social Security card and try again.");
+        softAssert.assertAll();
     }
 
 }

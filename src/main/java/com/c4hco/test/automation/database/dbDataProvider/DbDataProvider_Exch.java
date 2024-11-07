@@ -274,8 +274,12 @@ public class DbDataProvider_Exch {
         return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
 	}
 
-    public EsManualVerifRequestEntity getEsMVR_options(){
-        return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR());
+    public EsManualVerifRequestEntity getEsMVR_options(String manualVerificationType) {
+        return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR(manualVerificationType));
+    }
+
+    public EsSsaVerificationReqEntity getSsaResponseCode(String memberId){
+        return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerification(memberId));
     }
 
     public List<EnMemberEffectiveDatesEntity> getEnMember_eff_dates(){

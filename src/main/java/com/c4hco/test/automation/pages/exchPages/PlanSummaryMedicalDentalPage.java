@@ -179,8 +179,9 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.wait(3000);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
 
-        if(!isGettingFinancialHelp){//NFA
+        if(medicalAPTCAmt.isEmpty()){//NFA
             subscriber.setMedicalAptcAmt("0");
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
@@ -193,7 +194,6 @@ public class PlanSummaryMedicalDentalPage {
             }
         }else {
             //FA
-            basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
             String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
