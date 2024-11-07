@@ -131,17 +131,12 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertAll();
     }
 
-
-    public void continueButton(){
-        basicActions.waitForElementToDisappear(spinner, 5500);
-        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
-        basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 15);
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
-    }
     public void continuePlanSummaryPage(){
         setPlansPremiumAmnts();//setPlansPremiumAmt();
         getmedGroup1MemNames();
+        basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 30);
+        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
         basicActions.scrollToElement( continueBtnOnPlanSummary );
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", continueBtnOnPlanSummary);
     }
