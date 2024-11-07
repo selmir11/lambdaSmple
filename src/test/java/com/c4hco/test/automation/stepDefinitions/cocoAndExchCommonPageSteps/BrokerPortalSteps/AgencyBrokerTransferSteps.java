@@ -22,4 +22,9 @@ public class AgencyBrokerTransferSteps {
     public void iClickTransferLink(){
         agencyBrokerTransferPage.clickTransferLink();
     }
+
+    @Then("I validate the Agency Broker Transfer page title")
+    public void iValidateAgencyBrokerPageTitle(){
+        agencyBrokerTransferPage.validateAgencyBrokerPageTitle();
+    }
 }

@@ -244,3 +244,52 @@ Feature: Tests related to the Additional Income page
     Then I verify the header for Primary Member on the CoCo Additional Income page in "Spanish"
     Then I verify the text on the CoCo Additional Income page in "Spanish"
     Then I verify the navigation buttons on the CoCO Additional Income page in "Spanish"
+
+  @SLCR-413 @PageTextAdditionalIncome
+    Scenario: SLCR-413 I verify the text on the CoCo Additional Income Additional Member page - English
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "09151985", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    Then I verify the header for additional member on the CoCo Additional Income page in "English"
+    Then I verify the text on the CoCo Additional Income page in "English"
+    Then I verify the navigation buttons on the CoCO Additional Income page in "English"
+
+  @SLCR-414 @PageTextAdditionalIncome
+  Scenario: SLCR-414 I verify the text on the CoCo Additional Income Additional Member page - English
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "09151985", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify the header for additional member on the CoCo Additional Income page in "Spanish"
+    Then I verify the text on the CoCo Additional Income page in "Spanish"
+    Then I verify the navigation buttons on the CoCO Additional Income page in "Spanish"
