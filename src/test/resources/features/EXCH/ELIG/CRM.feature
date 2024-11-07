@@ -7,7 +7,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
 
-  @SLER-1220 @test
+  @SLER-1220
   Scenario: SLER-1220 Correctable Error Count-SSA
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page

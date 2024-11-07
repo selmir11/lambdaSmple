@@ -10,14 +10,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class CRMMVRPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    Set<String> allMemberNames = new HashSet<>();
 
     public CRMMVRPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
@@ -38,16 +37,12 @@ public class CRMMVRPage {
     public void checkMVRTitle(String mvrType, String memPrefix){
         basicActions.wait(700);
         basicActions.waitForElementToBePresent(MVRNameHeader, 30);
-        String memFullName = "";
-        if (memPrefix.equals("Primary")) {
-            memFullName = SharedData.getPrimaryMember().getFullName();
-        }
-        else {
-            List<MemberDetails> members = SharedData.getMembers();
-            for(MemberDetails mem: members){
-                if(mem.getFirstName().contains(memPrefix)){
-                    memFullName = mem.getFullName();
-                }
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        String memFullName = null;
+        for (String name : allMemberNames) {
+            if (name.startsWith(memPrefix)) {
+                memFullName = name;
+                break;
             }
         }
 
