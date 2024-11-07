@@ -81,7 +81,7 @@ Feature: Medical and Dental Plan Summary Verification test
 
     Then I validate I am on the "Plan Summary" page
     And I verify medical and dental text on Plan Summary page
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
@@ -265,7 +265,7 @@ Feature: Medical and Dental Plan Summary Verification test
 
     Then I validate I am on the "Plan Summary" page
     And I verify one entry has no assigned medical plan
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"

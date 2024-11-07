@@ -12,7 +12,7 @@ public class MemberDetails {
     String middleInitial;
     String suffix;
     String emailId;
-    String password = "Selenium11!";
+    String password = "ALaska12!";
     String phoneNumber;
     String alternatePhNum;
     String ssn;
@@ -75,6 +75,8 @@ public class MemberDetails {
     String employerName;
     String prior_subscriber_id;
     Boolean csrEligible=false;
+    String medGroupInd;
+    String denGroupInd;
 }
 
 

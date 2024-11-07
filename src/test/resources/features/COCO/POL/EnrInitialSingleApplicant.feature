@@ -17,7 +17,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
     And I enter my residential address "PO BOX 1454", "DENVER", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -47,7 +47,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-#    Then I verify eligible plan on Application Result page coco depends on SES
+    Then I verify eligible plan on Application Result page coco depends on SES
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
@@ -72,3 +72,4 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
     And I validate "medical" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 1
