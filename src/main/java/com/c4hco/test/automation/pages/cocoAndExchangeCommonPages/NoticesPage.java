@@ -104,7 +104,8 @@ public class NoticesPage {
     WebElement policyinformation;
     @FindBy(css = "#x_policyInformation .x_body dl dt")
     List<WebElement> emailPolicyDetails;
-
+    @FindBy(xpath = "//div[@class='ECSzl']/img")
+    WebElement scannerLogo;
 
     public String MFACode = "";
 
@@ -222,12 +223,19 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
+
     public void openAllNotices(String noticeNumber, String language) {
         basicActions.waitForElementToBePresent(EmailDate, 30);
         basicActions.getDriver().findElement(By.xpath("//div[2]/div[2]/div[2]//span[contains(text(), '" + noticeNumber + "')]")).click();
         basicActions.waitForElementToBePresent(EmailDate, 30);
+
+        if (basicActions.isElementDisplayed(scannerLogo, 5)) {
+            basicActions.waitForElementToDisappear(scannerLogo, 10);
+            basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '" + noticeNumber + "')]")).click();
+        }
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '" + noticeNumber + "')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
+
         switch (language) {
             case "English":
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
@@ -238,6 +246,7 @@ public class NoticesPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+
         softAssert.assertAll();
     }
 
