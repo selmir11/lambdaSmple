@@ -3,7 +3,7 @@ Feature: Seed07 - Exchange
   Scenario: Seed 07 For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
-      | 2           | 4            | 1                 | 3                |   4             |
+      | 2           | 4            | 1                 | 3                | 4               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -45,7 +45,7 @@ Feature: Seed07 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "05271963", "Female" and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -66,14 +66,14 @@ Feature: Seed07 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "08281999", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son |
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
     And I enter the new residential address details
-      | addressLine1           | addressLine2          | city    | state | zipcode | county  | dob     |
-      | 101 Springs Drive      | Colorado Springs      | Denver  | CO    | 80919   | EL PASO |08281999 |
+      | addressLine1      | addressLine2     | city   | state | zipcode | county  | dob      |
+      | 101 Springs Drive | Colorado Springs | Denver | CO    | 80919   | EL PASO | 08281999 |
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -92,9 +92,9 @@ Feature: Seed07 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "InLaw", "05052001", "Female" and applying "Yes"
-      |Primary:In Law|
-      |Spouse:In Law |
-      |Son:Spouse    |
+      | Primary:In Law |
+      | Spouse:In Law  |
+      | Son:Spouse     |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "recent option" for Residential Address
@@ -210,7 +210,7 @@ Feature: Seed07 - Exchange
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click Yes to the Tobacco usage question on start shopping page
-      |Son,InLaw|
+      | Son,InLaw |
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -218,7 +218,7 @@ Feature: Seed07 - Exchange
     Then I click on edit enrollment groups link
     Then I create new group in edit medical grouping page and drag members to the new group
       | Primary,Spouse:Group1 |
-      | Son,InLaw:Group2 |
+      | Son,InLaw:Group2      |
     Then I click save button to save the groups
     Then I click on continue button on success pop-up
     Then I validate I am on the "Grouping Members Medical" page
@@ -230,13 +230,21 @@ Feature: Seed07 - Exchange
     And I select "Anthem Colorado Option Silver Pathway Std" plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Spouse:Group1 |
+      | Son,InLaw:Group2      |
+    And I click save button to save the dental groups
+    And I click on continue button on success pop-up from edit grouping dental page
+    Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
+    And I continue on plan summary page
 
     And I select the terms and agreements checkbox
     And I enter "taxHolder1" signature on the Financial Help Agreements page
@@ -249,11 +257,4 @@ Feature: Seed07 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-#
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click View Plan History link from "medical" plan card
-   # And I click on Sign Out in the Header for "NonElmo"
+    #And I Validate the correct enrolled plans are displayed on account overview page

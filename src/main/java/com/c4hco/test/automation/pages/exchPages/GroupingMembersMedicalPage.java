@@ -58,6 +58,11 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToBePresent(continueButton, 20);
         basicActions.waitForElementToBeClickable(continueButton, 10);
         basicActions.scrollToElement( continueButton );
+        List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
+        for (MemberDetails memDet : memberInfoDetails){
+            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            memDet.setMedicalGroupInfo(memGroupInfo.getText().replace("Medical Group #",""));
+        }
         basicActions.click(continueButton);
     }
 

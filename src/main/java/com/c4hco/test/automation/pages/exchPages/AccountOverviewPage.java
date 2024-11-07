@@ -295,4 +295,31 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
+    public void verifyPlanInfo2() {
+        MemberDetails primaryMember = SharedData.getPrimaryMember();
+        List<MemberDetails> MemberList=basicActions.getAllMem();
+
+        for(MemberDetails memberInfo : MemberList){
+            //Medical Plan Validation
+            WebElement MedicalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'"+memberInfo.getFirstName()+"')]/ancestor-or-self::tr)[1]/td[4]/b"));
+            WebElement MedicalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'"+memberInfo.getFirstName()+"')]/ancestor-or-self::tr)[1]/td[5]/b"));
+            WebElement MedicalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'"+memberInfo.getFirstName()+"')]/ancestor-or-self::tr)[1]/td[6]/b"));
+
+            softAssert.assertEquals(MedicalPlanName.getText(), memberInfo.getMedicalPlan(), memberInfo.getFirstName()+" Medical Plan Name does not match");
+            softAssert.assertEquals(MedicalPremiumAmnt.getText().replace(",",""), "$" + memberInfo.getMedicalPremiumAmt(), memberInfo.getFirstName()+" Medical premium amount does not match");
+            softAssert.assertEquals(MedicalAPTCAmnt.getText().replace(",",""), "$"+memberInfo.getMedicalAptcAmt(), memberInfo.getFirstName()+" Medical APTC amount did not match");
+
+            //Dental Plan Validation
+            WebElement DentalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'"+memberInfo.getFirstName()+"')]/ancestor-or-self::tr)[2]/td[4]/b"));
+            WebElement DentalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'"+memberInfo.getFirstName()+"')]/ancestor-or-self::tr)[2]/td[5]/b"));
+            WebElement DentalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'"+memberInfo.getFirstName()+"')]/ancestor-or-self::tr)[2]/td[6]/b"));
+
+            //Dental
+            softAssert.assertEquals(DentalPlanName.getText(), memberInfo.getDentalPlan(), memberInfo.getFirstName()+" Dental Plan Name does not match");
+            softAssert.assertEquals(DentalPremiumAmnt.getText(), "$"+basicActions.doubleAmountFormat(memberInfo.getDentalPremiumAmt()), memberInfo.getFirstName()+" Dental Premium amount does not match");
+            softAssert.assertEquals(DentalAPTCAmnt.getText(), memberInfo.getDentalAptcAmt(), memberInfo.getFirstName()+" Dental APTC amount on account overview page mismatch");
+        }
+        softAssert.assertAll();
+    }
+
 }

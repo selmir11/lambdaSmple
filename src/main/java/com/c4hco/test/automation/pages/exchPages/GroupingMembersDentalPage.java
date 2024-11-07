@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -62,6 +64,11 @@ public class GroupingMembersDentalPage {
         basicActions.waitForElementToBePresent(continueButton, 10);
         basicActions.waitForElementToBeClickable(continueButton, 10);
         basicActions.scrollToElement(continueButton);
+        List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
+        for (MemberDetails memDet : memberInfoDetails){
+            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            memDet.setDentalGroupInfo(memGroupInfo.getText().replace("Dental Group #",""));
+        }
         continueButton.click();
     }
 
