@@ -52,7 +52,7 @@ public class DentalPlanDetailPage {
     @FindBy(xpath = "//*[class = 'td-sub-title']")
     List<WebElement> subheader;
 
-    //@FindBy(xpath = "//button[@id='ngb-accordion-item-2-toggle']") // Diagnostic and Preventive Services Child
+
     @FindBy(xpath = "//td[normalize-space()='Cleaning Child']")
     WebElement txtCleaningChild;
     @FindBy(xpath = "//td[normalize-space()='Limpieza para un hijo']")
