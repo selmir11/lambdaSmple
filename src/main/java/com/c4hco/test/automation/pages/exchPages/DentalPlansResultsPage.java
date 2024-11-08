@@ -98,11 +98,27 @@ public class DentalPlansResultsPage {
 
     @FindBy(xpath = "//div[@id='MPDcollapse'] //span[contains(@class,'ngx-slider-limit ngx-slider-floor')]")
     WebElement txtpremiumamnt;
+
     @FindBy(id = "DentalPlanResults-SaveAndExit")
     WebElement Saveandexit;
 
     @FindBy(css = ".c4-type-header-sm")
     List<WebElement> dentalPlanNamesList;
+
+    @FindBy(id = "ngb-tooltip-10")
+    WebElement  TTAdultDeductable1;
+    @FindBy(xpath = "//*[@id='AdultDedToolTip_1'] ")
+    WebElement  underTTAdultDeductable1;
+
+    @FindBy(id = "ngb-tooltip-12")
+    WebElement  TTPedDeductable1;
+    @FindBy(xpath = "//*[@id='PedDedToolTip_1'] ")
+    WebElement  underTTPedDeductable1;
+
+    @FindBy(id = "ngb-tooltip-11")
+    WebElement  TTOutOfPocketDeductable1;
+    @FindBy(xpath = "//*[@id='OutOfPocketMaxToolTip_1'] ")
+    WebElement  underTTOutOfPocketDeductable1;
 
 
     public void DentalresultspagetextValidation(){
@@ -238,6 +254,7 @@ public class DentalPlansResultsPage {
         softAssert.assertEquals(pediatricdental3.getText(),"Cigna Dental Family + Pediatric");
         softAssert.assertAll();
         }
+
     public void selectDentalPlan(String dentalPlanNames){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setDentalPlan(dentalPlanNames);
@@ -367,7 +384,52 @@ public class DentalPlansResultsPage {
 
     }
 
-    
+    public void validateToolTipText(String language){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        switch(language){
+            case "English":
+                validateToolTipsDentalPlanResultsPageEnglish();
+                break;
+            case "Spanish":
+                validateToolTipsDentalPlanResultsPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
+        }
+
+
+    }
+
+    public void validateToolTipsDentalPlanResultsPageEnglish() {
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToBePresent( disclaimerDental,10 );
+        basicActions.click( underTTAdultDeductable1 );
+        basicActions.waitForElementToBePresent(TTAdultDeductable1,20  );
+        softAssert.assertEquals( TTAdultDeductable1.getText(), "The amount you must spend on covered dental services before your insurance company starts to pay a percentage of your bills. This adult deductible amount applies to someone 19 or older." );
+        basicActions.click( underTTPedDeductable1 );
+        basicActions.waitForElementToBePresent(TTPedDeductable1,20  );
+        softAssert.assertEquals( TTPedDeductable1.getText(), "The amount you must spend on covered dental services before your insurance company starts to pay a percentage of your bills. This pediatric deductible amount applies to someone 18 or younger." );
+        basicActions.click( underTTOutOfPocketDeductable1 );
+        basicActions.waitForElementToBePresent(TTOutOfPocketDeductable1,20  );
+        softAssert.assertEquals( TTOutOfPocketDeductable1.getText(), "A predetermined, limited amount of money that an individual or members of your family must pay before an insurance company (or self-insured employer) will pay 100% of an individual's covered, in-network dental care expenses." );
+        softAssert.assertAll();
+    }
+
+    public void validateToolTipsDentalPlanResultsPageSpanish() {
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent( disclaimerDental,10 );
+        basicActions.click( underTTAdultDeductable1 );
+        basicActions.waitForElementToBePresent(TTAdultDeductable1,20  );
+        softAssert.assertEquals( TTAdultDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compañía de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible de adultos se aplica a las personas mayores de 19 años.");
+        basicActions.click( underTTPedDeductable1 );
+        basicActions.waitForElementToBePresent(TTPedDeductable1,20  );
+        softAssert.assertEquals( TTPedDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compañía de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible pediátrico se aplica a personas de 18 años o menos.");
+        basicActions.click( underTTOutOfPocketDeductable1 );
+        basicActions.waitForElementToBePresent(TTOutOfPocketDeductable1,20  );
+        softAssert.assertEquals( TTOutOfPocketDeductable1.getText(), "Una cantidad de dinero predeterminada y limitada que un individuo los miembros de su plan familiar deben pagar antes de que una compañía de seguros (o un empleador autoasegurado) pague el 100% de los gastos dentales de dicho individuo cubiertos dentro de la red." );
+        softAssert.assertAll();
+    }
 
 
 
