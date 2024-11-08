@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -44,6 +45,12 @@ public class YourClientsPage {
     WebElement okBtn;
     @FindBy(xpath = "//button[.='Cancel']")
     WebElement cancelBtn;
+    @FindBy(xpath = "//div[normalize-space()='Remove Client(s)?']")
+    WebElement removeClientModalTitle;
+    @FindBy(xpath = "//div[contains(text(), 'Removing a total')]")
+    WebElement removeClientModalCountText;
+    @FindBy(xpath = "//div[@class='cdk-overlay-container']//div[@id='client-information-table']//div[2]")
+    WebElement removeClientModalConfirmationText;
     @FindBy(xpath = "//*[@id='client-information-table']/app-view-clients-table/div[2]")
     WebElement emptyTable;
     @FindBy(xpath = "//*[@id='clientCheck-checkAll']")
@@ -105,6 +112,12 @@ public class YourClientsPage {
 
     @FindBy(xpath = "//input[contains(@id, 'clientCheck')]")
     List<WebElement> clientCheckboxes;
+
+    @FindBy(xpath = "//*[@id='view-your-clients-table']/form/div")
+    WebElement clientTransferSuccessfulMessage;
+
+    @FindBy(id = "transferAllBTN")
+    WebElement transferAllClientsButton;
 
     public void validateYourClientsPageTitle(){
         basicActions.waitForElementToBePresent(yourClientsTitle, 10);
@@ -281,6 +294,34 @@ public class YourClientsPage {
         }
     }
 
+    public void validateRemoveClientModalTitle() {
+        basicActions.waitForElementToBePresent( removeClientModalTitle,100);
+        softAssert.assertEquals(removeClientModalTitle.getText(), "Remove Client(s)?");
+        softAssert.assertAll();
+    }
+
+    public void validateRemoveClientModalCountText() {
+        basicActions.waitForElementToBePresent( removeClientModalCountText,100);
+        softAssert.assertEquals(removeClientModalCountText.getText(), "Removing a total of 1 client(s).");
+        softAssert.assertAll();
+    }
+
+    public void validateRemoveClientModalConfirmationText() {
+        basicActions.waitForElementToBePresent( removeClientModalConfirmationText,100);
+        softAssert.assertEquals(removeClientModalConfirmationText.getText(), "Are you sure you want to end the client's relationship with the Agency?");
+        softAssert.assertAll();
+    }
+
+    public void validateRemoveClientCountMatchesSelectedClients() {
+        basicActions.waitForElementToBePresent( selectedClientCount,100);
+        String selectedClients = selectedClientCount.getText().replace(" Clients Selected", "");
+        removedSelectedClients.click();
+
+        basicActions.waitForElementToBePresent( removeClientModalCountText,100);
+        softAssert.assertEquals(removeClientModalCountText.getText(), "Removing a total of " + selectedClients + " client(s).");
+        softAssert.assertAll();
+    }
+
     public void validateClientIsRemoved() {
         softAssert.assertTrue(emptyTable.isDisplayed());
         softAssert.assertAll();
@@ -319,6 +360,15 @@ public class YourClientsPage {
         basicActions.waitForElementToBePresent(allClientsCheckBox, 200);
         basicActions.waitForElementToBeClickable(allClientsCheckBox, 200);
         allClientsCheckBox.click();
+    }
+
+    public void saveSelectedClientCount() {
+        basicActions.waitForElementToBePresent(selectedClientCount, 200);
+        String selectedClients = selectedClientCount.getText().replace(" Clients Selected", "");
+
+        BrokerDetails owner = new BrokerDetails();
+        owner.setAgencyClientCount(selectedClients);
+        SharedData.setAgencyOwner(owner);
     }
 
     public void validateClientPremiumAmount(){
@@ -481,5 +531,17 @@ public class YourClientsPage {
 
         softAssert.assertEquals(allClientsCheckBox.getAttribute("class"),"mat-mdc-checkbox mat-accent mdc-checkbox--disabled mat-mdc-checkbox-disabled mat-mdc-checkbox-checked");
         softAssert.assertAll();
+    }
+
+    public void validateClientTransferSuccessfulMessage(){
+        basicActions.waitForElementToBePresent(clientTransferSuccessfulMessage,30);
+
+        softAssert.assertEquals(clientTransferSuccessfulMessage.getText(), "Client Transfer Successful");
+        softAssert.assertAll();
+    }
+
+    public void clickTransferAllClients(){
+        basicActions.waitForElementToBePresent(transferAllClientsButton,30);
+        transferAllClientsButton.click();
     }
 }

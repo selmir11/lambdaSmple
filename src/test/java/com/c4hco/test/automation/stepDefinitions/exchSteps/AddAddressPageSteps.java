@@ -32,6 +32,9 @@ public class AddAddressPageSteps {
     @Then("I enter a new member address with city {string} state {string} zip {string} and county {string}")
     public void addMailingAddressDetails(String city, String state, String zipcode, String county){addAddressPage.newMailingAddress(city, state, zipcode, county);}
 
+    @Then("I select the Different Mailing Address option")
+    public void selectDifferentMailingAddress(){addAddressPage.DifferentMailingAddress();}
+
     @Then("I select {string} for CO Resident option")
     public void isMemberCOResident(String YNResident){addAddressPage.isColoradoResident(YNResident);}
 
@@ -63,6 +66,9 @@ public class AddAddressPageSteps {
 
     @Then("I add the tribe details")
     public void Addtribedetails(){addAddressPage.Addtribedetails();}
+
+    @Then("I select {string} specific Address")
+    public  void selectspecificaddress(String SpecificAddress){addAddressPage.specificaddress(SpecificAddress); }
 
 }
 

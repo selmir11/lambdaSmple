@@ -52,12 +52,12 @@ Feature: Initial Payment Page test
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-    And I select "Elevate Health Plans Colorado Option Bronze" medical plan
+    And I select the first medical plan
     Then I click continue on medical plan results page
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
@@ -362,7 +362,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
     Then I click continue on grouping Members Medical page
-    And I select "Elevate Health Plans Bronze HDHP" medical plan
+    And I select the first medical plan
     Then I click continue on medical plan results page
     And I select the first medical plan
     Then I click continue on medical plan results page
@@ -373,7 +373,7 @@ Feature: Initial Payment Page test
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page

@@ -122,7 +122,7 @@ public class ApplicationResultsCoCoPage {
     public void verifyEligibleplans(){
         basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
         if(SharedData.getSes().equals("yes")){
-            softAssert.assertEquals(eligiblePlan.getText(), "Silver Enhanced Savings");
+            softAssert.assertEquals(eligiblePlan.getText(), "SilverEnhanced Savings");
         } else{
             softAssert.assertEquals(eligiblePlan.getText(), "Health insurance plans through Colorado Connect");
         }

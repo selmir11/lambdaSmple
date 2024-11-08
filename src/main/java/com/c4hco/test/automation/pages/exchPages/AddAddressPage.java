@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,9 @@ public class AddAddressPage {
 
     @FindBy(id = "typeResidentialAddress")
     WebElement rdobtnDifferentResidentialAddress;
+
+    @FindBy(id = "typeMailingAddress")
+    WebElement rdobtnDifferentMailingAddress;
 
     @FindBy(css = ".input-group #mailingAddrLine1")
     WebElement txtMailingAddrLine1;
@@ -104,7 +108,8 @@ public class AddAddressPage {
     WebElement tribestate;
     @FindBy(id = "tribeName")
     WebElement tribeName;
-
+    @FindBy(css= ".addressradioGrp.radioGrp")
+    List<WebElement> selectspecificaddress;
 
     public void selectResidentialAddress(String index){
         basicActions.waitForElementListToBePresent(rdobtnHouseholdResidentialAddress, 10);
@@ -117,7 +122,8 @@ public class AddAddressPage {
                 rdobtnDifferentResidentialAddress.click();
                 break;
             case "recent option":
-                rdobtnHouseholdResidentialAddress.get(rdobtnHouseholdResidentialAddress.size()-1).click();
+                WebElement recentAddressSelection = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+SharedData.getMembers().get(SharedData.getMembers().size()-2).getResAddress().getAddressZipcode()+"')]/ancestor::div[@class='form-check'] //input[@id='retrieveResidentialAddress']"));
+                recentAddressSelection.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + index);
@@ -187,9 +193,12 @@ public class AddAddressPage {
         // Mailing Address - Only for primary member
         basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
+        txtMailingAddrLine1.clear();
         txtMailingAddrLine1.sendKeys(AddrLine1);
+        txtMailingCity.clear();
         txtMailingCity.sendKeys(city);
         selectMailingState.sendKeys(state);
+        txtMailingZip.clear();
         txtMailingZip.sendKeys(zipcode);
 
         basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
@@ -206,6 +215,8 @@ public class AddAddressPage {
 
         SharedData.getPrimaryMember().setMailingAddress(mailinglAddress);
     }
+
+    public void DifferentMailingAddress(){rdobtnDifferentMailingAddress.click();}
 
     public void addNewResidentialAddress(List<Map<String, String>> addDetails){
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
@@ -364,6 +375,19 @@ public class AddAddressPage {
     }
 
     public void saveContinue(){btnSaveContinue.click();}
+
+
+    public  void specificaddress(String SpecificAddress) {
+        for (int i = 0; i < selectspecificaddress.size(); i++) {
+            String address = selectspecificaddress.get(i).getText();
+            if (address.contains(SpecificAddress)) {
+                WebElement radioElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]/parent::label/parent::div /input"));
+                radioElement.click();
+                break;
+            }
+        }
+    }
+
 
 }
 

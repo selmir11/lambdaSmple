@@ -40,7 +40,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -86,8 +86,7 @@ Feature: EXCH Seed Data ALL
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
-
+    And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
@@ -97,18 +96,20 @@ Feature: EXCH Seed Data ALL
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And I validate medical details on my policies page
-    And I validate dental details on my policies page
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
+    And I validate 'medical' details on my policies page
+    And I validate 'dental' details on my policies page
+    And I click View Plan History link from 'medical' plan card
+    And I validate 'medical' plan details from plan history
     And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
+    And I click View Plan History link from 'dental' plan card
+    And I validate 'dental' plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the files from sftp server with location "/outboundedi/"
     And I validate the ob834 files should have the values
       | LX | N1 75              | REF       | REFDEN    |
@@ -120,13 +121,12 @@ Feature: EXCH Seed Data ALL
       | 6  | TOT RES AMT        | 291.02    | 21.00     |
       | 7  | PRE AMT TOT        | 291.02    | 21.00     |
       | 8  | SEP REASON         | ADMIN_LCE | ADMIN_LCE |
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
 
   Scenario: Seed 02 For Exchange- Single Applicant with FA
     Given I set the test scenario details
-      | totalGroups | totalMembers |
-      | 1           | 1            |
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                | 1               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -134,6 +134,9 @@ Feature: EXCH Seed Data ALL
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Given I set the dynamic policy, coverage and financial dates
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -160,7 +163,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -225,7 +228,7 @@ Feature: EXCH Seed Data ALL
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -239,33 +242,37 @@ Feature: EXCH Seed Data ALL
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And I validate medical details on my policies page
-    And I validate dental details on my policies page
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
+    And I validate 'medical' details on my policies page
+    And I validate 'dental' details on my policies page
+    And I click View Plan History link from 'medical' plan card
+    And I validate 'medical' plan details from plan history
     And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
+    And I click View Plan History link from 'dental' plan card
+    And I validate 'dental' plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
     And I validate the member details from policy tables
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I download the files from sftp server with location "/outboundedi/"
-      | LX | N1 75              | REF       |
-      | 1  | PRE AMT 1          | 285.37    |
-      | 2  | APTC AMT           | 230.13      |
-      | 3  | CSR AMT            | 0.00      |
-      | 4  | RATING AREA        | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     |
-      | 6  | TOT RES AMT        | 55.24   |
-      | 7  | PRE AMT TOT        | 285.37    |
-      | 8  | SEP REASON         | ADMIN_LCE |
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    And I download the files from sftp server with location "/outboundedi/"
+#      | LX | N1 75              | REF       |
+#      | 1  | PRE AMT 1          | 285.37    |
+#      | 2  | APTC AMT           | 230.13      |
+#      | 3  | CSR AMT            | 0.00      |
+#      | 4  | RATING AREA        | 3         |
+#      | 5  | SOURCE EXCHANGE ID | COHBE     |
+#      | 6  | TOT RES AMT        | 55.24   |
+#      | 7  | PRE AMT TOT        | 285.37    |
+#      | 8  | SEP REASON         | ADMIN_LCE |
+
 
 
   Scenario: Seed 03 For Exchange- Husband + Wife Both Smokers with Broker - NFA
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 2            | 1                 | 1                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -305,7 +312,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -327,7 +334,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -389,16 +396,12 @@ Feature: EXCH Seed Data ALL
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-#    And I validate member details from ob834_details table
-#      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| addl_maint_reason  | sep_reason|
-#      | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
-#      | 021                   | 021                 | EC                   |                    | ADMIN_LCE |
 
 
   Scenario: Seed 04 For Exchange- Husband and Wife with FA
     Given I set the test scenario details
-      | totalGroups | totalMembers |
-      | 1           | 2            |
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 2            | 1                 | 1                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -437,7 +440,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -446,11 +449,8 @@ Feature: EXCH Seed Data ALL
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "03021995" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -462,7 +462,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -483,7 +483,6 @@ Feature: EXCH Seed Data ALL
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I select the option "Yes" to employment
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "1234 Main" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "3000000" at frequency "Annually"
@@ -549,7 +548,7 @@ Feature: EXCH Seed Data ALL
     And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -559,16 +558,7 @@ Feature: EXCH Seed Data ALL
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate medical plan details from my policies page
-#      | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-#      | 01/01           | 12/31         | 01/01              | 12/31            |
-#    And I validate dental plan details from my policies page
-#      | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-#      | 01/01           | 12/31         | 01/01              | 12/31            |
-
+    And I click on Sign Out in the Header for "NonElmo"
 
 
   Scenario: Seed 05 For Exchange- Family of Four - NFA
@@ -604,7 +594,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -612,11 +602,8 @@ Feature: EXCH Seed Data ALL
     And I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "03051989" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -628,7 +615,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -636,12 +623,9 @@ Feature: EXCH Seed Data ALL
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "04212013" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Daughter" as relationship option
-    And I select "Daughter" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+      |Primary:Daughter|
+      |Spouse:Daughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -653,7 +637,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -661,12 +645,10 @@ Feature: EXCH Seed Data ALL
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "12222016" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Brother" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "12222016", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son|
+      |Daughter:Brother|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -678,7 +660,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -728,7 +710,7 @@ Feature: EXCH Seed Data ALL
     And I select "Delta Dental of Colorado Family Comprehensive Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
@@ -771,7 +753,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -779,11 +761,8 @@ Feature: EXCH Seed Data ALL
     And I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "03051989" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Spouse" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -795,7 +774,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -803,12 +782,9 @@ Feature: EXCH Seed Data ALL
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "04212013" date of birth
-    And I select "Female" as member's sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "Daughter" as relationship option
-    And I select "Daughter" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+      |Primary:Daughter|
+      |Spouse:Daughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -820,7 +796,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -828,12 +804,10 @@ Feature: EXCH Seed Data ALL
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "12222016" date of birth
-    And I select "Male" as member's sex option
-    And I select "Son" as relationship option
-    And I select "Son" as relationship one option
-    And I select "Brother" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "12222016", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son|
+      |Daughter:Brother|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -845,7 +819,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1002,7 +976,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1010,7 +984,7 @@ Feature: EXCH Seed Data ALL
     And I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "05271963", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "07271963", "Female" and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -1023,7 +997,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1049,7 +1023,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1063,6 +1037,7 @@ Feature: EXCH Seed Data ALL
       |Son:Spouse    |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
+    Then I select "New" for Residential Address
     Then I select "recent option" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -1073,7 +1048,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "InLaw"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1084,7 +1059,7 @@ Feature: EXCH Seed Data ALL
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "45000.00" income at "Annually" frequency
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "45000.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -1103,7 +1078,7 @@ Feature: EXCH Seed Data ALL
     Then I validate I am on the "Employment Info" page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "40000.00" at frequency "Annually"
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Colorado Springs" and state as "CO" and zipcode as "80919" and income "40000.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -1239,7 +1214,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -1248,7 +1223,7 @@ Feature: EXCH Seed Data ALL
     #spouse
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "05271963", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "07271963", "Female" and applying "Yes"
       |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -1261,7 +1236,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1285,7 +1260,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1310,7 +1285,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "InLaw"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1412,7 +1387,6 @@ Feature: EXCH Seed Data ALL
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
-
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
     Then I click on edit enrollment groups link
@@ -1489,15 +1463,17 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "05052019" date of birth
-    And I select "Female" as member's sex option
-    And I select "Daughter" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "05052019", "Female" and applying "Yes"
+      |Primary:Daughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -1509,7 +1485,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1632,7 +1608,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1641,11 +1617,8 @@ Feature: EXCH Seed Data ALL
 #    //GRANDMA
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "07271963" date of birth
-    And I select "Female" as member's sex option
-    And I select "No" as pregnancy option
-    And I select "Spouse" as relationship option
-    And I select "No" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "07271963", "Female" and applying "No"
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -1653,7 +1626,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -1662,12 +1635,9 @@ Feature: EXCH Seed Data ALL
 #    //GRAND DAUGHTER
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "04212013" date of birth
-    And I select "Female" as member's sex option
-    And I select "No" as pregnancy option
-    And I select "Granddaughter" as relationship option
-    And I select "Granddaughter" as relationship one option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Granddaughter", "04212013", "Female" and applying "Yes"
+      |Primary:Granddaughter|
+      |Spouse:Granddaughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -1679,7 +1649,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Grandaughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1689,12 +1659,10 @@ Feature: EXCH Seed Data ALL
 #    //GRANDSON
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "12222016" date of birth
-    And I select "Male" as member's sex option
-    And I select "Grandson" as relationship option
-    And I select "Grandson" as relationship one option
-    And I select "Brother" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Grandson", "12222016", "Male" and applying "Yes"
+      |Primary:Grandson|
+      |Spouse:Grandson|
+      |Granddaughter:Brother|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -1706,7 +1674,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Grandson"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -1770,27 +1738,3 @@ Feature: EXCH Seed Data ALL
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
