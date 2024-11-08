@@ -201,7 +201,7 @@ public class PlanSummaryMedicalDentalPage {
             String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
             BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
-            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
+            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt.replace(",",""));
 
             BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add(bigDecimalmedAPTCAmt);
             subscriber.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
@@ -265,22 +265,15 @@ public class PlanSummaryMedicalDentalPage {
                 String medPremiumAfterReduction = medPremAfterAPTCAmtEle.getText().replace("$", "");
                 String medAPTCAmt = medAPTCAmtEle.getText().replace("$", "");
 
-
-                BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(medAPTCAmt);
+                BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(medAPTCAmt.replace(",",""));
                 BigDecimal bigDecimalMedPremiumMinusAPTC = new BigDecimal(medPremiumAfterReduction);
                 BigDecimal totalMedicalPremium = bigDecimalMedPremiumMinusAPTC.add(bigDecimalMedAPTCAmt);
                 subscriber.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
 
-//               String interim =String.valueOf(Double.parseDouble((member.getMedicalAptcAmt())) + Double.parseDouble(member.getTotalMedAmtAfterReduction()));
-//                BigDecimal premiumAmount = new BigDecimal(interim);
-//                BigDecimal roundedPremiumAmount = premiumAmount.setScale(2, RoundingMode.HALF_UP);
-//                member.setMedicalPremiumAmt(String.valueOf(roundedPremiumAmount));
-
-
                 member.setMedicalPlan(medicalPlanNameEle.getText());
                 member.setMedicalAptcAmt(medAPTCAmt);
                 member.setTotalMedAmtAfterReduction(medPremiumAfterReduction);
-
+                member.setMedicalPremiumAmt(totalMedicalPremium.toString());
 
                 //Dental Plan Premium details
                 WebElement dentalPremiumAfterAPTCAmntEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_"+groupLocatorIndex+""));

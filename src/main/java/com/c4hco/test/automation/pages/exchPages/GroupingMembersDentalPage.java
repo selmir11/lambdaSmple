@@ -64,6 +64,7 @@ public class GroupingMembersDentalPage {
         basicActions.waitForElementToBePresent(continueButton,10);
         List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
         for (MemberDetails memDet : memberInfoDetails){
+            basicActions.waitForElementListToBePresent(groupTitle,10);
             WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
             basicActions.waitForElementToBePresentWithRetries(memGroupInfo,10);
             basicActions.scrollToElement(memGroupInfo);
