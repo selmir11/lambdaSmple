@@ -236,7 +236,7 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.wait(3000);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
 
-        if(!isGettingFinancialHelp){//NFA
+        if(medicalAPTCAmt.isEmpty()){//NFA
             basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
             for(MemberDetails member: memberslist){
                 //getting group details

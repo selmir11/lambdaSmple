@@ -178,9 +178,7 @@ public class AccountOverviewPage {
         List<String> actualMemberNames = new ArrayList<>();
         List<MemberDetails> memberDetailsList = basicActions.getAllMem();
 
-        if(memberDetailsList !=null) {
-            for (int i = 0; i < memberDetailsList.size(); i++) {
-                MemberDetails member = basicActions.getAllMem().get(i);
+            for (MemberDetails member: memberDetailsList) {
                 expectedMemberNames.add(member.getFirstName()+" "+member.getLastName());
             }
 
@@ -190,7 +188,6 @@ public class AccountOverviewPage {
                     actualMemberNames.add(member.getText());
                 }
             }
-        }
         softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size()==expectedMemberNames.size());
         softAssert.assertAll();
     }
