@@ -205,9 +205,4 @@ public class ApplicationResultsPage {
         softAssert.assertEquals(textBox.getText(), expectedText, "Verify My Info Button Text Incorrect");
         verifyMyInfoButton.click();
     }
-
-//    public void checkVerifyMyInfoGone() {
-//        WebDriverWait wait = new WebDriverWait(basicActions.getDriver(), timeout);
-//        wait.until(ExpectedConditions.invisibilityOf(verifyMyInfoButton));
-//    }
 }

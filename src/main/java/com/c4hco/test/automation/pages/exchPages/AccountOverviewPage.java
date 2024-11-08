@@ -289,4 +289,8 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
+    public void verifyMyInfoButton() {
+        basicActions.waitForElementToBeClickable(btnVerifyYourInformation, 10);
+        btnVerifyYourInformation.click();
+    }
 }
