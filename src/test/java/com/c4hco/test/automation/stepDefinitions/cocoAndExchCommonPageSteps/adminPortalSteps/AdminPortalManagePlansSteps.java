@@ -159,6 +159,5 @@ public class AdminPortalManagePlansSteps {
     public void iClickSearchInAdminPortalBlueHeader() {
         adminPortalManagePlansPage.clickSearchInAdminPortalBlueHeader();
     }
-
 }
 

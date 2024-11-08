@@ -147,7 +147,6 @@ public class AdminPortalIndividualDashboardPage {
     WebElement planYearDpd;
     @FindBy(css = ".drop-down-option.drop-down-option-selected")
     WebElement dpdCurrentYearMP;
-
     @FindBy(css = "#groupBox1 > app-plan-year-dropdown > div")
     List<WebElement> planYearSelectorOptions;
 

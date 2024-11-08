@@ -11,6 +11,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
+    And I select year "2024" from Manage Plan container on Individual dashboard
     Then I click on "Manage Plans" user dashboard button
     And I validate I am on the "Manage Plans" page
     Then I validate blue bar on Manage page
@@ -40,6 +41,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
+    And I select year "2022" from Manage Plan container on Individual dashboard
     Then I click on "Manage Plans" user dashboard button
     And I validate I am on the "Manage Plans" page
     Then I validate blue bar on Manage page
@@ -69,6 +71,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
+    And I select year "2023" from Manage Plan container on Individual dashboard
     Then I click on "Manage Plans" user dashboard button
     And I validate I am on the "Manage Plans" page
     Then I validate blue bar on Manage page
