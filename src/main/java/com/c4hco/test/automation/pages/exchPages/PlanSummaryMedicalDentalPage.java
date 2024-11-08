@@ -235,10 +235,7 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.wait(3000);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
-        if(memberslist.size()==1){
-            memberslist.get(0).setMedGroupInd("1");
-            memberslist.get(0).setDenGroupInd("1");
-        }
+
         if(!isGettingFinancialHelp){//NFA
             basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
             for(MemberDetails member: memberslist){
