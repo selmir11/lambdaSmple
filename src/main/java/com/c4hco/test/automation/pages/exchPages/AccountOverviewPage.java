@@ -174,20 +174,15 @@ public class AccountOverviewPage {
     }
 
     public void verifyMemberNames() {
-        List<String> expectedMemberNames = new ArrayList<>();
+        List<String> expectedMemberNames = basicActions.getAllMemNames();;
         List<String> actualMemberNames = new ArrayList<>();
-        List<MemberDetails> memberDetailsList = basicActions.getAllMem();
 
-            for (MemberDetails member: memberDetailsList) {
-                expectedMemberNames.add(member.getFirstName()+" "+member.getLastName());
-            }
-
-            for (int k = 1; k <= SharedData.getScenarioDetails().getTotalGroups(); k++) {
-                List<WebElement> getactualMemberNames = basicActions.getDriver().findElements(By.cssSelector(".table-bordered tr:nth-child(" + k + ") td:nth-child(2) span b"));
-                for (WebElement member : getactualMemberNames) {
-                    actualMemberNames.add(member.getText());
-                }
-            }
+//            for (int k = 1; k <= SharedData.getScenarioDetails().getTotalGroups(); k++) {
+//                List<WebElement> getactualMemberNames = basicActions.getDriver().findElements(By.cssSelector(".table-bordered tr:nth-child(" + k + ") td:nth-child(2) span b"));
+//                for (WebElement member : getactualMemberNames) {
+//                    actualMemberNames.add(member.getText());
+//                }
+//            }
         softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size()==expectedMemberNames.size());
         softAssert.assertAll();
     }
