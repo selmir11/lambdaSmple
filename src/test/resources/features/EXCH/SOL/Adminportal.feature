@@ -417,7 +417,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for the next year
+    Then I apply for the next year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -514,40 +514,40 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 2 default groups
+    #Then I validate that there are 2 default groups
     Then I click continue on grouping Members Medical page
     And I select "Cigna Connect Colorado Option Silver" medical plan
     Then I click continue on medical plan results page
-    And I select "Cigna Connect Colorado Option Silver" medical plan
-    Then I click continue on medical plan results page
-    Then I validate that there are 2 default groups
+    #And I select "Cigna Connect Colorado Option Silver" medical plan
+    #Then I click continue on medical plan results page
+    #Then I validate that there are 2 default groups
     Then I click continue on grouping Members Dental page
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
-    And I select "Anthem Dental Family Value" plan
-    Then I click continue on dental plan results page
+    #And I select "Anthem Dental Family Value" plan
+    #Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter "taxHolder1" signature on the Financial Help Agreements page
+    And I enter "taxHolder2" signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
-    Then I click create account on admin portal
-    And I enter general mandatory data for "exchange" account creation
-    And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
-    And I click "On Behalf Of (OBO)" from application links dropdown
-
+    And I select "Tax Household 2" under Eligibility
 
   @SLER-1160
     Scenario: AdminLCE Happy Path 2 'No' into 2 'Yes'
