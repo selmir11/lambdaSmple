@@ -28,7 +28,7 @@ Feature: Manage Plans: Buttons (positive and negative testing) buttons in previo
     And I click Reset Changes Dental
     And logout from Admin Portal
   @SLER-838
-  Scenario: Verify user with role for Manage Plans will be able to make changes
+  Scenario: Verify user with role for Manage Plans will be able to make changes in the past year as 2023
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
