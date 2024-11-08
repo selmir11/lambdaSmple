@@ -4,11 +4,11 @@ Feature: Testing Manual Verification Requests (MVRs)
   Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
 
   @SLER-1217
   Scenario: Income MVR
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
     And I enter first name "MVRAutomationTest" last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -103,17 +103,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate I am on the "Account Overview" page
     Then I click on Sign Out in the Header for "NonElmo"
 
+    And I wait for 7000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Income" MVR
     Then I check that the MVR has a status of "Open"
+    Then I sign out of CRM
 
   @SLER-1218
   Scenario: SSN MVR
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
     And I enter first name "MVRAutomationTest" last name "OPENSSNMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -208,17 +208,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate I am on the "Account Overview" page
     Then I click on Sign Out in the Header for "NonElmo"
 
+    And I wait for 7000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "SSN" MVR
     Then I check that the MVR has a status of "Open"
+    Then I sign out of CRM
 
   @SLER-1219
   Scenario: Death MVR
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
     And I enter first name "MVRAutomationTest" last name "OPENDEATHMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -313,17 +313,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate I am on the "Account Overview" page
     Then I click on Sign Out in the Header for "NonElmo"
 
+    And I wait for 7000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Death" MVR
     Then I check that the MVR has a status of "Open"
+    Then I sign out of CRM
 
   @SLER-1223
   Scenario: Citizenship MVR
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
     And I enter first name "MVRAutomationTest" last name "OPENCTZNMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -418,17 +418,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate I am on the "Account Overview" page
     Then I click on Sign Out in the Header for "NonElmo"
 
+    And I wait for 7000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Citizenship" MVR
     Then I check that the MVR has a status of "Open"
+    Then I sign out of CRM
 
   @SLER-1224
   Scenario: Incarceration MVR
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
     And I enter first name "MVRAutomationTest" last name "OPENINCARMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -523,17 +523,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate I am on the "Account Overview" page
     Then I click on Sign Out in the Header for "NonElmo"
 
+    And I wait for 7000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Incarceration" MVR
     Then I check that the MVR has a status of "Open"
+    Then I sign out of CRM
 
   @SLER-1225
   Scenario: American Indian / Alaska Native (AI/AN) MVR
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
     And I enter first name "MVRAutomationTest" last name "OPENAIANMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -629,17 +629,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate I am on the "Account Overview" page
     Then I click on Sign Out in the Header for "NonElmo"
 
+    And I wait for 7000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "American Indian/Alaska Native" MVR
     Then I check that the MVR has a status of "Open"
+    Then I sign out of CRM
 
   @SLER-1228
   Scenario: Lawful Presence MVR
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
     And I enter first name "MVRAutomationTest" last name "VLPunex" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -742,9 +742,11 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate I am on the "Account Overview" page
     Then I click on Sign Out in the Header for "NonElmo"
 
+    And I wait for 7000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
     Then I open the MVRDVR Tab on contact page
     Then I open the "Lawful Presence" MVR
     Then I check that the MVR has a status of "Open"
+    Then I sign out of CRM

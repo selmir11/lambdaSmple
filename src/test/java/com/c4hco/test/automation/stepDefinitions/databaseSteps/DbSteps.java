@@ -53,10 +53,11 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
    @And("I validate MVR details for account")
    public void iValidateMVRDetails(List<Map<String, String>> expectedValues){dbValidations.validateMVR(expectedValues);}
 
+   @And("I validate the SSA response code is {string} in the DB for {string}")
+   public void iVerifySsaResponseCodeDb(String code, String memPrefix) {dbValidations.verifySsaResponseCodeDb(code, memPrefix);}
+
    @And("I verify the client application submission in BoB DB")
-   public void iVerifyApplicationSubmissionBobDb() {
-      dbValidations.validateApplicationSubmissionBob();
-   }
+   public void iVerifyApplicationSubmissionBobDb() {dbValidations.validateApplicationSubmissionBob();}
 
    @And("I verify the client's policy submission in BoB DB has {int} expected records for coverage type {int}")
    public void iVerifyMedicalPolicySubmissionBobDb(int expectedRecords, int coverageType) {
