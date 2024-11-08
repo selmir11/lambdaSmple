@@ -105,7 +105,7 @@ Feature: Broker Portal OBO - Submit NFA Application and enroll in a plan
     Then I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
 
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox

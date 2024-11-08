@@ -1,9 +1,9 @@
 Feature: Seed04 - Exchange
-#  @SLER-316-WIP
+
   Background: Seed 04 For Exchange- Husband and Wife with FA
-#    Given I set the test scenario details
-#      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
-#      | 1           | 2            | 1                 | 1                | 2               |
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 2            | 1                 | 1                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -149,7 +149,7 @@ Feature: Seed04 - Exchange
     And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I continue on plan summary page
+    And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page

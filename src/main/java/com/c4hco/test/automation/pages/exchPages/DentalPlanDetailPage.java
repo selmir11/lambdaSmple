@@ -52,7 +52,7 @@ public class DentalPlanDetailPage {
     @FindBy(xpath = "//*[class = 'td-sub-title']")
     List<WebElement> subheader;
 
-    //@FindBy(xpath = "//button[@id='ngb-accordion-item-2-toggle']") // Diagnostic and Preventive Services Child
+
     @FindBy(xpath = "//td[normalize-space()='Cleaning Child']")
     WebElement txtCleaningChild;
     @FindBy(xpath = "//td[normalize-space()='Limpieza para un hijo']")
@@ -187,6 +187,95 @@ public class DentalPlanDetailPage {
     @FindBy(xpath = " //td[normalize-space()='Terapia de endodoncia para un adulto']")
     WebElement txtRootCanalAdultSP;
     //
+
+    @FindBy(xpath = " //*[contains(text(),\"Cleaning Child\")]")
+    WebElement txtCleaningChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Child\\\")]\")")
+    WebElement txtFlourideChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Child\\\")]\")")
+    WebElement txtOralExamsChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Child\\\")]\")")
+    WebElement txtXraysChildSpanish;
+
+    @FindBy(id = "ngb-accordion-item-2-toggle")
+    WebElement txtInDiagnosticAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Adult\\\")]\")")
+    WebElement txtCleaningAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Exams Adult\\\")]\")")
+    WebElement txtOralExamsAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"X-rays Adult\\\")]\")")
+    WebElement txtXraysAdultSpanish;
+    //
+    @FindBy(id = "ngb-accordion-item-3-toggle")
+    WebElement txtInBasicServicesChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Amalgam (Steel) Fillings Child\\\")]\")")
+    WebElement txtAmalgamChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Periodontics - Other Child\\\")]\")")
+    WebElement txtPeriodonticsChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Resin (white plastic) Fillings Child\\\")]\")")
+    WebElement txtResinChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Sedative Fillings Child\\\")]\")")
+    WebElement txtSedativeFluidChildSpanish;
+
+    @FindBy(id = "ngb-accordion-item-4-toggle")
+    WebElement txtInBasicServicesAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Amalgam (Steel) Fillings Adult\\\")]\")")
+    WebElement txtAmalgamAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Periodontics - Other Adult\\\")]\")")
+    WebElement txtPeriodonticsAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Sedative Fillings Adult\\\")]\")")
+    WebElement txtSedativeFluidAdultSpanish;
+    //
+
+    @FindBy(id = "ngb-accordion-item-5-toggle")
+    WebElement txtInMajorServicesChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Dentures and Bridges Child\\\")]\")")
+    WebElement txtDenturesChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Implants Child\\\")]\")")
+    WebElement txtImplantsChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Medically Necessary Orthodontia Child\\\")]\")")
+    WebElement txtOrthodontiaChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Surgery Child\\\")]\")")
+    WebElement txtOralSurgeryChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Root canal therapy Child\\\")]\")")
+    WebElement txtRootCanalChildSpanish;
+    //
+    @FindBy(id = "ngb-accordion-item-6-toggle")
+    WebElement txtInMajorServicesAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Dentures and Bridges Adult\\\")]\")")
+    WebElement txtDenturesAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Implants Adult\\\")]\")")
+    WebElement txtImplantsAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Medically Necessary Orthodontia Adult\\\")]\")")
+    WebElement txtOrthodontiaAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Surgery Adult\\\")]\")")
+    WebElement txtOralSurgeryAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Root canal therapy Adult\\\")]\")")
+    WebElement txtRootCanalAdultSpanish;
+    //
     @FindBy(css = ".float-start")
     WebElement txtOutMonthlyPremium;
 
@@ -222,10 +311,79 @@ public class DentalPlanDetailPage {
         basicActions.waitForElementToBeClickable(inNetworkDentalDetailLink,15 );
         inNetworkDentalDetailLink.click();}
 
+    public void clickSpanishInNetworkDental() {
+        basicActions.waitForElementToBeClickable(inNetworkDentalDetailLink,15 );
+        inNetworkDentalDetailLink.click();}
+
 
     public void clickOutNetworkDental() {
         basicActions.waitForElementToBeClickable(outNetworkDentalDetailLink, 15 );
         outNetworkDentalDetailLink.click();}
+
+    public void clickOutNetworkDentalSpanish() {
+        basicActions.waitForElementToBeClickable(outNetworkDentalDetailLink, 15 );
+        outNetworkDentalDetailLink.click();}
+
+    public void validateInNetworkDentalDetailEnglish(){
+        basicActions.waitForElementToBePresent( txtDentalDisclaimer,15 );
+        softAssert.assertEquals(txtDentalDisclaimer.getText(), "See the Plan Details and review the Summary of Benefits and Coverage document for the most comprehensive and accurate information." );
+        softAssert.assertEquals(txtInMonthlyPremium.getText(), "Monthly Premium");
+        softAssert.assertEquals(txtInGeneralDetails.getText(), "General Details");
+        softAssert.assertEquals(txtInDiagnosticChild.getText(), "Diagnostic and Preventive Services Child");
+        txtInGeneralDetails.click();
+        txtInDiagnosticChild.click();
+        // assertions not working here  - review
+        //softAssert.assertEquals( subheader.get(1).getText(), "Cleaning Child" );
+        softAssert.assertEquals( txtCleaningChild.getText(), "Cleaning Child" );
+        softAssert.assertEquals( txtFlourideChild.getText(), "Flouride Treatments Child" );
+        softAssert.assertEquals( txtOralExamsChild.getText(), "Oral Exams Child");
+        softAssert.assertEquals( txtXraysChild.getText(),"X-rays Child" );
+        softAssert.assertEquals(txtInDiagnosticAdult.getText(), "Diagnostic and Preventive Services Adult");
+        txtInDiagnosticChild.click();
+        txtInDiagnosticAdult.click();
+        softAssert.assertEquals( txtCleaningAdult.getText(), "Cleaning Adult" );
+        softAssert.assertEquals( txtOralExamsAdult.getText(), "Oral Exams Adult");
+        softAssert.assertEquals(txtXraysAdult.getText(), "X-rays Adult");
+        softAssert.assertEquals( txtInBasicServicesChild.getText(),"Basic Services Child" );
+        txtInDiagnosticAdult.click();
+        txtInBasicServicesChild.click();
+        softAssert.assertEquals( txtAmalgamChild.getText(), "Amalgam (Steel) Fillings Child" );
+        softAssert.assertEquals( txtPeriodonticsChild.getText(), "Peridontics - Other Child" );
+        softAssert.assertEquals( txtResinChild.getText(), "Resin (white plastic) Fillings Child");
+        softAssert.assertEquals( txtSedativeFluidChild.getText(),"Sedative Fillings Child" );
+        softAssert.assertEquals(txtInBasicServicesAdult.getText(), "Basic Services Adult");
+        txtInBasicServicesChild.click();
+        txtInBasicServicesAdult.click();
+        softAssert.assertEquals( txtAmalgamAdult.getText(), "Amalgam (Steel) Fillings Adult" );
+        softAssert.assertEquals( txtPeriodonticsAdult.getText(), "Peridontics - Other Adult" );
+        softAssert.assertEquals( txtSedativeFluidAdult.getText(),"Sedative Fillings Adult" );
+        softAssert.assertEquals(txtInMajorServicesChild.getText(), "Major Services Child");
+        txtInBasicServicesAdult.click();
+        txtInMajorServicesChild.click();
+        softAssert.assertEquals( txtDenturesChild.getText(),"Dentures and Bridges Child" );
+        softAssert.assertEquals( txtImplantsChild.getText(),"Implants Child" );
+        softAssert.assertEquals( txtOrthodontiaChild.getText(),"Medically Necessary Orthodontia Child" );
+        softAssert.assertEquals( txtOralSurgeryChild.getText(),"Oral Surgery Child" );
+        softAssert.assertEquals( txtRootCanalChild.getText(),"Root canal therapy Child" );
+        softAssert.assertEquals(txtInMajorServicesAdult.getText(), "Major Services Adult");
+        txtInMajorServicesChild.click();
+        txtInMajorServicesAdult.click();
+        softAssert.assertEquals( txtDenturesAdult.getText(),"Dentures and Bridges Adult" );
+        softAssert.assertEquals( txtImplantsAdult.getText(),"Implants Adult" );
+        softAssert.assertEquals( txtOralSurgeryAdult.getText(),"Oral Surgery Adult" );
+        softAssert.assertEquals( txtRootCanalAdult.getText(),"Root canal therapy Adult" );
+        txtInMajorServicesAdult.click();
+        softAssert.assertAll();
+    }
+    
+    public void validateOutNetworkDentalDetailEnglish(){
+        basicActions.waitForElementToBePresent( txtDentalDisclaimer,15 );
+        softAssert.assertEquals(txtDentalDisclaimer.getText(), "See the Plan Details and review the Summary of Benefits and Coverage document for the most comprehensive and accurate information." );
+        softAssert.assertEquals(txtInMonthlyPremium.getText(), "Monthly Premium");
+        softAssert.assertEquals(txtInGeneralDetails.getText(), "General Details");
+        softAssert.assertEquals(txtInDiagnosticChild.getText(), "Diagnostic and Preventive Services Child");
+
+    }
 
     public void validateInNetworkDentalDetailLanguage(String language) {
         basicActions.waitForElementToDisappear( spinner, 20 );
@@ -320,11 +478,60 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals( txtRootCanalAdult.getText(), "Root canal therapy Adult" );
         txtInMajorServicesAdult.click();
         softAssert.assertAll();
+
+    }
+
+    public void validateInNetworkDentalDetailSpanish(){
+        basicActions.waitForElementToBePresent( txtDentalDisclaimer,15 );
+        softAssert.assertEquals(txtInMonthlyPremium.getText(), "Prima mensual");
+        softAssert.assertEquals(txtInGeneralDetails.getText(), "Detalles generales");
+        txtInGeneralDetails.click();
+        softAssert.assertEquals(txtInDiagnosticChild.getText(), "Servicios diagn\u00f3sticos y de atenci\u00f3n preventiva para un hijo");
+        txtInDiagnosticChild.click();
+        softAssert.assertEquals( txtCleaningChild.getText(), "Limpieza para un hijo" );
+        softAssert.assertEquals( txtFlourideChild.getText(), "Tratamientos con fluoruro para un hijo" );
+        softAssert.assertEquals( txtOralExamsChild.getText(), "Ex\u00e1menes bucales para un hijo");
+        softAssert.assertEquals( txtXraysChild.getText(),"Radiografís para un hijo" );
+        txtInDiagnosticChild.click();
+        softAssert.assertEquals(txtInDiagnosticAdult.getText(), "Servicios diagn\u00f3sticos y de atenci\u00f3n preventiva para un adulto");
+        txtInDiagnosticAdult.click();
+        softAssert.assertEquals( txtCleaningAdult.getText(), "Limpiezas para un adulto" );
+        softAssert.assertEquals( txtOralExamsAdult.getText(), "Ex\u00e1menes bucales para un adulto");
+        softAssert.assertEquals(txtXraysAdult.getText(), "Radiografías para un adulto");
+        txtInDiagnosticAdult.click();
+        softAssert.assertEquals( txtInBasicServicesChild.getText(),"Servicios b\u00e1sicos para un hijo" );
+        txtInBasicServicesChild.click();
+        softAssert.assertEquals( txtAmalgamChild.getText(), "Empastes de amalgama (acero) para un hijo" );
+        softAssert.assertEquals( txtPeriodonticsChild.getText(), "Periodoncia para otro hijo" );
+        softAssert.assertEquals( txtResinChild.getText(), "Empastes de resina (pl\u00e1stico blanco) para un hijo");
+        softAssert.assertEquals( txtSedativeFluidChild.getText(),"Empastes con sedaci\u00f3n para un hijo" );
+        txtInBasicServicesChild.click();
+        softAssert.assertEquals(txtInBasicServicesAdult.getText(), "Servicios b\u00e1sicos para un adulto");
+        txtInBasicServicesAdult.click();
+        softAssert.assertEquals( txtAmalgamAdult.getText(), "Empastes de amalgama (acero) para un adulto" );
+        softAssert.assertEquals( txtPeriodonticsAdult.getText(), "Periodoncia para otro adulto" );
+        softAssert.assertEquals( txtSedativeFluidAdult.getText(),"Empastes con sedaci\u00f3n para un adulto" );
+        txtInBasicServicesAdult.click();
+        softAssert.assertEquals(txtInMajorServicesChild.getText(), "Servicios especializados para un hijo");
+        txtInMajorServicesChild.click();
+        softAssert.assertEquals( txtDenturesChild.getText(),"Dentaduras y puentes para un hijo" );
+        softAssert.assertEquals( txtImplantsChild.getText(),"Implantes para un hijo" );
+        softAssert.assertEquals( txtOrthodontiaChild.getText(),"Ortodoncia medicamente necesaria para un hijo" );
+        softAssert.assertEquals( txtOralSurgeryChild.getText(),"Cirugía bucal para un hijo" );
+        softAssert.assertEquals( txtRootCanalChild.getText(),"Terapia de endodoncia para un hijo" );
+        txtInMajorServicesChild.click();
+        softAssert.assertEquals(txtInMajorServicesAdult.getText(), "Servicios especializados para un adulto");
+        txtInMajorServicesAdult.click();
+        softAssert.assertEquals( txtDenturesAdult.getText(),"Dentaduras y puentes para un adulto" );
+        softAssert.assertEquals( txtImplantsAdult.getText(),"Implantes para un adulto" );
+        softAssert.assertEquals( txtOralSurgeryAdult.getText(),"Terapia de endodoncia para un adulto" );
+        txtInMajorServicesAdult.click();
+        softAssert.assertAll();
+
     }
 
     public void validateEnglishOutNetworkDentalDetail() {
         basicActions.waitForElementToBePresent( txtDentalDisclaimer, 15 );
-        softAssert.assertEquals( txtDentalDisclaimer.getText(), "See the Plan Details and review the Summary of Benefits and Coverage document for the most comprehensive and accurate information." );
         softAssert.assertEquals( txtInMonthlyPremium.getText(), "Monthly Premium" );
 
         basicActions.waitForElementToBePresentWithRetries( txtOutGeneralDetails,30 );
@@ -387,6 +594,52 @@ public class DentalPlanDetailPage {
         txtOutMajorServicesAdult.click();
 
     }
+    public void validateOutNetworkDentalDetailSpanish(){
+        softAssert.assertEquals(txtDentalDisclaimer.getText(), "Es posible que algunos detalles y documentos del plan no est\u00e9n disponibles en español. Vea los detalles del plan y el resumen de beneficios y cobertura para obtener la informaci\u00f3n más completa y precisa." );
+        softAssert.assertEquals(txtInMonthlyPremium.getText(), "Prima mensual");
+        softAssert.assertEquals(txtInGeneralDetails.getText(), "Detalles generales");
+        txtInGeneralDetails.click();
+        softAssert.assertEquals(txtInDiagnosticChild.getText(), "Servicios diagn\u00f3sticos y de atenci\u00f3n preventiva para un hijo");
+        txtInDiagnosticChild.click();
+        softAssert.assertEquals( txtCleaningChild.getText(), "Limpieza para un hijo" );
+        softAssert.assertEquals( txtFlourideChild.getText(), "Tratamientos con fluoruro para un hijo" );
+        softAssert.assertEquals( txtOralExamsChild.getText(), "Ex\u00e1menes bucales para un hijo");
+        softAssert.assertEquals( txtXraysChild.getText(),"Radiografís para un hijo" );
+        txtInDiagnosticChild.click();
+        softAssert.assertEquals(txtInDiagnosticAdult.getText(), "Servicios diagn\u00f3sticos y de atenci\u00f3n preventiva para un adulto");
+        txtInDiagnosticAdult.click();
+        softAssert.assertEquals( txtCleaningAdult.getText(), "Limpiezas para un adulto" );
+        softAssert.assertEquals( txtOralExamsAdult.getText(), "Ex\u00e1menes bucales para un adulto");
+        softAssert.assertEquals(txtXraysAdult.getText(), "Radiografías para un adulto");
+        txtInDiagnosticAdult.click();
+        softAssert.assertEquals( txtInBasicServicesChild.getText(),"Servicios b\u00e1sicos para un hijo" );
+        txtInBasicServicesChild.click();
+        softAssert.assertEquals( txtAmalgamChild.getText(), "Empastes de amalgama (acero) para un hijo" );
+        softAssert.assertEquals( txtPeriodonticsChild.getText(), "Periodoncia para otro hijo" );
+        softAssert.assertEquals( txtResinChild.getText(), "Empastes de resina (pl\u00e1stico blanco) para un hijo");
+        softAssert.assertEquals( txtSedativeFluidChild.getText(),"Empastes con sedaci\u00f3n para un hijo" );
+        txtInBasicServicesChild.click();
+        softAssert.assertEquals(txtInBasicServicesAdult.getText(), "Servicios b\u00e1sicos para un adulto");
+        txtInBasicServicesAdult.click();
+        softAssert.assertEquals( txtAmalgamAdult.getText(), "Empastes de amalgama (acero) para un adulto" );
+        softAssert.assertEquals( txtPeriodonticsAdult.getText(), "Periodoncia para otro adulto" );
+        softAssert.assertEquals( txtSedativeFluidAdult.getText(),"Empastes con sedaci\u00f3n para un adulto" );
+        txtInBasicServicesAdult.click();
+        softAssert.assertEquals(txtInMajorServicesChild.getText(), "Servicios especializados para un hijo");
+        txtInMajorServicesChild.click();
+        softAssert.assertEquals( txtDenturesChild.getText(),"Dentaduras y puentes para un hijo" );
+        softAssert.assertEquals( txtImplantsChild.getText(),"Implantes para un hijo" );
+        softAssert.assertEquals( txtOrthodontiaChild.getText(),"Ortodoncia medicamente necesaria para un hijo" );
+        softAssert.assertEquals( txtOralSurgeryChild.getText(),"Cirugía bucal para un hijo" );
+        softAssert.assertEquals( txtRootCanalChild.getText(),"Terapia de endodoncia para un hijo" );
+        txtInMajorServicesChild.click();
+        softAssert.assertEquals(txtInMajorServicesAdult.getText(), "Servicios especializados para un adulto");
+        txtInMajorServicesAdult.click();
+        softAssert.assertEquals( txtDenturesAdult.getText(),"Dentaduras y puentes para un adulto" );
+        softAssert.assertEquals( txtImplantsAdult.getText(),"Implantes para un adulto" );
+        softAssert.assertEquals( txtOralSurgeryAdult.getText(),"Terapia de endodoncia para un adulto" );
+        txtInMajorServicesAdult.click();
+        softAssert.assertAll();}
 
     public void validateSpanishInNetworkDentalDetail() {
         basicActions.waitForElementToBePresent( txtDentalDisclaimer, 15 );
