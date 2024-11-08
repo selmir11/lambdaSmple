@@ -105,17 +105,21 @@ public class DentalPlansResultsPage {
     @FindBy(css = ".c4-type-header-sm")
     List<WebElement> dentalPlanNamesList;
 
-    @FindBy(id = "AdultDedToolTip_1")
+    @FindBy(id = "ngb-tooltip-10")
     WebElement  TTAdultDeductable1;
+    @FindBy(xpath = "//*[@id='AdultDedToolTip_1'] ")
+    WebElement  underTTAdultDeductable1;
 
-    @FindBy(id = "PedDedToolTip_1")
+    @FindBy(id = "ngb-tooltip-12")
     WebElement  TTPedDeductable1;
+    @FindBy(xpath = "//*[@id='PedDedToolTip_1'] ")
+    WebElement  underTTPedDeductable1;
 
-    @FindBy(id = "OutOfPocketMaxToolTip_1")
+    @FindBy(id = "ngb-tooltip-11")
     WebElement  TTOutOfPocketDeductable1;
+    @FindBy(xpath = "//*[@id='OutOfPocketMaxToolTip_1'] ")
+    WebElement  underTTOutOfPocketDeductable1;
 
-    @FindBy(id ="")
-    WebElement TTFinancialHelp1;
 
     public void DentalresultspagetextValidation(){
         basicActions.waitForElementToDisappear(spinner, 30);
@@ -398,24 +402,32 @@ public class DentalPlansResultsPage {
     }
 
     public void validateToolTipsDentalPlanResultsPageEnglish() {
-        basicActions.waitForElementToDisappear( spinner, 15 );
+        basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent( disclaimerDental,10 );
-        basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
+        basicActions.click( underTTAdultDeductable1 );
+        basicActions.waitForElementToBePresent(TTAdultDeductable1,20  );
         softAssert.assertEquals( TTAdultDeductable1.getText(), "The amount you must spend on covered dental services before your insurance company starts to pay a percentage of your bills. This adult deductible amount applies to someone 19 or older." );
+        basicActions.click( underTTPedDeductable1 );
+        basicActions.waitForElementToBePresent(TTPedDeductable1,20  );
         softAssert.assertEquals( TTPedDeductable1.getText(), "The amount you must spend on covered dental services before your insurance company starts to pay a percentage of your bills. This pediatric deductible amount applies to someone 18 or younger." );
+        basicActions.click( underTTOutOfPocketDeductable1 );
+        basicActions.waitForElementToBePresent(TTOutOfPocketDeductable1,20  );
         softAssert.assertEquals( TTOutOfPocketDeductable1.getText(), "A predetermined, limited amount of money that an individual or members of your family must pay before an insurance company (or self-insured employer) will pay 100% of an individual's covered, in-network dental care expenses." );
-        //softAssert.assertEquals( TTFinancialHelp1.getText(), "Tax credits are designed to help individuals with the cost of their dental coverage embedded in medical plans. If tax credits have been applied to your health insurance plan, the amount will be displayed here." );
         softAssert.assertAll();
     }
 
     public void validateToolTipsDentalPlanResultsPageSpanish() {
-        basicActions.waitForElementToDisappear(spinner,15);
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent( disclaimerDental,10 );
-        basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
+        basicActions.click( underTTAdultDeductable1 );
+        basicActions.waitForElementToBePresent(TTAdultDeductable1,20  );
         softAssert.assertEquals( TTAdultDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compañía de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible de adultos se aplica a las personas mayores de 19 años.");
+        basicActions.click( underTTPedDeductable1 );
+        basicActions.waitForElementToBePresent(TTPedDeductable1,20  );
         softAssert.assertEquals( TTPedDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compañía de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible pediátrico se aplica a personas de 18 años o menos.");
+        basicActions.click( underTTOutOfPocketDeductable1 );
+        basicActions.waitForElementToBePresent(TTOutOfPocketDeductable1,20  );
         softAssert.assertEquals( TTOutOfPocketDeductable1.getText(), "Una cantidad de dinero predeterminada y limitada que un individuo los miembros de su plan familiar deben pagar antes de que una compañía de seguros (o un empleador autoasegurado) pague el 100% de los gastos dentales de dicho individuo cubiertos dentro de la red." );
-        //softAssert.assertEquals( TTFinancialHelp1.getText(),"Los créditos fiscales están diseñados para ayudar a los individuos con el costo de su cobertura dental incorporada en los planes médicos. Si se aplicaron créditos fiscales a su plan de seguro de salud, el importe se mostrará aquí.");
         softAssert.assertAll();
     }
 

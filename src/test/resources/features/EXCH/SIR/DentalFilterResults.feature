@@ -493,7 +493,7 @@ Feature: Dental Plan Verification test
     And I validate for Pediatric and Adult Dental Plans
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1238-WIP @ValidateDentalPlanResultsToolTips
+  @SLER-1238 @ValidateDentalPlanResultsToolTips
   Scenario: SLER-1238 - Validate Dental Plan Results Tool Tips
     When I click create a new account on login page
     Then I click create my account from pre-screen page
