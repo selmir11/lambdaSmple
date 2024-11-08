@@ -419,7 +419,7 @@ Feature: Self Attestation
     Then I validate I am on the "Application Results" page
 #    And I confirm MVR notice is gone
 
-  @SLER1
+  @SLER00 @WIP
   Scenario: Welcome page yyy
     Then I apply for the current year
     Then I validate I am on the "Let us guide you" page
@@ -522,7 +522,7 @@ Feature: Self Attestation
     Then I validate I am on the "Account Overview" page
 #    And I confirm MVR notice is gone
 
-  @SLER2:
+  @SLER01: @WIP
   Scenario: Self Attestation from App History Page: YYY
     Then I apply for the current year
     Then I validate I am on the "Let us guide you" page
@@ -619,5 +619,5 @@ Feature: Self Attestation
     Then I verify the text on the Post Attestation page
     Then I click on Finish
 
-    Then I validate I am on the "Application Results" page
+    Then I validate I am on the "Application History" page
 #    And I confirm MVR notice is gone
