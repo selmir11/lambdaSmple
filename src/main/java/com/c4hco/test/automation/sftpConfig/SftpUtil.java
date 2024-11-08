@@ -12,9 +12,7 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.testng.Assert;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -121,6 +119,13 @@ public class SftpUtil {
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
         try{
             File file = new File(sftpFolderPath+"\\"+filename);
+
+            // Check if file exists and is not a directory before trying to open it
+            if (!file.exists() || !file.isFile()) {
+                System.err.println("File not found in the resource folder.");
+                Assert.fail("!!EDI File looking for is not found!!"+filename);
+            }
+
             InputStream inputStream = new FileInputStream(file);
 
             if (inputStream != null) {
@@ -131,8 +136,9 @@ public class SftpUtil {
                 Assert.fail("!!EDI File looking for is not found!!");
             }
             inputStream.close();
-        }catch (Exception e){
+        }catch (IOException e){
             e.printStackTrace();
+            Assert.fail("!!EDI File looking for is not found!!");
         }
     }
 
@@ -179,7 +185,7 @@ public class SftpUtil {
     public void readEdiFromLocal(){
         try{
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("SLER41Med");
+            InputStream inputStream = classLoader.getResourceAsStream("seed01TcMed");
 
             if (inputStream != null) {
                 System.out.println("File found");

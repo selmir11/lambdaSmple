@@ -57,6 +57,11 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueButton, 20);
         basicActions.waitForElementToBeClickable(continueButton, 10);
+        List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
+        for (MemberDetails memDet : memberInfoDetails){
+            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            memDet.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #",""));
+        }
         basicActions.scrollToElement( continueButton );
         basicActions.click(continueButton);
     }
@@ -88,10 +93,11 @@ public class GroupingMembersMedicalPage {
         int groupsSize = noOfGroups.size();
         if(SharedData.getScenarioDetails()!=null){
             SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        } else {
+            ScenarioDetails scenarioDetails = new ScenarioDetails();
+            scenarioDetails.setTotalGroups(groupsSize);
+            SharedData.setScenarioDetails(scenarioDetails);
         }
-        ScenarioDetails scenarioDetails = new ScenarioDetails();
-        scenarioDetails.setTotalGroups(groupsSize);
-        SharedData.setScenarioDetails(scenarioDetails);
         softAssert.assertEquals(groupsSize, totalGroups, "Total group size did not match");
         softAssert.assertAll();
     }
@@ -209,10 +215,11 @@ public class GroupingMembersMedicalPage {
         int groupsSize = noOfGroups.size();
         if(SharedData.getScenarioDetails()!=null){
             SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        } else {
+            ScenarioDetails scenarioDetails = new ScenarioDetails();
+            scenarioDetails.setTotalGroups(groupsSize);
+            SharedData.setScenarioDetails(scenarioDetails);
         }
-        ScenarioDetails scenarioDetails = new ScenarioDetails();
-        scenarioDetails.setTotalGroups(groupsSize);
-        SharedData.setScenarioDetails(scenarioDetails);
         for (int i = 1; i <= groupsSize; i++) {
             List<WebElement> details = basicActions.getDriver().findElements(By.xpath("//th[contains(text(),'Medical Group # " + i + "')]/../../following-sibling::tbody//td"));
             List<String> newDetails = new ArrayList<>();
@@ -220,15 +227,9 @@ public class GroupingMembersMedicalPage {
             for (WebElement detail : details) {
                 newDetails.add(detail.getText());
             }
-
             groupDetailsMap.put("Medical Group # " + i, newDetails);
         }
-
         SharedData.setGroupingDetails(groupDetailsMap);
-        System.out.println(groupDetailsMap);
-
     }
-
-
 
 }

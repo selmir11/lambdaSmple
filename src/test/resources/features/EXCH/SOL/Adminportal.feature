@@ -103,7 +103,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   And I select first dental plan
   Then I click continue on dental plan results page
   Then I validate I am on the "planSummaryMedicalDental" page
-  And I continue on plan summary page
+  And I click continue on plan summary page
   And I validate I am on the "Enrollment Agreements" page
   And I select "Acknowledgement" agreement checkbox
   And I select "Submit" agreement checkbox
@@ -407,7 +407,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-    @SLER-1160-WIP
+    @SLER-1160
     Scenario: AdminLCE Happy Path 2 'No' into 2 'Yes'
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
@@ -505,17 +505,41 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I wait for hold on content to disappear
       Then I click on view results and shop
       And I click continue on application results page
-      Then I click Back to App Results button on the pop up
-      And I click on Sign Out in the Header for "Elmo"
+      And I click Back to App Results button on the pop up
+      And I click on Sign Out in the Header for "NonElmo"
 
       Given I open the login page on the "admin" portal
       And I refresh the page
       And I validate I am on the "Login" page
       When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
       And I validate I am on the "Admin search" page
-      Then I click create account on admin portal
-      And I enter general mandatory data for "exchange" account creation
-      And I validate I am on the "Admin search" page
       And I select "individual" checkbox on Admin Portal Dashboard
-      And I search for user and click email from search results
+      Then I enter an accountId in any Env "5910497910" "4007973601" to search user
+      And I click on Search button in AP dashboard page
+      Then I select the first record from the search results
+      And I click "On Behalf Of (OBO)" from application links dropdown
+      And I initiate incoming page
+      And I apply for the current year
+      Then I select "No" option on the Let us guide you page
+      And I click on save and continue button
+      Then I click on continue with  application button on Before you begin page
+      And I report "MovedToColorado" and click continue
+      Then I click Continue on my own button from Manage who helps you page
+      And I click continue on Tell us about yourself page
+      And I click continue on the Add Address page
+
+      Then I validate I am on the "Elmo Race and Ethnicity" page
+      And I click continue on the Race and Ethnicity page
+      And I click continue on the Citizenship page
+      Then I click continue on family overview page
+      Then I select "Marriage" QLCE on tell us about life changes page
+      Then I click on Save and Continue
+      Then I Declare as Tax Household 1
+      And I click Continue on the Declarations And Signature Page
+      And I wait for hold on content to disappear
+      Then I click on view results and shop
+      And I click continue on application results page
+      Then I validate I am on the "Start Shopping" page
+
+
 

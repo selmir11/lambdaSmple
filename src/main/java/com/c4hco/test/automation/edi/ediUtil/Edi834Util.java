@@ -222,6 +222,8 @@ public class Edi834Util {
         Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
         Transaction transaction = edi834TransactionDetails.getTransactionList().get(0);
         Member member = transaction.getMembersList().get(0);
-        List<List<String>> dmgSeg = member.getDMG();
+        List<List<String>> lxSegment = member.getLX();
+        edi834TransactionDetails.getTransactionList().get(0).getCommonSegments();
+        List<List<String>> nm1Seg1  = member.getNM1();
     }
 }

@@ -117,4 +117,9 @@ public class YourInformationPageSteps {
     public void iVerifyBoBDisabled(){
         yourInformationPage.verifyBoBDisabled();
     }
+
+    @Then("I validate the error message for the license expiration date")
+    public void iValidateTheErrorMessageForTheLicenseExpirationDate() {
+        yourInformationPage.validateTheErrorMessageForTheLicenseExpirationDate();
+    }
 }

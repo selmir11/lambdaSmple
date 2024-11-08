@@ -114,11 +114,6 @@ public class MedicalPlanResultsPage {
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
-    public void iGetFirstPlanName() {
-        basicActions.waitForElementToBePresent(firstMedicalPlanName, 30);
-        SharedData.setFirstPlanNameOnMedicalResultsPage(firstMedicalPlanName.getText());
-    }
-
     public void SelectFirstMedicalPlan() {
         basicActions.waitForElementToDisappear( spinner,15 );
         basicActions.waitForElementToBePresent(selectFirstPlan, 30);

@@ -12,7 +12,7 @@ Feature: Tests related to the Additional Income page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -78,7 +78,7 @@ Feature: Tests related to the Additional Income page
     And I click on Apply for Coverage in the "Elmo" Header
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primay"
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     And I click save and continue on the Race and Ethnicity page

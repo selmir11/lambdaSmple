@@ -248,7 +248,6 @@ public class AccountOverviewPage {
 
         SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
-
     }
 
 
@@ -290,7 +289,7 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
-    public void verifyMyInfoButton() {
+    public void clickMyInfoButton() {
         basicActions.waitForElementToBeClickable(btnVerifyYourInformation, 10);
         btnVerifyYourInformation.click();
     }

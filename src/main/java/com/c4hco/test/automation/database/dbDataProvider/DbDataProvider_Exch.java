@@ -15,6 +15,9 @@ public class DbDataProvider_Exch {
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
     EnPolicyMemberAhHandler enPolicyMemberAhHandler = new EnPolicyMemberAhHandler();
+
+    EnMemberEffectiveDatesHandler enMemberEffectiveDatesHandler = new EnMemberEffectiveDatesHandler();
+
     EnPolicyFinancialAhHandler enPolicyFinancialAhHandler = new EnPolicyFinancialAhHandler();
     EnMemberCoverageFinancialAhHandler enMemberCoverageFinancialAhHandler = new EnMemberCoverageFinancialAhHandler();
     EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
@@ -23,10 +26,12 @@ public class DbDataProvider_Exch {
     Ib834Handler ib834Handler = new Ib834Handler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
+    EsManualVerifRequestDbHandler manualVerifRequestDbHandler = new EsManualVerifRequestDbHandler();
     PostgresHandler postgresHandler = new PostgresHandler();
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
+
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -101,8 +106,12 @@ public class DbDataProvider_Exch {
         String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
-        String brokerTinNum = getTinNumForBroker();
-        String csrLevel = getCSRLevel();
+        String brokerTinNum = null;
+        String csrLevel = null;
+        if (!"coco".equals(SharedData.getAppType())) {
+            brokerTinNum = getTinNumForBroker();
+            csrLevel = getCSRLevel();
+        }
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -191,14 +200,12 @@ public class DbDataProvider_Exch {
         return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessQ(eventType));
     }
 
-
     public List<String> getPolicyId(){
         return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());
     }
     public List<String> getApplicationId(){
         return postgresHandler.getResultListFor("application_id", exchDbQueries.appIdFromEnPolicyAh());
     }
-
 
     public List<String> getAccount_holder_fn() {
 
@@ -252,6 +259,7 @@ public class DbDataProvider_Exch {
     public List<EnPolicyAhEntity> getEnPolicyAh_details(){
         return enPolicyAhHandler.getEnPolicyTableDetails(exchDbQueries.enPolicyAh());
     }
+
     public List<EnMemberCoverageFinancialAhEntity> getEn_Mem_Cov_Fin_Ah_details(){
         return enMemberCoverageFinancialAhHandler.getEnMemberCoverageFinAhTableDetails(exchDbQueries.enMem_Coverage_FinancialAh());
     }
@@ -264,6 +272,18 @@ public class DbDataProvider_Exch {
     }
     public List<EnPolicyMemberAhEntity> getEnPol_mem_ah_details(){
         return enPolicyMemberAhHandler.getEnPolicyMemberAhTableDetails(exchDbQueries.enPolicyMemberAh());
+	}
+
+    public EsManualVerifRequestEntity getEsMVR_options(String manualVerificationType) {
+        return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR(manualVerificationType));
+    }
+
+    public EsSsaVerificationReqEntity getSsaResponseCode(String memberId){
+        return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerification(memberId));
+    }
+
+    public List<EnMemberEffectiveDatesEntity> getEnMember_eff_dates(){
+        return enMemberEffectiveDatesHandler.getEnMemberEffectiveDatesDetails(exchDbQueries.enMemberEffectiveDates());
     }
 
     public List<EsMemberHouseholdEntity> getCountOfPersonIds(){

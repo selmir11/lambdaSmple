@@ -4,7 +4,6 @@ import com.c4hco.test.automation.pages.exchPages.DentalPlansResultsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.testng.asserts.SoftAssert;
 
 public class DentalPlansResultsPageSteps {
     DentalPlansResultsPage dentalPlansResultsPage = new DentalPlansResultsPage(WebDriverManager.getDriver());
@@ -115,6 +114,8 @@ public class DentalPlansResultsPageSteps {
     public void validateTotalMedicalPlans(int expectedCount) {dentalPlansResultsPage.validateTotalDentalPlans(expectedCount);
     }
 
+    @And( "I validate the {string} Tool Tips Text on the Dental Plan Results page" )
+    public void validateToolTipText(String language){dentalPlansResultsPage.validateToolTipText(language);}
 
 
 }
