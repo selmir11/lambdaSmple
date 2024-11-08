@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
@@ -321,6 +322,17 @@ public class FindExpertHelpPage {
         basicActions.waitForElementToBePresent(brokerExistsText,100);
         softAssert.assertEquals(brokerExistsText.getText(),"This is your current Broker");
         softAssert.assertAll();
+    }
+
+    public void saveBrokerDetails(){
+        basicActions.waitForElementToBePresent(brokerExistsText,100);
+
+        BrokerDetails owner = new BrokerDetails();
+        owner.setBroker_name(currentBrokerName.getText());
+        owner.setAgencyName(currentAgencyName.getText());
+        owner.setLicense(currentBrokerLicense.getText());
+        owner.setAgencyPhoneNumber(currentBrokerPhone.getText());
+        SharedData.setAgencyOwner(owner);
     }
 
     public void validateAssisterExists(){
