@@ -57,5 +57,8 @@ public class AccountOverviewPageSteps {
 
     @Then("I validate text in Account Overview Page")
     public void ivalidateTextInAccountOverivewPage(List<String> Validationtext){accountOverviewPage.validateText(Validationtext);}
+
+    @Then("I click the Verify My Information button on Account Overview Page")
+    public void ivalidateVerifyMyInformationButton(){accountOverviewPage.verifyMyInfoButton();}
 }
 

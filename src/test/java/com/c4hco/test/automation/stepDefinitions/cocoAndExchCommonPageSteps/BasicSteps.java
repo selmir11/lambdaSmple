@@ -443,7 +443,7 @@ public class BasicSteps {
                 pageUrl = "/policies";
                 break;
             case "Self Attestation" :
-                pageUrl = "/ManualVerificationPortal/attestation-from-appresults";
+                pageUrl = "/ManualVerificationPortal/";
             default:
                 System.out.println("undefined page ");
                 break;
