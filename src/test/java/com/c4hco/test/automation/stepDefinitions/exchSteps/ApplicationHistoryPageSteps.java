@@ -32,5 +32,5 @@ public class ApplicationHistoryPageSteps {
     }
 
     @Then("Then I click on Verify My Information")
-    public void clickVerifyMyInfo(){applicationHistoryPage.validateVerifyMyInfoText();}
+    public void clickVerifyMyInfo(){applicationHistoryPage.clickVerifyMyInfoText();}
 }

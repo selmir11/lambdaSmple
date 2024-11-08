@@ -70,33 +70,52 @@ public class SelfAttestationPage {
     @FindBy(id = "undefined-SaveAndContinue")
     WebElement finish;
 
-    public void clickHousehold(String householdIncome){
+    public void clickHousehold(String householdIncome) {
         basicActions.waitForElementToBeClickable(householdIncomeYes, 10);
 
-        if (householdIncome.equals("Yes")) {
-            householdIncomeYes.click();
-        } else {householdIncomeNo.click();}
+        switch (householdIncome) {
+            case "Yes":
+                householdIncomeYes.click();
+                break;
+            case "No":
+                householdIncomeNo.click();
+                break;
+            default:
+                System.out.println("Unexpected value: " + householdIncome);
+                break;
+        }
     }
 
-    public void clickFederal(String federalIncome){
+    public void clickFederal(String federalIncome) {
         basicActions.waitForElementToBeClickable(federalIncomeYes, 10);
 
-        if (federalIncome.equals("Yes")) {
-            federalIncomeYes.click();
-        } else {federalIncomeNo.click();}
+        switch (federalIncome) {
+            case "Yes":
+                federalIncomeYes.click();
+                break;
+            case "No":
+                federalIncomeNo.click();
+                break;
+            default:
+                System.out.println("Unexpected value for federalIncome: " + federalIncome);
+                break;
+        }
     }
 
-
-    public void clickTax(String taxFiling){
+    public void clickTax(String taxFiling) {
         basicActions.waitForElementToBeClickable(taxYes, 10);
 
-        if (taxFiling.equals("Yes")){
-            taxYes.click();
-        } else if (taxFiling.equals("NoWillFile")) {
-            taxNoWillFile.click();
-        } else {
-            taxNo.click();
-            taxNoFlag = true;
+        switch (taxFiling) {
+            case "Yes":
+                taxYes.click();
+                break;
+            case "NoWillFile":
+                taxNoWillFile.click();
+                break;
+            default:
+                taxNo.click();
+                taxNoFlag = true;
+                break;
         }
     }
 

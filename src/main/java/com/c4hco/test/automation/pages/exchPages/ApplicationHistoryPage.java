@@ -90,7 +90,7 @@ public class ApplicationHistoryPage {
         Assert.assertFalse(basicActions.isElementDisplayed(aptcSection, 3));
     }
 
-    public void validateVerifyMyInfoText(){
+    public void clickVerifyMyInfoText(){
         basicActions.waitForElementToBePresent(verifyMyInfoButton,10);
         verifyMyInfoButton.click();
     }
