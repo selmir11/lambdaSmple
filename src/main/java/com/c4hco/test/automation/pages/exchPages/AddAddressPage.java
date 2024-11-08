@@ -32,6 +32,9 @@ public class AddAddressPage {
     @FindBy(id = "typeResidentialAddress")
     WebElement rdobtnDifferentResidentialAddress;
 
+    @FindBy(id = "typeMailingAddress")
+    WebElement rdobtnDifferentMailingAddress;
+
     @FindBy(css = ".input-group #mailingAddrLine1")
     WebElement txtMailingAddrLine1;
 
@@ -190,9 +193,12 @@ public class AddAddressPage {
         // Mailing Address - Only for primary member
         basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
+        txtMailingAddrLine1.clear();
         txtMailingAddrLine1.sendKeys(AddrLine1);
+        txtMailingCity.clear();
         txtMailingCity.sendKeys(city);
         selectMailingState.sendKeys(state);
+        txtMailingZip.clear();
         txtMailingZip.sendKeys(zipcode);
 
         basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
@@ -209,6 +215,8 @@ public class AddAddressPage {
 
         SharedData.getPrimaryMember().setMailingAddress(mailinglAddress);
     }
+
+    public void DifferentMailingAddress(){rdobtnDifferentMailingAddress.click();}
 
     public void addNewResidentialAddress(List<Map<String, String>> addDetails){
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
