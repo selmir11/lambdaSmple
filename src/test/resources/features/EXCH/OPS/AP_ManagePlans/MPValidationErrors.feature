@@ -205,7 +205,7 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
     And I click Reset Changes Dental
     And I click Make Changes Dental button
 
-#    premium amount error validation
+#    premium amount error validation OPS 6265
     Then I update the premium value for
       | 1:blank |
       | 2:blank |

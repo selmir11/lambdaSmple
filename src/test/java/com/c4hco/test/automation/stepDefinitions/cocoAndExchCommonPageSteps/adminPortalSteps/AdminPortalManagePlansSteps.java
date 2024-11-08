@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans.AdminPortalManagePlansPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -198,16 +197,6 @@ public class AdminPortalManagePlansSteps {
     public void iUpdateThePremiumValueFor(List<String> memberpremiumList) {
         adminPortalManagePlansPage.addpremiumvalue(memberpremiumList);
     }
-
-//    @Then("I update the premium value for {string}")
-//    public void iUpdateThePremiumValueFor(String plantype, DataTable dataTable) {
-//        // Convert DataTable to List<String> (e.g., "1:00.00", "2:100.00")
-//        List<String> memberpremiumList = dataTable.asList(String.class);
-//
-//        // Call the method to update the premium value
-//        adminPortalManagePlansPage.addpremiumvalue(memberpremiumList, plantype);
-//    }
-
 
 }
 
