@@ -23,7 +23,7 @@ public class DbStepsE2E {
     public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
         ob834PreEdiDbValidations.recordsValidations(recordType, expectedValues);
     }
-    @And("I validate ib999 {string} details in database")
+    @And("I validate {string} entities from ib999_details db table")
     public void validateIb999DetailsDB(String recordType){
         ib999DbValidations.ib999RecordsValidations(recordType);
     }

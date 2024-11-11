@@ -242,6 +242,20 @@ Feature: Enroll a in a plan (FAMILY OF 3)
       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
 
     And I download the medical and dental files from sftp server with location "/outboundedi/"
-#
-    And I validate the ob834 "medical" file should have the values
-    And I validate the ob834 "dental" file should have the values
+
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
+    #SLER-1250-WIP
+    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+
+    # Ib999 DB Validation
+    And I validate "medical" entities from ib999_details db table
+    And I validate "dental" entities from ib999_details db table
+
+    And I download the "medical" file from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" file from sftp server with location "/archive/INBOUND999/"
+
+    And I validate the ib999 "medical" file data
+    And I validate the ib999 "dental" file data

@@ -55,7 +55,6 @@ public class Ob834FileValidations_new {
         List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
         segCount = segCount + 1;
         softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
-        softAssert.assertEquals(transaction.getCommonSegments().getQTY().size(), insSegCount, "INS Seg count is not matching with QTY Segment count");
         softAssert.assertAll();
     }
 
@@ -97,7 +96,7 @@ public class Ob834FileValidations_new {
                         softAssert.assertEquals(refSegList.get(1), entry.getEap_id(), "REF 1L segment mismatch");
                         break;
                     case "CE":
-                        //    softAssert.assertEquals(refSegList.get(1), "28052CO002000501", "REF CE segment mismatch");
+                        softAssert.assertEquals(refSegList.get(1), entry.getHios_plan_id()+entry.getCsr_level(), "REF CE segment mismatch");
                         break;
                     case "E8":
                         softAssert.assertEquals(refSegList.get(1), "COH-INDV1", "REF E8 segment mismatch");

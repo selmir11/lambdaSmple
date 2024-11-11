@@ -2,14 +2,11 @@ package com.c4hco.test.automation.database.DbValidations;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Ib999DbValidations {
     SoftAssert softAssert = new SoftAssert();
@@ -17,8 +14,10 @@ public class Ib999DbValidations {
     private void setib999Data(){
         List<Ib999Entity> ib999MedEntity = exchDbDataProvider.getIb999Details(SharedData.getMedGroupCtlNumber());
         SharedData.setIb999MedDetailsEntities(ib999MedEntity);
+        SharedData.setMedicalIb999FileName(ib999MedEntity.get(0).getFilename());
         List<Ib999Entity> ib999DenEntity = exchDbDataProvider.getIb999Details(SharedData.getDenGroupCtlNumber());
         SharedData.setIb999DenDetailsEntities(ib999DenEntity);
+        SharedData.setDentalIb999FileName(ib999DenEntity.get(0).getFilename());
     }
 
     public void ib999RecordsValidations(String recordType) {

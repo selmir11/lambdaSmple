@@ -284,8 +284,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Plans" link on welcome page
     Then I validate I am on the "My Policies" page
-    And Validate selected medical plan for "Wife" is "KP Colorado Option Silver X"
-    And Validate selected medical plan for "Primary" is "KP Colorado Option Silver X"
+    And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-195 @EndToEndTest
@@ -526,10 +525,7 @@ Feature: Individual adult - End to End Test
     And I click on "My Plans" link on welcome page
 
     Then I validate I am on the "My Policies" page
-    And I click view Plan History link from medical plan card in coco
-    And Validate selected medical plan for "Primary" is "KP Colorado Option Silver X"
-    And Validate selected medical plan for "MinorTwo" is "KP Colorado Option Silver X"
-    And Validate selected medical plan for "MinorThree" is "KP Colorado Option Silver X"
+    And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-256 @EndToEndTest
@@ -739,8 +735,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Plans" link on welcome page
     Then I validate I am on the "My Policies" page
-    And Validate selected medical plan for "Wife" is "KP Colorado Option Silver X"
-    And Validate selected medical plan for "Primary" is "KP Colorado Option Silver X"
+    And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-263 @EndToEndTest
@@ -1047,10 +1042,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Plans" link on welcome page
     Then I validate I am on the "My Policies" page
-    And Validate selected medical plan for "Primary" is "KP Colorado Option Silver X"
-    And Validate selected medical plan for "MinorTwo" is "RMHP Colorado Doctors Plan Colorado Option Silver"
-    And Validate selected medical plan for "MinorThree" is "Elevate Health Plans Colorado Option Silver Off Exchange"
-    And I click on Sign Out in the Header for "Elmo"
+    And I validate enrolled medical plans details on my policies page coco
+      And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-267 @EndToEndTest
   Scenario: SLCR-267 - This will create Individual adult with no assistance annually salary of 10K
