@@ -21,6 +21,11 @@ public class ApplicationHistoryPage {
     WebElement aptcSection;
     @FindBy(css = "table tbody  #align-right")
     List<WebElement> applicationSummary;
+    @FindBy(css=".self-attestation-title")
+    WebElement mvrPopUp;
+    @FindBy(css= ".no-self-attestation-btn")
+    WebElement noBtnMvrPopUp;
+
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -30,8 +35,13 @@ public class ApplicationHistoryPage {
 
     public void clickViewResults(){
         setApplicationId();
-        viewResultsAndShop.click();
+        if(mvrPopUp.isDisplayed()){
+            noBtnMvrPopUp.click();
+        }
+       basicActions.waitForElementToBeClickable(viewResultsAndShop, 10);
+       basicActions.clickElementWithRetries(viewResultsAndShop, 10);
     }
+
     private void setApplicationId(){
         basicActions.waitForElementListToBePresent(applicationSummary, 10);
         String applicationid = applicationSummary.get(0).getText();
