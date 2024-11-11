@@ -130,7 +130,15 @@ public class QlceConfirmationPage {
                     changeOfAddressEventDate.get(i).click();
                     changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
                     movedToColoradoCheckbox.get(i).click();
-
+                }
+                break;
+            case "ChangePrimaryResidence":
+                basicActions.waitForElementToBeClickable(addressChangeLce, 10);
+                addressChangeLce.click();
+                for (var i = 0; i < memberCheckboxChangeOfAddress.size(); i++) {
+                    memberCheckboxChangeOfAddress.get(i).click();
+                    changeOfAddressEventDate.get(i).click();
+                    changeOfAddressEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
             case "GainedLawfulPresence":

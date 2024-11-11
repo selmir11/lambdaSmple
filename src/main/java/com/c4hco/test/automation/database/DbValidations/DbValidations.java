@@ -414,7 +414,7 @@ public class DbValidations {
         for (String key : policyAhId.keySet()) {
             softAssert.assertEquals(policyAhId.get(key), "0", "Doesn't match policyAhId.get(key)");
         }
-       // softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     public void validateBookOfBusinessQ(String eventType) {
@@ -434,17 +434,15 @@ public class DbValidations {
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
-            softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
             policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
             applicationIdListFromBob.add(bookOfBusinessQEntity.getApplicationid());
         }
-
+        softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
         softAssert.assertTrue(new HashSet<>(applicationIdListFromBob).containsAll(applicationIdListFromPolicyAh), "application id mismatch");
         softAssert.assertTrue(new HashSet<>(policyIdListFromBookOfBusinessDb).containsAll(policyIdFromPolicyDB), "Policy Id mismatch ");
         softAssert.assertAll();
 
     }
-
 
     public void validateAccountHolderNameFromBOB() {
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
@@ -590,4 +588,61 @@ public class DbValidations {
         softAssert.assertEquals(SecondMedicalPolicyDB,SharedData.getManagePlanDentalMedicalPlan().getSelectDenSecondPolicyDrp());
         softAssert.assertAll();
     }
+
+    public void validateMVR(List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+            String manualVerificationType = row.get("manual_verification_type");
+
+            EsManualVerifRequestEntity actualResult = exchDbDataProvider.getEsMVR_options(manualVerificationType);
+            System.out.println(actualResult);
+
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "manual_verification_type":
+                        softAssert.assertEquals(actualResult.getManual_verification_type(), value,"Validation failed for manual_verification_type at row " + (i + 1));
+                        break;
+                    case "manual_verif_status":
+                        softAssert.assertEquals(actualResult.getManual_verif_status(), value, "Validation failed for manual_verif_status at row " + (i + 1));
+                        break;
+                    case "manual_verif_date_set":
+                        softAssert.assertTrue(actualResult.getManual_verif_date_set().contains(addDaysDate(Integer.parseInt(value))),"Validation failed for manual_verif_date_set at row " + (i + 1));
+                        break;
+                    case "manual_verif_due_date":
+                        softAssert.assertTrue(actualResult.getManual_verif_due_date().contains(addDaysDate(Integer.parseInt(value))),"Validation failed for manual_verif_due_date at row " + (i + 1));
+                        break;
+                    case "manual_verif_date_expired":
+                        softAssert.assertTrue(actualResult.getManual_verif_date_expired().contains(addDaysDate(Integer.parseInt(value))),"Validation failed for manual_verif_date_expired at row " + (i + 1));
+                        break;
+                    case "manual_verif_date_closed":
+                        softAssert.assertEquals(actualResult.getManual_verif_date_closed(), value,"Validation failed for manual_verif_date_closed at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
+            }
+        }
+        softAssert.assertAll();
+    }
+
+    public String addDaysDate(int daysAdded) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate newDate = currentDate.plusDays(daysAdded);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return newDate.format(outputFormatter);
+    }
+
+    public void verifySsaResponseCodeDb(String code, String memPrefix){
+        EsSsaVerificationReqEntity actualResult = exchDbDataProvider.getSsaResponseCode(basicActions.getMemberId(memPrefix));
+        System.out.println(actualResult);
+        softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
+        softAssert.assertAll();
+    }
+
+
+
+
 }

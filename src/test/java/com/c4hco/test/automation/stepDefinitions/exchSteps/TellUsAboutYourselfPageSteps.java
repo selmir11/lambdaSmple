@@ -42,5 +42,8 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.updateDOB(newDob);
     }
 
+    @And("I validate SSA Error on Tell us about yourself page")
+    public void iValidateSsaError() {tellUsAboutYourselfPage.validateSsaError();}
+
 
 }

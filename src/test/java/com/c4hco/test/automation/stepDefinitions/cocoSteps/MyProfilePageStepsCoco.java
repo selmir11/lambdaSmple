@@ -66,4 +66,10 @@ public class MyProfilePageStepsCoco {
         myProfilePage.ValidatethirdattemptincorrectPasswordCoCo();
     }
 
+    @And("I click change primary contact on my profile page CoCo") public void iClickChangePrimaryContactOnMyProfilePage() {
+        myProfilePage.ClickChangePrimaryContactOnMyProfilePageCoCo();
+    }
+
+    @Then("I validate Primary Contact Change Popup {string} on My profile page CoCo")
+    public void ivalidateChangePrimaryContactPopupCoCo(String language)  { myProfilePage.validateChangePrimaryContactPopupCoCo(language); }
 }

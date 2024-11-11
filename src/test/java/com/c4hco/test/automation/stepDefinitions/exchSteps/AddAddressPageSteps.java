@@ -19,18 +19,24 @@ public class AddAddressPageSteps {
     public void addNewResidentialAddress(List<Map<String, String>> addressDetails){
          addAddressPage.addNewResidentialAddress(addressDetails);}
 
+
     @And("I enter a new residential address with city {string} state {string} zip {string} and county {string}")
     public void addResidentialAddressDetails(String city, String state, String zipcode, String county){addAddressPage.newResidentialAddress(city, state, zipcode, county);}
 
+    // mailing address
     @Then("I enter member with address line1 {string} in city {string} in state {string} with zipcode {string} and county {string}")
     public void mailingAddress(String addrLine1,String city,String state,String zipcode,String county){
         addAddressPage.specificMailingAddress(addrLine1, city, state, zipcode,county);}
 
+    // duplicated - can use the above step. To be deleted
     @Then("I enter generic mailing address details")
     public void addMailingAddressDetails(){addAddressPage.mailingAddress();}
 
     @Then("I enter a new member address with city {string} state {string} zip {string} and county {string}")
     public void addMailingAddressDetails(String city, String state, String zipcode, String county){addAddressPage.newMailingAddress(city, state, zipcode, county);}
+
+    @Then("I select the Different Mailing Address option")
+    public void selectDifferentMailingAddress(){addAddressPage.DifferentMailingAddress();}
 
     @Then("I select {string} for CO Resident option")
     public void isMemberCOResident(String YNResident){addAddressPage.isColoradoResident(YNResident);}
@@ -63,6 +69,9 @@ public class AddAddressPageSteps {
 
     @Then("I add the tribe details")
     public void Addtribedetails(){addAddressPage.Addtribedetails();}
+
+    @Then("I select {string} specific Address")
+    public  void selectspecificaddress(String SpecificAddress){addAddressPage.specificaddress(SpecificAddress); }
 
 }
 

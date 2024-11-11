@@ -35,6 +35,16 @@ public class CancellationRequestPageSteps {
     public void i_cancel_the_active_plan_detail(){
         cancellationRequestPage.cancelActivePlan();
     }
+    @Then("I affirm and cancel the active plan")
+    public void cancelPlan(){
+        cancellationRequestPage.cancelPlan();
+    }
+
+    @Then("I click Okay on Thank you popup")
+    public void okaybtn(){
+        cancellationRequestPage.okaybtn();
+    }
+
 
     @Then("I validate Confirmation popup message displayed in expected Language")
     public void validateConfirmationPpopupInExpectedLanguage(List<String> data) throws InterruptedException {
