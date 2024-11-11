@@ -122,7 +122,6 @@ public class sftpStepDefinitions {
         }
     }
 
-
     @And("I validate the ib999 files should have the values")
     public void validateIb999Records() {
         sftpUtil.readIb999File(SharedData.getMedicalFileName());
