@@ -191,6 +191,7 @@ public class AddAddressPage {
 
     public void specificMailingAddress(String AddrLine1, String city, String state, String zipcode, String county){
         // Mailing Address - Only for primary member
+        basicActions.wait(1000);
         basicActions.waitForElementToBePresent(headerAdditionalInfo,1);
         basicActions.waitForElementToBePresent(txtMailingAddrLine1, 40);
         txtMailingAddrLine1.clear();
