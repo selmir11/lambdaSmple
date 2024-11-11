@@ -131,7 +131,7 @@ Feature: Simple NFA - Single Applicant
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
-    
+
     # Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
