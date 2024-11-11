@@ -102,7 +102,6 @@ Feature: Simple NFA - Single Applicant
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
-
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
     And I validate "medical" entities from pre edi db tables
