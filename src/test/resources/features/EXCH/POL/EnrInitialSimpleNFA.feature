@@ -112,8 +112,8 @@ Feature: Simple NFA - Single Applicant
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file should have the values
-    And I validate the ob834 "dental" file should have the values
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
 #      # RT-1276
     And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"

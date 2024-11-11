@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
@@ -11,7 +10,6 @@ import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
 import org.testng.Assert;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +38,7 @@ public class sftpStepDefinitions {
     }
 
 
-    @And("I validate the ob834 {string} file should have the values")
+    @And("I validate the ob834 {string} file data")
     public void validateOb834FileDetails(String type) {
         switch (type) {
             case "medical":
@@ -92,59 +90,38 @@ public class sftpStepDefinitions {
                 sftpUtil.uploadFileInSftp(fileName, remoteFilePath);
     }
 
-    @And("I get I999 medical file name from DB and download it from sftp server location {string}")
-        public void getI999MedicalFileToLocal(String inbound999FolderPath){
-        try {
-            List<Ib999Entity> ib999MedEntity = SharedData.getIb999MedDetailsEntities();
-            for (Ib999Entity entry : ib999MedEntity) {
-                String ib999MedFileName = entry.getFilename();
-                SharedData.setMedicalIb999FileName(ib999MedFileName);
-                System.out.println("File name from query:: " + ib999MedFileName);
-                sftpUtil.downloadFileWithSftp(inbound999FolderPath, ib999MedFileName);
-            }
-        }catch (Exception e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
+    @And("I validate the ib999 {string} file data")
+    public void validateIb999FileDetails(String type) {
+        switch (type) {
+            case "medical":
+                String medFileName = SharedData.getMedicalIb999FileName();
+                System.out.println("***********Validating Medical IB999 File::"+medFileName+"***********");
+                sftpUtil.readIb999File(medFileName);
+                break;
+            case "dental":
+                String denFileName = SharedData.getDentalIb999FileName();
+                System.out.println("***********Validating Dental IB999 File::"+denFileName+"***********");
+                sftpUtil.readIb999File(denFileName);
+                break;
+            default:
+                Assert.fail("Incorrect Argument passed in the step");
+        }
+        ib999FileValidations.validateIb999FileData(type);
+    }
+
+    @And("I download the {string} file from sftp server with location {string}")
+    public void downloadIb999Files(String fileType, String inbound999RemotePath) {
+        switch (fileType) {
+            case "medical":
+                sftpUtil.downloadFileWithSftp(inbound999RemotePath, SharedData.getMedicalIb999FileName());
+                break;
+            case "dental":
+                sftpUtil.downloadFileWithSftp(inbound999RemotePath, SharedData.getDentalIb999FileName());
+                break;
+            default: Assert.fail("Invalid argument::"+ fileType);
         }
     }
 
-    @And("I get I999 dental file name from DB and download it from sftp server location {string}")
-    public void getI999DentalFileToLocal(String inbound999FolderPath) {
-        try {
-            List<Ib999Entity> ib999DenEntity = SharedData.getIb999DenDetailsEntities();
-            for (Ib999Entity entry : ib999DenEntity) {
-                String ib999DenFileName = entry.getFilename();
-                SharedData.setDentalIb999FileName(ib999DenFileName);
-                System.out.println("File name from query:: " + ib999DenFileName);
-                sftpUtil.downloadFileWithSftp(inbound999FolderPath, ib999DenFileName);
-            }
-        } catch (Exception e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
-        }
-    }
-
-    @And("I validate the contents of ib999 medical file")
-    public void validateMedIb999Records() {
-        List<Ib999Entity> ib999MedEntries = SharedData.getIb999MedDetailsEntities();
-        for (Ib999Entity entry : ib999MedEntries) {
-            if(entry.getAk1_group_ctrl_number().equals(SharedData.getMedGroupCtlNumber())) {
-                System.out.println("***********Validating Medical Ib999 File:: " + SharedData.getMedicalIb999FileName() + "***********");
-                sftpUtil.readIb999File(SharedData.getMedicalIb999FileName());
-                ib999FileValidations.validateib999File(entry);
-            }
-        }
-    }
-
-    @And("I validate the contents of ib999 dental file")
-    public void validateDenIb999Records() {
-        List<Ib999Entity> ib999DenEntries = SharedData.getIb999DenDetailsEntities();
-        for (Ib999Entity entry : ib999DenEntries) {
-            System.out.println("***********Validating Dental Ib999 File:: "+SharedData.getDentalIb999FileName()+"***********");
-            if(entry.getAk1_group_ctrl_number().equals(SharedData.getDenGroupCtlNumber())){
-                sftpUtil.readIb999File(SharedData.getDentalIb999FileName());
-                ib999FileValidations.validateib999File(entry);
-            }
-        }
-    }
 
     @And("I validate the ib999 files should have the values")
     public void validateIb999Records() {
