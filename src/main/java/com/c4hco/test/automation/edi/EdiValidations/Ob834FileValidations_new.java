@@ -97,7 +97,7 @@ public class Ob834FileValidations_new {
                         softAssert.assertEquals(refSegList.get(1), entry.getEap_id(), "REF 1L segment mismatch");
                         break;
                     case "CE":
-                        //    softAssert.assertEquals(refSegList.get(1), "28052CO002000501", "REF CE segment mismatch");
+                        softAssert.assertEquals(refSegList.get(1), entry.getHios_plan_id()+entry.getCsr_level(), "REF CE segment mismatch");
                         break;
                     case "E8":
                         softAssert.assertEquals(refSegList.get(1), "COH-INDV1", "REF E8 segment mismatch");
