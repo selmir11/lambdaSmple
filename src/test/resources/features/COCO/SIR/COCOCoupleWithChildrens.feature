@@ -167,8 +167,8 @@ Feature: CoupleWithChildrens - End to End Test
     |Daughter:Group3|
     |Son:Group4|
     Then I click save button to save the groups in CoCo Page
-    And I validated message on success enrollment grouping pop-up in CoCo Page
-    Then I click on continue button on success pop-up in CoCo Page
+ And I validated message on success enrollment grouping pop-up in CoCo Page
+   Then I click on continue button on success pop-up in CoCo Page
 
     Then I validate I am on the "Grouping Members Medical" page
     #And I validate that there are 4 default groups in coco page
