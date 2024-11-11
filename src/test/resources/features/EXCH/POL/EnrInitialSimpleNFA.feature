@@ -131,11 +131,13 @@ Feature: Simple NFA - Single Applicant
     Then I delete the open notice
     And I sign out of Outlook
     And I switch to the tab number 0
+    
+    # Ib999 DB Validation
+    And I validate "medical" entities from ib999_details db table
+    And I validate "dental" entities from ib999_details db table
 
-#    Ib999 file validation
-    And I validate ib999 "medical" details in database
-    And I validate ib999 "dental" details in database
-    And I get I999 medical file name from DB and download it from sftp server location "/archive/INBOUND999/"
-    And I get I999 dental file name from DB and download it from sftp server location "/archive/INBOUND999/"
-    And I validate the contents of ib999 medical file
-#    And I validate the contents of ib999 dental file
+    And I download the "medical" file from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" file from sftp server with location "/archive/INBOUND999/"
+
+    And I validate the ib999 "medical" file data
+    And I validate the ib999 "dental" file data
