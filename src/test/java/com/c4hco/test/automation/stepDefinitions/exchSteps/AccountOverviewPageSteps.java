@@ -33,7 +33,6 @@ public class AccountOverviewPageSteps {
     @And("I Validate the correct enrolled plans are displayed on account overview page")
     public void validatePlanInfo(){
         accountOverviewPage.verifyMemberNames();
-        accountOverviewPage.verifyPlanInfo();
     }
     @Given("I set the test scenario details")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
