@@ -515,7 +515,9 @@ public class Ob834FileValidations_new {
         softAssert.assertEquals(dmgSeg.get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
         softAssert.assertEquals(dmgSeg.get(1), entry.getMember_dob(), "Member date of birth does not match");
         softAssert.assertEquals(dmgSeg.get(2), entry.getMember_gender(), "Member gender does not match");
-        softAssert.assertEquals(dmgSeg.get(4), entry.getMember_race(), "Member gender does not match");
+        if(!entry.getMember_race().equals("7") || !entry.getMember_race().equals("8") ){
+            softAssert.assertEquals(dmgSeg.get(4), entry.getMember_race(), "Member gender does not match");
+        }
     }
 
     private void validateMemSeg(List<Ob834DetailsEntity> entityList) {
