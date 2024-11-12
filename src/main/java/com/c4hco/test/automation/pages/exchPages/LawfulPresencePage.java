@@ -46,6 +46,12 @@ public class LawfulPresencePage {
     @FindBy(id = "alienNumberNonCitizen")
     WebElement alienNumberNonCitizen;
 
+    @FindBy(id = "cardNumber")
+    WebElement cardNumber;
+
+    @FindBy(id = "documentExpirationDate")
+    WebElement documentExpirationDate;
+
     @FindBy(id = "livedSince1996Yes")
     WebElement livedSince1996Yes;
 
@@ -164,6 +170,23 @@ public class LawfulPresencePage {
         String USCISNumberValue = generateUSCISNumber();
         alienNumberNonCitizen.sendKeys(USCISNumberValue);
     }
+
+    public static String generateCardNumber() {
+        Random rand = new Random();
+        int CardNumber = 100_000_000 + rand.nextInt(900_000_000);
+        return String.valueOf(CardNumber);
+    }
+
+    public void enterCardNumber() {
+        String CardNumberValue = "AAA5"+generateCardNumber();
+        cardNumber.sendKeys(CardNumberValue);
+    }
+
+    public void enterExpirationDate() {
+        String expirationDateValue = "01012028";
+        documentExpirationDate.sendKeys(expirationDateValue);
+    }
+
 
     public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
         switch (YNLivedInUSSince1996) {

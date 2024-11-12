@@ -245,7 +245,7 @@ public class AddAddressPage {
         List<MemberDetails> membersList = SharedData.getMembers();
         MemberDetails subscriber = SharedData.getPrimaryMember();
 
-        if (getHeader.contains("Yourself")) {
+        if (getHeader.contains("yourself")) {
             //set data for subscriber
         }else{
            // filter by dob as it is unique
