@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR, @APTC-SIR-AddMember
+@APTC,@APTC-SIR4, @APTC-SIR-AddMember
   #SLER-325, @SLER-802, @SLER-803, SLER-804, @SLER-805, @SLER-806, SLER-807, @SLER-808, @SLER-809, SLER-998, SLER-999,
 Feature: UI Tests related to APTC after second enrollment change
 
