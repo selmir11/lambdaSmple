@@ -1,5 +1,5 @@
 @SIR-EXCH3 @dentalPlanFilterResults @SIR
-  # contains SLER-81, SLER-96, SLER-837, SLERR-862, SLER-863
+  # contains SLER-81, SLER-96, SLER-837, SLERR-862, SLER-863,  SLER-1238,
 Feature: Dental Plan Verification test
 
   Background:

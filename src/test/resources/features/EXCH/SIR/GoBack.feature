@@ -285,8 +285,8 @@ Feature: Go Back tests
 
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Brother", "10101981", "Male" and applying "Yes"
-      | Primary:Other |
-      | Spouse:Other |
+      | Primary:Brother |
+      | Spouse:Other    |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -307,8 +307,9 @@ Feature: Go Back tests
 
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Sister", "10101981", "Female" and applying "Yes"
-      | Primary:Other |
-      | Spouse:Other  |
+      | Primary:Sister  |
+      | Spouse:Other    |
+      | Brother:Sister  |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
