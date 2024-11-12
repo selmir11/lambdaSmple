@@ -1,6 +1,9 @@
 Feature: Seed02 w/exception - Exchange
 
   Background: Seed 02 w/exception For Exchange- Single Applicant with FA
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                |   1             |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -9,6 +12,9 @@ Feature: Seed02 w/exception - Exchange
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates
+      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month |
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -85,11 +91,11 @@ Feature: Seed02 w/exception - Exchange
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
@@ -104,7 +110,6 @@ Feature: Seed02 w/exception - Exchange
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
@@ -113,10 +118,10 @@ Feature: Seed02 w/exception - Exchange
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
 
     And I validate the ob834 "medical" file data

@@ -133,8 +133,8 @@ Feature: Seed02 - Exchange
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
@@ -157,7 +157,7 @@ Feature: Seed02 - Exchange
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
       Then I click on continue with  application button on Before you begin page
-      And I report "MovedToColorado" and click continue
+      And I report "Other" and click continue
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
 
@@ -189,6 +189,8 @@ Feature: Seed02 - Exchange
       And I click on Sign Out in the Header for "NonElmo"
       And I validate "medical" entities from policy tables
       And I validate "dental" entities from policy tables
+      And I verify the policy data quality check with Policy Ah keyset size 4
+      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
       And I validate "medical" entities from pre edi db tables
         | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
         | 001                   | 001                | 25                    | "DEMOGRAPHIC  CHANGE" |            |
@@ -196,10 +198,8 @@ Feature: Seed02 - Exchange
         | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
         | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
       And I download the medical and dental files from sftp server with location "/outboundedi/"
-#      And I validate the ob834 "medical" file data
-#      And I validate the ob834 "dental" file data
-   # And I verify the policy data quality check with Policy Ah keyset size 4
-      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+      And I validate the ob834 "medical" file data
+      And I validate the ob834 "dental" file data
 
   @SLER-133-WIP
   Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
