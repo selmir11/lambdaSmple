@@ -1,4 +1,4 @@
- @SLER-34 @SLER-1069
+ @SLER-34 @SLER-1069 @SLER-1262
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
@@ -114,7 +114,7 @@ Feature: Simple NFA - Single Applicant
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-#      # RT-1276
+    # @SLER-1262
     And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
