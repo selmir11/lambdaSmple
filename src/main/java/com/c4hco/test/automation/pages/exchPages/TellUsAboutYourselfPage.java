@@ -173,9 +173,11 @@ public class TellUsAboutYourselfPage {
                 txtMiddleName.sendKeys(newMiddleName);
                 txtLastName.clear();
                 txtLastName.sendKeys(newLastName);
+                break;
             }
         }
     }
+
     public void updateName(){
         MemberDetails subscriber = new MemberDetails();
         basicActions.waitForElementToBePresent(txtFirstName, 50);
