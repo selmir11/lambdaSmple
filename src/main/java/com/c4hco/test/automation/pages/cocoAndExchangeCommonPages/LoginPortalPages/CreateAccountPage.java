@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 public class CreateAccountPage {
     SoftAssert softAssert = new SoftAssert();
 
@@ -241,29 +242,13 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + appType);
         }
         submitButton.click();
-        setdbName();
-    }
-
-    private void setdbName(){
-        String env = SharedData.getEnv();
-        String appType = SharedData.getAppType().substring(0, 4);
-        String dbName = env.equals("qa") ? env + "_"+appType : appType;
-        SharedData.setDbName(dbName);
-    }
-
-    // WIP - Remove from here. We already have this in basicActions
-    public String capitalizeFirstLetter(String input) {
-        if (input == null || input.isEmpty()) {
-            return input;
-        }
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
 
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("PrimaryMember"+basicActions.getUniqueString(8));
-        subscriber.setLastName(capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
+        subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -274,7 +259,7 @@ public class CreateAccountPage {
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();
         subscriber.setFirstName("Primary"+ basicActions.getUniqueString(6));
-        subscriber.setLastName(capitalizeFirstLetter(basicActions.getUniqueString(7)+"Test"));
+        subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(7)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -282,8 +267,8 @@ public class CreateAccountPage {
     }
     public void initializeDataGmail(String emailBase){
         MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName(capitalizeFirstLetter(basicActions.getUniqueString(10)+"TestMember"));
-        subscriber.setLastName(capitalizeFirstLetter(basicActions.getUniqueString(10)+"Test"));
+        subscriber.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"TestMember"));
+        subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@gmail.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -420,8 +405,8 @@ public class CreateAccountPage {
 
     public void initializeBrokerData(String accountType, String emailBase){
         BrokerDetails user = new BrokerDetails();
-        user.setFirstName(capitalizeFirstLetter(basicActions.getUniqueString(8)+"TestBroker"));
-        user.setLastName(capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
+        user.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"TestBroker"));
+        user.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
         user.setPhoneNumber((String) generatePhoneNumber());
         user.setLicense((String) generateBrokerLicense());
