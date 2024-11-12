@@ -78,7 +78,6 @@ Feature: Medical Plan Verification test
       | carrierOption                     | planText                                             |
       | Anthem                            | Anthem Bronze Pathway Essentials HMO $0 Select Drugs |
       | Cigna                             | Cigna Connect Colorado Option Bronze                 |
-      | Denver Health                     | Elevate Health Plans Bronze HDHP                     |
       | Kaiser Permanente                 | KP Select CO Bronze 8500/50                          |
       | Rocky Mountain Health Plans / UHC | RMHP Colorado Doctors Plan Colorado Option Bronze    |
       | Select Health                     | Select Health Value Bronze $6900 Medical Deductible  |
@@ -149,10 +148,10 @@ Feature: Medical Plan Verification test
     And I validate the plan option 1 has text "<metalPlanText>"
 
     Examples:
-    |metalOption      |metalPlanText                                              |
-    |Bronze           |Elevate Health Plans Bronze HDHP                           |
-    |Silver           |Anthem Silver Pathway Essentials 5500 $0 Select Drugs      |
-    |Gold             |Elevate Health Plans Colorado Option Gold                  |
+    |metalOption      |metalPlanText                                         |
+    |Bronze           |KP Select CO Bronze 8500/50                           |
+    |Silver           |Anthem Silver Pathway Essentials 5500 $0 Select Drugs |
+    |Gold             |Cigna Connect Colorado Option Gold                    |
 
 
   @SLER-72 @SelectVerifyHSAResults
