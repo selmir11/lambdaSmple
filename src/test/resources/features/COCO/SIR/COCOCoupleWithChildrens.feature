@@ -1,4 +1,4 @@
-@COCO
+@COCO3
   #SLCR-279, SLCR-264, SLCR-280, SLCR-281, SLCR-337
 Feature: CoupleWithChildrens - End to End Test
 
@@ -179,15 +179,15 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    And I select "Select Health Value Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
+    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
 
     Then I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -554,7 +554,7 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -935,7 +935,7 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
@@ -943,7 +943,7 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Silver X" coco medical plan
+    And I select "Select Health Value Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page

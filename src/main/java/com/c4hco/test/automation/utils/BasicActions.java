@@ -685,6 +685,10 @@ public class BasicActions {
         return memId;
     }
 
+    public static String getUniqueString(int length){
+        return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
+    }
+
 
 }
 
