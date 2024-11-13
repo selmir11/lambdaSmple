@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ApplicationHistoryPage {
 
@@ -22,12 +21,13 @@ public class ApplicationHistoryPage {
     WebElement aptcSection;
     @FindBy(css = "table tbody  #align-right")
     List<WebElement> applicationSummary;
-    @FindBy(className = "self-attestation-title")
-    WebElement MVRPopUp;
-    @FindBy(name = "verify-myinfo-btn")
-    WebElement verifyMyInfoButton;
-    @FindBy(name= "close")
-    WebElement verifyMyInfoNoButton;
+    @FindBy(css=".self-attestation-title")
+    WebElement mvrPopUp;
+    @FindBy(css= ".no-self-attestation-btn")
+    WebElement noBtnMvrPopUp;
+    @FindBy(css = ".yes-self-attestation-btn")
+    WebElement yesBtnMvrPopUp;
+
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -35,30 +35,13 @@ public class ApplicationHistoryPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void clickViewResults() {
+    public void clickViewResults(){
         setApplicationId();
-
-        try {
-            if (MVRPopUp.isDisplayed()) {
-                System.out.println("Pop-up is displayed. Closing the pop-up.");
-                verifyMyInfoNoButton.click();
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("Pop-up or button not found, continuing with the next steps.");
-        } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+        if(mvrPopUp.isDisplayed()){
+            noBtnMvrPopUp.click();
         }
-
-        try {
-            if (viewResultsAndShop.isDisplayed() && viewResultsAndShop.isEnabled()) {
-                System.out.println("Clicking the 'View Results' button.");
-                viewResultsAndShop.click();
-            } else {
-                System.out.println("The 'View Results' button is not visible or not clickable.");
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to click 'View Results' button: " + e.getMessage());
-        }
+        basicActions.waitForElementToBeClickable(viewResultsAndShop, 10);
+        basicActions.clickElementWithRetries(viewResultsAndShop, 10);
     }
 
     private void setApplicationId(){
@@ -91,7 +74,7 @@ public class ApplicationHistoryPage {
     }
 
     public void clickVerifyMyInfoText(){
-        basicActions.waitForElementToBePresent(verifyMyInfoButton,10);
-        verifyMyInfoButton.click();
+        basicActions.waitForElementToBePresent(yesBtnMvrPopUp,10);
+        yesBtnMvrPopUp.click();
     }
 }
