@@ -30,4 +30,7 @@ public class ApplicationHistoryPageSteps {
     public void noAptcOnPage(){
         applicationHistoryPage.validateAptcSectionDoesntExist();
     }
+
+    @Then("Then I click on Verify My Information")
+    public void clickVerifyMyInfo(){applicationHistoryPage.clickVerifyMyInfoText();}
 }
