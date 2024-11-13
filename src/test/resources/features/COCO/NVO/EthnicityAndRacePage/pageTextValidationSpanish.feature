@@ -16,7 +16,7 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    And I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -78,6 +78,8 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And  I click Go back on the Employment income page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I change the language from header to "English"
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

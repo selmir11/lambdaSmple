@@ -31,6 +31,10 @@ public class LawfulPresencePageSteps {
         lawfulPresencePage.enterUSCISNumber();
     }
 
+    @Then("I enter Card Number") public void enterCardNumber() {lawfulPresencePage.enterCardNumber();}
+
+    @Then("I enter Expiration Date") public void enterExpirationDate() {lawfulPresencePage.enterExpirationDate();}
+
     @Then("I select {string} for the question have you lived in the US since 1996")
     public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
         lawfulPresencePage.isMemberLivedInUSSince1996(YNLivedInUSSince1996);

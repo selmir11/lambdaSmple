@@ -44,18 +44,8 @@ public class EnrollmentAgreementsPage {
 
     public void selectAgreementsCheckbox(String checkbox) {
        basicActions.waitForElementToDisappear( spinner, 15 );
-       basicActions.waitForElementListToBePresent(agreementsChckbx, 10);
+       basicActions.waitForElementListToBePresentWithRetries(agreementsChckbx, 10);
         switch (checkbox) {
-            // WIP - Remove the first 3 cases once the code is deployed to STG
-            case "Terms of Use":
-                agreementsChckbx.get(0).click();
-                break;
-            case "Privacy Policy":
-                agreementsChckbx.get(1).click();
-                break;
-            case "Understand Law":
-                agreementsChckbx.get(2).click();
-                break;
             case "Acknowledgement":
                 understandAcknowledgeChckbx.click();
                 break;
