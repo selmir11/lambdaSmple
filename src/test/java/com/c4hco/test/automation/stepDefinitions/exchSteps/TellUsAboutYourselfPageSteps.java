@@ -32,6 +32,11 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.iUpdateSSN(newSsn);
     }
 
+    @Then("I update full name of member with prefix {string}")
+    public void updateName(String namePrefix) {
+        tellUsAboutYourselfPage.updateFullName(namePrefix);
+    }
+
     @Then("I update Full Name to new Name")
     public void iUpdateName() {
         tellUsAboutYourselfPage.updateName();

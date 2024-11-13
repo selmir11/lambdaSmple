@@ -11,6 +11,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.*;
@@ -160,7 +161,7 @@ public class BasicActions {
                 return true;
             } catch (StaleElementReferenceException|NoSuchElementException e) {
                 retries--;
-                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+                Log.info("StaleElementReferenceException or NoSuchElementException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
                 Log.info("Element is not present");
                 return false;
@@ -537,6 +538,14 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+
+    public String lastDateOfNextMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfNextMonth = YearMonth.from(today).plusMonths(1).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return lastDayOfNextMonth.format(formatter);
+    }
+
     public String getTodayDate() {// Today
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
@@ -592,6 +601,9 @@ public class BasicActions {
                     case "First Of Next Month":
                         date = firstDateOfNextMonth();
                         break;
+                case "Last Of Next Month":
+                    date = lastDateOfNextMonth();
+                    break;
                     case "Today":
                         date = getTodayDate();
                         break;
@@ -683,6 +695,10 @@ public class BasicActions {
             }
         }
         return memId;
+    }
+
+    public static String getUniqueString(int length){
+        return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
 

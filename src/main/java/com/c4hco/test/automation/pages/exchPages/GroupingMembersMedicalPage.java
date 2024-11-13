@@ -23,7 +23,7 @@ public class GroupingMembersMedicalPage {
     WebElement groupingPagePara1;
     @FindBy(id = "SOL-ViewGroupingMembers-EnrollmentGroups2ndParagraph")
     WebElement groupingPagePara2;
-    @FindBy(css = ".c4-type-header-sm")
+    @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
     List<WebElement> medicalGroupTitle;
     @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
     List<WebElement> noOfGroups;
@@ -59,7 +59,9 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToBeClickable(continueButton, 10);
         List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
         for (MemberDetails memDet : memberInfoDetails){
+            basicActions.waitForElementListToBePresent(medicalGroupTitle,10);
             WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10);
             memDet.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #",""));
         }
         basicActions.scrollToElement( continueButton );

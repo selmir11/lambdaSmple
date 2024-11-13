@@ -100,7 +100,7 @@ public class PlanSummaryMedicalDentalCoCoPage {
     @FindBy(xpath = "//*[contains(text(),\"Dinero que ahorra\")]")
     WebElement planSummaryMedicalpremiumcreditSpanish;
 
-    @FindBy(xpath = "//*[contains(text(),\"Amount you pay\")]")
+    @FindBy(xpath = "//*[contains(text(),\"Amount You Pay\")]")
     WebElement planSummaryMedicalAmtyoupay;
 
     @FindBy(xpath = "//*[contains(text(),\"Cantidad que paga\")]")
@@ -159,7 +159,7 @@ public class PlanSummaryMedicalDentalCoCoPage {
         softAssert.assertEquals(txtTotalofMedicalPlan.getText(), "Total of Medical Plans");
         softAssert.assertEquals(planSummaryMedicalpremium.getText(), "Premiums Before Savings");
         softAssert.assertEquals(planSummaryMedicalpremiumcredit.getText(), "Money you save");
-        softAssert.assertEquals(planSummaryMedicalAmtyoupay.getText(), "Amount you pay");
+        softAssert.assertEquals(planSummaryMedicalAmtyoupay.getText(), "Amount You Pay");
         softAssert.assertEquals(goBackbtn.getText(),"Go Back");
         softAssert.assertEquals(planSummaryMedicalSaveExit.getText(),"Save and Exit");
         softAssert.assertEquals(continueBtnOnPlanSummary.getText(),"Continue");

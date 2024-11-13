@@ -46,6 +46,8 @@ Feature: Text - Tell us about additional members of your household page
     Then I validate I am on the "CoCo Tell us about additional members" page
     And I click Go Back on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Family Overview" page
+    And I change the language from header to "English"
+    Then I validate I am on the "CoCo Family Overview" page
 
 
 
