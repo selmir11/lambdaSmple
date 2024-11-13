@@ -954,8 +954,8 @@ public class OtherHealthCoveragePage_Elmo {
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(13).getText(),"Individual Insurance");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getText(),"Health insurance purchased directly through an insurance company, through Healthcare.gov, or another state\u2019s Marketplace.");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getText(),"None of these");
-                softAssert.assertEquals(backButton.getText(),"  Go Back");
-                softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+                softAssert.assertEquals(backButton.getText(),"  Go back");
+                softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
                 softAssert.assertAll();
                 break;
             case "Spanish":

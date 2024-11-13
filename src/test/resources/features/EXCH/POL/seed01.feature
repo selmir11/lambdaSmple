@@ -116,8 +116,8 @@ Feature: Regression Tests that require Seed 1
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file should have the values
-    And I validate the ob834 "dental" file should have the values
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
@@ -161,8 +161,8 @@ Feature: Regression Tests that require Seed 1
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file should have the values
-    And I validate the ob834 "dental" file should have the values
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
    # And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
