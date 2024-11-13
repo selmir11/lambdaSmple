@@ -278,7 +278,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 calendar.add(Calendar.DATE, -1);
                 Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd-yyyy");
                 esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
                 break;
             case "Prior Month":
@@ -286,17 +286,17 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 calendar.add(Calendar.DATE, -1);
                 Date lastDayOfPriorMonth = calendar.getTime();
-                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
+                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd-yyyy");
                 esiEndDateInput.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
                 break;
             case "Future Month":
                 calendar.add(Calendar.DATE, 60);
                 Date futureDate = calendar.getTime();
-                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
+                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd-yyyy");
                 esiEndDateInput.sendKeys(futureDateFormat.format(futureDate));
                 break;
             case "Today":
-                DateFormat todayDate = new SimpleDateFormat("MM-dd");
+                DateFormat todayDate = new SimpleDateFormat("MM-dd-yyyy");
                 esiEndDateInput.sendKeys(todayDate.format(today));
                 break;
             default:
@@ -564,12 +564,12 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 calendar.add(Calendar.DATE, -1);
                 Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd-yyyy");
                 softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(endOfCurrentMonth.format(lastDayOfMonth)));
                 softAssert.assertAll();
                 break;
             case "Today":
-                DateFormat todayDate = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat todayDate = new SimpleDateFormat("yyyy-MM-dd-yyyy");
                 softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(todayDate.format(today)));
                 softAssert.assertAll();
                 break;
@@ -717,8 +717,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 

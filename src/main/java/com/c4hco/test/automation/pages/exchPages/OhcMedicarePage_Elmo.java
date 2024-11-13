@@ -239,7 +239,7 @@ public class OhcMedicarePage_Elmo {
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         calendar.add(Calendar.DATE, -1);
         Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd-yyyy");
 
         partAInsuranceEndInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
     }
@@ -253,7 +253,7 @@ public class OhcMedicarePage_Elmo {
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         calendar.add(Calendar.DATE, -1);
         Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd-yyyy");
 
         partBInsuranceEndInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
     }
@@ -556,8 +556,8 @@ public class OhcMedicarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
