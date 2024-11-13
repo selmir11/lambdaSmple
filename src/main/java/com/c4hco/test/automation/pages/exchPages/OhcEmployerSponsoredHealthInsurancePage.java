@@ -278,7 +278,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 calendar.add(Calendar.DATE, -1);
                 Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd-yyyy");
+//                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
                 esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
                 break;
             case "Prior Month":
@@ -286,17 +287,20 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 calendar.add(Calendar.DATE, -1);
                 Date lastDayOfPriorMonth = calendar.getTime();
-                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
+                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd-yyyy");
+//                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
                 esiEndDateInput.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
                 break;
             case "Future Month":
                 calendar.add(Calendar.DATE, 60);
                 Date futureDate = calendar.getTime();
-                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
+                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+//                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
                 esiEndDateInput.sendKeys(futureDateFormat.format(futureDate));
                 break;
             case "Today":
-                DateFormat todayDate = new SimpleDateFormat("MM-dd");
+                DateFormat todayDate = new SimpleDateFormat("MM-dd-yyyy");
+//                DateFormat todayDate = new SimpleDateFormat("MM-dd");
                 esiEndDateInput.sendKeys(todayDate.format(today));
                 break;
             default:

@@ -399,6 +399,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click No on attestation popup on the Application History page
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
 #    Step 4
@@ -444,6 +445,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click No on attestation popup on the Application History page
 #    Step 5
     And I click on Sign Out in the Header for "NonElmo"
     Given I open the login page on the "admin" portal

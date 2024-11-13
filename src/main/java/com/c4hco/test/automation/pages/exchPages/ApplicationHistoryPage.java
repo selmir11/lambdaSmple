@@ -42,6 +42,12 @@ public class ApplicationHistoryPage {
        basicActions.clickElementWithRetries(viewResultsAndShop, 10);
     }
 
+    public void clickNoPopUp(){
+        if(mvrPopUp.isDisplayed()){
+            noBtnMvrPopUp.click();
+        }
+    }
+
     private void setApplicationId(){
         basicActions.waitForElementListToBePresent(applicationSummary, 10);
         String applicationid = applicationSummary.get(0).getText();
