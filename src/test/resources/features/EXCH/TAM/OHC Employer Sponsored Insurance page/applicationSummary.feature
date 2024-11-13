@@ -447,6 +447,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application History" page
     Then I click No on attestation popup on the Application History page
 #    Step 5
+    Then I click on view results and shop
     And I click on Sign Out in the Header for "NonElmo"
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -492,6 +493,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
       | Member1FullName:Offered a plan but not enrolled |
       | Member2FullName:No option to enroll             |
 #    Step 8
+    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -561,6 +563,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I verify PDF OHC data for family with Family offered "No" and Premium ""
       |  |
 #   Step 10
+    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -638,6 +641,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
       | Member2FullName:Offered a plan but not enrolled |
       | Member3FullName:No option to enroll             |
 #    Step 12
+    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year

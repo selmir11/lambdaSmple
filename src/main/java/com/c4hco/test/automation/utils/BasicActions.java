@@ -546,19 +546,26 @@ public class BasicActions {
         return lastDayOfNextMonth.format(formatter);
     }
 
+    public String lastDateOfCurrMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfCurrMonth = YearMonth.from(today).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        return lastDayOfCurrMonth.format(formatter);
+    }
+
     public String getTodayDate() {// Today
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
     public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
     public String getPastDate(int daysToMove) {
         LocalDate date = LocalDate.now().minusDays(daysToMove);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
