@@ -274,30 +274,13 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
         switch (endDate){
             case "Current Month":
-                calendar.add(Calendar.MONTH, 1);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd-yyyy");
-                esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+                esiEndDateInput.sendKeys(basicActions.getTodayDate());
                 break;
             case "Prior Month":
-                calendar.add(Calendar.MONTH, 0);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfPriorMonth = calendar.getTime();
-                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd-yyyy");
-                esiEndDateInput.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
+                esiEndDateInput.sendKeys(basicActions.getPastDate(1));
                 break;
             case "Future Month":
-                calendar.add(Calendar.DATE, 60);
-                Date futureDate = calendar.getTime();
-                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd-yyyy");
-                esiEndDateInput.sendKeys(futureDateFormat.format(futureDate));
-                break;
-            case "Today":
-                DateFormat todayDate = new SimpleDateFormat("MM-dd-yyyy");
-                esiEndDateInput.sendKeys(todayDate.format(today));
+                esiEndDateInput.sendKeys(basicActions.getFutureDate(61));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);
@@ -564,12 +547,12 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 calendar.add(Calendar.DATE, -1);
                 Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd-yyyy");
+                DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd");
                 softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(endOfCurrentMonth.format(lastDayOfMonth)));
                 softAssert.assertAll();
                 break;
             case "Today":
-                DateFormat todayDate = new SimpleDateFormat("yyyy-MM-dd-yyyy");
+                DateFormat todayDate = new SimpleDateFormat("yyyy-MM-dd");
                 softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(todayDate.format(today)));
                 softAssert.assertAll();
                 break;

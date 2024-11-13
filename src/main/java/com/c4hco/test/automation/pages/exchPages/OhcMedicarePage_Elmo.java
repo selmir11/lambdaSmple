@@ -232,30 +232,12 @@ public class OhcMedicarePage_Elmo {
 
     public void enterEndDatePartA(){
         basicActions.waitForElementToBePresent(partAInsuranceEndInput, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd-yyyy");
-
-        partAInsuranceEndInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        partAInsuranceEndInput.sendKeys(basicActions.getTodayDate());
     }
 
     public void enterEndDatePartB(){
         basicActions.waitForElementToBePresent(partBInsuranceEndInput, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd-yyyy");
-
-        partBInsuranceEndInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        partBInsuranceEndInput.sendKeys(basicActions.lastDateOfCurrMonth());
     }
 
     public void clickHelpIcon(String label) {
