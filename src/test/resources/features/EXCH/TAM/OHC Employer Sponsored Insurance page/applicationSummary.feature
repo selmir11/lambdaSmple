@@ -1,4 +1,4 @@
-@TAM @TamPdf @applicationSummaryESI @test
+@TAM @TamPdf @applicationSummaryESI
 Feature: Tests related to the Application Summary/Detail for ESI
 
   Background: I go the login portal
