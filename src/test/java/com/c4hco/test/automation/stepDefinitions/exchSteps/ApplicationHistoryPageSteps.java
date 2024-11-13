@@ -15,9 +15,6 @@ public class ApplicationHistoryPageSteps {
         applicationHistoryPage.clickViewResults();
     }
 
-    @Then("I click No on attestation popup on the Application History page")
-    public void iClickNoPopUp(){applicationHistoryPage.clickNoPopUp();}
-
     @Then("I validate that {string} text displays on the Application History page")
     public void validateText(String Text){applicationHistoryPage.validateTextOnPage(Text);}
 
@@ -34,6 +31,6 @@ public class ApplicationHistoryPageSteps {
         applicationHistoryPage.validateAptcSectionDoesntExist();
     }
 
-    @Then("Then I click on Verify My Information")
-    public void clickVerifyMyInfo(){applicationHistoryPage.clickVerifyMyInfoText();}
+    @Then("I click {string} on Before you continue popup on the application history page")
+    public void clickVerifyMyInfo(String popUpOption){applicationHistoryPage.clickVerifyMyInfoText(popUpOption);}
 }
