@@ -16,7 +16,7 @@ Feature: Tests related to the Family Overview page
 
   @SLCR-41 @TAMSmoke
   Scenario: SLCR-41 Validate Total Income equals to Annual Income when only projected income is reported
-    And I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "PrimaryMember"
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option

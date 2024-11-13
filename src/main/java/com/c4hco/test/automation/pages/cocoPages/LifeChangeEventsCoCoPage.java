@@ -168,9 +168,10 @@ public class LifeChangeEventsCoCoPage {
     private void handleLCEInsuranceLossSelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
-        LocalDate date = LocalDate.parse(basicActions.getDateBasedOnRequirement(dateType));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String dateValue = date.format(formatter);
+        String date = basicActions.getDateBasedOnRequirement(dateType);
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        //String dateValue = date.format(formatter) + "2024";
+        String dateValue = date + "/2024";
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
