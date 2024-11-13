@@ -80,6 +80,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
 
     Then I validate I am on the "Dental Plan Results" page
     Then I validate the dental plans count to be "9"
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-1003 @dentalPlanMinorCount
   Scenario: SLER-1003 - Validate dental plans count - single minor - no income
@@ -186,6 +187,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
 
     Then I validate I am on the "Dental Plan Results" page
     Then I validate the dental plans count to be "12"
+    And I click on Sign Out in the Header for "Elmo"
 
 
 @DentalPlanResults-WIP @SLER-1004

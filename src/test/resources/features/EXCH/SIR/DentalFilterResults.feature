@@ -79,6 +79,7 @@ Feature: Dental Plan Verification test
     And I click the Coverage Level dropdown
     And I select "<coverageLevel>" to filter for a Coverage Level plan
     And I validate the Dental Plan option 1 has a plan result "<dentalPlanText>"
+    And I click on Sign Out in the Header for "Elmo"
     Examples:
       |coverageLevel  |dentalPlanText                                           |
       |Low            |Cigna Dental Pediatric                                   |
@@ -158,6 +159,7 @@ Feature: Dental Plan Verification test
     And I click the Dental Insurance Company Dropdown
     And I select "<insuranceCompany>" to filter for a Dental Insurance Company
     And I validate the Dental Plan option 1 has a plan result "<dentalPlanText>"
+    And I click on Sign Out in the Header for "Elmo"
     Examples:
     |insuranceCompany               |dentalPlanText                                          |
     |Anthem Dental                  |Anthem Dental Family Value                              |
