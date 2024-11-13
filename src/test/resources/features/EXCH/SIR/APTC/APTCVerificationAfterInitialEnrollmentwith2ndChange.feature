@@ -532,7 +532,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
 
-      Then I select the option "Yes" to employment
+    Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I enter employment details with "1000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
