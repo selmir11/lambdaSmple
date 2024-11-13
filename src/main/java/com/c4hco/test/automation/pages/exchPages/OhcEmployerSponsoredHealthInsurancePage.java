@@ -273,8 +273,11 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         calendar.setTime(today);
 
         switch (endDate){
-            case "Current Month":
+            case "Today":
                 esiEndDateInput.sendKeys(basicActions.getTodayDate());
+                break;
+            case "Current Month":
+                esiEndDateInput.sendKeys(basicActions.lastDateOfCurrMonth());
                 break;
             case "Prior Month":
                 esiEndDateInput.sendKeys(basicActions.getPastDate(1));
