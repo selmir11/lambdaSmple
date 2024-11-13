@@ -1,5 +1,5 @@
-@dentalPlanFilterResults @SIR
-  # contains SLER-81, SLER-96, SLER-837, SLERR-862, SLER-863
+@SIR-EXCH3 @dentalPlanFilterResults @SIR
+  # contains SLER-81, SLER-96, SLER-837, SLERR-862, SLER-863,  SLER-1238,
 Feature: Dental Plan Verification test
 
   Background:
@@ -120,6 +120,7 @@ Feature: Dental Plan Verification test
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -199,6 +200,7 @@ Feature: Dental Plan Verification test
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option

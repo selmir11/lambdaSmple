@@ -1,6 +1,5 @@
-@dentalPlanDetail @SIR
-  # contains SLER-955,
-  # WIPS - SLER-995, SLER-996,
+@SIR-EXCH5 @dentalPlanDetail @SIR
+  # contains SLER-955, SLER-995, SLER-996,
 Feature: Dental Plan Verification test
 
   Background:
@@ -233,6 +232,8 @@ Feature: Dental Plan Verification test
     Then I click on the First Dental Detail button
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
 
+    Then I validate I am on the "Dental Plan Detail" page
+    And I select the InNetwork link on the Dental Detail page
     And I validate the "Spanish" text headers and subheaders for the InNetwork Dental Detail page
     And I select the OutNetwork link on the Dental Detail page
     And I validate the "Spanish" text headers and subheaders for the OutNetwork Dental Detail page

@@ -1,3 +1,5 @@
+@Dental
+
 Feature: Tests related to Dental plans
 
   @SLER-1200

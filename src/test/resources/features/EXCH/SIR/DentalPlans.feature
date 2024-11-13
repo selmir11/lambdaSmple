@@ -1,5 +1,5 @@
-@DentalPlans
-  #contains SLER-747,
+@SIR-EXCH4 @DentalPlans
+  #contains SLER-747, SLER-1003,
 Feature: Tests related to dental plans
 
 @SLER-747 @dentalPlanAdultNamesAndCount @failingInQA-ReportingABug
