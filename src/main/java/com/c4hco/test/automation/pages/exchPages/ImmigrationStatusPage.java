@@ -55,5 +55,8 @@ public class ImmigrationStatusPage {
         }
     }
 
-    public  void clickContinue(){saveContinue.click();}
+    public  void clickContinue(){
+        basicActions.waitForElementToBePresent(saveContinue, 10);
+        saveContinue.click();
+    }
 }

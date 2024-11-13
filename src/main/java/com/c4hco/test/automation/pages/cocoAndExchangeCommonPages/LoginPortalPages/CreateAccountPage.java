@@ -1,10 +1,9 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages;
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import org.apache.commons.lang3.RandomStringUtils;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +14,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 
 public class CreateAccountPage {
     SoftAssert softAssert = new SoftAssert();
@@ -190,10 +190,6 @@ public class CreateAccountPage {
         helpDrawerButton.click();
     }
 
-    public static String getUniqueString(int length){
-        return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
-    }
-
     public static CharSequence generatePhoneNumber(){
         Random rand = new Random();
         int num1 = (rand.nextInt(7)+1)*100;
@@ -246,29 +242,13 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + appType);
         }
         submitButton.click();
-        setdbName();
-    }
-
-    private void setdbName(){
-        String env = SharedData.getEnv();
-        String appType = SharedData.getAppType().substring(0, 4);
-        String dbName = env.equals("qa") ? env + "_"+appType : appType;
-        SharedData.setDbName(dbName);
-    }
-
-    // WIP - Remove from here. We already have this in basicActions
-    public String capitalizeFirstLetter(String input) {
-        if (input == null || input.isEmpty()) {
-            return input;
-        }
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
 
     public void initializeData(){
         MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName("PrimaryMember"+getUniqueString(8));
-        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
+        subscriber.setFirstName("PrimaryMember"+basicActions.getUniqueString(8));
+        subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -278,8 +258,8 @@ public class CreateAccountPage {
 
     public void initializeDataOutlook(String emailBase){
         MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName("Primary"+ getUniqueString(6));
-        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(7)+"Test"));
+        subscriber.setFirstName("Primary"+ basicActions.getUniqueString(6));
+        subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(7)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -287,8 +267,8 @@ public class CreateAccountPage {
     }
     public void initializeDataGmail(String emailBase){
         MemberDetails subscriber = new MemberDetails();
-        subscriber.setFirstName(capitalizeFirstLetter(getUniqueString(10)+"TestMember"));
-        subscriber.setLastName(capitalizeFirstLetter(getUniqueString(10)+"Test"));
+        subscriber.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"TestMember"));
+        subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@gmail.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
@@ -300,7 +280,7 @@ public class CreateAccountPage {
         List<MemberDetails> allMembersList = new ArrayList<>();
         subscriber.setFirstName(fName);
         subscriber.setLastName(lName);
-        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+getUniqueString(6)+"@test.com");
+        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+basicActions.getUniqueString(6)+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
@@ -425,8 +405,8 @@ public class CreateAccountPage {
 
     public void initializeBrokerData(String accountType, String emailBase){
         BrokerDetails user = new BrokerDetails();
-        user.setFirstName(capitalizeFirstLetter(getUniqueString(8)+"TestBroker"));
-        user.setLastName(capitalizeFirstLetter(getUniqueString(8)+"Test"));
+        user.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"TestBroker"));
+        user.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
         user.setPhoneNumber((String) generatePhoneNumber());
         user.setLicense((String) generateBrokerLicense());

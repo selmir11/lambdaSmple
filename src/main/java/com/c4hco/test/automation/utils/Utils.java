@@ -9,6 +9,8 @@ public class Utils {
     private String isLrEnv = ApplicationProperties.getInstance().getProperty("isLrEnv");
     private String isOpenEnrollment = ApplicationProperties.getInstance().getProperty("isOpenEnrollment");
     private String ses = ApplicationProperties.getInstance().getProperty("ses");
+    private String dbName = ApplicationProperties.getInstance().getProperty("dbName");
+
     private BasicActions basicActions;
 
     public Utils(WebDriver webDriver){
@@ -17,6 +19,7 @@ public class Utils {
         SharedData.setEnv(env);
         SharedData.setIsOpenEnrollment(isOpenEnrollment);
         SharedData.setSes(ses);
+        setdbName();
     }
 
     public String getBaseLoginUrl(String portalType){
@@ -38,6 +41,11 @@ public class Utils {
            default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
         return baseUrl;
+    }
+
+    private void setdbName(){
+        String dbNameWithEnv = env.equals("qa") ? env + "_"+dbName : dbName;
+        SharedData.setDbName(dbNameWithEnv);
     }
 
 }
