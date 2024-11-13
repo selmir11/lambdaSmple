@@ -75,5 +75,7 @@ Feature: Page text, navigation - Dependent Overview page in Spanish
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+    And I change the language from header to "English"
+    Then I validate I am on the "Application Results CoCo" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
