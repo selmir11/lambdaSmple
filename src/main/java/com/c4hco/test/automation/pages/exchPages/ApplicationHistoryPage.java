@@ -25,6 +25,8 @@ public class ApplicationHistoryPage {
     WebElement mvrPopUp;
     @FindBy(css= ".no-self-attestation-btn")
     WebElement noBtnMvrPopUp;
+    @FindBy(css = ".yes-self-attestation-btn")
+    WebElement yesBtnMvrPopUp;
 
     private BasicActions basicActions;
 
@@ -38,8 +40,8 @@ public class ApplicationHistoryPage {
         if(mvrPopUp.isDisplayed()){
             noBtnMvrPopUp.click();
         }
-       basicActions.waitForElementToBeClickable(viewResultsAndShop, 10);
-       basicActions.clickElementWithRetries(viewResultsAndShop, 10);
+        basicActions.waitForElementToBeClickable(viewResultsAndShop, 10);
+        basicActions.clickElementWithRetries(viewResultsAndShop, 10);
     }
 
     public void clickNoPopUp(){
@@ -75,5 +77,10 @@ public class ApplicationHistoryPage {
     public void validateAptcSectionDoesntExist(){
         basicActions.waitForElementToBePresent(viewResultsAndShop, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(aptcSection, 3));
+    }
+
+    public void clickVerifyMyInfoText(){
+        basicActions.waitForElementToBePresent(yesBtnMvrPopUp,10);
+        yesBtnMvrPopUp.click();
     }
 }

@@ -16,7 +16,7 @@ Feature:  Unable to shop (not applying for coverage)
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    And I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "No"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -56,7 +56,7 @@ Feature:  Unable to shop (not applying for coverage)
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    And I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Los Angeles", "CA", "90005", "LOS ANGELES"
     And I select "Yes" for mailing address option
