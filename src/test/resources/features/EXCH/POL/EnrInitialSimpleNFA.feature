@@ -140,3 +140,9 @@ Feature: Simple NFA - Single Applicant
 
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
+
+#    And I validate ib834 "medical" details in database
+#    And I validate ib834 "dental" details in database
+
+    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+    And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
