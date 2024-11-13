@@ -102,4 +102,21 @@ public class sftpStepDefinitions {
         sftpUtil.readIb999File(SharedData.getMedicalFileName());
     }
 
+    @And("I download the {string} ib834 file from sftp server location {string}")
+    public void downloadIb834MedFileToTarget(String recordType, String remoteLocation) throws JSchException {
+        switch (recordType) {
+            case "medical":
+                sftpUtil.downloadFileWithSftp(remoteLocation, SharedData.getMedicalIb834FileName());
+                break;
+            case "dental":
+                sftpUtil.downloadFileWithSftp(remoteLocation, SharedData.getDentalIb834FileName());
+                break;
+            default:
+                Assert.fail("Record Type does not exist.");
+
+        }
+    }
+
+
+
 }
