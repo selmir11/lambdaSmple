@@ -174,7 +174,7 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "AdditionalIncome-GoBack")
     WebElement goBackButton;
 
-    @FindBy(css = ".banner-error-component")
+    @FindBy(css = ".banner-error-message")
     WebElement errorMessage;
 
     @FindBy(css = ".header-1")
