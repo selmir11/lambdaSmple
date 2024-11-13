@@ -9,7 +9,7 @@ Feature: Verify Header, Footer and welcome back button link on my documents page
     And I validate I am on the "Admin search" page
     And I validate I am on the "Admin search" page
     And I select "coco" checkbox on Admin Portal Dashboard
-    Then I enter an "accountID" "5890916640" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
@@ -43,7 +43,7 @@ Feature: Verify Header, Footer and welcome back button link on my documents page
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     And I click on "My Documents and Letters" link on welcome page
-    And I click on Find a Plan in the Header
+    Then I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I go to the previous browser page
     And I click on Sign Out in the Header for "Elmo"
