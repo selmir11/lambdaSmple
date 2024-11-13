@@ -235,7 +235,7 @@ Feature: Verify COCO Medical Plan results
       | Save and Exit                                                                                                                                                                                |
       | Skip                                                                                                                                                                                         |
       | Continue                                                                                                                                                                                     |
-      | Plan quality ratings and enrollee survey results are calculated by CMS using data provided by health plans in 2023. The ratings are being displayed for health plans for the 2024 plan year. |
+      | Plan quality ratings and enrollee survey results are calculated by CMS using data provided by health plans in 2024. The ratings are being displayed for health plans for the 2025 plan year. |
       | Learn more about these ratings.                                                                                                                                                              |
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate text on coco medical plan page
@@ -258,7 +258,7 @@ Feature: Verify COCO Medical Plan results
       | Guardar y Salir                                                                                                                                                                                                                                                   |
       | Omitir                                                                                                                                                                                                                                                            |
       | Continuar                                                                                                                                                                                                                                                         |
-      | CMS calculan las calificaciones de la calidad del plan y los resultados de la encuesta del asegurado con base en los datos que proporcionaron los planes de salud en 2023. Se muestran las calificaciones de los planes de salud referentes al año del plan 2024. |
+      | CMS calculan las calificaciones de la calidad del plan y los resultados de la encuesta del asegurado con base en los datos que proporcionaron los planes de salud en 2024. Se muestran las calificaciones de los planes de salud referentes al año del plan 2025. |
       | Obtenga más información sobre estas calificaciones.                                                                                                                                                                                                               |
     And I click on Sign Out in the Header for "Elmo"
 
@@ -492,7 +492,7 @@ Feature: Verify COCO Medical Plan results
       | Guardar y Salir                                                                                                                                                                                                                                                   |
       | Omitir                                                                                                                                                                                                                                                            |
       | Continuar                                                                                                                                                                                                                                                         |
-      | CMS calculan las calificaciones de la calidad del plan y los resultados de la encuesta del asegurado con base en los datos que proporcionaron los planes de salud en 2023. Se muestran las calificaciones de los planes de salud referentes al año del plan 2024. |
+      | CMS calculan las calificaciones de la calidad del plan y los resultados de la encuesta del asegurado con base en los datos que proporcionaron los planes de salud en 2024. Se muestran las calificaciones de los planes de salud referentes al año del plan 2025. |
       | Obtenga más información sobre estas calificaciones.                                                                                                                                                                                                               |
     Then I change the language from header to "English"
     Then I validate text on coco medical plan page
@@ -515,9 +515,9 @@ Feature: Verify COCO Medical Plan results
       | Save and Exit                                                                                                                                                                                |
       | Skip                                                                                                                                                                                         |
       | Continue                                                                                                                                                                                     |
-      | Plan quality ratings and enrollee survey results are calculated by CMS using data provided by health plans in 2023. The ratings are being displayed for health plans for the 2024 plan year. |
+      | Plan quality ratings and enrollee survey results are calculated by CMS using data provided by health plans in 2024. The ratings are being displayed for health plans for the 2025 plan year. |
       | Learn more about these ratings.                                                                                                                                                              |
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
+    And I select "Anthem Colorado Option Gold Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
@@ -542,7 +542,7 @@ Feature: Verify COCO Medical Plan results
       | Save and Exit                                                                                                                                                                                |
       | Skip                                                                                                                                                                                         |
       | Continue                                                                                                                                                                                     |
-      | Plan quality ratings and enrollee survey results are calculated by CMS using data provided by health plans in 2023. The ratings are being displayed for health plans for the 2024 plan year. |
+      | Plan quality ratings and enrollee survey results are calculated by CMS using data provided by health plans in 2024. The ratings are being displayed for health plans for the 2025 plan year. |
       | Learn more about these ratings.                                                                                                                                                              |
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate text on coco medical plan page
@@ -565,7 +565,7 @@ Feature: Verify COCO Medical Plan results
       | Guardar y Salir                                                                                                                                                                                                                                                   |
       | Omitir                                                                                                                                                                                                                                                            |
       | Continuar                                                                                                                                                                                                                                                         |
-      | CMS calculan las calificaciones de la calidad del plan y los resultados de la encuesta del asegurado con base en los datos que proporcionaron los planes de salud en 2023. Se muestran las calificaciones de los planes de salud referentes al año del plan 2024. |
+      | CMS calculan las calificaciones de la calidad del plan y los resultados de la encuesta del asegurado con base en los datos que proporcionaron los planes de salud en 2024. Se muestran las calificaciones de los planes de salud referentes al año del plan 2025. |
       | Obtenga más información sobre estas calificaciones.                                                                                                                                                                                                               |
     And I click on Sign Out in the Header for "Elmo"
 

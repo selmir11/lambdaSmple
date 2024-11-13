@@ -1,4 +1,4 @@
-@COCO
+@COCO2
   # SLCR-160, SLCR-315,
 Feature: Multiple Household Member - End to End Test
 
@@ -176,11 +176,11 @@ Feature: Multiple Household Member - End to End Test
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Silver X" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -360,12 +360,8 @@ Feature: Multiple Household Member - End to End Test
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
+    And I select "RMHP Colorado Doctors Plan Colorado Option Gold" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
-
-    #Then I validate I am on the "Medical Plan Results" page
-    #And I select "KP Colorado Option Silver X" coco medical plan
-    #Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
