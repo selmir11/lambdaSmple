@@ -412,6 +412,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
     Then I validate that my APTC value is "437.72/mo"
 #    Step 3
+    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -504,6 +505,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
     Then I validate the aptc section doesn't exist on the application history page
 #    Step 4
+    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -563,6 +565,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
     Then I validate that my APTC value is "839.42/mo"
 #    Step 5
+    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -621,6 +624,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Premium Tax Credit" text does not display on the Application History page
     Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
     Then I validate the aptc section doesn't exist on the application history page
+    Then I click on view results and shop
 
     And I click on Sign Out in the Header for "NonElmo"
 
