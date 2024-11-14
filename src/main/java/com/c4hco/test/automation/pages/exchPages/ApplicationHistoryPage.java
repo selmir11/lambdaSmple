@@ -21,6 +21,13 @@ public class ApplicationHistoryPage {
     WebElement aptcSection;
     @FindBy(css = "table tbody  #align-right")
     List<WebElement> applicationSummary;
+    @FindBy(css=".self-attestation-title")
+    WebElement mvrPopUp;
+    @FindBy(css= ".no-self-attestation-btn")
+    WebElement noBtnMvrPopUp;
+    @FindBy(css = ".verify-myinfo-btn")
+    WebElement yesBtnMvrPopUp;
+
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -30,8 +37,13 @@ public class ApplicationHistoryPage {
 
     public void clickViewResults(){
         setApplicationId();
-        viewResultsAndShop.click();
+        if(mvrPopUp.isDisplayed()){
+            noBtnMvrPopUp.click();
+        }
+        basicActions.waitForElementToBeClickable(viewResultsAndShop, 10);
+        basicActions.clickElementWithRetries(viewResultsAndShop, 10);
     }
+
     private void setApplicationId(){
         basicActions.waitForElementListToBePresent(applicationSummary, 10);
         String applicationid = applicationSummary.get(0).getText();
@@ -59,5 +71,20 @@ public class ApplicationHistoryPage {
     public void validateAptcSectionDoesntExist(){
         basicActions.waitForElementToBePresent(viewResultsAndShop, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(aptcSection, 3));
+    }
+
+    public void clickVerifyMyInfoText(String popUpOption){
+        switch (popUpOption){
+            case "Verify My Information":
+                basicActions.waitForElementToBePresent(yesBtnMvrPopUp,10);
+                yesBtnMvrPopUp.click();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(noBtnMvrPopUp,10);
+                noBtnMvrPopUp.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + popUpOption);
+        }
     }
 }

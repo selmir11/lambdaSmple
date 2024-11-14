@@ -1,5 +1,5 @@
-@APTC,@APTC-SIR, @APTC-SIR-AddMember
-  #SLER-325, @SLER-802, @SLER-803, SLER-804, @SLER-805, @SLER-806, SLER-807, @SLER-808, @SLER-809, SLER-998, SLER-999,
+@APTC,@APTC-SIR4, @APTC-SIR-AddMember
+  #SLER-325, SLER-802, SLER-803, SLER-804, @SLER-805, @SLER-806, SLER-807, @SLER-808, @SLER-809, SLER-998, SLER-999, SLER-1007,
 Feature: UI Tests related to APTC after second enrollment change
 
   Background: I go the login portal
@@ -147,8 +147,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-#    Then I validate I am on the "Report a life change" page
-#    And I report "MovedToColorado" and click continue
+   Then I validate I am on the "Report a life change" page
+   And I report "MovedToColorado" and click continue
 
 
     Then I validate I am on the "Find Expert Help" page
@@ -387,8 +387,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-#      Then I validate I am on the "Report a life change" page
-#      And I report "Marriage" and click continue
+      Then I validate I am on the "Report a life change" page
+     And I report "Marriage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
@@ -1677,12 +1677,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click plus icon next to member on household page for "DaughterOne"
     And I click the edit income icon on household page for "DaughterOne"
 
-    # added member 2
-    Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown 3
-    And I click the edit income 6
-
-
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -1695,16 +1689,10 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-        # added member 4
+
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "DaughterTwo"
     And I click the edit income icon on household page for "DaughterTwo"
-
-    # added member 3
-    Then I validate I am on the "Family Overview" page
-    And I click on the table dropdown 4
-    And I click the edit income 9
-
 
     Then I validate I am on the "Employment Info" page
     Then I select the option "No" to employment
@@ -1733,6 +1721,11 @@ Feature: UI Tests related to APTC after second enrollment change
     # member 1
     And I validate I am on the "Elmo Other Health Coverage" page
     #The question is skipped here because the primary member answered the question in initial enrollment
+    Then I click continue on the ELMO health coverage page
+
+    # member 2
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 
     # member 3
@@ -1791,7 +1784,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
     Examples:
       | City   | State | DOB      | County | Zipcode | income1 | aptc1 | income2 | expectedAptc2 | planSummaryaptc2 | DOBmember2 |
-      | Granby | CO    | 01011990 | Grand  | 80446   | 1500000 | $0.00 | 7500000 | $1100.40/mo   | -$1100.40        | 01012011   |
+      | Granby | CO    | 01011990 | Grand  | 80446   | 1500000 | $0.00 | 7500000 | $1100.40/mo   | -$1,100.40        | 01012011   |
 
 
   @SLER-802 @SLER-803 @SLER-805 @SLER-806 @SLER-808 @SLER-809
@@ -2085,21 +2078,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Plan Summary" page
       And I validate the APTC Credit on the Summary page is "<finalplanSummaryAPTC>"
-      # -$265.98
+
       And I click continue on plan summary page
-
-      #Then I validate I am on the "Financial Help Agreements" page
-      #And I select the terms and agreements checkbox
-      #And I enter householder signature on the Financial Help Agreements page
-      #And I click continue on Financial Help Agreements page
-
-      #Then I validate I am on the "Enrollment Agreements" page
-      #And I select "Acknowledgement" agreement checkbox
-      #And I select "Submit" agreement checkbox
-      #And I enter householder signature on the Enrollment Agreements page
-      #And I click submit enrollment on Enrollment Agreements page
-
-      #Then I validate I am on the "Pay now" page
       And I click on Sign Out in the Header for "Portal"
       Examples:
         |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |

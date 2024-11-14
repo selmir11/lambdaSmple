@@ -1,4 +1,4 @@
-@SIRRegression
+@SIRRegression @Dental
   # SLER-1098
 Feature: UI Page Validation - Plan Results (Dental)
 

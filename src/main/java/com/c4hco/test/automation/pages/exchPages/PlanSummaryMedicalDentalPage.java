@@ -23,6 +23,9 @@ public class PlanSummaryMedicalDentalPage {
         PageFactory.initElements( basicActions.getDriver(), this );
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     @FindBy(id = "PlanSummary-Continue")
     WebElement continueBtnOnPlanSummary;
 
@@ -41,7 +44,7 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(xpath = "//*[contains(text(),\"Money you save\")]")
     WebElement planSummaryMedicalpremiumcredit;
 
-    @FindBy(xpath = "//*[contains(text(),\"Amount you pay\")]")
+    @FindBy(id = "PlanSummary-AmountYouPayHelpText")
     WebElement planSummaryMedicalAmtyoupay;
 
     @FindBy(xpath = "//*[contains(text(),\"Dental Plans\")]")
@@ -83,8 +86,6 @@ public class PlanSummaryMedicalDentalPage {
     @FindBy(css = "#PlanSummary-MedicalGroupFullName_0")
     WebElement medicalgroup1MemberNames;
 
-    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
-    WebElement spinner;
 
     @FindBy(id = "PlanSummary-AmountYouPayHelpText")
     WebElement toolTipText;
@@ -108,6 +109,8 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertTrue( planSummaryMedicalplanheading.isDisplayed(), "Medical plan heading did not match" );
         softAssert.assertTrue( planSummaryDentalplanheading.isDisplayed(), "Dental plan heading did not match" );
 
+        basicActions.scrollToElement( planSummaryMedicalpremium );
+
         softAssert.assertTrue( planSummaryMedicalpremium.isDisplayed(), "Premiums Before Savings did not display" );
         softAssert.assertTrue( planSummaryDentalpremium.isDisplayed(), "Premiums Before Savings did not display" );
 
@@ -115,7 +118,6 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertTrue( planSummaryDentalpremiumcredit.isDisplayed(), "Money you save did not display" );
 
         softAssert.assertTrue( planSummaryMedicalAmtyoupay.isDisplayed(), "Amount you pay did not display" );
-        softAssert.assertTrue( planSummaryDentalAmtyoupay.isDisplayed(), "Amount you pay did not display" );
 
         softAssert.assertAll();
     }

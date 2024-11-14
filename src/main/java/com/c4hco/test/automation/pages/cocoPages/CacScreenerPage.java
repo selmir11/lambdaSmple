@@ -478,7 +478,7 @@ public class CacScreenerPage {
     public void validatePageTextMainEnglish(){
         basicActions.waitForElementToBePresent(cacScreenerHeader,10);
         softAssert.assertEquals(cacScreenerHeader.getText(), "Important news for undocumented Coloradans");
-        softAssert.assertEquals(cacScreenerSubHeader.getText(), "There are several important health policy changes this year. You may have new coverage options for 2024. To see if these changes affect you and your family, answer a few quick questions.");
+        softAssert.assertEquals(cacScreenerSubHeader.getText(), "There are several important health policy changes this year. You may have new coverage options for 2025. To see if these changes affect you and your family, answer a few quick questions.");
         softAssert.assertEquals(under19Question.getText(), "Is anyone in your household under 19?");
         softAssert.assertEquals(under19SubQuestion.getText(), "What if someone turns 19 in 2025?");
         builder.moveToElement(under19SubQuestion).perform();

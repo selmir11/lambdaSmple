@@ -28,6 +28,8 @@ public class SharedData {
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
+    @Getter @Setter private static List<Ib834Entity> ib834MedDetailsEntities;
+    @Getter @Setter private static List<Ib834Entity> ib834DenDetailsEntities;
     @Getter @Setter private static String medicalIb999FileName;
     @Getter @Setter private static String dentalIb999FileName;
     @Getter @Setter private static String medicalIb834FileName;

@@ -331,8 +331,8 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateOhiDetails(String memberId) {
-        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(memberId);
+    public void validateOhiDetails(String memPrefix) {
+        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(basicActions.getMemberId(memPrefix));
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }

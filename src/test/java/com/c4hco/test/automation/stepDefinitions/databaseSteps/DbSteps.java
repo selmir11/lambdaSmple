@@ -21,7 +21,7 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
       dbValidations.validateOb834FromDb(expectedValues);
    }
    @And("I verify the OHI info in the DB for {string}")
-   public void validateOhiInfo(String memberId){dbValidations.validateOhiDetails(memberId);}
+   public void validateOhiInfo(String memPrefix){dbValidations.validateOhiDetails(memPrefix);}
 
    @And("I verify the OHI options selected in the DB for {string}")
    public void iValidateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues){dbValidations.validateOhiOptions(memPrefix, expectedValues);}

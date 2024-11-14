@@ -16,10 +16,12 @@ public class MyPoliciesCoCoPageSteps {
     public void validateMyPlans(){
         myPoliciesCoCoPage.validateEnrolledPlanDetails();
     }
+
     @And("I click view Plan History link from medical plan card in coco")
     public void clickViewPlanHistory(){
         myPoliciesCoCoPage.clickViewPlanHistoryLink();
     }
+
     @And("I validate medical plan details from plan history in coco")
     public void medicalPlanDetailsPlanHistory(){
         myPoliciesCoCoPage.validateMedPlanDetailsFromPlanHistoryCoco();

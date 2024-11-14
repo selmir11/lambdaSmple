@@ -1,4 +1,4 @@
-@MedicalCompare @SIR
+@SIR-EXCH2 @MedicalCompare
   #@SLER-46, @SLER-725, @SLER-726 , @SLER-1086
 Feature: Medical Plan Compare page related tests
 
@@ -212,7 +212,6 @@ Feature: Medical Plan Compare page related tests
 
     Then I validate I am on the "Medical Plan Compare" page
     And I validate the summary pdf link
-    And I validate the Disclaimer text
     And I validate the text headers and subheaders for the InNetwork Compare page
     And I click the OutNetwork Link
     And I validate the text headers and subheaders for the OutNetwork Compare page

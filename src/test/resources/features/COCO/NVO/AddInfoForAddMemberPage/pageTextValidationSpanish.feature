@@ -57,5 +57,7 @@ Feature: Page text, navigation, validation - Additional information for addition
     Then I validate I am on the "CoCo Additional info for additional member" page
     Then I click Go Back on the Additional information for additional member page
     Then I validate I am on the "CoCo Tell us about additional members" page
+    And I change the language from header to "English"
+    Then I validate I am on the "CoCo Tell us about additional members" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
