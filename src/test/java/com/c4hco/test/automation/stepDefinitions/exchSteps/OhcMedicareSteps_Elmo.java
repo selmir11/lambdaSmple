@@ -85,7 +85,9 @@ public class OhcMedicareSteps_Elmo {
     @Then("I validate Medicare help drawer verbiage in {string}")
     public void iValidateHelp(String language){OhcMedicarePage_Elmo.validateHelpVerbiage(language);}
 
-
+    @Then("I verify Medicare checkbox in {string} state")
+    public void iVerifyStateOfMedicareCheckboxes(String state){
+        OhcMedicarePage_Elmo.verifyMedicareCheckboxes(state);}
 
 
 }
