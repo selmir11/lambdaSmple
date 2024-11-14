@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -293,4 +294,79 @@ public class AccountOverviewPage {
         basicActions.waitForElementToBeClickable(btnVerifyYourInformation, 10);
         btnVerifyYourInformation.click();
     }
+
+    public void verifyMemberNames_WIP() {
+
+
+        // Get all member details
+        List<MemberDetails> allMemberList = basicActions.getAllMem();
+
+        // Loop over the groups (k), where k is the MedGroupInd value
+        for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() + SharedData.getScenarioDetails().getTotalGroups(); i++) {
+
+            // Initialize lists for storing expected and actual member names
+            List<String> expectedMemberNames = new ArrayList<>();
+            List<String> actualMemberNames = new ArrayList<>();
+
+            // Get the actual member names from the web page for the current group (k)
+            List<WebElement> getactualMemberNames = basicActions.getDriver().findElements(By.cssSelector(".table-bordered tr:nth-child(" + i + ") td:nth-child(2) span b"));
+            String expectedMedGroupInd = null;
+            // Add the actual member names to the list
+            for (WebElement member : getactualMemberNames) {
+                actualMemberNames.add(member.getText());
+            }
+
+            for(String actualMemName : actualMemberNames ) {
+                // Filter the members from the allMemberList whose MedGroupInd matches the current k value
+                for (MemberDetails member : allMemberList) {
+                    if (member.getSignature().equals(actualMemName)) {
+
+                        if (expectedMedGroupInd == null) {
+                            expectedMedGroupInd = member.getMedGroupInd(); // Capture MedGroupInd of the first filtered member
+                        }
+                        //Assert that this member belongs to the same MedGroupInd as the first member
+                        softAssert.assertTrue(member.getMedGroupInd().equals(expectedMedGroupInd),"Member Medical Group :"+member.getMedGroupInd()+" does not match to another member Medical Group : "+expectedMedGroupInd);
+                        // Add the member's signature (name) to the expected list
+                        expectedMemberNames.add(member.getSignature());
+
+                        // Call verifyPlanInfo with the member's name
+                        verifyPlanInfo_WIP(member);
+                    }
+                }
+            }
+
+            // Assert that the actual and expected names match exactly
+            softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size() == expectedMemberNames.size(), "Member names do not match.");
+        }
+
+        // Finalize all assertions
+        softAssert.assertAll();
+    }
+
+
+    private void verifyPlanInfo_WIP(MemberDetails memberInfo) {
+
+        //Medical Plan Validation
+        WebElement MedicalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[4]/b"));
+        WebElement MedicalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[5]/b"));
+        WebElement MedicalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[6]/b"));
+
+        softAssert.assertEquals(MedicalPlanName.getText(), memberInfo.getMedicalPlan(), memberInfo.getFirstName() + " Medical Plan Name does not match");
+        softAssert.assertEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + memberInfo.getMedicalPremiumAmt(), memberInfo.getFirstName() + " Medical premium amount does not match");
+        softAssert.assertEquals(MedicalAPTCAmnt.getText(), "$" + memberInfo.getMedicalAptcAmt(), memberInfo.getFirstName() + " Medical APTC amount did not match");
+
+        //Dental Plan Validation
+        WebElement DentalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[4]/b"));
+        WebElement DentalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[5]/b"));
+        WebElement DentalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[6]/b"));
+
+        //Dental
+        softAssert.assertEquals(DentalPlanName.getText(), memberInfo.getDentalPlan(), memberInfo.getFirstName() + " Dental Plan Name does not match");
+        softAssert.assertEquals(DentalPremiumAmnt.getText(), "$" + basicActions.doubleAmountFormat(memberInfo.getDentalPremiumAmt()), memberInfo.getFirstName() + " Dental Premium amount does not match");
+        softAssert.assertEquals(DentalAPTCAmnt.getText(), "$" + "0", memberInfo.getFirstName() + " Dental APTC amount on account overview page mismatch");
+
+        softAssert.assertAll();
+    }
+
 }
+
