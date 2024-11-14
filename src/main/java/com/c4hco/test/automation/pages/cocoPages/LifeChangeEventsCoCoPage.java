@@ -158,6 +158,7 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
@@ -168,9 +169,8 @@ public class LifeChangeEventsCoCoPage {
     private void handleLCEInsuranceLossSelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
-        LocalDate date = LocalDate.parse(basicActions.getDateBasedOnRequirement(dateType));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String dateValue = date.format(formatter);
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
@@ -185,6 +185,7 @@ public class LifeChangeEventsCoCoPage {
         List<WebElement> changeOfAddressEventDate = qachangeOfAddressEventDate;
 
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
             basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i), 10);
@@ -302,6 +303,7 @@ public class LifeChangeEventsCoCoPage {
 
     private void setDateForCheckboxes(List<WebElement> eventDates, String dateType) {
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         for (int i = 0; i < eventDates.size(); i++) {
             basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
             eventDates.get(i).sendKeys(dateValue);

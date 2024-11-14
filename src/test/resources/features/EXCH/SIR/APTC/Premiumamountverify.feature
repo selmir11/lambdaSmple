@@ -1,4 +1,4 @@
-@SIRRegression
+@SIRRegression @Premium
   #SLER-1093
 Feature: Premium is not $0 when 4+ children
   @SLER-1093
@@ -275,12 +275,15 @@ Feature: Premium is not $0 when 4+ children
     And I wait for hold on content to disappear
     Then I click on No Thanks on good news page
     Then I click on view results and shop
+
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I click continue on start shopping page
+
     Then I validate I am on the "Grouping Members Medical" page
     And  I get the details of medical group Members
     Then I click continue on grouping Members Medical page
+
     Then I validate I am on the "Medical Plan Results" page
     And  I validate medical premium amount is not zero
     And  I click skip on medical plan results page
@@ -288,8 +291,10 @@ Feature: Premium is not $0 when 4+ children
     And  I click skip on medical plan results page
     And  I validate medical premium amount is not zero
     And  I click skip on medical plan results page
+
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
+
     And I validate I am on the "Dental Plan Results" page
     And  I validate dental premium amount is  zero
     And I click Skip on Dental Plan Results page

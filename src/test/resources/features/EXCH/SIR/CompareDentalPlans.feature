@@ -1,4 +1,4 @@
-@Dental @DentalCompare
+@SIR-EXCH1 @Dental @DentalCompare
   # SLER-80, SLER-727, SLER-1037
 Feature: Medical Plan Results page related tests
 

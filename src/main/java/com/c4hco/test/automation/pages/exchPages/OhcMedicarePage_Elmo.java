@@ -2,8 +2,11 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -16,6 +19,7 @@ import java.util.List;
 
 public class OhcMedicarePage_Elmo {
     private BasicActions basicActions;
+    Actions actions = new Actions(WebDriverManager.getDriver());
     SoftAssert softAssert = new SoftAssert();
     public OhcMedicarePage_Elmo(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
@@ -48,6 +52,9 @@ public class OhcMedicarePage_Elmo {
 
     @FindBy(css = "lib-checkbox-control > label")
     List<WebElement> medicareCheckboxDetails;
+
+    @FindBy(xpath = "//button[@role='checkbox']")
+    List<WebElement> medicareCheckboxes;
 
     @FindBy(css = "#ELIG-medicareOhc-partBEndsSoon-container label > span")
     WebElement questionTxtB;
@@ -232,30 +239,12 @@ public class OhcMedicarePage_Elmo {
 
     public void enterEndDatePartA(){
         basicActions.waitForElementToBePresent(partAInsuranceEndInput, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
-
-        partAInsuranceEndInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        partAInsuranceEndInput.sendKeys(basicActions.getTodayDate());
     }
 
     public void enterEndDatePartB(){
         basicActions.waitForElementToBePresent(partBInsuranceEndInput, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
-
-        partBInsuranceEndInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+        partBInsuranceEndInput.sendKeys(basicActions.lastDateOfCurrMonth());
     }
 
     public void clickHelpIcon(String label) {
@@ -556,8 +545,8 @@ public class OhcMedicarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
@@ -938,7 +927,104 @@ public class OhcMedicarePage_Elmo {
         softAssert.assertAll();
     }
 
+    public void verifyMedicareCheckboxes(String state){
+        switch (state){
+            case "Selected":
+                verifySelectedStateOfCheckboxes();
+                break;
+            case "Hover":
+                verifyHoverStateOfCheckboxes();
+                break;
+            case "Focus":
+                verifyFocusStateOfCheckboxes();
+                break;
+            case "Not Selected":
+                verifyNotSelectedStateOfCheckboxes();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + state);
+        }
+    }
 
+    public void verifyNotSelectedStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(medicareCheckboxes, 15);
+        for (int i = 0; i < medicareCheckboxes.size(); i++) {
+            WebElement element1 = medicareCheckboxes.get(i);
+            WebElement element2 = medicareCheckboxDetails.get(i);
+            basicActions.wait(100);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(55, 55, 55)");
+            softAssert.assertAll();
+            element1.click();
+            basicActions.wait(100);
+        }
+    }
+
+    public void verifyFocusStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(medicareCheckboxes, 15);
+        for (int i = 0; i < medicareCheckboxes.size(); i++) {
+            WebElement element = medicareCheckboxes.get(i);
+            element.sendKeys(Keys.SHIFT);
+            basicActions.wait(200);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element.getCssValue("box-shadow"), "rgb(112, 163, 0) 0px 0px 7px 3px");
+            softAssert.assertAll();
+            element.click();
+            basicActions.wait(200);
+        }
+    }
+
+    public void verifyHoverStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(medicareCheckboxes, 15);
+        for (int i = 0; i < medicareCheckboxes.size(); i++) {
+            WebElement element = medicareCheckboxes.get(i);
+            actions.moveToElement(element).perform();
+            basicActions.wait(300);
+            softAssert.assertEquals(element.getCssValue("width"), "32px");
+            softAssert.assertEquals(element.getCssValue("height"), "32px");
+            softAssert.assertEquals(element.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element.getCssValue("background-color"), "rgba(0, 0, 0, 0)");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertAll();
+            element.click();
+            basicActions.wait(300);
+        }
+    }
+
+    public void verifySelectedStateOfCheckboxes() {
+        basicActions.waitForElementListToBePresent(medicareCheckboxes, 15);
+        for (int i = 0; i < medicareCheckboxes.size(); i++) {
+            WebElement element1 = medicareCheckboxes.get(i);
+            WebElement element2 = medicareCheckboxDetails.get(i);
+            element1.click();
+            basicActions.wait(200);
+            softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container checked"));
+            softAssert.assertEquals(element1.getCssValue("width"), "32px");
+            softAssert.assertEquals(element1.getCssValue("height"), "32px");
+            softAssert.assertEquals(element1.getCssValue("font-size"), "20px");
+            softAssert.assertEquals(element1.getCssValue("border-radius"), "4px");
+            softAssert.assertEquals(element1.getCssValue("border-color"), "rgb(112, 163, 0)");
+            softAssert.assertEquals(element1.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+            softAssert.assertEquals(element1.getCssValue("color"), "rgba(255, 255, 255, 1)");
+            softAssert.assertEquals(element1.getCssValue("border"), "1px solid rgb(112, 163, 0)");
+            softAssert.assertAll();
+            basicActions.wait(200);
+        }
+    }
 
 
 

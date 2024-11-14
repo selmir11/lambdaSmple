@@ -35,7 +35,7 @@ Feature: QLCE Birth during closed enrollment
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -70,6 +70,7 @@ Feature: QLCE Birth during closed enrollment
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    And I click on Sign Out in the Header for "Elmo"
 
     Examples:
     | qlceOption           |

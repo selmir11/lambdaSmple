@@ -397,27 +397,27 @@ public class OhcHraPage_Elmo {
     }
     
     public void verifyHraContinueAndgoBackBtnsEnglish(){
-        softAssert.assertEquals(goBackBtn.getText(), "  Go Back");
+        softAssert.assertEquals(goBackBtn.getText(), "  Go back");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(goBackBtn).pause(1000L).build().perform();
-        softAssert.assertEquals(goBackBtn.getText(), "  Go Back");
+        softAssert.assertEquals(goBackBtn.getText(), "  Go back");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
-        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
-        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
@@ -716,8 +716,8 @@ public class OhcHraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertEquals(goBackBtn.getText(),"  Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 

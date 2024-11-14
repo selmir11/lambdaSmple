@@ -13,7 +13,6 @@ Feature: Verify Header, Footer and welcome back button link on my documents page
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
-    Then I validate I am on the "Account Overview" page
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Documents" page
     And I verify the page text in "English" on the My Documents Page
