@@ -1,4 +1,4 @@
-@medicalPlanFilterResults
+@SIR-EXCH8 @medicalPlanFilterResults
   # contains SLER-25, SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, SLER-72, SLER-74
 Feature: Medical Plan Verification test
 
@@ -78,7 +78,6 @@ Feature: Medical Plan Verification test
       | carrierOption                     | planText                                             |
       | Anthem                            | Anthem Bronze Pathway Essentials HMO $0 Select Drugs |
       | Cigna                             | Cigna Connect Colorado Option Bronze                 |
-      | Denver Health                     | Elevate Health Plans Bronze HDHP                     |
       | Kaiser Permanente                 | KP Select CO Bronze 8500/50                          |
       | Rocky Mountain Health Plans / UHC | RMHP Colorado Doctors Plan Colorado Option Bronze    |
       | Select Health                     | Select Health Value Bronze $6900 Medical Deductible  |
@@ -149,10 +148,10 @@ Feature: Medical Plan Verification test
     And I validate the plan option 1 has text "<metalPlanText>"
 
     Examples:
-    |metalOption      |metalPlanText                                              |
-    |Bronze           |Elevate Health Plans Bronze HDHP                           |
-    |Silver           |Anthem Silver Pathway Essentials 5500 $0 Select Drugs      |
-    |Gold             |Elevate Health Plans Colorado Option Gold                  |
+    |metalOption      |metalPlanText                                         |
+    |Bronze           |KP Select CO Bronze 8500/50                           |
+    |Silver           |Anthem Silver Pathway Essentials 5500 $0 Select Drugs |
+    |Gold             |Cigna Connect Colorado Option Gold                    |
 
 
   @SLER-72 @SelectVerifyHSAResults
@@ -218,7 +217,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I click the HSA dropdown
     And I select the HSA option
-    And I validate the plan option 2 has text "Anthem Bronze Pathway Essentials 8000 for HSA"
+    And I validate the plan option 1 has text "Anthem Bronze Pathway Essentials 8000 for HSA"
 
   @SLER-74  @SelectVerifyColoradoOptionResults
   Scenario: SLER-74 - SelectVerifyColoradoOptionResults
@@ -283,7 +282,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I click the Colorado Option dropdown
     And I select the Colorado Option
-    And I validate the plan option 3 has text "KP Colorado Option Bronze"
+    And I validate the plan option 1 has text "Cigna Connect Colorado Option Bronze"
 
 
 

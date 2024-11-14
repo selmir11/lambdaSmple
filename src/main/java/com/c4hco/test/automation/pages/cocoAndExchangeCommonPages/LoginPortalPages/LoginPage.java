@@ -108,7 +108,7 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
-        basicActions.waitForElementToBePresent(username, 10);
+        basicActions.waitForElementToBePresentWithRetries(username, 10);
         basicActions.wait(2000);
         String emailId = SharedData.getPrimaryMember().getEmailId();
         System.out.println("Email::" + emailId);
@@ -158,7 +158,7 @@ public class LoginPage {
     }
 
     public void loginAsBrokerUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
-        basicActions.waitForElementToBePresent(usernameAdmin, 40);
+        basicActions.waitForElementToBePresentWithRetries(usernameAdmin, 40);
         if (SharedData.getEnv().equals("staging")) {
             usernameAdmin.sendKeys(stgUser);
             passwordAdmin.sendKeys(stgPW);

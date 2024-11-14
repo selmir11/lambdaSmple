@@ -76,6 +76,7 @@ Feature: Page Text-Other Health Coverage Page
     And I verify text on the "Exch" "Footer" in "English"
     Then I select "None of these" as ELMO health coverage option
     And I change the language from header to "Spanish"
+    And I validate I am on the "Spanish" page
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
 

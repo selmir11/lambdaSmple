@@ -15,7 +15,7 @@ Feature: Header and Footer validation on Coco application pages
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    And I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -152,7 +152,7 @@ Feature: Header and Footer validation on Coco application pages
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    And I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I change the language from header to "Spanish"
     And I click on Privacy Policy in the "Individual Portal" Footer
@@ -280,6 +280,8 @@ Feature: Header and Footer validation on Coco application pages
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
+    And I change the language from header to "English"
+    Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -295,7 +297,7 @@ Feature: Header and Footer validation on Coco application pages
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
-    And I click Primary EditUpdate on the Family Overview page
+    Then I click EditUpdate on Family Overview page for "Primary"
 
     #Tell us about yourself
     Then I validate I am on the "CoCo Tell us about yourself" page

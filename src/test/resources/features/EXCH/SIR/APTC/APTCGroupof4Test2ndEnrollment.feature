@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR
+@APTC,@APTC-SIR1
   #  SLER-1107, SLER-1108, SLER-1150, SLER-1151,
 Feature: UI Tests related to APTC after second enrollment change - Group of 4
 

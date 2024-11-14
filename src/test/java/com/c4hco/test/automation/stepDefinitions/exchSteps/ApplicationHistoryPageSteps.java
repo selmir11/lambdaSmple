@@ -30,4 +30,7 @@ public class ApplicationHistoryPageSteps {
     public void noAptcOnPage(){
         applicationHistoryPage.validateAptcSectionDoesntExist();
     }
+
+    @Then("I click {string} on Before you continue popup on the application history page")
+    public void clickVerifyMyInfo(String popUpOption){applicationHistoryPage.clickVerifyMyInfoText(popUpOption);}
 }
