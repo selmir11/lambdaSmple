@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class PolicyTableValidations {
+public class IndividualPolicyTableValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
     //en policy table validations

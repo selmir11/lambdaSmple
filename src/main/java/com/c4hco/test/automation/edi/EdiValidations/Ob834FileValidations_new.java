@@ -29,6 +29,8 @@ public class Ob834FileValidations_new {
 
     public Ob834FileValidations_new() {
         setN1SegList();
+        segCount = 0;
+        insSegCount = 0;
     }
 
     public void validateOb834MedFile() {
@@ -44,8 +46,6 @@ public class Ob834FileValidations_new {
         getOb834DenEntityForSubscriber();
         List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
         getDataByEmailAndAccNum();
-        segCount = 0;
-        insSegCount = 0;
         validateSubscriberSegments(subscriberDenEntity);
         validateMemSeg(dentalEntityList);
         validateSegCount();
@@ -110,7 +110,8 @@ public class Ob834FileValidations_new {
 
     }
 
-    private void validateLxRefN1Seg(Member member, Ob834DetailsEntity entry) {
+
+    private void validateLxRefN1Segment(Member member, Ob834DetailsEntity entry) {
         List<List<String>> lxSegment = member.getLX();
         List<List<String>> n1SegListOfList = member.getN1();
         List<List<String>> refSegListOfList = member.getREF();
@@ -142,7 +143,7 @@ public class Ob834FileValidations_new {
                     if (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) {
                         validateLxWithSepReason(lxSegCount, refSegList, entry, member);
                     } else {
-                        validateWithoutSepReason(lxSegCount, refSegList, entry, member);
+                        validateWithoutSepReasn(lxSegCount, refSegList, entry, member);
                     }
                     break;
                 }
@@ -154,39 +155,31 @@ public class Ob834FileValidations_new {
         validateMemN1Seg(entry, n1SegList);
     }
 
-    private void validateWithoutSepReason(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member) {
+    private void validateWithoutSepReasn(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member) {
         if (member.getINS().get(0).get(0).equals("Y")) {
             switch ("LX" + lxSegCount) {
                 case "LX1":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getAddl_maint_reason()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX2":
-                    //   segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX3":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_reduction_amt()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX4":
-                    //   segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getCsr_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX5":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getRate_area()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX6":
-                    //   segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals("COHBE"), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX7":
-                    //   segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_responsible_amount()));
                     break;
                 case "LX8":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 default:
@@ -196,11 +189,9 @@ public class Ob834FileValidations_new {
             // member
             switch ("LX" + lxSegCount) {
                 case "LX1":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX2":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()), "LX" + lxSegCount + " did not match");
                     break;
                 default:
@@ -289,7 +280,7 @@ public class Ob834FileValidations_new {
         validateLSLESegment(member);
         validateAddlMaintReason(member, entry);
         validateDtpSegment(member, entry);
-        validateLxRefN1Seg(member, entry);
+        validateLxRefN1Segment(member, entry);
         validateMemberRefSeg(member, entry);
         softAssert.assertAll();
     }
@@ -515,7 +506,7 @@ public class Ob834FileValidations_new {
         softAssert.assertEquals(dmgSeg.get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
         softAssert.assertEquals(dmgSeg.get(1), entry.getMember_dob(), "Member date of birth does not match");
         softAssert.assertEquals(dmgSeg.get(2), entry.getMember_gender(), "Member gender does not match");
-        if(!entry.getMember_race().equals("7") || !entry.getMember_race().equals("8") ){
+        if(!(entry.getMember_race().equals("7") || entry.getMember_race().equals("8")) ){
             softAssert.assertEquals(dmgSeg.get(4), entry.getMember_race(), "Member gender does not match");
         }
     }

@@ -9,16 +9,11 @@ import java.util.Map;
 
 public class DbSteps {
 private final DbValidations dbValidations = new DbValidations();
-private final PolicyTableValidations policyTableValidations = new PolicyTableValidations();
+private final IndividualPolicyTableValidations policyTableValidations = new IndividualPolicyTableValidations();
 
    @And("I validate member exists in policy table")
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
-   }
-
-   @And("I validate member details from ob834_details table")
-   public void validateOb834Details(List<Map<String, String>> expectedValues){
-      dbValidations.validateOb834FromDb(expectedValues);
    }
    @And("I verify the OHI info in the DB for {string}")
    public void validateOhiInfo(String memPrefix){dbValidations.validateOhiDetails(memPrefix);}
