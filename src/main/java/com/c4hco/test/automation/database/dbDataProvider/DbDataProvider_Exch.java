@@ -37,12 +37,8 @@ public class DbDataProvider_Exch {
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
     }
 
-    public List<PolicyTablesEntity> getMedicalRecordsDataFromPolicyTables(){
-        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesMedicalRecordsQuery());
-    }
-
-    public List<PolicyTablesEntity> getDentalRecordsDataFromPolicyTables(){
-        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesDentalRecordsQuery());
+    public List<PolicyTablesEntity> getDataFrmPolicyTables(String coverageType){
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesCombinedQuery(coverageType));
     }
 
     public List<Ob834DetailsEntity> getOb83Db4Details(){
