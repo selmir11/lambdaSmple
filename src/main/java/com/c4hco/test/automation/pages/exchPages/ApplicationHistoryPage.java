@@ -25,7 +25,7 @@ public class ApplicationHistoryPage {
     WebElement mvrPopUp;
     @FindBy(css= ".no-self-attestation-btn")
     WebElement noBtnMvrPopUp;
-    @FindBy(css = ".yes-self-attestation-btn")
+    @FindBy(css = ".verify-myinfo-btn")
     WebElement yesBtnMvrPopUp;
 
     private BasicActions basicActions;
