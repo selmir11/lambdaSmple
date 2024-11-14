@@ -347,3 +347,16 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I validate I am on the "Application History" page
 
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-1222
+  Scenario: SLER-1222 I verify that income-portal-ui uses common components from ng-common on the ELMO Medicare page
+    Then I verify Medicare checkbox in "Not Selected" state
+    And I refresh the page
+    Then I verify Medicare checkbox in "Selected" state
+    And I refresh the page
+    Then I verify Medicare checkbox in "Focus" state
+    And I refresh the page
+    Then I verify Medicare checkbox in "Hover" state
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

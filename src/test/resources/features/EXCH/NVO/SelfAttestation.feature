@@ -609,7 +609,7 @@ Feature: Self Attestation
 
     # Review application results
     Then I validate I am on the "Application History" page
-    Then Then I click on Verify My Information
+    Then I click "Verify My Information" on Before you continue popup on the application history page
 
     Then I validate I am on the "Self Attestation" page
     And I select "Yes" for Household Income

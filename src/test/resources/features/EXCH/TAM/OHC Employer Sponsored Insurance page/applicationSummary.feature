@@ -399,7 +399,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I click on view results and shop
+    Then I click "No" on Before you continue popup on the application history page
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
 #    Step 4
@@ -445,8 +445,8 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click "No" on Before you continue popup on the application history page
 #    Step 5
-    Then I click on view results and shop
     And I click on Sign Out in the Header for "NonElmo"
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -492,7 +492,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       | Member1FullName:Offered a plan but not enrolled |
       | Member2FullName:No option to enroll             |
 #    Step 8
-    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -562,7 +561,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I verify PDF OHC data for family with Family offered "No" and Premium ""
       |  |
 #   Step 10
-    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -640,7 +638,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       | Member2FullName:Offered a plan but not enrolled |
       | Member3FullName:No option to enroll             |
 #    Step 12
-    Then I click on view results and shop
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -770,6 +767,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
+    And I wait for 500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
@@ -1480,6 +1478,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click "No" on Before you continue popup on the application history page
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
 #    Step 4
@@ -1675,6 +1674,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Yes" in "English"
     And I verify the OHC detail on Application Summary "End date" with data of "Today" in "English"
     Then I click on Download as PDF on Application Summary
+    And I wait for 500 milliseconds
     Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "Yes" end date of "Today"
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
@@ -1749,6 +1749,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
     And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "Spanish"
     Then I click on Download as PDF on Application Summary
+    And I wait for 500 milliseconds
     Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "Sí" end date of ""
     And I change the language from header to "English NonElmo"
 
