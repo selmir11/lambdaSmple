@@ -529,6 +529,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     // column1
     public void validateAnthemCignaKaiserdocumentcolumns(){
         basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(1).click();
+        basicActions.waitForElementToBePresent( planDocEnglish11,30 );
         softAssert.assertEquals( planDocEnglish11.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220104-06" );
         softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Anthem BCBS English 0220104-06" );
         softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Anthem BCBS English 0220104-06" );
@@ -571,6 +574,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     public void validateRockySelectdocumentcolumns(){
         basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(1).click();
+        basicActions.waitForElementToBePresent( planDocEnglish11,30 );
         softAssert.assertEquals( planDocEnglish11.getText(), "Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420056-06 Colorado Option" );
         softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Rocky Mountain English 0420056-06 Colorado Option" );
         softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Rocky Mountain English 0420056-06 Colorado Option" );

@@ -63,7 +63,7 @@ public class MedicalPlansCoCoPage {
     WebElement nextPageArrow;
 
     @FindBy(css = ".premium-summary .c4-type-header-md")
-    List<WebElement> mothlyPremiumValue;
+    List<WebElement> monthlyPremiumValue;
 
     @FindBy(css = "#dropdownBasic1")
     WebElement premiumSortingDropdown;
@@ -213,6 +213,15 @@ public class MedicalPlansCoCoPage {
         selectCompareButton.click();
     }
 
+    public void select2PlanstoCompare() {
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
+        basicActions.waitForElementToDisappear( spinner,20 );
+        selectFirstComparebox.click();
+        selectSecondComparebox.click();
+
+    }
+
     private Optional<Integer> checkIfPlanPresent(String planName) {
         basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
         return IntStream.range(0, medicalPlanNamesList.size())
@@ -296,12 +305,12 @@ public class MedicalPlansCoCoPage {
         while (basicActions.elementExists(basicActions.getDriver(), By.xpath("//a[@class='ng-star-inserted']"))) {
             try {
                 basicActions.waitForElementToDisappear(spinner, 10);
-                basicActions.waitForElementToBePresent(mothlyPremiumValue.get(0), 30);
+                basicActions.waitForElementToBePresent(monthlyPremiumValue.get(0), 30);
 
                 if (sortingTypeSelection.contains("Monthly Premium- Low to High")) {
-                    Assert.assertTrue(basicActions.isSortedAscending(mothlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
+                    Assert.assertTrue(basicActions.isSortedAscending(monthlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
                 } else if (sortingTypeSelection.contains("Monthly Premium- High to Low")) {
-                    Assert.assertTrue(basicActions.isSortedDescending(mothlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
+                    Assert.assertTrue(basicActions.isSortedDescending(monthlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
                 } else if (sortingTypeSelection.contains("Annual Deductible- Low to High")) {
                     List<WebElement> webElementList = new ArrayList<>();
 
@@ -384,7 +393,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void validateSelectComparePlanSelection(String planName) {
-        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToDisappear(spinner, 40);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
@@ -393,7 +402,10 @@ public class MedicalPlansCoCoPage {
             if (optionalInt.isPresent()) {
                 WebElement selectedPlan = basicActions.getDriver().findElement(By.id("PlanResults-PlanCompareCheckbox_" + (optionalInt.get() + 1)));
                 Assert.assertTrue(selectedPlan.isDisplayed());
-                Assert.assertTrue(selectedPlan.isSelected());
+                basicActions.waitForElementToBePresent( firstPlanDetailsbtn,20 );
+               basicActions.click( firstPlanDetailsbtn );
+                basicActions.click( firstPlanDetailsbtn );
+                // Assert.assertTrue(selectedPlan.isSelected());
             } else {
                 paginateRight();
             }

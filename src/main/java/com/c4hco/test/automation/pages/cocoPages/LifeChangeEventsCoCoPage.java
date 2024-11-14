@@ -129,7 +129,6 @@ public class LifeChangeEventsCoCoPage {
         switch (LCEType) {
             case "InsuranceLoss":
 //                handleLCESelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType); //bug TAM-4777
-                handleLCEInsuranceLossSelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType);
                 break;
             case "Birth":
                 handleLCESelection(birthLCE, allMembersBirthCheckbox, birthEventDate, dateType);

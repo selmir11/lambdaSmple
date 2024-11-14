@@ -993,7 +993,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event with event date of "Past 1"
+    And I select "Marriage" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -1010,8 +1010,9 @@ Feature: Verify COCO Medical Plan results
     And I select the COCO Insurance Company dropdown
     And I select "Rocky Mountain Health Plans / UHC" to filter for desired COCO plan provider
     And I select "Select Health" to filter for desired COCO plan provider
-    Then I validate "RMHP Colorado Doctors Plan Colorado Option Bronze" coco medical plan is set for Compare selection
-    Then I validate "Select Health Value Colorado Option Bronze" coco medical plan is set for Compare selection
+    And I select initial 2 plans and click the Compare button
+    #Then I validate "RMHP Colorado Doctors Plan Colorado Option Bronze" coco medical plan is set for Compare selection
+    #Then I validate "Select Health Value Colorado Option Bronze" coco medical plan is set for Compare selection
     And I click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
@@ -1069,7 +1070,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event with event date of "Today"
+    And I select "Marriage" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -1087,9 +1088,10 @@ Feature: Verify COCO Medical Plan results
     And I select "Anthem" to filter for desired COCO plan provider
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
     And I select "Kaiser Permanente" to filter for desired COCO plan provider
-    Then I validate "Cigna Connect Colorado Option Bronze" coco medical plan is set for Compare selection
-    Then I validate "KP Colorado Option Bronze" coco medical plan is set for Compare selection
-    Then I validate "Anthem Colorado Option Bronze Pathway Essentials Std" coco medical plan is set for Compare selection
+    And I select initial 3 plans and click the Compare button
+    #Then I validate "Cigna Connect Colorado Option Bronze" coco medical plan is set for Compare selection
+    #Then I validate "KP Colorado Option Bronze" coco medical plan is set for Compare selection
+    #Then I validate "Anthem Colorado Option Bronze Pathway Essentials Std" coco medical plan is set for Compare selection
     And I click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page

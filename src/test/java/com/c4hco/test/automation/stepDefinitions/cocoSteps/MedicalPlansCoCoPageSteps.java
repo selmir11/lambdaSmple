@@ -41,6 +41,11 @@ public class MedicalPlansCoCoPageSteps {
     public void selectfromProviderList(String carrierOption) {medicalPlansCoCoPage.selectfromProviderList(carrierOption);
     }
 
+    @And( "I select initial 2 plans and click the Compare button" )
+    public void select2PlanstoCompare(){
+        medicalPlansCoCoPage.select2PlanstoCompare();
+    }
+
     @And( "I select initial 3 plans and click the Compare button" )
     public void selectPlanstoCompare(){
         medicalPlansCoCoPage.selectPlanstoCompare();
