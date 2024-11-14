@@ -44,14 +44,6 @@ public class AccountOverviewPage {
     @FindBy(css = ".c4PageHeader-large")
     WebElement header;
 
-    @FindBy(css = ".table-bordered td b")
-    List<WebElement> planInformationTable;
-
-    @FindBy(css = ".table-bordered tr:nth-child(1) td:nth-child(2) span b")
-    List<WebElement> medicalMemberNames;
-    @FindBy(css = "option[selected='selected']")
-    WebElement planYearOnWelcomeBackPage;
-
     @FindBy(xpath = "(//h1/span)[2]")
     WebElement txtUserName;
 
@@ -173,41 +165,6 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
-    public void verifyMemberNames() {
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        List<String> expectedMemberNames = new ArrayList<>();
-        List<String> actualMemberNames = new ArrayList<>();
-        expectedMemberNames.add(primaryMember.getSignature());
-        actualMemberNames.add(medicalMemberNames.get(0).getText());
-        List<MemberDetails> memberDetailsList = SharedData.getMembers();
-
-        if(memberDetailsList !=null) {
-            for (int i = 0; i < memberDetailsList.size(); i++) {
-                MemberDetails member = SharedData.getMembers().get(i);
-                expectedMemberNames.add(member.getFirstName()+" "+member.getLastName());
-                actualMemberNames.add(planInformationTable.get(i+2).getText());
-            }
-        }
-        softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size()==expectedMemberNames.size());
-        softAssert.assertAll();
-    }
-
-    public void verifyPlanInfo() {
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
-        int totalDependents = Integer.parseInt(SharedData.getScenarioDetails().getDependents());
-        // only the locator for the plan details change but the value will stay same for the entire group. Hence, comparing with primary member.
-        softAssert.assertEquals(planInformationTable.get(totalDependents+2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
-
-        softAssert.assertEquals(planInformationTable.get(totalDependents+3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+4).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
-        //Dental
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText(), "$"+basicActions.doubleAmountFormat(primaryMember.getDentalPremiumAmt()), "Primary Dental Premium amount does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+9).getText(), primaryMember.getDentalAptcAmt(), "Dental APTC amount on account overview page mismatch");
-        softAssert.assertAll();
-    }
-
     public void setScenarioDetails(List<Map<String, String>> expectedResult) {
         String noOfGroups = expectedResult.get(0).get("totalGroups");
         String totalMembers = expectedResult.get(0).get("totalMembers");
@@ -295,42 +252,33 @@ public class AccountOverviewPage {
         btnVerifyYourInformation.click();
     }
 
-    public void verifyMemberNames_WIP() {
-
-
-        // Get all member details
+    public void verifyMemberNames() {
         List<MemberDetails> allMemberList = basicActions.getAllMem();
 
-        // Loop over the groups (k), where k is the MedGroupInd value
         for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() + SharedData.getScenarioDetails().getTotalGroups(); i++) {
 
-            // Initialize lists for storing expected and actual member names
             List<String> expectedMemberNames = new ArrayList<>();
             List<String> actualMemberNames = new ArrayList<>();
 
-            // Get the actual member names from the web page for the current group (k)
             List<WebElement> getactualMemberNames = basicActions.getDriver().findElements(By.cssSelector(".table-bordered tr:nth-child(" + i + ") td:nth-child(2) span b"));
             String expectedMedGroupInd = null;
-            // Add the actual member names to the list
+
             for (WebElement member : getactualMemberNames) {
                 actualMemberNames.add(member.getText());
             }
 
             for(String actualMemName : actualMemberNames ) {
-                // Filter the members from the allMemberList whose MedGroupInd matches the current k value
                 for (MemberDetails member : allMemberList) {
                     if (member.getSignature().equals(actualMemName)) {
 
                         if (expectedMedGroupInd == null) {
-                            expectedMedGroupInd = member.getMedGroupInd(); // Capture MedGroupInd of the first filtered member
+                            expectedMedGroupInd = member.getMedGroupInd();
                         }
                         //Assert that this member belongs to the same MedGroupInd as the first member
                         softAssert.assertTrue(member.getMedGroupInd().equals(expectedMedGroupInd),"Member Medical Group :"+member.getMedGroupInd()+" does not match to another member Medical Group : "+expectedMedGroupInd);
-                        // Add the member's signature (name) to the expected list
                         expectedMemberNames.add(member.getSignature());
 
-                        // Call verifyPlanInfo with the member's name
-                        verifyPlanInfo_WIP(member);
+                        verifyPlanInfo(member);
                     }
                 }
             }
@@ -344,7 +292,7 @@ public class AccountOverviewPage {
     }
 
 
-    private void verifyPlanInfo_WIP(MemberDetails memberInfo) {
+    private void verifyPlanInfo(MemberDetails memberInfo) {
 
         //Medical Plan Validation
         WebElement MedicalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[4]/b"));
