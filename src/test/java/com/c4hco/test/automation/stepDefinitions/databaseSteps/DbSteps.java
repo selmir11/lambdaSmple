@@ -135,5 +135,8 @@ private final PolicyTableValidations policyTableValidations = new PolicyTableVal
    public void iValidateTheSecondDentalPolicyForTheYearDB(String year) {
       dbValidations.validateTheSecondDentalPoliciyForTheYearDB(year);
    }
+
+   @And("I validate new event {string} is present in DB")
+   public void iValidateNewEventDB(String event) {dbValidations.validateNewEventDB(event);}
 }
 

@@ -415,4 +415,12 @@ public class DbQueries_Exch {
                 "    ESH.created_ts DESC\n" +
                 "LIMIT 1;";
     }
+
+    public String getEventLogIdDB(String event, String eventLogId) {
+        return "Select event_log_id \n" +
+                "From "+dbName+".event_log \n" +
+                "Where account_id = '"+acctId+"' \n" +
+                "and event_cd = '"+event+"' \n" +
+                "and event_log_id != '"+eventLogId+"'";
+    }
 }

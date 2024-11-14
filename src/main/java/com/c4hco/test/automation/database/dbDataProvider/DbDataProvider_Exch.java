@@ -331,4 +331,9 @@ public class DbDataProvider_Exch {
     public String[] getDentSecondPolicy(String year) {
         return postgresHandler.getResultForThreeColumnValues("exchange_assigned_policy_id","policy_start_date","first_name",exchDbQueries.getDentalSecondPolicyDB(year));
     }
+
+    public String getEventLogId(String event, String eventLogId) {
+        return postgresHandler.getResultFor("event_log_id", exchDbQueries.getEventLogIdDB(event, eventLogId));
+    }
+
 }
