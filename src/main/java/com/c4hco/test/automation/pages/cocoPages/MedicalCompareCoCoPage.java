@@ -412,41 +412,75 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement planDocEnglish12;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_3")
     public WebElement planDocEnglish13;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_4")
+    public WebElement  planDocEnglish14;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_5")
+    public WebElement planDocEnglish15;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_6")
+    public WebElement  planDocEnglish16;
 
+
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_1")
+    public WebElement planDocSpanish11;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_2")
+    public WebElement planDocSpanish12;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_3")
+    public WebElement planDocSpanish13;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_4")
     public WebElement planDocSpanish14;
-    @FindBy(id= "MMedicalPlanCompare_PlanDocumentsSpanish_1_5")
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_5")
     public WebElement planDocSpanish15;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_6")
-    public WebElement planDocSpanish16;
-   // column 2
+
+    // column 2
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_1")
     public WebElement planDocEnglish21;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_2")
     public WebElement planDocEnglish22;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_3")
     public WebElement planDocEnglish23;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_4")
+    public WebElement planDocEnglish24;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_5")
+    public WebElement planDocEnglish25;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_6")
+    public WebElement planDocEnglish26;
 
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_1")
+    public WebElement planDocSpanish21;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_2")
+    public WebElement planDocSpanish22;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_3")
+    public WebElement planDocSpanish23;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_4")
     public WebElement planDocSpanish24;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_5")
     public WebElement planDocSpanish25;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_6")
-    public WebElement planDocSpanish26;
-    // column 30
+
+
+    // column 3
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_1")
     public WebElement planDocEnglish31;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_2")
     public WebElement planDocEnglish32;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_3")
     public WebElement planDocEnglish33;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_4")
+    public WebElement planDocEnglish34;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_5")
+    public WebElement planDocEnglish35;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_6")
+    public WebElement planDocEnglish36;
 
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_1")
+    public WebElement planDocSpanish31;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_2")
+    public WebElement planDocSpanish32;
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_3")
+    public WebElement planDocSpanish33;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_4")
     public WebElement planDocSpanish34;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_5")
     public WebElement planDocSpanish35;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_6")
-    public WebElement planDocSpanish36;
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -477,6 +511,93 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         basicActions.waitForElementToDisappear(spinner, 20);
         clickComparePlanDetailLinkCoCo1.click();
     }
+
+
+    public void validateDocumentationComparePlan(String carrier){
+        switch(carrier){
+            case "2":
+                validateAnthemCignaKaiserdocumentcolumns();
+                break;
+            case "3":
+                validateRockySelectdocumentcolumns();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + carrier);
+        }
+    }
+
+    // column1
+    public void validateAnthemCignaKaiserdocumentcolumns(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        softAssert.assertEquals( planDocEnglish11.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220104-06" );
+        softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Anthem BCBS English 0220104-06" );
+        softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Anthem BCBS English 0220104-06" );
+        softAssert.assertEquals( planDocEnglish14.getText(), "Quality Overview Anthem English" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure Anthem Medical English" );
+        softAssert.assertEquals( planDocEnglish16.getText(), "Provider Network Anthem Pathway Essentials" );
+
+        softAssert.assertEquals( planDocSpanish11.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220104-06" );
+        softAssert.assertEquals( planDocSpanish12.getText(), "Evidence of Coverage Anthem BCBS Spanish 0220104-06" );
+        softAssert.assertEquals( planDocSpanish13.getText(), "Summary of Benefits and Coverage Anthem BCBS Spanish 0220104-06" );
+        softAssert.assertEquals( planDocSpanish14.getText(), "Quality Overview Anthem Spanish" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure Anthem Medical Spanish" );
+
+        softAssert.assertEquals( planDocEnglish21.getText(), "Summary of Benefits and Coverage CO Supplement Cigna English 0060033-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish22.getText(), "Evidence of Coverage Cigna English 0060033-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish23.getText(), "Summary of Benefits and Coverage Cigna English 0060033-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish24.getText(), "Quality Overview Cigna English" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Cigna English" );
+        softAssert.assertEquals( planDocEnglish26.getText(), "Provider Network Cigna" );
+
+        softAssert.assertEquals( planDocSpanish21.getText(), "Summary of Benefits and Coverage CO Supplement Cigna Spanish 0060033-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish22.getText(), "Evidence of Coverage Cigna Spanish 0060033-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish23.getText(), "Summary of Benefits and Coverage Cigna Spanish 0060033-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish24.getText(), "Quality Overview Cigna Spanish" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Cigna Spanish" );
+
+        softAssert.assertEquals( planDocEnglish31.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente English 1040002-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish32.getText(), "Evidence of Coverage Kaiser Permanente English 1040002-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish33.getText(), "Summary of Benefits and Coverage Kaiser Permanente English 1040002-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish34.getText(), "Quality Overview Kaiser Permanente English" );
+        softAssert.assertEquals( planDocEnglish35.getText(), "Brochure Kaiser Permanente English" );
+        softAssert.assertEquals( planDocEnglish36.getText(), "Provider Network Kaiser Permanente CO Option" );
+
+        softAssert.assertEquals( planDocSpanish31.getText(), "Summary of Benefits and Coverage Kaiser Permanente Spanish 1040002-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish32.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente Spanish 1040002-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish33.getText(), "Quality Overview Kaiser Permanente Spanish" );
+        softAssert.assertEquals( planDocSpanish34.getText(), "Evidence of Coverage Kaiser Permanente Spanish 1040002-06 Colorado Option" );
+        //softAssert.assertEquals( planDocEnglish35.getText(), "" );
+    }
+
+    public void validateRockySelectdocumentcolumns(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        softAssert.assertEquals( planDocEnglish11.getText(), "Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Rocky Mountain English 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Rocky Mountain English 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish14.getText(), "Quality Overview Rocky Mountain Health Plan English" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure RMHP-UHC English" );
+        softAssert.assertEquals( planDocEnglish16.getText(), "Provider Network Rocky Mountain Health Plans Colorado Doctors Plan" );
+
+        softAssert.assertEquals( planDocSpanish11.getText(), "Summary of Benefits and Coverage CO Supplement Rocky Mountain Spanish 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish12.getText(), "Evidence of Coverage Rocky Mountain Spanish 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish13.getText(), "Summary of Benefits and Coverage Rocky Mountain Spanish 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish14.getText(), "Quality Overview Rocky Mountain Health Plan Spanish" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure RMHP-UHC Spanish" );
+
+        softAssert.assertEquals( planDocEnglish21.getText(), "Summary of Benefits and Coverage CO Supplement Select Health English 0030017-06" );
+        softAssert.assertEquals( planDocEnglish22.getText(), "Evidence of Coverage Select Health English 0030017-06" );
+        softAssert.assertEquals( planDocEnglish23.getText(), "Summary of Benefits and Coverage Select Health English 0030017-06" );
+        softAssert.assertEquals( planDocEnglish24.getText(), "Quality Overview Select Health Plan English" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Select Health English" );
+        softAssert.assertEquals( planDocEnglish26.getText(), "Provider Network Select Health" );
+
+        softAssert.assertEquals( planDocSpanish21.getText(), "Summary of Benefits and Coverage CO Supplement Select Health Spanish 0030017-06" );
+        softAssert.assertEquals( planDocSpanish22.getText(), "Evidence of Coverage Select Health Spanish 0030017-06" );
+        softAssert.assertEquals( planDocSpanish23.getText(), "Summary of Benefits and Coverage Select Health Spanish 0030017-06" );
+        softAssert.assertEquals( planDocSpanish24.getText(), "Quality Overview Select Health Plan Spanish" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Select Health Spanish" );
+    }
+
 
 
     public void validateTextComparePlanCoCoPageInNetwork(String language){

@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.actions.ClickAction;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -142,6 +143,12 @@ public class MedicalPlansCoCoPage {
         basicActions.waitForElementToBePresent(metalTierDropdown, 30);
         metalTierDropdown.click();
 
+    }
+
+    public void clickCompareButton(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( selectCompareButton,30 );
+        selectCompareButton.click();
     }
 
     public void selectfromMetalTierList(String Selecting) {
@@ -374,6 +381,24 @@ public class MedicalPlansCoCoPage {
                 paginateRight();
             }
         } while (optionalInt.isEmpty());
+    }
+
+    public void validateSelectComparePlanSelection(String planName) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setMedicalPlan(planName);
+        SharedData.setPrimaryMember(subscriber);
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                WebElement selectedPlan = basicActions.getDriver().findElement(By.id("PlanResults-PlanCompareCheckbox_" + (optionalInt.get() + 1)));
+                Assert.assertTrue(selectedPlan.isDisplayed());
+                Assert.assertTrue(selectedPlan.isSelected());
+            } else {
+                paginateRight();
+            }
+        } while (optionalInt.isEmpty());
+
     }
 
     public void validateMedicalPlanText(List<String> testDatavalues) {
