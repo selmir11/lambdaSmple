@@ -74,6 +74,7 @@
 
       And I validate I am on the "Medical Plan Results" page
       Then I validate the medical plans count to be "85"
+      And I click on Sign Out in the Header for "Portal"
 
     @SLER-994-WIP
     Scenario: Validate medical plans available

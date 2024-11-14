@@ -146,7 +146,7 @@ Feature: Medical Plan Verification test
     And I select the Metal Tier dropdown
     And I select "<metalOption>" to filter for a Metal Tier plan
     And I validate the plan option 1 has text "<metalPlanText>"
-
+    And I click on Sign Out in the Header for "Portal"
     Examples:
     |metalOption      |metalPlanText                                         |
     |Bronze           |KP Select CO Bronze 8500/50                           |
@@ -218,6 +218,7 @@ Feature: Medical Plan Verification test
     And I click the HSA dropdown
     And I select the HSA option
     And I validate the plan option 1 has text "Anthem Bronze Pathway Essentials 8000 for HSA"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-74  @SelectVerifyColoradoOptionResults
   Scenario: SLER-74 - SelectVerifyColoradoOptionResults
@@ -283,6 +284,7 @@ Feature: Medical Plan Verification test
     And I click the Colorado Option dropdown
     And I select the Colorado Option
     And I validate the plan option 1 has text "Cigna Connect Colorado Option Bronze"
+    And I click on Sign Out in the Header for "Portal"
 
 
 
