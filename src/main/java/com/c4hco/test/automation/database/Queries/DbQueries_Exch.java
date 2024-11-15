@@ -34,9 +34,9 @@ public class DbQueries_Exch {
 
     public String policyTablesCombinedQuery(String coverageType) {
         String query = "SELECT account_id, application_id, exch_person_id, first_name, middle_name, last_name, birth_date, tobacco_use, relation_to_subscriber,\n" +
-                " plan_year, coverage_type, hios_plan_id,rating_area_id, policy_id,  policy_status, current_ind,\n" +
+                " plan_year, coverage_type, hios_plan_id, rating_area_id, policy_id, policy_status, current_ind,\n" +
                 " effectuated_ind_eph, policy_start_date, policy_end_date, csr_level_epfh, financial_period_start_date, financial_period_end_date, \n" +
-                " total_plan_premium_amt,  total_premium_reduction_amt, total_responsible_amt, premium_reduction_type_epfh, total_csr_amt,\n" +
+                " total_plan_premium_amt, total_premium_reduction_amt, total_responsible_amt, premium_reduction_type_epfh, total_csr_amt,\n" +
                 " policy_member_coverage_status, member_id, responsible_adult_ind, subscriber_ind, created_by, effectuated_ind_epmh, \n" +
                 " coverage_start_date, coverage_end_date, disenrollment_reason, csr_level_emcfh, member_financial_start_date, member_financial_end_date,\n" +
                 " plan_premium_amt, premium_reduction_amt, premium_reduction_type_emcfh, responsible_amt, policy_submitted_ts, policy_submitted_by\n" +
@@ -48,8 +48,8 @@ public class DbQueries_Exch {
                 " epmch.policy_member_coverage_status, epmh.effectuated_ind as effectuated_ind_epmh, epmch.coverage_start_date, epmch.coverage_end_date, \n" +
                 " epmch.disenrollment_reason, epmh.subscriber_ind, emcfh.csr_level as csr_level_emcfh, emcfh.plan_premium_amt, emcfh.premium_reduction_type as premium_reduction_type_emcfh , \n" +
                 " eph.policy_submitted_ts, eph.policy_submitted_by, eph.policy_ah_id, eph.exchange_assigned_policy_id, em.exch_person_id\n" +
-                " from exch.es_household eh, exch.es_application ea, exch.es_member em, exch.en_policy_ah eph, exch.en_plan ep2, exch.en_policy_member_ah epmh,\n" +
-                " exch.en_policy_member_coverage_ah epmch, exch.en_member_coverage_financial_ah emcfh,  exch.en_policy ep\n" +
+                " from " + dbName + ".es_household eh, " + dbName + ".es_application ea, " + dbName + ".es_member em, " + dbName + ".en_policy_ah eph, " + dbName + ".en_plan ep2, " + dbName + ".en_policy_member_ah epmh,\n" +
+                " " + dbName + ".en_policy_member_coverage_ah epmch, " + dbName + ".en_member_coverage_financial_ah emcfh, " + dbName + ".en_policy ep\n" +
                 " where eh.household_id = ea.household_id\n" +
                 " and ea.application_id = eph.application_id\n" +
                 " and ep.plan_id = ep2.plan_id\n" +
@@ -63,13 +63,14 @@ public class DbQueries_Exch {
                 "LEFT JOIN( select  epfh.policy_ah_id, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_premium_reduction_amt,\n" +
                 " epfh.total_plan_premium_amt, epfh.total_csr_amt, epfh.total_responsible_amt,\n" +
                 " epfh.csr_level AS csr_level_epfh, epfh.premium_reduction_type AS premium_reduction_type_epfh\n" +
-                " FROM exch.en_policy_financial_ah epfh) pf ON pmc.policy_ah_id = pf.policy_ah_id \n" +
-                "AND pmc.relation_to_subscriber = 'SELF'\n"+
+                " FROM " + dbName + ".en_policy_financial_ah epfh) pf ON pmc.policy_ah_id = pf.policy_ah_id \n" +
+                "AND pmc.relation_to_subscriber = 'SELF'\n" +
                 "AND pmc.member_financial_start_date BETWEEN pf.financial_period_start_date AND pf.financial_period_end_date\n" +
                 "AND pmc.member_financial_end_date BETWEEN pf.financial_period_start_date AND pf.financial_period_end_date\n" +
                 "WHERE pmc.account_id = '"+acctId+"'\n" +
-                "and pmc.current_ind = '1'\n"+
-               "AND pmc.coverage_type = '"+coverageType+"'";
+                "and pmc.current_ind = '1'\n" +
+                "AND pmc.coverage_type = '"+coverageType+"'";
+
         return query;
     }
 
