@@ -2078,21 +2078,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Plan Summary" page
       And I validate the APTC Credit on the Summary page is "<finalplanSummaryAPTC>"
-      # -$265.98
+
       And I click continue on plan summary page
-
-      #Then I validate I am on the "Financial Help Agreements" page
-      #And I select the terms and agreements checkbox
-      #And I enter householder signature on the Financial Help Agreements page
-      #And I click continue on Financial Help Agreements page
-
-      #Then I validate I am on the "Enrollment Agreements" page
-      #And I select "Acknowledgement" agreement checkbox
-      #And I select "Submit" agreement checkbox
-      #And I enter householder signature on the Enrollment Agreements page
-      #And I click submit enrollment on Enrollment Agreements page
-
-      #Then I validate I am on the "Pay now" page
       And I click on Sign Out in the Header for "Portal"
       Examples:
         |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
