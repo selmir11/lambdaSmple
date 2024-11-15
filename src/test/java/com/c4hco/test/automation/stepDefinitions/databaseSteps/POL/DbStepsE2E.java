@@ -30,8 +30,8 @@ public class DbStepsE2E {
         ib999DbValidations.ib999RecordsValidations(recordType);
     }
     @And("I validate ib834 {string} details in database")
-    public void validateIb834DetailsDb(String recordType){
-        ib834DbValidations.ib834DbRecordsValidations(recordType);
+    public void validateIb834DetailsDb(String recordType, List<Map<String, String>> expectedValues){
+        ib834DbValidations.ib834DbRecordsValidations(recordType, expectedValues);
     }
 
     //   @And("I validate Individual member policy table queries")
