@@ -12,7 +12,8 @@ public enum EnumRelationship {
     Wife("01"),
     GrandChild("05"),
     Brother("14"),
-    Sister("14");
+    Sister("14"),
+    Daughter("19");
 
     private final String RelCode;
     EnumRelationship(String RelCode) {
