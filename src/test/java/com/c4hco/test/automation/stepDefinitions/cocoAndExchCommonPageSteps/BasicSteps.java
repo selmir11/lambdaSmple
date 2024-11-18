@@ -659,4 +659,10 @@ public class BasicSteps {
 
     @Then("I wait for {int} milliseconds")
     public void iWait(int waitTime) {actions.wait(waitTime);}
+
+    @Then("I open a new browser tab")
+    public void iOpenNewTab(){basicActions.openNewTab();}
+
+    @Then("I open url with {string} query in new tab")
+    public void iAddQueryInNewTab(String query){basicActions.openUrlWithQueryStringInNewTab(query);}
 }
