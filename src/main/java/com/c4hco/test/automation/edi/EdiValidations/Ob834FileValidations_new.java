@@ -29,14 +29,14 @@ public class Ob834FileValidations_new {
 
     public Ob834FileValidations_new() {
         setN1SegList();
-        segCount = 0;
-        insSegCount = 0;
     }
 
     public void validateOb834MedFile() {
         getOb834MedEntityForSubscriber();
         List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
         getDataByEmailAndAccNum();
+        segCount = 0;
+        insSegCount = 0;
         validateSubscriberSegments(subscriberMedEntity);
         validateMemSeg(medicalEntityList);
         validateSegCount();
@@ -46,6 +46,8 @@ public class Ob834FileValidations_new {
         getOb834DenEntityForSubscriber();
         List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
         getDataByEmailAndAccNum();
+        segCount = 0;
+        insSegCount = 0;
         validateSubscriberSegments(subscriberDenEntity);
         validateMemSeg(dentalEntityList);
         validateSegCount();
