@@ -86,7 +86,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
-    And I select "Yes" for Incarceration option
+    And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonOne"
@@ -321,6 +321,7 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on No Thanks on good news page
+    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -335,14 +336,15 @@ Feature: FA - 4groups - enroll in plan
     And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
     And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
     And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
