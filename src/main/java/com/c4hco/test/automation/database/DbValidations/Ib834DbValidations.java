@@ -26,7 +26,7 @@ public class Ib834DbValidations {
     SoftAssert softAssert = new SoftAssert();
     MemberDetails subscriber = SharedData.getPrimaryMember();
     DbData dbData;
-    Map<String, PlanDbData> medicalDbData;
+    PlanDbData medicalDbData;
     private void setIb834Data(){
         List<Ib834Entity> ib834MedEntity = exchDbDataProvider.getIb834Details(SharedData.getMedGroupCtlNumber());
         SharedData.setIb834MedDetailsEntities(ib834MedEntity);
@@ -35,7 +35,7 @@ public class Ib834DbValidations {
 
         ib834MedEntities = SharedData.getIb834MedDetailsEntities();
         ib834DenEntities = SharedData.getIb834DenDetailsEntities();
-        medicalDbData = SharedData.getMedicalPlanDbData();
+        medicalDbData = SharedData.getMedicalPlanDbData().get("group1");
     }
 
     public void ib834DbRecordsValidations(String recordType, List<Map<String, String>> expectedValues) {
@@ -243,9 +243,9 @@ public class Ib834DbValidations {
         String formatedFinStartDate = SharedData.getExpectedCalculatedDates().getFinancialStartDate().replaceAll("-", "");
 
         SharedData.setMedGroupCtlNumber(ib834MedEntity.getGroup_ctrl_number());
-        softAssert.assertEquals(ib834MedEntity.getHios_plan_id(), medicalDbData.get("baseId"), "Hios id did not match!");
-        softAssert.assertEquals(ib834MedEntity.getInsurer_name(), medicalDbData.get("issuerName"), "Insurer Name did not match!");
-        softAssert.assertEquals(ib834MedEntity.getInsurer_id(), medicalDbData.get("issuerId"), "Insurer Id did not match!");
+        softAssert.assertEquals(ib834MedEntity.getHios_plan_id(), medicalDbData.getBaseId(), "Hios id did not match!");
+        softAssert.assertEquals(ib834MedEntity.getInsurer_name(), medicalDbData.getIssuerName(), "Insurer Name did not match!");
+        softAssert.assertEquals(ib834MedEntity.getInsurer_id(), medicalDbData.getIssuerId(), "Insurer Id did not match!");
 
         softAssert.assertEquals(ib834MedEntity.getBenefit_begin_date(), formatPlanStartDate, "Medical plan start date is not correct");
         softAssert.assertEquals(ib834MedEntity.getBenefit_end_date(), formatMedicalPlanEndDate, "Medical plan end date is not correct");
