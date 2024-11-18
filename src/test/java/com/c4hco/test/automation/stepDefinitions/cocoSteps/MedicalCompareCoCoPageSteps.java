@@ -16,9 +16,29 @@ public class MedicalCompareCoCoPageSteps {
         medicalCompareCoCoPage.clickComparePlanDetailLinkCoCoPage();
     }
 
+    @And("I select the InNetwork tab on the Medical Compare page")
+    public void selectInNetworkTier1Link(){
+        medicalCompareCoCoPage.selectInNetworkTier1Link();
+    }
+
+    @And("I select the InNetwork2 tab on the Medical Compare page")
+    public void selectInNetworkTier2Link(){
+        medicalCompareCoCoPage.selectInNetworkTier2Link();
+    }
+
+    @And("I select the OutNetwork tab on the Medical Compare page")
+    public void selectOutNetworkMedical(){
+        medicalCompareCoCoPage.selectOutNetworkMedical();
+    }
+
     @And("I select the Go Back button on the Medical Plan Compare page")
     public void clickMedicalCompareGoBackButton() {
         medicalCompareCoCoPage.clickMedicalCompareGoBackButton();
+    }
+
+    @And("I select the Go Back Link at the top of Medical Plan Compare page")
+    public void clickMedicalCompareGoBackLink() {
+        medicalCompareCoCoPage.clickMedicalCompareGoBackLink();
     }
 
     @And("I deselect the first plan and validate on the Medical Plan Compare page")
@@ -48,7 +68,7 @@ public class MedicalCompareCoCoPageSteps {
 
 
     // used for SCLR-90
-    @And("I validate the {string} Medical Compare page In-Network headers and subheaders")
+    @And("I validate the {string} Medical Compare page Network headers and subheaders")
     public void verifyTxtCompareInNetwork(String language) {
         medicalCompareCoCoPage.validateTextComparePlanCoCoPageInNetwork( language );
     }

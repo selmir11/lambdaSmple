@@ -37,8 +37,11 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     public WebElement medicalCompareGoBack;
 
-    @FindBy(xpath="//div[class = 'c4-type-header-lg header-container']")
+    @FindBy(xpath="//div[normalize-space()= 'Compare Medical Plans']")
     public WebElement compareTopHeader;
+
+    @FindBy(xpath="//div[normalize-space()= 'Comparar planes médicos']")
+    public WebElement compareTopHeaderSP;
 
     @FindBy(id = "MedicalComparePlans-TopGoBackToPlans")
     public WebElement goBackToPlansCompareLink;
@@ -100,37 +103,38 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     ////////////////////
     //Highlights  header
+    @FindBy(xpath = "//div[normalize-space()='Highlights']")
+    public WebElement headerHighlights;
+    @FindBy(xpath = "//div[normalize-space()='Aspectos destacados']")
+    public WebElement headerHighlightsSP;
 
-    //@FindBy(xpath = "//*[class = 'accordion-header c4-type-header-sm']")
-    //public WebElement headerHighlights;
 
-
-    @FindBy(xpath = "//span[normalize-space()='Monthly Cost']")
+    @FindBy(xpath = "//div[normalize-space()='Monthly Cost']")
     public WebElement txtCompareHeaderMonthlyCost;
-    @FindBy(xpath = "//span[normalize-space()='Costo mensual']")
+    @FindBy(xpath = "//div[normalize-space()='Costo mensual']")
     public WebElement txtCompareHeaderMonthlyCostSP;
 
-    @FindBy(xpath = "//span[normalize-space()='Deductible']")
+    @FindBy(xpath = "//div[normalize-space()='Deductible']")
     public WebElement txtCompareHeaderDeductible;
-    @FindBy(xpath = "//span[normalize-space()='Deducible']")
+    @FindBy(xpath = "//div[normalize-space()='Deducible']")
     public WebElement txtCompareHeaderDeductibleSP;
 
-    @FindBy(xpath = "//span[normalize-space()='Coinsurance']")
+    @FindBy(xpath = "//div[normalize-space()='Coinsurance']")
     public WebElement txtCompareHeaderCoinsurance;
-    @FindBy(xpath = "//span[normalize-space()='Coseguro']")
+    @FindBy(xpath = "//div[normalize-space()='Coseguro']")
     public WebElement txtCompareHeaderCoinsuranceSP;
 
-    @FindBy(xpath = "//span[normalize-space()='Out-of-Pocket Max']")
+    @FindBy(xpath = "//div[normalize-space()='Out-of-Pocket Max']")
     public WebElement txtCompareHeaderOutOfPocket;
-    @FindBy(xpath = "//span[normalize-space()='Desembolso máximo']")
+    @FindBy(xpath = "//div[normalize-space()='Desembolso máximo']")
     public WebElement txtCompareHeaderOutOfPocketSP;
 
-    @FindBy(xpath = "//span[normalize-space()='Overall Quality Rating']")
+    @FindBy(xpath = "//div[normalize-space()='Overall Quality Rating']")
     public WebElement txtCompareHeaderOverallQualityRating;
-    @FindBy(xpath = "//span[normalize-space()='Calificación de calidad general']")
+    @FindBy(xpath = "//div[normalize-space()='Calificación de calidad general']")
     public WebElement txtCompareHeaderOverallQualityRatingSP;
 
-    /// remove ///////////////
+    /// remove when new tests are put in place ///////////////
     @FindBy(id="ngb-accordion-item-0-toggle")
     public WebElement txtCompareHeaderMonthlyPremium;
 
@@ -149,8 +153,8 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath = "//*[@class = 'accordion-header c4-type-header-sm']")
     public WebElement getTxtHeaderPlanDocuments;
 
-    //@FindBy(xpath = "//span[normalize-space()='Documentos del plan']")
-    @FindBy(xpath = "//*[@class = 'accordion-header c4-type-header-sm']")
+    //@FindBy(xpath = "//*[@class = 'accordion-header c4-type-header-sm']")
+    @FindBy(xpath = "//*[normalize-space()='Documentos del plan']")
     public WebElement getTxtHeaderPlanDocumentsSP;
 
     @FindBy(xpath = "//span[normalize-space()='Plan Documents\n" +
@@ -164,7 +168,8 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     //Doctor Visits header
     @FindBy(xpath = "//div[normalize-space()='Doctor Visits']")
     public WebElement getTxtSubheaderDoctorVisits;
-    @FindBy(xpath = "//div[normalize-space()='Consultas con proveedores ']")
+    //@FindBy(xpath = "//*[normalize-space()='Consultas con proveedores ']")
+    @FindBy(id = "MedicalPlanCompare_DoctorsVisits")
     public WebElement getTxtSubheaderDoctorVisitsSP;
 
     @FindBy(xpath = "//div[normalize-space()='Preventive Care/ Screening/ Immunization']")
@@ -387,7 +392,8 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     @FindBy(xpath = "//td[normalize-space()='Chiropractic Care']")
     public WebElement getTxtIChiroCare;
-    @FindBy(xpath = "//td[normalize-space()='Atención quiropráctica]")
+    //@FindBy(xpath = "//td[normalize-space()='Atención quiropráctica]")
+    @FindBy(id = "MedicalPlanCompare_ChiropracticCare_text")
     public WebElement getTxtIChiroCareSP;
     @FindBy(xpath = "//td[normalize-space()='Bariatric Surgery']")
     public WebElement getTxtBarCare;
@@ -438,11 +444,11 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement planDocEnglish22;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_3")
     public WebElement planDocEnglish23;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_4")
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_4")
     public WebElement planDocEnglish24;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_5")
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_5")
     public WebElement planDocEnglish25;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_6")
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_6")
     public WebElement planDocEnglish26;
 
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_1")
@@ -464,11 +470,11 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement planDocEnglish32;
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_3")
     public WebElement planDocEnglish33;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_4")
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_4")
     public WebElement planDocEnglish34;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_5")
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_5")
     public WebElement planDocEnglish35;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_6")
+    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_6")
     public WebElement planDocEnglish36;
 
     @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_1")
@@ -494,7 +500,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         selectInNetworkTier1Link.click();
     }
 
-    public void selectOutofNetworkLink(){
+    public void selectOutNetworkMedical(){
         basicActions.waitForElementToDisappear( spinner,20 );
         selectOutofNetworkLink.click();
     }
@@ -516,10 +522,10 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public void validateDocumentationComparePlan(String carrier){
         switch(carrier){
             case "2":
-                validateAnthemCignaKaiserdocumentcolumns();
+                validateRockySelectdocumentcolumns();
                 break;
             case "3":
-                validateRockySelectdocumentcolumns();
+                validateCignaKaiserAnthemdocumentcolumns();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + carrier);
@@ -527,55 +533,59 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     }
 
     // column1
-    public void validateAnthemCignaKaiserdocumentcolumns(){
+    public void validateCignaKaiserAnthemdocumentcolumns(){
         basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+
         getDrpDwnPlanCategories.get(1).click();
         basicActions.waitForElementToBePresent( planDocEnglish11,30 );
-        softAssert.assertEquals( planDocEnglish11.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220104-06" );
-        softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Anthem BCBS English 0220104-06" );
-        softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Anthem BCBS English 0220104-06" );
-        softAssert.assertEquals( planDocEnglish14.getText(), "Quality Overview Anthem English" );
-        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure Anthem Medical English" );
-        softAssert.assertEquals( planDocEnglish16.getText(), "Provider Network Anthem Pathway Essentials" );
+        // Cigna
+        softAssert.assertEquals( planDocEnglish11.getText(), "Brochure Cigna English" );
+        softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Cigna English 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Cigna English 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish14.getText(), "Summary of Benefits and Coverage CO Supplement Cigna English 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Provider Network Cigna" );
+        softAssert.assertEquals( planDocEnglish16.getText(), "Quality Overview Cigna English" );
 
-        softAssert.assertEquals( planDocSpanish11.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220104-06" );
-        softAssert.assertEquals( planDocSpanish12.getText(), "Evidence of Coverage Anthem BCBS Spanish 0220104-06" );
-        softAssert.assertEquals( planDocSpanish13.getText(), "Summary of Benefits and Coverage Anthem BCBS Spanish 0220104-06" );
-        softAssert.assertEquals( planDocSpanish14.getText(), "Quality Overview Anthem Spanish" );
-        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure Anthem Medical Spanish" );
+        softAssert.assertEquals( planDocSpanish11.getText(), "Evidence of Coverage Cigna Spanish 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish12.getText(), "Summary of Benefits and Coverage Cigna Spanish 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish13.getText(), "Summary of Benefits and Coverage CO Supplement Cigna Spanish 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish14.getText(), "Brochure Cigna Spanish" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Quality Overview Cigna Spanish" );
 
-        softAssert.assertEquals( planDocEnglish21.getText(), "Summary of Benefits and Coverage CO Supplement Cigna English 0060033-06 Colorado Option" );
-        softAssert.assertEquals( planDocEnglish22.getText(), "Evidence of Coverage Cigna English 0060033-06 Colorado Option" );
-        softAssert.assertEquals( planDocEnglish23.getText(), "Summary of Benefits and Coverage Cigna English 0060033-06 Colorado Option" );
-        softAssert.assertEquals( planDocEnglish24.getText(), "Quality Overview Cigna English" );
-        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Cigna English" );
-        softAssert.assertEquals( planDocEnglish26.getText(), "Provider Network Cigna" );
+        // Kaiser
+        softAssert.assertEquals( planDocEnglish21.getText(), "Brochure Kaiser Permanente English" );
+        softAssert.assertEquals( planDocEnglish22.getText(), "Evidence of Coverage Kaiser Permanente English 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish23.getText(), "Summary of Benefits and Coverage Kaiser Permanente English 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish24.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente English 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Provider Network Kaiser Permanente CO Option" );
+        softAssert.assertEquals( planDocEnglish26.getText(), "Quality Overview Kaiser Permanente English" );
 
-        softAssert.assertEquals( planDocSpanish21.getText(), "Summary of Benefits and Coverage CO Supplement Cigna Spanish 0060033-06 Colorado Option" );
-        softAssert.assertEquals( planDocSpanish22.getText(), "Evidence of Coverage Cigna Spanish 0060033-06 Colorado Option" );
-        softAssert.assertEquals( planDocSpanish23.getText(), "Summary of Benefits and Coverage Cigna Spanish 0060033-06 Colorado Option" );
-        softAssert.assertEquals( planDocSpanish24.getText(), "Quality Overview Cigna Spanish" );
-        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Cigna Spanish" );
+        softAssert.assertEquals( planDocSpanish21.getText(), "Summary of Benefits and Coverage Kaiser Permanente Spanish 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish22.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente Spanish 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish23.getText(), "Quality Overview Kaiser Permanente Spanish" );
+        softAssert.assertEquals( planDocSpanish24.getText(), "Evidence of Coverage Kaiser Permanente Spanish 1040002-06 Colorado Option" );
 
-        softAssert.assertEquals( planDocEnglish31.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente English 1040002-06 Colorado Option" );
-        softAssert.assertEquals( planDocEnglish32.getText(), "Evidence of Coverage Kaiser Permanente English 1040002-06 Colorado Option" );
-        softAssert.assertEquals( planDocEnglish33.getText(), "Summary of Benefits and Coverage Kaiser Permanente English 1040002-06 Colorado Option" );
-        softAssert.assertEquals( planDocEnglish34.getText(), "Quality Overview Kaiser Permanente English" );
-        softAssert.assertEquals( planDocEnglish35.getText(), "Brochure Kaiser Permanente English" );
-        softAssert.assertEquals( planDocEnglish36.getText(), "Provider Network Kaiser Permanente CO Option" );
+        // Anthem
+        softAssert.assertEquals( planDocEnglish31.getText(), "Brochure Anthem Medical English" );
+        softAssert.assertEquals( planDocEnglish32.getText(), "Evidence of Coverage Anthem BCBS English 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish33.getText(), "Summary of Benefits and Coverage Anthem BCBS English 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish34.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish35.getText(), "Provider Network Anthem Pathway Essentials Standard" );
+        softAssert.assertEquals( planDocEnglish36.getText(), "Quality Overview Anthem English" );
 
-        softAssert.assertEquals( planDocSpanish31.getText(), "Summary of Benefits and Coverage Kaiser Permanente Spanish 1040002-06 Colorado Option" );
-        softAssert.assertEquals( planDocSpanish32.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente Spanish 1040002-06 Colorado Option" );
-        softAssert.assertEquals( planDocSpanish33.getText(), "Quality Overview Kaiser Permanente Spanish" );
-        softAssert.assertEquals( planDocSpanish34.getText(), "Evidence of Coverage Kaiser Permanente Spanish 1040002-06 Colorado Option" );
-        //softAssert.assertEquals( planDocEnglish35.getText(), "" );
+        softAssert.assertEquals( planDocSpanish31.getText(), "Evidence of Coverage Anthem BCBS Spanish 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish32.getText(), "Summary of Benefits and Coverage Anthem BCBS Spanish 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish33.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish34.getText(), "Quality Overview Anthem Spanish" );
+        softAssert.assertEquals( planDocEnglish35.getText(), "Brochure Anthem Medical Spanish" );
     }
 
     public void validateRockySelectdocumentcolumns(){
         basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(1).click();
+
         basicActions.waitForElementToBePresent( planDocEnglish11,30 );
         softAssert.assertEquals( planDocEnglish11.getText(), "Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420056-06 Colorado Option" );
         softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Rocky Mountain English 0420056-06 Colorado Option" );
@@ -625,7 +635,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
                 verifyEnglishTextPlanCompareCoCoPageOutNetwork();
                 break;
             case "Spanish":
-               // verifySpanishTextPlanCompareCoCoPageOutNetwork();
+              //  verifySpanishTextPlanCompareCoCoPageOutNetwork();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -633,9 +643,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     }
 
     public void verifyEnglishTextPlanCompareCoCoPageInNetwork(){
-            basicActions.waitForElementToDisappear( spinner,60 );
-            //basicActions.waitForElementToBePresent(compareTopHeader,50);
-            //softAssert.assertEquals( compareTopHeader.getText(), "Compare Medical Plans" );
+        basicActions.waitForElementToDisappear( spinner,60 );
+        basicActions.waitForElementToBePresentWithRetries(compareTopHeader,50);
+            softAssert.assertEquals( compareTopHeader.getText(), "Compare Medical Plans" );
             softAssert.assertEquals( downloadPDF.getText(), "Download PDF");
             softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Go Back to Plans");
             //softAssert.assertEquals( linkViewDetails1.getText(), "Plan Details" );
@@ -644,13 +654,18 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
             //softAssert.assertEquals( selectfirstplan.getText(), "Select Plan" );
             //softAssert.assertEquals( selectSecondplan.getText(), "Select Plan" );
             //softAssert.assertEquals( selectThirdplan.getText(), "Select Plan" );
-            basicActions.scrollToElement( selectInNetworkTier1Link );
-            basicActions.waitForElementToBePresent( selectInNetworkTier1Link,30 );
+        basicActions.scrollToElement( selectInNetworkTier1Link );
+        basicActions.waitForElementToBePresent( selectInNetworkTier1Link,30 );
             softAssert.assertEquals( selectInNetworkTier1Link.getText(),"In-Network" );
             //softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
             softAssert.assertEquals( selectOutofNetworkLink.getText(),"Out-of-Network" );
 
-            //softAssert.assertEquals( headerHighlights.getText(),"Highlights" );
+        basicActions.waitForElementToDisappear( spinner,60 );
+            softAssert.assertEquals( headerHighlights.getText(),"Highlights" );
+        basicActions.scrollToElement( selectOutofNetworkLink );
+
+        basicActions.waitForElementToDisappear( spinner,60 );
+        basicActions.waitForElementToBePresent(txtCompareHeaderMonthlyCost,40);
             softAssert.assertEquals( txtCompareHeaderMonthlyCost.getText(),"Monthly Cost" );
             softAssert.assertEquals( txtCompareHeaderDeductible.getText(),"Deductible" );
             softAssert.assertEquals( txtCompareHeaderCoinsurance.getText(), "Coinsurance" );
@@ -789,7 +804,10 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         //softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
         softAssert.assertEquals( selectOutofNetworkLink.getText(),"Out-of-Network" );
 
-        //softAssert.assertEquals( headerHighlights.getText(),"Highlights" );
+        basicActions.waitForElementToDisappear( spinner,60 );
+        softAssert.assertEquals( headerHighlights.getText(),"Highlights" );
+
+        basicActions.waitForElementToDisappear( spinner,60 );
         softAssert.assertEquals( txtCompareHeaderMonthlyCost.getText(),"Monthly Cost" );
         softAssert.assertEquals( txtCompareHeaderDeductible.getText(),"Deductible" );
         softAssert.assertEquals( txtCompareHeaderCoinsurance.getText(), "Coinsurance" );
@@ -913,7 +931,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public void verifySpanishTextPlanCompareCoCoPageInNetwork(){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(compareTopHeader,20);
-            //softAssert.assertEquals( compareTopHeader.getText(), "Comparar planes médicos" );
+        softAssert.assertEquals( compareTopHeaderSP.getText(), "Comparar planes médicos" );
         softAssert.assertEquals( downloadPDF.getText(), "Descargar PDF");
         softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Volver a Planes");
             //softAssert.assertEquals( linkViewDetails1.getText(), "Detalles Del Plan" );
@@ -922,12 +940,14 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
             //softAssert.assertEquals( selectfirstplan.getText(), " Seleccione este Plan " );
             //softAssert.assertEquals( selectSecondplan.getText(), " Seleccione este Plan " );
             //softAssert.assertEquals( selectThirdplan.getText(), " Seleccione este Plan " );
-        softAssert.assertEquals( selectInNetworkTier1Link.getText()," Dentro la red " );
+        softAssert.assertEquals( selectInNetworkTier1Link.getText(),"Dentro la red" );
             //softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
         softAssert.assertEquals( selectOutofNetworkLink.getText(),"Fuera de la red" );
 
+        basicActions.waitForElementToDisappear( spinner,60 );
+        softAssert.assertEquals( headerHighlightsSP.getText(),"Aspectos destacados" );
 
-        softAssert.assertEquals( getDrpDwnPlanCategories.get(1).getText(),"Aspectos destacados" );
+        basicActions.waitForElementToDisappear( spinner,60 );
         softAssert.assertEquals( txtCompareHeaderMonthlyCostSP.getText(),"Costo mensual" );
         softAssert.assertEquals( txtCompareHeaderDeductibleSP.getText(),"Deducible" );
         softAssert.assertEquals( txtCompareHeaderCoinsuranceSP.getText(), "Coseguro" );
@@ -936,7 +956,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(2).click();
-        // future - create a separate test for plan document sublinks checks - all 6 plans
+
         basicActions.scrollToElement( getTxtHeaderPlanDocumentsSP );
         basicActions.waitForElementToBePresentWithRetries( getTxtHeaderPlanDocumentsSP, 20 );
         softAssert.assertEquals( getTxtHeaderPlanDocumentsSP.getText(),"Documentos del plan" );
@@ -945,11 +965,13 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(3).click();
-        //basicActions.scrollToElement( getTxtSubheaderDoctorVisitsSP );
-        //softAssert.assertEquals( getTxtSubheaderDoctorVisitsSP.getText(),"Consultas con proveedores" );
-        softAssert.assertEquals( getDrpDwnPlanCategories.get(3).getText(),"Consultas con proveedores" );
-        softAssert.assertEquals( getTxtHeaderPlanDocumentsSP.getText(), "Atenci\u00F3n preventiva, ex\u00E1menes, inmunizaci\u00F3n" );
-        softAssert.assertEquals( getTxtPreventativeCareSP.getText(), "Consulta de atenci\u00F3n primaria para tratar una lesi\u00F3n o enfermedad" );
+
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.scrollToElement( getTxtSubheaderDoctorVisitsSP );
+        softAssert.assertEquals( getTxtSubheaderDoctorVisitsSP.getText(),"Consultas con proveedores" );
+
+        softAssert.assertEquals( getTxtPreventativeCareSP.getText(), "Atenci\u00F3n preventiva, ex\u00E1menes, inmunizaci\u00F3n" );
+        softAssert.assertEquals( getTxtPrimaryCareSP.getText(), "Consulta de atenci\u00F3n primaria para tratar una lesi\u00F3n o enfermedad" );
         softAssert.assertEquals( getTxtSpecialistVisitSP.getText(),"Consulta con un especialista" );
         softAssert.assertEquals( getTxtTelehealthPCPSP.getText(),"Telemedicina PCP" );
         softAssert.assertEquals( getTxtTelehealthSpecialistSP.getText(),"Telemedicina especialista" );
@@ -1030,16 +1052,21 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertEquals( getTxtHospiceServicesSP.getText(),"Servicios a pacientes con enfermedades terminales" );
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
-        getDrpDwnPlanCategories.get(13).click();
+
         basicActions.scrollToElement( getTxtCompareHeaderAddEHB );
         softAssert.assertEquals( getTxtCompareHeaderAddEHB.getText(),"Beneficios esenciales" );
+
+        basicActions.waitForElementToDisappear( spinner,40 );
         softAssert.assertEquals( getTxtIChiroCareSP.getText(), "Atenci\u00F3n quiropr\u00E1ctica" );
         softAssert.assertEquals( getTxtBarCareSP.getText(), "Cirug\u00EDa bari\u00E1trica" );
         softAssert.assertEquals( getTxtInfertilityTreatmentSP.getText(),"Tratamiento de infertilidad" );
 
         softAssert.assertEquals(goBackToPlansCompareButton.getText(),"Volver a Planes");
         softAssert.assertAll();
-        getDrpDwnPlanCategories.get(1).click();
+
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.click( toTop );
+
         }
 
 

@@ -1,4 +1,4 @@
-@COCO
+@COCO9
  #SLCR-318, SLCR-332,
 Feature: Shopping Page - Continue and Go back funtionality
 

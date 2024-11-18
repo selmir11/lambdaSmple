@@ -146,7 +146,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void clickCompareButton(){
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent( selectCompareButton,30 );
         selectCompareButton.click();
     }
