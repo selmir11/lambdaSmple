@@ -7,6 +7,31 @@ import io.cucumber.java.en.*;
 public class AuthorizeAssisterOrganizationSteps {
     AuthorizeAssisterOrganizationPage authorizeAssisterOrganizationPage = new AuthorizeAssisterOrganizationPage(WebDriverManager.getDriver());
 
+    @Then("I validate the Authorize Assister Organization page title in {string}")
+    public void iValidateAuthAssisterOrgPageTitle(String language){
+        authorizeAssisterOrganizationPage.validateAuthAssisterOrgPageTitle(language);
+    }
+
+    @And("I validate the Authorize Assister Organization page informational text in {string}")
+    public void iValidateAuthAssisterOrgPageInformationalText(String language){
+        authorizeAssisterOrganizationPage.validateAuthAssisterOrgPageInformationalText(language);
+    }
+
+    @And("I validate the Authorize Assister Site ID field text in {string}")
+    public void iValidateAuthAssisterSiteIdFieldText(String language){
+        authorizeAssisterOrganizationPage.validateAuthAssisterSiteIdFieldTextText(language);
+    }
+
+    @And("I validate the Authorize button is displayed in {string}")
+    public void iValidateAuthorizeAssisterButton(String language){
+        authorizeAssisterOrganizationPage.validateAuthorizeAssisterButton(language);
+    }
+
+    @And("I validate the Authorize Assister Organization page Go Back button is displayed in {string}")
+    public void iValidateGoBackButton(String language){
+        authorizeAssisterOrganizationPage.validateGoBackButton(language);
+    }
+
     @Then("I authorize my assister's site ID {string} or {string}")
     public void iAuthorizeAssisterSiteId(String StgSiteID, String QaSiteID){
         authorizeAssisterOrganizationPage.authorizeAssisterSiteID(StgSiteID, QaSiteID);
