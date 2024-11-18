@@ -37,12 +37,8 @@ public class DbDataProvider_Exch {
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
     }
 
-    public List<PolicyTablesEntity> getMedicalRecordsDataFromPolicyTables(){
-        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesMedicalRecordsQuery());
-    }
-
-    public List<PolicyTablesEntity> getDentalRecordsDataFromPolicyTables(){
-        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesDentalRecordsQuery());
+    public List<PolicyTablesEntity> getDataFrmPolicyTables(String coverageType){
+        return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesCombinedQuery(coverageType));
     }
 
     public List<Ob834DetailsEntity> getOb83Db4Details(){
@@ -331,4 +327,9 @@ public class DbDataProvider_Exch {
     public String[] getDentSecondPolicy(String year) {
         return postgresHandler.getResultForThreeColumnValues("exchange_assigned_policy_id","policy_start_date","first_name",exchDbQueries.getDentalSecondPolicyDB(year));
     }
+
+    public String getEventLogId(String event, String eventLogId) {
+        return postgresHandler.getResultFor("event_log_id", exchDbQueries.getEventLogIdDB(event, eventLogId));
+    }
+
 }

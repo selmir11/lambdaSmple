@@ -208,7 +208,7 @@ public class PlanSummaryMedicalDentalPage {
                 for (int i = 0; i < memberslist.size(); i++) {
                     memberslist.get( i ).setTotalMedAmtAfterReduction( medPremiumMinusAPTC );
                     memberslist.get( i ).setMedicalPremiumAmt( medPremiumMinusAPTC );
-                }
+                 }
             }
         } else {
             //FA
@@ -236,6 +236,7 @@ public class PlanSummaryMedicalDentalPage {
         subscriber.setDentalPremiumAmt( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
         subscriber.setTotalDentalPremAfterReduction( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
         SharedData.setPrimaryMember( subscriber );
+
     }
 
 
