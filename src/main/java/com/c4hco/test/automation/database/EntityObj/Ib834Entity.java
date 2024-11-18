@@ -31,7 +31,7 @@ public class Ib834Entity {
     String total_enrollees;
     String total_subscribers;
     String total_dependents;
-    String plan_sponser_name;
+    String plan_sponsor_name;
     String sponsor_id;
     String insurer_name;
     String insurer_id;

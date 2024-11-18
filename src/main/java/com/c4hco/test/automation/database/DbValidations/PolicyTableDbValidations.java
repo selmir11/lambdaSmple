@@ -196,10 +196,11 @@ public class PolicyTableDbValidations {
 
     private void setData() {
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        List<PolicyTablesEntity> policyEntitiesList = exchDbDataProvider.getMedicalRecordsDataFromPolicyTables();
-        List<PolicyTablesEntity> dentalEntitiesList = exchDbDataProvider.getDentalRecordsDataFromPolicyTables();
-        SharedData.setMedicalPolicyTablesEntities(policyEntitiesList);
-        SharedData.setDentalPolicyTablesEntities(dentalEntitiesList);
+        List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
+        List<PolicyTablesEntity> dentalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("2");
+
+        SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
+        SharedData.setDentalPolicyTablesEntities(dentalPolicyEntitiesList);
 
         exchDbDataProvider.setDataFromDb();
         exchDbDataProvider.setMedicalPlanDataFromDb(SharedData.getPrimaryMember().getMedicalPlan()); // Works for one group

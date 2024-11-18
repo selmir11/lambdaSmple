@@ -642,6 +642,27 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateNewEventDB(String event) {
+        List<String> savedEventIds = SharedData.getEventIds();
+        if (savedEventIds == null) {
+            savedEventIds = new ArrayList<>();
+        }
+
+        String lastEventLogId = savedEventIds.isEmpty() ? "0" : savedEventIds.get(savedEventIds.size() - 1);
+        String eventId = exchDbDataProvider.getEventLogId(event, lastEventLogId);
+        System.out.println("Retrieved Event ID: " + eventId);
+
+        if (savedEventIds.contains(eventId)) {
+            softAssert.fail("Event ID " + eventId + " already exists in SharedData.");
+        } else {
+            savedEventIds.add(eventId);
+            SharedData.setEventIds(savedEventIds);
+            System.out.println("Updated Event IDs in SharedData: " + savedEventIds);
+        }
+        softAssert.assertAll();
+    }
+
+
 
 
 
