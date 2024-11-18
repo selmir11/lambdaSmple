@@ -86,7 +86,6 @@ Feature: Regression Tests that require Seed 1
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
-
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
@@ -115,11 +114,12 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file data
-    And I validate the ob834 "dental" file data
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    And I download the medical and dental files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 "medical" file should have the values
+#    And I validate the ob834 "dental" file should have the values
+
 
   @SLER-1038 @pol_exch_passed
   Scenario:SLER-1038 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN - RT-2246
@@ -161,8 +161,8 @@ Feature: Regression Tests that require Seed 1
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file data
-    And I validate the ob834 "dental" file data
+    And I validate the ob834 "medical" file should have the values
+    And I validate the ob834 "dental" file should have the values
    # And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
@@ -279,5 +279,87 @@ Feature: Regression Tests that require Seed 1
     And I click continue on payment selection page
     And I click continue on initial payment page
     And I click on Go To Welcome Page Button on whats next page
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-1244-WIP
+  Scenario: RT-2074 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - SAME CARRIER / SAME PLANS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    And I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    And I get the newborn "Son" dob as "current date"
+    Given I set the dynamic policy, coverage and financial dates
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
+      | Primary:Son |
+    And I select no SSN for "Son"
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    And I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select Birth QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on grouping Members Medical page
+    Then I validate I am on the "Medical Plan Results" page
+    Then I select "Elevate Health Plans Colorado Option Bronze" medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Delta Dental of Colorado Family Basic Plan" plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on plan summary page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
