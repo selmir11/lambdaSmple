@@ -13,17 +13,13 @@ public class DentalPlanDetailPageSteps {
         dentalPlanDetailPage.clickGoBackDetail();
     }
 
-    @And("I select the English OutNetwork link on the Dental Detail page")
-    public void clickOutNetworkDentalDetail() {dentalPlanDetailPage.clickOutNetworkDental();
-    }
 
-    @And("I select the Spanish OutNetwork link on the Dental Detail page")
-    public void clickOutNetworkDentalSpanish() {dentalPlanDetailPage.clickOutNetworkDentalSpanish();
-    }
+    @And("I select the OutNetwork link on the Dental Detail page")
+    public void clickOutNetworkDental() {dentalPlanDetailPage.clickOutNetworkDental();}
 
-    @And("I select the English InNetwork link on the Dental Detail page")
-    public void clickInNetworkDentalDetail(){dentalPlanDetailPage.clickInNetworkDental();
-    }
+    @And("I select the InNetwork link on the Dental Detail page")
+    public void clickInNetworkDental() {dentalPlanDetailPage.clickInNetworkDental();}
+
 
     @And( "I validate the {string} text headers and subheaders for the InNetwork Dental Detail page" )
     public void validateInNetworkDentalDetailLanguage(String language){dentalPlanDetailPage.validateInNetworkDentalDetailLanguage(language);
@@ -32,6 +28,8 @@ public class DentalPlanDetailPageSteps {
     @And( "I validate the {string} text headers and subheaders for the OutNetwork Dental Detail page" )
     public void validateOutNetworkDentalDetailLanguage(String language){dentalPlanDetailPage.validateOutNetworkDentalDetailLanguage(language);
     }
+
+
 
 }
 

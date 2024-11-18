@@ -25,7 +25,7 @@ public class ApplicationHistoryPage {
     WebElement mvrPopUp;
     @FindBy(css= ".no-self-attestation-btn")
     WebElement noBtnMvrPopUp;
-    @FindBy(css = ".yes-self-attestation-btn")
+    @FindBy(css = ".verify-myinfo-btn")
     WebElement yesBtnMvrPopUp;
 
     private BasicActions basicActions;
@@ -73,8 +73,18 @@ public class ApplicationHistoryPage {
         Assert.assertFalse(basicActions.isElementDisplayed(aptcSection, 3));
     }
 
-    public void clickVerifyMyInfoText(){
-        basicActions.waitForElementToBePresent(yesBtnMvrPopUp,10);
-        yesBtnMvrPopUp.click();
+    public void clickVerifyMyInfoText(String popUpOption){
+        switch (popUpOption){
+            case "Verify My Information":
+                basicActions.waitForElementToBePresent(yesBtnMvrPopUp,10);
+                yesBtnMvrPopUp.click();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(noBtnMvrPopUp,10);
+                noBtnMvrPopUp.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + popUpOption);
+        }
     }
 }

@@ -1,4 +1,4 @@
-@SLCR-34
+@SLCR-34 @OPS
 Feature: AdminPortal: General: Header, footer, and application links
 
   @SLCR-34
@@ -41,7 +41,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "coco" checkbox on Admin Portal Dashboard
-    Then I enter an "accountID" "1108066870" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I validate "UserName Display" for Admin Portal
@@ -70,7 +70,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
-    Then I enter an "accountID" "1108066870" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on "Manage Plans" user dashboard button
@@ -102,7 +102,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
-    Then I enter an "accountID" "1108066870" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on "Manage Account Access" user dashboard button
@@ -134,7 +134,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
-    Then I enter an "accountID" "1108066870" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on "Manage Account Details" user dashboard button
@@ -166,7 +166,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
-    Then I enter an "accountID" "1108066870" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on view button for "EDI Transactions" report
@@ -199,7 +199,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
-    Then I enter an "accountID" "1108066870" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on view button for "Detailed EDI" report
@@ -232,7 +232,7 @@ Feature: AdminPortal: General: Header, footer, and application links
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I click Colorado Connect to search user
-    Then I enter an "accountID" "1108066870" to search user
+    Then I enter an "accountID" in any env "5890916640" "4007384519" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     Then I click on view button for "Account Activity" report
