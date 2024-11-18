@@ -5,7 +5,6 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.Ib834Entity;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
@@ -15,6 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
@@ -75,7 +75,6 @@ public class Ib834DbValidations {
         softAssert.assertEquals(subscriber.getFullName(), ib834MedEntity.getPlan_sponsor_name(), "Plan sponsor name did not match");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ib834MedEntity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ib834MedEntity.getSubscriber_id(), ib834MedEntity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
-        validateSponsorId(ib834MedEntity);
         validateResidentialAddress(ib834MedEntity);
         validateMailingAddress(ib834MedEntity);
         softAssert.assertAll();
@@ -156,8 +155,6 @@ public class Ib834DbValidations {
         softAssert.assertNull(ib834MedEntity.getCsr_amount(), "Member Medical CSR amount does not match");
         softAssert.assertNull(ib834MedEntity.getTotal_responsible_amount(), "MemberMedical Total Responsible amount does not match");
         softAssert.assertNull(ib834MedEntity.getTotal_premium_amount(), "Member Medical Total Premium amount does not match");
-        softAssert.assertNull(ib834MedEntity.getPlan_sponsor_name(), "Member plan sponsor name did not match");
-        softAssert.assertNull(ib834MedEntity.getSponsor_id(), "Member Sponsor_id did not match");
         softAssert.assertNull(ib834MedEntity.getMail_street_line1(), "Mailing address street line 1 does not match");
         softAssert.assertNull(ib834MedEntity.getMail_street_line2(), "Mailing address street line 2 is not null");
         softAssert.assertNull(ib834MedEntity.getMail_city(), "Mailing city does not match");
@@ -176,6 +173,7 @@ public class Ib834DbValidations {
         validateConstantFields(ib834MedEntity);
         validateBrokerDetails(ib834MedEntity);
         validateResponsiblePersonDetails(ib834MedEntity);
+        validateSponsorId(ib834MedEntity);
         softAssert.assertEquals(subscriber.getEmailId(), ib834MedEntity.getPrimary_email(), "primary email did not match");
         softAssert.assertEquals(subscriber.getPhoneNumber(), ib834MedEntity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(subscriber.getSpokenLanguage(), ib834MedEntity.getSpoken_language(), "spoken language did not match");
@@ -187,7 +185,6 @@ public class Ib834DbValidations {
        // softAssert.assertTrue(dbData.getRatingAreaName().contains(ib834MedEntity.getRate_area()),"" );
         softAssert.assertEquals(ib834MedEntity.getCsr_level(), dbData.getCsrLevel(), "CSR level does not match");
         softAssert.assertAll();
-
     }
     private void validateConstantFields(Ib834Entity ib834MedEntity) {
         String date = LocalDate.now().toString();
