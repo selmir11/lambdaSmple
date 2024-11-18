@@ -66,6 +66,8 @@ public class SharedData {
     @Getter @Setter private static Map<String, String> exchPersonId;
     @Getter @Setter private static String birthLceIndividual;
     @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
+    @Getter @Setter private static List<String> dvrDateTime;
+    @Getter @Setter private static List<String> EventIds;
 
 
     public static void reset(){
@@ -101,6 +103,8 @@ public class SharedData {
         dentalPolicyTablesEntities = null;
         ob834DetailsMedEntities = null;
         ob834DetailsDenEntities = null;
+        dvrDateTime = null;
+        EventIds = null;
     }
 
 }
