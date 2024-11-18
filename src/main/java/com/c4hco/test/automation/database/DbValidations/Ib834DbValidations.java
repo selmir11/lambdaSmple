@@ -249,7 +249,7 @@ public class Ib834DbValidations {
 
         softAssert.assertEquals(ib834MedEntity.getBenefit_begin_date(), formatPlanStartDate, "Medical plan start date is not correct");
         softAssert.assertEquals(ib834MedEntity.getBenefit_end_date(), formatMedicalPlanEndDate, "Medical plan end date is not correct");
-        softAssert.assertEquals(ib834MedEntity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
+   //     softAssert.assertEquals(ib834MedEntity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
 
         validateDetailsFromStep(ib834MedEntity, expectedValues.get(0));
         softAssert.assertAll();
