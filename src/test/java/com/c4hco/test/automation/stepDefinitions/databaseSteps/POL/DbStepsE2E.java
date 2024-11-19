@@ -1,9 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps.POL;
 
-import com.c4hco.test.automation.database.DbValidations.Ib834DbValidations;
-import com.c4hco.test.automation.database.DbValidations.Ib999DbValidations;
-import com.c4hco.test.automation.database.DbValidations.Ob834PreEdiDbValidations;
-import com.c4hco.test.automation.database.DbValidations.PolicyTableDbValidations;
+import com.c4hco.test.automation.database.DbValidations.*;
 import io.cucumber.java.en.And;
 
 import java.util.List;
@@ -14,6 +11,8 @@ public class DbStepsE2E {
     private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
     private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
+    private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
+
 
 
     @And("I validate {string} entities from policy tables")
@@ -32,6 +31,11 @@ public class DbStepsE2E {
     @And("I validate ib834 {string} details in database")
     public void validateIb834DetailsDb(String recordType, List<Map<String, String>> expectedValues){
         ib834DbValidations.ib834DbRecordsValidations(recordType, expectedValues);
+    }
+
+    @And("I validate {string} entities from ob999_details db table")
+    public void validateOb999DetailsDB(String recordType){
+        ob999DbValidations.ob999RecordsValidations(recordType);
     }
 
     //   @And("I validate Individual member policy table queries")

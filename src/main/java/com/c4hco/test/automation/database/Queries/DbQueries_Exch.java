@@ -90,8 +90,12 @@ public class DbQueries_Exch {
 
     public String ib999Details(String grpCtlNum) {
         return "SELECT * FROM " + dbName + ".ib999_detail \n" +
-                "where ak1_group_ctrl_number = '" + grpCtlNum + "'\n " +
-                "ORDER BY created_ts DESC";
+                "where ak1_group_ctrl_number = '" + grpCtlNum + "'";
+    }
+
+    public String ob999Details(String grpCtlNum) {
+        return "SELECT * FROM " + dbName + ".ob999_detail \n" +
+                "where ak1_group_ctrl_number = '" + grpCtlNum + "'";
     }
 
     public String ib834Details(String grpCtlNum) {

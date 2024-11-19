@@ -68,6 +68,10 @@ public class SharedData {
     @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
     @Getter @Setter private static List<String> dvrDateTime;
     @Getter @Setter private static List<String> EventIds;
+    @Getter @Setter private static List<Ob999Entity> ob999MedDetailsEntities;
+    @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
+    @Getter @Setter private static String medicalOb999FileName;
+    @Getter @Setter private static String dentalOb999FileName;
 
 
     public static void reset(){
@@ -105,6 +109,10 @@ public class SharedData {
         ob834DetailsDenEntities = null;
         dvrDateTime = null;
         EventIds = null;
+        ob999MedDetailsEntities = null;
+        ob999DenDetailsEntities = null;
+        medicalOb999FileName = null;
+        dentalOb999FileName = null;
     }
 
 }
