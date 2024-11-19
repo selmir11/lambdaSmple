@@ -164,6 +164,7 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     public void getmedGroup1MemNames() {
+        basicActions.waitForElementToBePresent(medicalgroup1MemberNames,10);
         List<MemberDetails> memberslist = SharedData.getMembers();
         MemberDetails subscriber = SharedData.getPrimaryMember();
         String names = medicalgroup1MemberNames.getText();

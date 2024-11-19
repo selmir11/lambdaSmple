@@ -58,11 +58,13 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToBePresent(continueButton, 20);
         basicActions.waitForElementToBeClickable(continueButton, 10);
         List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
-        for (MemberDetails memDet : memberInfoDetails){
-            basicActions.waitForElementListToBePresent(medicalGroupTitle,10);
-            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
-            basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10);
-            memDet.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #",""));
+        for (MemberDetails memDet : memberInfoDetails) {
+            if (memDet.getEligibilityInfo() == true) {
+                basicActions.waitForElementListToBePresent(medicalGroupTitle, 10);
+                WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + memDet.getFirstName() + "')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+                basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10);
+                memDet.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #", ""));
+            }
         }
         basicActions.scrollToElement( continueButton );
         basicActions.click(continueButton);
