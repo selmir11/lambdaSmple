@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Edi834Util {
+public class Ob834Util {
 
     public void validateFileIsNotEmpty(InputStream inputStream){
         Boolean isFileEmpty = true;

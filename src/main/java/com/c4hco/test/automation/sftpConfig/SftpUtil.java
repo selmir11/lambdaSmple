@@ -2,8 +2,8 @@
 package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.ediUtil.Edi834Util;
-import com.c4hco.test.automation.edi.ediUtil.Edi999Util;
+import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
+import com.c4hco.test.automation.edi.ediUtil.Ib999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.jcraft.jsch.ChannelSftp;
@@ -18,8 +18,8 @@ import java.util.Date;
 
 public class SftpUtil {
     private Session session;
-    Edi834Util edi834Util = new Edi834Util();
-    Edi999Util edi999Util = new Edi999Util();
+    Ob834Util edi834Util = new Ob834Util();
+    Ib999Util edi999Util = new Ib999Util();
     BasicActions basicActions = new BasicActions();
 
     public SftpUtil(){

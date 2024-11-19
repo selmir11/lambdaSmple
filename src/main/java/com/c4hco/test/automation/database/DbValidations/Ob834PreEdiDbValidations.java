@@ -135,11 +135,6 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertAll();
     }
 
-//       member.getMailingAddress().getAddressLine1().equals(member.getResAddress().getAddressLine1());
-//        if (member.getMailingAddress().getAddressLine2() != null) {
-//        member.getMailingAddress().getAddressLine2().equals(member.getResAddress().getAddressLine2());
-//    }
-
     private Boolean isMailingAddressSameAsResidential(MemberDetails subscriber){
       if(subscriber.getMailingAddress().equals(subscriber.getResAddress())){
           return true;
