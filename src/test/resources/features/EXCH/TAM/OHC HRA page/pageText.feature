@@ -526,3 +526,17 @@ Feature: Page Text-Other Health Coverage Page HRA
     And I verify year is "Current Year", amount is "15.00", type is "QSEHRA no Continue", "Without" APTC question "" on the HRA page
 
     And I click on Sign Out in the Header for "Elmo"
+
+    @SLER-1136 @PageVerificationHraPage
+    Scenario: SLER-1136 I validate that the plan year dropdown displays plan years based on the enrollment period on the HRA page
+      And I verify the header for Primary Member on the HRA page in "English"
+      Then I validate HRA dropdown options for "Actual date"
+
+      Then I open url with "?dateOverride=2024-11-15" query in new tab
+      Then I validate HRA dropdown options for "Overridden date"
+      And I close current tab and switch back to previous tab
+      Then I open url with "?dateOverride=2025-01-01" query in new tab
+      Then I validate HRA dropdown options for "Overridden date"
+      And I close current tab and switch back to previous tab
+
+      And I click on Sign Out in the Header for "Elmo"

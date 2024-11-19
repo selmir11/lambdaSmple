@@ -63,9 +63,11 @@ public class OhcHraSteps_Elmo {
     @Then("I validate HRA help drawer verbiage in {string}")
     public void iValidateHelp(String language){ohcHraPage_Elmo.validateHelpVerbiage(language);}
 
+    @Then("I validate HRA dropdown options for {string}")
+    public void iValidateDropdownOptions(String dateType){ohcHraPage_Elmo.validateDropdownOptions(dateType);}
 
-
-
+    @And("I select {string} option on the HRA page")
+    public void iSelectYearOption(String year){ohcHraPage_Elmo.selectYearOption(year);}
 
 
 

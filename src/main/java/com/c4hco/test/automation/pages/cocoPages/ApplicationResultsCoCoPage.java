@@ -119,6 +119,40 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(healthInsuranceCoCoEligible.get(2).getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect");
         softAssert.assertAll();
     }
+
+    public void verifySESClosedOnAppResultsPage(String language) {
+        switch (language) {
+            case "English":
+                verifySESClosedOnAppResultsPageEnglish();
+                break;
+            case "Spanish":
+                verifySESClosedOnAppResultsPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifySESClosedOnAppResultsPageEnglish(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeader.getText(), "Here's what your household qualifies for");
+        softAssert.assertEquals(memberName.getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(eligiblePlan.getText(), "SilverEnhanced Savings");
+        softAssert.assertEquals(sesLimitedtext.getText(), "SilverEnhanced Savings is currently closed. It may reopen next open enrollment period. We encourage you to continue, as you\u2019ll still be able to enroll in plans at regular cost.");
+        softAssert.assertEquals(healthInsuranceCoCoEligible.get(2).getText(), "Health insurance plans through Colorado Connect");
+        softAssert.assertAll();
+    }
+
+    public void verifySESClosedOnAppResultsPageSpanish(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeaderSpanish,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeaderSpanish.getText(), "Usted y/o su familia califica para lo siguiente");
+        softAssert.assertEquals(memberName.getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(eligiblePlan.getText(), "Ahorros SilverEnhanced");
+        softAssert.assertEquals(sesLimitedtext.getText(), "Actualmente, Ahorros SilverEnhanced se encuentra cerrado. Es posible que vuelva a abrirse para el pr\u00F3ximo periodo de inscripci\u00F3n abierta. Lo animamos a que contin\u00FAe con la solicitud, ya que a\u00FAn puede inscribirse en planes con costo regular.");
+        softAssert.assertEquals(healthInsuranceCoCoEligible.get(2).getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect");
+        softAssert.assertAll();
+    }
+
     public void verifyEligibleplans(){
         basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
         if(SharedData.getSes().equals("yes")){
