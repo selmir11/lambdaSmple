@@ -96,6 +96,13 @@ public class AdminPortalManagePlansPage{
 
     @FindBy(xpath= "//div[@id='financialEndDate_1']//input[1]")
     WebElement financialEndDate;
+
+    @FindBy(css="#premium_1 > input")
+    WebElement premiumAmount;
+
+    @FindBy(css="#planAPTC_1 > input")
+    WebElement aptcAmount;
+
     @FindBy(id= "financialEndDate_1")
     WebElement financialEndDateText;
     @FindBy(xpath= "//div[@id='financialEndDate_2']//input[1]")
@@ -144,6 +151,8 @@ public class AdminPortalManagePlansPage{
     WebElement dentalPlanType;
     @FindBy(xpath = "/html/body/app-root/div/app-header/header/div[2]/div/div[2]/span[1]/a")
     WebElement searchInHeader;
+
+
 
 
     public void validateBluBar(){
@@ -390,6 +399,18 @@ public class AdminPortalManagePlansPage{
             WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_"+memberNo+"']//input[1]"));
             financialEndDateMem.sendKeys(financialStartDateValue);
         }
+    }
+    public void updatePremiumAmount(String premiumAmountValue){
+        basicActions.waitForElementToBePresent(premiumAmount,10);
+        premiumAmount.click();
+        premiumAmount.clear();
+        premiumAmount.sendKeys(premiumAmountValue);
+    }
+    public void updateAptcAmount(String aptcAmountValue){
+        basicActions.waitForElementToBePresent(aptcAmount,10);
+        aptcAmount.click();
+        aptcAmount.clear();
+        aptcAmount.sendKeys(aptcAmountValue);
     }
 
     public void selectThePlanYearOnManagePlan(String planYear) {
