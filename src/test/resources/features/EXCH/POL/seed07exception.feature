@@ -204,7 +204,9 @@ Feature: Seed07exception - Exchange
     Then I click continue on dental plan results page
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
 
     And I select the terms and agreements checkbox

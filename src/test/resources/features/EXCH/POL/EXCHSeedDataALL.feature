@@ -85,7 +85,9 @@ Feature: EXCH Seed Data ALL
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -227,7 +229,9 @@ Feature: EXCH Seed Data ALL
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -387,7 +391,9 @@ Feature: EXCH Seed Data ALL
     And I validate I am on the "Dental Plan Results" page
     And I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -547,7 +553,9 @@ Feature: EXCH Seed Data ALL
     And I validate I am on the "Dental Plan Results" page
     And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -709,7 +717,9 @@ Feature: EXCH Seed Data ALL
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Comprehensive Plan" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -929,7 +939,9 @@ Feature: EXCH Seed Data ALL
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Comprehensive Plan" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -1166,7 +1178,9 @@ Feature: EXCH Seed Data ALL
     Then I click continue on dental plan results page
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter "taxHolder1" signature on the Financial Help Agreements page
@@ -1417,7 +1431,9 @@ Feature: EXCH Seed Data ALL
     Then I click continue on dental plan results page
     And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter "taxHolder1" signature on the Financial Help Agreements page
@@ -1568,7 +1584,9 @@ Feature: EXCH Seed Data ALL
     And I validate I am on the "Dental Plan Results" page
     And I select "Cigna Dental Pediatric" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
@@ -1728,7 +1746,9 @@ Feature: EXCH Seed Data ALL
     Then I click continue on dental plan results page
     And I select "Cigna Dental Pediatric" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox

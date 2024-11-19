@@ -84,7 +84,9 @@ Feature: All the Seed Data - Exchange
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan"
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
@@ -215,7 +217,9 @@ Feature: All the Seed Data - Exchange
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan"
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     Then I select make payment button to pay the premium
     And I click continue on payment selection page
