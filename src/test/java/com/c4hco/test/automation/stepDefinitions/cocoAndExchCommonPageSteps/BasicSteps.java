@@ -406,6 +406,12 @@ public class BasicSteps {
             case "assistnet dashboard" :
                 pageUrl = "assistnet-portal/program-manager";
                 break;
+            case "Authorize Assister Organization" :
+                pageUrl = "assistnet-portal/individual/authorize-assister";
+                break;
+            case "Authorize Assister Organization AP OBO" :
+                pageUrl = "assistnet-portal/csr/authorize-assister";
+                break;
             case "Error" :
                 pageUrl = "/error";
                 break;
@@ -659,4 +665,10 @@ public class BasicSteps {
 
     @Then("I wait for {int} milliseconds")
     public void iWait(int waitTime) {actions.wait(waitTime);}
+
+    @Then("I open a new browser tab")
+    public void iOpenNewTab(){basicActions.openNewTab();}
+
+    @Then("I open url with {string} query in new tab")
+    public void iAddQueryInNewTab(String query){basicActions.openUrlWithQueryStringInNewTab(query);}
 }
