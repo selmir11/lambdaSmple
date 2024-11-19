@@ -94,9 +94,6 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@id='financialEndDate_1']//input[1]")
     WebElement financialEndDate;
 
-    @FindBy(id = "financialEndDate_1")
-
-
     @FindBy(css="#premium_1 > input")
     WebElement premiumAmount;
 
@@ -152,8 +149,6 @@ public class AdminPortalManagePlansPage {
     WebElement dentalPlanType;
     @FindBy(xpath = "/html/body/app-root/div/app-header/header/div[2]/div/div[2]/span[1]/a")
     WebElement searchInHeader;
-
-
 
     @FindBy(xpath = "(//input[@type='text'])[6]")
     WebElement aptcmember1;
@@ -263,9 +258,6 @@ public class AdminPortalManagePlansPage {
         btnManagePlans.click();
         basicActions.switchtoactiveTab();
     }
-
-    public void validateChangeButtonsNotDisplay() {
-        btnDentalReset.click();        }
   
     public void validateChangeButtonsNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
@@ -620,18 +612,27 @@ public class AdminPortalManagePlansPage {
         }
     }
 
-    public void validateStartDateErrors() {
+    public void validateCoverageStartDateErrors() {
         basicActions.waitForElementToBePresent(ValidationError, 100);
-        softAssert.assertTrue(ValidationError.isDisplayed(), "Coverage start Date Error is not displayed.");
-        basicActions.waitForElementToBePresent(ValidationError, 100);
-        softAssert.assertTrue(ValidationError.isDisplayed(), "Financial start Date Error is not displayed.");
+        softAssert.assertEquals(ValidationError.getText(), "The coverage start date must be entered within the selected plan year and can not be after the coverage end date.");
+        softAssert.assertAll();
     }
 
-    public void validateEndDateErrors() {
+    public void validateFinancialStartDateErrors(){
         basicActions.waitForElementToBePresent(ValidationError, 100);
-        softAssert.assertTrue(ValidationError.isDisplayed(), "Coverage End Date Error is not displayed.");
+        softAssert.assertEquals(ValidationError.getText(), "The financial start date must be entered within the selected plan year and can not be after the financial end date.");
+        softAssert.assertAll();
+    }
+
+    public void validateCoverageEndDateErrors() {
         basicActions.waitForElementToBePresent(ValidationError, 100);
-        softAssert.assertTrue(ValidationError.isDisplayed(), "Financial End Date Error is not displayed.");
+        softAssert.assertEquals(ValidationError.getText(), "The coverage end date must be entered within the selected plan year and can not be prior to the coverage start date.");
+        softAssert.assertAll();
+    }
+    public void validateFinancialEndDateErrors(){
+    basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertEquals(ValidationError.getText(), "The financial end date must be entered within the selected plan year and can not be prior to the financial start date.");
+        softAssert.assertAll();
     }
 
     public void addAPTCvalue(List<String> memberaptctDtList) {
@@ -675,8 +676,7 @@ public class AdminPortalManagePlansPage {
 
             boolean errorMessageElement;
             if (APTCInvalidError.getText().equals(expectedErrorMessage)) errorMessageElement = true;
-            else errorMessageElement = false;
-            if (!errorMessageElement)
+            else
                 throw new AssertionError("Error message: '" + expectedErrorMessage + "' not displayed for member " + memberNo);
         }
     }

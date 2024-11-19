@@ -20,71 +20,86 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
 #    Medical Policy error validation
     And I update the Coverage Start date of member
       | 1:01012025 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
     And I update the Financial Start date of member
       | 1:01012025 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the coverage end date
       | 1:01012027 |
+    Then I verify it displays coverage end date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
     And I update the financial end date
       | 1:01012027 |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays financial end date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the Coverage Start date of member
       | 1:01012023 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
     And I update the Financial Start date of member
       | 1:01012023 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the coverage end date
       | 1:01012017 |
+    Then I verify it displays coverage end date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
     And I update the financial end date
       | 1:01011990 |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays financial end date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the Coverage Start date of member
       | 2:01012025 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
     And I update the Financial Start date of member
       | 2:01012025 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the coverage end date
       | 2:01012027 |
+    Then I verify it displays coverage end date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
     And I update the financial end date
       | 2:01012027 |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays financial end date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the Coverage Start date of member
       | 2:01012023 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
     And I update the Financial Start date of member
       | 2:01012023 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the coverage end date
       | 2:01012021 |
-    And I update the financial end date
-      | 2:01012022 |
-    Then I verify it displays coverage end date and financial end date error
-#    OPS Bug for below steps OPS-6242
-    And I update the Coverage Start date of member
-      | 2:blank |
-    And I update the Financial Start date of member
-      | 2:blank |
-    Then I verify it displays coverage start date and financial start date error
-    And I update the coverage end date
-      | 2:blank |
-    And I update the financial end date
-      | 2:blank |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays coverage end date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
+    And I update the financial end date
+      | 2:01012022 |
+    Then I verify it displays financial end date error
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
+
+#   APTC errors
     When I update the APTC value for
       | 1:400.16 |
     When I update the APTC value for
@@ -130,80 +145,102 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
     And I click Make Changes Dental button
     And I update the Coverage Start date of member
       | 1:01012025 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the Financial Start date of member
       | 1:01012025 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the Coverage Start date of member
       | 1:01012023 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the Financial Start date of member
       | 1:01012023 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the coverage end date
       | 1:01012027 |
+    Then I verify it displays coverage end date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the financial end date
       | 1:01012027 |
-    Then I verify it displays coverage end date and financial end date error
-    And I click Reset Changes Dental
+    Then I verify it displays financial end date error
+   Then I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the coverage end date
       | 1:01012019 |
+    Then I verify it displays coverage end date error
+    Then I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the financial end date
       | 1:01012020 |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays financial end date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the Coverage Start date of member
       | 2:01012025 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the Financial Start date of member
       | 2:01012025 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the coverage end date
       | 2:01012023 |
+    Then I verify it displays coverage end date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the financial end date
       | 2:01012023 |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays financial end date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the Coverage Start date of member
       | 1:01012027 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the Financial Start date of member
       | 1:01012027 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the Coverage Start date of member
       | 1:01012023 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the Financial Start date of member
       | 1:01012023 |
-    Then I verify it displays coverage start date and financial start date error
+    Then I verify it displays financial start date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the coverage end date
       | 2:01012027 |
+    Then I verify it displays coverage end date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the financial end date
       | 2:01012027 |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays financial end date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     And I update the Coverage Start date of member
       | 2:01012025 |
+    Then I verify it displays coverage start date error
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     And I update the Financial Start date of member
       | 2:01012025 |
-    Then I verify it displays coverage start date and financial start date error
-    And I update the Coverage Start date of member
-      | 1:blank |
-    And I update the Financial Start date of member
-      | 1:blank |
-    Then I verify it displays coverage start date and financial start date error
-    And I update the coverage end date
-      | 1:blank |
-    And I update the financial end date
-      | 1:blank |
-    Then I verify it displays coverage end date and financial end date error
+    Then I verify it displays financial start date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
 

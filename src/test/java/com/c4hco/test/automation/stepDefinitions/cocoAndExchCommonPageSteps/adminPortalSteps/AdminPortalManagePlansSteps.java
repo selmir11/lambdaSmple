@@ -173,16 +173,6 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.clickSearchInAdminPortalBlueHeader();
     }
 
-    @Then("I verify it displays coverage start date and financial start date error")
-    public void iVerifyItDisplaysCoverageStartDateAndFinancialStartDateError() {
-        adminPortalManagePlansPage.validateStartDateErrors();
-    }
-
-    @Then("I verify it displays coverage end date and financial end date error")
-    public void iVerifyItDisplaysCoverageEndDateAndFinancialEndDateError() {
-        adminPortalManagePlansPage.validateEndDateErrors();
-    }
-
     @Then("I update the APTC value for")
     public void iUpdateTheAPTCValueFor(List<String> memberaptctDtList) {
         adminPortalManagePlansPage.addAPTCvalue(memberaptctDtList);
@@ -205,6 +195,26 @@ public class AdminPortalManagePlansSteps {
     @And("I validate APTC entered exceeds EHB amount error is displaying for {string}")
     public void iValidateAPTCEnteredExceedsEHBAmountErrorIsDisplayingFor(String planType) {
         adminPortalManagePlansPage.validateEHBErrors(planType);
+    }
+
+    @Then("I verify it displays coverage start date error")
+    public void iVerifyItDisplaysCoverageStartDateError() {
+        adminPortalManagePlansPage.validateCoverageStartDateErrors();
+    }
+
+    @Then("I verify it displays financial start date error")
+    public void iVerifyItDisplaysFinancialStartDateError() {
+        adminPortalManagePlansPage.validateFinancialStartDateErrors();
+    }
+
+    @Then("I verify it displays coverage end date error")
+    public void iVerifyItDisplaysCoverageEndDateError() {
+        adminPortalManagePlansPage.validateCoverageEndDateErrors();
+    }
+
+    @Then("I verify it displays financial end date error")
+    public void iVerifyItDisplaysFinancialEndDateError() {
+        adminPortalManagePlansPage.validateFinancialEndDateErrors();
     }
 }
 
