@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.Dto;
 
-import com.c4hco.test.automation.Dto.Edi.CommonEDISegments;
-import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
-import com.c4hco.test.automation.Dto.Edi.Ib999Segments;
+import com.c4hco.test.automation.Dto.Edi.Edi834.CommonEDISegments;
+import com.c4hco.test.automation.Dto.Edi.Edi834.Edi834TransactionDetails;
+import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.database.EntityObj.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +37,8 @@ public class SharedData {
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
-    @Getter @Setter private static Ib999Segments ib999Segments;
+    @Getter @Setter private static Edi999Segments ib999Segments;
+    @Getter @Setter private static Edi999Segments ob999Segments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
@@ -113,6 +114,7 @@ public class SharedData {
         ob999DenDetailsEntities = null;
         medicalOb999FileName = null;
         dentalOb999FileName = null;
+        ob999Segments = null;
     }
 
 }

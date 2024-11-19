@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.Dto.Edi;
+package com.c4hco.test.automation.Dto.Edi.Edi999;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import org.json.JSONArray;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreType
-public class Ib999Segments {
+public class Edi999Segments {
     @JsonProperty("ISA")
     private JSONArray ISA;
     @JsonProperty("IEA")
