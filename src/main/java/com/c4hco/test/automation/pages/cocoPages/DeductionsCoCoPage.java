@@ -139,8 +139,8 @@ public class DeductionsCoCoPage {
     @FindBy(css = "#ELIG-Deductions-NoDeductions-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
     WebElement noneOfTheseText;
 
-    @FindBy(css = "lib-list-error > lib-error-msg > div")
-    WebElement hdrError;
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
 
     @FindBy(css = "lib-input .error-message")
     List<WebElement> deductionsAmountError;
@@ -369,11 +369,13 @@ public class DeductionsCoCoPage {
             case "English":
                 basicActions.waitForElementListToBePresent(deductionsAmountError,20);
                 softAssert.assertEquals(deductionsAmountError.get(0).getText(), "Amount is required");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 basicActions.waitForElementListToBePresent(deductionsAmountError,20);
                 softAssert.assertEquals(deductionsAmountError.get(0).getText(), "Esta cantidad es obligatoria");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -386,11 +388,13 @@ public class DeductionsCoCoPage {
             case "English":
                 basicActions.waitForElementListToBePresent(deductionsFrequencyError,20);
                 softAssert.assertEquals(deductionsFrequencyError.get(0).getText(), "Please select one of the options below");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 basicActions.waitForElementListToBePresent(deductionsFrequencyError,20);
                 softAssert.assertEquals(deductionsFrequencyError.get(0).getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -399,14 +403,16 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyDeductionsOptionHdrError(String language){
-        basicActions.waitForElementToBePresent(hdrError,20);
+        basicActions.waitForElementListToBePresent(hdrError,20);
         switch (language) {
             case "English":
-                softAssert.assertEquals(hdrError.getText(), "Please select one or more of the options below");
+                softAssert.assertEquals(hdrError.get(0).getText(), "Please select one or more of the options below");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(hdrError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(0).getText(), "Seleccione una o m\u00E1s de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -417,7 +423,7 @@ public class DeductionsCoCoPage {
     public void verifyDeductionsOptionNoError(){
         basicActions.waitForElementListToDisappear(deductionsAmountError, 10);
         basicActions.waitForElementListToDisappear(deductionsFrequencyError, 10);
-        basicActions.waitForElementToDisappear(hdrError, 10);
+        basicActions.waitForElementListToDisappear(hdrError, 10);
         softAssert.assertAll();
     }
 

@@ -38,6 +38,9 @@ public class OhcMedicarePage_Elmo {
     @FindBy(css = ".row.label-row > div > label")
     List<WebElement> questionTxt;
 
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
+
     @FindBy(css = "#ELIG-medicareOhc-partAPremium-container span.error-message")
     WebElement currentlyEligibleError;
 
@@ -719,6 +722,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(currentlyEligibleError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(currentlyEligibleError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(currentlyEligibleError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -727,6 +731,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(currentlyEligibleError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(currentlyEligibleError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(currentlyEligibleError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -743,6 +748,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -751,6 +757,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(InsuranceAmountError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -767,6 +774,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partAInsuranceEndingError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partAInsuranceEndingError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partAInsuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -775,6 +783,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partAInsuranceEndingError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partAInsuranceEndingError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partAInsuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -791,6 +800,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partAInsuranceEndInputError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partAInsuranceEndInputError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partAInsuranceEndInputError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -799,6 +809,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partAInsuranceEndInputError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partAInsuranceEndInputError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partAInsuranceEndInputError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -815,6 +826,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partBInsuranceEndingError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partBInsuranceEndingError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partBInsuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -823,6 +835,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partBInsuranceEndingError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partBInsuranceEndingError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partBInsuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -839,6 +852,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partBInsuranceEndInputError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partBInsuranceEndInputError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partBInsuranceEndInputError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -847,6 +861,7 @@ public class OhcMedicarePage_Elmo {
                 softAssert.assertEquals(partBInsuranceEndInputError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(partBInsuranceEndInputError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(partBInsuranceEndInputError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:

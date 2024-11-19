@@ -53,6 +53,9 @@ public class AdditionalIncomePage {
     @FindBy(css = ".header-2")
     WebElement hdr_AdditionalIncome;
 
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
+
     @FindBy(css = "lib-list-error .error-message")
     WebElement additlIncomeSelectError;
 
@@ -412,7 +415,9 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(additlIncomeFrequency.get(11).getText(), "Select Option\nAnnually\nEvery 2 weeks\nMonthly\nTwice a month\nWeekly");
         clickContinue();
         softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Amount is required");
+        softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
         softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Please select one of the options below");
+        softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
         softAssert.assertEquals(addtlIncomeAmountError.get(1).getText(), "Amount is required");
         softAssert.assertEquals(additlIncomeFrequencyError.get(1).getText(), "Please select one of the options below");
         softAssert.assertEquals(addtlIncomeAmountError.get(2).getText(), "Amount is required");
@@ -497,7 +502,9 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(additlIncomeFrequency.get(11).getText(), "Seleccionar opci\u00F3n\nAnualmente\nCada dos semanas\nMensualmente\nDos veces por mes\nSemanalmente");
         clickContinue();
         softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Esta cantidad es obligatoria");
+        softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
         softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Seleccione una de las siguientes opciones");
+        softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
         softAssert.assertEquals(addtlIncomeAmountError.get(1).getText(), "Esta cantidad es obligatoria");
         softAssert.assertEquals(additlIncomeFrequencyError.get(1).getText(), "Seleccione una de las siguientes opciones");
         softAssert.assertEquals(addtlIncomeAmountError.get(2).getText(), "Esta cantidad es obligatoria");
