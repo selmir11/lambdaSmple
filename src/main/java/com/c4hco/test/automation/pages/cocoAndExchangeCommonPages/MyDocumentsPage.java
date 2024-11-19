@@ -128,6 +128,8 @@ public class MyDocumentsPage {
 
     public void downloadDocument(String docType) {
         // docType example "Application Results", EN-002-04
+        basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 20);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
         WebElement pastDocCarrot = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::span[1]"));
