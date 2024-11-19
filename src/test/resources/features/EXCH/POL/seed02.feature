@@ -117,10 +117,6 @@ Feature: Seed02 - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-
-    And I validate "medical" entities from policy tables
-    And I validate "dental" entities from policy tables
-
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
@@ -132,14 +128,19 @@ Feature: Seed02 - Exchange
     And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
