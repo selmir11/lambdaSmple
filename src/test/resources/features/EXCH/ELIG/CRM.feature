@@ -401,7 +401,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I check the "SSN" MVR data for "Primary"
     Then I sign out of CRM
 
-  @SLER-1291 @test
+  @SLER-1291
   Scenario: SLER-1291 MA Application in CRM (Checks DB)
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
