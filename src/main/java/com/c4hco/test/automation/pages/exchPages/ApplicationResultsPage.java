@@ -76,6 +76,9 @@ public class ApplicationResultsPage {
     @FindBy(name = "openSelfAttestation")
     WebElement verifyMyInfoButton;
 
+    @FindBy(css = ".linkButton")
+    WebElement lnkProvideDocs;
+
     private BasicActions basicActions;
 
     public ApplicationResultsPage(WebDriver webDriver) {
@@ -204,5 +207,11 @@ public class ApplicationResultsPage {
         String expectedText = "Before you continue… We tried to verify your application but we need you to answer a few  questions to confirm your income and tax information.";
         softAssert.assertEquals(textBox.getText(), expectedText, "Verify My Info Button Text Incorrect");
         verifyMyInfoButton.click();
+    }
+
+    public void clickProvideDocsLink() {
+        basicActions.waitForElementToBePresent(lnkProvideDocs,20);
+        basicActions.scrollToElement(lnkProvideDocs);
+        lnkProvideDocs.click();
     }
 }

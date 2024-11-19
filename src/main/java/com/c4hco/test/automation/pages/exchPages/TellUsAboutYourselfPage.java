@@ -55,6 +55,15 @@ public class TellUsAboutYourselfPage {
     @FindBy(id = "ssn")
     WebElement ssn;
 
+    @FindBy(css = "#haveSsn")
+    WebElement checkboxNoSsn;
+
+    @FindBy(id = "haveAppliedForSSNYes")
+    WebElement rdobtnAppliedYes;
+
+    @FindBy(id = "haveAppliedForSSNNo")
+    WebElement rdobtnAppliedNo;
+
     @FindBy(css = "#addMember #continueButton")
     WebElement btnSaveAndContinue;
 
@@ -223,6 +232,21 @@ public class TellUsAboutYourselfPage {
         basicActions.waitForElementToBePresent(hdrSsaError, 20);
         softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name and the Social Security number you entered match your Social Security card and try again.");
         softAssert.assertAll();
+    }
+
+    public void clickNoSsnBox(String applied){
+        basicActions.waitForElementToBePresent(checkboxNoSsn, 20);
+        checkboxNoSsn.click();
+        switch (applied){
+            case "Yes":
+                rdobtnAppliedYes.click();
+                break;
+            case "No":
+                rdobtnAppliedNo.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + applied);
+        }
     }
 
 }

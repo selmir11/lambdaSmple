@@ -50,5 +50,8 @@ public class TellUsAboutYourselfPageSteps {
     @And("I validate SSA Error on Tell us about yourself page")
     public void iValidateSsaError() {tellUsAboutYourselfPage.validateSsaError();}
 
+    @Then("I click I don't have a Social Security Number box and {string} on Tell us about yourself page")
+    public void iClickNoSsnBox(String applied) {tellUsAboutYourselfPage.clickNoSsnBox(applied);}
+
 
 }

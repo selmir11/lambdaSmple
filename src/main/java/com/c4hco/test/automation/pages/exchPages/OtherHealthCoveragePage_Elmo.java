@@ -64,6 +64,9 @@ public class OtherHealthCoveragePage_Elmo {
 
     @FindBy(id = "existingOHC-SaveAndContinue")
     WebElement saveAndContinueBtn;
+
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
     
     @FindBy(css = ".error-message")
     WebElement errorMessageTxt;
@@ -908,6 +911,7 @@ public class OtherHealthCoveragePage_Elmo {
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -916,6 +920,7 @@ public class OtherHealthCoveragePage_Elmo {
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
