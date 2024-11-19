@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 
-public class Edi999Util {
+public class Ib999Util {
 
     public void parseEdi999(InputStream inputStream) {
         try {

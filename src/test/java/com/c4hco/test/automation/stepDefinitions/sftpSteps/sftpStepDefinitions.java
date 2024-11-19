@@ -86,6 +86,25 @@ public class sftpStepDefinitions {
         ib999FileValidations.validateIb999FileData(type);
     }
 
+    @And("I validate the ob999 {string} file data")
+    public void validateOb999FileDetails(String type) {
+        switch (type) {
+            case "medical":
+                String medFileName = SharedData.getMedicalOb999FileName();
+                System.out.println("***********Validating Medical OB999 File::"+medFileName+"***********");
+                sftpUtil.readIb999File(medFileName);
+                break;
+            case "dental":
+                String denFileName = SharedData.getDentalOb999FileName();
+                System.out.println("***********Validating Dental OB999 File::"+denFileName+"***********");
+               // sftpUtil.readIb999File(denFileName);
+                break;
+            default:
+                Assert.fail("Incorrect Argument passed in the step");
+        }
+       // ib999FileValidations.validateIb999FileData(type);
+    }
+
     @And("I download the {string} file from sftp server with location {string}")
     public void downloadIb999Files(String fileType, String inbound999RemotePath) {
         switch (fileType) {
