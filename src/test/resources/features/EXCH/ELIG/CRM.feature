@@ -483,7 +483,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I check the "MA Application" DVR Name and Doc Type in the CRM
     Then I sign out of CRM
 
-  @SLER-1292 @test
+  @SLER-1292
   Scenario: SLER-1292 MA logic to not duplicate if MA Incident is opened already on an existing contact
     Then I log into the CRM system
     Then I search for user by Email Staging "PrimaryMemberkfetbekt.RmxhkdyjTest@test.com" QA "PrimaryMembergwjxcubx.IllrrtspTest@test.com" in CRM
