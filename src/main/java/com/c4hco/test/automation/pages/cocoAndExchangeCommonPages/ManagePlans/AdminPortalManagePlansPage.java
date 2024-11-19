@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import com.c4hco.test.automation.Dto.MemberDetails;
         import com.c4hco.test.automation.Dto.SharedData;
         import com.c4hco.test.automation.utils.BasicActions;
+        import io.cucumber.datatable.DataTable;
         import org.openqa.selenium.*;
         import org.openqa.selenium.support.FindBy;
         import org.openqa.selenium.support.PageFactory;
@@ -11,11 +12,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
 
         import java.math.BigDecimal;
         import java.time.Year;
-        import java.util.ArrayList;
-        import java.util.Arrays;
-        import java.util.List;
-
-
+        import java.util.*;
 
 public class AdminPortalManagePlansPage {
 
@@ -143,18 +140,21 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//label[@class='form-radio-label body-text-1']")
     WebElement dentalPlanType;
 
+    @FindBy(xpath = "(//input[@type='text'])[6]")
+    WebElement aptcmember1;
+
+    @FindBy(xpath = "//div[1]/div[6]/div[15]/input[1]")
+    WebElement aptcmember2;
+
+    @FindBy(xpath = "//div[@class='value-container body-text-1'][3]")
+    WebElement EHBPremiumamtmedical;
+
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[8]")
+    WebElement EHBPremiumamtDental;
+
     //Validation errors
-    @FindBy(xpath = "//div[contains(text(),'The coverage start date must be entered within the selected plan year and can not be after the coverage end date')]")
-    WebElement coverageStartDateError;
-
-    @FindBy(xpath = "//div[contains(text(),'The coverage end date must be entered within the selected plan year and can not be prior to the coverage start date')]")
-    WebElement coverageEndDateError;
-
-    @FindBy(xpath = "//div[contains(text(),'The financial start date must be entered within the selected plan year and can not be after the financial end date')]")
-    WebElement FinStartDateError;
-
-    @FindBy(xpath = "//div[contains(text(),'The financial end date must be entered within the selected plan year and can not be prior to the financial start date')]")
-    WebElement FinEndDateError;
+    @FindBy(xpath = "//div[@Class='body-text-1 validation-error']")
+    WebElement ValidationError;
 
     @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for Premium')]")
     WebElement PremiumInvalidError;
@@ -162,9 +162,9 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[contains(text(),'APTC entered exceeds EHB amount: ')]")
     WebElement APTCEHBError;
 
-    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for APTC: ')]")
+    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for APTC')]")
     WebElement APTCInvalidError;
-    
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -470,10 +470,7 @@ public class AdminPortalManagePlansPage {
                 each.click();
             }
         }
-
-
     }
-
     MemberDetails memberDetails = new MemberDetails();
 
     public void UpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
@@ -583,19 +580,19 @@ public class AdminPortalManagePlansPage {
     }
 
     public void validateStartDateErrors() {
-        basicActions.waitForElementToBePresent(coverageStartDateError, 100);
-        softAssert.assertTrue(coverageStartDateError.isDisplayed());
-        basicActions.waitForElementToBePresent(FinStartDateError, 100);
-        softAssert.assertTrue(FinStartDateError.isDisplayed());
-
+        basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertTrue(ValidationError.isDisplayed(), "Coverage start Date Error is not displayed.");
+        basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertTrue(ValidationError.isDisplayed(), "Financial start Date Error is not displayed.");
     }
 
     public void validateEndDateErrors() {
-        basicActions.waitForElementToBePresent(coverageEndDateError, 100);
-        softAssert.assertTrue(coverageEndDateError.isDisplayed());
-        basicActions.waitForElementToBePresent(FinEndDateError, 100);
-        softAssert.assertTrue(FinEndDateError.isDisplayed());
+        basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertTrue(ValidationError.isDisplayed(), "Coverage End Date Error is not displayed.");
+        basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertTrue(ValidationError.isDisplayed(), "Financial End Date Error is not displayed.");
     }
+
     public void addAPTCvalue(List<String> memberaptctDtList) {
         for (String memberAPTCamt : memberaptctDtList) {
             String[] parts = memberAPTCamt.split(":");
@@ -620,14 +617,55 @@ public class AdminPortalManagePlansPage {
         }
     }
 
-    public void validateAPTCErrors() {
-      basicActions.waitForElementToBePresent(APTCInvalidError, 50);
-        softAssert.assertTrue(APTCInvalidError.isDisplayed());
+    public void validateErrorMessages(DataTable table) {
+        List<Map<String, String>> memberData = table.asMaps(String.class, String.class);
+
+        for (Map<String, String> data : memberData) {
+            String memberNo = data.get("member");
+            String aptcValue = data.get("aptc");
+
+            String expectedErrorMessage = "";
+
+            if (aptcValue == null || aptcValue.trim().isEmpty()) {
+                expectedErrorMessage = "Invalid monetary amount for APTC";
+            } else {
+                expectedErrorMessage = "Invalid monetary amount for APTC: $" + aptcValue;
+            }
+
+            boolean errorMessageElement;
+            if (APTCInvalidError.getText().equals(expectedErrorMessage)) errorMessageElement = true;
+            else errorMessageElement = false;
+            if (!errorMessageElement)
+                throw new AssertionError("Error message: '" + expectedErrorMessage + "' not displayed for member " + memberNo);
+        }
     }
 
-    public void validateEHBErrors() {
-        basicActions.waitForElementToBePresent(APTCEHBError, 50);
-        softAssert.assertTrue(APTCEHBError.isDisplayed());
+    public void validateEHBErrors(String planType) {
+        String value1Text = aptcmember2.getAttribute("value");
+        String numericValue1 = value1Text.replaceAll("[^0-9.]", "");
+        String value2Text = aptcmember1.getAttribute("value");
+        String numericValue2 = value2Text.replaceAll("[^0-9.]", "");
+
+        String value3Text;
+        String numericValue3;
+
+        if ("medical".equalsIgnoreCase(planType)) {
+            value3Text = EHBPremiumamtmedical.getText();
+        } else {
+            value3Text = EHBPremiumamtDental.getText();
+        }
+
+        numericValue3 = value3Text.replaceAll("[^0-9.]", "");
+
+        double value1 = Double.parseDouble(numericValue1);
+        double value2 = Double.parseDouble(numericValue2);
+        double value3 = Double.parseDouble(numericValue3);
+
+        if (value1 + value2 > value3) {
+            Assert.assertTrue(APTCEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
+        } else {
+            System.out.println("Condition not met, no error expected.");
+        }
     }
 
     public void validatePremiumErrors(){

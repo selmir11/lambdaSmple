@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans.AdminPortalManagePlansPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -177,17 +178,6 @@ public class AdminPortalManagePlansSteps {
     public void iUpdateTheAPTCValueFor(List<String> memberaptctDtList) {
         adminPortalManagePlansPage.addAPTCvalue(memberaptctDtList);
     }
-
-    @And("I validate Invalid monetary amount for APTC error is displaying")
-    public void iValidateInvalidMonetaryAmountForAPTCErrorIsDisplaying() {
-        adminPortalManagePlansPage.validateAPTCErrors();
-    }
-
-    @And("I validate APTC entered exceeds EHB amount error is displaying")
-    public void iValidateAPTCEnteredExceedsEHBAmountErrorIsDisplaying() {
-        adminPortalManagePlansPage.validateEHBErrors();
-    }
-
     @And("I validate Invalid monetary amount for Premium error is displaying")
     public void iValidateInvalidMonetaryAmountForPremium() {
         adminPortalManagePlansPage.validatePremiumErrors();
@@ -198,5 +188,14 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.addpremiumvalue(memberpremiumList);
     }
 
+    @Then("I should see the Invalid monetary amount for APTC error for")
+    public void iShouldSeeTheInvalidMonetaryAmountForAPTCErrorFor(DataTable table) {
+        adminPortalManagePlansPage.validateErrorMessages(table);
+    }
+
+    @And("I validate APTC entered exceeds EHB amount error is displaying for {string}")
+    public void iValidateAPTCEnteredExceedsEHBAmountErrorIsDisplayingFor(String planType) {
+        adminPortalManagePlansPage.validateEHBErrors(planType);
+    }
 }
 

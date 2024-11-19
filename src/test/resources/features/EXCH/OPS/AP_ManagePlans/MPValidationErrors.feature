@@ -1,5 +1,5 @@
 @OPS @SLER-1201
-#  2 OPEN bugs for commented steps OPS-6242 AND 6265
+# OPEN bugs for commented steps OPS-6265
 Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
   Scenario: SLER-1201 Manage plan 2024
     Given I open the login page on the "admin" portal
@@ -73,31 +73,52 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
       | 2:01012022 |
     Then I verify it displays coverage end date and financial end date error
 #    OPS Bug for below steps OPS-6242
-#    And I update the Coverage Start date of member
-#      | 2:blank |
-#    And I update the Financial Start date of member
-#      | 2:blank |
-#    Then I verify it displays coverage start date and financial start date error
-#    And I update the coverage end date
-#      | 2:blank |
-#    And I update the financial end date
-#      | 2:blank |
-#    Then I verify it displays coverage end date and financial end date error
+    And I update the Coverage Start date of member
+      | 2:blank |
+    And I update the Financial Start date of member
+      | 2:blank |
+    Then I verify it displays coverage start date and financial start date error
+    And I update the coverage end date
+      | 2:blank |
+    And I update the financial end date
+      | 2:blank |
+    Then I verify it displays coverage end date and financial end date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
-    Then I update the APTC value for
+    When I update the APTC value for
       | 1:400.16 |
-      | 2:571.16 |
+    When I update the APTC value for
+      | 2:571.84 |
     And I click Save Button Medical
-    And I validate Invalid monetary amount for APTC error is displaying
-    And I validate APTC entered exceeds EHB amount error is displaying
+    Then I should see the Invalid monetary amount for APTC error for
+      | member | aptc   |
+      | 1      | 400.16 |
+    When I update the APTC value for
+      | 1:400.16 |
+    When I update the APTC value for
+      | 2:571.84 |
+    And I click Save Button Medical
+    And I validate APTC entered exceeds EHB amount error is displaying for "medical"
+    And I click Reset Changes Medical
+    And I click Make Changes Medical button
+    When I update the APTC value for
+      | 2:10445.16 |
+    And I click Save Button Medical
+    Then I should see the Invalid monetary amount for APTC error for
+      | member | aptc   |
+      | 2      | 1044.51 |
+    And I click Save Button Medical
+    And I validate APTC entered exceeds EHB amount error is displaying for "medical"
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     Then I update the APTC value for
       | 1:blank |
       | 2:blank |
     And I click Save Button Medical
-    And I validate Invalid monetary amount for APTC error is displaying
+    Then I should see the Invalid monetary amount for APTC error for
+      | member | aptc   |
+      | 1      |         |
+      | 2      |         |
     Then I update the premium value for
       | 1:00.00 |
       | 2:00.00 |
@@ -173,35 +194,46 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
     And I update the Financial Start date of member
       | 2:01012025 |
     Then I verify it displays coverage start date and financial start date error
-#    OPS Bug for below steps OPS-6242
-#    And I update the Coverage Start date of member
-#      | 1:blank |
-#    And I update the Financial Start date of member
-#      | 1:blank |
-#    Then I verify it displays coverage start date and financial start date error
-#    And I update the coverage end date
-#      | 1:blank |
-#    And I update the financial end date
-#      | 1:blank |
-#    Then I verify it displays coverage end date and financial end date error
+    And I update the Coverage Start date of member
+      | 1:blank |
+    And I update the Financial Start date of member
+      | 1:blank |
+    Then I verify it displays coverage start date and financial start date error
+    And I update the coverage end date
+      | 1:blank |
+    And I update the financial end date
+      | 1:blank |
+    Then I verify it displays coverage end date and financial end date error
     And I click Reset Changes Dental
     And I click Make Changes Dental button
 
 #    Dental policy aptc errors validation
     Then I update the APTC value for
-      | 1:27.16 |
+      | 1:3000.00 |
+    And I click Save Button Dental
+    Then I should see the Invalid monetary amount for APTC error for
+      | member | aptc   |
+      | 1      | 3000.00 |
+    And I validate APTC entered exceeds EHB amount error is displaying for "dental"
+    And I click Reset Changes Dental
+    And I click Make Changes Dental button
     Then I update the APTC value for
       | 2:71.16 |
-     And I click Save Button Dental
-    And I validate Invalid monetary amount for APTC error is displaying
-    And I validate APTC entered exceeds EHB amount error is displaying
+    And I click Save Button Dental
+    Then I should see the Invalid monetary amount for APTC error for
+      | member | aptc   |
+      | 2      | 71.16  |
+    And I validate APTC entered exceeds EHB amount error is displaying for "dental"
     And I click Reset Changes Dental
     And I click Make Changes Dental button
     Then I update the APTC value for
       | 1: blank |
       | 2: blank |
     And I click Save Button Dental
-    And I validate Invalid monetary amount for APTC error is displaying
+    Then I should see the Invalid monetary amount for APTC error for
+      | member | aptc   |
+      | 1      |         |
+      | 2      |         |
     And I click Reset Changes Dental
     And I click Make Changes Dental button
 
@@ -210,4 +242,4 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
       | 1:blank |
       | 2:blank |
 #    And I click Save Button Dental
-#    And I validate Invalid monetary amount for Premium error is displaying - OPS-6265
+##    And I validate Invalid monetary amount for Premium error is displaying - OPS-6265
