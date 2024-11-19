@@ -43,12 +43,37 @@ Feature: Transfer multiple clients validation
     Then I verify my client's name is displayed
 
     Then I select the client searched
-    And I select the "Remove Selected Clients" option from the header of the broker container
-    Then I click "ok" remove client
-    And I wait for 1000 milliseconds
+    And I select the "Transfer Selected Clients" option from the header of the broker container
+
+    Then I validate the Agency Broker Transfer page title
+    Then I search for a broker named "TransferRemoveAg" on the Agency Broker Transfer page
+    And I validate the broker results match my broker named "TransferRemoveAg Two"
+    Then I click the transfer link on the Agency Broker Transfer page
+    Then I click the Transfer Clients button on the Review Transfer page
 
     And I search for clients
     Then I validate The Client is removed successfully
+    Then I click on broker userName and logout
+
+    #Agency owner verifying the new clients
+    Then I validate I am on the "Login" page
+    And I open the login page on the "broker" portal
+    And I login as Broker User any environment "C4PortTesting+TransferTwoSTG@outlook.com" password "ALaska12!" and "C4PortTesting+TransferTwo@outlook.com" password "ALaska12!"
+    And  I validate I am on the "MFA" page
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
+    Then I open the MFA notice
+    And I get the MFA code
+    And I delete the open notice
+    Then I sign out of Outlook
+    Then I enter the MFA code and click Verify
+
+    Then I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
+    And I search for clients
+    Then I click on first client search result
+    And I verify my client's name is displayed
+
     Then I click on broker userName and logout
 
     #Exch individual verifying their previous broker

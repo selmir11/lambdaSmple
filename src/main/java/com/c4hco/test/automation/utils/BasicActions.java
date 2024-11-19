@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -60,6 +62,48 @@ public class BasicActions {
 
     public String getCurrentUrl() {
         return getDriver().getCurrentUrl();
+    }
+
+
+    public void openUrlWithQueryStringInNewTab(String query) {
+        String currUrl = getCurrentUrl();
+        String newUrl = currUrl+query;
+        openNewTab();
+        driver.get(newUrl);
+    }
+
+    public String extractDateFromUrl(String url){
+        try{
+            URL u = new URL(url);
+            URI uri = u.toURI();
+            String query = uri.getQuery();
+            if(query != null){
+                String[] pairs = query.split("&");
+                for (String pair : pairs){
+                    String[] keyValue = pair.split("=");
+                    if(keyValue[0].equals("dateOverride")){
+                        return keyValue[1];
+                    }
+                }
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void openNewTab(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.open();");
+        Set<String> windowHandles = driver.getWindowHandles();
+        String newTabHandle = null;
+        for (String handle : windowHandles) {
+            if (!handle.equals(driver.getWindowHandle())) {
+                newTabHandle = handle;
+                break;
+            }
+        }
+        driver.switchTo().window(newTabHandle);
     }
 
     public String getUrlWithWait(String url, int waitTime) {
@@ -520,6 +564,16 @@ public class BasicActions {
             return String.format("%.2f", amount); // Two decimals for fractional amounts
         }
     }
+    public String getCurrYear() {
+        LocalDate today = LocalDate.now();
+        return Integer.toString(today.getYear());
+    }
+
+    public String getFutureYear() {
+        LocalDate today = LocalDate.now();
+        return Integer.toString(today.getYear()+1);
+    }
+
     public String getFirstOfJanCurrYr() { // January 1st of current year
         LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.of(today.getYear(), 1, 1);
@@ -634,6 +688,9 @@ public class BasicActions {
         switch(dob){
             case "current date minus 5days":
                 dobCalculator = currentDate.minusDays(5);
+                break;
+            case "current date":
+                dobCalculator = currentDate;
                 break;
             default: Assert.fail("Did not find the case entered");
         }

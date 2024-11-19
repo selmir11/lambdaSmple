@@ -22,6 +22,7 @@ public class PolicyTableDbValidations {
     DbData dbData = new DbData();
     PlanDbData medicalPlanDbData = new PlanDbData();
     PlanDbData dentalPlanDbData = new PlanDbData();
+    MemberDetails subscriber = new MemberDetails();
 
     public void recordsValidations(String recordType) {
         setData();
@@ -35,6 +36,7 @@ public class PolicyTableDbValidations {
             default:
                 Assert.fail("Record Type entered is not valid");
         }
+        softAssert.assertAll();
     }
 
     private void dentalRecordsValidations() {
@@ -74,7 +76,6 @@ public class PolicyTableDbValidations {
     }
 
     private void validateMedDenForSubscriber(PolicyTablesEntity policyTablesEntity) {
-        MemberDetails subscriber = SharedData.getPrimaryMember();
         validateSubmittedBy(policyTablesEntity);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
@@ -126,7 +127,7 @@ public class PolicyTableDbValidations {
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Medical Policy total plan premium amount for member does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_premium_reduction_amt(), "Medical APTC amount from policy table does not match");
-                softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_emcfh(), "Medical Policy premium reduction type does not match");
+                softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), subscriber.getFinancialHelp() ? "APTC" : "null", "Member Medical Policy premium reduction type does not match");
                 softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table will be null for dependents");
                 softAssert.assertNull(policyTablesEntity.getTotal_responsible_amt(), "Medical Policy total responsible amount for member does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_csr_amt(), "Medical Policy total CSR amount does not match");
@@ -145,7 +146,7 @@ public class PolicyTableDbValidations {
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Dental Policy total plan premium amount does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_premium_reduction_amt(), "Dental APTC amount from policy table does not match");
-                softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_emcfh(), "Dental Policy premium reduction type does not match");
+                softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_emcfh(), "Dental premium reduction type in emcfh does not match");
                 softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_responsible_amt(), "Dental Policy total responsible amount does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_csr_amt(), "Dental Policy total CSR amount does not match");
@@ -195,7 +196,7 @@ public class PolicyTableDbValidations {
     }
 
     private void setData() {
-        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber = SharedData.getPrimaryMember();
         List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
         List<PolicyTablesEntity> dentalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("2");
 

@@ -144,7 +144,12 @@ Feature: Simple NFA - Single Applicant
     And I validate ib834 "medical" details in database
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
-#    And I validate ib834 "dental" details in database
+    And I validate ib834 "dental" details in database
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
 
     And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
+
+    And I validate the ib834 "medical" file data
+#    And I validate the ib834 "dental" file data

@@ -43,4 +43,12 @@ public class EmploymentIncomePageSteps {
 
     @Then("I validate {string} job option is selected on the Employment income page")
     public void iValidateNoJobButton(String haveEmployment){employmentIncomePage.verifyJobOption_EmploymentInfo(haveEmployment);}
+
+    @Then("I validate all text on the Employment Income page in {string}")
+    public void iValidateCoCoEmploymentIncomeText(String language) {employmentIncomePage.validateCoCoEmploymentIncomeText(language);}
+
+    @Then("I verify the income frequency options in {string}")
+    public void iVerifyIncomeFrequencyOptionsCoCo(String language) {employmentIncomePage.verifyIncomeFrequencyOptionsCoCo(language);}
+    @Then("I verify the navigation buttons on the CoCo Employment Income page in {string}")
+    public void iVerifyEmploymentIncomeNavigationButtonsCoCo(String language) {employmentIncomePage.verifyEmploymentIncomeNavigationButtonsCoCo(language);}
 }
