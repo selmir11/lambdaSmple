@@ -13,4 +13,7 @@ public class CRMMVRPageSteps {
 
     @Then("I check the {string} MVR title for {string}")
     public void iCheckMVRTitle(String mvrType, String memPrefix){crmMVRPage.checkMVRTitle(mvrType, memPrefix);}
+
+    @Then("I check the {string} MVR data for {string}")
+    public void iCheckMVRData(String mvrType, String memPrefix){crmMVRPage.checkMVRData(mvrType, memPrefix);}
 }
