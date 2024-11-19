@@ -689,6 +689,9 @@ public class BasicActions {
             case "current date minus 5days":
                 dobCalculator = currentDate.minusDays(5);
                 break;
+            case "current date":
+                dobCalculator = currentDate;
+                break;
             default: Assert.fail("Did not find the case entered");
         }
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");

@@ -64,6 +64,19 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+
+    And I click on "My Documents and Letters" link on welcome page
+    And I click on download "EN-002-04" document
+
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
+
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I select year "2024" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page

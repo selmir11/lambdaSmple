@@ -119,11 +119,9 @@ Feature: Seed02 - Exchange
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
     And I click View Plan History link from "medical" plan card
-
     And I validate "medical" plan details from plan history
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from "dental" plan card
@@ -142,10 +140,11 @@ Feature: Seed02 - Exchange
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I download the medical and dental files from sftp server with location "/outboundedi/"
 
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
+
 
     @SLER-95-wip
    Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
@@ -311,6 +310,23 @@ Feature: Seed02 - Exchange
 
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
+
+  @SLER-1281-WIP
+  Scenario:RT-2328 ENR-EXCH: EDIT POLICY - PREMIUM & APTC AMOUNT UPDATES
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    Then I click Make Changes Medical button
+    Then I update the premium amount to "200.00" on Manage Plans page
+    Then I update the APTC amount to "100.00" on Manage Plans page
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then logout from Admin Portal
+
+
 
 
 

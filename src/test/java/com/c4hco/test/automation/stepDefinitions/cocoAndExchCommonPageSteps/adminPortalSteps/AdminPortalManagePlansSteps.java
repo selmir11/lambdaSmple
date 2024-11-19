@@ -76,6 +76,14 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify Years in dropdown starting from {string} as expected")
     public void iValidateYearsDropdown(String lowerYear){
         adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
+    @Then("I update the premium amount to {string} on Manage Plans page")
+    public void iUpdatePremiumAmount(String premiumAmountValue){
+        adminPortalManagePlansPage.updatePremiumAmount(premiumAmountValue);
+    }
+    @Then("I update the APTC amount to {string} on Manage Plans page")
+    public void iUpdateAptcAmount(String aptcAmountValue){
+        adminPortalManagePlansPage.updateAptcAmount(aptcAmountValue);
+    }
     @And("I click Save Button Medical")
     public void iClickSaveButtonMedical() {
         adminPortalManagePlansPage.clickSaveButton();
@@ -159,5 +167,6 @@ public class AdminPortalManagePlansSteps {
     public void iClickSearchInAdminPortalBlueHeader() {
         adminPortalManagePlansPage.clickSearchInAdminPortalBlueHeader();
     }
+
 }
 
