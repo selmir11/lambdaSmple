@@ -2,8 +2,9 @@
 package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ib999Util;
+import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
+import com.c4hco.test.automation.edi.ediUtil.Ob999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.jcraft.jsch.ChannelSftp;
@@ -12,14 +13,18 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.testng.Assert;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SftpUtil {
     private Session session;
     Ob834Util edi834Util = new Ob834Util();
-    Ib999Util edi999Util = new Ib999Util();
+    Ib999Util ib999Util = new Ib999Util();
+    Ob999Util ob999Util = new Ob999Util();
     BasicActions basicActions = new BasicActions();
 
     public SftpUtil(){
@@ -175,7 +180,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("EDI File Found on SFTP Server");
-                edi999Util.parseIb999(inputStream);
+                ib999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File not found in the resource folder.");
             }
@@ -194,7 +199,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("EDI File Found on SFTP Server");
-                edi999Util.parseIb999(inputStream);
+                ob999Util.parseOb999(inputStream);
             } else {
                 System.err.println("File not found in the resource folder.");
             }
@@ -229,7 +234,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("File found");
-                edi999Util.parseIb999(inputStream);
+                ib999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File 'edi_999' not found in the resource folder.");
             }
