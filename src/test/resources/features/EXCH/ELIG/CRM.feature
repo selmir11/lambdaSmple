@@ -483,3 +483,57 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I check the "MA Application" DVR Name and Doc Type in the CRM
     Then I sign out of CRM
 
+  @SLER-1292 @test
+  Scenario: SLER-1292 MA logic to not duplicate if MA Incident is opened already on an existing contact
+    Then I log into the CRM system
+    Then I search for user by Email Staging "PrimaryMemberkfetbekt.RmxhkdyjTest@test.com" QA "PrimaryMembergwjxcubx.IllrrtspTest@test.com" in CRM
+    Then I handle the search results page
+    Then I open the MVRDVR Tab on contact page
+    And I verify the "MA Application" DVR number 1 is "Active" in the CRM
+    Then I open the "MA Application" DVR number 1 in the CRM
+    Then I check the "MA Application" DVR title in the CRM
+    Then I get the time and date of DVR in the CRM
+    Then I sign out of CRM
+
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    Then I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on No Thanks on good news page
+    Then I validate that "Health First Colorado or CHP+, if the State of Colorado determines you qualify" text displays on the Application History page
+    And I validate new event "BE_ATL_DOC_VERIFY_UPSERT_RESP" is present in DB
+    Then I click on Sign Out in the Header for "NonElmo"
+
+    And I wait for 70000 milliseconds
+    Then I log into the CRM system
+    Then I search for user's Email
+    Then I handle the search results page
+    Then I open the MVRDVR Tab on contact page
+    And I verify the "MA Application" DVR number 1 is "Active" in the CRM
+    And I verify the "MA Application" DVR number 2 is "Canceled" in the CRM
+    Then I open the "MA Application" DVR number 1 in the CRM
+    Then I check the "MA Application" DVR title in the CRM
+    Then I get the time and date of DVR in the CRM
+    And I verify time and date of DVR is "Same" in the CRM
+    Then I click the Go Back arrow in CRM
+    Then I open the "MA Application" DVR number 2 in the CRM
+    Then I check the "MA Application" DVR title in the CRM
+    Then I get the time and date of DVR in the CRM
+    And I verify time and date of DVR is "Newer" in the CRM
+    Then I sign out of CRM
+
