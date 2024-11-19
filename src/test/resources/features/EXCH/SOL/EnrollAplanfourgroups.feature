@@ -206,7 +206,7 @@ Feature: FA - 4groups - enroll in plan
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "47000.00" income at "Annually" frequency
+    And I enter employment details with "107000.00" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -220,7 +220,7 @@ Feature: FA - 4groups - enroll in plan
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "600000.00" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "0.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -321,7 +321,7 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on No Thanks on good news page
-    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
+    Then I validate that my APTC value is "$3280.93/mo"
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -359,7 +359,7 @@ Feature: FA - 4groups - enroll in plan
     Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
-    #APTC AMOUNT
+
 
     Then I click on make changes button
 
@@ -398,6 +398,7 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on No Thanks on good news page
+    Then I validate that my APTC value is "$0.00/mo"
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
