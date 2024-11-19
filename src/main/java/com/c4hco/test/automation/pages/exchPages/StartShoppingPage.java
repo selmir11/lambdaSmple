@@ -43,6 +43,9 @@ public class StartShoppingPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(xpath = "//span[@class = 'button-text-unselected']")
+    List <WebElement> tobaccoButton;
+
     public void clickBtnSaveNExit() {
         saveAndExitButton.click();
     }
@@ -102,4 +105,26 @@ public class StartShoppingPage {
             }
         }
     }
+
+    public void iSelectTobacco(String tobaccoUsage){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        switch(tobaccoUsage){
+            case "Yes":
+                selectYes();
+                break;
+            case "No":
+                selectNo();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported choice: " + tobaccoUsage);
+        }
+    }
+    public void selectYes(){
+        tobaccoButton.get(1).click();
+    }
+
+    public void selectNo(){
+        tobaccoButton.get(2).click();
+    }
+
 }

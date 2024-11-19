@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.StartShoppingPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class StartShoppingPageSteps {
@@ -31,5 +32,10 @@ public class StartShoppingPageSteps {
     public void clickYestoTobaccoQuestion(String tobaccoUsageUserDetails){
         startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageUserDetails);
     }
+
+    // can use for yes-no scenario to verify that buttons can be unselected
+    @And("I select {string} Tobacco Usage for the Primary member")
+    public void iSelectTobacco(String tobaccoUsage){startShoppingPage.iSelectTobacco(tobaccoUsage);}
+
 
 }
