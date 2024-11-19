@@ -92,12 +92,12 @@ public class sftpStepDefinitions {
             case "medical":
                 String medFileName = SharedData.getMedicalOb999FileName();
                 System.out.println("***********Validating Medical OB999 File::"+medFileName+"***********");
-                sftpUtil.readIb999File(medFileName);
+                sftpUtil.readOb999File(medFileName);
                 break;
             case "dental":
                 String denFileName = SharedData.getDentalOb999FileName();
                 System.out.println("***********Validating Dental OB999 File::"+denFileName+"***********");
-               // sftpUtil.readIb999File(denFileName);
+                sftpUtil.readOb999File(denFileName);
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");

@@ -16,7 +16,7 @@ import java.io.InputStream;
 
 public class Ib999Util {
 
-    public void parseEdi999(InputStream inputStream) {
+    public void parseIb999(InputStream inputStream) {
         try {
             EDIInputFactory factory = EDIInputFactory.newFactory();
             EDIStreamReader reader = factory.createEDIStreamReader(inputStream);

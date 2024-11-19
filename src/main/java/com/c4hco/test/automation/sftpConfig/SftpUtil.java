@@ -175,7 +175,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("EDI File Found on SFTP Server");
-                edi999Util.parseEdi999(inputStream);
+                edi999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File not found in the resource folder.");
             }
@@ -194,7 +194,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("EDI File Found on SFTP Server");
-                edi999Util.parseEdi999(inputStream);
+                edi999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File not found in the resource folder.");
             }
@@ -229,7 +229,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("File found");
-                edi999Util.parseEdi999(inputStream);
+                edi999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File 'edi_999' not found in the resource folder.");
             }
