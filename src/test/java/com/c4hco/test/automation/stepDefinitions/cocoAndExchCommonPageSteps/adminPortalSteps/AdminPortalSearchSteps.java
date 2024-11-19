@@ -138,7 +138,7 @@ public class AdminPortalSearchSteps {
 
     @When("I click on reset button on admin portal search page")
     public void iClickOnResetButtonOnOnAdminPortalSearchPage() {
-        adminPortalSearchPage.verifyResetButton();
+        adminPortalSearchPage.clickResetButton();
     }
 
     @Then("I validate message for over hundred records")
@@ -157,7 +157,9 @@ public class AdminPortalSearchSteps {
     }
 
     @Then("I verify data in {string} field on admin portal search page in QA {string} or STG {string}")
-    public void iVerifyDataInFieldOnAdminPortalSearchPageInQAOrSTG(String arg0, String arg1, String arg2) {
+    public void iVerifyDataInFieldOnAdminPortalSearchPageInQAOrSTG(String fieldName, String qaValue, String stgValue) {
+        adminPortalSearchPage.verifyDatainField(fieldName, qaValue, stgValue);
+
     }
 }
 

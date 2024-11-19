@@ -371,7 +371,7 @@ public class AdminPortalSearchPage {
         return field.getAttribute("value");
     }
 
-    // Helper method to map the field name to its index in searchInputList
+ //helpeer method for getting field index
     private int getFieldIndex(String fieldName) {
         switch (fieldName) {
             case "accountID":
@@ -431,7 +431,8 @@ public class AdminPortalSearchPage {
 
     public void requiredSearchCriteria() {
         basicActions.waitForElementToBePresent(searchCriteriaError, 50);
-        softAssert.assertTrue(searchCriteriaError.isDisplayed());
+        softAssert.assertEquals(searchCriteriaError.getText(), "Search criteria for at least one field is required.");
+        softAssert.assertAll();
     }
 
     public void selectSortOption(String text) {
@@ -498,7 +499,7 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
-    public void verifyResetButton() {
+    public void clickResetButton() {
         basicActions.waitForElementToBePresent(Reset, 500);
         Reset.click();
     }
@@ -525,7 +526,7 @@ public class AdminPortalSearchPage {
 
     public void verifyPMData() {
         basicActions.waitForElementListToBePresent(aactsearchResults, 30);
-        List<String> qaexpectedTitles = List.of("2640006565", "John", "Winterhouse", "johnc4hcoautomation+..", "760-579-8438", "organ", "jrzvp", "PROGRAM_MANAGER");
+        List<String> qaexpectedTitles = List.of("2640006565", "John", "Winterhouse", "johnc4hcoautomation+..", "760-579-8438", "Twoeightsevennine", "jrzvp", "PROGRAM_MANAGER");
         List<String> stgexpectedTitles = List.of("9005375045", "adszcnkgvl", "adsdzazuqql", "c4assistorportal+Rqn..", "333-328-9892", "stg", "eNrQP", "PROGRAM_MANAGER");
         List<String> actualTitles = aactsearchResults.stream()
                 .map(WebElement::getText)

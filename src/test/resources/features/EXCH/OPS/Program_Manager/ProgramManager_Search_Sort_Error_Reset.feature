@@ -17,7 +17,7 @@ Feature: Programme Manager
       | LastName            | Winterhouse              | adsdzazuqql     |
       | Email               | johnc4hcoautomation+     | c4assistorportal|
       | PrimaryPhone        | 760-579-8438             | 333-328-9892    |
-      | OrganisationName    | organ                    | stg             |
+      | OrganisationName    | Organ                    | stg             |
       | siteID              | jrzvp                    | eNrQp           |
     Then I click on Search button in AP dashboard page
     Then I verify account results for "ProgrammeManager" on admin portal search page
