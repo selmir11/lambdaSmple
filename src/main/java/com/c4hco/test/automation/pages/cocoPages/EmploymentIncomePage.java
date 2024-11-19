@@ -26,11 +26,17 @@ public class EmploymentIncomePage {
     @FindBy(css = ".header-2")
     WebElement hdr_EmploymentIncome;
 
+    @FindBy(css = "#ELIG-CocoEmploymentIncomeJob-IncomeJob-container > div.row.label-row.ng-star-inserted > div > label > span")
+    WebElement employmentText;
+
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeJob-YesButton")
     WebElement employmentYesButton;
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeJob-NoButton")
     WebElement employmentNoButton;
+
+    @FindBy(css = "#ELIG-CocoEmploymentIncomeJob-amountInput-container > div.row.label-row.ng-star-inserted > div > label")
+    WebElement incomeText;
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-amountInput")
     WebElement incomeInput;
@@ -41,11 +47,17 @@ public class EmploymentIncomePage {
     @FindBy(css = "lib-dropdown option")
     List<WebElement> incomeFrequencyOptions;
 
+    @FindBy(css = "#ELIG-CocoEmploymentIncomeJob-SeasonalIncome-container > div.row.label-row.ng-star-inserted > div > label > span")
+    WebElement incomeSeasonalText;
+
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-SeasonalIncome-YesButton")
     WebElement incomeSeasonalYesButton;
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-SeasonalIncome-NoButton")
     WebElement incomeSeasonalNoButton;
+
+    @FindBy(css = "#ELIG-CocoEmploymentIncomeJob-IncomeChangeEveryYear-container > div.row.label-row.ng-star-inserted > div > label > span")
+    WebElement incomeChangesText;
 
     @FindBy(id = "ELIG-CocoEmploymentIncomeJob-IncomeChangeEveryYear-YesButton")
     WebElement incomeChangesYesButton;
@@ -172,7 +184,13 @@ public void verifyHeadersEmploymentIncomePage(String language){
     public void verifyHeadersEmploymentIncomePageEnglish(){
         basicActions.waitForElementToBePresent(hdr_Income,15);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Employment Income (Please include income from all jobs and employers.)");
+        softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-size"), "28px");
+        softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertAll();
     }
 
@@ -180,8 +198,45 @@ public void verifyHeadersEmploymentIncomePage(String language){
         basicActions.waitForElementToBePresent(hdr_Income,50);
         basicActions.waitForElementToBePresent(hdr_EmploymentIncome,50);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Ingresos por empleo (Incluya el ingreso que recibe de todos los trabajos y empleadores.)");
+        softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-size"), "28px");
+        softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertAll();
+    }
+
+    public void verifyAdditionalMemberHeadersOnEmploymentIncomeCoCoPage(String language) {
+        basicActions.waitForElementToBePresent(hdr_Income,50);
+        switch (language){
+            case "English":
+                softAssert.assertTrue(hdr_Income.getText().contains( "Income: "  + SharedData.getMembers().get(0).getFirstName()));
+                softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Employment Income (Please include income from all jobs and employers.)");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(hdr_EmploymentIncome,50);
+                softAssert.assertTrue(hdr_Income.getText().contains("Ingresos: "  + SharedData.getMembers().get(0).getFirstName()));
+                softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Ingresos por empleo (Incluya el ingreso que recibe de todos los trabajos y empleadores.)");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +  language);
+        }
     }
 
     public void verifyNoErrorMessage_EmploymentInfo() {
@@ -204,5 +259,109 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 default:
                     throw new IllegalArgumentException("Invalid option: " +  isEmployed);
         }
+    }
+
+    public void validateCoCoEmploymentIncomeText(String language){
+        switch (language){
+            case "English":
+                basicActions.waitForElementToBePresent(employmentText,15);
+                softAssert.assertEquals(employmentText.getText(), "Do you have a job or are you currently employed?");
+                softAssert.assertEquals(incomeText.getText(), "What is your total income? Include commission or tips earned.");
+                softAssert.assertEquals(incomeSeasonalText.getText(), "Is this income self-employment income or part of seasonal, commission or tip-based work?");
+                softAssert.assertEquals(incomeChangesText.getText(), "Does your income change during the year or from year to year?");
+                softAssert.assertAll();
+                verifyBaseTextFormatting(employmentText);
+                verifyBaseTextFormatting(incomeText);
+                verifyBaseTextFormatting(incomeSeasonalText);
+                verifyBaseTextFormatting(incomeChangesText);
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(employmentText,15);
+                softAssert.assertEquals(employmentText.getText(), "\u00bfTiene un trabajo o empleo actualmente?");
+                softAssert.assertEquals(incomeText.getText(), "\u00bfCu\u00e1l es su ingreso total? Incluya comisiones o propinas ganadas.");
+                softAssert.assertEquals(incomeSeasonalText.getText(), "\u00bfEstos ingresos son por trabajo independiente o forman parte de un empleo temporal, por comisi\u00f3n o por propinas?");
+                softAssert.assertEquals(incomeChangesText.getText(), "\u00bfSus ingresos cambian durante el a\u00f1o o de un a\u00f1o a otro?");
+                softAssert.assertAll();
+                verifyBaseTextFormatting(employmentText);
+                verifyBaseTextFormatting(incomeText);
+                verifyBaseTextFormatting(incomeSeasonalText);
+                verifyBaseTextFormatting(incomeChangesText);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +  language);
+
+        }
+    }
+
+    public void verifyIncomeFrequencyOptionsCoCo(String language){
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+        switch(language){
+            case "English":
+                softAssert.assertEquals(incomeFrequencyOptions.get(0).getText(), "Select Option");
+                softAssert.assertEquals(incomeFrequencyOptions.get(1).getText(), "Annually");
+                softAssert.assertEquals(incomeFrequencyOptions.get(2).getText(), "Every 2 weeks");
+                softAssert.assertEquals(incomeFrequencyOptions.get(3).getText(), "Monthly");
+                softAssert.assertEquals(incomeFrequencyOptions.get(4).getText(), "Twice a month");
+                softAssert.assertEquals(incomeFrequencyOptions.get(5).getText(), "Weekly");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(incomeFrequencyOptions.get(0).getText(), "Seleccionar opci\u00f3n");
+                softAssert.assertEquals(incomeFrequencyOptions.get(1).getText(), "Anualmente");
+                softAssert.assertEquals(incomeFrequencyOptions.get(2).getText(), "Cada dos semanas");
+                softAssert.assertEquals(incomeFrequencyOptions.get(3).getText(), "Mensualmente");
+                softAssert.assertEquals(incomeFrequencyOptions.get(4).getText(), "Dos veces por mes");
+                softAssert.assertEquals(incomeFrequencyOptions.get(5).getText(), "Semanalmente");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +  language);
+        }
+    }
+
+    public void verifyEmploymentIncomeNavigationButtonsCoCo(String language){
+        basicActions.waitForElementToBePresent(hdr_Income,15);
+        switch(language){
+            case "English":
+                softAssert.assertEquals(goBackButton.getText(), "  Go back");
+                softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
+                softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(goBackButton.getText(), "  Volver");
+                softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
+                softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +  language);
+        }
+    }
+
+    public void verifyBaseTextFormatting(WebElement BaseText){
+        softAssert.assertEquals(BaseText.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(BaseText.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(BaseText.getCssValue("line-height"), "28px");
+        softAssert.assertEquals(BaseText.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertAll();
     }
 }

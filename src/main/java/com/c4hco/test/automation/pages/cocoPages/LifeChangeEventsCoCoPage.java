@@ -32,7 +32,8 @@ public class LifeChangeEventsCoCoPage {
 
     @FindBy(css = ".page-header")
     WebElement hdr_LceText;
-
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
     @FindBy(className = "error-message")
     WebElement selectLCEError;
     @FindBy(css = "#ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
@@ -594,6 +595,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -602,6 +604,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -617,6 +620,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -625,6 +629,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -682,6 +687,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -690,6 +696,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -705,6 +712,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -713,6 +721,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -728,6 +737,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -736,6 +746,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:

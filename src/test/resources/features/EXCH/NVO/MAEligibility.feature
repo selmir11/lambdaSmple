@@ -38,7 +38,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I select "No" for Citizen option
     And I select "Yes" for Eligible Immigration Status option
     And I select "I-327 Reentry Permit" as Document type
-    And I enter A-Number USCIS number
+    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
     And I select "No" for the question have you lived in the US since 1996
     And I select "None of the above" active-duty members of the military or honorably discharged veterans
     And I select "Yes" for name matching the document
@@ -111,7 +111,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I select "No" for Citizen option
     And I select "Yes" for Eligible Immigration Status option
     And I select "I-327 Reentry Permit" as Document type
-    And I enter A-Number USCIS number
+    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
     And I select "No" for the question have you lived in the US since 1996
     And I select "None of the above" active-duty members of the military or honorably discharged veterans
     And I select "Yes" for name matching the document
@@ -185,7 +185,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I select "No" for Citizen option
     And I select "Yes" for Eligible Immigration Status option
     And I select "I-766 Employment Authorization Card" as Document type
-    And I enter A-Number USCIS number
+    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
     Then I enter Card Number
     Then I enter Expiration Date
     And I select "No" for the question have you lived in the US since 1996
