@@ -54,9 +54,6 @@ public class AdminPortalManagePlansSteps {
     @And("I click Reset Changes Dental")
     public void iClickResetChangesDental() {
         adminPortalManagePlansPage.clickResetChangesDental();      }
-    @Then("I click Manage Plans button")
-    public void iClickManagePlans() {
-        adminPortalManagePlansPage.clickManagePlans();      }
     @Then("I validate medical and dental buttons does not display on Manage page")
     public void iValidateChangeButtonsNotDisplay() {
         adminPortalManagePlansPage.validateChangeButtonsNotDisplay();       }
@@ -70,15 +67,23 @@ public class AdminPortalManagePlansSteps {
     public void iContainerTitleLabelsCoco() {
         adminPortalManagePlansPage.containerTitleLabelsCoco();
     }
-    @Then("I check for Previous Medical container display")
+    @Then("I check for Previous Medical container message display")
     public void iCheckPreviousFinancialMedical() {
-        adminPortalManagePlansPage.checkPreviousFinancialMedical();       }
-    @Then("I check for Previous Dental container display")
+        adminPortalManagePlansPage.checkPreviousFinancialMedicalMessage();       }
+    @Then("I check for Previous Dental container message display")
     public void iCheckPreviousFinancialDental() {
-        adminPortalManagePlansPage.checkPreviousFinancialDental();       }
+        adminPortalManagePlansPage.checkPreviousFinancialDentalMessage();       }
     @Then("I verify Years in dropdown starting from {string} as expected")
     public void iValidateYearsDropdown(String lowerYear){
         adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
+    @Then("I update the premium amount to {string} on Manage Plans page")
+    public void iUpdatePremiumAmount(String premiumAmountValue){
+        adminPortalManagePlansPage.updatePremiumAmount(premiumAmountValue);
+    }
+    @Then("I update the APTC amount to {string} on Manage Plans page")
+    public void iUpdateAptcAmount(String aptcAmountValue){
+        adminPortalManagePlansPage.updateAptcAmount(aptcAmountValue);
+    }
     @And("I click Save Button Medical")
     public void iClickSaveButtonMedical() {
         adminPortalManagePlansPage.clickSaveButton();
@@ -157,6 +162,10 @@ public class AdminPortalManagePlansSteps {
     @Then("I unchecked {string} from plan type")
     public void iUncheckedFromPlanType(String planType) {
         adminPortalManagePlansPage.uncheckedFromPlanType(planType);
+    }
+    @Then("I click Search button in AP blue header")
+    public void iClickSearchInAdminPortalBlueHeader() {
+        adminPortalManagePlansPage.clickSearchInAdminPortalBlueHeader();
     }
 
 }

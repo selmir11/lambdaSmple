@@ -1,8 +1,8 @@
 package com.c4hco.test.automation.Dto;
 
-import com.c4hco.test.automation.Dto.Edi.CommonEDISegments;
-import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
-import com.c4hco.test.automation.Dto.Edi.Ib999Segments;
+import com.c4hco.test.automation.Dto.Edi.Edi834.CommonEDISegments;
+import com.c4hco.test.automation.Dto.Edi.Edi834.Edi834TransactionDetails;
+import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.database.EntityObj.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +28,8 @@ public class SharedData {
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
+    @Getter @Setter private static List<Ib834Entity> ib834MedDetailsEntities;
+    @Getter @Setter private static List<Ib834Entity> ib834DenDetailsEntities;
     @Getter @Setter private static String medicalIb999FileName;
     @Getter @Setter private static String dentalIb999FileName;
     @Getter @Setter private static String medicalIb834FileName;
@@ -35,7 +37,8 @@ public class SharedData {
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
-    @Getter @Setter private static Ib999Segments ib999Segments;
+    @Getter @Setter private static Edi999Segments ib999Segments;
+    @Getter @Setter private static Edi999Segments ob999Segments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
@@ -64,6 +67,12 @@ public class SharedData {
     @Getter @Setter private static Map<String, String> exchPersonId;
     @Getter @Setter private static String birthLceIndividual;
     @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
+    @Getter @Setter private static List<String> dvrDateTime;
+    @Getter @Setter private static List<String> EventIds;
+    @Getter @Setter private static List<Ob999Entity> ob999MedDetailsEntities;
+    @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
+    @Getter @Setter private static String medicalOb999FileName;
+    @Getter @Setter private static String dentalOb999FileName;
 
 
     public static void reset(){
@@ -99,6 +108,13 @@ public class SharedData {
         dentalPolicyTablesEntities = null;
         ob834DetailsMedEntities = null;
         ob834DetailsDenEntities = null;
+        dvrDateTime = null;
+        EventIds = null;
+        ob999MedDetailsEntities = null;
+        ob999DenDetailsEntities = null;
+        medicalOb999FileName = null;
+        dentalOb999FileName = null;
+        ob999Segments = null;
     }
 
 }

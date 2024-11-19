@@ -135,18 +135,26 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertAll();
     }
 
-    private void validateMailingAddress(Ob834DetailsEntity ob834Entity, MemberDetails member) {
-        softAssert.assertEquals(member.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
-        if (member.getMailingAddress().getAddressLine2() != null) {
-            softAssert.assertEquals(member.getMailingAddress().getAddressLine2(), ob834Entity.getMail_street_line2(), "Mailing address street line 2 does not match");
+    private Boolean isMailingAddressSameAsResidential(MemberDetails subscriber){
+      if(subscriber.getMailingAddress().equals(subscriber.getResAddress())){
+          return true;
+      } else {
+          return false;
+      }
+    }
+
+    private void validateMailingAddress(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
+        if (subscriber.getMailingAddress().getAddressLine2() != null) {
+            softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine2(), ob834Entity.getMail_street_line2(), "Mailing address street line 2 does not match");
         } else {
             softAssert.assertNull(ob834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
         }
-        softAssert.assertEquals(member.getMailingAddress().getAddressCity(), ob834Entity.getMail_city(), "Mailing city does not match");
-        softAssert.assertEquals(member.getMailingAddress().getAddressState(), ob834Entity.getMail_st(), "Mailing state does not match");
-        softAssert.assertEquals(member.getMailingAddress().getAddressZipcode(), ob834Entity.getMail_zip_code(), "Mailing zipcode does not match");
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressCity(), ob834Entity.getMail_city(), "Mailing city does not match");
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressState(), ob834Entity.getMail_st(), "Mailing state does not match");
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressZipcode(), ob834Entity.getMail_zip_code(), "Mailing zipcode does not match");
         softAssert.assertNull(ob834Entity.getMail_fip_code(), "Mailing fipcode is not null");
-        softAssert.assertAll("Mailing Address did not match for "+member.getFirstName());
+        softAssert.assertAll("Mailing Address did not match for "+subscriber.getFirstName());
     }
 
     private void validateIncorrectEntities(Ob834DetailsEntity ob834Entity, MemberDetails member) {
@@ -298,8 +306,8 @@ public class Ob834PreEdiDbValidations {
         SharedData.setMedicalFileName(ob834Entity.getFilename());
         softAssert.assertEquals(ExpectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
         softAssert.assertEquals(medicalDbData.getCsrAmt() != null ? medicalDbData.getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+        softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", "").replace(",", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
+        softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         subscriberOnlyMedDenFields(ob834Entity);
     }
 
@@ -308,8 +316,8 @@ public class Ob834PreEdiDbValidations {
         SharedData.setDentalFileName(ob834Entity.getFilename());
         softAssert.assertEquals("0.00", ob834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
         softAssert.assertEquals("0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getTotalDentalPremAfterReduction().replace("$", ""), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+        softAssert.assertEquals(SharedData.getPrimaryMember().getTotalDentalPremAfterReduction().replace("$", "").replace(",",""), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
+        softAssert.assertEquals(SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         subscriberOnlyMedDenFields(ob834Entity);
     }
 

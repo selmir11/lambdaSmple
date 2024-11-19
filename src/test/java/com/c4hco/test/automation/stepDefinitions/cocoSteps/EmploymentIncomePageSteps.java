@@ -38,9 +38,21 @@ public class EmploymentIncomePageSteps {
     @And("I verify the header for Primary Member on the CoCo Employment income page in {string}")
     public void iVerifyTextOnEmploymentIncomePage(String language){employmentIncomePage.verifyHeadersEmploymentIncomePage(language);}
 
+    @Then("I verify the header for additional member on the CoCo Employment income page in {string}")
+    public void iVerifyAdditionalMemberHeadersOnEmploymentIncomePage(String language) {employmentIncomePage.verifyAdditionalMemberHeadersOnEmploymentIncomeCoCoPage(language);}
+
     @Then("I validate no errors are displayed on the Employment income page")
     public void iValidateNoErrorsPresent(){employmentIncomePage.verifyNoErrorMessage_EmploymentInfo();}
 
     @Then("I validate {string} job option is selected on the Employment income page")
     public void iValidateNoJobButton(String haveEmployment){employmentIncomePage.verifyJobOption_EmploymentInfo(haveEmployment);}
+
+    @Then("I validate all text on the Employment Income page in {string}")
+    public void iValidateCoCoEmploymentIncomeText(String language) {employmentIncomePage.validateCoCoEmploymentIncomeText(language);}
+
+    @Then("I verify the income frequency options in {string}")
+    public void iVerifyIncomeFrequencyOptionsCoCo(String language) {employmentIncomePage.verifyIncomeFrequencyOptionsCoCo(language);}
+
+    @Then("I verify the navigation buttons on the CoCo Employment Income page in {string}")
+    public void iVerifyEmploymentIncomeNavigationButtonsCoCo(String language) {employmentIncomePage.verifyEmploymentIncomeNavigationButtonsCoCo(language);}
 }

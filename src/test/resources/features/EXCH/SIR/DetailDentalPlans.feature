@@ -1,5 +1,5 @@
-@dentalPlanDetail @SIR
-  # contains SLER-955,
+@SIR-EXCH5 @dentalPlanDetail @SIR
+  # contains SLER-955, SLER-995, SLER-996,
 Feature: Dental Plan Verification test
 
   Background:
@@ -161,7 +161,7 @@ Feature: Dental Plan Verification test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-996 @VerifyDentalDetailTextSpanish
-  Scenario: SLER-996 - VerifyDentalDetailTextSpanish
+  Scenario: SLER-996 - VerifyDentalDetailText - Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -232,6 +232,8 @@ Feature: Dental Plan Verification test
     Then I click on the First Dental Detail button
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
 
+    Then I validate I am on the "Dental Plan Detail" page
+    And I select the InNetwork link on the Dental Detail page
     And I validate the "Spanish" text headers and subheaders for the InNetwork Dental Detail page
     And I select the OutNetwork link on the Dental Detail page
     And I validate the "Spanish" text headers and subheaders for the OutNetwork Dental Detail page

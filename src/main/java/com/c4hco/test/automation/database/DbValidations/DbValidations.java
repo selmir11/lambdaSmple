@@ -331,8 +331,8 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateOhiDetails(String memberId) {
-        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(memberId);
+    public void validateOhiDetails(String memPrefix) {
+        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(basicActions.getMemberId(memPrefix));
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
@@ -641,6 +641,27 @@ public class DbValidations {
         softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
         softAssert.assertAll();
     }
+
+    public void validateNewEventDB(String event) {
+        List<String> savedEventIds = SharedData.getEventIds();
+        if (savedEventIds == null) {
+            savedEventIds = new ArrayList<>();
+        }
+
+        String lastEventLogId = savedEventIds.isEmpty() ? "0" : savedEventIds.get(savedEventIds.size() - 1);
+        String eventId = exchDbDataProvider.getEventLogId(event, lastEventLogId);
+        System.out.println("Retrieved Event ID: " + eventId);
+
+        if (savedEventIds.contains(eventId)) {
+            softAssert.fail("Event ID " + eventId + " already exists in SharedData.");
+        } else {
+            savedEventIds.add(eventId);
+            SharedData.setEventIds(savedEventIds);
+            System.out.println("Updated Event IDs in SharedData: " + savedEventIds);
+        }
+        softAssert.assertAll();
+    }
+
 
 
 

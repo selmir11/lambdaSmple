@@ -2,8 +2,8 @@
 package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.ediUtil.Edi834Util;
-import com.c4hco.test.automation.edi.ediUtil.Edi999Util;
+import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
+import com.c4hco.test.automation.edi.ediUtil.Ib999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.jcraft.jsch.ChannelSftp;
@@ -18,8 +18,8 @@ import java.util.Date;
 
 public class SftpUtil {
     private Session session;
-    Edi834Util edi834Util = new Edi834Util();
-    Edi999Util edi999Util = new Edi999Util();
+    Ob834Util edi834Util = new Ob834Util();
+    Ib999Util edi999Util = new Ib999Util();
     BasicActions basicActions = new BasicActions();
 
     public SftpUtil(){
@@ -65,20 +65,25 @@ public class SftpUtil {
         }
     }
 
-    public void downloadFileWithSftp(String remoteFilePath, String fileNameToDownload) throws JSchException {
-        connectToSftp();
-        String localPath = SharedData.getLocalPathToDownloadFile();
-        ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
-        channelSftp.connect();
-        try{
-            channelSftp.get(remoteFilePath+fileNameToDownload, localPath);
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally {
-            channelSftp.disconnect();
-            disconnectFromSftp();
+    public void downloadFileWithSftp(String remoteFilePath, String fileNameToDownload) {
+        try {
+            connectToSftp();
+            String localPath = SharedData.getLocalPathToDownloadFile();
+            ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+            try {
+                channelSftp.get(remoteFilePath + fileNameToDownload, localPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                channelSftp.disconnect();
+                disconnectFromSftp();
+            }
+        } catch (Exception e){
+            // fail
         }
     }
+
 
     public void uploadFileInSftp(String fileName, String remoteFilePath) throws JSchException {
         connectToSftp();
@@ -170,7 +175,26 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("EDI File Found on SFTP Server");
-                edi999Util.parseEdi999(inputStream);
+                edi999Util.parseIb999(inputStream);
+            } else {
+                System.err.println("File not found in the resource folder.");
+            }
+            inputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void readOb999File(String filename){
+        String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
+        try{
+            File file = new File(sftpFolderPath+"\\"+filename);
+            InputStream inputStream = new FileInputStream(file);
+
+            if (inputStream != null) {
+                System.out.println("EDI File Found on SFTP Server");
+                edi999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File not found in the resource folder.");
             }
@@ -205,7 +229,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("File found");
-                edi999Util.parseEdi999(inputStream);
+                edi999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File 'edi_999' not found in the resource folder.");
             }

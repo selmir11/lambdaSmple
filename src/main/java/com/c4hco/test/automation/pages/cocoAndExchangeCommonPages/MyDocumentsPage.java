@@ -19,6 +19,7 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +36,9 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".primary-header-container > h2")
     WebElement myDocumentsTitle;
+
+    @FindBy(css = ".document-content-select-double-chevrons-container")
+    WebElement mvrDoubleChevrons;
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
@@ -121,6 +125,22 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//button[normalize-space()='Cargar Mi Documento']")
     WebElement btnCargarMisDocumento;
 
+//    modal options
+    @FindBy(css = ".doc-subtype-select .drop-down-option.drop-down-option-selected")
+    WebElement dpdWhichDocument;
+
+    @FindBy(css = ".doc-subtype-select .drop-down-options > div")
+    List<WebElement> dpdWhichDocumentOptions;
+
+    @FindBy(css = ".file-selected-show.file-border-normal")
+    WebElement txtFileUpload;
+
+    @FindBy(css = ".error-box > p")
+    WebElement txtUploadError;
+
+    @FindBy(css = ".btn-upload.btn-primary-action-button")
+    WebElement btnUploadDoc;
+
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
@@ -128,6 +148,8 @@ public class MyDocumentsPage {
 
     public void downloadDocument(String docType) {
         // docType example "Application Results", EN-002-04
+        basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 20);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
         WebElement pastDocCarrot = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::span[1]"));
@@ -420,5 +442,66 @@ public class MyDocumentsPage {
             System.out.println(memName);
             softAssert.assertTrue((pdfText.contains(memName)),memName+" text not exist in downloaded pdf file");
         }
+    }
+
+    public void uploadMvrDoc(String mvrType){
+        clickMvrDoubleChevrons();
+        clickUploadMvr(mvrType);
+        clickWhichDocument();
+        uploadDoc("TestMyDocs.docx");
+        clickUploadDoc();
+        clickMvrDoubleChevrons();
+    }
+
+    public void clickMvrDoubleChevrons(){
+        basicActions.waitForElementToBePresent(mvrDoubleChevrons,10);
+        basicActions.scrollToElement(mvrDoubleChevrons);
+        mvrDoubleChevrons.click();
+    }
+
+    public void clickUploadMvr(String mvrType){
+        WebElement btnUploadMvr = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Proof of "+ mvrType +"')]//following::button[1]"));
+        btnUploadMvr.click();
+    }
+
+    public void clickWhichDocument(){
+        basicActions.waitForElementToBePresent(dpdWhichDocument,10);
+        dpdWhichDocument.click();
+        dpdWhichDocumentOptions.get(0).click();
+    }
+
+    public void uploadDoc(String uploadDoc) {
+        String documentPath = "src/main/resources/MyDocs/"+uploadDoc;
+        String absolutePath = Paths.get(documentPath).toAbsolutePath().toString();
+        WebElement fileInput = WebDriverManager.getDriver().findElement(By.cssSelector("input[type='file']"));
+        fileInput.sendKeys(absolutePath);
+        basicActions.waitForElementToBePresent(txtFileUpload, 30);
+    }
+
+    public void clickUploadDoc() {
+        int retryCount = 0;
+        int maxRetries = 10;
+
+        while (retryCount < maxRetries) {
+            try {
+                basicActions.waitForElementToBePresent(btnUploadDoc, 10);
+                btnUploadDoc.click();
+                basicActions.wait(10);
+                if (basicActions.isElementDisplayed(txtUploadError,20)) {
+                    throw new Exception("Upload error detected");
+                }
+                return;
+            } catch (Exception e) {
+                retryCount++;
+                System.out.println("Attempt " + retryCount + " failed due to: " + e.getMessage());
+                basicActions.wait(500);
+            }
+        }
+        throw new RuntimeException("Failed to upload document after " + maxRetries + " attempts. Upload error persists.");
+    }
+
+    public void verifyMvrNeeded(String mvrType) {
+        basicActions.waitForElementToBePresent(myDocumentsTitle,30);
+        WebElement mvrNameType = basicActions.getDriver().findElement(By.xpath("//app-documents-upload//p[contains(text(), 'Proof of "+mvrType+"')]"));
     }
 }

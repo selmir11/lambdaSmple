@@ -220,11 +220,12 @@ public class MyProfileExchPage {
 
 
     public void verifyTextOnMyProfilePageEnglish() {
+        String formatedPhoneNumber = SharedData.getPrimaryMember().getPhoneNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
         basicActions.waitForElementToBePresent(MyProfileHeader, 10);
         softAssert.assertEquals(MyProfileHeader.getText(), "My Profile");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-size"), "36px");
-        softAssert.assertEquals(MyProfileHeader.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileHeader.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(MyProfileSubHeading.get(0).getText(), "Primary Contact");
         softAssert.assertEquals(MyProfileSubHeading.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileSubHeading.get(0).getCssValue("font-size"), "19px");
@@ -258,12 +259,12 @@ public class MyProfileExchPage {
         softAssert.assertEquals(EmailAddress.getCssValue("font-size"), "16px");
         softAssert.assertEquals(EmailAddress.getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentline.get(4).getText(), "Mobile Phone");
-        softAssert.assertEquals(Mobilephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
+        softAssert.assertEquals(Mobilephone.getText(), formatedPhoneNumber);
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentline.get(5).getText(), "Home Phone");
-        softAssert.assertEquals(Homephone.getText(), SharedData.getPrimaryMember().getPhoneNumber());
+        softAssert.assertEquals(Homephone.getText(), formatedPhoneNumber);
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
@@ -326,7 +327,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(MyProfileHeader.getText(), "Mi P\u00E9rfil");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileHeader.getCssValue("font-size"), "36px");
-        softAssert.assertEquals(MyProfileHeader.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileHeader.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(MyProfileSubHeading.get(0).getText(), "Contacto principal");
         softAssert.assertEquals(MyProfileSubHeading.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileSubHeading.get(0).getCssValue("font-size"), "19px");

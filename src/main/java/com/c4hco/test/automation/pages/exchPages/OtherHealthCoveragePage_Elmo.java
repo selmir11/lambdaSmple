@@ -64,6 +64,9 @@ public class OtherHealthCoveragePage_Elmo {
 
     @FindBy(id = "existingOHC-SaveAndContinue")
     WebElement saveAndContinueBtn;
+
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
     
     @FindBy(css = ".error-message")
     WebElement errorMessageTxt;
@@ -287,27 +290,27 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getCssValue("font-weight"), "400");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getCssValue("color"), "rgba(43, 49, 60, 1)");
-        softAssert.assertEquals(backButton.getText(), "  Go Back");
+        softAssert.assertEquals(backButton.getText(), "  Go back");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertEquals(backButton.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(backButton).pause(1000L).build().perform();
-        softAssert.assertEquals(backButton.getText(), "  Go Back");
+        softAssert.assertEquals(backButton.getText(), "  Go back");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertEquals(backButton.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
-        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
-        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
@@ -418,27 +421,27 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getCssValue("font-size"), "16px");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getCssValue("font-weight"), "400");
         softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getCssValue("color"), "rgba(43, 49, 60, 1)");
-        softAssert.assertEquals(backButton.getText(), "  Go Back");
+        softAssert.assertEquals(backButton.getText(), "  Go back");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertEquals(backButton.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(backButton).pause(1000L).build().perform();
-        softAssert.assertEquals(backButton.getText(), "  Go Back");
+        softAssert.assertEquals(backButton.getText(), "  Go back");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
         softAssert.assertEquals(backButton.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
-        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
-        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
@@ -908,6 +911,7 @@ public class OtherHealthCoveragePage_Elmo {
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -916,6 +920,7 @@ public class OtherHealthCoveragePage_Elmo {
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -954,8 +959,8 @@ public class OtherHealthCoveragePage_Elmo {
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(13).getText(),"Individual Insurance");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(14).getText(),"Health insurance purchased directly through an insurance company, through Healthcare.gov, or another state\u2019s Marketplace.");
                 softAssert.assertEquals(existingHealthInsurancePageTxt2.get(16).getText(),"None of these");
-                softAssert.assertEquals(backButton.getText(),"  Go Back");
-                softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+                softAssert.assertEquals(backButton.getText(),"  Go back");
+                softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
                 softAssert.assertAll();
                 break;
             case "Spanish":

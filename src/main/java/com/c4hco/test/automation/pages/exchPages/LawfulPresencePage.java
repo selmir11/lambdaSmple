@@ -46,6 +46,15 @@ public class LawfulPresencePage {
     @FindBy(id = "alienNumberNonCitizen")
     WebElement alienNumberNonCitizen;
 
+    @FindBy(id = "alienNumber")
+    WebElement alienNumberCitizen;
+
+    @FindBy(id = "cardNumber")
+    WebElement cardNumber;
+
+    @FindBy(id = "documentExpirationDate")
+    WebElement documentExpirationDate;
+
     @FindBy(id = "livedSince1996Yes")
     WebElement livedSince1996Yes;
 
@@ -109,6 +118,15 @@ public class LawfulPresencePage {
     @FindBy(css = ".linkText1")
     List<WebElement> linkUndocumentedCitizenInfo;
 
+    @FindBy(css = "#documentNumber")
+    WebElement DocumentNumber;
+
+    @FindBy(id = "naturalizationCertificate")
+    WebElement dpdNaturalizationCertificate;
+
+    @FindBy(id = "citizenshipCertificate")
+    WebElement dpdCitizenshipCertificate;
+
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
             case "Yes":
@@ -160,10 +178,63 @@ public class LawfulPresencePage {
         return String.valueOf(USCISNumber);
     }
 
-    public void enterUSCISNumber() {
+    public void enterUSCISNumber(String citizenship) {
+        switch (citizenship){
+            case "NonCitizen":
+                enterUSCISNumberNonCitizen();
+                break;
+            case "Citizen":
+                enterUSCISNumberCitizen();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + citizenship);
+        }
+    }
+
+    public void enterUSCISNumberNonCitizen() {
         String USCISNumberValue = generateUSCISNumber();
         alienNumberNonCitizen.sendKeys(USCISNumberValue);
     }
+
+    public void enterUSCISNumberCitizen() {
+        String USCISNumberValue = generateUSCISNumber();
+        alienNumberCitizen.sendKeys(USCISNumberValue);
+    }
+
+    public void clickDocType(String docType) {
+        switch (docType){
+            case "Naturalization Certificate":
+                dpdNaturalizationCertificate.click();
+                break;
+            case "Citizenship Certificate":
+                dpdCitizenshipCertificate.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + docType);
+        }
+    }
+
+    public void enterDocumentNumber() {
+        String DocumentNumberValue = generateUSCISNumber();
+        DocumentNumber.sendKeys(DocumentNumberValue);
+    }
+
+    public static String generateCardNumber() {
+        Random rand = new Random();
+        int CardNumber = 100_000_000 + rand.nextInt(900_000_000);
+        return String.valueOf(CardNumber);
+    }
+
+    public void enterCardNumber() {
+        String CardNumberValue = "AAA5"+generateCardNumber();
+        cardNumber.sendKeys(CardNumberValue);
+    }
+
+    public void enterExpirationDate() {
+        String expirationDateValue = "01012028";
+        documentExpirationDate.sendKeys(expirationDateValue);
+    }
+
 
     public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
         switch (YNLivedInUSSince1996) {

@@ -55,6 +55,15 @@ public class TellUsAboutYourselfPage {
     @FindBy(id = "ssn")
     WebElement ssn;
 
+    @FindBy(css = "#haveSsn")
+    WebElement checkboxNoSsn;
+
+    @FindBy(id = "haveAppliedForSSNYes")
+    WebElement rdobtnAppliedYes;
+
+    @FindBy(id = "haveAppliedForSSNNo")
+    WebElement rdobtnAppliedNo;
+
     @FindBy(css = "#addMember #continueButton")
     WebElement btnSaveAndContinue;
 
@@ -139,11 +148,50 @@ public class TellUsAboutYourselfPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
+   public void updateFullName(String namePrefix){
+        List<MemberDetails> membersList = basicActions.getAllMem();
+        for(MemberDetails member: membersList){
+            if(member.getFirstName().contains(namePrefix)){
+                String oldFirstName = member.getFirstName();
+                String oldMiddleName = member.getMiddleName()!=null ? member.getMiddleName() : "";
+                String oldLastName = member.getLastName();
+                member.setHasIncorrectEntities(true);
+
+                String newFirstName = namePrefix+basicActions.getUniqueString(8);
+                String newMiddleName = "Test";
+                String newLastName = "update"+ member.getLastName();
+
+                member.setIncorrectEntityTypeQualifier("1");
+                member.setIncorrectIdCodeQualifier("34");
+                member.setIncorrectEntityIdCode("70");
+                member.setIncorrect_first_name(oldFirstName);
+                member.setIncorrect_middle_name(oldMiddleName);
+                member.setIncorrect_last_name(oldLastName);
+
+                member.setFirstName(newFirstName);
+                member.setMiddleName(newMiddleName);
+                member.setLastName(newLastName);
+                member.setSignature(newFirstName+" "+newLastName);
+                member.setFullName(newFirstName+" "+newMiddleName.toUpperCase().charAt(0)+". "+newLastName);
+                member.setCompleteFullName(newFirstName+" "+newMiddleName+" "+newLastName);
+
+                basicActions.waitForElementToBePresent(txtFirstName, 50);
+                txtFirstName.clear();
+                txtFirstName.sendKeys(newFirstName);
+                txtMiddleName.clear();
+                txtMiddleName.sendKeys(newMiddleName);
+                txtLastName.clear();
+                txtLastName.sendKeys(newLastName);
+                break;
+            }
+        }
+    }
+
     public void updateName(){
         MemberDetails subscriber = new MemberDetails();
         basicActions.waitForElementToBePresent(txtFirstName, 50);
         txtFirstName.clear();
-        String newFirstName = "Amend";
+        String newFirstName = "PrimaryAmend";
         txtFirstName.sendKeys(newFirstName);
         subscriber.setFirstName(newFirstName);
         System.out.println("First Name updated to "+newFirstName);
@@ -184,6 +232,21 @@ public class TellUsAboutYourselfPage {
         basicActions.waitForElementToBePresent(hdrSsaError, 20);
         softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name and the Social Security number you entered match your Social Security card and try again.");
         softAssert.assertAll();
+    }
+
+    public void clickNoSsnBox(String applied){
+        basicActions.waitForElementToBePresent(checkboxNoSsn, 20);
+        checkboxNoSsn.click();
+        switch (applied){
+            case "Yes":
+                rdobtnAppliedYes.click();
+                break;
+            case "No":
+                rdobtnAppliedNo.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + applied);
+        }
     }
 
 }

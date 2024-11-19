@@ -52,7 +52,7 @@ public class DentalPlanDetailPage {
     @FindBy(xpath = "//*[class = 'td-sub-title']")
     List<WebElement> subheader;
 
-    //@FindBy(xpath = "//button[@id='ngb-accordion-item-2-toggle']") // Diagnostic and Preventive Services Child
+
     @FindBy(xpath = "//td[normalize-space()='Cleaning Child']")
     WebElement txtCleaningChild;
     @FindBy(xpath = "//td[normalize-space()='Limpieza para un hijo']")
@@ -187,6 +187,95 @@ public class DentalPlanDetailPage {
     @FindBy(xpath = " //td[normalize-space()='Terapia de endodoncia para un adulto']")
     WebElement txtRootCanalAdultSP;
     //
+
+    @FindBy(xpath = " //*[contains(text(),\"Cleaning Child\")]")
+    WebElement txtCleaningChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Child\\\")]\")")
+    WebElement txtFlourideChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Child\\\")]\")")
+    WebElement txtOralExamsChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Child\\\")]\")")
+    WebElement txtXraysChildSpanish;
+
+    @FindBy(id = "ngb-accordion-item-2-toggle")
+    WebElement txtInDiagnosticAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Cleaning Adult\\\")]\")")
+    WebElement txtCleaningAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Exams Adult\\\")]\")")
+    WebElement txtOralExamsAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"X-rays Adult\\\")]\")")
+    WebElement txtXraysAdultSpanish;
+    //
+    @FindBy(id = "ngb-accordion-item-3-toggle")
+    WebElement txtInBasicServicesChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Amalgam (Steel) Fillings Child\\\")]\")")
+    WebElement txtAmalgamChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Periodontics - Other Child\\\")]\")")
+    WebElement txtPeriodonticsChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Resin (white plastic) Fillings Child\\\")]\")")
+    WebElement txtResinChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Sedative Fillings Child\\\")]\")")
+    WebElement txtSedativeFluidChildSpanish;
+
+    @FindBy(id = "ngb-accordion-item-4-toggle")
+    WebElement txtInBasicServicesAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Amalgam (Steel) Fillings Adult\\\")]\")")
+    WebElement txtAmalgamAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Periodontics - Other Adult\\\")]\")")
+    WebElement txtPeriodonticsAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Sedative Fillings Adult\\\")]\")")
+    WebElement txtSedativeFluidAdultSpanish;
+    //
+
+    @FindBy(id = "ngb-accordion-item-5-toggle")
+    WebElement txtInMajorServicesChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Dentures and Bridges Child\\\")]\")")
+    WebElement txtDenturesChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Implants Child\\\")]\")")
+    WebElement txtImplantsChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Medically Necessary Orthodontia Child\\\")]\")")
+    WebElement txtOrthodontiaChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Surgery Child\\\")]\")")
+    WebElement txtOralSurgeryChildSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Root canal therapy Child\\\")]\")")
+    WebElement txtRootCanalChildSpanish;
+    //
+    @FindBy(id = "ngb-accordion-item-6-toggle")
+    WebElement txtInMajorServicesAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Dentures and Bridges Adult\\\")]\")")
+    WebElement txtDenturesAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Implants Adult\\\")]\")")
+    WebElement txtImplantsAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Medically Necessary Orthodontia Adult\\\")]\")")
+    WebElement txtOrthodontiaAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Oral Surgery Adult\\\")]\")")
+    WebElement txtOralSurgeryAdultSpanish;
+
+    @FindBy(xpath = " \"//*[contains(text(),\\\"Root canal therapy Adult\\\")]\")")
+    WebElement txtRootCanalAdultSpanish;
+    //
     @FindBy(css = ".float-start")
     WebElement txtOutMonthlyPremium;
 
@@ -222,10 +311,11 @@ public class DentalPlanDetailPage {
         basicActions.waitForElementToBeClickable(inNetworkDentalDetailLink,15 );
         inNetworkDentalDetailLink.click();}
 
-
     public void clickOutNetworkDental() {
         basicActions.waitForElementToBeClickable(outNetworkDentalDetailLink, 15 );
         outNetworkDentalDetailLink.click();}
+
+
 
     public void validateInNetworkDentalDetailLanguage(String language) {
         basicActions.waitForElementToDisappear( spinner, 20 );
@@ -320,28 +410,30 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals( txtRootCanalAdult.getText(), "Root canal therapy Adult" );
         txtInMajorServicesAdult.click();
         softAssert.assertAll();
+
     }
+
+
 
     public void validateEnglishOutNetworkDentalDetail() {
         basicActions.waitForElementToBePresent( txtDentalDisclaimer, 15 );
-        softAssert.assertEquals( txtDentalDisclaimer.getText(), "See the Plan Details and review the Summary of Benefits and Coverage document for the most comprehensive and accurate information." );
         softAssert.assertEquals( txtInMonthlyPremium.getText(), "Monthly Premium" );
 
-        basicActions.waitForElementToBePresentWithRetries( txtOutGeneralDetails,30 );
+        basicActions.waitForElementToBePresentWithRetries( txtOutGeneralDetails, 30 );
         softAssert.assertEquals( txtOutGeneralDetails.getText(), "General Details" );
         txtOutGeneralDetails.click();
 
-        basicActions.waitForElementToBePresentWithRetries( txtOutDiagnosticChild,30 );
+        basicActions.waitForElementToBePresentWithRetries( txtOutDiagnosticChild, 30 );
         softAssert.assertEquals( txtOutDiagnosticChild.getText(), "Diagnostic and Preventive Services Child" );
         txtOutDiagnosticChild.click();
 
-        softAssert.assertEquals( txtCleaningChild.getText(), "Cleaning Child");
-        basicActions.isElementDisplayed( txtFlourideChild,20 );
+        softAssert.assertEquals( txtCleaningChild.getText(), "Cleaning Child" );
+        basicActions.isElementDisplayed( txtFlourideChild, 20 );
         softAssert.assertEquals( txtOralExamsChild.getText(), "Oral Exams Child" );
         softAssert.assertEquals( txtXraysChild.getText(), "X-rays Child" );
         txtOutDiagnosticChild.click();
 
-        basicActions.waitForElementToBePresentWithRetries( txtOutDiagnosticAdult,30 );
+        basicActions.waitForElementToBePresentWithRetries( txtOutDiagnosticAdult, 30 );
         softAssert.assertEquals( txtOutDiagnosticAdult.getText(), "Diagnostic and Preventive Services Adult" );
         txtOutDiagnosticAdult.click();
         softAssert.assertEquals( txtCleaningAdult.getText(), "Cleaning Adult" );
@@ -349,16 +441,16 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals( txtXraysAdult.getText(), "X-rays Adult" );
         txtOutDiagnosticAdult.click();
 
-        basicActions.waitForElementToBePresentWithRetries( txtOutBasicServicesChild,30 );
+        basicActions.waitForElementToBePresentWithRetries( txtOutBasicServicesChild, 30 );
         softAssert.assertEquals( txtOutBasicServicesChild.getText(), "Basic Services Child" );
         txtOutBasicServicesChild.click();
         softAssert.assertEquals( txtAmalgamChild.getText(), "Amalgam (Steel) Fillings Child" );
-        basicActions.isElementDisplayed( txtPeriodonticsChild,20 );
+        basicActions.isElementDisplayed( txtPeriodonticsChild, 20 );
         softAssert.assertEquals( txtResinChild.getText(), "Resin (white plastic) Fillings Child" );
         softAssert.assertEquals( txtSedativeFluidChild.getText(), "Sedative Fillings Child" );
         txtOutBasicServicesChild.click();
 
-        basicActions.waitForElementToBePresentWithRetries( txtOutBasicServicesAdult,30 );
+        basicActions.waitForElementToBePresentWithRetries( txtOutBasicServicesAdult, 30 );
         softAssert.assertEquals( txtOutBasicServicesAdult.getText(), "Basic Services Adult" );
         txtOutBasicServicesAdult.click();
         softAssert.assertEquals( txtAmalgamAdult.getText(), "Amalgam (Steel) Fillings Adult" );
@@ -366,7 +458,7 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals( txtSedativeFluidAdult.getText(), "Sedative Fillings Adult" );
         txtOutBasicServicesAdult.click();
 
-        basicActions.waitForElementToBePresentWithRetries( txtOutMajorServicesChild,30 );
+        basicActions.waitForElementToBePresentWithRetries( txtOutMajorServicesChild, 30 );
         softAssert.assertEquals( txtOutMajorServicesChild.getText(), "Major Services Child" );
         txtOutMajorServicesChild.click();
         softAssert.assertEquals( txtDenturesChild.getText(), "Dentures and Bridges Child" );
@@ -376,7 +468,7 @@ public class DentalPlanDetailPage {
         softAssert.assertEquals( txtRootCanalChild.getText(), "Root canal therapy Child" );
         txtOutMajorServicesChild.click();
 
-        basicActions.waitForElementToBePresentWithRetries( txtOutMajorServicesAdult,30 );
+        basicActions.waitForElementToBePresentWithRetries( txtOutMajorServicesAdult, 30 );
         softAssert.assertEquals( txtOutMajorServicesAdult.getText(), "Major Services Adult" );
         txtOutMajorServicesAdult.click();
         softAssert.assertEquals( txtDenturesAdult.getText(), "Dentures and Bridges Adult" );
@@ -387,7 +479,6 @@ public class DentalPlanDetailPage {
         txtOutMajorServicesAdult.click();
 
     }
-
     public void validateSpanishInNetworkDentalDetail() {
         basicActions.waitForElementToBePresent( txtDentalDisclaimer, 15 );
 

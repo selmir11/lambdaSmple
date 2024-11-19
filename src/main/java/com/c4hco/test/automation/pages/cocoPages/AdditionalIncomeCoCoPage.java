@@ -153,8 +153,8 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "ELIG-AdditionalIncome-NoIncome-checkBoxButton")
     WebElement noneOfThese;
 
-    @FindBy(css = "lib-list-error > lib-error-msg > div")
-    WebElement hdrError;
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
 
     @FindBy(css = "lib-input .error-message")
     List<WebElement> addtlIncomeAmountError;
@@ -174,7 +174,7 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(id = "AdditionalIncome-GoBack")
     WebElement goBackButton;
 
-    @FindBy(css = ".banner-error-component")
+    @FindBy(css = ".banner-error-message")
     WebElement errorMessage;
 
     @FindBy(css = ".header-1")
@@ -614,14 +614,16 @@ public void verifyHeadersAdditionalIncomePage(String language){
     }
 
     public void verifyAddtlIncomeOptionHdrError(String language){
-        basicActions.waitForElementToBePresent(hdrError,20);
+        basicActions.waitForElementListToBePresent(hdrError,20);
         switch (language) {
             case "English":
-                softAssert.assertEquals(hdrError.getText(), "Please select one or more of the options below");
+                softAssert.assertEquals(hdrError.get(0).getText(), "Please select one or more of the options below");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(hdrError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(0).getText(), "Seleccione una o m\u00E1s de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -645,12 +647,14 @@ public void verifyHeadersAdditionalIncomePage(String language){
     public void verifyAddtlIncomeOptionAmt1ErrorEnglish(){
         basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
         softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Amount is required");
+        softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
         softAssert.assertAll();
     }
 
     public void verifyAddtlIncomeOptionAmt1ErrorSpanish(){
         basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
         softAssert.assertEquals(addtlIncomeAmountError.get(0).getText(), "Esta cantidad es obligatoria");
+        softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
         softAssert.assertAll();
     }
 
@@ -659,11 +663,13 @@ public void verifyHeadersAdditionalIncomePage(String language){
             case "English":
                 basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
                 softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Please select one of the options below");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 basicActions.waitForElementListToBePresent(addtlIncomeAmountError,20);
                 softAssert.assertEquals(additlIncomeFrequencyError.get(0).getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -674,7 +680,7 @@ public void verifyHeadersAdditionalIncomePage(String language){
     public void verifyAddtlIncomeOptionNoError(){
         basicActions.waitForElementListToDisappear(addtlIncomeAmountError, 10);
         basicActions.waitForElementListToDisappear(additlIncomeFrequencyError, 10);
-        basicActions.waitForElementToDisappear(hdrError, 10);
+        basicActions.waitForElementListToDisappear(hdrError, 10);
         softAssert.assertAll();
     }
 
@@ -793,5 +799,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
             hdr_AdditionalIncome.click();
         }
     }
+
 
 }

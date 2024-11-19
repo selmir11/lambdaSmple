@@ -1,4 +1,4 @@
-@SIR
+@SIR-EXCH7 @SIR
   # contains  SLER-35, SLER-718, SLER-734, SLER-735, SLER-1104
 Feature: Go Back tests
 
@@ -21,7 +21,8 @@ Feature: Go Back tests
 
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-
+      
+      # Question not asked during Open Enrollment
       #Then I validate I am on the "Report a life change" page
       #And I report "MovedToColorado" and click continue
 
@@ -108,8 +109,9 @@ Feature: Go Back tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+      # Question not asked during Open Enrollment
+      #Then I validate I am on the "Report a life change" page
+      #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -228,8 +230,9 @@ Feature: Go Back tests
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+      # Question not asked during Open Enrollment
+      #Then I validate I am on the "Report a life change" page
+      #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -282,8 +285,8 @@ Feature: Go Back tests
 
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Brother", "10101981", "Male" and applying "Yes"
-      | Primary:Other |
-      | Spouse:Other |
+      | Primary:Brother |
+      | Spouse:Other    |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -304,8 +307,9 @@ Feature: Go Back tests
 
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Sister", "10101981", "Female" and applying "Yes"
-      | Primary:Other |
-      | Spouse:Other  |
+      | Primary:Sister  |
+      | Spouse:Other    |
+      | Brother:Sister  |
     And I click continue on Tell us about additional members page
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
@@ -423,6 +427,7 @@ Feature: Go Back tests
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
+    #Then I validate I am on the "Report a life change" page
     #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page

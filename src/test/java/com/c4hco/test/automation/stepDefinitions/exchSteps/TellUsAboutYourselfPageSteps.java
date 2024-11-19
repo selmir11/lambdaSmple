@@ -32,6 +32,11 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.iUpdateSSN(newSsn);
     }
 
+    @Then("I update full name of member with prefix {string}")
+    public void updateName(String namePrefix) {
+        tellUsAboutYourselfPage.updateFullName(namePrefix);
+    }
+
     @Then("I update Full Name to new Name")
     public void iUpdateName() {
         tellUsAboutYourselfPage.updateName();
@@ -44,6 +49,9 @@ public class TellUsAboutYourselfPageSteps {
 
     @And("I validate SSA Error on Tell us about yourself page")
     public void iValidateSsaError() {tellUsAboutYourselfPage.validateSsaError();}
+
+    @Then("I click I don't have a Social Security Number box and {string} on Tell us about yourself page")
+    public void iClickNoSsnBox(String applied) {tellUsAboutYourselfPage.clickNoSsnBox(applied);}
 
 
 }

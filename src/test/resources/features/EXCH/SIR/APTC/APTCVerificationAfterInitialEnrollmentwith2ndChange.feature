@@ -1,4 +1,4 @@
-@APTC @APTC-SIR @APTC-SIR-Single
+@APTC @APTC-SIR2 @APTC-SIR-Single
   # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-692
 Feature: UI Tests related to APTC after second enrollment change
 
@@ -531,6 +531,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
+
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I enter employment details with "1000000" income at "Annually" frequency

@@ -26,10 +26,18 @@ public class LawfulPresencePageSteps {
         lawfulPresencePage.selectDocumentType(documentType);
     }
 
-    @Then("I enter A-Number USCIS number")
-    public void enterANumberUSCISNumber() {
-        lawfulPresencePage.enterUSCISNumber();
-    }
+    @Then("I enter A-Number USCIS number for {string} on Lawful Presence page")
+    public void enterANumberUSCISNumber(String citizenship) {lawfulPresencePage.enterUSCISNumber(citizenship);}
+
+    @Then("I select {string} as Document type on Lawful Presence page")
+    public void iClickDocType(String docType) {lawfulPresencePage.clickDocType(docType);}
+
+    @Then("I enter Document Number on Lawful Presence page")
+    public void iEnterDocumentNumber() {lawfulPresencePage.enterDocumentNumber();}
+
+    @Then("I enter Card Number") public void enterCardNumber() {lawfulPresencePage.enterCardNumber();}
+
+    @Then("I enter Expiration Date") public void enterExpirationDate() {lawfulPresencePage.enterExpirationDate();}
 
     @Then("I select {string} for the question have you lived in the US since 1996")
     public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
