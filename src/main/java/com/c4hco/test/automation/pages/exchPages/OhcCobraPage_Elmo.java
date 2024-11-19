@@ -42,6 +42,9 @@ public class OhcCobraPage_Elmo {
     @FindBy(css = "div > label")
     List<WebElement> CobraQuestionTxt;
 
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
+
     @FindBy(css = "#Ohc-Endable-enrolled-container span.error-message")
     WebElement currentlyEnrolledError;
 
@@ -153,26 +156,13 @@ public class OhcCobraPage_Elmo {
 
         switch (endDate){
             case "Current Month":
-                calendar.add(Calendar.MONTH, 1);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
-                inputEndDate.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+                inputEndDate.sendKeys(basicActions.lastDateOfCurrMonth());
                 break;
             case "Prior Month":
-                calendar.add(Calendar.MONTH, 0);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfPriorMonth = calendar.getTime();
-                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
-                inputEndDate.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
+                inputEndDate.sendKeys(basicActions.getPastDate(1));
                 break;
             case "Future Month":
-                calendar.add(Calendar.DATE, 60);
-                Date futureDate = calendar.getTime();
-                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
-                inputEndDate.sendKeys(futureDateFormat.format(futureDate));
+                inputEndDate.sendKeys(basicActions.getFutureDate(61));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);
@@ -367,8 +357,8 @@ public class OhcCobraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertEquals(goBackBtn.getText(),"  Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
@@ -539,6 +529,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -547,6 +538,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(currentlyEnrolledError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -563,6 +555,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -571,6 +564,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(insuranceEndingError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(insuranceEndingError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(insuranceEndingError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -590,6 +584,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -598,6 +593,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "English Prior":
@@ -606,6 +602,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish Prior":
@@ -614,6 +611,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "English Future":
@@ -622,6 +620,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish Future":
@@ -630,6 +629,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -646,6 +646,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -654,6 +655,7 @@ public class OhcCobraPage_Elmo {
                 softAssert.assertEquals(endVoluntaryError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(endVoluntaryError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(endVoluntaryError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:

@@ -88,5 +88,9 @@ public class AdminPortalIndividualDashboardSteps {
     public void iValidateIndividualDashboardContainerTitlesAreDisplayed(String PlansContainer,String summaryContainer ,String eligibilityContainer,String renewalsContainer,String reportsContainer,String payloadsContainer) {
         adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles(PlansContainer,summaryContainer ,eligibilityContainer,renewalsContainer,reportsContainer,payloadsContainer);
     }
+    @And("I select year {string} from Manage Plan container on Individual dashboard")
+    public void iSelectMedicalPlanYear(String planYear) {
+        adminPortalIndividualDashboardPage.selectMedicalPlanYear(planYear);
+    }
 }
 

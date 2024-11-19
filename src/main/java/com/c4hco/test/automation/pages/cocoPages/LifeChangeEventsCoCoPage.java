@@ -32,7 +32,8 @@ public class LifeChangeEventsCoCoPage {
 
     @FindBy(css = ".page-header")
     WebElement hdr_LceText;
-
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
     @FindBy(className = "error-message")
     WebElement selectLCEError;
     @FindBy(css = "#ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label")
@@ -158,6 +159,7 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
@@ -168,9 +170,8 @@ public class LifeChangeEventsCoCoPage {
     private void handleLCEInsuranceLossSelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
-        LocalDate date = LocalDate.parse(basicActions.getDateBasedOnRequirement(dateType));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String dateValue = date.format(formatter);
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
@@ -185,6 +186,7 @@ public class LifeChangeEventsCoCoPage {
         List<WebElement> changeOfAddressEventDate = qachangeOfAddressEventDate;
 
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
             basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i), 10);
@@ -302,6 +304,7 @@ public class LifeChangeEventsCoCoPage {
 
     private void setDateForCheckboxes(List<WebElement> eventDates, String dateType) {
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         for (int i = 0; i < eventDates.size(); i++) {
             basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
             eventDates.get(i).sendKeys(dateValue);
@@ -592,6 +595,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -600,6 +604,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -615,6 +620,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -623,6 +629,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -680,6 +687,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -688,6 +696,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -703,6 +712,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -711,6 +721,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -726,6 +737,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -734,6 +746,7 @@ public class LifeChangeEventsCoCoPage {
                 softAssert.assertEquals(selectLCEError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(selectLCEError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(selectLCEError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:

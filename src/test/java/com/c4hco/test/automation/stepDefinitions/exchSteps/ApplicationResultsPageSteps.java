@@ -61,4 +61,7 @@ public class ApplicationResultsPageSteps {
 
     @Then("I validate the member application results")
     public void iValidateMemberResults(List<String> expectedValues){applicationResultsPage.validateMemberResults(expectedValues);}
+
+    @Then("I click the provide documents link on the app results page")
+    public void iClickProvideDocsLink(){applicationResultsPage.clickProvideDocsLink();}
 }

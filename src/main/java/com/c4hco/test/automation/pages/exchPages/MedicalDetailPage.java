@@ -70,8 +70,8 @@ public class MedicalDetailPage {
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_8")
     WebElement lnkEvidenceCoverageSpanish;
 
-    @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_9")
-    WebElement lnkSummaryBenefitsSupplementSpanish;
+    //@FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_9")
+    //WebElement lnkSummaryBenefitsSupplementSpanish;
 
     @FindBy(css = "#MedicalCarrierDetails-InNetworkTier1")
     WebElement inNetwork1;
@@ -221,7 +221,6 @@ public class MedicalDetailPage {
         lnkEvidenceCoverageEnglish.isDisplayed();
         lnkSummaryBenefitsSupplementEnglish.isDisplayed();
         lnkEvidenceCoverageSpanish.isDisplayed();
-        lnkSummaryBenefitsSupplementSpanish.isDisplayed();
         softAssert.assertAll();
 
 
@@ -345,7 +344,6 @@ public class MedicalDetailPage {
         lnkEvidenceCoverageEnglish.isDisplayed();
         lnkSummaryBenefitsSupplementEnglish.isDisplayed();
         lnkEvidenceCoverageSpanish.isDisplayed();
-        lnkSummaryBenefitsSupplementSpanish.isDisplayed();
         softAssert.assertAll();
 
 

@@ -93,8 +93,19 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[@id='financialEndDate_1']//input[1]")
     WebElement financialEndDate;
+
     @FindBy(id = "financialEndDate_1")
+
+
+    @FindBy(css="#premium_1 > input")
+    WebElement premiumAmount;
+
+    @FindBy(css="#planAPTC_1 > input")
+    WebElement aptcAmount;
+
+    @FindBy(id= "financialEndDate_1")
     WebElement financialEndDateText;
+  
     @FindBy(xpath = "//div[@id='financialEndDate_2']//input[1]")
     WebElement financialEndDateSecondMember;
 
@@ -139,6 +150,10 @@ public class AdminPortalManagePlansPage {
     WebElement denPolicyStatus;
     @FindBy(xpath = "//label[@class='form-radio-label body-text-1']")
     WebElement dentalPlanType;
+    @FindBy(xpath = "/html/body/app-root/div/app-header/header/div[2]/div/div[2]/span[1]/a")
+    WebElement searchInHeader;
+
+
 
     @FindBy(xpath = "(//input[@type='text'])[6]")
     WebElement aptcmember1;
@@ -239,6 +254,7 @@ public class AdminPortalManagePlansPage {
 
     public void clickResetChangesDental() {
         basicActions.waitForElementToBePresent(btnDentalReset, 10);
+
         btnDentalReset.click();
     }
 
@@ -249,6 +265,9 @@ public class AdminPortalManagePlansPage {
     }
 
     public void validateChangeButtonsNotDisplay() {
+        btnDentalReset.click();        }
+  
+    public void validateChangeButtonsNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMedSave, 3));
         softAssert.assertAll();
@@ -286,6 +305,16 @@ public class AdminPortalManagePlansPage {
 
     public void checkPreviousFinancialDental() {
         basicActions.waitForElementToBePresent(previousFinancialDental, 20);
+        softAssert.assertAll();     }
+  
+    public void checkPreviousFinancialMedicalMessage(){
+        basicActions.waitForElementToBePresent(previousFinancialMed,20);
+        softAssert.assertEquals(previousFinancialMed.getText(), "Previous Financial Periods - Medical");
+        softAssert.assertEquals(previousFinancialNoMed.getText(), "No Past Financial Periods - Medical");
+        softAssert.assertAll();     }
+  
+    public void checkPreviousFinancialDentalMessage(){
+        basicActions.waitForElementToBePresent(previousFinancialDental,20);
         softAssert.assertEquals(previousFinancialDental.getText(), "Previous Financial Periods - Dental");
         softAssert.assertEquals(previousFinancialNoDental.getText(), "No Past Financial Periods - Dental");
         softAssert.assertAll();
@@ -460,6 +489,18 @@ public class AdminPortalManagePlansPage {
             WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + memberNo + "']//input[1]"));
             financialEndDateMem.sendKeys(financialStartDateValue);
         }
+    }
+    public void updatePremiumAmount(String premiumAmountValue){
+        basicActions.waitForElementToBePresent(premiumAmount,10);
+        premiumAmount.click();
+        premiumAmount.clear();
+        premiumAmount.sendKeys(premiumAmountValue);
+    }
+    public void updateAptcAmount(String aptcAmountValue){
+        basicActions.waitForElementToBePresent(aptcAmount,10);
+        aptcAmount.click();
+        aptcAmount.clear();
+        aptcAmount.sendKeys(aptcAmountValue);
     }
 
     public void selectThePlanYearOnManagePlan(String planYear) {
@@ -666,6 +707,11 @@ public class AdminPortalManagePlansPage {
         } else {
             System.out.println("Condition not met, no error expected.");
         }
+    }
+    public void clickSearchInAdminPortalBlueHeader() {
+        basicActions.waitForElementToBePresent(searchInHeader, 10);
+        searchInHeader.click();
+        basicActions.switchtoactiveTab();
     }
 
     public void validatePremiumErrors(){

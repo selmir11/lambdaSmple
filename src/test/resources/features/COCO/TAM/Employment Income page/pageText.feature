@@ -214,3 +214,20 @@ Feature: Tests related to the Employment Income page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-422 @PageTextEmploymentIncome @TAMSmoke
+  Scenario: SLCR-422 I verify Employment Income's page text - English
+    And I select "Yes" employment option
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+    Then I validate all text on the Employment Income page in "English"
+    Then I verify the income frequency options in "English"
+    Then I verify the navigation buttons on the CoCo Employment Income page in "English"
+
+  @SLCR-423 @PageTextEmploymentIncome @TAMSmoke
+  Scenario: SLCR-423 I verify Employment Income's page text - Spanish
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I select "Yes" employment option
+    And I verify the header for Primary Member on the CoCo Employment income page in "Spanish"
+    Then I validate all text on the Employment Income page in "Spanish"
+    Then I verify the income frequency options in "Spanish"
+    Then I verify the navigation buttons on the CoCo Employment Income page in "Spanish"

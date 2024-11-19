@@ -1,3 +1,4 @@
+@SIR-EXCH11
 Feature: Tests related to medical plans
 
  @SLER-1123
@@ -71,8 +72,8 @@ Then I click continue on application results page
 Then I click continue on start shopping page
 And I validate I am on the "Medical Plan Results" page
 And I store the medical plan market names from results page
- And  I validate there are a total 83 MedicalPlans
-   And I click on Sign Out in the Header for "Portal"
+And  I validate there are a total 83 MedicalPlans
+And I click on Sign Out in the Header for "Portal"
 
 
 

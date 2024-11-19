@@ -65,5 +65,7 @@ Feature: Spanish- Tell us about yourself page
     Then I click Save and Continue only on the tell us about yourself page
     Then I validate I am on the "CoCo Additional information for yourself" page
     Then I click Go Back on the additional information for yourself page
+    And I change the language from header to "English"
+    Then I validate I am on the "CoCo Tell us about yourself" page
 
  

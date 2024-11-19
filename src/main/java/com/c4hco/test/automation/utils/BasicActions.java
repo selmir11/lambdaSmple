@@ -8,9 +8,12 @@ import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.*;
@@ -59,6 +62,48 @@ public class BasicActions {
 
     public String getCurrentUrl() {
         return getDriver().getCurrentUrl();
+    }
+
+
+    public void openUrlWithQueryStringInNewTab(String query) {
+        String currUrl = getCurrentUrl();
+        String newUrl = currUrl+query;
+        openNewTab();
+        driver.get(newUrl);
+    }
+
+    public String extractDateFromUrl(String url){
+        try{
+            URL u = new URL(url);
+            URI uri = u.toURI();
+            String query = uri.getQuery();
+            if(query != null){
+                String[] pairs = query.split("&");
+                for (String pair : pairs){
+                    String[] keyValue = pair.split("=");
+                    if(keyValue[0].equals("dateOverride")){
+                        return keyValue[1];
+                    }
+                }
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void openNewTab(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.open();");
+        Set<String> windowHandles = driver.getWindowHandles();
+        String newTabHandle = null;
+        for (String handle : windowHandles) {
+            if (!handle.equals(driver.getWindowHandle())) {
+                newTabHandle = handle;
+                break;
+            }
+        }
+        driver.switchTo().window(newTabHandle);
     }
 
     public String getUrlWithWait(String url, int waitTime) {
@@ -160,7 +205,7 @@ public class BasicActions {
                 return true;
             } catch (StaleElementReferenceException|NoSuchElementException e) {
                 retries--;
-                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
+                Log.info("StaleElementReferenceException or NoSuchElementException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
                 Log.info("Element is not present");
                 return false;
@@ -519,6 +564,16 @@ public class BasicActions {
             return String.format("%.2f", amount); // Two decimals for fractional amounts
         }
     }
+    public String getCurrYear() {
+        LocalDate today = LocalDate.now();
+        return Integer.toString(today.getYear());
+    }
+
+    public String getFutureYear() {
+        LocalDate today = LocalDate.now();
+        return Integer.toString(today.getYear()+1);
+    }
+
     public String getFirstOfJanCurrYr() { // January 1st of current year
         LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.of(today.getYear(), 1, 1);
@@ -537,19 +592,34 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+
+    public String lastDateOfNextMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfNextMonth = YearMonth.from(today).plusMonths(1).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return lastDayOfNextMonth.format(formatter);
+    }
+
+    public String lastDateOfCurrMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfCurrMonth = YearMonth.from(today).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        return lastDayOfCurrMonth.format(formatter);
+    }
+
     public String getTodayDate() {// Today
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
     public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
     public String getPastDate(int daysToMove) {
         LocalDate date = LocalDate.now().minusDays(daysToMove);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
@@ -592,6 +662,9 @@ public class BasicActions {
                     case "First Of Next Month":
                         date = firstDateOfNextMonth();
                         break;
+                case "Last Of Next Month":
+                    date = lastDateOfNextMonth();
+                    break;
                     case "Today":
                         date = getTodayDate();
                         break;
@@ -615,6 +688,9 @@ public class BasicActions {
         switch(dob){
             case "current date minus 5days":
                 dobCalculator = currentDate.minusDays(5);
+                break;
+            case "current date":
+                dobCalculator = currentDate;
                 break;
             default: Assert.fail("Did not find the case entered");
         }
@@ -683,6 +759,10 @@ public class BasicActions {
             }
         }
         return memId;
+    }
+
+    public static String getUniqueString(int length){
+        return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
 

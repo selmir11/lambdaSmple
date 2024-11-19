@@ -32,10 +32,10 @@ public class PostgresSQLConnection {
             // Set the PostgreSQL connection properties
             String host = ApplicationProperties.getInstance().getProperty("host");
             String port = ApplicationProperties.getInstance().getProperty("port");
-            String dbname = ApplicationProperties.getInstance().getProperty("database");
-            String url = "jdbc:postgresql://"+host+":"+port+"/"+dbname;
-            String username = ApplicationProperties.getInstance().getProperty("dbUsername");;
-            String password = ApplicationProperties.getInstance().getProperty("dbPassword");;
+            String database = ApplicationProperties.getInstance().getProperty("database");
+            String url = "jdbc:postgresql://"+host+":"+port+"/"+database;
+            String username = ApplicationProperties.getInstance().getProperty("dbUsername");
+            String password = ApplicationProperties.getInstance().getProperty("dbPassword");
 
             System.out.println("dbUname::"+username);
             System.out.println("url::"+url

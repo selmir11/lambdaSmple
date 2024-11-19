@@ -33,6 +33,9 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(css = "div > label")
     List<WebElement> EsiQuestionTxt;
 
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
+
     @FindBy(css ="#ELIG-Ohc-Esi-employer-container span.error-message")
     WebElement whichJobError;
 
@@ -273,31 +276,17 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         calendar.setTime(today);
 
         switch (endDate){
+            case "Today":
+                esiEndDateInput.sendKeys(basicActions.getTodayDate());
+                break;
             case "Current Month":
-                calendar.add(Calendar.MONTH, 1);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("MM-dd");
-                esiEndDateInput.sendKeys(endOfCurrentMonth.format(lastDayOfMonth));
+                esiEndDateInput.sendKeys(basicActions.lastDateOfCurrMonth());
                 break;
             case "Prior Month":
-                calendar.add(Calendar.MONTH, 0);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfPriorMonth = calendar.getTime();
-                DateFormat endOfPriorMonth = new SimpleDateFormat("MM-dd");
-                esiEndDateInput.sendKeys(endOfPriorMonth.format(lastDayOfPriorMonth));
+                esiEndDateInput.sendKeys(basicActions.getPastDate(1));
                 break;
             case "Future Month":
-                calendar.add(Calendar.DATE, 60);
-                Date futureDate = calendar.getTime();
-                DateFormat futureDateFormat = new SimpleDateFormat("MM-dd");
-                esiEndDateInput.sendKeys(futureDateFormat.format(futureDate));
-                break;
-            case "Today":
-                DateFormat todayDate = new SimpleDateFormat("MM-dd");
-                esiEndDateInput.sendKeys(todayDate.format(today));
+                esiEndDateInput.sendKeys(basicActions.getFutureDate(61));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);
@@ -717,8 +706,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and Continue");
+        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
@@ -1042,6 +1031,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(element.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(element.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -1050,6 +1040,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(element.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(element.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -1066,6 +1057,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(element.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(element.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -1074,6 +1066,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(element.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(element.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -1093,6 +1086,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -1101,6 +1095,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "English Prior":
@@ -1109,6 +1104,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish Prior":
@@ -1117,6 +1113,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "English Future":
@@ -1125,6 +1122,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish Future":
@@ -1133,6 +1131,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(inputEndDateError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -1149,6 +1148,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(esiFamilyStatusError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -1157,6 +1157,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(esiFamilyStatusError.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(esiFamilyStatusError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:

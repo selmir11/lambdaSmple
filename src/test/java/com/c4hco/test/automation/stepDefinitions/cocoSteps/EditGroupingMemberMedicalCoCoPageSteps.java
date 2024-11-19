@@ -24,8 +24,7 @@ public class EditGroupingMemberMedicalCoCoPageSteps {
     }
 
     @And("I validated message on success enrollment grouping pop-up in CoCo Page")
-    public void groupingSuccessMessage(){
-        editGroupingMembersMedicalCoCoPage.iValidateSuccessMessage();
+    public void groupingSuccessMessage(){editGroupingMembersMedicalCoCoPage.iValidateSuccessMessage();
     }
 
     @Then("I click on continue button on success pop-up in CoCo Page")

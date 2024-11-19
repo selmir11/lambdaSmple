@@ -28,6 +28,8 @@ public class SharedData {
     @Getter @Setter private static String dentalFileName;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
+    @Getter @Setter private static List<Ib834Entity> ib834MedDetailsEntities;
+    @Getter @Setter private static List<Ib834Entity> ib834DenDetailsEntities;
     @Getter @Setter private static String medicalIb999FileName;
     @Getter @Setter private static String dentalIb999FileName;
     @Getter @Setter private static String medicalIb834FileName;
@@ -64,6 +66,8 @@ public class SharedData {
     @Getter @Setter private static Map<String, String> exchPersonId;
     @Getter @Setter private static String birthLceIndividual;
     @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
+    @Getter @Setter private static List<String> dvrDateTime;
+    @Getter @Setter private static List<String> EventIds;
 
 
     public static void reset(){
@@ -99,6 +103,8 @@ public class SharedData {
         dentalPolicyTablesEntities = null;
         ob834DetailsMedEntities = null;
         ob834DetailsDenEntities = null;
+        dvrDateTime = null;
+        EventIds = null;
     }
 
 }
