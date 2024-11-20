@@ -105,16 +105,43 @@ public class sftpStepDefinitions {
        // ib999FileValidations.validateIb999FileData(type);
     }
 
-    @And("I download the {string} file from sftp server with location {string}")
+    @And("I download the {string} ib999 file from sftp server with location {string}")
     public void downloadIb999Files(String fileType, String inbound999RemotePath) {
-        switch (fileType) {
-            case "medical":
-                sftpUtil.downloadFileWithSftp(inbound999RemotePath, SharedData.getMedicalIb999FileName());
-                break;
-            case "dental":
-                sftpUtil.downloadFileWithSftp(inbound999RemotePath, SharedData.getDentalIb999FileName());
-                break;
-            default: Assert.fail("Invalid argument::"+ fileType);
+        String fileName;
+        try {
+            switch (fileType) {
+                case "medical":
+                    fileName = SharedData.getMedicalIb999FileName();
+                    break;
+                case "dental":
+                    fileName = SharedData.getDentalIb999FileName();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid argument: " + fileType);
+            }
+            sftpUtil.downloadFileWithSftp(inbound999RemotePath, fileName);
+        } catch (Exception e) {
+            Assert.fail("Failed to download IB999 file for fileType: " + fileType + ", error: " + e.getMessage());
+        }
+    }
+
+    @And("I download the {string} ob999 file from sftp server with location {string}")
+    public void downloadOb999Files(String fileType, String remotePath) {
+        String fileName;
+        try {
+            switch (fileType) {
+                case "medical":
+                    fileName = SharedData.getMedicalOb999FileName();
+                    break;
+                case "dental":
+                    fileName = SharedData.getDentalOb999FileName();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid argument: " + fileType);
+            }
+            sftpUtil.downloadFileWithSftp(remotePath, fileName);
+        } catch (Exception e) {
+            Assert.fail("Failed to download IB999 file for fileType: " + fileType + ", error: " + e.getMessage());
         }
     }
 
