@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.edi.ediUtil;
 
-import com.c4hco.test.automation.Dto.Edi.Ib999Segments;
+import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -14,9 +14,9 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 
-public class Edi999Util {
+public class Ob999Util {
 
-    public void parseEdi999(InputStream inputStream) {
+    public void parseOb999(InputStream inputStream) {
         try {
             EDIInputFactory factory = EDIInputFactory.newFactory();
             EDIStreamReader reader = factory.createEDIStreamReader(inputStream);
@@ -47,42 +47,42 @@ public class Edi999Util {
                 }
             }
             String jsonCommonSegmentString = objectMapper.writeValueAsString(segmentData.asMap());
-            System.out.println("jsonSegmentString Edi999::"+jsonCommonSegmentString);
-            JSONObject ib999SegJsonObj = new JSONObject(jsonCommonSegmentString);
-            setIb999Segments(ib999SegJsonObj);
+            System.out.println("jsonSegmentString Ob999::"+jsonCommonSegmentString);
+            JSONObject ob999SegJsonObj = new JSONObject(jsonCommonSegmentString);
+            setOb999Segments(ob999SegJsonObj);
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    public void setIb999Segments(JSONObject ib999SegJsonObj){
-        Ib999Segments ib999Segments = new Ib999Segments();
+    public void setOb999Segments(JSONObject ob999SegJsonObj){
+        Edi999Segments ob999Segments = new Edi999Segments();
 
-        JSONArray isaSeg = ib999SegJsonObj.getJSONArray("ISA");
-        JSONArray ieaSeg = ib999SegJsonObj.getJSONArray("IEA");
-        JSONArray gsSegment = ib999SegJsonObj.getJSONArray("GS");
-        JSONArray geSeg = ib999SegJsonObj.getJSONArray("GE");
-        JSONArray stSeg = ib999SegJsonObj.getJSONArray("ST");
-        JSONArray seSeg = ib999SegJsonObj.getJSONArray("SE");
-        JSONArray ak1Seg = ib999SegJsonObj.getJSONArray("AK1");
-        JSONArray ak2Seg = ib999SegJsonObj.getJSONArray("AK2");
-        JSONArray ak9Seg = ib999SegJsonObj.getJSONArray("AK9");
-        JSONArray ik5Seg = ib999SegJsonObj.getJSONArray("IK5");
+        JSONArray isaSeg = ob999SegJsonObj.getJSONArray("ISA");
+        JSONArray ieaSeg = ob999SegJsonObj.getJSONArray("IEA");
+        JSONArray gsSegment = ob999SegJsonObj.getJSONArray("GS");
+        JSONArray geSeg = ob999SegJsonObj.getJSONArray("GE");
+        JSONArray stSeg = ob999SegJsonObj.getJSONArray("ST");
+        JSONArray seSeg = ob999SegJsonObj.getJSONArray("SE");
+        JSONArray ak1Seg = ob999SegJsonObj.getJSONArray("AK1");
+        JSONArray ak2Seg = ob999SegJsonObj.getJSONArray("AK2");
+        JSONArray ak9Seg = ob999SegJsonObj.getJSONArray("AK9");
+        JSONArray ik5Seg = ob999SegJsonObj.getJSONArray("IK5");
 
         JSONArray isaSegment = (JSONArray) isaSeg.get(0);
         JSONArray ieaSegment = (JSONArray) ieaSeg.get(0);
 
-        ib999Segments.setISA(isaSegment);
-        ib999Segments.setIEA(ieaSegment);
-        ib999Segments.setGS(gsSegment);
-        ib999Segments.setGE(geSeg);
-        ib999Segments.setST(stSeg);
-        ib999Segments.setSE(seSeg);
-        ib999Segments.setAK1(ak1Seg);
-        ib999Segments.setAK2(ak2Seg);
-        ib999Segments.setAK9(ak9Seg);
-        ib999Segments.setIK5(ik5Seg);
+        ob999Segments.setISA(isaSegment);
+        ob999Segments.setIEA(ieaSegment);
+        ob999Segments.setGS(gsSegment);
+        ob999Segments.setGE(geSeg);
+        ob999Segments.setST(stSeg);
+        ob999Segments.setSE(seSeg);
+        ob999Segments.setAK1(ak1Seg);
+        ob999Segments.setAK2(ak2Seg);
+        ob999Segments.setAK9(ak9Seg);
+        ob999Segments.setIK5(ik5Seg);
 
-        SharedData.setIb999Segments(ib999Segments);
+        SharedData.setOb999Segments(ob999Segments);
     }
 }

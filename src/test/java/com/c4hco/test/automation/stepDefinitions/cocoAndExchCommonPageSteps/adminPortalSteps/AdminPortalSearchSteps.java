@@ -120,6 +120,9 @@ public class AdminPortalSearchSteps {
     }
 
 
-
+    @Then("I verify account created successfully message displays")
+    public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
+        adminPortalSearchPage.accountCreatedMessage();
+    }
 }
 
