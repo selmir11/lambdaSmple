@@ -7,10 +7,7 @@ import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 import org.testng.Assert;
 
 import java.io.File;
@@ -78,14 +75,16 @@ public class SftpUtil {
             channelSftp.connect();
             try {
                 channelSftp.get(remoteFilePath + fileNameToDownload, localPath);
-            } catch (Exception e) {
+            } catch (Exception  e) {
                 e.printStackTrace();
+                throw new RuntimeException("SFTP operation failed ", e);
             } finally {
                 channelSftp.disconnect();
                 disconnectFromSftp();
             }
         } catch (Exception e){
             // fail
+
         }
     }
 
