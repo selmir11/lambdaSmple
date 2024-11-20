@@ -1,8 +1,6 @@
 package com.c4hco.test.automation.database.dbHandler;
 
-import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.BasicActions;
 
@@ -69,7 +67,7 @@ public class Ib999Handler {
                 basicActions.wait(10000);
                 dbDataList = getIb999Details(query);
                 iterationCount++;
-                if(iterationCount>35){
+                if(iterationCount>40){
                     System.out.println("Iteration count is greater than 35. ");
                     break;
                 }
