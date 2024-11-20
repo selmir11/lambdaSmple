@@ -204,7 +204,7 @@ public class NoticesPage {
     }
 
     public String getMfaCode() {
-        basicActions.waitForElementToBePresent(mfaCode, 20);
+        basicActions.waitForElementToBePresentWithRetries(mfaCode, 20);
         MFACode = mfaCode.getText();
         return MFACode;
 
