@@ -190,9 +190,17 @@ public class SftpUtil {
     }
 
     public void readOb999File(String filename){
+
+
+
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
         try{
             File file = new File(sftpFolderPath+"\\"+filename);
+            // Check if file exists and is not a directory before trying to open it
+            if (!file.exists() || !file.isFile()) {
+                System.err.println("File not found in the resource folder.");
+                Assert.fail("!!EDI File looking for is not found!!"+filename);
+            }
             InputStream inputStream = new FileInputStream(file);
 
             if (inputStream != null) {
