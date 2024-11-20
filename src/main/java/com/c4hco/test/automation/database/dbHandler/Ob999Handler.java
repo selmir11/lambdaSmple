@@ -64,7 +64,7 @@ public class Ob999Handler {
         int iterationCount = 0;
         try {
             do {
-                basicActions.wait(10000);
+                basicActions.wait(4000);
                 dbDataList = getOb999Details(query);
                 iterationCount++;
                 if(iterationCount>35){

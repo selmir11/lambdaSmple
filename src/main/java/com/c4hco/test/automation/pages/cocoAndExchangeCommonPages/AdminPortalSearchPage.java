@@ -144,6 +144,10 @@ public class AdminPortalSearchPage {
     @FindBy(xpath = "//div[@class='invalid-form']")
     WebElement searchCriteriaError;
 
+    @FindBy(xpath = "//app-search-container/form/div[3]/div/p")
+    WebElement statusMessage;
+
+
     public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
@@ -513,6 +517,7 @@ public class AdminPortalSearchPage {
             default:
                 throw new IllegalStateException("Unexpected value: " + category);
         }
+
     }
         public void verifyPMAccountTitledetails() {
             basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
@@ -542,4 +547,10 @@ public class AdminPortalSearchPage {
     }
 
 
+        public void accountCreatedMessage(){
+        basicActions.waitForElementToBePresent(statusMessage, 30);
+        softAssert.assertEquals(statusMessage.getText(),"Account created successfully. Please search for the account.");
+        softAssert.assertAll();
+        }
+}
 

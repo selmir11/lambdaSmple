@@ -121,7 +121,6 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.logoutFromAdminPortalParentPage();
     }
 
-
     @Then("I verify error for required at least one search criteria on admin portal search page")
     public void iVerifyErrorForRequiredAtLeastOneSearchCriteriaOnAdminPortalSearchPage() {
         adminPortalSearchPage.requiredSearchCriteria();
@@ -160,6 +159,9 @@ public class AdminPortalSearchSteps {
     public void iVerifyDataInFieldOnAdminPortalSearchPageInQAOrSTG(String fieldName, String qaValue, String stgValue) {
         adminPortalSearchPage.verifyDatainField(fieldName, qaValue, stgValue);
 
+    @Then("I verify account created successfully message displays")
+    public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
+        adminPortalSearchPage.accountCreatedMessage();
     }
 }
 
