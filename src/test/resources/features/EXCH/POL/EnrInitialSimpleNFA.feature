@@ -152,7 +152,7 @@ Feature: Simple NFA - Single Applicant
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
 
     And I validate the ib834 "medical" file data
-#    And I validate the ib834 "dental" file data
+    And I validate the ib834 "dental" file data
 
     # SLER-1295
     #Scenario: Validate ob999 database and files
@@ -161,6 +161,6 @@ Feature: Simple NFA - Single Applicant
 
     And I download the "medical" ob999 file from sftp server with location "/outbound999/"
     And I download the "dental" ob999 file from sftp server with location "/outbound999/"
-
+    
     And I validate the ob999 "medical" file data
     And I validate the ob999 "dental" file data

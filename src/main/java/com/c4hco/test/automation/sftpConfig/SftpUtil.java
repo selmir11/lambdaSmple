@@ -2,6 +2,8 @@
 package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.edi.ediUtil.Ib834Util;
+import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ib999Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob999Util;
@@ -20,6 +22,7 @@ import java.util.Date;
 public class SftpUtil {
     private Session session;
     Ob834Util edi834Util = new Ob834Util();
+    Ib834Util ib834Util = new Ib834Util();
     Ib999Util ib999Util = new Ib999Util();
     Ob999Util ob999Util = new Ob999Util();
     BasicActions basicActions = new BasicActions();
@@ -204,6 +207,24 @@ public class SftpUtil {
                 ob999Util.parseOb999(inputStream);
             } else {
                 System.err.println("File not found in the resource folder.");
+            }
+            inputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void readIb834EdiFile(String filename){
+        String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
+        try{
+            File file = new File(sftpFolderPath+"\\"+filename);
+            InputStream inputStream = new FileInputStream(file);
+
+            if (inputStream != null) {
+                System.out.println("Ib834 EDI File Found on SFTP Server");
+                ib834Util.parseIb834File(inputStream);
+            } else {
+                System.err.println("Ib834 File not found in the resource folder.");
             }
             inputStream.close();
         }catch (Exception e){

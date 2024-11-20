@@ -273,7 +273,7 @@ Feature: Premium is not $0 when 4+ children
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
