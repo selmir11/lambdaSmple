@@ -31,7 +31,7 @@ Feature: Admin Portal Renewals container
     Then I verify Primary account holder and account number displays
     And I verify container "Renewals" and "Plan Year 2025" is displayed
     Then I verify Renewal status label and data "Renewal Status: PENDING" is displayed
-    And I validate "Medical" "Auto-Renewal Plan:" as "Cigna Connect Flex Silver 6000"
+    And I validate only "Auto-Renewal Plan:" as "Cigna Connect Flex Silver 6000" or "Elevate Health Plans Colorado Option Bronze"
     And I verify container "Renewals" and "Plan Year 2025" is displayed
     Then I logout from Admin Portal
 
@@ -48,7 +48,7 @@ Feature: Admin Portal Renewals container
     Then I verify Primary account holder and account number displays
     And I verify container "Renewals" and "Plan Year 2025" is displayed
     Then I verify Renewal status is displayed
-    And I validate Dental plan only "Auto-Renewal Plan:"
+    And I validate Dental plan only "Auto-Renewal Plan:" as "Cigna Dental Pediatric" or "Delta Dental of Colorado Pediatric Enhanced Plan"
     And I click Go Back on admin portal broker dashboard
     Then I click on Reset button in AP dashboard page
     And I validate I am on the "Admin Portal search" page

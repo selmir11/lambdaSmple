@@ -374,22 +374,22 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(renewalsStatus, 10);
         softAssert.assertTrue(renewalsStatus.isDisplayed());
         softAssert.assertAll();    }
-    public void validateMedicalOnlyPlan(String medicalCoverage) {
+    public void validateMedicalOnlyPlan(String medicalCoverage, String medicalCoverageStg, String medicalCoverageQa) {
         basicActions.waitForElementToBePresent(renewalMedCoverage, 10);
         softAssert.assertEquals(renewalMedCoverage.getText(), medicalCoverage);
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(coverageMedPlan.getText(), "Elevate Health Plans Colorado Option Bronze");
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(coverageMedPlan.getText(), medicalCoverageStg);
         }else{
-            softAssert.assertEquals(coverageMedPlan.getText(), "Cigna Connect Flex Silver 6000");
+            softAssert.assertEquals(coverageMedPlan.getText(), medicalCoverageQa);
         }
         softAssert.assertAll();    }
-    public void validateDentalOnlyPlans(String dentalCoverage) {
+    public void validateDentalOnlyPlans(String dentalCoverage, String dentalCoverageStg, String dentalCoverageQa) {
         basicActions.waitForElementToBePresent(renewalDental, 10);
         softAssert.assertEquals(renewalDentalCoverage.getText(), dentalCoverage);
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(coverageDentalPlan.getText(), "Delta Dental of Colorado Pediatric Enhanced Plan");
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(coverageDentalPlan.getText(), dentalCoverageStg);
         }else {
-            softAssert.assertEquals(coverageDentalPlan.getText(), "Cigna Dental Pediatric");
+            softAssert.assertEquals(coverageDentalPlan.getText(), dentalCoverageQa);
         }
         softAssert.assertAll(); }
     public void verifyMessageNoRenewal() {

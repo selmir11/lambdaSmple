@@ -99,13 +99,13 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify Renewal status is displayed")
     public void iVerifyStatusIsDisplayed() {
         adminPortalIndividualDashboardPage.verifyStatusIsDisplayed();        }
-    @And("I validate Medical {string}")
-    public void iValidateMedicalOnlyPlan(String medicalCoverage) {
-        adminPortalIndividualDashboardPage.validateMedicalOnlyPlan(medicalCoverage);
+    @And("I validate only {string} as {string} or {string}")
+    public void iValidateMedicalOnlyPlan(String medicalCoverage, String medicalCoverageStg, String medicalCoverageQa) {
+        adminPortalIndividualDashboardPage.validateMedicalOnlyPlan(medicalCoverage, medicalCoverageStg, medicalCoverageQa);
     }
-    @And("I validate Dental plan only {string}")
-    public void iValidateDentalOnlyPlans(String dentalCoverage) {
-        adminPortalIndividualDashboardPage.validateDentalOnlyPlans(dentalCoverage);
+    @And("I validate Dental plan only {string} as {string} or {string}")
+    public void iValidateDentalOnlyPlans(String dentalCoverage, String dentalCoverageStg, String dentalCoverageQa) {
+        adminPortalIndividualDashboardPage.validateDentalOnlyPlans(dentalCoverage, dentalCoverageStg, dentalCoverageQa);
     }
     @And("I verify No Renewal message displays")
     public void iVerifyNoRenewalMessage() {
