@@ -84,7 +84,7 @@ public class SftpUtil {
             }
         } catch (Exception e){
             // fail
-
+            throw new RuntimeException("SFTP operation failed ", e);
         }
     }
 
