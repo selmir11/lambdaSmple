@@ -48,10 +48,10 @@ public class Ib834DbValidations {
         setIb834Data();
         switch (recordType) {
             case "medical":
-                ib834MedRecordsValidations(ib834MedEntities.get(0), expectedValues);
+                ib834MedRecordsValidations(expectedValues);
                 break;
             case "dental":
-                ib834DenRecordsValidations(ib834DenEntities.get(0), expectedValues);
+                ib834DenRecordsValidations(expectedValues);
                 break;
             default:
                 Assert.fail("Record Type entered is not valid");
@@ -59,24 +59,24 @@ public class Ib834DbValidations {
         softAssert.assertAll();
     }
 
-    private void ib834MedRecordsValidations(Ib834Entity ib834MedEntity, List<Map<String, String>> expectedValues) {
+    private void ib834MedRecordsValidations(List<Map<String, String>> expectedValues) {
         for (Ib834Entity ib834Entity : ib834MedEntities) {
             if (ib834Entity.getSubscriber_indicator().equals("Y")) {
-                subscriberOnlyMedDenFields(ib834MedEntity);
-                validateMedDenForSubscriberAndMem(ib834MedEntity, subscriber);
+                subscriberOnlyMedDenFields(ib834Entity);
+                validateMedDenForSubscriberAndMem(ib834Entity, subscriber);
             } else {
-                   validateDependentMedDenDetails(ib834MedEntity);
+                   validateDependentMedDenDetails(ib834Entity);
             }
-            medDenValidationsCommonForAllMem(ib834MedEntity);
-            medValidationsCommonForAllMembers(ib834MedEntity, expectedValues);
+            medDenValidationsCommonForAllMem(ib834Entity);
+            medValidationsCommonForAllMembers(ib834Entity, expectedValues);
         }
         softAssert.assertAll();
     }
 
-    //Dental
-    private void ib834DenRecordsValidations(Ib834Entity ib834DenEntity, List<Map<String, String>> expectedValues){
-        for (Ib834Entity DenEntity : ib834DenEntities) {
-            if (DenEntity.getSubscriber_indicator().equals("Y")) {
+    private void ib834DenRecordsValidations(List<Map<String, String>> expectedValues){
+        for (Ib834Entity ib834DenEntity : ib834DenEntities) {
+            if (ib834DenEntity.getSubscriber_indicator().equals("Y")) {
+                subscriberOnlyMedDenFields(ib834DenEntity);
                 validateMedDenForSubscriberAndMem(ib834DenEntity, subscriber);
             } else {
                 validateDependentMedDenDetails(ib834DenEntity);
@@ -93,6 +93,10 @@ public class Ib834DbValidations {
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ib834MedEntity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ib834MedEntity.getSubscriber_id(), ib834MedEntity.getMember_id(), "Subscriber_id and Member_id in ib834 entity does not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), "Y", "Subscriber indicator did not match for "+subscriber.getFirstName());
+        softAssert.assertEquals(subscriber.getEmailId(), ib834MedEntity.getPrimary_email(), "primary email did not match");
+        softAssert.assertEquals(subscriber.getPhoneNumber(), ib834MedEntity.getPrimary_phone(), "primary phone did not match");
+        softAssert.assertEquals(subscriber.getSpokenLanguage(), ib834MedEntity.getSpoken_language(), "spoken language did not match");
+        softAssert.assertEquals(subscriber.getWrittenLanguage(), ib834MedEntity.getWritten_language(), "written language did not match");
         validateResidentialAddress(ib834MedEntity);
         validateMailingAddress(ib834MedEntity);
     }
@@ -188,10 +192,7 @@ public class Ib834DbValidations {
         validateBrokerDetails(ib834MedEntity);
         validateResponsiblePersonDetails(ib834MedEntity);
         validateSponsorId(ib834MedEntity);
-        softAssert.assertEquals(subscriber.getEmailId(), ib834MedEntity.getPrimary_email(), "primary email did not match");
-        softAssert.assertEquals(subscriber.getPhoneNumber(), ib834MedEntity.getPrimary_phone(), "primary phone did not match");
-        softAssert.assertEquals(subscriber.getSpokenLanguage(), ib834MedEntity.getSpoken_language(), "spoken language did not match");
-        softAssert.assertEquals(subscriber.getWrittenLanguage(), ib834MedEntity.getWritten_language(), "written language did not match");
+
         softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalMembers()), ib834MedEntity.getTotal_enrollees(), "Total members mismatch");
         softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ib834MedEntity.getTotal_subscribers(), "total subscribers did not match");
         softAssert.assertEquals(Integer.parseInt(SharedData.getScenarioDetails().getEnrollees().trim()), Integer.parseInt(ib834MedEntity.getTotal_enrollees().trim()), "Total enrollees does not match");
