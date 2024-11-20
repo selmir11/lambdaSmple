@@ -144,13 +144,13 @@ public class sftpStepDefinitions {
             case "medical":
                 String medIb834FileName = SharedData.getMedicalIb834FileName();
                 System.out.println("***Validating Medical EDI File::"+medIb834FileName+"***");
-                sftpUtil.readEdiFile(medIb834FileName);
+                sftpUtil.readIb834EdiFile(medIb834FileName);
                 ib834FileValidations.validateIb834MedFile();
                 break;
             case "dental":
                 String denIb834FileName = SharedData.getDentalIb834FileName();
                 System.out.println("***Validating Dental EDI File::"+denIb834FileName+"***");
-                sftpUtil.readEdiFile(denIb834FileName);
+                sftpUtil.readIb834EdiFile(denIb834FileName);
                // ib834FileValidations.validateIb834DenFile();
                 break;
             default:
