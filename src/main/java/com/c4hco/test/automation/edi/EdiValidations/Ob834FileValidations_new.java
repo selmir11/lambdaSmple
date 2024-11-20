@@ -1,9 +1,9 @@
 package com.c4hco.test.automation.edi.EdiValidations;
 
-import com.c4hco.test.automation.Dto.Edi.CommonEDISegments;
-import com.c4hco.test.automation.Dto.Edi.Edi834TransactionDetails;
-import com.c4hco.test.automation.Dto.Edi.Member;
-import com.c4hco.test.automation.Dto.Edi.Transaction;
+import com.c4hco.test.automation.Dto.Edi.Edi834.CommonEDISegments;
+import com.c4hco.test.automation.Dto.Edi.Edi834.Edi834TransactionDetails;
+import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
+import com.c4hco.test.automation.Dto.Edi.Edi834.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.json.JSONArray;

@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.edi.EdiValidations;
 
-import com.c4hco.test.automation.Dto.Edi.Ib999Segments;
+import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
 import org.json.JSONArray;
@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 public class Ib999FileValidations {
-    Ib999Segments ib999MedSegment= new Ib999Segments();
+    Edi999Segments ib999MedSegment= new Edi999Segments();
     Ib999Entity ib999MedEntity = new Ib999Entity();
     Ib999Entity ib999DenEntity = new Ib999Entity();
     SoftAssert softAssert = new SoftAssert();

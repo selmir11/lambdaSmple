@@ -2,24 +2,29 @@
 package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.edi.ediUtil.Ib834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ib999Util;
+import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
+import com.c4hco.test.automation.edi.ediUtil.Ob999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 import org.testng.Assert;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SftpUtil {
     private Session session;
     Ob834Util edi834Util = new Ob834Util();
-    Ib999Util edi999Util = new Ib999Util();
+    Ib834Util ib834Util = new Ib834Util();
+    Ib999Util ib999Util = new Ib999Util();
+    Ob999Util ob999Util = new Ob999Util();
     BasicActions basicActions = new BasicActions();
 
     public SftpUtil(){
@@ -73,14 +78,16 @@ public class SftpUtil {
             channelSftp.connect();
             try {
                 channelSftp.get(remoteFilePath + fileNameToDownload, localPath);
-            } catch (Exception e) {
+            } catch (Exception  e) {
                 e.printStackTrace();
+                throw new RuntimeException("SFTP operation failed ", e);
             } finally {
                 channelSftp.disconnect();
                 disconnectFromSftp();
             }
         } catch (Exception e){
             // fail
+            throw new RuntimeException("SFTP operation failed ", e);
         }
     }
 
@@ -163,9 +170,7 @@ public class SftpUtil {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
-
 
     public void readIb999File(String filename){
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
@@ -175,7 +180,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("EDI File Found on SFTP Server");
-                edi999Util.parseIb999(inputStream);
+                ib999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File not found in the resource folder.");
             }
@@ -187,16 +192,42 @@ public class SftpUtil {
     }
 
     public void readOb999File(String filename){
+
+
+
+        String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
+        try{
+            File file = new File(sftpFolderPath+"\\"+filename);
+            // Check if file exists and is not a directory before trying to open it
+            if (!file.exists() || !file.isFile()) {
+                System.err.println("File not found in the resource folder.");
+                Assert.fail("!!EDI File looking for is not found!!"+filename);
+            }
+            InputStream inputStream = new FileInputStream(file);
+
+            if (inputStream != null) {
+                System.out.println("EDI File Found on SFTP Server");
+                ob999Util.parseOb999(inputStream);
+            } else {
+                System.err.println("File not found in the resource folder.");
+            }
+            inputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void readIb834EdiFile(String filename){
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
         try{
             File file = new File(sftpFolderPath+"\\"+filename);
             InputStream inputStream = new FileInputStream(file);
 
             if (inputStream != null) {
-                System.out.println("EDI File Found on SFTP Server");
-                edi999Util.parseIb999(inputStream);
+                System.out.println("Ib834 EDI File Found on SFTP Server");
+                ib834Util.parseIb834File(inputStream);
             } else {
-                System.err.println("File not found in the resource folder.");
+                System.err.println("Ib834 File not found in the resource folder.");
             }
             inputStream.close();
         }catch (Exception e){
@@ -229,7 +260,7 @@ public class SftpUtil {
 
             if (inputStream != null) {
                 System.out.println("File found");
-                edi999Util.parseIb999(inputStream);
+                ib999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File 'edi_999' not found in the resource folder.");
             }

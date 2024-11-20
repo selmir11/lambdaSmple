@@ -9,7 +9,7 @@ Feature: Verify Navigation to the ELIG Pages
   Scenario: SLER-975 PersonID Multiple Matches with the same Person ID-PersonID
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter first name "bccstpeyk" last name "bcmcgssoqj" and general mandatory data for "exchange" account creation
+    And I enter first name "bccstpeyk", middle name "mname", last name "bcmcgssoqj" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year

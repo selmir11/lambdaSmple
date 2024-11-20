@@ -206,8 +206,8 @@ public class CreateAccountPage {
         selectBasedOnApp(appType);
     }
 
-    public void createSpecificAccount(String fName, String lName, String appType){
-        addSpecificDetails(fName, lName);
+    public void createSpecificAccount(String fName, String mName, String lName, String appType){
+        addSpecificDetails(fName, mName, lName);
         selectBasedOnApp(appType);
     }
 
@@ -275,10 +275,11 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void initializeSpecificData(String fName, String lName){
+    public void initializeSpecificData(String fName, String mName, String lName){
         MemberDetails subscriber = new MemberDetails();
         List<MemberDetails> allMembersList = new ArrayList<>();
         subscriber.setFirstName(fName);
+        subscriber.setMiddleName(mName);
         subscriber.setLastName(lName);
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+basicActions.getUniqueString(6)+"@test.com");
         subscriber.setPhoneNumber((String) generatePhoneNumber());
@@ -339,11 +340,12 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void addSpecificDetails(String fName, String lName){
-        initializeSpecificData(fName, lName);
+    public void addSpecificDetails(String fName, String mName, String lName){
+        initializeSpecificData(fName, mName, lName);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
         firstName.sendKeys(subscriber.getFirstName());
+        middleName.sendKeys(subscriber.getMiddleName());
         lastName.sendKeys(subscriber.getLastName());
         email.sendKeys(subscriber.getEmailId());
         phoneNumber.sendKeys(subscriber.getPhoneNumber());

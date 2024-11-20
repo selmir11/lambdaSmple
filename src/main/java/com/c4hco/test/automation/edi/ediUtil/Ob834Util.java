@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.edi.ediUtil;
 
-import com.c4hco.test.automation.Dto.Edi.*;
+import com.c4hco.test.automation.Dto.Edi.Edi834.*;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
