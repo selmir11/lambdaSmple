@@ -284,45 +284,22 @@ public class PlanSummaryMedicalDentalPage {
         }
     }
 
-    private void setDentalPlansPremiumAmt(){
+    private void setDentalPlansPremiumAmt() {
         basicActions.waitForElementToDisappear(spinner, 20);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
         List<MemberDetails> memberslist = basicActions.getAllMem();
-        Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
-        basicActions.waitForElementToDisappear(spinner, 15);
-        basicActions.wait(3000);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
+        for (MemberDetails member : memberslist) {
+            //getting group details
+            int groupLocatorIndex = Integer.parseInt(member.getMedGroupInd()) - 1;
 
-        if(medicalAPTCAmt.isEmpty()){//NFA
-            basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
-            for(MemberDetails member: memberslist){
-                //getting group details
-                int groupLocatorIndex = Integer.parseInt(member.getMedGroupInd())-1;
-
-                //Dental Plan Premium details
-                WebElement dentalPremiumAfterAPTCAmntEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_"+groupLocatorIndex+""));
-                WebElement dentalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_"+groupLocatorIndex+""));
-                member.setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmntEle.getText().replace("$", ""));
-                member.setDentalAptcAmt("0.00");
-                member.setDentalPremiumAmt(member.getTotalDentalPremAfterReduction());
-                member.setDentalPlan(dentalPlanNameEle.getText());
-            }
-        }
-        else {
-            //FA
-            basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
-            for(MemberDetails member: memberslist){
-                //getting group details
-                int groupLocatorIndex = Integer.parseInt(member.getMedGroupInd())-1;
-
-                //Dental Plan Premium details
-                WebElement dentalPremiumAfterAPTCAmntEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_"+groupLocatorIndex+""));
-                WebElement dentalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_"+groupLocatorIndex+""));
-                member.setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmntEle.getText().replace("$", ""));
-                member.setDentalAptcAmt("0.00");
-                member.setDentalPremiumAmt(member.getTotalDentalPremAfterReduction());
-                member.setDentalPlan(dentalPlanNameEle.getText());
-            }
+            //Dental Plan Premium details
+            WebElement dentalPremiumAfterAPTCAmntEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_" + groupLocatorIndex + ""));
+            WebElement dentalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_" + groupLocatorIndex + ""));
+            member.setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmntEle.getText().replace("$", ""));
+            member.setDentalAptcAmt("0.00");
+            member.setDentalPremiumAmt(member.getTotalDentalPremAfterReduction());
+            member.setDentalPlan(dentalPlanNameEle.getText());
         }
     }
 

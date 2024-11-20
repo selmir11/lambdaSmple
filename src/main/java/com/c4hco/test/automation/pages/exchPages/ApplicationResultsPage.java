@@ -89,13 +89,7 @@ public class ApplicationResultsPage {
 
     public void clickBtnContinue(){
         basicActions.waitForElementToBePresent(continueBtn,10);
-        for (MemberDetails memName : basicActions.getAllMem()){
-            List<WebElement> eleeligibilityDetails = basicActions.getDriver().findElements(By.xpath("//span[contains(text(),'"+memName.getFirstName()+"')]/parent::div/following-sibling::table //tr"));
-            for(WebElement eleDetail : eleeligibilityDetails){
-                if(eleDetail.getText().contains("did not apply for health coverage")|| eleDetail.getText().contains("does not qualify for health coverage"))
-                memName.setEligibilityInfo(false);
-            }
-        }
+        setEligibilityInfo();
         continueBtn.click();
     }
 
@@ -222,5 +216,15 @@ public class ApplicationResultsPage {
         basicActions.waitForElementToBePresent(lnkProvideDocs,20);
         basicActions.scrollToElement(lnkProvideDocs);
         lnkProvideDocs.click();
+    }
+
+    private void setEligibilityInfo(){
+        for (MemberDetails memName : basicActions.getAllMem()){
+            List<WebElement> eleeligibilityDetails = basicActions.getDriver().findElements(By.xpath("//span[contains(text(),'"+memName.getFirstName()+"')]/parent::div/following-sibling::table //tr"));
+            for(WebElement eleDetail : eleeligibilityDetails){
+                if(eleDetail.getText().contains("did not apply for health coverage")|| eleDetail.getText().contains("does not qualify for health coverage"))
+                    memName.setEligibilityInfo(false);
+            }
+        }
     }
 }
