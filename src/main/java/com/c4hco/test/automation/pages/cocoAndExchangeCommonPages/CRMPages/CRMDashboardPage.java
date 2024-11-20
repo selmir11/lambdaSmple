@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CRMPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
@@ -7,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CRMDashboardPage {
 
@@ -42,6 +46,52 @@ public class CRMDashboardPage {
         basicActions.wait(3000);
         txtCRMDashSearchBox.sendKeys(Keys.RETURN);
 
+    }
+
+    public void searchByUserEmail(String stageEmail, String qaEmail){
+        basicActions.wait(10000);
+        basicActions.waitForElementToBePresentWithRetries(txtCRMDashSearchBox, 60);
+        if (SharedData.getEnv().equals("staging")){
+            txtCRMDashSearchBox.sendKeys(stageEmail);
+            initializeData(stageEmail);
+        }else{
+            txtCRMDashSearchBox.sendKeys(qaEmail);
+            initializeData(qaEmail);
+        }
+        basicActions.wait(3000);
+        txtCRMDashSearchBox.sendKeys(Keys.RETURN);
+    }
+
+    public void initializeData(String email){
+        String firstName = "";
+        String lastName = "";
+        String[] emailParts = email.split("@");
+        if (emailParts.length != 2 || !emailParts[1].equals("test.com")) {
+            System.out.println("Invalid email format");
+            return;
+        }
+        String[] nameParts = emailParts[0].split("\\.");
+        if (nameParts.length == 2) {
+            firstName = nameParts[0];
+            lastName = nameParts[1];
+        } else {
+            System.out.println("Invalid email format");
+            return;
+        }
+
+        MemberDetails subscriber = new MemberDetails();
+        List<MemberDetails> allMembersList = new ArrayList<>();
+        subscriber.setFirstName(firstName);
+        subscriber.setLastName(lastName);
+        subscriber.setEmailId(email);
+        subscriber.setPassword("ALaska12!");
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
+        allMembersList.add(subscriber);
+        SharedData.setAllMembers(allMembersList);
+        System.out.println("Name is "+SharedData.getPrimaryMember().getFirstName()+" "+ SharedData.getPrimaryMember().getLastName());
+        System.out.println("Email is "+SharedData.getPrimaryMember().getEmailId());
+        System.out.println("Password is "+SharedData.getPrimaryMember().getPassword());
     }
 
     public void clickGoBack(){

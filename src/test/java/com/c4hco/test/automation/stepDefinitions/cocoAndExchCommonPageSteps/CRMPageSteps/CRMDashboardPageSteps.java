@@ -10,6 +10,9 @@ public class CRMDashboardPageSteps {
     @Then("I search for user's Email")
     public void searchUserViaEmail(){crmDashboardPage.CRMDashboardSearchUserEmailandOpenFirst();}
 
+    @Then("I search for user by Email Staging {string} QA {string} in CRM")
+    public void iSearchByUserEmail(String stageEmail, String qaEmail){crmDashboardPage.searchByUserEmail(stageEmail, qaEmail);}
+
     @Then("I click the Go Back arrow in CRM")
     public void iClickGoBack(){crmDashboardPage.clickGoBack();}
 

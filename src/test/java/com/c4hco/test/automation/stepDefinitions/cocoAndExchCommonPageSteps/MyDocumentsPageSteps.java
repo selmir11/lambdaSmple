@@ -70,7 +70,12 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     }
 
     @And("I verify user can select each type from type dropdown")
-    public void iVerifyUserCanSelectEachTypeFromTypeDropdown() {myDocumentsPage.selectType();
-        }
+    public void iVerifyUserCanSelectEachTypeFromTypeDropdown() {myDocumentsPage.selectType();}
+
+    @Then("I upload MVR doc for {string} on the My Documents page")
+    public void iUploadMvrDoc(String mvrType) {myDocumentsPage.uploadMvrDoc(mvrType);}
+
+    @And("I verify {string} MRV needed on the My Documents page")
+    public void iVerifyMvrNeeded(String mvrType) {myDocumentsPage.verifyMvrNeeded(mvrType);}
 
     }

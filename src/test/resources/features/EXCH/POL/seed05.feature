@@ -1,6 +1,6 @@
 Feature: Seed05 - Exchange
 
-  Scenario: Seed 05 For Exchange- Family of Four - NFA
+  Background: Seed 05 For Exchange- Family of Four - NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 4            | 1                 | 3                |   4             |
@@ -105,7 +105,7 @@ Feature: Seed05 - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity for "Son"
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -165,13 +165,12 @@ Feature: Seed05 - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
+
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
     And I click View Plan History link from "medical" plan card
-
     And I validate "medical" plan details from plan history
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from "dental" plan card
@@ -195,3 +194,40 @@ Feature: Seed05 - Exchange
 
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
+
+  @SLER-1290-WIP
+  Scenario: RT-2530 ENR-EXCH: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - ADD BROKER
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Find a Broker
+    Then I Search authorized Broker "Mister Broker"
+    And I click on Search button in find certified broker page
+    And I click more details from the first broker result container
+    And I click Authorized broker
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
+
