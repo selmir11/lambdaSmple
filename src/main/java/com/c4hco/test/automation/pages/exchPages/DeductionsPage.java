@@ -59,6 +59,9 @@ public class DeductionsPage {
     @FindBy(css = ".col .form-select")
     List<WebElement> deductionsFrequency;
 
+    @FindBy(css = "lib-error-msg > div")
+    List<WebElement> hdrError;
+
     @FindBy(css = "lib-list-error .error-message")
     WebElement deductionsSelectError;
 
@@ -445,10 +448,12 @@ public class DeductionsPage {
         switch (language) {
             case "English":
                 softAssert.assertEquals(deductionsAmountError.get(0).getText(), "Amount is required");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(deductionsAmountError.get(0).getText(), "Esta cantidad es obligatoria");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -460,10 +465,12 @@ public class DeductionsPage {
         switch (language) {
             case "English":
                 softAssert.assertEquals(deductionsFrequencyError.get(0).getText(), "Please select one of the options below");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(deductionsFrequencyError.get(0).getText(), "Seleccione una de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(1).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:
@@ -499,11 +506,13 @@ public class DeductionsPage {
             case "English":
                 basicActions.waitForElementToBePresent(deductionsSelectError,20);
                 softAssert.assertEquals(deductionsSelectError.getText(), "Please select one or more of the options below");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 basicActions.waitForElementToBePresent(deductionsSelectError,20);
                 softAssert.assertEquals(deductionsSelectError.getText(), "Seleccione una o m\u00E1s de las siguientes opciones");
+                softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
                 break;
             default:

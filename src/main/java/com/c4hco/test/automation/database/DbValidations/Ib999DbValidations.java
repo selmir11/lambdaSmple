@@ -45,8 +45,8 @@ public class Ib999DbValidations {
         softAssert.assertEquals(groups, Integer.parseInt(medEntity.getAk9_number_of_accepted_ts()), "groups, ak9 number of accepted_ts mismatch");
         softAssert.assertEquals(SharedData.getMedGroupCtlNumber(), medEntity.getGroup_ctrl_number(), "Medical group control number mismatch");
         softAssert.assertAll();
-
     }
+
     public void ib999DenRecordsValidations(int groups, Ib999Entity denEntity){
         softAssert.assertEquals("A", denEntity.getAk9_funct_group_ack_code(), "Dental, total groups expected and actual mismatch" );
         softAssert.assertEquals(groups, Integer.parseInt(denEntity.getAk9_number_of_ts_included()), "groups, ak9 number of ts included mismatch");
