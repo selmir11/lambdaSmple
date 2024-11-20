@@ -147,13 +147,13 @@ public class AdminPortalIndividualDashboardPage {
     WebElement dpdCurrentYearMP;
     @FindBy(css = "#groupBox1 > app-plan-year-dropdown > div")
     List<WebElement> planYearSelectorOptions;
-    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[2]")
+    @FindBy(xpath = "//app-individual-renewals/div/div[2]")
     WebElement noRenewalReason;
-    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[3]")
+    @FindBy(xpath = "//app-individual-renewals/div/div[3]")
     WebElement cancelledReason;
-    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[2]")
+    @FindBy(xpath = "//app-individual-renewals/div/div[2]")
     WebElement renewalsMessage;
-    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[2]")
+    @FindBy(xpath = "//app-individual-renewals/div/div[2]")
     WebElement renewalCanceled;
 
     public void enterAgencyData(String agencyData, String type) {
