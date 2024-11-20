@@ -124,5 +124,9 @@ public class AdminPortalSearchSteps {
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
         adminPortalSearchPage.accountCreatedMessage();
     }
+    @Then("I click on Reset button in AP dashboard page")
+    public void iClickOnResetButtonInAPDashboardPage() {
+        adminPortalSearchPage.clickResetAdminPortal();
+    }
 }
 

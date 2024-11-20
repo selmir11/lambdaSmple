@@ -92,5 +92,43 @@ public class AdminPortalIndividualDashboardSteps {
     public void iSelectMedicalPlanYear(String planYear) {
         adminPortalIndividualDashboardPage.selectMedicalPlanYear(planYear);
     }
+    @And("I validate {string} {string} as {string}")
+    public void iValidateMedicalPlan(String renewalMedical, String medicalCoverage, String medPlanData) {
+        adminPortalIndividualDashboardPage.validateMedicalPlan(renewalMedical, medicalCoverage, medPlanData);
+    }
+    @Then("I verify Renewal status is displayed")
+    public void iVerifyStatusIsDisplayed() {
+        adminPortalIndividualDashboardPage.verifyStatusIsDisplayed();        }
+    @And("I validate Medical {string}")
+    public void iValidateMedicalOnlyPlan(String medicalCoverage) {
+        adminPortalIndividualDashboardPage.validateMedicalOnlyPlan(medicalCoverage);
+    }
+    @And("I validate Dental plan only {string}")
+    public void iValidateDentalOnlyPlans(String dentalCoverage) {
+        adminPortalIndividualDashboardPage.validateDentalOnlyPlans(dentalCoverage);
+    }
+    @And("I verify No Renewal message displays")
+    public void iVerifyNoRenewalMessage() {
+        adminPortalIndividualDashboardPage.verifyMessageNoRenewal();
+    }
+    @Then("I verify reason for no renewal as Renewal Action: System Exclusion: OVER_25_DEPENDENT")
+    public void iVerifyNoRenewalReason() {
+        adminPortalIndividualDashboardPage.verifyNoRenewalReasonDependant();
+    }
+    @Then("I verify reason for no renewal where Renewal Action: OVER_29_CATASTROPHIC")
+    public void iVerifyNoRenewalReasonOverAgeCatastrophic() {
+        adminPortalIndividualDashboardPage.verifyNoRenewalReasonCatastrophic();
+    }
+    @Then("I verify reason for no renewal where Renewal Action: CUSTOMER_OPT_OUT")
+    public void iVerifyNoRenewalReasonCustomerOptPut() {
+        adminPortalIndividualDashboardPage.verifyNoRenewalReasonCustomerOptPut();
+    }
+    @Then("I verify reason for no renewal where Renewal Action: SYSTEM_CANCEL_DUE_TO_TERM")
+    public void iVerifyNoRenewalReasonSystemCancel() {
+        adminPortalIndividualDashboardPage.verifyNoRenewalReasonSystemCancel();
+    }
+    @Then("I verify Renewal status {string} is displayed")
+    public void iVerifyCanceledStatusIsDisplayed(String containerStatus) {
+        adminPortalIndividualDashboardPage.verifyStatusCanceledIsDisplayed(containerStatus);        }
 }
 

@@ -78,7 +78,7 @@ public class AdminPortalSearchPage {
     @FindBy(xpath = "//span[@class='tollbar-app-links']//span")
     public WebElement ApplicationLinksdropdown;
 
-    @FindBy(id = "logout-link")
+    @FindBy(css = "#logout-link")
     WebElement logoutAdmin;
 
     @FindBy(css = ".col.text-lg-right.p-0")
@@ -335,4 +335,8 @@ public class AdminPortalSearchPage {
         softAssert.assertEquals(statusMessage.getText(),"Account created successfully. Please search for the account.");
         softAssert.assertAll();
         }
+    public void clickResetAdminPortal () {
+        basicActions.waitForElementListToBePresent(buttonsList, 10);
+        buttonsList.get(1).click();
+    }
 }

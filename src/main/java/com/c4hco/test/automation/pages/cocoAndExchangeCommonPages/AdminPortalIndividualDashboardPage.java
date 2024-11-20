@@ -143,13 +143,18 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalDentalCoverage;
     @FindBy(css = "#dentalData > div > span.body-text-1")
     WebElement coverageDentalPlan;
-    @FindBy(css = "#groupBox1 > app-plan-year-dropdown > div > app-drop-down-select > div > div.drop-down-option.drop-down-option-selected")
-    WebElement planYearDpd;
     @FindBy(css = ".drop-down-option.drop-down-option-selected")
     WebElement dpdCurrentYearMP;
     @FindBy(css = "#groupBox1 > app-plan-year-dropdown > div")
     List<WebElement> planYearSelectorOptions;
-
+    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[2]")
+    WebElement noRenewalReason;
+    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[3]")
+    WebElement cancelledReason;
+    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[2]")
+    WebElement renewalsMessage;
+    @FindBy(xpath = "/html/body/app-root/div/div/app-individual-dashboard/div/div[3]/div[1]/div[1]/div[2]/app-individual-renewals/div/div[2]")
+    WebElement renewalCanceled;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -340,8 +345,8 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(goBack,20);
         goBack.click(); }
     public void verifyStatusIsDisplayed(String containerStatus) {
-        basicActions.waitForElementToBePresent(renewalsStatus, 10);
-        softAssert.assertEquals(renewalsStatus.getText(), containerStatus);
+        basicActions.waitForElementToBePresent(renewalCanceled, 10);
+        softAssert.assertEquals(renewalCanceled.getText(), containerStatus);
         softAssert.assertAll();    }
     public void validateMedicalAndDentalPlans(String renewalMedical, String medicalCoverage, String medPlanData, String renewalDent, String dentalCoverage, String dentPlanData) {
         basicActions.waitForElementToBePresent(renewalMed, 10);
@@ -358,5 +363,63 @@ public class AdminPortalIndividualDashboardPage {
         dpdCurrentYearMP.click();
         basicActions.selectValueFromDropdown(dpdCurrentYearMP, planYearSelectorOptions, planYear);
     }
+    public void validateMedicalPlan(String renewalMedical, String medicalCoverage, String medPlanData) {
+        basicActions.waitForElementToBePresent(renewalMed, 10);
+        softAssert.assertEquals(renewalMed.getText(), renewalMedical);
+        softAssert.assertEquals(renewalMedCoverage.getText(), medicalCoverage);
+        softAssert.assertEquals(coverageMedPlan.getText(), medPlanData);
+        softAssert.assertAll();
+    }
+    public void verifyStatusIsDisplayed() {
+        basicActions.waitForElementToBePresent(renewalsStatus, 10);
+        softAssert.assertTrue(renewalsStatus.isDisplayed());
+        softAssert.assertAll();    }
+    public void validateMedicalOnlyPlan(String medicalCoverage) {
+        basicActions.waitForElementToBePresent(renewalMedCoverage, 10);
+        softAssert.assertEquals(renewalMedCoverage.getText(), medicalCoverage);
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(coverageMedPlan.getText(), "Elevate Health Plans Colorado Option Bronze");
+        }else{
+            softAssert.assertEquals(coverageMedPlan.getText(), "Cigna Connect Flex Silver 6000");
+        }
+        softAssert.assertAll();    }
+    public void validateDentalOnlyPlans(String dentalCoverage) {
+        basicActions.waitForElementToBePresent(renewalDental, 10);
+        softAssert.assertEquals(renewalDentalCoverage.getText(), dentalCoverage);
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(coverageDentalPlan.getText(), "Delta Dental of Colorado Pediatric Enhanced Plan");
+        }else {
+            softAssert.assertEquals(coverageDentalPlan.getText(), "Cigna Dental Pediatric");
+        }
+        softAssert.assertAll(); }
+    public void verifyMessageNoRenewal() {
+        basicActions.waitForElementToBePresent(renewalsMessage, 20);
+        softAssert.assertTrue(renewalsMessage.isDisplayed());
+        softAssert.assertAll();     }
+    public void verifyNoRenewalReasonDependant() {
+        basicActions.waitForElementToBePresent(noRenewalReason, 10);
+        softAssert.assertEquals(noRenewalReason.getText(), "Account is not eligible for Renewal this year.\n" +
+                "\n" +
+                "Renewal Action: System Exclusion: OVER_25_DEPENDENT");
+        softAssert.assertAll();     }
+    public void verifyNoRenewalReasonCatastrophic() {
+        basicActions.waitForElementToBePresent(noRenewalReason, 10);
+        softAssert.assertEquals(noRenewalReason.getText(), "Account is not eligible for Renewal this year.\n" +
+                "\n" +
+                "Renewal Action: System Exclusion: OVER_29_CATASTROPHIC");
+        softAssert.assertAll();     }
+    public void verifyNoRenewalReasonCustomerOptPut() {
+        basicActions.waitForElementToBePresent(cancelledReason, 10);
+        softAssert.assertEquals(cancelledReason.getText(), "Renewal Action: CUSTOMER_OPT_OUT");
+        softAssert.assertAll();     }
+    public void verifyNoRenewalReasonSystemCancel() {
+        basicActions.waitForElementToBePresent(noRenewalReason, 10);
+        softAssert.assertEquals(cancelledReason.getText(), "Renewal Action: SYSTEM_CANCEL_DUE_TO_TERM");
+        softAssert.assertEquals(noRenewalReason.getText(), "Renewal Status: CANCELED");
+        softAssert.assertAll();     }
+    public void verifyStatusCanceledIsDisplayed(String status) {
+        basicActions.waitForElementToBePresent(renewalCanceled, 10);
+        softAssert.assertEquals(renewalCanceled.getText(), status);
+        softAssert.assertAll();    }
 }
 
