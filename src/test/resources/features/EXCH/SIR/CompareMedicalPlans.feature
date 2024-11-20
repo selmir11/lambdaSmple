@@ -493,7 +493,7 @@ Feature: Medical Plan Compare page related tests
     And I wait for hold on content to disappear
 
     Then I validate I am on the "Good News" page
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
 
     Then I validate I am on the "Application History" page
     Then I validate the aptc section doesn't exist on the application history page
