@@ -228,7 +228,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     And I verify the HRA options selected in the DB after Application Results
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
@@ -265,7 +265,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     And I verify the HRA options selected in the DB after Application Results
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
