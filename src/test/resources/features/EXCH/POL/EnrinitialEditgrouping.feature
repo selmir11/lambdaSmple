@@ -254,8 +254,32 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
-    And I download the "medical" file from sftp server with location "/archive/INBOUND999/"
-    And I download the "dental" file from sftp server with location "/archive/INBOUND999/"
+    And I download the "medical" ib999 file from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" ib999 file from sftp server with location "/archive/INBOUND999/"
 
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
+
+    # SLER-1252 - ib834 db and file validations - WIP
+    And I validate ib834 "medical" details in database
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+    And I validate ib834 "dental" details in database
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+
+    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+    And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
+
+    And I validate the ib834 "medical" file data
+    And I validate the ib834 "dental" file data
+
+    # SLER-1283 - Validate ob999 database and files - WIP
+    And I validate "medical" entities from ob999_details db table
+    And I validate "dental" entities from ob999_details db table
+
+    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
+
+    And I validate the ob999 "medical" file data
+    And I validate the ob999 "dental" file data
