@@ -3,8 +3,8 @@ package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.edi.EdiValidations.Ib834FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
-import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations_new;
+import com.c4hco.test.automation.edi.EdiValidations.Ob999FileValidations;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
@@ -12,9 +12,9 @@ import org.testng.Assert;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
-     Ob834FileValidations ob834Validations = new Ob834FileValidations();
-    Ob834FileValidations_new ob834Validations_new = new Ob834FileValidations_new();
+   Ob834FileValidations_new ob834Validations_new = new Ob834FileValidations_new();
    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
+   Ob999FileValidations ob999FileValidations = new Ob999FileValidations();
    Ib834FileValidations ib834FileValidations = new Ib834FileValidations();
 
     @And("I download the medical and dental files from sftp server with location {string}")
@@ -102,7 +102,7 @@ public class sftpStepDefinitions {
             default:
                 Assert.fail("Incorrect Argument passed in the step");
         }
-       // ib999FileValidations.validateIb999FileData(type);
+        ob999FileValidations.validateOb999FileData(type);
     }
 
     @And("I download the {string} ib999 file from sftp server with location {string}")

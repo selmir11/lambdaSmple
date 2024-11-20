@@ -189,9 +189,6 @@ public class SftpUtil {
     }
 
     public void readOb999File(String filename){
-
-
-
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
         try{
             File file = new File(sftpFolderPath+"\\"+filename);
