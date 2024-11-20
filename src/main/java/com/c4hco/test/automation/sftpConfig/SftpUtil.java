@@ -168,9 +168,7 @@ public class SftpUtil {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
-
 
     public void readIb999File(String filename){
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
