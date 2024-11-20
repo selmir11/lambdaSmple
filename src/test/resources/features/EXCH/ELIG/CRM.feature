@@ -472,7 +472,25 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     And I validate new event "BE_ATL_DOC_VERIFY_UPSERT_RESP" is present in DB
     Then I click on Sign Out in the Header for "NonElmo"
 
-    And I wait for 70000 milliseconds
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I search for user and click email from search results
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I verify Primary account holder and account number displays
+    Then I verify Reports container title
+    Then I click on view button for "Account Activity" report
+    And I validate I am on the "Account Activity" page
+    And I validate Account Activity title row
+    Then I wait for 900 milliseconds
+    Then I validate "BE_ATL_CONTACT_UPSER.." event code and description "Contact Upsert" in activity event report
+    Then I validate "UI_ACCT_CREATED" event code and description "Account created" in activity event report
+    Then I validate "BE_ATL_DOC_VERIFY_UP.." event code and description "CRM Upsert Document Verif.." in activity event report
+    And I close current tab and switch back to previous tab
+    And I logout from Admin Portal
+
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page

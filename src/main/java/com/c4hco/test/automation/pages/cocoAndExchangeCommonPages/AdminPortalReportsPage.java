@@ -69,10 +69,8 @@ public class AdminPortalReportsPage {
                 expected.add(cell.getText().trim());
             }
         }
-
-        softAssert.assertTrue(expected.contains(eventType));
-        softAssert.assertTrue(expected.contains(description));
+        softAssert.assertTrue(expected.contains(eventType), "Event type not found. Expected: " + eventType + " to be in: " + expected);
+        softAssert.assertTrue(expected.contains(description), "Description not found. Expected: " + description + " to be in: " + expected);
         softAssert.assertAll();
-
     }
 }
