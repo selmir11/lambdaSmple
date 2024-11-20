@@ -25,33 +25,33 @@ public class Ib834DbValidations {
     List<Ib834Entity> ib834DenEntities = new ArrayList<>();
     SoftAssert softAssert = new SoftAssert();
     MemberDetails subscriber = SharedData.getPrimaryMember();
-    DbData dbData;
-    PlanDbData medicalDbData;
-    PlanDbData dentalDbData;
-    private void setIb834Data(){
-        List<Ib834Entity> ib834MedEntity = exchDbDataProvider.getIb834Details(SharedData.getMedGroupCtlNumber());
-        SharedData.setIb834MedDetailsEntities(ib834MedEntity);
-        List<Ib834Entity> ib834DenEntity = exchDbDataProvider.getIb834Details(SharedData.getDenGroupCtlNumber());
-        SharedData.setIb834DenDetailsEntities(ib834DenEntity);
+    DbData dbData = new DbData();
+    PlanDbData medicalDbData = new PlanDbData();
+    PlanDbData dentalDbData = new PlanDbData();
 
-        ib834MedEntities = SharedData.getIb834MedDetailsEntities();
-        ib834DenEntities = SharedData.getIb834DenDetailsEntities();
+    private void setIb834Data(){
+        ib834MedEntities =  exchDbDataProvider.getIb834Details(SharedData.getMedGroupCtlNumber());
+        SharedData.setIb834MedDetailsEntities(ib834MedEntities);
+
+        ib834DenEntities = exchDbDataProvider.getIb834Details(SharedData.getDenGroupCtlNumber());
+        SharedData.setIb834DenDetailsEntities(ib834DenEntities);
+
         medicalDbData = SharedData.getMedicalPlanDbData().get("group1");
         dentalDbData = SharedData.getDentalPlanDbData().get("group1");
+        dbData  = SharedData.getDbData();
+
+        SharedData.setMedicalIb834FileName(ib834MedEntities.get(0).getFilename());
+        SharedData.setDentalIb834FileName(ib834DenEntities.get(0).getFilename());
     }
 
     public void ib834DbRecordsValidations(String recordType, List<Map<String, String>> expectedValues) {
         setIb834Data();
-        Ib834Entity medIb834Entity  = SharedData.getIb834MedDetailsEntities().get(0);
-        SharedData.setMedicalIb834FileName(medIb834Entity.getFilename());
-        Ib834Entity denIb834Entity  = SharedData.getIb834DenDetailsEntities().get(0);
-        SharedData.setDentalIb834FileName(denIb834Entity.getFilename());
         switch (recordType) {
             case "medical":
-                ib834MedRecordsValidations(medIb834Entity, expectedValues);
+                ib834MedRecordsValidations(ib834MedEntities.get(0), expectedValues);
                 break;
             case "dental":
-                ib834DenRecordsValidations(denIb834Entity, expectedValues);
+                ib834DenRecordsValidations(ib834DenEntities.get(0), expectedValues);
                 break;
             default:
                 Assert.fail("Record Type entered is not valid");
@@ -89,7 +89,6 @@ public class Ib834DbValidations {
         softAssert.assertAll();
     }
     private void validateResidentialAddress(Ib834Entity ib834MedEntity) {
-        dbData  = SharedData.getDbData();
         softAssert.assertEquals(subscriber.getResAddress().getAddressLine1(), ib834MedEntity.getResidence_street_line1(), "Residential address line 1 does not match");
         if (subscriber.getResAddress().getAddressLine2() != null) {
             softAssert.assertEquals(subscriber.getResAddress().getAddressLine2(), ib834MedEntity.getResidence_street_line2(), "Residential line2 is null");
