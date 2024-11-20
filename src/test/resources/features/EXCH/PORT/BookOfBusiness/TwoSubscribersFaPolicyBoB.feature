@@ -158,7 +158,7 @@ Feature: Broker Portal OBO - Two subscribers submit FA Application and enroll in
 
     And I verify the client application submission in BoB DB
 
-    And I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page

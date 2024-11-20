@@ -905,7 +905,7 @@ Feature: EXCH Seed Data ALL
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
@@ -1553,7 +1553,7 @@ Feature: EXCH Seed Data ALL
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 

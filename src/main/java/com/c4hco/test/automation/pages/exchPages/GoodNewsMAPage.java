@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class GoodNewsMAPage {
 
     private BasicActions basicActions;
@@ -17,11 +19,20 @@ public class GoodNewsMAPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(name = "noThanksMA")
-    WebElement noThanks;
+    @FindBy(css = "#submitButton")
+    List<WebElement> btnSubmit;
 
-    public void iClickNoThanks(){
-        basicActions.waitForElementToBePresent(noThanks, 20);
-        noThanks.click();
+    public void clickNextOption(String nextOption){
+        basicActions.waitForElementListToBePresent(btnSubmit, 20);
+        switch(nextOption) {
+            case "No Thanks":
+                btnSubmit.get(1).click();
+                break;
+            case "Continue":
+                btnSubmit.get(0).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + nextOption);
+        }
     }
 }

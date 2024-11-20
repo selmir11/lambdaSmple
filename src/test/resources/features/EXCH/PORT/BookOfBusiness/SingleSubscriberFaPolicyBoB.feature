@@ -115,7 +115,7 @@ Feature: Broker Portal OBO - Single subscriber FA Application and enroll in a pl
 
     And I verify the client application submission in BoB DB
 
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page

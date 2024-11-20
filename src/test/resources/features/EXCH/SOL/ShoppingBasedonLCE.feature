@@ -218,7 +218,7 @@ Feature: Initial Payment Page test
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
     And I click continue on application results page

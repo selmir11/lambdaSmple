@@ -168,7 +168,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     And I click continue on application results page
     And I wait for hold on content to disappear
