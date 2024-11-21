@@ -8,10 +8,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class CRMContactPage {
 
     @FindBy(xpath = "//li[@title='MVRs/DVRs']")
     WebElement btnMVRDVR;
+
+    @FindBy(xpath = "//*[contains(@id, 'DVRs-powerapps_onegrid_control_container')]//div[6]/div[3]//label/div")
+    WebElement hdrStatusReason;
+
+    @FindBy(xpath = "//*[@id='fluent-default-layer-host']//li")
+    List<WebElement> btnStatusReasonOption;
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
@@ -37,6 +45,13 @@ public class CRMContactPage {
         basicActions.wait(5000);
         WebElement linkOpenDVR = basicActions.getDriver().findElement(By.xpath("//div["+typeNumber+"]/div[2]/div/div/div/div/div[1]/div/a//span[contains(.,'"+dvrType+"')]"));
         linkOpenDVR.click();
+    }
+
+    public void sortStatusAToZ(){
+        basicActions.waitForElementToBePresentWithRetries(hdrStatusReason,10);
+        hdrStatusReason.click();
+        basicActions.waitForElementListToBePresent(btnStatusReasonOption,10);
+        btnStatusReasonOption.get(0).click();
     }
 
 // ############################## VALIDATION STEPS #########################

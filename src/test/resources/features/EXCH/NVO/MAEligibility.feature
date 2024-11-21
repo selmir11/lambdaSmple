@@ -73,7 +73,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I verify text that the member eligible for MA on the app results page
 
@@ -146,7 +146,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I verify text that the member eligible for MA on the app results page
 

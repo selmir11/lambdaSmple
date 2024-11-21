@@ -73,7 +73,6 @@ public class DbQueries_Exch {
                 "WHERE pmc.account_id = '"+acctId+"'\n" +
                 "and pmc.current_ind = '1'\n" +
                 "AND pmc.coverage_type = '"+coverageType+"'";
-
         return query;
     }
 
