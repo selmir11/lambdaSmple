@@ -30,12 +30,6 @@ public class SelfAttestationPageSteps {
         SelfAttestationPage.clickSubmit();
     }
 
-//    @Then("I verify the text on the Post Attestation page")
-//    public void iVerifyTheTextOnThePostAttestationPage() {
-//
-//        SelfAttestationPage.checkText();
-//    }
-
     @Then("I verify the {string} text on the Post Attestation page")
     public void iVerifyPostAttestationPageText(String scenario){SelfAttestationPage.checkText(scenario);}
 
@@ -43,4 +37,10 @@ public class SelfAttestationPageSteps {
     public void iClickOnFinish() {
         SelfAttestationPage.clickFinish();
     }
+
+    @Then("I click on here to submit an updated Application")
+    public void iClickHere(){SelfAttestationPage.clickHereToUpdate();}
+
+    @Then("I click on expert help to open the find expert help page")
+    public void iClickExpertHelp(){SelfAttestationPage.clickExpertHelp();}
 }

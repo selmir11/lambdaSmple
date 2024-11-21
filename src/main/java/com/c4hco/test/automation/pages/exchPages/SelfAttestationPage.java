@@ -15,8 +15,6 @@ public class SelfAttestationPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
-    private boolean taxNoFlag = false;
-
     public SelfAttestationPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements((basicActions.getDriver()), this);
@@ -140,13 +138,6 @@ public class SelfAttestationPage {
         ScrollAction.scrollToElement(submit);
         submit.click();
     }
-
-//    public void checkText() {
-//        basicActions.waitForElementToBePresent(pageText, 10);
-//        if (!taxNoFlag) {
-//            softAssert.assertEquals(pageText.getText(), "Your income and tax filing information were successfully confirmed.");
-//        } else {softAssert.assertEquals(pageText1.getText(), expected);}
-//    }
 
     public void checkText(String scenario){
         basicActions.waitForElementToBePresent(pageText, 10);
