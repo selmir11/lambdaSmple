@@ -170,15 +170,15 @@ public class sftpStepDefinitions {
         switch (type) {
             case "medical":
                 String medIb834FileName = SharedData.getMedicalIb834FileName();
-                System.out.println("***Validating Medical EDI File::"+medIb834FileName+"***");
+                System.out.println("***Validating Ib834 Medical EDI File::"+medIb834FileName+"***");
                 sftpUtil.readIb834EdiFile(medIb834FileName);
                 ib834FileValidations.validateIb834MedFile();
                 break;
             case "dental":
                 String denIb834FileName = SharedData.getDentalIb834FileName();
-                System.out.println("***Validating Dental EDI File::"+denIb834FileName+"***");
+                System.out.println("***Validating Ib834  Dental EDI File::"+denIb834FileName+"***");
                 sftpUtil.readIb834EdiFile(denIb834FileName);
-               // ib834FileValidations.validateIb834DenFile();
+                ib834FileValidations.validateIb834DenFile();
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");
