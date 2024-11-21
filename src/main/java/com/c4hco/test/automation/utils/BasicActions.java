@@ -370,9 +370,9 @@ public class BasicActions {
                     break;
                 }
             }
-            throw new RuntimeException("Failed to update element after 3 attempts.");
+            throw new RuntimeException("Failed to update element after 5 attempts.");
         }
-        
+
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
         List<MemberDetails> members = SharedData.getMembers();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
