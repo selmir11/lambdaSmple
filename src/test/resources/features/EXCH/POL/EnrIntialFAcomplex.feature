@@ -351,9 +351,7 @@ Feature: Enroll a in a plan 8 HH
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-   Then I validate I am on the "planSummaryMedicalDental" page
-    And I set "Medical" Plans premium amount
-    And I set "Dental" Plans premium amount
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox

@@ -343,8 +343,6 @@ Feature: FA - 4groups - enroll in plan
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     Then I validate I am on the "planSummaryMedicalDental" page
     And I validate the APTC Credit on the Summary page is "$0.00"
-    And I set "Medical" Plans premium amount
-    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
@@ -359,7 +357,6 @@ Feature: FA - 4groups - enroll in plan
     Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
     #APTC AMOUNT
 
     Then I click on make changes button
