@@ -93,3 +93,45 @@ Feature: Tests related to the Additional Income page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-435 @PageNavigationAdditionalIncome
+  Scenario: SLCR-435 My session is invalidated when I log out in Income Portal, COCO
+    #step1
+    Then I validate I am on the "CoCo Additional Income" page
+    Then I open current page in new tab
+    Then I validate I am on the "CoCo Additional Income" page
+    And I switch to the tab number 0
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step2
+    And I switch to the tab number 1
+    Then I validate I am on the "CoCo Additional Income" page
+    And I refresh the page
+    And I validate I am on the "Login" page
+    And I close current tab and switch back to previous tab
+    #step3
+    And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+
+    Then I validate I am on the "CoCo Additional Income" page
+    Then I open current page in new tab
+    Then I validate I am on the "CoCo Additional Income" page
+    And I switch to the tab number 0
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step4
+    And I switch to the tab number 1
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    And I validate I am on the "Login" page
