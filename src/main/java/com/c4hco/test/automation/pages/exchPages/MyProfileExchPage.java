@@ -9,8 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+import java.lang.reflect.Field;
 
 import java.util.List;
+
+import static org.apache.logging.log4j.core.util.Assert.isEmpty;
 
 
 public class MyProfileExchPage {
@@ -954,27 +957,29 @@ public class MyProfileExchPage {
         List<MemberDetails> memberList = SharedData.getMembers();
         MemberDetails currentPrimaryMem = SharedData.getPrimaryMember();
 
-        memberList.stream()
-                .filter(member -> member.getFirstName().contains(memPrefix))
-                .findFirst()
-                .ifPresent(newPrimaryMem -> {
-                    if (currentPrimaryMem != null) {
-                        currentPrimaryMem.setFirstName(newPrimaryMem.getFirstName());
-                        currentPrimaryMem.setMiddleName(newPrimaryMem.getMiddleName());
-                        currentPrimaryMem.setLastName(newPrimaryMem.getLastName());
-                        currentPrimaryMem.setSuffix(newPrimaryMem.getSuffix());
-                        currentPrimaryMem.setDob(newPrimaryMem.getDob());
-                        currentPrimaryMem.setSsn(newPrimaryMem.getSsn());
-                        for (int i = 0; i < memberList.size(); i++) {
-                            if (memberList.get(i).equals(currentPrimaryMem)) {
-                                memberList.set(i, currentPrimaryMem);
-                                break;
-                            }
-                        }
-                        SharedData.setPrimaryMember(currentPrimaryMem);
-                    }
-                });
+        memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            memberList.remove(newPrimaryMem);
+            mergeMemberDetails(currentPrimaryMem, newPrimaryMem);
+            SharedData.setPrimaryMember(newPrimaryMem);
+            memberList.add(currentPrimaryMem);
+        });
         SharedData.setMembers(memberList);
+    }
+
+    private void mergeMemberDetails(MemberDetails source, MemberDetails target) {
+        Field[] fields = MemberDetails.class.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                Object sourceValue = field.get(source);
+                Object targetValue = field.get(target);
+                if (sourceValue != null && (targetValue == null || isEmpty(targetValue))) {
+                    field.set(target, sourceValue);
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException("Failed to merge member details", e);
+            }
+        }
     }
 
 }
