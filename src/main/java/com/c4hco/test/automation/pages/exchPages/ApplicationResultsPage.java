@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -87,6 +88,8 @@ public class ApplicationResultsPage {
     }
 
     public void clickBtnContinue(){
+        basicActions.waitForElementToBePresent(continueBtn,10);
+        setEligibilityInfo();
         continueBtn.click();
     }
 
@@ -213,5 +216,15 @@ public class ApplicationResultsPage {
         basicActions.waitForElementToBePresent(lnkProvideDocs,20);
         basicActions.scrollToElement(lnkProvideDocs);
         lnkProvideDocs.click();
+    }
+
+    private void setEligibilityInfo(){
+        for (MemberDetails memName : basicActions.getAllMem()){
+            List<WebElement> eleeligibilityDetails = basicActions.getDriver().findElements(By.xpath("//span[contains(text(),'"+memName.getFirstName()+"')]/parent::div/following-sibling::table //tr"));
+            for(WebElement eleDetail : eleeligibilityDetails){
+                if(eleDetail.getText().contains("did not apply for health coverage")|| eleDetail.getText().contains("does not qualify for health coverage"))
+                    memName.setEligibilityInfo(false);
+            }
+        }
     }
 }

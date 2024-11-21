@@ -37,4 +37,7 @@ public class PlanSummaryMedicalDentalPageSteps {
         planSummaryMedicalDentalPage.verifyContinueButtonIsDisabled();
     }
 
+    @And("I set {string} Plans premium amount")
+    public void setPlansPremiumAmnt(String planInfo) {planSummaryMedicalDentalPage.setPlansPremiumAmt(planInfo); }
+
 }

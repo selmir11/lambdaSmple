@@ -134,7 +134,9 @@ Feature: Seed10exception - Exchange
     Then I click continue on dental plan results page
     And I select "Cigna Dental Pediatric" plan
     Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
+   Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox

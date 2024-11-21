@@ -56,14 +56,7 @@ public class GroupingMembersMedicalPage {
     public void clickContinue() {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueButton, 20);
-        basicActions.waitForElementToBeClickable(continueButton, 10);
-        List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
-        for (MemberDetails memDet : memberInfoDetails){
-            basicActions.waitForElementListToBePresent(medicalGroupTitle,10);
-            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
-            basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10);
-            memDet.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #",""));
-        }
+        setGroupingInfo();
         basicActions.scrollToElement( continueButton );
         basicActions.click(continueButton);
     }
@@ -234,4 +227,13 @@ public class GroupingMembersMedicalPage {
         SharedData.setGroupingDetails(groupDetailsMap);
     }
 
-}
+    private void setGroupingInfo(){
+        List<MemberDetails> memberInfoDetails = basicActions.getAllEligibleMemInfo();
+        for (MemberDetails memDet : memberInfoDetails) {
+            basicActions.waitForElementListToBePresent(medicalGroupTitle, 10);
+            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + memDet.getFirstName() + "')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10);
+            memDet.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #", ""));
+        }
+    }
+    }
