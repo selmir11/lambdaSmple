@@ -1,13 +1,11 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class FindACertifiedBrokerPage {
@@ -184,6 +182,13 @@ public class FindACertifiedBrokerPage {
     public void searchForBrokerName(String brokerName) {
         basicActions.waitForElementToBePresent(searchContainer,60);
         searchContainer.sendKeys(brokerName);
+        setBrokerName(brokerName);
+    }
+
+    private void setBrokerName(String brokerName){
+        BrokerDetails broker = new BrokerDetails();
+        broker.setBroker_name(brokerName);
+        SharedData.setBroker(broker);
     }
 
     public void clearSearchForBroker() {
@@ -221,6 +226,14 @@ public class FindACertifiedBrokerPage {
     public void clickMoreDetailsInTheBrokerContainer() {
         basicActions.waitForElementToBePresent(moreDetails,10);
         moreDetails.click();
+        setBrokerDetails();
+    }
+
+    private void setBrokerDetails(){
+        BrokerDetails broker = SharedData.getBroker();
+        broker.setBroker_lic_num( licenseNumber.getText());
+        broker.setAgencyName(agencyDisplayedName.getText());
+        SharedData.setBroker(broker);
     }
 
     public void clickHideDetails() {

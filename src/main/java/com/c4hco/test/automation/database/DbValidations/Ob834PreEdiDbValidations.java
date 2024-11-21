@@ -34,9 +34,9 @@ public class Ob834PreEdiDbValidations {
     List<PolicyTablesEntity> dentalPolicyEnitities = new ArrayList<>();
 
     public void recordsValidations(String recordType, List<Map<String, String>> expectedValues) {
-        setData();
         switch (recordType) {
             case "medical":
+                setData();
                 ob834MedRecordsValidations(expectedValues);
                 break;
             case "dental":
