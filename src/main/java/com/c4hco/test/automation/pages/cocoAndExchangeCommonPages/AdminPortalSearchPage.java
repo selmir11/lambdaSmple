@@ -16,14 +16,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.apache.logging.log4j.core.util.ReflectionUtil.getFieldValue;
-
 public class AdminPortalSearchPage {
     // TO DO:: Update the locators based on - if the search table will have more than 1 row
     // check the locators will work as a list and convert to list - else - find a list locator to make them re-usable
 
     private BasicActions basicActions;
-    SoftAssert softAssert = new SoftAssert();
+    static SoftAssert softAssert = new SoftAssert();
 
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -37,7 +35,7 @@ public class AdminPortalSearchPage {
     WebElement Title;
 
     @FindBy(css = ".search-input-and-label .search-input")
-    List<WebElement> searchInputList;
+     List<WebElement> searchInputList;
 
     @FindBy(css = ".form-btn-group.big-screen button")
     List<WebElement> buttonsList; // search, reset, create Account buttons
@@ -359,47 +357,24 @@ public class AdminPortalSearchPage {
         }
     }
 
-    public void verifyDatainField(String fieldName, String qaValue, String stgValue) {
-        if (SharedData.getEnv().equals("qa")) {
-            String actualValue = this.getFieldValue(fieldName);
-            softAssert.assertTrue(actualValue.isEmpty(), "Field " + fieldName + " should be blank in QA, but found: " + actualValue);
-        } else {
-            String actualValue = this.getFieldValue(fieldName);
-            softAssert.assertTrue(actualValue.isEmpty(), "Field " + fieldName + " should be blank in STG, but found: " + actualValue);
+    public void verifyblankfield(DataTable dataTable) {
+        List<String> fieldNames = dataTable.asList(String.class);
+        if (fieldNames.size() > searchInputList.size()) {
+            throw new IllegalArgumentException("There are more fields in the DataTable than the available fields in the searchInputList.");
+        }
+        for (int i = 0; i < fieldNames.size(); i++) {
+            String fieldName = fieldNames.get(i);
+            if (i >= searchInputList.size()) {
+                System.out.println("No corresponding field for '" + fieldName + "' at index " + i + ", skipping.");
+                continue;
+            }
+            WebElement field = searchInputList.get(i);
+            String actualValue = field.getAttribute("value");
+            if (!actualValue.isEmpty()) {
+                throw new AssertionError(String.format("Field '%s' should be blank, but found: '%s'", fieldName, actualValue));
+            }
         }
     }
-
-    public String getFieldValue(String fieldName) {
-        int fieldIndex = getFieldIndex(fieldName);
-        WebElement field = searchInputList.get(fieldIndex);
-        return field.getAttribute("value");
-    }
-
- //helpeer method for getting field index
-    private int getFieldIndex(String fieldName) {
-        switch (fieldName) {
-            case "accountID":
-                return 0;
-            case "FirstName":
-                return 1;
-            case "LastName":
-                return 2;
-            case "Email":
-                return 3;
-            case "DOB":
-                return 4;
-            case "PrimaryPhone":
-                return 4;
-            case "OrganisationName":
-                return 5;
-            case "siteID":
-                return 6;
-
-            default:
-                throw new IllegalArgumentException("Invalid field name: " + fieldName);
-        }
-    }
-
 
     public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
         basicActions.wait(2000);
@@ -553,4 +528,7 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
         }
 }
+
+
+
 

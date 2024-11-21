@@ -9,6 +9,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.List;
+
 public class AdminPortalSearchSteps {
 
     AdminPortalSearchPage adminPortalSearchPage = new AdminPortalSearchPage(WebDriverManager.getDriver());
@@ -82,14 +84,15 @@ public class AdminPortalSearchSteps {
     }
 
     @Then("I enter an {string} {string} to search user")
-    public void iEnterAnToSearchUser(String userdata,String type) {
-        adminPortalSearchPage.enterUserData(userdata,type);
+    public void iEnterAnToSearchUser(String userdata, String type) {
+        adminPortalSearchPage.enterUserData(userdata, type);
     }
 
     @And("I enter an {string} in any env {string} {string} to search user")
     public void iEnterAnInAnyEnvToSearchUser(String userdata, String QAType, String STGType) {
-        adminPortalSearchPage.enterUserDataAnyENV(userdata,QAType,STGType);
+        adminPortalSearchPage.enterUserDataAnyENV(userdata, QAType, STGType);
     }
+
     @Then("I click on Search button in AP dashboard page")
     public void iClickOnSearchButtonInAPDashboardPage() {
         adminPortalSearchPage.clickSearch();
@@ -104,18 +107,22 @@ public class AdminPortalSearchSteps {
     public void iClickColoradoConnectCheckbox(String selectUserTypeToSearch) {
         adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
     }
+
     @Then("I click acct first row from Search Results table in admin portal")
     public void iClickAccountLinkFirstRowFromSearchResults() {
         adminPortalSearchPage.clickAccountLinkFirstRowFromSearchResults();
     }
+
     @And("I validate {string} application link not display")
-    public void iValidateAppLinksIsNotDisplay(String option)    {
-            adminPortalSearchPage.validateAppLinksIsNotDisplay(option); }
+    public void iValidateAppLinksIsNotDisplay(String option) {
+        adminPortalSearchPage.validateAppLinksIsNotDisplay(option);
+    }
 
     @Then("I enter an accountId in any Env {string} {string} to search user")
     public void iEnterAnAccountIdInAnyEnvToSearchUser(String stgAccountId, String qaAccountId) {
-        adminPortalSearchPage.enterAccountIdToAnyENV(stgAccountId,qaAccountId);
+        adminPortalSearchPage.enterAccountIdToAnyENV(stgAccountId, qaAccountId);
     }
+
     @Then("I logout from Admin Portal")
     public void iLogoutAdminPortal() {
         adminPortalSearchPage.logoutFromAdminPortalParentPage();
@@ -130,6 +137,7 @@ public class AdminPortalSearchSteps {
     public void iSelect(String text) {
         adminPortalSearchPage.selectSortOption(text);
     }
+
     @Then("I validate the list is sorted in order by {string} and {string}")
     public void iValidateTheListIsSortedInOrderByAnd(String category, String sortOrder) {
         adminPortalSearchPage.verifysort(category, sortOrder);
@@ -162,6 +170,12 @@ public class AdminPortalSearchSteps {
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
         adminPortalSearchPage.accountCreatedMessage();
+
+    @Then("I verify data in the fields on the admin portal search page should be blank")
+    public void iVerifyDataInTheFieldsOnTheAdminPortalSearchPageShouldBeBlank(DataTable dataTable) {
+        adminPortalSearchPage.verifyblankfield(dataTable);
     }
 }
+
+
 

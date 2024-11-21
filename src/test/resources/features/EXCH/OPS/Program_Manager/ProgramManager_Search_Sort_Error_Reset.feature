@@ -21,8 +21,15 @@ Feature: Programme Manager
       | siteID              | jrzvp                    | eNrQp           |
     Then I click on Search button in AP dashboard page
     Then I verify account results for "ProgrammeManager" on admin portal search page
-    Then I refresh the page
-    And I select "Program Manager" checkbox on Admin Portal Dashboard
+    When I click on reset button on admin portal search page
+    Then I verify data in the fields on the admin portal search page should be blank
+      | accountID        |
+      | FirstName        |
+      | LastName         |
+      | Email            |
+      | PrimaryPhone     |
+      | OrganisationName |
+      | siteID           |
     Then I enter an "FirstName" in any env "dst" "dst" to search user
     Then I wait for 2000 milliseconds
     Then I click on Search button in AP dashboard page
@@ -38,15 +45,9 @@ Feature: Programme Manager
     Then I validate the list is sorted in order by "Account ID" and "asc"
     When I select "Sort by: Account ID High to Low"
     Then I validate the list is sorted in order by "Account ID" and "desc"
-    When I click on reset button on admin portal search page
-    Then I verify data in "accountID" field on admin portal search page in QA "" or STG ""
-    Then I verify data in "FirstName" field on admin portal search page in QA "" or STG ""
-    Then I verify data in "LastName" field on admin portal search page in QA "" or STG ""
-    Then I verify data in "Email" field on admin portal search page in QA "" or STG ""
-    Then I verify data in "PrimaryPhone" field on admin portal search page in QA "" or STG ""
-    Then I verify data in "OrganisationName" field on admin portal search page in QA "" or STG ""
-    Then I verify data in "siteID" field on admin portal search page in QA "" or STG ""
+    Then I refresh the page
+    And I select "Program Manager" checkbox on Admin Portal Dashboard
     Then I enter an "FirstName" in any env "a" "a" to search user
     Then I click on Search button in AP dashboard page
-    Then I wait for 2500 milliseconds
+    Then I wait for 1000 milliseconds
     Then I validate message for over hundred records
