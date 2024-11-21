@@ -77,9 +77,9 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I click Go Back on admin portal program manager dashboard")
     public void iClickGoBackOnAdminPortalBrokerDashboard() {
         adminPortalIndividualDashboardPage.clickGoBackONAdminPortalProgramManager();    }
-    @Then("I verify Renewal status label and data {string} is displayed")
-    public void iVerifyStatusIsDisplayed(String containerStatus) {
-        adminPortalIndividualDashboardPage.verifyStatusIsDisplayed(containerStatus);        }
+    @Then("I verify Renewal status label and data {string} is displayed or {string} is displayed")
+    public void iVerifyStatusIsDisplayed(String containerStatusStaging, String containerStatusQa) {
+        adminPortalIndividualDashboardPage.verifyStatusIsDisplayed(containerStatusStaging, containerStatusQa);        }
     @And("I validate {string} {string} as {string} and {string} {string} as {string}")
     public void iValidateMedicalAndDentalPlans(String renewalMedical, String medicalCoverage, String medPlanData, String renewalDental, String dentalCoverage, String dentPlanData) {
         adminPortalIndividualDashboardPage.validateMedicalAndDentalPlans(renewalMedical, medicalCoverage, medPlanData, renewalDental, dentalCoverage, dentPlanData);    }
