@@ -37,7 +37,7 @@ Feature: Tests related to the Additional Income page
     And I select Back on the Deductions CoCo page
     Then I validate I am on the "CoCo Additional Income" page
     #Step2
-    And I open the Additional Income CoCo page in the new tab
+    Then I open current page in new tab
     Then I validate I am on the "CoCo Additional Income" page
     And I switch to the tab number 0
     Then I validate I am on the "CoCo Additional Income" page

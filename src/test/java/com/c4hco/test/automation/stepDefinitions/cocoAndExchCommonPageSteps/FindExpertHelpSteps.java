@@ -181,13 +181,28 @@ public class FindExpertHelpSteps {
         @And("I validate no assister is authorized")
         public void iValidateNoAssisterIsAuthorized() {findExpertHelpPage.validateNoAssisterIsAuthorized();}
 
-        @Then("I validate the Continue with my application button {string} displayed")
-        public void iValidateContinueWithMyApplicationButtonExists(String expectedState){
-                findExpertHelpPage.validateContinueWithMyApplicationButtonExists(expectedState);
+        @Then("I validate the Continue with my application button is displayed in {string}")
+        public void iValidateContinueWithMyApplicationButtonExists(String language){
+                findExpertHelpPage.validateContinueWithMyApplicationButtonExists(language);
         }
 
-        @Then("I validate the Continue on my own button {string} displayed")
+        @Then("I validate the Continue on my own button {string}")
         public void iValidateContinueOnMyOwnButtonExists(String expectedState){
                 findExpertHelpPage.validateContinueOnMyOwnButtonExists(expectedState);
+        }
+
+        @Then("I verify the Enroll on my own section text in {string}")
+        public void iVerifyEnrollOnMyOwnText(String language){
+                findExpertHelpPage.verifyEnrollOnMyOwnText(language);
+        }
+
+        @Then("I verify the Enroll on my own section text is not displayed")
+        public void iVerifyEnrollOnMyOwnTextIsNotDisplayed(){
+                findExpertHelpPage.verifyEnrollOnMyOwnTextIsNotDisplayed();
+        }
+
+        @Then("I verify that the broker change and remove buttons are disabled")
+        public void iVerifyBrokerButtonsDisabled(){
+                findExpertHelpPage.verifyBrokerButtonsDisabled();
         }
 }
