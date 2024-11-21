@@ -8,8 +8,6 @@ import java.time.format.DateTimeFormatter;
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
-    String agencyName = (SharedData.getBroker() != null) ? SharedData.getBroker().getAgencyName() : null;
-
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
@@ -81,7 +79,6 @@ public class DbQueries_Exch {
                 "where account_id = '" + acctId + "'\n " +
                 "and current_ind = '1'";
     }
-
 
     public String ob834DetailsRecords(String insurance_line_code) {
         return "select * from  " + dbName + ".ob834_detail\n " +
@@ -172,7 +169,7 @@ public class DbQueries_Exch {
     }
 
     public String brokerId() {
-        return "SELECT agency_tin_ein FROM " + dbName + ".bp_agency where agency_name = '" + agencyName + "'";
+        return "SELECT agency_tin_ein FROM " + dbName + ".bp_agency where agency_name = '" + SharedData.getBroker().getAgencyName() + "'";
     }
 
     public String getCSRRecords() {

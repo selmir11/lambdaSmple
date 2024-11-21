@@ -111,7 +111,9 @@ public class DbDataProvider_Exch {
         String brokerTinNum = null;
         String csrLevel = null;
         if (!SharedData.getAppType().equals("coco")) {
-            brokerTinNum = getTinNumForBroker();
+            if(SharedData.getHasBroker()){
+                brokerTinNum = getTinNumForBroker();
+            }
             csrLevel = getCSRLevel();
         }
         DbData dbData = new DbData();

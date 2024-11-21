@@ -135,14 +135,6 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertAll();
     }
 
-    private Boolean isMailingAddressSameAsResidential(MemberDetails subscriber){
-      if(subscriber.getMailingAddress().equals(subscriber.getResAddress())){
-          return true;
-      } else {
-          return false;
-      }
-    }
-
     private void validateMailingAddressIsNull(Ob834DetailsEntity ob834Entity){
         softAssert.assertNull(ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
         softAssert.assertNull(ob834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
@@ -338,7 +330,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         validateSponsorId(ob834Entity);
         validateResidentialAddress(ob834Entity, subscriber);
-        if(!isMailingAddressSameAsResidential(subscriber)){
+        if(!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
             validateMailingAddress(ob834Entity, subscriber);
         } else {
             validateMailingAddressIsNull(ob834Entity);
