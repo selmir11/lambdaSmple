@@ -162,14 +162,11 @@ public class AdminPortalSearchSteps {
     public void iEnterTheFollowingDataForQAOrSTG(DataTable dataTable) {
         adminPortalSearchPage.entersearchdata(dataTable);
     }
-
-    @Then("I verify data in {string} field on admin portal search page in QA {string} or STG {string}")
-    public void iVerifyDataInFieldOnAdminPortalSearchPageInQAOrSTG(String fieldName, String qaValue, String stgValue) {
-        adminPortalSearchPage.verifyDatainField(fieldName, qaValue, stgValue);
-
+    
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
-        adminPortalSearchPage.accountCreatedMessage();
+            adminPortalSearchPage.accountCreatedMessage();
+        }
 
     @Then("I verify data in the fields on the admin portal search page should be blank")
     public void iVerifyDataInTheFieldsOnTheAdminPortalSearchPageShouldBeBlank(DataTable dataTable) {

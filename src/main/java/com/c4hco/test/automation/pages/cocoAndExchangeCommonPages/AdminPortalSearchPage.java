@@ -519,7 +519,6 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
-    }
 
 
         public void accountCreatedMessage(){
