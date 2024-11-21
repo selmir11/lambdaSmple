@@ -86,7 +86,7 @@ Feature: Page Navigation-Additional Income Page
   @SLER-1302 @PageNavigationAdditionalIncomePage @TAMSmoke
   Scenario: SLER-1302 Mmy session is invalidated when I log out in Income Portal, Exchange
     #step1
-    And I open the Additional Income CoCo page in the new tab
+    Then I open current page in new tab
     Then I validate I am on the "Additional income" page
     And I switch to the tab number 0
     Then I validate I am on the "Additional income" page
@@ -117,7 +117,7 @@ Feature: Page Navigation-Additional Income Page
     And I click continue on the Employment Info Page
 
     Then I validate I am on the "Additional income" page
-    And I open the Additional Income CoCo page in the new tab
+    Then I open current page in new tab
     Then I validate I am on the "Additional income" page
     And I switch to the tab number 0
     Then I validate I am on the "Additional income" page

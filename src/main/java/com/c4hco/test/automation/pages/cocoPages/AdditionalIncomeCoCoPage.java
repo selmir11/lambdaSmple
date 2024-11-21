@@ -360,16 +360,6 @@ public class AdditionalIncomeCoCoPage {
         goBackButton.click();
     }
 
-    public void openNewTab(){
-        String currentUrl = basicActions.getCurrentUrl();
-        JavascriptExecutor jse = (JavascriptExecutor)basicActions.getDriver();
-        jse.executeScript("window.open()");
-        for (String handle : basicActions.getDriver().getWindowHandles()) {
-            basicActions.getDriver().switchTo().window(handle);
-        }
-        basicActions.getDriver().get(currentUrl);
-    }
-
     public void unselectOptions(String addtlIncomeOption) {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 10);
 
