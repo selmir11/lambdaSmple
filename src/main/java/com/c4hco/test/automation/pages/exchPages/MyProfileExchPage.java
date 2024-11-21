@@ -950,16 +950,31 @@ public class MyProfileExchPage {
         softAssert.assertAll();
     }
 
-    private void updatePrimaryMemInSharedData(String memPrefix){
+    private void updatePrimaryMemInSharedData(String memPrefix) {
         List<MemberDetails> memberList = SharedData.getMembers();
-        MemberDetails primaryMem = SharedData.getPrimaryMember();
-        memberList.add(primaryMem);
+        MemberDetails currentPrimaryMem = SharedData.getPrimaryMember();
 
-        memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
-            memberList.remove(newPrimaryMem);
-            SharedData.setPrimaryMember(newPrimaryMem);
-        });
+        memberList.stream()
+                .filter(member -> member.getFirstName().contains(memPrefix))
+                .findFirst()
+                .ifPresent(newPrimaryMem -> {
+                    if (currentPrimaryMem != null) {
+                        currentPrimaryMem.setFirstName(newPrimaryMem.getFirstName());
+                        currentPrimaryMem.setMiddleName(newPrimaryMem.getMiddleName());
+                        currentPrimaryMem.setLastName(newPrimaryMem.getLastName());
+                        currentPrimaryMem.setSuffix(newPrimaryMem.getSuffix());
+                        currentPrimaryMem.setDob(newPrimaryMem.getDob());
+                        currentPrimaryMem.setSsn(newPrimaryMem.getSsn());
+                        for (int i = 0; i < memberList.size(); i++) {
+                            if (memberList.get(i).equals(currentPrimaryMem)) {
+                                memberList.set(i, currentPrimaryMem);
+                                break;
+                            }
+                        }
+                        SharedData.setPrimaryMember(currentPrimaryMem);
+                    }
+                });
         SharedData.setMembers(memberList);
-
     }
+
 }

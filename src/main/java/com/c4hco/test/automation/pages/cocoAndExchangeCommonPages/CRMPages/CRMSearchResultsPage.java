@@ -56,7 +56,8 @@ public class CRMSearchResultsPage {
                 txtCRMDashSearchBox.sendKeys(Keys.RETURN);
             }
         }
-        System.out.println("Failed to find contact link after " + retryCount + " attempts.");
+        System.err.println("Failed to find contact link after " + retryCount + " attempts.");
+        throw new RuntimeException("Contact link not found after maximum retries.");
     }
 
 }

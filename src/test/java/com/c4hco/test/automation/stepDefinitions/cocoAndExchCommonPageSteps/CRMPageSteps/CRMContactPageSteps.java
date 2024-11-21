@@ -25,4 +25,7 @@ public class CRMContactPageSteps {
 
     @And("I verify the {string} DVR number {int} is {string} in the CRM")
     public void iVerifyStatus(String dvrType, int typeNumber, String status){crmContactPage.verifyStatus(dvrType, typeNumber, status);}
+
+    @And("I verify the Individual Contact data in the CRM")
+    public void iVerifyContactData(){crmContactPage.verifyContactData();}
 }
