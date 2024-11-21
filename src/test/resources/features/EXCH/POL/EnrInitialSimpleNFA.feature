@@ -1,4 +1,4 @@
- @SLER-34 @SLER-1069 @SLER-1262
+ @SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details

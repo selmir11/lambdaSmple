@@ -152,7 +152,6 @@ public class Ob834FileValidations_new {
             }
             lxSegCount++;
         }
-        System.out.println("SysCount::" + segCount);
         segCount = segCount + (lxSegCount - 1) + n1SegListOfList.size();
         validateMemN1Seg(entry, n1SegList);
     }
