@@ -182,14 +182,8 @@ public class FindACertifiedBrokerPage {
     public void searchForBrokerName(String brokerName) {
         basicActions.waitForElementToBePresent(searchContainer,60);
         searchContainer.sendKeys(brokerName);
-        setBrokerName(brokerName);
     }
 
-    private void setBrokerName(String brokerName){
-        BrokerDetails broker = new BrokerDetails();
-        broker.setBroker_name(brokerName);
-        SharedData.setBroker(broker);
-    }
 
     public void clearSearchForBroker() {
         basicActions.waitForElementToBePresent(searchContainer,60);
@@ -226,15 +220,15 @@ public class FindACertifiedBrokerPage {
     public void clickMoreDetailsInTheBrokerContainer() {
         basicActions.waitForElementToBePresent(moreDetails,10);
         moreDetails.click();
-        setBrokerDetails();
-    }
-
-    private void setBrokerDetails(){
-        BrokerDetails broker = SharedData.getBroker();
-        broker.setBroker_lic_num( licenseNumber.getText());
+        basicActions.waitForElementToBePresent(agencyDisplayedName, 10);
+        BrokerDetails broker = new BrokerDetails();
+        broker.setBroker_name(brokerDisplayedName.getText());
+        broker.setBroker_lic_num(licenseNumber.getText());
         broker.setAgencyName(agencyDisplayedName.getText());
         SharedData.setBroker(broker);
+        SharedData.getBroker();
     }
+
 
     public void clickHideDetails() {
         basicActions.waitForElementToBePresent(hideDetails,10);
@@ -469,7 +463,7 @@ public class FindACertifiedBrokerPage {
         }
         softAssert.assertAll();
     }
-    public void setCurrentBrokerContainerDetails (){
+    public void setCurrentBrokerContainerDetails(){
         basicActions.waitForElementToBePresent(currentBrokerName,10);
         basicActions.waitForElementToBePresent(currentBrokerLicenceNumber,10);
         basicActions.waitForElementToBePresent(currentAgencyName,10);
