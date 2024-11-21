@@ -345,7 +345,7 @@ public class AdminPortalManagePlansPage {
             String memberNo = parts[0];
             String coverageStartDateValue = parts[1];
             String coverageStartDatemem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
-            basicActions.updateElementValue(coverageStartDatemem, coverageStartDateValue);
+            basicActions.updateElementWithRetries(coverageStartDatemem, coverageStartDateValue);
         }
     }
 
