@@ -149,7 +149,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -213,7 +213,27 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
 
-     #  Email Notice Validation
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+    #SLER-1170
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
+    #SLER-1250
+    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+
+    # Email Notice Validation
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
@@ -230,32 +250,36 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I sign out of Outlook
     And I switch to the tab number 0
 
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-
-    #SLER-1170-WIP
-    And I validate "medical" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
-      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
-    And I validate "dental" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
-      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
-
-    And I download the medical and dental files from sftp server with location "/outboundedi/"
-
-    And I validate the ob834 "medical" file data
-    And I validate the ob834 "dental" file data
-
-    #SLER-1250-WIP
-    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-
     # Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
-    And I download the "medical" file from sftp server with location "/archive/INBOUND999/"
-    And I download the "dental" file from sftp server with location "/archive/INBOUND999/"
+    And I download the "medical" ib999 file from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" ib999 file from sftp server with location "/archive/INBOUND999/"
 
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
+
+    # SLER-1252 - ib834 db and file validations - WIP
+    And I validate ib834 "medical" details in database
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+    And I validate ib834 "dental" details in database
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+
+    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+    And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
+
+#    And I validate the ib834 "medical" file data
+#    And I validate the ib834 "dental" file data
+
+    # SLER-1283 - Validate ob999 database and files
+    And I validate "medical" entities from ob999_details db table
+    And I validate "dental" entities from ob999_details db table
+
+    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
+
+    And I validate the ob999 "medical" file data
+    And I validate the ob999 "dental" file data

@@ -11,4 +11,10 @@ public class MyClientAssistNetPortalSteps {
     public void iValidateTheClientIsRemovedSuccessfullyFromAssistnetPortal() {
         myClientAssistNetPortal.validateTheClientIsRemovedSuccessfullyFromAssistnetPortal();
     }
+
+    @Then("I verify that a total of {string} clients have been selected from the My Clients list")
+    public void iValidateTotalSelectedClientCount(String expectedCount) {
+        myClientAssistNetPortal.validateTotalSelectedClientCount(expectedCount);
+    }
+
 }

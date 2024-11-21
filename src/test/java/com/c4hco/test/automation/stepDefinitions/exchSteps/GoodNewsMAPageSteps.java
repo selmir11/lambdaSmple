@@ -6,10 +6,8 @@ import io.cucumber.java.en.Then;
 
 public class GoodNewsMAPageSteps {
 
-    GoodNewsMAPage GoodNewsMAPage = new GoodNewsMAPage(WebDriverManager.getDriver());
+    GoodNewsMAPage goodNewsMAPage = new GoodNewsMAPage(WebDriverManager.getDriver());
 
-    @Then("I click on No Thanks on good news page")
-    public void iClickNoThanks() {
-        GoodNewsMAPage.iClickNoThanks();
-    }
+    @Then("I click on {string} on good news page")
+    public void iClickNextOption(String nextOption) {goodNewsMAPage.clickNextOption(nextOption);}
 }

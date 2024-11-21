@@ -207,7 +207,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I wait for hold on content to disappear
 
     Then I validate I am on the "Good News" page
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
 
     Then I validate I am on the "Application History" page
     Then I validate the aptc section doesn't exist on the application history page
@@ -332,7 +332,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I wait for hold on content to disappear
 
     Then I validate I am on the "Good News" page
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
 
     Then I validate I am on the "Application History" page
     Then I validate that my APTC value is "$802.29/mo"

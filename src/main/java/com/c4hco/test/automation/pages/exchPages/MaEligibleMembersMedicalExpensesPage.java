@@ -6,12 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
-public class GoodNewsMAPage {
+public class MaEligibleMembersMedicalExpensesPage {
 
     private BasicActions basicActions;
-    public GoodNewsMAPage(WebDriver webDriver) {
+    public MaEligibleMembersMedicalExpensesPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -19,20 +17,27 @@ public class GoodNewsMAPage {
         return BasicActions.getInstance();
     }
 
-    @FindBy(css = "#submitButton")
-    List<WebElement> btnSubmit;
+    @FindBy(id = "isAnyoneMACriteriaYes")
+    WebElement rdoYes;
 
-    public void clickNextOption(String nextOption){
-        basicActions.waitForElementListToBePresent(btnSubmit, 20);
+    @FindBy(id = "isAnyoneMACriteriaNo")
+    WebElement rdoNo;
+
+    @FindBy(name = "criteriaAction")
+    WebElement btnSaveAndContinue;
+
+    public void answerUnder19(String nextOption){
+        basicActions.waitForElementToBePresent(rdoYes, 20);
         switch(nextOption) {
-            case "No Thanks":
-                btnSubmit.get(1).click();
+            case "Yes":
+                rdoYes.click();
                 break;
-            case "Continue":
-                btnSubmit.get(0).click();
+            case "No":
+                rdoNo.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + nextOption);
         }
+        btnSaveAndContinue.click();
     }
 }

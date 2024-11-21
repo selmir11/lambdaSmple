@@ -17,6 +17,9 @@ public class CRMContactPageSteps {
     @Then("I open the {string} DVR number {int} in the CRM")
     public void iOpenDVRDetails(String dvrType, int typeNumber){crmContactPage.openDVRByTypeName(dvrType, typeNumber);}
 
+    @Then("I change the sort of Status Reason DVR to A to Z in the CRM")
+    public void iSortStatusAToZ(){crmContactPage.sortStatusAToZ();}
+
 // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
 

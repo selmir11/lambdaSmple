@@ -19,6 +19,8 @@ public class MyClientAssistNetPortal {
     WebElement clientRowAP;
     @FindBy(xpath = "(//mat-expansion-panel-header[contains(@id, 'mat-expansion-panel-header')])[2]")
     WebElement clientSecondRow;
+    @FindBy(xpath = "//span[@class='col-2']")
+    WebElement selectedClientCount;
 
 
     public void validateTheClientIsRemovedSuccessfullyFromAssistnetPortal() {
@@ -26,4 +28,11 @@ public class MyClientAssistNetPortal {
         basicActions.waitForElementToDisappear(clientRowAP,20);
 
     }
+
+    public void validateTotalSelectedClientCount(String expectedCount){
+        basicActions.waitForElementToBePresent(selectedClientCount,30);
+        softAssert.assertEquals(selectedClientCount.getText(), expectedCount + " Clients Selected");
+        softAssert.assertAll();
+    }
+
 }
