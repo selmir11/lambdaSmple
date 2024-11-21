@@ -31,7 +31,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     WebElement toTop;
 
     @FindBy(xpath = "//*[@class = 'accordion-header c4-type-header-sm']")
-    //@FindBy(xpath = "//em[@class = 'fa fa-chevron-down']")
     List<WebElement> getDrpDwnPlanCategories;
 
     @FindBy(id = "MedicalComparePlans-GoBackToPlans")
