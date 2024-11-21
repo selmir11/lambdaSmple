@@ -229,9 +229,7 @@ Feature: Broker Portal OBO - Three Subscriber Groups FA policy submission
     Then I select first dental plan
     Then I click continue on dental plan results page
 
-   Then I validate I am on the "planSummaryMedicalDental" page
-    And I set "Medical" Plans premium amount
-    And I set "Dental" Plans premium amount
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
 
     And I select "Acknowledgement" agreement checkbox

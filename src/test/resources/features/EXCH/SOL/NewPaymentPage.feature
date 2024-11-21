@@ -84,9 +84,7 @@ Feature: New payment portal - currently in QA only
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan"
     Then I click continue on dental plan results page
-   Then I validate I am on the "planSummaryMedicalDental" page
-    And I set "Medical" Plans premium amount
-    And I set "Dental" Plans premium amount
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
 
     And I select "Terms of Use" agreement checkbox
@@ -186,9 +184,7 @@ Feature: New payment portal - currently in QA only
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
-   Then I validate I am on the "planSummaryMedicalDental" page
-    And I set "Medical" Plans premium amount
-    And I set "Dental" Plans premium amount
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
@@ -286,9 +282,7 @@ Feature: New payment portal - currently in QA only
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
-   Then I validate I am on the "planSummaryMedicalDental" page
-    And I set "Medical" Plans premium amount
-    And I set "Dental" Plans premium amount
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
@@ -385,9 +379,7 @@ Feature: New payment portal - currently in QA only
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
-   Then I validate I am on the "planSummaryMedicalDental" page
-    And I set "Medical" Plans premium amount
-    And I set "Dental" Plans premium amount
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
