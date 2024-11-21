@@ -106,6 +106,16 @@ public class BasicActions {
         driver.switchTo().window(newTabHandle);
     }
 
+    public void openCurrPageInNewTab(){
+        String currentUrl = getCurrentUrl();
+        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        jse.executeScript("window.open()");
+        for (String handle : getDriver().getWindowHandles()) {
+            getDriver().switchTo().window(handle);
+        }
+        getDriver().get(currentUrl);
+    }
+
     public String getUrlWithWait(String url, int waitTime) {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));

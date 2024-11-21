@@ -8,8 +8,6 @@ import java.time.format.DateTimeFormatter;
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
-    String agencyName = (SharedData.getBroker() != null) ? SharedData.getBroker().getAgencyName() : null;
-
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
@@ -73,7 +71,6 @@ public class DbQueries_Exch {
                 "WHERE pmc.account_id = '"+acctId+"'\n" +
                 "and pmc.current_ind = '1'\n" +
                 "AND pmc.coverage_type = '"+coverageType+"'";
-
         return query;
     }
 
@@ -83,7 +80,6 @@ public class DbQueries_Exch {
                 "and current_ind = '1'";
     }
 
-
     public String ob834DetailsRecords(String insurance_line_code) {
         return "select * from  " + dbName + ".ob834_detail\n " +
                 "where account_id = '" + acctId + "'\n " +
@@ -92,29 +88,26 @@ public class DbQueries_Exch {
     }
 
     public String ib999Details(String grpCtlNum) {
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String formattedDate = currentDate.format(dateFormat);
-
         return "SELECT * FROM " + dbName + ".ib999_detail \n" +
                 "where ak1_group_ctrl_number = '" + grpCtlNum + "'\n"+
-                "and created_ts >= '"+formattedDate+" 00:00:00'";
+                "and created_ts >= '"+getFormattedCurrentDate()+" 00:00:00'";
     }
 
     public String ob999Details(String grpCtlNum) {
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String formattedDate = currentDate.format(dateFormat);
-
         return "SELECT * FROM " + dbName + ".ob999_detail \n" +
                 "where ak1_group_ctrl_number = '" + grpCtlNum + "'\n"+
-                "and created_ts >= '"+formattedDate+" 00:00:00'";
+                "and created_ts >= '"+getFormattedCurrentDate()+" 00:00:00'";
     }
 
     public String ib834Details(String grpCtlNum) {
         return "SELECT * FROM " + dbName + ".ib834_detail \n " +
                 "where group_ctrl_number = '" + grpCtlNum + "'\n " +
-                "ORDER BY created_ts DESC";
+                "and created_ts >= '"+getFormattedCurrentDate()+" 00:00:00'";
+    }
+    private String getFormattedCurrentDate(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return currentDate.format(dateFormat);
     }
 
     public String getEAPID() {
@@ -173,7 +166,7 @@ public class DbQueries_Exch {
     }
 
     public String brokerId() {
-        return "SELECT agency_tin_ein FROM " + dbName + ".bp_agency where agency_name = '" + agencyName + "'";
+        return "SELECT agency_tin_ein FROM " + dbName + ".bp_agency where agency_name = '" + SharedData.getBroker().getAgencyName() + "'";
     }
 
     public String getCSRRecords() {

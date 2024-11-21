@@ -4,9 +4,6 @@ Feature: Page Navigation-Additional Income Page
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
-
-  @SLER-686 @PageNavigationAdditionalIncomePage @TAMSmoke
-  Scenario: SLER-686 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Income Portal, Exchange
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -44,8 +41,11 @@ Feature: Page Navigation-Additional Income Page
     And I Apply for financial help
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
-    #Step1
     Then I validate I am on the "Additional income" page
+
+  @SLER-686 @PageNavigationAdditionalIncomePage @TAMSmoke
+  Scenario: SLER-686 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Income Portal, Exchange
+    #Step1
     And I change the C4 url to "Income portal Error Exch"
     Then I validate I am on the "Error" page
     And I click Back to Welcome page Button on error Exch page
@@ -82,3 +82,49 @@ Feature: Page Navigation-Additional Income Page
 
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
     Then I validate I am on the "Login" page
+
+  @SLER-1302 @PageNavigationAdditionalIncomePage @TAMSmoke
+  Scenario: SLER-1302 My session is invalidated when I log out in Income Portal, Exchange
+    #step1
+    Then I open current page in new tab
+    Then I validate I am on the "Additional income" page
+    And I switch to the tab number 0
+    Then I validate I am on the "Additional income" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step2
+    And I switch to the tab number 1
+    Then I validate I am on the "Additional income" page
+    And I refresh the page
+    And I validate I am on the "Login" page
+    And I close current tab and switch back to previous tab
+    #step3
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Primary" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Info Page
+
+    Then I validate I am on the "Additional income" page
+    Then I open current page in new tab
+    Then I validate I am on the "Additional income" page
+    And I switch to the tab number 0
+    Then I validate I am on the "Additional income" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step4
+    And I switch to the tab number 1
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+    And I validate I am on the "Login" page
