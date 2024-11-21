@@ -238,10 +238,10 @@ Feature: Seed05 - Exchange
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |            |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |            |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
 
     And I validate the ob834 "medical" file data
