@@ -12,6 +12,9 @@ public class CRMDVRPageSteps {
     @Then("I check the {string} DVR title in the CRM")
     public void iCheckDVRTitle(String dvrType){crmDVRPage.checkDVRTitle(dvrType);}
 
+    @Then("I check the {string} DVR Name and Doc Type in the CRM")
+    public void iCheckDVRNameDocType(String dvrType){crmDVRPage.checkDVRNameDocType(dvrType);}
+
     @Then("I get the time and date of DVR in the CRM")
     public void iGetDvrTimeDate(){crmDVRPage.getDvrTimeDate();}
 

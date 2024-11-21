@@ -2,6 +2,9 @@ package com.c4hco.test.automation.database.Queries;
 
 import com.c4hco.test.automation.Dto.SharedData;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class DbQueries_Exch {
     String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
@@ -70,7 +73,6 @@ public class DbQueries_Exch {
                 "WHERE pmc.account_id = '"+acctId+"'\n" +
                 "and pmc.current_ind = '1'\n" +
                 "AND pmc.coverage_type = '"+coverageType+"'";
-
         return query;
     }
 
@@ -89,9 +91,23 @@ public class DbQueries_Exch {
     }
 
     public String ib999Details(String grpCtlNum) {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currentDate.format(dateFormat);
+
         return "SELECT * FROM " + dbName + ".ib999_detail \n" +
-                "where ak1_group_ctrl_number = '" + grpCtlNum + "'\n " +
-                "ORDER BY created_ts DESC";
+                "where ak1_group_ctrl_number = '" + grpCtlNum + "'\n"+
+                "and created_ts >= '"+formattedDate+" 00:00:00'";
+    }
+
+    public String ob999Details(String grpCtlNum) {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currentDate.format(dateFormat);
+
+        return "SELECT * FROM " + dbName + ".ob999_detail \n" +
+                "where ak1_group_ctrl_number = '" + grpCtlNum + "'\n"+
+                "and created_ts >= '"+formattedDate+" 00:00:00'";
     }
 
     public String ib834Details(String grpCtlNum) {

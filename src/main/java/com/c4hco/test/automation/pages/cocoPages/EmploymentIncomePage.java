@@ -208,6 +208,37 @@ public void verifyHeadersEmploymentIncomePage(String language){
         softAssert.assertAll();
     }
 
+    public void verifyAdditionalMemberHeadersOnEmploymentIncomeCoCoPage(String language) {
+        basicActions.waitForElementToBePresent(hdr_Income,50);
+        switch (language){
+            case "English":
+                softAssert.assertTrue(hdr_Income.getText().contains( "Income: "  + SharedData.getMembers().get(0).getFirstName()));
+                softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Employment Income (Please include income from all jobs and employers.)");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(hdr_EmploymentIncome,50);
+                softAssert.assertTrue(hdr_Income.getText().contains("Ingresos: "  + SharedData.getMembers().get(0).getFirstName()));
+                softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(hdr_EmploymentIncome.getText(), "Ingresos por empleo (Incluya el ingreso que recibe de todos los trabajos y empleadores.)");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-size"), "28px");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(hdr_EmploymentIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +  language);
+        }
+    }
+
     public void verifyNoErrorMessage_EmploymentInfo() {
         softAssert.assertFalse(basicActions.waitForElementPresence(errorMessage, 20));
         softAssert.assertAll();

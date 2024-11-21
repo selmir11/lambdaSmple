@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.Dto.Edi;
+package com.c4hco.test.automation.Dto.Edi.Edi834;
 
 import lombok.Data;
 

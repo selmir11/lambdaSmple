@@ -27,6 +27,15 @@ public class CRMDVRPage {
     @FindBy(xpath = "//*[contains(@id, 'formHeaderTitle_')]")
     WebElement DVRNameHeader;
 
+    @FindBy(xpath = "//*[contains(@data-id, 'entity_name_span')]")
+    WebElement DVRTitle;
+
+    @FindBy(xpath = "//*[contains(@data-id, 'c4hco_name.fieldControl-text-box-text')]")
+    WebElement DVRNameInput;
+
+    @FindBy(xpath = "//*[contains(@data-id, 'c4hco_doctype.fieldControl-text-box-text')]")
+    WebElement DVRDocTypeInput;
+
     @FindBy(xpath = "//*[contains(@aria-label, 'Date of Date Created')]")
     WebElement DVRDateCreated;
 
@@ -38,6 +47,15 @@ public class CRMDVRPage {
         basicActions.waitForElementToBePresent(DVRNameHeader, 30);
 
         softAssert.assertEquals(DVRNameHeader.getText(),dvrType+"- Saved");
+        softAssert.assertEquals(DVRTitle.getText(),"Document Verification Record");
+        softAssert.assertAll();
+    }
+
+    public void checkDVRNameDocType(String dvrType){
+        basicActions.waitForElementToBePresent(DVRNameInput, 30);
+
+        softAssert.assertEquals(DVRNameInput.getAttribute("defaultValue"),dvrType);
+        softAssert.assertEquals(DVRDocTypeInput.getAttribute("defaultValue"),dvrType);
         softAssert.assertAll();
     }
 

@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.Dto.Edi;
+package com.c4hco.test.automation.Dto.Edi.Edi834;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,5 +22,4 @@ public class CommonSegments {
     private List<List<String>> QTY;
     @JsonProperty("BGN")
     private List<List<String>> BGN;
-    // Include SE
 }
