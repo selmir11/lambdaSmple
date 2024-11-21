@@ -9,7 +9,7 @@ Feature: Testing Manual Verification Requests (MVRs)
 
   @SLER-1217
   Scenario: Income MVR
-    And I enter first name "MVRAutomationTest" last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mName", last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -114,7 +114,7 @@ Feature: Testing Manual Verification Requests (MVRs)
 
   @SLER-1218
   Scenario: SSN MVR
-    And I enter first name "MVRAutomationTest" last name "OPENSSNMVR" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mName", last name "OPENSSNMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -219,7 +219,7 @@ Feature: Testing Manual Verification Requests (MVRs)
 
   @SLER-1219
   Scenario: Death MVR
-    And I enter first name "MVRAutomationTest" last name "OPENDEATHMVR" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mName", last name "OPENDEATHMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -324,7 +324,7 @@ Feature: Testing Manual Verification Requests (MVRs)
 
   @SLER-1223
   Scenario: Citizenship MVR
-    And I enter first name "MVRAutomationTest" last name "OPENCTZNMVR" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mName", last name "OPENCTZNMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -429,7 +429,7 @@ Feature: Testing Manual Verification Requests (MVRs)
 
   @SLER-1224
   Scenario: Incarceration MVR
-    And I enter first name "MVRAutomationTest" last name "OPENINCARMVR" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mName", last name "OPENINCARMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -534,7 +534,7 @@ Feature: Testing Manual Verification Requests (MVRs)
 
   @SLER-1225
   Scenario: American Indian / Alaska Native (AI/AN) MVR
-    And I enter first name "MVRAutomationTest" last name "OPENAIANMVR" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mName", last name "OPENAIANMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -640,7 +640,7 @@ Feature: Testing Manual Verification Requests (MVRs)
 
   @SLER-1228
   Scenario: Lawful Presence MVR
-    And I enter first name "MVRAutomationTest" last name "VLPunex" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mName", last name "VLPunex" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year

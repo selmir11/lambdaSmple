@@ -130,7 +130,7 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Good News" page
-    And I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     And I click on view results and shop
     Then I validate I am on the "Application Results" page

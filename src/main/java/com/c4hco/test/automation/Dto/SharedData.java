@@ -36,9 +36,11 @@ public class SharedData {
     @Getter @Setter private static String dentalIb834FileName;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
+    @Getter @Setter private static Edi834TransactionDetails ib834TransactionDetails;
     @Getter @Setter private static CommonEDISegments commonEDISegments;
     @Getter @Setter private static Edi999Segments ib999Segments;
     @Getter @Setter private static Edi999Segments ob999Segments;
+    @Getter @Setter private static CommonEDISegments ib834Segments;
     @Getter @Setter private static String env;
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
@@ -115,6 +117,7 @@ public class SharedData {
         medicalOb999FileName = null;
         dentalOb999FileName = null;
         ob999Segments = null;
+        ib834TransactionDetails=null;
     }
 
 }

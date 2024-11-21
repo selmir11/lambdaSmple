@@ -22,5 +22,4 @@ public class CommonSegments {
     private List<List<String>> QTY;
     @JsonProperty("BGN")
     private List<List<String>> BGN;
-    // Include SE
 }

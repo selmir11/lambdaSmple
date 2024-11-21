@@ -106,6 +106,9 @@ public class AdminPortalSearchPage {
     @FindBy(css = "tbody td:nth-child(1)")
     WebElement searchAcctResults;
 
+    @FindBy(xpath = "//app-search-container/form/div[3]/div/p")
+    WebElement statusMessage;
+
     public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
         basicActions.waitForElementListToBePresent(searchInputList, 10);
@@ -325,5 +328,11 @@ public class AdminPortalSearchPage {
             dropdownArrow.click();
             basicActions.waitForElementToBePresent(logoutAdmin, 100);
             logoutAdmin.click();
+        }
+
+        public void accountCreatedMessage(){
+        basicActions.waitForElementToBePresent(statusMessage, 30);
+        softAssert.assertEquals(statusMessage.getText(),"Account created successfully. Please search for the account.");
+        softAssert.assertAll();
         }
 }
