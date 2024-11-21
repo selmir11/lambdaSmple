@@ -206,6 +206,12 @@ public class FindExpertHelpPage {
     @FindBy(id = "assister-status")
     WebElement assisterStatus;
 
+    @FindBy(id = "contineOwn-title")
+    WebElement enrollOnMyOwnTitle;
+
+    @FindBy(id = "contineOwn-text")
+    WebElement enrollOnMyOwnText;
+
     public FindExpertHelpPage(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -624,26 +630,62 @@ public class FindExpertHelpPage {
     }
 
     public void validateContinueOnMyOwnButtonExists(String expectedState){
-        if(expectedState.equals("is")){
-            basicActions.waitForElementToBePresent(continueOnMyOwnButton,10);
-            softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue on my own");
-            softAssert.assertAll();
-        } else if (expectedState.equals("is not")) {
-            softAssert.assertFalse(basicActions.waitForElementPresence(continueOnMyOwnButton,10));
-            softAssert.assertAll();
+        switch (expectedState) {
+            case "is displayed":
+                basicActions.waitForElementToBePresent(continueOnMyOwnButton,10);
+                softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue on my own");
+                break;
+            case "is not displayed":
+                softAssert.assertFalse(basicActions.waitForElementPresence(continueOnMyOwnButton,10));
+                break;
         }
+        softAssert.assertAll();
     }
 
-    public void validateContinueWithMyApplicationButtonExists(String expectedState){
-        if(expectedState.equals("is")){
-            basicActions.waitForElementToBePresent(continueOnMyOwnButton,50);
-            softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue with my application");
-            softAssert.assertAll();
-        } else if (expectedState.equals("is not")) {
-            softAssert.assertFalse(basicActions.waitForElementPresence(continueOnMyOwnButton,10));
-            softAssert.assertAll();
+    public void validateContinueWithMyApplicationButtonExists(String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresentWithRetries(continueOnMyOwnButton,50);
+                softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue with my application");
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresent(continueOnMyOwnButton,50);
+                softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continuar con mi solicitud");
+                break;
         }
+        softAssert.assertAll();
     }
 
+    public void verifyEnrollOnMyOwnText(String language){
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(enrollOnMyOwnTitle.getText(), "Enroll on my own");
+                softAssert.assertEquals(enrollOnMyOwnText.getText(), "I will complete my application on my own, without the help of a Broker or Assister.");
+                softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continue on my own");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(enrollOnMyOwnTitle.getText(), "Inscribirme sin ayuda");
+                softAssert.assertEquals(enrollOnMyOwnText.getText(), "Llenar\u00E9 mi solicitud yo mismo, sin ayuda de un Agente o Asistente.");
+                softAssert.assertEquals(continueOnMyOwnButton.getText(),"Continuar sin ayuda");
+                break;
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyEnrollOnMyOwnTextIsNotDisplayed(){
+        basicActions.waitForElementToBePresentWithRetries(continueOnMyOwnButton,10);
+        softAssert.assertFalse(basicActions.waitForElementPresence(enrollOnMyOwnTitle,10));
+        softAssert.assertFalse(basicActions.waitForElementPresence(enrollOnMyOwnText,10));
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerButtonsDisabled(){
+        basicActions.waitForElementToBePresentWithRetries(ChangeBroker,10);
+        softAssert.assertTrue(ChangeBroker.isDisplayed());
+        softAssert.assertFalse(ChangeBroker.isEnabled());
+        softAssert.assertTrue(removeCurrentBroker.isDisplayed());
+        softAssert.assertEquals(removeCurrentBroker.getAttribute("class"), "link-text-1 link-disabled");
+        softAssert.assertAll();
+    }
 
 }
