@@ -322,10 +322,8 @@ Feature: Seed02 - Exchange
     Then I click Make Changes Medical button
     Then I update the premium value for
       | 1:200.00 |
-#    Then I update the premium amount to "200.00" on Manage Plans page
     Then I update the APTC value for
       | 1:100.00 |
-#    Then I update the APTC amount to "100.00" on Manage Plans page
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then logout from Admin Portal
