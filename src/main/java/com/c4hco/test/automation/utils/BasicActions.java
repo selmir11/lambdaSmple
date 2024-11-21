@@ -765,6 +765,16 @@ public class BasicActions {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
+    public List<MemberDetails> getAllEligibleMemInfo(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allEligibleMembers = new ArrayList<>();
+        for (MemberDetails memInfo : allMembers) {
+            if (memInfo.getEligibilityInfo()) {
+                allEligibleMembers.add(memInfo);
+            }
+        }
+        return allEligibleMembers;
+    }
 
 }
 
