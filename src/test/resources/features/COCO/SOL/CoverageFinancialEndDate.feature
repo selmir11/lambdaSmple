@@ -135,7 +135,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    Then I select Birth QLCE on tell us about life changes page for last member
+    Then I select Birth QLCE on tell us about life changes page for the Newborn
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -308,7 +308,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    Then I select Birth QLCE on tell us about life changes page for last member
+    Then I select Birth QLCE on tell us about life changes page for the Newborn
     And I select "Birth" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -482,7 +482,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    Then I select Birth QLCE on tell us about life changes page for last member
+    Then I select Birth QLCE on tell us about life changes page for the Newborn
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature

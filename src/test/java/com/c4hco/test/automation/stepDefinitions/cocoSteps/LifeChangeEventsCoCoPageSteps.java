@@ -50,7 +50,7 @@ public class LifeChangeEventsCoCoPageSteps {
     public void iVerifyStateOfLCECheckboxesCOCO(String state){
         lifeChangeEventsCoCoPage.verifyLCECheckboxesCOCO(state);}
 
-    @Then("I select Birth QLCE on tell us about life changes page for last member")
+    @Then("I select Birth QLCE on tell us about life changes page for the Newborn")
     public void selectQlceTypeforlastmemebr(){
         lifeChangeEventsCoCoPage.selectBirthQLCE();}
 }
