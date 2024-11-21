@@ -342,3 +342,68 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-1303 @PageNavigationOtherHealthCoveragePage @TAMSmoke
+  Scenario: SLER-1303 My session is invalidated when I log out in OHC Portal, Exchange
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    And I validate I am on the "Elmo Other Health Coverage" page
+
+    #step1
+    Then I open current page in new tab
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I switch to the tab number 0
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step2
+    And I switch to the tab number 1
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I refresh the page
+    And I validate I am on the "Login" page
+    And I close current tab and switch back to previous tab
+    #step3
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Primary" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I click the save and continue button on the Income Summary Detail page
+    And I click save and continue on tax status page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I open current page in new tab
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I switch to the tab number 0
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step4
+    And I switch to the tab number 1
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "HRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Login" page
