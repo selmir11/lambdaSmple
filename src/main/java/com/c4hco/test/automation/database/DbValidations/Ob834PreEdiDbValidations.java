@@ -34,9 +34,9 @@ public class Ob834PreEdiDbValidations {
     List<PolicyTablesEntity> dentalPolicyEnitities = new ArrayList<>();
 
     public void recordsValidations(String recordType, List<Map<String, String>> expectedValues) {
-        setData();
         switch (recordType) {
             case "medical":
+                setData();
                 ob834MedRecordsValidations(expectedValues);
                 break;
             case "dental":
@@ -133,14 +133,6 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(member.getResAddress().getAddressZipcode(), ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
         softAssert.assertEquals(dbData.getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
         softAssert.assertAll();
-    }
-
-    private Boolean isMailingAddressSameAsResidential(MemberDetails subscriber){
-      if(subscriber.getMailingAddress().equals(subscriber.getResAddress())){
-          return true;
-      } else {
-          return false;
-      }
     }
 
     private void validateMailingAddressIsNull(Ob834DetailsEntity ob834Entity){
@@ -338,7 +330,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         validateSponsorId(ob834Entity);
         validateResidentialAddress(ob834Entity, subscriber);
-        if(!isMailingAddressSameAsResidential(subscriber)){
+        if(!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
             validateMailingAddress(ob834Entity, subscriber);
         } else {
             validateMailingAddressIsNull(ob834Entity);
