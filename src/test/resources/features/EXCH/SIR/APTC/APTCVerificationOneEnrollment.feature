@@ -232,7 +232,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I wait for hold on content to disappear
 
     Then I validate I am on the "Good News" page
-    And I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
 
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
@@ -726,7 +726,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I wait for hold on content to disappear
 
     Then I validate I am on the "Good News" page
-    And I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
 
     Then I validate I am on the "Application History" page
     Then I click on view results and shop

@@ -110,8 +110,10 @@ public class DbDataProvider_Exch {
         String ratingAreaId = getRatingAreaId(fipcode);
         String brokerTinNum = null;
         String csrLevel = null;
-        if (!"coco".equals(SharedData.getAppType())) {
-            brokerTinNum = getTinNumForBroker();
+        if (!SharedData.getAppType().equals("coco")) {
+            if(SharedData.getHasBroker()){
+                brokerTinNum = getTinNumForBroker();
+            }
             csrLevel = getCSRLevel();
         }
         DbData dbData = new DbData();

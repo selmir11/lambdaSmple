@@ -350,9 +350,9 @@ public class YourClientsPage {
     }
 
     public void logoutFromBrokerAccount() {
-        basicActions.waitForElementToBePresent(brokerUserName,10);
+        basicActions.waitForElementToBePresentWithRetries(brokerUserName,10);
         brokerUserName.click();
-        basicActions.waitForElementToBePresent(logout,10);
+        basicActions.waitForElementToBePresentWithRetries(logout,10);
         logout.click();
     }
 
@@ -521,7 +521,7 @@ public class YourClientsPage {
         basicActions.waitForElementListToBePresentWithRetries(clientCheckboxes,30);
 
         Random randomIndex = new Random();
-        int randomClient = randomIndex.nextInt(0, clientCheckboxes.size()-1);
+        int randomClient = randomIndex.nextInt(1, clientCheckboxes.size()-1);
 
         clientCheckboxes.get(randomClient).click();
     }
