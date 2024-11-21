@@ -37,6 +37,16 @@ public class SelfAttestationPage {
             "\n" +
             "Remember:The documents you submit must confirm both your household income and that you have appropriately filed a federal income tax return and reported the premium tax credits you received. You may lose the financial help you’re receiving if you do not provide us with both documents.";
 
+
+   String expectedUpdateText =
+           "Thank you!\n"+
+           "\n" +
+           "\n" +
+           "It looks like we need updated information about what your household income will be for 2025. Please go here and click on “Apply for 2025” to submit a new application.\n" +
+           "\n" +
+           "\n" +
+           "Need more help?   Contact our support team at 855-752-6749 or find an expert near you.";
+
     @FindBy(id ="household_income-MVR.HOUSEHOLD_INCOME.YESButton")
     WebElement householdIncomeYes;
 
@@ -69,6 +79,12 @@ public class SelfAttestationPage {
 
     @FindBy(id = "undefined-SaveAndContinue")
     WebElement finish;
+
+    @FindBy(xpath = "//button[text()='here']")
+    WebElement btnClickHereToUpdateApp;
+
+    @FindBy(xpath = "//a[text()='expert near you']")
+    WebElement btnFindExpertHelp;
 
     public void clickHousehold(String householdIncome) {
         basicActions.waitForElementToBeClickable(householdIncomeYes, 10);
@@ -125,16 +141,48 @@ public class SelfAttestationPage {
         submit.click();
     }
 
-    public void checkText() {
+//    public void checkText() {
+//        basicActions.waitForElementToBePresent(pageText, 10);
+//        if (!taxNoFlag) {
+//            softAssert.assertEquals(pageText.getText(), "Your income and tax filing information were successfully confirmed.");
+//        } else {softAssert.assertEquals(pageText1.getText(), expected);}
+//    }
+
+    public void checkText(String scenario){
         basicActions.waitForElementToBePresent(pageText, 10);
-        if (!taxNoFlag) {
-            softAssert.assertEquals(pageText.getText(), "Your income and tax filing information were successfully confirmed.");
-        } else {softAssert.assertEquals(pageText1.getText(), expected);}
+        switch(scenario){
+            case "Success":
+                softAssert.assertEquals(pageText.getText(), "Your income and tax filing information were successfully confirmed.");
+                break;
+            case "Action Required":
+                softAssert.assertEquals(pageText1.getText(), expected);
+                break;
+            case "Update Application":
+                softAssert.assertEquals(pageText1.getText(), expectedUpdateText);
+                break;
+        }
+    }
+
+    public void checkUpdateAppMsgText(){
+        basicActions.waitForElementToBePresent(pageText,10);
+        softAssert.assertEquals(pageText1.getText(), expectedUpdateText);
     }
 
     public void clickFinish() {
         basicActions.waitForElementToBeClickable(finish, 10);
         ScrollAction.scrollToElement(finish);
         finish.click();
+    }
+
+    public void clickHereToUpdate(){
+        basicActions.waitForElementToBeClickable(btnClickHereToUpdateApp, 10);
+        ScrollAction.scrollToElement(btnClickHereToUpdateApp);
+        btnClickHereToUpdateApp.click();
+    }
+
+    public void clickExpertHelp(){
+        basicActions.waitForElementToBeClickable(btnFindExpertHelp, 10);
+        ScrollAction.scrollToElement(btnFindExpertHelp);
+        btnFindExpertHelp.click();
     }
 }

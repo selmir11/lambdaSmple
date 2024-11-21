@@ -30,11 +30,14 @@ public class SelfAttestationPageSteps {
         SelfAttestationPage.clickSubmit();
     }
 
-    @Then("I verify the text on the Post Attestation page")
-    public void iVerifyTheTextOnThePostAttestationPage() {
+//    @Then("I verify the text on the Post Attestation page")
+//    public void iVerifyTheTextOnThePostAttestationPage() {
+//
+//        SelfAttestationPage.checkText();
+//    }
 
-        SelfAttestationPage.checkText();
-    }
+    @Then("I verify the {string} text on the Post Attestation page")
+    public void iVerifyPostAttestationPageText(String scenario){SelfAttestationPage.checkText(scenario);}
 
     @Then("I click on Finish")
     public void iClickOnFinish() {
