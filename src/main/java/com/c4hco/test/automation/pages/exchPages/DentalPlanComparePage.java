@@ -89,6 +89,102 @@ public class DentalPlanComparePage {
     @FindBy(id = "ngb-accordion-item-15-toggle")
     WebElement txtOutMajorServicesAdult;
 
+    public void validateDentalDocumentationComparePlan(String carrier){
+        switch(carrier){
+            case "2":
+                validateRockySelectdocumentcolumns();
+                break;
+            case "3":
+                validateCignaKaiserAnthemdocumentcolumns();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + carrier);
+        }
+
+
+        
+    }
+    public void validateCignaKaiserAnthemdocumentcolumns(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+
+        getDrpDwnPlanCategories.get(1).click();
+        basicActions.waitForElementToBePresent( planDocEnglish11,30 );
+        // Cigna
+        softAssert.assertEquals( planDocEnglish11.getText(), "Brochure Cigna English" );
+        softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Cigna English 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Cigna English 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish14.getText(), "Summary of Benefits and Coverage CO Supplement Cigna English 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Provider Network Cigna" );
+        softAssert.assertEquals( planDocEnglish16.getText(), "Quality Overview Cigna English" );
+
+        softAssert.assertEquals( planDocSpanish11.getText(), "Evidence of Coverage Cigna Spanish 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish12.getText(), "Summary of Benefits and Coverage Cigna Spanish 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish13.getText(), "Summary of Benefits and Coverage CO Supplement Cigna Spanish 0060032-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish14.getText(), "Brochure Cigna Spanish" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Quality Overview Cigna Spanish" );
+
+        // Kaiser
+        softAssert.assertEquals( planDocEnglish21.getText(), "Brochure Kaiser Permanente English" );
+        softAssert.assertEquals( planDocEnglish22.getText(), "Evidence of Coverage Kaiser Permanente English 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish23.getText(), "Summary of Benefits and Coverage Kaiser Permanente English 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish24.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente English 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Provider Network Kaiser Permanente CO Option" );
+        softAssert.assertEquals( planDocEnglish26.getText(), "Quality Overview Kaiser Permanente English" );
+
+        softAssert.assertEquals( planDocSpanish21.getText(), "Summary of Benefits and Coverage Kaiser Permanente Spanish 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish22.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente Spanish 1040003-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish23.getText(), "Quality Overview Kaiser Permanente Spanish" );
+        softAssert.assertEquals( planDocSpanish24.getText(), "Evidence of Coverage Kaiser Permanente Spanish 1040002-06 Colorado Option" );
+
+        // Anthem
+        softAssert.assertEquals( planDocEnglish31.getText(), "Brochure Anthem Medical English" );
+        softAssert.assertEquals( planDocEnglish32.getText(), "Evidence of Coverage Anthem BCBS English 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish33.getText(), "Summary of Benefits and Coverage Anthem BCBS English 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish34.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish35.getText(), "Provider Network Anthem Pathway Essentials Standard" );
+        softAssert.assertEquals( planDocEnglish36.getText(), "Quality Overview Anthem English" );
+
+        softAssert.assertEquals( planDocSpanish31.getText(), "Evidence of Coverage Anthem BCBS Spanish 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish32.getText(), "Summary of Benefits and Coverage Anthem BCBS Spanish 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish33.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220074-00 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish34.getText(), "Quality Overview Anthem Spanish" );
+        softAssert.assertEquals( planDocEnglish35.getText(), "Brochure Anthem Medical Spanish" );
+    }
+
+    public void validateRockySelectdocumentcolumns(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(1).click();
+
+        basicActions.waitForElementToBePresent( planDocEnglish11,30 );
+        softAssert.assertEquals( planDocEnglish11.getText(), "Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish12.getText(), "Evidence of Coverage Rocky Mountain English 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish13.getText(), "Summary of Benefits and Coverage Rocky Mountain English 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocEnglish14.getText(), "Quality Overview Rocky Mountain Health Plan English" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure RMHP-UHC English" );
+        softAssert.assertEquals( planDocEnglish16.getText(), "Provider Network Rocky Mountain Health Plans Colorado Doctors Plan" );
+
+        softAssert.assertEquals( planDocSpanish11.getText(), "Summary of Benefits and Coverage CO Supplement Rocky Mountain Spanish 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish12.getText(), "Evidence of Coverage Rocky Mountain Spanish 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish13.getText(), "Summary of Benefits and Coverage Rocky Mountain Spanish 0420056-06 Colorado Option" );
+        softAssert.assertEquals( planDocSpanish14.getText(), "Quality Overview Rocky Mountain Health Plan Spanish" );
+        softAssert.assertEquals( planDocEnglish15.getText(), "Brochure RMHP-UHC Spanish" );
+
+        softAssert.assertEquals( planDocEnglish21.getText(), "Summary of Benefits and Coverage CO Supplement Select Health English 0030017-06" );
+        softAssert.assertEquals( planDocEnglish22.getText(), "Evidence of Coverage Select Health English 0030017-06" );
+        softAssert.assertEquals( planDocEnglish23.getText(), "Summary of Benefits and Coverage Select Health English 0030017-06" );
+        softAssert.assertEquals( planDocEnglish24.getText(), "Quality Overview Select Health Plan English" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Select Health English" );
+        softAssert.assertEquals( planDocEnglish26.getText(), "Provider Network Select Health" );
+
+        softAssert.assertEquals( planDocSpanish21.getText(), "Summary of Benefits and Coverage CO Supplement Select Health Spanish 0030017-06" );
+        softAssert.assertEquals( planDocSpanish22.getText(), "Evidence of Coverage Select Health Spanish 0030017-06" );
+        softAssert.assertEquals( planDocSpanish23.getText(), "Summary of Benefits and Coverage Select Health Spanish 0030017-06" );
+        softAssert.assertEquals( planDocSpanish24.getText(), "Quality Overview Select Health Plan Spanish" );
+        softAssert.assertEquals( planDocEnglish25.getText(), "Brochure Select Health Spanish" );
+    }
+
 
     public void clickGoBackCompare() {
         basicActions.waitForElementToBeClickable( goBackDentalCompare, 15 );

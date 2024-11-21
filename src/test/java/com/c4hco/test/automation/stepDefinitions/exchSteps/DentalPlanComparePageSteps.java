@@ -25,6 +25,10 @@ public class DentalPlanComparePageSteps {
     @And( "I validate the text headers and subheaders for the OutNetwork Dental Compare page" )
     public void validateOutNetworkDentalCompare(){dentalPlanComparePage.validateOutNetworkDental();}
 
+    @And( "I validate {string} document columns on the Compare page")
+    public void validateDocumentationComparePlan(String carrier) {dentalPlanComparePage.validateDentalDocumentationComparePlan( carrier );
+    }
+
 }
 
 
