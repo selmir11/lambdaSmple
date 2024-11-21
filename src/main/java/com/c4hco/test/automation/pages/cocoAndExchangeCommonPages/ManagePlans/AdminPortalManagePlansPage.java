@@ -344,34 +344,11 @@ public class AdminPortalManagePlansPage {
             String[] parts = memberCoverageStrtDate.split(":");
             String memberNo = parts[0];
             String coverageStartDateValue = parts[1];
-
-            basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
-            basicActions.waitForElementToBePresent(coverageStartdate, 30);
-            basicActions.waitForElementToBeClickable(coverageStartdate, 30);
-            basicActions.scrollToElement(coverageStartdate);
-
-            boolean elementUpdated = false;
-            int attempts = 0;
-            while (!elementUpdated && attempts < 3) {
-                try {
-                    WebElement coverageStartdateMem = basicActions.getDriver()
-                            .findElement(By.xpath("//div[@id='coverageStartDate_" + memberNo + "']//input[1]"));
-
-                    coverageStartdateMem.click();
-                    coverageStartdateMem.clear();
-                    coverageStartdateMem.sendKeys(coverageStartDateValue);
-
-                    elementUpdated = true;
-                } catch (StaleElementReferenceException e) {
-                    attempts++;
-                }
-            }
-
-            if (!elementUpdated) {
-                throw new RuntimeException("Failed to update coverage start date after multiple attempts.");
-            }
+            String coverageStartDatemem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
+            basicActions.updateElementValue(coverageStartDatemem, coverageStartDateValue);
         }
     }
+
 
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
         for (String memberFinancialStrtDate : memberFinancialStrtDtList) {
@@ -481,18 +458,6 @@ public class AdminPortalManagePlansPage {
             WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + memberNo + "']//input[1]"));
             financialEndDateMem.sendKeys(financialStartDateValue);
         }
-    }
-    public void updatePremiumAmount(String premiumAmountValue){
-        basicActions.waitForElementToBePresent(premiumAmount,10);
-        premiumAmount.click();
-        premiumAmount.clear();
-        premiumAmount.sendKeys(premiumAmountValue);
-    }
-    public void updateAptcAmount(String aptcAmountValue){
-        basicActions.waitForElementToBePresent(aptcAmount,10);
-        aptcAmount.click();
-        aptcAmount.clear();
-        aptcAmount.sendKeys(aptcAmountValue);
     }
 
     public void selectThePlanYearOnManagePlan(String planYear) {

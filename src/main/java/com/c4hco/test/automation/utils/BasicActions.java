@@ -343,6 +343,32 @@ public class BasicActions {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public void updateElementValue(String locator, String value) {
+        boolean elementUpdated = false;
+        int attempts = 0;
+        while (!elementUpdated && attempts < 3) {
+            try {
+                WebElement element = getDriver().findElement(By.xpath(locator));
+                element.click();
+                element.clear();
+                element.sendKeys(value);
+
+                elementUpdated = true;
+
+            } catch (StaleElementReferenceException e) {
+                attempts++;
+                System.out.println("Stale element reference exception caught. Retrying... Attempt " + attempts);
+            } catch (Exception e) {
+                System.out.println("Error occurred while updating element: " + e.getMessage());
+                break;
+            }
+        }
+        if (!elementUpdated) {
+            throw new RuntimeException("Failed to update element after multiple attempts.");
+        }
+    }
+
+
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
         List<MemberDetails> members = SharedData.getMembers();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
