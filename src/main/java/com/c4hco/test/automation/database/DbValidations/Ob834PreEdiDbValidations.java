@@ -189,9 +189,9 @@ public class Ob834PreEdiDbValidations {
             softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
             softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
         } else {
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), null, "Broker name is incorrect");
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), null, "Broker Tin Number is incorrect");
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), null, "Broker license number is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_id(), "Broker Tin Number is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_lic_num(), "Broker license number is incorrect");
         }
     }
 
