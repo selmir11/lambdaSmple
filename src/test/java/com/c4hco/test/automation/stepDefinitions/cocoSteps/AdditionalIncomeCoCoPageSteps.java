@@ -27,9 +27,6 @@ public class AdditionalIncomeCoCoPageSteps {
     @And("I select Go Back on the Additional Income CoCo page")
     public void selectGoBack(){additionalIncomeCoCoPage.clickGoBackButton();}
 
-    @And("I open the Additional Income CoCo page in the new tab")
-    public void openInNewTab(){additionalIncomeCoCoPage.openNewTab();}
-
     @And("I unselect {string} option on the Additional Income CoCo page")
     public void unselectOption(String option){additionalIncomeCoCoPage.unselectOptions(option);}
 

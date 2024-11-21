@@ -119,7 +119,7 @@ Feature: Regression Tests that require Seed 1
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
-    
+
   @SLER-1038 @pol_exch_passed
   Scenario:SLER-1038 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN - RT-2246
     Given I open the login page on the "login" portal
