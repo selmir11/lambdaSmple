@@ -6,8 +6,8 @@ import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib834Entity;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.json.JSONArray;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
@@ -18,6 +18,10 @@ public class Ib834FileValidations {
     Transaction transaction = null;
     Ib834Entity subscriberMedEntity = new Ib834Entity();
     Ib834Entity subscriberDenEntity = new Ib834Entity();
+    List<String> n1ListWithSepReason = new ArrayList<>();
+    List<String> n1ListWithAddtlMaintReas = new ArrayList<>();
+    List<String> n1ListWithSepReasonMem = new ArrayList<>();
+    List<String> n1ListWithAddtlMaintReasMem = new ArrayList<>();
     int segCount = 0;
     int insSegCount = 0;
     SoftAssert softAssert = new SoftAssert();
@@ -29,7 +33,14 @@ public class Ib834FileValidations {
         insSegCount = 0;
         validateSubscriberSegments(subscriberMedEntity);
         validateMemSeg(medicalEntityList);
-//        validateSegCount();
+       // validateSegCount();
+    }
+
+    private void validateSegCount() {
+        List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
+        segCount = segCount + 1;
+        softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
+        softAssert.assertAll();
     }
 
     private void getIb834MedEntityForSubscriber() {
@@ -75,13 +86,14 @@ public class Ib834FileValidations {
         CommonEDISegments commonIb834EDISegments = SharedData.getIb834Segments();
         //ISA Segment
         JSONArray isaSeg = commonIb834EDISegments.getISA();
+
         String senderId = isaSeg.get(5).toString().trim();
         String receiverId = isaSeg.get(7).toString().trim();
         softAssert.assertEquals(isaSeg.get(4), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
         softAssert.assertEquals(senderId, entry.getInterchange_sender_id(), "Interchange Sender ID does not match");
         softAssert.assertEquals(isaSeg.get(6), "ZZ", "Interchange ID qualifier, 'ZZ' Mutually Defined");
         softAssert.assertEquals(receiverId, entry.getInterchange_receiver_id(), "Interchange receiver id does not match");
-        softAssert.assertEquals( isaSeg.get(8), entry.getInterchange_date().replace("20",""), "ISA Seg, Interchange date does not match");
+        softAssert.assertEquals(isaSeg.get(8), entry.getInterchange_date(), "ISA Seg, Interchange date does not match");
         softAssert.assertEquals(isaSeg.get(9), entry.getInterchange_time(), "ISA Seg,Interchange time does not match");
         softAssert.assertEquals(isaSeg.get(11), "00501", "Code specifying the version number of the interchange control segments");
         softAssert.assertEquals(isaSeg.get(12), entry.getInterchange_ctrl_number(), "Interchange control number does not match");
@@ -135,7 +147,7 @@ public class Ib834FileValidations {
         List<String> bgnSeg = transaction.getCommonSegments().getBGN().get(0);
         segCount = segCount + 1;
         softAssert.assertEquals(bgnSeg.get(0), entry.getTs_purpose_code(), "ts purpose code does not match");
-        softAssert.assertEquals(bgnSeg.get(2).replace("20",""), entry.getInterchange_date(), "BGN Seg,Interchange date does not match");
+        softAssert.assertEquals(bgnSeg.get(2).substring(2), entry.getInterchange_date(), "BGN Seg,Interchange date does not match");
       //  softAssert.assertEquals(bgnSeg.get(3), entry.getInterchange_time(), "BGN Seg, Interchange time does not match");
         softAssert.assertEquals(bgnSeg.get(4), "MT", "Interchange time does not match");
         softAssert.assertEquals(bgnSeg.get(7), entry.getBgn_action_code(), "BGN action code does not match");
@@ -211,47 +223,120 @@ public class Ib834FileValidations {
         }
     }
     private void validateSegments(Member member, Ib834Entity entry) {
-        validateDMGSegment(member, entry);
-        validateHLHSeg(member, entry);
-        validateInsSegment(member, entry);
-        validateNM1Seg(member, entry);
-        validateHierarchyLevelSeg(member, entry);
-        validateLSLESegment(member);
-        validateAddlMaintReason(member, entry);
-        validateDtpSegment(member, entry);
-        validateLxRefN1Segment(member, entry);
-        validateMemberRefSeg(member, entry);
+        validateIb834DMGSegment(member, entry);
+        validateIb834HLHSeg(member, entry);
+        validateIb834InsSegment(member, entry);
+        validateIb834NM1Seg(member, entry);
+        validateIb834HierarchyLevelSeg(member, entry);
+        validateIb834LSLESegment(member);
+        validateIb834AddlMaintReason(member, entry);
+        validateIb834DtpSegment(member, entry);
+//        validateIb834LxRefN1Segment(member, entry);
+//        validateIb834MemberRefSeg(member, entry);
         softAssert.assertAll();
     }
 
-    private void validateDMGSegment(Member member, Ib834Entity entry) {
+    private void validateIb834DMGSegment(Member member, Ib834Entity entry) {
+        List<String> dmgSeg = member.getDMG().get(0);
+        segCount = segCount + 1;
+        softAssert.assertEquals(dmgSeg.get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
+        softAssert.assertEquals(dmgSeg.get(1), entry.getMember_dob(), "Member date of birth does not match");
+        softAssert.assertEquals(dmgSeg.get(2), entry.getMember_gender(), "Member gender does not match");
+        if(!(entry.getMember_race().equals("7") || entry.getMember_race().equals("8")) ){
+            softAssert.assertEquals(dmgSeg.get(4), entry.getMember_race(), "Member gender does not match");
+        }
     }
 
-    private void validateHLHSeg(Member member, Ib834Entity entry) {
+    private void validateIb834HLHSeg(Member member, Ib834Entity entry) {
+        List<String> HLHSeg = member.getHLH().get(0);
+        segCount = segCount + 1;
+        softAssert.assertEquals(HLHSeg.get(0), entry.getTobacco_use(), "Tobacco use segment mismatch");
     }
 
-    private void validateInsSegment(Member member, Ib834Entity entry) {
+    private void validateIb834InsSegment(Member member, Ib834Entity entry) {
+        insSegCount = insSegCount + 1;
+        segCount = segCount + 1;
+        List<String> insSegment = member.getINS().get(0);
+        softAssert.assertEquals(insSegment.get(0), entry.getSubscriber_indicator(), "In INS segment, Subscriber indicator does not match");
+        softAssert.assertEquals(insSegment.get(1), entry.getIndividual_rel_code(), "In INS segment,Individual rel code does not match");
+        softAssert.assertEquals(insSegment.get(2), entry.getMaintenance_type_code(), "In INS segment, Maintenance type code does not match");
+        softAssert.assertEquals(insSegment.get(3), entry.getMaintenance_reas_code(), "In INS segment, Maintenance reason code does not match");
+        softAssert.assertEquals(insSegment.get(4), "A", "Active does not match");
+        if (insSegment.get(0).equals("Y")) {
+            softAssert.assertEquals(insSegment.get(7), "AC", "Active does not match");
+        }
     }
 
-    private void validateNM1Seg(Member member, Ib834Entity entry) {
+    private void validateIb834NM1Seg(Member member, Ib834Entity entry) {
+        List<List<String>> nm1Seg1 = member.getNM1();
+        segCount = segCount + nm1Seg1.size();
+            softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
+            if (nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
+                softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
+                softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
+                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
+            } else {
+                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "1", "NM1 segment size for member is not equal to 1");
+            }
+        softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(), "Member Last name does not match");
+        softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
+        softAssert.assertEquals(nm1Seg1.get(0).get(7), "34", "");
+        softAssert.assertEquals(nm1Seg1.get(0).get(8), entry.getMember_ssn(), "Member SSN does not match");
+        softAssert.assertAll();
     }
 
-    private void validateHierarchyLevelSeg(Member member, Ib834Entity entry) {
+    private void validateIb834HierarchyLevelSeg(Member member, Ib834Entity entry) {
+        List<String> hdSeg = member.getHD().get(0);
+        segCount = segCount + 1;
+        softAssert.assertEquals(hdSeg.get(0), entry.getHd_maint_type_code(), "HD maintenance type code does not match");
+        softAssert.assertEquals(hdSeg.get(1), "", "Empty");
+        softAssert.assertEquals(hdSeg.get(2), entry.getInsurance_line_code(), "Insurance line code does not match");
     }
 
-    private void validateLSLESegment(Member member) {
+    private void validateIb834LSLESegment(Member member) {
+        List<String> lsSegment = member.getLS().get(0);
+        List<String> leSegment = member.getLE().get(0);
+        softAssert.assertEquals(lsSegment.get(1), "2700", "Loop Header, the loop ID number given on the transaction set does not match");
+        softAssert.assertEquals(leSegment.get(0), "2700", "Loop trailer, The loop ID number given on the transaction set does not match");
+        segCount = segCount + 2;
     }
 
-    private void validateAddlMaintReason(Member member, Ib834Entity entry) {
+    private void validateIb834AddlMaintReason(Member member, Ib834Entity entry) {
+        List<List<String>> refSegList = member.getREF();
+        segCount = segCount + refSegList.size();
+        for (List<String> refSeg : refSegList) {
+            if (refSeg.get(0).equals("LX1") && refSeg.get(1).equals("17")) {
+                // segCount = segCount+1;
+                softAssert.assertEquals(refSeg.get(3), entry.getAddl_maint_reason(), "Additional Maintenance reason does not match");
+            }
+        }
     }
 
-    private void validateDtpSegment(Member member, Ib834Entity entry) {
+    private void validateIb834DtpSegment(Member member, Ib834Entity entry) {
+        List<List<String>> dtpSegList = member.getDTP();
+        segCount = segCount + dtpSegList.size();
+        for (List<String> dtpSeg : dtpSegList) {
+            if (dtpSeg.get(0).contains("348")) {
+                softAssert.assertEquals(dtpSeg.get(2), entry.getBenefit_begin_date(), "DTP 348 does not match with benefit start date.");
+            } else if (dtpSeg.get(0).contains("349")) {
+                softAssert.assertEquals(dtpSeg.get(2), entry.getBenefit_end_date(), "DTP 349 does not match with benefit end date.");
+            } else if (dtpSeg.get(0).contains("303")) {
+              //  softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
+            }
+        }
     }
 
-    private void validateLxRefN1Segment(Member member, Ib834Entity entry) {
+    private void validateIb834LxRefN1Segment(Member member, Ib834Entity entry) {
+
+    }
+    private void validateWithoutSepReasn(int lxSegCount, List<String> refSegList, Ib834Entity entry, Member member) {
+
+    }
+    private void validateMemN1Seg(Ib834Entity entry, List<String> n1SegList) {
+
     }
 
-    private void validateMemberRefSeg(Member member, Ib834Entity entry) {
+    private void validateIb834MemberRefSeg(Member member, Ib834Entity entry) {
     }
 
 
