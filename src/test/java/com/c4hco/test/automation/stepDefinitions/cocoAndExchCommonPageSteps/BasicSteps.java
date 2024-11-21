@@ -671,4 +671,7 @@ public class BasicSteps {
 
     @Then("I open url with {string} query in new tab")
     public void iAddQueryInNewTab(String query){basicActions.openUrlWithQueryStringInNewTab(query);}
+
+    @Then("I open current page in new tab")
+    public void iOpenCurrPageInNewTab(){basicActions.openCurrPageInNewTab();}
 }
