@@ -119,7 +119,6 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.logoutFromAdminPortalParentPage();
     }
 
-
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
         adminPortalSearchPage.accountCreatedMessage();
