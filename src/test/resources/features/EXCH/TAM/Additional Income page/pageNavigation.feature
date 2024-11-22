@@ -84,7 +84,7 @@ Feature: Page Navigation-Additional Income Page
     Then I validate I am on the "Login" page
 
   @SLER-1302 @PageNavigationAdditionalIncomePage @TAMSmoke
-  Scenario: SLER-1302 Mmy session is invalidated when I log out in Income Portal, Exchange
+  Scenario: SLER-1302 My session is invalidated when I log out in Income Portal, Exchange
     #step1
     Then I open current page in new tab
     Then I validate I am on the "Additional income" page

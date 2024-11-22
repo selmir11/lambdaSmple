@@ -173,7 +173,7 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        //dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
