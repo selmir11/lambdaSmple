@@ -20,6 +20,8 @@ public class SelfAttestationPage {
         PageFactory.initElements((basicActions.getDriver()), this);
     }
 
+    private boolean taxNoFlag = false;
+
     String expected =
             "Action Required: Additional Information Needed\n" +
             "\n" +
