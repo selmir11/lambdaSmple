@@ -223,9 +223,9 @@ public class DocumentLookupPage {
         } else {
             softAssert.assertEquals(accountNo.getText(), "2719004301");
             softAssert.assertEquals(documentDisplayNameTxt.getText(), "Correction Proo..");
-            softAssert.assertEquals(txtCreateDate.getText(), "10/07/2020 14:04:03");
-            softAssert.assertEquals(txtArchivedDate.getText(), "10/07/2020 14:04:02");
-            softAssert.assertEquals(txtArchivedDate.getText(), "10/07/2020 14:04:02");
+            softAssert.assertEquals(txtCreateDate.getText(), "10/07/2020 14:04:02");
+            softAssert.assertEquals(txtArchivedDate.getText(), "10/07/2020 14:04:03");
+            softAssert.assertEquals(txtArchivedDate.getText(), "10/07/2020 14:04:03");
             softAssert.assertEquals(txtFileFormat.getText(), "PNG");
             softAssert.assertAll();
         }

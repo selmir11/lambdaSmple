@@ -78,6 +78,9 @@ public class DentalPlansResultsPage {
     @FindBy(css = ".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(id = "DentalPlanResults-ResetFilters")
+    WebElement resetButton;
+
     @FindBy(id = "PlanResults-MonthlyPremium_1")
     WebElement dentalPremium1;
 
@@ -120,6 +123,13 @@ public class DentalPlansResultsPage {
     @FindBy(xpath = "//*[@id='OutOfPocketMaxToolTip_1'] ")
     WebElement  underTTOutOfPocketDeductable1;
 
+    public void clickResetButton(){
+        basicActions.waitForElementToDisappear(spinner, 50);
+        basicActions.waitForElementToBePresentWithRetries( resetButton,20 );
+        resetButton.click();
+
+
+    }
 
     public void DentalresultspagetextValidation(){
         basicActions.waitForElementToDisappear(spinner, 30);
