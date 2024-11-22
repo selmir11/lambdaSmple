@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Ob834FileValidations_new {
+public class Ob834FileValidations {
     SoftAssert softAssert = new SoftAssert();
     Edi834TransactionDetails edi834TransactionDetails = null;
     Transaction transaction = null;
@@ -27,7 +27,7 @@ public class Ob834FileValidations_new {
     int segCount = 0;
     int insSegCount = 0;
 
-    public Ob834FileValidations_new() {
+    public Ob834FileValidations() {
         setN1SegList();
     }
 
