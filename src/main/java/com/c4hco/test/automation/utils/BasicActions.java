@@ -106,6 +106,16 @@ public class BasicActions {
         driver.switchTo().window(newTabHandle);
     }
 
+    public void openCurrPageInNewTab(){
+        String currentUrl = getCurrentUrl();
+        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        jse.executeScript("window.open()");
+        for (String handle : getDriver().getWindowHandles()) {
+            getDriver().switchTo().window(handle);
+        }
+        getDriver().get(currentUrl);
+    }
+
     public String getUrlWithWait(String url, int waitTime) {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
@@ -342,6 +352,26 @@ public class BasicActions {
     public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
+
+    public void updateElementWithRetries(String locator, String value) {
+            int attempts = 0;
+            while (attempts < 5) {
+                try {
+                    WebElement element = getDriver().findElement(By.xpath(locator));
+                    element.click();
+                    element.clear();
+                    element.sendKeys(value);
+                    return;
+                } catch (StaleElementReferenceException e) {
+                    attempts++;
+                    System.out.println("Stale element reference exception. Retrying... Attempt " + attempts);
+                } catch (Exception e) {
+                    System.out.println("Error occurred while updating element: " + e.getMessage());
+                    break;
+                }
+            }
+            throw new RuntimeException("Failed to update element after 5 attempts.");
+        }
 
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
         List<MemberDetails> members = SharedData.getMembers();

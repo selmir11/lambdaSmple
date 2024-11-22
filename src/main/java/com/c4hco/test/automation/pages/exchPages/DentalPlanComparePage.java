@@ -89,7 +89,6 @@ public class DentalPlanComparePage {
     @FindBy(id = "ngb-accordion-item-15-toggle")
     WebElement txtOutMajorServicesAdult;
 
-
     public void clickGoBackCompare() {
         basicActions.waitForElementToBeClickable( goBackDentalCompare, 15 );
         goBackDentalCompare.click(); }
