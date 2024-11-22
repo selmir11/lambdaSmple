@@ -38,4 +38,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    @Then("I validate errors are displaying on Tell Us About Additional Members Of Your Household Page CoCo {string}")
    public void iverifyerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage(String language){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.verifyerrormessageOnTellUsAboutAdditionalMembersOfYourHouseholdfPage(language); }
 
+   @And("I get the newborn {string} dob as {string} in CoCo page")
+   public void iGetMemberDOB(String namePrefix, String dob){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.getDob(namePrefix, dob);}
+
 }

@@ -39,19 +39,36 @@ public class Ib834FileValidations {
         validateMemSeg(medicalEntityList);
         validateSegCount();
     }
-
+    public void validateIb834DenFile(){
+        getIb834DenEntityForSubscriber();
+        List<Ib834Entity> dentalEntityList = SharedData.getIb834DenDetailsEntities();
+        getIb834DataByEmailAndAccNum();
+        segCount = 0;
+        insSegCount = 0;
+        validateSubscriberSegments(subscriberDenEntity);
+        validateMemSeg(dentalEntityList);
+        validateSegCount();
+    }
     private void validateSegCount() {
         List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
         segCount = segCount + 1;
         softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
         softAssert.assertAll();
     }
-
     private void getIb834MedEntityForSubscriber() {
         List<Ib834Entity> medicalEntityList = SharedData.getIb834MedDetailsEntities();
         for (Ib834Entity medIb834Entity : medicalEntityList) {
             if (medIb834Entity.getMember_first_name().toLowerCase().contains("primary")) {
                 subscriberMedEntity = medIb834Entity;
+                break;
+            }
+        }
+    }
+    private void getIb834DenEntityForSubscriber() {
+        List<Ib834Entity> dentalEntityList = SharedData.getIb834DenDetailsEntities();
+        for (Ib834Entity denEntity : dentalEntityList) {
+            if (denEntity.getMember_first_name().toLowerCase().contains("primary")) {
+                subscriberDenEntity = denEntity;
                 break;
             }
         }
