@@ -119,7 +119,7 @@ public class SharedData {
         dentalOb999FileName = null;
         ob999Segments = null;
         ib834TransactionDetails=null;
-        noPlansSkipped = null;
+        noPlansSkipped = true;
     }
 
 }
