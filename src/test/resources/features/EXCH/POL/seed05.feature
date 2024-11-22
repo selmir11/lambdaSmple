@@ -193,7 +193,7 @@ Feature: Seed05 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1290
+  @SLER-1290 @pol_exch_passed
   Scenario: RT-2530 ENR-EXCH: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - ADD BROKER
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -228,7 +228,7 @@ Feature: Seed05 - Exchange
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
-   # And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
