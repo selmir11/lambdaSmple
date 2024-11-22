@@ -177,6 +177,7 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent( dentalSkipBtn, 30 );
         dentalSkipBtn.click();
+        SharedData.setNoPlansSkipped(false);
     }
 
     public void clickFirstTwoCompareBoxes() {
