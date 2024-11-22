@@ -34,9 +34,9 @@ public class Ob834PreEdiDbValidations {
     List<PolicyTablesEntity> dentalPolicyEnitities = new ArrayList<>();
 
     public void recordsValidations(String recordType, List<Map<String, String>> expectedValues) {
-        setData();
         switch (recordType) {
             case "medical":
+                setData();
                 ob834MedRecordsValidations(expectedValues);
                 break;
             case "dental":
@@ -135,18 +135,28 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertAll();
     }
 
-    private void validateMailingAddress(Ob834DetailsEntity ob834Entity, MemberDetails member) {
-        softAssert.assertEquals(member.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
-        if (member.getMailingAddress().getAddressLine2() != null) {
-            softAssert.assertEquals(member.getMailingAddress().getAddressLine2(), ob834Entity.getMail_street_line2(), "Mailing address street line 2 does not match");
+    private void validateMailingAddressIsNull(Ob834DetailsEntity ob834Entity){
+        softAssert.assertNull(ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
+        softAssert.assertNull(ob834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
+        softAssert.assertNull(ob834Entity.getMail_city(), "Mailing city does not match");
+        softAssert.assertNull(ob834Entity.getMail_st(), "Mailing state does not match");
+        softAssert.assertNull(ob834Entity.getMail_zip_code(), "Mailing zipcode does not match");
+        softAssert.assertNull(ob834Entity.getMail_fip_code(), "Mailing fipcode is not null");
+        softAssert.assertAll("Mailing Address did not match for "+subscriber.getFirstName());
+    }
+
+    private void validateMailingAddress(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine1(), ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
+        if (subscriber.getMailingAddress().getAddressLine2() != null) {
+            softAssert.assertEquals(subscriber.getMailingAddress().getAddressLine2(), ob834Entity.getMail_street_line2(), "Mailing address street line 2 does not match");
         } else {
             softAssert.assertNull(ob834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
         }
-        softAssert.assertEquals(member.getMailingAddress().getAddressCity(), ob834Entity.getMail_city(), "Mailing city does not match");
-        softAssert.assertEquals(member.getMailingAddress().getAddressState(), ob834Entity.getMail_st(), "Mailing state does not match");
-        softAssert.assertEquals(member.getMailingAddress().getAddressZipcode(), ob834Entity.getMail_zip_code(), "Mailing zipcode does not match");
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressCity(), ob834Entity.getMail_city(), "Mailing city does not match");
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressState(), ob834Entity.getMail_st(), "Mailing state does not match");
+        softAssert.assertEquals(subscriber.getMailingAddress().getAddressZipcode(), ob834Entity.getMail_zip_code(), "Mailing zipcode does not match");
         softAssert.assertNull(ob834Entity.getMail_fip_code(), "Mailing fipcode is not null");
-        softAssert.assertAll("Mailing Address did not match for "+member.getFirstName());
+        softAssert.assertAll("Mailing Address did not match for "+subscriber.getFirstName());
     }
 
     private void validateIncorrectEntities(Ob834DetailsEntity ob834Entity, MemberDetails member) {
@@ -171,9 +181,9 @@ public class Ob834PreEdiDbValidations {
             softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
             softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
         } else {
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), null, "Broker name is incorrect");
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), null, "Broker Tin Number is incorrect");
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), null, "Broker license number is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_id(), "Broker Tin Number is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_lic_num(), "Broker license number is incorrect");
         }
     }
 
@@ -320,7 +330,11 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         validateSponsorId(ob834Entity);
         validateResidentialAddress(ob834Entity, subscriber);
-        validateMailingAddress(ob834Entity, subscriber);
+        if(!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
+            validateMailingAddress(ob834Entity, subscriber);
+        } else {
+            validateMailingAddressIsNull(ob834Entity);
+        }
     }
 
     private void validateIndivMedPremAmt(Ob834DetailsEntity ob834Entity){

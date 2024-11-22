@@ -23,6 +23,7 @@ public class DbDataProvider_Exch {
     EnPolicyMemberCoverageAhHandler enPolicyMemberCoverageAhHandler = new EnPolicyMemberCoverageAhHandler();
     Ob834DetailsDbHandler ob834DetailsDbHandler = new Ob834DetailsDbHandler();
     Ib999Handler ib999Handler = new Ib999Handler();
+    Ob999Handler ob999Handler = new Ob999Handler();
     Ib834Handler ib834Handler = new Ib834Handler();
     EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
@@ -51,6 +52,11 @@ public class DbDataProvider_Exch {
     public List<Ib999Entity> getIb999Details(String ak1grp_ctrl_number){
         return ib999Handler.getIbDetailsAfterCompleted(exchDbQueries.ib999Details(ak1grp_ctrl_number));
     }
+
+    public List<Ob999Entity> getOb999Details(String ak1grp_ctrl_number){
+        return ob999Handler.getObDetailsAfterCompleted(exchDbQueries.ob999Details(ak1grp_ctrl_number));
+    }
+
     public List<Ib834Entity> getIb834Details(String grpCtlNum){
         return ib834Handler.getIbDetailsAfterCompleted(exchDbQueries.ib834Details(grpCtlNum));
     }
@@ -104,8 +110,10 @@ public class DbDataProvider_Exch {
         String ratingAreaId = getRatingAreaId(fipcode);
         String brokerTinNum = null;
         String csrLevel = null;
-        if (!"coco".equals(SharedData.getAppType())) {
-            brokerTinNum = getTinNumForBroker();
+        if (!SharedData.getAppType().equals("coco")) {
+            if(SharedData.getHasBroker()){
+                brokerTinNum = getTinNumForBroker();
+            }
             csrLevel = getCSRLevel();
         }
         DbData dbData = new DbData();

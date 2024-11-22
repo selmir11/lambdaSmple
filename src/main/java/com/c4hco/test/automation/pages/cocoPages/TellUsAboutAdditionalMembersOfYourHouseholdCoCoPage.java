@@ -1,3 +1,4 @@
+
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
@@ -14,6 +15,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import javax.management.relation.Relation;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -121,6 +124,14 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         txtMiddleName.sendKeys(mdlName);
         txtLastName.sendKeys(lastName);
 
+        if(DOB.equals("getFromSharedData")){
+            DOB = SharedData.getCalculatedDob().get(Name);
+            DOB = basicActions.changeDateFormat(DOB, "MM/dd/yyyy", "MMddyyyy");
+        }
+        else if(DOB.contains("Age")){
+            memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
+        }
+
         List<MemberDetails> memberList = SharedData.getMembers();
 
         if (memberList == null) {
@@ -145,6 +156,13 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             selectRelationship(Relation);
             applyingForCoverage(applying);
         }
+    }
+
+    public void memberDetailswithAge(int Age){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate DOBCalculate = currentDate.minusYears(Age);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String actualdob=dateFormat.format(DOBCalculate);
     }
 
     public void specificAdditionalMemberDetailsCoCoSpanish(String DOB, String gender, String Relation, String applying) {
@@ -260,7 +278,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
-///////Page Validation-------------------------------------------------------------------------------------
+    ///////Page Validation-------------------------------------------------------------------------------------
     ///Text validation
     public void verifyEnglishTextOnTellUsAboutAdditionalMembersOfYourHouseholdPage(){
         basicActions.waitForElementToBePresent(PageTitle,10);
@@ -495,18 +513,22 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
 
-            try {
-                WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::div/parent::form-label/parent::div //select"));
-                basicActions.waitForElementToBeClickableWithRetries(element,10);
-                // Perform actions on the element
-                Select dropdown = new Select(element);
-                dropdown.selectByVisibleText(Relation);
-                softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
-                softAssert.assertAll();
-            } catch (NoSuchElementException e) {
-                System.out.println("Element not found: " + e.getMessage());
-                // Handle the exception as needed
-            }
+        try {
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::div/parent::form-label/parent::div //select"));
+            basicActions.waitForElementToBeClickableWithRetries(element,10);
+            // Perform actions on the element
+            Select dropdown = new Select(element);
+            dropdown.selectByVisibleText(Relation);
+            softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
+            softAssert.assertAll();
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + e.getMessage());
+            // Handle the exception as needed
+        }
 
     }
+    public void getDob(String namePrefix, String dob){
+        basicActions.getDob(namePrefix, dob);
+    }
+
 }

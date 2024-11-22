@@ -1,11 +1,13 @@
-package com.c4hco.test.automation.Dto.Edi;
+package com.c4hco.test.automation.Dto.Edi.Edi834;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data @JsonIgnoreType
 public class Member {
     @JsonProperty("DTP")

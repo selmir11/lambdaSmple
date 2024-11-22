@@ -63,5 +63,8 @@ public class AccountOverviewPageSteps {
 
     @Then("I click the Verify My Information button on Account Overview Page")
     public void iClickVerifyMyInformationButton(){accountOverviewPage.clickMyInfoButton();}
+
+    @Then("I validate that the Verify My Information section does not display")
+    public void iVerifySelfAttestButtonDoesNotExist(){accountOverviewPage.verifyMyInfoButtonDoesNotExist();}
 }
 

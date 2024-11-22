@@ -1,7 +1,9 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -171,7 +173,7 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        //dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
@@ -851,5 +853,18 @@ public class LifeChangeEventsCoCoPage {
             softAssert.assertAll();
             basicActions.wait(200);
         }
+    }
+    public void selectBirthQLCE(){
+        basicActions.waitForElementToBeClickable(birthLCE, 10);
+        birthLCE.click();
+        String newbornFullName =basicActions.getCompleteFullNameWithPrefix(SharedData.getBirthLceIndividual());
+        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//span[contains(text(),'" + newbornFullName + "')]/parent::label//button[contains(@class,'checkbox')and contains(@id,'ELIG-LceMember-BIRTH')]"));
+        basicActions.waitForElementToBeClickable(birthLceMemCheckbox, 10);
+        birthLceMemCheckbox.click();
+
+        birthEventDate.stream()
+                .filter(WebElement::isEnabled)
+                .findFirst()
+                .ifPresent(eventDateElement -> eventDateElement.sendKeys((basicActions.changeDateFormat(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()), "MM/dd/yyyy", "MM/dd"))));
     }
 }

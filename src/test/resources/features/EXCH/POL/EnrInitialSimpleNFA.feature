@@ -1,4 +1,4 @@
- @SLER-34 @SLER-1069 @SLER-1262
+ @SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
@@ -135,12 +135,13 @@ Feature: Simple NFA - Single Applicant
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
-    And I download the "medical" file from sftp server with location "/archive/INBOUND999/"
-    And I download the "dental" file from sftp server with location "/archive/INBOUND999/"
+    And I download the "medical" ib999 file from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" ib999 file from sftp server with location "/archive/INBOUND999/"
 
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
+    # SLER-1332, Ib834 database and file validations
     And I validate ib834 "medical" details in database
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -152,4 +153,14 @@ Feature: Simple NFA - Single Applicant
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
 
     And I validate the ib834 "medical" file data
-#    And I validate the ib834 "dental" file data
+    And I validate the ib834 "dental" file data
+
+    # SLER-1295 - Validate ob999 database and files
+    And I validate "medical" entities from ob999_details db table
+    And I validate "dental" entities from ob999_details db table
+
+    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
+
+    And I validate the ob999 "medical" file data
+    And I validate the ob999 "dental" file data

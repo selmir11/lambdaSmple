@@ -448,7 +448,7 @@ public class MyDocumentsPage {
         clickMvrDoubleChevrons();
         clickUploadMvr(mvrType);
         clickWhichDocument();
-        uploadDoc();
+        uploadDoc("TestMyDocs.docx");
         clickUploadDoc();
         clickMvrDoubleChevrons();
     }
@@ -470,8 +470,8 @@ public class MyDocumentsPage {
         dpdWhichDocumentOptions.get(0).click();
     }
 
-    public void uploadDoc() {
-        String documentPath = "src/main/resources/MyDocs/TestMyDocs.docx";
+    public void uploadDoc(String uploadDoc) {
+        String documentPath = "src/main/resources/MyDocs/"+uploadDoc;
         String absolutePath = Paths.get(documentPath).toAbsolutePath().toString();
         WebElement fileInput = WebDriverManager.getDriver().findElement(By.cssSelector("input[type='file']"));
         fileInput.sendKeys(absolutePath);
@@ -498,5 +498,10 @@ public class MyDocumentsPage {
             }
         }
         throw new RuntimeException("Failed to upload document after " + maxRetries + " attempts. Upload error persists.");
+    }
+
+    public void verifyMvrNeeded(String mvrType) {
+        basicActions.waitForElementToBePresent(myDocumentsTitle,30);
+        WebElement mvrNameType = basicActions.getDriver().findElement(By.xpath("//app-documents-upload//p[contains(text(), 'Proof of "+mvrType+"')]"));
     }
 }

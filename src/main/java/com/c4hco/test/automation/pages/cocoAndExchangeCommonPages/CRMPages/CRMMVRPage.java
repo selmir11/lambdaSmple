@@ -42,7 +42,7 @@ public class CRMMVRPage {
     }
 
     public void checkMVRTitle(String mvrType, String memPrefix){
-        basicActions.wait(1000);
+        basicActions.wait(1300);
         basicActions.waitForElementToBePresentWithRetries(MVRNameHeader, 30);
         allMemberNames = new HashSet<>(basicActions.getAllMemNames());
         String memFullName = null;

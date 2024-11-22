@@ -339,7 +339,7 @@ Feature: Eligibility Notices
 
     # Review application results
     Then I validate I am on the "Good News" page
-    Then I click on No Thanks on good news page
+    Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page

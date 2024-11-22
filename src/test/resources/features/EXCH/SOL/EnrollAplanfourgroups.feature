@@ -322,6 +322,7 @@ Feature: FA - 4groups - enroll in plan
     And I wait for hold on content to disappear
     Then I click on No Thanks on good news page
     #Then I validate that my APTC value is "$3280.93/mo"
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -399,6 +400,7 @@ Feature: FA - 4groups - enroll in plan
     And I wait for hold on content to disappear
     Then I click on No Thanks on good news page
     Then I validate that my APTC value is "$0.00/mo"
+    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
