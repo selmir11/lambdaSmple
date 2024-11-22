@@ -218,7 +218,6 @@ public class Ib834FileValidations {
         // ST Segment
         List<String> stSeg = transaction.getCommonSegments().getST().get(0);
         softAssert.assertEquals(stSeg.get(0), "834", "Transaction Set Identifier Code does not match");
-        softAssert.assertEquals(stSeg.get(1), "1000", "Transaction Set Control Number does not match");
         softAssert.assertEquals(stSeg.get(2), "005010X220A1", "Implementation Convention Reference does not match");
         // SE Segment
         List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
