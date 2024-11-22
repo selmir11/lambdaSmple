@@ -31,6 +31,10 @@ public class ApplicationResultsPageSteps {
     public void verifySESClosedOnAppResultsPage(String language){applicationResultsCoCoPage.verifySESClosedOnAppResultsPage(language);
     }
 
+    @Then("I verify text that the member qualifies for SES and spots are available in {string} on the App Results Page CoCo")
+    public void verifySESOpenOnAppResultsPage(String language){applicationResultsCoCoPage.verifySESOpenOnAppResultsPage(language);
+    }
+
     @Then("I verify eligible plan on Application Result page coco depends on SES")
     public void verifyEligiblePlan() {
         applicationResultsCoCoPage.verifyEligibleplans();

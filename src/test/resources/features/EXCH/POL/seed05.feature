@@ -193,7 +193,7 @@ Feature: Seed05 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1290-WIP
+  @SLER-1290
   Scenario: RT-2530 ENR-EXCH: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - ADD BROKER
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -234,7 +234,7 @@ Feature: Seed05 - Exchange
     And I validate "dental" entities from policy tables
 
     And I verify the policy data quality check with Policy Ah keyset size 2
-    # And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |

@@ -9,6 +9,9 @@ public class DentalPlansResultsPageSteps {
     DentalPlansResultsPage dentalPlansResultsPage = new DentalPlansResultsPage(WebDriverManager.getDriver());
 
 
+    @Then ("I select the filter reset button")
+    public void clickResetButton(){dentalPlansResultsPage.clickResetButton();}
+
     @Then("I select first dental plan")
     public void selectFirstDentalPlan() { dentalPlansResultsPage.selectFirstDentalPlan(); }
 

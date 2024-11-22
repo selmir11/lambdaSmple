@@ -4,8 +4,12 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalSea
 import com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.BasicSteps;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+import java.util.List;
 
 public class AdminPortalSearchSteps {
 
@@ -80,14 +84,15 @@ public class AdminPortalSearchSteps {
     }
 
     @Then("I enter an {string} {string} to search user")
-    public void iEnterAnToSearchUser(String userdata,String type) {
-        adminPortalSearchPage.enterUserData(userdata,type);
+    public void iEnterAnToSearchUser(String userdata, String type) {
+        adminPortalSearchPage.enterUserData(userdata, type);
     }
 
     @And("I enter an {string} in any env {string} {string} to search user")
     public void iEnterAnInAnyEnvToSearchUser(String userdata, String QAType, String STGType) {
-        adminPortalSearchPage.enterUserDataAnyENV(userdata,QAType,STGType);
+        adminPortalSearchPage.enterUserDataAnyENV(userdata, QAType, STGType);
     }
+
     @Then("I click on Search button in AP dashboard page")
     public void iClickOnSearchButtonInAPDashboardPage() {
         adminPortalSearchPage.clickSearch();
@@ -102,31 +107,77 @@ public class AdminPortalSearchSteps {
     public void iClickColoradoConnectCheckbox(String selectUserTypeToSearch) {
         adminPortalSearchPage.SelectUserTypeToSearch(selectUserTypeToSearch);
     }
+
     @Then("I click acct first row from Search Results table in admin portal")
     public void iClickAccountLinkFirstRowFromSearchResults() {
         adminPortalSearchPage.clickAccountLinkFirstRowFromSearchResults();
     }
+
     @And("I validate {string} application link not display")
-    public void iValidateAppLinksIsNotDisplay(String option)    {
-            adminPortalSearchPage.validateAppLinksIsNotDisplay(option); }
+    public void iValidateAppLinksIsNotDisplay(String option) {
+        adminPortalSearchPage.validateAppLinksIsNotDisplay(option);
+    }
 
     @Then("I enter an accountId in any Env {string} {string} to search user")
     public void iEnterAnAccountIdInAnyEnvToSearchUser(String stgAccountId, String qaAccountId) {
-        adminPortalSearchPage.enterAccountIdToAnyENV(stgAccountId,qaAccountId);
+        adminPortalSearchPage.enterAccountIdToAnyENV(stgAccountId, qaAccountId);
     }
+
     @Then("I logout from Admin Portal")
     public void iLogoutAdminPortal() {
         adminPortalSearchPage.logoutFromAdminPortalParentPage();
     }
 
+    @Then("I verify error for required at least one search criteria on admin portal search page")
+    public void iVerifyErrorForRequiredAtLeastOneSearchCriteriaOnAdminPortalSearchPage() {
+        adminPortalSearchPage.requiredSearchCriteria();
+    }
+
+    @When("I select {string}")
+    public void iSelect(String text) {
+        adminPortalSearchPage.selectSortOption(text);
+    }
+
+    @Then("I validate the list is sorted in order by {string} and {string}")
+    public void iValidateTheListIsSortedInOrderByAnd(String category, String sortOrder) {
+        adminPortalSearchPage.verifysort(category, sortOrder);
+    }
+
+    @When("I click on reset button on admin portal search page")
+    public void iClickOnResetButtonOnOnAdminPortalSearchPage() {
+        adminPortalSearchPage.clickResetButton();
+    }
+
+    @Then("I validate message for over hundred records")
+    public void iValidateMessageForOverHundredRecords() {
+        adminPortalSearchPage.morethan100records();
+    }
+
+    @Then("I verify account results for {string} on admin portal search page")
+    public void iVerifyAccountResultsForOnAdminPortalSearchPage(String category) {
+        adminPortalSearchPage.verifyAccountDetails(category);
+    }
+
+    @When("I enter the following data for QA or STG:")
+    public void iEnterTheFollowingDataForQAOrSTG(DataTable dataTable) {
+        adminPortalSearchPage.entersearchdata(dataTable);
+    }
+    
 
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
-        adminPortalSearchPage.accountCreatedMessage();
+            adminPortalSearchPage.accountCreatedMessage();
+        }
+
+    @Then("I verify data in the fields on the admin portal search page should be blank")
+    public void iVerifyDataInTheFieldsOnTheAdminPortalSearchPageShouldBeBlank(DataTable dataTable) {
+        adminPortalSearchPage.verifyblankfield(dataTable);
     }
     @Then("I click on Reset button in AP dashboard page")
     public void iClickOnResetButtonInAPDashboardPage() {
         adminPortalSearchPage.clickResetAdminPortal();
     }
 }
+
+
 
