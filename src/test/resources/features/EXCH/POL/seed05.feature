@@ -193,7 +193,7 @@ Feature: Seed05 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1290-WIP
+  @SLER-1290
   Scenario: RT-2530 ENR-EXCH: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - ADD BROKER
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

@@ -349,6 +349,17 @@ public class Ob834FileValidations {
         softAssert.assertEquals(n1Segment.get(1).get(1), entry.getInsurer_name(), "Insurer Name does not match");
         softAssert.assertEquals(n1Segment.get(1).get(2), "94", "Code assigned by the organization that is the ultimate destination of the transaction set");
         softAssert.assertEquals(n1Segment.get(1).get(3), entry.getInsurer_id(), "Insurer Identification Code");
+
+        if(SharedData.getHasBroker()){
+            softAssert.assertEquals(n1Segment.get(2).get(0), "BO", "Broker");
+            softAssert.assertEquals(n1Segment.get(2).get(1), entry.getTpa_or_broker_name(), "Broker name mismatch");
+            softAssert.assertEquals(n1Segment.get(2).get(2), "94", "Broker Code assigned by the organization that is the ultimate destination of the transaction set");
+            softAssert.assertEquals(n1Segment.get(2).get(3), entry.getTpa_or_broker_id(), "Broker Id mismatch");
+            List<String> actSegment = transaction.getCommonSegments().getACT().get(0);
+            softAssert.assertEquals(actSegment.get(0), entry.getTpa_or_broker_lic_num(), "Broker License Number did not match");
+            segCount = segCount+1;
+        }
+
     }
 
     private void validateAddlMaintReason(Member member, Ob834DetailsEntity entry) {
