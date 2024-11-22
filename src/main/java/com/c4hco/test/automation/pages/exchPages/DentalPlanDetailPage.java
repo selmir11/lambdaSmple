@@ -300,6 +300,31 @@ public class DentalPlanDetailPage {
     @FindBy(id = "ngb-accordion-item-13-toggle")
     WebElement txtOutMajorServicesAdult;
 
+    ///// document links
+
+    @FindBy(id ="DentalCarrierDetails-ProviderNetwork")
+    WebElement txtProviderNetwork;
+
+    @FindBy(id ="DentalCarrierDetails-downloadPlanDocument_0")
+    WebElement txtProviderNetworkCarrierSpecific;
+
+    @FindBy(id ="DentalCarrierDetails-downloadPlanDocument_1")
+    WebElement txtCompanyProfileEnglish;
+
+    @FindBy(id ="DentalCarrierDetails-downloadPlanDocument_2")
+    WebElement txtCompanyProfileSpanish;
+
+    @FindBy(id ="DentalCarrierDetails-downloadPlanDocument_3")
+    WebElement txtEvidenceCoverageEnglish;
+
+    @FindBy(id ="DentalCarrierDetails-downloadPlanDocument_4")
+    WebElement txtSummaryBenefitCoverageEnglish;
+
+    @FindBy(id ="DentalCarrierDetails-downloadPlanDocument_5")
+    WebElement txtSummaryBenefitCoverageSpanish;
+
+
+
     public void clickGoBackDetail() {
         basicActions.waitForElementToDisappear( spinner,15 );
         basicActions.waitForElementToBePresent(clickGoBackDetail, 15 );
@@ -346,6 +371,79 @@ public class DentalPlanDetailPage {
 
          }
      }
+
+     public void validateDetailDocuments(String documentLinks){
+            basicActions.waitForElementToDisappear( spinner, 20 );
+            switch (documentLinks) {
+                case "Anthem Dental":
+                    validateAnthemDentalDetailDocLinks();
+                    break;
+                case "Cigna Healthcare":
+                    validateCignaDentalDetailDocLinks();
+                    break;
+                case "Delta Dental":
+                    validateDeltaDentalDetailDocLinks();
+                    break;
+                case "Solstice Healthplans":
+                    validateSolsticeDentalDetailDocLinks();
+                    break;
+                default:
+                    throw new IllegalArgumentException( "Invalid option: " + documentLinks );
+
+         }
+
+     }
+
+     public void validateAnthemDentalDetailDocLinks(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+         softAssert.assertEquals( txtProviderNetwork.getText(), "Provider Network" );
+         softAssert.assertEquals( txtProviderNetworkCarrierSpecific.getText(), "Provider Network Anthem Dental" );
+         softAssert.assertEquals( txtCompanyProfileEnglish.getText(), "Company Profile Anthem Dental English" );
+         softAssert.assertEquals( txtCompanyProfileSpanish.getText(), "Company Profile Anthem Dental Spanish" );
+         softAssert.assertEquals( txtEvidenceCoverageEnglish.getText(), "Evidence of Coverage Anthem RMHMS Dental English 120005-01" );
+         softAssert.assertEquals( txtSummaryBenefitCoverageEnglish.getText(), "Summary of Benefits and Coverage Anthem Dental English 120005-01" );
+         softAssert.assertEquals( txtSummaryBenefitCoverageSpanish.getText(), "Summary of Benefits and Coverage Anthem Dental Spanish 120005-01" );
+
+     }
+
+    public void validateCignaDentalDetailDocLinks(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        softAssert.assertEquals( txtProviderNetwork.getText(), "Provider Network" );
+        softAssert.assertEquals( txtProviderNetworkCarrierSpecific.getText(), "Provider Network Cigna Dental" );
+        softAssert.assertEquals( txtCompanyProfileEnglish.getText(), "Company Profile Cigna Dental English" );
+        softAssert.assertEquals( txtCompanyProfileSpanish.getText(), "Company Profile Cigna Dental Spanish" );
+        softAssert.assertEquals( txtEvidenceCoverageEnglish.getText(), "Evidence of Coverage Cigna Dental English 030002-01" );
+        softAssert.assertEquals( txtSummaryBenefitCoverageEnglish.getText(), "Summary of Benefits and Coverage Cigna Dental English 030002-01" );
+        softAssert.assertEquals( txtSummaryBenefitCoverageSpanish.getText(), "Summary of Benefits and Coverage Cigna Dental Spanish 030002-01" );
+
+
+    }
+
+    public void validateDeltaDentalDetailDocLinks(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        softAssert.assertEquals( txtProviderNetwork.getText(), "Provider Network" );
+        softAssert.assertEquals( txtProviderNetworkCarrierSpecific.getText(), "Provider Network Delta Dental" );
+        softAssert.assertEquals( txtCompanyProfileEnglish.getText(), "Company Profile Delta Dental English" );
+        softAssert.assertEquals( txtCompanyProfileSpanish.getText(), "Company Profile Delta Dental Spanish" );
+        softAssert.assertEquals( txtEvidenceCoverageEnglish.getText(), "Evidence of Coverage Delta Dental English 020006-01" );
+        softAssert.assertEquals( txtSummaryBenefitCoverageEnglish.getText(), "Summary of Benefits and Coverage Delta Dental English 020006-01" );
+
+
+    }
+
+    public void validateSolsticeDentalDetailDocLinks(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        softAssert.assertEquals( txtProviderNetwork.getText(), "Provider Network" );
+        softAssert.assertEquals( txtProviderNetworkCarrierSpecific.getText(), "Provider Network Solstice Dental" );
+        softAssert.assertEquals( txtCompanyProfileEnglish.getText(), "Company Profile Solstice Dental English" );
+        softAssert.assertEquals( txtCompanyProfileSpanish.getText(), "Company Profile Solstice Dental Spanish" );
+        softAssert.assertEquals( txtEvidenceCoverageEnglish.getText(), "Evidence of Coverage Solstice Dental English 010001-01" );
+        softAssert.assertEquals( txtSummaryBenefitCoverageEnglish.getText(), "Summary of Benefits and Coverage Solstice Dental English 010001-01" );
+
+
+    }
+
+
 
      public void validateEnglishInNetworkDentalDetail() {
         basicActions.waitForElementToBePresent( txtDentalDisclaimer, 15 );
