@@ -3,7 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.edi.EdiValidations.Ib834FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
-import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations_new;
+import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ob999FileValidations;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import com.jcraft.jsch.JSchException;
@@ -12,7 +12,7 @@ import org.testng.Assert;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
-   Ob834FileValidations_new ob834Validations_new = new Ob834FileValidations_new();
+   Ob834FileValidations ob834Validations_new = new Ob834FileValidations();
    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
    Ob999FileValidations ob999FileValidations = new Ob999FileValidations();
    Ib834FileValidations ib834FileValidations = new Ib834FileValidations();

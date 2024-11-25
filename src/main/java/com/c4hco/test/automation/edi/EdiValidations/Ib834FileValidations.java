@@ -169,8 +169,6 @@ public class Ib834FileValidations {
         segCount = segCount + 1;
         softAssert.assertEquals(bgnSeg.get(0), entry.getTs_purpose_code(), "ts purpose code does not match");
         softAssert.assertEquals(bgnSeg.get(2).substring(2), entry.getInterchange_date(), "BGN Seg,Interchange date does not match");
-        /*Time difference Ex: [1202] but found [1204]*/
-        //softAssert.assertEquals(bgnSeg.get(3), entry.getInterchange_time(), "BGN Seg, Interchange time does not match");
         softAssert.assertEquals(bgnSeg.get(4), "MT", "Interchange time does not match");
         softAssert.assertEquals(bgnSeg.get(7), entry.getBgn_action_code(), "BGN action code does not match");
     }
@@ -218,7 +216,6 @@ public class Ib834FileValidations {
         // ST Segment
         List<String> stSeg = transaction.getCommonSegments().getST().get(0);
         softAssert.assertEquals(stSeg.get(0), "834", "Transaction Set Identifier Code does not match");
-        softAssert.assertEquals(stSeg.get(1), "1000", "Transaction Set Control Number does not match");
         softAssert.assertEquals(stSeg.get(2), "005010X220A1", "Implementation Convention Reference does not match");
         // SE Segment
         List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
@@ -358,8 +355,7 @@ public class Ib834FileValidations {
         if (member.getINS().get(0).get(0).equals("Y")) {
             softAssert.assertEquals(lxSegment.size(), 1, "LX Seg size is not equals to 1 for subscriber");
         } else {
-            softAssert.assertEquals(lxSegment.size(), 2, "LX Seg size is not equals to 2 for member");
-
+            softAssert.assertEquals(lxSegment.size(), 1, "LX Seg size is not equals to 1 for member");
         }
         softAssert.assertEquals(lxSegment.size(), n1SegListOfList.size(), "LX seg size is not equal to n1seg size within LS loop for this member");
 

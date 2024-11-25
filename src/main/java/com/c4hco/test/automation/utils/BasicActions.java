@@ -353,6 +353,26 @@ public class BasicActions {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public void updateElementWithRetries(String locator, String value) {
+            int attempts = 0;
+            while (attempts < 5) {
+                try {
+                    WebElement element = getDriver().findElement(By.xpath(locator));
+                    element.click();
+                    element.clear();
+                    element.sendKeys(value);
+                    return;
+                } catch (StaleElementReferenceException e) {
+                    attempts++;
+                    System.out.println("Stale element reference exception. Retrying... Attempt " + attempts);
+                } catch (Exception e) {
+                    System.out.println("Error occurred while updating element: " + e.getMessage());
+                    break;
+                }
+            }
+            throw new RuntimeException("Failed to update element after 5 attempts.");
+        }
+
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
         List<MemberDetails> members = SharedData.getMembers();
         MemberDetails primaryMem = SharedData.getPrimaryMember();

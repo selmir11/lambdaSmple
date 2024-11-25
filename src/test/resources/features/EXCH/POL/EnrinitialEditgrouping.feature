@@ -1,7 +1,7 @@
 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
-  @SLER-41 @pol_exch_passed
+  @SLER-41 @SLER-1170 @SLER-1250 @SLER-1252 @SLER-1283 @pol_exch_passed
   Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -260,7 +260,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
-    # SLER-1252 - ib834 db and file validations - WIP
+    # SLER-1252 - ib834 db and file validations
     And I validate ib834 "medical" details in database
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -271,8 +271,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
 
-#    And I validate the ib834 "medical" file data
-#    And I validate the ib834 "dental" file data
+    And I validate the ib834 "medical" file data
+    And I validate the ib834 "dental" file data
 
     # SLER-1283 - Validate ob999 database and files
     And I validate "medical" entities from ob999_details db table
