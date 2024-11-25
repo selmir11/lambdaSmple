@@ -1,13 +1,12 @@
 package com.c4hco.test.automation.Dto.Edi.Edi834;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
 
-@Data @JsonIgnoreType @JsonIgnoreProperties(ignoreUnknown = true)
+@Data @JsonIgnoreType
 public class CommonSegments {
     @JsonProperty("ST")
     private List<List<String>> ST;
@@ -23,4 +22,6 @@ public class CommonSegments {
     private List<List<String>> QTY;
     @JsonProperty("BGN")
     private List<List<String>> BGN;
+    @JsonProperty("ACT")
+    private List<List<String>> ACT;
 }

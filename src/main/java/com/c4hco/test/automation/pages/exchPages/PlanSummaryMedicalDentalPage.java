@@ -148,7 +148,9 @@ public class PlanSummaryMedicalDentalPage {
 
    
     public void continuePlanSummaryPage(){
-        setPlansPremiumAmt();
+        if(SharedData.getNoPlansSkipped()){
+            setPlansPremiumAmt();
+        }
         getmedGroup1MemNames();
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 30);
@@ -193,7 +195,6 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.waitForElementToDisappear( spinner, 20 );
         MemberDetails subscriber = SharedData.getPrimaryMember();
         List<MemberDetails> memberslist = SharedData.getMembers();
-        Boolean isGettingFinancialHelp = subscriber.getFinancialHelp();
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.wait(3000);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
