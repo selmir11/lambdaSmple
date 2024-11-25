@@ -148,11 +148,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     /////////////////////////
 
     // Plan Documents
-    //@FindBy(xpath = "//span[normalize-space()='Plan Documents']")
-    @FindBy(xpath = "//*[@class = 'accordion-header c4-type-header-sm']")
+    @FindBy(xpath = "//*[normalize-space()='Plan Documents']")
     public WebElement getTxtHeaderPlanDocuments;
 
-    //@FindBy(xpath = "//*[@class = 'accordion-header c4-type-header-sm']")
     @FindBy(xpath = "//*[normalize-space()='Documentos del plan']")
     public WebElement getTxtHeaderPlanDocumentsSP;
 
@@ -634,7 +632,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
                 verifyEnglishTextPlanCompareCoCoPageOutNetwork();
                 break;
             case "Spanish":
-              //  verifySpanishTextPlanCompareCoCoPageOutNetwork();
+                verifySpanishTextPlanCompareCoCoPageOutNetwork();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -647,12 +645,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
             softAssert.assertEquals( compareTopHeader.getText(), "Compare Medical Plans" );
             softAssert.assertEquals( downloadPDF.getText(), "Download PDF");
             softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Go Back to Plans");
-            //softAssert.assertEquals( linkViewDetails1.getText(), "Plan Details" );
-            //softAssert.assertEquals( linkViewDetails2.getText(), "Plan Details" );
-            //softAssert.assertEquals( linkViewDetails3.getText(), "Plan Details" );
-            //softAssert.assertEquals( selectfirstplan.getText(), "Select Plan" );
-            //softAssert.assertEquals( selectSecondplan.getText(), "Select Plan" );
-            //softAssert.assertEquals( selectThirdplan.getText(), "Select Plan" );
         basicActions.scrollToElement( selectInNetworkTier1Link );
         basicActions.waitForElementToBePresent( selectInNetworkTier1Link,30 );
             softAssert.assertEquals( selectInNetworkTier1Link.getText(),"In-Network" );
@@ -673,10 +665,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(1).click();
-        // future - create a separate test for plan document sublinks checks - all 6 plans
-            //softAssert.assertEquals( getTxtHeaderPlanDocuments.getText(), "Plan Documents" );
-            //softAssert.assertEquals( getTxtPlanDocumentsEnglish.getText(), "Plan Documents\n" + "(English)" );
-            //softAssert.assertEquals( getTxtPlanDocumentsSpanish.getText(), "Plan Documents\n" + "(En español)" );
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(2).click();
@@ -791,12 +779,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         //softAssert.assertEquals( compareTopHeader.getText(), "Compare Medical Plans" );
         softAssert.assertEquals( downloadPDF.getText(), "Download PDF");
         softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Go Back to Plans");
-        //softAssert.assertEquals( linkViewDetails1.getText(), "Plan Details" );
-        //softAssert.assertEquals( linkViewDetails2.getText(), "Plan Details" );
-        //softAssert.assertEquals( linkViewDetails3.getText(), "Plan Details" );
-        //softAssert.assertEquals( selectfirstplan.getText(), "Select Plan" );
-        //softAssert.assertEquals( selectSecondplan.getText(), "Select Plan" );
-        //softAssert.assertEquals( selectThirdplan.getText(), "Select Plan" );
+
         basicActions.scrollToElement( selectInNetworkTier1Link );
         basicActions.waitForElementToBePresent( selectInNetworkTier1Link,30 );
         softAssert.assertEquals( selectInNetworkTier1Link.getText(),"In-Network" );
@@ -817,8 +800,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         getDrpDwnPlanCategories.get(1).click();
         // future - create a separate test for plan document sublinks checks - all 6 plans
         softAssert.assertEquals( getTxtHeaderPlanDocuments.getText(), "Plan Documents" );
-        softAssert.assertEquals( getTxtPlanDocumentsEnglish.getText(), "Plan Documents\n" + "(English)" );
-        softAssert.assertEquals( getTxtPlanDocumentsSpanish.getText(), "Plan Documents\n" + "(En español)" );
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(2).click();
@@ -933,12 +914,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertEquals( compareTopHeaderSP.getText(), "Comparar planes médicos" );
         softAssert.assertEquals( downloadPDF.getText(), "Descargar PDF");
         softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Volver a Planes");
-            //softAssert.assertEquals( linkViewDetails1.getText(), "Detalles Del Plan" );
-            //softAssert.assertEquals( linkViewDetails2.getText(), "Detalles Del Plan" );
-            //softAssert.assertEquals( linkViewDetails3.getText(), "Detalles Del Plan" );
-            //softAssert.assertEquals( selectfirstplan.getText(), " Seleccione este Plan " );
-            //softAssert.assertEquals( selectSecondplan.getText(), " Seleccione este Plan " );
-            //softAssert.assertEquals( selectThirdplan.getText(), " Seleccione este Plan " );
+
         softAssert.assertEquals( selectInNetworkTier1Link.getText(),"Dentro la red" );
             //softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
         softAssert.assertEquals( selectOutofNetworkLink.getText(),"Fuera de la red" );
@@ -959,8 +935,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         basicActions.scrollToElement( getTxtHeaderPlanDocumentsSP );
         basicActions.waitForElementToBePresentWithRetries( getTxtHeaderPlanDocumentsSP, 20 );
         softAssert.assertEquals( getTxtHeaderPlanDocumentsSP.getText(),"Documentos del plan" );
-        //softAssert.assertEquals( getTxtPlanDocumentsEnglish.getText(), "Plan Documents\n" + "(English)" );
-        //softAssert.assertEquals( getTxtPlanDocumentsSpanish.getText(), "Plan Documents\n" + "(En espa\u00F1ol)" );
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(3).click();
@@ -1068,6 +1042,139 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
         }
 
+        public void verifySpanishTextPlanCompareCoCoPageOutNetwork(){
+            basicActions.waitForElementToDisappear( spinner,30 );
+            basicActions.waitForElementToBePresent(compareTopHeader,20);
+            softAssert.assertEquals( compareTopHeaderSP.getText(), "Comparar planes médicos" );
+            softAssert.assertEquals( downloadPDF.getText(), "Descargar PDF");
+            softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Volver a Planes");
+
+            softAssert.assertEquals( selectInNetworkTier1Link.getText(),"Dentro la red" );
+            //softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
+            softAssert.assertEquals( selectOutofNetworkLink.getText(),"Fuera de la red" );
+
+            basicActions.waitForElementToDisappear( spinner,60 );
+            softAssert.assertEquals( headerHighlightsSP.getText(),"Aspectos destacados" );
+
+            basicActions.waitForElementToDisappear( spinner,60 );
+            softAssert.assertEquals( txtCompareHeaderMonthlyCostSP.getText(),"Costo mensual" );
+            softAssert.assertEquals( txtCompareHeaderDeductibleSP.getText(),"Deducible" );
+            softAssert.assertEquals( txtCompareHeaderCoinsuranceSP.getText(), "Coseguro" );
+            softAssert.assertEquals( txtCompareHeaderOutOfPocketSP.getText(),"Desembolso m\u00E1ximo" );
+            softAssert.assertEquals( txtCompareHeaderOverallQualityRatingSP.getText(), "Calificaci\u00F3n de calidad general" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(2).click();
+
+            basicActions.scrollToElement( getTxtHeaderPlanDocumentsSP );
+            basicActions.waitForElementToBePresentWithRetries( getTxtHeaderPlanDocumentsSP, 20 );
+            softAssert.assertEquals( getTxtHeaderPlanDocumentsSP.getText(),"Documentos del plan" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(3).click();
+
+            basicActions.waitForElementToDisappear( spinner,40 );
+            basicActions.scrollToElement( getTxtSubheaderDoctorVisitsSP );
+            softAssert.assertEquals( getTxtSubheaderDoctorVisitsSP.getText(),"Consultas con proveedores" );
+
+            softAssert.assertEquals( getTxtPreventativeCareSP.getText(), "Atenci\u00F3n preventiva, ex\u00E1menes, inmunizaci\u00F3n" );
+            softAssert.assertEquals( getTxtPrimaryCareSP.getText(), "Consulta de atenci\u00F3n primaria para tratar una lesi\u00F3n o enfermedad" );
+            softAssert.assertEquals( getTxtSpecialistVisitSP.getText(),"Consulta con un especialista" );
+            softAssert.assertEquals( getTxtTelehealthPCPSP.getText(),"Telemedicina PCP" );
+            softAssert.assertEquals( getTxtTelehealthSpecialistSP.getText(),"Telemedicina especialista" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(4).click();
+            basicActions.scrollToElement( getTxtCompareHeaderEmergencyCare );
+            softAssert.assertEquals( getTxtCompareHeaderEmergencyCare.getText(), "Atenci\u00F3n de emergencia" );
+            softAssert.assertEquals( getTxtUrgentCareSP.getText(),"Centros o instalaciones de cuidado urgente" );
+            softAssert.assertEquals( getTxtEmergencyRoomSP.getText(),"Servicios de sala de emergencia" );
+            softAssert.assertEquals( getTxtEmergencyTransportationSP.getText(),"Transporte de emergencia o ambulancia" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(5).click();
+            basicActions.scrollToElement( getTxtCompareHeaderPrescriptionDrugs );
+            softAssert.assertEquals( getTxtCompareHeaderPrescriptionDrugs.getText(),"Medicamentos" );
+            softAssert.assertEquals( getTxtGenericDrugsSP.getText(),"Drogas genericas" );
+            softAssert.assertEquals( getTxtPreferredDrugsSP.getText(),"Medicamentos de marca preferida" );
+            softAssert.assertEquals( getTxtNonPreferredDrugsSP.getText(),"Medicamentos de marca no preferida" );
+            softAssert.assertEquals( getTxtSpecialtyDrugsSP.getText(),"Medicamentos especializados" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(6).click();
+            basicActions.scrollToElement( getTxtCompareHeaderTesting );
+            softAssert.assertEquals( getTxtCompareHeaderTesting.getText(),"Pruebas" );
+            softAssert.assertEquals( getTxtLaboratoryOutpatientSP.getText(),"Servicios de laboratorio ambulatorios y profesionales" );
+            softAssert.assertEquals( getTxtXraysDiagnosticsSP.getText(), "Radiograf\u00EDa y diagn\u00F3stico por imagen" );
+            softAssert.assertEquals( getTxtImagingSP.getText(), "Estudios de Imagen (tomograf\u00EDa computarizada [CT], tomograf\u00EDa por emisi\u00F3n de positrones [PET], resonancia magn\u00E9tica [MRI])" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(7).click();
+            basicActions.scrollToElement( getTxtCompareHeaderFacilities );
+            softAssert.assertEquals( getTxtCompareHeaderFacilities.getText(),"Instalaciones" );
+            softAssert.assertEquals( getTxtOutPatientFacilitySP.getText(),"Tarifa del centro ambulatorio (p. ej., centro de cirugía ambulatoria)" );
+            softAssert.assertEquals( getTxtOutPatientSurgerySP.getText(), "Servicios m\u00E9dicos y quir\u00FArgicos en cirug\u00EDa ambulatoria" );
+            softAssert.assertEquals( getTxtInpatientHospitalSP.getText(), "Servicios en hospitalizaci\u00F3n (p. ej., permanencia en el hospital)" );
+            softAssert.assertEquals( getTxtInPatientPhysicianSP.getText(),"Servicios médicos y quirúrgicos en hospitalización" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(8).click();
+            basicActions.scrollToElement( getTxtCompareHeaderMentalHealth );
+            softAssert.assertEquals( getTxtCompareHeaderMentalHealth.getText(),"Beneficios de salud mental" );
+            softAssert.assertEquals( getTxtMentalBehavioralHealthOfficeSP.getText(), "Consulta m\u00E9dica de salud mental y conductual" );
+            softAssert.assertEquals( getTxtBehavioralOutpatientSP.getText(),"Servicios de salud mental y conductual para pacientes ambulatorios" );
+            softAssert.assertEquals( getTxtBehavioralInpatientSP.getText(),"Servicios de salud mental y conductual para pacientes hospitalizados" );
+            softAssert.assertEquals( getTxtSubstanceAbuseDisorderOfficeSP.getText(), "Consulta m\u00E9dica por trastorno por abuso de sustancias" );
+            softAssert.assertEquals( getTxtSubstanceAbuseOutpatientSP.getText(),"Servicios de abuso de sustancias para pacientes ambulatorios" );
+            softAssert.assertEquals( getTxtSubstanceAbuseInpatientSP.getText(),"Servicios de abuso de sustancias para pacientes hospitalizados" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(9).click();
+            basicActions.scrollToElement( getTxtCompareHeaderHabRehab );
+            softAssert.assertEquals( getTxtCompareHeaderHabRehab.getText(), "Servicios de habilitaci\u00F3n y rehabilitaci\u00F3n" );
+            softAssert.assertEquals( getTxtHAbServicesSP.getText(), "Servicios de habilitaci\u00F3n" );
+            softAssert.assertEquals( getTxtRehabSpeechSP.getText(), "Terapia para rehabilitaci\u00F3n del habla" );
+            softAssert.assertEquals( getTxtRehabOccupationalSP.getText(), "Terapia para rehabilitaci\u00F3n ocupacional" );
+            softAssert.assertEquals( getTxtRehabPhysicalSP.getText(),"Terapia para fisioterapia" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(10).click();
+            basicActions.scrollToElement( getTxtCompareHeaderMedicalDevices );
+            softAssert.assertEquals( getTxtCompareHeaderMedicalDevices.getText(), "Dispositivos m\u00E9dicos" );
+            softAssert.assertEquals( getTxtDurableMedicalSP.getText(), "Equipo m\u00E9dico duradero" );
+            softAssert.assertEquals( getTxtProstheticDevicesSP.getText(), "Dispositivos prost\u00E9ticos" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(11).click();
+            basicActions.scrollToElement( getTxtCompareHeaderMaternity );
+            softAssert.assertEquals( getTxtCompareHeaderMaternity.getText(),"Maternidad" );
+            softAssert.assertEquals( getTxtPrenatalSP.getText(), "Atenci\u00F3n prenatal y posnatal" );
+            softAssert.assertEquals( getTxtDeliverySP.getText(), "Parto y todos los servicios hospitalarios para atenci\u00F3n de maternidad" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+            getDrpDwnPlanCategories.get(12).click();
+            basicActions.scrollToElement( getTxtCompareHeaderHomeCare );
+            softAssert.assertEquals( getTxtCompareHeaderHomeCare.getText(), "Atenci\u00F3n a domicilio y a pacientes con enfermedades terminales" );
+            softAssert.assertEquals( getTxtHomeCareSP.getText(), "Servicios de atenci\u00F3n m\u00E9dica domiciliaria" );
+            softAssert.assertEquals( getTxtHospiceServicesSP.getText(),"Servicios a pacientes con enfermedades terminales" );
+
+            basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+
+            basicActions.scrollToElement( getTxtCompareHeaderAddEHB );
+            softAssert.assertEquals( getTxtCompareHeaderAddEHB.getText(),"Beneficios esenciales" );
+
+            basicActions.waitForElementToDisappear( spinner,40 );
+            softAssert.assertEquals( getTxtIChiroCareSP.getText(), "Atenci\u00F3n quiropr\u00E1ctica" );
+            softAssert.assertEquals( getTxtBarCareSP.getText(), "Cirug\u00EDa bari\u00E1trica" );
+            softAssert.assertEquals( getTxtInfertilityTreatmentSP.getText(),"Tratamiento de infertilidad" );
+
+            softAssert.assertEquals(goBackToPlansCompareButton.getText(),"Volver a Planes");
+            softAssert.assertAll();
+
+            basicActions.waitForElementToDisappear( spinner,40 );
+            basicActions.click( toTop );
+
+        }
 
 
     public void  clickMedicalCompareGoBackLink() {
@@ -1105,10 +1212,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertTrue(getTxtCompareHeaderGeneralDetails.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderGeneralDetails.click();
 
-        //softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisits.isDisplayed(),"Incorrect Header");
-        //getTxtCompareHeaderProviderOfficeVisits.click();
+
         softAssert.assertTrue(getTxtPreventativeCare.isDisplayed(),"Incorrect Header");
-        //softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
+
         softAssert.assertTrue(getTxtSpecialistVisit.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthPCP.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthSpecialist.isDisplayed(),"Incorrect Header");
@@ -1178,8 +1284,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     }
 
 
-
-
     public void verifyTxtOutofNetworkCompareHeader(){
         basicActions.waitForElementToBePresent(selectOutofNetworkLink, 10 );
         selectOutofNetworkLink.click();
@@ -1190,10 +1294,8 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertTrue(getTxtCompareHeaderGeneralDetailsOut.isDisplayed(),"Incorrect Header");
         getTxtCompareHeaderGeneralDetailsOut.click();
 
-        //softAssert.assertTrue(getTxtCompareHeaderProviderOfficeVisitsOut.isDisplayed(),"Incorrect Header");
-        //getTxtCompareHeaderProviderOfficeVisitsOut.click();
         softAssert.assertTrue(getTxtPreventativeCare.isDisplayed(),"Incorrect Header");
-        //softAssert.assertTrue(getTxtPrimaryCare.isDisplayed(),"Incorrect Header");
+
         softAssert.assertTrue(getTxtSpecialistVisit.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthPCP.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtTelehealthSpecialist.isDisplayed(),"Incorrect Header");
@@ -1259,7 +1361,6 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertTrue(getTxtIChiroCare.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtBarCare.isDisplayed(),"Incorrect Header");
         softAssert.assertTrue(getTxtInfertilityTreatment.isDisplayed(),"Incorrect Header");
-
 
     }
 

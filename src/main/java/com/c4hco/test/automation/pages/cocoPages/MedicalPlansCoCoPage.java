@@ -219,7 +219,7 @@ public class MedicalPlansCoCoPage {
         basicActions.waitForElementToDisappear( spinner,20 );
         selectFirstComparebox.click();
         selectSecondComparebox.click();
-
+        selectCompareButton.click();
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {

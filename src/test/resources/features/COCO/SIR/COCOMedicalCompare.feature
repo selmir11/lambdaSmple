@@ -147,7 +147,7 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Medical Plan Compare" page
     And I validate and click the COCO Medical Compare Plan Detail link
-    And I click on Sign Out in the Header for "MedicalDetail"
+    And I click on Sign Out in the Header for "Elmo"
 
 
  @SLCR-90  @COCOMedicalCompareInNetworkHeadersEnglish
@@ -437,7 +437,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Move" life change event with event date of "Past 1"
+    And I select "Marriage" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -512,7 +512,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Move" life change event with event date of "Past 1"
+    And I select "Marriage" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -1009,7 +1009,7 @@ Feature: Verify COCO Medical Plan results
     And I validate "3" document columns on the Compare page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-421
+  @SLCR-421 @validateGobackLinkAndButton
   Scenario: SLCR-421 - This will validate the top Go Back Link and the bottom Go Back button on the COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
