@@ -138,6 +138,7 @@ public class MedicalPlanResultsPage {
         basicActions.waitForElementToDisappear(spinner, 30);
          basicActions.waitForElementToBePresent(btnSkip, 30);
         btnSkip.click();
+        SharedData.setNoPlansSkipped(false);
     }
 
     public void selectFirstMedicalPlanDetailButton(){
