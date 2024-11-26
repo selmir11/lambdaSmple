@@ -118,5 +118,8 @@ public class MyProfilePageSteps {
 
     @Then("I validate Primary Contact Change Popup {string} on My profile page")
     public void ivalidateChangePrimaryContactpopop(String language)  { myProfileExchPage.validateChangePrimaryContactpopop(language); }
+
+    @And("I validate error messages {string} on My Profile page")
+    public void validateErrorMessage(String language)  { myProfileExchPage.validateErrorMessage(language); }
 }
 
