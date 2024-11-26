@@ -73,5 +73,8 @@ public class AddAddressPageSteps {
     @Then("I select {string} specific Address")
     public  void selectspecificaddress(String SpecificAddress){addAddressPage.specificaddress(SpecificAddress); }
 
+    @And("I click Go back on the Add Address page")
+    public  void iClickGoBack(){addAddressPage.clickGoBack(); }
+
 }
 

@@ -51,7 +51,7 @@ public class CRMSearchResultsPage {
                     return;
                 }
             } catch (Exception e) {
-                System.out.println("Retry " + (i + 1) + " failed, attempting search again.");
+                System.out.println("Retry " + (i + 1) + " failed, attempting search again for "+contactLinkLocator);
                 txtCRMDashSearchBox.click();
                 txtCRMDashSearchBox.sendKeys(Keys.RETURN);
             }

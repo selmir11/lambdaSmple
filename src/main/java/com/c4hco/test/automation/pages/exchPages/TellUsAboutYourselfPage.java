@@ -76,6 +76,9 @@ public class TellUsAboutYourselfPage {
     @FindBy(css = "div:nth-child(5) p")
     WebElement hdrSsaError;
 
+    @FindBy(id = "backButton" )
+    WebElement btnBack;
+
     
 
     public void userPregnantQuestion(String Pregnant) {
@@ -247,6 +250,11 @@ public class TellUsAboutYourselfPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + applied);
         }
+    }
+
+    public void clickBackButton(){
+        basicActions.waitForElementToBePresent(btnBack, 20);
+        btnBack.click();
     }
 
 }
