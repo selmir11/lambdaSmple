@@ -101,3 +101,47 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Login" page
+
+  @SLER-1776 @PageNavigationTaxStatusElmoPage @TAMSmoke
+  Scenario: SLER-1776 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Tax Return Portal, Exchange
+    #Step1
+    And I change the C4 url to "Tax Return portal Error Exch"
+    Then I validate I am on the "Error" page
+    And I click Back to Welcome page Button on error Exch page
+    Then I click Go Back button from chrome browser
+    And I verify User name Link is displayed in the "Exch" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help" page
+    #Step2
+    And I click on Apply for Coverage in the "ExpertHelp" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click on "Primary" to edit information from household page
+    Then I validate I am on the "Application Summary" page
+    Then I select the Edit Income link
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I click the save and continue button on the Income Summary Detail page
+
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+    And I change the C4 url to "Tax Return portal Unauthorized Exch"
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I click Go Back button from chrome browser
+    And I verify User name Link is displayed in the "Exch" Header
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help" page
+
+    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    Then I validate I am on the "Login" page
