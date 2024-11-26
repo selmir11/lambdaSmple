@@ -609,6 +609,9 @@ public class AdminPortalManagePlansPage {
             APTCMem.click();
             APTCMem.clear();
             APTCMem.sendKeys(aptcvalue);
+            SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
+            String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
+            SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);
         }
     }
 
@@ -616,11 +619,12 @@ public class AdminPortalManagePlansPage {
         for (String memberpremiumamt : memberpremiumList) {
             String[] parts = memberpremiumamt.split(":");
             String memberNo = parts[0];
-            String aptcvalue = parts[1];
+            String newPremiumAmt = parts[1];
             WebElement premiumMem = basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + memberNo + "']//input[@type='text']"));
             premiumMem.click();
             premiumMem.clear();
-            premiumMem.sendKeys(aptcvalue);
+            premiumMem.sendKeys(newPremiumAmt);
+            SharedData.getPrimaryMember().setMedicalPremiumAmt(newPremiumAmt);
         }
     }
 
