@@ -162,6 +162,7 @@ Feature: UI Tests related to APTC after initial enrollment
      #And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
   # location change
     And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
     Then I answer all Id proofing questions and click continue

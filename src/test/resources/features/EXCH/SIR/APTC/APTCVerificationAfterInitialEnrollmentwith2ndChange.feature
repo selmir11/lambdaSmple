@@ -1839,8 +1839,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$1,028.25"
     And I click continue on plan summary page
-
-    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-691
