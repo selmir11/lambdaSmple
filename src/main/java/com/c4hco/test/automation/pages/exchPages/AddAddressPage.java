@@ -205,6 +205,7 @@ public class AddAddressPage {
         basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
+        basicActions.waitForElementListToBePresent(dropdown.getOptions(), 10);
         dropdown.selectByValue(county);
 
         Address mailinglAddress = new Address();
