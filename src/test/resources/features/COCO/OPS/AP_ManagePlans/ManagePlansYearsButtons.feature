@@ -38,7 +38,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Individual CoCo" page
     Then I verify Primary account holder and account number displays
-    Then I click Manage Plans button
+    Then I click on manage plan button on admin portal Individual dashboard
     And I validate I am on the "Manage Plans" page
     Then I validate blue bar on Manage page
     Then I verify Primary account holder and account number displays
