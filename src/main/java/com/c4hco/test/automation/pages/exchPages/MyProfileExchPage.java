@@ -953,33 +953,21 @@ public class MyProfileExchPage {
         softAssert.assertAll();
     }
 
-    private void updatePrimaryMemInSharedData(String memPrefix) {
+    private void updatePrimaryMemInSharedData(String memPrefix){
         List<MemberDetails> memberList = SharedData.getMembers();
-        MemberDetails currentPrimaryMem = SharedData.getPrimaryMember();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        memberList.add(primaryMem);
 
         memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            newPrimaryMem.setEmailId(primaryMem.getEmailId());
+            newPrimaryMem.setAccount_id(primaryMem.getAccount_id());
+            newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
+            newPrimaryMem.setResAddress(primaryMem.getResAddress());
+            newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
             memberList.remove(newPrimaryMem);
-            mergeMemberDetails(currentPrimaryMem, newPrimaryMem);
             SharedData.setPrimaryMember(newPrimaryMem);
-            memberList.add(currentPrimaryMem);
         });
         SharedData.setMembers(memberList);
-    }
-
-    private void mergeMemberDetails(MemberDetails source, MemberDetails target) {
-        Field[] fields = MemberDetails.class.getDeclaredFields();
-        for (Field field : fields) {
-            field.setAccessible(true);
-            try {
-                Object sourceValue = field.get(source);
-                Object targetValue = field.get(target);
-                if (sourceValue != null && (targetValue == null || isEmpty(targetValue))) {
-                    field.set(target, sourceValue);
-                }
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException("Failed to merge member details", e);
-            }
-        }
     }
 
 }

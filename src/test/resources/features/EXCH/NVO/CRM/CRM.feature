@@ -141,11 +141,11 @@ Feature: Testing CRM (MD365) updates
     And I click change primary contact on my profile page
     Then I update "Spouse" as primary member
     And I wait for hold on content to disappear
-    And I wait for 1000 milliseconds
+    And I wait for 2000 milliseconds
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-    And I wait for 70000 milliseconds
+    And I wait for 50000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
