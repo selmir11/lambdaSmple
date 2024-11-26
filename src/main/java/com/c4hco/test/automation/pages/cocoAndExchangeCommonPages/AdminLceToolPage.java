@@ -82,12 +82,12 @@ public class AdminLceToolPage {
         Assert.assertEquals(actualOptions, expectedOptions, "Plan Year options in the dropdown did not match");
     }
 
-    public void changeEffectiveDate(String effectiveDate) {
+    public void changeEffectiveDate(String effectiveDate, String planYear) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(planYrDropdown, 10);
         planYrDropdown.click();
 
-        planYrDrpdwnOptions.get(1).click(); // selects current year
+        selectPlanYear(planYear);
 
         changeEffectiveDt.sendKeys(effectiveDate);
         submitBtn.click();
@@ -96,6 +96,20 @@ public class AdminLceToolPage {
         SharedData.setPrimaryMember(subscriber);
 
         closeTabAndSwitchToCurrentWindow();
+    }
+
+    private void selectPlanYear(String planYear){
+        switch(planYear){
+            case "current year":
+                planYrDrpdwnOptions.get(1).click(); // selects current year
+                break;
+            case "last available year":
+                planYrDrpdwnOptions.get(4).click(); // selects current year minus 3 years
+                SharedData.setPlanYear(String.valueOf(Year.now().getValue()-3));
+                break;
+            default: Assert.fail("Invalid argument passed");
+        }
+
     }
 
     public void closeTabAndSwitchToCurrentWindow() {

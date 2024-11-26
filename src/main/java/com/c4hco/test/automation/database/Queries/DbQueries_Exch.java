@@ -438,4 +438,13 @@ public class DbQueries_Exch {
                 "and event_cd = '"+event+"' \n" +
                 "and event_log_id != '"+eventLogId+"'";
     }
+
+    public String getHouseholdId(){
+        return "select household_id from exch.es_household where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
+    public String getLceTpePlanYear(String householId){
+        return "Select lce_type, plan_year from exch.es_member_lce\n" +
+                "where household_id  = '"+householId+"'";
+    }
 }

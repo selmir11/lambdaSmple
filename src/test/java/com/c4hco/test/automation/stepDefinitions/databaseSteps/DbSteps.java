@@ -133,5 +133,8 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
 
    @And("I validate new event {string} is present in DB")
    public void iValidateNewEventDB(String event) {dbValidations.validateNewEventDB(event);}
+
+   @And("I validate lce type and plan year from es_member table")
+   public void validateEsMember() {dbValidations.validateLceTypeAndPlanYr_EsMember();}
 }
 
