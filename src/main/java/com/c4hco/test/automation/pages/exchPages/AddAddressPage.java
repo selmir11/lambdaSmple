@@ -98,6 +98,8 @@ public class AddAddressPage {
     WebElement rdobtnIncarceratedNo;
     @FindBy(name = "saveAndContinue")
     WebElement btnSaveContinue;
+    @FindBy(name = "backToMember")
+    WebElement btnGoBack;
 
     @FindBy(css = ".c4PageHeader1")
     WebElement getNameFromHeader;
@@ -377,6 +379,10 @@ public class AddAddressPage {
 
     public void saveContinue(){btnSaveContinue.click();}
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBePresent(btnGoBack,50);
+        btnGoBack.click();
+    }
 
     public  void specificaddress(String SpecificAddress) {
         for (int i = 0; i < selectspecificaddress.size(); i++) {
