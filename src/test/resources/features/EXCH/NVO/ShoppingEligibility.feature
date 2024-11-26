@@ -20,11 +20,6 @@ Feature: Tests to determine the eligibility to shop
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
-#    And I click on Find a Broker
-#    And I Search authorized Broker "Margie"
-#    And I click on Search button in find certified broker page
-#    And I click more details from the first broker result container
-#    Then I click Authorized broker
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -65,6 +60,7 @@ Feature: Tests to determine the eligibility to shop
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
+    Then I validate the plan year dropdown options as last 4years
     And I change effective date to "0101" of current year from admin portal
     Then logout from Admin Portal
 
