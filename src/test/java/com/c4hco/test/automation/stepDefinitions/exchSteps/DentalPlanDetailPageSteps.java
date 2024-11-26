@@ -29,6 +29,8 @@ public class DentalPlanDetailPageSteps {
     public void validateOutNetworkDentalDetailLanguage(String language){dentalPlanDetailPage.validateOutNetworkDentalDetailLanguage(language);
     }
 
+    @And("I validate the {string} on the Dental Detail page")
+    public void validateDetailDocuments(String documentLinks){dentalPlanDetailPage.validateDetailDocuments(documentLinks);}
 
 
 }

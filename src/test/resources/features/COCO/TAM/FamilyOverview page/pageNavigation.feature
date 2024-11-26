@@ -39,3 +39,38 @@ Feature: Tests related to the Family Overview page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-436 @PageNavigationFamilyOverview
+  Scenario: SLCR-436 My session is invalidated when I log out in Welcome Portal, COCO
+    #step1
+    Then I open current page in new tab
+    Then I validate I am on the "CoCo Family Overview" page
+    And I switch to the tab number 0
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step2
+    And I switch to the tab number 1
+    Then I validate I am on the "CoCo Family Overview" page
+    And I refresh the page
+    And I validate I am on the "Login" page
+    And I close current tab and switch back to previous tab
+    #step3
+    And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I open current page in new tab
+    Then I validate I am on the "CoCo Family Overview" page
+    And I switch to the tab number 0
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
+    #step4
+    And I switch to the tab number 1
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    And I validate I am on the "Login" page

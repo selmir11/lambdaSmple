@@ -31,7 +31,6 @@ Feature: Seed03 - Exchange
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    And I set the current broker details
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option

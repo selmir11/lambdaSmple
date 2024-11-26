@@ -23,7 +23,7 @@ Feature: Tests related to Dental plans
     Then I click on continue with  application button on Before you begin page
 
 # Question not asked during Open Enrollment
-    And I report "MovedToColorado" and click continue
+    #And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -58,8 +58,10 @@ Feature: Tests related to Dental plans
 
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
+
+    #Open Enrollment deactivates LCE step
     Then I validate I am on the "Tell us about life changes" page
-    Then I select "Birth" QLCE on tell us about life changes page
+    Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page

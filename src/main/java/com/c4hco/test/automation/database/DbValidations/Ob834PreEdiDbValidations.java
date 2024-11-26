@@ -34,9 +34,9 @@ public class Ob834PreEdiDbValidations {
     List<PolicyTablesEntity> dentalPolicyEnitities = new ArrayList<>();
 
     public void recordsValidations(String recordType, List<Map<String, String>> expectedValues) {
-        setData();
         switch (recordType) {
             case "medical":
+                setData();
                 ob834MedRecordsValidations(expectedValues);
                 break;
             case "dental":
@@ -135,14 +135,6 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertAll();
     }
 
-    private Boolean isMailingAddressSameAsResidential(MemberDetails subscriber){
-      if(subscriber.getMailingAddress().equals(subscriber.getResAddress())){
-          return true;
-      } else {
-          return false;
-      }
-    }
-
     private void validateMailingAddressIsNull(Ob834DetailsEntity ob834Entity){
         softAssert.assertNull(ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
         softAssert.assertNull(ob834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
@@ -189,9 +181,9 @@ public class Ob834PreEdiDbValidations {
             softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbData.getBrokerTinNum(), "Broker Tin Number is incorrect");
             softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
         } else {
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_name(), null, "Broker name is incorrect");
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), null, "Broker Tin Number is incorrect");
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), null, "Broker license number is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_id(), "Broker Tin Number is incorrect");
+            softAssert.assertNull(ob834Entity.getTpa_or_broker_lic_num(), "Broker license number is incorrect");
         }
     }
 
@@ -269,7 +261,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
-        validateIndivMedPremAmt(ob834Entity);
+         validateIndivMedPremAmt(ob834Entity);
     }
 
     private void denValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues) {
@@ -338,7 +330,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         validateSponsorId(ob834Entity);
         validateResidentialAddress(ob834Entity, subscriber);
-        if(!isMailingAddressSameAsResidential(subscriber)){
+        if(!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
             validateMailingAddress(ob834Entity, subscriber);
         } else {
             validateMailingAddressIsNull(ob834Entity);
@@ -347,7 +339,7 @@ public class Ob834PreEdiDbValidations {
 
     private void validateIndivMedPremAmt(Ob834DetailsEntity ob834Entity){
         medicalPolicyEnitities.stream().filter(medEntity -> medEntity.getFirst_name().equals(ob834Entity.getMember_first_name())).findFirst().ifPresent(medEntity ->
-                softAssert.assertEquals(medEntity.getPlan_premium_amt(), ob834Entity.getPremium_amount(), "Dental Individual Plan premium amount does not match for "+medEntity.getFirst_name()));
+                softAssert.assertEquals(medEntity.getPlan_premium_amt(), ob834Entity.getPremium_amount(), "Medical Individual Plan premium amount does not match for "+medEntity.getFirst_name()));
     }
 
     private void validateIndivDenPremAmt(Ob834DetailsEntity ob834Entity){

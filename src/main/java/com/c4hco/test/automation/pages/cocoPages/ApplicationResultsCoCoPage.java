@@ -153,6 +153,39 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertAll();
     }
 
+    public void verifySESOpenOnAppResultsPage(String language) {
+        switch (language) {
+            case "English":
+                verifySESOpenOnAppResultsPageEnglish();
+                break;
+            case "Spanish":
+                verifySESOpenOnAppResultsPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifySESOpenOnAppResultsPageEnglish(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeader.getText(), "Here's what your household qualifies for");
+        softAssert.assertEquals(memberName.getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(eligiblePlan.getText(), "SilverEnhanced Savings");
+        softAssert.assertEquals(sesLimitedtext.getText(), "You qualify for SilverEnhanced Savings! Next, choose a plan and enroll as soon as possible!");
+        softAssert.assertEquals(healthInsuranceCoCoEligible.get(2).getText(), "Health insurance plans through Colorado Connect");
+        softAssert.assertAll();
+    }
+
+    public void verifySESOpenOnAppResultsPageSpanish(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeaderSpanish,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeaderSpanish.getText(), "Usted y/o su familia califica para lo siguiente");
+        softAssert.assertEquals(memberName.getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(eligiblePlan.getText(), "Ahorros SilverEnhanced");
+        softAssert.assertEquals(sesLimitedtext.getText(), "\u00A1Usted califica para Ahorros SilverEnhanced! A continuaci\u00F3n, elija un plan e inscr\u00EDbase lo antes posible.");
+        softAssert.assertEquals(healthInsuranceCoCoEligible.get(2).getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect");
+        softAssert.assertAll();
+    }
+
     public void verifyEligibleplans(){
         basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
         if(SharedData.getSes().equals("yes")){

@@ -1,4 +1,4 @@
- @SLER-34 @SLER-1069 @SLER-1262
+ @SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
@@ -141,6 +141,7 @@ Feature: Simple NFA - Single Applicant
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
+    # SLER-1332, Ib834 database and file validations
     And I validate ib834 "medical" details in database
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |

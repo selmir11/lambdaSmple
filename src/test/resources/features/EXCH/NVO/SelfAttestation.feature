@@ -108,7 +108,7 @@ Feature: Self Attestation
     And I select "Yes" for Federal Income
     And I select "Yes" for Tax Info
     Then I click on Submit Self Attestation button
-    Then I verify the text on the Post Attestation page
+    Then I verify the "Success" text on the Post Attestation page
     Then I click on Finish
 
     Then I validate I am on the "Application Results" page
@@ -210,7 +210,7 @@ Feature: Self Attestation
     And I select "Yes" for Federal Income
     And I select "NoWillFile" for Tax Info
     Then I click on Submit Self Attestation button
-    Then I verify the text on the Post Attestation page
+    Then I verify the "Success" text on the Post Attestation page
     Then I click on Finish
 
     Then I validate I am on the "Application Results" page
@@ -312,7 +312,7 @@ Feature: Self Attestation
     And I select "Yes" for Federal Income
     And I select "No" for Tax Info
     Then I click on Submit Self Attestation button
-    Then I verify the text on the Post Attestation page
+    Then I verify the "Action Required" text on the Post Attestation page
     Then I click on Finish
 
     Then I validate I am on the "Application Results" page
@@ -413,7 +413,7 @@ Feature: Self Attestation
     And I select "Yes" for Household Income
     And I select "No" for Federal Income
     Then I click on Submit Self Attestation button
-    Then I verify the text on the Post Attestation page
+    Then I verify the "Action Required" text on the Post Attestation page
     Then I click on Finish
 
     Then I validate I am on the "Application Results" page
@@ -516,7 +516,7 @@ Feature: Self Attestation
     And I select "Yes" for Federal Income
     And I select "Yes" for Tax Info
     Then I click on Submit Self Attestation button
-    Then I verify the text on the Post Attestation page
+    Then I verify the "Success" text on the Post Attestation page
     Then I click on Finish
 
     Then I validate I am on the "Account Overview" page
@@ -616,7 +616,7 @@ Feature: Self Attestation
     And I select "Yes" for Federal Income
     And I select "Yes" for Tax Info
     Then I click on Submit Self Attestation button
-    Then I verify the text on the Post Attestation page
+    Then I verify the "Success" text on the Post Attestation page
     Then I click on Finish
 
     Then I validate I am on the "Application History" page

@@ -51,12 +51,13 @@ public class CRMSearchResultsPage {
                     return;
                 }
             } catch (Exception e) {
-                System.out.println("Retry " + (i + 1) + " failed, attempting search again.");
+                System.out.println("Retry " + (i + 1) + " failed, attempting search again for "+contactLinkLocator);
                 txtCRMDashSearchBox.click();
                 txtCRMDashSearchBox.sendKeys(Keys.RETURN);
             }
         }
-        System.out.println("Failed to find contact link after " + retryCount + " attempts.");
+        System.err.println("Failed to find contact link after " + retryCount + " attempts.");
+        throw new RuntimeException("Contact link not found after maximum retries.");
     }
 
 }
