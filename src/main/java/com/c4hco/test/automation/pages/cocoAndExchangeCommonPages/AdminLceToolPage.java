@@ -1,15 +1,20 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdminLceToolPage {
     private BasicActions basicActions;
@@ -61,6 +66,20 @@ public class AdminLceToolPage {
         lookUpBtn.click();
         // validate look up returned results
         basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
+    }
+
+    public void validatePlanYearOptions() {
+        basicActions.waitForElementToBePresent(planYrDropdown, 10);
+
+        int currentYear = Year.now().getValue();
+        List<String> expectedOptions = List.of("Select Option", String.valueOf(currentYear), String.valueOf(currentYear - 1), String.valueOf(currentYear - 2), String.valueOf(currentYear - 3));
+
+        planYrDropdown.click();
+        Select dropdown = new Select(planYrDropdown);
+        basicActions.waitForElementListToBePresent(dropdown.getOptions(), 10);
+        List<String> actualOptions = dropdown.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
+
+        Assert.assertEquals(actualOptions, expectedOptions, "Plan Year options in the dropdown did not match");
     }
 
     public void changeEffectiveDate(String effectiveDate) {

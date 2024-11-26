@@ -13,6 +13,11 @@ public class AdminToolPageSteps {
         adminLceToolPage.lookUpAccId();
     }
 
+    @Then("I validate the plan year dropdown options as last 4years")
+    public void validatePlanYrDropdown(){
+        adminLceToolPage.validatePlanYearOptions();
+    }
+
     @And("I change effective date to {string} of current year from admin portal")
     public void changeEffDate(String monthDate){
             adminLceToolPage.changeEffectiveDate(monthDate);
