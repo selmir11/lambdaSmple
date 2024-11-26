@@ -341,7 +341,7 @@ public class DbDataProvider_Exch {
     }
 
     public String[] getLceType_PlanYr_esMember() {
-        String householdId = postgresHandler.getResultFor("", exchDbQueries.getHouseholdId());
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return postgresHandler.getResultForTwoColumnValues("lce_type","plan_year", exchDbQueries.getLceTpePlanYear(householdId));
     }
 
