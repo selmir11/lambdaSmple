@@ -490,6 +490,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Return portal Error Exch":
+                newUrl = "TaxReturnPortal/error";
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Return portal Unauthorized Exch":
+                newUrl = "TaxReturnPortal/unauthorized";
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
