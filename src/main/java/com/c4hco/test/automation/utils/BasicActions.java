@@ -485,6 +485,11 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Status Elmo page":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }

@@ -250,6 +250,9 @@ public class BasicSteps {
             case "Tax status dependent":
                 pageUrl = "nes/taxReturn";
                 break;
+            case "Tax status Elmo":
+                pageUrl = "TaxReturnPortal/members";
+                break;
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
                 break;
