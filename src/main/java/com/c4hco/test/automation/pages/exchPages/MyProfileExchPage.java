@@ -9,8 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+import java.lang.reflect.Field;
 
 import java.util.List;
+
+import static org.apache.logging.log4j.core.util.Assert.isEmpty;
 
 
 public class MyProfileExchPage {
@@ -956,10 +959,15 @@ public class MyProfileExchPage {
         memberList.add(primaryMem);
 
         memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            newPrimaryMem.setEmailId(primaryMem.getEmailId());
+            newPrimaryMem.setAccount_id(primaryMem.getAccount_id());
+            newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
+            newPrimaryMem.setResAddress(primaryMem.getResAddress());
+            newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
             memberList.remove(newPrimaryMem);
             SharedData.setPrimaryMember(newPrimaryMem);
         });
         SharedData.setMembers(memberList);
-
     }
+
 }
