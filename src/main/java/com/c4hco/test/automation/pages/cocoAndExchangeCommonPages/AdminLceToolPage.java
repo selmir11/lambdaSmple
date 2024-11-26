@@ -72,7 +72,7 @@ public class AdminLceToolPage {
         basicActions.waitForElementToBePresent(planYrDropdown, 10);
 
         int currentYear = Year.now().getValue();
-        List<String> expectedOptions = List.of(String.valueOf(currentYear), String.valueOf(currentYear - 1), String.valueOf(currentYear - 2), String.valueOf(currentYear - 3));
+        List<String> expectedOptions = List.of("Select Option", String.valueOf(currentYear), String.valueOf(currentYear - 1), String.valueOf(currentYear - 2), String.valueOf(currentYear - 3));
 
         planYrDropdown.click();
         Select dropdown = new Select(planYrDropdown);

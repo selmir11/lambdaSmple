@@ -1,6 +1,6 @@
 Feature: Tests to determine the eligibility to shop
 
-  @SLER-1767
+  @SLER-1767 @SLER-1770
   Scenario: Verify member is eligible to shop when they have Admin LCE reported for them
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
