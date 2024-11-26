@@ -16,6 +16,9 @@ public class CRMContactPage {
     @FindBy(xpath = "//li[@title='MVRs/DVRs']")
     WebElement btnMVRDVR;
 
+    @FindBy(xpath = "//li[@title='Details']")
+    WebElement btnDetails;
+
     @FindBy(xpath = "//*[contains(@id, 'DVRs-powerapps_onegrid_control_container')]//div[6]/div[3]//label/div")
     WebElement hdrStatusReason;
 
@@ -30,6 +33,9 @@ public class CRMContactPage {
 
     @FindBy(xpath = "//input[contains(@id, 'lastname')]")
     WebElement txtLastNameInput;
+
+    @FindBy(xpath = "//input[contains(@id, 'suffix')]")
+    WebElement txtSuffixNameInput;
 
     @FindBy(xpath = "//div[contains(@id, 'emailaddress')]//input")
     WebElement txtEmailInput;
@@ -69,10 +75,20 @@ public class CRMContactPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void openMVRDVRTab(){
+    public void openCrmTab(String tabType){
         basicActions.wait(7000);
-        basicActions.waitForElementToBePresentWithRetries(btnMVRDVR, 60);
-        basicActions.clickElementWithRetries(btnMVRDVR, 60);
+        switch(tabType){
+            case "MVRDVR":
+                basicActions.waitForElementToBePresentWithRetries(btnMVRDVR, 60);
+                basicActions.clickElementWithRetries(btnMVRDVR, 60);
+                break;
+            case "Details":
+                basicActions.waitForElementToBePresentWithRetries(btnDetails, 60);
+                basicActions.clickElementWithRetries(btnDetails, 60);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported tab type: " + tabType);
+        }
     }
 
     public void openMVRByTypeName(String mvrType){
@@ -107,15 +123,27 @@ public class CRMContactPage {
     public void verifyContactData(){
         basicActions.waitForElementToBePresentWithRetries(txtFirstNameInput,50);
         basicActions.waitForElementToBePresent(txtAddress1Input,50);
+        basicActions.waitForElementToBePresent(txtCityInput,50);
 
         String fullSsn = SharedData.getPrimaryMember().getSsn();
         String lastFourSsn = fullSsn != null && fullSsn.length() >= 4 ? fullSsn.substring(fullSsn.length() - 4) : "";
         String dobValue = SharedData.getPrimaryMember().getDob();
-        dobValue = basicActions.changeDateFormat(dobValue, "MMddyyyy", "MM/dd/yyyy");
+        dobValue = basicActions.changeDateFormat(dobValue, "MMddyyyy", "M/d/yyyy");
 
         softAssert.assertEquals(txtFirstNameInput.getAttribute("title"), SharedData.getPrimaryMember().getFirstName());
-        softAssert.assertEquals(txtMiddleNameInput.getAttribute("title"),  SharedData.getPrimaryMember().getMiddleName());
+        String expectedMiddleName = SharedData.getPrimaryMember().getMiddleName();
+        String expectedSuffix = SharedData.getPrimaryMember().getSuffix();
+        if (expectedMiddleName == null) {
+            softAssert.assertEquals(txtMiddleNameInput.getAttribute("title"), "Select to enter data");
+        } else {
+            softAssert.assertEquals(txtMiddleNameInput.getAttribute("title"), expectedMiddleName);
+        }
         softAssert.assertEquals(txtLastNameInput.getAttribute("title"), SharedData.getPrimaryMember().getLastName());
+        if (expectedSuffix == null) {
+            softAssert.assertEquals(txtSuffixNameInput.getAttribute("title"), "Select to enter data");
+        } else {
+            softAssert.assertEquals(txtSuffixNameInput.getAttribute("title"), expectedSuffix);
+        }
         softAssert.assertEquals(txtEmailInput.getAttribute("title"), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(txtPhoneInput.getAttribute("title"), SharedData.getPrimaryMember().getPhoneNumber());
         softAssert.assertEquals(txtDobInput.getAttribute("value"), dobValue);
