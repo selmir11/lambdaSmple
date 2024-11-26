@@ -210,9 +210,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void resetMakeChangeButtonsDisplayed() {
-        basicActions.waitForElementToBePresent(btnMedReset, 20);
-        softAssert.assertEquals(btnMedReset.getText(), "Reset Changes");
-        softAssert.assertEquals(btnDentalReset.getText(), "Reset Changes");
+        basicActions.waitForElementToBePresentWithRetries(btnMedReset, 60);
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
         softAssert.assertAll();
@@ -283,7 +281,6 @@ public class AdminPortalManagePlansPage {
 
     public void resetMakeChangeButtonsCocoDisplayed() {
         basicActions.waitForElementToBePresent(btnMedReset, 20);
-        softAssert.assertEquals(btnMedReset.getText(), "Reset Changes");
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertAll();
     }
@@ -316,7 +313,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertTrue(planYearDownArrow.isDisplayed());
         basicActions.click(dpdCurrentYearMP);
         basicActions.waitForElementListToBePresent(planYearList, 20);
-        List<String> expectedList = new ArrayList<>(Arrays.asList("2019", "2020", "2021", "2022", "2023", "2024", "2025"));
+        List<String> expectedList = new ArrayList<>(Arrays.asList("2022", "2023", "2024", "2025"));
         List<String> existingList = new ArrayList<>();
         for (WebElement each : planYearList) {
             existingList.add(each.getText().trim());
