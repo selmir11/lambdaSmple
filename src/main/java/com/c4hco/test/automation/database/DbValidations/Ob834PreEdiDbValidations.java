@@ -261,7 +261,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
-        validateIndivMedPremAmt(ob834Entity);
+         validateIndivMedPremAmt(ob834Entity);
     }
 
     private void denValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues) {
@@ -339,7 +339,7 @@ public class Ob834PreEdiDbValidations {
 
     private void validateIndivMedPremAmt(Ob834DetailsEntity ob834Entity){
         medicalPolicyEnitities.stream().filter(medEntity -> medEntity.getFirst_name().equals(ob834Entity.getMember_first_name())).findFirst().ifPresent(medEntity ->
-                softAssert.assertEquals(medEntity.getPlan_premium_amt(), ob834Entity.getPremium_amount(), "Dental Individual Plan premium amount does not match for "+medEntity.getFirst_name()));
+                softAssert.assertEquals(medEntity.getPlan_premium_amt(), ob834Entity.getPremium_amount(), "Medical Individual Plan premium amount does not match for "+medEntity.getFirst_name()));
     }
 
     private void validateIndivDenPremAmt(Ob834DetailsEntity ob834Entity){
