@@ -8,7 +8,7 @@ public class PlanSummaryMedicalDentalPageSteps {
     PlanSummaryMedicalDentalPage planSummaryMedicalDentalPage = new PlanSummaryMedicalDentalPage(WebDriverManager.getDriver());
 
     @And("I click continue on plan summary page")
-    public void continuePlanSummaryPage(){ planSummaryMedicalDentalPage.continuePlanSummaryPage(); }
+    public void continuePlanSummaryPage(){ planSummaryMedicalDentalPage.continueButton(); }
 
     @And("I verify medical and dental text on Plan Summary page")
     public void verifyTextPlanSummaryPage() {planSummaryMedicalDentalPage.verifyTextPlanSummaryPage(); }
