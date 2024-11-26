@@ -674,8 +674,8 @@ public class FindExpertHelpPage {
 
     public void verifyEnrollOnMyOwnTextIsNotDisplayed(){
         basicActions.waitForElementToBePresentWithRetries(continueOnMyOwnButton,10);
-        softAssert.assertFalse(basicActions.waitForElementPresence(enrollOnMyOwnTitle,10));
-        softAssert.assertFalse(basicActions.waitForElementPresence(enrollOnMyOwnText,10));
+        softAssert.assertFalse(basicActions.waitForElementToBePresentWithRetries(enrollOnMyOwnTitle,10));
+        softAssert.assertFalse(basicActions.waitForElementToBePresentWithRetries(enrollOnMyOwnText,10));
         softAssert.assertAll();
     }
 
