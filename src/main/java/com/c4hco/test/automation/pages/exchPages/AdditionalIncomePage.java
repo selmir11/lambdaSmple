@@ -442,8 +442,8 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(additlIncomeFrequencyError.get(11).getText(), "Please select one of the options below");
         softAssert.assertEquals(addtlIncomeOptionsName.get(12).getText(), "None of these");
         addtlIncomeOptionsCheckbox.get(12).click();
-        softAssert.assertEquals(backBtn.getText(), "  Go Back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and Continue");
+        softAssert.assertEquals(backBtn.getText(), "  Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertAll();
     }
 
