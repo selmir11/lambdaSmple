@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.CreateAccountPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -473,6 +474,14 @@ public class MyProfileExchPage {
         SharedData.getPrimaryMember().setEmailId(newEmail);
         InputEmail.clear();
         InputEmail.sendKeys(newEmail);
+    }
+
+    public void updateContactPhoneNumber() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        SharedData.getPrimaryMember().setPhoneNumber(newPhone);
+        Homephone.clear();
+        Homephone.sendKeys(newPhone);
     }
     
     public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
