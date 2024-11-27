@@ -236,3 +236,53 @@ Feature: Testing CRM (MD365) updates
     Then I open the "Details" Tab on contact page
     And I verify the Individual Details data in the CRM
     Then I sign out of CRM
+
+  @SLER-1774
+  Scenario: SLER-1774 Changing Primary Contact's email and phone is shared with the CRM
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "9000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I wait for 90000 milliseconds
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I click on the Username in the "Exch NonElmo" Header
+
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    And I update the contact email address
+    And I update the contact home phone number on profile page
+    And I click on Save Button
+    And I wait for hold on content to disappear
+    And I wait for 2000 milliseconds
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+    And I wait for 50000 milliseconds
+    Then I log into the CRM system
+    Then I search for user's Email
+    Then I handle the search results page
+    And I verify the Individual Contact data in the CRM
+    Then I sign out of CRM

@@ -133,6 +133,7 @@ public class CRMContactPage {
         softAssert.assertEquals(txtFirstNameInput.getAttribute("title"), SharedData.getPrimaryMember().getFirstName());
         String expectedMiddleName = SharedData.getPrimaryMember().getMiddleName();
         String expectedSuffix = SharedData.getPrimaryMember().getSuffix();
+        String expectedPhone = SharedData.getPrimaryMember().getPhoneNumber().replace("-", "");
         if (expectedMiddleName == null) {
             softAssert.assertEquals(txtMiddleNameInput.getAttribute("title"), "Select to enter data");
         } else {
@@ -145,7 +146,7 @@ public class CRMContactPage {
             softAssert.assertEquals(txtSuffixNameInput.getAttribute("title"), expectedSuffix);
         }
         softAssert.assertEquals(txtEmailInput.getAttribute("title"), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(txtPhoneInput.getAttribute("title"), SharedData.getPrimaryMember().getPhoneNumber());
+        softAssert.assertEquals(txtPhoneInput.getAttribute("title"), expectedPhone);
         softAssert.assertEquals(txtDobInput.getAttribute("value"), dobValue);
         softAssert.assertEquals(txtSsnInput.getAttribute("title"), lastFourSsn);
         softAssert.assertEquals(txtAddress1Input.getAttribute("title"), SharedData.getPrimaryMember().getResAddress().getAddressLine1());
