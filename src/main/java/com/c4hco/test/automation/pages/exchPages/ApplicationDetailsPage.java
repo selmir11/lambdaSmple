@@ -16,19 +16,13 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationDetailsPage {
 
     SoftAssert softAssert = new SoftAssert();
-    Calendar calendar = Calendar.getInstance();
-    Date today = new Date();
 
     private BasicActions basicActions;
 
@@ -189,38 +183,28 @@ public class ApplicationDetailsPage {
             case "End date":
                 switch (data){
                     case "Today":
-                        calendar.setTime(today);
-                        DateFormat todayDate = new SimpleDateFormat("MM/dd/yyyy");
-                        String todayDateFormat = todayDate.format(today);
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date " + todayDateFormat);
+                        String todayDate = basicActions.getTodayDate();
+                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date " + todayDate);
                         softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
                         softAssert.assertAll();
                         break;
                     case "Future Month":
-                        calendar.add(Calendar.DATE, 60);
-                        Date futureDate = calendar.getTime();
-                        DateFormat futureDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ futureDateFormat.format(futureDate));
+                        String futureDate = basicActions.getFutureDate(60);
+                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ futureDate);
                         softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
                         softAssert.assertAll();
                         break;
                     case "Prior Month":
-                        calendar.add(Calendar.MONTH, 0);
-                        calendar.set(Calendar.DAY_OF_MONTH, 1);
-                        calendar.add(Calendar.DATE, -1);
-                        Date lastDayOfPriorMonth = calendar.getTime();
-                        DateFormat endOfPriorMonth = new SimpleDateFormat("MM/dd/yyyy");
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ endOfPriorMonth.format(lastDayOfPriorMonth));
+                        String lastDayOfPriorMonth = basicActions.lastDateOfPriorMonth();
+                        lastDayOfPriorMonth = basicActions.changeDateFormat(lastDayOfPriorMonth, "MM-dd-yyyy", "MM/dd/yyyy");
+                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ lastDayOfPriorMonth);
                         softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
                         softAssert.assertAll();
                         break;
                     case "Current Month":
-                        calendar.add(Calendar.MONTH, 1);
-                        calendar.set(Calendar.DAY_OF_MONTH, 1);
-                        calendar.add(Calendar.DATE, -1);
-                        Date lastDayOfMonth = calendar.getTime();
-                        DateFormat endOfCurrentMonth = new SimpleDateFormat("MM/dd/yyyy");
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ endOfCurrentMonth.format(lastDayOfMonth));
+                        String lastDayOfMonth = basicActions.lastDateOfCurrMonth();
+                        lastDayOfMonth = basicActions.changeDateFormat(lastDayOfMonth, "MM-dd-yyyy", "MM/dd/yyyy");
+                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ lastDayOfMonth);
                         softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
                         softAssert.assertAll();
                         break;
