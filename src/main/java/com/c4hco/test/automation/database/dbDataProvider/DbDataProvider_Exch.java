@@ -340,4 +340,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("event_log_id", exchDbQueries.getEventLogIdDB(event, eventLogId));
     }
 
+    public String[] getLceType_PlanYr_esMember() {
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return postgresHandler.getResultForTwoColumnValues("lce_type","plan_year", exchDbQueries.getLceTpePlanYear(householdId));
+    }
+
+
 }

@@ -18,9 +18,9 @@ public class AdminToolPageSteps {
         adminLceToolPage.validatePlanYearOptions();
     }
 
-    @And("I change effective date to {string} of current year from admin portal")
-    public void changeEffDate(String monthDate){
-            adminLceToolPage.changeEffectiveDate(monthDate);
+    @And("I change effective date to {string} of {string} from admin portal")
+    public void changeEffDate(String monthDate, String planYear){
+            adminLceToolPage.changeEffectiveDate(monthDate, planYear);
     }
 
     @And("I validate Admin Lce container title text")
