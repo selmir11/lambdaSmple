@@ -390,7 +390,8 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
       | 1      |         |
       | 2      |         |
 
- Scenario: MP: 2024 Editing Validation Errors (Dent Only)
+  @SLER-1234
+ Scenario: SLER-1234 MP: 2024 Editing Validation Errors (Dent Only)
     Then I click on Medical button to display only Dental view
     And I click Make Changes Dental button
     And I update the Coverage Start date of member
