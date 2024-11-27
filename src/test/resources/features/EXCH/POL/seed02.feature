@@ -85,7 +85,7 @@ Feature: Seed02 - Exchange
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -251,8 +251,10 @@ Feature: Seed02 - Exchange
     Then I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
     Then I click continue on the Add Address page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Citizenship" page
+    And I click continue on the Race and Ethnicity page
+#    Then I validate I am on the "Citizenship" page
+#    Then I click continue on the Citizenship page
+
     Then I click continue on the Immigration Status page
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
@@ -285,8 +287,11 @@ Feature: Seed02 - Exchange
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue

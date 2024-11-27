@@ -107,7 +107,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "Income" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM
@@ -212,7 +212,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "SSN" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM
@@ -317,7 +317,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "Death" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM
@@ -422,7 +422,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "Citizenship" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM
@@ -527,7 +527,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "Incarceration" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM
@@ -633,7 +633,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "American Indian/Alaska Native" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM
@@ -746,7 +746,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "Lawful Presence" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM

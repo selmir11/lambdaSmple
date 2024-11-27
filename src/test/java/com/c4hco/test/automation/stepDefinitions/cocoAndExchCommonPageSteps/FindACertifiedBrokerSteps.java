@@ -145,10 +145,6 @@ public class FindACertifiedBrokerSteps {
     public void iValidateButtonAndFieldText(String language){
         findACertifiedBrokerPage.validateButtonAndFieldText(language);
     }
-    @And("I set the current broker details")
-    public void iSetCurrentBrokerDetails() {
-        findACertifiedBrokerPage.setCurrentBrokerContainerDetails();
-    }
 
     @Then ("I click the Authorize broker button")
     public void iClickAuthorizeBrokerButton (){

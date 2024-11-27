@@ -15,6 +15,18 @@ public class ReviewTransferPage {
     @FindBy(xpath = "//button[normalize-space()='Transfer Clients']")
     WebElement transferClientsButton;
 
+    @FindBy(xpath = "//*[@id='transfer-action']/a")
+    WebElement removeFromTransferLink;
+
+    @FindBy(xpath = "//div[@class='remove-sure']")
+    WebElement areYouSureConfirmationText;
+
+    @FindBy(id = "transfer-no")
+    WebElement areYouSureConfirmationNo;
+
+    @FindBy(id = "transfer-yes")
+    WebElement areYouSureConfirmationYes;
+
     @FindBy(xpath = "//button[normalize-space()='Cancel']")
     WebElement transferClientsCancelButton;
 
@@ -47,6 +59,35 @@ public class ReviewTransferPage {
     public void clickTransferClients(){
         basicActions.waitForElementToBePresent(transferClientsButton,10);
         transferClientsButton.click();
+    }
+
+    public void clickRemoveFromTranfer(){
+        basicActions.waitForElementToBePresent(removeFromTransferLink,10);
+        removeFromTransferLink.click();
+    }
+
+    public void removeClientConfirmation(String confirmation){
+        basicActions.waitForElementToBePresent(areYouSureConfirmationText,10);
+        softAssert.assertEquals(areYouSureConfirmationText.getText(), "Are you sure?");
+        switch (confirmation) {
+            case "No":
+                softAssert.assertEquals(areYouSureConfirmationNo.getText(),"No");
+                areYouSureConfirmationNo.click();
+                break;
+            case "Yes":
+                softAssert.assertEquals(areYouSureConfirmationYes.getText(),"Yes");
+                areYouSureConfirmationYes.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + confirmation);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyRemoveFromTransferLinkDisabled(){
+        basicActions.waitForElementToBePresent(removeFromTransferLink,10);
+        softAssert.assertEquals(removeFromTransferLink.getAttribute("class"),"remove-transfer disabled");
+        softAssert.assertAll();
     }
 
     public void clickCancelTransferClients(){

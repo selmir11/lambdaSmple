@@ -85,7 +85,7 @@ Feature: Transfer multiple clients validation
     And I click on Find Expert Assistance in the "individual dashboard" Header
 
     Then I validate I am on the "Find Expert Help Exch" page
-    Then I verify Find Expert Help header Text in "English"
+    Then I verify Manage who helps you header text in "English"
 
     Then I validate the details in the Previous Broker Assister table are "TransferRemove One", "897531650", "80205", "303-145-9875", "Broker"
 

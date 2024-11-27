@@ -17,6 +17,7 @@ Feature: Trigger Admin user Password reset and confirmation Notices AM-016-07 AN
     Then I click the password reset link
     Then I delete the open notice
     And I sign out of Outlook
+    Then I switch to the tab number 1
     And I enter the new password in create new password page
     Then I validate I am on the "Login" page
     Then I open outlook Tab
