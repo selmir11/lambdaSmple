@@ -22,7 +22,6 @@ public class MedicalPlanDetailCoCoPageSteps {
     }
 
     @And("I select the Go Back button on the coco Medical Plan Detail page")
-    public void clickMedicalDetailGoBack(){
-        medicalPlanDetailCoCoPage.clickMedicalDetailGoBack();
+    public void clickMedicalDetailGoBack(){medicalPlanDetailCoCoPage.clickMedicalDetailGoBack();
     }
 }
