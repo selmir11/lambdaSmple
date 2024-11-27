@@ -26,16 +26,12 @@ public class StartShoppingPageSteps {
     @Then("I click Go Back on start shopping page")
     public void clickGoBackStartShoppingPage(){
         startShoppingPage.iclickGoBack();
+
     }
 
-    @Then("I click Yes to the Tobacco usage question on start shopping page")
-    public void clickYestoTobaccoQuestion(String tobaccoUsageUserDetails){
-        startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageUserDetails);
+    @Then("I select Tobacco Usage Yes for the {string} member")
+    public void enterTobaccoUsageInfo(String tobaccoUsageDetails){
+        startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageDetails);
     }
-
-    // can use for yes-no scenario to verify that buttons can be unselected
-    @And("I select {string} Tobacco Usage for the Primary member")
-    public void iSelectTobacco(String tobaccoUsage){startShoppingPage.iSelectTobacco(tobaccoUsage);}
-
 
 }
