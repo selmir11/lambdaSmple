@@ -47,12 +47,14 @@ public class MedicalPlansCoCoPageSteps {
     }
 
     @And( "I select initial 3 plans and click the Compare button" )
-    public void selectPlanstoCompare(){
-        medicalPlansCoCoPage.selectPlanstoCompare();
+    public void select3PlanstoCompare(){
+        medicalPlansCoCoPage.select3PlanstoCompare();
     }
 
-    //@And( "I compare select {string} plans" )
-    //public void selectCarrierPlantoCompare(String carrierplan){ medicalPlansCoCoPage.selectCarrierPlantoCompare(carrierplan); }
+    @And( "I select initial plan for Comparison" )
+    public void selectInitialPlantoCompare(){
+        medicalPlansCoCoPage.selectInitialPlantoCompare();
+    }
 
     @And( "I click the Compare button" )
     public void clickCompareButton(){medicalPlansCoCoPage.clickCompareButton();}
@@ -108,12 +110,6 @@ public class MedicalPlansCoCoPageSteps {
     public void validateSelectedPlan(String planName) {
         medicalPlansCoCoPage.validatePlanSelection(planName);
     }
-
-    @Then("I validate {string} coco medical plan is set for Compare selection")
-    public void validateSelectComparePlanSelection(String planCompareName) {
-        medicalPlansCoCoPage.validateSelectComparePlanSelection(planCompareName);
-    }
-
 
     @Then("I validate text on coco medical plan page")
     public void validateTextinMedicalPlan(List<String> testDatavalues) {

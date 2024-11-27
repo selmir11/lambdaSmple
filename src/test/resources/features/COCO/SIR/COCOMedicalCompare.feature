@@ -312,7 +312,7 @@ Feature: Verify COCO Medical Plan results
 
 
   @SLCR-93 @COCOFilterMedicalCompareOutNetworkHeadersEnglish
-  Scenario: SLCR-93 - This will verify the COCO Compare Out of Network Headers are actionable and exist- formerly CCRT-398
+  Scenario: SLCR-93 - English - This will verify the COCO Compare Out of Network Headers are actionable and exist- formerly CCRT-398
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -385,9 +385,9 @@ Feature: Verify COCO Medical Plan results
     And I validate the "English" Medical Compare page Out-Network headers and subheaders
     And I click on Sign Out in the Header for "Elmo"
 
-
+# this one should be split out English having one # and Spanish having another
   @SLCR-93 @COCOFilterMedicalCompareOutNetworkHeadersSpanish
-  Scenario: SLCR-93 - This will verify the COCO Compare Out of Network Headers are actionable and exist- formerly CCRT-398
+  Scenario: SLCR-93-Spanish - This will verify the COCO Compare Out of Network Headers are actionable and exist- formerly CCRT-398
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -927,8 +927,11 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Insurance Company dropdown
     And I select "Rocky Mountain Health Plans / UHC" to filter for desired COCO plan provider
+    And I select initial plan for Comparison
+    And I select "Rocky Mountain Health Plans / UHC" to filter for desired COCO plan provider
     And I select "Select Health" to filter for desired COCO plan provider
-    And I select initial 2 plans and click the Compare button
+    And I select initial plan for Comparison
+    And I click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
     And I validate "2" document columns on the Compare page
@@ -1001,9 +1004,14 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Insurance Company dropdown
     And I select "Anthem" to filter for desired COCO plan provider
+    And I select initial plan for Comparison
+    And I select "Anthem" to filter for desired COCO plan provider
+    And I select "Cigna Healthcare" to filter for desired COCO plan provider
+    And I select initial plan for Comparison
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
     And I select "Kaiser Permanente" to filter for desired COCO plan provider
-    And I select initial 3 plans and click the Compare button
+    And I select initial plan for Comparison
+    And I click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
     And I validate "3" document columns on the Compare page
@@ -1076,9 +1084,14 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Insurance Company dropdown
     And I select "Anthem" to filter for desired COCO plan provider
+    And I select initial plan for Comparison
+    And I select "Anthem" to filter for desired COCO plan provider
+    And I select "Cigna Healthcare" to filter for desired COCO plan provider
+    And I select initial plan for Comparison
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
     And I select "Kaiser Permanente" to filter for desired COCO plan provider
-    And I select initial 3 plans and click the Compare button
+    And I select initial plan for Comparison
+    And I click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
     And I select the Go Back Link at the top of Medical Plan Compare page
@@ -1086,9 +1099,14 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Medical Plan Results" page
     And I select the COCO Insurance Company dropdown
     And I select "Anthem" to filter for desired COCO plan provider
+    And I select initial plan for Comparison
+    And I select "Anthem" to filter for desired COCO plan provider
+    And I select "Cigna Healthcare" to filter for desired COCO plan provider
+    And I select initial plan for Comparison
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
     And I select "Kaiser Permanente" to filter for desired COCO plan provider
-    And I select initial 3 plans and click the Compare button
+    And I select initial plan for Comparison
+    And I click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
     And I select the Go Back button on the Medical Plan Compare page

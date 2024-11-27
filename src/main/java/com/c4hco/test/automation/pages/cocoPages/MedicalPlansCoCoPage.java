@@ -203,7 +203,7 @@ public class MedicalPlansCoCoPage {
         expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
     }
 
-    public void selectPlanstoCompare() {
+    public void select3PlanstoCompare() {
         basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
         basicActions.waitForElementToDisappear( spinner,20 );
@@ -220,6 +220,14 @@ public class MedicalPlansCoCoPage {
         selectFirstComparebox.click();
         selectSecondComparebox.click();
         selectCompareButton.click();
+    }
+
+    public void selectInitialPlantoCompare(){
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
+        basicActions.waitForElementToDisappear( spinner,20 );
+        selectFirstComparebox.click();
+
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
@@ -391,27 +399,7 @@ public class MedicalPlansCoCoPage {
             }
         } while (optionalInt.isEmpty());
     }
-
-    public void validateSelectComparePlanSelection(String planName) {
-        basicActions.waitForElementToDisappear(spinner, 40);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        subscriber.setMedicalPlan(planName);
-        SharedData.setPrimaryMember(subscriber);
-        do {
-            optionalInt = checkIfPlanPresent(planName);
-            if (optionalInt.isPresent()) {
-                WebElement selectedPlan = basicActions.getDriver().findElement(By.id("PlanResults-PlanCompareCheckbox_" + (optionalInt.get() + 1)));
-                Assert.assertTrue(selectedPlan.isDisplayed());
-                basicActions.waitForElementToBePresent( firstPlanDetailsbtn,20 );
-               basicActions.click( firstPlanDetailsbtn );
-                basicActions.click( firstPlanDetailsbtn );
-                // Assert.assertTrue(selectedPlan.isSelected());
-            } else {
-                paginateRight();
-            }
-        } while (optionalInt.isEmpty());
-
-    }
+    
 
     public void validateMedicalPlanText(List<String> testDatavalues) {
         basicActions.waitForElementToDisappear(spinner, 20);
