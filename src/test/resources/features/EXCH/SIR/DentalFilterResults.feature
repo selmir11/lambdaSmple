@@ -163,7 +163,7 @@ Feature: Dental Plan Verification test
     Examples:
     |insuranceCompany               |dentalPlanText                                          |
     |Anthem Dental                  |Anthem Dental Family Value                              |
-    |Cigna                          |Cigna Dental Pediatric                                  |
+    |Cigna Healthcare               |Cigna Dental Pediatric                                  |
     |Delta Dental                   |Delta Dental of Colorado Pediatric Comprehensive Plan   |
     |Solstice Healthplans / UHC     |EssentialSmile Colorado - Total Care                    |
 
