@@ -208,5 +208,15 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyItDisplaysFinancialEndDateError() {
         adminPortalManagePlansPage.validateFinancialEndDateErrors();
     }
+
+    @Then("I click on Dental button to display only medical view")
+    public void iClickOnDentalButtonToDisplayOnlyMedicalView() {
+        adminPortalManagePlansPage.clickDentalButton();
+    }
+
+    @Then("I click on Medical button to display only Dental view")
+    public void iClickOnMedicalButtonToDisplayOnlyDentalView() {
+        adminPortalManagePlansPage.clickMedicalButton();
+    }
 }
 

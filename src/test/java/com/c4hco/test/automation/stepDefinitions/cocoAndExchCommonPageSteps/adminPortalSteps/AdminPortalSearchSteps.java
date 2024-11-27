@@ -173,6 +173,8 @@ public class AdminPortalSearchSteps {
     public void iVerifyDataInTheFieldsOnTheAdminPortalSearchPageShouldBeBlank(DataTable dataTable) {
         adminPortalSearchPage.verifyblankfield(dataTable);
     }
+
+
 }
 
 
