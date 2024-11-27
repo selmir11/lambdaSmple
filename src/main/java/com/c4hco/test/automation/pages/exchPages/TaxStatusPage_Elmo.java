@@ -181,6 +181,7 @@ public void selectFilingJointlyWithOption(String filingJointlyOption) {
         for (int i = 0; i < checkboxesTax.size(); i++) {
             WebElement element1 = checkboxesTax.get(i);
             WebElement element2 = checkboxContainersTax.get(i);
+            basicActions.wait(100);
             softAssert.assertTrue(element2.getAttribute("class").equals("checkbox-container"));
             softAssert.assertEquals(element1.getCssValue("width"), "32px");
             softAssert.assertEquals(element1.getCssValue("height"), "32px");
