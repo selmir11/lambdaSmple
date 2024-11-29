@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.actions.ClickAction;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -42,6 +43,7 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(id = "PlanResults-MetalTier")
     WebElement metalTierDropdown;
+
     @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
     WebElement selectFirstComparebox;
 
@@ -61,7 +63,7 @@ public class MedicalPlansCoCoPage {
     WebElement nextPageArrow;
 
     @FindBy(css = ".premium-summary .c4-type-header-md")
-    List<WebElement> mothlyPremiumValue;
+    List<WebElement> monthlyPremiumValue;
 
     @FindBy(css = "#dropdownBasic1")
     WebElement premiumSortingDropdown;
@@ -114,6 +116,9 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "planQualityRatings")
     WebElement planQualityRatingtxt;
 
+    @FindBy(xpath = "//div[@class='col-sm-12 text-start mt-3 body-text-1 csrtxt ng-star-inserted']")
+    WebElement silverPlanTopReferenceInformation;
+
     public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
@@ -138,6 +143,12 @@ public class MedicalPlansCoCoPage {
         basicActions.waitForElementToBePresent(metalTierDropdown, 30);
         metalTierDropdown.click();
 
+    }
+
+    public void clickCompareButton(){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent( selectCompareButton,30 );
+        selectCompareButton.click();
     }
 
     public void selectfromMetalTierList(String Selecting) {
@@ -192,12 +203,31 @@ public class MedicalPlansCoCoPage {
         expectedText.equals(planText); // compares the expected text gathered in previous line to the planText passed into the function.
     }
 
-    public void selectPlanstoCompare() {
+    public void select3PlanstoCompare() {
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
+        basicActions.waitForElementToDisappear( spinner,20 );
         selectFirstComparebox.click();
         selectSecondComparebox.click();
         selectSThirdComparebox.click();
         selectCompareButton.click();
+    }
+
+    public void select2PlanstoCompare() {
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
+        basicActions.waitForElementToDisappear( spinner,20 );
+        selectFirstComparebox.click();
+        selectSecondComparebox.click();
+        selectCompareButton.click();
+    }
+
+    public void selectInitialPlantoCompare(){
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
+        basicActions.waitForElementToDisappear( spinner,20 );
+        selectFirstComparebox.click();
+
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
@@ -239,6 +269,38 @@ public class MedicalPlansCoCoPage {
         } while (optionalInt.isEmpty());
     }
 
+    public void validateSESCOCOFilterMessage(String language){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        switch(language){
+            case "English":
+                validateSESCOCOFilterMessageEnglish();
+                break;
+            case "Spanish":
+                validateSESCOCOFilterMessageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
+        }
+
+    }
+
+    public void validateSESCOCOFilterMessageEnglish(){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToBePresent( silverPlanTopReferenceInformation,30 );
+        Assert.assertTrue(silverPlanTopReferenceInformation.isDisplayed(), "Silver-level plans are shown first because you qualify for Cost-Sharing Reductions.");
+        silverPlanTopReferenceInformation.click();
+    }
+
+    public void validateSESCOCOFilterMessageSpanish(){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToBePresent( silverPlanTopReferenceInformation,30 );
+        Assert.assertTrue(silverPlanTopReferenceInformation.isDisplayed(), "Se muestran primero los planes de nivel Plata porque usted califica para obtener reducciones en los costos compartidos.");
+        silverPlanTopReferenceInformation.click();
+    }
+
+
+
     public void clickSortingDropdown(String sortingValue) {
         basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresent(premiumSortingDropdown, 30);
@@ -251,12 +313,12 @@ public class MedicalPlansCoCoPage {
         while (basicActions.elementExists(basicActions.getDriver(), By.xpath("//a[@class='ng-star-inserted']"))) {
             try {
                 basicActions.waitForElementToDisappear(spinner, 10);
-                basicActions.waitForElementToBePresent(mothlyPremiumValue.get(0), 30);
+                basicActions.waitForElementToBePresent(monthlyPremiumValue.get(0), 30);
 
                 if (sortingTypeSelection.contains("Monthly Premium- Low to High")) {
-                    Assert.assertTrue(basicActions.isSortedAscending(mothlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
+                    Assert.assertTrue(basicActions.isSortedAscending(monthlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
                 } else if (sortingTypeSelection.contains("Monthly Premium- High to Low")) {
-                    Assert.assertTrue(basicActions.isSortedDescending(mothlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
+                    Assert.assertTrue(basicActions.isSortedDescending(monthlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
                 } else if (sortingTypeSelection.contains("Annual Deductible- Low to High")) {
                     List<WebElement> webElementList = new ArrayList<>();
 
@@ -337,6 +399,7 @@ public class MedicalPlansCoCoPage {
             }
         } while (optionalInt.isEmpty());
     }
+    
 
     public void validateMedicalPlanText(List<String> testDatavalues) {
         basicActions.waitForElementToDisappear(spinner, 20);

@@ -1,4 +1,4 @@
-@COCO
+@COCO9
  #SLCR-318, SLCR-332,
 Feature: Shopping Page - Continue and Go back funtionality
 
@@ -296,23 +296,32 @@ Feature: Shopping Page - Continue and Go back funtionality
 
     Then I validate I am on the "Medical Plan Results" page
     And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
-
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
+
+    Then I validate I am on the "CoCo Enrollment Agreements" page
     And I click go back on the enrollment agreements page coco
+
+    Then I validate I am on the "planSummaryMedicalDental" page
     And I click Go Back on coco plan summary page
+
     Then I validate I am on the "Medical Plan Results" page
     And Validate "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan is selected
     And I click Go Back on coco medical plan page
+
     Then I validate I am on the "Medical Plan Results" page
     And Validate "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan is selected
     And I click Go Back on coco medical plan page
+
     Then I validate I am on the "Medical Plan Results" page
     And Validate "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan is selected
     And I click Go Back on coco medical plan page
+
     Then I validate I am on the "Medical Plan Results" page
     And Validate "KP Colorado Option Silver X" coco medical plan is selected
     And I click Go Back on coco medical plan page
+
     Then I validate I am on the "Grouping Members Medical" page
     And I click on Sign Out in the Header for "Elmo"

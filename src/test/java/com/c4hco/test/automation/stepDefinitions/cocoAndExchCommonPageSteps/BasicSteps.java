@@ -5,11 +5,16 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
     BasicActions actions = BasicActions.getInstance();
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
 
     @And("I validate I am on the {string} page")
     public void iValidatePage(String page) {
@@ -121,8 +126,13 @@ public class BasicSteps {
             case "Medical Plan Detail":
                 pageUrl = "medicalPlanCarrierDetails";
                 break;
-            case "Medical Plan Detail CoCo":
-                pageUrl = "/PlanSelectionPortal/medicalPlanCarrierDetails/";
+            case "CoCo Medical Plan Detail":
+                pageUrl = "coco/PlanSelectionPortal/medicalPlanCarrierDetails";
+                break;
+            case "CoCo Compare Medical Plan Detail":
+                basicActions.waitForElementToDisappear( spinner, 40 );
+                basicActions.wait(20000);
+                pageUrl = "coco/PlanSelectionPortal/medicalPlanCarrierDetails";
                 break;
             case "Grouping Members Medical":
                 pageUrl = "viewGroupingMembers";

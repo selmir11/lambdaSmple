@@ -18,18 +18,13 @@ public class MedicalPlansCoCoPageSteps {
     public void selectContinueMedPlansCoCo(){medicalPlansCoCoPage.selectContinueMedicalPlansCoCo();}
 
     @And("I select the COCO Insurance Company dropdown")
-    public void clickInsuranceCompanyDropdown() {medicalPlansCoCoPage.clickInsuranceCompanyDropdown();
-    }
+    public void clickInsuranceCompanyDropdown() {medicalPlansCoCoPage.clickInsuranceCompanyDropdown(); }
 
     @And("I select the COCO Metal Tier dropdown")
-    public void clickMetalTierDropdown() {
-        medicalPlansCoCoPage.clickMetalTierDropdown();
-    }
+    public void clickMetalTierDropdown() { medicalPlansCoCoPage.clickMetalTierDropdown(); }
 
     @And("I select {string} to filter for a  COCO Metal Tier plan")
-    public void selectfromMetalTierList(String metalOption) {
-        medicalPlansCoCoPage.selectfromMetalTierList(metalOption);
-    }
+    public void selectfromMetalTierList(String metalOption) { medicalPlansCoCoPage.selectfromMetalTierList(metalOption); }
 
     @And ("I select Silver Enhanced option")
     public void selectSilverEnhanced(){
@@ -46,10 +41,23 @@ public class MedicalPlansCoCoPageSteps {
     public void selectfromProviderList(String carrierOption) {medicalPlansCoCoPage.selectfromProviderList(carrierOption);
     }
 
-    @And( "I select initial 3 plans and click the Compare button" )
-    public void selectPlanstoCompare(){
-        medicalPlansCoCoPage.selectPlanstoCompare();
+    @And( "I select initial 2 plans and click the Compare button" )
+    public void select2PlanstoCompare(){
+        medicalPlansCoCoPage.select2PlanstoCompare();
     }
+
+    @And( "I select initial 3 plans and click the Compare button" )
+    public void select3PlanstoCompare(){
+        medicalPlansCoCoPage.select3PlanstoCompare();
+    }
+
+    @And( "I select initial plan for Comparison" )
+    public void selectInitialPlantoCompare(){
+        medicalPlansCoCoPage.selectInitialPlantoCompare();
+    }
+
+    @And( "I click the Compare button" )
+    public void clickCompareButton(){medicalPlansCoCoPage.clickCompareButton();}
 
     @And("I select {string} coco medical plan")
     public void selectMedPlan(String medicalPlan) {
@@ -61,9 +69,11 @@ public class MedicalPlansCoCoPageSteps {
         medicalPlansCoCoPage.clickSortingDropdown(sortingValue);
     }
 
+    @And ("I validate the top SES reference for default filter expectations in {string} language")
+    public void validateSilverLevelReference(String language){medicalPlansCoCoPage.validateSESCOCOFilterMessage(language);}
+
     @And("I validate the COCO plan option {int} has text {string}")
-    public void validatePlanText(int Index, String planText) {
-        medicalPlansCoCoPage.validatePlanResults( Index, planText );
+    public void validatePlanText(int Index, String planText) { medicalPlansCoCoPage.validatePlanResults( Index, planText );
     }
     @And ("I validate the COCO plan option {int} has a premium {string}")
     public void validateCOCOPlanIndividualPremium(int Index, String planPremium){

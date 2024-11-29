@@ -652,6 +652,13 @@ public class BasicActions {
         return lastDayOfCurrMonth.format(formatter);
     }
 
+    public String lastDateOfPriorMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfPriorMonth = YearMonth.from(today).minusMonths(1).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        return lastDayOfPriorMonth.format(formatter);
+    }
+
     public String getTodayDate() {// Today
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");

@@ -344,6 +344,9 @@ public class AdminPortalSearchPage {
             case "siteID":
                 searchInputList.get(6).sendKeys(type);
                 break;
+            case "LicenseNumber":
+                searchInputList.get(5).sendKeys(type);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
@@ -489,6 +492,10 @@ public class AdminPortalSearchPage {
                 verifyPMAccountTitledetails();
                 verifyPMData();
                 break;
+            case "Broker":
+                verifyBrokerAccountTitledetails();
+                verifyBrokerData();
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + category);
         }
@@ -508,6 +515,31 @@ public class AdminPortalSearchPage {
         basicActions.waitForElementListToBePresent(aactsearchResults, 30);
         List<String> qaexpectedTitles = List.of("2640006565", "John", "Winterhouse", "johnc4hcoautomation+..", "760-579-8438", "Twoeightsevennine", "jrzvp", "PROGRAM_MANAGER");
         List<String> stgexpectedTitles = List.of("9005375045", "adszcnkgvl", "adsdzazuqql", "c4assistorportal+Rqn..", "333-328-9892", "stg", "eNrQP", "PROGRAM_MANAGER");
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(qaexpectedTitles,actualTitles);
+        } else {
+            softAssert.assertEquals(stgexpectedTitles,actualTitles);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerAccountTitledetails() {
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number","User Type");
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerData() {
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+        List<String> qaexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "accts.forc4.test.i.n..", "432-432-5555", "456787654", "OWNER");
+        List<String> stgexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "accts.forc4.test.i.n..", "432-432-5555", "456787654", "OWNER");
         List<String> actualTitles = aactsearchResults.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());

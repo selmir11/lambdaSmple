@@ -145,7 +145,7 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1281-WIP
+  @SLER-1281 @pol_exch_passed
   Scenario:RT-2328 ENR-EXCH: EDIT POLICY - PREMIUM & APTC AMOUNT UPDATES
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
