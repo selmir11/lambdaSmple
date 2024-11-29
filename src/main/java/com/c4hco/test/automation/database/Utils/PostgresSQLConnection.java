@@ -16,7 +16,6 @@ public class PostgresSQLConnection {
     }
 
     public static Connection getInstance(){
-        System.out.println("Connecting to DB Table");
         if(connection == null){
             initializeDBConnection();
         }
