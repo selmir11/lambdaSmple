@@ -248,6 +248,8 @@ public class AccountOverviewPage {
                 expectedCalculatedDates_medical.setFinancialEndDate(financialEndDate);
 
                 SharedData.setExpectedCalculatedDates_medicalPlan(expectedCalculatedDates_medical);
+                subscriber.setMedicalPlanStartDate(planStartDate);
+                subscriber.setMedicalPlanEndDate(planEndDate);
                 break;
             case "dental":
                 ExpectedCalculatedDates expectedCalculatedDates_dental = new ExpectedCalculatedDates();
@@ -260,14 +262,11 @@ public class AccountOverviewPage {
                 expectedCalculatedDates_dental.setFinancialEndDate(financialEndDate);
 
                 SharedData.setExpectedCalculatedDates_dentalPlan(expectedCalculatedDates_dental);
+                subscriber.setDentalPlanStartDate(planStartDate);
+                subscriber.setDentalPlanEndDate(planEndDate);
                 break;
             default: Assert.fail("Invalid argument passed");
         }
-        subscriber.setMedicalPlanStartDate(planStartDate);
-        subscriber.setMedicalPlanEndDate(planEndDate);
-        subscriber.setDentalPlanStartDate(planStartDate);
-        subscriber.setDentalPlanEndDate(planEndDate);
-
         SharedData.setPrimaryMember(subscriber);
     }
 

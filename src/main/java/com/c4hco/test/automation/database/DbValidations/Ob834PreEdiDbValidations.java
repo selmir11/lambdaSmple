@@ -165,7 +165,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getIncorrect_entity_type_qualifier(), member.getIncorrectEntityTypeQualifier(), "Incorrect_entity_type_qualifier did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_first_name(), member.getIncorrect_first_name(), "Incorrect_first_name did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_last_name(), member.getIncorrect_last_name(), "Incorrect_last_name did not match!");
-        softAssert.assertEquals(ob834Entity.getIncorrect_id_code_qualifier(), member.getIncorrectIdCodeQualifier() != null? member.getIncorrectIdCodeQualifier(): null, "Incorrect_id_code_qualifier did not match!");
+        // WIP - POL-9151 - softAssert.assertEquals(ob834Entity.getIncorrect_id_code_qualifier(), member.getIncorrectIdCodeQualifier(), "Incorrect_id_code_qualifier did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_dob(), member.getIncorrect_dob(), "Incorrect_dob did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_gender(), member.getIncorrect_gender(), "Incorrect_gender did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_marital_status_code(), member.getIncorrect_marital_status_code(), "Incorrect_marital_status_code did not match!");

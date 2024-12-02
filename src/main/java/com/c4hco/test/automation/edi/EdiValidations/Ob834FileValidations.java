@@ -494,7 +494,7 @@ public class Ob834FileValidations {
             softAssert.assertEquals(nm1Seg1.get(2).get(0), "31", "NM1 segment with value 31");
             softAssert.assertEquals(nm1Seg1.get(2).get(1), "1", "NM1 segment with value 1");
             softAssert.assertEquals(nm1Seg1.get(0).get(1), entry.getIncorrect_entity_type_qualifier(), "Incorrect entity type qualifier does not match");
-         // WIP -   softAssert.assertEquals(nm1Seg1.get(0).get(7), entry.getIncorrect_id_code_qualifier(), "Incorrect id code qualifier does not match");
+           //WIP- POL-9151 - softAssert.assertEquals(nm1Seg1.get(0).get(7), entry.getIncorrect_id_code_qualifier(), "Incorrect id code qualifier does not match");
             softAssert.assertEquals(nm1Seg1.get(1).get(0), entry.getIncorrect_entity_id_code(), "Incorrect entity id code.");
             if(SharedData.getPrimaryMember().getIncorrectIdCode()!=null){
                 softAssert.assertEquals(nm1Seg1.get(1).get(8), entry.getIncorrect_id_code(), "Incorrect id code");
@@ -659,8 +659,6 @@ public class Ob834FileValidations {
     private void setN1SegList() {
         Collections.addAll(n1ListWithSepReason, "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT", "SEP REASON");
         Collections.addAll(n1ListWithAddtlMaintReas, "ADDL MAINT REASON", "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT");
-      //  Collections.addAll(n1ListWithAddtlMaintReas, "ADDL MAINT REASON", "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT");
-
         Collections.addAll(n1ListWithSepReasonMem, "PRE AMT 1", "SEP REASON");
         Collections.addAll(n1ListWithAddtlMaintReasMem, "ADDL MAINT REASON", "PRE AMT 1");
     }
