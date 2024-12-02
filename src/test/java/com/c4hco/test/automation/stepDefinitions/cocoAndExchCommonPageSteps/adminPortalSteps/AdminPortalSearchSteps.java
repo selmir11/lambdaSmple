@@ -163,7 +163,6 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.entersearchdata(dataTable);
     }
     
-
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
             adminPortalSearchPage.accountCreatedMessage();
