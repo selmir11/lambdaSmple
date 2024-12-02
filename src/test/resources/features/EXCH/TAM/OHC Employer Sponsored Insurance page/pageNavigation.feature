@@ -213,7 +213,7 @@ Feature: Page Navigation-OHI ESI Page
 
 
 
-  @SLER-964 @PageVerificationEsiPage @test
+  @SLER-964 @PageVerificationEsiPage
   Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHI application to the ELMO Exch ESI page
     Then I select the Go Back button on the ESI page
     Then I select "HRA" as ELMO health coverage option
