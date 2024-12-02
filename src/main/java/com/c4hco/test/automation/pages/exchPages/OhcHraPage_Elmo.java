@@ -12,10 +12,9 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static java.awt.SystemColor.window;
+
 
 public class OhcHraPage_Elmo {
     BasicActions basicActions;
@@ -844,38 +843,39 @@ public class OhcHraPage_Elmo {
         basicActions.waitForElementToBePresent(ohcHraHeader, 15);
         basicActions.waitForElementToBePresent(whenYouPayTxt, 15);
         basicActions.waitForElementToBePresent(planYeardpd, 15);
-        LocalDate today = LocalDate.now();
-        LocalDate startDateOE = LocalDate.of(Integer.parseInt(basicActions.getCurrYear()), 11, 1);
-        LocalDate endDateOE = LocalDate.of(Integer.parseInt(basicActions.getCurrYear()), 12, 31);
+        String today = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "yyyy-MM-dd");
+        String startDateOE = basicActions.changeDateFormat(basicActions.getStartDateOE(), "MM/dd/yyyy", "yyyy-MM-dd");
+        String endDateOE = basicActions.changeDateFormat(basicActions.getEndDateOE(), "MM/dd/yyyy", "yyyy-MM-dd");
+        LocalDate todayDate = LocalDate.parse(today);
+        LocalDate startDate = LocalDate.parse(startDateOE);
+        LocalDate endDate = LocalDate.parse(endDateOE);
         switch (dateToCheck) {
             case "Actual date":
-                if (today.isEqual(startDateOE) || today.isEqual(endDateOE) || (today.isAfter(startDateOE) && today.isBefore(endDateOE))) {
-                    softAssert.assertEquals(planYeardpd.getText(), "Select a year\n" + basicActions.getCurrYear() + "\n" + basicActions.getFutureYear());
-                    softAssert.assertAll();
+                if (todayDate.isEqual(startDate) || todayDate.isEqual(endDate) ||(todayDate.isAfter(startDate) && todayDate.isBefore(endDate))) {
+                    softAssert.assertEquals(planYeardpd.getText(),"Select a year\n" + basicActions.getCurrYear() + "\n" + basicActions.getFutureYear());
                 } else {
-                    softAssert.assertEquals(planYeardpd.getText(), "Select a year\n" + basicActions.getFutureYear());
-                    softAssert.assertAll();
+                    softAssert.assertEquals(planYeardpd.getText(),"Select a year\n" + basicActions.getFutureYear());
                 }
+                softAssert.assertAll();
                 break;
             case "Overridden date":
                 String currentUrl = basicActions.getCurrentUrl();
                 String date = basicActions.extractDateFromUrl(currentUrl);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate overriddenDate = LocalDate.parse(date, formatter);
                 if (date == null || date.isEmpty()) {
                     System.out.println("Date parameter is missing or empty in the URL");
                 } else {
                     try {
-                        if (overriddenDate.isEqual(startDateOE) || overriddenDate.isEqual(endDateOE) || (overriddenDate.isAfter(startDateOE) && overriddenDate.isBefore(endDateOE))) {
-                            softAssert.assertEquals(planYeardpd.getText(), "Select a year\n" + basicActions.getCurrYear() + "\n" + basicActions.getFutureYear());
-                            softAssert.assertAll();
+                        String formattedDate = basicActions.changeDateFormat(date, "MM/dd/yyyy", "yyyy-MM-dd");
+                        LocalDate overriddenDate = LocalDate.parse(formattedDate);
+                        if (overriddenDate.isEqual(startDate) || overriddenDate.isEqual(endDate) ||(overriddenDate.isAfter(startDate) && overriddenDate.isBefore(endDate))) {
+                            softAssert.assertEquals(planYeardpd.getText(),"Select a year\n" + basicActions.getCurrYear() + "\n" + basicActions.getFutureYear());
                             System.out.println("The overridden date is within the time frame");
                         } else {
-                            softAssert.assertEquals(planYeardpd.getText(), "Select a year\n" + basicActions.getFutureYear());
-                            softAssert.assertAll();
+                            softAssert.assertEquals(planYeardpd.getText(),"Select a year\n" + basicActions.getFutureYear());
                         }
+                        softAssert.assertAll();
                     } catch (Exception e) {
-                        System.out.println("Error parsing the date: " + e.getMessage());
+                        System.out.println("Error processing the overridden date: " + e.getMessage());
                     }
                 }
                 break;
