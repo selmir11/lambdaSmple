@@ -9,16 +9,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class OhcCobraPage_Elmo {
     BasicActions basicActions;
     Actions action;
     SoftAssert softAssert = new SoftAssert();
-    Calendar calendar = Calendar.getInstance();
-    Date today = new Date();
     public OhcCobraPage_Elmo(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
@@ -150,8 +146,6 @@ public class OhcCobraPage_Elmo {
 
     public void enterEndDate(String endDate){
         basicActions.waitForElementToBePresent(inputEndDate, 60);
-        calendar.setTime(today);
-
         switch (endDate){
             case "Current Month":
                 inputEndDate.sendKeys(basicActions.lastDateOfCurrMonth());

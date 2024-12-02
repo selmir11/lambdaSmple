@@ -11,10 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class OhcMedicarePage_Elmo {
@@ -468,31 +464,13 @@ public class OhcMedicarePage_Elmo {
 
     public void verifyPartAEndDate(){
         basicActions.waitForElementToBePresent(partAInsuranceEndInput, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd");
-
-        softAssert.assertTrue(partAInsuranceEndInput.getAttribute("value").contains(endOfCurrentMonth.format(lastDayOfMonth)));
+        softAssert.assertTrue(partAInsuranceEndInput.getAttribute("value").contains(basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "yyyy-MM-dd")));
         softAssert.assertAll();
     }
 
     public void verifyPartBEndDate(){
         basicActions.waitForElementToBePresent(partBInsuranceEndInput, 60);
-        Date today = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DATE, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd");
-
-        softAssert.assertTrue(partBInsuranceEndInput.getAttribute("value").contains(endOfCurrentMonth.format(lastDayOfMonth)));
+        softAssert.assertTrue(partBInsuranceEndInput.getAttribute("value").contains(basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "yyyy-MM-dd")));
         softAssert.assertAll();
     }
 
