@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,14 +10,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AdminPortalSearchPage {
     // TO DO:: Update the locators based on - if the search table will have more than 1 row
     // check the locators will work as a list and convert to list - else - find a list locator to make them re-usable
 
     private BasicActions basicActions;
-    SoftAssert softAssert = new SoftAssert();
+    static SoftAssert softAssert = new SoftAssert();
 
     public AdminPortalSearchPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -30,7 +35,7 @@ public class AdminPortalSearchPage {
     WebElement Title;
 
     @FindBy(css = ".search-input-and-label .search-input")
-    List<WebElement> searchInputList;
+     List<WebElement> searchInputList;
 
     @FindBy(css = ".form-btn-group.big-screen button")
     List<WebElement> buttonsList; // search, reset, create Account buttons
@@ -106,8 +111,40 @@ public class AdminPortalSearchPage {
     @FindBy(css = "tbody td:nth-child(1)")
     WebElement searchAcctResults;
 
+    @FindBy(css = ".col-name")
+    List<WebElement> searchResultsTitles;
+
+    @FindBy(xpath = "//tr[@class='clickable']/td")
+    List<WebElement> aactsearchResults;
+
+    @FindBy(css = ".invalid-form")
+    WebElement messagemorethan100records;
+
+    @FindBy(css = ".svg-inline--fa.fa-angle-down.fa-w-10")
+    WebElement sortDropdown;
+
+    @FindBy(css = "div.option.option")
+    List<WebElement> sortOption;
+
+    @FindBy(xpath = "//tbody/tr/td[1]")
+    List<WebElement> AccountsID;
+    @FindBy(xpath = "//tbody/tr/td[2]")
+    List<WebElement> FirstName;
+    @FindBy(xpath = "//tbody/tr/td[3]")
+    List<WebElement> LastName;
+
+    @FindBy(xpath = "//table[1]/tbody[1]/tr[6]/td[1]") // This locator just using to avoid hard wait
+    WebElement rowTenth;
+
+    @FindBy(xpath = "(//button[@type='button'][normalize-space()='Reset'])[2]")
+    WebElement Reset;
+
+    @FindBy(xpath = "//div[@class='invalid-form']")
+    WebElement searchCriteriaError;
+
     @FindBy(xpath = "//app-search-container/form/div[3]/div/p")
     WebElement statusMessage;
+
 
     public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
@@ -120,7 +157,7 @@ public class AdminPortalSearchPage {
     }
 
 
-    public void clickEmailLinkFrmSrchResults(){
+    public void clickEmailLinkFrmSrchResults() {
 
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
@@ -128,7 +165,7 @@ public class AdminPortalSearchPage {
     }
 
 
-    public void setAccountId(){
+    public void setAccountId() {
 
         basicActions.waitForElementToBePresent(accIdAndCaseId, 10);
         String currentUrl = basicActions.getCurrentUrl();
@@ -139,13 +176,14 @@ public class AdminPortalSearchPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void clickFromApplicationLinksDropdown(String dropdownOption){
+    public void clickFromApplicationLinksDropdown(String dropdownOption) {
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
         basicActions.waitForElementListToBePresent(appLinksDropdownOptions, 10);
         appLinksDropdownOptions.stream().filter(appLinksDropdownOptions -> appLinksDropdownOptions.getText().equals(dropdownOption)).findFirst().ifPresent(WebElement::click);
     }
-    public void logoutFromAdmin(){
+
+    public void logoutFromAdmin() {
         navigateToPreviousPage();
         basicActions.waitForElementToBePresent(dropdownArrow, 100);
         dropdownArrow.click();
@@ -172,76 +210,77 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
-    public void navigateConnectForHealthPage () {
+    public void navigateConnectForHealthPage() {
         connectForHealthLogo.click();
         navigateToPreviousPage();
     }
-    public void titleTextValidate () {
+
+    public void titleTextValidate() {
         Title.isDisplayed();
         softAssert.assertEquals(Title.getText(), "Sign in to your account");
         softAssert.assertAll();
     }
 
-    public void userNameDisplay () {
+    public void userNameDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(APtxtHello, 10));
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAPUserFName, 10));
         softAssert.assertAll();
     }
 
-    public void PersonSymbolDisplay () {
+    public void PersonSymbolDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAPPersonSymbol, 10));
         softAssert.assertAll();
     }
 
-    public void UserDropDownDisplay () {
+    public void UserDropDownDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(userDropdown, 10));
         softAssert.assertTrue(userDropdown.isDisplayed(), "Account Information is not displaying on Search page");
         userDropdown.click();
         softAssert.assertAll();
     }
 
-    public void accountInformationDisplay () {
+    public void accountInformationDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(pnlAccountInformation, 10));
         softAssert.assertTrue(pnlAccountInformation.isDisplayed(), "Account Information is not displaying on Search page");
         softAssert.assertAll();
     }
 
-    public void adminPortalTextDisplay () {
+    public void adminPortalTextDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(txtAdminPortal, 10));
         softAssert.assertTrue(txtAdminPortal.isDisplayed(), "Admin Portal Text is not displaying on Search page ");
         softAssert.assertAll();
     }
 
-    public void applicationLinksTextDisplay () {
+    public void applicationLinksTextDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(AppLinkText, 10));
         softAssert.assertTrue(AppLinkText.isDisplayed(), "Application Link Text is not displaying on Search page");
         softAssert.assertAll();
     }
 
-    public void applinkdroodowndisplay () {
+    public void applinkdroodowndisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(ApplicationLinksdropdown, 10));
         softAssert.assertTrue(ApplicationLinksdropdown.isDisplayed(), "Application Link Arrow is displaying on Search page");
         softAssert.assertAll();
     }
 
-    public void selectRecord () {
+    public void selectRecord() {
         basicActions.waitForElementToBeClickable(primaryEmail, 20);
         primaryEmail.click();
     }
 
-    public void logoutButtonDisplay () {
+    public void logoutButtonDisplay() {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(logoutAdmin, 10));
         softAssert.assertTrue(logoutAdmin.isDisplayed(), "Logout is not visible on search page");
         softAssert.assertAll();
     }
 
-    public void selectCocoIndiviual () {
+    public void selectCocoIndiviual() {
         basicActions.waitForElementToBePresent(coco, 20);
         basicActions.waitForElementToBeClickable(coco, 20);
         coco.click();
     }
 
-    public void SelectUserTypeToSearch (String selectUserTypeToSearch){
+    public void SelectUserTypeToSearch(String selectUserTypeToSearch) {
         switch (selectUserTypeToSearch) {
             case "individual":
                 basicActions.waitForElementToBePresent(individual, 15);
@@ -256,7 +295,7 @@ public class AdminPortalSearchPage {
                 programManager.click();
                 break;
             case "Agency":
-                basicActions.waitForElementToBePresent(agency,15);
+                basicActions.waitForElementToBePresent(agency, 15);
                 agency.click();
                 break;
             case "coco":
@@ -268,6 +307,16 @@ public class AdminPortalSearchPage {
         }
     }
 
+    public void entersearchdata(DataTable dataTable) {
+        List<Map<String, String>> dataRows = dataTable.asMaps(String.class, String.class);
+
+        for (Map<String, String> row : dataRows) {
+            String userdata = row.get("FieldName");
+            String qaValue  = row.get("QA Value");
+            String STGValue = row.get("STG Value");
+            this.enterUserDataAnyENV(userdata,qaValue,STGValue);
+        }
+    }
 
     public void enterUserData(String userdata, String type) {
         switch (userdata) {
@@ -287,32 +336,63 @@ public class AdminPortalSearchPage {
                 searchInputList.get(4).sendKeys(type);
                 break;
             case "PrimaryPhone":
+                searchInputList.get(4).sendKeys(type);
+                break;
+            case "OrganisationName":
                 searchInputList.get(5).sendKeys(type);
                 break;
-            default: throw new IllegalArgumentException("Invalid header option : " + userdata);
+            case "siteID":
+                searchInputList.get(6).sendKeys(type);
+                break;
+            case "LicenseNumber":
+                searchInputList.get(5).sendKeys(type);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
     }
 
-    public void enterUserDataAnyENV(String userdata, String QAType ,String STGType) {
-        if(SharedData.getEnv().equals("qa")){
+    public void enterUserDataAnyENV(String userdata, String QAType, String STGType) {
+        if (SharedData.getEnv().equals("qa")) {
             enterUserData(userdata, QAType);
-        }else{
+        } else {
             enterUserData(userdata, STGType);
         }
     }
+
+    public void verifyblankfield(DataTable dataTable) {
+        List<String> fieldNames = dataTable.asList(String.class);
+        if (fieldNames.size() > searchInputList.size()) {
+            throw new IllegalArgumentException("There are more fields in the DataTable than the available fields in the searchInputList.");
+        }
+        for (int i = 0; i < fieldNames.size(); i++) {
+            String fieldName = fieldNames.get(i);
+            if (i >= searchInputList.size()) {
+                System.out.println("No corresponding field for '" + fieldName + "' at index " + i + ", skipping.");
+                continue;
+            }
+            WebElement field = searchInputList.get(i);
+            String actualValue = field.getAttribute("value");
+            if (!actualValue.isEmpty()) {
+                throw new AssertionError(String.format("Field '%s' should be blank, but found: '%s'", fieldName, actualValue));
+            }
+        }
+    }
+
     public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
         basicActions.wait(2000);
-        if (SharedData.getEnv().equals("staging")){
+        if (SharedData.getEnv().equals("staging")) {
             searchInputList.get(0).sendKeys(accountIdSTG);
-        }else {
+        } else {
             searchInputList.get(0).sendKeys(accountIdQA);
         }
-      }
+    }
 
     public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
         searchAcctResults.click();
     }
+
     public void validateAppLinksIsNotDisplay(String option) {
         basicActions.waitForElementToBePresent(appLinksDropDown, 30);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
@@ -322,13 +402,156 @@ public class AdminPortalSearchPage {
             softAssert.assertAll();
         }
     }
+
     public void logoutFromAdminPortalParentPage() {
-            basicActions.switchToParentPage("C4HCO Admin Portal");
-            basicActions.waitForElementToBePresent(dropdownArrow, 100);
-            dropdownArrow.click();
-            basicActions.waitForElementToBePresent(logoutAdmin, 100);
-            logoutAdmin.click();
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+        basicActions.waitForElementToBePresent(dropdownArrow, 100);
+        dropdownArrow.click();
+        basicActions.waitForElementToBePresent(logoutAdmin, 100);
+        logoutAdmin.click();
+    }
+
+    public void requiredSearchCriteria() {
+        basicActions.waitForElementToBePresent(searchCriteriaError, 50);
+        softAssert.assertEquals(searchCriteriaError.getText(), "Search criteria for at least one field is required.");
+        softAssert.assertAll();
+    }
+
+    public void selectSortOption(String text) {
+        basicActions.waitForElementToBePresent(sortDropdown, 100);
+        basicActions.selectValueFromDropdown(sortDropdown, sortOption, text);
+    }
+
+    public void verifysort(String category, String sortOrder) {
+        basicActions.waitForElementToBePresent(rowTenth, 10000);
+        verifySortascdesc(category, sortOrder);
+    }
+
+    public void verifySortascdesc(String category, String sortOrder) {
+        List<WebElement> selectorList;
+        switch (category) {
+            case "First Name":
+                selectorList = FirstName;
+                break;
+            case "Last Name":
+                selectorList = LastName;
+                break;
+            case "Account ID":
+                selectorList = AccountsID;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort option: " + sortOrder);
         }
+
+        verifySortOrder(selectorList, sortOrder);
+    }
+
+
+    public void verifySortOrder(List<WebElement> selectorList, String sortOrder) {
+        List<String> originalList = selectorList.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        List<String> newList;
+        switch (sortOrder.toLowerCase()) {
+            case "asc":
+                newList = Collections.unmodifiableList(originalList.stream()
+                        .sorted()
+                        .collect(Collectors.toList()));
+                break;
+
+            case "desc":
+                newList = Collections.unmodifiableList(originalList.stream()
+                        .sorted(Comparator.reverseOrder())
+                        .collect(Collectors.toList()));
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid sort order: " + sortOrder);
+        }
+
+        softAssert.assertEquals(originalList, newList, "The list is not sorted correctly.");
+        softAssert.assertAll();
+    }
+
+    public void morethan100records() {
+        basicActions.waitForElementToBePresent(messagemorethan100records, 2000);
+        softAssert.assertTrue(messagemorethan100records.isDisplayed(), "message should display");
+        softAssert.assertEquals(messagemorethan100records.getText(), "More than 100 search results were found and only the first 100 are shown. Please enter more specific search criteria if your desired result is not included.");
+        softAssert.assertAll();
+    }
+
+    public void clickResetButton() {
+        basicActions.waitForElementToBePresent(Reset, 500);
+        Reset.click();
+    }
+
+    public void verifyAccountDetails(String category) {
+        switch (category) {
+            case "ProgrammeManager":
+                verifyPMAccountTitledetails();
+                verifyPMData();
+                break;
+            case "Broker":
+                verifyBrokerAccountTitledetails();
+                verifyBrokerData();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + category);
+        }
+
+    }
+        public void verifyPMAccountTitledetails() {
+            basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+            List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "Organization Name", "Site ID", "User Type");
+            List<String> actualTitles = searchResultsTitles.stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+            softAssert.assertEquals(actualTitles, expectedTitles);
+            softAssert.assertAll();
+        }
+
+    public void verifyPMData() {
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+        List<String> qaexpectedTitles = List.of("2640006565", "John", "Winterhouse", "johnc4hcoautomation+..", "760-579-8438", "Twoeightsevennine", "jrzvp", "PROGRAM_MANAGER");
+        List<String> stgexpectedTitles = List.of("9005375045", "adszcnkgvl", "adsdzazuqql", "c4assistorportal+Rqn..", "333-328-9892", "stg", "eNrQP", "PROGRAM_MANAGER");
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(qaexpectedTitles,actualTitles);
+        } else {
+            softAssert.assertEquals(stgexpectedTitles,actualTitles);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerAccountTitledetails() {
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number","User Type");
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerData() {
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+        List<String> qaexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "accts.forc4.test.i.n..", "432-432-5555", "456787654", "OWNER");
+        List<String> stgexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "accts.forc4.test.i.n..", "432-432-5555", "456787654", "OWNER");
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(qaexpectedTitles,actualTitles);
+        } else {
+            softAssert.assertEquals(stgexpectedTitles,actualTitles);
+        }
+        softAssert.assertAll();
+    }
+
+
 
         public void accountCreatedMessage(){
         basicActions.waitForElementToBePresent(statusMessage, 30);
@@ -336,3 +559,7 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
         }
 }
+
+
+
+

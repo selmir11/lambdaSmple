@@ -1,4 +1,4 @@
-@COCO
+@COCO5
     # SLCR-157, SLCR-159, SLCR-195, SLCR-255, SLCR-256, SLCR-257, SLCR-263, SLCR-265, SLCR-267, SLCR-268, SLCR-316, SLCR-317,
 Feature: Individual adult - End to End Test
 

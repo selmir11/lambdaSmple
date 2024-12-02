@@ -131,7 +131,7 @@ Feature: Seed05 - Exchange
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -193,7 +193,7 @@ Feature: Seed05 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1290-WIP
+  @SLER-1290 @pol_exch_passed
   Scenario: RT-2530 ENR-EXCH: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - ADD BROKER
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -228,13 +228,13 @@ Feature: Seed05 - Exchange
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
-   # And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
     And I verify the policy data quality check with Policy Ah keyset size 2
-    # And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |

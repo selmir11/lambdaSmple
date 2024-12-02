@@ -1,30 +1,26 @@
 package com.c4hco.test.automation.utils;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ApplicationDetailsPdf {
-    static Date today = new Date();
-    static Calendar calendar = Calendar.getInstance();
+    private static BasicActions basicActions;
+
+    public ApplicationDetailsPdf(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
+        PageFactory.initElements((basicActions.getDriver()),this);
+    }
 
     public static String getApplicationDetails(String minValue, String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily) {
-        Calendar calendar = Calendar.getInstance();
-        Date today = calendar.getTime();
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String endDateFormat = "";
+        String endingDate = "";
 
         if ("Today".equalsIgnoreCase(endDate)) {
-            endDateFormat = dateFormat.format(today);
+            endingDate = basicActions.getTodayDate();
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
-            calendar.setTime(today);
-            calendar.add(Calendar.MONTH, 1);
-            calendar.set(Calendar.DAY_OF_MONTH, 1);
-            calendar.add(Calendar.DATE, -1);
-            Date lastDayOfMonth = calendar.getTime();
-            endDateFormat = dateFormat.format(lastDayOfMonth);
+            endingDate = basicActions.lastDateOfCurrMonth();
         } else {
             System.out.println("Invalid option: " + endDate);
         }
@@ -39,25 +35,17 @@ public class ApplicationDetailsPdf {
                 (insruanceEnding.equals("Insurance ending") ?
                         "Insurance ending in next 60 days " + ending + "\n" +
                                 (lastSet.equals("Voluntarily ending") ?
-                                        "End date " + endDateFormat + "\n" +
+                                        "End date " + endingDate + "\n" +
                                                 "Voluntarily ending insurance " + voluntarily + "\n" : "") : ""));
     }
 
     public static String getApplicationDetailsSp(String minValue, String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily) {
-        Calendar calendar = Calendar.getInstance();
-        Date today = calendar.getTime();
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String endDateFormat = "";
+        String endingDate = "";
 
         if ("Today".equalsIgnoreCase(endDate)) {
-            endDateFormat = dateFormat.format(today);
+            endingDate = basicActions.getTodayDate();
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
-            calendar.setTime(today);
-            calendar.add(Calendar.MONTH, 1);
-            calendar.set(Calendar.DAY_OF_MONTH, 1);
-            calendar.add(Calendar.DATE, -1);
-            Date lastDayOfMonth = calendar.getTime();
-            endDateFormat = dateFormat.format(lastDayOfMonth);
+            endingDate = basicActions.lastDateOfCurrMonth();
         } else {
             System.out.println("Invalid option: " + endDate);
         }
@@ -72,7 +60,7 @@ public class ApplicationDetailsPdf {
                 (insruanceEnding.equals("Insurance ending") ?
                         "Insurance ending in next 60 days " + ending + "\n" +
                                 (lastSet.equals("Voluntarily ending") ?
-                                        "End date " + endDateFormat + "\n" +
+                                        "End date " + endingDate + "\n" +
                                                 "Voluntarily ending insurance " + voluntarily + "\n" : "") : ""));
     }
 

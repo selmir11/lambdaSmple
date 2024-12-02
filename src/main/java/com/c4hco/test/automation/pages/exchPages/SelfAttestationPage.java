@@ -20,7 +20,9 @@ public class SelfAttestationPage {
         PageFactory.initElements((basicActions.getDriver()), this);
     }
 
-    String expected =
+    private boolean taxNoFlag = false;
+
+    String expectedActionReq =
             "Action Required: Additional Information Needed\n" +
             "\n" +
             "\n" +
@@ -44,6 +46,13 @@ public class SelfAttestationPage {
            "\n" +
            "\n" +
            "Need more help?   Contact our support team at 855-752-6749 or find an expert near you.";
+
+   String expectedSuccess =
+           "Thank you!\n"+
+           "\n" +
+           "\n" +
+           "Your income and tax filing information were successfully confirmed.";
+
 
     @FindBy(id ="household_income-MVR.HOUSEHOLD_INCOME.YESButton")
     WebElement householdIncomeYes;
@@ -143,20 +152,15 @@ public class SelfAttestationPage {
         basicActions.waitForElementToBePresent(pageText, 10);
         switch(scenario){
             case "Success":
-                softAssert.assertEquals(pageText.getText(), "Your income and tax filing information were successfully confirmed.");
+                softAssert.assertEquals(pageText.getText(), expectedSuccess);
                 break;
             case "Action Required":
-                softAssert.assertEquals(pageText1.getText(), expected);
+                softAssert.assertEquals(pageText1.getText(), expectedActionReq);
                 break;
             case "Update Application":
                 softAssert.assertEquals(pageText1.getText(), expectedUpdateText);
                 break;
         }
-    }
-
-    public void checkUpdateAppMsgText(){
-        basicActions.waitForElementToBePresent(pageText,10);
-        softAssert.assertEquals(pageText1.getText(), expectedUpdateText);
     }
 
     public void clickFinish() {

@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans.AdminPortalManagePlansPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -76,17 +77,13 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify Years in dropdown starting from {string} as expected")
     public void iValidateYearsDropdown(String lowerYear){
         adminPortalManagePlansPage.validateYearsDropdown(lowerYear);        }
-    @Then("I update the premium amount to {string} on Manage Plans page")
-    public void iUpdatePremiumAmount(String premiumAmountValue){
-        adminPortalManagePlansPage.updatePremiumAmount(premiumAmountValue);
-    }
-    @Then("I update the APTC amount to {string} on Manage Plans page")
-    public void iUpdateAptcAmount(String aptcAmountValue){
-        adminPortalManagePlansPage.updateAptcAmount(aptcAmountValue);
-    }
     @And("I click Save Button Medical")
     public void iClickSaveButtonMedical() {
         adminPortalManagePlansPage.clickSaveButton();
+    }
+    @And("I click Save Button Dental")
+    public void iClickSaveButtonDental() {
+        adminPortalManagePlansPage.clickSaveButtonDental();
     }
 
     @And("I update the Coverage Start date of member")
@@ -168,5 +165,48 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.clickSearchInAdminPortalBlueHeader();
     }
 
+    @Then("I update the APTC value for")
+    public void iUpdateTheAPTCValueFor(List<String> memberaptctDtList) {
+        adminPortalManagePlansPage.addAPTCvalue(memberaptctDtList);
+    }
+    @And("I validate Invalid monetary amount for Premium error is displaying")
+    public void iValidateInvalidMonetaryAmountForPremium() {
+        adminPortalManagePlansPage.validatePremiumErrors();
+    }
+
+    @Then("I update the premium value for")
+    public void iUpdateThePremiumValueFor(List<String> memberpremiumList) {
+        adminPortalManagePlansPage.addpremiumvalue(memberpremiumList);
+    }
+
+    @Then("I should see the Invalid monetary amount for APTC error for")
+    public void iShouldSeeTheInvalidMonetaryAmountForAPTCErrorFor(DataTable table) {
+        adminPortalManagePlansPage.validateErrorMessages(table);
+    }
+
+    @And("I validate APTC entered exceeds EHB amount error is displaying for {string}")
+    public void iValidateAPTCEnteredExceedsEHBAmountErrorIsDisplayingFor(String planType) {
+        adminPortalManagePlansPage.validateEHBErrors(planType);
+    }
+
+    @Then("I verify it displays coverage start date error")
+    public void iVerifyItDisplaysCoverageStartDateError() {
+        adminPortalManagePlansPage.validateCoverageStartDateErrors();
+    }
+
+    @Then("I verify it displays financial start date error")
+    public void iVerifyItDisplaysFinancialStartDateError() {
+        adminPortalManagePlansPage.validateFinancialStartDateErrors();
+    }
+
+    @Then("I verify it displays coverage end date error")
+    public void iVerifyItDisplaysCoverageEndDateError() {
+        adminPortalManagePlansPage.validateCoverageEndDateErrors();
+    }
+
+    @Then("I verify it displays financial end date error")
+    public void iVerifyItDisplaysFinancialEndDateError() {
+        adminPortalManagePlansPage.validateFinancialEndDateErrors();
+    }
 }
 

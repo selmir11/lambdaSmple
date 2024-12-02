@@ -51,4 +51,55 @@ public class ForgetPasswordPageSteps {
     public void iLoginAsIndividualWithPasswordResetCodeToAnyEnvQASTG(String qaEmail, String stgEmail) {
         forgetPasswordPage.loginAsIndividualWithPasswordResetCode(qaEmail,stgEmail);
     }
+
+    @Then("I enter valid email of the account created")
+    public void iEnterValidEmailOfTheAccountCreated() {
+        forgetPasswordPage.enterValidEmailOfTheAccountCreated();
+    }
+
+    @And("I login as individual with password reset code")
+    public void ILoginAsIndividualWithPasswordResetCode() {
+        forgetPasswordPage.LoginAsIndividualWithPasswordResetCode();
+    }
+
+    @And("I enter the previous password")
+    public void iEnterThePreviousPassword() {
+        forgetPasswordPage.enterThePreviousPassword();
+    }
+
+    @Then("I validate the error msg for used password {string}")
+    public void iValidateTheErrorMsgForUsedPassword(String language) {
+        forgetPasswordPage.validateTheErrorMsgForUsedPassword(language);
+    }
+
+    @Then("I validate create new password must contain at least 8 characters error message in {string}")
+    public void iValidateCreateNewPasswordMustContainAtLeastCharactersErrorMessageIn( String language) {
+        forgetPasswordPage.validateCreateNewPasswordMustContainAtLeastCharactersErrorMessageIn(language);
+    }
+
+    @Then("I validate create new password must contain 1 uppercase character error message in {string}")
+    public void iValidateCreateNewPasswordMustContainUppercaseCharacterErrorMessageIn( String language) {
+        forgetPasswordPage.validateCreateNewPasswordMustContainUppercaseCharacterErrorMessageIn(language);
+    }
+
+    @Then("I validate create new password must contain 1 lowercase character error message in {string}")
+    public void iValidateCreateNewPasswordMustContainLowercaseCharacterErrorMessageIn( String language) {
+        forgetPasswordPage.validateCreateNewPasswordMustContainLowercaseCharacterErrorMessageIn( language);
+    }
+
+    @Then("I validate create new password must contain 1 number error message in {string}")
+    public void iValidateCreateNewPasswordMustContainNumberErrorMessageIn( String language) {
+        forgetPasswordPage.validateCreateNewPasswordMustContainNumberErrorMessageIn( language);
+    }
+
+    @Then("I validate the password cannot contain part of the {string} error message in {string}")
+    public void iValidateThePasswordCannotContainPartOfTheErrorMessageIn(String typeUser, String language) {
+        forgetPasswordPage.validateCreateNewPasswordCannotContainPartOfTheUsernameErrorMessageIn(typeUser,language);
+    }
+
+    @Then("I validate create new password cannot contain the first name error message in {string}")
+    public void iValidateCreateNewPasswordCannotContainTheFirstNameErrorMessageIn(String language) {
+        forgetPasswordPage.validateCreateNewPasswordCannotContainTheFirstNameErrorMessageIn(language);
+    }
+
 }

@@ -242,7 +242,7 @@ public class OhcMedicarePage_Elmo {
 
     public void enterEndDatePartA(){
         basicActions.waitForElementToBePresent(partAInsuranceEndInput, 60);
-        partAInsuranceEndInput.sendKeys(basicActions.getTodayDate());
+        partAInsuranceEndInput.sendKeys(basicActions.lastDateOfCurrMonth());
     }
 
     public void enterEndDatePartB(){

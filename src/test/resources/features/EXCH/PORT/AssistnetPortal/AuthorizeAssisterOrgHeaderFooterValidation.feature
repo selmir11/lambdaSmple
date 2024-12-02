@@ -122,6 +122,8 @@ Feature: Authorize Assister Organization page header and footer validation
     Then I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
+    Then I change the language from header to "Spanish"
+
     And I verify text on the "Exch" "Footer" in "Spanish"
     Then I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab

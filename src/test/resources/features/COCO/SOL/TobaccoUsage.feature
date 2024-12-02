@@ -32,11 +32,6 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option
     And I click continue on the Race and Ethnicity page
-    And I select "No" employment option
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
-
     And I select "Yes" employment option
     And I enter "65,000.00" income amount
     And I select "Annually" income frequency option

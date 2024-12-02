@@ -66,7 +66,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -208,7 +208,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -296,7 +296,6 @@ Feature: EXCH Seed Data ALL
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    And I set the current broker details
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
@@ -361,7 +360,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -425,7 +424,6 @@ Feature: EXCH Seed Data ALL
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    And I set the current broker details
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -523,7 +521,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -686,7 +684,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -906,7 +904,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -1136,7 +1134,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -1373,7 +1371,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -1548,7 +1546,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -1700,7 +1698,7 @@ Feature: EXCH Seed Data ALL
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
