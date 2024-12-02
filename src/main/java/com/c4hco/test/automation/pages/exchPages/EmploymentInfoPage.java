@@ -124,7 +124,7 @@ public class EmploymentInfoPage {
         basicActions.waitForElementToBePresent(btnYesEmployed, 15);
         switch (employmentOption) {
             case "Yes":
-                btnYesEmployed.click();
+                basicActions.clickElementWithRetries(btnYesEmployed, 10);
                 break;
             case "No":
                 btnNoEmployed.click();

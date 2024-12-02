@@ -15,6 +15,12 @@ public class ApplicationHistoryPageSteps {
         applicationHistoryPage.clickViewResults();
     }
 
+    @And("I set the updated premiums based on new aptc value")
+    public void setUpdatedPremiums(){
+        applicationHistoryPage.setUpdatedPremiums();
+    }
+
+
     @Then("I validate that {string} text displays on the Application History page")
     public void validateText(String Text){applicationHistoryPage.validateTextOnPage(Text);}
 
