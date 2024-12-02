@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ApplicationHistoryPage {
@@ -49,6 +51,22 @@ public class ApplicationHistoryPage {
         String applicationid = applicationSummary.get(0).getText();
         SharedData.getPrimaryMember().setApplication_id(applicationid);
         System.out.println("Application Id : "+ applicationid);
+    }
+
+    public void setUpdatedPremiums(){
+        basicActions.waitForElementToBePresent(lblAPTCValue, 10);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        String medAPTCAmt = lblAPTCValue.getText().replace("$", "").replace("/mo", "");
+        subscriber.setMedicalAptcAmt(medAPTCAmt);
+
+        String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
+        subscriber.setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);
+
+        BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(totalMedPremiumAfterReduction);
+        BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
+
+        BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add( bigDecimalmedAPTCAmt );
+        subscriber.setMedicalPremiumAmt( String.valueOf( totalMedicalPremium ) );
     }
 
     public void validateAPTC(String expectedAPTC){
