@@ -11,7 +11,10 @@ Feature: Regression Tests that require Seed 1
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
@@ -309,7 +312,10 @@ Feature: Regression Tests that require Seed 1
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     And I get the newborn "Son" dob as "current date"
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
       | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
