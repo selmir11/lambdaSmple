@@ -52,10 +52,10 @@ public class MyProfileExchPage {
     WebElement FullNameProfile;
 
 
-    @FindBy(id = "mobilePhone")
+    @FindBy(id = "myProfile_mobilePhone")
     WebElement Mobilephone;
 
-    @FindBy(id = "homePhone")
+    @FindBy(id = "myProfile_homePhone")
     WebElement Homephone;
 
     @FindBy(css = "h1.myProfile_title")
@@ -308,8 +308,8 @@ public class MyProfileExchPage {
         softAssert.assertEquals(MyProfileSubHeading.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileSubHeading.get(3).getCssValue("font-size"), "19px");
         softAssert.assertEquals(MyProfileSubHeading.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to Welcome page");
-        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Make Changes");
+        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to welcome page");
+        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Make changes");
         clickMakeChangesButton();
         clickPreferredLanguageDrp();
         softAssert.assertEquals(MyProfileContentline.get(10).getText(), "Preferred Language of Contact");
@@ -326,7 +326,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(PreferredContactDrpOptions.get(1).getText(), "Email");
         //softAssert.assertEquals(PreferredContactDrpOptions.get(2).getText(), "Mail");
         clickSaveButton();
-        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to Welcome page");
+        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to welcome page");
         softAssert.assertAll();
     }
 
@@ -400,8 +400,8 @@ public class MyProfileExchPage {
         softAssert.assertEquals(MyProfileContentline.get(11).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(11).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(11).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Volver a la Pagina de Bienvenida");
-        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Hacer Cambios");
+        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Volver a la pagina de bienvenida");
+        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Hacer cambios");
         softAssert.assertAll();
     }
 
@@ -424,7 +424,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
         softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
-        softAssert.assertEquals(PasswordButton.getText(), "Change Password");
+        softAssert.assertEquals(PasswordButton.getText(), "Change password");
         softAssert.assertAll();
     }
 
@@ -435,7 +435,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
         softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
-        softAssert.assertEquals(PasswordButton.getText(), "Cambiar Contrase\u00F1a");
+        softAssert.assertEquals(PasswordButton.getText(), "Cambiar contrase\u00F1a");
         softAssert.assertAll();
     }
 
