@@ -9,6 +9,8 @@ public class PlanSummaryMedicalDentalPageSteps {
 
     @And("I click continue on plan summary page")
     public void continuePlanSummaryPage(){ planSummaryMedicalDentalPage.continuePlanSummaryPage(); }
+    @And("I set {string} Plans premium amount")
+    public void setPlansPremiumAmnt(String planInfo) {planSummaryMedicalDentalPage.setPlansPremiumAmt(planInfo); }
 
     @And("I verify medical and dental text on Plan Summary page")
     public void verifyTextPlanSummaryPage() {planSummaryMedicalDentalPage.verifyTextPlanSummaryPage(); }
