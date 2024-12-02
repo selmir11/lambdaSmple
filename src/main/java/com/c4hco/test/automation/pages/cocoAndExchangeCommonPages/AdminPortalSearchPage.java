@@ -362,6 +362,9 @@ public class AdminPortalSearchPage {
             case "AgencyEmail":
                 searchInputList.get(2).sendKeys(type);
                 break;
+            case "PrimaryPhoneNumber":
+                searchInputList.get(5).sendKeys(type);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
@@ -521,11 +524,72 @@ public class AdminPortalSearchPage {
                 verifyAgencyAccountTitledetails();
                 verifyAgencyData();
                 break;
+            case "coco":
+                verifycocoAccountTitledetails();
+                verifycocoData();
+                break;
+            case "indiviual":
+                verifyIndiviualAccountTitledetails();
+                verifyIndiviualData();
+                break;
+
+
             default:
                 throw new IllegalStateException("Unexpected value: " + category);
         }
 
     }
+
+    public void verifyIndiviualAccountTitledetails(){
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Primary Account Holder", "Date of Birth", "Email", "Phone Number", "Broker Association");
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
+
+    public void verifyIndiviualData(){
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+        List<String> qaexpectedTitles = List.of("9083564085", "Jack", "Sprat", "Jack Sprat", "03/01/1990", "Jack.Sprat@invali..", "567-898-7654", "Diamond Broker..");
+        List<String> stgexpectedTitles = List.of("9083564085", "Jack", "Sprat", "Jack Sprat", "01/13/2020", "Jack.Sprat@invali..", "567-898-7654", "Diamond Broker..");
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(qaexpectedTitles,actualTitles);
+        } else {
+            softAssert.assertEquals(stgexpectedTitles,actualTitles);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifycocoAccountTitledetails(){
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Primary Account Holder", "Date of Birth", "Email", "Phone Number", "Broker Association");
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
+
+    public void verifycocoData(){
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+        List<String> qaexpectedTitles = List.of("2008008265", "Betty", "Bertha", "Betty Bertha", "03/05/1989", "tspellnoticetesti..", "719-555-1212", "");
+        List<String> stgexpectedTitles = List.of("6703170627", "apeliznjsxs", "apindaikibrk", "apeliznjsxs ap..", "02/01/1983", "MGC4Test+apindaik..", "374-649-8737", "");
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(qaexpectedTitles,actualTitles);
+        } else {
+            softAssert.assertEquals(stgexpectedTitles,actualTitles);
+        }
+        softAssert.assertAll();
+    }
+
         public void verifyPMAccountTitledetails() {
             basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
             List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "Organization Name", "Site ID", "User Type");
