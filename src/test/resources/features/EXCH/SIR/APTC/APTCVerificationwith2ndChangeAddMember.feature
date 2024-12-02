@@ -675,8 +675,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-#    Then I validate I am on the "Report a life change" page
-#    And I report "Marriage" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "Marriage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -812,9 +812,6 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "<postAPTCSummaryResult>"
-    And I click continue on plan summary page
-
-    Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
     Examples:
       |income1      |income2    | expectedInitialAPTCResult | initialAPTCSummaryResult |expectedPostAPTCResult| postAPTCSummaryResult |
@@ -959,8 +956,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-#      Then I validate I am on the "Report a life change" page
-#      And I report "Marriage" and click continue
+      Then I validate I am on the "Report a life change" page
+      And I report "LostCoverage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
@@ -1246,8 +1243,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-#    Then I validate I am on the "Report a life change" page
-#    And I report "Marriage" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "LostCoverage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -1923,8 +1920,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-#      Then I validate I am on the "Report a life change" page
-#      And I report "MovedToColorado" and click continue
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page

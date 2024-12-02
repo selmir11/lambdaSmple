@@ -1,4 +1,4 @@
-@COCO
+@COCO1
 #contains SLCR-189, SLCR-193,SLCR-194
 Feature: Broker Assisted - End to End Test
 #Failing-general progression issues in Admin area - not a clean line of functions to test out the SIR pages

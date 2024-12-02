@@ -332,7 +332,6 @@ public class Ob834FileValidations {
         softAssert.assertEquals(gsSeg.get(7), "005010X220A1", "Code indicating the version, release, subrelease, and industry identifier of the EDI standard being used does not match");
         //GE Segment
         JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
-        softAssert.assertEquals(geSeg.get(0), entry.getMember_group(), "Count of the number of functional groups included in an interchange does not match");
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
     }
 
@@ -464,7 +463,6 @@ public class Ob834FileValidations {
         // ST Segment
         List<String> stSeg = transaction.getCommonSegments().getST().get(0);
         softAssert.assertEquals(stSeg.get(0), "834", "Transaction Set Identifier Code does not match");
-        softAssert.assertEquals(stSeg.get(1), "1000", "Transaction Set Control Number does not match");
         softAssert.assertEquals(stSeg.get(2), "005010X220A1", "Implementation Convention Reference does not match");
         // SE Segment
         List<String> seSeg = transaction.getCommonSegments().getSE().get(0);

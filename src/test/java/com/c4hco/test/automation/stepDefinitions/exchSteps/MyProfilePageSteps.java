@@ -105,6 +105,9 @@ public class MyProfilePageSteps {
         myProfileExchPage.UpdateContactEmailAddress();
     }
 
+    @And("I update the contact home phone number on profile page")
+    public void iUpdateContactPhoneNumber() {myProfileExchPage.updateContactPhoneNumber();}
+
     @Then("I update {string} as primary member")
     public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {
         myProfileExchPage.SelectTheHouseholdMemberAsPrimaryContact(memberName);
@@ -118,5 +121,8 @@ public class MyProfilePageSteps {
 
     @Then("I validate Primary Contact Change Popup {string} on My profile page")
     public void ivalidateChangePrimaryContactpopop(String language)  { myProfileExchPage.validateChangePrimaryContactpopop(language); }
+
+    @And("I validate error messages {string} on My Profile page")
+    public void validateErrorMessage(String language)  { myProfileExchPage.validateErrorMessage(language); }
 }
 

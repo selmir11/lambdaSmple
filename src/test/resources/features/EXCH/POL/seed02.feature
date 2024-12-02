@@ -85,7 +85,7 @@ Feature: Seed02 - Exchange
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -145,59 +145,92 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    @SLER-95-wip
-   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
-      Given I open the login page on the "login" portal
-      Then I validate I am on the "Login" page
-      And I enter valid credentials to login
-      Then I validate I am on the "Account Overview" page
-      Then I click on make changes button
-      Then I select "No" option on the Let us guide you page
-      And I click on save and continue button
-      Then I click on continue with  application button on Before you begin page
-      And I report "Other" and click continue
-      Then I validate I am on the "Find Expert Help" page
-      Then I click Continue on my own button from Manage who helps you page
+  @SLER-1281 @pol_exch_passed
+  Scenario:RT-2328 ENR-EXCH: EDIT POLICY - PREMIUM & APTC AMOUNT UPDATES
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    Then I click Make Changes Medical button
+    Then I update the premium value for
+      | 1:200.00 |
+    Then I update the APTC value for
+      | 1:100.00 |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then logout from Admin Portal
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
 
-      Then I update full name of member with prefix "Primary"
-      And I click continue on Tell us about yourself page
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-      Then I validate I am on the "Add Address" page
-      And I click continue on the Add Address page
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
-      Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I click continue on the Race and Ethnicity page
 
-      Then I validate I am on the "Citizenship" page
-      And I click continue on the Citizenship page
+  @SLER-95-wip
+  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
 
-      Then I validate I am on the "Family Overview" page
-      Then I verify the family overview table is present
-      Then I click continue on family overview page
+    Then I update full name of member with prefix "Primary"
+    And I click continue on Tell us about yourself page
 
-      Then I validate I am on the "Tell us about life changes" page
-      Then I select "NoneOfThese" QLCE on tell us about life changes page
-      Then I click on Save and Continue
-      Then I validate I am on the "EXCH Declarations and Signature" page
-      Then I Declare as Tax Household 1
-      And I click Continue on the Declarations And Signature Page
-      And I wait for hold on content to disappear
-      Then I validate I am on the "Application History" page
-      Then I click on view results and shop
-      And I click on Sign Out in the Header for "NonElmo"
-      And I validate "medical" entities from policy tables
-      And I validate "dental" entities from policy tables
-      And I verify the policy data quality check with Policy Ah keyset size 4
-      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
-      And I validate "medical" entities from pre edi db tables
-        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-        | 001                   | 001                | 25                    | "DEMOGRAPHIC  CHANGE" |            |
-      And I validate "dental" entities from pre edi db tables
-        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-        | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
-      And I download the medical and dental files from sftp server with location "/outboundedi/"
-      And I validate the ob834 "medical" file data
-      And I validate the ob834 "dental" file data
+    Then I validate I am on the "Add Address" page
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I verify the family overview table is present
+    Then I click continue on family overview page
+
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    And I click on Sign Out in the Header for "NonElmo"
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | 25                    | "DEMOGRAPHIC  CHANGE" |            |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
   @SLER-133-WIP
   Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
@@ -218,8 +251,10 @@ Feature: Seed02 - Exchange
     Then I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
     Then I click continue on the Add Address page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Citizenship" page
+    And I click continue on the Race and Ethnicity page
+#    Then I validate I am on the "Citizenship" page
+#    Then I click continue on the Citizenship page
+
     Then I click continue on the Immigration Status page
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
@@ -252,8 +287,11 @@ Feature: Seed02 - Exchange
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as health insurance option and continue
-    Then I select "None of these" as health insurance option and continue
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Marriage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -310,22 +348,7 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1281-WIP
-  Scenario:RT-2328 ENR-EXCH: EDIT POLICY - PREMIUM & APTC AMOUNT UPDATES
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin dashboard" page
-    And I search for user and click email from search results
-    Then I click on manage plan button on admin portal Individual dashboard
-    Then I click Make Changes Medical button
-    Then I update the premium value for
-      | 1:200.00 |
-    Then I update the APTC value for
-      | 1:100.00 |
-    And I click Save Button Medical
-    And I select the reason to confirm the changes
-    Then logout from Admin Portal
+
 
 
 

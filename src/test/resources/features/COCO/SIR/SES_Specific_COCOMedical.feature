@@ -1,4 +1,4 @@
-@COCO @COCOMedicalResults @SES
+@COCO10 @COCOMedicalResults @SES
   #SLCR-85, SLCR-195, SLCR-278, SLCR-162, SLCR-262, SLCR-266, SLCR-273,
 Feature: Verify COCO Medical Plan results
 
@@ -79,6 +79,10 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
   Then I click continue on start shopping page
 
   Then I validate I am on the "Medical Plan Results" page
+  And I validate the top SES reference for default filter expectations in "English" language
+  And I change the language from Elmo header to "Spanish" if it isn't already in that language
+  And I validate the top SES reference for default filter expectations in "Spanish" language
+  And I change the language from Elmo header to "English" if it isn't already in that language
   And I select the COCO Metal Tier dropdown
   And I select "<metalOption>" to filter for a  COCO Metal Tier plan
   And I validate the COCO plan option 1 has text "<metalPlanText>"

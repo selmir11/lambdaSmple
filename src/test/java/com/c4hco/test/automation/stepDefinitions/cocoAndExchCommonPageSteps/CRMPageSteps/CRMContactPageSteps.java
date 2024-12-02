@@ -8,8 +8,8 @@ import io.cucumber.java.en.Then;
 public class CRMContactPageSteps {
     CRMContactPage crmContactPage = new CRMContactPage(WebDriverManager.getDriver());
 
-    @Then("I open the MVRDVR Tab on contact page")
-    public void openMVRDVRTab(){crmContactPage.openMVRDVRTab();}
+    @Then("I open the {string} Tab on contact page")
+    public void iOpenCrmTab(String tabType){crmContactPage.openCrmTab(tabType);}
 
     @Then("I open the {string} MVR")
     public void openMVRDetails(String mvrType){crmContactPage.openMVRByTypeName(mvrType);}
@@ -25,4 +25,7 @@ public class CRMContactPageSteps {
 
     @And("I verify the {string} DVR number {int} is {string} in the CRM")
     public void iVerifyStatus(String dvrType, int typeNumber, String status){crmContactPage.verifyStatus(dvrType, typeNumber, status);}
+
+    @And("I verify the Individual Contact data in the CRM")
+    public void iVerifyContactData(){crmContactPage.verifyContactData();}
 }

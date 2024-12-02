@@ -22,6 +22,9 @@ public class CacScreenerPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     @FindBy(css = "h1")
     WebElement cacScreenerHeader;
 
@@ -168,6 +171,7 @@ public class CacScreenerPage {
 
 
     public void clickSaveAndContinue(){
+        basicActions.waitForElementToDisappear( spinner, 40 );
         basicActions.waitForElementToBePresent(cacScreenerHeader, 40);
         basicActions.waitForElementToBeClickable(continueSignInBtn, 20);
         basicActions.scrollToElement(continueSignInBtn);
@@ -495,6 +499,7 @@ public class CacScreenerPage {
         softAssert.assertEquals(dacaAnswer.get(1).getText(), "Yes");
         softAssert.assertEquals(dacaAnswer.get(2).getText(), "No");
         softAssert.assertEquals(sesQuestion.getText(), "Is anyone in your household currently receiving SilverEnhanced Savings financial help through the OmniSalud program?");
+        basicActions.scrollToElement(sesSubQuestion);
         softAssert.assertEquals(sesSubQuestion.getText(), "How do I know if I\u0027m receiving SilverEnhanced Savings?");
         builder.moveToElement(sesSubQuestion).perform();
         softAssert.assertEquals(sesTootlTip.getText(), "If you are enrolled in SilverEnhanced Savings, your health insurance plan will have the words \u201CSilver Enhanced 94\u0025\u201D in the name.");
@@ -509,7 +514,7 @@ public class CacScreenerPage {
     public void validatePageTextMainSpanish(){
         basicActions.waitForElementToBePresent(cacScreenerHeader,10);
         softAssert.assertEquals(cacScreenerHeader.getText(), "Noticia importante para los habitantes indocumentados de Colorado");
-        softAssert.assertEquals(cacScreenerSubHeader.getText(), "Este a\u00F1o, se han dado lugar varios cambios significativos en las pol\u00EDticas de salud. Es posible que en 2024 cuente con opciones de cobertura nuevas. Para saber si los cambios le afectar\u00E1n a usted y a su familia, responda unas breves preguntas.");
+        softAssert.assertEquals(cacScreenerSubHeader.getText(), "Este a\u00F1o, se han dado lugar varios cambios significativos en las pol\u00EDticas de salud. Es posible que en 2025 cuente con opciones de cobertura nuevas. Para saber si los cambios le afectar\u00E1n a usted y a su familia, responda unas breves preguntas.");
         softAssert.assertEquals(under19Question.getText(), "\u00BFAlg\u00FAn miembro de su familia es menor de 19 a\u00F1os?");
         softAssert.assertEquals(under19SubQuestion.getText(), "\u00BFQu\u00E9 sucede si alguien cumple 19 a\u00F1os en 2025?");
         builder.moveToElement(under19SubQuestion).perform();

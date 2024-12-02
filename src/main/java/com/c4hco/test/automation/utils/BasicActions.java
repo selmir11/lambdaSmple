@@ -485,6 +485,21 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Status Elmo page":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Return portal Error Exch":
+                newUrl = "TaxReturnPortal/error";
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Return portal Unauthorized Exch":
+                newUrl = "TaxReturnPortal/unauthorized";
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
@@ -635,6 +650,13 @@ public class BasicActions {
         LocalDate lastDayOfCurrMonth = YearMonth.from(today).atEndOfMonth();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         return lastDayOfCurrMonth.format(formatter);
+    }
+
+    public String lastDateOfPriorMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfPriorMonth = YearMonth.from(today).minusMonths(1).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        return lastDayOfPriorMonth.format(formatter);
     }
 
     public String getTodayDate() {// Today

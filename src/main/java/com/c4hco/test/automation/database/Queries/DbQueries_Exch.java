@@ -32,47 +32,44 @@ public class DbQueries_Exch {
                 "and eh.account_id = '" + acctId + "'\n" +
                 "and eph.current_ind = '1'";
     }
-
-    public String policyTablesCombinedQuery(String coverageType) {
-        String query = "SELECT account_id, application_id, exch_person_id, first_name, middle_name, last_name, birth_date, tobacco_use, relation_to_subscriber,\n" +
-                " plan_year, coverage_type, hios_plan_id, rating_area_id, policy_id, policy_status, current_ind,\n" +
-                " effectuated_ind_eph, policy_start_date, policy_end_date, csr_level_epfh, financial_period_start_date, financial_period_end_date, \n" +
-                " total_plan_premium_amt, total_premium_reduction_amt, total_responsible_amt, premium_reduction_type_epfh, total_csr_amt,\n" +
-                " policy_member_coverage_status, member_id, responsible_adult_ind, subscriber_ind, created_by, effectuated_ind_epmh, \n" +
-                " coverage_start_date, coverage_end_date, disenrollment_reason, csr_level_emcfh, member_financial_start_date, member_financial_end_date,\n" +
-                " plan_premium_amt, premium_reduction_amt, premium_reduction_type_emcfh, responsible_amt, policy_submitted_ts, policy_submitted_by\n" +
-                " FROM (select emcfh.member_financial_start_date, emcfh.member_financial_end_date, emcfh.premium_reduction_amt, \n" +
-                " emcfh.responsible_amt, eph.account_id, eph.application_id, em.first_name, em.middle_name, em.last_name, em.birth_date, \n" +
-                " em.tobacco_use, epmh.relation_to_subscriber, eph.plan_year, eph.coverage_type, ep2.hios_plan_id, eph.rating_area_id, \n" +
-                " eph.policy_id, eph.policy_status, eph.current_ind, eph.effectuated_ind AS effectuated_ind_eph,\n" +
-                " eph.policy_start_date, eph.policy_end_date, epmh.member_id, epmh.responsible_adult_ind, epmh.created_by,\n" +
-                " epmch.policy_member_coverage_status, epmh.effectuated_ind as effectuated_ind_epmh, epmch.coverage_start_date, epmch.coverage_end_date, \n" +
-                " epmch.disenrollment_reason, epmh.subscriber_ind, emcfh.csr_level as csr_level_emcfh, emcfh.plan_premium_amt, emcfh.premium_reduction_type as premium_reduction_type_emcfh , \n" +
-                " eph.policy_submitted_ts, eph.policy_submitted_by, eph.policy_ah_id, eph.exchange_assigned_policy_id, em.exch_person_id\n" +
-                " from " + dbName + ".es_household eh, " + dbName + ".es_application ea, " + dbName + ".es_member em, " + dbName + ".en_policy_ah eph, " + dbName + ".en_plan ep2, " + dbName + ".en_policy_member_ah epmh,\n" +
-                " " + dbName + ".en_policy_member_coverage_ah epmch, " + dbName + ".en_member_coverage_financial_ah emcfh, " + dbName + ".en_policy ep\n" +
-                " where eh.household_id = ea.household_id\n" +
-                " and ea.application_id = eph.application_id\n" +
-                " and ep.plan_id = ep2.plan_id\n" +
-                " and em.member_id = epmh.member_id\n" +
-                " and em.household_id = eh.household_id\n" +
-                " and em.exch_person_id = epmh.exch_person_id\n" +
-                " and epmh.policy_member_id = epmch.policy_member_id\n" +
-                " and eph.policy_id = epmh.policy_id\n" +
-                " and epmch.policy_member_coverage_id = emcfh.policy_member_coverage_id\n" +
-                " and ep.policy_id = eph.policy_id) pmc\n" +
-                "LEFT JOIN( select  epfh.policy_ah_id, epfh.financial_period_start_date, epfh.financial_period_end_date, epfh.total_premium_reduction_amt,\n" +
-                " epfh.total_plan_premium_amt, epfh.total_csr_amt, epfh.total_responsible_amt,\n" +
-                " epfh.csr_level AS csr_level_epfh, epfh.premium_reduction_type AS premium_reduction_type_epfh\n" +
-                " FROM " + dbName + ".en_policy_financial_ah epfh) pf ON pmc.policy_ah_id = pf.policy_ah_id \n" +
-                "AND pmc.relation_to_subscriber = 'SELF'\n" +
-                "AND pmc.member_financial_start_date BETWEEN pf.financial_period_start_date AND pf.financial_period_end_date\n" +
-                "AND pmc.member_financial_end_date BETWEEN pf.financial_period_start_date AND pf.financial_period_end_date\n" +
-                "WHERE pmc.account_id = '"+acctId+"'\n" +
-                "and pmc.current_ind = '1'\n" +
-                "AND pmc.coverage_type = '"+coverageType+"'";
-        return query;
-    }
+public String policyTablesCombinedQuery(String coverageType){
+    String query = "SELECT eph.account_id, eph.application_id, epmh.exch_person_id, first_name, middle_name, last_name, birth_date::date AS birth_date, tobacco_use, \n" +
+            "relation_to_subscriber, eph.plan_year, eph.coverage_type, hios_plan_id, rating_area_id, eph.policy_id,  policy_status, eph.current_ind,\n" +
+            "eph.effectuated_ind AS effectuated_ind_eph, policy_start_date, policy_end_date, csr_level_epfh, financial_period_start_date, \n" +
+            "financial_period_end_date, total_plan_premium_amt,  total_premium_reduction_amt, total_responsible_amt, premium_reduction_type_epfh, total_csr_amt,\n" +
+            "policy_member_coverage_status, epmh.member_id, responsible_adult_ind, subscriber_ind, epmh.created_by, epmh.effectuated_ind AS effectuated_ind_epmh, \n" +
+            "coverage_start_date, coverage_end_date, disenrollment_reason, emcfh.csr_level AS csr_level_emcfh, member_financial_start_date, member_financial_end_date, \n" +
+            "plan_premium_amt, premium_reduction_amt, emcfh.premium_reduction_type AS premium_reduction_type_emcfh, responsible_amt, policy_submitted_ts, \n" +
+            "policy_submitted_by FROM "+dbName+".en_policy_ah eph \n" +
+            "INNER JOIN "+dbName+".en_plan ep ON eph.plan_id = ep.plan_id \n" +
+            "INNER JOIN "+dbName+".en_policy_member_ah epmh ON eph.policy_ah_id = epmh.policy_ah_id \n" +
+            "INNER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY policy_member_ah_id \n" +
+            "ORDER BY CASE WHEN coverage_end_date > coverage_start_date THEN 1 ELSE 2 END,\n" +
+            "coverage_end_date DESC, coverage_start_date DESC, policy_member_coverage_ah_id DESC) AS mySeq, * \n" +
+            "FROM "+dbName+".en_policy_member_coverage_ah) epmch ON epmh.policy_member_ah_id = epmch.policy_member_ah_id \n" +
+            "AND epmch.mySeq = 1 INNER JOIN (SELECT ROW_NUMBER() OVER (\n" +
+            "PARTITION BY policy_member_coverage_ah_id ORDER BY \n" +
+            "CASE WHEN member_financial_end_date > member_financial_start_date THEN 1 ELSE 2 END, \n" +
+            "member_financial_end_date DESC, member_financial_start_date DESC, member_coverage_financial_ah_id DESC) AS mySeq, * \n" +
+            "FROM "+dbName+".en_member_coverage_financial_ah) emcfh ON \n" +
+            "epmch.policy_member_coverage_ah_id = emcfh.policy_member_coverage_ah_id \n" +
+            "AND emcfh.mySeq = 1 \n" +
+            "INNER JOIN "+dbName+".es_member em ON epmh.member_id = em.member_id \n" +
+            "LEFT JOIN( SELECT ROW_NUMBER() OVER(PARTITION BY policy_ah_id ORDER BY \n" +
+            "CASE WHEN financial_period_end_date > financial_period_start_date THEN 1 ELSE 2 END, \n" +
+            "financial_period_end_date DESC, financial_period_start_date DESC, policy_financial_ah_id DESC) AS mySeq,\n" +
+            "policy_ah_id, financial_period_start_date, financial_period_end_date, total_premium_reduction_amt,\n" +
+            "total_plan_premium_amt, total_csr_amt, total_responsible_amt,\n" +
+            "csr_level AS csr_level_epfh, premium_reduction_type AS premium_reduction_type_epfh \n" +
+            "FROM "+dbName+".en_policy_financial_ah) pf \n" +
+            "ON eph.policy_ah_id = pf.policy_ah_id \n" +
+            "AND epmh.relation_to_subscriber = 'SELF' \n" +
+            "AND pf.mySeq = 1\n" +
+            "where eph.account_id = '"+acctId+"' \n" +
+            "AND eph.current_ind = '1' \n" +
+            "AND eph.coverage_type = '"+coverageType+"'";
+    return query;
+}
 
     public String ob834Details() {
         return "select * from  " + dbName + ".ob834_detail\n " +
@@ -437,5 +434,14 @@ public class DbQueries_Exch {
                 "Where account_id = '"+acctId+"' \n" +
                 "and event_cd = '"+event+"' \n" +
                 "and event_log_id != '"+eventLogId+"'";
+    }
+
+    public String getHouseholdId(){
+        return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
+    public String getLceTpePlanYear(String householId){
+        return "Select lce_type, plan_year from "+dbName+".es_member_lce\n" +
+                "where household_id  = '"+householId+"'";
     }
 }

@@ -662,8 +662,11 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-
-
-
+    public void validateLceTypeAndPlanYr_EsMember(){
+       String[] lceType_planYr = exchDbDataProvider.getLceType_PlanYr_esMember();
+       softAssert.assertEquals(lceType_planYr[0], "ADMIN_LCE", "LCE Type did not match");
+       softAssert.assertEquals(lceType_planYr[1], SharedData.getPlanYear(), "plan year did not match");
+       softAssert.assertAll();
+    }
 
 }

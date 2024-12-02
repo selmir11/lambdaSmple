@@ -16,6 +16,7 @@ Feature: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-01
     Then I click the password reset link
     Then I delete the open notice
     And I sign out of Outlook
+    Then I switch to the tab number 1
     And I enter the new password in create new password page
     Then I validate I am on the "Login" page
     And I login as individual with password reset code to any env QA "testing.reset+obfcjxalgTest@outlook.com" STG "testing.reset+jtjnlxektTest@outlook.com"
@@ -45,6 +46,7 @@ Feature: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-01
     Then I click the password reset link
     Then I delete the open notice
     And I sign out of Outlook
+    Then I switch to the tab number 1
     And I enter the new password in create new password page
     Then I validate I am on the "Login" page
     And I login as individual with password reset code to any env QA "testing.soukaina+hpjwlmcTest@outlook.com" STG "AutomationUser.gabmbhgpTest@test.com"

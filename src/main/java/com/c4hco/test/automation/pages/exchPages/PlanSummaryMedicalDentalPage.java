@@ -137,15 +137,6 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertTrue( planSummaryNoMedicalPlanSingle.isDisplayed(), "No medical plan selected for this group." );
         softAssert.assertAll();
     }
-
-
-    public void continueButton() {
-        basicActions.waitForElementToDisappear( spinner, 5500 );
-        basicActions.waitForElementToBePresent( medicalPremiumAfterAPTCAmt, 10 );
-        basicActions.waitForElementToBePresent( continueBtnOnPlanSummary, 15 );
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript( "arguments[0].click()", continueBtnOnPlanSummary );
-    }
-
    
     public void continuePlanSummaryPage(){
         if(SharedData.getNoPlansSkipped()){
