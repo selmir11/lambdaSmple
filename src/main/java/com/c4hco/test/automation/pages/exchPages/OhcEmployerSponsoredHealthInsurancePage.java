@@ -10,15 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class OhcEmployerSponsoredHealthInsurancePage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    Calendar calendar = Calendar.getInstance();
-    Date today = new Date();
     public OhcEmployerSponsoredHealthInsurancePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -273,7 +269,6 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     public void enterEndDate(String endDate){
         basicActions.waitForElementToBePresent(esiEndDateInput, 60);
-        calendar.setTime(today);
 
         switch (endDate){
             case "Today":
@@ -545,21 +540,18 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     public void verifyInputDateOption(String dataOffered){
         basicActions.waitForElementToBePresent(esiEndDateInput, 60);
-        calendar.setTime(today);
 
         switch (dataOffered){
             case "Current Month":
-                calendar.add(Calendar.MONTH, 1);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                Date lastDayOfMonth = calendar.getTime();
-                DateFormat endOfCurrentMonth = new SimpleDateFormat("yyyy-MM-dd");
-                softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(endOfCurrentMonth.format(lastDayOfMonth)));
+                String endOfCurrentMonth = basicActions.endOfMonthDate();
+                endOfCurrentMonth = basicActions.changeDateFormat(endOfCurrentMonth, "MM/dd/yyyy", "yyyy-MM-dd");
+                softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(endOfCurrentMonth),"Expected "+endOfCurrentMonth+" Found "+esiEndDateInput.getAttribute("value"));
                 softAssert.assertAll();
                 break;
             case "Today":
-                DateFormat todayDate = new SimpleDateFormat("yyyy-MM-dd");
-                softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(todayDate.format(today)));
+                String todayDate = basicActions.getTodayDate();
+                todayDate = basicActions.changeDateFormat(todayDate, "MM/dd/yyyy", "yyyy-MM-dd");
+                softAssert.assertTrue(esiEndDateInput.getAttribute("value").equals(todayDate),"Expected "+todayDate+" Found "+esiEndDateInput.getAttribute("value"));
                 softAssert.assertAll();
                 break;
             default:
@@ -1076,9 +1068,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     public void verifyInputEndDateError(String language) {
         basicActions.waitForElementToBePresent(inputEndDateError, 20);
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        calendar.setTime(today);
-        String formattedDate = dateFormat.format(today);
+        String TodayDate = basicActions.getTodayDate();
         switch (language) {
             case "English":
                 softAssert.assertEquals(inputEndDateError.getText(), "Date is required");
@@ -1099,7 +1089,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertAll();
                 break;
             case "English Prior":
-                softAssert.assertEquals(inputEndDateError.getText(), "Please enter a value greater than or equal to "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getText(), "Please enter a value greater than or equal to "+TodayDate);
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");
@@ -1108,7 +1098,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 softAssert.assertAll();
                 break;
             case "Spanish Prior":
-                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese un valor mayor que o igual a "+formattedDate);
+                softAssert.assertEquals(inputEndDateError.getText(), "Por favor ingrese un valor mayor que o igual a "+TodayDate);
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-size"), "14px");
                 softAssert.assertEquals(inputEndDateError.getCssValue("font-weight"), "400");

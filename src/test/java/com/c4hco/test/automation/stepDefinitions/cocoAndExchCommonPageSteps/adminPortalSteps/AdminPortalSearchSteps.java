@@ -174,6 +174,10 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.verifyblankfield(dataTable);
     }
 
+    @Then("I click on Reset button in AP dashboard page")
+    public void iClickOnResetButtonInAPDashboardPage() {
+        adminPortalSearchPage.clickResetAdminPortal();
+    }
 
 }
 
