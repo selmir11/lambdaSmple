@@ -333,18 +333,38 @@ Feature: FA - 4groups - enroll in plan
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
