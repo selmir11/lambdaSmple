@@ -347,6 +347,21 @@ public class AdminPortalSearchPage {
             case "LicenseNumber":
                 searchInputList.get(5).sendKeys(type);
                 break;
+            case "AgencyName":
+                searchInputList.get(0).sendKeys(type);
+                break;
+            case "StateLicenseNumber":
+                searchInputList.get(1).sendKeys(type);
+                break;
+            case "BusinessAddressCity":
+                searchInputList.get(3).sendKeys(type);
+                break;
+            case "BusinessAddressZipCode":
+                searchInputList.get(4).sendKeys(type);
+                break;
+            case "AgencyEmail":
+                searchInputList.get(2).sendKeys(type);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
@@ -439,6 +454,12 @@ public class AdminPortalSearchPage {
             case "Account ID":
                 selectorList = AccountsID;
                 break;
+            case "Agency Name":
+                selectorList = AccountsID;
+                break;
+            case "Agent":
+                selectorList = FirstName;
+                break;
             default:
                 throw new IllegalArgumentException("Invalid sort option: " + sortOrder);
         }
@@ -496,6 +517,10 @@ public class AdminPortalSearchPage {
                 verifyBrokerAccountTitledetails();
                 verifyBrokerData();
                 break;
+            case "Agency":
+                verifyAgencyAccountTitledetails();
+                verifyAgencyData();
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + category);
         }
@@ -526,15 +551,17 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
+
     public void verifyBrokerAccountTitledetails() {
         basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
-        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number","User Type");
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number", "User Type");
         List<String> actualTitles = searchResultsTitles.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
         softAssert.assertEquals(actualTitles, expectedTitles);
         softAssert.assertAll();
     }
+
 
     public void verifyBrokerData() {
         basicActions.waitForElementListToBePresent(aactsearchResults, 30);
@@ -551,9 +578,33 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
+    public void verifyAgencyAccountTitledetails() {
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Agency Name", "Agent", "Business Address City", "State License Number");
 
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
 
-        public void accountCreatedMessage(){
+    public void verifyAgencyData() {
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+    List<String> qaexpectedTitles = List.of("Quantum Gemerald Age..", "Gem Agency", "Denver", "3453534543543");
+    List<String> stgexpectedTitles = List.of("Quantum Gemerald Age..", "Gem Agency", "Denver", "798567889");
+    List<String> actualTitles = aactsearchResults.stream()
+            .map(WebElement::getText)
+            .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+        softAssert.assertEquals(qaexpectedTitles,actualTitles);
+    } else {
+        softAssert.assertEquals(stgexpectedTitles,actualTitles);
+    }
+        softAssert.assertAll();
+}
+
+    public void accountCreatedMessage(){
         basicActions.waitForElementToBePresent(statusMessage, 30);
         softAssert.assertEquals(statusMessage.getText(),"Account created successfully. Please search for the account.");
         softAssert.assertAll();
@@ -565,5 +616,5 @@ public class AdminPortalSearchPage {
 }
 
 
-
+}
 
