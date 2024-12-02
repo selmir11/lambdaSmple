@@ -408,7 +408,7 @@ public class MyDocumentsPage {
             String pdfText = extractTextFromPDF(Path.of(pathAndName));
 
             // WIP - append text for coverage start date, welcome text, Dear tag, refactor household members validation
-            softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates().getCoverageStartDate(), "yyyy-MM-dd", "MMMM dd, yyyy")), "coverage start date failed");
+            softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate(), "yyyy-MM-dd", "MMMM dd, yyyy")), "coverage start date failed");
             softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "primary member email Id is not matching");
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy")), "current date is not matching");
             validateMemNames(pdfText);

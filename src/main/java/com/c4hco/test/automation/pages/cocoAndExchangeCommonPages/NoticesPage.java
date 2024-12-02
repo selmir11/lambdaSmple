@@ -660,19 +660,21 @@ public class NoticesPage {
 
     public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
         // Validating plan name, member names and coverage start date from email notice
-        String coverageStartDate = SharedData.getExpectedCalculatedDates().getCoverageStartDate();
-        String formattedCoverageDt = "Coverage Start Date: "+basicActions.changeDateFormat(coverageStartDate, "yyyy-MM-dd", "MMMM dd, yyyy");
 
         switch (planType) {
             case "medical":
+                String coverageStartDate_medical = SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate();
+                String formattedCoverageDt_med = "Coverage Start Date: "+basicActions.changeDateFormat(coverageStartDate_medical, "yyyy-MM-dd", "MMMM dd, yyyy");
                 validateMembers("4", membersOnPolicy);
                 validatePlanDetails("4", SharedData.getPrimaryMember().getMedicalPlan());
-                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(formattedCoverageDt), "Medical coverage date mismatch");
+                softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(formattedCoverageDt_med), "Medical coverage date mismatch");
                 break;
             case "dental":
+                String coverageStartDate_dental = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageStartDate();
+                String formattedCoverageDt_dental = "Coverage Start Date: "+basicActions.changeDateFormat(coverageStartDate_dental, "yyyy-MM-dd", "MMMM dd, yyyy");
                 validateMembers("1", membersOnPolicy);
                 validatePlanDetails("1", SharedData.getPrimaryMember().getDentalPlan());
-                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(formattedCoverageDt), "Dental coverage date mismatch");
+                softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(formattedCoverageDt_dental), "Dental coverage date mismatch");
                 break;
         }
         softAssert.assertAll();

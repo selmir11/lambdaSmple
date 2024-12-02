@@ -165,7 +165,6 @@ public class TellUsAboutYourselfPage {
                 String newLastName = "update"+ member.getLastName();
 
                 member.setIncorrectEntityTypeQualifier("1");
-                member.setIncorrectIdCodeQualifier("34");
                 member.setIncorrectEntityIdCode("70");
                 member.setIncorrect_first_name(oldFirstName);
                 member.setIncorrect_middle_name(oldMiddleName);

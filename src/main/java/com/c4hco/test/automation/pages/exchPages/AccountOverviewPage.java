@@ -5,11 +5,11 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
@@ -175,12 +175,14 @@ public class AccountOverviewPage {
 
     public void verifyMemberNames() {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
+
         List<String> expectedMemberNames = new ArrayList<>();
         List<String> actualMemberNames = new ArrayList<>();
         expectedMemberNames.add(primaryMember.getSignature());
         actualMemberNames.add(medicalMemberNames.get(0).getText());
         List<MemberDetails> memberDetailsList = SharedData.getMembers();
 
+        basicActions.getAllMemCompleteNames();
         if(memberDetailsList !=null) {
             for (int i = 0; i < memberDetailsList.size(); i++) {
                 MemberDetails member = SharedData.getMembers().get(i);
@@ -223,11 +225,8 @@ public class AccountOverviewPage {
         SharedData.setScenarioDetails(scenarioDetails);
    }
 
-    public void setDates(List<Map<String, String>> expectedResult) {
-        // These details are same for medical and dental. If dental plan has different values, then we should rely on a different step.
+    public void setDates(String planType, List<Map<String, String>> expectedResult) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        ExpectedCalculatedDates expectedCalculatedDates = new ExpectedCalculatedDates();
-
         String policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
         String policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
         String coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
@@ -237,17 +236,38 @@ public class AccountOverviewPage {
         String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
         String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
 
-        expectedCalculatedDates.setPolicyStartDate(policyStartDate);
-        expectedCalculatedDates.setPolicyEndDate(policyEndDate);
-        expectedCalculatedDates.setCoverageStartDate(coverageStartDate);
-        expectedCalculatedDates.setCoverageEndDate(coverageEndDate);
-        expectedCalculatedDates.setFinancialStartDate(financialStartDate);
-        expectedCalculatedDates.setFinancialEndDate(financialEndDate);
+        switch(planType){
+            case "medical":
+                ExpectedCalculatedDates expectedCalculatedDates_medical = new ExpectedCalculatedDates();
 
-        subscriber.setPlanStartDate(planStartDate);
-        subscriber.setPlanEndDate(planEndDate);
+                expectedCalculatedDates_medical.setPolicyStartDate(policyStartDate);
+                expectedCalculatedDates_medical.setPolicyEndDate(policyEndDate);
+                expectedCalculatedDates_medical.setCoverageStartDate(coverageStartDate);
+                expectedCalculatedDates_medical.setCoverageEndDate(coverageEndDate);
+                expectedCalculatedDates_medical.setFinancialStartDate(financialStartDate);
+                expectedCalculatedDates_medical.setFinancialEndDate(financialEndDate);
 
-        SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
+                SharedData.setExpectedCalculatedDates_medicalPlan(expectedCalculatedDates_medical);
+                break;
+            case "dental":
+                ExpectedCalculatedDates expectedCalculatedDates_dental = new ExpectedCalculatedDates();
+
+                expectedCalculatedDates_dental.setPolicyStartDate(policyStartDate);
+                expectedCalculatedDates_dental.setPolicyEndDate(policyEndDate);
+                expectedCalculatedDates_dental.setCoverageStartDate(coverageStartDate);
+                expectedCalculatedDates_dental.setCoverageEndDate(coverageEndDate);
+                expectedCalculatedDates_dental.setFinancialStartDate(financialStartDate);
+                expectedCalculatedDates_dental.setFinancialEndDate(financialEndDate);
+
+                SharedData.setExpectedCalculatedDates_dentalPlan(expectedCalculatedDates_dental);
+                break;
+            default: Assert.fail("Invalid argument passed");
+        }
+        subscriber.setMedicalPlanStartDate(planStartDate);
+        subscriber.setMedicalPlanEndDate(planEndDate);
+        subscriber.setDentalPlanStartDate(planStartDate);
+        subscriber.setDentalPlanEndDate(planEndDate);
+
         SharedData.setPrimaryMember(subscriber);
     }
 
