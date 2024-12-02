@@ -23,13 +23,13 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     public WebElement medicalCompareGoBack;
 
-    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
+    @FindBy(id = "PlanCompare-removePlan_1")
     public WebElement firstplan;
 
-    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
+    @FindBy(id = "PlanCompare-removePlan_2")
     public WebElement secondplan;
 
-    @FindBy(css = "div[id='medicalPlanDetails'] div:nth-child(2) em:nth-child(1)")
+    @FindBy(id = "PlanCompare-removePlan_1")
     public WebElement thirdplan;
 
     @FindBy(xpath = "//p[normalize-space()='There are no plans selected to compare']")

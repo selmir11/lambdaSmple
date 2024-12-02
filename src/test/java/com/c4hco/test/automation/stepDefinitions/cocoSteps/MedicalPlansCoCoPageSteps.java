@@ -47,8 +47,7 @@ public class MedicalPlansCoCoPageSteps {
     }
 
     @And( "I select initial 3 plans and click the Compare button" )
-    public void selectPlanstoCompare(){
-        medicalPlansCoCoPage.selectPlanstoCompare();
+    public void selectPlanstoCompare(){medicalPlansCoCoPage.selectPlanstoCompare();
     }
 
     @And("I select {string} coco medical plan")
