@@ -614,6 +614,18 @@ public class BasicActions {
         return Integer.toString(today.getYear());
     }
 
+    public String getStartDateOE() {// Today
+        LocalDate date = LocalDate.of(Integer.parseInt(getCurrYear()), 11, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return date.format(formatter);
+    }
+
+    public String getEndDateOE() {// Today
+        LocalDate date = LocalDate.of(Integer.parseInt(getCurrYear()), 12, 31);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return date.format(formatter);
+    }
+
     public String getFutureYear() {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear()+1);
