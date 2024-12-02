@@ -230,7 +230,7 @@ Feature: Page Navigation-OHI ESI Page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
     And I validate I am on the "Elmo HRA" page
-    Then I select the Go Back button on the HRA page
+    Then I click Go Back on the Elmo OHI HRA page
     And I validate I am on the "ESI" page
     Then I select the Go Back button on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
