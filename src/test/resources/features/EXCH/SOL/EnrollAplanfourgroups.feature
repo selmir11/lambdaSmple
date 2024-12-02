@@ -14,7 +14,7 @@ Feature: FA - 4groups - enroll in plan
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    And I apply for the current year
+    #And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -320,9 +320,9 @@ Feature: FA - 4groups - enroll in plan
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
-    #Then I validate that my APTC value is "$3280.93/mo"
     Then I click on "No Thanks" on good news page
+    Then I validate that my APTC value is "$3280.93/mo"
+
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -398,9 +398,9 @@ Feature: FA - 4groups - enroll in plan
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on No Thanks on good news page
-    Then I validate that my APTC value is "$0.00/mo"
     Then I click on "No Thanks" on good news page
+    Then I validate that my APTC value is "$0.00/mo"
+
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
