@@ -12,7 +12,7 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
-    Given I set the dynamic policy, coverage and financial dates in coco
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan in coco
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Of Next Month       | Last Day Of Current Year | First Of Next Month       | Last Day Of Current Year | First Of Next Month       | Last Day Of Current Year |
     Then I validate I am on the "CoCo Welcome" page

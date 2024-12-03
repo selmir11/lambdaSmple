@@ -68,7 +68,10 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     And I get the newborn "Son" dob as "current date minus 5days"
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
       | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
@@ -179,6 +182,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page

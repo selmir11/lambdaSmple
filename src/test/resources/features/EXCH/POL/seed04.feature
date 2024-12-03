@@ -12,7 +12,7 @@ Feature: Seed04 - Exchange
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     And I apply for the current year
@@ -151,6 +151,8 @@ Feature: Seed04 - Exchange
     And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -194,6 +196,12 @@ Feature: Seed04 - Exchange
       And I validate I am on the "Login" page
       And I enter valid credentials to login
       And I validate I am on the "Account Overview" page
+      Given I set the dynamic policy, coverage and financial dates for "medical" plan
+        | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+        | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+      Given I set the dynamic policy, coverage and financial dates for "dental" plan
+        | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+        | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
       Then I click on make changes button
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
@@ -243,8 +251,8 @@ Feature: Seed04 - Exchange
 #      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
       And I validate "medical" entities from pre edi db tables
-        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-        | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
+        | 001                   | 001                | 25                    | FINANCIAL CHANGE or DEMOGRAPHIC CHANGE |            |
       And I validate "dental" entities from pre edi db tables
         | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
         | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |

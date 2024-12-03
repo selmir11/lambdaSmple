@@ -64,5 +64,8 @@ public class AssistnetDashboardSteps {
         assistnetDashboardPage.clickSaveBtnInAP();
     }
 
-
+    @And("I click on Add New Organization button")
+    public void iClickAddNewOrganizationButton(){
+        assistnetDashboardPage.clickAddNewOrganization();
+    }
 }

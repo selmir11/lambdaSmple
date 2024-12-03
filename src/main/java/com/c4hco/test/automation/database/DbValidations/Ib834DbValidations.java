@@ -248,8 +248,8 @@ public class Ib834DbValidations {
         }
     }
     private void medValidationsCommonForAllMembers(Ib834Entity ib834MedEntity, List<Map<String, String>> expectedValues) {
-        String formatPlanStartDate = SharedData.getExpectedCalculatedDates().getPolicyStartDate().replaceAll("-", "");
-        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates().getPolicyEndDate().replaceAll("-", "");
+        String formatPlanStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate().replaceAll("-", "");
+        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate().replaceAll("-", "");
         String[] sender = SharedData.getMedicalIb834FileName().split("_");
         softAssert.assertEquals(ib834MedEntity.getInterchange_sender_id(), sender[1] , "Medical Sender Id mismatch");
 
@@ -273,8 +273,8 @@ public class Ib834DbValidations {
     }
 
     private void denValidationsCommonForAllMembers(Ib834Entity ib834DenEntity, List<Map<String, String>> expectedValues) {
-        String formatPlanStartDate = SharedData.getExpectedCalculatedDates().getPolicyStartDate().replaceAll("-", "");
-        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates().getPolicyEndDate().replaceAll("-", "");
+        String formatPlanStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyStartDate().replaceAll("-", "");
+        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyEndDate().replaceAll("-", "");
         String[] sender = SharedData.getDentalFileName().split("_");
         softAssert.assertEquals(ib834DenEntity.getInterchange_sender_id(), sender[1], "Dental Sender Id mismatch");
         SharedData.setDenGroupCtlNumber(ib834DenEntity.getGroup_ctrl_number());
