@@ -1,5 +1,7 @@
-@SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed @EOY
+@SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed_eoy @EOY
 Feature: Simple NFA - Single Applicant
+
+
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |

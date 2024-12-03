@@ -245,7 +245,6 @@ public class PlanSummaryMedicalDentalPage {
         }
     }
 
-
     public void verifyContinueButtonIsDisabled() {
         basicActions.waitForElementToBePresent( continueBtnOnPlanSummary, 20 );
         String buttonClass = continueBtnOnPlanSummary.getAttribute( "class" );
@@ -275,7 +274,6 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.waitForElementToBePresentWithRetries( toolTipInformation, 20 );
         softAssert.assertEquals( toolTipInformation.isDisplayed(), "This refers to your monthly premium after financial help has been applied. This is the amount you must pay your insurance company each month. It keeps your insurance active and helps cover the cost of services included in your plan." );
     }
-
 
     public void validateToolTipTextSpanish() {
         basicActions.waitForElementToDisappear( spinner, 20 );
