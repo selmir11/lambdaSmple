@@ -334,4 +334,11 @@ public class AccountOverviewPage {
         softAssert.assertFalse(basicActions.isElementDisplayed(btnVerifyYourInformation, 10));
         softAssert.assertAll();
     }
+
+    public void verifySelfAttestationContainer(){
+        basicActions.waitForElementToDisappear(spinner,20);
+        softAssert.assertEquals(txtHeaderVerifyYourInformation.getText(),"We need you to verify your information");
+        softAssert.assertEquals(txtContentVerifyYourInformation.getText(),"We attempted to verify your application information but need you to confirm a few things. Don't worry, it will only take a minute or two!");
+        softAssert.assertEquals(btnVerifyYourInformation.getText(),"Verify My Information");
+    }
 }
