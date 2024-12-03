@@ -76,7 +76,6 @@ public class SharedData {
     @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
-    @Getter @Setter private static Boolean noPlansSkipped = true;
 
 
     public static void reset(){
@@ -119,7 +118,6 @@ public class SharedData {
         dentalOb999FileName = null;
         ob999Segments = null;
         ib834TransactionDetails=null;
-        noPlansSkipped = true;
         expectedCalculatedDates_medicalPlan = null;
         expectedCalculatedDates_dentalPlan = null;
     }

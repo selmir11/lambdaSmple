@@ -643,11 +643,26 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return date.format(formatter);
     }
+
     public String firstDateOfNextMonth(){
         LocalDate today = LocalDate.now();
         LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
+    }
+
+    public String firstDateOfLastMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfLastMonth = today.minusMonths(1).withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfLastMonth.format(formatter);
+    }
+
+    public String firstDateOfCurrMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfCurrMonth = today.withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfCurrMonth.format(formatter);
     }
 
     public String lastDateOfNextMonth(){
