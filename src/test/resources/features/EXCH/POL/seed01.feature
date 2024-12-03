@@ -11,14 +11,14 @@ Feature: Regression Tests that require Seed 1
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
-    Then I validate I am on the "Account Overview" page
-    And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
