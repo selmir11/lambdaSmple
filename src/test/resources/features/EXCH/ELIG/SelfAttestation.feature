@@ -618,7 +618,7 @@ Feature: Self Attestation
       |Income                  |Canceled           |
 
 
-  @SLER-SELFWIP
+  @SLER-1792
   Scenario: Self Attestation Container - Welcome Page Text
     And I enter first name "MVRAutomationTest", middle name "", last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
