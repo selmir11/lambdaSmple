@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AssistnetPortalPages;
 
+import com.c4hco.test.automation.Dto.AssisterDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -69,6 +71,9 @@ public class OrganizationDetailsPage {
     @FindBy(xpath = "//*[@id='primaryState']//div/div")
     WebElement organizationStateDropdown;
 
+    @FindBy(id = "Colorado-option")
+    WebElement organizationStateDropdownColorado;
+
     @FindBy(id = "state-text")
     WebElement organizationStateDropdownLabel;
 
@@ -87,6 +92,9 @@ public class OrganizationDetailsPage {
     @FindBy(xpath = "//*[@id='county']//div/div")
     WebElement organizationCountyDropdown;
 
+    @FindBy(id = "DENVER-option")
+    WebElement organizationCountyDropdownDenver;
+
     @FindBy(id = "county-text")
     WebElement organizationCountyDropdownLabel;
 
@@ -96,17 +104,26 @@ public class OrganizationDetailsPage {
     @FindBy(xpath = "//*[@id='input-languages']/ng-select/div/div/div[2]/input")
     WebElement organizationLanguagesDropdown;
 
+    @FindBy(xpath = "//span[normalize-space()='English']")
+    WebElement organizationLanguagesDropdownEnglish;
+
     @FindBy(id = "languages-text")
     WebElement organizationLanguagesDropdownLabel;
 
     @FindBy(xpath = "//*[@id='input-area-expertise']/ng-select/div/div/div[2]/input")
     WebElement organizationAreaOfExpertiseDropdown;
 
+    @FindBy(xpath = "//span[normalize-space()='Adults over 55 years']")
+    WebElement organizationAreaOfExpertiseDropdownOption;
+
     @FindBy(id = "area-expertise-text")
     WebElement organizationAreaOfExpertiseDropdownLabel;
 
     @FindBy(xpath = "//*[@id='input-working-days']/ng-select/div/div/div[2]/input")
     WebElement organizationWorkingDaysDropdown;
+
+    @FindBy(xpath = "//span[normalize-space()='Monday']")
+    WebElement organizationWorkingDaysDropdownOption;
 
     @FindBy(id = "working-days-text")
     WebElement organizationWorkingDaysDropdownLabel;
@@ -213,6 +230,55 @@ public class OrganizationDetailsPage {
 
         softAssert.assertEquals(organizationWorkingHoursError.getText(), "Please enter both the From and To working hours");
         softAssert.assertAll();
+    }
+
+    public void enterOrganizationDetails() {
+        basicActions.waitForElementToBePresent(organizationNameField, 20);
+
+        AssisterDetails newOrganization = new AssisterDetails();
+        newOrganization.setOrganizationSiteName(BasicActions.getUniqueString(8));
+        SharedData.setProgramManager(newOrganization);
+
+        organizationNameField.sendKeys(newOrganization.getOrganizationSiteName());
+        organizationEmailField.sendKeys("testorg@gmail.com");
+        organizationPhoneNumberField.sendKeys("6743676437647");
+        organizationAddressField.sendKeys("3344 Some Road");
+        organizationCityField.sendKeys("Denver");
+
+        organizationStateDropdown.click();
+        organizationStateDropdownColorado.click();
+
+        organizationZipCodeField.sendKeys("80205");
+
+        organizationLanguagesDropdown.click();
+        organizationLanguagesDropdownEnglish.click();
+
+        organizationCountyDropdown.click();
+        organizationCountyDropdownDenver.click();
+
+        organizationAreaOfExpertiseDropdown.click();
+        organizationAreaOfExpertiseDropdownOption.click();
+        organizationZipCodeField.click();
+
+        organizationWorkingDaysDropdown.click();
+        organizationWorkingDaysDropdownOption.click();
+        organizationZipCodeField.click();
+
+        organizationWorkingHoursFrom.sendKeys("0800AM");
+        organizationWorkingHoursTo.sendKeys("0500PM");
+
+        organizationClientAssociationYesButton.click();
+        organizationDetailsSubmitButton.click();
+    }
+
+    public void updateOrgName() {
+        basicActions.waitForElementToBePresent(organizationNameField, 20);
+
+        SharedData.getProgramManager().setOrganizationSiteName(SharedData.getProgramManager().getOrganizationSiteName() + "updated");
+
+        organizationNameField.clear();
+        organizationNameField.sendKeys(SharedData.getProgramManager().getOrganizationSiteName());
+        organizationDetailsSubmitButton.click();
     }
 
     public void clickGoBacOrganizationDetails() {
