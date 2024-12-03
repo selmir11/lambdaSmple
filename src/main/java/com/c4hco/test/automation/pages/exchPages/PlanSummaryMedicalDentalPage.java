@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -125,10 +124,8 @@ public class PlanSummaryMedicalDentalPage {
 
     public void verifyPlanSummaryPage() {
         basicActions.waitForElementListToBePresent( planSummaryHeading, 30 );
-
         softAssert.assertTrue( planSummaryNoMedicalPlan.isDisplayed(), "No medical plan selected is not display" );
         softAssert.assertTrue( planSummaryNoDentalPlan.isDisplayed(), "No dental plan selected is not display" );
-
         softAssert.assertAll();
     }
 
@@ -224,6 +221,7 @@ public class PlanSummaryMedicalDentalPage {
     public void getmedGroup1MemNames() {
         List<MemberDetails> memberslist = SharedData.getMembers();
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(medicalgroup1MemberNames, 10);
         String names = medicalgroup1MemberNames.getText();
         String[] name = names.split( "\\s*(,|and)\\s*" );
         for (String memName : name) {
