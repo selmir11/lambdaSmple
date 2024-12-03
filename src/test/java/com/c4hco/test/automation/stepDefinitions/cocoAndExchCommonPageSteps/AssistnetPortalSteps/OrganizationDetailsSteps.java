@@ -38,6 +38,16 @@ public class OrganizationDetailsSteps {
         organizationDetailsPage.validateOrganizationDetailsWorkingHoursToError();
     }
 
+    @Then("I enter organization details and submit")
+    public void iEnterOrganizationDetails() {
+        organizationDetailsPage.enterOrganizationDetails();
+    }
+
+    @Then("I update the new organization name and submit")
+    public void iUpdateOrgName(){
+        organizationDetailsPage.updateOrgName();
+    }
+
     @Then("I click the Go Back button on the Organization Details page")
     public void iClickGoBacOrganizationDetails() {
         organizationDetailsPage.clickGoBacOrganizationDetails();
