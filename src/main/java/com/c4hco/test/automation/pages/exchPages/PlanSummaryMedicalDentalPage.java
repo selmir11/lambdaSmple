@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -137,26 +138,81 @@ public class PlanSummaryMedicalDentalPage {
         softAssert.assertTrue( planSummaryNoMedicalPlanSingle.isDisplayed(), "No medical plan selected for this group." );
         softAssert.assertAll();
     }
-
-
-    public void continueButton() {
-        basicActions.waitForElementToDisappear( spinner, 5500 );
-        basicActions.waitForElementToBePresent( medicalPremiumAfterAPTCAmt, 10 );
-        basicActions.waitForElementToBePresent( continueBtnOnPlanSummary, 15 );
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript( "arguments[0].click()", continueBtnOnPlanSummary );
-    }
-
    
     public void continuePlanSummaryPage(){
-        if(SharedData.getNoPlansSkipped()){
-            setPlansPremiumAmt();
-        }
         getmedGroup1MemNames();
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueBtnOnPlanSummary, 30);
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
         basicActions.scrollToElement( continueBtnOnPlanSummary );
         ((JavascriptExecutor) basicActions.getDriver()).executeScript( "arguments[0].click()", continueBtnOnPlanSummary );
+    }
+    private void setMedicalPlansPremiumAmnt(MemberDetails subscriber,List<MemberDetails> memberslist){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.wait(3000);
+        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
+        basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
+
+        if(medicalAPTCAmt.isEmpty()){//NFA
+            subscriber.setMedicalAptcAmt("0");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
+            if (memberslist != null) {
+                for (int i = 0; i < memberslist.size(); i++) {
+                    memberslist.get( i ).setTotalMedAmtAfterReduction( medPremiumMinusAPTC );
+                    memberslist.get( i ).setMedicalPremiumAmt( medPremiumMinusAPTC );
+                }
+            }
+        } else {
+            //FA
+            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
+            subscriber.setMedicalAptcAmt(medAPTCAmt);
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
+            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
+            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
+
+            BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add( bigDecimalmedAPTCAmt );
+            subscriber.setMedicalPremiumAmt( String.valueOf( totalMedicalPremium ) );
+            if (memberslist != null) {
+                for (int i = 0; i < memberslist.size(); i++) { // set premiums for member
+                    memberslist.get( i ).setMedicalPremiumAmt( String.valueOf( totalMedicalPremium ) );
+                    memberslist.get( i ).setMedicalAptcAmt( medAPTCAmt );
+                    memberslist.get( i ).setTotalMedAmtAfterReduction( String.valueOf( bigDecimalmedPremiumMinusAPTC ) );
+                }
+            }
+        }
+        SharedData.setPrimaryMember( subscriber );
+    }
+    private void setDentalPlansPremiumAmt(MemberDetails subscriber,List<MemberDetails> memberslist) {
+        subscriber.setDentalAptcAmt( "$0" );
+        subscriber.setDentalPremiumAmt( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
+        subscriber.setTotalDentalPremAfterReduction( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
+        if (memberslist != null) {
+            for (int i = 0; i < memberslist.size(); i++) { // set premiums for member
+
+                memberslist.get( i ).setDentalPremiumAmt( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
+                memberslist.get( i ).setTotalDentalPremAfterReduction( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
+                memberslist.get( i ).setDentalAptcAmt( "0.00" );
+            }
+        }
+        SharedData.setPrimaryMember( subscriber );
+    }
+    public void setPlansPremiumAmt(String planDetail) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        List<MemberDetails> memberslist = SharedData.getMembers();
+        switch (planDetail) {
+            case "Medical":
+                setMedicalPlansPremiumAmnt(subscriber,memberslist);
+                break;
+            case "Dental":
+                setDentalPlansPremiumAmt(subscriber,memberslist);
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + planDetail );
+        }
     }
 
     public void goBackPlanSummaryPage() {
@@ -189,55 +245,6 @@ public class PlanSummaryMedicalDentalPage {
                 }
             }
         }
-    }
-
-    public void setPlansPremiumAmt() {
-        basicActions.waitForElementToDisappear( spinner, 20 );
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        List<MemberDetails> memberslist = SharedData.getMembers();
-        basicActions.waitForElementToDisappear(spinner, 15);
-        basicActions.wait(3000);
-        basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
-        basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
-
-        if(medicalAPTCAmt.isEmpty()){//NFA
-            subscriber.setMedicalAptcAmt("0");
-            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$","");
-            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
-            subscriber.setMedicalPremiumAmt(medPremiumMinusAPTC);
-            if (memberslist != null) {
-                for (int i = 0; i < memberslist.size(); i++) {
-                    memberslist.get( i ).setTotalMedAmtAfterReduction( medPremiumMinusAPTC );
-                    memberslist.get( i ).setMedicalPremiumAmt( medPremiumMinusAPTC );
-                 }
-            }
-        } else {
-            //FA
-            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
-            subscriber.setMedicalAptcAmt(medAPTCAmt);
-            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
-            subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
-            BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
-            BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);
-
-            BigDecimal totalMedicalPremium = bigDecimalmedPremiumMinusAPTC.add( bigDecimalmedAPTCAmt );
-            subscriber.setMedicalPremiumAmt( String.valueOf( totalMedicalPremium ) );
-            if (memberslist != null) {
-                for (int i = 0; i < memberslist.size(); i++) { // set premiums for member
-                    memberslist.get( i ).setMedicalPremiumAmt( String.valueOf( totalMedicalPremium ) );
-                    memberslist.get( i ).setDentalPremiumAmt( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
-                    memberslist.get( i ).setMedicalAptcAmt( medAPTCAmt );
-                    memberslist.get( i ).setTotalMedAmtAfterReduction( String.valueOf( bigDecimalmedPremiumMinusAPTC ) );
-                    memberslist.get( i ).setTotalDentalPremAfterReduction( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
-                    memberslist.get( i ).setDentalAptcAmt( "0.00" );
-                }
-            }
-        }
-        subscriber.setDentalAptcAmt( "$0" );
-        subscriber.setDentalPremiumAmt( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
-        subscriber.setTotalDentalPremAfterReduction( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
-        SharedData.setPrimaryMember( subscriber );
-
     }
 
 

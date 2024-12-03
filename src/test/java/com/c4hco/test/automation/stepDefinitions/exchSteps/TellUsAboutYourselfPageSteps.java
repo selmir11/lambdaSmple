@@ -53,5 +53,8 @@ public class TellUsAboutYourselfPageSteps {
     @Then("I click I don't have a Social Security Number box and {string} on Tell us about yourself page")
     public void iClickNoSsnBox(String applied) {tellUsAboutYourselfPage.clickNoSsnBox(applied);}
 
-
+    @Then("I click Back on Tell us about yourself page")
+    public void clickBackButton() {
+        tellUsAboutYourselfPage.clickBackButton();
+    }
 }

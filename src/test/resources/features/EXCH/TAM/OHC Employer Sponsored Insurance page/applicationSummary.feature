@@ -1740,6 +1740,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
     And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "English"
     Then I click on Download as PDF on Application Summary
+    And I wait for 500 milliseconds
     Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "No" end date of ""
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page

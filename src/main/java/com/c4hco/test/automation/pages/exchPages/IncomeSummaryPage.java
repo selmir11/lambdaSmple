@@ -66,7 +66,11 @@ public class IncomeSummaryPage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(id = "loader-icon")
+    WebElement loaderIcon;
+
     public void selectProjectedIncome(String projectedIncomeOption){
+        basicActions.waitForElementToDisappear(loaderIcon, 120);
         basicActions.waitForElementToBePresentWithRetries(hdr_Income,10);
         switch(projectedIncomeOption){
             case "No":

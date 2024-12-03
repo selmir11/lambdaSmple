@@ -10,11 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 
 public class AddAddressPage {
@@ -100,6 +98,8 @@ public class AddAddressPage {
     WebElement rdobtnIncarceratedNo;
     @FindBy(name = "saveAndContinue")
     WebElement btnSaveContinue;
+    @FindBy(name = "backToMember")
+    WebElement btnGoBack;
 
     @FindBy(css = ".c4PageHeader1")
     WebElement getNameFromHeader;
@@ -205,6 +205,7 @@ public class AddAddressPage {
         basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
+        basicActions.waitForElementListToBePresent(dropdown.getOptions(), 10);
         dropdown.selectByValue(county);
 
         Address mailinglAddress = new Address();
@@ -247,27 +248,28 @@ public class AddAddressPage {
 
         if (getHeader.contains("yourself")) {
             //set data for subscriber
+            Address residentialAddress = new Address();
+            residentialAddress.setAddressLine1(addressLine1);
+            residentialAddress.setAddressCity(city);
+            residentialAddress.setAddressState(state);
+            residentialAddress.setAddressZipcode(zipcode);
+            residentialAddress.setAddressCounty(county);
+            subscriber.setResAddress(residentialAddress);
+            SharedData.setPrimaryMember(subscriber);
         }else{
            // filter by dob as it is unique
-            Optional<MemberDetails> requiredMem =  membersList.stream().filter(mem -> mem.getDob().equals(dob) &&
+             membersList.stream().filter(mem -> mem.getDob().equals(dob) &&
                     mem.getSignature().contains(name)
-            ).findFirst();
-
-
-            if(requiredMem.isPresent()){
-                MemberDetails member =  (MemberDetails) requiredMem.get();
-                // To DO::Set other fields of residential address here - Need to add them to PolicyMem - addLine1, Line2 etc
-                Address residentialAddress = new Address();
-                residentialAddress.setAddressLine1(addressLine1);
-                residentialAddress.setAddressCity(city);
-                residentialAddress.setAddressState(state);
-                residentialAddress.setAddressZipcode(zipcode);
-                residentialAddress.setAddressCounty(county);
-                member.setResAddress(residentialAddress);
-            }
-            else{
-                Assert.fail("Member with this dob and name is not found!!");
-            }
+            ).findFirst().ifPresent(mem ->{
+                 Address residentialAddress = new Address();
+                 residentialAddress.setAddressLine1(addressLine1);
+                 residentialAddress.setAddressCity(city);
+                 residentialAddress.setAddressState(state);
+                 residentialAddress.setAddressZipcode(zipcode);
+                 residentialAddress.setAddressCounty(county);
+                 mem.setResAddress(residentialAddress);
+            });
+             SharedData.setMembers(membersList);
         }
     }
 
@@ -377,6 +379,10 @@ public class AddAddressPage {
 
     public void saveContinue(){btnSaveContinue.click();}
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBePresent(btnGoBack,50);
+        btnGoBack.click();
+    }
 
     public  void specificaddress(String SpecificAddress) {
         for (int i = 0; i < selectspecificaddress.size(); i++) {

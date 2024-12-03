@@ -43,7 +43,8 @@ public class AssistnetDashboardPage {
     @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Save")
     WebElement saveBTN;
 
-
+    @FindBy(id = "button-new-org")
+    WebElement addNewOrganizationButton;
 
 
     public void ClickOnViewMyClients() {
@@ -115,5 +116,14 @@ public class AssistnetDashboardPage {
 
     public void clickSaveBtnInAP() {
         saveBTN.click();
+    }
+
+    public void clickAddNewOrganization() {
+        basicActions.waitForElementToBePresent(addNewOrganizationButton, 20);
+
+        softAssert.assertEquals(addNewOrganizationButton.getText(), "Add New Organization");
+        softAssert.assertAll();
+
+        addNewOrganizationButton.click();
     }
 }

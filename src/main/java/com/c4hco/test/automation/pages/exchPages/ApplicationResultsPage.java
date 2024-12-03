@@ -7,15 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ApplicationResultsPage {
     SoftAssert softAssert = new SoftAssert();
@@ -87,6 +83,7 @@ public class ApplicationResultsPage {
     }
 
     public void clickBtnContinue(){
+        basicActions.waitForElementToBePresent(continueBtn, 10);
         continueBtn.click();
     }
 

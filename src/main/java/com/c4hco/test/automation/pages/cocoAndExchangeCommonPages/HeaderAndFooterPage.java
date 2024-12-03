@@ -112,7 +112,8 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
-     @FindBy(xpath = "//a[.='Sign Out']")
+
+    @FindBy(xpath = "//a[.='Sign Out']")
     WebElement signOutOverview;
 
     @FindBy(css = ".logged-in li:nth-child(3) a")
@@ -121,6 +122,9 @@ public class HeaderAndFooterPage {
     //@FindBy(xpath = "//*[@id ='sign-out") //
     @FindBy(css = "#sign-out")
     WebElement signOutLinkPortal;
+
+    @FindBy(xpath = "//div[@class = 'p-2 sign-out']")
+    WebElement medicalSignoutLink;
 
     @FindBy(xpath = "//*[@id ='sign-out']")
     WebElement  signOutDentalPlanResults;
@@ -492,6 +496,11 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(signOutLinkPortal, 30);
                 basicActions.scrollToElement(signOutLinkPortal);
                 basicActions.click(signOutLinkPortal);
+                break;
+            case "MedicalDetail":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresent(medicalSignoutLink, 30  );
+                basicActions.click( medicalSignoutLink );
                 break;
             case "DentalPlanResults":
                 basicActions.waitForElementToBePresent(signOutDentalPlanResults, 20);

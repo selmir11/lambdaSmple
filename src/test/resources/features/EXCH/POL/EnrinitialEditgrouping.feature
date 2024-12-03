@@ -1,7 +1,7 @@
 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
-  @SLER-41 @pol_exch_passed
+  @SLER-41 @SLER-1170 @SLER-1250 @SLER-1252 @SLER-1283 @pol_exch_passed
   Scenario: EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -68,7 +68,10 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     And I get the newborn "Son" dob as "current date minus 5days"
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
       | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "getFromSharedData", "Male" and applying "Yes"
@@ -179,6 +182,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -260,7 +265,7 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
-    # SLER-1252 - ib834 db and file validations - WIP
+    # SLER-1252 - ib834 db and file validations
     And I validate ib834 "medical" details in database
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -271,8 +276,8 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
 
-#    And I validate the ib834 "medical" file data
-#    And I validate the ib834 "dental" file data
+    And I validate the ib834 "medical" file data
+    And I validate the ib834 "dental" file data
 
     # SLER-1283 - Validate ob999 database and files
     And I validate "medical" entities from ob999_details db table

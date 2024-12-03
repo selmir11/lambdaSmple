@@ -12,6 +12,9 @@ Feature: Seed04 - Exchange
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -27,7 +30,6 @@ Feature: Seed04 - Exchange
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    And I set the current broker details
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -124,7 +126,7 @@ Feature: Seed04 - Exchange
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -149,6 +151,8 @@ Feature: Seed04 - Exchange
     And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -159,16 +163,32 @@ Feature: Seed04 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate medical plan details from my policies page
-#      | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-#      | 01/01           | 12/31         | 01/01              | 12/31            |
-#    And I validate dental plan details from my policies page
-#      | PolicyStartDate | PolicyEndDate | FinancialStartDate | FinancialEndDate |
-#      | 01/01           | 12/31         | 01/01              | 12/31            |
-    And I click on Sign Out in the Header for "NonElmo"
+    And I Validate the correct enrolled plans are displayed on account overview page
+
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+    And I validate "medical" plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
     @SLER-1235-WIP
     Scenario: RT-2150 ENR-EXCH: AUTO PROCESS POLICY - RATING AREA CHANGE (w/LCE: Change in Permanent Residence)
@@ -176,6 +196,12 @@ Feature: Seed04 - Exchange
       And I validate I am on the "Login" page
       And I enter valid credentials to login
       And I validate I am on the "Account Overview" page
+      Given I set the dynamic policy, coverage and financial dates for "medical" plan
+        | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+        | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+      Given I set the dynamic policy, coverage and financial dates for "dental" plan
+        | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+        | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
       Then I click on make changes button
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
@@ -216,4 +242,21 @@ Feature: Seed04 - Exchange
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
       Then I validate I am on the "Application History" page
+      Then I click on view results and shop
       And I click on Sign Out in the Header for "NonElmo"
+      And I validate "medical" entities from policy tables
+      And I validate "dental" entities from policy tables
+
+#      And I verify the policy data quality check with Policy Ah keyset size 4
+#      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+
+      And I validate "medical" entities from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
+        | 001                   | 001                | 25                    | FINANCIAL CHANGE or DEMOGRAPHIC CHANGE |            |
+      And I validate "dental" entities from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+        | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
+
+      And I download the medical and dental files from sftp server with location "/outboundedi/"
+      And I validate the ob834 "medical" file data
+      And I validate the ob834 "dental" file data

@@ -76,6 +76,9 @@ public class TellUsAboutYourselfPage {
     @FindBy(css = "div:nth-child(5) p")
     WebElement hdrSsaError;
 
+    @FindBy(id = "backButton" )
+    WebElement btnBack;
+
     
 
     public void userPregnantQuestion(String Pregnant) {
@@ -162,11 +165,11 @@ public class TellUsAboutYourselfPage {
                 String newLastName = "update"+ member.getLastName();
 
                 member.setIncorrectEntityTypeQualifier("1");
-                member.setIncorrectIdCodeQualifier("34");
                 member.setIncorrectEntityIdCode("70");
                 member.setIncorrect_first_name(oldFirstName);
                 member.setIncorrect_middle_name(oldMiddleName);
                 member.setIncorrect_last_name(oldLastName);
+             //   member.setIncorrectIdCodeQualifier("34"); - WIP - POL-9151
 
                 member.setFirstName(newFirstName);
                 member.setMiddleName(newMiddleName);
@@ -247,6 +250,11 @@ public class TellUsAboutYourselfPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + applied);
         }
+    }
+
+    public void clickBackButton(){
+        basicActions.waitForElementToBePresent(btnBack, 20);
+        btnBack.click();
     }
 
 }

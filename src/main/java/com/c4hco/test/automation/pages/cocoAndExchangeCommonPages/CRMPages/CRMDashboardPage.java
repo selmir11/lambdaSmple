@@ -3,6 +3,8 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CRMPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CRMDashboardPage {
 
@@ -39,13 +42,22 @@ public class CRMDashboardPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void CRMDashboardSearchUserEmailandOpenFirst(){
+    public void CRMDashboardSearchUserEmailandOpenFirst() {
         basicActions.wait(10000);
+        List<WebElement> okButtonList = WebDriverManager.getDriver().findElements(By.id("okButton_1"));
+        if (!okButtonList.isEmpty() && okButtonList.get(0).isDisplayed()) {
+            okButtonList.get(0).click();
+            System.out.println("Clicked the OK Button.");
+            basicActions.wait(2000);
+
+        } else {
+            System.out.println("OK Button not present or not visible, continuing with the search.");
+        }
+
         basicActions.waitForElementToBePresentWithRetries(txtCRMDashSearchBox, 60);
         txtCRMDashSearchBox.sendKeys(SharedData.getPrimaryMember().getEmailId());
         basicActions.wait(3000);
         txtCRMDashSearchBox.sendKeys(Keys.RETURN);
-
     }
 
     public void searchByUserEmail(String stageEmail, String qaEmail){

@@ -12,7 +12,7 @@ Feature: EXCH Seed Data with Exception ALL
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
     | PolicyStartDate    | PolicyEndDate            | CoverageStartDate  | CoverageEndDate          | FinancialStartDate    | FinancialEndDate         |
     | First Of Next Month  | Last Day Of Current Year | First Of Next Month  | Last Day Of Current Year | First Of Next Month     | Last Day Of Current Year |
     And I apply for the current year
@@ -122,7 +122,7 @@ Feature: EXCH Seed Data with Exception ALL
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate    | PolicyEndDate            | CoverageStartDate  | CoverageEndDate          | FinancialStartDate    | FinancialEndDate         |
       | First Of Next Month  | Last Day Of Current Year | First Of Next Month  | Last Day Of Current Year | First Of Next Month     | Last Day Of Current Year |
     And I apply for the current year
@@ -251,7 +251,7 @@ Feature: EXCH Seed Data with Exception ALL
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Given I set the dynamic policy, coverage and financial dates
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate    | PolicyEndDate            | CoverageStartDate  | CoverageEndDate          | FinancialStartDate    | FinancialEndDate         |
       | First Of Next Month  | Last Day Of Current Year | First Of Next Month  | Last Day Of Current Year | First Of Next Month     | Last Day Of Current Year |
     And I apply for the current year
@@ -383,7 +383,6 @@ Feature: EXCH Seed Data with Exception ALL
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    And I set the current broker details
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying

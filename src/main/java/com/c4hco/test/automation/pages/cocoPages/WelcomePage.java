@@ -15,6 +15,12 @@ import java.util.*;
 
 public class WelcomePage {
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+    @FindBy(css = ".header-1")
+    WebElement welcomeToConnectText;
+
     @FindBy(css = ".c4-alert-icon-column svg")
     WebElement notificationBannerIcon;
 
@@ -29,9 +35,6 @@ public class WelcomePage {
 
     @FindBy(css = "div.c4-alert-content a")
     WebElement takeQuizLnk;
-
-    @FindBy(css = ".header-1")
-    WebElement welcomeToConnectText;
 
     @FindBy(xpath = "//div[contains(@class, 'c4-type-header')]")
     WebElement containerMainHeaderText;
@@ -97,6 +100,7 @@ public class WelcomePage {
     }
 
     public void clickApplyForInsurance() {
+        basicActions.waitForElementToDisappear( spinner, 40 );
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         WebElement applyForYrCoco;
 
@@ -469,10 +473,10 @@ public class WelcomePage {
         expectedCalculatedDates.setFinancialStartDate(financialStartDate);
         expectedCalculatedDates.setFinancialEndDate(financialEndDate);
 
-        subscriber.setPlanStartDate(planStartDate);
-        subscriber.setPlanEndDate(planEndDate);
+        subscriber.setMedicalPlanStartDate(planStartDate);
+        subscriber.setMedicalPlanEndDate(planEndDate);
 
-        SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
+      //  SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
 
     }

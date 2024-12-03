@@ -543,16 +543,16 @@ public void verifyHeadersAdditionalIncomePage(String language){
         basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
         switch(language){
             case "English":
-                softAssert.assertEquals(goBackButton.getText(), "  Go Back");
+                softAssert.assertEquals(goBackButton.getText(), "  Go back");
                 softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
-                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
-                softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+                softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
-                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
@@ -561,13 +561,13 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 softAssert.assertEquals(goBackButton.getText(), "  Volver");
                 softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
-                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
-                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "30px");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
