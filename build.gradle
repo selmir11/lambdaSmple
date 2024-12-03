@@ -9,7 +9,6 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     // https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting
     implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.7.8'
