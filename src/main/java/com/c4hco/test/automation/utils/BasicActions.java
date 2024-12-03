@@ -843,6 +843,7 @@ public class BasicActions {
     public static String getUniqueString(int length){
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
+
     public List<MemberDetails> getAllEligibleMemInfo(){
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allEligibleMembers = new ArrayList<>();

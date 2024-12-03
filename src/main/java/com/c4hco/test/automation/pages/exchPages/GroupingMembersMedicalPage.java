@@ -57,12 +57,12 @@ public class GroupingMembersMedicalPage {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresent(continueButton, 20);
         basicActions.waitForElementToBeClickable(continueButton, 10);
-        List<MemberDetails> memberInfoDetails = basicActions.getAllMem();
-        for (MemberDetails memDet : memberInfoDetails){
+        List<MemberDetails> memberInfoDetails = basicActions.getAllEligibleMemInfo();
+        for (MemberDetails member : memberInfoDetails){
             basicActions.waitForElementListToBePresent(medicalGroupTitle,10);
-            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+member.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
             basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10);
-            memDet.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #",""));
+            member.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #",""));
         }
         basicActions.scrollToElement( continueButton );
         basicActions.click(continueButton);
