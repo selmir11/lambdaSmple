@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.ApplicationDetailsPdf;
 import com.c4hco.test.automation.utils.ApplicationSummaryPdf;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -17,18 +16,12 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationSummarySubmittedPage {
 
     SoftAssert softAssert = new SoftAssert();
-    Calendar calendar = Calendar.getInstance();
-    Date today = new Date();
 
     private BasicActions basicActions;
 
@@ -241,31 +234,19 @@ public class ApplicationSummarySubmittedPage {
     }
 
     private void verifyEndDate(String data, String label) {
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String expectedDate = "";
-
         switch (data.trim()) {
             case "Today":
-                expectedDate = dateFormat.format(today);
+                expectedDate = basicActions.getTodayDate();
                 break;
             case "Future Month":
-                calendar.setTime(today);
-                calendar.add(Calendar.DATE, 60);
-                expectedDate = dateFormat.format(calendar.getTime());
+                expectedDate = basicActions.getFutureDate(60);
                 break;
             case "Prior Month":
-                calendar.setTime(today);
-                calendar.add(Calendar.MONTH, 0);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                expectedDate = dateFormat.format(calendar.getTime());
+                expectedDate = basicActions.changeDateFormat(basicActions.firstDateOfLastMonth(), "yyyy-MM-dd", "yyyy-MM-dd");
                 break;
             case "Current Month":
-                calendar.setTime(today);
-                calendar.add(Calendar.MONTH, 1);
-                calendar.set(Calendar.DAY_OF_MONTH, 1);
-                calendar.add(Calendar.DATE, -1);
-                expectedDate = dateFormat.format(calendar.getTime());
+                expectedDate = basicActions.changeDateFormat(basicActions.firstDateOfCurrMonth(), "yyyy-MM-dd", "yyyy-MM-dd");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + data);
