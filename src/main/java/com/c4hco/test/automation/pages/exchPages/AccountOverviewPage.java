@@ -360,7 +360,7 @@ public class AccountOverviewPage {
 
         softAssert.assertEquals(MedicalPlanName.getText(), memberInfo.getMedicalPlan(), memberInfo.getFirstName() + " Medical Plan Name does not match");
         softAssert.assertEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + memberInfo.getMedicalPremiumAmt(), memberInfo.getFirstName() + " Medical premium amount does not match");
-        softAssert.assertEquals(MedicalAPTCAmnt.getText(), "$" + memberInfo.getMedicalAptcAmt(), memberInfo.getFirstName() + " Medical APTC amount did not match");
+        softAssert.assertEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + memberInfo.getMedicalAptcAmt(), memberInfo.getFirstName() + " Medical APTC amount did not match");
 
         //Dental Plan Validation
         WebElement DentalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[4]/b"));

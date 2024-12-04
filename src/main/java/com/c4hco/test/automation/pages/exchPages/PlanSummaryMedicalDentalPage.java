@@ -144,7 +144,7 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.scrollToElement( continueBtnOnPlanSummary );
         ((JavascriptExecutor) basicActions.getDriver()).executeScript( "arguments[0].click()", continueBtnOnPlanSummary );
     }
-    
+
     private void setMedicalPlansPremiumAmnt(MemberDetails subscriber,List<MemberDetails> memberslist){
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToDisappear(spinner, 15);
