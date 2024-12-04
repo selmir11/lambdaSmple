@@ -297,7 +297,6 @@ public class MedicalPlanResultsPage {
         } else {
             selectMedicalPlan(SpecificPlan);
             clickContinue();
-            System.out.println("Selected plan: " + SpecificPlan);
         }
     }
 
