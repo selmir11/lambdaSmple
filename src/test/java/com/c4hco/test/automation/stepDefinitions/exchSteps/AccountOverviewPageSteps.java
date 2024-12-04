@@ -63,5 +63,8 @@ public class AccountOverviewPageSteps {
 
     @Then("I validate that the Verify My Information section does not display")
     public void iVerifySelfAttestButtonDoesNotExist(){accountOverviewPage.verifyMyInfoButtonDoesNotExist();}
+
+    @Then("I validate the text of the Self Attestation container")
+    public void iVerifySelfAttestContainerText(){accountOverviewPage.verifySelfAttestationContainer();}
 }
 

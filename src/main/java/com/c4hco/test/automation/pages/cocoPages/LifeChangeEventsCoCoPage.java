@@ -3,17 +3,12 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class LifeChangeEventsCoCoPage {
@@ -152,6 +147,9 @@ public class LifeChangeEventsCoCoPage {
             case "MoveToCO":
                 handleMoveToCO(dateType);
                 break;
+            case "Move":
+                handleLCESelection(addressChangeLCE, qamemberChangeOfAddressCheckbox, qachangeOfAddressEventDate, dateType);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
         }
@@ -162,8 +160,11 @@ public class LifeChangeEventsCoCoPage {
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
         dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        basicActions.waitForElementToBePresent(checkboxes.get(0), 10);
 
         for (int i = 0; i < checkboxes.size(); i++) {
+            WebElement checkbox = checkboxes.get(i);
+            ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", checkbox);
             checkboxes.get(i).click();
             eventDates.get(i).sendKeys(dateValue);
         }
@@ -314,9 +315,8 @@ public class LifeChangeEventsCoCoPage {
     }
 
     private void setDateForInsuranceLossCheckboxes(List<WebElement> eventDates, String dateType) {
-        LocalDate date = LocalDate.parse(basicActions.getDateBasedOnRequirement(dateType));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String dateValue = date.format(formatter);
+        String date = basicActions.getDateBasedOnRequirement(dateType);
+        String dateValue = basicActions.changeDateFormat(date, "MM-dd-yyyy", "MM/dd/yyyy");
         for (int i = 0; i < eventDates.size(); i++) {
             basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
             eventDates.get(i).sendKeys(dateValue);

@@ -227,14 +227,30 @@ public class AccountOverviewPage {
 
     public void setDates(String planType, List<Map<String, String>> expectedResult) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        String policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
-        String policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
-        String coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
-        String coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
-        String financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
-        String financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
-        String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
-        String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        String policyStartDate;
+        String policyEndDate;
+        String coverageStartDate;
+        String coverageEndDate;
+        String financialStartDate;
+        String financialEndDate;
+
+        if(SharedData.getIsOpenEnrollment().equals("yes")){
+            policyStartDate = SharedData.getPlanYear()+"-01-01";
+            policyEndDate = SharedData.getPlanYear()+"-12-31";
+            coverageStartDate = SharedData.getPlanYear()+"-01-01";
+            coverageEndDate = SharedData.getPlanYear()+"-12-31";
+            financialStartDate = SharedData.getPlanYear()+"-01-01";
+            financialEndDate = SharedData.getPlanYear()+"-12-31";
+        } else {
+             policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
+             policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
+             coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
+             coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
+             financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
+             financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
+        }
+       String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
+       String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
 
         switch(planType){
             case "medical":
@@ -317,5 +333,12 @@ public class AccountOverviewPage {
     public void verifyMyInfoButtonDoesNotExist(){
         softAssert.assertFalse(basicActions.isElementDisplayed(btnVerifyYourInformation, 10));
         softAssert.assertAll();
+    }
+
+    public void verifySelfAttestationContainer(){
+        basicActions.waitForElementToDisappear(spinner,20);
+        softAssert.assertEquals(txtHeaderVerifyYourInformation.getText(),"We need you to verify your information");
+        softAssert.assertEquals(txtContentVerifyYourInformation.getText(),"We attempted to verify your application information but need you to confirm a few things. Don't worry, it will only take a minute or two!");
+        softAssert.assertEquals(btnVerifyYourInformation.getText(),"Verify My Information");
     }
 }

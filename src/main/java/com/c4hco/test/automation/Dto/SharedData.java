@@ -56,6 +56,7 @@ public class SharedData {
     @Getter @Setter private static BrokerDetails agencyOwner;
     @Getter @Setter private static BrokerDetails broker;
     @Getter @Setter private static BrokerDetails adminStaff;
+    @Getter @Setter private static AssisterDetails programManager;
     @Getter @Setter private static String noticeFileName;
     @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
     @Getter @Setter private static Map<String, List<String>> groupingDetails;

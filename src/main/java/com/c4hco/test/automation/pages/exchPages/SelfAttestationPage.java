@@ -42,7 +42,7 @@ public class SelfAttestationPage {
            "Thank you!\n"+
            "\n" +
            "\n" +
-           "It looks like we need updated information about what your household income will be for 2025. Please go here and click on “Apply for 2025” to submit a new application.\n" +
+           "It looks like we need updated information about what your household income will be for 2025. Please go here and click on “Apply for 2025\u201D to submit a new application.\n" +
            "\n" +
            "\n" +
            "Need more help?   Contact our support team at 855-752-6749 or find an expert near you.";
