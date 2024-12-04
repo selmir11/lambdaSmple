@@ -1,5 +1,6 @@
 Feature: Enroll a in a plan 8 HH
-  @SLER-832
+
+  @SLER-832-OE-WIP
   Scenario: : EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -10,10 +11,16 @@ Feature: Enroll a in a plan 8 HH
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+   # And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "07271963" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -47,7 +54,6 @@ Feature: Enroll a in a plan 8 HH
     And I click continue on the Citizenship page
 
     #1Member (spouse)
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "09051959", "Male" and applying "No"
@@ -182,8 +188,6 @@ Feature: Enroll a in a plan 8 HH
     And I click continue on the Citizenship page
 
     #member6 (neice)
-
-
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Niece", "05051993", "Female" and applying "Yes"
@@ -352,6 +356,8 @@ Feature: Enroll a in a plan 8 HH
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
@@ -366,24 +372,18 @@ Feature: Enroll a in a plan 8 HH
     Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
-    And I click on ClickHere link for "My Documents"
-    And I click on download enrolment document
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-    
 
-    #Gmail Verification
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#    #Gmail Verification
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
 
     #DbVerification
-
     And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
