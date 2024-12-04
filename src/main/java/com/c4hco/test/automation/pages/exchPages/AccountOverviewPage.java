@@ -315,8 +315,7 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
     public void verifyMemberNames() {
-        List<MemberDetails> allMemberList = basicActions.getAllMem();
-
+        List<MemberDetails> allMemberList = basicActions.getAllEligibleMemInfo();
         for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() + SharedData.getScenarioDetails().getTotalGroups(); i++) {
 
             List<String> expectedMemberNames = new ArrayList<>();
@@ -344,14 +343,12 @@ public class AccountOverviewPage {
                     }
                 }
             }
-
-            // Assert that the actual and expected names match exactly
             softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size() == expectedMemberNames.size(), "Member names do not match.");
         }
-
-        // Finalize all assertions
         softAssert.assertAll();
     }
+
+
     private void verifyPlanInfo1(MemberDetails memberInfo) {
         //Medical Plan Validation
         WebElement MedicalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[4]/b"));
