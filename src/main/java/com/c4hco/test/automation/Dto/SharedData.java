@@ -56,6 +56,7 @@ public class SharedData {
     @Getter @Setter private static BrokerDetails agencyOwner;
     @Getter @Setter private static BrokerDetails broker;
     @Getter @Setter private static BrokerDetails adminStaff;
+    @Getter @Setter private static AssisterDetails programManager;
     @Getter @Setter private static String noticeFileName;
     @Getter @Setter private static List<BookOfBusinessQEntity> bookOfBusinessQEntityList;
     @Getter @Setter private static Map<String, List<String>> groupingDetails;
@@ -65,7 +66,8 @@ public class SharedData {
     @Getter @Setter private static List<String> medicalPlansList;
     @Getter @Setter private static List<String> dentalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
-    @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates;
+    @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_medicalPlan;
+    @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_dentalPlan;
     @Getter @Setter private static Map<String, String> exchPersonId;
     @Getter @Setter private static String birthLceIndividual;
     @Getter @Setter private static ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan;
@@ -75,7 +77,6 @@ public class SharedData {
     @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
-    @Getter @Setter private static Boolean noPlansSkipped = true;
 
 
     public static void reset(){
@@ -103,7 +104,6 @@ public class SharedData {
         medicalPlansList=null;
         dentalPlansList=null;
         calculatedDob = null;
-        expectedCalculatedDates = null;
         exchPersonId=null;
         birthLceIndividual = null;
         allMembers = null;
@@ -119,7 +119,8 @@ public class SharedData {
         dentalOb999FileName = null;
         ob999Segments = null;
         ib834TransactionDetails=null;
-        noPlansSkipped = true;
+        expectedCalculatedDates_medicalPlan = null;
+        expectedCalculatedDates_dentalPlan = null;
     }
 
 }

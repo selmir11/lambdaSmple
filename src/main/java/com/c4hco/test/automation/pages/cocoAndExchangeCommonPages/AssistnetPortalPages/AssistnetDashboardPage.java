@@ -1,6 +1,8 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AssistnetPortalPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -43,7 +45,8 @@ public class AssistnetDashboardPage {
     @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Save")
     WebElement saveBTN;
 
-
+    @FindBy(id = "button-new-org")
+    WebElement addNewOrganizationButton;
 
 
     public void ClickOnViewMyClients() {
@@ -115,5 +118,49 @@ public class AssistnetDashboardPage {
 
     public void clickSaveBtnInAP() {
         saveBTN.click();
+    }
+
+    public void clickAddNewOrganization() {
+        basicActions.waitForElementToBePresent(addNewOrganizationButton, 20);
+
+        softAssert.assertEquals(addNewOrganizationButton.getText(), "Add New Organization");
+        softAssert.assertAll();
+
+        addNewOrganizationButton.click();
+    }
+
+    public void clickEditOrganization() {
+        basicActions.waitForElementToBePresent(addNewOrganizationButton, 20);
+
+        int rows = basicActions.getDriver().findElements(By.xpath("//*[@id='myOrganizations']/app-organizations/div/div[2]/table/tbody/tr")).size();
+        System.out.println("Rows found " +rows);
+        System.out.println("Searching for " +SharedData.getProgramManager().getOrganizationSiteName());
+
+        for(int r=1; r<rows; r++){
+            String orgName = basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[1]")).getText();
+
+            if(orgName.equals(SharedData.getProgramManager().getOrganizationSiteName())){
+                System.out.println("Found at row " +r);
+                basicActions.getDriver().findElement(By.xpath("//*[@id='myOrganizations']/app-organizations/div/div[2]/table/tbody/tr[" + r + "]/td[5]/a")).click();
+                break;
+            }
+        }
+    }
+
+    public void validateUpdatedOrgNameListed() {
+        basicActions.waitForElementToBePresent(addNewOrganizationButton, 20);
+
+        int rows = basicActions.getDriver().findElements(By.xpath("//*[@id='myOrganizations']/app-organizations/div/div[2]/table/tbody/tr")).size();
+        System.out.println("Rows found " +rows);
+        System.out.println("Searching for " +SharedData.getProgramManager().getOrganizationSiteName());
+
+        for(int r=1; r<rows; r++){
+            String orgName = basicActions.getDriver().findElement(By.xpath("//tbody/tr["+r+"]/td[1]")).getText();
+
+            if(orgName.equals(SharedData.getProgramManager().getOrganizationSiteName())){
+                System.out.println("Found at row " +r);
+                break;
+            }
+        }
     }
 }

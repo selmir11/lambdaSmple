@@ -473,10 +473,10 @@ public class WelcomePage {
         expectedCalculatedDates.setFinancialStartDate(financialStartDate);
         expectedCalculatedDates.setFinancialEndDate(financialEndDate);
 
-        subscriber.setPlanStartDate(planStartDate);
-        subscriber.setPlanEndDate(planEndDate);
+        subscriber.setMedicalPlanStartDate(planStartDate);
+        subscriber.setMedicalPlanEndDate(planEndDate);
 
-        SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
+      //  SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
 
     }
