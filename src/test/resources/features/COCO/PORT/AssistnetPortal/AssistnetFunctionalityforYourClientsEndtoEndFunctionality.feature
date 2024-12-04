@@ -21,7 +21,7 @@ Scenario: Authorizing an assister for an individual account
   Then I authorize my assister's site ID "Ucr14" or "8Gvzo"
   And I validate the authorization success message
   Then I click Go Back on the Authorize Assister Organization page
-  And I validate the Continue with my application button "is not" displayed
+  Then I validate the Continue on my own button "is not displayed"
 
   And I validate the current assister text exists
   And I validate the current assister table header labels
@@ -34,7 +34,7 @@ Scenario: Authorizing an assister for an individual account
   And I validate the Previous Broker Assister text
   And I validate the Previous Broker Assister table header labels
   Then I validate the Assister details in the Previous Broker Assister table are "Blue River Assisters", "Ucr14", or "8Gvzo", "80205", "720-894-1592", Assister
-  And I validate the Continue with my application button "is not" displayed
+  Then I validate the Continue on my own button "is not displayed"
 
   And I click the Authorize Assister Organization button
   Then I authorize my assister's site ID "Ucr14" or "8Gvzo"
@@ -46,7 +46,7 @@ Scenario: Authorizing an assister for an individual account
   Then I Remove my current Assister
   And I "Ok" my decision to remove my current assister
   And I validate no assister is authorized
-  And I validate the Continue with my application button "is not" displayed
+  Then I validate the Continue on my own button "is not displayed"
 
   Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header
   And I validate I am on the "CoCo Welcome" page
@@ -58,7 +58,7 @@ Scenario: Authorizing an assister for an individual account
   Then I click Go Back on the Authorize Assister Organization page
   Then I validate I am on the "Find Expert Help" page
   And I wait for 600 milliseconds
-  And I validate the Continue with my application button "is" displayed
+  Then I validate the Continue with my application button is displayed in "English"
   And I wait for 200 milliseconds
   Then I click on Sign Out in the Header for "Elmo"
 

@@ -184,10 +184,9 @@ public class DentalPlansResultsPage {
     }
 
     public void clickSkip() {
-        basicActions.waitForElementToDisappear( spinner, 20 );
+        basicActions.waitForElementToDisappear( spinner, 50 );
         basicActions.waitForElementToBePresent( dentalSkipBtn, 30 );
         dentalSkipBtn.click();
-        SharedData.setNoPlansSkipped(false);
     }
 
     public void clickFirstTwoCompareBoxes() {

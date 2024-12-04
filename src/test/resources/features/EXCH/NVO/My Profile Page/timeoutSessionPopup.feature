@@ -3,7 +3,7 @@ Feature: My Profile Page Exch
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLER-997  @WIP
+  @SLER-997  @NVOExchRegression
   Scenario: Timeout Session popup on my profile page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -14,3 +14,8 @@ Feature: My Profile Page Exch
     Then I click on ClickHere link for "My Profile"
     Then I validate I am on the "My Profile" page
     And I validate timeout session popup "English" on My Profile page
+    And I change the language from header to "Spanish"
+    And I validate timeout session popup "Spanish" on My Profile page
+    And I wait for 10000 milliseconds
+    And I change the language from header to "English"
+    Then I validate I am on the "Login" page

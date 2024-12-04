@@ -1,15 +1,20 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdminLceToolPage {
     private BasicActions basicActions;
@@ -63,12 +68,26 @@ public class AdminLceToolPage {
         basicActions.waitForElementToBePresent(lookUpSearchResults, 10);
     }
 
-    public void changeEffectiveDate(String effectiveDate) {
+    public void validatePlanYearOptions() {
+        basicActions.waitForElementToBePresent(planYrDropdown, 10);
+
+        int currentYear = Year.now().getValue();
+        List<String> expectedOptions = List.of("Select Option", String.valueOf(currentYear), String.valueOf(currentYear - 1), String.valueOf(currentYear - 2), String.valueOf(currentYear - 3));
+
+        planYrDropdown.click();
+        Select dropdown = new Select(planYrDropdown);
+        basicActions.waitForElementListToBePresent(dropdown.getOptions(), 10);
+        List<String> actualOptions = dropdown.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
+
+        Assert.assertEquals(actualOptions, expectedOptions, "Plan Year options in the dropdown did not match");
+    }
+
+    public void changeEffectiveDate(String effectiveDate, String planYear) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(planYrDropdown, 10);
         planYrDropdown.click();
 
-        planYrDrpdwnOptions.get(1).click(); // selects current year
+        selectPlanYear(planYear);
 
         changeEffectiveDt.sendKeys(effectiveDate);
         submitBtn.click();
@@ -77,6 +96,20 @@ public class AdminLceToolPage {
         SharedData.setPrimaryMember(subscriber);
 
         closeTabAndSwitchToCurrentWindow();
+    }
+
+    private void selectPlanYear(String planYear){
+        switch(planYear){
+            case "current year":
+                planYrDrpdwnOptions.get(1).click(); // selects current year
+                break;
+            case "last available year":
+                planYrDrpdwnOptions.get(4).click(); // selects current year minus 3 years
+                SharedData.setPlanYear(String.valueOf(Year.now().getValue()-3));
+                break;
+            default: Assert.fail("Invalid argument passed");
+        }
+
     }
 
     public void closeTabAndSwitchToCurrentWindow() {

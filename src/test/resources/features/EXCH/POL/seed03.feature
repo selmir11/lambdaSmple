@@ -13,10 +13,13 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Given I set the dynamic policy, coverage and financial dates
+    And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
-    And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -31,7 +34,6 @@ Feature: Seed03 - Exchange
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    And I set the current broker details
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
@@ -96,7 +98,7 @@ Feature: Seed03 - Exchange
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    And I change effective date to "0101" of current year from admin portal
+    And I change effective date to "0101" of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -105,7 +107,6 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
-#    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -124,6 +125,8 @@ Feature: Seed03 - Exchange
     And I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox

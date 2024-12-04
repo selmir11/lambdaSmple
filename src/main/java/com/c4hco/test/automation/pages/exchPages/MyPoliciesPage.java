@@ -137,8 +137,8 @@ public class MyPoliciesPage {
         Set<String> namesFromUi = new HashSet<>(Arrays.asList(memberNames.get(1).getText().replace(" and ", ", ").split(", ")));
         softAssert.assertTrue(allMemberNames.equals(namesFromUi));
 
-        softAssert.assertEquals(planStartAndEndDate.get(2).getText(), primaryMember.getPlanStartDate(), "Dental start date didn't match");
-        softAssert.assertEquals(planStartAndEndDate.get(3).getText(), primaryMember.getPlanEndDate(), "Dental end date didnt match");
+        softAssert.assertEquals(planStartAndEndDate.get(2).getText(), primaryMember.getDentalPlanStartDate(), "Dental start date didn't match");
+        softAssert.assertEquals(planStartAndEndDate.get(3).getText(), primaryMember.getDentalPlanEndDate(), "Dental end date didnt match");
         softAssert.assertEquals(planNames.get(1).getText(), primaryMember.getDentalPlan(),"dental plan name did not match. Actual on page::"+planNames.get(1).getText()+"::Expected::"+primaryMember.getDentalPlan());
         softAssert.assertEquals(premiumAmt.get(1).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$", ""), "Dental premium did not match");
         softAssert.assertTrue(policyNumSubscriber.get(8).getText().equals("Subscriber:"));
@@ -161,8 +161,8 @@ public class MyPoliciesPage {
         Set<String> namesFromUi = new HashSet<>(Arrays.asList(memberNames.get(0).getText().replace(" and ", ", ").split(", ")));
         softAssert.assertTrue(allMemberNames.equals(namesFromUi));
 
-        softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getPlanStartDate(), "medical plan date did not match");
-        softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getPlanEndDate(), "medical plan end date did not match");
+        softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getMedicalPlanStartDate(), "medical plan date did not match");
+        softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getMedicalPlanEndDate(), "medical plan end date did not match");
         softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
         softAssert.assertEquals(premiumAmt.get(0).getText(), "$"+primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
         softAssert.assertTrue(policyNumSubscriber.get(2).getText().equals("Subscriber:"));
@@ -200,8 +200,8 @@ public class MyPoliciesPage {
         }else {
             softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + primaryMember.getMedicalAptcAmt()), "Medical APTC amount mismatch");
         }
-        softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getPlanStartDate()), "plan start date mismatch");
-        softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getPlanEndDate()), "plan end date mismatch");
+        softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getMedicalPlanStartDate()), "plan start date mismatch");
+        softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getMedicalPlanEndDate()), "plan end date mismatch");
         softAssert.assertAll();
     }
 
@@ -212,8 +212,8 @@ public class MyPoliciesPage {
         softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
         softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
         softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help
-        softAssert.assertEquals(tableRecord.get(4).getText(), primaryMember.getPlanStartDate(), "dental plan start date did not match");
-        softAssert.assertEquals(tableRecord.get(5).getText(), primaryMember.getPlanEndDate(), "dental plan end date did not match");
+        softAssert.assertEquals(tableRecord.get(4).getText(), primaryMember.getDentalPlanStartDate(), "dental plan start date did not match");
+        softAssert.assertEquals(tableRecord.get(5).getText(), primaryMember.getDentalPlanEndDate(), "dental plan end date did not match");
         softAssert.assertAll();
     }
 

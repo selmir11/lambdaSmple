@@ -25,21 +25,22 @@ public class AdminPortalReportsPage {
     WebElement detailKey;
     @FindBy(css = ".report-title")
     WebElement titleAccountActivity;
-    @FindBy(xpath = "//tr/td[3]")
+    @FindBy(xpath = "//tr[@class='sort-table-data-row']")
     List<WebElement> eventCodeList;
     @FindBy(xpath = "//table[@class='sort-table']//td")
     List<WebElement> columnsEventCode;
 
-    public void validateTitleAccountActivity()  {
-        basicActions.waitForElementToBePresent(titleAccountActivity,30);
+    public void validateTitleAccountActivity() {
+        basicActions.waitForElementListToBePresentWithRetries(eventCodeList, 30);
         softAssert.assertEquals("Account Activity",titleAccountActivity.getText());
         basicActions.waitForElementToBePresent(detailKey,20);
         softAssert.assertEquals("Detail Key",detailKey.getText());
         basicActions.waitForElementToBePresent(eventTime,20);
         softAssert.assertEquals("Time",eventTime.getText());
-        softAssert.assertAll(); }
+               softAssert.assertAll(); }
+
     public void viewActivity(String activityText,String userData,String timeForEvent, String descriptionData) {
-        basicActions.waitForElementListToBePresent(eventCodeList,3000);
+        basicActions.waitForElementListToBePresent(eventCodeList,300);
         List<String> username = eventCodeList.stream().filter(s -> s.getText().equals(activityText)).map(AdminPortalReportsPage::getUsername).toList();
         softAssert.assertTrue(username.contains(userData));
         List<String> time = eventCodeList.stream().filter(s -> s.getText().equals(activityText)).map(AdminPortalReportsPage::gettime).toList();

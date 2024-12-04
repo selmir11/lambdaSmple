@@ -467,16 +467,6 @@ public class FindACertifiedBrokerPage {
         }
         softAssert.assertAll();
     }
-    public void setCurrentBrokerContainerDetails(){
-        basicActions.waitForElementToBePresent(currentBrokerName,10);
-        basicActions.waitForElementToBePresent(currentBrokerLicenceNumber,10);
-        basicActions.waitForElementToBePresent(currentAgencyName,10);
-        BrokerDetails broker = new BrokerDetails();
-        broker.setBroker_name(currentBrokerName.getText());
-        broker.setBroker_lic_num(currentBrokerLicenceNumber.getText());
-        broker.setAgencyName(currentAgencyName.getText());
-        SharedData.setBroker(broker);
-    }
 
     public void clickAuthorizeBrokerButton(){
         basicActions.waitForElementToBePresent(authorizeBrokerButton,60);

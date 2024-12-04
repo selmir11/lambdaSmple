@@ -64,5 +64,19 @@ public class AssistnetDashboardSteps {
         assistnetDashboardPage.clickSaveBtnInAP();
     }
 
+    @And("I click on Add New Organization button")
+    public void iClickAddNewOrganizationButton(){
+        assistnetDashboardPage.clickAddNewOrganization();
+    }
+
+    @And("I click the edit button for my organization")
+    public void iClickEditOrganizationButton(){
+        assistnetDashboardPage.clickEditOrganization();
+    }
+
+    @And("I validate the updated organization name is listed")
+    public void iValidateUpdatedOrgNameListed(){
+        assistnetDashboardPage.validateUpdatedOrgNameListed();
+    }
 
 }

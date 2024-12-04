@@ -130,7 +130,7 @@ public class MedicalComparePage {
 
     public void validateInNetworkTextHeaders() {
         basicActions.waitForElementToBePresent(header, 10);
-        softAssert.assertEquals(header.getText(), "Plan Comparison");
+        softAssert.assertEquals(header.getText(), "Highlights");
         softAssert.assertEquals(inOneHeader.getText(), "Monthly Premium");
         softAssert.assertEquals(inTwoHeader.getText(), "General Details");
         softAssert.assertEquals(inThreeHeader.getText(), "Provider Office Visits");
@@ -149,7 +149,7 @@ public class MedicalComparePage {
 
     public void validateOutNetworkTextHeaders() {
         basicActions.waitForElementToBePresent(header, 10);
-        softAssert.assertEquals(header.getText(), "Plan Comparison");
+        softAssert.assertEquals(header.getText(), "Highlights");
         softAssert.assertEquals(outOneHeader.getText(), "Monthly Premium");//id='ngb-accordion-item-0-toggle'
         softAssert.assertEquals(outTwoHeader.getText(), "General Details");
         softAssert.assertEquals(outThreeHeader.getText(), "Provider Office Visits");

@@ -485,6 +485,21 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Status Elmo page":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Return portal Error Exch":
+                newUrl = "TaxReturnPortal/error";
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Return portal Unauthorized Exch":
+                newUrl = "TaxReturnPortal/unauthorized";
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
@@ -599,6 +614,18 @@ public class BasicActions {
         return Integer.toString(today.getYear());
     }
 
+    public String getStartDateOE() {// Today
+        LocalDate date = LocalDate.of(Integer.parseInt(getCurrYear()), 11, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return date.format(formatter);
+    }
+
+    public String getEndDateOE() {// Today
+        LocalDate date = LocalDate.of(Integer.parseInt(getCurrYear()), 12, 31);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return date.format(formatter);
+    }
+
     public String getFutureYear() {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear()+1);
@@ -616,11 +643,26 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return date.format(formatter);
     }
+
     public String firstDateOfNextMonth(){
         LocalDate today = LocalDate.now();
         LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
+    }
+
+    public String firstDateOfLastMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfLastMonth = today.minusMonths(1).withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfLastMonth.format(formatter);
+    }
+
+    public String firstDateOfCurrMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfCurrMonth = today.withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfCurrMonth.format(formatter);
     }
 
     public String lastDateOfNextMonth(){
@@ -635,6 +677,13 @@ public class BasicActions {
         LocalDate lastDayOfCurrMonth = YearMonth.from(today).atEndOfMonth();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         return lastDayOfCurrMonth.format(formatter);
+    }
+
+    public String lastDateOfPriorMonth(){
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfPriorMonth = YearMonth.from(today).minusMonths(1).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        return lastDayOfPriorMonth.format(formatter);
     }
 
     public String getTodayDate() {// Today

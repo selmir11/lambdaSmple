@@ -49,7 +49,7 @@ public class IncomeOptOutPage {
         subscriber.setAptcAmt("$0");
         subscriber.setFinancialHelp(false);
         SharedData.setPrimaryMember(subscriber);
-        noThanks.click();
+        basicActions.clickElementWithRetries(noThanks, 10);
     }
 
     public void chooseApply(){

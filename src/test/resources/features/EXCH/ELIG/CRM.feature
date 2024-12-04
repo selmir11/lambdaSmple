@@ -63,7 +63,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "SSN" MVR
     Then I check the "SSN" MVR title for "Primary"
     Then I check that the MVR has a status of "Open"
@@ -173,7 +173,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "Income" MVR
     Then I check that the MVR has a status of "Open"
     Then I sign out of CRM
@@ -253,7 +253,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     And I verify the "MA Application" DVR number 1 is "Active" in the CRM
     Then I open the "MA Application" DVR number 1 in the CRM
     Then I check the "MA Application" DVR title in the CRM
@@ -288,7 +288,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     And I verify the "MA Application" DVR number 1 is "Active" in the CRM
     And I verify the "MA Application" DVR number 2 is "Canceled" in the CRM
     Then I open the "MA Application" DVR number 1 in the CRM
@@ -387,7 +387,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     And I verify the "Citizenship/Immigration Status" DVR number 1 is "Active" in the CRM
     And I verify the "SSN Verification" DVR number 2 is "Active" in the CRM
     Then I open the "Citizenship" MVR
@@ -494,7 +494,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     And I verify the "MA Application" DVR number 1 is "Active" in the CRM
     Then I open the "MA Application" DVR number 1 in the CRM
     Then I check the "MA Application" DVR title in the CRM
@@ -506,7 +506,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user by Email Staging "PrimaryMemberkfetbekt.RmxhkdyjTest@test.com" QA "PrimaryMembergwjxcubx.IllrrtspTest@test.com" in CRM
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     And I verify the "MA Application" DVR number 1 is "Active" in the CRM
     Then I open the "MA Application" DVR number 1 in the CRM
     Then I check the "MA Application" DVR title in the CRM
@@ -541,7 +541,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     And I verify the "MA Application" DVR number 1 is "Active" in the CRM
     And I verify the "MA Application" DVR number 2 is "Canceled" in the CRM
     Then I open the "MA Application" DVR number 1 in the CRM
@@ -557,7 +557,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
 
   @SLER-1293
   Scenario: SLER-1293 Creation of Income DVR in OBO flow
-    And I enter first name "MVRAutomationTest" last name "VLPunex" and general mandatory data for "exchange" account creation
+    And I enter first name "MVRAutomationTest", middle name "mname", last name "VLPunex" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -646,7 +646,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I open the "Lawful Presence" MVR
     Then I check that the MVR has a status of "Open"
     Then I click the Go Back arrow in CRM
@@ -659,7 +659,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user by Email Staging "PrimaryMemberrupcfyxe.UmrmlttdTest@test.com" QA "PrimaryMemberwzxlssho.KnarwamrTest@test.com" in CRM
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I change the sort of Status Reason DVR to A to Z in the CRM
     And I verify the "MA Application" DVR number 1 is "Active" in the CRM
     Then I open the "MA Application" DVR number 1 in the CRM
@@ -702,7 +702,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
-    Then I open the MVRDVR Tab on contact page
+    Then I open the "MVRDVR" Tab on contact page
     Then I change the sort of Status Reason DVR to A to Z in the CRM
     And I verify the "MA Application" DVR number 1 is "Active" in the CRM
     And I verify the "MA Application" DVR number 2 is "Canceled" in the CRM

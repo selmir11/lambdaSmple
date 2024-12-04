@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.CreateAccountPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,8 +10,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+import java.lang.reflect.Field;
 
 import java.util.List;
+
+import static org.apache.logging.log4j.core.util.Assert.isEmpty;
 
 
 public class MyProfileExchPage {
@@ -51,14 +55,8 @@ public class MyProfileExchPage {
     @FindBy(id = "myProfile_mobilePhone")
     WebElement Mobilephone;
 
-    @FindBy(css = "#mobilePhone")
-    WebElement updateMobilePhone;
-
     @FindBy(id = "myProfile_homePhone")
     WebElement Homephone;
-
-    @FindBy(css = "#homePhone")
-    WebElement inputHomePhone;
 
     @FindBy(css = "h1.myProfile_title")
     WebElement MyProfileHeader;
@@ -68,6 +66,9 @@ public class MyProfileExchPage {
 
     @FindBy(css = "span.content_line_label")
     List<WebElement> MyProfileContentline;  ///// Name, Date of Birth, Social security number, Email, Mobile phone, Home phone, Residential address, Username, Password, account number, Preferred language contact, Preferred contact Method
+
+    @FindBy(css = "span.content_line_label.red-text")
+    List<WebElement> ErrorMessageContactInformation;
 
     @FindBy(css = "div.change-password-container")
     WebElement PasswordButton;
@@ -111,16 +112,16 @@ public class MyProfileExchPage {
     @FindBy(css = ".content_line_label.red-text")
     WebElement  EmailinUseMessage;
 
-    @FindBy(css = ".session-expiration-alert-modal-header.ng-tns-c1380103175-0")
+    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c3387428997-0")
     WebElement Headertimeout;
 
-    @FindBy(css = "p[class='ng-tns-c1380103175-0']")
+    @FindBy(css = "p.ng-tns-c3387428997-0")
     WebElement Questiontext;
 
-    @FindBy(css = "button[class='btn-primary-action-button ng-tns-c1380103175-0']")
+    @FindBy(id = "sessionExpirationAlert-Continue")
     WebElement YesTimeout;
 
-    @FindBy(css = "button[class='btn-second-action-button ng-tns-c1380103175-0']\n")
+    @FindBy(id = "sessionExpirationAlert-Logout")
     WebElement NoTimeout;
 
     @FindBy(css = ".row.header-2.popup-page-header")
@@ -143,6 +144,13 @@ public class MyProfileExchPage {
 
     @FindBy(xpath = "//*[@id='contactNames']/option[2]")
     WebElement dpdPrimaryChangeOpt2;
+
+    @FindBy(css = "hr.myProfile_home_phone_hr")
+    WebElement grayLineHP;
+
+    @FindBy(css = "hr.myProfile_address_hr")
+    WebElement grayLineAddress;
+
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -300,8 +308,8 @@ public class MyProfileExchPage {
         softAssert.assertEquals(MyProfileSubHeading.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileSubHeading.get(3).getCssValue("font-size"), "19px");
         softAssert.assertEquals(MyProfileSubHeading.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to Welcome page");
-        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Make Changes");
+        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to welcome page");
+        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Make changes");
         clickMakeChangesButton();
         clickPreferredLanguageDrp();
         softAssert.assertEquals(MyProfileContentline.get(10).getText(), "Preferred Language of Contact");
@@ -318,7 +326,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(PreferredContactDrpOptions.get(1).getText(), "Email");
         //softAssert.assertEquals(PreferredContactDrpOptions.get(2).getText(), "Mail");
         clickSaveButton();
-        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to Welcome page");
+        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Go back to welcome page");
         softAssert.assertAll();
     }
 
@@ -392,8 +400,8 @@ public class MyProfileExchPage {
         softAssert.assertEquals(MyProfileContentline.get(11).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentline.get(11).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentline.get(11).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Volver a la Pagina de Bienvenida");
-        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Hacer Cambios");
+        softAssert.assertEquals(MyProfileButtonExch.get(0).getText(), "Volver a la pagina de bienvenida");
+        softAssert.assertEquals(MyProfileButtonExch.get(1).getText(), "Hacer cambios");
         softAssert.assertAll();
     }
 
@@ -416,7 +424,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
         softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
-        softAssert.assertEquals(PasswordButton.getText(), "Change Password");
+        softAssert.assertEquals(PasswordButton.getText(), "Change password");
         softAssert.assertAll();
     }
 
@@ -427,7 +435,7 @@ public class MyProfileExchPage {
         softAssert.assertEquals(PasswordMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(PasswordMessage.getCssValue("font-size"), "12px");
         softAssert.assertEquals(PasswordMessage.getCssValue("color"), "rgba(182, 38, 38, 1)");
-        softAssert.assertEquals(PasswordButton.getText(), "Cambiar Contrase\u00F1a");
+        softAssert.assertEquals(PasswordButton.getText(), "Cambiar contrase\u00F1a");
         softAssert.assertAll();
     }
 
@@ -466,6 +474,14 @@ public class MyProfileExchPage {
         SharedData.getPrimaryMember().setEmailId(newEmail);
         InputEmail.clear();
         InputEmail.sendKeys(newEmail);
+    }
+
+    public void updateContactPhoneNumber() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        SharedData.getPrimaryMember().setPhoneNumber(newPhone);
+        Homephone.clear();
+        Homephone.sendKeys(newPhone);
     }
     
     public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
@@ -734,8 +750,8 @@ public class MyProfileExchPage {
         MyProfileButtonExch.get(1).click();
         System.out.println("phoneNumber ::" + SharedData.getPrimaryMember().getPhoneNumber());
         String newMobile = "7205210110";
-        updateMobilePhone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        updateMobilePhone.sendKeys(newMobile);
+        Mobilephone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        Mobilephone.sendKeys(newMobile);
         MyProfileButtonExch.get(1).click();
         basicActions.waitForElementToBePresent(PasswordInput, 40);
         PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
@@ -748,8 +764,8 @@ public class MyProfileExchPage {
         MyProfileButtonExch.get(1).click();
         System.out.println("phoneNumber ::" + SharedData.getPrimaryMember().getPhoneNumber());
         String newHome = "3037182114";
-        inputHomePhone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        inputHomePhone.sendKeys(newHome);
+        Homephone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        Homephone.sendKeys(newHome);
         MyProfileButtonExch.get(1).click();
         basicActions.waitForElementToBePresent(PasswordInput, 40);
         PasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
@@ -879,12 +895,12 @@ public class MyProfileExchPage {
 
 
     public void verifyTimeoutPopupEnglish() {
-        basicActions.wait(900000);
-        basicActions.waitForElementToBePresent(Headertimeout, 2000000);
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
         softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
-        basicActions.waitForElementToBePresent(YesTimeout, 10);
+        basicActions.isElementDisplayed(Questiontext, 10);
         YesTimeout.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
         softAssert.assertAll();
@@ -892,12 +908,13 @@ public class MyProfileExchPage {
 
 
     public void verifyTimeoutPopupSpanish() {
-        basicActions.waitForElementToBePresent(Headertimeout, 840000);
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
         softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
-        YesTimeout.click();
-        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        basicActions.isElementDisplayed(Questiontext, 10);
+        NoTimeout.click();
         softAssert.assertAll();
     }
 
@@ -919,8 +936,8 @@ public class MyProfileExchPage {
         basicActions.waitForElementToBePresent(headerChangePrimary, 2000);
         softAssert.assertEquals(headerChangePrimary.getText(), "Change Primary Contact");
         primaryContactDRP.click();
-        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
-        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getPrimaryMember().getFullName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(),  SharedData.getPrimaryMember().getFullName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
         String firstName = SharedData.getMembers().get(0).getFirstName();
         primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
@@ -937,8 +954,8 @@ public class MyProfileExchPage {
         basicActions.waitForElementToBePresent(headerChangePrimary, 2000);
         softAssert.assertEquals(headerChangePrimary.getText(), "Cambiar el contacto principal");
         primaryContactDRP.click();
-        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
-        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getPrimaryMember().getFullName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt1.getText(),  SharedData.getPrimaryMember().getFullName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt2.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
         String firstName = SharedData.getMembers().get(0).getFirstName();
         primaryContactDRP.sendKeys(firstName);
         primaryContactDRP.sendKeys(Keys.ENTER);
@@ -956,10 +973,75 @@ public class MyProfileExchPage {
         memberList.add(primaryMem);
 
         memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            newPrimaryMem.setEmailId(primaryMem.getEmailId());
+            newPrimaryMem.setAccount_id(primaryMem.getAccount_id());
+            newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
+            newPrimaryMem.setResAddress(primaryMem.getResAddress());
+            newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
             memberList.remove(newPrimaryMem);
             SharedData.setPrimaryMember(newPrimaryMem);
         });
         SharedData.setMembers(memberList);
+    }
 
+    public void validateErrorMessage(String language) {
+        switch (language) {
+            case "English":
+                validateErrorMessageEnglish();
+                break;
+            case "Spanish":
+                validateErrorMessageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateErrorMessageEnglish() {
+        // Update email address/////////
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40000);
+        MyProfileButtonExch.get(1).click();
+        InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        basicActions.waitForElementToBePresent(Mobilephone, 40);
+        Mobilephone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        String newPhoneNumber = "303";
+        Mobilephone.sendKeys(newPhoneNumber);
+        basicActions.waitForElementToBePresent(Homephone, 40);
+        Homephone.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        Homephone.sendKeys(newPhoneNumber);
+        MyProfileButtonExch.get(1).click();
+        softAssert.assertEquals(ErrorMessageContactInformation.get(0).getText(), "A valid email is required");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getText(), "Please enter a valid phone number");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getText(), "Please enter a valid phone number");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(grayLineHP.getCssValue("color"), "rgba(149, 147, 147, 1)");
+        softAssert.assertEquals(grayLineAddress.getCssValue("color"), "rgba(149, 147, 147, 1)");
+        softAssert.assertAll();
+    }
+
+
+    public void validateErrorMessageSpanish() {
+
+        softAssert.assertEquals(ErrorMessageContactInformation.get(0).getText(), "Es obligatorio un correo electr\u00F3nico v\u00E1lido");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getText(), "Ingrese un n\u00FAmero de tel\u00E9fono v\u00E1lido");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getText(), "Ingrese un n\u00FAmero de tel\u00E9fono v\u00E1lido");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertAll();
     }
 }
