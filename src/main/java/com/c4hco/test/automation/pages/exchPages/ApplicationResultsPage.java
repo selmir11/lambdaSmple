@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -8,15 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ApplicationResultsPage {
     SoftAssert softAssert = new SoftAssert();
@@ -88,8 +83,7 @@ public class ApplicationResultsPage {
     }
 
     public void clickBtnContinue(){
-        basicActions.waitForElementToBePresent(continueBtn,10);
-        setEligibilityInfo();
+        basicActions.waitForElementToBePresent(continueBtn, 10);
         continueBtn.click();
     }
 
@@ -216,15 +210,5 @@ public class ApplicationResultsPage {
         basicActions.waitForElementToBePresent(lnkProvideDocs,20);
         basicActions.scrollToElement(lnkProvideDocs);
         lnkProvideDocs.click();
-    }
-
-    private void setEligibilityInfo(){
-        for (MemberDetails memName : basicActions.getAllMem()){
-            List<WebElement> eleeligibilityDetails = basicActions.getDriver().findElements(By.xpath("//span[contains(text(),'"+memName.getFirstName()+"')]/parent::div/following-sibling::table //tr"));
-            for(WebElement eleDetail : eleeligibilityDetails){
-                if(eleDetail.getText().contains("did not apply for health coverage")|| eleDetail.getText().contains("does not qualify for health coverage"))
-                    memName.setEligibilityInfo(false);
-            }
-        }
     }
 }

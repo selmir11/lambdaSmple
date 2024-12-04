@@ -83,7 +83,7 @@ public class AdminPortalSearchPage {
     @FindBy(xpath = "//span[@class='tollbar-app-links']//span")
     public WebElement ApplicationLinksdropdown;
 
-    @FindBy(id = "logout-link")
+    @FindBy(css = "#logout-link")
     WebElement logoutAdmin;
 
     @FindBy(css = ".col.text-lg-right.p-0")
@@ -347,6 +347,24 @@ public class AdminPortalSearchPage {
             case "LicenseNumber":
                 searchInputList.get(5).sendKeys(type);
                 break;
+            case "AgencyName":
+                searchInputList.get(0).sendKeys(type);
+                break;
+            case "StateLicenseNumber":
+                searchInputList.get(1).sendKeys(type);
+                break;
+            case "BusinessAddressCity":
+                searchInputList.get(3).sendKeys(type);
+                break;
+            case "BusinessAddressZipCode":
+                searchInputList.get(4).sendKeys(type);
+                break;
+            case "AgencyEmail":
+                searchInputList.get(2).sendKeys(type);
+                break;
+            case "PrimaryPhoneNumber":
+                searchInputList.get(5).sendKeys(type);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid header option : " + userdata);
         }
@@ -439,6 +457,12 @@ public class AdminPortalSearchPage {
             case "Account ID":
                 selectorList = AccountsID;
                 break;
+            case "Agency Name":
+                selectorList = AccountsID;
+                break;
+            case "Agent":
+                selectorList = FirstName;
+                break;
             default:
                 throw new IllegalArgumentException("Invalid sort option: " + sortOrder);
         }
@@ -496,11 +520,76 @@ public class AdminPortalSearchPage {
                 verifyBrokerAccountTitledetails();
                 verifyBrokerData();
                 break;
+            case "Agency":
+                verifyAgencyAccountTitledetails();
+                verifyAgencyData();
+                break;
+            case "coco":
+                verifycocoAccountTitledetails();
+                verifycocoData();
+                break;
+            case "indiviual":
+                verifyIndiviualAccountTitledetails();
+                verifyIndiviualData();
+                break;
+
+
             default:
                 throw new IllegalStateException("Unexpected value: " + category);
         }
 
     }
+
+    public void verifyIndiviualAccountTitledetails(){
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Primary Account Holder", "Date of Birth", "Email", "Phone Number", "Broker Association");
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
+
+    public void verifyIndiviualData(){
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+        List<String> qaexpectedTitles = List.of("9083564085", "Jack", "Sprat", "Jack Sprat", "03/01/1990", "Jack.Sprat@invali..", "567-898-7654", "Diamond Broker..");
+        List<String> stgexpectedTitles = List.of("9083564085", "Jack", "Sprat", "Jack Sprat", "01/13/2020", "Jack.Sprat@invali..", "567-898-7654", "Diamond Broker..");
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(qaexpectedTitles,actualTitles);
+        } else {
+            softAssert.assertEquals(stgexpectedTitles,actualTitles);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifycocoAccountTitledetails(){
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Primary Account Holder", "Date of Birth", "Email", "Phone Number", "Broker Association");
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
+
+    public void verifycocoData(){
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+        List<String> qaexpectedTitles = List.of("2008008265", "Betty", "Bertha", "Betty Bertha", "03/05/1989", "tspellnoticetesti..", "719-555-1212", "");
+        List<String> stgexpectedTitles = List.of("6703170627", "apeliznjsxs", "apindaikibrk", "apeliznjsxs ap..", "02/01/1983", "MGC4Test+apindaik..", "374-649-8737", "");
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(qaexpectedTitles,actualTitles);
+        } else {
+            softAssert.assertEquals(stgexpectedTitles,actualTitles);
+        }
+        softAssert.assertAll();
+    }
+
         public void verifyPMAccountTitledetails() {
             basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
             List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "Organization Name", "Site ID", "User Type");
@@ -526,15 +615,17 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
+
     public void verifyBrokerAccountTitledetails() {
         basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
-        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number","User Type");
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number", "User Type");
         List<String> actualTitles = searchResultsTitles.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
         softAssert.assertEquals(actualTitles, expectedTitles);
         softAssert.assertAll();
     }
+
 
     public void verifyBrokerData() {
         basicActions.waitForElementListToBePresent(aactsearchResults, 30);
@@ -551,13 +642,41 @@ public class AdminPortalSearchPage {
         softAssert.assertAll();
     }
 
+    public void verifyAgencyAccountTitledetails() {
+        basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
+        List<String> expectedTitles = List.of("Agency Name", "Agent", "Business Address City", "State License Number");
 
+        List<String> actualTitles = searchResultsTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualTitles, expectedTitles);
+        softAssert.assertAll();
+    }
 
-        public void accountCreatedMessage(){
+    public void verifyAgencyData() {
+        basicActions.waitForElementListToBePresent(aactsearchResults, 30);
+    List<String> qaexpectedTitles = List.of("Quantum Gemerald Age..", "Gem Agency", "Denver", "3453534543543");
+    List<String> stgexpectedTitles = List.of("Quantum Gemerald Age..", "Gem Agency", "Denver", "798567889");
+    List<String> actualTitles = aactsearchResults.stream()
+            .map(WebElement::getText)
+            .collect(Collectors.toList());
+        if(SharedData.getEnv().equals("qa")) {
+        softAssert.assertEquals(qaexpectedTitles,actualTitles);
+    } else {
+        softAssert.assertEquals(stgexpectedTitles,actualTitles);
+    }
+        softAssert.assertAll();
+}
+
+    public void accountCreatedMessage(){
         basicActions.waitForElementToBePresent(statusMessage, 30);
         softAssert.assertEquals(statusMessage.getText(),"Account created successfully. Please search for the account.");
         softAssert.assertAll();
         }
+    public void clickResetAdminPortal () {
+        basicActions.waitForElementListToBePresent(buttonsList, 10);
+        buttonsList.get(1).click();
+    }
 }
 
 

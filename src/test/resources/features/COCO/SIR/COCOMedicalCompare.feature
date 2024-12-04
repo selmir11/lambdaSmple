@@ -588,7 +588,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "Move" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -602,6 +602,7 @@ Feature: Verify COCO Medical Plan results
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
+    Then I wait for hold on content to disappear
     And I select 2 plans from page one and 1 plan from page two and click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
@@ -660,7 +661,7 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    Then I set date for all members of "Move" Life Change Event to event date of "Past 1"
+    And I select "Move" life change event with event date of "Past 1"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -674,6 +675,7 @@ Feature: Verify COCO Medical Plan results
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
+    Then I wait for hold on content to disappear
     And I select initial 3 plans and click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page

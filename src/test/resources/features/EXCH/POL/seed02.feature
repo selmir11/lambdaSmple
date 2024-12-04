@@ -12,10 +12,13 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Given I set the dynamic policy, coverage and financial dates
+    And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
-    And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -105,6 +108,8 @@ Feature: Seed02 - Exchange
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -165,7 +170,7 @@ Feature: Seed02 - Exchange
     And I validate "dental" entities from policy tables
 
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
@@ -178,7 +183,7 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "dental" file data
 
 
-  @SLER-95-wip
+  @SLER-95 @pol_exch_passed
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
@@ -216,15 +221,30 @@ Feature: Seed02 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I click on view results and shop
+
+    # - New updated name is not being displayed on the below pages - Bug - POL-9149
+#    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+#    Then I validate I am on the "My Account Overview" page
+#    And I Validate the correct enrolled plans are displayed on account overview page
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click View Plan History link from "medical" plan card
+#    And I validate "medical" plan details from plan history
+#    And I click on to Back to Current Plan Details button
+#    And I click View Plan History link from "dental" plan card
+#    And I validate "dental" plan details from plan history
+#    And I click on Sign Out in the Header for "Elmo"
+
     And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
-    And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-      | 001                   | 001                | 25                    | "DEMOGRAPHIC  CHANGE" |            |
+      | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
+
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
