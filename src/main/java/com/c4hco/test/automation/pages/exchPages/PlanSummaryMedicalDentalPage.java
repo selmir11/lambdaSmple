@@ -144,6 +144,7 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.scrollToElement( continueBtnOnPlanSummary );
         ((JavascriptExecutor) basicActions.getDriver()).executeScript( "arguments[0].click()", continueBtnOnPlanSummary );
     }
+    
     private void setMedicalPlansPremiumAmnt(MemberDetails subscriber,List<MemberDetails> memberslist){
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToDisappear(spinner, 15);
@@ -164,9 +165,9 @@ public class PlanSummaryMedicalDentalPage {
             }
         } else {
             //FA
-            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","");
+            String medAPTCAmt = medicalAPTCAmt.get(0).getText().replace("$","").replace(",", "");
             subscriber.setMedicalAptcAmt(medAPTCAmt);
-            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "");
+            String medPremiumMinusAPTC = medicalPremiumAfterAPTCAmt.getText().replace("$", "").replace(",", "");
             subscriber.setTotalMedAmtAfterReduction(medPremiumMinusAPTC);
             BigDecimal bigDecimalmedPremiumMinusAPTC = new BigDecimal(medPremiumMinusAPTC);
             BigDecimal bigDecimalmedAPTCAmt = new BigDecimal(medAPTCAmt);

@@ -208,7 +208,6 @@ Feature: Seed08 - Exchange - Open Enrollment
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
-#    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -246,8 +245,9 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I select "Delta Dental of Colorado Family Value Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
-
     And I select the terms and agreements checkbox
     And I enter "taxHolder1" signature on the Financial Help Agreements page
     And I enter "taxHolder2" signature on the Financial Help Agreements page
@@ -259,6 +259,7 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
     And I click on Sign Out in the Header for "NonElmo"
 
 
