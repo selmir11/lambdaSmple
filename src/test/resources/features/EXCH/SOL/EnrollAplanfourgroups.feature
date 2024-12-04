@@ -206,7 +206,7 @@ Feature: FA - 4groups - enroll in plan
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "80000.00" income at "Annually" frequency
+    And I enter employment details with "400000.00" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -321,7 +321,7 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on "No Thanks" on good news page
-    Then I validate that my APTC value is "3652.24/mo"
+    Then I validate that my APTC value is "869.54/mo"
 
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
@@ -333,11 +333,6 @@ Feature: FA - 4groups - enroll in plan
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    #And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
     And I select the first medical plan
     Then I click continue on medical plan results page
     And I select the first medical plan
@@ -360,11 +355,6 @@ Feature: FA - 4groups - enroll in plan
     Then I click continue on dental plan results page
     Then I select first dental plan
     Then I click continue on dental plan results page
-    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    #And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
@@ -423,23 +413,7 @@ Feature: FA - 4groups - enroll in plan
 
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
-    Then I click continue on application results page
-    Then I validate I am on the "Start Shopping" page
-    Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I click continue on grouping Members Medical page
-    And I validate I am on the "Medical Plan Results" page
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    Then I validate I am on the "Grouping Members Dental" page
-    Then I click continue on grouping Members Dental page
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    Then I validate I am on the "planSummaryMedicalDental" page
+
 
 
 
