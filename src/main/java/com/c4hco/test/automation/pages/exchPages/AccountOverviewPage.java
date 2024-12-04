@@ -174,22 +174,6 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
-    public void verifyPlanInfo() {
-        MemberDetails primaryMember = SharedData.getPrimaryMember();
-        softAssert.assertEquals(planYearOnWelcomeBackPage.getText(), SharedData.getPlanYear(),"Plan Year does not match");
-        int totalDependents = Integer.parseInt(SharedData.getScenarioDetails().getDependents());
-        // only the locator for the plan details change but the value will stay same for the entire group. Hence, comparing with primary member.
-        softAssert.assertEquals(planInformationTable.get(totalDependents+2).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
-
-        softAssert.assertEquals(planInformationTable.get(totalDependents+3).getText(), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+4).getText(), "$"+primaryMember.getMedicalAptcAmt(), "Medical APTC amount did not match");
-        //Dental
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+7).getText(), primaryMember.getDentalPlan(), "Primary Dental Plan Name does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+8).getText(), "$"+basicActions.doubleAmountFormat(primaryMember.getDentalPremiumAmt()), "Primary Dental Premium amount does not match");
-        softAssert.assertEquals(planInformationTable.get(totalDependents+totalDependents+9).getText(), primaryMember.getDentalAptcAmt(), "Dental APTC amount on account overview page mismatch");
-        softAssert.assertAll();
-    }
-
     public void setScenarioDetails(List<Map<String, String>> expectedResult) {
         String noOfGroups = expectedResult.get(0).get("totalGroups");
         String totalMembers = expectedResult.get(0).get("totalMembers");
@@ -266,7 +250,6 @@ public class AccountOverviewPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-
     public void validateUsername(String memberName){
     basicActions.waitForElementToBePresent(txtUserName,20);
     softAssert.assertTrue(txtUserName.getText().contains(memberName));
@@ -314,6 +297,7 @@ public class AccountOverviewPage {
         softAssert.assertFalse(basicActions.isElementDisplayed(btnVerifyYourInformation, 10));
         softAssert.assertAll();
     }
+
     public void verifyMemberNames() {
         List<MemberDetails> allMemberList = basicActions.getAllEligibleMemInfo();
         for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() + SharedData.getScenarioDetails().getTotalGroups(); i++) {
@@ -339,7 +323,7 @@ public class AccountOverviewPage {
                         softAssert.assertTrue(member.getMedGroupInd().equals(expectedMedGroupInd),"Member Medical Group :"+member.getMedGroupInd()+" does not match to another member Medical Group : "+expectedMedGroupInd);
                         expectedMemberNames.add(member.getSignature());
 
-                        verifyPlanInfo1(member);
+                        verifyPlanInfo(member);
                     }
                 }
             }
@@ -348,8 +332,7 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
-
-    private void verifyPlanInfo1(MemberDetails memberInfo) {
+    private void verifyPlanInfo(MemberDetails memberInfo) {
         //Medical Plan Validation
         WebElement MedicalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[4]/b"));
         WebElement MedicalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[5]/b"));
