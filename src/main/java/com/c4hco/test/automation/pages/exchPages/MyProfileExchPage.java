@@ -112,16 +112,16 @@ public class MyProfileExchPage {
     @FindBy(css = ".content_line_label.red-text")
     WebElement  EmailinUseMessage;
 
-    @FindBy(css = ".session-expiration-alert-modal-header.ng-tns-c1380103175-0")
+    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c3387428997-0")
     WebElement Headertimeout;
 
-    @FindBy(css = "p[class='ng-tns-c1380103175-0']")
+    @FindBy(css = "p.ng-tns-c3387428997-0")
     WebElement Questiontext;
 
-    @FindBy(css = "button[class='btn-primary-action-button ng-tns-c1380103175-0']")
+    @FindBy(id = "sessionExpirationAlert-Continue")
     WebElement YesTimeout;
 
-    @FindBy(css = "button[class='btn-second-action-button ng-tns-c1380103175-0']\n")
+    @FindBy(id = "sessionExpirationAlert-Logout")
     WebElement NoTimeout;
 
     @FindBy(css = ".row.header-2.popup-page-header")
@@ -895,12 +895,12 @@ public class MyProfileExchPage {
 
 
     public void verifyTimeoutPopupEnglish() {
-        basicActions.wait(900000);
-        basicActions.waitForElementToBePresent(Headertimeout, 2000000);
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
         softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
-        basicActions.waitForElementToBePresent(YesTimeout, 10);
+        basicActions.isElementDisplayed(Questiontext, 10);
         YesTimeout.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
         softAssert.assertAll();
@@ -908,12 +908,13 @@ public class MyProfileExchPage {
 
 
     public void verifyTimeoutPopupSpanish() {
-        basicActions.waitForElementToBePresent(Headertimeout, 840000);
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
         softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
-        YesTimeout.click();
-        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        basicActions.isElementDisplayed(Questiontext, 10);
+        NoTimeout.click();
         softAssert.assertAll();
     }
 

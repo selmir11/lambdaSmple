@@ -85,6 +85,19 @@ public class MyProfilePage {
     @FindBy(css = "a#termsOfUseLink.action-link1")
     WebElement termsOfUseCoCo;
 
+    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c3387428997-0")
+    WebElement Headertimeoutcoco;
+
+    @FindBy(css = "p.ng-tns-c3387428997-0")
+    WebElement Questiontextcoco;
+
+    @FindBy(id = "sessionExpirationAlert-Continue")
+    WebElement YesTimeoutcoco;
+
+    @FindBy(id = "sessionExpirationAlert-Logout")
+    WebElement NoTimeoutcoco;
+
+
 
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
@@ -418,6 +431,44 @@ public class MyProfilePage {
         softAssert.assertEquals(privacyPolicyCoCo.getText(), "Pol\u00EDtica de privacidad");
         softAssert.assertEquals(termsOfUseCoCo.getText(), "T\u00E9rminos de uso");
         savePrimaryContactCoCo.click();
+        softAssert.assertAll();
+    }
+
+    public void VerifyTimeoutPopupCoco(String language) {
+        switch (language) {
+            case "English":
+                verifyTimeoutPopupEnglishCoco();
+                break;
+            case "Spanish":
+                verifyTimeoutPopupSpanishCoco();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyTimeoutPopupEnglishCoco() {
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
+        softAssert.assertEquals(Headertimeoutcoco.getText(), "Your session is about to end.");
+        softAssert.assertEquals(NoTimeoutcoco.getText(), "No, sign me out");
+        softAssert.assertEquals(YesTimeoutcoco.getText(), "Yes, stay signed in");
+        basicActions.isElementDisplayed(Questiontextcoco, 10);
+        YesTimeoutcoco.click();
+        basicActions.waitForElementToBePresent(MyProfileButtonCoCo.get(1), 10);
+        softAssert.assertAll();
+    }
+
+
+    public void verifyTimeoutPopupSpanishCoco() {
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
+        softAssert.assertEquals(Headertimeoutcoco.getText(), "El tiempo de su sesi\u00F3n est\u00E1 por terminar.");
+        softAssert.assertEquals(NoTimeoutcoco.getText(), "No, cierre mi sesi\u00F3n");
+        softAssert.assertEquals(YesTimeoutcoco.getText(), "S\u00ED, deseo seguir en la sesi\u00F3n");
+        basicActions.isElementDisplayed(Questiontextcoco, 10);
+        NoTimeoutcoco.click();
         softAssert.assertAll();
     }
 }
