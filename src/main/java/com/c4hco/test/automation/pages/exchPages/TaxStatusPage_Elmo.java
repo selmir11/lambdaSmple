@@ -100,16 +100,16 @@ public class TaxStatusPage_Elmo {
             case "Married filing jointly":
                 filingStatusDpd.get(1).click();
                 break;
-            case "Qualified widow(er)":
+            case "Married filing single":
                 filingStatusDpd.get(2).click();
                 break;
-            case "Married filing single":
+            case "Head of household":
                 filingStatusDpd.get(3).click();
                 break;
             case "Single":
                 filingStatusDpd.get(4).click();
                 break;
-            case "Head of household":
+            case "Qualified widow(er)":
                 filingStatusDpd.get(5).click();
                 break;
             default:
