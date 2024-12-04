@@ -541,7 +541,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-553 @HeaderValidation @NVOCoCoRegression
+  @SLCR-642 @HeaderValidation @NVOCoCoRegression
   Scenario: Validate Header on the application pages in Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
