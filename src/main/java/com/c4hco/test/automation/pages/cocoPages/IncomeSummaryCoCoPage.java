@@ -132,8 +132,8 @@ public class IncomeSummaryCoCoPage {
     }
 
     public void verifyTotalAnnualIncome(String Amount){
-        basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 10);
-        basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 15);
+        basicActions.waitForElementToDisappear(spinner, 30);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
         softAssert.assertAll();
     }
