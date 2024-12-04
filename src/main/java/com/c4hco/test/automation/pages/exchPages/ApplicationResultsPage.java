@@ -213,13 +213,16 @@ public class ApplicationResultsPage {
         basicActions.scrollToElement(lnkProvideDocs);
         lnkProvideDocs.click();
     }
+
     private void setEligibilityInfo(){
         for (MemberDetails memName : basicActions.getAllMem()){
             List<WebElement> eleeligibilityDetails = basicActions.getDriver().findElements(By.xpath("//span[contains(text(),'"+memName.getFirstName()+"')]/parent::div/following-sibling::table //tr"));
             for(WebElement eleDetail : eleeligibilityDetails){
                 if(eleDetail.getText().contains("did not apply for health coverage")|| eleDetail.getText().contains("does not qualify for health coverage"))
                     memName.setHasMedicalPlan(false);
+                    memName.setHasDentalPlan(false);
             }
         }
     }
+
 }
