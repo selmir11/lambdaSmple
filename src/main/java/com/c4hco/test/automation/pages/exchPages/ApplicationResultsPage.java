@@ -218,7 +218,7 @@ public class ApplicationResultsPage {
             List<WebElement> eleeligibilityDetails = basicActions.getDriver().findElements(By.xpath("//span[contains(text(),'"+memName.getFirstName()+"')]/parent::div/following-sibling::table //tr"));
             for(WebElement eleDetail : eleeligibilityDetails){
                 if(eleDetail.getText().contains("did not apply for health coverage")|| eleDetail.getText().contains("does not qualify for health coverage"))
-                    memName.setEligibilityInfo(false);
+                    memName.setHasMedicalPlan(false);
             }
         }
     }

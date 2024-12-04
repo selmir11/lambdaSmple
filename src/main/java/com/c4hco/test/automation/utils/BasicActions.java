@@ -848,7 +848,7 @@ public class BasicActions {
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allEligibleMembers = new ArrayList<>();
         for (MemberDetails memInfo : allMembers) {
-            if (memInfo.getEligibilityInfo()) {
+            if (memInfo.getHasMedicalPlan()) {
                 allEligibleMembers.add(memInfo);
             }
         }
