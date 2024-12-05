@@ -53,6 +53,11 @@ Feature: Eligibility Notices
     Then I click continue on the Add Address page
 
     # Life change information
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     Then I verify the family overview table is present
     Then I click continue on family overview page
@@ -168,6 +173,8 @@ Feature: Eligibility Notices
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
@@ -287,6 +294,8 @@ Feature: Eligibility Notices
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
@@ -408,6 +417,8 @@ Feature: Eligibility Notices
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
@@ -527,6 +538,8 @@ Feature: Eligibility Notices
 #    Then I select "No" to the recently denied medicaid question
 #    Then I select "No" for Incarceration option
 #    Then I click continue on the Add Address page
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I click continue on the Race and Ethnicity page
 #    Then I validate I am on the "Citizenship" page
 #    Then I select "Yes" for Citizen option
 #    Then I select "No" for Naturalized Immigrant option
@@ -648,6 +661,8 @@ Feature: Eligibility Notices
 #    Then I select "No" to the recently denied medicaid question
 #    Then I select "No" for Incarceration option
 #    Then I click continue on the Add Address page
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I click continue on the Race and Ethnicity page
 #    Then I validate I am on the "Citizenship" page
 #    Then I select "Yes" for Citizen option
 #    Then I select "No" for Naturalized Immigrant option
@@ -673,6 +688,8 @@ Feature: Eligibility Notices
 #    Then I select "No" to the recently denied medicaid question
 #    Then I select "No" for Incarceration option
 #    Then I click continue on the Add Address page
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I click continue on the Race and Ethnicity page
 #    Then I validate I am on the "Citizenship" page
 #    Then I select "Yes" for Citizen option
 #    Then I select "No" for Naturalized Immigrant option
