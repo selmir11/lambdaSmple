@@ -151,7 +151,7 @@ public class PlanSummaryMedicalDentalPage {
         basicActions.waitForElementToBePresent(medicalPremiumAfterAPTCAmt, 10);
         basicActions.waitForElementListToBePresent(medicalAPTCAmt, 10);
 
-        List<MemberDetails> memberslist = basicActions.getAllEligibleMemInfo();
+        List<MemberDetails> memberslist = basicActions.getAllMedicalEligibleMemInfo();
 
         basicActions.wait(3000);
 
@@ -190,7 +190,7 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     private void setDentalPlansPremiumAmt() {
-        List<MemberDetails> memberslist = basicActions.getAllEligibleMemInfo();
+        List<MemberDetails> memberslist = basicActions.getAllDentalEligibleMemInfo();
         for(MemberDetails member: memberslist){
 
             //getting group details
