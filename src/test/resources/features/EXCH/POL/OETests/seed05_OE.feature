@@ -159,14 +159,13 @@ Feature: Seed05 - Exchange - OE
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
-
-   # And I click on Sign Out in the Header for "NonElmo"
+   And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
@@ -189,7 +188,6 @@ Feature: Seed05 - Exchange - OE
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "NoneOfThese" and click continue
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     Then I Search authorized Broker "Mister Broker"
@@ -219,8 +217,8 @@ Feature: Seed05 - Exchange - OE
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |

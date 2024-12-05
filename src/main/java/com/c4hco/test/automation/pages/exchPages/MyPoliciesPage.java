@@ -164,7 +164,7 @@ public class MyPoliciesPage {
         softAssert.assertEquals(planStartAndEndDate.get(0).getText(), primaryMember.getMedicalPlanStartDate(), "medical plan date did not match");
         softAssert.assertEquals(planStartAndEndDate.get(1).getText(), primaryMember.getMedicalPlanEndDate(), "medical plan end date did not match");
         softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
-        softAssert.assertEquals(premiumAmt.get(0).getText(), "$"+primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
+        softAssert.assertEquals(premiumAmt.get(0).getText().replace(",", ""), "$"+primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
         softAssert.assertTrue(policyNumSubscriber.get(2).getText().equals("Subscriber:"));
         softAssert.assertEquals(policyNumSubscriber.get(3).getText(), primaryMember.getSignature(), "Subscriber Name did not match on medical card");
         softAssert.assertTrue(policyNumSubscriber.get(4).getText().equals("Last Updated On:"));
@@ -175,8 +175,8 @@ public class MyPoliciesPage {
         softAssert.assertEquals(primaryMember.getMedicalEapid_db(),policyNumSubscriber.get(1).getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
 
         //Validating Total Premium after APTC amount reduction
-        String totalAmtAfterReduction = primaryMember.getTotalMedAmtAfterReduction();
-        String premiumAfterAPTC = financialPremiumData.get(5).getText();
+        String totalAmtAfterReduction = primaryMember.getTotalMedAmtAfterReduction().replace(",", "");
+        String premiumAfterAPTC = financialPremiumData.get(5).getText().replace(",", "");
         softAssert.assertEquals(premiumAfterAPTC, "$"+totalAmtAfterReduction+"/mo", "Total Premium amount after APTC reduction does not match from UI and DB");
         softAssert.assertAll();
     }
@@ -194,7 +194,7 @@ public class MyPoliciesPage {
 
     private void validateMedPlanDetailsFromPlanHistory(){
         softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()), "Medical plan mismatch");
-        softAssert.assertTrue(tableRecord.get(2).getText().equals("$"+primaryMember.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
+        softAssert.assertEquals(tableRecord.get(2).getText().replace(",", ""), ("$"+primaryMember.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
         if(primaryMember.getMedicalAptcAmt().equals("0")){
             softAssert.assertTrue(tableRecord.get(3).getText().equals("$"+primaryMember.getMedicalAptcAmt()+".00"),"Medical APTC amount mismatch");
         }else {

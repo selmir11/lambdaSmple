@@ -159,7 +159,7 @@ public class PlanSummaryMedicalDentalPage {
             for(MemberDetails member: memberslist){
                 int groupLocatorIndex = Integer.parseInt(member.getMedGroupInd())-1;
                 WebElement medPremAfterAPTCAmtEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumAmount_"+groupLocatorIndex+""));
-                String medPremiumAfterReduction = medPremAfterAPTCAmtEle.getText().replace("$", "");
+                String medPremiumAfterReduction = medPremAfterAPTCAmtEle.getText().replace("$", "").replace(",", "");
 
                 member.setMedicalAptcAmt("0");
                 member.setTotalMedAmtAfterReduction(medPremiumAfterReduction);
