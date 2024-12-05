@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -298,6 +300,20 @@ public class MedicalPlanResultsPage {
             selectMedicalPlan(SpecificPlan);
             clickContinue();
         }
+    }
+
+    public void setSkippedGroupNumber(){
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(medicalplanheader,20);
+        String headerText = medicalplanheader.getText();
+        Matcher groupNum = Pattern.compile("Group (\\d+) -").matcher(headerText);
+        List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
+        for(MemberDetails member: allEligMembers){
+           if(member.getMedGroupInd().equals(groupNum)){
+               member.setHasMedicalPlan(false);
+           }
+        }
+
     }
 
 
