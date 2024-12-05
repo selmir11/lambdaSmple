@@ -709,6 +709,14 @@ public class BasicActions {
         return date.format(outputFormatter);
     }
 
+    public String changeDateFormat(String dateString, String inputFormat, String outputFormat, Locale locale) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat, locale);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat, locale);
+        LocalDate date = LocalDate.parse(dateString, inputFormatter);
+
+        return date.format(outputFormatter);
+    }
+
     public String  getDateBasedOnRequirement(String dateRequirement) {
         String date;
         if(dateRequirement.contains("Future") ||dateRequirement.contains("Past")) {
