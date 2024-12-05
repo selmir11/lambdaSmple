@@ -444,4 +444,17 @@ public String policyTablesCombinedQuery(String coverageType){
         return "Select lce_type, plan_year from "+dbName+".es_member_lce\n" +
                 "where household_id  = '"+householId+"'";
     }
+
+    public String getMemberNonAIAn(String memberId)
+    {
+        return "SELECT * FROM es_member_rules_result t1\n " +
+                "JOIN es_member_rules_result t2 \n"+
+                "ON t1.member_id = t2.member_id \n" +
+                "WHERE t1.member_id = '" + memberId + "'\n" +
+                "AND t1.eligibility_type = 'CSR' \n" +
+                "AND t1.reason_code LIKE '%AIAN%' \n" +
+                "AND t2.reason_code = 'NO-OVERRIDE'\n";
+    }
+
+
 }

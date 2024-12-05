@@ -229,6 +229,11 @@ public class DbValidations {
         List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
+
+    public void validateMemberCSRNonAIAN()
+    {
+
+    }
     public void validateCurrentDentalPlanNameForTheYear(String year) {
         String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
         softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
