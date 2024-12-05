@@ -174,6 +174,7 @@ Feature: Seed02 - Exchange - OE
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
+    And I report "NoneOfThese" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 
