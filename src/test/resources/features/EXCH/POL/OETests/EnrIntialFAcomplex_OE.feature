@@ -348,16 +348,14 @@ Feature: Enroll a in a plan 8 HH
       |Group 1:Cigna Connect Colorado Option Bronze|
       |Group 2:Cigna Connect Colorado Option Bronze |
       |Group 3:Cigna Connect Colorado Option Bronze|
-      |Group 4:Cigna Connect Colorado Option Bronze|
-      |Group 5:skip|
+      |Group 4:skip|
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I select or skip the dental plans for groups
       |Group 1:Anthem Dental Family|
       |Group 2:Anthem Dental Family|
       |Group 3:Anthem Dental Family|
-      |Group 4:Anthem Dental Family|
-      |Group 5:skip|
+      |Group 4:skip|
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount
     And I set "Dental" Plans premium amount
@@ -389,20 +387,3 @@ Feature: Enroll a in a plan 8 HH
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
