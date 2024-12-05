@@ -1,4 +1,4 @@
-Feature: Seed02 - Exchange
+Feature: Seed02 - Exchange - OE
 
   Background: Seed 02 For Exchange- Single Applicant with FA
     Given I set the test scenario details
@@ -71,7 +71,7 @@ Feature: Seed02 - Exchange
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -122,16 +122,16 @@ Feature: Seed02 - Exchange
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 021                   | 021                | EC                    |                   | OEP  |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 021                   | 021                | EC                    |                   | OEP  |
 
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1281 @pol_exch_passed
+  @SLER-1281_OE @pol_exch_passed_oe
   Scenario:RT-2328 ENR-EXCH: EDIT POLICY - PREMIUM & APTC AMOUNT UPDATES
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -158,13 +158,13 @@ Feature: Seed02 - Exchange
       | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 021                   | 021                | EC                    |                   | OEP  |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
 
-  @SLER-95 @pol_exch_passed
+  @SLER-95_OE @pol_exch_passed_oe
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
@@ -174,7 +174,6 @@ Feature: Seed02 - Exchange
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Other" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 

@@ -1,5 +1,5 @@
-@SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed_eoy @EOY
-Feature: Simple NFA - Single Applicant
+@SLER-34_OE @SLER-1069_OE @SLER-1262_OE @pol_exch_passed_oe @OE_POL
+Feature: Simple NFA - Single Applicant- OE
 
 
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
@@ -16,15 +16,14 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
-      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
-      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "11281986" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -54,7 +53,7 @@ Feature: Simple NFA - Single Applicant
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -113,10 +112,10 @@ Feature: Simple NFA - Single Applicant
 #    Scenario: validate both medical and dental ob834 files
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+      | 021                   | 021                | EC                    |                   | OEP |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+      | 021                   | 021                | EC                    |                   | OEP |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
