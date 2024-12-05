@@ -192,9 +192,17 @@ public class PlanSummaryMedicalDentalPage {
     private void setDentalPlansPremiumAmt() {
         List<MemberDetails> memberslist = basicActions.getAllEligibleMemInfo();
         for(MemberDetails member: memberslist){
+
+            //getting group details
+            int groupLocatorIndex = Integer.parseInt(member.getDenGroupInd()) - 1;
+
+            //Dental Plan Premium details
+            WebElement dentalPremiumAfterAPTCAmntEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_" + groupLocatorIndex + ""));
+            WebElement dentalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_" + groupLocatorIndex + ""));
+            member.setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmntEle.getText().replace("$", "").replace(",",""));
             member.setDentalAptcAmt( "0.00" );
-            member.setDentalPremiumAmt( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
-            member.setTotalDentalPremAfterReduction( dentalPlanPremiumAmt.getText().replace( "$", "" ) );
+            member.setDentalPremiumAmt(member.getTotalDentalPremAfterReduction());
+            member.setDentalPlan(dentalPlanNameEle.getText());
         }
     }
 

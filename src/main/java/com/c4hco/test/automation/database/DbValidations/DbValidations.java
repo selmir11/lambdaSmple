@@ -16,7 +16,7 @@ public class DbValidations {
     SoftAssert softAssert = new SoftAssert();
     String formattedDate; //formatted in YYYY-MM-DD
     Calendar calendar = Calendar.getInstance();
-    int currentYear = calendar.get(Calendar.YEAR);
+
     BasicActions basicActions = new BasicActions();
 
     public String getCurrentdate() {
@@ -126,7 +126,7 @@ public class DbValidations {
         for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", "Bob routing key mismatch");
-            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear), "Bob plan year mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), SharedData.getPlanYear(), "Bob plan year mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);

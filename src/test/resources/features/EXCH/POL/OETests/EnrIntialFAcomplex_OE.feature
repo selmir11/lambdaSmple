@@ -341,6 +341,15 @@ Feature: Enroll a in a plan 8 HH
     |Primary|
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
+    Then I click on edit enrollment groups link
+    Then I create new group in edit medical grouping page and drag members to the new group
+      | Primary,Niece:Group1 |
+      | SonTwo:Group2 |
+      | Nephew:Group3 |
+      | Daughter:Group4 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
+    Then I validate I am on the "Grouping Members Medical" page
     And  I get the details of medical group Members
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
@@ -349,6 +358,16 @@ Feature: Enroll a in a plan 8 HH
       |Group 2:Cigna Connect Colorado Option Bronze |
       |Group 3:Cigna Connect Colorado Option Bronze|
       |Group 4:skip|
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Niece:Group1 |
+      | SonTwo:Group2 |
+      | Nephew:Group3 |
+      | Daughter:Group4 |
+    And I click save button to save the dental groups
+    And I click on continue button on success pop-up from edit grouping dental page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I select or skip the dental plans for groups
@@ -385,5 +404,5 @@ Feature: Enroll a in a plan 8 HH
 #    And I switch to the tab number 0
 
     #DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the policy data quality check with Policy Ah keyset size 6
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
