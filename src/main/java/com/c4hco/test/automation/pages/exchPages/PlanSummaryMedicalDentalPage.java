@@ -200,7 +200,7 @@ public class PlanSummaryMedicalDentalPage {
             WebElement dentalPremiumAfterAPTCAmntEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPremiumAmount_" + groupLocatorIndex + ""));
             WebElement dentalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-DentalPlanName_" + groupLocatorIndex + ""));
             member.setTotalDentalPremAfterReduction(dentalPremiumAfterAPTCAmntEle.getText().replace("$", "").replace(",",""));
-            member.setDentalAptcAmt( "0.00" );
+            member.setDentalAptcAmt( "$0" );
             member.setDentalPremiumAmt(member.getTotalDentalPremAfterReduction());
             member.setDentalPlan(dentalPlanNameEle.getText());
         }
