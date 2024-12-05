@@ -810,14 +810,19 @@ Scenario: SLER-1288 - Test out Smoker/Non-smoker divergence to the Medical Plan 
   Then I validate I am on the "Family Overview" page
   Then I click continue on family overview page
 
+  Then I validate I am on the "Tell us about life changes" page
   Then I select "MoveToCO" QLCE on tell us about life changes page
   Then I click on Save and Continue
 
+  Then I validate I am on the "EXCH Declarations and Signature" page
   And I Declare as Tax Household 1
   And I click Continue on the Declarations And Signature Page
   And I wait for hold on content to disappear
 
+  Then I validate I am on the "Application History" page
   Then I click on view results and shop
+
+  Then I validate I am on the "Application Results" page
   And I click continue on application results page
 
   Then I validate I am on the "Start Shopping" page
