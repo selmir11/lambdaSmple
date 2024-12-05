@@ -205,4 +205,9 @@ public class FindExpertHelpSteps {
         public void iVerifyBrokerButtonsDisabled(){
                 findExpertHelpPage.verifyBrokerButtonsDisabled();
         }
+
+        @Then("I verify that the assister change and remove buttons are disabled")
+        public void iVerifyAssisterButtonsDisabled(){
+                findExpertHelpPage.verifyAssisterButtonsDisabled();
+        }
 }

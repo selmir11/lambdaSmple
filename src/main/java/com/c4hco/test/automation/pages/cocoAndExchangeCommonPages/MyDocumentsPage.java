@@ -213,9 +213,9 @@ public class MyDocumentsPage {
             case "Application Results":
                 switch (language){
                     case "English":
-                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber, basicActions))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber, basicActions).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -244,9 +244,9 @@ public class MyDocumentsPage {
                         }
                         break;
                     case "Spanish":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber, basicActions))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber, basicActions).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
