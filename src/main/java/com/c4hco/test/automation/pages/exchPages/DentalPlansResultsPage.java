@@ -186,7 +186,7 @@ public class DentalPlansResultsPage {
     }
 
     private void setSkippedGroupNumber(String groupNum){
-        List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
+        List<MemberDetails> allEligMembers = basicActions.getAllDentalEligibleMemInfo();
         for(MemberDetails member: allEligMembers){
             if(member.getDenGroupInd().equals(groupNum)){
                 member.setHasDentalPlan(false);
@@ -363,7 +363,7 @@ public class DentalPlansResultsPage {
     }
 
     public void selectDentalPlanForGrp(String planName, String grpNum){
-        List<MemberDetails> memberslist = basicActions.getAllEligibleMemInfo();
+        List<MemberDetails> memberslist = basicActions.getAllDentalEligibleMemInfo();
         basicActions.waitForElementToDisappear(spinner, 30);
         for(MemberDetails member: memberslist){
             if(member.getDenGroupInd().equals(grpNum)){

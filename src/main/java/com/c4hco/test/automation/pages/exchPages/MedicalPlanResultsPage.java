@@ -260,7 +260,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void selectMedicalPlanForGrp(String planName, String grpNum){
-        List<MemberDetails> memberslist = basicActions.getAllEligibleMemInfo();
+        List<MemberDetails> memberslist = basicActions.getAllMedicalEligibleMemInfo();
         basicActions.waitForElementToDisappear(spinner, 30);
       for(MemberDetails member: memberslist){
         if(member.getMedGroupInd().equals(grpNum)){
@@ -330,7 +330,7 @@ public class MedicalPlanResultsPage {
 
 
     private void setSkippedGroupNumber(String groupNum){
-        List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
+        List<MemberDetails> allEligMembers = basicActions.getAllMedicalEligibleMemInfo();
         for(MemberDetails member: allEligMembers){
            if(member.getMedGroupInd().equals(groupNum)){
                member.setHasMedicalPlan(false);

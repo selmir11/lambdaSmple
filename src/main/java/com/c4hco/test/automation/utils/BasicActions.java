@@ -852,11 +852,22 @@ public class BasicActions {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
-    public List<MemberDetails> getAllEligibleMemInfo(){
+    public List<MemberDetails> getAllMedicalEligibleMemInfo(){
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allEligibleMembers = new ArrayList<>();
         for (MemberDetails memInfo : allMembers) {
             if (memInfo.getHasMedicalPlan()) {
+                allEligibleMembers.add(memInfo);
+            }
+        }
+        return allEligibleMembers;
+    }
+
+    public List<MemberDetails> getAllDentalEligibleMemInfo(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allEligibleMembers = new ArrayList<>();
+        for (MemberDetails memInfo : allMembers) {
+            if (memInfo.getHasDentalPlan()) {
                 allEligibleMembers.add(memInfo);
             }
         }
