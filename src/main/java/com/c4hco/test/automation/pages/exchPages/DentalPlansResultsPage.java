@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class DentalPlansResultsPage {
@@ -81,9 +83,6 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-ResetFilters")
     WebElement resetButton;
 
-    @FindBy(id = "PlanResults-MonthlyPremium_1")
-    WebElement dentalPremium1;
-
     @FindBy(id = "PlanResults-PlanName_4")
     WebElement pediatricdental1;
 
@@ -95,9 +94,6 @@ public class DentalPlansResultsPage {
 
     @FindBy(xpath = "(//div[@class='col detail-pane'])[1]")
     WebElement firstDentalPlanCard;
-
-    @FindBy(xpath = "(//*[@id='DentalPlanResults-MonthlyPremium'])[1]")
-    WebElement monthlypremiumdropdown;
 
     @FindBy(xpath = "//div[@id='MPDcollapse'] //span[contains(@class,'ngx-slider-limit ngx-slider-floor')]")
     WebElement txtpremiumamnt;
@@ -186,7 +182,21 @@ public class DentalPlansResultsPage {
     public void clickSkip() {
         basicActions.waitForElementToDisappear( spinner, 50 );
         basicActions.waitForElementToBePresent( dentalSkipBtn, 30 );
+        setSkippedGroupNumber();
         dentalSkipBtn.click();
+    }
+
+    private void setSkippedGroupNumber(){
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(dentalplanheader,20);
+        String headerText = dentalplanheader.getText();
+        Matcher groupNum = Pattern.compile("Group (\\d+) -").matcher(headerText);
+        List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
+        for(MemberDetails member: allEligMembers){
+            if(member.getMedGroupInd().equals(groupNum)){
+                member.setHasMedicalPlan(false);
+            }
+        }
     }
 
     public void clickFirstTwoCompareBoxes() {

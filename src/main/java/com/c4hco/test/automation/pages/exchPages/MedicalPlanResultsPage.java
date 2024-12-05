@@ -139,6 +139,7 @@ public class MedicalPlanResultsPage {
     public void clickSkip(){
         basicActions.waitForElementToDisappear(spinner, 30);
          basicActions.waitForElementToBePresent(btnSkip, 30);
+        setSkippedGroupNumber();
         btnSkip.click();
     }
 
@@ -302,7 +303,7 @@ public class MedicalPlanResultsPage {
         }
     }
 
-    public void setSkippedGroupNumber(){
+    private void setSkippedGroupNumber(){
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBePresent(medicalplanheader,20);
         String headerText = medicalplanheader.getText();
@@ -313,7 +314,6 @@ public class MedicalPlanResultsPage {
                member.setHasMedicalPlan(false);
            }
         }
-
     }
 
 
