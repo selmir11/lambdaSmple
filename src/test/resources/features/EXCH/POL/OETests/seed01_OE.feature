@@ -118,9 +118,10 @@ Feature: Seed01 based end of year tests - OE
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "NoneOfThese" and click continue
+
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
     Then I update SSN number to new SSN number "123456789"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
@@ -147,7 +148,7 @@ Feature: Seed01 based end of year tests - OE
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data

@@ -144,7 +144,14 @@ public class AccountOverviewPage {
     public void iClickOnMakeChanges(){
         basicActions.waitForElementToDisappear( spinner,20 );
         basicActions.waitForElementToBePresent(header, 30);
-        basicActions.click(makeChangesButton);
+        WebElement makeChanges;
+        if(SharedData.getIsOpenEnrollment().equals("yes")){
+            makeChanges = btnApplyForNextYear;
+        } else{
+            makeChanges = makeChangesButton;
+        }
+        basicActions.waitForElementToBePresent(makeChanges, 10);
+        basicActions.click(makeChanges);
     }
 
 
