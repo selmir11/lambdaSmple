@@ -688,4 +688,13 @@ public class FindExpertHelpPage {
         softAssert.assertAll();
     }
 
+    public void verifyAssisterButtonsDisabled(){
+        basicActions.waitForElementToBePresentWithRetries(changeAssisterButton,10);
+        softAssert.assertTrue(changeAssisterButton.isDisplayed());
+        softAssert.assertFalse(changeAssisterButton.isEnabled());
+        softAssert.assertTrue(removeAssisterButton.isDisplayed());
+        softAssert.assertEquals(removeAssisterButton.getAttribute("class"), "link-text-1 link-disabled");
+        softAssert.assertAll();
+    }
+
 }
