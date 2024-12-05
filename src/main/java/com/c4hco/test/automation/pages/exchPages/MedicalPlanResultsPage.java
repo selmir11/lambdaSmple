@@ -275,6 +275,7 @@ public class MedicalPlanResultsPage {
                 paginateRight();
             }
         } while(optionalInt.isEmpty());
+        clickContinue();
     }
 
     private Optional<Integer> checkIfPlanPresent(String planName) {
@@ -309,13 +310,12 @@ public class MedicalPlanResultsPage {
         for(String planOfGroup: plansOfGroups){
             String[] parts = planOfGroup.split(":");
             String plan = parts[1];
-            Matcher groupNum = Pattern.compile("\\d+").matcher(parts[0]);
+            Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
+            String groupNum = matcher.find() ? matcher.group() : null;
             if(plan.equals("skip")){
-                setSkippedGroupNumber(groupNum.group(1));
-                clickSkip();
+                setSkippedGroupNumber(groupNum);
             } else {
-                selectMedicalPlanForGrp(plan, String.valueOf(groupNum));
-                clickContinue();
+                selectMedicalPlanForGrp(plan, groupNum);
             }
         }
     }
@@ -323,15 +323,16 @@ public class MedicalPlanResultsPage {
 
     private void setSkippedGroupNumber(String groupNum){
         basicActions.waitForElementToBePresent(medicalplanheader, 10);
-        String headerText = medicalplanheader.getText();
-        Matcher headerGroupNum = Pattern.compile("Group (\\d+)").matcher(headerText);
-       Assert.assertEquals(String.valueOf(headerGroupNum.group(1)), groupNum, "Group number from header and step did not match!");
+        Matcher matcher = Pattern.compile("Group (\\d+)").matcher(medicalplanheader.getText());
+        String headerGroupNum = matcher.find() ? matcher.group() : null;
+       Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
         List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
         for(MemberDetails member: allEligMembers){
            if(member.getMedGroupInd().equals(groupNum)){
                member.setHasMedicalPlan(false);
            }
         }
+        clickSkip();
     }
 
 

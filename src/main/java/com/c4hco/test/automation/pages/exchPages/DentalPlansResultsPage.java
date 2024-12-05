@@ -15,6 +15,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
@@ -186,8 +187,8 @@ public class DentalPlansResultsPage {
 
     private void setSkippedGroupNumber(String groupNum){
         basicActions.waitForElementToBePresent(dentalplanheader, 10);
-        String headerText = dentalplanheader.getText();
-        String headerGroupNum = Pattern.compile("Group (\\d+)").matcher(headerText).group(1);
+        Matcher matcher = Pattern.compile("Group (\\d+)").matcher(dentalplanheader.getText());
+        String headerGroupNum = matcher.find() ? matcher.group() : null;
         Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
         List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
         for(MemberDetails member: allEligMembers){
@@ -195,6 +196,7 @@ public class DentalPlansResultsPage {
                 member.setHasDentalPlan(false);
             }
         }
+        clickSkip();
     }
 
     public void clickFirstTwoCompareBoxes() {
@@ -346,13 +348,12 @@ public class DentalPlansResultsPage {
         for (String planOfGroup : plansOfGroups) {
             String[] parts = planOfGroup.split(":");
             String plan = parts[1];
-            String groupNum = Pattern.compile("\\d+").matcher(parts[0]).group(1);
+            Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
+            String groupNum = matcher.find() ? matcher.group() : null;
             if (plan.equals("skip")) {
                 setSkippedGroupNumber(groupNum);
-                clickSkip();
             } else {
                 selectDentalPlanForGrp(plan, groupNum);
-                clickContinueOnDentalResultsPage();
             }
         }
     }
@@ -373,6 +374,7 @@ public class DentalPlansResultsPage {
                 paginateRight();
             }
         } while(optionalInt.isEmpty());
+        clickContinueOnDentalResultsPage();
     }
 
 
