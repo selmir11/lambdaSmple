@@ -312,6 +312,14 @@ public class MedicalPlanResultsPage {
             String plan = parts[1];
             Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
             String groupNum = matcher.find() ? matcher.group() : null;
+
+            basicActions.waitForElementToDisappear(spinner, 10);
+            basicActions.waitForElementToBePresent(medicalplanheader, 10);
+            basicActions.wait(3000);
+            Matcher matcher_header = Pattern.compile("\\d+").matcher(medicalplanheader.getText());
+            String headerGroupNum = matcher_header.find() ? matcher.group() : null;
+            Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
+
             if(plan.equals("skip")){
                 setSkippedGroupNumber(groupNum);
             } else {
@@ -322,10 +330,6 @@ public class MedicalPlanResultsPage {
 
 
     private void setSkippedGroupNumber(String groupNum){
-        basicActions.waitForElementToBePresent(medicalplanheader, 10);
-        Matcher matcher = Pattern.compile("Group (\\d+)").matcher(medicalplanheader.getText());
-        String headerGroupNum = matcher.find() ? matcher.group() : null;
-       Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
         List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
         for(MemberDetails member: allEligMembers){
            if(member.getMedGroupInd().equals(groupNum)){

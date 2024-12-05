@@ -186,10 +186,6 @@ public class DentalPlansResultsPage {
     }
 
     private void setSkippedGroupNumber(String groupNum){
-        basicActions.waitForElementToBePresent(dentalplanheader, 10);
-        Matcher matcher = Pattern.compile("Group (\\d+)").matcher(dentalplanheader.getText());
-        String headerGroupNum = matcher.find() ? matcher.group() : null;
-        Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
         List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
         for(MemberDetails member: allEligMembers){
             if(member.getDenGroupInd().equals(groupNum)){
@@ -350,6 +346,14 @@ public class DentalPlansResultsPage {
             String plan = parts[1];
             Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
             String groupNum = matcher.find() ? matcher.group() : null;
+
+            basicActions.waitForElementToDisappear(spinner, 30);
+            basicActions.wait(3000);
+            basicActions.waitForElementToBePresent(dentalplanheader, 10);
+            Matcher matcher_header = Pattern.compile("\\d+").matcher(dentalplanheader.getText());
+            String headerGroupNum = matcher_header.find() ? matcher.group() : null;
+
+            Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
             if (plan.equals("skip")) {
                 setSkippedGroupNumber(groupNum);
             } else {
