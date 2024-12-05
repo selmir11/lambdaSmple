@@ -203,23 +203,21 @@ Feature: Seed02 - Exchange - OE
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+    And I validate "medical" plan details from plan history
+    And I click on to Back to Current Plan Details button
+    And I click View Plan History link from "dental" plan card
+    And I validate "dental" plan details from plan history
+    And I click on Sign Out in the Header for "Elmo"
 
-    # - New updated name is not being displayed on the below pages - Bug - POL-9149
-#    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
-#    Then I validate I am on the "My Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click View Plan History link from "medical" plan card
-#    And I validate "medical" plan details from plan history
-#    And I click on to Back to Current Plan Details button
-#    And I click View Plan History link from "dental" plan card
-#    And I validate "dental" plan details from plan history
-#    And I click on Sign Out in the Header for "Elmo"
-
-    And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
    # And I verify the policy data quality check with Policy Ah keyset size 2
