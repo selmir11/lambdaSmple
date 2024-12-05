@@ -29,6 +29,11 @@ public class StartShoppingPageSteps {
 
     }
 
+    @Then("I click Yes to the Tobacco usage question on start shopping page")
+    public void clickYestoTobaccoQuestion(String tobaccoUsageUserDetails){
+        startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageUserDetails);}
+
+
     // use the initial segment of the member name if specified
     @Then("I select Tobacco Usage Yes for the {string} member on start shopping page")
     public void enterTobaccoUsageInfo(String tobaccoUsageDetails){
