@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,10 +15,6 @@ public class NoticesPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, YYYY");
-    DateTimeFormatter formatterSpanish = DateTimeFormatter.ofPattern("d 'de' MMMM 'del' yyyy", new Locale("es", "ES"));
-    String effectiveDateSpanish = formatterSpanish.format(LocalDate.now());
-    String effectiveDate = LocalDate.now().format(formatter);
 
     public NoticesPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -155,7 +149,7 @@ public class NoticesPage {
         basicActions.waitForElementToBePresent(passwordEmail, 20);
         passwordEmail.sendKeys(password);
         passwordEmail.sendKeys(Keys.ENTER);
-        basicActions.waitForElementToBeClickable(btnStayNo, 20);
+        basicActions.waitForElementToBePresent(btnStayNo, 20);
         btnStayNo.click();
     }
 
@@ -163,7 +157,14 @@ public class NoticesPage {
         basicActions.waitForElementToBePresent(outlookLogOutIcon, 10);
         outlookLogOutIcon.click();
         basicActions.waitForElementPresence(outlookLogOut, 20);
-        basicActions.clickById("mectrl_body_signOut");
+        try {
+            WebElement element = basicActions.getDriver().findElement(By.id("mectrl_body_signOut"));
+            if (element.isDisplayed()) {
+                element.click();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         basicActions.wait(500);
         basicActions.closeBrowserTab();
         basicActions.switchtoactiveTab();
@@ -254,16 +255,23 @@ public class NoticesPage {
         String TitleText = basicActions.getDriver().findElement(By.xpath("//span[contains(@title, '" + noticeNumber + "')]")).getText();
         softAssert.assertTrue(TitleText.contains(noticeNumber));
 
+        String todayDate = basicActions.getTodayDate();
+        String effectiveDate = null;
         switch (language) {
-            case "English":
+            case "English": {
+                effectiveDate = basicActions.changeDateFormat(todayDate, "MM/dd/yyyy", "MMMM d, yyyy", Locale.ENGLISH);
                 softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
                 break;
-            case "Spanish":
-                softAssert.assertTrue(EmailDate.getText().contains(effectiveDateSpanish));
+            }
+            case "Spanish": {
+                Locale spanishLocale = new Locale("es", "ES");
+                effectiveDate = basicActions.changeDateFormat(todayDate, "MM/dd/yyyy", "d 'de' MMMM 'del' yyyy", spanishLocale);
+                softAssert.assertTrue(EmailDate.getText().contains(effectiveDate));
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
+            }
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + language);
+            }
 
         softAssert.assertAll();
     }
@@ -644,12 +652,11 @@ public class NoticesPage {
     }
 
     public void VerifyTheNoticeTextEN00204() {
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-        String formattedDate = currentDate.format(formatter);
+        String todayDate = basicActions.getTodayDate();
+        todayDate = basicActions.changeDateFormat(todayDate, "MM/dd/yyyy", "MMMM d, yyyy");
         softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
-        softAssert.assertTrue(EmailDate.getText().contains(formattedDate), "Email generated date mismatch");
-        softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + formattedDate + " for Plan Year 2024.");
+        softAssert.assertTrue(EmailDate.getText().contains(todayDate), "Email generated date mismatch");
+        softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + todayDate + " for Plan Year 2024.");
         softAssert.assertAll();
     }
 

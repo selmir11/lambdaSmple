@@ -2,11 +2,14 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class PaymentPortalPage {
     SoftAssert softAssert = new SoftAssert();
@@ -57,8 +60,9 @@ public class PaymentPortalPage {
         basicActions.scrollToElement( allDone );
         basicActions.waitForElementToBeClickable(allDone,10);
         basicActions.wait(1000);
-        if(recomendC4HCOToFriendPopUp.isDisplayed()) {
-            recomendC4HCOToFriendPopUp.click();
+        List<WebElement> popups = basicActions.getDriver().findElements(By.id("recomendC4HCOToFriendPopUp"));
+        if (!popups.isEmpty() && popups.get(0).isDisplayed()) {
+            popups.get(0).click();
         }
         basicActions.scrollToElement( allDone );
         basicActions.clickElementWithRetries(allDone, 30);
