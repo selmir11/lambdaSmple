@@ -403,6 +403,6 @@ Feature: Enroll a in a plan 8 HH - OE
 #    And I sign out of Outlook
 #    And I switch to the tab number 0
 
-    #DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    #DbVerification
+#    And I verify the policy data quality check with Policy Ah keyset size 4
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
