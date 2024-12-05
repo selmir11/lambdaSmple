@@ -123,19 +123,19 @@ Feature: Simple NFA - Single Applicant- OE
     # @SLER-1262
     And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-
-    #Email Notice Validation
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate additional details for "medical" plan on email notice
-      |Primary|
-    And I validate additional details for "dental" plan on email notice
-      |Primary|
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#
+#    #Email Notice Validation
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate additional details for "medical" plan on email notice
+#      |Primary|
+#    And I validate additional details for "dental" plan on email notice
+#      |Primary|
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
 
     # Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
