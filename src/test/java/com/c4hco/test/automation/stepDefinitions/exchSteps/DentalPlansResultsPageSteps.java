@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class DentalPlansResultsPageSteps {
     DentalPlansResultsPage dentalPlansResultsPage = new DentalPlansResultsPage(WebDriverManager.getDriver());
 
@@ -98,10 +100,9 @@ public class DentalPlansResultsPageSteps {
         dentalPlansResultsPage.validateDentalPlanNames();
     }
 
-
-    @And("I select the {string} Dental plan but skip for {string}")
-    public void selectDentalPlanForMember(String specificPlan, String member) {
-        dentalPlansResultsPage.SelectSpecificDentalPlanPerGrp(specificPlan, member);
+    @And("I select or skip the dental plans for groups")
+    public void selectDentalPlanForGroup(List<String> plansOfGroups) {
+        dentalPlansResultsPage.selectDentalPlansForGroups(plansOfGroups);
     }
 
     @And("I validate dental premium amount is  zero")

@@ -1,9 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Constants;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,6 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
@@ -182,19 +181,18 @@ public class DentalPlansResultsPage {
     public void clickSkip() {
         basicActions.waitForElementToDisappear( spinner, 50 );
         basicActions.waitForElementToBePresent( dentalSkipBtn, 30 );
-        setSkippedGroupNumber();
         dentalSkipBtn.click();
     }
 
-    private void setSkippedGroupNumber(){
-        basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementToBePresent(dentalplanheader,20);
+    private void setSkippedGroupNumber(String groupNum){
+        basicActions.waitForElementToBePresent(dentalplanheader, 10);
         String headerText = dentalplanheader.getText();
-        Matcher groupNum = Pattern.compile("Group (\\d+) -").matcher(headerText);
+        String headerGroupNum = Pattern.compile("Group (\\d+)").matcher(headerText).group(1);
+        Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
         List<MemberDetails> allEligMembers = basicActions.getAllEligibleMemInfo();
         for(MemberDetails member: allEligMembers){
-            if(member.getMedGroupInd().equals(groupNum)){
-                member.setHasMedicalPlan(false);
+            if(member.getDenGroupInd().equals(groupNum)){
+                member.setHasDentalPlan(false);
             }
         }
     }
@@ -344,23 +342,39 @@ public class DentalPlansResultsPage {
         softAssert.assertAll();
         }
 
-    public void SelectSpecificDentalPlanPerGrp(String SpecificPlan,String member){
-
-        basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementToBePresent(dentalplanheader,20);
-
-        String headerText = dentalplanheader.getText();
-        if (headerText.contains(member)) {
-            clickSkip();
-        } else {
-
-            selectDentalPlan(SpecificPlan);
-             clickContinueOnDentalResultsPage();
-                System.out.println("Selected plan: " + SpecificPlan);
-
+    public void selectDentalPlansForGroups(List<String> plansOfGroups) {
+        for (String planOfGroup : plansOfGroups) {
+            String[] parts = planOfGroup.split(":");
+            String plan = parts[1];
+            String groupNum = Pattern.compile("\\d+").matcher(parts[0]).group(1);
+            if (plan.equals("skip")) {
+                setSkippedGroupNumber(groupNum);
+                clickSkip();
+            } else {
+                selectDentalPlanForGrp(plan, groupNum);
+                clickContinueOnDentalResultsPage();
+            }
         }
-
     }
+
+    public void selectDentalPlanForGrp(String planName, String grpNum){
+        List<MemberDetails> memberslist = basicActions.getAllEligibleMemInfo();
+        basicActions.waitForElementToDisappear(spinner, 30);
+        for(MemberDetails member: memberslist){
+            if(member.getDenGroupInd().equals(grpNum)){
+                member.setDentalPlan(planName);
+            }
+        }
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get()+1);
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+    }
+
 
     public void verifyPremiumAmountIsZero() {
         basicActions.waitForElementToDisappear(spinner, 30);
