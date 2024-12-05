@@ -306,7 +306,7 @@ public class AccountOverviewPage {
     }
 
     public void verifyMemberNames() {
-        List<MemberDetails> allMemberList = basicActions.getAllEligibleMemInfo();
+        List<MemberDetails> allMemberList = basicActions.getAllMedicalEligibleMemInfo();
         for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() + SharedData.getScenarioDetails().getTotalGroups(); i++) {
 
             List<String> expectedMemberNames = new ArrayList<>();
