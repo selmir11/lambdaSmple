@@ -68,6 +68,9 @@ public class EditGroupingMembersDentalPage {
     @FindBy(id="SOL-ManageGroupingMembers-GoBack")
     WebElement goBackButtononEditDentalGroupingPage;
 
+    @FindBy(id = "SOL-ManageGroupingMembers-MemberDetails")
+    List<WebElement> manageGroupingMember;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     Actions builder;
@@ -89,13 +92,14 @@ public class EditGroupingMembersDentalPage {
 
     public void createNewDentalGroups(List<String> groupingList) {
         basicActions.waitForElementToDisappear(spinner, 20);
+        removeSuggestedGroups();
         for (String group : groupingList) {
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
             String[] groupDetail = group.split(":");
             String[] Names = groupDetail[0].split(",");
             for (String Name : Names) {
-                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + Name + "')]"));
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + Name + "')]"));
                 WebElement dropElement = dragAMemberHere.get(dragAMemberHere.size() - 1);
                 basicActions.wait(3000);
                 basicActions.scrollToElement(dragElement);
@@ -106,6 +110,39 @@ public class EditGroupingMembersDentalPage {
                         .moveToElement(dropElement)
                         .release(dropElement).build()
                         .perform();
+                basicActions.wait(3000);
+            }
+        }
+    }
+
+    public void createNewDentalGroups2(List<String> grouping) {
+        basicActions.waitForElementToDisappear(spinner, 70);
+        basicActions.waitForElementToBePresent(createNewGroupLink, 70);
+        basicActions.scrollToElement(createNewGroupLink);
+
+        while (dragAMemberHere.size()<grouping.size()) {
+            basicActions.scrollToElement(createNewGroupLink);
+            createNewGroupLink.click();
+        }
+
+        for (int i = grouping.size() - 1; i >= 0; i--) {
+            String[] groupDetail = grouping.get(i).split(":");
+            String[] Names = groupDetail[0].split(",");
+
+            for (String Name : Names) {
+                WebElement dragElement = basicActions.getDriver()
+                        .findElement(By.xpath("//*[@id='SOL-ManageGroupingMembers-MemberDetails']/span[contains(text(), '" + Name + "')]"));
+
+                WebElement dropElement = dragAMemberHere.get(i);
+
+                basicActions.scrollToElement(dragElement);
+                basicActions.scrollToElement(dropElement);
+
+                builder.clickAndHold(dragElement)
+                        .moveToElement(dropElement)
+                        .release(dropElement).build()
+                        .perform();
+
                 basicActions.wait(3000);
             }
         }
@@ -141,6 +178,28 @@ public class EditGroupingMembersDentalPage {
         softAssert.assertEquals(goBackButtononEditDentalGroupingPage.getText(), "Go back");
         softAssert.assertEquals(saveButtonOnEditDentalGroupingPage.getText(), "Save groups");
         softAssert.assertAll();
+    }
+
+    private void removeSuggestedGroups() {
+        basicActions.waitForElementListToBePresent(manageGroupingMember,10);
+        for (WebElement dragElement : manageGroupingMember) {
+            WebElement dropElement = dragAMemberNotEnrolling.get(0);
+
+            basicActions.scrollToElement(dragElement);
+            basicActions.scrollToElement(dropElement);
+
+            builder.clickAndHold(dragElement)
+                    .moveToElement(dropElement)
+                    .release(dropElement).build()
+                    .perform();
+
+            basicActions.wait(3000);
+        }
+
+        List<WebElement> closeIcons = basicActions.getDriver().findElements(By.xpath("//i[contains(@class,'float-end')]"));
+        for (WebElement closeIcon : closeIcons) {
+            closeIcon.click();
+        }
     }
 }
 
