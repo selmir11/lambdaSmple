@@ -36,6 +36,14 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     public WebElement medicalCompareGoBack;
 
+    @FindBy(id = "PlanCompare-removePlan_1")
+    public WebElement firstplan;
+
+    @FindBy(id = "PlanCompare-removePlan_2")
+    public WebElement secondplan;
+
+    @FindBy(id = "PlanCompare-removePlan_1")
+    public WebElement thirdplan;
     @FindBy(xpath="//div[normalize-space()= 'Compare Medical Plans']")
     public WebElement compareTopHeader;
 
