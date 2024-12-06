@@ -37,7 +37,7 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
 
 
    @And("I verify the Member will be CSR NON_AIAN")
-   public void iVerifyTheMemberCSRNonAIAN() {dbValidations.validateMemberCSRNonAIAN();
+   public void iVerifyTheMemberCSRNonAIAN() {dbValidations.validateMemberCSRNonAIANData();
    }
 
    @And("I verify the client's updated email address in BoB DB")

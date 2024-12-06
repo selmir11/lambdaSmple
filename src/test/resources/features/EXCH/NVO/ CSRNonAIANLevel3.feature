@@ -1,5 +1,5 @@
 Feature: ELIG-(NVO-666 for NVO-511)
-  @SLER-1807 #WIP
+  @SLER-1807
   Scenario: As a user who in plan year 2024 would qualify for the CSR Non AIAN Level 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
