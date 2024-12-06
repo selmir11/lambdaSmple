@@ -229,6 +229,14 @@ public class DbValidations {
         List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
+
+    public void validateMemberCSRNonAIANData() {
+        String[] dbValues = exchDbDataProvider.getmemberNonAIAN();
+        softAssert.assertEquals(dbValues[0], "NON_AIAN", "Reason code mismatch: Expected 'NONAIAN'");
+        softAssert.assertEquals(dbValues[1], "CSR", "Eligibility type mismatch: Expected 'CSR'");
+        softAssert.assertAll();
+    }
+
     public void validateCurrentDentalPlanNameForTheYear(String year) {
         String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
         softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
