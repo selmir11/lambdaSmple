@@ -1,4 +1,4 @@
-Feature: Seed01 based end of year tests
+Feature: Seed01 based end of year tests - OE
 
   Background: Seed 01 For Exchange- Single Applicant NFA
 
@@ -53,7 +53,7 @@ Feature: Seed01 based end of year tests
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
     Then I validate I am on the "Tell us about life changes" page
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -71,6 +71,8 @@ Feature: Seed01 based end of year tests
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -96,17 +98,17 @@ Feature: Seed01 based end of year tests
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 021                   | 021                | EC                    |                   | OEP        |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 021                   | 021                | EC                    |                   | OEP        |
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1038_EOY
+  @SLER-1038_OE @pol_exch_passed_oe
   Scenario:SLER-1038 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN - RT-2246
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -116,9 +118,10 @@ Feature: Seed01 based end of year tests
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Other" and click continue
+
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
     Then I update SSN number to new SSN number "123456789"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
@@ -145,7 +148,7 @@ Feature: Seed01 based end of year tests
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data

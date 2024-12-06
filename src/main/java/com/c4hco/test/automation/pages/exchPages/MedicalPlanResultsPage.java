@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class MedicalPlanResultsPage {
@@ -257,6 +259,25 @@ public class MedicalPlanResultsPage {
         } while(optionalInt.isEmpty());
     }
 
+    public void selectMedicalPlanForGrp(String planName, String grpNum){
+        List<MemberDetails> memberslist = basicActions.getAllMedicalEligibleMemInfo();
+        basicActions.waitForElementToDisappear(spinner, 30);
+      for(MemberDetails member: memberslist){
+        if(member.getMedGroupInd().equals(grpNum)){
+            member.setMedicalPlan(planName);
+        }
+      }
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get()+1);
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+        clickContinue();
+    }
+
     private Optional<Integer> checkIfPlanPresent(String planName) {
         basicActions.waitForElementListToBePresent(medicalPlanNamesList, 10);
         return IntStream.range(0, medicalPlanNamesList.size())
@@ -285,20 +306,37 @@ public class MedicalPlanResultsPage {
         Assert.assertEquals(planCount.getText(), plansCount+" of "+plansCount+" Medical Plans", "Medical plans count did not match");
     }
 
+    public void selectPlansForGroups(List<String> plansOfGroups){
+        for(String planOfGroup: plansOfGroups){
+            String[] parts = planOfGroup.split(":");
+            String plan = parts[1];
+            Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
+            String groupNum = matcher.find() ? matcher.group() : null;
 
-    public void SelectSpecificMedicalPlanPerGrp(String SpecificPlan,String member){
+            basicActions.waitForElementToDisappear(spinner, 10);
+            basicActions.waitForElementToBePresent(medicalplanheader, 10);
+            basicActions.wait(3000);
+            Matcher matcher_header = Pattern.compile("\\d+").matcher(medicalplanheader.getText());
+            String headerGroupNum = matcher_header.find() ? matcher.group() : null;
+            Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
 
-         basicActions.waitForElementToDisappear(spinner,20);
-         basicActions.waitForElementToBePresent(medicalplanheader,20);
-
-        String headerText = medicalplanheader.getText();
-        if (headerText.contains(member)) {
-            btnSkip.click();
-        } else {
-            selectMedicalPlan(SpecificPlan);
-            clickContinue();
-            System.out.println("Selected plan: " + SpecificPlan);
+            if(plan.equals("skip")){
+                setSkippedGroupNumber(groupNum);
+            } else {
+                selectMedicalPlanForGrp(plan, groupNum);
+            }
         }
+    }
+
+
+    private void setSkippedGroupNumber(String groupNum){
+        List<MemberDetails> allEligMembers = basicActions.getAllMedicalEligibleMemInfo();
+        for(MemberDetails member: allEligMembers){
+           if(member.getMedGroupInd().equals(groupNum)){
+               member.setHasMedicalPlan(false);
+           }
+        }
+        clickSkip();
     }
 
 
