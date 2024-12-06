@@ -34,10 +34,4 @@ public class StartShoppingPageSteps {
         startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageUserDetails);}
 
 
-    // use the initial segment of the member name if specified
-    @Then("I select Tobacco Usage Yes for the {string} member")
-    public void enterTobaccoUsageInfo(String tobaccoUsageDetails){
-        startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageDetails);
-    }
-
 }
