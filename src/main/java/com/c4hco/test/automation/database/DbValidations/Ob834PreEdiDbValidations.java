@@ -325,7 +325,7 @@ public class Ob834PreEdiDbValidations {
 
     private void subscriberOnlyMedDenFields(Ob834DetailsEntity ob834Entity){
        //  Bug - POL-9149 - Plan Sponsor Name should be primary member name - it is not updated with name change - Need to revert the code after the bug is fixed.
-        softAssert.assertEquals( ob834Entity.getPlan_sponsor_name(), (subscriber.getIncorrect_first_name() == null && subscriber.getIncorrect_last_name() == null)? subscriber.getSignature() : subscriber.getIncorrect_first_name()+" "+subscriber.getIncorrect_last_name(), "plan sponsor name did not match");
+        softAssert.assertEquals( ob834Entity.getPlan_sponsor_name(), subscriber.getSignature(), "plan sponsor name did not match");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");

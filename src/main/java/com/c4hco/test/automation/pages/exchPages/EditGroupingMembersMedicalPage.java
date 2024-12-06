@@ -210,7 +210,7 @@ public class EditGroupingMembersMedicalPage {
     public void createNewGroup(List<String> grouping) {
         basicActions.waitForElementToDisappear(spinner, 20);
         for (String group : grouping) {
-            basicActions.waitForElementToBePresent(createNewGroupLink,10);
+            basicActions.waitForElementToBePresent(createNewGroupLink, 10);
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
             String[] groupDetail = group.split(":");
