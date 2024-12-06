@@ -82,7 +82,7 @@ public class EditGroupingMemberMedicalCoCoPage {
         basicActions.waitForElementToBePresent(createNewGroupLink, 70);
         basicActions.scrollToElement(createNewGroupLink);
 
-        while (grouping.size() != dragAMemberHere.size()) {
+        while (dragAMemberHere.size()<grouping.size()) {
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
         }

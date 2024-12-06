@@ -329,6 +329,7 @@ public class EthnicityAndRacePage {
     }
 
     public void selectNotListedAndEnterCustomText(String customText) {
+        basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
         raceEthnicityButton.get(7).click();
         basicActions.waitForElementToBePresent(notListedReason, 10);
         notListedReason.sendKeys(customText);
