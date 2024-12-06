@@ -3,8 +3,6 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
-
 public class AdminPortalIndividualDashboardPage {
 
     public BasicActions basicActions;
@@ -75,8 +72,6 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberDob;
     @FindBy(css = "body app-root div:nth-child(6)")
     WebElement memberAddress;
-    @FindBy(css = "div[id='groupBox1'] p[class='group-title']")
-    List<WebElement> titleOfContainer;
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
     @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
@@ -121,11 +116,11 @@ public class AdminPortalIndividualDashboardPage {
     WebElement goBack;
     @FindBy(css = "label[for='organization-id']")
     WebElement lblGroupID;
-    @FindBy(css = "#id")
+    @FindBy(xpath = "//p[@id='id']")
     WebElement groupID;
     @FindBy(css = "label[for='name']")
     WebElement lablOrgName;
-    @FindBy(css = "//p[@id='name']")
+    @FindBy(xpath = "//p[@id='name']")
     WebElement orgName;
     @FindBy(xpath = "//th[normalize-space()='First Name']")
     WebElement clientFirstName;
@@ -157,6 +152,28 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalStatusAnyEnvironment;
     @FindBy(xpath = "//div[.='Renewal Status: CANCELED']")
     WebElement renewalCanceled;
+    @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
+    WebElement profileTitle;
+    @FindBy(css = "div[id='program-manager-contract'] p[class='group-title']")
+    WebElement contractTitle;
+    @FindBy(css = "div[class='group-box activity-container'] p[class='group-title']")
+    WebElement accountActivityTitle;
+    @FindBy(css = "div[class='group-box client-container'] p[class='group-title']")
+    WebElement clientTitle;
+    @FindBy(css = "div[class='group-box organization-container'] p[class='group-title']")
+    WebElement organizationTitle;
+    @FindBy(css = "body app-root th:nth-child(1)")
+    WebElement firstNameClient;
+    @FindBy(css = "body app-root th:nth-child(2)")
+    WebElement lastNameClient;
+    @FindBy(css = "body app-root th:nth-child(4)")
+    WebElement phoneClient;
+    @FindBy(css = "body app-root th:nth-child(3)")
+    WebElement emailClient;
+    @FindBy(xpath = "//*[@id=\"program-manager-client-info-table\"]/tr[1]")
+    WebElement firstRowClientData;
+    @FindBy(xpath = "//*[@id=\"program-manager-client-info-table\"]/tr[2]")
+    WebElement secondRowClientData;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -335,7 +352,9 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertAll();    }
     public void VerifyProgramManagerOrganizationInformation() {
         softAssert.assertEquals(lblGroupID.getText(), "Organization Group ID:");
+        softAssert.assertEquals(groupID.getText(), "75509083");
         softAssert.assertEquals(lablOrgName.getText(), "Organization Name:");
+        softAssert.assertEquals(orgName.getText(), "aphsccbfxfotjudmvlafzowdjfb");
         if (SharedData.getEnv().equals("qa")) {
             softAssert.assertEquals(groupID.getText(), "130474819");
             softAssert.assertEquals(orgName.getText(), "profiletest");
@@ -428,5 +447,38 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(renewalCanceled, 10);
         softAssert.assertEquals(renewalCanceled.getText(), status);
         softAssert.assertAll();    }
+    public void validatePMDashboardContainerTitles(String profile, String contract, String accountActivity, String clientInfo, String organizationInfo) {
+        basicActions.waitForElementToBePresent(profileTitle, 30);
+        softAssert.assertEquals(profileTitle.getText(), profile);
+        softAssert.assertEquals(contractTitle.getText(), contract);
+        softAssert.assertEquals(accountActivityTitle.getText(), accountActivity);
+        softAssert.assertEquals(clientTitle.getText(), clientInfo);
+        softAssert.assertEquals(organizationTitle.getText(), organizationInfo);
+        softAssert.assertAll();     }
+    public void validateTitleRowClientInformation(String fNameClient, String lNameClient, String eClient, String phClient) {
+        basicActions.waitForElementToBePresent(firstNameClient, 30);
+        softAssert.assertEquals(firstNameClient.getText(), fNameClient);
+        softAssert.assertEquals(lastNameClient.getText(), lNameClient);
+        softAssert.assertEquals(emailClient.getText(), eClient);
+        softAssert.assertEquals(phoneClient.getText(), phClient);
+        softAssert.assertAll();     }
+    public void validateFirstRowClientData(String clientInfo, String firstClientSTG, String firstClientQA) {
+        basicActions.waitForElementToBePresent(clientTitle, 30);
+        softAssert.assertEquals(clientTitle.getText(), clientInfo);
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(firstRowClientData.getText(), firstClientSTG);
+        }else{
+            softAssert.assertEquals(firstRowClientData.getText(), firstClientQA);
+        }
+        softAssert.assertAll();     }
+    public void validateSecondRowClientData(String clientInfo, String secondClientSTG, String secondClientQA) {
+        basicActions.waitForElementToBePresent(clientTitle, 30);
+        softAssert.assertEquals(clientTitle.getText(), clientInfo);
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(secondRowClientData.getText(), secondClientSTG);
+        }else{
+            softAssert.assertEquals(secondRowClientData.getText(), secondClientQA);
+        }
+        softAssert.assertAll();     }
 }
 

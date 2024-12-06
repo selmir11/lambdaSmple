@@ -130,5 +130,19 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify Renewal status {string} is displayed")
     public void iVerifyCanceledStatusIsDisplayed(String containerStatus) {
         adminPortalIndividualDashboardPage.verifyStatusCanceledIsDisplayed(containerStatus);        }
+
+    @And("I validate individual dashboard container titles: {string} {string} {string} {string} {string} are displayed")
+    public void iValidatePMDashboardContainerTitlesAreDisplayed(String profile, String contract, String accountActivity, String clientInfo, String organizationInfo) {
+        adminPortalIndividualDashboardPage.validatePMDashboardContainerTitles(profile, contract, accountActivity, clientInfo, organizationInfo);
+    }
+    @Then("I validate Client Information title row {string} {string} {string} {string}")
+    public void iValidateTitleRowClientInformation(String fNameClient, String lNameClient, String eClient, String phClient) {
+        adminPortalIndividualDashboardPage.validateTitleRowClientInformation(fNameClient, lNameClient, eClient, phClient);  }
+    @And("I validate {string} first row - first client data {string} or {string}")
+    public void iValidateFirstRowClientData(String clientInfo, String firstClientSTG, String firstClientQA) {
+        adminPortalIndividualDashboardPage.validateFirstRowClientData(clientInfo, firstClientSTG, firstClientQA);  }
+    @And("I validate {string} second row - first client data {string} or {string}")
+    public void iValidateSecondRowClientData(String clientInfo, String secondClientSTG, String secondClientQA) {
+        adminPortalIndividualDashboardPage.validateSecondRowClientData(clientInfo, secondClientSTG, secondClientQA);  }
 }
 
