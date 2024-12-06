@@ -201,7 +201,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(reportsTitle.isDisplayed());
         softAssert.assertAll();    }
     public void viewReportLinks(String searchText) {
-        basicActions.waitForElementListToBePresent(reportViewButtons, 20);
+        basicActions.waitForElementListToBePresentWithRetries(reportViewButtons, 60);
         WebElement viewButton = basicActions.getDriver().findElement(By.xpath("//span[contains(normalize-space(), '" + searchText + "')]//following::span[1]"));
         viewButton.click();
         basicActions.switchtoactiveTab();    }

@@ -1,9 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Constants;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class DentalPlansResultsPage {
@@ -81,9 +83,6 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-ResetFilters")
     WebElement resetButton;
 
-    @FindBy(id = "PlanResults-MonthlyPremium_1")
-    WebElement dentalPremium1;
-
     @FindBy(id = "PlanResults-PlanName_4")
     WebElement pediatricdental1;
 
@@ -95,9 +94,6 @@ public class DentalPlansResultsPage {
 
     @FindBy(xpath = "(//div[@class='col detail-pane'])[1]")
     WebElement firstDentalPlanCard;
-
-    @FindBy(xpath = "(//*[@id='DentalPlanResults-MonthlyPremium'])[1]")
-    WebElement monthlypremiumdropdown;
 
     @FindBy(xpath = "//div[@id='MPDcollapse'] //span[contains(@class,'ngx-slider-limit ngx-slider-floor')]")
     WebElement txtpremiumamnt;
@@ -187,6 +183,16 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToDisappear( spinner, 50 );
         basicActions.waitForElementToBePresent( dentalSkipBtn, 30 );
         dentalSkipBtn.click();
+    }
+
+    private void setSkippedGroupNumber(String groupNum){
+        List<MemberDetails> allEligMembers = basicActions.getAllDentalEligibleMemInfo();
+        for(MemberDetails member: allEligMembers){
+            if(member.getDenGroupInd().equals(groupNum)){
+                member.setHasDentalPlan(false);
+            }
+        }
+        clickSkip();
     }
 
     public void clickFirstTwoCompareBoxes() {
@@ -334,23 +340,47 @@ public class DentalPlansResultsPage {
         softAssert.assertAll();
         }
 
-    public void SelectSpecificDentalPlanPerGrp(String SpecificPlan,String member){
+    public void selectDentalPlansForGroups(List<String> plansOfGroups) {
+        for (String planOfGroup : plansOfGroups) {
+            String[] parts = planOfGroup.split(":");
+            String plan = parts[1];
+            Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
+            String groupNum = matcher.find() ? matcher.group() : null;
 
-        basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementToBePresent(dentalplanheader,20);
+            basicActions.waitForElementToDisappear(spinner, 30);
+            basicActions.wait(3000);
+            basicActions.waitForElementToBePresent(dentalplanheader, 10);
+            Matcher matcher_header = Pattern.compile("\\d+").matcher(dentalplanheader.getText());
+            String headerGroupNum = matcher_header.find() ? matcher.group() : null;
 
-        String headerText = dentalplanheader.getText();
-        if (headerText.contains(member)) {
-            clickSkip();
-        } else {
-
-            selectDentalPlan(SpecificPlan);
-             clickContinueOnDentalResultsPage();
-                System.out.println("Selected plan: " + SpecificPlan);
-
+            Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
+            if (plan.equals("skip")) {
+                setSkippedGroupNumber(groupNum);
+            } else {
+                selectDentalPlanForGrp(plan, groupNum);
+            }
         }
-
     }
+
+    public void selectDentalPlanForGrp(String planName, String grpNum){
+        List<MemberDetails> memberslist = basicActions.getAllDentalEligibleMemInfo();
+        basicActions.waitForElementToDisappear(spinner, 30);
+        for(MemberDetails member: memberslist){
+            if(member.getDenGroupInd().equals(grpNum)){
+                member.setDentalPlan(planName);
+            }
+        }
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get()+1);
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+        clickContinueOnDentalResultsPage();
+    }
+
 
     public void verifyPremiumAmountIsZero() {
         basicActions.waitForElementToDisappear(spinner, 30);

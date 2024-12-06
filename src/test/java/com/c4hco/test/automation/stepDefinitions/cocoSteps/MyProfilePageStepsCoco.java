@@ -50,6 +50,8 @@ public class MyProfilePageStepsCoco {
     public void iverifyErrortextpopupOnMyProfileCoCoPage(String language) {
         myProfilePage.verifyErrortextpopupOnMyProfileCoCoPage(language);
     }
+    @And("I validate timeout session popup {string} on My Profile page CoCo")
+    public void iVerifyTimeoutPopupCoco(String language)  { myProfilePage.VerifyTimeoutPopupCoco(language); }
 
     @And("I validate the incorrect password error message on My profile page in CoCo {string}")
     public void iverifyIncorrectPasswordErrortextpopupOnMyProfileCoCoPage(String language) {

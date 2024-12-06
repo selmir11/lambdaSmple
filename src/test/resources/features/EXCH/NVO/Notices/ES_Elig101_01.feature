@@ -57,6 +57,11 @@ Feature: Eligibility Notices
     Then I click continue on the Add Address page
 
     # Life change information
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     Then I verify the family overview table is present
     Then I click continue on family overview page
@@ -112,7 +117,7 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Account Overview" page
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-    Then I open the notice "Application Results" in "Spanish"
+    Then I open the notice "Los resultados de su solicitud" in "Spanish"
     And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
     Then I delete the open notice
     And I sign out of Outlook
@@ -171,6 +176,8 @@ Feature: Eligibility Notices
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
@@ -232,7 +239,7 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Account Overview" page
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-    Then I open the notice "Application Results" in "Spanish"
+    Then I open the notice "Los resultados de su solicitud" in "Spanish"
     And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
     Then I delete the open notice
     And I sign out of Outlook
@@ -289,6 +296,8 @@ Feature: Eligibility Notices
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
@@ -351,7 +360,7 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Account Overview" page
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-    Then I open the notice "Application Results" in "Spanish"
+    Then I open the notice "Los resultados de su solicitud" in "Spanish"
     And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
     Then I delete the open notice
     And I sign out of Outlook
@@ -409,6 +418,8 @@ Feature: Eligibility Notices
     Then I select "No" to the recently denied medicaid question
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     Then I select "No" for Naturalized Immigrant option
@@ -468,7 +479,7 @@ Feature: Eligibility Notices
      # Check Email notice
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-    Then I open the notice "Application Results" in "Spanish"
+    Then I open the notice "Los resultados de su solicitud" in "Spanish"
     And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
     Then I delete the open notice
     And I sign out of Outlook
@@ -545,6 +556,8 @@ Feature: Eligibility Notices
 #    Then I select "No" to the recently denied medicaid question
 #    Then I select "No" for Incarceration option
 #    Then I click continue on the Add Address page
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I click continue on the Race and Ethnicity page
 #    Then I validate I am on the "Citizenship" page
 #    Then I select "Yes" for Citizen option
 #    Then I select "No" for Naturalized Immigrant option
@@ -603,7 +616,7 @@ Feature: Eligibility Notices
 #     # Check Email notice
 #    Then I open outlook Tab
 #    And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-#    Then I open the notice "Application Results" in "Spanish"
+#    Then I open the notice "Los resultados de su solicitud" in "Spanish"
 #    And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
 #    Then I delete the open notice
 #    And I sign out of Outlook
@@ -662,6 +675,8 @@ Feature: Eligibility Notices
 #    Then I select "No" to the recently denied medicaid question
 #    Then I select "No" for Incarceration option
 #    Then I click continue on the Add Address page
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I click continue on the Race and Ethnicity page
 #    Then I validate I am on the "Citizenship" page
 #    Then I select "Yes" for Citizen option
 #    Then I select "No" for Naturalized Immigrant option
@@ -687,6 +702,8 @@ Feature: Eligibility Notices
 #    Then I select "No" to the recently denied medicaid question
 #    Then I select "No" for Incarceration option
 #    Then I click continue on the Add Address page
+#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+#    And I click continue on the Race and Ethnicity page
 #    Then I validate I am on the "Citizenship" page
 #    Then I select "Yes" for Citizen option
 #    Then I select "No" for Naturalized Immigrant option
@@ -765,7 +782,7 @@ Feature: Eligibility Notices
 #    Then I validate I am on the "My Account Overview" page
 #    Then I open outlook Tab
 #    And I sign in to outlook with Valid Credentials "mf_test_@outlook.com" and "ALaska12!"
-#    Then I open the notice "Application Results" in "Spanish"
+#    Then I open the notice "Los resultados de su solicitud" in "Spanish"
 #    And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
 #    Then I delete the open notice
 #    And I sign out of Outlook

@@ -67,6 +67,9 @@ public class CRMContactPage {
     @FindBy(xpath = "//*[contains(@id, 'c4hco_contacttype.')]")
     WebElement txtContactTypeInput;
 
+    @FindBy(xpath = "//*[@aria-label='Contact Type']")
+    WebElement accountInformationContactType;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -155,6 +158,12 @@ public class CRMContactPage {
         softAssert.assertEquals(txtZipCodeInput.getAttribute("title"), SharedData.getPrimaryMember().getResAddress().getAddressZipcode());
         softAssert.assertEquals(txtAccountIdInput.getAttribute("defaultValue"), SharedData.getPrimaryMember().getAccount_id().toString());
         softAssert.assertEquals(txtContactTypeInput.getText(), "Individual");
+        softAssert.assertAll();
+    }
+
+    public void verifyContactType(String contactType){
+        basicActions.waitForElementToBePresentWithRetries(accountInformationContactType,50);
+        softAssert.assertEquals(accountInformationContactType.getText(), contactType);
         softAssert.assertAll();
     }
 }

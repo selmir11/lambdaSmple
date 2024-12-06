@@ -709,6 +709,14 @@ public class BasicActions {
         return date.format(outputFormatter);
     }
 
+    public String changeDateFormat(String dateString, String inputFormat, String outputFormat, Locale locale) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat, locale);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat, locale);
+        LocalDate date = LocalDate.parse(dateString, inputFormatter);
+
+        return date.format(outputFormatter);
+    }
+
     public String  getDateBasedOnRequirement(String dateRequirement) {
         String date;
         if(dateRequirement.contains("Future") ||dateRequirement.contains("Past")) {
@@ -842,6 +850,28 @@ public class BasicActions {
 
     public static String getUniqueString(int length){
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
+    }
+
+    public List<MemberDetails> getAllMedicalEligibleMemInfo(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allEligibleMembers = new ArrayList<>();
+        for (MemberDetails memInfo : allMembers) {
+            if (memInfo.getHasMedicalPlan()) {
+                allEligibleMembers.add(memInfo);
+            }
+        }
+        return allEligibleMembers;
+    }
+
+    public List<MemberDetails> getAllDentalEligibleMemInfo(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allEligibleMembers = new ArrayList<>();
+        for (MemberDetails memInfo : allMembers) {
+            if (memInfo.getHasDentalPlan()) {
+                allEligibleMembers.add(memInfo);
+            }
+        }
+        return allEligibleMembers;
     }
 
 

@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -213,9 +212,9 @@ public class MyDocumentsPage {
             case "Application Results":
                 switch (language){
                     case "English":
-                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber, basicActions))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber, basicActions).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -244,9 +243,9 @@ public class MyDocumentsPage {
                         }
                         break;
                     case "Spanish":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber, basicActions))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber, basicActions).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -410,7 +409,7 @@ public class MyDocumentsPage {
             // WIP - append text for coverage start date, welcome text, Dear tag, refactor household members validation
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate(), "yyyy-MM-dd", "MMMM dd, yyyy")), "coverage start date failed");
             softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "primary member email Id is not matching");
-            softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy")), "current date is not matching");
+            softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MMMM d, yyyy")), "current date is not matching");
             validateMemNames(pdfText);
             validatePlanDetails(pdfText);
             softAssert.assertAll();
