@@ -373,7 +373,7 @@ Feature: EXCH Seed Data ALL
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select Tobacco Usage Yes for the "Primary" member on start shopping page
+    Then I click Yes to the Tobacco usage question on start shopping page
       |Primary,Spouse|
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
@@ -1147,7 +1147,7 @@ Feature: EXCH Seed Data ALL
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I select Tobacco Usage Yes for the "Primary" member on start shopping page
+    Then I click Yes to the Tobacco usage question on start shopping page
       |Son,InLaw|
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
