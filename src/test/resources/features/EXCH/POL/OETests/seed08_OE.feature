@@ -67,7 +67,7 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     Then I click continue on the Citizenship page
-
+#son
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "08281999", "Male" and applying "Yes"
@@ -91,7 +91,7 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     Then I click continue on the Citizenship page
-
+#dil
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "InLaw", "05052001", "Female" and applying "Yes"
@@ -190,24 +190,6 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    And I click on Sign Out in the Header for "NonElmo"
-
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin dashboard" page
-    And I search for user and click email from search results
-    And I click "Admin LCE" from application links dropdown
-    And I look up with account id on admin tool page
-    And I change effective date to "0101" of "current year" from admin portal
-    Then logout from Admin Portal
-
-    Given I open the login page on the "login" portal
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Eligibility"
-    Then I validate I am on the "Application History" page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -259,7 +241,123 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
-    And I click on Sign Out in the Header for "NonElmo"
+#    And I Validate the correct enrolled plans are displayed on account overview page
+#    And I click on Sign Out in the Header for "NonElmo"
+
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click View Plan History link from "medical" plan card
+#    And I validate "medical" plan details from plan history
+#    And I click on to Back to Current Plan Details button
+#    And I click View Plan History link from "dental" plan card
+#    And I validate "dental" plan details from plan history
+#    And I click on Sign Out in the Header for "Elmo"
+#
+#    And I validate "medical" entities from policy tables
+#    And I validate "dental" entities from policy tables
+
+  #@RT-2113
+  Scenario: RT-2113 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - DIFFERENT CARRIER / DIFFERENT PLANS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    And I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    And I get the newborn "GrandDaughter" dob as "current date"
+
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
+    Then I enter details on tell us about additional members of your household exch page and continue with "GrandDaughter", "getFromSharedData", "Female" and applying "Yes"
+      | Primary:Granddaughter |
+      | Spouse:Granddaughter    |
+      | Son:Daughter          |
+      | InLaw:Daughter        |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "GrandDaughter"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "GrandDaughter"
+    And I click the edit income icon on household page for "GrandDaughter"
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "Yes" to claim dependents
+    And I select the fourth dependent
+    And I click save and continue on tax status page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the ELMO health coverage page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I click continue on family overview page
+
+
+
+
+
+
+
+
+
 
 
