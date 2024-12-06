@@ -42,7 +42,7 @@ public class CreateAccountPage {
     @FindBy(id = "fn-label")
      WebElement firstNameText;
 
-    @FindBy(css = "lib-input-error[controlname='firstName'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='fn-mf-error']")
     WebElement firstNameErrorMessage;
 
     @FindBy(id = "mn-label")
@@ -51,7 +51,7 @@ public class CreateAccountPage {
     @FindBy(id = "mn")
     WebElement middleName;
 
-    @FindBy(css = "lib-input-error[controlname='middleName'] span[class='error-message']")
+    @FindBy(xpath = "//span[@id='mn-error']")
     WebElement middleNameErrorMessage;
 
     @FindBy(id = "ln")
@@ -59,7 +59,7 @@ public class CreateAccountPage {
     @FindBy(css = "div:nth-child(4) > label:nth-child(1)")
      WebElement lastNameText;
 
-    @FindBy(css = "lib-input-error[controlname='lastName'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='ln-mf-error']")
     WebElement lastNameErrorMessage;
 
     @FindBy(id = "email")
@@ -67,7 +67,7 @@ public class CreateAccountPage {
     @FindBy(id = "email-label")
      WebElement emailText;
 
-    @FindBy(css = "lib-input-error[controlname='email'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='em-mf-error']")
     WebElement emailErrorMessage;
 
     @FindBy(id = "phone")
@@ -75,7 +75,7 @@ public class CreateAccountPage {
     @FindBy(id = "phone-label")
      WebElement phoneNumberTxt;
 
-    @FindBy(css = "lib-input-error[controlname='phoneNumber'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='ph-mf-error']")
     WebElement phoneNumberErrorMessage;
 
     @FindBy(id = "password")
@@ -83,7 +83,7 @@ public class CreateAccountPage {
     @FindBy(id = "password-label")
      WebElement passwordText;
 
-    @FindBy(css = "lib-input-error[controlname='password'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='pw-mf-error']")
     WebElement passwordErrorMessage;
 
     @FindBy(id = "confirm-password")
@@ -91,10 +91,10 @@ public class CreateAccountPage {
     @FindBy(id = "confirm-password-label")
      WebElement confirmPasswordTxt;
 
-    @FindBy(css = "lib-input-error[controlname='confirmPassword'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='cp-mf-error']")
     WebElement confirmPasswordErrorMessage;
 
-    @FindBy(css = "div[class='col'] span[class='error-message']")
+    @FindBy(xpath = "//span[@id='ls-mf-error']")
     WebElement languageErrorMessage;
 
     @FindBy(id = "English")
@@ -102,7 +102,7 @@ public class CreateAccountPage {
     @FindBy(id = "Spanish")
      WebElement preferredLanguageButtonSpanish;
 
-    @FindBy(xpath = "//lib-list-error[@id='ahp-mf-error']//span[@class='error-message']")
+    @FindBy(xpath = "//lib-list-error[@uniqueerrorid='ahp-mf-error']")
     WebElement accountHolderPreferencesErrorMessage;
 
     @FindBy(id = "pu-input")
@@ -111,7 +111,7 @@ public class CreateAccountPage {
     @FindBy(id = "rr-input")
     WebElement onBehalfOfPrimaryUserCheckbox;
 
-    @FindBy(xpath = "//lib-list-error[@id='miso-mf-error']//span[@class='error-message']")
+    @FindBy(xpath = "//lib-list-error[@uniqueerrorid='miso-mf-error']")
     WebElement informationSharingOptionsErrorMessage;
 
     @FindBy(id = "cocoUser-input")
@@ -151,7 +151,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[2]")
     WebElement adminStaffRole;
 
-    @FindBy(css = "lib-input-error[controlname='role'] span[class='error-message']")
+    @FindBy(xpath = "//span[@id='role-dropdown-mf-error']")
     WebElement roleDropdownErrorMessage;
 
     @FindBy(id = "loginPortal-createAccount-indicatePrimary")
@@ -604,7 +604,7 @@ public class CreateAccountPage {
     }
 
     public void validateMandatoryFieldErrorMessages(String language){
-        basicActions.waitForElementToBePresent(submitButton, 10);
+        basicActions.waitForElementToBePresentWithRetries(submitButton, 10);
         submitButton.click();
 
         switch(language){

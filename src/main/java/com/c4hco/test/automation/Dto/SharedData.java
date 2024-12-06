@@ -16,12 +16,10 @@ public class SharedData {
     @Getter @Setter private static String appType;
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
-    @Getter @Setter private static List<MemberDetails> allMembers;
+    @Getter @Setter private static List<MemberDetails> allMembers; // should be removed
     @Getter @Setter private static String primaryMemberId;
-    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities; // Should be removed
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsMedEntities;
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsDenEntities;
-    @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities; // Should be removed
     @Getter @Setter private static List<PolicyTablesEntity> medicalPolicyTablesEntities;
     @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
     @Getter @Setter private static String medicalFileName;
@@ -89,8 +87,6 @@ public class SharedData {
         edi834TransactionDetails = null;
         commonEDISegments = null;
         env = null;
-        ob834DetailsEntities = null;
-        policyTablesEntities = null;
         dbData = null;
         planYear = null;
         groupDetails = null;
