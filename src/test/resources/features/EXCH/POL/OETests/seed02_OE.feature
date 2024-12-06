@@ -163,7 +163,6 @@ Feature: Seed02 - Exchange - OE
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-
   @SLER-95_OE @pol_exch_passed_oe
   Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
