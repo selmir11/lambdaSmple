@@ -71,6 +71,7 @@ Feature: Regression Tests that require Seed 4
     And I select "KP Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo

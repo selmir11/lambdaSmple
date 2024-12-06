@@ -342,19 +342,40 @@ Feature: Enroll a in a plan 8 HH
     |Primary|
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
+    Then I click on edit enrollment groups link
+    Then I create new group in edit medical grouping page and drag members to the new group
+      | Primary,Niece:Group1 |
+      | SonTwo:Group2 |
+      | Nephew:Group3 |
+      | Daughter:Group4 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
+    Then I validate I am on the "Grouping Members Medical" page
     And  I get the details of medical group Members
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And I select or skip the medical plans for groups
+      |Group 1:Cigna Connect Colorado Option Bronze|
+      |Group 2:Cigna Connect Colorado Option Bronze |
+      |Group 3:Cigna Connect Colorado Option Bronze|
+      |Group 4:skip|
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Niece:Group1 |
+      | SonTwo:Group2 |
+      | Nephew:Group3 |
+      | Daughter:Group4 |
+    And I click save button to save the dental groups
+    And I click on continue button on success pop-up from edit grouping dental page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    And I select or skip the dental plans for groups
+      |Group 1:Anthem Dental Family|
+      |Group 2:Anthem Dental Family|
+      |Group 3:Anthem Dental Family|
+      |Group 4:skip|
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount
     And I set "Dental" Plans premium amount
