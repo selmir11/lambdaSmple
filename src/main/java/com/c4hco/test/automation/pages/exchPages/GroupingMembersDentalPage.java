@@ -62,7 +62,14 @@ public class GroupingMembersDentalPage {
     public void clickContinue()  {
         basicActions.waitForElementToDisappear(spinner,15);
         basicActions.waitForElementToBePresent(continueButton,10);
-        setGroupingInfo();
+        List<MemberDetails> memberInfoDetails = basicActions.getAllDentalEligibleMemInfo();
+        for (MemberDetails memDet : memberInfoDetails){
+            basicActions.waitForElementListToBePresent(groupTitle,10);
+            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+memDet.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(memGroupInfo,10));
+            basicActions.scrollToElement(memGroupInfo);
+            memDet.setDenGroupInd(memGroupInfo.getText().replace("Dental Group #",""));
+        }
         basicActions.scrollToElement(continueButton);
         continueButton.click();
     }
@@ -108,18 +115,6 @@ public class GroupingMembersDentalPage {
         softAssert.assertTrue(globeImageDropdown.isEnabled());
         softAssert.assertAll();
     }
-
-    private void setGroupingInfo(){
-        List<MemberDetails> memberInfoDetails = basicActions.getAllEligibleMemInfo();
-        for (MemberDetails memDet : memberInfoDetails) {
-            basicActions.waitForElementListToBePresent(groupTitle, 10);
-            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + memDet.getFirstName() + "')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
-            Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10));
-            basicActions.scrollToElement(memGroupInfo);
-            memDet.setDenGroupInd(memGroupInfo.getText().replace("Dental Group #", ""));
-        }
-    }
-
 
 }
 

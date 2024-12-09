@@ -16,7 +16,7 @@ public class DbValidations {
     SoftAssert softAssert = new SoftAssert();
     String formattedDate; //formatted in YYYY-MM-DD
     Calendar calendar = Calendar.getInstance();
-    int currentYear = calendar.get(Calendar.YEAR);
+
     BasicActions basicActions = new BasicActions();
 
     public String getCurrentdate() {
@@ -126,7 +126,7 @@ public class DbValidations {
         for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", "Bob routing key mismatch");
-            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear), "Bob plan year mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), SharedData.getPlanYear(), "Bob plan year mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
@@ -229,6 +229,14 @@ public class DbValidations {
         List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
+
+    public void validateMemberCSRNonAIANData() {
+        String[] dbValues = exchDbDataProvider.getmemberNonAIAN();
+        softAssert.assertEquals(dbValues[0], "NON_AIAN", "Reason code mismatch: Expected 'NONAIAN'");
+        softAssert.assertEquals(dbValues[1], "CSR", "Eligibility type mismatch: Expected 'CSR'");
+        softAssert.assertAll();
+    }
+
     public void validateCurrentDentalPlanNameForTheYear(String year) {
         String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
         softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());

@@ -31,6 +31,6 @@ Feature: Verify the account already exists error message on the Create your Acco
     When I click create a new account on login page
     And I click create my account from pre-screen page
     Then I validate I am on the "Create Account" page
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
     And I enter duplicate data for account creation
     Then I validate the We're unable to proceed with this email error message in "Spanish"

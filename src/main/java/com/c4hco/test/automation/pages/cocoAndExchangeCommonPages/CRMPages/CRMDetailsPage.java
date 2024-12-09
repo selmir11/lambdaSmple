@@ -22,6 +22,12 @@ public class CRMDetailsPage {
     @FindBy(xpath = "//input[@aria-label = 'Address 2: ZIP/Postal Code']")
     WebElement txtZipCodeInput;
 
+    @FindBy(xpath = "//input[@aria-label='Date of Broker Authorization Start Date']")
+    WebElement brokerAuthStartDate;
+
+    @FindBy(xpath = "//input[@aria-label='Date of Broker Authorization End Date']")
+    WebElement brokerAuthEndDate;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -36,6 +42,18 @@ public class CRMDetailsPage {
         softAssert.assertEquals(txtCityInput.getAttribute("title"), SharedData.getPrimaryMember().getMailingAddress().getAddressCity());
         softAssert.assertEquals(txtStateInput.getAttribute("title"), SharedData.getPrimaryMember().getMailingAddress().getAddressState());
         softAssert.assertEquals(txtZipCodeInput.getAttribute("title"), SharedData.getPrimaryMember().getMailingAddress().getAddressZipcode());
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerAuthStartDate(){
+        basicActions.waitForElementToBePresent(brokerAuthStartDate,50);
+        softAssert.assertEquals(brokerAuthStartDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MM/d/yyyy"));
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerAuthEndDate(){
+        basicActions.waitForElementToBePresent(brokerAuthEndDate,50);
+        softAssert.assertEquals(brokerAuthEndDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MM/d/yyyy"));
         softAssert.assertAll();
     }
 

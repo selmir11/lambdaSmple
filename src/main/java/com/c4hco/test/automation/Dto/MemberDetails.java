@@ -79,7 +79,8 @@ public class MemberDetails {
     Boolean csrEligible=false;
     String medGroupInd="1";
     String denGroupInd="1";
-    Boolean eligibilityInfo=true;
+    Boolean hasMedicalPlan=true;
+    Boolean hasDentalPlan=true;
 }
 
 
