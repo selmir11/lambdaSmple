@@ -35,6 +35,11 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
       dbValidations.validateAccountHolderNameFromBOB();
    }
 
+
+   @And("I verify the Member will be CSR NON_AIAN")
+   public void iVerifyTheMemberCSRNonAIAN() {dbValidations.validateMemberCSRNonAIANData();
+   }
+
    @And("I verify the client's updated email address in BoB DB")
    public void iVerifyUpdatedEmailAddressBOBDB() {
       dbValidations.verifyUpdatedEmailAddressBOB();

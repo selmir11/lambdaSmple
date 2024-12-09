@@ -12,6 +12,12 @@ Feature: Seed07 - Exchange
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -252,6 +258,8 @@ Feature: Seed07 - Exchange
     And I select "Anthem Dental Family Value" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
 
     And I select the terms and agreements checkbox
