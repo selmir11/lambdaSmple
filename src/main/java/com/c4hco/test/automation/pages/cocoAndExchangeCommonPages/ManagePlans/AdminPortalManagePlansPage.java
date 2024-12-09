@@ -811,6 +811,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void updateTheMedicalPlanForTheUI() {
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
         SharedData.getManagePlanDentalMedicalPlan().setPlanType("1");
         //set marketing Medical Plan
         String currentMedPlan = currentMedicalPlanName.getText();
