@@ -22,4 +22,15 @@ public class AdminPortalReportsPageSteps {
         adminPortalReportsPage.validateEventCodeInActivityEventReport(eventType, description);
     }
 
+    @Then("I verify {string} and following events are displaying as {string} {string} {string} {string} {string} {string}")
+    public void iVerifyAndFollowingEventsAreDisplayingAs(String text,
+                                                         String timeCondition,
+                                                         String qaUsername,
+                                                         String stagingUsername,
+                                                         String expectedValue,
+                                                         String expectedStatus,
+                                                         String expectedKey) {
+        adminPortalReportsPage.VerifyEvents(text,timeCondition,qaUsername,stagingUsername, expectedValue,expectedStatus,expectedKey);
+
+    }
 }

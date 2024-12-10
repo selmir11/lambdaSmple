@@ -13,8 +13,7 @@ Feature: Ind Dash: Reports: Verify Contact Sophpo scan Coverage Upsert
     Then I verify Reports container title
     Then I click on view button for "Account Activity" report
     And I validate Account Activity title row
-    Then I wait for 200 milliseconds
-    Then I validate "BE_ATL_CONTACT_UPSER.." "" "2021-09-30T09:19:25" "Contact Upsert" in account activity table
-    Then I validate "SE_ENRLLMT_SUBMITTED.." "unknown" "2021-11-19T14:04:50" "Purchased and enrolled in.." in account activity table
-    Then I validate "BE_ATL_DOC_VERIFY_UP.." "" "2020-10-19T08:48:19" "CRM Upsert Document Verif.." in account activity table
+    Then I verify "BE_ATL_CONTACT_UPSER.." and following events are displaying as "2021-09-30T09:19:25" "" "" "Contact Upsert" "response" "SUCCESS"
+    Then I verify "SE_ENRLLMT_SUBMITTED.." and following events are displaying as "2021-11-19T14:04:50" "unknown" "unknown" "Purchased and enrolled in.." "APTC (appliedTo.." ""
+    Then I verify "BE_ATL_DOC_VERIFY_UP.." and following events are displaying as "2020-10-19T08:48:19" "" "" "CRM Upsert Document Verif.." "response" "SUCCESS"
     And I logout from Admin Portal

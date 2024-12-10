@@ -1,11 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminLceToolPage;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalIndividualDashboardPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.WebElement;
-
+import io.cucumber.java.en.When;
 import java.util.List;
 
 public class AdminPortalIndividualDashboardSteps {
@@ -130,5 +128,30 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify Renewal status {string} is displayed")
     public void iVerifyCanceledStatusIsDisplayed(String containerStatus) {
         adminPortalIndividualDashboardPage.verifyStatusCanceledIsDisplayed(containerStatus);        }
+
+    @Then("I verify Account Access details")
+    public void iVerifyAccountAccessDetails() {
+        adminPortalIndividualDashboardPage.VerifyAccountAccessDetails();
+    }
+
+    @And("I verify Account status is active")
+    public void iVerifyAccountStatusIsActive() {
+        adminPortalIndividualDashboardPage.validateAccountStatus();
+    }
+
+    @When("I check on Reset user's password checkbox and click on save")
+    public void iCheckOnResetUserSPasswordCheckboxAndClickOnSave() {
+        adminPortalIndividualDashboardPage.selectResetandSave();
+    }
+
+    @Then("I verify success message is displaying")
+    public void iVerifySuccessMessageIsDisplaying() {
+        adminPortalIndividualDashboardPage.verifyuccessmessage();
+    }
+
+    @When("I check on checkbox account and click on save")
+    public void iCheckOnCheckboxAccountAndClickOnSave() {
+        adminPortalIndividualDashboardPage.selectCheckbox();
+    }
 }
 
