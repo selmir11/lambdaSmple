@@ -60,4 +60,44 @@ public class CRMSearchResultsPage {
         throw new RuntimeException("Contact link not found after maximum retries.");
     }
 
+    public void handleBrokerSearchResultsPage(String brokerType) {
+        // This function handles the Search Results page when searching from the dashboard page.
+        int retryCount = 100;
+        int waitTime = 2;
+
+        WebDriver driver = basicActions.getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
+
+        String brokerName = "";
+
+        switch (brokerType) {
+            case "Agency Owner":
+                brokerName = SharedData.getAgencyOwner().getFirstName();
+                break;
+            case "Broker":
+                brokerName = SharedData.getBroker().getFirstName();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + brokerType);
+        }
+
+        By contactLinkLocator = By.xpath("//span[normalize-space()='" + brokerName + "']");
+
+        for (int i = 0; i < retryCount; i++) {
+            try {
+                WebElement linkOpenContact = wait.until(ExpectedConditions.visibilityOfElementLocated(contactLinkLocator));
+                if (linkOpenContact.isDisplayed()) {
+                    basicActions.getDriver().findElement(By.xpath("//span[normalize-space()='" + brokerName + "']")).click();
+                    return;
+                }
+            } catch (Exception e) {
+                System.out.println("Retry " + (i + 1) + " failed, attempting search again for "+contactLinkLocator);
+                txtCRMDashSearchBox.click();
+                txtCRMDashSearchBox.sendKeys(Keys.RETURN);
+            }
+        }
+        System.err.println("Failed to find contact link after " + retryCount + " attempts.");
+        throw new RuntimeException("Contact link not found after maximum retries.");
+    }
+
 }
