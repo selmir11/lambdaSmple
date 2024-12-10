@@ -225,7 +225,7 @@ public class IncomeSummaryCoCoPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(projectedIncomeHeader.getText(), "Ingresos que proyecta");
-                softAssert.assertEquals(projectedIncomeText.getText(), "¿Conforme a la información que ha proporcionado, hemos calculado su ingreso anual como se menciona anteriormente. ¿Espera que sus ingresos sean diferentes a la cantidad que calculamos anteriormente para 2024?");
+                softAssert.assertEquals(projectedIncomeText.getText(), "\u00bfConforme a la informaci\u00f3n que ha proporcionado, hemos calculado su ingreso anual como se menciona anteriormente. \u00bfEspera que sus ingresos sean diferentes a la cantidad que calculamos anteriormente para 2024?");
                 softAssert.assertAll();
                 break;
             default:
@@ -323,13 +323,13 @@ public class IncomeSummaryCoCoPage {
         basicActions.waitForElementToDisappear(spinner, 15);
         switch (income){
             case "None":
-                softAssert.assertEquals(incomeName.getText(),"No se declara ningún ingreso");
+                softAssert.assertEquals(incomeName.getText(),"No se declara ning\u00fan ingreso");
                 break;
             case "All Jobs/Employers":
                 softAssert.assertEquals(incomeName.getText(),"Ingresos laborales");
                 break;
             case "Alimony Received":
-                softAssert.assertEquals(incomeName.getText(),"Pensión alimenticia recibida");
+                softAssert.assertEquals(incomeName.getText(),"Pensi\u00f3n alimenticia recibida");
                 break;
             case "Capital Gains":
                 softAssert.assertEquals(incomeName.getText(),"Ganancias de capital");
@@ -338,7 +338,7 @@ public class IncomeSummaryCoCoPage {
                 softAssert.assertEquals(incomeName.getText(),"Ingresos por renta de propiedades");
                 break;
             case "Pension":
-                softAssert.assertEquals(incomeName.getText(),"Pensión");
+                softAssert.assertEquals(incomeName.getText(),"Pensi\u00f3n");
                 break;
             case "Private Retirement Income":
                 softAssert.assertEquals(incomeName.getText(),"Ingresos privados por retiro");
@@ -359,7 +359,7 @@ public class IncomeSummaryCoCoPage {
                 softAssert.assertEquals(incomeName.getText(),"Ingresos extranjeros no gravados");
                 break;
             case "Royalty Income":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos por regalías");
+                softAssert.assertEquals(incomeName.getText(),"Ingresos por regal\u00edas");
                 break;
             case "Taxable income from Tribal Sources":
                 softAssert.assertEquals(incomeName.getText(),"Ingresos gravables de origen tribal");
@@ -443,13 +443,17 @@ public class IncomeSummaryCoCoPage {
         basicActions.waitForElementToDisappear(spinner, 15);
         switch (deduction){
             case "None":
-                softAssert.assertEquals(deductionName.getText(),"No se declaran deducciones");
-                break;
+                softAssert.assertEquals(noDeductionName.getText(),"No se declaran deducciones");
+                softAssert.assertEquals(noDeductionName.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(noDeductionName.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(noDeductionName.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(noDeductionName.getCssValue("margin-left"), "32px");
+                return;
             case "Alimony or spousal support paid out":
-                softAssert.assertEquals(deductionName.getText(),"Pensión alimenticia o apoyo conyugal que paga");
+                softAssert.assertEquals(deductionName.getText(),"Pensi\u00f3n alimenticia o apoyo conyugal que paga");
                 break;
             case "Domestic production activities":
-                softAssert.assertEquals(deductionName.getText(),"Actividades de producción para el mercado interno");
+                softAssert.assertEquals(deductionName.getText(),"Actividades de producci\u00f3n para el mercado interno");
                 break;
             case "Health Savings Account contribution":
                 softAssert.assertEquals(deductionName.getText(),"Aporte a cuenta de ahorros de salud");
@@ -464,7 +468,7 @@ public class IncomeSummaryCoCoPage {
                 softAssert.assertEquals(deductionName.getText(),"Impuesto al trabajo independiente");
                 break;
             case "Student loan interest":
-                softAssert.assertEquals(deductionName.getText(),"Interés por préstamo de estudiante");
+                softAssert.assertEquals(deductionName.getText(),"Inter\u00e9s por pr\u00e9stamo de estudiante");
                 break;
             case "Self-employment health insurance":
                 softAssert.assertEquals(deductionName.getText(),"Seguro de salud de trabajador independiente");
