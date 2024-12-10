@@ -60,6 +60,33 @@ public class CRMDashboardPage {
         txtCRMDashSearchBox.sendKeys(Keys.RETURN);
     }
 
+    public void CRMDashboardSearchBrokerNameandOpenFirst(String brokerType) {
+        basicActions.wait(10000);
+        List<WebElement> okButtonList = WebDriverManager.getDriver().findElements(By.id("okButton_1"));
+        if (!okButtonList.isEmpty() && okButtonList.get(0).isDisplayed()) {
+            okButtonList.get(0).click();
+            System.out.println("Clicked the OK Button.");
+            basicActions.wait(2000);
+
+        } else {
+            System.out.println("OK Button not present or not visible, continuing with the search.");
+        }
+
+        basicActions.waitForElementToBePresentWithRetries(txtCRMDashSearchBox, 60);
+        switch (brokerType) {
+            case "Agency Owner":
+                txtCRMDashSearchBox.sendKeys(SharedData.getAgencyOwner().getBroker_name());
+                break;
+            case "Broker":
+                txtCRMDashSearchBox.sendKeys(SharedData.getBroker().getBroker_name());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + brokerType);
+        }
+        basicActions.wait(3000);
+        txtCRMDashSearchBox.sendKeys(Keys.RETURN);
+    }
+
     public void searchByUserEmail(String stageEmail, String qaEmail){
         basicActions.wait(10000);
         basicActions.waitForElementToBePresentWithRetries(txtCRMDashSearchBox, 60);

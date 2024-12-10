@@ -15,4 +15,7 @@ public class CRMDetailsPageSteps {
 
     @And("I verify the broker authorization end date is today")
     public void iVerifyBrokerAuthEndDate(){crmDetailsPage.verifyBrokerAuthEndDate();}
+
+    @And("I verify the new license number and effective dates")
+    public void iVerifyBrokerLicense(){crmDetailsPage.verifyBrokerLicense();}
 }

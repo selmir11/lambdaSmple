@@ -83,4 +83,9 @@ public class DashboardPageSteps {
         dashboardPage.changeAssignedBroker(assignedBroker);
     }
 
+    @Then("I save the agency details")
+    public void saveExistingAgencyDetails(){
+        dashboardPage.saveAgencyDetails();
+    }
+
 }
