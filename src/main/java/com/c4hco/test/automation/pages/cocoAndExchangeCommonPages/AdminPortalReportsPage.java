@@ -15,9 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.stream.Collectors;
-
-
 
 public class AdminPortalReportsPage {
     private BasicActions basicActions;
@@ -46,78 +43,6 @@ public class AdminPortalReportsPage {
         softAssert.assertEquals("Time",eventTime.getText());
                softAssert.assertAll(); }
 
-    public void viewActivity(String activityText, String userData, String timeForEvent, String descriptionData) {
-        basicActions.waitForElementListToBePresent(eventCodeList, 300);
-        if (eventCodeList.isEmpty()) {
-            System.out.println("No elements found in eventCodeList.");
-            return;
-        }
-        eventCodeList.forEach(element -> System.out.println(element.getText()));
-
-        List<String> username = eventCodeList.stream()
-                .filter(s -> s.getText().equals(activityText))
-                .map(AdminPortalReportsPage::getUsername)
-                .collect(Collectors.toList());
-        System.out.println("Filtered Usernames: " + username);  // Debugging output
-        softAssert.assertTrue(username.contains(userData), "Username does not match.");
-
-        List<String> time = eventCodeList.stream()
-                .filter(s -> s.getText().equals(activityText))
-                .map(AdminPortalReportsPage::gettime)
-                .collect(Collectors.toList());
-        System.out.println("Filtered Times: " + time);
-
-        String expectedTime = normalizeTime(timeForEvent);
-        System.out.println("Expected Time (Normalized): " + expectedTime);
-        boolean timeMatch = time.stream().anyMatch(t -> normalizeTime(t).equals(expectedTime));
-        softAssert.assertTrue(timeMatch, "The event time does not match the expected time.");
-
-        List<String> description = eventCodeList.stream()
-                .filter(s -> s.getText().equals(activityText))
-                .map(AdminPortalReportsPage::getDescription)
-                .collect(Collectors.toList());
-        System.out.println("Filtered Descriptions: " + description);  // Debugging output
-        softAssert.assertTrue(description.contains(descriptionData), "Description does not match.");
-        softAssert.assertAll();
-    }
-
-    // Helper method to normalize time by removing milliseconds or formatting it to the same format
-    private String normalizeTime(String time) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            Date date = dateFormat.parse(time);
-            return dateFormat.format(date);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
-
-    private static String getUsername(WebElement currentUser) {
-        // Debugging: print the raw HTML of the element to verify correct XPath
-        System.out.println("Username Element HTML: " + currentUser.getAttribute("outerHTML"));
-        String username = currentUser.findElement(By.xpath("following-sibling::td[2]")).getText();
-        System.out.println("Username: " + username);  // Debugging output
-        return username;
-    }
-
-    private static String gettime(WebElement eventTime) {
-        // Debugging: print the raw HTML of the element to verify correct XPath
-        System.out.println("Event Time Element HTML: " + eventTime.getAttribute("outerHTML"));
-        String time = eventTime.findElement(By.xpath("following-sibling::td[1]")).getText();
-        System.out.println("Event Time: " + time);  // Debugging output
-        return time;
-    }
-
-    private static String getDescription(WebElement eventDescription) {
-        // Debugging: print the raw HTML of the element to verify correct XPath
-        System.out.println("Description Element HTML: " + eventDescription.getAttribute("outerHTML"));
-        String description = eventDescription.findElement(By.xpath("following-sibling::td[3]")).getText();
-        System.out.println("Description: " + description);  // Debugging output
-        return description;
-    }
-
-
     public void validateEventCodeInActivityEventReport(String eventType, String description) {
         WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='sort-table']"));
         List<WebElement> rows = table.findElements(By.xpath("//table[@class='sort-table']//tr"));
@@ -134,7 +59,6 @@ public class AdminPortalReportsPage {
         softAssert.assertTrue(expected.contains(description), "Description not found. Expected: " + description + " to be in: " + expected);
         softAssert.assertAll();
     }
-
 
     public void VerifyEvents(String text, String timeCondition, String qaUsername, String stagingUsername, String expectedValue, String expectedStatus, String expectedKey) {
         String username = getUsernameBasedOnEnv(qaUsername, stagingUsername);
@@ -224,5 +148,3 @@ public class AdminPortalReportsPage {
         }
         }
     }
-
-
