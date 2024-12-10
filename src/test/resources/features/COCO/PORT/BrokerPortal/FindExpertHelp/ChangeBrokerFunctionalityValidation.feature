@@ -47,7 +47,7 @@ Feature: Change broker functionality and previous broker/assister table validati
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click the Authorize broker button
-    And I validate the text to authorize a new broker "Del Mercer" with "Brandt Agency" or keep the same broker "Solomon Brandt" with "Brandt Agency"
+    And I validate the text to authorize a new broker "Del Mercer" with "Brandt Agency" or keep the same broker "Solomon Brandt" with "Brandt Agency" in "English" for "CoCo"
 
     Then I click on "Keep Current Broker" in the warning container to authorize new or keep the same broker
     Then I click Go Back on the Find a Certified Broker page
