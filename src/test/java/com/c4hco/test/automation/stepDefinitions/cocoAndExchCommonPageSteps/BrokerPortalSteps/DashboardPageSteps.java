@@ -38,6 +38,11 @@ public class DashboardPageSteps {
         dashboardPage.clickManageBrokersButton();
     }
 
+    @Then("I click the Manage Users button")
+    public void clickManageUsersButton(){
+        dashboardPage.clickManageUsersButton();
+    }
+
     @Then("I click the My Agency View link")
     public void clickMyAgencyViewLink(){
         dashboardPage.clickMyAgencyView();
