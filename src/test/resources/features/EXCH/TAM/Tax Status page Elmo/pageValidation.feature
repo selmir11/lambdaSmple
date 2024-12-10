@@ -188,19 +188,19 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I validate I am on the "Tax status Elmo" page
 #    Step 1
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
-    And I verify will you be claimed question on the Tax Status Elmo page in "English"
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
     And I verify will you be claimed Yes "is not" and No "is not" selected on the Tax Status Elmo page
 #    Step 2
     Then I select "No" for will you be claimed as dependent question
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
-    And I verify will you be claimed question on the Tax Status Elmo page in "English"
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
     And I verify will you be claimed Yes "is not" and No "is" selected on the Tax Status Elmo page
-    And I verify file tax return question on the Tax Status Elmo page in "English"
+    And I verify file tax return question on the Tax Status Elmo page for "Primary" in "English"
     And I verify file tax return Yes "is not" and No "is not" selected on the Tax Status Elmo page
 #    Step 3
     Then I select "Yes" for will you be claimed as dependent question
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
-    And I verify will you be claimed question on the Tax Status Elmo page in "English"
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
     And I verify will you be claimed Yes "is" and No "is not" selected on the Tax Status Elmo page
     And I verify who will claim you question on the Tax Status Elmo page for "Primary" in "English"
     And I verify who will claim you question on the Tax Status Elmo page for selected for ""
@@ -209,7 +209,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify who will claim you question on the Tax Status Elmo page for selected for "Spouse"
     Then I select "Someone else" for who will claim as dependent question
     And I verify who will claim you question on the Tax Status Elmo page for selected for "Someone else"
-    And I verify enter the name question on the Tax Status Elmo page in "English"
+    And I verify enter the name question on the Tax Status Elmo page for "Primary" in "English"
     And I verify enter the name question on the Tax Status Elmo page data
     |First Name|Middle Name|Last Name|Suffix|DOB|
     |          |           |         |      |   |
