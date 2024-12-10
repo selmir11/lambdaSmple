@@ -373,4 +373,9 @@ public class DbValidations {
        softAssert.assertAll();
     }
 
+    public void validateTheDentalLatestApplicationDateForTheYearDB() {
+        String denLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
+        softAssert.assertTrue(denLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getDenLatestAppDate()));
+        softAssert.assertAll();
+    }
 }
