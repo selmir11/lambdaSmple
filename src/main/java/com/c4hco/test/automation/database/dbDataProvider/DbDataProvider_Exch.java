@@ -350,4 +350,35 @@ public class DbDataProvider_Exch {
     }
 
 
+    public String getMedCurrentEhbPremiumAmtForTheYearDB(String year) {
+        return postgresHandler.getResultFor("ehb_percent_of_total_premium", exchDbQueries.ehb_percent_of_total_premiumForYear(year));
+    }
+
+    public String getRatingName() {
+        return postgresHandler.getResultFor("name",exchDbQueries.nameRatingPolicy());
+    }
+    public String getMedServiceAreaForTheYearDB() {
+        return postgresHandler.getResultFor("service_area_id",exchDbQueries.serviceAreaForTheYearDB());
+    }
+    public String[] getLCEEventTypeAndLCEDateTypeForTheYearDB() {
+        return postgresHandler.getResultForTwoColumnValues("lce_type","lce_event_date",exchDbQueries.lCEEventTypeAndLCEDateTypeForTheYearDB());
+    }
+
+    public String getAv_calculator_output() {
+        return postgresHandler.getResultFor("av_calculator_output",exchDbQueries.getAv_calculator_outputDB());
+    }
+
+
+    public String[] getMedDentalPolicyDate() {
+            return postgresHandler.getResultForTwoColumnValues("policy_start_date","policy_end_date",exchDbQueries.getMedicalDental_policy_date());
+    }
+
+    public String getPrimaryTobaccoInMemberDetailsTable() {
+        return postgresHandler.getResultFor("prior_6_months_tobacco_use_ind",exchDbQueries.prior_6_months_tobacco_use_ind());
+    }
+
+    public String getMedDenLatestApplicationDate() {
+        return postgresHandler.getResultFor("policy_submitted_ts",exchDbQueries.getMedDentalCurrentLatestAppDate());
+    }
+
 }
