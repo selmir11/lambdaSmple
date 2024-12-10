@@ -370,66 +370,76 @@ public class AccountOverviewPage {
 
     }
 
-    public void verifyMemberNames_WIP() {
-        List<MemberDetails> allMemberList = basicActions.getAllMem();
+    public void setDatesforAllMembers_WIP(String planType, List<Map<String, String>> expectedResult) {
 
-        for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() + SharedData.getScenarioDetails().getTotalGroups(); i++) {
+        String policyStartDate;
+        String policyEndDate;
+        String coverageStartDate;
+        String coverageEndDate;
+        String financialStartDate;
+        String financialEndDate;
 
-            List<String> expectedMemberNames = new ArrayList<>();
-            List<String> actualMemberNames = new ArrayList<>();
-
-            List<WebElement> getactualMemberNames = basicActions.getDriver().findElements(By.cssSelector(".table-bordered tr:nth-child(" + i + ") td:nth-child(2) span b"));
-            String expectedMedGroupInd = null;
-
-            for (WebElement member : getactualMemberNames) {
-                actualMemberNames.add(member.getText());
-            }
-
-            for(String actualMemName : actualMemberNames ) {
-                for (MemberDetails member : allMemberList) {
-                    if (member.getSignature().equals(actualMemName)) {
-
-                        if (expectedMedGroupInd == null) {
-                            expectedMedGroupInd = member.getMedGroupInd();
-                        }
-                        //Assert that this member belongs to the same MedGroupInd as the first member
-                        softAssert.assertTrue(member.getMedGroupInd().equals(expectedMedGroupInd),"Member Medical Group :"+member.getMedGroupInd()+" does not match to another member Medical Group : "+expectedMedGroupInd);
-                        expectedMemberNames.add(member.getSignature());
-
-                        verifyPlanInfo(member);
-                    }
-                }
-            }
-
-            // Assert that the actual and expected names match exactly
-            softAssert.assertTrue(actualMemberNames.containsAll(expectedMemberNames) && expectedMemberNames.containsAll(actualMemberNames) && actualMemberNames.size() == expectedMemberNames.size(), "Member names do not match.");
+        if(SharedData.getIsOpenEnrollment().equals("yes")){
+            policyStartDate = SharedData.getPlanYear()+"-01-01";
+            policyEndDate = SharedData.getPlanYear()+"-12-31";
+            coverageStartDate = SharedData.getPlanYear()+"-01-01";
+            coverageEndDate = SharedData.getPlanYear()+"-12-31";
+            financialStartDate = SharedData.getPlanYear()+"-01-01";
+            financialEndDate = SharedData.getPlanYear()+"-12-31";
+        } else {
+            policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
+            policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
+            coverageStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageStartDate"));
+            coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
+            financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
+            financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
         }
+        String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
 
-        // Finalize all assertions
-        softAssert.assertAll();
-    }
+        switch(planType){
+            case "medical":
+                for(MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
+                    ExpectedCalculatedDates expectedCalculatedDates_medical = new ExpectedCalculatedDates();
 
-    private void verifyPlanInfo(MemberDetails memberInfo) {
+                    expectedCalculatedDates_medical.setPolicyStartDate(policyStartDate);
+                    expectedCalculatedDates_medical.setPolicyEndDate(policyEndDate);
+                    expectedCalculatedDates_medical.setCoverageStartDate(coverageStartDate);
+                    expectedCalculatedDates_medical.setCoverageEndDate(coverageEndDate);
+                    expectedCalculatedDates_medical.setFinancialStartDate(financialStartDate);
+                    expectedCalculatedDates_medical.setFinancialEndDate(financialEndDate);
 
-        //Medical Plan Validation
-        WebElement MedicalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[4]/b"));
-        WebElement MedicalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[5]/b"));
-        WebElement MedicalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[6]/b"));
+                    SharedData.setExpectedCalculatedDates_medicalPlan(expectedCalculatedDates_medical);
+                    member.setMedicalPlanStartDate(planStartDate);
+                    member.setMedicalPlanEndDate(planEndDate);
+                    member.setMedicalCoverageStartDate(coverageStartDate);
+                    member.setMedicalCoverageEndDate(coverageEndDate);
+                    member.setMedicalFinancialStartDate(financialStartDate);
+                    member.setMedicalFinancialEndDate(financialEndDate);
+                }
+                break;
+            case "dental":
+                for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
+                    ExpectedCalculatedDates expectedCalculatedDates_dental = new ExpectedCalculatedDates();
 
-        softAssert.assertEquals(MedicalPlanName.getText(), memberInfo.getMedicalPlan(), memberInfo.getFirstName() + " Medical Plan Name does not match");
-        softAssert.assertEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + memberInfo.getMedicalPremiumAmt(), memberInfo.getFirstName() + " Medical premium amount does not match");
-        softAssert.assertEquals(MedicalAPTCAmnt.getText(), "$" + memberInfo.getMedicalAptcAmt(), memberInfo.getFirstName() + " Medical APTC amount did not match");
+                    expectedCalculatedDates_dental.setPolicyStartDate(policyStartDate);
+                    expectedCalculatedDates_dental.setPolicyEndDate(policyEndDate);
+                    expectedCalculatedDates_dental.setCoverageStartDate(coverageStartDate);
+                    expectedCalculatedDates_dental.setCoverageEndDate(coverageEndDate);
+                    expectedCalculatedDates_dental.setFinancialStartDate(financialStartDate);
+                    expectedCalculatedDates_dental.setFinancialEndDate(financialEndDate);
 
-        //Dental Plan Validation
-        WebElement DentalPlanName = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[4]/b"));
-        WebElement DentalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[5]/b"));
-        WebElement DentalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + memberInfo.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[6]/b"));
-
-        //Dental
-        softAssert.assertEquals(DentalPlanName.getText(), memberInfo.getDentalPlan(), memberInfo.getFirstName() + " Dental Plan Name does not match");
-        softAssert.assertEquals(DentalPremiumAmnt.getText(), "$" + basicActions.doubleAmountFormat(memberInfo.getDentalPremiumAmt()), memberInfo.getFirstName() + " Dental Premium amount does not match");
-        softAssert.assertEquals(DentalAPTCAmnt.getText(), "$" + "0", memberInfo.getFirstName() + " Dental APTC amount on account overview page mismatch");
-
-        softAssert.assertAll();
+                    SharedData.setExpectedCalculatedDates_dentalPlan(expectedCalculatedDates_dental);
+                    member.setDentalPlanStartDate(planStartDate);
+                    member.setDentalPlanEndDate(planEndDate);
+                    member.setDentalCoverageStartDate(coverageStartDate);
+                    member.setDentalCoverageEndDate(coverageEndDate);
+                    member.setDentalFinancialStartDate(financialStartDate);
+                    member.setDentalFinancialEndDate(financialEndDate);
+                }
+                break;
+            default: Assert.fail("Invalid argument passed");
+        }
+        //SharedData.setPrimaryMember(subscriber);
     }
 }
