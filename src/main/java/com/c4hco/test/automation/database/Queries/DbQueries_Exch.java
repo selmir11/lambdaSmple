@@ -376,7 +376,8 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select em.race_ethnicity, em.race_other_text " +
                 "from " + dbName + ".es_member em " +
                 "join " + dbName + ".es_household eh on eh.household_id = em.household_id " +
-                "where eh.account_id = '" + acctId + "' " +
+                "join " + dbName + ".es_household_contact hc on hc.household_id = eh.household_id " +
+                "where hc.email = '" + SharedData.getPrimaryMember().getEmailId() + "' " +
                 "order by em.member_id";
     }
 
