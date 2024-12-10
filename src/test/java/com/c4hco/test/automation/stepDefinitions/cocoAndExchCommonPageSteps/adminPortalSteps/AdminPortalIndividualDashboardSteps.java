@@ -71,9 +71,10 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I Verify Program Manager Client Information : {string}")
     public void iVerifyBrokerClientInformationContainer(String text) {
         adminPortalIndividualDashboardPage.VerifyProgramManagerClientInformationContainer(text);    }
-    @And("I Verify organization Information Container")
-    public void iVerifyProgramManagerOrganizationInformation() {
-        adminPortalIndividualDashboardPage.VerifyProgramManagerOrganizationInformation();    }
+    @Then("I Verify organization Information Container {string} {string} or {string} {string}")
+    public void iVerifyProgramManagerOrganizationInformation(String idSTG, String idQA, String nameSTG, String nameQA) {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerOrganizationInformation(idSTG, idQA, nameSTG, nameQA);  }
+
     @And("I click Go Back on admin portal program manager dashboard")
     public void iClickGoBackOnAdminPortalBrokerDashboard() {
         adminPortalIndividualDashboardPage.clickGoBackONAdminPortalProgramManager();    }

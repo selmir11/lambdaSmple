@@ -17,7 +17,7 @@ Feature: Program Manager Dashboard- Verify program manager data
     And I verify Program Manager contract status
     And I verify Program Manager Account Activity Container
     And I Verify Program Manager Client Information : "There is no client information."
-    And I Verify organization Information Container
+    Then I Verify organization Information Container "75509083" "130474819" or "aphsccbfxfotjudmvlafzowdjfb" "profiletest"
     And I click Go Back on admin portal program manager dashboard
     Then I validate I am on the "Admin search" page
     Then I logout from Admin Portal

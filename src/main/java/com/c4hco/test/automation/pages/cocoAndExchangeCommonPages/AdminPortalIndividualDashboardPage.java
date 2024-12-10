@@ -350,18 +350,16 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(noClients.isDisplayed());
         softAssert.assertEquals(noClients.getText(), text);
         softAssert.assertAll();    }
-    public void VerifyProgramManagerOrganizationInformation() {
-        softAssert.assertEquals(lblGroupID.getText(), "Organization Group ID:");
-        softAssert.assertEquals(groupID.getText(), "75509083");
-        softAssert.assertEquals(lablOrgName.getText(), "Organization Name:");
-        softAssert.assertEquals(orgName.getText(), "aphsccbfxfotjudmvlafzowdjfb");
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(groupID.getText(), "130474819");
-            softAssert.assertEquals(orgName.getText(), "profiletest");
-        } else {
-            softAssert.assertEquals(groupID.getText(), "60288219");
-            softAssert.assertEquals(orgName.getText(), "apdrhhfmqdupyqdgcpgrveupznk");
-        }
+    public void VerifyProgramManagerOrganizationInformation(String idSTG, String idQA, String nameSTG, String nameQA) {
+            softAssert.assertEquals(lblGroupID.getText(), "Organization Group ID:");
+            softAssert.assertEquals(lablOrgName.getText(), "Organization Name:");
+      if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(groupID.getText(), idSTG);
+            softAssert.assertEquals(orgName.getText(), nameSTG);
+       }else {
+          softAssert.assertEquals(groupID.getText(), idQA);
+            softAssert.assertEquals(orgName.getText(), nameQA);
+       }
             softAssert.assertAll(); }
     public void clickGoBackONAdminPortalProgramManager() {
         basicActions.waitForElementToBePresent(goBack, 20);
