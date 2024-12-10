@@ -151,9 +151,19 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clickAuthorizeBrokerButton();
     }
 
-    @And("I validate the text to authorize a new broker {string} with {string} or keep the same broker {string} with {string}")
-    public void iValidateChangeBrokerText(String newBrokerName, String newBrokerAgency, String currentBrokerName, String currentBrokerAgency) {
-        findACertifiedBrokerPage.validateChangeBrokerText(newBrokerName, newBrokerAgency, currentBrokerName, currentBrokerAgency);
+    @Then ("I click the {string} button on the Authorize a broker modal")
+    public void iClickAuthorizeBrokerOptionButton (String buttonOption){
+        findACertifiedBrokerPage.clickAuthorizeBrokerOptionButton(buttonOption);
+    }
+
+    @And("I validate the text to authorize a new broker {string} with {string} or keep the same broker {string} with {string} in {string} for {string}")
+    public void iValidateChangeBrokerText(String newBrokerName, String newBrokerAgency, String currentBrokerName, String currentBrokerAgency, String language, String marketplace) {
+        findACertifiedBrokerPage.validateChangeBrokerText(newBrokerName, newBrokerAgency, currentBrokerName, currentBrokerAgency, language, marketplace);
+    }
+
+    @And("I validate the text to authorize a new broker in {string}")
+    public void iValidateAuthorizeBrokerText(String language) {
+        findACertifiedBrokerPage.validateAuthorizeBrokerText(language);
     }
 
     @And("I click on {string} in the warning container to authorize new or keep the same broker")
