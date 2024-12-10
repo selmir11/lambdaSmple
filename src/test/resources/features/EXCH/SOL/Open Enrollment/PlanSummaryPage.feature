@@ -17,7 +17,6 @@ Feature: UI Page Validation - Plan Summary page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "11281986" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -94,7 +93,6 @@ Feature: UI Page Validation - Plan Summary page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "08161986" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -212,7 +210,6 @@ Feature: UI Page Validation - Plan Summary page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "11281986" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -270,7 +267,6 @@ Feature: UI Page Validation - Plan Summary page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "08161986" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
