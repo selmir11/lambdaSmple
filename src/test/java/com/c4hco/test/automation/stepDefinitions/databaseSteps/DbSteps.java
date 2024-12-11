@@ -153,6 +153,9 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    public void iValidateTheAgencyEmailInDB() {
       dbValidations.validateTheAgencyEmailInDB();
     }
+   @And("I Validate enrollment period end date is set to {int} days from current QLCE days")
+   public void validateEnrolmentEndDate(int enrollmentEndDate) {dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate); }
+
 
 }
 

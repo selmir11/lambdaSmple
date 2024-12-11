@@ -88,6 +88,11 @@ public class YourInformationPageSteps {
         yourInformationPage.enterLicenseAndDates(accountType);
     }
 
+    @And("I update my {string} license and effective dates")
+    public void iUpdateLicenseAndDates(String accountType){
+        yourInformationPage.updateLicenseAndDates(accountType);
+    }
+
     @And("I click No to the Book of Business question")
     public void iClickBookOfBusinessNoButton(){
         yourInformationPage.clickBookOfBusinessNoButton();

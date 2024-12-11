@@ -463,6 +463,10 @@ public class BasicSteps {
                 break;
             case "Self Attestation" :
                 pageUrl = "/ManualVerificationPortal/";
+                break;
+            case "MD365 Login" :
+                pageUrl = "/login.microsoftonline.com";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

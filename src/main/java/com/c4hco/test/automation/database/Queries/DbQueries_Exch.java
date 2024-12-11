@@ -167,7 +167,7 @@ public String policyTablesCombinedQuery(String coverageType){
     }
 
     public String getCSRRecords() {
-        return "SELECT mcf.csr_amt, p.coverage_type\n" +
+        return "SELECT DISTINCT mcf.csr_amt, p.coverage_type\n" +
                 "FROM  " + dbName + ".en_member_coverage_financial_ah mcf\n" +
                 "JOIN " + dbName + ".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
                 "JOIN " + dbName + ".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
@@ -533,6 +533,10 @@ public String policyTablesCombinedQuery(String coverageType){
                 "WHERE ESH2.account_id = '"+acctId+"'\n" +
                 " AND ESH2.coverage_type = '"+ SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"'\n" +
                 "ORDER BY ESH2.created_ts DESC\n LIMIT 1;";
+    }
+    public String getEnrollmentPeriodEndDate(){
+        return "SELECT * from "+dbName+".es_enrollment_period_end_date\n" +
+                "where application_id = '"+applicationId+"'";
     }
 
     public String getBrokerEmailIn() {

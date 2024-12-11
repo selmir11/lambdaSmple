@@ -64,6 +64,9 @@ public class DashboardPage {
     @FindBy(xpath= "//*[@id='accountSummary-data-Email']")
     WebElement communicationPrefrencesEmail;
 
+    @FindBy(id = "accountSummary-data-agencyOwner")
+    WebElement accountSummaryAgencyOwnerName;
+
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
@@ -172,7 +175,12 @@ public class DashboardPage {
             softAssert.assertEquals(communicationPrefrencesEmail.getText(),SharedData.getBroker().getEmail());
                 break;
         }
-        softAssert.assertAll();
+        softAssert.assertAll();}
+
+    public void saveAgencyDetails(){
+        basicActions.waitForElementToBePresent(accountSummaryAgencyOwnerName, 10);
+        SharedData.getAgencyOwner().setBroker_name(accountSummaryAgencyOwnerName.getText());
+        SharedData.getAgencyOwner().setFirstName(accountSummaryAgencyOwnerName.getText().split(" ")[0].trim());
 
     }
 }

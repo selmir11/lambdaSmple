@@ -87,7 +87,9 @@ public class DashboardPageSteps {
     public void iValidateTheEmailOnTheCommunicationPrefrencesContainerOnBrokerDashboardPage(String brokerType) {
         dashboardPage.validateTheEmailOnTheCommunicationPrefrencesContainerOnBrokerDashboardPage(brokerType);
     }
-
-
+    @Then("I save the agency details")
+    public void saveExistingAgencyDetails(){
+        dashboardPage.saveAgencyDetails();
+    }
 
 }

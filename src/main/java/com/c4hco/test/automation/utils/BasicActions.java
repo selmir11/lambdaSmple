@@ -798,6 +798,16 @@ public class BasicActions {
         List<MemberDetails> allMem = getAllMem();
         return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
     }
+    public List<MemberDetails> getAllSubscribers(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allSubscribers = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            if(member.getIsSubscriber().equals("Y")){
+                allSubscribers.add(member);
+            }
+        }
+        return allSubscribers;
+    }
 
     public List<MemberDetails> getAllMem(){
         MemberDetails primaryMem = SharedData.getPrimaryMember();

@@ -122,4 +122,10 @@ public class AgencyDetailsSteps {
     public void iUpdateAgencyTin(){
         agencyDetailsPage.updateAgencyTin();
     }
+
+    @And("I update my agency address on the Agency Details page")
+    public void iUpdateAgencyAddress(){
+        agencyDetailsPage.updateAgencyAddress();
+    }
+
 }

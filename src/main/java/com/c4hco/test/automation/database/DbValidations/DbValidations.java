@@ -391,4 +391,15 @@ public class DbValidations {
         softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
         softAssert.assertAll();
     }
+    public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
+        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
+        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate twoMonthsLater = currentDate.plusDays(enrollmentEndDate);
+
+        String formattedEnrolmentEndDate = basicActions.changeDateFormat(String.valueOf(twoMonthsLater),"yyyy-MM-dd","MM/dd/yyyy");
+        softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
+        softAssert.assertAll();
+    }
 }
