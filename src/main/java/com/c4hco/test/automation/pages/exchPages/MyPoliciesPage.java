@@ -83,10 +83,10 @@ public class MyPoliciesPage {
         allMemberNames = new HashSet<>(basicActions.getAllMemNames());
         switch (planType){
             case "medical":
-                validateEnrolledMedicalPlanDetails();
+                validateMedicalPlan(); //validateEnrolledMedicalPlanDetails();
                 break;
             case "dental":
-                validateEnrolledDentalPlanDetails();
+                validateDentalPlan(); //validateEnrolledDentalPlanDetails();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + planType);
@@ -268,7 +268,7 @@ public class MyPoliciesPage {
             softAssert.assertEquals(monthlyPremium.getText().replace("$","").replace(",",""),(member.getMedicalPremiumAmt()), "Medical Premium mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo",""),(member.getTotalMedAmtAfterReduction()), "Medical Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(" Financial Help","").replace("$","").replace(",",""),(member.getMedicalAptcAmt()), "Medical APTC amount mismatch for member: " + member.getFirstName());
-            //softAssert.assertEquals(EAPID.getText(),(member.getMedicalEapid_db()), "Medical EAPID mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(EAPID.getText(),(member.getMedicalEapid_db()), "Medical EAPID mismatch for member: " + member.getFirstName());
             //softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(lastUpdatedOn.getText(),(lastUpdated), "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(member.getMedicalPlanStartDate()), "Applicable From date is not-matched for member: " + member.getFirstName());
