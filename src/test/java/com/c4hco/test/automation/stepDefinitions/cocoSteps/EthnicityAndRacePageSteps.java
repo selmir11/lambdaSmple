@@ -35,4 +35,6 @@ public class EthnicityAndRacePageSteps {
     public void selectNotListedAndEnterText(String customText) {
         ethnicityAndRacePage.selectNotListedAndEnterCustomText(customText);
     }
+    @And("I select {string} for race and ethnicity option for {string}")
+    public void iSelectMemberRaceEthnicity(String memberRaceEthnicity, String memPrefix){ethnicityAndRacePage.raceEthnicitySelectionMembers(memberRaceEthnicity, memPrefix);}
 }

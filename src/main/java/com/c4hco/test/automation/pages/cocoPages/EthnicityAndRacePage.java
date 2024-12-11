@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
@@ -333,5 +334,52 @@ public class EthnicityAndRacePage {
         raceEthnicityButton.get(7).click();
         basicActions.waitForElementToBePresent(notListedReason, 10);
         notListedReason.sendKeys(customText);
+    }
+
+    public void raceEthnicitySelectionMembers(String raceEthnicity, String memPrefix){
+        basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
+        switch (raceEthnicity) {
+            case "Asian or Asian American":
+                raceEthnicityButton.get(0).click();
+                break;
+            case "Black or African American":
+                raceEthnicityButton.get(1).click();
+                break;
+            case "Hispanic or Latino":
+                raceEthnicityButton.get(2).click();
+                break;
+            case "Indigenous or Native American":
+                raceEthnicityButton.get(3).click();
+                break;
+            case "Middle Eastern or North African":
+                raceEthnicityButton.get(4).click();
+                break;
+            case "Native Hawaiian or Pacific Islander":
+                raceEthnicityButton.get(5).click();
+                break;
+            case "White or European":
+                raceEthnicityButton.get(6).click();
+                break;
+            case "Not listed":
+                raceEthnicityButton.get(7).click();
+                break;
+            case "Prefer not to answer":
+                raceEthnicityButton.get(8).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
+        }
+        setRaceAndEthnicity(raceEthnicity, memPrefix);
+    }
+    private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        if(primaryMem.getFirstName().contains(memPrefix)){
+            primaryMem.setRace(raceEthnicity);
+            SharedData.setPrimaryMember(primaryMem);
+        } else{
+            List<MemberDetails> members = SharedData.getMembers();
+            members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
+            SharedData.setMembers(members);
+        }
     }
     }

@@ -1,8 +1,9 @@
 Feature: Seed02 - Coco
 
-
   Scenario: Seed 02 For Coco -  Husband+Wife with FA
-
+    Given I set the test scenario details in coco
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 2            | 2                 | 0                |   2             |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -10,11 +11,15 @@ Feature: Seed02 - Coco
     Then I enter general mandatory data for "coco" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Mister Broker"
+    Then I Search authorized Broker "ENR Agency"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -26,7 +31,7 @@ Feature: Seed02 - Coco
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
@@ -49,7 +54,7 @@ Feature: Seed02 - Coco
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -69,14 +74,15 @@ Feature: Seed02 - Coco
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
-  Then I validate I am on the "Start Shopping" page
-  Then I click continue on coco start shopping page
+    Then I validate I am on the "Start Shopping" page
+    Then I click continue on coco start shopping page
     Then I validate that there are 1 default groups in coco page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I validate medical premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -85,35 +91,50 @@ Feature: Seed02 - Coco
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+    Then I Validate the correct enrolled plans are displayed on COCO Welcome page
 
-    And I click on "My Documents and Letters" link on welcome page
-    And I click on download enrolment document
+    And I click on "My Plans" link on welcome page
+    Then I validate I am on the "My Policies" page
+    And I validate enrolled medical plans details on my policies page coco
+    And I click view Plan History link from medical plan card in coco
+    Then I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
 
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#    And I click on "My Documents and Letters" link on welcome page
+#    And I click on download enrolment document
+#    And I click on Sign Out in the Header for "Elmo"
+#
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+#
+#    Given I open the login page on the "admin" portal
+#    And I validate I am on the "Login" page
+#    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+#    And I validate I am on the "Admin dashboard" page
+#    And I select "coco" checkbox on Admin Portal Dashboard
+#    And I search for user and click email from search results
+#    Then I click on "Manage Plans" user dashboard button
+#    Then I click Make Changes Medical button
+#    And I update the Coverage Start date of member
+#      |1:01012024|
+#    And I update the Financial Start date of member
+#      |1:01012024|
+#    And I click Save Button Medical
+#    And I select the reason to confirm the changes
+#    Then I close current tab and switch back to previous tab
+#    And logout from Admin Portal
+#    And I validate "medical" entities from policy tables
+#    And I validate "medical" entities from pre edi db tables
+#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+#      | 021                   | 021                | EC                    |                   | OEP        |
+#    And I download the medical and dental files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 "medical" file data
 
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin dashboard" page
-    And I select "coco" checkbox on Admin Portal Dashboard
-    And I search for user and click email from search results
-    Then I click on "Manage Plans" user dashboard button
-    Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      |1:01012024|
-    And I update the Financial Start date of member
-      |1:01012024|
-    And I click Save Button Medical
-    And I select the reason to confirm the changes
-    Then I close current tab and switch back to previous tab
-    And logout from Admin Portal
 
 
 

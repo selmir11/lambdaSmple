@@ -261,6 +261,13 @@ public class MedicalPlansCoCoPage {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);
+        List<MemberDetails> memberslist = SharedData.getMembers();
+        basicActions.waitForElementToDisappear(spinner, 30);
+        if(memberslist !=null){
+            for (int i = 0; i < memberslist.size(); i++) {
+                memberslist.get(i).setMedicalPlan(planName);
+            }
+        }
         do {
             optionalInt = checkIfPlanPresent(planName);
             if (optionalInt.isPresent()) {
