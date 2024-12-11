@@ -146,5 +146,13 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    public void iValidateTheDentalLatestApplicationDateForTheYearDB() {
       dbValidations.validateTheDentalLatestApplicationDateForTheYearDB();
    }
+   @Then("I validate the broker email in DB")
+   public void iValidateTheEmailInDB() {
+      dbValidations.validateTheBrokerEmailInDB();
+    }@Then("I validate the agency email in DB")
+   public void iValidateTheAgencyEmailInDB() {
+      dbValidations.validateTheAgencyEmailInDB();
+    }
+
 }
 

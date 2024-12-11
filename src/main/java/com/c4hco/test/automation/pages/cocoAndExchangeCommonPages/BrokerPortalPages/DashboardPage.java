@@ -61,6 +61,8 @@ public class DashboardPage {
 
     @FindBy(id = "broker-submit-0")
     WebElement clientInformationBrokerAssignmentSubmit;
+    @FindBy(xpath= "//*[@id='accountSummary-data-Email']")
+    WebElement communicationPrefrencesEmail;
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -157,5 +159,20 @@ public class DashboardPage {
         clientInformationCurrentBrokerAssignment.click();
 
         clientInformationBrokerAssignmentSubmit.click();
+    }
+
+    public void validateTheEmailOnTheCommunicationPrefrencesContainerOnBrokerDashboardPage(String brokerType) {
+        basicActions.waitForElementToBePresent(communicationPrefrencesEmail,50);
+        switch (brokerType){
+            case "Agency":
+                softAssert.assertEquals(communicationPrefrencesEmail.getText(),SharedData.getBroker().getAgencyEmail());
+
+                break;
+            case "Broker":
+            softAssert.assertEquals(communicationPrefrencesEmail.getText(),SharedData.getBroker().getEmail());
+                break;
+        }
+        softAssert.assertAll();
+
     }
 }

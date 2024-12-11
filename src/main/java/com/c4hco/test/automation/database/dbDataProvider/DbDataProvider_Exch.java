@@ -348,8 +348,6 @@ public class DbDataProvider_Exch {
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return postgresHandler.getResultForTwoColumnValues("lce_type","plan_year", exchDbQueries.getLceTpePlanYear(householdId));
     }
-
-
     public String getMedCurrentEhbPremiumAmtForTheYearDB(String year) {
         return postgresHandler.getResultFor("ehb_percent_of_total_premium", exchDbQueries.ehb_percent_of_total_premiumForYear(year));
     }
@@ -379,6 +377,10 @@ public class DbDataProvider_Exch {
 
     public String getMedDenLatestApplicationDate() {
         return postgresHandler.getResultFor("policy_submitted_ts",exchDbQueries.getMedDentalCurrentLatestAppDate());
+    }
+    public String getTheBrokerEmailInDB() {
+        String EmailDB = postgresHandler.getResultFor("email",exchDbQueries.getBrokerEmailIn());
+        return EmailDB;
     }
 
 }

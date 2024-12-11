@@ -446,7 +446,6 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where household_id  = '"+householId+"'";
     }
 
-
     public String getMemberNonAIAn()
     {
         return "SELECT * from "+dbName+".es_member_rules_result t1\n " +
@@ -534,6 +533,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "WHERE ESH2.account_id = '"+acctId+"'\n" +
                 " AND ESH2.coverage_type = '"+ SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"'\n" +
                 "ORDER BY ESH2.created_ts DESC\n LIMIT 1;";
+    }
+
+    public String getBrokerEmailIn() {
+        return "SELECT CI.email FROM "+dbName+".bp_staff AS ST JOIN "+dbName+".bp_contact_info AS CI ON ST.contact_info_id = CI.contact_info_id " +
+                "WHERE ST.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"';";
     }
 
 }
