@@ -27,6 +27,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.searchForBrokerLocation(Location);
     }
 
+    @Then("I enter the new agency license number into the Find a Broker search")
+    public void IEnterNewLicenseNumberSearchBox() {
+        findACertifiedBrokerPage.enterNewLicenseNumberSearch();
+    }
+
     @Then("I clear the broker location search box")
     public void IClearTheBrokerLocationSearchBox(){
         findACertifiedBrokerPage.clearSearchForBrokerLocation();
@@ -97,6 +102,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.validateAgencyCityStateZip(cityStateZip);
     }
 
+    @Then("I validate the new agency address")
+    public void iValidateNewAgencyAddress(){
+        findACertifiedBrokerPage.validateNewAgencyAddress();
+    }
+
     @Then("I validate the agency details field labels in {string}")
     public void iValidateAgencyDetailsFieldLabels(String language){
         findACertifiedBrokerPage.validateAgencyDetailsLabels(language);
@@ -105,6 +115,11 @@ public class FindACertifiedBrokerSteps {
     @Then("I validate the agency details {string}, {string}, {string}, {string}, {string}, {string}")
     public void iValidateAgencyDetails(String emailAddress, String expectedPhoneNumber, String availability, String officeHours, String expectedLicenseNumber, String agencyLanguage){
         findACertifiedBrokerPage.validateAgencyDetails(emailAddress, expectedPhoneNumber, availability, officeHours, expectedLicenseNumber, agencyLanguage);
+    }
+
+    @Then("I validate the new agency details {string}, {string}, {string}, {string}, {string}")
+    public void iValidateNewAgencyDetails(String emailAddress, String expectedPhoneNumber, String availability, String officeHours, String agencyLanguage){
+        findACertifiedBrokerPage.validateNewAgencyDetails(emailAddress, expectedPhoneNumber, availability, officeHours, agencyLanguage);
     }
 
     @Then("I verify the over 50 search results error is displayed in {string}")

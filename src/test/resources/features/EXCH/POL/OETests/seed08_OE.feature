@@ -253,7 +253,7 @@ Feature: Seed08 - Exchange - Open Enrollment
 #    And I validate "dental" plan details from plan history
 #    And I click on Sign Out in the Header for "Elmo"
 #
-#    And I validate "medical" entities from policy tables
+    And I validate "medical" entities from policy tables for groups
 #    And I validate "dental" entities from policy tables
 
   #@RT-2113
