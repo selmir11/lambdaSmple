@@ -1,4 +1,4 @@
-
+@SOLRegression
 Feature: UI Page Validation - Medical Grouping Page
 
   Background:
@@ -11,7 +11,7 @@ Feature: UI Page Validation - Medical Grouping Page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1109-OE @medicalGroupingPageValidation @MedGrpingPageNavigation
+  @SLER-1109 @medicalGroupingPageValidation @MedGrpingPageNavigation
   Scenario: Validate the Medical Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
