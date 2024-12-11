@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
+import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -390,4 +391,25 @@ public class AgencyDetailsPage {
         agencyTin.clear();
         agencyTin.sendKeys(newAgencyTin);
     }
+
+    public String generateAgencyAddress(){
+        Random rand = new Random();
+        int num = rand.nextInt(1000);
+        return Integer.toString(num);
+    }
+
+    public void updateAgencyAddress(){
+        basicActions.waitForElementToBePresent(addressLine1, 10);
+
+        BrokerDetails owner = SharedData.getAgencyOwner();
+        Address agencyAddress = new Address();
+        agencyAddress.setAddressLine1(generateAgencyAddress() + " Deer Trail Dr");
+        owner.setAgencyAddress(agencyAddress);
+        SharedData.setAgencyOwner(owner);
+
+        System.out.println("The new agency address is " + SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
+        addressLine1.clear();
+        addressLine1.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
+    }
+
 }

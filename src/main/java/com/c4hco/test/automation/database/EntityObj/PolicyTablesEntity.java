@@ -49,4 +49,5 @@ public class PolicyTablesEntity
     String subscriber_ind;
     String responsible_adult_ind;
     String created_by;
+    String exch_person_id;
 }

@@ -265,7 +265,9 @@ public class DbValidations {
             softAssert.assertNull(dbValues[1], "Race Other Text is null");
         } else {
             softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
-        }}
+        }
+        softAssert.assertAll();
+    }
 
     public void validateTheLatestApplicationDateForTheYearDB() {
        String medLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
@@ -373,4 +375,9 @@ public class DbValidations {
        softAssert.assertAll();
     }
 
+    public void validateTheDentalLatestApplicationDateForTheYearDB() {
+        String denLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
+        softAssert.assertTrue(denLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getDenLatestAppDate()));
+        softAssert.assertAll();
+    }
 }
