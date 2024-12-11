@@ -93,7 +93,7 @@ public class PolicyTableDbValidations_Grps {
         }
 
         private void validateSubscriberDenDetails(MemberDetails subscriber,PolicyTablesEntity policyTablesEntity) {
-
+            getDentalPlanDbDataMap(subscriber.getFirstName());
             softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), subscriber.getDentalPremiumAmt(), "Dental Policy total plan premium amount does not match");
             softAssert.assertEquals(basicActions.doubleAmountFormat(policyTablesEntity.getTotal_premium_reduction_amt()), basicActions.doubleAmountFormat(subscriber.getFinancialHelp() ? policyTablesEntity.getTotal_premium_reduction_amt() : subscriber.getDentalAptcAmt()) , "Subscriber Dental APTC amount does not match");
@@ -107,6 +107,7 @@ public class PolicyTableDbValidations_Grps {
         }
 
         private void validateMedDenForSubscriber(MemberDetails subscriber, PolicyTablesEntity policyTablesEntity) {
+            getDbDataMap(subscriber.getFirstName());
             validateSubmittedBy(policyTablesEntity);
             softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
             softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
@@ -149,12 +150,12 @@ public class PolicyTableDbValidations_Grps {
         }
 
         private void validateDependentMedDetails(PolicyTablesEntity policyTablesEntity) {
-
             List<MemberDetails> members = basicActions.getAllDependents();
             for (MemberDetails member : members) {
+                getDbDataMap(member.getMedSubscriberName());
                 if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
-                    medValidationsCommonForAllMembers(member.getSubscriberName(),policyTablesEntity);
-                    validateMedDenForDependents(policyTablesEntity, dbDataMap.get(member.getSubscriberName()), member);
+                    medValidationsCommonForAllMembers(member.getMedSubscriberName(),policyTablesEntity);
+                    validateMedDenForDependents(policyTablesEntity, dbDataMap.get(member.getMedSubscriberName()), member);
                     softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                     softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Medical Policy total plan premium amount for member does not match");
                     softAssert.assertNull(policyTablesEntity.getTotal_premium_reduction_amt(), "Medical APTC amount from policy table does not match");
@@ -173,8 +174,9 @@ public class PolicyTableDbValidations_Grps {
             List<MemberDetails> members = SharedData.getMembers();
             for (MemberDetails member : members) {
                 if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
-                    denValidationsCommonForAllMembers(member.getSubscriberName(), policyTablesEntity);
-                    validateMedDenForDependents(policyTablesEntity, dbDataMap.get(member.getSubscriberName()), member);
+                    getDbDataMap(member.getDenSubscriberName());
+                    denValidationsCommonForAllMembers(member.getDenSubscriberName(), policyTablesEntity);
+                    validateMedDenForDependents(policyTablesEntity, dbDataMap.get(member.getDenSubscriberName()), member);
                     softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                     softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Dental Policy total plan premium amount does not match");
                     softAssert.assertNull(policyTablesEntity.getTotal_premium_reduction_amt(), "Dental APTC amount from policy table does not match");
@@ -192,7 +194,8 @@ public class PolicyTableDbValidations_Grps {
 
 
         private void medValidationsCommonForAllMembers(String name, PolicyTablesEntity policyTablesEntity) {
-
+            getMedicalPlanDbDataMap(name);
+            getDbDataMap(name);
             softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + dbDataMap.get(name).getCsrLevel(), "Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
@@ -206,6 +209,8 @@ public class PolicyTableDbValidations_Grps {
         }
 
         private void denValidationsCommonForAllMembers(String name, PolicyTablesEntity policyTablesEntity) {
+            getDentalPlanDbDataMap(name);
+            getDbDataMap(name);
             softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId() + "-" + dbDataMap.get(name).getCsrLevel(), "Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
@@ -247,7 +252,8 @@ public class PolicyTableDbValidations_Grps {
 
         medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
         dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
-        setSubscriber();
+        setMedicalSubscriber();
+        setDentalSubscriber();
         }
     private void getMedicalPlanDbDataMap(String name){
         for(Map<String, PlanDbData> map: medicalPlanDbDataMapList){
@@ -273,12 +279,25 @@ public class PolicyTableDbValidations_Grps {
             }
         }
     }
-    private void setSubscriber(){
+    private void setMedicalSubscriber(){
         List<MemberDetails> dependents = basicActions.getAllDependents();
         for(MemberDetails dependent: dependents){
             for (MemberDetails subscriber: subscribers){
                 if(subscriber.getMedGroupInd().equals(dependent.getMedGroupInd())){
-                    dependent.setSubscriberName(subscriber.getFirstName());
+                    dependent.setMedSubscriberName(subscriber.getFirstName());
+                    break;
+                }
+            }
+
+        }
+    }
+
+    private void setDentalSubscriber(){
+        List<MemberDetails> dependents = basicActions.getAllDependents();
+        for(MemberDetails dependent: dependents){
+            for (MemberDetails subscriber: subscribers){
+                if(subscriber.getDenGroupInd().equals(dependent.getDenGroupInd())){
+                    dependent.setDenSubscriberName(subscriber.getFirstName());
                     break;
                 }
             }
