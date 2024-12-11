@@ -167,7 +167,7 @@ public String policyTablesCombinedQuery(String coverageType){
     }
 
     public String getCSRRecords() {
-        return "SELECT mcf.csr_amt, p.coverage_type\n" +
+        return "SELECT DISTINCT mcf.csr_amt, p.coverage_type\n" +
                 "FROM  " + dbName + ".en_member_coverage_financial_ah mcf\n" +
                 "JOIN " + dbName + ".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
                 "JOIN " + dbName + ".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +

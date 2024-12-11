@@ -12,21 +12,21 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PolicyTableDbValidations_Grps {
 
-//        DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
-//        BasicActions basicActions = new BasicActions();
-//        SoftAssert softAssert = new SoftAssert();
-//        List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
-//        List<PolicyTablesEntity> dentalPolicyEntities = new ArrayList<>();
-//        DbData dbData = new DbData();
-//        PlanDbData medicalPlanDbData = new PlanDbData();
-//        PlanDbData dentalPlanDbData = new PlanDbData();
-//        MemberDetails subscriber = new MemberDetails();
-//
-//        public void groupRecordsValidations(String recordType) {
-//            setData();
+    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
+    BasicActions basicActions = new BasicActions();
+            SoftAssert softAssert = new SoftAssert();
+        List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
+        List<PolicyTablesEntity> dentalPolicyEntities = new ArrayList<>();
+       List<Map<String, DbData>> dbDataMapList = new ArrayList<>();
+    List<Map<String, PlanDbData>> medicalPlanDbDataMapList = new ArrayList<>();
+    List<Map<String, PlanDbData>> dentalPlanDbDataMapList = new ArrayList<>();
+    List<MemberDetails> subscribers;
+    public void groupRecordsValidations(String recordType) {
+        setData();
 //            switch (recordType) {
 //                case "medical":
 //                    medicalRecordsValidations();
@@ -38,8 +38,9 @@ public class PolicyTableDbValidations_Grps {
 //                    Assert.fail("Record Type entered is not valid");
 //            }
 //            softAssert.assertAll();
-//        }
-//
+    }
+
+    //
 //        private void dentalRecordsValidations() {
 //            for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
 //                if (dentalEntity.getSubscriber_ind().equals("1")) {
@@ -198,41 +199,47 @@ public class PolicyTableDbValidations_Grps {
 //            softAssert.assertAll();
 //        }
 //
-//        private void setData() {
-//            subscriber = SharedData.getPrimaryMember();
-//            List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
-//            List<PolicyTablesEntity> dentalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("2");
-//
-//            SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
-//            SharedData.setDentalPolicyTablesEntities(dentalPolicyEntitiesList);
-//
-//            exchDbDataProvider.setDataFromDb();
-//            exchDbDataProvider.setMedicalPlanDataFromDb(SharedData.getPrimaryMember().getMedicalPlan()); // Works for one group
-//            exchDbDataProvider.setDentalPlanDataFromDb(SharedData.getPrimaryMember().getDentalPlan()); // Works for one group
-//
-//            if (SharedData.getScenarioDetails().getTotalMembers() > 1) {
-//                List<MemberDetails> memberDetailsList = SharedData.getMembers();
-//                for (MemberDetails member : memberDetailsList) {
-//                    exchDbDataProvider.setExchPersonId(member, member.getMemberId());
-//                }
-//            }
-//            exchDbDataProvider.setExchPersonId(subscriber, subscriber.getMemberId());
-//
-//            medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
-//            dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
-//            dbData = SharedData.getDbData();
-//            medicalPlanDbData = SharedData.getMedicalPlanDbData().get("group1");
-//            dentalPlanDbData = SharedData.getDentalPlanDbData().get("group1");
-//        }
-//
-//        private void validateSubmittedBy(PolicyTablesEntity policyTablesEntity) {
-//            String submittedBy = policyTablesEntity.getPolicy_submitted_by();
-//            String primaryMemberEmail = SharedData.getPrimaryMember().getEmailId();
-//
-//            softAssert.assertTrue(submittedBy.equals(primaryMemberEmail) || submittedBy.equals("SYSTEM"),
-//                    "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
-//            );
-//        }
+    private void setData() {
+        subscribers = basicActions.getAllSubscribers();
+        List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
+        List<PolicyTablesEntity> dentalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("2");
+
+        SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
+        SharedData.setDentalPolicyTablesEntities(dentalPolicyEntitiesList);
+
+        List<MemberDetails> allSubscribers = basicActions.getAllSubscribers();
+        for (MemberDetails subscriber : allSubscribers) {
+            exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
+            exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
+            exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
+        }
+
+
+        if (SharedData.getScenarioDetails().getTotalMembers() > 1) {
+            List<MemberDetails> memberDetailsList = basicActions.getAllMem();
+            for (MemberDetails member : memberDetailsList) {
+                exchDbDataProvider.setExchPersonId(member, member.getMemberId());
+            }
+        }
+
+            medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
+            dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
+            dbDataMapList = SharedData.getDbDataNew();
+
+        medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
+        dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
+        }
+
+       private void validateSubmittedBy(PolicyTablesEntity policyTablesEntity) {
+            String submittedBy = policyTablesEntity.getPolicy_submitted_by();
+            String primaryMemberEmail = SharedData.getPrimaryMember().getEmailId();
+
+            softAssert.assertTrue(submittedBy.equals(primaryMemberEmail) || submittedBy.equals("SYSTEM"),
+                    "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
+            );
+        }
+
 
 
 }
+
