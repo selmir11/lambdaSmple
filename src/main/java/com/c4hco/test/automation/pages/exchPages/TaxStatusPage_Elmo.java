@@ -15,7 +15,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class TaxStatusPage_Elmo {
     private BasicActions basicActions;
@@ -847,10 +848,9 @@ public class TaxStatusPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyFilingJointlyWithQuestion(String memPrefix,String language) {
+    public void verifyFilingJointlyWithQuestion(String memPrefix,String language,List<Map<String, String>> expectedMembers) {
         basicActions.waitForElementToBePresent(filingJointlyWithTxt, 15);
-        List<String> allMemNames = basicActions.getSpouseOrAllNames();
-        List<String> filteredMemNames = allMemNames.stream().filter(name -> !name.startsWith(memPrefix)).toList();
+        List<String> expectedMembersList = expectedMembers.stream().map(map -> map.get("ExpectedMembers")).filter(Objects::nonNull).map(basicActions::getMemFirstLastNames).collect(Collectors.toList());
         String expectedQuestionText = "";
         String someoneElseText = "";
         if ("primary".equalsIgnoreCase(memPrefix)) {
@@ -875,45 +875,45 @@ public class TaxStatusPage_Elmo {
                     : "Otra persona";
         }
         softAssert.assertEquals(filingJointlyWithTxt.getText(), expectedQuestionText);
-        for (int i = 0; i < filteredMemNames.size(); i++) {
+        for (int i = 0; i < expectedMembersList.size(); i++) {
             int adjustedIndex = i + 2;
-            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), filteredMemNames.get(i), "Mismatch at radio index: " + adjustedIndex);
+            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), expectedMembersList.get(i), "Mismatch at radio index: " + adjustedIndex);
         }
-        int someoneElseIndex = filteredMemNames.size() + 2;
+        int someoneElseIndex = expectedMembersList.size() + 2;
         if (someoneElseIndex < filingJointlyWithRadioTxt.size()) {
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'Someone else' option text does not match.");
         }
         softAssert.assertAll();
     }
 
-    public void verifyFilingJointlyWithAnswers(String memOption, String memPrefix, String language) {
+    public void verifyFilingJointlyWithAnswers(String memOption, String language,List<Map<String, String>> expectedMembers) {
         basicActions.waitForElementToBePresent(filingJointlyWithTxt, 15);
-        List<String> allMemNames = basicActions.getSpouseOrAllNames().stream().filter(name -> !name.toLowerCase().startsWith(memPrefix.toLowerCase())).toList();
+        List<String> expectedMembersList = expectedMembers.stream().map(map -> map.get("ExpectedMembers")).filter(Objects::nonNull).map(basicActions::getMemFirstLastNames).collect(Collectors.toList());
         boolean memOptionMatched = false;
 
-        for (int i = 0; i < allMemNames.size(); i++) {
+        for (int i = 0; i < expectedMembersList.size(); i++) {
             int adjustedIndex = i + 2;
-            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), allMemNames.get(i), "Mismatch at radio index (text): " + adjustedIndex);
-            if (memOption != null && !memOption.isEmpty() && allMemNames.get(i).toLowerCase().startsWith(memOption.toLowerCase())) {
+            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), expectedMembersList.get(i), "Mismatch at radio index (text): " + adjustedIndex);
+            if (memOption != null && !memOption.isEmpty() && expectedMembersList.get(i).toLowerCase().startsWith(memOption.toLowerCase())) {
                 memOptionMatched = true;
-                softAssert.assertTrue(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + allMemNames.get(i) + " is not selected as memOption.");
+                softAssert.assertTrue(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + expectedMembersList.get(i) + " is not selected as memOption.");
             } else {
-                softAssert.assertFalse(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + allMemNames.get(i) + " is unexpectedly selected.");
+                softAssert.assertFalse(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + expectedMembersList.get(i) + " is unexpectedly selected.");
             }
         }
 
         String someoneElseText = language.equalsIgnoreCase("Spanish") ? "Otra persona" : "Someone else";
-        int someoneElseIndex = allMemNames.size() + 2;
+        int someoneElseIndex = expectedMembersList.size() + 2;
 
         if (someoneElseIndex < filingJointlyWithRadioTxt.size()) {
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'" + someoneElseText + "' option text does not match.");
             if (memOption == null || memOption.isEmpty()) {
-                softAssert.assertFalse(filingJointlyWithRadio.get(allMemNames.size()).isSelected(), "'" + someoneElseText + "' radio button is unexpectedly selected when memOption is empty.");
+                softAssert.assertFalse(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button is unexpectedly selected when memOption is empty.");
             } else if (someoneElseText.toLowerCase().startsWith(memOption.toLowerCase())) {
                 memOptionMatched = true;
-                softAssert.assertTrue(filingJointlyWithRadio.get(allMemNames.size()).isSelected(), "'" + someoneElseText + "' radio button is not selected as memOption.");
+                softAssert.assertTrue(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button is not selected as memOption.");
             } else {
-                softAssert.assertFalse(filingJointlyWithRadio.get(allMemNames.size()).isSelected(), "'" + someoneElseText + "' radio button should not be selected.");
+                softAssert.assertFalse(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button should not be selected.");
             }
         }
 
