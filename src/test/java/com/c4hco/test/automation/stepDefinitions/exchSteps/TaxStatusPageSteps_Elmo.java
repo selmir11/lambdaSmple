@@ -37,6 +37,9 @@ public class TaxStatusPageSteps_Elmo {
     @And("I enter data for enter the name question on the Tax Status Elmo page")
     public void iEnterDataEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.enterDataEnterTheNameQuestion(nameData);}
 
+    @Then("I select {string} for who will be claimed as dependent question")
+    public void iSelectWhoWillBeClaimed(String memPrefix){taxStatusPage_Elmo.selectWhoWillBeClaimed(memPrefix);}
+
 
 
     /////////////////////////////////// Validation steps ///////////////////////////////////
@@ -47,14 +50,14 @@ public class TaxStatusPageSteps_Elmo {
     @And("I verify the header for {string} Member on the Tax Status Elmo page in {string}")
     public void iVerifyHeadersOtherHealthCoveragePage(String member, String language){taxStatusPage_Elmo.verifyHeadersTaxStatusPage(member, language);}
 
-    @And("I verify will you be claimed question on the Tax Status Elmo page in {string}")
-    public void iVerifyWillYouBeClaimedAsDependentQuestion(String language){taxStatusPage_Elmo.verifyWillYouBeClaimedAsDependentQuestion(language);}
+    @And("I verify will you be claimed question on the Tax Status Elmo page for {string} in {string}")
+    public void iVerifyWillYouBeClaimedAsDependentQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyWillYouBeClaimedAsDependentQuestion(memPrefix,language);}
 
     @And("I verify will you be claimed Yes {string} and No {string} selected on the Tax Status Elmo page")
     public void iVerifyWillYouBeClaimedAsDependentAnswers(String yesStatus, String noStatus){taxStatusPage_Elmo.verifyWillYouBeClaimedAsDependentAnswers(yesStatus, noStatus);}
 
-    @And("I verify file tax return question on the Tax Status Elmo page in {string}")
-    public void iVerifyFileTaxReturnQuestion(String language){taxStatusPage_Elmo.verifyFileTaxReturnQuestion(language);}
+    @And("I verify file tax return question on the Tax Status Elmo page for {string} in {string}")
+    public void iVerifyFileTaxReturnQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyFileTaxReturnQuestion(memPrefix,language);}
 
     @And("I verify file tax return Yes {string} and No {string} selected on the Tax Status Elmo page")
     public void iVerifyFileTaxReturnAnswers(String yesStatus, String noStatus){taxStatusPage_Elmo.verifyFileTaxReturnAnswers(yesStatus, noStatus);}
@@ -65,9 +68,37 @@ public class TaxStatusPageSteps_Elmo {
     @And("I verify who will claim you question on the Tax Status Elmo page for selected for {string}")
     public void iVerifyOnlyMemPrefixSelected(String memPrefix){taxStatusPage_Elmo.verifyOnlyMemPrefixSelected(memPrefix);}
 
-    @And("I verify enter the name question on the Tax Status Elmo page in {string}")
-    public void iVerifyEnterTheNameQuestion(String language){taxStatusPage_Elmo.verifyEnterTheNameQuestion(language);}
+    @And("I verify enter the name question on the Tax Status Elmo page for {string} in {string}")
+    public void iVerifyEnterTheNameQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyEnterTheNameQuestion(memPrefix,language);}
 
     @And("I verify enter the name question on the Tax Status Elmo page data")
     public void iVerifyEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyEnterTheNameAnswers(nameData);}
+
+    @And("I verify Save and Back buttons on the Tax Status Elmo page in {string}")
+    public void iVerifySaveBackBtns(String language){taxStatusPage_Elmo.verifySaveBackBtns(language);}
+
+    @And("I verify select tax filing status question on the Tax Status Elmo page in {string}")
+    public void iVerifySelectTaxFilingStatusQuestion(String language){taxStatusPage_Elmo.verifySelectTaxFilingStatusQuestion(language);}
+
+    @And("I verify who will you be filing jointly with question on the Tax Status Elmo page for {string} in {string}")
+    public void iVerifyFilingJointlyWithQuestionn(String memPrefix,String language,List<Map<String, String>> expectedMembers){taxStatusPage_Elmo.verifyFilingJointlyWithQuestion(memPrefix,language,expectedMembers);}
+
+    @And("I verify who will you be filing jointly with {string} selected on the Tax Status Elmo page in {string}")
+    public void iVerifyFilingJointlyWithAnswers(String memOption,String language,List<Map<String, String>> expectedMembers){taxStatusPage_Elmo.verifyFilingJointlyWithAnswers(memOption,language,expectedMembers);}
+
+    @And("I verify filing jointly with enter the name question on the Tax Status Elmo page in {string}")
+    public void iVerifyFilingJointlyWithEnterTheNameQuestion(String language){taxStatusPage_Elmo.verifyFilingJointlyWithEnterTheNameQuestion(language);}
+
+    @And("I verify will you claim dependents question on the Tax Status Elmo page for {string} in {string}")
+    public void iVerifyWillYouClaimDependentsQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyWillYouClaimDependentsQuestion(memPrefix,language);}
+
+    @And("I verify will you claim dependents Yes {string} and No {string} selected on the Tax Status Elmo page")
+    public void iVerifyWillYouClaimDependentsAnswers(String yesStatus, String noStatus){taxStatusPage_Elmo.verifyWillYouClaimDependentsAnswers(yesStatus, noStatus);}
+
+    @And("I verify who will be claimed question on the Tax Status Elmo page for {string} in {string}")
+    public void iVerifyWhoClaimedQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyWhoClaimedQuestion(memPrefix,language);}
+
+    @And("I verify who will be claimed with enter the name question on the Tax Status Elmo page in {string}")
+    public void iVerifyWhoClaimedWithEnterTheNameQuestion(String language){taxStatusPage_Elmo.verifyWhoClaimedWithEnterTheNameQuestion(language);}
+
 }

@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
@@ -13,11 +14,15 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class TaxStatusPage_Elmo {
     private BasicActions basicActions;
+    Actions action;
     public TaxStatusPage_Elmo(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
+        action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -73,6 +78,9 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-taxFilingStatus-container label")
     WebElement filingStatusTxt;
 
+    @FindBy(css = "#ELIG-taxStatus-taxFilingStatus-help")
+    WebElement filingStatusHelp;
+
     @FindBy(css = ".c4-input select option")
     List<WebElement> filingStatusDpd;
 
@@ -85,11 +93,29 @@ public class TaxStatusPage_Elmo {
     @FindBy(id = "ELIG-taxStatus-willClaimDependents-yesButton")
     WebElement willClaimDependentsYes;
 
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willClaimDependents-container']//label[2]")
+    WebElement willClaimDependentsYesTxt;
+
     @FindBy(id = "ELIG-taxStatus-willClaimDependents-noButton")
     WebElement willClaimDependentsNo;
 
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willClaimDependents-container']//label[3]")
+    WebElement willClaimDependentsNoTxt;
+    
+    @FindBy(css = "app-member-multi-select > div > div > span")
+    WebElement whoClaimedTxt;
+
+    @FindBy(css = "#-container button")
+    List<WebElement> whoClaimedBtn;
+
+    @FindBy(css = "#-container span")
+    List<WebElement> whoClaimedMemNameTxt;
+
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-container span")
     WebElement filingJointlyWithTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-container label")
+    List<WebElement> filingJointlyWithRadioTxt;
 
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-container input")
     List<WebElement> filingJointlyWithRadio;
@@ -103,40 +129,101 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-container .row.input-row label input")
     List<WebElement> whoClaimedAsDependentsRadio;
 
-    @FindBy(css = "app-member-select app-new-member span")
+    @FindBy(css = "app-new-member span")
     WebElement enterNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-firstName-container label")
-    WebElement firstNameTxt;
+    WebElement claimFirstNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-firstName")
-    WebElement firstNameInput;
+    WebElement claimFirstNameInput;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-middleName-container label")
-    WebElement middleNameTxt;
+    WebElement claimMiddleNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-middleName")
-    WebElement middleNameInput;
+    WebElement claimMiddleNameInput;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-lastName-container label")
-    WebElement lastNameTxt;
+    WebElement claimLastNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-lastName")
-    WebElement lastNameInput;
+    WebElement claimLastNameInput;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-suffix-container label")
-    WebElement suffixNameTxt;
+    WebElement claimSuffixNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-suffix")
-    WebElement suffixNameDpd;
+    WebElement claimSuffixNameDpd;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-dob-container label")
-    WebElement dobNameTxt;
+    WebElement claimDobNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-dob")
-    WebElement dobNameInput;
+    WebElement claimDobNameInput;
 
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-firstName-container label")
+    WebElement filingFirstNameTxt;
 
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-firstName")
+    WebElement filingFirstNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-middleName-container label")
+    WebElement filingMiddleNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-middleName")
+    WebElement filingMiddleNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-lastName-container label")
+    WebElement filingLastNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-lastName")
+    WebElement filingLastNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-suffix-container label")
+    WebElement filingSuffixNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-suffix")
+    WebElement filingSuffixNameDpd;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-dob-container label")
+    WebElement filingDobNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-dob")
+    WebElement filingDobNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-firstName-container label")
+    WebElement claimedFirstNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-firstName")
+    WebElement claimedFirstNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-middleName-container label")
+    WebElement claimedMiddleNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-middleName")
+    WebElement claimedMiddleNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-lastName-container label")
+    WebElement claimedLastNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-lastName")
+    WebElement claimedLastNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-suffix-container label")
+    WebElement claimedSuffixNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-suffix")
+    WebElement claimedSuffixNameDpd;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-dob-container label")
+    WebElement claimedDobNameTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-dob")
+    WebElement claimedDobNameInput;
+
+    @FindBy(id = "ELIG-taxStatus-nav-GoBack")
+    WebElement goBackBtn;
 
     @FindBy(id = "ELIG-taxStatus-nav-SaveAndContinue")
     WebElement saveAndContinueBtn;
@@ -200,16 +287,21 @@ public class TaxStatusPage_Elmo {
 
     public void selectFilingJointlyWithOption(String filingJointlyOption) {
         basicActions.waitForElementListToBePresent(filingJointlyWithRadio, 50);
-
-        switch (filingJointlyOption) {
-            case "Spouse":
-                filingJointlyWithRadio.get(0).click();
+        boolean optionSelected = false;
+        for (int i = 0; i < filingJointlyWithRadio.size(); i++) {
+            int adjustedIndex = i + 2;
+            if (adjustedIndex >= filingJointlyWithRadioTxt.size()) {
+                throw new IndexOutOfBoundsException("Adjusted index " + adjustedIndex + " out of bounds for filingJointlyWithRadioTxt size " + filingJointlyWithRadioTxt.size());
+            }
+            String radioText = filingJointlyWithRadioTxt.get(adjustedIndex).getText().trim();
+            if (radioText.toLowerCase().startsWith(filingJointlyOption.toLowerCase())) {
+                filingJointlyWithRadio.get(i).click();
+                optionSelected = true;
                 break;
-            case "Someone else":
-                filingJointlyWithRadio.get(1).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + filingJointlyOption);
+            }
+        }
+        if (!optionSelected) {
+            throw new IllegalArgumentException("Invalid option or option not found: " + filingJointlyOption);
         }
     }
 
@@ -241,11 +333,16 @@ public class TaxStatusPage_Elmo {
     }
 
     public void enterDataEnterTheNameQuestion(List<Map<String, String>> nameData) {
-        firstNameInput.sendKeys(nameData.get(0).get("First Name"));
-        middleNameInput.sendKeys(nameData.get(0).get("Middle Name"));
-        lastNameInput.sendKeys(nameData.get(0).get("Last Name"));
-        suffixNameDpd.sendKeys(nameData.get(0).get("Suffix"));
-        dobNameInput.sendKeys(nameData.get(0).get("DOB"));
+        claimFirstNameInput.sendKeys(nameData.get(0).get("First Name"));
+        claimMiddleNameInput.sendKeys(nameData.get(0).get("Middle Name"));
+        claimLastNameInput.sendKeys(nameData.get(0).get("Last Name"));
+        claimSuffixNameDpd.sendKeys(nameData.get(0).get("Suffix"));
+        claimDobNameInput.sendKeys(nameData.get(0).get("DOB"));
+    }
+
+    public void selectWhoWillBeClaimed(String memPrefix) {
+        WebElement selectMember = basicActions.getDriver().findElement(By.xpath("//span[contains(text(), '" + memPrefix + "')]"));
+        selectMember.click();
     }
 
 
@@ -377,19 +474,29 @@ public class TaxStatusPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyWillYouBeClaimedAsDependentQuestion(String language){
+    public void verifyWillYouBeClaimedAsDependentQuestion(String memPrefix, String language) {
         basicActions.waitForElementToBePresent(claimedAsDependentTxt, 15);
+
+        String expectedQuestionText = "";
+        if ("primary".equalsIgnoreCase(memPrefix)) {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Will you be claimed as a dependent on someone else's tax return next year?"
+                    : "\u00BFSe presentar\u00E1 a como dependiente en la declaraci\u00F3n de impuestos de otra persona el pr\u00F3ximo a\u00F1o?";
+        } else {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Will "+basicActions.getMemFirstNames(memPrefix)+" be claimed as a dependent on someone else's tax return next year?"
+                    : "\u00BFSe presentar\u00E1 a como dependiente en la declaraci\u00F3n de impuestos de otra persona el pr\u00F3ximo a\u00F1o?";
+        }
+        softAssert.assertEquals(claimedAsDependentTxt.getText(), expectedQuestionText, "Mismatch in claimed as dependent question text.");
         switch (language) {
             case "English":
-                softAssert.assertEquals(claimedAsDependentTxt.getText(), "Will you be claimed as a dependent on someone else's tax return next year?");
-                softAssert.assertTrue(claimedAsDependentHlpIcon.getAttribute("class").contains("help-icon"), "Found "+claimedAsDependentHlpIcon.getAttribute("class"));
+                softAssert.assertTrue(claimedAsDependentHlpIcon.getAttribute("class").contains("help-icon"), "Found: " + claimedAsDependentHlpIcon.getAttribute("class"));
                 softAssert.assertEquals(claimedAsDependentYesTxt.getText(), "Yes");
                 softAssert.assertEquals(claimedAsDependentNoTxt.getText(), "No");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(claimedAsDependentTxt.getText(), "\u00BFSe presentar\u00E1 a como dependiente en la declaraci\u00F3n de impuestos de otra persona el pró\u00F3ximo a\u00F1o?");
-                softAssert.assertTrue(claimedAsDependentHlpIcon.getAttribute("class").equals("help-icon"), "Found "+claimedAsDependentHlpIcon.getAttribute("class"));
+                softAssert.assertTrue(claimedAsDependentHlpIcon.getAttribute("class").contains("help-icon"), "Found: " + claimedAsDependentHlpIcon.getAttribute("class"));
                 softAssert.assertEquals(claimedAsDependentYesTxt.getText(), "S\u00ED");
                 softAssert.assertEquals(claimedAsDependentNoTxt.getText(), "No");
                 softAssert.assertAll();
@@ -427,17 +534,26 @@ public class TaxStatusPage_Elmo {
         }
     }
 
-    public void verifyFileTaxReturnQuestion(String language){
+    public void verifyFileTaxReturnQuestion(String memPrefix,String language){
         basicActions.waitForElementToBePresent(willFileTaxReturnTxt, 15);
+        String expectedQuestionText = "";
+        if ("primary".equalsIgnoreCase(memPrefix)) {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Will you file a federal income tax return next year?"
+                    : "\u00BFPresentar\u00E1 una declaraci\u00F3n de impuesto federal sobre los ingresos el pr\u00F3ximo a\u00F1o?";
+        } else {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Will "+basicActions.getMemFirstNames(memPrefix)+" file a federal income tax return next year?"
+                    : "\u00BF" + basicActions.getMemFirstNames(memPrefix) +" presentar\u00E1 una declaraci\u00F3n de impuesto federal sobre los ingresos el pr\u00F3ximo a\u00F1o?";
+        }
+        softAssert.assertEquals(willFileTaxReturnTxt.getText(), expectedQuestionText);
         switch (language) {
             case "English":
-                softAssert.assertEquals(willFileTaxReturnTxt.getText(), "Will you file a federal income tax return next year?");
                 softAssert.assertEquals(willFileTaxReturnYesTxt.getText(), "Yes");
                 softAssert.assertEquals(willFileTaxReturnNoTxt.getText(), "No");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(willFileTaxReturnTxt.getText(), "\u00BFPresentar\u00E1 una declaraci\u00F3n de impuesto federal sobre los ingresos el pr\u00F3ximo a\u00F1o?");
                 softAssert.assertEquals(willFileTaxReturnYesTxt.getText(), "S\u00ED");
                 softAssert.assertEquals(willFileTaxReturnNoTxt.getText(), "No");
                 softAssert.assertAll();
@@ -480,19 +596,35 @@ public class TaxStatusPage_Elmo {
         List<String> allMemNames = basicActions.getAllMemNames();
         List<String> filteredMemNames = allMemNames.stream().filter(name -> !name.startsWith(memPrefix)).toList();
 
-        String expectedQuestionText;
-        String someoneElseText;
-        switch (language) {
-            case "English":
-                expectedQuestionText = "Who will claim you as a dependent?";
-                someoneElseText = "Someone else";
-                break;
-            case "Spanish":
-                expectedQuestionText = "\u00BFQui\u00E9n reclamar\u00E1 a como dependiente?";
-                someoneElseText = "Otra persona";
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported language: " + language);
+        String expectedQuestionText = "";
+        String someoneElseText = "";
+
+        if ("primary".equalsIgnoreCase(memPrefix)) {
+            switch (language) {
+                case "English":
+                    expectedQuestionText = "Who will claim you as a dependent?";
+                    someoneElseText = "Someone else";
+                    break;
+                case "Spanish":
+                    expectedQuestionText = "\u00BFQui\u00E9n reclamar\u00E1 a como dependiente?";
+                    someoneElseText = "Otra persona";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported language: " + language);
+            }
+        } else {
+            switch (language) {
+                case "English":
+                    expectedQuestionText = "Who will claim "+basicActions.getMemFirstNames(memPrefix)+" as a dependent?";
+                    someoneElseText = "Someone else";
+                    break;
+                case "Spanish":
+                    expectedQuestionText = "\u00BFA qui\u00E9n reclamar\u00E1 como dependientes?";
+                    someoneElseText = "Otra persona";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported language: " + language);
+            }
         }
         softAssert.assertEquals(whoClaimedAsDependentsTxt.getText(), expectedQuestionText, "The question text does not match the expected value.");
         for (int i = 0; i < filteredMemNames.size(); i++) {
@@ -528,27 +660,40 @@ public class TaxStatusPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyEnterTheNameQuestion(String language){
+    public void verifyEnterTheNameQuestion(String memPrefix,String language){
         basicActions.waitForElementToBePresent(enterNameTxt, 15);
+        String expectedQuestionText = "";
+        if ("primary".equalsIgnoreCase(memPrefix)) {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Enter the name of who will claim you as a dependent:"
+                    : "Ingrese el nombre de la persona que le registrar\u00E1 como dependiente:";
+        } else {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Enter the name of who will claim "+basicActions.getMemFirstNames(memPrefix)+" as a dependent:"
+                    : "Ingrese el nombre de la persona que registrar\u00E1 a "+basicActions.getMemFirstNames(memPrefix)+" como dependiente";
+        }
+        softAssert.assertEquals(enterNameTxt.getText(), expectedQuestionText);
         switch (language) {
             case "English":
-                softAssert.assertEquals(enterNameTxt.getText(), "Enter the name of who will claim you as a dependent:");
-                softAssert.assertEquals(firstNameTxt.getText(), "First name");
-                softAssert.assertEquals(middleNameTxt.getText(), "Middle name or initial");
-                softAssert.assertEquals(lastNameTxt.getText(), "Last name");
-                softAssert.assertEquals(suffixNameTxt.getText(), "Suffix");
-                softAssert.assertEquals(suffixNameDpd.getText(), "Select Option\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                softAssert.assertEquals(dobNameTxt.getText(), "Date of birth");
+                softAssert.assertEquals(claimFirstNameTxt.getText(), "First name");
+                softAssert.assertEquals(claimMiddleNameTxt.getText(), "Middle name or initial");
+                softAssert.assertEquals(claimLastNameTxt.getText(), "Last name");
+                softAssert.assertEquals(claimSuffixNameTxt.getText(), "Suffix");
+                softAssert.assertEquals(claimSuffixNameDpd.getText(), "Select Option\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
+                softAssert.assertEquals(claimDobNameTxt.getText(), "Date of birth");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(enterNameTxt.getText(), "Ingrese el nombre de la persona que le registrará como dependiente:");
-                softAssert.assertEquals(firstNameTxt.getText(), "Nombre");
-                softAssert.assertEquals(middleNameTxt.getText(), "Segundo nombre o inicial");
-                softAssert.assertEquals(lastNameTxt.getText(), "Apellido(s)");
-                softAssert.assertEquals(suffixNameTxt.getText(), "Titulo o tratamiento");
-                softAssert.assertEquals(suffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                softAssert.assertEquals(dobNameTxt.getText(), "Date of birth");
+                softAssert.assertEquals(claimFirstNameTxt.getText(), "Nombre");
+                softAssert.assertEquals(claimMiddleNameTxt.getText(), "Segundo nombre o inicial");
+                softAssert.assertEquals(claimLastNameTxt.getText(), "Apellido(s)");
+                softAssert.assertEquals(claimSuffixNameTxt.getText(), "Titulo o tratamiento");
+                softAssert.assertEquals(claimSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                    softAssert.assertEquals(claimDobNameTxt.getText(), "Date of birth");
+                } else {
+                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
+                }
                 softAssert.assertAll();
                 break;
             default:
@@ -568,14 +713,365 @@ public class TaxStatusPage_Elmo {
         suffix = (suffix != null && !suffix.trim().isEmpty()) ? suffix : null;
         dob = (dob != null && !dob.trim().isEmpty()) ? dob : null;
 
-        softAssert.assertEquals(firstNameInput.getAttribute("value").trim().isEmpty() ? null : firstNameInput.getAttribute("value"), firstName);
-        softAssert.assertEquals(middleNameInput.getAttribute("value").trim().isEmpty() ? null : middleNameInput.getAttribute("value"), middleName);
-        softAssert.assertEquals(lastNameInput.getAttribute("value").trim().isEmpty() ? null : lastNameInput.getAttribute("value"), lastName);
-        softAssert.assertEquals(suffixNameDpd.getAttribute("value").trim().isEmpty() || "0: null".equals(suffixNameDpd.getAttribute("value")) ? null : suffixNameDpd.getAttribute("value"), suffix);
-        softAssert.assertEquals(dobNameInput.getAttribute("value").trim().isEmpty() ? null : dobNameInput.getAttribute("value"), dob);
+        softAssert.assertEquals(claimFirstNameInput.getAttribute("value").trim().isEmpty() ? null : claimFirstNameInput.getAttribute("value"), firstName);
+        softAssert.assertEquals(claimMiddleNameInput.getAttribute("value").trim().isEmpty() ? null : claimMiddleNameInput.getAttribute("value"), middleName);
+        softAssert.assertEquals(claimLastNameInput.getAttribute("value").trim().isEmpty() ? null : claimLastNameInput.getAttribute("value"), lastName);
+        softAssert.assertEquals(claimSuffixNameDpd.getAttribute("value").trim().isEmpty() || "0: null".equals(claimSuffixNameDpd.getAttribute("value")) ? null : claimSuffixNameDpd.getAttribute("value"), suffix);
+        softAssert.assertEquals(claimDobNameInput.getAttribute("value").trim().isEmpty() ? null : claimDobNameInput.getAttribute("value"), dob);
         softAssert.assertAll();
+    }
+
+    public void verifySaveBackBtns(String language){
+        basicActions.waitForElementToBePresent(enterNameTxt, 15);
+        switch (language) {
+            case "English":
+                verifyContinueAndgoBackBtnsEnglish();
+                break;
+            case "Spanish":
+                verifyContinueAndgoBackBtnsSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyContinueAndgoBackBtnsEnglish() {
+        softAssert.assertEquals(goBackBtn.getText(), "Go back");
+//        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif"); //bug TAM-4929
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+//        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(goBackBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(goBackBtn.getText(), "Go back");
+//        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+//        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertAll();
+    }
+
+    public void verifyContinueAndgoBackBtnsSpanish() {
+        softAssert.assertEquals(goBackBtn.getText(), "Volver");
+//        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif"); //bug TAM-4929
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+//        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(goBackBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(goBackBtn.getText(), "Volver");
+//        softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
+//        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+//        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertAll();
+    }
+
+    public void verifySelectTaxFilingStatusQuestion(String language) {
+        basicActions.waitForElementToBePresent(filingStatusTxt, 15);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(filingStatusTxt.getText(), "Select tax filing status");
+                softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
+                softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Select Option");
+                softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Married filing jointly");
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4903 (will go into Staging with next release)
+                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Qualified widow(er) with dependent(s)");
+                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Married filing separately");
+                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Head of household");
+                } else {
+                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Qualified widow(er) with dependent(s)");
+                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Married filing single");
+                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Head of household");
+                }
+                softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Single");
+                softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Exceptional circumstances?");
+                break;
+            case "Spanish":
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4903 (will go into Staging with next release)
+                    softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
+                    softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
+                    softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
+                    softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Casados que declaran juntos");
+                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Casados que declaran por separado");
+                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Jefe/a de hogar");
+                    softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Soltero/a");
+                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Viudo/a calificado con dependiente");
+                    softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
+                } else {
+                    softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
+                    softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
+                    softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
+                    softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Married filing jointly");
+                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Qualified widow(er) with dependent(s)");
+                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Married filing single");
+                    softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Single");
+                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Head of household");
+                    softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
+        }
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyFilingJointlyWithQuestion(String memPrefix,String language,List<Map<String, String>> expectedMembers) {
+        basicActions.waitForElementToBePresent(filingJointlyWithTxt, 15);
+        List<String> expectedMembersList = expectedMembers.stream().map(map -> map.get("ExpectedMembers")).filter(Objects::nonNull).map(basicActions::getMemFirstLastNames).collect(Collectors.toList());
+        String expectedQuestionText = "";
+        String someoneElseText = "";
+        if ("primary".equalsIgnoreCase(memPrefix)) {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Who will you be filing jointly with?"
+                    : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto?";
+            someoneElseText = language.equalsIgnoreCase("English")
+                    ? "Someone else"
+                    : "Otra persona";
+        } else {
+            if (SharedData.getEnv().equals("qa")) {//bug TAM-4900 (will go into Staging with next release)
+                expectedQuestionText = language.equalsIgnoreCase("English")
+                        ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" be filing jointly with?"
+                        : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
+            } else {
+                expectedQuestionText = language.equalsIgnoreCase("English")
+                        ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" you be filing jointly with?"
+                        : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
+            }
+            someoneElseText = language.equalsIgnoreCase("English")
+                    ? "Someone else"
+                    : "Otra persona";
+        }
+        softAssert.assertEquals(filingJointlyWithTxt.getText(), expectedQuestionText);
+        for (int i = 0; i < expectedMembersList.size(); i++) {
+            int adjustedIndex = i + 2;
+            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), expectedMembersList.get(i), "Mismatch at radio index: " + adjustedIndex);
+        }
+        int someoneElseIndex = expectedMembersList.size() + 2;
+        if (someoneElseIndex < filingJointlyWithRadioTxt.size()) {
+            softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'Someone else' option text does not match.");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyFilingJointlyWithAnswers(String memOption, String language,List<Map<String, String>> expectedMembers) {
+        basicActions.waitForElementToBePresent(filingJointlyWithTxt, 15);
+        List<String> expectedMembersList = expectedMembers.stream().map(map -> map.get("ExpectedMembers")).filter(Objects::nonNull).map(basicActions::getMemFirstLastNames).collect(Collectors.toList());
+        boolean memOptionMatched = false;
+
+        for (int i = 0; i < expectedMembersList.size(); i++) {
+            int adjustedIndex = i + 2;
+            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), expectedMembersList.get(i), "Mismatch at radio index (text): " + adjustedIndex);
+            if (memOption != null && !memOption.isEmpty() && expectedMembersList.get(i).toLowerCase().startsWith(memOption.toLowerCase())) {
+                memOptionMatched = true;
+                softAssert.assertTrue(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + expectedMembersList.get(i) + " is not selected as memOption.");
+            } else {
+                softAssert.assertFalse(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + expectedMembersList.get(i) + " is unexpectedly selected.");
+            }
+        }
+
+        String someoneElseText = language.equalsIgnoreCase("Spanish") ? "Otra persona" : "Someone else";
+        int someoneElseIndex = expectedMembersList.size() + 2;
+
+        if (someoneElseIndex < filingJointlyWithRadioTxt.size()) {
+            softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'" + someoneElseText + "' option text does not match.");
+            if (memOption == null || memOption.isEmpty()) {
+                softAssert.assertFalse(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button is unexpectedly selected when memOption is empty.");
+            } else if (someoneElseText.toLowerCase().startsWith(memOption.toLowerCase())) {
+                memOptionMatched = true;
+                softAssert.assertTrue(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button is not selected as memOption.");
+            } else {
+                softAssert.assertFalse(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button should not be selected.");
+            }
+        }
+
+        if (memOption == null || memOption.isEmpty()) {
+            for (int i = 0; i < filingJointlyWithRadio.size(); i++) {
+                softAssert.assertFalse(filingJointlyWithRadio.get(i).isSelected(), "Unexpected radio button selected at index: " + i);
+            }
+        } else if (!memOptionMatched) {
+            softAssert.fail("No radio button matched the provided memOption: " + memOption);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyFilingJointlyWithEnterTheNameQuestion(String language) {
+        basicActions.waitForElementToBePresent(enterNameTxt, 15);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(enterNameTxt.getText(), "Enter name of spouse:");
+                softAssert.assertEquals(filingFirstNameTxt.getText(), "First name");
+                softAssert.assertEquals(filingMiddleNameTxt.getText(), "Middle name or initial");
+                softAssert.assertEquals(filingLastNameTxt.getText(), "Last name");
+                softAssert.assertEquals(filingSuffixNameTxt.getText(), "Suffix");
+                softAssert.assertEquals(filingSuffixNameDpd.getText(), "Select Option\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
+                softAssert.assertEquals(filingDobNameTxt.getText(), "Date of birth");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(enterNameTxt.getText(), "Escriba el nombre del spouse");
+                softAssert.assertEquals(filingFirstNameTxt.getText(), "Nombre");
+                softAssert.assertEquals(filingMiddleNameTxt.getText(), "Segundo nombre o inicial");
+                softAssert.assertEquals(filingLastNameTxt.getText(), "Apellido(s)");
+                softAssert.assertEquals(filingSuffixNameTxt.getText(), "Titulo o tratamiento");
+                softAssert.assertEquals(filingSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
+                if (SharedData.getEnv().equals("qa")) {//bug ???
+                    softAssert.assertEquals(filingDobNameTxt.getText(), "Date of birth");
+                } else {
+                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
+                }
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+        public void verifyWillYouClaimDependentsQuestion(String memPrefix,String language){
+            basicActions.waitForElementToBePresent(willClaimDependentsTxt, 15);
+            String expectedQuestionText = "";
+            if ("primary".equalsIgnoreCase(memPrefix)) {
+                expectedQuestionText = language.equalsIgnoreCase("English")
+                        ? "Will you be claiming dependents on your tax return next year?"
+                        : "\u00BFRegistrar\u00E1 alg\u00FAn dependiente en su declaraci\u00F3n de impuestos el pr\u00F3ximo a\u00F1o?";
+            } else {
+                expectedQuestionText = language.equalsIgnoreCase("English")
+                        ? "Will "+basicActions.getMemFirstNames(memPrefix)+" be claiming dependents on your tax return next year?"
+                        : "\u00BF"+basicActions.getMemFirstNames(memPrefix)+" registrar\u00E1 alg\u00FAn dependiente en su declaraci\u00F3n de impuestos el pr\u00F3ximo a\u00F1o?";
+            }
+            softAssert.assertEquals(willClaimDependentsTxt.getText(), expectedQuestionText);
+            switch (language) {
+                case "English":
+                    softAssert.assertEquals(willClaimDependentsYesTxt.getText(), "Yes");
+                    softAssert.assertEquals(willClaimDependentsNoTxt.getText(), "No");
+                    softAssert.assertAll();
+                    break;
+                case "Spanish":
+                    softAssert.assertEquals(willClaimDependentsYesTxt.getText(), "S\u00ED");
+                    softAssert.assertEquals(willClaimDependentsNoTxt.getText(), "No");
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported language: " + language);
+            }
+            softAssert.assertAll();
+        }
+
+    public void verifyWillYouClaimDependentsAnswers(String yesStatus, String noStatus){
+        basicActions.waitForElementToBePresent(willClaimDependentsYes,20);
+        switch (yesStatus){
+            case "is":
+                softAssert.assertTrue(willClaimDependentsYes.isSelected());
+                softAssert.assertAll();
+                break;
+            case "is not":
+                softAssert.assertFalse(willClaimDependentsYes.isSelected());
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + yesStatus);
+        }
+        switch (noStatus){
+            case "is":
+                softAssert.assertTrue(willClaimDependentsNo.isSelected());
+                softAssert.assertAll();
+                break;
+            case "is not":
+                softAssert.assertFalse(willClaimDependentsNo.isSelected());
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + noStatus);
+        }
+    }
+
+    public void verifyWhoClaimedQuestion(String memPrefix,String language) {
+        basicActions.waitForElementToBePresent(whoClaimedAsDependentsTxt, 15);
+        List<String> allMemNames = basicActions.getAllMemNames();
+        List<String> filteredMemNames = allMemNames.stream().filter(name -> !name.startsWith(memPrefix)).toList();
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(whoClaimedTxt.getText(), "Who will be claimed as dependents?");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(whoClaimedTxt.getText(), "\u00BFA qui\u00E9n registrar\u00E1 como dependientes?");
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+        for (int i = 0; i < filteredMemNames.size(); i++) {
+            softAssert.assertEquals(whoClaimedMemNameTxt.get(i).getText(), filteredMemNames.get(i), "Mismatch at radio index: " + i);
+        }
+        int someoneElseIndex = filteredMemNames.size();
+        if (someoneElseIndex < whoClaimedBtn.size()) {
+            String someoneElseText = language.equalsIgnoreCase("Spanish") ? "Otra persona" : "Someone else";
+            softAssert.assertEquals(whoClaimedMemNameTxt.get(someoneElseIndex).getText(), someoneElseText, "'" + someoneElseText + "' option text does not match.");
+        } else {
+            throw new AssertionError("'Someone else' option is missing in the button list.");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyWhoClaimedWithEnterTheNameQuestion(String language) {
+        basicActions.waitForElementToBePresent(enterNameTxt, 15);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(enterNameTxt.getText(), "Enter name of dependent:");
+                softAssert.assertEquals(claimedFirstNameTxt.getText(), "First name");
+                softAssert.assertEquals(claimedMiddleNameTxt.getText(), "Middle name or initial");
+                softAssert.assertEquals(claimedLastNameTxt.getText(), "Last name");
+                softAssert.assertEquals(claimedSuffixNameTxt.getText(), "Suffix");
+                softAssert.assertEquals(claimedSuffixNameDpd.getText(), "Select Option\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
+                softAssert.assertEquals(claimedDobNameTxt.getText(), "Date of birth");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(enterNameTxt.getText(), "Escriba el nombre del dependiente:");
+                softAssert.assertEquals(claimedFirstNameTxt.getText(), "Nombre");
+                softAssert.assertEquals(claimedMiddleNameTxt.getText(), "Segundo nombre o inicial");
+                softAssert.assertEquals(claimedLastNameTxt.getText(), "Apellido(s)");
+                softAssert.assertEquals(claimedSuffixNameTxt.getText(), "Titulo o tratamiento");
+                softAssert.assertEquals(claimedSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
+                if (SharedData.getEnv().equals("qa")) {//bug ???
+                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Date of birth");
+                } else {
+                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
+                }
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
     }
 
 
 
-}
+
+    }
