@@ -1,4 +1,4 @@
-@TAM @TamExch
+@TAM @TamExch @test
 Feature: Page Text-Tax Status Elmo Page
 
   Background:
@@ -156,9 +156,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select "Yes" for will claim dependents question
     And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
     And I verify who will be claimed question on the Tax Status Elmo page for "Primary" in "English"
-    Then I select "Someone else" for who will be claimed as dependent question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
     And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "English"
-    Then I select "Someone else" for who will be claimed as dependent question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
 #    Other Member (Son)
 #    Workaround until Elmo Tax Status page is in flow
     And I click on Apply for Coverage in the "Elmo" Header
@@ -225,9 +225,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select "Yes" for will claim dependents question
     And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
     And I verify who will be claimed question on the Tax Status Elmo page for "Son" in "English"
-    Then I select "Someone else" for who will be claimed as dependent question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
     And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "English"
-    Then I select "Someone else" for who will be claimed as dependent question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -278,9 +278,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select "Yes" for will claim dependents question
     And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
     And I verify who will be claimed question on the Tax Status Elmo page for "Primary" in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
     And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
 #    Other Member (Son)
 #    Workaround until Elmo Tax Status page is in flow
     And I click on Apply for Coverage in the "Elmo" Header
@@ -350,9 +350,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select "Yes" for will claim dependents question
     And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
     And I verify who will be claimed question on the Tax Status Elmo page for "Son" in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
     And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
