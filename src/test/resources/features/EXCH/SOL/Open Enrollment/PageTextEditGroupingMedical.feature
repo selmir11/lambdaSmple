@@ -11,7 +11,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-93 @VerifyTestToolTip
+  @SLER-93-OE @VerifyTestToolTip
   Scenario: Validate the test tool tip on the edit Medical Grouping page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page

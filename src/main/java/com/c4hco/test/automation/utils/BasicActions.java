@@ -497,6 +497,11 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Status Elmo page Son":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Son")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
                 newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
@@ -825,7 +830,19 @@ public class BasicActions {
         return allSubscribers;
     }
 
+
     public List<MemberDetails> getAllMem() {
+    public String getMemFirstNames(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getFirstName).filter(firstName -> firstName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public String getMemFirstLastNames(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().filter(member -> member.getFirstName().contains(memPrefix)).map(member -> member.getFirstName() + " " + member.getLastName()).findFirst().orElse(null);
+    }
+
+    public List<MemberDetails> getAllMem(){
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         List<MemberDetails> dependents = SharedData.getMembers();
         List<MemberDetails> allMembers = new ArrayList<>();

@@ -1,4 +1,4 @@
-
+@SOLRegression
 Feature: UI Page Validation - Grouping Members (Dental)
 
   Background:
@@ -11,7 +11,7 @@ Feature: UI Page Validation - Grouping Members (Dental)
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-116 @VerifyTestToolTip
+  @SLER-116-OE @VerifyTestToolTip
   Scenario: Validate the test tool tip on the edit Dental Grouping page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
