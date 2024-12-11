@@ -1,6 +1,6 @@
 
 Feature: FA - 4groups - enroll in plan
-  @SLER-1122 @E2E_EXCH
+  @SLER-1122-OE @E2E_EXCH
   Scenario: : SOL - EMP-AWS-SHP: FA Complex (1HH/4GRPs): Create Account, Submit Eligibility & Enroll in a plan
 
     Given I set the test scenario details

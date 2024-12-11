@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: Dental Plans page tests
 
   Background:
