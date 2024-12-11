@@ -20,10 +20,10 @@ public class DbStepsE2E {
     public void validateMedicalRecords(String recordType){
         policyTableDBValidations.recordsValidations(recordType);
     }
-//    @And("I validate {string} entities from policy tables for groups")
-//    public void validateMedicalRecordsForGroups(String recordType){
-//        policyTableDbValidations_Grps.groupRecordsValidations(recordType);
-//    }
+    @And("I validate {string} entities from policy tables for groups")
+    public void validateMedicalRecordsForGroups(String recordType){
+        policyTableDbValidations_Grps.groupRecordsValidations(recordType);
+    }
 
     @And("I validate {string} entities from pre edi db tables")
     public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
