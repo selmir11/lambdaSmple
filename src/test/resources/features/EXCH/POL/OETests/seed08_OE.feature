@@ -207,10 +207,9 @@ Feature: Seed08 - Exchange - Open Enrollment
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" medical plan
-    Then I click continue on medical plan results page
-    And I select "KP Select CO Bronze 8500/50" medical plan
-    Then I click continue on medical plan results page
+    And I select or skip the medical plans for groups
+      | Group 1:KP Select CO Bronze 8500/50 |
+      | Group 2:KP Select CO Bronze 8500/50 |
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
     Then I validate I am on the "Edit Grouping Members Dental" page
@@ -222,10 +221,9 @@ Feature: Seed08 - Exchange - Open Enrollment
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     Then I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Value Plan" plan
-    Then I click continue on dental plan results page
-    And I select "Delta Dental of Colorado Family Value Plan" plan
-    Then I click continue on dental plan results page
+    And I select or skip the dental plans for groups
+      | Group 1:Delta Dental of Colorado Family Value Plan |
+      | Group 2:Delta Dental of Colorado Family Value Plan |
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount
     And I set "Dental" Plans premium amount
@@ -255,7 +253,7 @@ Feature: Seed08 - Exchange - Open Enrollment
 #    And I validate "dental" plan details from plan history
 #    And I click on Sign Out in the Header for "Elmo"
 #
-#    And I validate "medical" entities from policy tables
+    And I validate "medical" entities from policy tables for groups
 #    And I validate "dental" entities from policy tables
 
   #@RT-2113
@@ -280,7 +278,7 @@ Feature: Seed08 - Exchange - Open Enrollment
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I get the newborn "GrandDaughter" dob as "current date"
+    And I get the newborn "Newborn" dob as "current date"
 
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
@@ -288,7 +286,7 @@ Feature: Seed08 - Exchange - Open Enrollment
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
       | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
-    Then I enter details on tell us about additional members of your household exch page and continue with "GrandDaughter", "getFromSharedData", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Newborn", "getFromSharedData", "Female" and applying "Yes"
       | Primary:Granddaughter |
       | Spouse:Granddaughter    |
       | Son:Daughter          |
@@ -311,8 +309,8 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
-    And I click plus icon next to member on household page for "GrandDaughter"
-    And I click the edit income icon on household page for "GrandDaughter"
+    And I click plus icon next to member on household page for "Newborn"
+    And I click the edit income icon on household page for "Newborn"
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
@@ -350,6 +348,17 @@ Feature: Seed08 - Exchange - Open Enrollment
     Then I click continue on the ELMO health coverage page
 
     Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select Birth QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    Then I Declare as Tax Household 2
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on "No Thanks" on good news page
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
 
 
 

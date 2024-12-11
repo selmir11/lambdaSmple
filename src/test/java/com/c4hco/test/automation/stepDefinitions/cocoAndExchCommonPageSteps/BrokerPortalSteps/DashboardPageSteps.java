@@ -38,6 +38,11 @@ public class DashboardPageSteps {
         dashboardPage.clickManageBrokersButton();
     }
 
+    @Then("I click the Manage Users button")
+    public void clickManageUsersButton(){
+        dashboardPage.clickManageUsersButton();
+    }
+
     @Then("I click the My Agency View link")
     public void clickMyAgencyViewLink(){
         dashboardPage.clickMyAgencyView();
@@ -76,6 +81,11 @@ public class DashboardPageSteps {
     @Then("I change the assigned broker to {string}")
     public void updateAssignedBroker(String assignedBroker){
         dashboardPage.changeAssignedBroker(assignedBroker);
+    }
+
+    @Then("I save the agency details")
+    public void saveExistingAgencyDetails(){
+        dashboardPage.saveAgencyDetails();
     }
 
 }

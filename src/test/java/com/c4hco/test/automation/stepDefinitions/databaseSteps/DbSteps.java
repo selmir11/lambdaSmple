@@ -141,5 +141,13 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
 
    @And("I validate lce type and plan year from es_member table")
    public void validateEsMember() {dbValidations.validateLceTypeAndPlanYr_EsMember();}
+
+   @Then("I validate the dental Latest Application Date for the year DB")
+   public void iValidateTheDentalLatestApplicationDateForTheYearDB() {
+      dbValidations.validateTheDentalLatestApplicationDateForTheYearDB();
+   }
+   @And("I Validate enrollment period end date is set to {int} days from current QLCE days")
+   public void validateEnrolmentEndDate(int enrollmentEndDate) {dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate); }
+
 }
 

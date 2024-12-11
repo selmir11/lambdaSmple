@@ -32,6 +32,9 @@ public class DashboardPage {
     @FindBy(xpath = "//button[normalize-space()='Manage Brokers']")
     WebElement manageBrokersButton;
 
+    @FindBy(xpath = "//button[normalize-space()='Manage Users']")
+    WebElement manageUsersButton;
+
     @FindBy(xpath = "//button[normalize-space()='View Your Clients']")
     WebElement ViewYourClientsButton;
 
@@ -58,6 +61,9 @@ public class DashboardPage {
 
     @FindBy(id = "broker-submit-0")
     WebElement clientInformationBrokerAssignmentSubmit;
+
+    @FindBy(id = "accountSummary-data-agencyOwner")
+    WebElement accountSummaryAgencyOwnerName;
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -96,6 +102,11 @@ public class DashboardPage {
     public void clickManageBrokersButton(){
         basicActions.waitForElementToBePresent(manageBrokersButton, 10);
         manageBrokersButton.click();
+    }
+
+    public void clickManageUsersButton(){
+        basicActions.waitForElementToBePresent(manageUsersButton, 10);
+        manageUsersButton.click();
     }
 
     public void clickViewYourClientsButton(){
@@ -149,5 +160,11 @@ public class DashboardPage {
         clientInformationCurrentBrokerAssignment.click();
 
         clientInformationBrokerAssignmentSubmit.click();
+    }
+
+    public void saveAgencyDetails(){
+        basicActions.waitForElementToBePresent(accountSummaryAgencyOwnerName, 10);
+        SharedData.getAgencyOwner().setBroker_name(accountSummaryAgencyOwnerName.getText());
+        SharedData.getAgencyOwner().setFirstName(accountSummaryAgencyOwnerName.getText().split(" ")[0].trim());
     }
 }
