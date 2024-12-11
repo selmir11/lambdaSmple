@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: UI Page Validation - Grouping Members (Dental)
 
   Background:
@@ -73,7 +73,7 @@ Feature: UI Page Validation - Grouping Members (Dental)
     And I validate I am on the "Edit Grouping Members Dental" page
     Then I verify dental tool tip on the link- what works best for you
 
-  @SLER-1119 @editDentalGroupingPageValidation
+  @SLER-1119-OE @editDentalGroupingPageValidation
   Scenario: Validate Edit Medical Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
