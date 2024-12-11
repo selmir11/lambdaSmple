@@ -272,7 +272,8 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmt);
-        dentalPlanDetailsFromDb.add(planDbDataMap);
+        planDbDataMap.put(name, planDbData);
+        dentalPlanDetailsFromDb.add( planDbDataMap);
         SharedData.setDentalPlanDbDataNew(dentalPlanDetailsFromDb);
     }
 

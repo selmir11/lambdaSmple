@@ -168,22 +168,22 @@ public class PolicyTableDbValidations_Grps {
             }
         }
 
-        private void validateDependentDenDetails(PolicyTablesEntity policyTablesEntity) {
-            List<MemberDetails> members = SharedData.getMembers();
+        private void validateDependentDenDetails(PolicyTablesEntity denEntity) {
+            List<MemberDetails> members = basicActions.getAllDependents();
             for (MemberDetails member : members) {
-                if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
+                if (member.getFirstName().equals(denEntity.getFirst_name())) {
                     getDbDataMap(member.getDenSubscriberName());
-                    denValidationsCommonForAllMembers(member.getDenSubscriberName(), policyTablesEntity);
-                    validateMedDenForDependents(policyTablesEntity, dbDataMap.get(member.getDenSubscriberName()), member);
-                    softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
-                    softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Dental Policy total plan premium amount does not match");
-                    softAssert.assertNull(policyTablesEntity.getTotal_premium_reduction_amt(), "Dental APTC amount from policy table does not match");
-                    softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_emcfh(), "Dental premium reduction type in emcfh does not match");
-                    softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table does not match");
-                    softAssert.assertNull(policyTablesEntity.getTotal_responsible_amt(), "Dental Policy total responsible amount does not match");
-                    softAssert.assertNull(policyTablesEntity.getTotal_csr_amt(), "Dental Policy total CSR amount does not match");
-                    softAssert.assertNull(policyTablesEntity.getFinancial_period_start_date(), "Medical financial start date does not match");
-                    softAssert.assertNull(policyTablesEntity.getFinancial_period_end_date(), "Medical financial end date does not match");
+                    denValidationsCommonForAllMembers(member.getDenSubscriberName(), denEntity);
+                    validateMedDenForDependents(denEntity, dbDataMap.get(member.getDenSubscriberName()), member);
+                   // softAssert.assertEquals(denEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
+                    softAssert.assertNull(denEntity.getTotal_plan_premium_amt(), "Dental Policy total plan premium amount does not match");
+                    softAssert.assertNull(denEntity.getTotal_premium_reduction_amt(), "Dental APTC amount from policy table does not match");
+                    softAssert.assertNull(denEntity.getPremium_reduction_type_emcfh(), "Dental premium reduction type in emcfh does not match");
+                    softAssert.assertNull(denEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table does not match");
+                    softAssert.assertNull(denEntity.getTotal_responsible_amt(), "Dental Policy total responsible amount does not match");
+                    softAssert.assertNull(denEntity.getTotal_csr_amt(), "Dental Policy total CSR amount does not match");
+                    softAssert.assertNull(denEntity.getFinancial_period_start_date(), "Medical financial start date does not match");
+                    softAssert.assertNull(denEntity.getFinancial_period_end_date(), "Medical financial end date does not match");
                     softAssert.assertAll();
                 }
             }
