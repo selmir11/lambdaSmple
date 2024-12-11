@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: UI Page Validation - Grouping Members (Medical)
 
   Background:
@@ -75,7 +75,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validate I am on the "Edit Grouping Members Medical" page
     Then I verify tool tip on the link- what works best for you
 
-  @SLER-1111 @editMedicalGroupingPageValidation
+  @SLER-1111-OE @editMedicalGroupingPageValidation
   Scenario: Validate Edit Medical Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
