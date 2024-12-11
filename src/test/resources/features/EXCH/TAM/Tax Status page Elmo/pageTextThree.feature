@@ -1,4 +1,4 @@
-@TAM @TamExch @test
+@TAM @TamExch
 Feature: Page Text-Tax Status Elmo Page
 
   Background:
