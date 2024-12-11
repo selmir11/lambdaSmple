@@ -1,7 +1,7 @@
-
+@SOLRegression
 Feature:shopping and enrolling in a plan through Admin Portal "OBO"
 
-@SLER-736-OE
+@SLER-736
 Scenario: Account creation, shopping and enrolling in a plan through Admin Portal "OBO"
   Given I open the login page on the "admin" portal
   And I refresh the page
@@ -112,7 +112,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   Then I validate I am on the "Account Overview" page
 
 
-  @SLER-746-OE
+  @SLER-746
   Scenario: Verifies plan summary page for "No plans are selected message" via Admin Portal
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -172,7 +172,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I verify no medical and dental plans are selected on plan summary page
     And I click on Sign Out in the Header for "Elmo"
 
-    @SLER-765-OE
+    @SLER-765
     Scenario: Validate hard stop on plan summary page when no plans selected for FA via OBO
       Given I open the login page on the "admin" portal
       And I refresh the page
@@ -266,7 +266,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-796-OE
+  @SLER-796
   Scenario: Admin Portal OBO - FA - LCE Marriage
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -403,7 +403,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-    @SLER-1160-OE
+    @SLER-1160
     Scenario: AdminLCE Happy Path 2 'No' into 2 'Yes'
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page

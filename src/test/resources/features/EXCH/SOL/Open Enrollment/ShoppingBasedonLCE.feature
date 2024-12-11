@@ -1,11 +1,11 @@
-
+@SOLRegression
 Feature: Initial Payment Page test
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-539-OE @MarriageLCE
+  @SLER-539 @MarriageLCE
   Scenario: NFA selecting LCE Marriage in order to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -66,7 +66,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Account Overview" page
 
 
-  @SLER-543-OE
+  @SLER-543
   Scenario: FA selecting LCE Birth in order to shop for a group of 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -239,7 +239,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Account Overview" page
 
 
-  @SLER-716-OE @MarriageLCE
+  @SLER-716 @MarriageLCE
   Scenario: NFA selecting LCE Marriage without financial assistance in order to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -378,7 +378,7 @@ Feature: Initial Payment Page test
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-761-OE @MarriageLCEGroupof3
+  @SLER-761 @MarriageLCEGroupof3
   Scenario: NFA selecting LCE Marriage in order to shop for a group of 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -493,7 +493,7 @@ Feature: Initial Payment Page test
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1141-OE @DeathLCEError
+  @SLER-1141 @DeathLCEError
   Scenario: NFA selecting LCE Death after initial enrollment error code (not allowed to shop should be cleared)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
