@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: UI Page Validation - Grouping Members (Medical)
 
   Background:
@@ -6,7 +6,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validate I am on the "Login" page
 
         # Failing intermittently due to a defect # SOL-3596
-  @SLER-54 @ValidateGroupingMembers
+  @SLER-54-OE @ValidateGroupingMembers
   Scenario: Validate grouping members: Grandparent in 1 group, Parent+2 children in 1 group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -149,7 +149,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
 
-  @SLER-161 @groupingBasedOnZipcode
+  @SLER-161-OE @groupingBasedOnZipcode
   Scenario: Validate grouping members: Father+Mother+son(80205) in group 1, Son(zip 80301) in Group 2
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -276,7 +276,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate that there are 2 default groups with different zipcodes
     Then I verify that members are grouped together based on zipcodes
 
-  @SLER-165 @groupingBasedOnAge
+  @SLER-165-OE @groupingBasedOnAge
   Scenario: A family of 2, both applying,One Parent and One 26 year old son/daughter
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -360,7 +360,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I get error message as groups are invalid
 
     # Failing because of defect
-  @SLER-159 @groupingBasedOnAgeAndDisability
+  @SLER-159-OE @groupingBasedOnAgeAndDisability
   Scenario: A family of 3 all applying for insurance,Two parents and one 29 year old son who is blind
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -504,7 +504,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
 
-  @SLER-163 @groupingBasedOnState
+  @SLER-163-OE @groupingBasedOnState
   Scenario: Validate grouping members: Mother+son(80205) in group 1, Father not qualified insurance in CO
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -608,7 +608,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate that there are 1 default groups
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-290 @groupingBasedOnMinorInHousehold
+  @SLER-290-OE @groupingBasedOnMinorInHousehold
   Scenario: Family with two parents and a 17 year old child, Validate that one group is present
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -710,7 +710,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
 
-  @SLER-292 @ValidateGroupingAddingAMemberToSeperateGroup
+  @SLER-292-OE @ValidateGroupingAddingAMemberToSeperateGroup
   Scenario: Family with two parents and a 17 year old child, moving the 17 year old to their own group and validating two groups exist
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -823,7 +823,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
 
-  @SLER-299 @ValidateGroupingResetGroupsToDefault
+  @SLER-299-OE @ValidateGroupingResetGroupsToDefault
   Scenario: Family with two parents and a 17 year old child, moving the 17 year old to their own group. Save the group and go back to reset groups validating that one group is present.
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -942,7 +942,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
 
-  @SLER-326 @ValidateDefaultGroupingandEdit
+  @SLER-326-OE @ValidateDefaultGroupingandEdit
   Scenario: Validate grouping members: Father+Mother+son in one group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1066,7 +1066,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate that there are 1 default groups
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-344 @validateMedicalGroupingSkipped
+  @SLER-344-OE @validateMedicalGroupingSkipped
   Scenario: Validate Medical Enrollment Groups page is skipped
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1123,7 +1123,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-345 @groupingbyunassigningamember
+  @SLER-345-OE @groupingbyunassigningamember
   Scenario: Validate grouping members: Two members in the household, Move member to unassigned group and save two groups should exist
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1211,7 +1211,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
 
-  @SLER-713 @groupingbysiblingswithoutparents
+  @SLER-713-OE @groupingbysiblingswithoutparents
   Scenario: Two members both siblings in the household, Parents not applying, one group should exist
     When I click create a new account on login page
     Then I click create my account from pre-screen page

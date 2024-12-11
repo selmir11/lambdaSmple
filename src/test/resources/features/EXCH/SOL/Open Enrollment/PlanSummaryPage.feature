@@ -1,11 +1,11 @@
-@SOLRegression
+
 Feature: UI Page Validation - Plan Summary page
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-749
+  @SLER-749-OE
   Scenario: Verify text on plan summary page for "No Medical and Dental plans are selected"
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -81,7 +81,7 @@ Feature: UI Page Validation - Plan Summary page
 
 
 
-  @SLER-762
+  @SLER-762-OE
   Scenario: Verify text on plan summary page for "No Medical and Dental plans are selected" via Broker Portal (FA)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -198,7 +198,7 @@ Feature: UI Page Validation - Plan Summary page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-788
+  @SLER-788-OE
   Scenario: Verify text on plan summary page for "No Medical and Dental plans are selected" via Individual Portal (NFA)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -255,7 +255,7 @@ Feature: UI Page Validation - Plan Summary page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-793
+  @SLER-793-OE
   Scenario: Verify text on plan summary page for "No Medical and Dental plans are selected" via Broker Portal (NFA)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
