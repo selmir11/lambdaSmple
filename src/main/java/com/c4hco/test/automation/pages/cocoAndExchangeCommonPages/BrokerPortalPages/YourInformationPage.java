@@ -11,9 +11,9 @@ import org.testng.asserts.SoftAssert;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class YourInformationPage {
     SoftAssert softAssert = new SoftAssert();
@@ -248,6 +248,34 @@ public class YourInformationPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + accountType);
         }
+    }
+
+    public void updateLicenseAndDates(String accountType){
+        basicActions.waitForElementToBePresent(license,10);
+        BrokerDetails broker = new BrokerDetails();
+        broker.setLicense(generateBrokerLicense().toString());
+        System.out.println("The new license number is " + broker.getLicense());
+        switch(accountType){
+            case "Agency Owner":
+                SharedData.setAgencyOwner(broker);
+                break;
+            case "Broker":
+                SharedData.setBroker(broker);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + accountType);
+        }
+
+        license.clear();
+        license.sendKeys(SharedData.getAgencyOwner().getLicense());
+        licenseValidFromDate.sendKeys(basicActions.getTodayDate());
+        licenseValidToDate.sendKeys(basicActions.getFutureDate(1825));
+    }
+
+    public static CharSequence generateBrokerLicense(){
+        Random rand = new Random();
+        int num = 1000000 + rand.nextInt(100000);
+        return Integer.toString(num);
     }
 
     public void clickBookOfBusinessNoButton(){

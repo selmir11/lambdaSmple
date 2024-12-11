@@ -202,6 +202,12 @@ public class FindACertifiedBrokerPage {
         searchBrokerLanguage.sendKeys(Keys.ENTER);
     }
 
+    public void enterNewLicenseNumberSearch() {
+        basicActions.waitForElementToBePresent(searchContainer,60);
+        searchContainer.sendKeys(SharedData.getAgencyOwner().getLicense());
+
+    }
+
     public void clearSearchForBrokerLocation() {
         basicActions.waitForElementToBePresent(searchBrokerLocation,60);
         searchBrokerLocation.clear();
@@ -291,6 +297,12 @@ public class FindACertifiedBrokerPage {
         softAssert.assertAll();
     }
 
+    public void validateNewAgencyAddress(){
+        basicActions.waitForElementToBePresent(agencyAddress,100);
+        softAssert.assertEquals(agencyAddress.getText(),SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
+        softAssert.assertAll();
+    }
+
     public void validateAgencyAddressHidden(){
         softAssert.assertFalse(agencyAddress.isDisplayed());
         softAssert.assertAll();
@@ -335,6 +347,17 @@ public class FindACertifiedBrokerPage {
         softAssert.assertEquals(availablityDays.getText(),availability);
         softAssert.assertEquals(availablityHours.getText(),officeHours);
         softAssert.assertEquals(licenseNumber.getText(),expectedLicenseNumber);
+        softAssert.assertEquals(availableLanguages.getText(),agencyLanguage);
+        softAssert.assertAll();
+    }
+
+    public void validateNewAgencyDetails(String emailAddress, String expectedPhoneNumber, String availability, String officeHours, String agencyLanguage){
+        basicActions.waitForElementToBePresent(emailLabel,100);
+        softAssert.assertEquals(agencyEmail.getText(),emailAddress);
+        softAssert.assertEquals(phoneNumber.getText(),expectedPhoneNumber);
+        softAssert.assertEquals(availablityDays.getText(),availability);
+        softAssert.assertEquals(availablityHours.getText(),officeHours);
+        softAssert.assertEquals(licenseNumber.getText(),SharedData.getAgencyOwner().getLicense());
         softAssert.assertEquals(availableLanguages.getText(),agencyLanguage);
         softAssert.assertAll();
     }
