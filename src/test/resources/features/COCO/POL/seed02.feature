@@ -100,40 +100,41 @@ Feature: Seed02 - Coco
     Then I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
 
-#    And I click on "My Documents and Letters" link on welcome page
-#    And I click on download enrolment document
-#    And I click on Sign Out in the Header for "Elmo"
-#
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
-#
-#    Given I open the login page on the "admin" portal
-#    And I validate I am on the "Login" page
-#    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-#    And I validate I am on the "Admin dashboard" page
-#    And I select "coco" checkbox on Admin Portal Dashboard
-#    And I search for user and click email from search results
-#    Then I click on "Manage Plans" user dashboard button
-#    Then I click Make Changes Medical button
-#    And I update the Coverage Start date of member
-#      |1:01012024|
-#    And I update the Financial Start date of member
-#      |1:01012024|
-#    And I click Save Button Medical
-#    And I select the reason to confirm the changes
-#    Then I close current tab and switch back to previous tab
-#    And logout from Admin Portal
-#    And I validate "medical" entities from policy tables
-#    And I validate "medical" entities from pre edi db tables
-#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-#      | 021                   | 021                | EC                    |                   | OEP        |
-#    And I download the medical and dental files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 "medical" file data
+    And I click on "My Documents and Letters" link on welcome page
+    And I click on download enrolment document
+    And I click on Sign Out in the Header for "Elmo"
+
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
+
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I click on "Manage Plans" user dashboard button
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member
+      |1:01012024|
+    And I update the Financial Start date of member
+      |1:01012024|
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I close current tab and switch back to previous tab
+    And logout from Admin Portal
+
+    And I validate "medical" entities from policy tables
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | OEP        |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
 
 
 
