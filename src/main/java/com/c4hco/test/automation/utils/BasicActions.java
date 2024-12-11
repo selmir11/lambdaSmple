@@ -808,6 +808,16 @@ public class BasicActions {
         }
         return allSubscribers;
     }
+    public List<MemberDetails> getAllDependents(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allDependents = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            if(member.getIsSubscriber().equals("N")){
+                allDependents.add(member);
+            }
+        }
+        return allDependents;
+    }
 
     public List<MemberDetails> getAllMem(){
         MemberDetails primaryMem = SharedData.getPrimaryMember();
