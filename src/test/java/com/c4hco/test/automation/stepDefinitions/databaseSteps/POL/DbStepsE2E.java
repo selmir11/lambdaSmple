@@ -12,12 +12,17 @@ public class DbStepsE2E {
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
     private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
+    private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
 
 
 
     @And("I validate {string} entities from policy tables")
     public void validateMedicalRecords(String recordType){
         policyTableDBValidations.recordsValidations(recordType);
+    }
+    @And("I validate {string} entities from policy tables for groups")
+    public void validateMedicalRecordsForGroups(String recordType){
+        policyTableDbValidations_Grps.groupRecordsValidations(recordType);
     }
 
     @And("I validate {string} entities from pre edi db tables")

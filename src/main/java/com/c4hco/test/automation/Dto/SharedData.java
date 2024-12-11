@@ -43,6 +43,9 @@ public class SharedData {
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
     @Getter @Setter private static Map<String, PlanDbData> dentalPlanDbData;
+    @Getter @Setter private static List<Map<String, DbData>> dbDataNew;
+    @Getter @Setter private static List<Map<String, PlanDbData>> medicalPlanDbDataNew;
+    @Getter @Setter private static List<Map<String, PlanDbData>> dentalPlanDbDataNew;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;
@@ -88,6 +91,9 @@ public class SharedData {
         commonEDISegments = null;
         env = null;
         dbData = null;
+        dbDataNew = null;
+        medicalPlanDbDataNew = null;
+        dentalPlanDbDataNew = null;
         planYear = null;
         groupDetails = null;
         dbName = null;

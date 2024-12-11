@@ -183,6 +183,9 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = ".header-2")
     WebElement hdr_AdditionalIncome;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 30);
@@ -350,6 +353,7 @@ public class AdditionalIncomeCoCoPage {
     }
 
     public void selectNoneAddIncomeOption(){
+        basicActions.waitForElementToDisappear(spinner,15);
         basicActions.waitForElementListToBePresent(addIncomeButton, 30);
         addIncomeButton.get(12).click();
     }

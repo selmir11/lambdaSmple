@@ -37,10 +37,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
-  @SLER-1781 @PageValidationTaxStatusElmoPage
-  Scenario: SLER-1781 I verify that income-portal-ui uses common components from ng-common on the new Tax Status page in EXCH
-    #step1 - add family member
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
@@ -61,6 +57,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
+  @SLER-1781 @PageValidationTaxStatusElmoPage
+  Scenario: SLER-1781 I verify that income-portal-ui uses common components from ng-common on the new Tax Status page in EXCH
     #step2 - navigate to ELMO Tax Status page
     Then I click continue on family overview page
     And I Apply for financial help
@@ -111,26 +110,6 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1809 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1809 I want to see my data when claimed as dependent so that I can review my Tax Status information
-    Then I click Add Another Family Member
-    Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
-      | Primary:Spouse |
-    And I click continue on Tell us about additional members page
-    Then I validate I am on the "Add Address" page
-    Then I select "Household" for Residential Address
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
-    And I click continue on the Race and Ethnicity page
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "05012015", "Male" and applying "Yes"
@@ -188,19 +167,19 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I validate I am on the "Tax status Elmo" page
 #    Step 1
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
-    And I verify will you be claimed question on the Tax Status Elmo page in "English"
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
     And I verify will you be claimed Yes "is not" and No "is not" selected on the Tax Status Elmo page
 #    Step 2
     Then I select "No" for will you be claimed as dependent question
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
-    And I verify will you be claimed question on the Tax Status Elmo page in "English"
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
     And I verify will you be claimed Yes "is not" and No "is" selected on the Tax Status Elmo page
-    And I verify file tax return question on the Tax Status Elmo page in "English"
+    And I verify file tax return question on the Tax Status Elmo page for "Primary" in "English"
     And I verify file tax return Yes "is not" and No "is not" selected on the Tax Status Elmo page
 #    Step 3
     Then I select "Yes" for will you be claimed as dependent question
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
-    And I verify will you be claimed question on the Tax Status Elmo page in "English"
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
     And I verify will you be claimed Yes "is" and No "is not" selected on the Tax Status Elmo page
     And I verify who will claim you question on the Tax Status Elmo page for "Primary" in "English"
     And I verify who will claim you question on the Tax Status Elmo page for selected for ""
@@ -209,7 +188,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify who will claim you question on the Tax Status Elmo page for selected for "Spouse"
     Then I select "Someone else" for who will claim as dependent question
     And I verify who will claim you question on the Tax Status Elmo page for selected for "Someone else"
-    And I verify enter the name question on the Tax Status Elmo page in "English"
+    And I verify enter the name question on the Tax Status Elmo page for "Primary" in "English"
     And I verify enter the name question on the Tax Status Elmo page data
     |First Name|Middle Name|Last Name|Suffix|DOB|
     |          |           |         |      |   |
@@ -219,6 +198,109 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify enter the name question on the Tax Status Elmo page data
     |First Name|Middle Name|Last Name|Suffix|   DOB  |
     |  Anna    |  Marie    |  Bean   | 2: SR   |1990-02-16|
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLER-1831 @PageValidationTaxStatusElmoPage
+  Scenario: SLER-1831 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - English
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
+#    Step 2
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
+    And I verify will you be claimed Yes "is not" and No "is not" selected on the Tax Status Elmo page
+    Then I select "No" for will you be claimed as dependent question
+    And I verify file tax return question on the Tax Status Elmo page for "Primary" in "English"
+    And I verify file tax return Yes "is not" and No "is not" selected on the Tax Status Elmo page
+#    Step 3
+    Then I select "Yes" for will file tax return question
+    And I verify select tax filing status question on the Tax Status Elmo page in "English"
+    And I verify select tax filing status "0: null" selected on the Tax Status Elmo page
+#    Step 4
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    And I verify will you claim dependents question on the Tax Status Elmo page for "Primary" in "English"
+    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status Elmo page
+#    Step 5
+    Then I select "Yes" for will claim dependents question
+    And I verify who will be claimed question on the Tax Status Elmo page for "Primary" in "English"
+#    Step 6
+    Then I select "Spouse" for who will be claimed as dependent question
+    And I verify who will be claimed does not show enter the name question on the Tax Status Elmo page
+#    Step 7
+    Then I select "Spouse" for who will be claimed as dependent question
+    Then I select "Someone else" for who will be claimed as dependent question
+    And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "English"
+    And I verify who will be claimed enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix|DOB|
+      |          |           |         |      |   |
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLER-1840 @PageValidationTaxStatusElmoPage
+  Scenario: SLER-1840 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - Spanish
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
+#    Step 2
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate I am on the "Tax status Elmo" page
+    And I validate I am on the "Spanish" page
+    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "Spanish"
+    And I verify will you be claimed Yes "is not" and No "is not" selected on the Tax Status Elmo page
+    Then I select "No" for will you be claimed as dependent question
+    And I verify file tax return question on the Tax Status Elmo page for "Primary" in "Spanish"
+    And I verify file tax return Yes "is not" and No "is not" selected on the Tax Status Elmo page
+#    Step 3
+    Then I select "Yes" for will file tax return question
+    And I verify select tax filing status question on the Tax Status Elmo page in "Spanish"
+    And I verify select tax filing status "0: null" selected on the Tax Status Elmo page
+#    Step 4
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    And I verify will you claim dependents question on the Tax Status Elmo page for "Primary" in "Spanish"
+    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status Elmo page
+#    Step 5
+    Then I select "Yes" for will claim dependents question
+    And I verify who will be claimed question on the Tax Status Elmo page for "Primary" in "Spanish"
+#    Step 6
+    Then I select "Spouse" for who will be claimed as dependent question
+    And I verify who will be claimed does not show enter the name question on the Tax Status Elmo page
+#    Step 7
+    Then I select "Spouse" for who will be claimed as dependent question
+    Then I select "Otra persona" for who will be claimed as dependent question
+    And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "Spanish"
+    And I verify who will be claimed enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix|DOB|
+      |          |           |         |      |   |
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
