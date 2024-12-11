@@ -101,4 +101,13 @@ public class TaxStatusPageSteps_Elmo {
     @And("I verify who will be claimed with enter the name question on the Tax Status Elmo page in {string}")
     public void iVerifyWhoClaimedWithEnterTheNameQuestion(String language){taxStatusPage_Elmo.verifyWhoClaimedWithEnterTheNameQuestion(language);}
 
+    @And("I verify select tax filing status {string} selected on the Tax Status Elmo page")
+    public void iVerifySelectTaxFilingStatusAnswer(String option){taxStatusPage_Elmo.verifySelectTaxFilingStatusAnswer(option);}
+
+    @And("I verify who will be claimed does not show enter the name question on the Tax Status Elmo page")
+    public void iVerifyWhoClaimedNoEnterTheNameQuestion(){taxStatusPage_Elmo.verifyWhoClaimedNoEnterTheNameQuestion();}
+
+    @And("I verify who will be claimed enter the name question on the Tax Status Elmo page data")
+    public void iVerifyWhoClaimedEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyWhoClaimedEnterTheNameAnswers(nameData);}
+
 }

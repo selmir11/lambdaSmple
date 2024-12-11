@@ -10,10 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class TaxStatusPage_Elmo {
     private BasicActions basicActions;
@@ -78,6 +80,9 @@ public class TaxStatusPage_Elmo {
 
     @FindBy(css = "#ELIG-taxStatus-taxFilingStatus-help")
     WebElement filingStatusHelp;
+
+    @FindBy(css = "#ELIG-taxStatus-taxFilingStatus")
+    WebElement filingStatusDpdTxt;
 
     @FindBy(css = ".c4-input select option")
     List<WebElement> filingStatusDpd;
@@ -562,7 +567,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyFileTaxReturnAnswers(String yesStatus, String noStatus){
-        basicActions.waitForElementToBePresent(claimedAsDependentYes,20);
+        basicActions.waitForElementToBePresent(willFileTaxReturnYes,20);
         switch (yesStatus){
             case "is":
                 softAssert.assertTrue(willFileTaxReturnYes.isSelected());
@@ -1070,7 +1075,41 @@ public class TaxStatusPage_Elmo {
         }
     }
 
+    public void verifySelectTaxFilingStatusAnswer(String option){
+        basicActions.waitForElementToBePresent(filingStatusDpdTxt,15);
+        softAssert.assertTrue(filingStatusDpdTxt.getAttribute("value").equals(option));
+        softAssert.assertAll();
+    }
 
+    public void verifyWhoClaimedNoEnterTheNameQuestion() {
+        softAssert.assertFalse(basicActions.isElementDisplayed(claimedFirstNameTxt, 10));
+        softAssert.assertFalse(basicActions.isElementDisplayed(claimedMiddleNameTxt, 10));
+        softAssert.assertFalse(basicActions.isElementDisplayed(claimedLastNameTxt, 10));
+        softAssert.assertFalse(basicActions.isElementDisplayed(claimedSuffixNameTxt, 10));
+        softAssert.assertFalse(basicActions.isElementDisplayed(claimedSuffixNameDpd, 10));
+        softAssert.assertFalse(basicActions.isElementDisplayed(claimedDobNameTxt, 10));
+        softAssert.assertAll();
+    }
+
+    public void verifyWhoClaimedEnterTheNameAnswers(List<Map<String, String>> nameData) {
+        String firstName = nameData.get(0).get("First Name");
+        String middleName = nameData.get(0).get("Middle Name");
+        String lastName = nameData.get(0).get("Last Name");
+        String suffix = nameData.get(0).get("Suffix");
+        String dob = nameData.get(0).get("DOB");
+        firstName = (firstName != null && !firstName.trim().isEmpty()) ? firstName : null;
+        middleName = (middleName != null && !middleName.trim().isEmpty()) ? middleName : null;
+        lastName = (lastName != null && !lastName.trim().isEmpty()) ? lastName : null;
+        suffix = (suffix != null && !suffix.trim().isEmpty()) ? suffix : null;
+        dob = (dob != null && !dob.trim().isEmpty()) ? dob : null;
+
+        softAssert.assertEquals(claimedFirstNameInput.getAttribute("value").trim().isEmpty() ? null : claimedFirstNameInput.getAttribute("value"), firstName);
+        softAssert.assertEquals(claimedMiddleNameInput.getAttribute("value").trim().isEmpty() ? null : claimedMiddleNameInput.getAttribute("value"), middleName);
+        softAssert.assertEquals(claimedLastNameInput.getAttribute("value").trim().isEmpty() ? null : claimedLastNameInput.getAttribute("value"), lastName);
+        softAssert.assertEquals(claimedSuffixNameDpd.getAttribute("value").trim().isEmpty() || "0: null".equals(claimedSuffixNameDpd.getAttribute("value")) ? null : claimedSuffixNameDpd.getAttribute("value"), suffix);
+        softAssert.assertEquals(claimedDobNameInput.getAttribute("value").trim().isEmpty() ? null : claimedDobNameInput.getAttribute("value"), dob);
+        softAssert.assertAll();
+    }
 
 
     }
