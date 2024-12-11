@@ -81,10 +81,10 @@ public class TaxStatusPageSteps_Elmo {
     public void iVerifySelectTaxFilingStatusQuestion(String language){taxStatusPage_Elmo.verifySelectTaxFilingStatusQuestion(language);}
 
     @And("I verify who will you be filing jointly with question on the Tax Status Elmo page for {string} in {string}")
-    public void iVerifyFilingJointlyWithQuestionn(String memPrefix,String language){taxStatusPage_Elmo.verifyFilingJointlyWithQuestion(memPrefix,language);}
+    public void iVerifyFilingJointlyWithQuestionn(String memPrefix,String language,List<Map<String, String>> expectedMembers){taxStatusPage_Elmo.verifyFilingJointlyWithQuestion(memPrefix,language,expectedMembers);}
 
-    @And("I verify who will you be filing jointly with {string} selected on the Tax Status Elmo page for {string} in {string}")
-    public void iVerifyFilingJointlyWithAnswers(String memOption,String memPrefix,String language){taxStatusPage_Elmo.verifyFilingJointlyWithAnswers(memOption,memPrefix,language);}
+    @And("I verify who will you be filing jointly with {string} selected on the Tax Status Elmo page in {string}")
+    public void iVerifyFilingJointlyWithAnswers(String memOption,String language,List<Map<String, String>> expectedMembers){taxStatusPage_Elmo.verifyFilingJointlyWithAnswers(memOption,language,expectedMembers);}
 
     @And("I verify filing jointly with enter the name question on the Tax Status Elmo page in {string}")
     public void iVerifyFilingJointlyWithEnterTheNameQuestion(String language){taxStatusPage_Elmo.verifyFilingJointlyWithEnterTheNameQuestion(language);}
