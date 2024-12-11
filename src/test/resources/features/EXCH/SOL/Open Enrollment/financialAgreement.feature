@@ -1,11 +1,11 @@
-
+@SOLRegression
 Feature: UI Page Validation - Financial Agreement
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-533-OE @FinancialAgreementPage
+  @SLER-533 @FinancialAgreementPage
   Scenario: Validate the test tool tip on the edit Dental Grouping page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -117,7 +117,7 @@ Feature: UI Page Validation - Financial Agreement
     And I click continue on Financial Help Agreements page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-728-OE
+  @SLER-728
   Scenario: Navigate to financial agreements page and Make Payment using Mail Check or Order
     When I click create a new account on login page
     Then I click create my account from pre-screen page
