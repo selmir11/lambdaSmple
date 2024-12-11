@@ -503,7 +503,6 @@ public class AdminPortalIndividualDashboardPage {
         selectsuspendoractiavteaccount.click();
         save.click();
         }
-    }
 
     public void validatePMDashboardContainerTitles(String profile, String contract, String accountActivity, String clientInfo, String organizationInfo) {
         basicActions.waitForElementToBePresent(profileTitle, 30);

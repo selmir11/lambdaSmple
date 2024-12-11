@@ -10,6 +10,7 @@ import org.testng.Assert;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -919,6 +920,32 @@ public class BasicActions {
         }
         System.out.println("Timeout reached, element not found.");
         return false;
+    }
+
+    public void validateTimeWithinLast10Minutes(String actualTime) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("America/Denver"));
+
+        try {
+            Date actualDate = dateFormat.parse(actualTime);
+            Date currentDate = new Date();
+
+            SimpleDateFormat currentDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            currentDateFormat.setTimeZone(TimeZone.getTimeZone("America/Denver"));
+            String formattedCurrentTime = currentDateFormat.format(currentDate);
+            Date currentMountainTime = currentDateFormat.parse(formattedCurrentTime);
+
+            long diffInMillis = currentMountainTime.getTime() - actualDate.getTime();
+            long diffInMinutes = diffInMillis / (60 * 1000);
+
+            if (diffInMinutes <= 10) {
+                return;
+            }
+            System.out.println("The time is not within the last 10 minutes.");
+
+        } catch (ParseException e) {
+            System.out.println("Error parsing the time: " + e.getMessage());
+        }
     }
 }
 

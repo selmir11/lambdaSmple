@@ -8,13 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class AdminPortalReportsPage {
     private BasicActions basicActions;
@@ -78,7 +73,7 @@ public class AdminPortalReportsPage {
         String actualTime = timeElement.getText().trim();
 
         if (timeCondition.equals("todays date within last 10 min timestamp")) {
-            validateTimeWithinLast10Minutes(actualTime);
+            basicActions.validateTimeWithinLast10Minutes(actualTime);
         } else {
             validateExactTimestamp(actualTime, timeCondition);
         }
@@ -118,33 +113,5 @@ public class AdminPortalReportsPage {
     private void validateExactTimestamp(String actualTime, String expectedTime) {
         if (!actualTime.equals(expectedTime)) {
             softAssert.fail("The time does not match the expected timestamp. Expected: " + expectedTime + ", but got: " + actualTime);
-        } else {
         }
-    }
-
-    private void validateTimeWithinLast10Minutes(String actualTime) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("America/Denver"));
-
-        try {
-            Date actualDate = dateFormat.parse(actualTime);
-            Date currentDate = new Date();
-
-            SimpleDateFormat currentDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            currentDateFormat.setTimeZone(TimeZone.getTimeZone("America/Denver"));
-            String formattedCurrentTime = currentDateFormat.format(currentDate);
-            Date currentMountainTime = currentDateFormat.parse(formattedCurrentTime);
-
-            long diffInMillis = currentMountainTime.getTime() - actualDate.getTime();
-            long diffInMinutes = diffInMillis / (60 * 1000);
-
-            if (diffInMinutes <= 10) {
-                return;
-            }
-            System.out.println("The time is not within the last 10 minutes.");
-
-        } catch (ParseException e) {
-            System.out.println("Error parsing the time: " + e.getMessage());
-        }
-        }
-    }
+    }  }
