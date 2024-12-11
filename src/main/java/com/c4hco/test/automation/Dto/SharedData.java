@@ -91,6 +91,9 @@ public class SharedData {
         commonEDISegments = null;
         env = null;
         dbData = null;
+        dbDataNew = null;
+        medicalPlanDbDataNew = null;
+        dentalPlanDbDataNew = null;
         planYear = null;
         groupDetails = null;
         dbName = null;

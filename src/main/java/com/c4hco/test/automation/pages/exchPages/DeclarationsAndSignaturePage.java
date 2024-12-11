@@ -40,7 +40,7 @@ public class DeclarationsAndSignaturePage {
         WebElement signatureBox =  basicActions.getDriver().findElement(By.id(signBoxPath));
         signatureBox.click();
         signatureBox.sendKeys(signature);
-        List<MemberDetails> members = SharedData.getMembers();
+        List<MemberDetails> members = basicActions.getAllMem();
         for(MemberDetails member: members){
             if(signature.contains(member.getFirstName())){
                 member.setIsSubscriber("Y");
