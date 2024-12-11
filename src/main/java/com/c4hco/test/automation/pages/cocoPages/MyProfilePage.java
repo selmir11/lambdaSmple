@@ -30,10 +30,7 @@ public class MyProfilePage {
 
     @FindBy(css = ".bottom_buttons_container button")
     List<WebElement> MyProfileButtonCoCo; /// Go back, Make changes, Save buttons
-
-    @FindBy(id = "myProfile_email")
-    WebElement EmailAddressCoCo;
-
+    
     @FindBy(css = "#email")
     WebElement InputEmailCoCo;
 
