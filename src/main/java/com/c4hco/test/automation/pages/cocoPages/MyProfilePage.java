@@ -31,6 +31,18 @@ public class MyProfilePage {
     @FindBy(css = ".bottom_buttons_container button")
     List<WebElement> MyProfileButtonCoCo; /// Go back, Make changes, Save buttons
 
+    @FindBy(id = "myProfile_email")
+    WebElement EmailAddressCoCo;
+
+    @FindBy(css = "#email")
+    WebElement InputEmailCoCo;
+
+    @FindBy(id = "mobilePhone")
+    WebElement MobilephoneCoCo;
+
+    @FindBy(id = "homePhone")
+    WebElement HomephoneCoCo;
+
     @FindBy(css = "#userPassword")
     WebElement PasswordInputCoCo;
 
@@ -469,6 +481,121 @@ public class MyProfilePage {
         softAssert.assertEquals(YesTimeoutcoco.getText(), "S\u00ED, deseo seguir en la sesi\u00F3n");
         basicActions.isElementDisplayed(Questiontextcoco, 10);
         NoTimeoutcoco.click();
+        softAssert.assertAll();
+    }
+    public void ValidateSaveChangesEmailCoCo() {
+        // Update email address/////////
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        MyProfileButtonCoCo.get(1).click();
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmail = "updated.automation1025@test.com";
+        InputEmailCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        InputEmailCoCo.sendKeys(newEmail);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 10);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
+        // Revert email address/////////
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 100);
+        MyProfileButtonCoCo.get(1).click();
+        InputEmailCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        InputEmailCoCo.sendKeys(SharedData.getPrimaryMember().getEmailId());
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 10);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
+        softAssert.assertAll();
+    }
+    public void ValidateSaveChangesPhonenumberCoCo() {
+        /////update mobile number//////
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 200);
+        MyProfileButtonCoCo.get(1).click();
+        System.out.println("phoneNumber ::" + SharedData.getPrimaryMember().getPhoneNumber());
+        String newMobile = "7205210110";
+        MobilephoneCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        MobilephoneCoCo.sendKeys(newMobile);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 10);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
+        ////// Update home phone number///////
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 200);
+        MyProfileButtonCoCo.get(1).click();
+        System.out.println("phoneNumber ::" + SharedData.getPrimaryMember().getPhoneNumber());
+        String newHome = "3037182114";
+        HomephoneCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        HomephoneCoCo.sendKeys(newHome);
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 20);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
+
+        softAssert.assertAll();
+    }
+
+    public void ValidateSaveChangesLanguageCoCo() {
+        /////update Language to Spanish//////
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 200);
+        MyProfileButtonCoCo.get(1).click();
+        LanguageDrpOptionsCoCo.get(2).click();
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 20);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
+        ////// Update Language to English///////
+
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 200);
+        MyProfileButtonCoCo.get(1).click();
+        LanguageDrpOptionsCoCo.get(1).click();
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 10);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
+        softAssert.assertAll();
+    }
+
+    public void ValidateSaveChangesContactMethodCoCo() {
+        /////update contact method to Mail//////
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 200);
+        MyProfileButtonCoCo.get(1).click();
+        PreferredContactDrpOptionsCoCo.get(2).click();
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 20);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
+        ////// Update contact method to Email///////
+
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 200);
+        MyProfileButtonCoCo.get(1).click();
+        PreferredContactDrpOptionsCoCo.get(1).click();
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(SuccessfulBannerCoCo, 10);
+        softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
         softAssert.assertAll();
     }
 }

@@ -68,6 +68,22 @@ public class MyProfilePageStepsCoco {
         myProfilePage.ValidatethirdattemptincorrectPasswordCoCo();
     }
 
+    @And("I validate Email save changes on My Profile page CoCo")
+    public void iValidateSaveChangesEmailCoCo() {myProfilePage.ValidateSaveChangesEmailCoCo();
+    }
+
+    @And("I validate phone number save changes on My Profile page CoCo")
+    public void iValidateSaveChangesPhonenumberCoCo() {myProfilePage.ValidateSaveChangesPhonenumberCoCo();
+    }
+
+    @And("I validate Preferred Language save changes on My Profile page CoCo")
+    public void iValidateSaveChangesLanguageCoCo() {myProfilePage.ValidateSaveChangesLanguageCoCo();
+    }
+
+    @And("I validate Preferred Contact Method save changes on My Profile page CoCo")
+    public void iValidateSaveChangesContactMethodCoCo() {myProfilePage.ValidateSaveChangesContactMethodCoCo();
+    }
+
     @And("I click change primary contact on my profile page CoCo") public void iClickChangePrimaryContactOnMyProfilePage() {
         myProfilePage.ClickChangePrimaryContactOnMyProfilePageCoCo();
     }
