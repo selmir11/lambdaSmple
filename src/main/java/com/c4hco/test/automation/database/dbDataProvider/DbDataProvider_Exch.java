@@ -61,14 +61,20 @@ public class DbDataProvider_Exch {
     public List<Ib834Entity> getIb834Details(String grpCtlNum){
         return ib834Handler.getIbDetailsAfterCompleted(exchDbQueries.ib834Details(grpCtlNum));
     }
-
-    public Map<String,String> getEap_id(){
+    public Map<String,String> getEap_id() {
         //This function works one medical EAPID and one dental EAPID
-        Map<String,String> eapid = postgresHandler.getResultForTwoColumnValuesInMap("coverage_type", "exchange_assigned_policy_id", exchDbQueries.getEAPID());
+        Map<String, String> eapid = postgresHandler.getResultForTwoColumnValuesInMap("coverage_type", "exchange_assigned_policy_id", exchDbQueries.getEAPID());
         primaryMember.setMedicalEapid_db(eapid.get("1"));
         primaryMember.setDentalEapid_db(eapid.get("2"));
         SharedData.setPrimaryMember(primaryMember);
         return eapid;
+    }
+    public Map<String,String> getMedicalEap_id(){
+        return postgresHandler.getResultForTwoColumnValuesInMap("shopping_group_number", "exchange_assigned_policy_id", exchDbQueries.getMedicalEAPID());
+    }
+
+    public Map<String,String> getDentalEap_id(){
+        return postgresHandler.getResultForTwoColumnValuesInMap("shopping_group_number", "exchange_assigned_policy_id", exchDbQueries.getDentalEAPID());
     }
 
     public String getFipcode(){
