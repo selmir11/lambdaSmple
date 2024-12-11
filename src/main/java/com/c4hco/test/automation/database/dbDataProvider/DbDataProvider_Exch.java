@@ -435,7 +435,9 @@ public class DbDataProvider_Exch {
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return postgresHandler.getResultForTwoColumnValues("lce_type","plan_year", exchDbQueries.getLceTpePlanYear(householdId));
     }
-
+    public String getEnrollmentEndDate() {
+        return postgresHandler.getResultFor("enrollment_period_end_date", exchDbQueries.getEnrollmentPeriodEndDate());
+    }
 
     public String getMedCurrentEhbPremiumAmtForTheYearDB(String year) {
         return postgresHandler.getResultFor("ehb_percent_of_total_premium", exchDbQueries.ehb_percent_of_total_premiumForYear(year));

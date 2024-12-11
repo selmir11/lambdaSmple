@@ -535,5 +535,9 @@ public String policyTablesCombinedQuery(String coverageType){
                 " AND ESH2.coverage_type = '"+ SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"'\n" +
                 "ORDER BY ESH2.created_ts DESC\n LIMIT 1;";
     }
+    public String getEnrollmentPeriodEndDate(){
+        return "SELECT * from "+dbName+".es_enrollment_period_end_date\n" +
+                "where application_id = '"+applicationId+"'";
+    }
 
 }
