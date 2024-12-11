@@ -1,11 +1,11 @@
-@SOLRegression
+
 Feature: End to End Tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-724 @EnrollInAPlan
+  @SLER-724-OE @EnrollInAPlan
   Scenario: Simple FA: Husband & Wife
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -123,7 +123,7 @@ Feature: End to End Tests
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-782 @groupingbysiblingsin3differentgroups
+  @SLER-782-OE @groupingbysiblingsin3differentgroups
   Scenario: Three members all siblings in seperate households, 1 not applying and 2 applying three groups should exist
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -271,7 +271,7 @@ Feature: End to End Tests
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1120 @EnrollInAPlan
+  @SLER-1120-OE @EnrollInAPlan
   Scenario: FA Flow: Total 7 Member only 3 out of the 5 children charged a premium
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -584,7 +584,7 @@ Feature: End to End Tests
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1153
+  @SLER-1153-OE
   Scenario: FA Flow: EXCH Large household with primary contact change and existing enrollment (QLCE)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -884,7 +884,7 @@ Feature: End to End Tests
     Then I click on Go back to Welcome page Button on My Profile Exch
     And Validate "Spouse" displayed as Primary person in Account Overview Page
 
-  @SLER-1184
+  @SLER-1184-OE
   Scenario: Simple FA: Husband & Wife and also Validate plan details and text in Account Overview page
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
