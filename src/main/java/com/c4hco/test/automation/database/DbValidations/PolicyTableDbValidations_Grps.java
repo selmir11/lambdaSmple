@@ -44,7 +44,6 @@ public class PolicyTableDbValidations_Grps {
             softAssert.assertAll();
     }
 
-
         private void dentalRecordsValidations() {
             for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
                 if (dentalEntity.getSubscriber_ind().equals("1")) {
@@ -53,11 +52,9 @@ public class PolicyTableDbValidations_Grps {
                         validateMedDenForSubscriber(subscriber,dentalEntity);
                         denValidationsCommonForAllMembers(subscriber.getFirstName(), dentalEntity);
                     }
-
                 } else {
                     validateDependentDenDetails(dentalEntity);
                 }
-
             }
         }
 
@@ -70,10 +67,8 @@ public class PolicyTableDbValidations_Grps {
                         validateMedDenForSubscriber(subscriber, policyTablesEntity);
                         medValidationsCommonForAllMembers(subscriber.getFirstName(),policyTablesEntity);
                     }
-
                 } else {
                     validateDependentMedDetails(policyTablesEntity);
-
                 }
             }
         }
@@ -88,7 +83,6 @@ public class PolicyTableDbValidations_Grps {
                softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt(), "Medical Policy total CSR amount does not match");
                softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical financial start date does not match");
                softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical financial end date does not match");
-
             softAssert.assertAll();
         }
 
@@ -313,8 +307,5 @@ public class PolicyTableDbValidations_Grps {
                     "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
             );
         }
-
-
-
 }
 
