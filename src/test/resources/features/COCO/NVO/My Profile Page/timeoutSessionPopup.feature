@@ -15,7 +15,9 @@ Feature: My Profile Page Coco
     And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
     And I validate timeout session popup "English" on My Profile page CoCo
+    And I wait for 10000 milliseconds
     And I change the language from header to "Spanish"
+    And I wait for 10000 milliseconds
     And I validate timeout session popup "Spanish" on My Profile page CoCo
     And I wait for 10000 milliseconds
     And I change the language from header to "English"

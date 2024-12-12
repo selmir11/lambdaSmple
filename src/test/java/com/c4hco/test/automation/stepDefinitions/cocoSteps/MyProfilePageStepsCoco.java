@@ -90,4 +90,7 @@ public class MyProfilePageStepsCoco {
 
     @Then("I validate Primary Contact Change Popup {string} on My profile page CoCo")
     public void ivalidateChangePrimaryContactPopupCoCo(String language)  { myProfilePage.validateChangePrimaryContactPopupCoCo(language); }
+
+    @And("I validate error messages {string} on My Profile page CoCo")
+    public void validateErrorMessageCoCo(String language)  { myProfilePage.validateErrorMessageCoCo(language); }
 }
