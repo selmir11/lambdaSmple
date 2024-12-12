@@ -28,6 +28,15 @@ public class CRMDetailsPage {
     @FindBy(xpath = "//input[@aria-label='Date of Broker Authorization End Date']")
     WebElement brokerAuthEndDate;
 
+    @FindBy(xpath = "//input[@aria-label='Broker License Number']")
+    WebElement brokerLicenseNumber;
+
+    @FindBy(xpath = "//input[@aria-label='Date of Broker License Issue Date']")
+    WebElement brokerLicenseIssueDate;
+
+    @FindBy(xpath = "//input[@aria-label='Date of Broker License Expiration Date']")
+    WebElement brokerLicenseExpirationDate;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -54,6 +63,14 @@ public class CRMDetailsPage {
     public void verifyBrokerAuthEndDate(){
         basicActions.waitForElementToBePresent(brokerAuthEndDate,50);
         softAssert.assertEquals(brokerAuthEndDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MM/d/yyyy"));
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerLicense(){
+        basicActions.waitForElementToBePresent(brokerLicenseNumber,50);
+        softAssert.assertEquals(brokerLicenseNumber.getAttribute("value"), SharedData.getAgencyOwner().getLicense());
+        softAssert.assertEquals(brokerLicenseIssueDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MM/d/yyyy"));
+        softAssert.assertEquals(brokerLicenseExpirationDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getFutureDate(1825), "MM/dd/yyyy", "MM/d/yyyy"));
         softAssert.assertAll();
     }
 

@@ -6,6 +6,7 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,14 +61,20 @@ public class DbDataProvider_Exch {
     public List<Ib834Entity> getIb834Details(String grpCtlNum){
         return ib834Handler.getIbDetailsAfterCompleted(exchDbQueries.ib834Details(grpCtlNum));
     }
-
-    public Map<String,String> getEap_id(){
+    public Map<String,String> getEap_id() {
         //This function works one medical EAPID and one dental EAPID
-        Map<String,String> eapid = postgresHandler.getResultForTwoColumnValuesInMap("coverage_type", "exchange_assigned_policy_id", exchDbQueries.getEAPID());
+        Map<String, String> eapid = postgresHandler.getResultForTwoColumnValuesInMap("coverage_type", "exchange_assigned_policy_id", exchDbQueries.getEAPID());
         primaryMember.setMedicalEapid_db(eapid.get("1"));
         primaryMember.setDentalEapid_db(eapid.get("2"));
         SharedData.setPrimaryMember(primaryMember);
         return eapid;
+    }
+    public Map<String,String> getMedicalEap_id(){
+        return postgresHandler.getResultForTwoColumnValuesInMap("shopping_group_number", "exchange_assigned_policy_id", exchDbQueries.getMedicalEAPID());
+    }
+
+    public Map<String,String> getDentalEap_id(){
+        return postgresHandler.getResultForTwoColumnValuesInMap("shopping_group_number", "exchange_assigned_policy_id", exchDbQueries.getDentalEAPID());
     }
 
     public String getFipcode(){
@@ -125,6 +132,38 @@ public class DbDataProvider_Exch {
         dbData.setCsrLevel(csrLevel);
         SharedData.setDbData(dbData);
     }
+    public void setDataFromDb_New(String name){
+        String fipcode = getFipcode();
+        String ratingAreaName = getRatingAreaName(fipcode);
+        String ratingAreaId = getRatingAreaId(fipcode);
+        String brokerTinNum = null;
+        String csrLevel = null;
+        if (!SharedData.getAppType().equals("coco")) {
+            if(SharedData.getHasBroker()){
+                brokerTinNum = getTinNumForBroker();
+            }
+            csrLevel = getCSRLevel();
+        }
+        DbData dbData = new DbData();
+
+        dbData.setFipcode(fipcode);
+        dbData.setRatingAreaName(ratingAreaName);
+        dbData.setRatingAreaId(ratingAreaId);
+        dbData.setBrokerTinNum(brokerTinNum);
+        dbData.setCsrLevel(csrLevel);
+        SharedData.setDbData(dbData);
+        setDataFromDbGrp(name, dbData );
+    }
+    public void setDataFromDbGrp(String name, DbData dbData){
+        List<Map<String, DbData>> dbDataMapList = SharedData.getDbDataNew();
+        if(dbDataMapList == null){
+            dbDataMapList = new ArrayList<>();
+        }
+        Map<String, DbData> dbDataMap = new HashMap<>();
+        dbDataMap.put(name,dbData);
+        dbDataMapList.add(dbDataMap);
+        SharedData.setDbDataNew(dbDataMapList);
+    }
     public void setExchPersonId(MemberDetails mem, String memberId){
         String exchPersnId =  getExchPersonId(memberId);
         Map<String, String> exchPersonId = SharedData.getExchPersonId();
@@ -157,6 +196,33 @@ public class DbDataProvider_Exch {
             medicalPlanDetailsFromDb.put("group1", planDbData);
             SharedData.setMedicalPlanDbData(medicalPlanDetailsFromDb);
     }
+    public void setMedicalPlanDataFromDb_New(String name, String planName){
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmtMed =csrMap.get("1");
+        List<Map<String, PlanDbData>> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbDataNew();
+        if(medicalPlanDetailsFromDb == null) {
+            medicalPlanDetailsFromDb = new ArrayList<>();
+        }
+        PlanDbData planDbData = new PlanDbData();
+        Map<String, PlanDbData> planDbDataMap = new HashMap<>();
+        planDbData.setBaseId(baseId);
+        planDbData.setPlanName(planName);
+        planDbData.setIssuerName(issuerName);
+        planDbData.setIssuerId(issuerId);
+        planDbData.setHiosIssuerId(hiosIssuerId);
+        planDbData.setCsrAmt(csrAmtMed);
+
+        planDbDataMap.put(name, planDbData);
+
+        medicalPlanDetailsFromDb.add(planDbDataMap);
+        SharedData.setMedicalPlanDbDataNew(medicalPlanDetailsFromDb);
+    }
 
     public void setDentalPlanDataFromDb(String planName){
         String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
@@ -181,6 +247,34 @@ public class DbDataProvider_Exch {
         planDbData.setCsrAmt(csrAmt);
         dentalPlanDetailsFromDb.put("group1", planDbData);
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
+    }
+    public void setDentalPlanDataFromDb_New(String name, String planName){
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
+        String baseId = baseIdAndHiosIssuerId[0];
+        String hiosIssuerId = baseIdAndHiosIssuerId[1];
+        String[] issuerNameId = getIssuerNameId(hiosIssuerId);
+        String issuerName = issuerNameId[0];
+        String issuerId = issuerNameId[1];
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        String csrAmt =csrMap.get("2"); //Dental
+
+        List<Map<String, PlanDbData>> dentalPlanDetailsFromDb = SharedData.getDentalPlanDbDataNew();
+        if(dentalPlanDetailsFromDb == null) {
+            dentalPlanDetailsFromDb = new ArrayList<>();
+        }
+
+        PlanDbData planDbData = new PlanDbData();
+        Map<String, PlanDbData> planDbDataMap = new HashMap<>();
+
+        planDbData.setBaseId(baseId);
+        planDbData.setPlanName(planName);
+        planDbData.setIssuerName(issuerName);
+        planDbData.setIssuerId(issuerId);
+        planDbData.setHiosIssuerId(hiosIssuerId);
+        planDbData.setCsrAmt(csrAmt);
+        planDbDataMap.put(name, planDbData);
+        dentalPlanDetailsFromDb.add( planDbDataMap);
+        SharedData.setDentalPlanDbDataNew(dentalPlanDetailsFromDb);
     }
 
     public Boolean getDataFromOhiTables(String memberId){
@@ -348,6 +442,39 @@ public class DbDataProvider_Exch {
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return postgresHandler.getResultForTwoColumnValues("lce_type","plan_year", exchDbQueries.getLceTpePlanYear(householdId));
     }
+    public String getEnrollmentEndDate() {
+        return postgresHandler.getResultFor("enrollment_period_end_date", exchDbQueries.getEnrollmentPeriodEndDate());
+    }
 
+    public String getMedCurrentEhbPremiumAmtForTheYearDB(String year) {
+        return postgresHandler.getResultFor("ehb_percent_of_total_premium", exchDbQueries.ehb_percent_of_total_premiumForYear(year));
+    }
+
+    public String getRatingName() {
+        return postgresHandler.getResultFor("name",exchDbQueries.nameRatingPolicy());
+    }
+    public String getMedServiceAreaForTheYearDB() {
+        return postgresHandler.getResultFor("service_area_id",exchDbQueries.serviceAreaForTheYearDB());
+    }
+    public String[] getLCEEventTypeAndLCEDateTypeForTheYearDB() {
+        return postgresHandler.getResultForTwoColumnValues("lce_type","lce_event_date",exchDbQueries.lCEEventTypeAndLCEDateTypeForTheYearDB());
+    }
+
+    public String getAv_calculator_output() {
+        return postgresHandler.getResultFor("av_calculator_output",exchDbQueries.getAv_calculator_outputDB());
+    }
+
+
+    public String[] getMedDentalPolicyDate() {
+            return postgresHandler.getResultForTwoColumnValues("policy_start_date","policy_end_date",exchDbQueries.getMedicalDental_policy_date());
+    }
+
+    public String getPrimaryTobaccoInMemberDetailsTable() {
+        return postgresHandler.getResultFor("prior_6_months_tobacco_use_ind",exchDbQueries.prior_6_months_tobacco_use_ind());
+    }
+
+    public String getMedDenLatestApplicationDate() {
+        return postgresHandler.getResultFor("policy_submitted_ts",exchDbQueries.getMedDentalCurrentLatestAppDate());
+    }
 
 }
