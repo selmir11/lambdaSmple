@@ -66,6 +66,9 @@ public class BasicSteps {
             case "Deductions":
                 pageUrl = "/IncomePortal/deductions";
                 break;
+            case "Admin account creation":
+                pageUrl = "AdminPortal/applinks/account-creation";
+                break;
             case "Financial Help":
                 pageUrl = "IncomePortal/financialHelp";
                 break;
