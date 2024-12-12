@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -102,6 +104,36 @@ public class StartShoppingCoCoPage {
         basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresent(backButton, 10);
         backButton.click();
+    }
+
+    public void selectTobaccoUsagecoco(String tobaccoUsageYesOrNo, String tobaccoUsageDetails) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementListToBePresent(btnNoAndYes, 10);
+        String[] nameDetails = tobaccoUsageDetails.split(",");
+        for (String name : nameDetails) {
+            clickTobaccoUsage(tobaccoUsageYesOrNo, name);
+        }
+    }
+
+    private void clickTobaccoUsage(String tobaccoUsageYesOrNo, String namePrefix){
+        switch (tobaccoUsageYesOrNo) {
+            case "Yes":
+                WebElement tobaccoUsageYes = basicActions.getDriver().findElement(By.xpath("(//*[contains(text(),'" + namePrefix + "')]/parent::p/following-sibling::label)[1]"));
+                tobaccoUsageYes.click();
+                break;
+            case "No":
+                WebElement tobaccoUsageNo = basicActions.getDriver().findElement(By.xpath("(//*[contains(text(),'" + namePrefix + "')]/parent::p/following-sibling::label)[2]"));
+                tobaccoUsageNo.click();
+                break;
+            default:
+                Assert.fail("Invalid argument passed!!");
+        }
+        setTobaccoUsage(tobaccoUsageYesOrNo, namePrefix);
+    }
+
+    private void setTobaccoUsage(String tobaccoUsageYesOrNo, String namePrefix){
+        List<MemberDetails> allMemList = basicActions.getAllMem();
+        allMemList.stream().filter(mem -> mem.getFirstName().contains(namePrefix)).findFirst().ifPresent(mem -> mem.setTobacco_user(tobaccoUsageYesOrNo));
     }
 
 
