@@ -136,6 +136,8 @@ public class NoticesPage {
     WebElement adminNoticeParag2;
     @FindBy(xpath = "//*[@id=\"UniqueMessageBody_2\"]/div/div/div/p")
     WebElement adminNoticeParag3;
+    @FindBy(xpath = "//p[@class='x_body']")
+    List<WebElement> BodyTextBN002A0404;
 
 
     public String MFACode = "";
@@ -373,6 +375,8 @@ public class NoticesPage {
         }
     }
 
+
+
     private void VerifyTheNoticeTextAM01608broker() {
         softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
         softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
@@ -458,8 +462,22 @@ public class NoticesPage {
             case "AM-016-08":
                 VerifyTheNoticeTextAM01608(language);
                 break;
+            case "BN-002A-04":
+                VerifyTheNoticeTextBN002A04(language);
+            break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
+        }
+    }
+
+    private void VerifyTheNoticeTextBN002A04(String language) {
+        switch (language){
+            case "Spanish":
+                softAssert.assertEquals(individualEmailBN002A0304.getText(), SharedData.getPrimaryMember().getEmailId());
+                softAssert.assertEquals(individualNameBN002A0304.getText(), SharedData.getPrimaryMember().getFullName());
+                softAssert.assertEquals(bodyTextBN002A04.get(0).getText(), "Nuestros registros muestran que ha eliminado a Arrow Head Agency como Agente autorizado para trabajar en su nombre en el Mercado de Connect for Health Colorado\u00AE.");
+                softAssert.assertEquals(bodyTextBN002A04.get(1).getText(), "Si considera que esta desautorizaci\u00F3n fue creada por error o si tiene otras preguntas, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m. y del 2\u00BA al 17 de diciembre, de 8:00 a.m. a 8:00 p.m.");
+                softAssert.assertAll();
         }
     }
 
