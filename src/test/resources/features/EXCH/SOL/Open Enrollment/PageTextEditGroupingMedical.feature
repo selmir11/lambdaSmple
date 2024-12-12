@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: UI Page Validation - Grouping Members (Medical)
 
   Background:
@@ -11,7 +11,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-93 @VerifyTestToolTip
+  @SLER-93-OE @VerifyTestToolTip
   Scenario: Validate the test tool tip on the edit Medical Grouping page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -75,7 +75,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I validate I am on the "Edit Grouping Members Medical" page
     Then I verify tool tip on the link- what works best for you
 
-  @SLER-1111 @editMedicalGroupingPageValidation
+  @SLER-1111-OE @editMedicalGroupingPageValidation
   Scenario: Validate Edit Medical Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
