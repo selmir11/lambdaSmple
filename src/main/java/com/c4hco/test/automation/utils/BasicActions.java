@@ -495,6 +495,11 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Status Elmo page Spouse":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
                 newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
@@ -908,7 +913,15 @@ public class BasicActions {
         }
         return allEligibleMembers;
     }
-
+    public void setRelationToSubscriber(List<String> relationToSubscriber){
+        for(String relation : relationToSubscriber){
+            String[] relationDetails = relation.split(":");
+            String nameOfMem = relationDetails[0].trim();
+            String relationship = relationDetails[1].trim();
+            List<MemberDetails> allMemList = getAllMem();
+            allMemList.stream().filter(mem -> mem.getFirstName().contains(nameOfMem)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(relationship));
+        }
+    }
 
 }
 
