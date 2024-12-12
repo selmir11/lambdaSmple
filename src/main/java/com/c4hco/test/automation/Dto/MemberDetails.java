@@ -81,6 +81,8 @@ public class MemberDetails {
     String denGroupInd="1";
     Boolean hasMedicalPlan=true;
     Boolean hasDentalPlan=true;
+    String medSubscriberName;
+    String denSubscriberName;
 }
 
 

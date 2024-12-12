@@ -252,9 +252,18 @@ Feature: Seed08 - Exchange - Open Enrollment
 #    And I click View Plan History link from "dental" plan card
 #    And I validate "dental" plan details from plan history
 #    And I click on Sign Out in the Header for "Elmo"
-#
+  And I set the member relationship to the subscriber
+  | Son: Self   |
+  | InLaw: Wife |
     And I validate "medical" entities from policy tables for groups
-#    And I validate "dental" entities from policy tables
+    And I validate "dental" entities from policy tables for groups
+
+  And I validate "medical" entities from pre edi db tables for groups
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+    | 021                   | 021                | EC                    |                   | OEP        |
+  And I validate "dental" entities from pre edi db tables for groups
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+    | 021                   | 021                | EC                    |                   | OEP        |
 
   #@RT-2113
   Scenario: RT-2113 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - DIFFERENT CARRIER / DIFFERENT PLANS
