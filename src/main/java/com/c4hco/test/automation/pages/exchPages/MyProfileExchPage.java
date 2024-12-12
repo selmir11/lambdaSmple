@@ -52,10 +52,10 @@ public class MyProfileExchPage {
     WebElement FullNameProfile;
 
 
-    @FindBy(id = "myProfile_mobilePhone")
+    @FindBy(id = "mobilePhone")
     WebElement Mobilephone;
 
-    @FindBy(id = "myProfile_homePhone")
+    @FindBy(id = "homePhone")
     WebElement Homephone;
 
     @FindBy(css = "h1.myProfile_title")
@@ -718,7 +718,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1025@test.com";
+        String newEmail = "updated.automation1026@test.com";
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(newEmail);
         MyProfileButtonExch.get(1).click();
@@ -910,9 +910,9 @@ public class MyProfileExchPage {
     public void verifyTimeoutPopupSpanish() {
         basicActions.wait(840000);
         //basicActions.waitForElementToBePresent(NoTimeout, 20);
-        softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
-        softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
-        softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
+        softAssert.assertEquals(Headertimeout.getText(), "El tiempo de su sesi\u00F3n est\u00E1 por terminar.");
+        softAssert.assertEquals(NoTimeout.getText(), "No, cierre mi sesi\u00F3n");
+        softAssert.assertEquals(YesTimeout.getText(), "S\u00ED, deseo seguir en la sesi\u00F3n");
         basicActions.isElementDisplayed(Questiontext, 10);
         NoTimeout.click();
         softAssert.assertAll();

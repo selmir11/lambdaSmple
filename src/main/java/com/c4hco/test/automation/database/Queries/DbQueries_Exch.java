@@ -106,10 +106,18 @@ public String policyTablesCombinedQuery(String coverageType){
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return currentDate.format(dateFormat);
     }
-
     public String getEAPID() {
-        return "select exchange_assigned_policy_id, coverage_type from  " + dbName + ".en_policy_ah\n" +
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
                 "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED'";
+    }
+    public String getMedicalEAPID() {
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
+                "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED' and coverage_type ='1'";
+    }
+    public String getDentalEAPID() {
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
+                "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED'\n"+
+                "and coverage_type = '2'";
     }
 
     public String getOhiRecordsAll(String memberId) {

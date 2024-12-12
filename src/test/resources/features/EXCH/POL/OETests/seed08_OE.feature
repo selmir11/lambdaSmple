@@ -254,7 +254,7 @@ Feature: Seed08 - Exchange - Open Enrollment
 #    And I click on Sign Out in the Header for "Elmo"
 #
     And I validate "medical" entities from policy tables for groups
-#    And I validate "dental" entities from policy tables
+    And I validate "dental" entities from policy tables for groups
 
   #@RT-2113
   Scenario: RT-2113 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - DIFFERENT CARRIER / DIFFERENT PLANS
