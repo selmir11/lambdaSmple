@@ -1,5 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalReportsPage;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages.AdminPortalReportsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.Then;
 
