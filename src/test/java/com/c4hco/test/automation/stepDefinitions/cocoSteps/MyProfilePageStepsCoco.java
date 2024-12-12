@@ -93,4 +93,7 @@ public class MyProfilePageStepsCoco {
 
     @And("I validate error messages {string} on My Profile page CoCo")
     public void validateErrorMessageCoCo(String language)  { myProfilePage.validateErrorMessageCoCo(language); }
+
+    @Then("I verify Password text on My profile page {string} coco")
+    public void verifyPasswordTextOnMyProfilePageCoCo(String language)  { myProfilePage.verifyPasswordTextOnMyProfileExchPageCoCo(language); }
 }
