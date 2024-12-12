@@ -45,9 +45,6 @@ public class StartShoppingPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(xpath = "//span[@class = 'button-text-unselected']")
-    List<WebElement> tobaccoButton;
-
     public void clickBtnSaveNExit() {
         saveAndExitButton.click();
     }
@@ -111,4 +108,3 @@ public class StartShoppingPage {
     }
 
 }
-
