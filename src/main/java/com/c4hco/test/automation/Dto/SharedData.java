@@ -78,6 +78,8 @@ public class SharedData {
     @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
+    @Getter @Setter private static AdminDetails adminDetails;
+
 
 
     public static void reset(){
