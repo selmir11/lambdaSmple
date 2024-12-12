@@ -116,6 +116,27 @@ public class NoticesPage {
     List<WebElement> emailPolicyDetails;
     @FindBy(xpath = "//div[@class='ECSzl']/img")
     WebElement scannerLogo;
+    @FindBy(xpath = "//*[@id='x_headerSection']/div/div/div[2]/div/p")
+    WebElement adminNoticeEmail;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[1]")
+    WebElement adminNoticeWelcome;
+    @FindBy(xpath = "//*[@id='x_recipientName']/span")
+    WebElement adminNoticeName;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[2]/span[1]")
+    WebElement adminNoticeName2;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[2]/span[2]/span")
+    WebElement adminNoticeName3;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[3]/span[1]")
+    WebElement adminNoticeEmailText;
+    @FindBy(xpath = "//*[@id='x_adminPortalAccountCreationNoticeBody']/p[3]/span[2]")
+    WebElement adminNoticeEmailValue;
+    @FindBy(xpath = "//*[@id='x_adminPortalAccountCreationNoticeBody']/p[4]")
+    WebElement adminNoticeParag1;
+    @FindBy(xpath = "//*[@id='x_adminPortalAccountCreationNoticeBody']/p[5]")
+    WebElement adminNoticeParag2;
+    @FindBy(xpath = "//*[@id=\"UniqueMessageBody_2\"]/div/div/div/p")
+    WebElement adminNoticeParag3;
+
 
     public String MFACode = "";
 
@@ -287,10 +308,45 @@ public class NoticesPage {
             case "Broker":
                 verifyTheNoticeBroker(noticeNumber, language);
                 break;
+                case "Admin":
+                verifyTheNoticeAdmin(noticeNumber, language);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber + typeAPP);
         }
     }
+
+    private void verifyTheNoticeAdmin(String noticeNumber, String language) {
+        switch (noticeNumber) {
+            case "AM-006-01":
+                VerifyTheNoticeTextAM00601Admin();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
+        }
+    }
+
+    private void VerifyTheNoticeTextAM00601Admin() {
+        softAssert.assertEquals(adminNoticeEmail.getText(), SharedData.getAdminDetails().getEmail());
+                softAssert.assertEquals(adminNoticeName.getText(), SharedData.getAdminDetails().getFirstName()+" "+ SharedData.getAdminDetails().getLastName());
+                String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MMMM dd, yyyy");
+                softAssert.assertEquals(adminNoticeWelcome.getText(),"Welcome to Connect for Health Colorado\u00AE. An account was opened for you on "+ Date+":");
+                softAssert.assertEquals(adminNoticeName2.getText(),"Name:");
+                softAssert.assertEquals(adminNoticeName3.getText(),SharedData.getAdminDetails().getFirstName()+" "+SharedData.getAdminDetails().getLastName());
+                softAssert.assertEquals(adminNoticeEmailText.getText(),"Login ID:");
+                softAssert.assertEquals(adminNoticeEmailValue.getText(),SharedData.getAdminDetails().getEmail());
+        if (SharedData.getEnv().equals("qa")) {
+                    softAssert.assertTrue(adminNoticeParag1.getText().contains( "Please click this link to setup your password https://qa-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken="));
+                    softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://qa-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
+        }else{
+                    softAssert.assertTrue(adminNoticeParag1.getText().contains( "Please click this link to setup your password https://staging-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken="));
+                    softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://qa-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
+        }
+                softAssert.assertEquals(adminNoticeParag3.getText(),"If you have questions concerning your account or feel it was created in error, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m. .");
+                softAssert.assertAll();
+
+    }
+
 
     private void verifyTheNoticeBroker(String noticeNumber, String language) {
         switch (noticeNumber) {

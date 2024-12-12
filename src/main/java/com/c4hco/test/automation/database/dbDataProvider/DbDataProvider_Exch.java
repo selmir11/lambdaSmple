@@ -61,14 +61,20 @@ public class DbDataProvider_Exch {
     public List<Ib834Entity> getIb834Details(String grpCtlNum){
         return ib834Handler.getIbDetailsAfterCompleted(exchDbQueries.ib834Details(grpCtlNum));
     }
-
-    public Map<String,String> getEap_id(){
+    public Map<String,String> getEap_id() {
         //This function works one medical EAPID and one dental EAPID
-        Map<String,String> eapid = postgresHandler.getResultForTwoColumnValuesInMap("coverage_type", "exchange_assigned_policy_id", exchDbQueries.getEAPID());
+        Map<String, String> eapid = postgresHandler.getResultForTwoColumnValuesInMap("coverage_type", "exchange_assigned_policy_id", exchDbQueries.getEAPID());
         primaryMember.setMedicalEapid_db(eapid.get("1"));
         primaryMember.setDentalEapid_db(eapid.get("2"));
         SharedData.setPrimaryMember(primaryMember);
         return eapid;
+    }
+    public Map<String,String> getMedicalEap_id(){
+        return postgresHandler.getResultForTwoColumnValuesInMap("shopping_group_number", "exchange_assigned_policy_id", exchDbQueries.getMedicalEAPID());
+    }
+
+    public Map<String,String> getDentalEap_id(){
+        return postgresHandler.getResultForTwoColumnValuesInMap("shopping_group_number", "exchange_assigned_policy_id", exchDbQueries.getDentalEAPID());
     }
 
     public String getFipcode(){
@@ -266,7 +272,8 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmt);
-        dentalPlanDetailsFromDb.add(planDbDataMap);
+        planDbDataMap.put(name, planDbData);
+        dentalPlanDetailsFromDb.add( planDbDataMap);
         SharedData.setDentalPlanDbDataNew(dentalPlanDetailsFromDb);
     }
 
@@ -438,7 +445,6 @@ public class DbDataProvider_Exch {
     public String getEnrollmentEndDate() {
         return postgresHandler.getResultFor("enrollment_period_end_date", exchDbQueries.getEnrollmentPeriodEndDate());
     }
-
     public String getMedCurrentEhbPremiumAmtForTheYearDB(String year) {
         return postgresHandler.getResultFor("ehb_percent_of_total_premium", exchDbQueries.ehb_percent_of_total_premiumForYear(year));
     }
@@ -468,6 +474,9 @@ public class DbDataProvider_Exch {
 
     public String getMedDenLatestApplicationDate() {
         return postgresHandler.getResultFor("policy_submitted_ts",exchDbQueries.getMedDentalCurrentLatestAppDate());
+    }
+    public String getTheBrokerEmailInDB() {
+        return postgresHandler.getResultFor("email",exchDbQueries.getBrokerEmailIn());
     }
 
 }

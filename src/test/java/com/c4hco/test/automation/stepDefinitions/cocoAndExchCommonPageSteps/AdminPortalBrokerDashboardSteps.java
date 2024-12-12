@@ -1,11 +1,14 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalBrokerDashboardPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.math.BigDecimal;
 
 public class AdminPortalBrokerDashboardSteps {
     AdminPortalBrokerDashboardPage adminPortalBrokerDashboardPage = new AdminPortalBrokerDashboardPage(WebDriverManager.getDriver());
@@ -67,5 +70,41 @@ public class AdminPortalBrokerDashboardSteps {
     @And("I validate in Broker portal Certification Status: {string}")
     public void iVerifyInBrokerPortalStatusIsChanged(String certificationStatusBrokerPortal) {
         adminPortalBrokerDashboardPage.verifyInBrokerPortalStatusIsChanged(certificationStatusBrokerPortal);
+    }
+
+    @Then("I click {string} on Account Summary container AP Broker dashboard page")
+    public void iClickOnAccountSummaryContainerAPBrokerDashboardPage(String accountSummaryType) {
+        adminPortalBrokerDashboardPage.clickOnAccountSummaryContainerAPBrokerDashboardPage( accountSummaryType);
+    }
+
+    @And("I enter new email email address {string} in the Summary container")
+    public void iEnterNewEmailEmailAddressInTheSummaryContainer(String newEmail) {
+        adminPortalBrokerDashboardPage.EnterNewEmailEmailAdresseInTheSummaryContainer( newEmail);
+    }
+
+    @Then("I click {string} button on Account Summary container AP Broker dashboard page")
+    public void iClickButtonOnAccountSummaryContainerAPBrokerDashboardPage(String SaveCancelBtn) {
+        adminPortalBrokerDashboardPage.clickButtonOnAccountSummaryContainerAPBrokerDashboardPage(SaveCancelBtn);
+
+    }
+    @Then("I set the email value for agency STG {string} QA {string}")
+    public void iSetTheEmailValueForAgencySTGQA( String STGAccount, String QAAccount) {
+        adminPortalBrokerDashboardPage.setTheEmailValue(STGAccount, QAAccount);
+    }
+
+    @And("I validate the success message is displayed")
+    public void iValidateTheSuccessMessageIsDisplayed() {
+        adminPortalBrokerDashboardPage.validateTheSuccessMessageIsDisplayed();
+    }
+
+
+    @Then("I set the email value for broker STG {string} QA {string}")
+    public void iSetTheEmailValueForBrokerSTGQA(String STGAccount, String QAAccount) {
+        adminPortalBrokerDashboardPage.setTheEmailValueForBrokerSTGQA(STGAccount, QAAccount);
+    }
+
+    @And("I click on Search button in AP broker dashboard page")
+    public void iClickOnSearchButtonInAPBrokerDashboardPage() {
+        adminPortalBrokerDashboardPage.clickOnSearchButtonInAPBrokerDashboardPage();
     }
 }
