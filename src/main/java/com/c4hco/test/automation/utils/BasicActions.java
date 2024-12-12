@@ -495,6 +495,11 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Status Elmo page Spouse":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
                 newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);

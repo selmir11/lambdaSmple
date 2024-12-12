@@ -479,4 +479,8 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("email",exchDbQueries.getBrokerEmailIn());
     }
 
+    public String[] getTaxFilingData(String memberId) {
+        return postgresHandler.getResultForTwoColumnValues("claimed_as_dep_on_othr_ftr_ind", "tax_filing_type",exchDbQueries.getTaxFilingDataDB(memberId));
+    }
+
 }
