@@ -122,15 +122,16 @@ public class StartShoppingPage {
             }
         }
     }
+
     private void setTobaccoUserNo(String name) {
-        if (name.contains("primary")) {
-            SharedData.getPrimaryMember().setTobacco_user("No");
+        if (name.contains( "primary" )) {
+            SharedData.getPrimaryMember().setTobacco_user( "No" );
+        } else {
             List<MemberDetails> dependents = SharedData.getMembers();
             for (MemberDetails mem : dependents) {
-                if (mem.getFirstName().isEmpty()) {
-                    if (mem.getFirstName().contains(name)) {
-                        mem.setTobacco_user("No");
                     }
+                if (mem.getFirstName().contains( name )) {
+                    mem.setTobacco_user( "No" );
                 }
             }
         }
