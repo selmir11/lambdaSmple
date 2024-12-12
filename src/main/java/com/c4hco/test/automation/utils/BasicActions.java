@@ -785,6 +785,10 @@ public class BasicActions {
                 dobCalculator = currentDate;
                 break;
             default: Assert.fail("Did not find the case entered");
+
+            case "first day of current month": // Added case
+                dobCalculator = currentDate.withDayOfMonth(1);
+                break;
         }
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(dobCalculator);
@@ -793,6 +797,8 @@ public class BasicActions {
         nameAndDob.put(namePrefix, actualdob);
         SharedData.setCalculatedDob(nameAndDob);
     }
+
+
 
     public String getFullNameWithPrefix(String memPrefix){
       List<MemberDetails> allMem = getAllMem();
