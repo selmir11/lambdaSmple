@@ -476,8 +476,7 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("policy_submitted_ts",exchDbQueries.getMedDentalCurrentLatestAppDate());
     }
     public String getTheBrokerEmailInDB() {
-        String EmailDB = postgresHandler.getResultFor("email",exchDbQueries.getBrokerEmailIn());
-        return EmailDB;
+        return postgresHandler.getResultFor("email",exchDbQueries.getBrokerEmailIn());
     }
 
 }

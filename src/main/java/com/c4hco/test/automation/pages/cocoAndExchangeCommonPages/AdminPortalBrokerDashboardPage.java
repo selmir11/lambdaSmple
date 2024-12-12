@@ -23,6 +23,8 @@ public class AdminPortalBrokerDashboardPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    MemberDetails memberDetails = new MemberDetails();
+    BrokerDetails brokerDetails = new BrokerDetails();
     public AdminPortalBrokerDashboardPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -313,9 +315,6 @@ public class AdminPortalBrokerDashboardPage {
         }
         basicActions.waitForElementToBePresentWithRetries(editProfile,200);
     }
-    MemberDetails memberDetails = new MemberDetails();
-    BrokerDetails brokerDetails = new BrokerDetails();
-
     public void setTheEmailValue(String STGAccount, String QAAccount) {
         String primaryMemberId;
         if (SharedData.getEnv().contains("qa")) {
