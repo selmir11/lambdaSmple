@@ -66,6 +66,12 @@ public class CRMDetailsPage {
         softAssert.assertAll();
     }
 
+    public void verifyBrokerAuthBlankEndDate(){
+        basicActions.waitForElementToBePresent(brokerAuthEndDate,50);
+        softAssert.assertEquals(brokerAuthEndDate.getAttribute("value"), "");
+        softAssert.assertAll();
+    }
+
     public void verifyBrokerLicense(){
         basicActions.waitForElementToBePresent(brokerLicenseNumber,50);
         softAssert.assertEquals(brokerLicenseNumber.getAttribute("value"), SharedData.getAgencyOwner().getLicense());
