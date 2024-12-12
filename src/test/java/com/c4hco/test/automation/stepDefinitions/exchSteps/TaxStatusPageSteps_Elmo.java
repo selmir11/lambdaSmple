@@ -37,8 +37,11 @@ public class TaxStatusPageSteps_Elmo {
     @And("I enter data for enter the name question on the Tax Status Elmo page")
     public void iEnterDataEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.enterDataEnterTheNameQuestion(nameData);}
 
-    @Then("I select {string} for who will be claimed as dependent question")
+    @Then("I select {string} for who will be claimed as dependent question on the Tax Status Elmo page")
     public void iSelectWhoWillBeClaimed(String memPrefix){taxStatusPage_Elmo.selectWhoWillBeClaimed(memPrefix);}
+
+    @Then("I check Exceptional circumstances checkbox on the Tax Status Elmo page")
+    public void iCheckExceptionalCircumstances( ){taxStatusPage_Elmo.checkExceptionalCircumstances();}
 
 
 
@@ -109,5 +112,11 @@ public class TaxStatusPageSteps_Elmo {
 
     @And("I verify who will be claimed enter the name question on the Tax Status Elmo page data")
     public void iVerifyWhoClaimedEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyWhoClaimedEnterTheNameAnswers(nameData);}
+
+    @And("I verify Exceptional circumstances checkbox {string} selected on the Tax Status Elmo page")
+    public void iVerifyExceptionalCircumstancesCheck(String status){taxStatusPage_Elmo.verifyExceptionalCircumstancesCheck(status);}
+
+    @And("I verify filing jointly with enter the name question on the Tax Status Elmo page data")
+    public void iVerifyFilingJointlyWithEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyFilingJointlyWithEnterTheNameAnswers(nameData);}
 
 }

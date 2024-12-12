@@ -87,7 +87,7 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = ".c4-input select option")
     List<WebElement> filingStatusDpd;
 
-    @FindBy(css = "#ELIG-taxStatus-exceptional-container span")
+    @FindBy(css = "#ELIG-taxStatus-exceptional-container label")
     WebElement exceptionalCircumstancesTxt;
 
     @FindBy(css = "#ELIG-taxStatus-willClaimDependents-container span")
@@ -346,6 +346,11 @@ public class TaxStatusPage_Elmo {
     public void selectWhoWillBeClaimed(String memPrefix) {
         WebElement selectMember = basicActions.getDriver().findElement(By.xpath("//span[contains(text(), '" + memPrefix + "')]"));
         selectMember.click();
+    }
+
+    public void checkExceptionalCircumstances() {
+        basicActions.waitForElementToBePresent(exceptionalCircumstancesTxt,10);
+        exceptionalCircumstancesTxt.click();
     }
 
 
@@ -1107,6 +1112,42 @@ public class TaxStatusPage_Elmo {
         softAssert.assertEquals(claimedLastNameInput.getAttribute("value").trim().isEmpty() ? null : claimedLastNameInput.getAttribute("value"), lastName);
         softAssert.assertEquals(claimedSuffixNameDpd.getAttribute("value").trim().isEmpty() || "0: null".equals(claimedSuffixNameDpd.getAttribute("value")) ? null : claimedSuffixNameDpd.getAttribute("value"), suffix);
         softAssert.assertEquals(claimedDobNameInput.getAttribute("value").trim().isEmpty() ? null : claimedDobNameInput.getAttribute("value"), dob);
+        softAssert.assertAll();
+    }
+
+    public void verifyExceptionalCircumstancesCheck(String status){
+        basicActions.waitForElementToBePresent(exceptionalCircumstancesTxt,20);
+        switch (status){
+            case "is":
+                softAssert.assertEquals(exceptionalCircumstancesTxt.getAttribute("class"), "checkbox-container checked");
+                softAssert.assertAll();
+                break;
+            case "is not":
+                softAssert.assertEquals(exceptionalCircumstancesTxt.getAttribute("class"), "checkbox-container");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + status);
+        }
+    }
+
+    public void verifyFilingJointlyWithEnterTheNameAnswers(List<Map<String, String>> nameData) {
+        String firstName = nameData.get(0).get("First Name");
+        String middleName = nameData.get(0).get("Middle Name");
+        String lastName = nameData.get(0).get("Last Name");
+        String suffix = nameData.get(0).get("Suffix");
+        String dob = nameData.get(0).get("DOB");
+        firstName = (firstName != null && !firstName.trim().isEmpty()) ? firstName : null;
+        middleName = (middleName != null && !middleName.trim().isEmpty()) ? middleName : null;
+        lastName = (lastName != null && !lastName.trim().isEmpty()) ? lastName : null;
+        suffix = (suffix != null && !suffix.trim().isEmpty()) ? suffix : null;
+        dob = (dob != null && !dob.trim().isEmpty()) ? dob : null;
+
+        softAssert.assertEquals(filingFirstNameInput.getAttribute("value").trim().isEmpty() ? null : filingFirstNameInput.getAttribute("value"), firstName);
+        softAssert.assertEquals(filingMiddleNameInput.getAttribute("value").trim().isEmpty() ? null : filingMiddleNameInput.getAttribute("value"), middleName);
+        softAssert.assertEquals(filingLastNameInput.getAttribute("value").trim().isEmpty() ? null : filingLastNameInput.getAttribute("value"), lastName);
+        softAssert.assertEquals(filingSuffixNameDpd.getAttribute("value").trim().isEmpty() || "0: null".equals(filingSuffixNameDpd.getAttribute("value")) ? null : filingSuffixNameDpd.getAttribute("value"), suffix);
+        softAssert.assertEquals(filingDobNameInput.getAttribute("value").trim().isEmpty() ? null : filingDobNameInput.getAttribute("value"), dob);
         softAssert.assertAll();
     }
 
