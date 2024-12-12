@@ -365,6 +365,9 @@ public class NoticesPage {
             case "BN-002A-02":
                 VerifyTheNoticeTextBN002A02broker();
                 break;
+            case "BN-002A-02 Exch":
+                VerifyTheNoticeTextBN002A02Exchbroker();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
@@ -405,6 +408,14 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextBN002A02.getText(), SharedData.getPrimaryMember().getFullName() + " has asked that you no longer work on his or her behalf to purchase insurance through Colorado Connect\u00AE.");
 
         softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Colorado Connect\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertAll();
+    }
+
+    private void VerifyTheNoticeTextBN002A02Exchbroker() {
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getBroker_name());
+        softAssert.assertEquals(bodyTextBN002A02.getText(), SharedData.getPrimaryMember().getFullName() + " has asked that you no longer work on his or her behalf to purchase insurance through Connect for Health Colorado\u00AE.");
+
+        softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
         softAssert.assertAll();
     }
 
