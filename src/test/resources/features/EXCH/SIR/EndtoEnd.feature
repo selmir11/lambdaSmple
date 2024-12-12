@@ -826,7 +826,7 @@ Scenario: SLER-1288 - Test out Smoker/Non-smoker divergence to the Medical Plan 
   And I click continue on application results page
 
   Then I validate I am on the "Start Shopping" page
-  Then I click Yes to the Tobacco usage question on start shopping page
+  Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Spouse"
   And I click continue on start shopping page
 
   Then I validate I am on the "Grouping Members Medical" page
