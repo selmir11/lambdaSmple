@@ -18,9 +18,7 @@ public class TaxStatusPageSteps_Elmo {
     public void iSelectFileTaxReturnOption(String willFileTaxReturn){taxStatusPage_Elmo.selectWillFileTaxReturn(willFileTaxReturn);}
 
     @Then("I select the {string} tax filing option on the Tax Status Elmo page")
-    public void iSelectTaxFilingOption(String filingOption){
-        taxStatusPage_Elmo.selectFilingStatus(filingOption);
-    }
+    public void iSelectTaxFilingOption(String filingOption){taxStatusPage_Elmo.selectFilingStatus(filingOption);}
 
     @Then("I select {string} as filing jointly with option on the Tax Status Elmo page")
     public void iSelectFilingJointlyWithOption(String filingJointlyOption){taxStatusPage_Elmo.selectFilingJointlyWithOption(filingJointlyOption);}

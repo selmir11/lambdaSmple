@@ -552,4 +552,9 @@ public String policyTablesCombinedQuery(String coverageType){
                 "WHERE ST.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"';";
     }
 
+    public String getTaxFilingDataDB(String memberId){
+        return "SELECT * from "+dbName+".es_member\n" +
+                "where member_id = '"+memberId+"'";
+    }
+
 }
