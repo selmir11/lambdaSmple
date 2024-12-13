@@ -13,10 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MyPoliciesPage {
     private BasicActions basicActions;
@@ -109,13 +106,13 @@ public class MyPoliciesPage {
     public void validatePlanDetailsPlanHistory(String planType){
         basicActions.waitForElementToBePresent(planHistoryTitle, 10);
         basicActions.waitForElementListToBePresent(tableRecord, 10);
-        validateNamesOnPlanHistory();
+        //validateNamesOnPlanHistory();
         switch (planType){
             case "medical":
-                validateMedPlanDetailsFromPlanHistory();
+                validateMedicalPlanFromPlanHistory();
                 break;
             case "dental":
-                validateDentalPlanDetailsFromPlanHistory();
+                validateDentalPlanFromPlanHistory();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + planType);
@@ -193,28 +190,30 @@ public class MyPoliciesPage {
         viewPlanHistoryLinkDental.click();
     }
 
-    private void validateMedPlanDetailsFromPlanHistory(){
-        softAssert.assertTrue(tableRecord.get(1).getText().equals(primaryMember.getMedicalPlan()), "Medical plan mismatch");
-        softAssert.assertEquals(tableRecord.get(2).getText().replace(",", ""), ("$"+primaryMember.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
-        if(primaryMember.getMedicalAptcAmt().equals("0")){
-            softAssert.assertTrue(tableRecord.get(3).getText().equals("$"+primaryMember.getMedicalAptcAmt()+".00"),"Medical APTC amount mismatch");
+    private void validateMedPlanDetailsFromPlanHistory(MemberDetails member){
+        System.out.println(tableRecord.size()); basicActions.waitForElementListToBePresent(tableRecord,10);
+        softAssert.assertTrue(tableRecord.get(0).getText().contains(member.getFirstName()), "Member Name mismatch");
+        softAssert.assertEquals(tableRecord.get(1).getText(),(member.getMedicalPlan()), "Medical plan mismatch");
+        softAssert.assertEquals(tableRecord.get(2).getText().replace(",", ""), ("$"+member.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
+        if(member.getMedicalAptcAmt().equals("0")){
+            softAssert.assertEquals(tableRecord.get(3).getText(),("$"+member.getMedicalAptcAmt()+".00"),"Medical APTC amount mismatch");
         }else {
-            softAssert.assertTrue(tableRecord.get(3).getText().equals("$" + primaryMember.getMedicalAptcAmt()), "Medical APTC amount mismatch");
+            softAssert.assertEquals(tableRecord.get(3).getText().replace(",",""),("$" + member.getMedicalAptcAmt()), "Medical APTC amount mismatch");
         }
-        softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getMedicalPlanStartDate()), "plan start date mismatch");
-        softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getMedicalPlanEndDate()), "plan end date mismatch");
+        softAssert.assertTrue(tableRecord.get(4).getText().equals(member.getMedicalPlanStartDate()), "plan start date mismatch");
+        softAssert.assertTrue(tableRecord.get(5).getText().equals(member.getMedicalPlanEndDate()), "plan end date mismatch");
         softAssert.assertAll();
     }
 
 
 
-    private void validateDentalPlanDetailsFromPlanHistory(){
-
-        softAssert.assertEquals(tableRecord.get(1).getText(), primaryMember.getDentalPlan(), "Dental plan did not match");
-        softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), primaryMember.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
-        softAssert.assertTrue(tableRecord.get(3).getText().equals(primaryMember.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help
-        softAssert.assertEquals(tableRecord.get(4).getText(), primaryMember.getDentalPlanStartDate(), "dental plan start date did not match");
-        softAssert.assertEquals(tableRecord.get(5).getText(), primaryMember.getDentalPlanEndDate(), "dental plan end date did not match");
+    private void validateDentalPlanDetailsFromPlanHistory(MemberDetails member){
+        softAssert.assertTrue(tableRecord.get(0).getText().contains(member.getFirstName()), "Member Name not match");
+        softAssert.assertEquals(tableRecord.get(1).getText(), member.getDentalPlan(), "Dental plan did not match");
+        softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), member.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
+        softAssert.assertEquals(tableRecord.get(3).getText(),(member.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help
+        softAssert.assertEquals(tableRecord.get(4).getText(), member.getDentalPlanStartDate(), "dental plan start date did not match");
+        softAssert.assertEquals(tableRecord.get(5).getText(), member.getDentalPlanEndDate(), "dental plan end date did not match");
         softAssert.assertAll();
     }
 
@@ -268,12 +267,18 @@ public class MyPoliciesPage {
             softAssert.assertEquals(monthlyPremium.getText().replace("$","").replace(",",""),(member.getMedicalPremiumAmt()), "Medical Premium mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo",""),(member.getTotalMedAmtAfterReduction()), "Medical Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(" Financial Help","").replace("$","").replace(",",""),(member.getMedicalAptcAmt()), "Medical APTC amount mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(EAPID.getText(),(member.getMedicalEapid_db()), "Medical EAPID mismatch for member: " + member.getFirstName());
-            //softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
+
+            Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
+            member.setMedicalEapid_db(medEapidDb.get(member.getMedGroupInd()));
+            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+
+            if(member.getIsSubscriber()=="Y"){
+                softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
+            }
+
             softAssert.assertEquals(lastUpdatedOn.getText(),(lastUpdated), "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(member.getMedicalPlanStartDate()), "Applicable From date is not-matched for member: " + member.getFirstName());
             softAssert.assertAll();
-
         }
 
     }
@@ -307,13 +312,39 @@ public class MyPoliciesPage {
             softAssert.assertEquals(monthlyPremium.getText().replace("$",""),(member.getDentalPremiumAmt()), "Dental Premium mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo",""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(" Financial Help",""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
-            //softAssert.assertEquals(EAPID.getText(),(member.getDentalEapid_db()), "Dental EAPID mismatch for member: " + member.getFirstName());
-            //softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
+
+            Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
+            member.setMedicalEapid_db(denEapidDb.get(member.getDenGroupInd()));
+            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+
+            if(member.getIsSubscriber()=="Y"){
+                softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
+            }
+
             softAssert.assertEquals(lastUpdatedOn.getText(),(lastUpdated), "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(member.getDentalPlanStartDate()), "Dental APTC amount mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
-
         }
 
+    }
+
+    private void validateMedicalPlanFromPlanHistory(){
+        for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
+            basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical,10);
+            WebElement viewPlanHistoryLink = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + member.getMedicalPlan() + "')]/ancestor::div[4][.//span[contains(text(),'" + member.getFirstName() + "')]] //a"));
+            viewPlanHistoryLink.click();
+            validateMedPlanDetailsFromPlanHistory(member);
+            clickBackButton();
+        }
+    }
+
+    private void validateDentalPlanFromPlanHistory(){
+        for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
+            basicActions.waitForElementToBePresent(viewPlanHistoryLinkDental,10);
+            WebElement viewPlanHistoryLink = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + member.getMedicalPlan() + "')]/ancestor::div[4][.//span[contains(text(),'" + member.getFirstName() + "')]] //a"));
+            viewPlanHistoryLink.click();
+            validateDentalPlanDetailsFromPlanHistory(member);
+            clickBackButton();
+        }
     }
 }
