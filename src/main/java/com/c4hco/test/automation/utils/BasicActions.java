@@ -846,7 +846,6 @@ public class BasicActions {
     }
 
 
-    public List<MemberDetails> getAllMem() {
     public String getMemFirstNames(String memPrefix){
         List<MemberDetails> allMem = getAllMem();
         return allMem.stream().map(MemberDetails::getFirstName).filter(firstName -> firstName.contains(memPrefix)).findFirst().orElse(null);
@@ -890,7 +889,6 @@ public class BasicActions {
         return firstAndLastName;
     }
 
-    public String getMemberId(String memPrefix) {
 
     public String getDobOfMember(String namePrefix){
         String dob = null;
@@ -945,12 +943,6 @@ public class BasicActions {
         return allEligibleMembers;
     }
 
-    public boolean hardRefreshUntilVisible(WebElement element, int timeout, int pollInterval) {
-        FluentWait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(timeout))
-                .pollingEvery(Duration.ofMillis(pollInterval))
-                .ignoring(NoSuchElementException.class);
-
     public void setRelationToSubscriber(List<String> relationToSubscriber){
         for(String relation : relationToSubscriber){
             String[] relationDetails = relation.split(":");
@@ -961,7 +953,11 @@ public class BasicActions {
         }
     }
 
-
+    public boolean hardRefreshUntilVisible(WebElement element, int timeout, int pollInterval) {
+                FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(timeout))
+                        .pollingEvery(Duration.ofMillis(pollInterval))
+                        .ignoring(NoSuchElementException.class);
         int attempts = 0;
         while (attempts < timeout) {
             try {

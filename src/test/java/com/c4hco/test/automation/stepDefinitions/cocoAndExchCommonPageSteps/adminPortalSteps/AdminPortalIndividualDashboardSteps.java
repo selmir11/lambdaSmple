@@ -1,13 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalIndividualDashboardPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages.AdminPortalIndividualDashboardPage;
-import com.c4hco.test.automation.utils.WebDriverManager;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 import java.util.List;
 
 public class AdminPortalIndividualDashboardSteps {
