@@ -109,6 +109,9 @@ public class LifeChangeEventsPage {
             case "GainedLawfulPresence":
                 lceInputCheckbox.get(4).click();
                 break;
+            case "GainedAmericanIndianAlaskaNative":
+                lceInputCheckbox.get(5).click();
+                break;
             case "MovedToColorado":
                 lceInputCheckbox.get(6).click();
                 break;
