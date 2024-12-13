@@ -130,6 +130,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,SonOne"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -271,6 +272,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,SonTwo"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups with different zipcodes
@@ -351,6 +353,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
@@ -500,6 +503,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -603,6 +607,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -684,7 +689,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
+    And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -706,6 +711,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -808,6 +814,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -920,6 +927,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -1039,6 +1047,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -1117,6 +1126,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
     And I wait for hold on content to disappear
@@ -1197,6 +1207,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -1328,6 +1339,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
