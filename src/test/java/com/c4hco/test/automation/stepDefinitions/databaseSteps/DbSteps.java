@@ -140,8 +140,8 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    public void iVerifyTaxReturnData(String memPrefix,List<Map<String, String>> expectedValues) {dbValidations.verifyTaxReturnData(memPrefix,expectedValues);}
 
    @Then("I validate the details from rq_queue_messages database")
-   public void validate_rq_queue_msg(){
-      dbValidations.validate_rq_queue_msg();
-   }
+   public void validate_rq_queue_msg(){dbValidations.validate_rq_queue_msg();}
+   
+
 }
 

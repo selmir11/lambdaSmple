@@ -453,13 +453,6 @@ public class DbValidations {
         System.out.println("Updated tax_return_id list for " + memPrefix + ": " + formattedList);
     }
 
-
-
-
-
-
-
-
     public void validate_rq_queue_msg(){
         String dbValues[] = exchDbDataProvider.get_rq_queue_msg();
         softAssert.assertEquals(dbValues[0], "PROCESSED", "status from rq_queue_msg table did not match");
@@ -467,5 +460,13 @@ public class DbValidations {
         softAssert.assertEquals(dbValues[2], "\"TransferContactInfo\"", "requestType from rq_queue_msg table did not match");
         softAssert.assertAll();
     }
+
+
+
+
+
+
+
+
 
 }
