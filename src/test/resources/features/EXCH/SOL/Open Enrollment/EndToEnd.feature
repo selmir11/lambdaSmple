@@ -102,6 +102,7 @@ Feature: End to End Tests
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -243,6 +244,7 @@ Feature: End to End Tests
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 3 default groups
@@ -558,6 +560,7 @@ Feature: End to End Tests
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -842,6 +845,7 @@ Feature: End to End Tests
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Niece"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -984,6 +988,7 @@ Feature: End to End Tests
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
