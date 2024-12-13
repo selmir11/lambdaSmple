@@ -78,4 +78,8 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I verify {string} MRV needed on the My Documents page")
     public void iVerifyMvrNeeded(String mvrType) {myDocumentsPage.verifyMvrNeeded(mvrType);}
 
+    @And("I click on verify Financial Help for Eligibility button is displaying for user")
+    public void iClickOnVerifyFinancialHelpForEligibilityButtonIsDisplayingForUser() {
+        myDocumentsPage.clickFinancialHelpEligibilltybutton();
     }
+}
