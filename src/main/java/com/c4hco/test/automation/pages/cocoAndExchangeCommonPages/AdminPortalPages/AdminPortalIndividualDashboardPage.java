@@ -1,4 +1,4 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;

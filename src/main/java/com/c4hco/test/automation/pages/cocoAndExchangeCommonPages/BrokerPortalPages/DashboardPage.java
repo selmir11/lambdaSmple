@@ -61,6 +61,8 @@ public class DashboardPage {
 
     @FindBy(id = "broker-submit-0")
     WebElement clientInformationBrokerAssignmentSubmit;
+    @FindBy(xpath= "//*[@id='accountSummary-data-Email']")
+    WebElement communicationPrefrencesEmail;
 
     @FindBy(id = "accountSummary-data-agencyOwner")
     WebElement accountSummaryAgencyOwnerName;
@@ -162,9 +164,23 @@ public class DashboardPage {
         clientInformationBrokerAssignmentSubmit.click();
     }
 
+    public void validateTheEmailOnTheCommunicationPrefrencesContainerOnBrokerDashboardPage(String brokerType) {
+        basicActions.waitForElementToBePresent(communicationPrefrencesEmail,50);
+        switch (brokerType){
+            case "Agency":
+                softAssert.assertEquals(communicationPrefrencesEmail.getText(),SharedData.getBroker().getAgencyEmail());
+
+                break;
+            case "Broker":
+            softAssert.assertEquals(communicationPrefrencesEmail.getText(),SharedData.getBroker().getEmail());
+                break;
+        }
+        softAssert.assertAll();}
+
     public void saveAgencyDetails(){
         basicActions.waitForElementToBePresent(accountSummaryAgencyOwnerName, 10);
         SharedData.getAgencyOwner().setBroker_name(accountSummaryAgencyOwnerName.getText());
         SharedData.getAgencyOwner().setFirstName(accountSummaryAgencyOwnerName.getText().split(" ")[0].trim());
+
     }
 }
