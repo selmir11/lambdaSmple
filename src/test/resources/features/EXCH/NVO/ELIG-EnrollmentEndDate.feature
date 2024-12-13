@@ -240,7 +240,7 @@ Feature: LR Enrollment Period end date is set when user has
       Then I validate I am on the "Before you begin" page
       And I click on continue with  application button on Before you begin page
       Then I validate I am on the "Report a life change" page
-      And I report "GainedAmericanIndianAlaskaNative" and click continue
+      And I report "<reportLifeChangeOption>" and click continue
       Then I select "member" from the who are you question
       And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
       Then I answer all Id proofing questions and click continue
@@ -299,7 +299,7 @@ Feature: LR Enrollment Period end date is set when user has
 #DBSTEP
       And  I Validate enrollment period end date is set to <enrollmentEndDate> days from current QLCE days
       Examples:
-        | qlceOption         | enrollmentEndDate |
-        | GainOfTribalStatus | 60                |
-        | Birth              | 60                |
+        | reportLifeChangeOption           | qlceOption         | enrollmentEndDate |
+        | GainedAmericanIndianAlaskaNative | GainOfTribalStatus | 60                |
+        | Birth                            | Birth              | 60                |
 
