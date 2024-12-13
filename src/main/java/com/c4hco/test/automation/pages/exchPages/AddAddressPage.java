@@ -129,21 +129,13 @@ public class AddAddressPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + index);
         }
-
     }
+    
     private void setAddressAsPrimary(){
         String name = getNameFromHeader.getText();
         Address residentialAddress = SharedData.getPrimaryMember().getResAddress();
         List<MemberDetails> allMemList = basicActions.getAllMem();
-      //  allMemList.stream().filter(mem-> mem.getFirstName().contains(name)).findFirst().ifPresent(mem-> mem.setResAddress(residentialAddress));
-
-        for(MemberDetails member: allMemList){
-            if(name.contains(member.getFirstName())){
-                member.setResAddress(residentialAddress);
-                break;
-            }
-        }
-
+        allMemList.stream().filter(mem-> name.contains(mem.getFirstName())).findFirst().ifPresent(mem-> mem.setResAddress(residentialAddress));
     }
 
 
