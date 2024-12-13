@@ -115,6 +115,12 @@ public class MyProfilePage {
     @FindBy(css = "hr.myProfile_address_hr")
     WebElement grayLineAddressCoCo;
 
+    @FindBy(css = "div.change-password-container")
+    WebElement PasswordButtonCoCo;
+
+    @FindBy(css = "span.change-password-msg")
+    WebElement PasswordMessageCoCo;
+
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -665,6 +671,42 @@ public class MyProfilePage {
         softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getCssValue("color"), "rgba(182, 38, 38, 1)");
         softAssert.assertAll();
     }
+
+    public void verifyPasswordTextOnMyProfileExchPageCoCo(String language) {
+        switch (language) {
+            case "English":
+                verifyPasswordTextOnMyProfilePageEnglishCoCo();
+                break;
+            case "Spanish":
+                verifyPasswordTextOnMyProfilePageSpanishCoCo();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyPasswordTextOnMyProfilePageEnglishCoCo() {
+        basicActions.waitForElementToBePresent(PasswordMessageCoCo, 10);
+        softAssert.assertEquals(PasswordMessageCoCo.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordButtonCoCo.getText(), "Change password");
+        softAssert.assertAll();
+    }
+
+
+    public void verifyPasswordTextOnMyProfilePageSpanishCoCo() {
+        basicActions.waitForElementToBePresent(PasswordMessageCoCo, 10);
+        softAssert.assertEquals(PasswordMessageCoCo.getText(), "Al hacer clic en Cambiar contrase\u00F1a se cerrar\u00E1 su sesi\u00F3n y lo llevar\u00E1 a la p\u00E1gina de Restablecer contrase\u00F1a");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordButtonCoCo.getText(), "Cambiar contrase\u00F1a");
+        softAssert.assertAll();
+    }
+
+
 }
 
 
