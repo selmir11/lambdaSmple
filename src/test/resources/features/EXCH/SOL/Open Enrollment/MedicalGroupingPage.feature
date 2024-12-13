@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: UI Page Validation - Medical Grouping Page
 
   Background:
@@ -11,7 +11,7 @@ Feature: UI Page Validation - Medical Grouping Page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1109 @medicalGroupingPageValidation @MedGrpingPageNavigation
+  @SLER-1109-OE @medicalGroupingPageValidation @MedGrpingPageNavigation
   Scenario: Validate the Medical Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -77,6 +77,7 @@ Feature: UI Page Validation - Medical Grouping Page
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups

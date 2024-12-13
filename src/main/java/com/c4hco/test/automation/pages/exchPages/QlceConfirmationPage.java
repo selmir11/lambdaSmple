@@ -198,6 +198,8 @@ public class QlceConfirmationPage {
                 .ifPresent(eventDateElement -> eventDateElement.sendKeys(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual())));
     }
 
+
+
     public void saveAndContinue() {
         saveAndContinue.click();
     }

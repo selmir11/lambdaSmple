@@ -67,6 +67,9 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//div[@class='doc-type-select']")
     WebElement docTypeDrpDwn;
 
+    @FindBy(xpath = "//span[@id='mvrActionButtonTitle_0']")
+    WebElement verifyFinancialHelpEligbilityButton;
+
     //English modal text
 
     @FindBy(xpath = "//p[@class='modal-title']")
@@ -488,5 +491,10 @@ public class MyDocumentsPage {
     public void verifyMvrNeeded(String mvrType) {
         basicActions.waitForElementToBePresent(myDocumentsTitle,30);
         WebElement mvrNameType = basicActions.getDriver().findElement(By.xpath("//app-documents-upload//p[contains(text(), 'Proof of "+mvrType+"')]"));
+    }
+
+    public void clickFinancialHelpEligibilltybutton(){
+      basicActions.waitForElementToBePresent(verifyFinancialHelpEligbilityButton,30);
+        verifyFinancialHelpEligbilityButton.click();
     }
 }

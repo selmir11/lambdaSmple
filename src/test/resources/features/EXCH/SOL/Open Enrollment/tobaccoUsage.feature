@@ -1,11 +1,11 @@
-@SOLRegression
+
 Feature: Tobacco Usage page related tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-    @SLER-20 @TobaccoUsageVerbiage
+    @SLER-20-OE @TobaccoUsageVerbiage
   Scenario: Validate text on tobacco usage page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -69,4 +69,5 @@ Feature: Tobacco Usage page related tests
       And I click continue on application results page
       Then I validate I am on the "Start Shopping" page
       Then I verify text on start shopping page
+      Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
       Then I click continue on start shopping page

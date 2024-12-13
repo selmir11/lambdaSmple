@@ -11,7 +11,7 @@ Feature: UI Page Validation - Grouping Members (Dental)
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-116 @VerifyTestToolTip
+  @SLER-116-OE @VerifyTestToolTip
   Scenario: Validate the test tool tip on the edit Dental Grouping page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -65,6 +65,7 @@ Feature: UI Page Validation - Grouping Members (Dental)
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -73,7 +74,7 @@ Feature: UI Page Validation - Grouping Members (Dental)
     And I validate I am on the "Edit Grouping Members Dental" page
     Then I verify dental tool tip on the link- what works best for you
 
-  @SLER-1119 @editDentalGroupingPageValidation
+  @SLER-1119-OE @editDentalGroupingPageValidation
   Scenario: Validate Edit Medical Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -139,6 +140,7 @@ Feature: UI Page Validation - Grouping Members (Dental)
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups

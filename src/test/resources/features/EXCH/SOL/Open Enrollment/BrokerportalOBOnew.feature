@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: UI Page Validation - Broker Portal OBO
 
   Background:
@@ -6,7 +6,7 @@ Feature: UI Page Validation - Broker Portal OBO
     And I validate I am on the "Login" page
 
 
-  @SLER-1138
+  @SLER-1138-OE
   Scenario: Broker Portal OBO - FA - LCE Birth/Adoption, Enroll in New plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -166,6 +166,7 @@ Feature: UI Page Validation - Broker Portal OBO
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -181,7 +182,7 @@ Feature: UI Page Validation - Broker Portal OBO
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page OBO
 
-  @SLER-1143
+  @SLER-1143-OE
   Scenario: Broker Portal OBO - NFA - Single applicant, Enroll in New plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -260,6 +261,7 @@ Feature: UI Page Validation - Broker Portal OBO
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I select the first medical plan
     Then I click continue on medical plan results page
@@ -273,7 +275,7 @@ Feature: UI Page Validation - Broker Portal OBO
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page OBO
 
-  @SLER-1156
+  @SLER-1156-OE
   Scenario: Broker Portal OBO - FA - Single applicant, Enroll in New plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -371,6 +373,7 @@ Feature: UI Page Validation - Broker Portal OBO
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I select the first medical plan
     Then I click continue on medical plan results page

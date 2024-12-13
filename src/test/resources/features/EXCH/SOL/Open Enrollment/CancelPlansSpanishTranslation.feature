@@ -1,11 +1,11 @@
-@SOLRegression
+
 Feature: Cancel Plans Spanish Translation
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-232 @CancelPlanPageSpanish
+  @SLER-232-OE @CancelPlanPageSpanish
   Scenario: Validate Spanish text on Cancel Plan Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -50,6 +50,7 @@ Feature: Cancel Plans Spanish Translation
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page

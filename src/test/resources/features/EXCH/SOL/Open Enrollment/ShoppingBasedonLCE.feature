@@ -1,11 +1,11 @@
-@SOLRegression
+
 Feature: Initial Payment Page test
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-539 @MarriageLCE
+  @SLER-539-OE @MarriageLCE
   Scenario: NFA selecting LCE Marriage in order to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -50,6 +50,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I select the first medical plan
     Then I click continue on medical plan results page
@@ -66,7 +67,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Account Overview" page
 
 
-  @SLER-543
+  @SLER-543-OE
   Scenario: FA selecting LCE Birth in order to shop for a group of 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -219,6 +220,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -239,7 +241,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Account Overview" page
 
 
-  @SLER-716 @MarriageLCE
+  @SLER-716-OE @MarriageLCE
   Scenario: NFA selecting LCE Marriage without financial assistance in order to shop
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -355,6 +357,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Son"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
@@ -378,7 +381,7 @@ Feature: Initial Payment Page test
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-761 @MarriageLCEGroupof3
+  @SLER-761-OE @MarriageLCEGroupof3
   Scenario: NFA selecting LCE Marriage in order to shop for a group of 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -477,6 +480,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -493,7 +497,7 @@ Feature: Initial Payment Page test
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1141 @DeathLCEError
+  @SLER-1141-OE @DeathLCEError
   Scenario: NFA selecting LCE Death after initial enrollment error code (not allowed to shop should be cleared)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -592,6 +596,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan

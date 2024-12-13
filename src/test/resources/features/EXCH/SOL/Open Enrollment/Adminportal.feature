@@ -1,7 +1,7 @@
-@SOLRegression
+
 Feature:shopping and enrolling in a plan through Admin Portal "OBO"
 
-@SLER-736
+@SLER-736-OE
 Scenario: Account creation, shopping and enrolling in a plan through Admin Portal "OBO"
   Given I open the login page on the "admin" portal
   And I refresh the page
@@ -94,6 +94,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   Then I click on view results and shop
   And I click continue on application results page
   Then I validate I am on the "Start Shopping" page
+  Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
   Then I click continue on start shopping page
   Then I click continue on grouping Members Medical page
   And I select the first medical plan
@@ -112,7 +113,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   Then I validate I am on the "Account Overview" page
 
 
-  @SLER-746
+  @SLER-746-OE
   Scenario: Verifies plan summary page for "No plans are selected message" via Admin Portal
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -164,6 +165,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
@@ -172,7 +174,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I verify no medical and dental plans are selected on plan summary page
     And I click on Sign Out in the Header for "Elmo"
 
-    @SLER-765
+    @SLER-765-OE
     Scenario: Validate hard stop on plan summary page when no plans selected for FA via OBO
       Given I open the login page on the "admin" portal
       And I refresh the page
@@ -256,6 +258,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I click on view results and shop
       And I click continue on application results page
       Then I validate I am on the "Start Shopping" page
+      Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
       Then I click continue on start shopping page
       Then I validate I am on the "Medical Plan Results" page
       Then I click skip on medical plan results page
@@ -266,7 +269,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-796
+  @SLER-796-OE
   Scenario: Admin Portal OBO - FA - LCE Marriage
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -382,6 +385,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select "Anthem Colorado Option Gold Pathway Essentials Std" medical plan
@@ -403,7 +407,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-    @SLER-1160
+    @SLER-1160-OE
     Scenario: AdminLCE Happy Path 2 'No' into 2 'Yes'
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page

@@ -101,7 +101,7 @@ Feature: New payment portal - currently in QA only
     And I click on Go To Welcome Page Button on whats next page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1015 @PayNow
+  @SLER-1015-OE @PayNow
   Scenario: Validate PayNow on Payment page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -175,6 +175,7 @@ Feature: New payment portal - currently in QA only
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "RMHP Colorado Doctors Plan Colorado Option Silver" medical plan
@@ -198,7 +199,7 @@ Feature: New payment portal - currently in QA only
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1016 @PayLater
+  @SLER-1016-OE @PayLater
   Scenario: Validate Pay Later on Payment page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -271,7 +272,8 @@ Feature: New payment portal - currently in QA only
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
-    Then I click continue on application results page
+    Then I click continue on application results
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "RMHP Colorado Doctors Plan Colorado Option Silver" medical plan
@@ -294,7 +296,7 @@ Feature: New payment portal - currently in QA only
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1030 @PayNowCoordinatePayment
+  @SLER-1030-OE @PayNowCoordinatePayment
   Scenario: Validate no payment due on Payment page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -368,6 +370,7 @@ Feature: New payment portal - currently in QA only
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Select Health Value Silver $6000 Medical Deductible Rx Copay" medical plan

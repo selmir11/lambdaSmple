@@ -4,7 +4,7 @@ Feature: UI Page Validation - Enrollment Agreement
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-705 @EnrollmentAgreementPage
+  @SLER-705-OE @EnrollmentAgreementPage
   Scenario: Validate the Enrollment agreement page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -68,6 +68,7 @@ Feature: UI Page Validation - Enrollment Agreement
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan

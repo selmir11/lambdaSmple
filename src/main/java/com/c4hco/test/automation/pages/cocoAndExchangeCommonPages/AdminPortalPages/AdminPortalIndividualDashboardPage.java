@@ -1,6 +1,5 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -174,6 +173,32 @@ public class AdminPortalIndividualDashboardPage {
     WebElement firstRowClientData;
     @FindBy(xpath = "//*[@id=\"program-manager-client-info-table\"]/tr[2]")
     WebElement secondRowClientData;
+
+    //Manage account access
+    @FindBy(xpath = "(//p[normalize-space()=\"Suspend user's account\"])[1]")
+    WebElement txtSuspAcct;
+
+    @FindBy(xpath = "(//p[normalize-space()=\"Reset user's password\"])[1]")
+    WebElement txtResetPassw;
+
+    @FindBy(xpath = "//p[@id='account-status']")
+    WebElement accountStatus;
+
+
+    @FindBy(xpath= "(//input[@name='account-option'])[1]")
+    WebElement selectsuspendoractiavteaccount;
+
+    @FindBy(xpath = "(//input[@name='account-option'])[2]")
+    WebElement selectResetPassword;
+
+    @FindBy(xpath = "//button[@id='btn-save']")
+    WebElement save;
+
+    @FindBy(xpath = "//p[@class='content-message']")
+    WebElement successfulUpdatemessage;
+
+    @FindBy(xpath = "//app-activity-report/div[2]/div[1]/sort-table[1]/table[1]/tbody[1]/tr[2]/td/app-max-length-tooltip")
+    List<WebElement> resetPasswordlogsrow;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -445,6 +470,40 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(renewalCanceled, 10);
         softAssert.assertEquals(renewalCanceled.getText(), status);
         softAssert.assertAll();    }
+
+    ///////Manage account Access///////
+    public void VerifyAccountAccessDetails(){
+        basicActions.waitForElementToBePresent(txtSuspAcct,30);
+        softAssert.assertEquals(txtSuspAcct.getText(),"Suspend user's account");
+        basicActions.waitForElementToBePresent(txtResetPassw,30);
+        softAssert.assertEquals(txtResetPassw.getText(),"Reset user's password");
+        softAssert.assertAll();
+    }
+
+    public void validateAccountStatus() {
+       basicActions.waitForElementToBePresent(accountStatus, 30);
+       softAssert.assertEquals(accountStatus.getText(),"Account Status: Active");
+       softAssert.assertAll();
+    }
+
+    public void selectResetandSave(){
+        basicActions.waitForElementToBePresent(selectResetPassword, 30);
+        selectResetPassword.click();
+        save.click();
+    }
+
+    public void verifyuccessmessage() {
+       basicActions.waitForElementToBePresent(successfulUpdatemessage, 50);
+       softAssert.assertEquals(successfulUpdatemessage.getText(),"Successful Update");
+        softAssert.assertAll();
+    }
+
+        public void selectCheckbox(){
+        basicActions.waitForElementToBePresent(selectsuspendoractiavteaccount, 30);
+        selectsuspendoractiavteaccount.click();
+        save.click();
+        }
+
     public void validatePMDashboardContainerTitles(String profile, String contract, String accountActivity, String clientInfo, String organizationInfo) {
         basicActions.waitForElementToBePresent(profileTitle, 30);
         softAssert.assertEquals(profileTitle.getText(), profile);
@@ -479,4 +538,5 @@ public class AdminPortalIndividualDashboardPage {
         }
         softAssert.assertAll();     }
 }
+
 

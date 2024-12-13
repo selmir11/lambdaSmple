@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: Initial Payment Page test
 
   Background:
@@ -6,7 +6,7 @@ Feature: Initial Payment Page test
     And I validate I am on the "Login" page
 
 
-  @SLER-657
+  @SLER-657-OE
   Scenario: Validate single applicant enrollment in a medical and dental plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -51,6 +51,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I select the first medical plan
     Then I click continue on medical plan results page
