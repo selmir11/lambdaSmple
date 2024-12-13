@@ -88,7 +88,7 @@ public class PostgresHandler {
     }
 
     public String[] getResultForFiveColumnValues(String columnValue1, String columnValue2, String columnValue3, String columnValue4, String columnValue5, String query) {
-        String[] results = new String[3];
+        String[] results = new String[5];
         try {
             ResultSet rs = executor.executeQuery(query);
             if (rs.next()) {
