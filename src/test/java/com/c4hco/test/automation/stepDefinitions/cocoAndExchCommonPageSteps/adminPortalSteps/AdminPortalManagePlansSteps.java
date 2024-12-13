@@ -216,7 +216,64 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I click on Medical button to display only Dental view")
     public void iClickOnMedicalButtonToDisplayOnlyDentalView() {
-        adminPortalManagePlansPage.clickMedicalButton();
+        adminPortalManagePlansPage.clickMedicalButton();}
+
+    @And("I update the medical Plan for the UI")
+    public void iUpdateTheMedicalPlanForTheUI() {
+        adminPortalManagePlansPage.updateTheMedicalPlanForTheUI();
+    }
+
+
+    @And("I validate the {string} coverage details table title columns")
+    public void iValidateTheCoverageDetailsTableTitleColumns(String planType) {
+        adminPortalManagePlansPage.validateTheCoverageDetailsTableTitleColumns(planType);
+    }
+
+    @And("I update the Medical coverage details Table for the UI")
+    public void iUpdateTheMedicalCoverageDetailsTableForTheUI() {
+        adminPortalManagePlansPage.updateTheMedicalCoverageDetailsTableForTheUI();
+    }
+
+    @And("I validate the {string} financial details table title columns")
+    public void iValidateTheFinancialDetailsTableTitleColumns(String planType) {
+        adminPortalManagePlansPage.validateTheFinancialDetailsTableTitleColumns(planType);
+    }
+
+    @And("I update the Medical financial details Table for the UI")
+    public void iUpdateTheMedicalFinancialDetailsTableForTheUI() {
+        adminPortalManagePlansPage.updateTheMedicalFinancialDetailsTableForTheUI();}
+
+
+    @And("I update the Medical member details Table for the UI")
+    public void iUpdateTheMedicalMemberDetailsTableForTheUI() {
+        adminPortalManagePlansPage.updateTheMedicalMemberDetailsTableForTheUI();
+    }
+
+    @And("I validate the {string} member details Table title columns")
+    public void iValidateTheMemberDetailsTableTitleColumns(String planType) {
+        adminPortalManagePlansPage.validateTheMemberDetailsTableTitleColumns(planType);
+    }
+
+    @And("I update the dental Plan for the UI")
+    public void iUpdateTheDentalPlanForTheUI() {
+        adminPortalManagePlansPage.updateTheDentalPlanForTheUI();
+    }
+
+    @And("I update the dental member details Table for the UI")
+    public void iUpdateTheDentalMemberDetailsTableForTheUI() {
+        adminPortalManagePlansPage.updateTheDentalMemberDetailsTableForTheUI();
+    }
+
+
+    @And("I update the dental coverage details Table for the UI")
+    public void iUpdateTheDentalCoverageDetailsTableForTheUI() {
+        adminPortalManagePlansPage.updateTheDentalCoverageDetailsTableForTheUI();
+    }
+
+    @And("I update the dental financial details Table for the UI")
+    public void iUpdateTheDentalFinancialDetailsTableForTheUI() {
+        adminPortalManagePlansPage.updateTheDentalFinancialDetailsTableForTheUI();
+
     }
 }
 

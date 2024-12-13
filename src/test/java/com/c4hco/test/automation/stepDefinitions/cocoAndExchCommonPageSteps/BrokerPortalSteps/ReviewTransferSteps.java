@@ -8,6 +8,36 @@ import io.cucumber.java.en.Then;
 public class ReviewTransferSteps {
     ReviewTransferPage reviewTransferPage = new ReviewTransferPage(WebDriverManager.getDriver());
 
+    @Then("I validate the Review Transfer page title")
+    public void iValidateReviewTransferPageTitle(){
+        reviewTransferPage.validateReviewTransferPageTitle();
+    }
+
+    @And("I validate the new broker field labels")
+    public void iValidateNewBrokerFieldLabels(){
+        reviewTransferPage.validateNewBrokerFieldLabels();
+    }
+
+    @Then("I validate the new broker transfer details are {string}, {string}, {string}, {string}, or {string}")
+    public void iValidateNewBrokerTransferDetails(String brokerName, String agencyName, String brokerAddress, String brokerEmailSTG, String brokerEmailQA){
+        reviewTransferPage.validateNewBrokerTransferDetails(brokerName, agencyName, brokerAddress, brokerEmailSTG, brokerEmailQA);
+    }
+
+    @Then("I validate the confirmation text transferring to {string} within {string}")
+    public void iValidateTransferConfirmationText(String brokerName, String agencyName){
+        reviewTransferPage.validateTransferConfirmationText(brokerName, agencyName);
+    }
+
+    @Then("I validate the buttons on the Review Transfer page")
+    public void iValidateReviewTransferButtons(){
+        reviewTransferPage.validateReviewTransferButtons();
+    }
+
+    @And("I validate the transfer warning text")
+    public void iValidateTransferWarningText(){
+        reviewTransferPage.validateTransferWarningText();
+    }
+
     @And("I validate the client name is displayed on the Review Transfer page")
     public void iValidateClientNameDisplayed(){
         reviewTransferPage.validateClientNameDisplayed();

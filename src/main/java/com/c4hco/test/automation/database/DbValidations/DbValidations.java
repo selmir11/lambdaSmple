@@ -15,8 +15,7 @@ public class DbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
     String formattedDate; //formatted in YYYY-MM-DD
-    Calendar calendar = Calendar.getInstance();
-    int currentYear = calendar.get(Calendar.YEAR);
+
     BasicActions basicActions = new BasicActions();
 
     public String getCurrentdate() {
@@ -126,7 +125,7 @@ public class DbValidations {
         for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", "Bob routing key mismatch");
-            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear), "Bob plan year mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), SharedData.getPlanYear(), "Bob plan year mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
@@ -229,6 +228,14 @@ public class DbValidations {
         List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
+
+    public void validateMemberCSRNonAIANData() {
+        String[] dbValues = exchDbDataProvider.getmemberNonAIAN();
+        softAssert.assertEquals(dbValues[0], "NON_AIAN", "Reason code mismatch: Expected 'NONAIAN'");
+        softAssert.assertEquals(dbValues[1], "CSR", "Eligibility type mismatch: Expected 'CSR'");
+        softAssert.assertAll();
+    }
+
     public void validateCurrentDentalPlanNameForTheYear(String year) {
         String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
         softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
@@ -257,7 +264,9 @@ public class DbValidations {
             softAssert.assertNull(dbValues[1], "Race Other Text is null");
         } else {
             softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
-        }}
+        }
+        softAssert.assertAll();
+    }
 
     public void validateTheLatestApplicationDateForTheYearDB() {
        String medLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
@@ -363,6 +372,43 @@ public class DbValidations {
        softAssert.assertEquals(lceType_planYr[0], "ADMIN_LCE", "LCE Type did not match");
        softAssert.assertEquals(lceType_planYr[1], SharedData.getPlanYear(), "plan year did not match");
        softAssert.assertAll();
+    }
+
+
+    public void validateTheDentalLatestApplicationDateForTheYearDB() {
+        String denLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
+        softAssert.assertTrue(denLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getDenLatestAppDate()));
+        softAssert.assertAll();}
+
+    public void validateTheBrokerEmailInDB() {
+        String brokerEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(brokerEmail,SharedData.getBroker().getEmail());
+        softAssert.assertAll();
+    }
+
+    public void validateTheAgencyEmailInDB() {
+        String agencyEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
+        softAssert.assertAll();
+    }
+    public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
+        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
+        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate twoMonthsLater = currentDate.plusDays(enrollmentEndDate);
+
+        String formattedEnrolmentEndDate = basicActions.changeDateFormat(String.valueOf(twoMonthsLater),"yyyy-MM-dd","MM/dd/yyyy");
+        softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
+        softAssert.assertAll();
+    }
+
+    public void verifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {
+        String[] dbValues = exchDbDataProvider.getTaxFilingData(basicActions.getMemberId(memPrefix));
+        System.out.println(Arrays.toString(dbValues));
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("claimed_as_dep_on_othr_ftr_ind"));
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("tax_filing_type"));
+        softAssert.assertAll();
     }
 
 }

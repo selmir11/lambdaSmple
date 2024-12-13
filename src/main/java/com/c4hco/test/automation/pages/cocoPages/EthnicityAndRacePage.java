@@ -22,19 +22,19 @@ public class EthnicityAndRacePage {
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
-    @FindBy(css = "lib-navigations-buttons.btn-primary-action-button")
+    @FindBy(id = "saveAndContinue")
     WebElement saveAndContinue_Button;
 
-    @FindBy(css = "Lib-navigations-buttons.btn-second-action-button")
+    @FindBy(id = "goBack")
     WebElement goBackButton;
 
-    @FindBy(css = ".c4-type-header-lg.race_ethnicity_title")
+    @FindBy(id = "raceEthnicityTitle")
     WebElement hdrRaceAndEthnicity;
 
-    @FindBy(css = ".c4-type-body-md-bold.race_ethnicity_content")
+    @FindBy(id = "selectingThisPerson")
     WebElement subHdrRaceAndEthnicity;
 
-    @FindBy(css = ".input-error-message.select-all-text")
+    @FindBy(id = "selectAll")
     WebElement selectAllThatApplyText;
 
     @FindBy(css = ".checkbox-label")
@@ -329,6 +329,7 @@ public class EthnicityAndRacePage {
     }
 
     public void selectNotListedAndEnterCustomText(String customText) {
+        basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
         raceEthnicityButton.get(7).click();
         basicActions.waitForElementToBePresent(notListedReason, 10);
         notListedReason.sendKeys(customText);

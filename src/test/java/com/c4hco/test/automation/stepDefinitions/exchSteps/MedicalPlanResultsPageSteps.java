@@ -4,6 +4,8 @@ import com.c4hco.test.automation.pages.exchPages.MedicalPlanResultsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
+
 public class MedicalPlanResultsPageSteps {
 
     MedicalPlanResultsPage medPlanResultsPage = new MedicalPlanResultsPage(WebDriverManager.getDriver());
@@ -118,11 +120,11 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.validatePlanCount(plansCount);
     }
 
-
-    @And("I select the {string} medical plan but skip for {string}")
-    public void selectMedicalPlanForMember(String specificPlan, String member) {
-        medPlanResultsPage.SelectSpecificMedicalPlanPerGrp(specificPlan, member);
+    @And("I select or skip the medical plans for groups")
+    public void selectMedicalPlanForGroup(List<String> plansOfGroups) {
+        medPlanResultsPage.selectPlansForGroups(plansOfGroups);
     }
+
     @And("I validate medical premium amount is not zero")
     public void verifypremiumamountisnotzero() {
         medPlanResultsPage.verifyPremiumAmountIsNotZero();

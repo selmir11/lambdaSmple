@@ -1,10 +1,10 @@
 
 Feature: FA - 4groups - enroll in plan
-  @SLER-1122-WIP @E2E_EXCH
+  @SLER-1122 @E2E_EXCH
   Scenario: : SOL - EMP-AWS-SHP: FA Complex (1HH/4GRPs): Create Account, Submit Eligibility & Enroll in a plan
 
     Given I set the test scenario details
-     | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 4          | 7            | 5                 | 5                |   5             |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -18,7 +18,7 @@ Feature: FA - 4groups - enroll in plan
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
+    #And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "07271963" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -86,7 +86,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
-    And I select "Yes" for Incarceration option
+    And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonOne"
@@ -206,7 +206,7 @@ Feature: FA - 4groups - enroll in plan
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "47000.00" income at "Annually" frequency
+    And I enter employment details with "400000.00" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -220,7 +220,7 @@ Feature: FA - 4groups - enroll in plan
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "600000.00" at frequency "Annually"
+    Then I enter company details with addressline1 as "1234 town" and city as "Denver" and state as "CO" and zipcode as "80205" and income "0.00" at frequency "Annually"
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -321,28 +321,40 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on "No Thanks" on good news page
+    Then I validate that my APTC value is "869.54/mo"
+
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click Yes to the Tobacco usage question on start shopping page
-      |Primary|
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     And I validate I am on the "Medical Plan Results" page
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
     And I click continue on plan summary page
     And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
@@ -357,7 +369,7 @@ Feature: FA - 4groups - enroll in plan
     Then I click all done from payment portal page
 
     Then I validate I am on the "Account Overview" page
-    #APTC AMOUNT
+
 
     Then I click on make changes button
 
@@ -396,25 +408,11 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on "No Thanks" on good news page
+    Then I validate that my APTC value is "$0.00/mo"
+
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
-    Then I click continue on application results page
-    Then I validate I am on the "Start Shopping" page
-    Then I click continue on start shopping page
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I click continue on grouping Members Medical page
-    And I validate I am on the "Medical Plan Results" page
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    And  I select the "Cigna Connect Colorado Option Bronze" medical plan but skip for "Daughter"
-    Then I validate I am on the "Grouping Members Dental" page
-    Then I click continue on grouping Members Dental page
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    And  I select the "Anthem Dental Family" Dental plan but skip for "Daughter"
-    Then I validate I am on the "planSummaryMedicalDental" page
+
 
 
 

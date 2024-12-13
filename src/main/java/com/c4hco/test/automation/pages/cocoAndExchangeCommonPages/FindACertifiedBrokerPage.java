@@ -131,15 +131,6 @@ public class FindACertifiedBrokerPage {
     @FindBy(id = "BP-FindaCertifiedBrokernearyou-GoBack")
     WebElement findBrokerGoBack;
 
-    @FindBy (id = "broker-organizationName")
-    WebElement currentBrokerName;
-
-    @FindBy (id = "broker-license")
-    WebElement currentBrokerLicenceNumber;
-
-    @FindBy (id = "broker-exchangeId")
-    WebElement currentAgencyName;
-
     @FindBy(id= "container dashboard-card")
     WebElement changeBrokerContainer;
 
@@ -160,6 +151,15 @@ public class FindACertifiedBrokerPage {
 
     @FindBy(xpath= "//button[@class='btn col-lg-3 primary-action-button m-2']")
     WebElement authorizeNewBrokerBtn;
+
+    @FindBy(xpath= "//div[@id='client-information-table']/div")
+    WebElement brokerPermissionText;
+
+    @FindBy(id = "cncl-brok")
+    WebElement cancelBrokerAuthorizationButton;
+
+    @FindBy(id = "auth-brok")
+    WebElement brokerAuthorizationButton;
 
     @FindBy (xpath = "//button[.='Continue with my application']")
     WebElement continueWithMyOwn;
@@ -202,6 +202,12 @@ public class FindACertifiedBrokerPage {
         searchBrokerLanguage.sendKeys(Keys.ENTER);
     }
 
+    public void enterNewLicenseNumberSearch() {
+        basicActions.waitForElementToBePresent(searchContainer,60);
+        searchContainer.sendKeys(SharedData.getAgencyOwner().getLicense());
+
+    }
+
     public void clearSearchForBrokerLocation() {
         basicActions.waitForElementToBePresent(searchBrokerLocation,60);
         searchBrokerLocation.clear();
@@ -218,7 +224,7 @@ public class FindACertifiedBrokerPage {
     }
 
     public void clickMoreDetailsInTheBrokerContainer() {
-        basicActions.waitForElementToBePresent(moreDetails,10);
+        basicActions.waitForElementToBePresentWithRetries(moreDetails,10);
         moreDetails.click();
         basicActions.waitForElementToBePresent(agencyDisplayedName, 10);
         setBrokerDetails();
@@ -291,6 +297,12 @@ public class FindACertifiedBrokerPage {
         softAssert.assertAll();
     }
 
+    public void validateNewAgencyAddress(){
+        basicActions.waitForElementToBePresent(agencyAddress,100);
+        softAssert.assertEquals(agencyAddress.getText(),SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
+        softAssert.assertAll();
+    }
+
     public void validateAgencyAddressHidden(){
         softAssert.assertFalse(agencyAddress.isDisplayed());
         softAssert.assertAll();
@@ -335,6 +347,17 @@ public class FindACertifiedBrokerPage {
         softAssert.assertEquals(availablityDays.getText(),availability);
         softAssert.assertEquals(availablityHours.getText(),officeHours);
         softAssert.assertEquals(licenseNumber.getText(),expectedLicenseNumber);
+        softAssert.assertEquals(availableLanguages.getText(),agencyLanguage);
+        softAssert.assertAll();
+    }
+
+    public void validateNewAgencyDetails(String emailAddress, String expectedPhoneNumber, String availability, String officeHours, String agencyLanguage){
+        basicActions.waitForElementToBePresent(emailLabel,100);
+        softAssert.assertEquals(agencyEmail.getText(),emailAddress);
+        softAssert.assertEquals(phoneNumber.getText(),expectedPhoneNumber);
+        softAssert.assertEquals(availablityDays.getText(),availability);
+        softAssert.assertEquals(availablityHours.getText(),officeHours);
+        softAssert.assertEquals(licenseNumber.getText(),SharedData.getAgencyOwner().getLicense());
         softAssert.assertEquals(availableLanguages.getText(),agencyLanguage);
         softAssert.assertAll();
     }
@@ -473,17 +496,83 @@ public class FindACertifiedBrokerPage {
         authorizeBrokerButton.click();
     }
 
-    public void validateChangeBrokerText (String newBrokerName, String newBrokerAgency, String currentBrokerName, String currentBrokerAgency){
+    public void clickAuthorizeBrokerOptionButton(String buttonOption){
+        basicActions.waitForElementToBePresent(cancelBrokerAuthorizationButton,60);
+
+        switch (buttonOption) {
+            case "Authorize Broker":
+                authorizeBrokerTermsCheckbox.click();
+                brokerAuthorizationButton.click();
+                break;
+            case "Cancel":
+                cancelBrokerAuthorizationButton.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + buttonOption);
+        }
+    }
+
+    public void validateChangeBrokerText (String newBrokerName, String newBrokerAgency, String currentBrokerName, String currentBrokerAgency, String language, String marketplace){
         basicActions.waitForElementToBePresent(changeBrokerContainer,10);
         basicActions.waitForElementToBePresent(changeBrokerContainerWarningText,60);
-        softAssert.assertEquals(changeBrokerContainerTitle.getText(),"Interested in this Broker?");
-        softAssert.assertEquals(changeBrokerContainerWarningText.getText(),"By selecting Authorize New Broker, your current broker, " + currentBrokerName + " with " + currentBrokerAgency + " will be deauthorized and " + newBrokerName + " with " + newBrokerAgency + " will be authorized as your new broker.");
-        softAssert.assertEquals(brokerPermissionWarningText.getText(),"You need to grant permission before this broker can act on your behalf or access your information.");
-        softAssert.assertEquals(brokerAuthorizationTermsText.getText(),"I authorize this broker to have full access to my Colorado Connect accounts");
-        softAssert.assertEquals(keepCurrentBrokerBtn.getText(),"Keep Current Broker");
-        softAssert.assertEquals(authorizeNewBrokerBtn.getText(),"Authorize New Broker");
+        String market = "";
+
+        switch (marketplace) {
+            case "Exch":
+                market = "Connect for Health Colorado";
+                break;
+            case "CoCo":
+                market = "Colorado Connect";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + marketplace);
+        }
+
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(changeBrokerContainerTitle.getText(),"Interested in this Broker?");
+                softAssert.assertEquals(changeBrokerContainerWarningText.getText(),"By selecting Authorize New Broker, your current broker, " + currentBrokerName + " with " + currentBrokerAgency + " will be deauthorized and " + newBrokerName + " with " + newBrokerAgency + " will be authorized as your new broker.");
+                softAssert.assertEquals(brokerPermissionWarningText.getText(),"You need to grant permission before this broker can act on your behalf or access your information.");
+                softAssert.assertEquals(brokerAuthorizationTermsText.getText(),"I authorize this broker to have full access to my " + market + " accounts");
+                softAssert.assertEquals(keepCurrentBrokerBtn.getText(),"Keep Current Broker");
+                softAssert.assertEquals(authorizeNewBrokerBtn.getText(),"Authorize New Broker");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(changeBrokerContainerTitle.getText(),"\u00BFEst\u00E1 interesado en este agente?");
+                softAssert.assertEquals(changeBrokerContainerWarningText.getText(),"Al seleccionar Autorizar al nuevo agente, su agente actual " + currentBrokerName + " de " + currentBrokerAgency + " se desautorizar\u00E1 y " + newBrokerName + " de " + newBrokerAgency + " ser\u00E1 su nuevo agente autorizado.");
+                softAssert.assertEquals(brokerPermissionWarningText.getText(),"Debe otorgar su permiso al agente o agencia de actuar en su nombre y acceder a su informaci\u00F3n.");
+                softAssert.assertEquals(brokerAuthorizationTermsText.getText(),"Autorizo a este agente o agencia de tener acceso completo a mis cuentas de " + market);
+                softAssert.assertEquals(keepCurrentBrokerBtn.getText(),"Mantener el agente actual");
+                softAssert.assertEquals(authorizeNewBrokerBtn.getText(),"Autorizar al nuevo agente");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertTrue(keepCurrentBrokerBtn.isEnabled());
         softAssert.assertFalse(authorizeNewBrokerBtn.isEnabled());
+        softAssert.assertAll();
+    }
+
+    public void validateAuthorizeBrokerText (String language){
+        basicActions.waitForElementToBePresent(changeBrokerContainer,10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(changeBrokerContainerTitle.getText(),"Interested in this Broker?");
+                softAssert.assertEquals(brokerPermissionText.getText(),"You need to grant permission before this broker can act on your behalf or access your information.");
+                softAssert.assertEquals(brokerAuthorizationTermsText.getText(),"I authorize this broker to have full access to my Connect for Health Colorado accounts");
+                softAssert.assertEquals(cancelBrokerAuthorizationButton.getText(),"Cancel");
+                softAssert.assertEquals(brokerAuthorizationButton.getText(),"Authorize Broker");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(changeBrokerContainerTitle.getText(),"\u00BFEst\u00E1 interesado en este agente?");
+                softAssert.assertEquals(brokerPermissionText.getText(),"Debe otorgar su permiso al agente o agencia de actuar en su nombre y acceder a su informaci\u00F3n.");
+                softAssert.assertEquals(brokerAuthorizationTermsText.getText(),"Autorizo a este agente o agencia de tener acceso completo a mis cuentas de Connect for Health Colorado");
+                softAssert.assertEquals(cancelBrokerAuthorizationButton.getText(),"Cancelar");
+                softAssert.assertEquals(brokerAuthorizationButton.getText(),"Autorizar al agente");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertAll();
     }
 

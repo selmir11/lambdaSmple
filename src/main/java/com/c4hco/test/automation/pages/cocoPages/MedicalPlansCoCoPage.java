@@ -51,7 +51,7 @@ public class MedicalPlansCoCoPage {
     WebElement selectSecondComparebox;
 
     @FindBy(id = "PlanResults-PlanCompareCheckbox_3")
-    WebElement selectSThirdComparebox;
+    WebElement selectThirdComparebox;
 
     @FindBy(id = "PlanResults-ComparePlans")
     WebElement selectCompareButton;
@@ -206,10 +206,12 @@ public class MedicalPlansCoCoPage {
     public void select3PlanstoCompare() {
         basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresent( selectFirstComparebox,20 );
         selectFirstComparebox.click();
+        basicActions.waitForElementToBePresent( selectSecondComparebox,20 );
         selectSecondComparebox.click();
-        selectSThirdComparebox.click();
+        basicActions.waitForElementToBePresent( selectThirdComparebox,20 );
+        selectThirdComparebox.click();
         selectCompareButton.click();
     }
 

@@ -1,10 +1,7 @@
-package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
-
 public class AdminPortalIndividualDashboardPage {
 
     public BasicActions basicActions;
@@ -75,8 +71,6 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberDob;
     @FindBy(css = "body app-root div:nth-child(6)")
     WebElement memberAddress;
-    @FindBy(css = "div[id='groupBox1'] p[class='group-title']")
-    List<WebElement> titleOfContainer;
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
     @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
@@ -121,11 +115,11 @@ public class AdminPortalIndividualDashboardPage {
     WebElement goBack;
     @FindBy(css = "label[for='organization-id']")
     WebElement lblGroupID;
-    @FindBy(css = "#id")
+    @FindBy(xpath = "//p[@id='id']")
     WebElement groupID;
     @FindBy(css = "label[for='name']")
     WebElement lablOrgName;
-    @FindBy(css = "//p[@id='name']")
+    @FindBy(xpath = "//p[@id='name']")
     WebElement orgName;
     @FindBy(xpath = "//th[normalize-space()='First Name']")
     WebElement clientFirstName;
@@ -157,6 +151,54 @@ public class AdminPortalIndividualDashboardPage {
     WebElement renewalStatusAnyEnvironment;
     @FindBy(xpath = "//div[.='Renewal Status: CANCELED']")
     WebElement renewalCanceled;
+    @FindBy(css = "div[class='group-box summary-container'] p[class='group-title']")
+    WebElement profileTitle;
+    @FindBy(css = "div[id='program-manager-contract'] p[class='group-title']")
+    WebElement contractTitle;
+    @FindBy(css = "div[class='group-box activity-container'] p[class='group-title']")
+    WebElement accountActivityTitle;
+    @FindBy(css = "div[class='group-box client-container'] p[class='group-title']")
+    WebElement clientTitle;
+    @FindBy(css = "div[class='group-box organization-container'] p[class='group-title']")
+    WebElement organizationTitle;
+    @FindBy(css = "body app-root th:nth-child(1)")
+    WebElement firstNameClient;
+    @FindBy(css = "body app-root th:nth-child(2)")
+    WebElement lastNameClient;
+    @FindBy(css = "body app-root th:nth-child(4)")
+    WebElement phoneClient;
+    @FindBy(css = "body app-root th:nth-child(3)")
+    WebElement emailClient;
+    @FindBy(xpath = "//*[@id=\"program-manager-client-info-table\"]/tr[1]")
+    WebElement firstRowClientData;
+    @FindBy(xpath = "//*[@id=\"program-manager-client-info-table\"]/tr[2]")
+    WebElement secondRowClientData;
+
+    //Manage account access
+    @FindBy(xpath = "(//p[normalize-space()=\"Suspend user's account\"])[1]")
+    WebElement txtSuspAcct;
+
+    @FindBy(xpath = "(//p[normalize-space()=\"Reset user's password\"])[1]")
+    WebElement txtResetPassw;
+
+    @FindBy(xpath = "//p[@id='account-status']")
+    WebElement accountStatus;
+
+
+    @FindBy(xpath= "(//input[@name='account-option'])[1]")
+    WebElement selectsuspendoractiavteaccount;
+
+    @FindBy(xpath = "(//input[@name='account-option'])[2]")
+    WebElement selectResetPassword;
+
+    @FindBy(xpath = "//button[@id='btn-save']")
+    WebElement save;
+
+    @FindBy(xpath = "//p[@class='content-message']")
+    WebElement successfulUpdatemessage;
+
+    @FindBy(xpath = "//app-activity-report/div[2]/div[1]/sort-table[1]/table[1]/tbody[1]/tr[2]/td/app-max-length-tooltip")
+    List<WebElement> resetPasswordlogsrow;
 
     public void enterAgencyData(String agencyData, String type) {
         switch (agencyData) {
@@ -184,7 +226,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(reportsTitle.isDisplayed());
         softAssert.assertAll();    }
     public void viewReportLinks(String searchText) {
-        basicActions.waitForElementListToBePresent(reportViewButtons, 20);
+        basicActions.waitForElementListToBePresentWithRetries(reportViewButtons, 60);
         WebElement viewButton = basicActions.getDriver().findElement(By.xpath("//span[contains(normalize-space(), '" + searchText + "')]//following::span[1]"));
         viewButton.click();
         basicActions.switchtoactiveTab();    }
@@ -333,16 +375,16 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(noClients.isDisplayed());
         softAssert.assertEquals(noClients.getText(), text);
         softAssert.assertAll();    }
-    public void VerifyProgramManagerOrganizationInformation() {
-        softAssert.assertEquals(lblGroupID.getText(), "Organization Group ID:");
-        softAssert.assertEquals(lablOrgName.getText(), "Organization Name:");
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(groupID.getText(), "130474819");
-            softAssert.assertEquals(orgName.getText(), "profiletest");
-        } else {
-            softAssert.assertEquals(groupID.getText(), "60288219");
-            softAssert.assertEquals(orgName.getText(), "apdrhhfmqdupyqdgcpgrveupznk");
-        }
+    public void VerifyProgramManagerOrganizationInformation(String idSTG, String idQA, String nameSTG, String nameQA) {
+            softAssert.assertEquals(lblGroupID.getText(), "Organization Group ID:");
+            softAssert.assertEquals(lablOrgName.getText(), "Organization Name:");
+      if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(groupID.getText(), idSTG);
+            softAssert.assertEquals(orgName.getText(), nameSTG);
+       }else {
+          softAssert.assertEquals(groupID.getText(), idQA);
+            softAssert.assertEquals(orgName.getText(), nameQA);
+       }
             softAssert.assertAll(); }
     public void clickGoBackONAdminPortalProgramManager() {
         basicActions.waitForElementToBePresent(goBack, 20);
@@ -428,5 +470,73 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(renewalCanceled, 10);
         softAssert.assertEquals(renewalCanceled.getText(), status);
         softAssert.assertAll();    }
+
+    ///////Manage account Access///////
+    public void VerifyAccountAccessDetails(){
+        basicActions.waitForElementToBePresent(txtSuspAcct,30);
+        softAssert.assertEquals(txtSuspAcct.getText(),"Suspend user's account");
+        basicActions.waitForElementToBePresent(txtResetPassw,30);
+        softAssert.assertEquals(txtResetPassw.getText(),"Reset user's password");
+        softAssert.assertAll();
+    }
+
+    public void validateAccountStatus() {
+       basicActions.waitForElementToBePresent(accountStatus, 30);
+       softAssert.assertEquals(accountStatus.getText(),"Account Status: Active");
+       softAssert.assertAll();
+    }
+
+    public void selectResetandSave(){
+        basicActions.waitForElementToBePresent(selectResetPassword, 30);
+        selectResetPassword.click();
+        save.click();
+    }
+
+    public void verifyuccessmessage() {
+       basicActions.waitForElementToBePresent(successfulUpdatemessage, 50);
+       softAssert.assertEquals(successfulUpdatemessage.getText(),"Successful Update");
+        softAssert.assertAll();
+    }
+
+        public void selectCheckbox(){
+        basicActions.waitForElementToBePresent(selectsuspendoractiavteaccount, 30);
+        selectsuspendoractiavteaccount.click();
+        save.click();
+        }
+
+    public void validatePMDashboardContainerTitles(String profile, String contract, String accountActivity, String clientInfo, String organizationInfo) {
+        basicActions.waitForElementToBePresent(profileTitle, 30);
+        softAssert.assertEquals(profileTitle.getText(), profile);
+        softAssert.assertEquals(contractTitle.getText(), contract);
+        softAssert.assertEquals(accountActivityTitle.getText(), accountActivity);
+        softAssert.assertEquals(clientTitle.getText(), clientInfo);
+        softAssert.assertEquals(organizationTitle.getText(), organizationInfo);
+        softAssert.assertAll();     }
+    public void validateTitleRowClientInformation(String fNameClient, String lNameClient, String eClient, String phClient) {
+        basicActions.waitForElementToBePresent(firstNameClient, 30);
+        softAssert.assertEquals(firstNameClient.getText(), fNameClient);
+        softAssert.assertEquals(lastNameClient.getText(), lNameClient);
+        softAssert.assertEquals(emailClient.getText(), eClient);
+        softAssert.assertEquals(phoneClient.getText(), phClient);
+        softAssert.assertAll();     }
+    public void validateFirstRowClientData(String clientInfo, String firstClientSTG, String firstClientQA) {
+        basicActions.waitForElementToBePresent(clientTitle, 30);
+        softAssert.assertEquals(clientTitle.getText(), clientInfo);
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(firstRowClientData.getText(), firstClientSTG);
+        }else{
+            softAssert.assertEquals(firstRowClientData.getText(), firstClientQA);
+        }
+        softAssert.assertAll();     }
+    public void validateSecondRowClientData(String clientInfo, String secondClientSTG, String secondClientQA) {
+        basicActions.waitForElementToBePresent(clientTitle, 30);
+        softAssert.assertEquals(clientTitle.getText(), clientInfo);
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(secondRowClientData.getText(), secondClientSTG);
+        }else{
+            softAssert.assertEquals(secondRowClientData.getText(), secondClientQA);
+        }
+        softAssert.assertAll();     }
 }
+
 

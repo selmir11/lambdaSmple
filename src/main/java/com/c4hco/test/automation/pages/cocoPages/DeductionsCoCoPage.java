@@ -154,6 +154,9 @@ public class DeductionsCoCoPage {
     @FindBy(id = "Deductions-GoBack")
     WebElement backButton;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,30);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,30);
@@ -175,6 +178,7 @@ public class DeductionsCoCoPage {
     }
 
     public void selectDeductionOptionOnly(String deductionOption) {
+        basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.waitForElementListToBePresentWithRetries(deductionButton, 10);
 
         Map<String, Integer> optionToIndex = new HashMap<>();

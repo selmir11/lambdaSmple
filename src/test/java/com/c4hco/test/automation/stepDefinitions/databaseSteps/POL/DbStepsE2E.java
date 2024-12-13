@@ -12,6 +12,8 @@ public class DbStepsE2E {
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
     private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
+    private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
+    private final Ob834PreEdiDbValidations_grp ob834PreEdiDbValidationsGrp = new Ob834PreEdiDbValidations_grp();
 
 
 
@@ -19,10 +21,18 @@ public class DbStepsE2E {
     public void validateMedicalRecords(String recordType){
         policyTableDBValidations.recordsValidations(recordType);
     }
+    @And("I validate {string} entities from policy tables for groups")
+    public void validateMedicalRecordsForGroups(String recordType){
+        policyTableDbValidations_Grps.groupRecordsValidations(recordType);
+    }
 
     @And("I validate {string} entities from pre edi db tables")
     public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
         ob834PreEdiDbValidations.recordsValidations(recordType, expectedValues);
+    }
+    @And("I validate {string} entities from pre edi db tables for groups")
+    public void validateOb834MedicalRecordsForGroups(String recordType, List<Map<String, String>> expectedValues){
+        ob834PreEdiDbValidationsGrp.groupRecordsValidations(recordType, expectedValues);
     }
     @And("I validate {string} entities from ib999_details db table")
     public void validateIb999DetailsDB(String recordType){

@@ -1,11 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminLceToolPage;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalIndividualDashboardPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.WebElement;
-
+import io.cucumber.java.en.When;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages.AdminPortalIndividualDashboardPage;
 import java.util.List;
 
 public class AdminPortalIndividualDashboardSteps {
@@ -71,9 +69,10 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I Verify Program Manager Client Information : {string}")
     public void iVerifyBrokerClientInformationContainer(String text) {
         adminPortalIndividualDashboardPage.VerifyProgramManagerClientInformationContainer(text);    }
-    @And("I Verify organization Information Container")
-    public void iVerifyProgramManagerOrganizationInformation() {
-        adminPortalIndividualDashboardPage.VerifyProgramManagerOrganizationInformation();    }
+    @Then("I Verify organization Information Container {string} {string} or {string} {string}")
+    public void iVerifyProgramManagerOrganizationInformation(String idSTG, String idQA, String nameSTG, String nameQA) {
+        adminPortalIndividualDashboardPage.VerifyProgramManagerOrganizationInformation(idSTG, idQA, nameSTG, nameQA);  }
+
     @And("I click Go Back on admin portal program manager dashboard")
     public void iClickGoBackOnAdminPortalBrokerDashboard() {
         adminPortalIndividualDashboardPage.clickGoBackONAdminPortalProgramManager();    }
@@ -130,5 +129,47 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify Renewal status {string} is displayed")
     public void iVerifyCanceledStatusIsDisplayed(String containerStatus) {
         adminPortalIndividualDashboardPage.verifyStatusCanceledIsDisplayed(containerStatus);        }
+
+    @Then("I verify Account Access details")
+    public void iVerifyAccountAccessDetails() {
+        adminPortalIndividualDashboardPage.VerifyAccountAccessDetails();
+    }
+
+    @And("I verify Account status is active")
+    public void iVerifyAccountStatusIsActive() {
+        adminPortalIndividualDashboardPage.validateAccountStatus();
+    }
+
+    @When("I check on Reset user's password checkbox and click on save")
+    public void iCheckOnResetUserSPasswordCheckboxAndClickOnSave() {
+        adminPortalIndividualDashboardPage.selectResetandSave();
+    }
+
+    @Then("I verify success message is displaying")
+    public void iVerifySuccessMessageIsDisplaying() {
+        adminPortalIndividualDashboardPage.verifyuccessmessage();
+    }
+
+    @When("I check on checkbox account and click on save")
+    public void iCheckOnCheckboxAccountAndClickOnSave() {
+        adminPortalIndividualDashboardPage.selectCheckbox();
+    }
+
+    @And("I validate individual dashboard container titles: {string} {string} {string} {string} {string} are displayed")
+    public void iValidatePMDashboardContainerTitlesAreDisplayed(String profile, String contract, String accountActivity, String clientInfo, String organizationInfo) {
+        adminPortalIndividualDashboardPage.validatePMDashboardContainerTitles(profile, contract, accountActivity, clientInfo, organizationInfo);
+    }
+    @Then("I validate Client Information title row {string} {string} {string} {string}")
+    public void iValidateTitleRowClientInformation(String fNameClient, String lNameClient, String eClient, String phClient) {
+        adminPortalIndividualDashboardPage.validateTitleRowClientInformation(fNameClient, lNameClient, eClient, phClient);  }
+
+    @And("I validate {string} first row - first client data {string} or {string}")
+    public void iValidateFirstRowClientData(String clientInfo, String firstClientSTG, String firstClientQA) {
+        adminPortalIndividualDashboardPage.validateFirstRowClientData(clientInfo, firstClientSTG, firstClientQA);  }
+
+    @And("I validate {string} second row - first client data {string} or {string}")
+    public void iValidateSecondRowClientData(String clientInfo, String secondClientSTG, String secondClientQA) {
+        adminPortalIndividualDashboardPage.validateSecondRowClientData(clientInfo, secondClientSTG, secondClientQA);  }
+
 }
 
