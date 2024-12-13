@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,10 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class AdminPortalReportsPage {
     private BasicActions basicActions;
@@ -39,25 +38,6 @@ public class AdminPortalReportsPage {
         softAssert.assertEquals("Time",eventTime.getText());
                softAssert.assertAll(); }
 
-    public void viewActivity(String activityText,String userData,String timeForEvent, String descriptionData) {
-        basicActions.waitForElementListToBePresent(eventCodeList,300);
-        List<String> username = eventCodeList.stream().filter(s -> s.getText().equals(activityText)).map(AdminPortalReportsPage::getUsername).toList();
-        softAssert.assertTrue(username.contains(userData));
-        List<String> time = eventCodeList.stream().filter(s -> s.getText().equals(activityText)).map(AdminPortalReportsPage::gettime).toList();
-        softAssert.assertTrue(time.contains(timeForEvent));
-        List<String> description = eventCodeList.stream().filter(s -> s.getText().equals(activityText)).map(AdminPortalReportsPage::getDescription).toList();
-        softAssert.assertTrue(description.contains(descriptionData));
-        softAssert.assertAll();     }
-    private static String getUsername(WebElement currentUser) {
-        String username = currentUser.findElement(By.xpath("following-sibling::td[2]")).getText();
-        return username;    }
-    private static String gettime(WebElement eventTime) {
-        String time = eventTime.findElement(By.xpath("following-sibling::td[1]")).getText();
-        return time;    }
-    private static String getDescription(WebElement eventDescription) {
-        String description = eventDescription.findElement(By.xpath("following-sibling::td[3]")).getText();
-        return description;    }
-
     public void validateEventCodeInActivityEventReport(String eventType, String description) {
         WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='sort-table']"));
         List<WebElement> rows = table.findElements(By.xpath("//table[@class='sort-table']//tr"));
@@ -74,4 +54,64 @@ public class AdminPortalReportsPage {
         softAssert.assertTrue(expected.contains(description), "Description not found. Expected: " + description + " to be in: " + expected);
         softAssert.assertAll();
     }
-}
+
+    public void VerifyEvents(String text, String timeCondition, String qaUsername, String stagingUsername, String expectedValue, String expectedStatus, String expectedKey) {
+        String username = getUsernameBasedOnEnv(qaUsername, stagingUsername);
+
+        WebElement eventTime = basicActions.getDriver().findElement(By.xpath("//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]"));
+        Boolean result = basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
+
+        if (!result) {
+            System.out.println("Element was not found after the timeout.");
+            return;
+        }
+
+        String TextXPath = "//span[contains(text(),'" + text + "')]";
+        WebElement resetDateElement = basicActions.getDriver().findElement(By.xpath(TextXPath));
+
+        WebElement timeElement = resetDateElement.findElement(By.xpath("ancestor::td/following-sibling::td[1]"));
+        String actualTime = timeElement.getText().trim();
+
+        if (timeCondition.equals("todays date within last 10 min timestamp")) {
+            basicActions.validateTimeWithinLast10Minutes(actualTime);
+        } else {
+            validateExactTimestamp(actualTime, timeCondition);
+        }
+
+        validateUsernameData(resetDateElement, username, expectedValue, expectedStatus, expectedKey);
+        softAssert.assertAll();
+    }
+
+    private String getUsernameBasedOnEnv(String qaUsername, String stagingUsername) {
+        if (SharedData.getEnv().equals("qa")) {
+            return qaUsername;
+        } else if (SharedData.getEnv().equals("staging")) {
+            return stagingUsername;
+        } else {
+            throw new RuntimeException("Unknown environment: " + SharedData.getEnv());
+        }
+    }
+
+    private void validateUsernameData(WebElement resetDateElement, String username, String expectedValue, String expectedStatus, String expectedKey) {
+        WebElement nameElement = resetDateElement.findElement(By.xpath("ancestor::td/following-sibling::td[2]"));
+        String actualName = nameElement.getText().trim();
+        softAssert.assertEquals(actualName, username, "Name does not match for " + username);
+
+        WebElement valueElement = resetDateElement.findElement(By.xpath("ancestor::td/following-sibling::td[3]"));
+        String actualValue = valueElement.getText().trim();
+        softAssert.assertEquals(actualValue, expectedValue, "Value does not match for " + username);
+
+        WebElement statusElement = resetDateElement.findElement(By.xpath("ancestor::td/following-sibling::td[4]"));
+        String actualStatus = statusElement.getText().trim();
+        softAssert.assertEquals(actualStatus, expectedStatus, "Status does not match for " + username);
+
+        WebElement keyElement = resetDateElement.findElement(By.xpath("ancestor::td/following-sibling::td[5]"));
+        String actualKey = keyElement.getText().trim();
+        softAssert.assertEquals(actualKey, expectedKey, "Key does not match for " + username);
+    }
+
+    private void validateExactTimestamp(String actualTime, String expectedTime) {
+        if (!actualTime.equals(expectedTime)) {
+            softAssert.fail("The time does not match the expected timestamp. Expected: " + expectedTime + ", but got: " + actualTime);
+        }
+    }  }
