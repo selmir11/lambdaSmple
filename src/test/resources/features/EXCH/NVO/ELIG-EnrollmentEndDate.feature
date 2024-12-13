@@ -224,7 +224,7 @@ Feature: LR Enrollment Period end date is set when user has
 #DBSTEP
     And  I Validate enrollment period end date is set to 60 days from current QLCE days
 
-    @SLER-1849 @SLER-1868
+    @SLER-1849-WIP @SLER-1868
     Scenario Outline: Validate enrollment period end date
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
@@ -271,7 +271,7 @@ Feature: LR Enrollment Period end date is set when user has
       And I Apply for financial help
       Then I select the option "Yes" to employment
       And I select the option "No" to self employment
-      And I enter employment details with "28000" income at "Annually" frequency
+      And I enter employment details with "2800000" income at "Annually" frequency
       And I select the option "No" to seasonal employment
       And I select the option "No" to projected income
       And I click continue on the Employment Info Page
