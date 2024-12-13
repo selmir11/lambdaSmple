@@ -1,8 +1,6 @@
 @OPS @SLER-1858
 Feature: IndDash: Verify Financial Help Eligibility button is displaying
-
-Scenario: SLER-1858 Verify Financial Help Eligibility button and upload button is displaying for user(access from admin portal)
-
+  Background:
   Given I open the login page on the "admin" portal
 And I validate I am on the "Login" page
 When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -114,6 +112,7 @@ And I validate I am on the "Pay now" page
 Then I click all done from payment portal page OBO
 And I close current tab and switch back to previous tab
 
+  Scenario: SLER-1858 Verify Financial Help Eligibility button and upload button is displaying for user(access from admin portal)
   And I click "On Behalf Of (OBO)" from application links dropdown
   Then I click link my docs on accountOverview page
   Then I validate I am on the "My Documents" page
@@ -130,3 +129,26 @@ And I close current tab and switch back to previous tab
   And I click "On Behalf Of (OBO)" from application links dropdown
   Then I click link my docs on accountOverview page
   Then I upload MVR doc for "Financial Help Eligibility" on the My Documents page
+
+    @SLER-1863
+  Scenario: SLER-1863 Verify Financial Help Eligibility button and upload button is displaying for user(access from admin portal- Spanish) and then verify account activity
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I click on verify Financial Help for Eligibility button is displaying for user
+    Then I validate I am on the "Self Attestation" page
+    And I select "Yes" for Household Income
+    And I select "Yes" for Federal Income
+    And I select "No" for Tax Info
+    Then I click on Submit Self Attestation button
+    Then I verify the "Action Required" text on the Post Attestation page
+    Then I click on Finish
+    And I close current tab and switch back to previous tab
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I upload MVR doc for "Financial Help Eligibility" on the My Documents page
+    And I close current tab and switch back to previous tab
+    Then I click on view button for "Account Activity" report
+    And I validate Account Activity title row
+    Then I verify "UI_INCOME_APTC_ATTES.." and following events are displaying as "todays date within last 10 min timestamp" "C4test.aduser12.." "C4testaduser123.." "User attested to Income" "AttestedToIncom.." "Attestation submitted: IN.."
