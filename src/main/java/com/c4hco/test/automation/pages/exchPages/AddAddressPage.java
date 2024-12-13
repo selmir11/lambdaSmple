@@ -117,6 +117,7 @@ public class AddAddressPage {
             case "Household":
                 // selects same residential address as primary person
                 rdobtnHouseholdResidentialAddress.get(0).click();
+                setAddressAsPrimary();
                 break;
             case "New":
                 rdobtnDifferentResidentialAddress.click();
@@ -130,6 +131,21 @@ public class AddAddressPage {
         }
 
     }
+    private void setAddressAsPrimary(){
+        String name = getNameFromHeader.getText();
+        Address residentialAddress = SharedData.getPrimaryMember().getResAddress();
+        List<MemberDetails> allMemList = basicActions.getAllMem();
+      //  allMemList.stream().filter(mem-> mem.getFirstName().contains(name)).findFirst().ifPresent(mem-> mem.setResAddress(residentialAddress));
+
+        for(MemberDetails member: allMemList){
+            if(name.contains(member.getFirstName())){
+                member.setResAddress(residentialAddress);
+                break;
+            }
+        }
+
+    }
+
 
     private String getMemberName(){
         String getHeader = getNameFromHeader.getText();
