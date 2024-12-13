@@ -191,7 +191,7 @@ public class MyPoliciesPage {
     }
 
     private void validateMedPlanDetailsFromPlanHistory(MemberDetails member){
-        System.out.println(tableRecord.size()); basicActions.waitForElementListToBePresent(tableRecord,10);
+        basicActions.waitForElementListToBePresent(tableRecord,10);
         softAssert.assertTrue(tableRecord.get(0).getText().contains(member.getFirstName()), "Member Name mismatch");
         softAssert.assertEquals(tableRecord.get(1).getText(),(member.getMedicalPlan()), "Medical plan mismatch");
         softAssert.assertEquals(tableRecord.get(2).getText().replace(",", ""), ("$"+member.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
@@ -208,6 +208,7 @@ public class MyPoliciesPage {
 
 
     private void validateDentalPlanDetailsFromPlanHistory(MemberDetails member){
+        basicActions.waitForElementListToBePresent(tableRecord,10);
         softAssert.assertTrue(tableRecord.get(0).getText().contains(member.getFirstName()), "Member Name not match");
         softAssert.assertEquals(tableRecord.get(1).getText(), member.getDentalPlan(), "Dental plan did not match");
         softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), member.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
