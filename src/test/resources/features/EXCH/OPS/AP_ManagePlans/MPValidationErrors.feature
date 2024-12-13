@@ -100,11 +100,11 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
 
 #   APTC errors
     When I update the APTC value for
-      | 1:400.16 |
+      | 1:421.16 |
     And I click Save Button Medical
     Then I should see the Invalid monetary amount for APTC error for
       | member | aptc   |
-      | 1      | 400.16 |
+      | 1      | 421.16 |
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     When I update the APTC value for
@@ -250,7 +250,7 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
     And I click Save Button Dental
     Then I should see the Invalid monetary amount for APTC error for
       | member | aptc   |
-      | 1      | 3000.00 |
+      | 1      | 300.00 |
     And I validate APTC entered exceeds EHB amount error is displaying for "dental"
     And I click Reset Changes Dental
     And I click Make Changes Dental button
