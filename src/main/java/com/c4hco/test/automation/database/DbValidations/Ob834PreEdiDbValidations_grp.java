@@ -70,10 +70,28 @@ public class Ob834PreEdiDbValidations_grp {
                     }
                 }
             } else {
-                validateDependentMedDenDetails(ob834DetailsEntity, expectedValues);
+                validateDependentMedDenDetails(ob834DetailsEntity);
+                validateMedForMem(ob834DetailsEntity, expectedValues);
             }
         }
         softAssert.assertAll();
+    }
+    private void validateMedForMem(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues){
+        List<MemberDetails> members = basicActions.getAllDependents();
+        for(MemberDetails member: members){
+            if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
+                medValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
+            }
+        }
+    }
+
+    private void validateDenForMem(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues){
+        List<MemberDetails> members = basicActions.getAllDependents();
+        for(MemberDetails member: members){
+            if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
+                medValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
+            }
+        }
     }
 
     private void ob834DenRecordsValidations(List<Map<String, String>> expectedValues){
@@ -89,13 +107,14 @@ public class Ob834PreEdiDbValidations_grp {
                     }
                 }
             } else {
-                validateDependentMedDenDetails(ob834DetailsEntity, expectedValues);
+                validateDependentMedDenDetails(ob834DetailsEntity);
+                validateDenForMem(ob834DetailsEntity,expectedValues);
             }
         }
         softAssert.assertAll();
     }
 
-    private void validateDependentMedDenDetails(Ob834DetailsEntity ob834Entity,  List<Map<String, String>> expectedValues){
+    private void validateDependentMedDenDetails(Ob834DetailsEntity ob834Entity){
         List<MemberDetails> members = basicActions.getAllDependents();
         for(MemberDetails member: members){
             if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
@@ -103,13 +122,11 @@ public class Ob834PreEdiDbValidations_grp {
                 validateMemberOnlyMedDenFields(ob834Entity);
                 validateMedDenForSubscriberAndMem(ob834Entity, member);
                 medDenValidationsCommonForAllMem(ob834Entity, member);
-                medValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
                 medDenValidationsCommonForAllMem(ob834Entity, member);
-                denValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
-
             }
         }
     }
+
 
     private void validateMemberOnlyMedDenFields(Ob834DetailsEntity ob834Entity){
         softAssert.assertNull(ob834Entity.getPremium_reduction_amt(), "Member Medical Plan premium reduction amount does not match");
