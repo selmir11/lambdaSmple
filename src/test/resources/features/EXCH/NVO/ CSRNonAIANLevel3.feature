@@ -1,4 +1,5 @@
-Feature: ELIG-(NVO-666 for NVO-511)
+Feature: Enrollment end date validation for multiple scenarios
+
   @SLER-1807
   Scenario:[RT-2107] As a user who in plan year 2024 would qualify for the CSR Non AIAN Level 3
     Given I open the login page on the "login" portal
@@ -71,8 +72,6 @@ Feature: ELIG-(NVO-666 for NVO-511)
     #DBSTEP
    And  I verify the Member will be CSR NON_AIAN
 
-
-Feature: ELIG NVO 688 for NVO- 511
   @SLER-1827
   Scenario:[RT-2108] As a user who in plan year 2024 would qualify for the CSR Non AIAN Level 3
     Given I open the login page on the "login" portal
