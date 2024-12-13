@@ -284,7 +284,6 @@ Feature: Seed07 - Exchange - EOY
     And I validate "dental" details on my policies page
 #    And I click View Plan History link from "medical" plan card
     And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
 #    And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
    # And I click on Sign Out in the Header for "NonElmo"
