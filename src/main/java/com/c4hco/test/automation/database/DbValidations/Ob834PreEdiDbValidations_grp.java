@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.database.DbValidations;
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
-import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.DbData;
@@ -360,13 +359,13 @@ public class Ob834PreEdiDbValidations_grp {
     private void subscriberOnlyMedValidations(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
         // Subscriber Only Fields
         getMedicalPlanDbDataMap(getName(ob834Entity, subscriber));
-        double amt = Double.parseDouble(SharedData.getPrimaryMember().getMedicalAptcAmt());
-        String ExpectedPMMedicalAptcAmt = String.format("%.2f", amt);
+        double amt = Double.parseDouble(subscriber.getMedicalAptcAmt());
+        String expectedPMMedicalAptcAmt = String.format("%.2f", amt);
         SharedData.setMedicalFileName(ob834Entity.getFilename());
-        softAssert.assertEquals(ExpectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
+        softAssert.assertEquals(expectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
         softAssert.assertEquals(medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt() != null ? medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getTotalMedAmtAfterReduction().replace("$", "").replace(",", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getMedicalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+        softAssert.assertEquals(subscriber.getTotalMedAmtAfterReduction().replace("$", "").replace(",", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
+        softAssert.assertEquals(subscriber.getMedicalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         subscriberOnlyMedDenFields(ob834Entity, subscriber);
     }
 
@@ -375,20 +374,20 @@ public class Ob834PreEdiDbValidations_grp {
         SharedData.setDentalFileName(ob834Entity.getFilename());
         softAssert.assertEquals("0.00", ob834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
         softAssert.assertEquals("0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getTotalDentalPremAfterReduction().replace("$", "").replace(",",""), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
-        softAssert.assertEquals(SharedData.getPrimaryMember().getDentalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+        softAssert.assertEquals(subscriber.getTotalDentalPremAfterReduction().replace("$", "").replace(",",""), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
+        softAssert.assertEquals(subscriber.getDentalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         subscriberOnlyMedDenFields(ob834Entity, subscriber);
     }
 
     private void subscriberOnlyMedDenFields(Ob834DetailsEntity ob834Entity, MemberDetails subscriber){
         //  Bug - POL-9149 - Plan Sponsor Name should be primary member name - it is not updated with name change - Need to revert the code after the bug is fixed.
         softAssert.assertEquals( ob834Entity.getPlan_sponsor_name(), subscriber.getSignature(), "plan sponsor name did not match");
-        softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
+        softAssert.assertEquals(primaryMember.getAlternatePhNum() != null ? primaryMember.getAlternatePhNum() : primaryMember.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         validateSponsorId(ob834Entity, subscriber);
         validateResidentialAddress(ob834Entity, subscriber);
-        if(!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
+        if(subscriber.getMailingAddress()!=null&&!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
             validateMailingAddress(ob834Entity, subscriber);
         } else {
             validateMailingAddressIsNull(ob834Entity, subscriber);
