@@ -1,4 +1,4 @@
-@OPS @SLER-1201  @SLER-1234
+@OPS
 Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
   Background:
     Given I open the login page on the "admin" portal
