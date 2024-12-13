@@ -23,6 +23,9 @@ public class TaxStatusPageSteps_Elmo {
     @Then("I select {string} as filing jointly with option on the Tax Status Elmo page")
     public void iSelectFilingJointlyWithOption(String filingJointlyOption){taxStatusPage_Elmo.selectFilingJointlyWithOption(filingJointlyOption);}
 
+    @And("I enter data for filing jointly with enter the name question on the Tax Status Elmo page")
+    public void iEnterFilingJointlyWithEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.enterFilingJointlyWithEnterTheNameQuestion(nameData);}
+
     @Then("I select {string} for will claim dependents question")
     public void iSelectWillClaimDependentsOption(String willClaimDependents){taxStatusPage_Elmo.selectWillClaimDependents(willClaimDependents);}
 
@@ -122,5 +125,8 @@ public class TaxStatusPageSteps_Elmo {
 
     @And("I verify tax_return_id is {string} as last ID for {string} on the Tax Status Elmo page")
     public void iVerifyTaxReturnId(String matchType, String memPrefix){taxStatusPage_Elmo.verifyTaxReturnId(matchType,memPrefix);}
+
+    @And("I verify tax_return_id for {string} is {string} compared to {string} on the Tax Status Elmo page")
+    public void iCompareTaxReturnId(String memPrefix, String matchType, String memPrefix2){taxStatusPage_Elmo.compareTaxReturnId(memPrefix, matchType, memPrefix2);}
 
 }
