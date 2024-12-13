@@ -153,8 +153,8 @@ public class MyPoliciesPage {
             WebElement applicableFrom = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Applicable From:')][last()]"));
 
             //validation
-            softAssert.assertEquals(planStartDate.getText(),(member.getDentalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(planEndDate.getText(),(member.getDentalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planStartDate.getText(),(SharedData.getPrimaryMember().getDentalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planEndDate.getText(),(SharedData.getPrimaryMember().getDentalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(monthlyPremium.getText().replace("$",""),(member.getDentalPremiumAmt()), "Dental Premium mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo",""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(" Financial Help",""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
@@ -168,7 +168,7 @@ public class MyPoliciesPage {
             }
 
             softAssert.assertEquals(lastUpdatedOn.getText(),(lastUpdated), "Last Updated On mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(member.getDentalPlanStartDate()), "Dental APTC amount mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(SharedData.getPrimaryMember().getDentalPlanStartDate()), "Dental APTC amount mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
     }
@@ -196,8 +196,8 @@ public class MyPoliciesPage {
             WebElement applicableFrom = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Applicable From:')][last()]"));
 
             //validation
-            softAssert.assertEquals(planStartDate.getText(),(member.getMedicalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(planEndDate.getText(),(member.getMedicalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planStartDate.getText(),(SharedData.getPrimaryMember().getMedicalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planEndDate.getText(),(SharedData.getPrimaryMember().getMedicalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(monthlyPremium.getText().replace("$","").replace(",",""),(member.getMedicalPremiumAmt()), "Medical Premium mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo",""),(member.getTotalMedAmtAfterReduction()), "Medical Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(" Financial Help","").replace("$","").replace(",",""),(member.getMedicalAptcAmt()), "Medical APTC amount mismatch for member: " + member.getFirstName());
@@ -211,7 +211,7 @@ public class MyPoliciesPage {
             }
 
             softAssert.assertEquals(lastUpdatedOn.getText(),(lastUpdated), "Last Updated On mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(member.getMedicalPlanStartDate()), "Applicable From date is not-matched for member: " + member.getFirstName());
+            softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(SharedData.getPrimaryMember().getMedicalPlanStartDate()), "Applicable From date is not-matched for member: " + member.getFirstName());
             softAssert.assertAll();
         }
     }
@@ -256,8 +256,8 @@ public class MyPoliciesPage {
         }else {
             softAssert.assertEquals(tableRecord.get(3).getText().replace(",",""),("$" + member.getMedicalAptcAmt()), "Medical APTC amount mismatch");
         }
-        softAssert.assertTrue(tableRecord.get(4).getText().equals(member.getMedicalPlanStartDate()), "plan start date mismatch");
-        softAssert.assertTrue(tableRecord.get(5).getText().equals(member.getMedicalPlanEndDate()), "plan end date mismatch");
+        softAssert.assertTrue(tableRecord.get(4).getText().equals(SharedData.getPrimaryMember().getMedicalPlanStartDate()), "plan start date mismatch");
+        softAssert.assertTrue(tableRecord.get(5).getText().equals(SharedData.getPrimaryMember().getMedicalPlanEndDate()), "plan end date mismatch");
         softAssert.assertAll();
     }
 
