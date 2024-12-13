@@ -32,7 +32,7 @@ public class TaxStatusPageSteps_Elmo {
     @Then("I click Save and Continue on Tax Status Elmo page")
     public void iClickSaveAndContinue(){taxStatusPage_Elmo.clickSaveAndContinue();}
 
-    @And("I enter data for enter the name question on the Tax Status Elmo page")
+    @And("I enter data for who will claim as dependent enter the name question on the Tax Status Elmo page")
     public void iEnterDataEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.enterDataEnterTheNameQuestion(nameData);}
 
     @Then("I select {string} for who will be claimed as dependent question on the Tax Status Elmo page")
@@ -40,6 +40,9 @@ public class TaxStatusPageSteps_Elmo {
 
     @Then("I check Exceptional circumstances checkbox on the Tax Status Elmo page")
     public void iCheckExceptionalCircumstances( ){taxStatusPage_Elmo.checkExceptionalCircumstances();}
+
+    @And("I enter data for who will be claimed as dependent enter the name question on the Tax Status Elmo page")
+    public void iEnterWhoWillBeClaimedDataEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.enterWhoWillBeClaimedDataEnterTheNameQuestion(nameData);}
 
 
 
@@ -72,7 +75,7 @@ public class TaxStatusPageSteps_Elmo {
     @And("I verify enter the name question on the Tax Status Elmo page for {string} in {string}")
     public void iVerifyEnterTheNameQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyEnterTheNameQuestion(memPrefix,language);}
 
-    @And("I verify enter the name question on the Tax Status Elmo page data")
+    @And("I verify for who will claim as dependent enter the name question on the Tax Status Elmo page data")
     public void iVerifyEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyEnterTheNameAnswers(nameData);}
 
     @And("I verify Save and Back buttons on the Tax Status Elmo page in {string}")
@@ -114,7 +117,10 @@ public class TaxStatusPageSteps_Elmo {
     @And("I verify Exceptional circumstances checkbox {string} selected on the Tax Status Elmo page")
     public void iVerifyExceptionalCircumstancesCheck(String status){taxStatusPage_Elmo.verifyExceptionalCircumstancesCheck(status);}
 
-    @And("I verify filing jointly with enter the name question on the Tax Status Elmo page data")
+    @And("I verify filing jointly with enter the name question on the Tax Status Elmo page")
     public void iVerifyFilingJointlyWithEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyFilingJointlyWithEnterTheNameAnswers(nameData);}
+
+    @And("I verify tax_return_id is {string} as last ID for {string} on the Tax Status Elmo page")
+    public void iVerifyTaxReturnId(String matchType, String memPrefix){taxStatusPage_Elmo.verifyTaxReturnId(matchType,memPrefix);}
 
 }

@@ -3,6 +3,7 @@ package com.c4hco.test.automation.Dto;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class MemberDetails {
@@ -83,6 +84,7 @@ public class MemberDetails {
     Boolean hasDentalPlan=true;
     String medSubscriberName;
     String denSubscriberName;
+    List<String> taxReturnId;
 }
 
 
