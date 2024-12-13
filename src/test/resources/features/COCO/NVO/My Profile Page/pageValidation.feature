@@ -60,3 +60,21 @@ Feature: My Profile Page Coco
     Then I validate I am on the "My Profile" page
     And I validate Preferred Contact Method save changes on My Profile page CoCo
     And I click on Sign Out in the Header for "Elmo"
+
+
+  @SLCR-646 @NVOCoCoRegression
+  Scenario: My Profile edit fields-Page Validation Coco
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Profile" link on welcome page
+    Then I validate I am on the "My Profile" page
+    And I validate error messages "English" on My Profile page CoCo
+    And I change the language from header to "Spanish"
+    And I validate error messages "Spanish" on My Profile page CoCo
+    And I change the language from header to "English"
+    And I click on Sign Out in the Header for "Elmo"
