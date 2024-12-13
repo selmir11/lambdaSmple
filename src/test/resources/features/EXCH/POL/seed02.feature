@@ -100,6 +100,8 @@ Feature: Seed02 - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
