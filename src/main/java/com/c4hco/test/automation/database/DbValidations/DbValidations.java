@@ -461,7 +461,13 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-
+    public void validateUpdatedInfoInBob(){
+        String dbValues[] = exchDbDataProvider.get_rq_queue_msg();
+        softAssert.assertEquals(dbValues[0], "PROCESSED", "status from rq_queue_msg table did not match");
+        softAssert.assertEquals(dbValues[1], "\"REASSIGN_PRIMARY_CONTACT\"", "changeEvent from rq_queue_msg table did not match");
+        softAssert.assertEquals(dbValues[2], "\"TransferContactInfo\"", "requestType from rq_queue_msg table did not match");
+        softAssert.assertAll();
+    }
 
 
 

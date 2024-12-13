@@ -141,6 +141,9 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
 
    @Then("I validate the details from rq_queue_messages database")
    public void validate_rq_queue_msg(){dbValidations.validate_rq_queue_msg();}
+
+   @Then("I validate the updated details book of business database")
+   public void validateNewDataInBob(){dbValidations.validate_rq_queue_msg();}
    
 
 }
