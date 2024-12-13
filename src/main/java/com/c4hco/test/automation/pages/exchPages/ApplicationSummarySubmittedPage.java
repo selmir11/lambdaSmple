@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.ApplicationSummaryPdf;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
@@ -172,7 +173,7 @@ public class ApplicationSummarySubmittedPage {
     }
 
     private static String extractTextFromPDF(Path pdfPath) throws IOException {
-        try (PDDocument document = PDDocument.load(new File(pdfPath.toString()))) {
+        try (PDDocument document = Loader.loadPDF(new File(String.valueOf(pdfPath)))) {
             PDFTextStripper pdfStripper = new PDFTextStripper();
             return pdfStripper.getText(document).trim();
         }
