@@ -804,6 +804,9 @@ public class BasicActions {
             case "current date":
                 dobCalculator = currentDate;
                 break;
+            case "first day of current month":
+                dobCalculator = currentDate.withDayOfMonth(1);
+                break;
             default:
                 Assert.fail("Did not find the case entered");
         }
