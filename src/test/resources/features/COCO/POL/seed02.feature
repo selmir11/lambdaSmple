@@ -54,7 +54,7 @@ Feature: Seed02 - Coco
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I select "Prefer not to answer" for race and ethnicity option for "SPOUSE"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -82,7 +82,7 @@ Feature: Seed02 - Coco
     And I select "KP Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I validate medical premium amount
+    And I set medical premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -91,7 +91,7 @@ Feature: Seed02 - Coco
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
-    Then I Validate the correct enrolled plans are displayed on COCO Welcome page
+    Then I Validate the correct enrolled plans are displayed on coco welcome page
 
     And I click on "My Plans" link on welcome page
     Then I validate I am on the "My Policies" page
@@ -135,9 +135,6 @@ Feature: Seed02 - Coco
       | 021                   | 021                | EC                    |                   | OEP        |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
-
-
-
 
 
 

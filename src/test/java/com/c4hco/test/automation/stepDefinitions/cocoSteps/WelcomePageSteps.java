@@ -56,12 +56,6 @@ public class WelcomePageSteps {
     @And("I validate no notification banner on welcome page")
     public void verifyNoNotificationBanner()  { welcomePage.validateNoNotificationBanner(); }
 
-    @And("I Validate the correct enrolled plans are displayed on COCO Welcome page")
-    public void validatePlanInfo(){
-        welcomePage.verifyMemberNamesOnWelcomePage();
-        welcomePage.verifyMyPlanDetails();
-    }
-
 }
 
 

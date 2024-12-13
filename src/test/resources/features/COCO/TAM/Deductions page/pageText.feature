@@ -18,7 +18,7 @@ Feature: Tests related to the Deductions page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -273,7 +273,7 @@ Feature: Tests related to the Deductions page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -298,7 +298,7 @@ Feature: Tests related to the Deductions page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page

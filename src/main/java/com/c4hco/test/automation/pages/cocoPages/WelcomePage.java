@@ -421,7 +421,7 @@ public class WelcomePage {
         }
     }
 
-    public void verifyMemberNamesOnWelcomePage() {
+    private void verifyMemberNamesOnWelcomePage() {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
@@ -433,7 +433,7 @@ public class WelcomePage {
         softAssert.assertEquals(memberNamesListWelcomePage, memberNamesList, "Names of members did not match");
     }
 
-    public void verifyMyPlanDetails() {
+    private void verifyMyPlanDetails() {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(planYearSelectorOptions.get(1).getText(), SharedData.getPlanYear(), "Plan Year does not match");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
