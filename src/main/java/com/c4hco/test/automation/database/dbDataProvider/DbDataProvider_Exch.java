@@ -445,7 +445,6 @@ public class DbDataProvider_Exch {
     public String getEnrollmentEndDate() {
         return postgresHandler.getResultFor("enrollment_period_end_date", exchDbQueries.getEnrollmentPeriodEndDate());
     }
-
     public String getMedCurrentEhbPremiumAmtForTheYearDB(String year) {
         return postgresHandler.getResultFor("ehb_percent_of_total_premium", exchDbQueries.ehb_percent_of_total_premiumForYear(year));
     }
@@ -475,6 +474,13 @@ public class DbDataProvider_Exch {
 
     public String getMedDenLatestApplicationDate() {
         return postgresHandler.getResultFor("policy_submitted_ts",exchDbQueries.getMedDentalCurrentLatestAppDate());
+    }
+    public String getTheBrokerEmailInDB() {
+        return postgresHandler.getResultFor("email",exchDbQueries.getBrokerEmailIn());
+    }
+
+    public String[] getTaxFilingData(String memberId) {
+        return postgresHandler.getResultForTwoColumnValues("claimed_as_dep_on_othr_ftr_ind", "tax_filing_type",exchDbQueries.getTaxFilingDataDB(memberId));
     }
 
 }

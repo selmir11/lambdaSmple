@@ -30,7 +30,7 @@ public class MyProfilePage {
 
     @FindBy(css = ".bottom_buttons_container button")
     List<WebElement> MyProfileButtonCoCo; /// Go back, Make changes, Save buttons
-    
+
     @FindBy(css = "#email")
     WebElement InputEmailCoCo;
 
@@ -67,6 +67,9 @@ public class MyProfilePage {
 
     @FindBy(css = ".error-message")
     WebElement ErrorMessageCoCo;
+
+    @FindBy(css = "span.content_line_label.red-text")
+    List<WebElement> ErrorMessageContactInformationCoCo;
 
     @FindBy(css = ".row.header-2.popup-page-header")
     WebElement headerChangePrimaryCoCo;
@@ -105,6 +108,18 @@ public class MyProfilePage {
 
     @FindBy(id = "sessionExpirationAlert-Logout")
     WebElement NoTimeoutcoco;
+
+    @FindBy(css = "hr.myProfile_home_phone_hr")
+    WebElement grayLineHPCoCo;
+
+    @FindBy(css = "hr.myProfile_address_hr")
+    WebElement grayLineAddressCoCo;
+
+    @FindBy(css = "div.change-password-container")
+    WebElement PasswordButtonCoCo;
+
+    @FindBy(css = "span.change-password-msg")
+    WebElement PasswordMessageCoCo;
 
 
 
@@ -595,6 +610,104 @@ public class MyProfilePage {
         softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
         softAssert.assertAll();
     }
+
+    public void validateErrorMessageCoCo(String language) {
+        switch (language) {
+            case "English":
+                validateErrorMessageEnglishCoCo();
+                break;
+            case "Spanish":
+                validateErrorMessageSpanishCoCo();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateErrorMessageEnglishCoCo() {
+        // Update email address/////////
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40000);
+        MyProfileButtonCoCo.get(1).click();
+        InputEmailCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        basicActions.waitForElementToBePresent(MobilephoneCoCo, 40);
+        MobilephoneCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        String newPhoneNumber = "303";
+        MobilephoneCoCo.sendKeys(newPhoneNumber);
+        basicActions.waitForElementToBePresent(HomephoneCoCo, 40);
+        HomephoneCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        HomephoneCoCo.sendKeys(newPhoneNumber);
+        MyProfileButtonCoCo.get(1).click();
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(0).getText(), "A valid email is required");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getText(), "Please enter a valid phone number");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getText(), "Please enter a valid phone number");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(grayLineHPCoCo.getCssValue("color"), "rgba(149, 147, 147, 1)");
+        softAssert.assertEquals(grayLineAddressCoCo.getCssValue("color"), "rgba(149, 147, 147, 1)");
+        softAssert.assertAll();
+    }
+
+
+    public void validateErrorMessageSpanishCoCo() {
+
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(0).getText(), "Es obligatorio un correo electr\u00F3nico v\u00E1lido");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getText(), "Ingrese un n\u00FAmero de tel\u00E9fono v\u00E1lido");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(1).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getText(), "Ingrese un n\u00FAmero de tel\u00E9fono v\u00E1lido");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(ErrorMessageContactInformationCoCo.get(2).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertAll();
+    }
+
+    public void verifyPasswordTextOnMyProfileExchPageCoCo(String language) {
+        switch (language) {
+            case "English":
+                verifyPasswordTextOnMyProfilePageEnglishCoCo();
+                break;
+            case "Spanish":
+                verifyPasswordTextOnMyProfilePageSpanishCoCo();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyPasswordTextOnMyProfilePageEnglishCoCo() {
+        basicActions.waitForElementToBePresent(PasswordMessageCoCo, 10);
+        softAssert.assertEquals(PasswordMessageCoCo.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordButtonCoCo.getText(), "Change password");
+        softAssert.assertAll();
+    }
+
+
+    public void verifyPasswordTextOnMyProfilePageSpanishCoCo() {
+        basicActions.waitForElementToBePresent(PasswordMessageCoCo, 10);
+        softAssert.assertEquals(PasswordMessageCoCo.getText(), "Al hacer clic en Cambiar contrase\u00F1a se cerrar\u00E1 su sesi\u00F3n y lo llevar\u00E1 a la p\u00E1gina de Restablecer contrase\u00F1a");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordButtonCoCo.getText(), "Cambiar contrase\u00F1a");
+        softAssert.assertAll();
+    }
+
+
 }
+
 
 

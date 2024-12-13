@@ -324,8 +324,7 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click Yes to the Tobacco usage question on start shopping page
-      |Primary,Spouse|
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page

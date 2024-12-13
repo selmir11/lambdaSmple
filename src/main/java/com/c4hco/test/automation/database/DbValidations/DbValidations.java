@@ -15,7 +15,6 @@ public class DbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
     String formattedDate; //formatted in YYYY-MM-DD
-    Calendar calendar = Calendar.getInstance();
 
     BasicActions basicActions = new BasicActions();
 
@@ -375,9 +374,21 @@ public class DbValidations {
        softAssert.assertAll();
     }
 
+
     public void validateTheDentalLatestApplicationDateForTheYearDB() {
         String denLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
         softAssert.assertTrue(denLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getDenLatestAppDate()));
+        softAssert.assertAll();}
+
+    public void validateTheBrokerEmailInDB() {
+        String brokerEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(brokerEmail,SharedData.getBroker().getEmail());
+        softAssert.assertAll();
+    }
+
+    public void validateTheAgencyEmailInDB() {
+        String agencyEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
         softAssert.assertAll();
     }
     public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
@@ -391,4 +402,13 @@ public class DbValidations {
         softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
         softAssert.assertAll();
     }
+
+    public void verifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {
+        String[] dbValues = exchDbDataProvider.getTaxFilingData(basicActions.getMemberId(memPrefix));
+        System.out.println(Arrays.toString(dbValues));
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("claimed_as_dep_on_othr_ftr_ind"));
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("tax_filing_type"));
+        softAssert.assertAll();
+    }
+
 }

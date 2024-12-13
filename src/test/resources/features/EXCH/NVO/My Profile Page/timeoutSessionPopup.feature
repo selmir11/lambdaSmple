@@ -18,6 +18,6 @@ Feature: My Profile Page Exch
     And I change the language from header to "Spanish"
     And I wait for 10000 milliseconds
     And I validate timeout session popup "Spanish" on My Profile page
-
-    #And I change the language from header to "English"
-   # Then I validate I am on the "Login" page
+    And I wait for 10000 milliseconds
+    And I change the language from header to "English"
+    Then I validate I am on the "Login" page

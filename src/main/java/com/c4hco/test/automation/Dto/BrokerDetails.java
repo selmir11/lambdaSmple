@@ -21,4 +21,5 @@ public class BrokerDetails {
     String broker_name;
     String broker_lic_num;
     String agencyClientCount;
+    String brokerAccountID;
 }
