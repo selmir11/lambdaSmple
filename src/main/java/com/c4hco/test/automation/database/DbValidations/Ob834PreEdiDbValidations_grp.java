@@ -168,7 +168,6 @@ public class Ob834PreEdiDbValidations_grp {
     private void validateResidentialAddress(Ob834DetailsEntity ob834Entity, MemberDetails member) {
        String name = getName(ob834Entity, member);
         getDbDataMap(name);
-        System.out.println("Member first name::"+member.getFirstName());
         softAssert.assertEquals(member.getResAddress().getAddressLine1(), ob834Entity.getResidence_street_line1(), "Residential address line 1 does not match");
         if (member.getResAddress().getAddressLine2() != null) {
             softAssert.assertEquals(member.getResAddress().getAddressLine2(), ob834Entity.getResidence_street_line2(), "Residential line2 is null");
