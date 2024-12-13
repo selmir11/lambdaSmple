@@ -337,9 +337,15 @@ public class TaxStatusPage_Elmo {
 
     public void enterDataEnterTheNameQuestion(List<Map<String, String>> nameData) {
         claimFirstNameInput.sendKeys(nameData.get(0).get("First Name"));
-        claimMiddleNameInput.sendKeys(nameData.get(0).get("Middle Name"));
+        String middleName = nameData.get(0).get("Middle Name");
+        if (middleName != null && !middleName.isEmpty()) {
+            claimMiddleNameInput.sendKeys(middleName);
+        }
         claimLastNameInput.sendKeys(nameData.get(0).get("Last Name"));
-        claimSuffixNameDpd.sendKeys(nameData.get(0).get("Suffix"));
+        String suffix = nameData.get(0).get("Suffix");
+        if (suffix != null && !suffix.isEmpty()) {
+            claimSuffixNameDpd.sendKeys(suffix);
+        }
         claimDobNameInput.sendKeys(nameData.get(0).get("DOB"));
     }
 
