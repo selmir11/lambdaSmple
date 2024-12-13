@@ -88,7 +88,7 @@ public class Ob834PreEdiDbValidations_grp {
         List<MemberDetails> members = basicActions.getAllDependents();
         for(MemberDetails member: members){
             if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
-                medValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
+                denValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
             }
         }
     }
