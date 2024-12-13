@@ -341,7 +341,7 @@ public class MyPoliciesPage {
     private void validateDentalPlanFromPlanHistory(){
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
             basicActions.waitForElementToBePresent(viewPlanHistoryLinkDental,10);
-            WebElement viewPlanHistoryLink = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + member.getMedicalPlan() + "')]/ancestor::div[4][.//span[contains(text(),'" + member.getFirstName() + "')]] //a"));
+            WebElement viewPlanHistoryLink = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + member.getDentalPlan() + "')]/ancestor::div[4][.//span[contains(text(),'" + member.getFirstName() + "')]] //a"));
             viewPlanHistoryLink.click();
             validateDentalPlanDetailsFromPlanHistory(member);
             clickBackButton();
