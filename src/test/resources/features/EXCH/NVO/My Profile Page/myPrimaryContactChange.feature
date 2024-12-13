@@ -236,4 +236,3 @@ Feature: My Profile Page Exch
       And I update the contact home phone number on profile page
       Then I click on Go back to Welcome page Button on My Profile Exch
       Then I validate the details from rq_queue_messages database
-
