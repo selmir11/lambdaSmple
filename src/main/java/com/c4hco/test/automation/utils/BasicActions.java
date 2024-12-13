@@ -872,6 +872,18 @@ public class BasicActions {
         return firstAndLastName;
     }
 
+    public String getDobOfMember(String namePrefix){
+        String dob = null;
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+            if(mem.getFirstName().contains(namePrefix)){
+              dob = mem.getDob();
+              break;
+            }
+        }
+        return dob;
+    }
+
     public String getMemberId(String memPrefix){
         String memId = "";
         if (memPrefix.equals("Primary")) {
