@@ -490,6 +490,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Tax Status Elmo page Son":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Son")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Status Elmo page Spouse":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
                 newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
@@ -808,6 +818,26 @@ public class BasicActions {
         }
         return allSubscribers;
     }
+    public List<MemberDetails> getAllDependents(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allDependents = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            if(member.getIsSubscriber().equals("N")){
+                allDependents.add(member);
+            }
+        }
+        return allDependents;
+    }
+
+    public String getMemFirstNames(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getFirstName).filter(firstName -> firstName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public String getMemFirstLastNames(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().filter(member -> member.getFirstName().contains(memPrefix)).map(member -> member.getFirstName() + " " + member.getLastName()).findFirst().orElse(null);
+    }
 
     public List<MemberDetails> getAllMem(){
         MemberDetails primaryMem = SharedData.getPrimaryMember();
@@ -840,6 +870,18 @@ public class BasicActions {
             firstAndLastName.add(mem.getCompleteFullName());
         }
         return firstAndLastName;
+    }
+
+    public String getDobOfMember(String namePrefix){
+        String dob = null;
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+            if(mem.getFirstName().contains(namePrefix)){
+              dob = mem.getDob();
+              break;
+            }
+        }
+        return dob;
     }
 
     public String getMemberId(String memPrefix){
@@ -883,7 +925,15 @@ public class BasicActions {
         }
         return allEligibleMembers;
     }
-
+    public void setRelationToSubscriber(List<String> relationToSubscriber){
+        for(String relation : relationToSubscriber){
+            String[] relationDetails = relation.split(":");
+            String nameOfMem = relationDetails[0].trim();
+            String relationship = relationDetails[1].trim();
+            List<MemberDetails> allMemList = getAllMem();
+            allMemList.stream().filter(mem -> mem.getFirstName().contains(nameOfMem)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(relationship));
+        }
+    }
 
 }
 

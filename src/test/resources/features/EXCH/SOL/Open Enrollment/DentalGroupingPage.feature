@@ -1,4 +1,4 @@
-@SOLRegression
+
 Feature: UI Page Validation - Dental Grouping Page
 
   Background:
@@ -11,7 +11,7 @@ Feature: UI Page Validation - Dental Grouping Page
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
 
-  @SLER-1110 @dentalGroupingPageValidation @DentalGrpingPageNavigation
+  @SLER-1110-OE @dentalGroupingPageValidation @DentalGrpingPageNavigation
   Scenario: Validate the Dental Grouping Page Text and Page Navigation
     And I apply for the current year
     Then I select "No" option on the Let us guide you page

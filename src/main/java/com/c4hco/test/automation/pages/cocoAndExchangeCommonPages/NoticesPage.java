@@ -116,6 +116,29 @@ public class NoticesPage {
     List<WebElement> emailPolicyDetails;
     @FindBy(xpath = "//div[@class='ECSzl']/img")
     WebElement scannerLogo;
+    @FindBy(xpath = "//*[@id='x_headerSection']/div/div/div[2]/div/p")
+    WebElement adminNoticeEmail;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[1]")
+    WebElement adminNoticeWelcome;
+    @FindBy(xpath = "//*[@id='x_recipientName']/span")
+    WebElement adminNoticeName;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[2]/span[1]")
+    WebElement adminNoticeName2;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[2]/span[2]/span")
+    WebElement adminNoticeName3;
+    @FindBy(xpath = "//*[@id=\"x_adminPortalAccountCreationNoticeBody\"]/p[3]/span[1]")
+    WebElement adminNoticeEmailText;
+    @FindBy(xpath = "//*[@id='x_adminPortalAccountCreationNoticeBody']/p[3]/span[2]")
+    WebElement adminNoticeEmailValue;
+    @FindBy(xpath = "//*[@id='x_adminPortalAccountCreationNoticeBody']/p[4]")
+    WebElement adminNoticeParag1;
+    @FindBy(xpath = "//*[@id='x_adminPortalAccountCreationNoticeBody']/p[5]")
+    WebElement adminNoticeParag2;
+    @FindBy(xpath = "//*[@id=\"UniqueMessageBody_2\"]/div/div/div/p")
+    WebElement adminNoticeParag3;
+    @FindBy(xpath = "//p[@class='x_body']")
+    List<WebElement> BodyTextBN002A0404;
+
 
     public String MFACode = "";
 
@@ -287,10 +310,45 @@ public class NoticesPage {
             case "Broker":
                 verifyTheNoticeBroker(noticeNumber, language);
                 break;
+                case "Admin":
+                verifyTheNoticeAdmin(noticeNumber, language);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber + typeAPP);
         }
     }
+
+    private void verifyTheNoticeAdmin(String noticeNumber, String language) {
+        switch (noticeNumber) {
+            case "AM-006-01":
+                VerifyTheNoticeTextAM00601Admin();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
+        }
+    }
+
+    private void VerifyTheNoticeTextAM00601Admin() {
+        softAssert.assertEquals(adminNoticeEmail.getText(), SharedData.getAdminDetails().getEmail());
+                softAssert.assertEquals(adminNoticeName.getText(), SharedData.getAdminDetails().getFirstName()+" "+ SharedData.getAdminDetails().getLastName());
+                String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MMMM dd, yyyy");
+                softAssert.assertEquals(adminNoticeWelcome.getText(),"Welcome to Connect for Health Colorado\u00AE. An account was opened for you on "+ Date+":");
+                softAssert.assertEquals(adminNoticeName2.getText(),"Name:");
+                softAssert.assertEquals(adminNoticeName3.getText(),SharedData.getAdminDetails().getFirstName()+" "+SharedData.getAdminDetails().getLastName());
+                softAssert.assertEquals(adminNoticeEmailText.getText(),"Login ID:");
+                softAssert.assertEquals(adminNoticeEmailValue.getText(),SharedData.getAdminDetails().getEmail());
+        if (SharedData.getEnv().equals("qa")) {
+                    softAssert.assertTrue(adminNoticeParag1.getText().contains( "Please click this link to setup your password https://qa-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken="));
+                    softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://qa-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
+        }else{
+                    softAssert.assertTrue(adminNoticeParag1.getText().contains( "Please click this link to setup your password https://staging-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken="));
+                    softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://qa-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
+        }
+                softAssert.assertEquals(adminNoticeParag3.getText(),"If you have questions concerning your account or feel it was created in error, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m. .");
+                softAssert.assertAll();
+
+    }
+
 
     private void verifyTheNoticeBroker(String noticeNumber, String language) {
         switch (noticeNumber) {
@@ -303,13 +361,21 @@ public class NoticesPage {
             case "BN-002A-01":
                 VerifyTheNoticeTextBN002A01broker();
                 break;
+            case "BN-002A-01 Exch":
+                VerifyTheNoticeTextBN002A01Exchbroker();
+                break;
             case "BN-002A-02":
                 VerifyTheNoticeTextBN002A02broker();
+                break;
+            case "BN-002A-02 Exch":
+                VerifyTheNoticeTextBN002A02Exchbroker();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
     }
+
+
 
     private void VerifyTheNoticeTextAM01608broker() {
         softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
@@ -329,11 +395,31 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
+    private void VerifyTheNoticeTextBN002A01Exchbroker() {
+        String formattedPhoneNumber = SharedData.getPrimaryMember().getPhoneNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
+
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getBroker_name());
+        softAssert.assertEquals(bodyTextBN002A01.get(0).getText(), SharedData.getPrimaryMember().getFullName() + " has selected you to work on his or her behalf to purchase health insurance through Connect for Health Colorado. You may login to your account to view this client.");
+        softAssert.assertEquals(bodyTextBN002A01.get(1).getText(), "Individual Contact Information:");
+        softAssert.assertEquals(bodyTextBN002A01.get(2).getText(), "Email: " + SharedData.getPrimaryMember().getEmailId());
+        softAssert.assertEquals(bodyTextBN002A01.get(3).getText(), "Phone Number: " + formattedPhoneNumber);
+        softAssert.assertEquals(bodyTextBN002A01.get(4).getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m. .");
+        softAssert.assertAll();
+    }
+
     private void VerifyTheNoticeTextBN002A02broker() {
         softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getBroker_name());
         softAssert.assertEquals(bodyTextBN002A02.getText(), SharedData.getPrimaryMember().getFullName() + " has asked that you no longer work on his or her behalf to purchase insurance through Colorado Connect\u00AE.");
 
         softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Colorado Connect\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertAll();
+    }
+
+    private void VerifyTheNoticeTextBN002A02Exchbroker() {
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getBroker_name());
+        softAssert.assertEquals(bodyTextBN002A02.getText(), SharedData.getPrimaryMember().getFullName() + " has asked that you no longer work on his or her behalf to purchase insurance through Connect for Health Colorado\u00AE.");
+
+        softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
         softAssert.assertAll();
     }
 
@@ -376,8 +462,22 @@ public class NoticesPage {
             case "AM-016-08":
                 VerifyTheNoticeTextAM01608(language);
                 break;
+            case "BN-002A-04":
+                VerifyTheNoticeTextBN002A04(language);
+            break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
+        }
+    }
+
+    private void VerifyTheNoticeTextBN002A04(String language) {
+        switch (language){
+            case "Spanish":
+                softAssert.assertEquals(individualEmailBN002A0304.getText(), SharedData.getPrimaryMember().getEmailId());
+                softAssert.assertEquals(individualNameBN002A0304.getText(), SharedData.getPrimaryMember().getFullName());
+                softAssert.assertEquals(bodyTextBN002A04.get(0).getText(), "Nuestros registros muestran que ha eliminado a Arrow Head Agency como Agente autorizado para trabajar en su nombre en el Mercado de Connect for Health Colorado\u00AE.");
+                softAssert.assertEquals(bodyTextBN002A04.get(1).getText(), "Si considera que esta desautorizaci\u00F3n fue creada por error o si tiene otras preguntas, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m. y del 2\u00BA al 17 de diciembre, de 8:00 a.m. a 8:00 p.m.");
+                softAssert.assertAll();
         }
     }
 

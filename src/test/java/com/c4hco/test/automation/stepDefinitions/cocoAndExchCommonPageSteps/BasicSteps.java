@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
     BasicActions actions = BasicActions.getInstance();
@@ -65,6 +67,9 @@ public class BasicSteps {
                 break;
             case "Deductions":
                 pageUrl = "/IncomePortal/deductions";
+                break;
+            case "Admin account creation":
+                pageUrl = "AdminPortal/applinks/account-creation";
                 break;
             case "Financial Help":
                 pageUrl = "IncomePortal/financialHelp";
@@ -691,4 +696,8 @@ public class BasicSteps {
 
     @Then("I open current page in new tab")
     public void iOpenCurrPageInNewTab(){basicActions.openCurrPageInNewTab();}
+    @And("I set the member relationship to the subscriber")
+    public void iSetMemberRelationToSubscriber(List<String> Relations){
+        basicActions.setRelationToSubscriber(Relations);
+    }
 }

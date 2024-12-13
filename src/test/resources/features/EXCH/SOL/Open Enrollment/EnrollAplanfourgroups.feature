@@ -1,6 +1,6 @@
 
 Feature: FA - 4groups - enroll in plan
-  @SLER-1122 @E2E_EXCH
+  @SLER-1122-OE @E2E_EXCH
   Scenario: : SOL - EMP-AWS-SHP: FA Complex (1HH/4GRPs): Create Account, Submit Eligibility & Enroll in a plan
 
     Given I set the test scenario details
@@ -326,8 +326,7 @@ Feature: FA - 4groups - enroll in plan
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click Yes to the Tobacco usage question on start shopping page
-      |Primary|
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
