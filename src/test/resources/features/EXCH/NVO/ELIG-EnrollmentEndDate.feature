@@ -224,8 +224,8 @@ Feature: LR Enrollment Period end date is set when user has
 #DBSTEP
     And  I Validate enrollment period end date is set to 60 days from current QLCE days
 
-    @SLER-1849
-    Scenario: LCE of Gain of American Indian/Alaska Native
+    @SLER-1849 @SLER-1868
+    Scenario Outline: Validate enrollment period end date
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
       When I click create a new account on login page
@@ -288,7 +288,7 @@ Feature: LR Enrollment Period end date is set when user has
       Then I select "None of these" as ELMO health coverage option
       Then I click continue on the ELMO health coverage page
       Then I click continue on family overview page
-      Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
+      Then I select "<qlceOption>" QLCE on tell us about life changes page
       Then I click on Save and Continue
       Then I Declare as Tax Household 1
       And I click Continue on the Declarations And Signature Page
@@ -297,4 +297,9 @@ Feature: LR Enrollment Period end date is set when user has
       Then I validate I am on the "Application History" page
       Then I click on view results and shop
 #DBSTEP
-      And  I Validate enrollment period end date is set to 60 days from current QLCE days
+      And  I Validate enrollment period end date is set to <enrollmentEndDate> days from current QLCE days
+      Examples:
+        | qlceOption         | enrollmentEndDate |
+        | GainOfTribalStatus | 60                |
+        | Birth              | 60                |
+
