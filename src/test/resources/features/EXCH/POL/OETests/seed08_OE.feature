@@ -1,7 +1,10 @@
 Feature: Seed08 - Exchange - Open Enrollment
 
-  Background: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
-    Given I open the login page on the "login" portal
+  Scenario: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
+  Given I set the test scenario details
+    | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+    | 2           | 4            | 1                 | 1                | 2               |
+  Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -253,9 +256,9 @@ Feature: Seed08 - Exchange - Open Enrollment
 #    And I validate "dental" plan details from plan history
 #    And I click on Sign Out in the Header for "Elmo"
   And I set the member relationship to the subscriber
-  | Son: Self   |
-  | InLaw: Wife |
-    And I validate "medical" entities from policy tables for groups
+    | Son: Self   |
+    | InLaw: WIFE |
+  And I validate "medical" entities from policy tables for groups
     And I validate "dental" entities from policy tables for groups
 
   And I validate "medical" entities from pre edi db tables for groups

@@ -235,14 +235,7 @@ public class PolicyTableDbValidations_Grps {
             exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
             exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
         }
-
-
-        if (SharedData.getScenarioDetails().getTotalMembers() > 1) {
-            List<MemberDetails> memberDetailsList = basicActions.getAllMem();
-            for (MemberDetails member : memberDetailsList) {
-                exchDbDataProvider.setExchPersonId(member, member.getMemberId());
-            }
-        }
+            setExchPersonId();
 
             medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
             dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
@@ -311,5 +304,13 @@ public class PolicyTableDbValidations_Grps {
                     "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
             );
         }
+    private void setExchPersonId(){
+        List<MemberDetails> memberDetailsList = basicActions.getAllMem();
+        Map<String, String> exchPersonId = new HashMap<>();
+        SharedData.setExchPersonId(exchPersonId);
+        for (MemberDetails member : memberDetailsList) {
+            exchDbDataProvider.setExchPersonId(member, member.getMemberId());
+        }
+    }
 }
 
