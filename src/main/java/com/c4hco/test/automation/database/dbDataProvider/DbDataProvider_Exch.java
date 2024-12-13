@@ -483,4 +483,8 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForTwoColumnValues("claimed_as_dep_on_othr_ftr_ind", "tax_filing_type",exchDbQueries.getTaxFilingDataDB(memberId));
     }
 
+    public String[] getTaxReturnData(String memberId) {
+        return postgresHandler.getResultForFiveColumnValues("tax_filing_type","claimed_as_dep_on_othr_ftr_ind","tax_filing_status","exceptional_circumstance","tax_return_id", exchDbQueries.getTaxReturnDataDB(memberId));
+    }
+
 }

@@ -87,6 +87,20 @@ public class PostgresHandler {
         return results;
     }
 
+    public String[] getResultForFiveColumnValues(String columnValue1, String columnValue2, String columnValue3, String columnValue4, String columnValue5, String query) {
+        String[] results = new String[3];
+        try {
+            ResultSet rs = executor.executeQuery(query);
+            if (rs.next()) {
+                results = new String[]{rs.getString(columnValue1), rs.getString(columnValue2), rs.getString(columnValue3), rs.getString(columnValue4), rs.getString(columnValue5)};
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Assert.fail("Error with db occurred: " + e.getMessage());
+        }
+        return results;
+    }
+
     public Boolean dbRecordsExisting(String query) {
         ResultSet rs = null;
         Boolean hasRecords = null;

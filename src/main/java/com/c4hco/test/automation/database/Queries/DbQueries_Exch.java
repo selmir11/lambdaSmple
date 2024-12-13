@@ -557,4 +557,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where member_id = '"+memberId+"'";
     }
 
+    public String getTaxReturnDataDB(String memberId){
+        return "SELECT p.tax_filing_type, p.claimed_as_dep_on_othr_ftr_ind, m.tax_filing_status, m.exceptional_circumstance,m.tax_return_id\n" +
+                "from "+dbName+".es_member p\n" +
+                "inner join "+dbName+".es_tax_return m on m.tax_return_id=p.tax_return_id\n" +
+                "where member_id = '"+memberId+"'";
+    }
+
 }
