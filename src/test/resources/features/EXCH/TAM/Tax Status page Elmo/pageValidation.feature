@@ -1,4 +1,4 @@
-@TAM @TamExch @test
+@TAM @TamExch
 Feature: Page Validation-Tax Status Elmo Page
 
   Background:
