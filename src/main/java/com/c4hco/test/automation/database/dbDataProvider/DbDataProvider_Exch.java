@@ -491,8 +491,4 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForThreeColumnValues("status", "changeevent", "requesttype", exchDbQueries.getRqQueMsg());
     }
 
-    public String[] getUpdatedInfoFromBob(){
-        return postgresHandler.getResultForThreeColumnValues("status", "changeevent", "requesttype", exchDbQueries.getRqQueMsg());
-    }
-
 }
