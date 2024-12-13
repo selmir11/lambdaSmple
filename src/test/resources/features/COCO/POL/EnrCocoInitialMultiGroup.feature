@@ -125,8 +125,7 @@ Feature: Coco Initial Application Multi group
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "CoCo Start Shopping" page
-    Then I click Yes to the Tobacco usage question on coco start shopping page
-    |Primary,Wife|
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I validate that there are 2 default groups in coco page
