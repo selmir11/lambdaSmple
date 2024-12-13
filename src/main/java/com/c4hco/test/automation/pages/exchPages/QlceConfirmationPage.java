@@ -198,38 +198,6 @@ public class QlceConfirmationPage {
                 .ifPresent(eventDateElement -> eventDateElement.sendKeys(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual())));
     }
 
-    public void selectBirthLCE(String dobType) {
-        basicActions.waitForElementToBeClickable(birthQLCE, 10);
-        String newbornFullName = basicActions.getFullNameWithPrefix(SharedData.getBirthLceIndividual());
-        birthQLCE.click();
-
-        WebElement birthLceMemCheckbox = basicActions.getDriver()
-                .findElement(By.xpath("//span[contains(text(),'" + newbornFullName + "')]/parent::label" +
-                        "/preceding-sibling::input[contains(@class,'checkbox') and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
-        birthLceMemCheckbox.click();
-
-        LocalDate dobCalculator = null;
-
-        switch (dobType) {
-            case "current date minus 5days":
-                dobCalculator = LocalDate.now().minusDays(5);
-                break;
-            case "current date":
-                dobCalculator = LocalDate.now();
-                break;
-            case "first day of current month":
-                dobCalculator = LocalDate.now().withDayOfMonth(1);
-                break;
-        }
-
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String formattedDob = dateFormat.format(dobCalculator);
-
-        birthEventDate.stream()
-                .filter(WebElement::isDisplayed)
-                .findFirst()
-                .ifPresent(eventDateElement -> eventDateElement.sendKeys(formattedDob));
-    }
 
 
     public void saveAndContinue() {

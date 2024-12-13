@@ -14,9 +14,9 @@ public class QlceConfirmationPageSteps {
     }
 
     // WIP- rewrite this step
-    @Then("I select Birth QLCE on tell us about life changes page with dob type {string}")
-    public void selectQlceTypeforlastmemebr(String dobType) {
-        qlceConfirmationPage.selectBirthLCE(dobType);
+    @Then("I select Birth QLCE on tell us about life changes page")
+    public void selectQlceTypeforlastmemebr(){
+        qlceConfirmationPage.selectBirthLCE();
     }
 
     @Then("I click on Save and Continue")
