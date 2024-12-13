@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
@@ -357,6 +358,20 @@ public class TaxStatusPage_Elmo {
     public void checkExceptionalCircumstances() {
         basicActions.waitForElementToBePresent(exceptionalCircumstancesTxt,10);
         exceptionalCircumstancesTxt.click();
+    }
+
+    public void enterWhoWillBeClaimedDataEnterTheNameQuestion(List<Map<String, String>> nameData) {
+        claimedFirstNameInput.sendKeys(nameData.get(0).get("First Name"));
+        String middleName = nameData.get(0).get("Middle Name");
+        if (middleName != null && !middleName.isEmpty()) {
+            claimedMiddleNameInput.sendKeys(middleName);
+        }
+        claimedLastNameInput.sendKeys(nameData.get(0).get("Last Name"));
+        String suffix = nameData.get(0).get("Suffix");
+        if (suffix != null && !suffix.isEmpty()) {
+            claimedSuffixNameDpd.sendKeys(suffix);
+        }
+        claimedDobNameInput.sendKeys(nameData.get(0).get("DOB"));
     }
 
 
@@ -1157,5 +1172,57 @@ public class TaxStatusPage_Elmo {
         softAssert.assertAll();
     }
 
+    public void verifyTaxReturnId(String matchType, String memPrefix) {
+        List<String> taxReturnIds = null;
 
+        if (memPrefix.equals("Primary")) {
+            taxReturnIds = SharedData.getPrimaryMember().getTaxReturnId();
+            System.out.println("Primary Tax Return ID is "+taxReturnIds);
+        } else {
+            List<MemberDetails> members = SharedData.getMembers();
+            for (MemberDetails mem : members) {
+                if (mem.getFirstName().contains(memPrefix)) {
+                    taxReturnIds = mem.getTaxReturnId();
+                    System.out.println(memPrefix+" Tax Return ID is "+taxReturnIds);
+                    break;
+                }
+            }
+        }
+        if (taxReturnIds == null || taxReturnIds.isEmpty()) {
+            throw new IllegalStateException("No tax_return_id entries found for member: " + memPrefix);
+        }
+        if (taxReturnIds.size() == 1) {
+            System.out.println("Only one tax_return_id entry available for member " + memPrefix + ": " + taxReturnIds.get(0) + ". Skipping verification.");
+            return;
+        }
+
+        String lastTaxReturnId = taxReturnIds.get(taxReturnIds.size() - 1);
+        String secondLastTaxReturnId = taxReturnIds.get(taxReturnIds.size() - 2);
+        try {
+            switch (matchType) {
+                case "Same":
+                    if (lastTaxReturnId.equals(secondLastTaxReturnId)) {
+                        System.out.println("The last two tax_return_id entries for " + memPrefix + " are the same: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    } else {
+                        softAssert.fail("The last two tax_return_id entries for " + memPrefix + " are different. Expected them to be the same: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    }
+                    break;
+                case "Different":
+                    if (!lastTaxReturnId.equals(secondLastTaxReturnId)) {
+                        System.out.println("The last two tax_return_id entries for " + memPrefix + " are different: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    } else {
+                        softAssert.fail("The last two tax_return_id entries for " + memPrefix + " are the same. Expected them to be different: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid matchType. Please provide 'Same' or 'Different'.");
+                    break;
+            }
+            softAssert.assertAll();
+        } catch (Exception e) {
+            System.out.println("An error occurred while verifying tax_return_id for member " + memPrefix + ": " + e.getMessage());
+        }
     }
+
+
+}

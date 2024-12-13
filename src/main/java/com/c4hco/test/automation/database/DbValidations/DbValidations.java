@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.database.DbValidations;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
@@ -411,6 +412,47 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void verifyTaxReturnData(String memPrefix, List<Map<String, String>> expectedValues) {
+        String[] rawDbValues = exchDbDataProvider.getTaxReturnData(basicActions.getMemberId(memPrefix));
+
+        String[] dbValues = new String[5];
+        Arrays.fill(dbValues, null);
+        for (int i = 0; i < rawDbValues.length && i < 5; i++) {
+            dbValues[i] = rawDbValues[i];
+        }
+
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("tax_filing_type"), "Mismatch in tax_filing_type");
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("claimed_as_dep_on_othr_ftr_ind"), "Mismatch in claimed_as_dep_on_othr_ftr_ind");
+        softAssert.assertEquals(dbValues[2], expectedValues.get(0).get("tax_filing_status"), "Mismatch in tax_filing_status");
+        softAssert.assertEquals(dbValues[3], expectedValues.get(0).get("exceptional_circumstance"), "Mismatch in exceptional_circumstance");
+        softAssert.assertAll();
+
+        String taxReturnIdValue = dbValues[4] == null ? "null" : dbValues[4];
+
+        List<String> taxReturnIdList;
+        if (memPrefix.startsWith("Primary")) {
+            taxReturnIdList = SharedData.getPrimaryMember().getTaxReturnId();
+        } else {
+            taxReturnIdList = SharedData.getMembers().stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElseThrow(() -> new IllegalStateException("Member not found")).getTaxReturnId();
+        }
+        if (taxReturnIdList == null) {
+            taxReturnIdList = new ArrayList<>();
+        }
+        taxReturnIdList.add(taxReturnIdValue);
+        if (memPrefix.startsWith("Primary")) {
+            SharedData.getPrimaryMember().setTaxReturnId(taxReturnIdList);
+        } else {
+            MemberDetails targetMember = SharedData.getMembers().stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElseThrow(() -> new IllegalStateException("Member not found"));
+            targetMember.setTaxReturnId(taxReturnIdList);
+        }
+
+        String formattedList = String.join(", ", taxReturnIdList);
+        System.out.println("Adjusted DB values: " + Arrays.toString(dbValues));
+        System.out.println("Tax return ID value to be processed: " + taxReturnIdValue);
+        System.out.println("Tax return ID list before updating: " + taxReturnIdList);
+        System.out.println("Updated tax_return_id list for " + memPrefix + ": " + formattedList);
+    }
+
     public void validate_rq_queue_msg(){
         String dbValues[] = exchDbDataProvider.get_rq_queue_msg();
         softAssert.assertEquals(dbValues[0], "PROCESSED", "status from rq_queue_msg table did not match");
@@ -418,5 +460,13 @@ public class DbValidations {
         softAssert.assertEquals(dbValues[2], "\"TransferContactInfo\"", "requestType from rq_queue_msg table did not match");
         softAssert.assertAll();
     }
+
+
+
+
+
+
+
+
 
 }
