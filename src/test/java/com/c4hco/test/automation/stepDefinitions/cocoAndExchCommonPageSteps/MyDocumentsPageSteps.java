@@ -35,7 +35,7 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     }
 
     @Then("I validate {string} notice content")
-    public void validateNotice(String docType) {
+    public void validateNotice(String docType) throws IOException {
         myDocumentsPage.validateNoticeText(docType);
     }
 

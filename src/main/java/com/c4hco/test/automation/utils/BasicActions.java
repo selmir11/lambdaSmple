@@ -884,6 +884,12 @@ public class BasicActions {
         return allEligibleMembers;
     }
 
+    public String getDateAndTime(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH_mm");
+        return sdf.format(date);
+    }
+
 
 }
 
