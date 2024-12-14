@@ -146,8 +146,6 @@ public class MyPoliciesPage {
 
             WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Exchange Policy Number:')]/parent::*/following-sibling::*/*"));
 
-            WebElement subscriber = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Subscriber:')]/../following-sibling::*/*"));
-
             WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Last Updated On:')]/../following-sibling::*/*"));
 
             WebElement applicableFrom = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Applicable From:')][last()]"));
@@ -163,7 +161,8 @@ public class MyPoliciesPage {
             member.setMedicalEapid_db(denEapidDb.get(member.getDenGroupInd()));
             softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
 
-            if(member.getIsSubscriber()=="Y"){
+            if(member.getIsSubscriber().equals("Y")){
+                WebElement subscriber = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Subscriber:')]/../following-sibling::*/*[contains(text(),'"+member.getFirstName()+"')]"));
                 softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
             }
 
@@ -189,7 +188,7 @@ public class MyPoliciesPage {
 
             WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Exchange Policy Number:')]/parent::*/following-sibling::*/*"));
 
-            WebElement subscriber = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Subscriber:')]/../following-sibling::*/*"));
+
 
             WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Last Updated On:')]/../following-sibling::*/*"));
 
@@ -206,7 +205,8 @@ public class MyPoliciesPage {
             member.setMedicalEapid_db(medEapidDb.get(member.getMedGroupInd()));
             softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
 
-            if(member.getIsSubscriber()=="Y"){
+            if(member.getIsSubscriber().equals("Y")){
+                WebElement subscriber = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Subscriber:')]/../following-sibling::*/*[contains(text(),'"+member.getFirstName()+"')]"));
                 softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
             }
 
