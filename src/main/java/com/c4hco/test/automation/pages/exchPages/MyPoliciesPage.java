@@ -155,9 +155,9 @@ public class MyPoliciesPage {
             //validation
             softAssert.assertEquals(planStartDate.getText(),(SharedData.getPrimaryMember().getDentalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(planEndDate.getText(),(SharedData.getPrimaryMember().getDentalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(monthlyPremium.getText().replace("$",""),(member.getDentalPremiumAmt()), "Dental Premium mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo",""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(aptc.getText().replace(" Financial Help",""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(monthlyPremium.getText().replace("$","").replace(",", ""),(member.getDentalPremiumAmt()), "Dental Premium mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo","").replace(",", ""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(aptc.getText().replace(" Financial Help","").replace(",", ""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
 
             Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
             member.setMedicalEapid_db(denEapidDb.get(member.getDenGroupInd()));
@@ -199,7 +199,7 @@ public class MyPoliciesPage {
             softAssert.assertEquals(planStartDate.getText(),(SharedData.getPrimaryMember().getMedicalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(planEndDate.getText(),(SharedData.getPrimaryMember().getMedicalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(monthlyPremium.getText().replace("$","").replace(",",""),(member.getMedicalPremiumAmt()), "Medical Premium mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo",""),(member.getTotalMedAmtAfterReduction()), "Medical Premium after reduction mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo","").replace(",", ""), member.getTotalMedAmtAfterReduction(), "Medical Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(" Financial Help","").replace("$","").replace(",",""),(member.getMedicalAptcAmt()), "Medical APTC amount mismatch for member: " + member.getFirstName());
 
             Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
