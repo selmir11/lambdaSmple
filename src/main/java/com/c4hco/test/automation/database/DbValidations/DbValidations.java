@@ -460,13 +460,4 @@ public class DbValidations {
         softAssert.assertEquals(dbValues[2], "\"TransferContactInfo\"", "requestType from rq_queue_msg table did not match");
         softAssert.assertAll();
     }
-
-
-
-
-
-
-
-
-
-}
+    }
