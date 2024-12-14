@@ -1,5 +1,5 @@
 Feature: Seed07 - Exchange - EOY
-  
+
   Scenario: Seed 07 For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |

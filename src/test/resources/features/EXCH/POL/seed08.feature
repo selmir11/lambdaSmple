@@ -214,6 +214,7 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Son,InLaw"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
