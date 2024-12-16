@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
@@ -308,6 +309,20 @@ public class TaxStatusPage_Elmo {
         }
     }
 
+    public void enterFilingJointlyWithEnterTheNameQuestion(List<Map<String, String>> nameData) {
+        filingFirstNameInput.sendKeys(nameData.get(0).get("First Name"));
+        String middleName = nameData.get(0).get("Middle Name");
+        if (middleName != null && !middleName.isEmpty()) {
+            filingMiddleNameInput.sendKeys(middleName);
+        }
+        filingLastNameInput.sendKeys(nameData.get(0).get("Last Name"));
+        String suffix = nameData.get(0).get("Suffix");
+        if (suffix != null && !suffix.isEmpty()) {
+            filingSuffixNameDpd.sendKeys(suffix);
+        }
+        filingDobNameInput.sendKeys(nameData.get(0).get("DOB"));
+    }
+
     public void selectWillClaimDependents(String willFile){
         switch (willFile) {
             case "Yes":
@@ -357,6 +372,20 @@ public class TaxStatusPage_Elmo {
     public void checkExceptionalCircumstances() {
         basicActions.waitForElementToBePresent(exceptionalCircumstancesTxt,10);
         exceptionalCircumstancesTxt.click();
+    }
+
+    public void enterWhoWillBeClaimedDataEnterTheNameQuestion(List<Map<String, String>> nameData) {
+        claimedFirstNameInput.sendKeys(nameData.get(0).get("First Name"));
+        String middleName = nameData.get(0).get("Middle Name");
+        if (middleName != null && !middleName.isEmpty()) {
+            claimedMiddleNameInput.sendKeys(middleName);
+        }
+        claimedLastNameInput.sendKeys(nameData.get(0).get("Last Name"));
+        String suffix = nameData.get(0).get("Suffix");
+        if (suffix != null && !suffix.isEmpty()) {
+            claimedSuffixNameDpd.sendKeys(suffix);
+        }
+        claimedDobNameInput.sendKeys(nameData.get(0).get("DOB"));
     }
 
 
@@ -1157,5 +1186,93 @@ public class TaxStatusPage_Elmo {
         softAssert.assertAll();
     }
 
+    public void verifyTaxReturnId(String matchType, String memPrefix) {
+        List<String> taxReturnIds = getTaxReturnIds(memPrefix);
 
+        if (taxReturnIds == null || taxReturnIds.isEmpty()) {
+            throw new IllegalStateException("No tax_return_id entries found for member: " + memPrefix);
+        }
+        if (taxReturnIds.size() == 1) {
+            System.out.println("Only one tax_return_id entry available for member " + memPrefix + ": " + taxReturnIds.get(0) + ". Skipping verification.");
+            return;
+        }
+
+        String lastTaxReturnId = taxReturnIds.get(taxReturnIds.size() - 1);
+        String secondLastTaxReturnId = taxReturnIds.get(taxReturnIds.size() - 2);
+        try {
+            switch (matchType) {
+                case "Same":
+                    if (lastTaxReturnId.equals(secondLastTaxReturnId)) {
+                        System.out.println("The last two tax_return_id entries for " + memPrefix + " are the same: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    } else {
+                        softAssert.fail("The last two tax_return_id entries for " + memPrefix + " are different. Expected them to be the same: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    }
+                    break;
+                case "Different":
+                    if (!lastTaxReturnId.equals(secondLastTaxReturnId)) {
+                        System.out.println("The last two tax_return_id entries for " + memPrefix + " are different: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    } else {
+                        softAssert.fail("The last two tax_return_id entries for " + memPrefix + " are the same. Expected them to be different: Last tax_return_id: " + lastTaxReturnId + ", Second to last tax_return_id: " + secondLastTaxReturnId);
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid matchType. Please provide 'Same' or 'Different'.");
+                    break;
+            }
+            softAssert.assertAll();
+        } catch (Exception e) {
+            System.out.println("An error occurred while verifying tax_return_id: " + e.getMessage());
+        }
     }
+
+    public void compareTaxReturnId(String memPrefix, String matchType, String memPrefix2) {
+        List<String> taxReturnIds = getTaxReturnIds(memPrefix);
+        List<String> taxReturnIds2 = getTaxReturnIds(memPrefix2);
+
+        if (taxReturnIds == null || taxReturnIds.isEmpty() || taxReturnIds2 == null || taxReturnIds2.isEmpty()) {
+            softAssert.fail("One or both member tax return ID lists are null or have no entries.");
+        }
+
+        String mem1TaxReturnId = taxReturnIds.get(taxReturnIds.size() - 1);
+        String mem2TaxReturnId = taxReturnIds2.get(taxReturnIds2.size() - 1);
+
+        switch (matchType) {
+            case "Same":
+                if (mem1TaxReturnId.equals(mem2TaxReturnId)) {
+                    System.out.println("The tax_return_id entries for " + memPrefix + " and " + memPrefix2 + " are the same: " + memPrefix + " tax_return_id: " + mem1TaxReturnId + ", " + memPrefix2 + " tax_return_id: " + mem2TaxReturnId);
+                } else {
+                    softAssert.fail("The tax_return_id entries for " + memPrefix + " and " + memPrefix2 + " are different. " + "Expected them to be the same: " + memPrefix + " tax_return_id: " + mem1TaxReturnId + ", " + memPrefix2 + " tax_return_id: " + mem2TaxReturnId);
+                }
+                break;
+            case "Different":
+                if (!mem1TaxReturnId.equals(mem2TaxReturnId)) {
+                    System.out.println("The tax_return_id entries for " + memPrefix + " and " + memPrefix2 + " are different: " + memPrefix + " tax_return_id: " + mem1TaxReturnId + ", " + memPrefix2 + " tax_return_id: " + mem2TaxReturnId);
+                } else {
+                    softAssert.fail("The tax_return_id entries for " + memPrefix + " and " + memPrefix2 + " are the same. Expected them to be different: " + memPrefix + " tax_return_id: " + mem1TaxReturnId + ", " + memPrefix2 + " tax_return_id: " + mem2TaxReturnId);
+                }
+                break;
+            default:
+                System.out.println("Invalid matchType. Please provide 'Same' or 'Different'.");
+                break;
+        }
+        softAssert.assertAll();
+    }
+
+    private List<String> getTaxReturnIds(String memPrefix) {
+        if ("Primary".equals(memPrefix)) {
+            return SharedData.getPrimaryMember().getTaxReturnId();
+        } else {
+            List<MemberDetails> members = SharedData.getMembers();
+            for (MemberDetails mem : members) {
+                if (mem.getFirstName().contains(memPrefix)) {
+                    return mem.getTaxReturnId();
+                }
+            }
+        }
+        System.out.println("No tax return IDs found for prefix: " + memPrefix);
+        return null;
+    }
+
+
+
+}

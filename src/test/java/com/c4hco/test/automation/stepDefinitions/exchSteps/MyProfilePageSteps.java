@@ -105,8 +105,10 @@ public class MyProfilePageSteps {
         myProfileExchPage.UpdateContactEmailAddress();
     }
 
+
     @And("I update the contact home phone number on profile page")
-    public void iUpdateContactPhoneNumber() {myProfileExchPage.updateContactPhoneNumber();}
+    public void iUpdateContactPhoneNumber() { // updates both home phone and mobile phone
+        myProfileExchPage.updateContactPhoneNumber();}
 
     @Then("I update {string} as primary member")
     public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {

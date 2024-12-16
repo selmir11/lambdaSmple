@@ -146,10 +146,10 @@ public class FindACertifiedBrokerPage {
     @FindBy(id= "terms-check-label")
     WebElement brokerAuthorizationTermsText;
 
-    @FindBy(xpath= "//button[@class='col-lg-3 secondary-action-button m-2']")
+    @FindBy(id= "kp-curnt-brok")
     WebElement keepCurrentBrokerBtn;
 
-    @FindBy(xpath= "//button[@class='btn col-lg-3 primary-action-button m-2']")
+    @FindBy(id= "auth-new-brok")
     WebElement authorizeNewBrokerBtn;
 
     @FindBy(xpath= "//div[@id='client-information-table']/div")
@@ -253,7 +253,7 @@ public class FindACertifiedBrokerPage {
         WebElement test1 = basicActions.getDriver().findElement(By.id("terms-checkbox-input"));
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()",test1 );
 
-        WebElement test2 = basicActions.getDriver().findElement(By.xpath("//span[.='Authorize Broker']"));
+        WebElement test2 = basicActions.getDriver().findElement(By.id("auth-brok"));
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()",test2 );
     }
 

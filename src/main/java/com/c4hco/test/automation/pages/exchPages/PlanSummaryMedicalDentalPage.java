@@ -160,8 +160,9 @@ public class PlanSummaryMedicalDentalPage {
                 int groupLocatorIndex = Integer.parseInt(member.getMedGroupInd())-1;
                 WebElement medPremAfterAPTCAmtEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumAmount_"+groupLocatorIndex+""));
                 String medPremiumAfterReduction = medPremAfterAPTCAmtEle.getText().replace("$", "").replace(",", "");
-
+                WebElement medicalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+groupLocatorIndex+""));
                 member.setMedicalAptcAmt("0");
+                member.setMedicalPlan(medicalPlanNameEle.getText());
                 member.setTotalMedAmtAfterReduction(medPremiumAfterReduction);
                 member.setMedicalPremiumAmt(medPremiumAfterReduction);
             }
@@ -177,7 +178,7 @@ public class PlanSummaryMedicalDentalPage {
 
                 String medPremiumAfterReduction = medPremAfterAPTCAmtEle.getText().replace("$", "").replace(",", "");
                 String medAPTCAmt = medAPTCAmtEle.getText().replace("$", "").replace(",", "");
-
+                WebElement medicalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+groupLocatorIndex+""));
                 BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(medAPTCAmt.replace(",",""));
                 BigDecimal bigDecimalMedPremiumMinusAPTC = new BigDecimal(medPremiumAfterReduction);
                 BigDecimal totalMedicalPremium = bigDecimalMedPremiumMinusAPTC.add(bigDecimalMedAPTCAmt);
@@ -185,6 +186,7 @@ public class PlanSummaryMedicalDentalPage {
                 member.setMedicalAptcAmt(medAPTCAmt);
                 member.setTotalMedAmtAfterReduction(String.valueOf(bigDecimalMedPremiumMinusAPTC));
                 member.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+                member.setMedicalPlan(medicalPlanNameEle.getText());
             }
         }
     }
