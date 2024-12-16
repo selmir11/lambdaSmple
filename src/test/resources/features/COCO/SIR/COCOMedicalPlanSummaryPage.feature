@@ -67,6 +67,7 @@ Feature: Verify text in Medical Plan Summary Page
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -139,6 +140,7 @@ Feature: Verify text in Medical Plan Summary Page
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page

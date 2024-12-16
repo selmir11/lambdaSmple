@@ -69,4 +69,5 @@ Feature: Tobacco Usage page related tests
       And I click continue on application results page
       Then I validate I am on the "Start Shopping" page
       Then I verify text on start shopping page
+      Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
       Then I click continue on start shopping page

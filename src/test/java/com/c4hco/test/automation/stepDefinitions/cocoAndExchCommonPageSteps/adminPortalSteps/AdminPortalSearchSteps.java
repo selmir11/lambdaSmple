@@ -163,7 +163,6 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.entersearchdata(dataTable);
     }
     
-
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
             adminPortalSearchPage.accountCreatedMessage();
@@ -173,10 +172,12 @@ public class AdminPortalSearchSteps {
     public void iVerifyDataInTheFieldsOnTheAdminPortalSearchPageShouldBeBlank(DataTable dataTable) {
         adminPortalSearchPage.verifyblankfield(dataTable);
     }
+
     @Then("I click on Reset button in AP dashboard page")
     public void iClickOnResetButtonInAPDashboardPage() {
         adminPortalSearchPage.clickResetAdminPortal();
     }
+
 }
 
 
