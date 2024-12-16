@@ -81,13 +81,13 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
 
     // https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
-    implementation (group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.27')
+    implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.27'
 
     // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.9.2'
 
     // https://mvnrepository.com/artifact/de.redsix/pdfcompare
-    implementation (group: 'de.redsix', name: 'pdfcompare', version: '1.2.3')
+    implementation group: 'de.redsix', name: 'pdfcompare', version: '1.2.3'
 }
 
 test {

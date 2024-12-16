@@ -1,4 +1,4 @@
-@NVO @NVOPDF @MFREADY
+@NVO @NVOPDF
 Feature: Eligibility Notices
 
   Background:
@@ -11,7 +11,7 @@ Feature: Eligibility Notices
     And  I enter valid credentials to login
     And I validate I am on the "Account Overview" page
 
-  @SLER-919 @A
+  @SLER-919
   Scenario: Not Eligible; Didn't Apply; 1 person
 
     # EMAIL check
@@ -115,7 +115,7 @@ Feature: Eligibility Notices
     Then I validate "ELIG-001-01 English" notice content
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-954 @A
+  @SLER-954
   Scenario: Not Eligible; Not a CO Resident; 1 person
 
     # EMAIL CHECK
@@ -330,7 +330,7 @@ Feature: Eligibility Notices
     Then I validate "ELIG-001-01 MA QHP English" notice content
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-959 @WIP
+  @SLER-959
   Scenario: APTC, CSR, QHP Eligible; Lost Insurance; 1 person
 
     # EMAIL CHECK
@@ -693,7 +693,7 @@ Feature: Eligibility Notices
     Then I validate "ELIG-001-01 Gain of Tribal Status English 2" notice content
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-919 @A
+  @SLER-919
   Scenario: Not Eligible; Didn't Apply; 1 person; ES
 
     # EMAIL check
@@ -803,7 +803,7 @@ Feature: Eligibility Notices
     Then I validate "ELIG-001-01 Spanish" notice content
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-954 @A
+  @SLER-954
   Scenario: Not Eligible; Not a CO Resident; 1 person; ES
 
     # EMAIL CHECK
@@ -1414,7 +1414,7 @@ Feature: Eligibility Notices
 
 #    Mail
 
-  @SLER-919MAIL @A
+  @SLER-919MAIL
   Scenario: Not Eligible; Didn't Apply; 1 person; MAIL
 
     # EMAIL check
@@ -2369,7 +2369,7 @@ Feature: Eligibility Notices
     Then I validate "ELIG-001-01 Spanish" notice content
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-954 @A
+  @SLER-954
   Scenario: Not Eligible; Not a CO Resident; 1 person; ES; MAIL
 
     # EMAIL CHECK
