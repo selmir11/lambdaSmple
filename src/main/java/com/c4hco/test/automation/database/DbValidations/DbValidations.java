@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.database.DbValidations;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
@@ -15,7 +16,6 @@ public class DbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
     String formattedDate; //formatted in YYYY-MM-DD
-    Calendar calendar = Calendar.getInstance();
 
     BasicActions basicActions = new BasicActions();
 
@@ -375,9 +375,21 @@ public class DbValidations {
        softAssert.assertAll();
     }
 
+
     public void validateTheDentalLatestApplicationDateForTheYearDB() {
         String denLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
         softAssert.assertTrue(denLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getDenLatestAppDate()));
+        softAssert.assertAll();}
+
+    public void validateTheBrokerEmailInDB() {
+        String brokerEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(brokerEmail,SharedData.getBroker().getEmail());
+        softAssert.assertAll();
+    }
+
+    public void validateTheAgencyEmailInDB() {
+        String agencyEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
         softAssert.assertAll();
     }
     public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
@@ -391,4 +403,61 @@ public class DbValidations {
         softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
         softAssert.assertAll();
     }
-}
+
+    public void verifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {
+        String[] dbValues = exchDbDataProvider.getTaxFilingData(basicActions.getMemberId(memPrefix));
+        System.out.println(Arrays.toString(dbValues));
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("claimed_as_dep_on_othr_ftr_ind"));
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("tax_filing_type"));
+        softAssert.assertAll();
+    }
+
+    public void verifyTaxReturnData(String memPrefix, List<Map<String, String>> expectedValues) {
+        String[] rawDbValues = exchDbDataProvider.getTaxReturnData(basicActions.getMemberId(memPrefix));
+
+        String[] dbValues = new String[5];
+        Arrays.fill(dbValues, null);
+        for (int i = 0; i < rawDbValues.length && i < 5; i++) {
+            dbValues[i] = rawDbValues[i];
+        }
+
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("tax_filing_type"), "Mismatch in tax_filing_type");
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("claimed_as_dep_on_othr_ftr_ind"), "Mismatch in claimed_as_dep_on_othr_ftr_ind");
+        softAssert.assertEquals(dbValues[2], expectedValues.get(0).get("tax_filing_status"), "Mismatch in tax_filing_status");
+        softAssert.assertEquals(dbValues[3], expectedValues.get(0).get("exceptional_circumstance"), "Mismatch in exceptional_circumstance");
+        softAssert.assertAll();
+
+        String taxReturnIdValue = dbValues[4] == null ? "null" : dbValues[4];
+
+        List<String> taxReturnIdList;
+        if (memPrefix.startsWith("Primary")) {
+            taxReturnIdList = SharedData.getPrimaryMember().getTaxReturnId();
+        } else {
+            taxReturnIdList = SharedData.getMembers().stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElseThrow(() -> new IllegalStateException("Member not found")).getTaxReturnId();
+        }
+        if (taxReturnIdList == null) {
+            taxReturnIdList = new ArrayList<>();
+        }
+        taxReturnIdList.add(taxReturnIdValue);
+        if (memPrefix.startsWith("Primary")) {
+            SharedData.getPrimaryMember().setTaxReturnId(taxReturnIdList);
+        } else {
+            MemberDetails targetMember = SharedData.getMembers().stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElseThrow(() -> new IllegalStateException("Member not found"));
+            targetMember.setTaxReturnId(taxReturnIdList);
+        }
+
+        String formattedList = String.join(", ", taxReturnIdList);
+        System.out.println("Adjusted DB values: " + Arrays.toString(dbValues));
+        System.out.println("Tax return ID value to be processed: " + taxReturnIdValue);
+        System.out.println("Tax return ID list before updating: " + taxReturnIdList);
+        System.out.println("Updated tax_return_id list for " + memPrefix + ": " + formattedList);
+    }
+
+    public void validate_rq_queue_msg(){
+        String dbValues[] = exchDbDataProvider.get_rq_queue_msg();
+        softAssert.assertEquals(dbValues[0], "PROCESSED", "status from rq_queue_msg table did not match");
+        softAssert.assertEquals(dbValues[1], "\"REASSIGN_PRIMARY_CONTACT\"", "changeEvent from rq_queue_msg table did not match");
+        softAssert.assertEquals(dbValues[2], "\"TransferContactInfo\"", "requestType from rq_queue_msg table did not match");
+        softAssert.assertAll();
+    }
+    }

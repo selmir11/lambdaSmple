@@ -106,10 +106,18 @@ public String policyTablesCombinedQuery(String coverageType){
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return currentDate.format(dateFormat);
     }
-
     public String getEAPID() {
-        return "select exchange_assigned_policy_id, coverage_type from  " + dbName + ".en_policy_ah\n" +
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
                 "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED'";
+    }
+    public String getMedicalEAPID() {
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
+                "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED' and coverage_type ='1'";
+    }
+    public String getDentalEAPID() {
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
+                "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED'\n"+
+                "and coverage_type = '2'";
     }
 
     public String getOhiRecordsAll(String memberId) {
@@ -446,7 +454,6 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where household_id  = '"+householId+"'";
     }
 
-
     public String getMemberNonAIAn()
     {
         return "SELECT * from "+dbName+".es_member_rules_result t1\n " +
@@ -538,6 +545,28 @@ public String policyTablesCombinedQuery(String coverageType){
     public String getEnrollmentPeriodEndDate(){
         return "SELECT * from "+dbName+".es_enrollment_period_end_date\n" +
                 "where application_id = '"+applicationId+"'";
+    }
+
+    public String getBrokerEmailIn() {
+        return "SELECT CI.email FROM "+dbName+".bp_staff AS ST JOIN "+dbName+".bp_contact_info AS CI ON ST.contact_info_id = CI.contact_info_id " +
+                "WHERE ST.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"';";
+    }
+
+    public String getTaxFilingDataDB(String memberId){
+        return "SELECT * from "+dbName+".es_member\n" +
+                "where member_id = '"+memberId+"'";
+    }
+
+    public String getTaxReturnDataDB(String memberId){
+        return "SELECT p.tax_filing_type, p.claimed_as_dep_on_othr_ftr_ind, m.tax_filing_status, m.exceptional_circumstance,m.tax_return_id\n" +
+                "from "+dbName+".es_member p\n" +
+                "inner join "+dbName+".es_tax_return m on m.tax_return_id=p.tax_return_id\n" +
+                "where member_id = '"+memberId+"'";
+    }
+
+    public String getRqQueMsg(){
+        return "SELECT status, message -> 'changeEvent' as changeEvent, message -> 'requestType' as requestType \n" +
+                "FROM "+dbName+".rq_queue_messages where correlation_id like '"+SharedData.getPrimaryMember().getAccount_id()+"-REASSIGN-PRIMARY-CONTACT'";
     }
 
 }

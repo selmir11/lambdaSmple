@@ -337,8 +337,7 @@ Feature: Enroll a in a plan 8 HH - OE
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click Yes to the Tobacco usage question on start shopping page
-    |Primary|
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -393,6 +392,24 @@ Feature: Enroll a in a plan 8 HH - OE
 
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
+    And I validate "medical" plan details from plan history
+    And I validate "dental" plan details from plan history
+    And I click on Sign Out in the Header for "NonElmo"
+
+    And I validate "medical" entities from policy tables for groups
+    And I validate "dental" entities from policy tables for groups
+
+    And I validate "medical" entities from pre edi db tables for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | OEP        |
+    And I validate "dental" entities from pre edi db tables for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | OEP        |
 
 #    #Gmail Verification
 #    Then I open outlook Tab

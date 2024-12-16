@@ -332,6 +332,56 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
+  @SLER-475 @PageTextOtherHealthInsurancePage
+  Scenario: SLER-475 I validate remove HRA on Other Health Coverage is updated in the DB
+    Then I select "HRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo HRA" page
+    And I verify the OHI options selected in the DB for "Primary"
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   1   |
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "500.00" amount on the Elmo OHI HRA page
+    Then I select "QSEHRA" for HRA type
+    And I validate I am on the "Elmo HRA" page
+    Then I click continue on the Elmo OHI HRA page
+    And I verify the OHI options selected in the DB for "Primary"
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   1   |
+    And I verify the HRA options selected in the DB
+      |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
+      |   2024  |   500.00    |  QSEHRA |                    |          0           |
+
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I verify the OHI options selected in the DB for "Primary"
+      |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
+      |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
+    And I verify the HRA options selected in the DB
+      |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
+      |         |             |        |                    |                      |
+
+    And I click on Sign Out in the Header for "NonElmo"
+
 
   @SLER-476 @PageTextOtherHealthInsurancePage
   Scenario: SLER-476 I validate remove VA Healthcare on Other Health Coverage is updated in the DB

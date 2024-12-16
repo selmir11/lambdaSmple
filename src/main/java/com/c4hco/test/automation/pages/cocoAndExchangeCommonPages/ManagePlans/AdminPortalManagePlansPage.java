@@ -164,6 +164,12 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[8]")
     WebElement EHBPremiumamtDental;
 
+    //Select medical and dental checks
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Dental']")
+    WebElement selectDental;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Medical']")
+    WebElement selectMedical;
     //Validation errors
     @FindBy(xpath = "//div[@Class='body-text-1 validation-error']")
     WebElement ValidationError;
@@ -731,9 +737,10 @@ public class AdminPortalManagePlansPage {
             APTCMem.click();
             APTCMem.clear();
             APTCMem.sendKeys(aptcvalue);
+            if(SharedData.getPrimaryMember()!= null){
             SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
             String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
-            SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);
+            SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);}
         }
     }
 
@@ -746,7 +753,8 @@ public class AdminPortalManagePlansPage {
             premiumMem.click();
             premiumMem.clear();
             premiumMem.sendKeys(newPremiumAmt);
-            SharedData.getPrimaryMember().setMedicalPremiumAmt(newPremiumAmt);
+            if(SharedData.getPrimaryMember()!=null){
+            SharedData.getPrimaryMember().setMedicalAptcAmt(newPremiumAmt);}
         }
     }
 
@@ -808,6 +816,17 @@ public class AdminPortalManagePlansPage {
     public void validatePremiumErrors(){
         basicActions.waitForElementToBePresent(PremiumInvalidError, 50);
         softAssert.assertTrue(PremiumInvalidError.isDisplayed());
+    }
+
+
+    public void clickDentalButton(){
+        basicActions.waitForElementToBePresent(selectDental, 50);
+        selectDental.click();
+    }
+
+    public void clickMedicalButton(){
+        basicActions.waitForElementToBePresent(selectMedical, 50);
+        selectMedical.click();
     }
 
     public void updateTheMedicalPlanForTheUI() {
@@ -1034,7 +1053,7 @@ public class AdminPortalManagePlansPage {
         managePlanDentalMedicalPlan.setDenPlanPremiumAmtFnTable(denPlanPremiumAmtFnTable.getText());
         managePlanDentalMedicalPlan.setDenPlanAptcAmtFnTable(denAPTCAmtFnTable.getText());
 
-        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+       SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
     }
 }
 

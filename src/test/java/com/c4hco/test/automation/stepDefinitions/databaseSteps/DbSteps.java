@@ -15,6 +15,7 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    public void memberExistsInPolicyTable(){
       dbValidations.validateMemberExistsInPolicyTable();
    }
+
    @And("I verify the OHI info in the DB for {string}")
    public void validateOhiInfo(String memPrefix){dbValidations.validateOhiDetails(memPrefix);}
 
@@ -35,10 +36,8 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
       dbValidations.validateAccountHolderNameFromBOB();
    }
 
-
    @And("I verify the Member will be CSR NON_AIAN")
-   public void iVerifyTheMemberCSRNonAIAN() {dbValidations.validateMemberCSRNonAIANData();
-   }
+   public void iVerifyTheMemberCSRNonAIAN() {dbValidations.validateMemberCSRNonAIANData();}
 
    @And("I verify the client's updated email address in BoB DB")
    public void iVerifyUpdatedEmailAddressBOBDB() {
@@ -46,9 +45,7 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    }
 
    @And("I verify the broker authorization in BoB DB is {string}")
-   public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {
-      dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);
-   }
+   public void iVerifyBrokerAuthorizationBobDb(String expectedBrokerName) {dbValidations.validateBrokerAuthorizationBob(expectedBrokerName);}
 
    @And("I validate MVR details for account")
    public void iValidateMVRDetails(List<Map<String, String>> expectedValues){dbValidations.validateMVR(expectedValues);}
@@ -60,9 +57,7 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    public void iVerifyApplicationSubmissionBobDb() {dbValidations.validateApplicationSubmissionBob();}
 
    @And("I verify the client's policy submission in BoB DB has {int} expected records for coverage type {int}")
-   public void iVerifyMedicalPolicySubmissionBobDb(int expectedRecords, int coverageType) {
-      dbValidations.validatePolicySubmissionBob(expectedRecords, coverageType);
-   }
+   public void iVerifyMedicalPolicySubmissionBobDb(int expectedRecords, int coverageType) {dbValidations.validatePolicySubmissionBob(expectedRecords, coverageType);}
 
    @And("I verify there are no medical records for my client in BoB DB")
    public void iVerifyNoMedicalPolicySubmissionBobDb() {
@@ -85,9 +80,7 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    }
 
    @And("I verify the broker authorization type in the database is {string}")
-   public void iVerifyBrokerAuthorizationTypeDb(String expectedBrokerType) {
-      dbValidations.verifyBrokerAuthorizationTypeDb(expectedBrokerType);
-   }
+   public void iVerifyBrokerAuthorizationTypeDb(String expectedBrokerType) {dbValidations.verifyBrokerAuthorizationTypeDb(expectedBrokerType);}
 
    @And("I verify Person ID is unique in the DB")
    public void iValidateUniquePersonId(){policyTableValidations.validateUniquePersonId();}
@@ -102,39 +95,25 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    public void iValidateHraAhOptions(List<Map<String, String>> expectedValues){dbValidations.validateHraAhOptions(expectedValues);}
 
    @And("I validate the medical plan market names in the DB")
-   public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();
-   }
+   public void validateDatabaseMedicalPlanMarketNamesInTheDB() {dbValidations.validateDatabaseMedicalPlanList();}
 
    @And("I validate {string} race and {string} other text in the database")
-   public void iValidateRaceAndOtherTextInDatabase(String expectedRaceEthnicity, String expectedRaceOtherText) {
-      dbValidations.validateDatabaseRaceEthnicity(expectedRaceEthnicity, expectedRaceOtherText);
-   }
+   public void iValidateRaceAndOtherTextInDatabase(String expectedRaceEthnicity, String expectedRaceOtherText) {dbValidations.validateDatabaseRaceEthnicity(expectedRaceEthnicity, expectedRaceOtherText);}
 
    @Then("I validate current dental plan name for the account for the year {string} DB")
-   public void iValidateCurrentDentalPlanNameForTheAccountForTheYearDB(String year) {
-      dbValidations.validateCurrentDentalPlanNameForTheYear(year);
-   }
-
+   public void iValidateCurrentDentalPlanNameForTheAccountForTheYearDB(String year) {dbValidations.validateCurrentDentalPlanNameForTheYear(year);}
 
    @And("I validate current Medical policy start and end date for the year DB")
-   public void iValidateCurrentMedicalPolicyStartAndEndDateForTheYearDB() {
-      dbValidations.validateCurrentDentalPolicyStartAndEndDateForTheYearDB();
-   }
+   public void iValidateCurrentMedicalPolicyStartAndEndDateForTheYearDB() {dbValidations.validateCurrentDentalPolicyStartAndEndDateForTheYearDB();}
 
    @Then("I validate the Latest Application Date for the year DB")
-   public void iValidateTheLatestApplicationDateForTheYearDB() {
-      dbValidations.validateTheLatestApplicationDateForTheYearDB();
-   }
+   public void iValidateTheLatestApplicationDateForTheYearDB() {dbValidations.validateTheLatestApplicationDateForTheYearDB();}
 
    @And("I validate the second medical policy for the year {string} DB")
-   public void iValidateTheSecondMedicalPolicyForTheYearDB(String year) {
-      dbValidations.validateTheSecondMedicalPoliciyForTheYearDB(year);
-   }
+   public void iValidateTheSecondMedicalPolicyForTheYearDB(String year) {dbValidations.validateTheSecondMedicalPoliciyForTheYearDB(year);}
 
    @And("I validate the second dental policy for the year {string} DB")
-   public void iValidateTheSecondDentalPolicyForTheYearDB(String year) {
-      dbValidations.validateTheSecondDentalPoliciyForTheYearDB(year);
-   }
+   public void iValidateTheSecondDentalPolicyForTheYearDB(String year) {dbValidations.validateTheSecondDentalPoliciyForTheYearDB(year);}
 
    @And("I validate new event {string} is present in DB")
    public void iValidateNewEventDB(String event) {dbValidations.validateNewEventDB(event);}
@@ -143,11 +122,25 @@ private final IndividualPolicyTableValidations policyTableValidations = new Indi
    public void validateEsMember() {dbValidations.validateLceTypeAndPlanYr_EsMember();}
 
    @Then("I validate the dental Latest Application Date for the year DB")
-   public void iValidateTheDentalLatestApplicationDateForTheYearDB() {
-      dbValidations.validateTheDentalLatestApplicationDateForTheYearDB();
-   }
+   public void iValidateTheDentalLatestApplicationDateForTheYearDB() {dbValidations.validateTheDentalLatestApplicationDateForTheYearDB();}
+
+   @Then("I validate the broker email in DB")
+   public void iValidateTheEmailInDB() {dbValidations.validateTheBrokerEmailInDB();}
+
+   @Then("I validate the agency email in DB")
+   public void iValidateTheAgencyEmailInDB() {dbValidations.validateTheAgencyEmailInDB();}
+
    @And("I Validate enrollment period end date is set to {int} days from current QLCE days")
    public void validateEnrolmentEndDate(int enrollmentEndDate) {dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate); }
+
+   @And("I verify the tax filing data for {string} in DB")
+   public void iVerifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {dbValidations.verifyTaxFilingData(memPrefix,expectedValues);}
+
+   @And("I verify the tax return data for {string} in DB")
+   public void iVerifyTaxReturnData(String memPrefix,List<Map<String, String>> expectedValues) {dbValidations.verifyTaxReturnData(memPrefix,expectedValues);}
+
+   @Then("I validate the details from rq_queue_messages database")
+   public void validate_rq_queue_msg(){dbValidations.validate_rq_queue_msg();}
 
 }
 
