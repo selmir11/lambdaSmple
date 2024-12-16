@@ -159,11 +159,10 @@ public class PlanSummaryMedicalDentalPage {
             for(MemberDetails member: memberslist){
                 int groupLocatorIndex = Integer.parseInt(member.getMedGroupInd())-1;
                 WebElement medPremAfterAPTCAmtEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumAmount_"+groupLocatorIndex+""));
-                WebElement medicalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+groupLocatorIndex+""));
                 String medPremiumAfterReduction = medPremAfterAPTCAmtEle.getText().replace("$", "").replace(",", "");
-
-                member.setMedicalPlan(medicalPlanNameEle.getText());
+                WebElement medicalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+groupLocatorIndex+""));
                 member.setMedicalAptcAmt("0");
+                member.setMedicalPlan(medicalPlanNameEle.getText());
                 member.setTotalMedAmtAfterReduction(medPremiumAfterReduction);
                 member.setMedicalPremiumAmt(medPremiumAfterReduction);
             }
@@ -176,19 +175,18 @@ public class PlanSummaryMedicalDentalPage {
 
                 WebElement medPremAfterAPTCAmtEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumAmount_"+groupLocatorIndex+""));
                 WebElement medAPTCAmtEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPremiumReductionAmount_"+groupLocatorIndex+""));
-                WebElement medicalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+groupLocatorIndex+""));
 
                 String medPremiumAfterReduction = medPremAfterAPTCAmtEle.getText().replace("$", "").replace(",", "");
                 String medAPTCAmt = medAPTCAmtEle.getText().replace("$", "").replace(",", "");
-
+                WebElement medicalPlanNameEle = basicActions.getDriver().findElement(By.id("PlanSummary-MedicalPlanName_"+groupLocatorIndex+""));
                 BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(medAPTCAmt.replace(",",""));
                 BigDecimal bigDecimalMedPremiumMinusAPTC = new BigDecimal(medPremiumAfterReduction);
                 BigDecimal totalMedicalPremium = bigDecimalMedPremiumMinusAPTC.add(bigDecimalMedAPTCAmt);
 
-                member.setMedicalPlan(medicalPlanNameEle.getText());
                 member.setMedicalAptcAmt(medAPTCAmt);
                 member.setTotalMedAmtAfterReduction(String.valueOf(bigDecimalMedPremiumMinusAPTC));
                 member.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+                member.setMedicalPlan(medicalPlanNameEle.getText());
             }
         }
     }

@@ -1,5 +1,5 @@
 Feature: Seed07 - Exchange - EOY
-  @pol_exch_passed
+
   Scenario: Seed 07 For Exchange- Husband+Wife+Son+DIL, Husband and Son Tax payer with different address and SMOKERS
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -14,11 +14,11 @@ Feature: Seed07 - Exchange - EOY
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
+      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -101,12 +101,6 @@ Feature: Seed07 - Exchange - EOY
       |Spouse:In Law |
       |Son:Spouse    |
     And I click continue on Tell us about additional members page
-    Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
-      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
-    Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate   | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
-      | getFromSharedData | Last Day Of Current Year | getFromSharedData | Last Day Of Current Year | getFromSharedData  | Last Day Of Current Year |
     Then I validate I am on the "Add Address" page
     Then I select "recent option" for Residential Address
     And I select "Yes" for CO Resident option
@@ -198,28 +192,12 @@ Feature: Seed07 - Exchange - EOY
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    And I click on Sign Out in the Header for "NonElmo"
 
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin dashboard" page
-    And I search for user and click email from search results
-    And I click "Admin LCE" from application links dropdown
-    And I look up with account id on admin tool page
-    And I change effective date to "0101" of "current year" from admin portal
-    Then logout from Admin Portal
-
-    Given I open the login page on the "login" portal
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Eligibility"
-    Then I validate I am on the "Application History" page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click "Yes" to the Tobacco usage question on start shopping page for "Son,InLaw"
     Then I click continue on start shopping page
 
@@ -282,8 +260,6 @@ Feature: Seed07 - Exchange - EOY
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-#    And I click View Plan History link from "medical" plan card
+
     And I validate "medical" plan details from plan history
-#    And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
-   # And I click on Sign Out in the Header for "NonElmo"
