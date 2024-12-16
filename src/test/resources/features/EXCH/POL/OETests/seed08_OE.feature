@@ -1,7 +1,10 @@
 Feature: Seed08 - Exchange - Open Enrollment
 
-  Background: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
-    Given I open the login page on the "login" portal
+  Scenario: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
+  Given I set the test scenario details
+    | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+    | 2           | 4            | 1                 | 1                | 2               |
+  Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -194,6 +197,7 @@ Feature: Seed08 - Exchange - Open Enrollment
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Son,InLaw"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -239,31 +243,27 @@ Feature: Seed08 - Exchange - Open Enrollment
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+
+    And I validate "medical" plan details from plan history
+    And I validate "dental" plan details from plan history
 #    And I click on Sign Out in the Header for "NonElmo"
-
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click View Plan History link from "medical" plan card
-#    And I validate "medical" plan details from plan history
-#    And I click on to Back to Current Plan Details button
-#    And I click View Plan History link from "dental" plan card
-#    And I validate "dental" plan details from plan history
-#    And I click on Sign Out in the Header for "Elmo"
-  And I set the member relationship to the subscriber
-  | Son: Self   |
-  | InLaw: Wife |
+    And I set the member relationship to the subscriber
+    | Son: Self   |
+    | InLaw: WIFE |
     And I validate "medical" entities from policy tables for groups
-    And I validate "dental" entities from policy tables for groups
+      And I validate "dental" entities from policy tables for groups
 
-  And I validate "medical" entities from pre edi db tables for groups
-    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-    | 021                   | 021                | EC                    |                   | OEP        |
-  And I validate "dental" entities from pre edi db tables for groups
-    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-    | 021                   | 021                | EC                    |                   | OEP        |
+    And I validate "medical" entities from pre edi db tables for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | OEP        |
+    And I validate "dental" entities from pre edi db tables for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | OEP        |
 
   #@RT-2113
   Scenario: RT-2113 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - DIFFERENT CARRIER / DIFFERENT PLANS

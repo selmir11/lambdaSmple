@@ -2,9 +2,7 @@ Feature: My Profile Page Exch
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
-
-  @SLER-1102 @NVOExchRegression
-  Scenario: Change of Primary contact validation, navigation, Spanish and text on my profile page
+    And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -25,6 +23,9 @@ Feature: My Profile Page Exch
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+
+  @SLER-1102 @NVOExchRegression
+  Scenario: Change of Primary contact validation, navigation, Spanish and text on my profile page
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -110,3 +111,128 @@ Feature: My Profile Page Exch
     And I wait for 9000 milliseconds
     And I click change primary contact on my profile page
     Then I validate Primary Contact Change Popup "Spanish" on My profile page
+
+  @SLER-1870
+  Scenario: Validate CRM Queue after changing the primary person
+    Then I validate I am on the "Add Address" page
+    Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for no financial help
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I click on ClickHere link for "My Profile"
+    Then I validate I am on the "My Profile" page
+    And I click change primary contact on my profile page
+    Then I update "Spouse" as primary member
+    And I wait for hold on content to disappear
+    Then I validate I am on the "My Profile" page
+    Then I click on Go back to Welcome page Button on My Profile Exch
+    Then I validate the details from rq_queue_messages database
+
+    @SLER-1874-WIP
+    Scenario: Validate bob Queue after change the primary person and the contact information
+      Then I validate I am on the "Add Address" page
+      Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+      And I select "Yes" for CO Resident option
+      And I select "No" for Federally Recognized Tribe option
+      And I select "No" for Hardship Exemption option
+      And I select "No" for Disability option
+      And I select "No" to the recently denied medicaid question
+      And I select "No" for Incarceration option
+      And I click continue on the Add Address page
+      Then I validate I am on the "Elmo Race and Ethnicity" page
+      And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
+      And I click continue on the Race and Ethnicity page
+      Then I validate I am on the "Citizenship" page
+      Then I select "Yes" for Citizen option
+      And I select "No" for Naturalized Immigrant option
+      And I click continue on the Citizenship page
+      Then I click Add Another Family Member
+      Then I validate I am on the "Add Member" page
+      Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
+        | Primary:Spouse |
+      And I click continue on Tell us about additional members page
+      Then I validate I am on the "Add Address" page
+      Then I select "Household" for Residential Address
+      And I select "Yes" for CO Resident option
+      And I select "No" for Federally Recognized Tribe option
+      And I select "No" for Hardship Exemption option
+      And I select "No" for Disability option
+      And I select "No" to the recently denied medicaid question
+      And I select "No" for Incarceration option
+      And I click continue on the Add Address page
+      Then I validate I am on the "Elmo Race and Ethnicity" page
+      And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
+      And I click continue on the Race and Ethnicity page
+      Then I validate I am on the "Citizenship" page
+      Then I select "Yes" for Citizen option
+      And I select "No" for Naturalized Immigrant option
+      And I click continue on the Citizenship page
+      Then I click continue on family overview page
+      Then I validate I am on the "Financial Help" page
+      And I Apply for no financial help
+      Then I validate I am on the "Tell us about life changes" page
+      Then I select "NoneOfThese" QLCE on tell us about life changes page
+      Then I click on Save and Continue
+      Then I validate I am on the "EXCH Declarations and Signature" page
+      Then I Declare as Tax Household 1
+      And I click Continue on the Declarations And Signature Page
+      And I wait for hold on content to disappear
+      Then I validate I am on the "Application History" page
+      And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+      Then I validate I am on the "My Account Overview" page
+      Then I click on ClickHere link for "My Profile"
+      Then I validate I am on the "My Profile" page
+      And I click change primary contact on my profile page
+      Then I update "Spouse" as primary member
+      And I wait for hold on content to disappear
+      Then I validate I am on the "My Profile" page
+      And I click on Make Changes Button
+      And I update the contact email address
+      And I update the contact home phone number on profile page
+      Then I click on Go back to Welcome page Button on My Profile Exch
+      Then I validate the details from rq_queue_messages database

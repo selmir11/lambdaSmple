@@ -208,6 +208,16 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyItDisplaysFinancialEndDateError() {
         adminPortalManagePlansPage.validateFinancialEndDateErrors();
     }
+
+    @Then("I click on Dental button to display only medical view")
+    public void iClickOnDentalButtonToDisplayOnlyMedicalView() {
+        adminPortalManagePlansPage.clickDentalButton();
+    }
+
+    @Then("I click on Medical button to display only Dental view")
+    public void iClickOnMedicalButtonToDisplayOnlyDentalView() {
+        adminPortalManagePlansPage.clickMedicalButton();}
+
     @And("I update the medical Plan for the UI")
     public void iUpdateTheMedicalPlanForTheUI() {
         adminPortalManagePlansPage.updateTheMedicalPlanForTheUI();
@@ -263,6 +273,7 @@ public class AdminPortalManagePlansSteps {
     @And("I update the dental financial details Table for the UI")
     public void iUpdateTheDentalFinancialDetailsTableForTheUI() {
         adminPortalManagePlansPage.updateTheDentalFinancialDetailsTableForTheUI();
+
     }
 }
 

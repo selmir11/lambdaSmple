@@ -226,6 +226,10 @@ public class CreateAccountPage {
             case "exchange":
                 exchangeTermsOfUseCheckbox.click();
                 break;
+            case "exchange Spanish":
+            exchangeTermsOfUseCheckbox.click();
+            preferredLanguageButtonSpanish.click();
+            break;
             case "Admin exchange":
                 onBehalfOfPrimaryUserCheckbox.click();
                 exchangeTermsOfUseCheckbox.click();

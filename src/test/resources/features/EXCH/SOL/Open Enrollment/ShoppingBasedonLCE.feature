@@ -50,6 +50,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I select the first medical plan
     Then I click continue on medical plan results page
@@ -219,6 +220,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -355,6 +357,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Son"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
@@ -477,6 +480,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -592,6 +596,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
