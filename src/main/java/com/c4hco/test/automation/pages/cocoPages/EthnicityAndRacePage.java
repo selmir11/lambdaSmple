@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EthnicityAndRacePage {
@@ -288,7 +290,19 @@ public class EthnicityAndRacePage {
         softAssert.assertAll();
     }
 
-    public void raceEthnicitySelection(String raceEthnicity){
+    public void clickSaveAndContinue() {
+        basicActions.waitForElementToBeClickable(saveAndContinue_Button, 30);
+        saveAndContinue_Button.click();
+    }
+
+    public void selectNotListedAndEnterCustomText(String customText) {
+        basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
+        raceEthnicityButton.get(7).click();
+        basicActions.waitForElementToBePresent(notListedReason, 10);
+        notListedReason.sendKeys(customText);
+    }
+
+    public void raceEthnicitySelectionMembers(String raceEthnicity, String memPrefix){
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
         switch (raceEthnicity) {
             case "Asian or Asian American":
@@ -321,17 +335,10 @@ public class EthnicityAndRacePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
         }
+        setRaceAndEthnicity(raceEthnicity, memPrefix);
     }
-
-    public void clickSaveAndContinue() {
-        basicActions.waitForElementToBeClickable(saveAndContinue_Button, 30);
-        saveAndContinue_Button.click();
-    }
-
-    public void selectNotListedAndEnterCustomText(String customText) {
-        basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
-        raceEthnicityButton.get(7).click();
-        basicActions.waitForElementToBePresent(notListedReason, 10);
-        notListedReason.sendKeys(customText);
-    }
+    private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
+          List<MemberDetails> members = basicActions.getAllMem();
+          members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
+        }
     }
