@@ -115,4 +115,8 @@ public class MedicalPlansCoCoPageSteps {
     public void validateTextinMedicalPlan(List<String> testDatavalues) {
         medicalPlansCoCoPage.validateMedicalPlanText(testDatavalues);
     }
+    @And("I select or skip the medical plans for groups on medical plan page")
+    public void selectMedicalPlanForGroupCOCO(List<String> plansOfGroups) {
+        medicalPlansCoCoPage.selectPlansForGroups(plansOfGroups);
+    }
 }

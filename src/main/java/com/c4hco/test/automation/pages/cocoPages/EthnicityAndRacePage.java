@@ -338,13 +338,7 @@ public class EthnicityAndRacePage {
         setRaceAndEthnicity(raceEthnicity, memPrefix);
     }
     private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
-        MemberDetails primaryMem = SharedData.getPrimaryMember();
-        if(primaryMem.getFirstName().contains(memPrefix)){
-            primaryMem.setRace(raceEthnicity);
-            SharedData.setPrimaryMember(primaryMem);
-        }
-            List<MemberDetails> members = SharedData.getMembers() != null ? SharedData.getMembers() : new ArrayList<>();
-            members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
-            SharedData.setMembers(members);
+          List<MemberDetails> members = basicActions.getAllMem();
+          members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
         }
     }

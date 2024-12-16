@@ -75,12 +75,14 @@ Feature: Seed02 - Coco
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    And I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    And I click "No" to the Tobacco usage question on start shopping page for "SPOUSE" coco
     Then I click continue on coco start shopping page
     Then I validate that there are 1 default groups in coco page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Bronze" coco medical plan
-    And I click Continue on the Medical Plans Page CoCo
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:KP Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set medical premium amount
     And I click continue on coco plan summary page

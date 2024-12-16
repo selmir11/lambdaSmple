@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -34,7 +36,8 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
-
+    @FindBy(css = ".header-1")
+    WebElement medicalplanheader;
     @FindBy(xpath = "//*[@id='PlanResults-InsuranceCompany']")
     WebElement insuranceCompanyDropdown;
 
@@ -439,5 +442,58 @@ public class MedicalPlansCoCoPage {
         softAssert.assertEquals(planQualityRatingtxt.getText(), testDatavalues.get(19));
         softAssert.assertEquals(planQualityRatingsLink.getText(), testDatavalues.get(20));
         softAssert.assertAll();
+    }
+    public void selectPlansForGroups(List<String> plansOfGroups) {
+        for (String planOfGroup : plansOfGroups) {
+            String[] parts = planOfGroup.split(":");
+            String plan = parts[1];
+            Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
+            String groupNum = matcher.find() ? matcher.group() : null;
+
+            basicActions.waitForElementToDisappear(spinner, 10);
+            basicActions.waitForElementToBePresent(medicalplanheader, 10);
+            basicActions.wait(3000);
+            Matcher matcher_header = Pattern.compile("\\d+").matcher(medicalplanheader.getText());
+            String headerGroupNum = matcher_header.find() ? matcher.group() : null;
+            Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
+
+            if (plan.equals("skip")) {
+                setSkippedGroupNumber(groupNum);
+            } else {
+                selectMedicalPlanForGrp(plan, groupNum);
+            }
+        }
+    }
+    private void setSkippedGroupNumber(String groupNum){
+        List<MemberDetails> allEligMembers = basicActions.getAllMedicalEligibleMemInfo();
+        for(MemberDetails member: allEligMembers){
+            if(member.getMedGroupInd().equals(groupNum)){
+                member.setHasMedicalPlan(false);
+            }
+        }
+        clickSkip();
+    }
+    public void selectMedicalPlanForGrp(String planName, String grpNum){
+        List<MemberDetails> memberslist = basicActions.getAllMedicalEligibleMemInfo();
+        basicActions.waitForElementToDisappear(spinner, 30);
+        for(MemberDetails member: memberslist){
+            if(member.getMedGroupInd().equals(grpNum)){
+                member.setMedicalPlan(planName);
+            }
+        }
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get()+1);
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+        selectContinueMedicalPlansCoCo();
+    }
+    public void clickSkip(){
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(skipBtn, 30);
+        skipBtn.click();
     }
 }
