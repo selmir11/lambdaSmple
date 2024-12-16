@@ -109,6 +109,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -222,6 +223,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -337,6 +339,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -428,7 +431,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click save and continue on tax status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Family Overview" page
@@ -451,6 +453,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -578,6 +581,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -691,6 +695,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -805,6 +810,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -917,6 +923,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1033,6 +1040,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1145,6 +1153,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1261,6 +1270,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1372,6 +1382,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1487,6 +1498,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1600,6 +1612,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1714,6 +1727,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1826,6 +1840,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -1938,6 +1953,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -2049,6 +2065,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -2163,6 +2180,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -2274,6 +2292,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -2388,6 +2407,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -2499,6 +2519,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -2613,6 +2634,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -2727,6 +2749,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
