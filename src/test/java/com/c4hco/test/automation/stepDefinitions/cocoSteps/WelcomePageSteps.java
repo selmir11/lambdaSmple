@@ -56,8 +56,6 @@ public class WelcomePageSteps {
     @And("I validate no notification banner on welcome page")
     public void verifyNoNotificationBanner()  { welcomePage.validateNoNotificationBanner(); }
 
-
-
 }
 
 

@@ -1,8 +1,10 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,6 +62,13 @@ public class GroupingMembersMedicalCoCoPage {
         basicActions.waitForElementToBePresent(goBackBtn, 10);
         basicActions.waitForElementToBePresent(saveAndExitBtn, 10);
         basicActions.waitForElementToBePresent(continueButton, 20);
+        List<MemberDetails> memberInfoDetails = basicActions.getAllMedicalEligibleMemInfo();
+        for (MemberDetails member : memberInfoDetails){
+            basicActions.waitForElementListToBePresent(medicalGroupTitle,10);
+            WebElement memGroupInfo = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+member.getFirstName()+"')]/ancestor-or-self::div[@class='group-member__container']/div[@class='c4-type-header-sm group-member__Header']"));
+            basicActions.waitForElementToBePresentWithRetries(memGroupInfo, 10);
+            member.setMedGroupInd(memGroupInfo.getText().replace("Medical Group #",""));
+        }
         basicActions.waitForElementToBeClickableWithRetries(continueButton, 30);
         basicActions.click(continueButton);
     }

@@ -21,7 +21,7 @@ Feature: SEED04 based on Open Enrollment - COCO
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
@@ -45,7 +45,7 @@ Feature: SEED04 based on Open Enrollment - COCO
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page

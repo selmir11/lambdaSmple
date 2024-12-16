@@ -293,7 +293,7 @@ Feature: Navigation-Welcome Page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -436,7 +436,7 @@ Feature: Navigation-Welcome Page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -604,7 +604,7 @@ Feature: Navigation-Welcome Page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -748,7 +748,7 @@ Feature: Navigation-Welcome Page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I click on Apply for Coverage in the "Elmo" Header
