@@ -33,6 +33,9 @@ public class SelfAttestationPageSteps {
     @Then("I verify the {string} text on the Post Attestation page")
     public void iVerifyPostAttestationPageText(String scenario){SelfAttestationPage.checkText(scenario);}
 
+    @Then("I verify the {string} text on the Spanish Post Attestation page")
+    public void iVerifyPostAttestationPageSpanishText(String scenario){SelfAttestationPage.checkTextSpanish(scenario);}
+
     @Then("I click on Finish")
     public void iClickOnFinish() {
         SelfAttestationPage.clickFinish();
@@ -43,4 +46,7 @@ public class SelfAttestationPageSteps {
 
     @Then("I click on expert help to open the find expert help page")
     public void iClickExpertHelp(){SelfAttestationPage.clickExpertHelp();}
+
+    @Then("I validate the {string} text on the Self Attestation page")
+    public void iValidateEngSelfAttestationText(String language){SelfAttestationPage.verifySelfAttestationBodyText(language);}
 }
