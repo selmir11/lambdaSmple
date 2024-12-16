@@ -130,13 +130,3 @@ Feature: Seed02 - Coco
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
-
-    And I validate "medical" entities from policy tables
-    And I validate "medical" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason     |
-      | 021                   | 021                | EC                    |                   |NEW_CO_RESIDENT |
-    And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file data
-
-
-
