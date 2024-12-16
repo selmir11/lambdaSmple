@@ -31,7 +31,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -64,7 +64,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -98,7 +98,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -129,7 +129,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -231,7 +231,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -264,7 +264,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -294,7 +294,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -326,7 +326,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -425,7 +425,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -459,7 +459,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -494,7 +494,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -526,7 +526,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -603,7 +603,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -637,7 +637,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -668,7 +668,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -762,7 +762,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -796,7 +796,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -831,7 +831,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "UnrelatedOne"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -867,7 +867,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "UnrelatedTwo"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -904,7 +904,7 @@ Feature: CoupleWithChildrens - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "UnrelatedThree"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
