@@ -285,26 +285,5 @@ public class SelfAttestationPage {
                 softAssert.assertAll();
                 break;
         }
-
-
-//        softAssert.assertEquals(txtHeader1.getText(), "Looks like we need some information");
-//        softAssert.assertEquals(txtHeader2.getText(), "Help me understand this page");
-//
-//        softAssert.assertEquals(txtSelfAttestBodyParagraphs.get(0).getText(),"We attempted to verify your application information but need you to confirm a few things.");
-//        softAssert.assertEquals(txtSelfAttestBodyHeaders.get(0).getText(),"Household Income");
-//        softAssert.assertEquals(txtQuestions.get(0).getText(),"On your last application, you estimated that your annual household income is $90,000.00. Is this a good estimate of your expected 2025 income?");
-//        softAssert.assertEquals(txtAnswers.get(0).getText(), "Yes, $90,000.00 is an accurate estimate for my household in 2025.");
-//        softAssert.assertEquals(txtAnswers.get(1).getText(), "No, my household income has changed and I need to update it.");
-//        softAssert.assertEquals(txtSelfAttestBodyParagraphs.get(1).getText(), "Remember: You may have to pay back some or all of the financial help you receive if your estimated household income is different than what you report to the IRS when you file taxes. If your household\u2019s income changes later this year, come back to update your application.");
-//        softAssert.assertEquals(txtSelfAttestBodyHeaders.get(1).getText(),"Filing Federal Income Taxes");
-//        softAssert.assertEquals(txtQuestions.get(1).getText(),"Did you receive a premium tax credit in the past to help pay for your health insurance premium(s)?");
-//        softAssert.assertEquals(txtAnswers.get(2).getText(), "Yes");
-//        softAssert.assertEquals(txtAnswers.get(3).getText(), "No");
-//        softAssert.assertEquals(txtSelfAttestBodyParagraphs.get(2).getText(), "People who receive premium tax credits must file federal income taxes for the year they were received. If you received a premium tax credit and did not file your taxes for that year, you will not be eligible for a premium tax credit until you have filed your taxes and reported the amount you received.");
-//        softAssert.assertEquals(txtSelfAttestBodyParagraphs.get(3).getText(), "By clicking \u201cSubmit\u201d, you attest under penalty of perjury by the State of Colorado that the information you\u2019ve provided here is accurate.");
-//
-//        softAssert.assertAll();
-
-
     }
 }
