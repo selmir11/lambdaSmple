@@ -732,11 +732,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
                     softAssert.assertEquals(claimDobNameTxt.getText(), "Date of birth");
-                } else {
-                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
-                }
+//                } else {
+//                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
+//                }
                 softAssert.assertAll();
                 break;
             default:
@@ -846,40 +846,22 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
                 softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Select Option");
                 softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Married filing jointly");
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4903 (will go into Staging with next release)
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Qualified widow(er) with dependent(s)");
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Married filing separately");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Head of household");
-                } else {
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Qualified widow(er) with dependent(s)");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Married filing single");
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Head of household");
-                }
+                softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Married filing separately");
+                softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Head of household");
+                softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Qualified widow(er) with dependent(s)");
                 softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Single");
                 softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Exceptional circumstances?");
                 break;
             case "Spanish":
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4903 (will go into Staging with next release)
-                    softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
-                    softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
-                    softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
-                    softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Casados que declaran juntos");
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Casados que declaran por separado");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Jefe/a de hogar");
-                    softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Soltero/a");
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Viudo/a calificado con dependiente");
-                    softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
-                } else {
-                    softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
-                    softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
-                    softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
-                    softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Married filing jointly");
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Qualified widow(er) with dependent(s)");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Married filing single");
-                    softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Single");
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Head of household");
-                    softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
-        }
+                softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
+                softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
+                softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
+                softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Casados que declaran juntos");
+                softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Casados que declaran por separado");
+                softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Jefe/a de hogar");
+                softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Soltero/a");
+                softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Viudo/a calificado con dependiente");
+                softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
@@ -900,15 +882,9 @@ public class TaxStatusPage_Elmo {
                     ? "Someone else"
                     : "Otra persona";
         } else {
-            if (SharedData.getEnv().equals("qa")) {//bug TAM-4900 (will go into Staging with next release)
-                expectedQuestionText = language.equalsIgnoreCase("English")
-                        ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" be filing jointly with?"
-                        : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
-            } else {
-                expectedQuestionText = language.equalsIgnoreCase("English")
-                        ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" you be filing jointly with?"
-                        : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
-            }
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" be filing jointly with?"
+                    : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
             someoneElseText = language.equalsIgnoreCase("English")
                     ? "Someone else"
                     : "Otra persona";
@@ -986,11 +962,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(filingLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(filingSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(filingSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug ???
+//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
                     softAssert.assertEquals(filingDobNameTxt.getText(), "Date of birth");
-                } else {
-                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
-                }
+//                } else {
+//                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
+//                }
                 softAssert.assertAll();
                 break;
             default:
@@ -1102,11 +1078,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimedLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimedSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimedSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug ???
+//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
                     softAssert.assertEquals(claimedDobNameTxt.getText(), "Date of birth");
-                } else {
-                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
-                }
+//                } else {
+//                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
+//                }
                 softAssert.assertAll();
                 break;
             default:

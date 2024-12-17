@@ -239,9 +239,9 @@ public class EligNotices {
                             "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n");
                 }
                 case "Spanish" -> {
-                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de\n" +
-                    "su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
-                    "seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n\n" +
+                    "de su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan\n" +
+                    "de seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
                     "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n");
                 }
                 default -> throw new IllegalArgumentException("Invalid language: " + language);
