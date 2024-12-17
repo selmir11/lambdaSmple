@@ -237,7 +237,7 @@ Feature: My Profile Page Exch
       Then I click on Go back to Welcome page Button on My Profile Exch
       Then I validate the details from rq_queue_messages database
 
-@SLER-1880 @n1
+@SLER-1880
   Scenario: Admin portal validations after change the primary person
     Then I validate I am on the "Add Address" page
     Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
