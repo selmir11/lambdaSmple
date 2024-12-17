@@ -231,6 +231,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "Yes" for will file tax return question
     And I verify select tax filing status question on the Tax Status Elmo page in "English"
     And I verify select tax filing status "0: null" selected on the Tax Status Elmo page
+    And I verify Exceptional circumstances checkbox "is not" selected on the Tax Status Elmo page
 #    Step 4
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     And I verify will you claim dependents question on the Tax Status Elmo page for "Primary" in "English"
@@ -284,6 +285,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "Yes" for will file tax return question
     And I verify select tax filing status question on the Tax Status Elmo page in "Spanish"
     And I verify select tax filing status "0: null" selected on the Tax Status Elmo page
+    And I verify Exceptional circumstances checkbox "is not" selected on the Tax Status Elmo page
 #    Step 4
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     And I verify will you claim dependents question on the Tax Status Elmo page for "Primary" in "Spanish"
