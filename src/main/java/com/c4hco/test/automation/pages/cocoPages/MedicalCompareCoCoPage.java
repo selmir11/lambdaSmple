@@ -50,7 +50,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath="//div[normalize-space()= 'Comparar planes médicos']")
     public WebElement compareTopHeaderSP;
 
-    @FindBy(id = "MedicalComparePlans-TopGoBackToPlans")
+    @FindBy(id = "ComparePlans-TopGoBackToPlans")
     public WebElement goBackToPlansCompareLink;
 
     @FindBy(id = "SHP-MedicalComparePlans-DownloadSummaryOfThisPage")

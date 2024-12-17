@@ -1433,7 +1433,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    #minor doesnt have Tobacco choice
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
