@@ -318,8 +318,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "10101997", "Female" and applying "Yes"
-      | Primary:Spouse |
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "10101997", "Female" and applying "Yes"
+      | Primary:Daughter |
     And I mark the Additional member is pregnant as "No"
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -353,7 +353,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Daughter"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
@@ -1339,7 +1339,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups

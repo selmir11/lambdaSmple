@@ -55,7 +55,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select "Cigna Connect Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I validate medical premium amount
+    And I set medical premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo

@@ -30,7 +30,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -61,7 +61,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -93,7 +94,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Prefer not to answer" for race and ethnicity option for "SonOne"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -122,7 +124,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Prefer not to answer" for race and ethnicity option for "SonTwo"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -165,7 +168,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
@@ -196,7 +199,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
 
@@ -225,7 +228,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -267,14 +270,14 @@ Feature: UI Page Validation - Grouping Members (Medical)
     |01011997    |01011996|       3             |
 
     @SLCR-334
-    Scenario: Validate siblings could be grouped together by editing when Step Parent and Step Kids in household.
+    Scenario: Validate siblings could be grouped together by editing when Step Parent and Step Kids in households.
       Then I enter details on tell us about yourself page and continue with "01011980", "Male", and applying "Yes"
       And I enter my residential address "1234 Downing street", "Englewood", "CO", "80111", "Arapahoe"
       And I select "Yes" for mailing address option
       And I select "Yes" for live in Colorado option
       And I click continue on the Add info for yourself page
       Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity option
+      And I select "Prefer not to answer" for race and ethnicity option for "Primary"
       And I click save and continue on the Race and Ethnicity page
       And I select "Yes" employment option
       And I enter "30,000.00" income amount
@@ -305,7 +308,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
       And I select "Yes" for live in Colorado option for additional member
       And I click continue on the Additional information for additional member page
       Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity option
+      And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+      And I select "Prefer not to answer" for race and ethnicity option for "StepDaughter"
       And I click save and continue on the Race and Ethnicity page
 
       And I select "No" employment option
@@ -333,7 +337,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
       And I select "Yes" for live in Colorado option for additional member
       And I click continue on the Additional information for additional member page
       Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity option
+      And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+      And I select "Prefer not to answer" for race and ethnicity option for "StepSon"
       And I click save and continue on the Race and Ethnicity page
 
       And I select "No" employment option
@@ -390,7 +395,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
@@ -421,7 +426,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "StepDaughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -449,7 +454,8 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Prefer not to answer" for race and ethnicity option for "StepSon"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option

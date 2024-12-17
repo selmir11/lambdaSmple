@@ -491,4 +491,8 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForThreeColumnValues("status", "changeevent", "requesttype", exchDbQueries.getRqQueMsg());
     }
 
+    public String getMemberId(String fname){
+        return postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fname));
+    }
+
 }

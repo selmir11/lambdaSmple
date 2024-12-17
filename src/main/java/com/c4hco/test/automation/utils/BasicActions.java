@@ -2,6 +2,7 @@ package com.c4hco.test.automation.utils;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
@@ -14,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
@@ -419,7 +421,6 @@ public class BasicActions {
 
     public void changeToNewUrl(String page) {
         String currentUrl = getCurrentUrl();
-        String primaryMemId = SharedData.getPrimaryMemberId();
         String newUrl = "";
         switch (page) {
             case "Income portal Error CoCo":
@@ -854,6 +855,11 @@ public class BasicActions {
         return allMem.stream().map(MemberDetails::getFirstName).filter(firstName -> firstName.contains(memPrefix)).findFirst().orElse(null);
     }
 
+    public MemberDetails getMember(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElse(null);
+    }
+
     public String getMemFirstLastNames(String memPrefix){
         List<MemberDetails> allMem = getAllMem();
         return allMem.stream().filter(member -> member.getFirstName().contains(memPrefix)).map(member -> member.getFirstName() + " " + member.getLastName()).findFirst().orElse(null);
@@ -880,6 +886,15 @@ public class BasicActions {
             firstAndLastName.add(mem.getSignature());
         }
         return firstAndLastName;
+    }
+
+    public List<String> getAllMemFirstNames() {
+        List<String> firstName = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for (MemberDetails mem : allMembers) {
+            firstName.add(mem.getFirstName());
+        }
+        return firstName;
     }
 
     public List<String> getAllMemCompleteNames() {
@@ -956,6 +971,31 @@ public class BasicActions {
         }
     }
 
+    public Map<String, List<Ob834DetailsEntity>> getFileBasedMedOb834DbEntities(){
+        List<Ob834DetailsEntity> allEntities = SharedData.getOb834DetailsMedEntities();
+        Map<String, List<Ob834DetailsEntity>> medEntitiesWithFilename = allEntities.stream().collect(Collectors.groupingBy(Ob834DetailsEntity::getFilename));
+        return medEntitiesWithFilename;
+    }
+
+    public String getSubscriber(String name, String type){
+        String subscriberName = "";
+                List<MemberDetails> allDependents = getAllDependents();
+                for(MemberDetails mem: allDependents){
+                    if(mem.getFirstName().equals(name)){
+                        switch(type){
+                            case "medical":
+                                subscriberName = mem.getMedSubscriberName();
+                                break;
+                            case "dental":
+                                subscriberName = mem.getDenSubscriberName();
+                                break;
+                            default: Assert.fail("Invalid argument passed!!!");
+                        }
+                    }
+                }
+        return subscriberName;
+    }
+
     public boolean hardRefreshUntilVisible(WebElement element, int timeout, int pollInterval) {
                 FluentWait<WebDriver> wait = new FluentWait<>(driver)
                         .withTimeout(Duration.ofSeconds(timeout))
@@ -1002,7 +1042,20 @@ public class BasicActions {
         } catch (ParseException e) {
             System.out.println("Error parsing the time: " + e.getMessage());
         }
+    
+	}
+
+    public String getDateAndTime(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH_mm");
+        return sdf.format(date);
     }
+
+    public int getAge(String dob){
+        dob = changeDateFormat(dob, "MMddyyyy", "MM/dd/yyyy");
+        return Period.between(LocalDate.parse(dob, DateTimeFormatter.ofPattern("MM/dd/yyyy")), LocalDate.now()).getYears();
+    }
+
 }
 
 

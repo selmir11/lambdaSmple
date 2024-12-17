@@ -73,6 +73,7 @@ Feature: Verify COCO Medical Plan results
   And I click Continue on the Application Results Page CoCo
 
   Then I validate I am on the "Start Shopping" page
+  Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
   Then I click continue on start shopping page
   
   Then I validate I am on the "Medical Plan Results" page
@@ -149,6 +150,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
   And I click Continue on the Application Results Page CoCo
 
   Then I validate I am on the "Start Shopping" page
+  Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
   Then I click continue on start shopping page
 
   Then I validate I am on the "Medical Plan Results" page
@@ -226,6 +228,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -316,6 +319,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -473,6 +477,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
 
     Then I click on edit enrollment groups link in coco page
@@ -672,7 +677,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
+
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
@@ -838,7 +845,9 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
+
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
@@ -944,6 +953,7 @@ Scenario Outline: This will verify the existence of the COCO Silver Enhanced met
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page

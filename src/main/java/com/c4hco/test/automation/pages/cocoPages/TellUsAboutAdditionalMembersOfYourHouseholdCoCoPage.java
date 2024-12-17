@@ -143,6 +143,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         member.setLastName(lastName);
         member.setMiddleName(mdlName);
         member.setDob(DOB);
+        member.setGender(gender);
         member.setSignature(frstName + " " + lastName);
         member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
         member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
