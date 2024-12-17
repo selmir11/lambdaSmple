@@ -156,9 +156,14 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
 
+    public void searchWithAccId(){
+        basicActions.waitForElementListToBePresent(searchInputList, 10);
+        searchInputList.get(0).sendKeys(String.valueOf(SharedData.getPrimaryMember().getAccount_id()));
+        buttonsList.get(0).click();
+    }
+
 
     public void clickEmailLinkFrmSrchResults() {
-
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
