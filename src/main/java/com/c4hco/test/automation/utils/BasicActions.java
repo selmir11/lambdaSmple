@@ -1002,7 +1002,15 @@ public class BasicActions {
         } catch (ParseException e) {
             System.out.println("Error parsing the time: " + e.getMessage());
         }
+    
+	}
+
+    public String getDateAndTime(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH_mm");
+        return sdf.format(date);
     }
+
 }
 
 

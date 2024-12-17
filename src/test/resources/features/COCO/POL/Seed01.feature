@@ -30,7 +30,7 @@ And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVE
 And I select "Yes" for live in Colorado option
 And I click continue on the Add info for yourself page
 Then I validate I am on the "Elmo Race and Ethnicity" page
-And I select "Prefer not to answer" for race and ethnicity option
+And I select "Prefer not to answer" for race and ethnicity option for "Primary"
 And I click save and continue on the Race and Ethnicity page
 And I select "Yes" employment option
 And I enter "30,000.00" income amount
@@ -61,7 +61,7 @@ Then I validate I am on the "Medical Plan Results" page
 And I select "Cigna Connect Colorado Option Bronze" coco medical plan
 And I click Continue on the Medical Plans Page CoCo
 Then I validate I am on the "planSummaryMedicalDental" page
-And I validate medical premium amount
+And I set medical premium amount
 And I click continue on coco plan summary page
 Then I validate I am on the "Enrollment Agreements" page
 And I select "Acknowledgement" agreement checkbox CoCo

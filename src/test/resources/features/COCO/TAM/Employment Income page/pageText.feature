@@ -18,7 +18,7 @@ Feature: Tests related to the Employment Income page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
 
@@ -249,7 +249,7 @@ Feature: Tests related to the Employment Income page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I verify the header for additional member on the CoCo Employment income page in "English"
@@ -274,7 +274,7 @@ Feature: Tests related to the Employment Income page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I select "Yes" employment option

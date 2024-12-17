@@ -20,9 +20,6 @@ public class EthnicityAndRacePageSteps {
         ethnicityAndRacePage.verifyErrorMessagesEthnicityAndRace(Language);
     }
 
-    @And("I select {string} for race and ethnicity option")
-    public void iSelectMemberRaceEthnicity(String memberRaceEthnicity){ethnicityAndRacePage.raceEthnicitySelection(memberRaceEthnicity);}
-
     @And("I click save and continue on the Race and Ethnicity page")
     public void iClickContinue(){ethnicityAndRacePage.clickSaveAndContinue();}
 
@@ -35,4 +32,6 @@ public class EthnicityAndRacePageSteps {
     public void selectNotListedAndEnterText(String customText) {
         ethnicityAndRacePage.selectNotListedAndEnterCustomText(customText);
     }
+    @And("I select {string} for race and ethnicity option for {string}")
+    public void iSelectMemberRaceEthnicity(String memberRaceEthnicity, String memPrefix){ethnicityAndRacePage.raceEthnicitySelectionMembers(memberRaceEthnicity, memPrefix);}
 }
