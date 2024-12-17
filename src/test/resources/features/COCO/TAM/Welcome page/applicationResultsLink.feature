@@ -82,6 +82,7 @@ Feature: Tests related to the Application Results link
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo

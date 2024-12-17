@@ -239,6 +239,7 @@ Feature: End to End Testing
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
@@ -255,8 +256,8 @@ Feature: End to End Testing
     And  I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
-    And I select year "2024" from My Current Plan container
-    Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "English"
+    And I select year "2025" from My Current Plan container
+    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"331.70" in "English"
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I validate the Total Income on the Family Overview page equals "14,088.00"
