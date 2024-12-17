@@ -460,4 +460,14 @@ public class DbValidations {
         softAssert.assertEquals(dbValues[2], "\"TransferContactInfo\"", "requestType from rq_queue_msg table did not match");
         softAssert.assertAll();
     }
+
+    public void validateMemIds(){
+        List<MemberDetails> allMembers = basicActions.getAllMem();
+        for(MemberDetails member: allMembers){
+           String memberIdFromDb = exchDbDataProvider.getMemberId(member.getFirstName());
+           softAssert.assertEquals(memberIdFromDb, member.getMemberId(), "MemberId did not match");
+           softAssert.assertAll();
+        }
     }
+
+ }
