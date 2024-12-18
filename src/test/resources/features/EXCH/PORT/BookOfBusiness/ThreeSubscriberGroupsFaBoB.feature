@@ -199,6 +199,9 @@ Feature: Broker Portal OBO - Three Subscriber Groups FA policy submission
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Daughter" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Enrollment Groups" page
