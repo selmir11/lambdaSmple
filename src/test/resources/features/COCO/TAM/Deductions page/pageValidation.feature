@@ -97,8 +97,8 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-378
-  Scenario: SLCR-378 I want amount and frequency errors cleared on the Deductions page so that I don't see errors when I select an option - Spanish
+  @SLCR-379
+  Scenario: SLCR-379 I want amount and frequency errors cleared on the Deductions page so that I don't see errors when I select an option - Spanish
     And I change the language from header to "Spanish"
     #Step3
     And I select "Alimony" as deductions option

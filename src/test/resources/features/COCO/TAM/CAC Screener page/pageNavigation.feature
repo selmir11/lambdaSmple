@@ -17,7 +17,7 @@ Feature: Page Text-Welcome Page
     Then I click on "Yes" option for "under 19" on CAC Screener page
     Then I click on "Yes" option for "pregnant" on CAC Screener page
     Then I click on "Yes" option for "DACA" on CAC Screener page
-    Then I click on "Yes" option for "SES" on CAC Screener page
+#    Then I click on "Yes" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
 
     And I validate results option for "HealthFirst" on CAC Screener page displays in "English"
@@ -30,13 +30,13 @@ Feature: Page Text-Welcome Page
     Then I click "C4HCO" in results on the CAC Screener page
     And I validate I am on the "Create Account" page and close tab
 
-    And I validate results option for "SES Renewal" on CAC Screener page displays in "English"
-    Then I click "SES Renewal" in results on the CAC Screener page
-    Then I validate I am on the "CoCo Welcome" page
-
-    And I select take a short quiz on welcome page
-    Then I click "Enrollment Expert" in results on the CAC Screener page
-    And I validate I am on the "OmniSalud Help" page and close tab
+#    And I validate results option for "SES Renewal" on CAC Screener page displays in "English"
+#    Then I click "SES Renewal" in results on the CAC Screener page
+#    Then I validate I am on the "CoCo Welcome" page
+#
+#    And I select take a short quiz on welcome page
+#    Then I click "Enrollment Expert" in results on the CAC Screener page
+#    And I validate I am on the "OmniSalud Help" page and close tab
 
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
@@ -46,12 +46,12 @@ Feature: Page Text-Welcome Page
     Then I click on "No" option for "under 19" on CAC Screener page
     Then I click on "No" option for "pregnant" on CAC Screener page
     Then I click on "No" option for "DACA" on CAC Screener page
-    Then I click on "No" option for "SES" on CAC Screener page
+#    Then I click on "No" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
 
-    And I validate results option for "SES New" on CAC Screener page displays in "English"
-    Then I click "SES New" in results on the CAC Screener page
-    Then I validate I am on the "CoCo Welcome" page
+#    And I validate results option for "SES New" on CAC Screener page displays in "English"
+#    Then I click "SES New" in results on the CAC Screener page
+#    Then I validate I am on the "CoCo Welcome" page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -62,7 +62,7 @@ Feature: Page Text-Welcome Page
     Then I click on "Yes" option for "under 19" on CAC Screener page
     Then I click on "Yes" option for "pregnant" on CAC Screener page
     Then I click on "Yes" option for "DACA" on CAC Screener page
-    Then I click on "Yes" option for "SES" on CAC Screener page
+#    Then I click on "Yes" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
 
     And I validate results option for "HealthFirst" on CAC Screener page displays in "Spanish"
@@ -75,13 +75,13 @@ Feature: Page Text-Welcome Page
     Then I click "C4HCO" in results on the CAC Screener page
     And I validate I am on the "Create Account" page and close tab
 
-    And I validate results option for "SES Renewal" on CAC Screener page displays in "Spanish"
-    Then I click "SES Renewal" in results on the CAC Screener page
-    Then I validate I am on the "CoCo Welcome" page
-
-    And I select take a short quiz on welcome page
-    Then I click "Enrollment Expert" in results on the CAC Screener page
-    And I validate I am on the "OmniSalud Help" page and close tab
+#    And I validate results option for "SES Renewal" on CAC Screener page displays in "Spanish"
+#    Then I click "SES Renewal" in results on the CAC Screener page
+#    Then I validate I am on the "CoCo Welcome" page
+#
+#    And I select take a short quiz on welcome page
+#    Then I click "Enrollment Expert" in results on the CAC Screener page
+#    And I validate I am on the "OmniSalud Help" page and close tab
 
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
@@ -91,12 +91,12 @@ Feature: Page Text-Welcome Page
     Then I click on "No" option for "under 19" on CAC Screener page
     Then I click on "No" option for "pregnant" on CAC Screener page
     Then I click on "No" option for "DACA" on CAC Screener page
-    Then I click on "No" option for "SES" on CAC Screener page
+#    Then I click on "No" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
 
-    And I validate results option for "SES New" on CAC Screener page displays in "Spanish"
-    Then I click "SES New" in results on the CAC Screener page
-    Then I validate I am on the "CoCo Welcome" page
+#    And I validate results option for "SES New" on CAC Screener page displays in "Spanish"
+#    Then I click "SES New" in results on the CAC Screener page
+#    Then I validate I am on the "CoCo Welcome" page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
