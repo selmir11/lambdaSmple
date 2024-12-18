@@ -1935,12 +1935,15 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
-
-      Then I validate I am on the "Report a life change" page
-      And I report "MovedToColorado" and click continue
-
+  #
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
+  #
+     #open enrollment doesnt contain option for LCE
+     # Then I validate I am on the "Report a life change" page
+     # And I report "MovedToColorado" and click continue
+
+
 
       Then I select "Male" as sex option
       And I select "Yes" to Are You Applying
@@ -2098,11 +2101,11 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click on Sign Out in the Header for "Portal"
       Examples:
         |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
-        |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1424.52/mo             |  -$1,386.83          |
-        |NewTown  |CO         |01011958   |LARIMER    |80524     |  $8710000     |   $0.00              |   $831.20/mo              |  -$831.20            |
-        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $975.10/mo              |  -$975.10            |
-        |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1070.29/mo             |  -$977.74          |
-        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1863.58/mo             |  -$1,638.87          |
-        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1938.62/mo             |  -$1,938.62          |
+        |NewTown  |CO         |01011958   |EAGLE      |81657     |  $7758000     |   $0.00              |   $1278.18/mo             |  -$1,278.18          |
+        |NewTown  |CO         |01011958   |LARIMER    |80524     |  $8710000     |   $0.00              |   $868.41/mo              |  -$868.41            |
+        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $1073.83/mo             |  -$1,073.83          |
+        |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1170.91/mo             |  -$1,158.37          |
+        |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1628.10/mo             |  -$1,628.10          |
+        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1676.82/mo             |  -$1,676.82          |
 
 
