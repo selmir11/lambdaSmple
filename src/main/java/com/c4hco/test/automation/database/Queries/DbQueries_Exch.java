@@ -569,4 +569,9 @@ public String policyTablesCombinedQuery(String coverageType){
                 "FROM "+dbName+".rq_queue_messages where correlation_id like '"+SharedData.getPrimaryMember().getAccount_id()+"-REASSIGN-PRIMARY-CONTACT'";
     }
 
+    public String getMemberId(String memFname){
+        return "select member_id from "+dbName+".es_member\n" +
+                "where first_name = '"+memFname+"'";
+    }
+
 }

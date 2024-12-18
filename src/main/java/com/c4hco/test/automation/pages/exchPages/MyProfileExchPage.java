@@ -10,11 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-import java.lang.reflect.Field;
 
 import java.util.List;
-
-import static org.apache.logging.log4j.core.util.Assert.isEmpty;
 
 
 public class MyProfileExchPage {
@@ -978,10 +975,24 @@ public class MyProfileExchPage {
             newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
             newPrimaryMem.setResAddress(primaryMem.getResAddress());
             newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
+            setRelation(newPrimaryMem);
             memberList.remove(newPrimaryMem);
             SharedData.setPrimaryMember(newPrimaryMem);
         });
         SharedData.setMembers(memberList);
+    }
+
+    private void setRelation(MemberDetails member){
+     String relation = member.getRelation_to_subscriber();
+        MemberDetails memWithPrimaryPrefix = basicActions.getMember("Primary");;
+        if(relation.toLowerCase().contains("spouse") || relation.toLowerCase().contains("wife") || relation.toLowerCase().contains("husband")){
+                 if(memWithPrimaryPrefix.getGender().toLowerCase().equals("male")){
+                   memWithPrimaryPrefix.setRelation_to_subscriber("HUSBAND");
+                 } else{
+                     memWithPrimaryPrefix.setRelation_to_subscriber("WIFE");
+                 }
+            }
+        member.setRelation_to_subscriber("SELF");
     }
 
     public void validateErrorMessage(String language) {

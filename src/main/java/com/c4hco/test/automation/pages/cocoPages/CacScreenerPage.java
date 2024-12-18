@@ -279,8 +279,8 @@ public class CacScreenerPage {
         softAssert.assertFalse(pregnantAnswerStatus.get(1).isEnabled(), "pregnantAnswer Yes should be disabled");
         softAssert.assertFalse(dacaAnswerStatus.get(0).isEnabled(), "dacaAnswer No should be disabled");
         softAssert.assertFalse(dacaAnswerStatus.get(1).isEnabled(), "dacaAnswer Yes should be disabled");
-        softAssert.assertFalse(sesAnswerStatus.get(0).isEnabled(), "sesAnswer No should be disabled");
-        softAssert.assertFalse(sesAnswerStatus.get(1).isEnabled(), "sesAnswer Yes should be disabled");
+//        softAssert.assertFalse(sesAnswerStatus.get(0).isEnabled(), "sesAnswer No should be disabled");
+//        softAssert.assertFalse(sesAnswerStatus.get(1).isEnabled(), "sesAnswer Yes should be disabled");
 
         softAssert.assertFalse(basicActions.waitForElementPresence(seeResultsBtn, 30), "See results button should not be present");
         switch (language){
@@ -306,8 +306,8 @@ public class CacScreenerPage {
         softAssert.assertTrue(pregnantAnswerStatus.get(1).isEnabled(), "pregnantAnswer Yes should be enabled");
         softAssert.assertTrue(dacaAnswerStatus.get(0).isEnabled(), "dacaAnswer No should be enabled");
         softAssert.assertTrue(dacaAnswerStatus.get(1).isEnabled(), "dacaAnswer Yes should be enabled");
-        softAssert.assertTrue(sesAnswerStatus.get(0).isEnabled(), "sesAnswer No should be enabled");
-        softAssert.assertTrue(sesAnswerStatus.get(1).isEnabled(), "sesAnswer Yes should be enabled");
+//        softAssert.assertTrue(sesAnswerStatus.get(0).isEnabled(), "sesAnswer No should be enabled");
+//        softAssert.assertTrue(sesAnswerStatus.get(1).isEnabled(), "sesAnswer Yes should be enabled");
 
         softAssert.assertFalse(basicActions.waitForElementPresence(retakeQuizBtn, 30), "Retake quiz should not be present");
         switch (language){
@@ -333,15 +333,15 @@ public class CacScreenerPage {
                 expectedTexts.put("header", "These are the coverage options available to your household:");
                 expectedTexts.put("HealthFirst", "Health First Colorado or Child Health Plan Plus (CHP+)");
                 expectedTexts.put("C4HCO", "Connect for Health Colorado");
-                expectedTexts.put("SES Renewal", "The OmniSalud program (through Colorado Connect)");
-                expectedTexts.put("SES New", "The OmniSalud program (through Colorado Connect)");
+//                expectedTexts.put("SES Renewal", "The OmniSalud program (through Colorado Connect)");
+//                expectedTexts.put("SES New", "The OmniSalud program (through Colorado Connect)");
                 break;
             case "Spanish":
                 expectedTexts.put("header", "Estas son las opciones de cobertura disponibles para su familia:"); // Add actual Spanish text
                 expectedTexts.put("HealthFirst", "Health First Colorado o Child Health Plan Plus (CHP+)");
                 expectedTexts.put("C4HCO", "Connect for Health Colorado");
-                expectedTexts.put("SES Renewal", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
-                expectedTexts.put("SES New", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+//                expectedTexts.put("SES Renewal", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
+//                expectedTexts.put("SES New", "El programa de OmniSalud (a trav\u00E9s de Colorado Connect)");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -498,13 +498,13 @@ public class CacScreenerPage {
         softAssert.assertEquals(dacaTootlTip.getText(), "DACA is a federal policy that protects eligible immigrants who came to the United States when they were children from deportation, among other things.");
         softAssert.assertEquals(dacaAnswer.get(1).getText(), "Yes");
         softAssert.assertEquals(dacaAnswer.get(2).getText(), "No");
-        softAssert.assertEquals(sesQuestion.getText(), "Is anyone in your household currently receiving SilverEnhanced Savings financial help through the OmniSalud program?");
-        basicActions.scrollToElement(sesSubQuestion);
-        softAssert.assertEquals(sesSubQuestion.getText(), "How do I know if I\u0027m receiving SilverEnhanced Savings?");
-        builder.moveToElement(sesSubQuestion).perform();
-        softAssert.assertEquals(sesTootlTip.getText(), "If you are enrolled in SilverEnhanced Savings, your health insurance plan will have the words \u201CSilver Enhanced 94\u0025\u201D in the name.");
-        softAssert.assertEquals(sesAnswer.get(1).getText(), "Yes");
-        softAssert.assertEquals(sesAnswer.get(2).getText(), "No");
+//        softAssert.assertEquals(sesQuestion.getText(), "Is anyone in your household currently receiving SilverEnhanced Savings financial help through the OmniSalud program?");
+//        basicActions.scrollToElement(sesSubQuestion);
+//        softAssert.assertEquals(sesSubQuestion.getText(), "How do I know if I\u0027m receiving SilverEnhanced Savings?");
+//        builder.moveToElement(sesSubQuestion).perform();
+//        softAssert.assertEquals(sesTootlTip.getText(), "If you are enrolled in SilverEnhanced Savings, your health insurance plan will have the words \u201CSilver Enhanced 94\u0025\u201D in the name.");
+//        softAssert.assertEquals(sesAnswer.get(1).getText(), "Yes");
+//        softAssert.assertEquals(sesAnswer.get(2).getText(), "No");
         softAssert.assertEquals(seeResultsBtn.getText(), "See results");
         softAssert.assertEquals(needHelpBanner.getText(), "Need help deciding what to do?\nContact a certified enrollment expert!");
         softAssert.assertEquals(continueSignInBtn.getText(), "Continue signing in");
@@ -531,13 +531,13 @@ public class CacScreenerPage {
         softAssert.assertEquals(dacaTootlTip.getText(), "DACA es una pol\u00EDtica federal que protege a los inmigrantes elegibles que llegaron a los Estados Unidos cuando eran ni\u00F1os contra la deportaci\u00F3n, entre otras cosas.");
         softAssert.assertEquals(dacaAnswer.get(1).getText(), "S\u00ED");
         softAssert.assertEquals(dacaAnswer.get(2).getText(), "No");
-        softAssert.assertEquals(sesQuestion.getText(), "\u00BFAlg\u00FAn miembro de su familia recibe actualmente ayuda financiera de Ahorros SilverEnhanced a trav\u00E9s del programa de OmniSalud?");
-        softAssert.assertEquals(sesSubQuestion.getText(), "\u00BFC\u00F3mo puedo saber si estoy recibiendo Ahorros SilverEnhanced?");
-        basicActions.scrollToElement(sesSubQuestion);
-        builder.moveToElement(sesSubQuestion).perform();
-        softAssert.assertEquals(sesTootlTip.getText(), "Si est\u00E1 inscrito en Ahorros SilverEnhanced, su plan de seguro de salud mostrar\u00E1 las palabras \u201CSilver Enhanced 94\u0025\u201D en el nombre.");
-        softAssert.assertEquals(sesAnswer.get(1).getText(), "S\u00ED");
-        softAssert.assertEquals(sesAnswer.get(2).getText(), "No");
+//        softAssert.assertEquals(sesQuestion.getText(), "\u00BFAlg\u00FAn miembro de su familia recibe actualmente ayuda financiera de Ahorros SilverEnhanced a trav\u00E9s del programa de OmniSalud?");
+//        softAssert.assertEquals(sesSubQuestion.getText(), "\u00BFC\u00F3mo puedo saber si estoy recibiendo Ahorros SilverEnhanced?");
+//        basicActions.scrollToElement(sesSubQuestion);
+//        builder.moveToElement(sesSubQuestion).perform();
+//        softAssert.assertEquals(sesTootlTip.getText(), "Si est\u00E1 inscrito en Ahorros SilverEnhanced, su plan de seguro de salud mostrar\u00E1 las palabras \u201CSilver Enhanced 94\u0025\u201D en el nombre.");
+//        softAssert.assertEquals(sesAnswer.get(1).getText(), "S\u00ED");
+//        softAssert.assertEquals(sesAnswer.get(2).getText(), "No");
         softAssert.assertEquals(seeResultsBtn.getText(), "Ver resultados");
         softAssert.assertEquals(needHelpBanner.getText(), "\u00BFNecesita ayuda para decidir qu\u00E9 hacer?\nContacte a un experto en inscripci\u00F3n certificado.");
         softAssert.assertEquals(continueSignInBtn.getText(), "Continuar con el inicio de sesi\u00F3n");

@@ -5,18 +5,23 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminPortalReportsPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+
     public AdminPortalReportsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
-        PageFactory.initElements(basicActions.getDriver(), this);   }
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
 
     @FindBy(css = "thead td:nth-child(4) span:nth-child(1)")
     WebElement eventTime;
@@ -29,14 +34,24 @@ public class AdminPortalReportsPage {
     @FindBy(xpath = "//table[@class='sort-table']//td")
     List<WebElement> columnsEventCode;
 
+    @FindBy(css = ".sort-table-data-row")
+    List<WebElement> tableRows;
+
+    @FindBy(css = ".column-sort-button.column-sort-button-decending")
+    List<WebElement> descendingOrder;
+
+    @FindBy(css = ".tooltip .tooltip-inner")
+    WebElement tooltipText;
+
     public void validateTitleAccountActivity() {
         basicActions.waitForElementListToBePresentWithRetries(eventCodeList, 30);
-        softAssert.assertEquals("Account Activity",titleAccountActivity.getText());
-        basicActions.waitForElementToBePresent(detailKey,20);
-        softAssert.assertEquals("Detail Key",detailKey.getText());
-        basicActions.waitForElementToBePresent(eventTime,20);
-        softAssert.assertEquals("Time",eventTime.getText());
-               softAssert.assertAll(); }
+        softAssert.assertEquals("Account Activity", titleAccountActivity.getText());
+        basicActions.waitForElementToBePresent(detailKey, 20);
+        softAssert.assertEquals("Detail Key", detailKey.getText());
+        basicActions.waitForElementToBePresent(eventTime, 20);
+        softAssert.assertEquals("Time", eventTime.getText());
+        softAssert.assertAll();
+    }
 
     public void validateEventCodeInActivityEventReport(String eventType, String description) {
         WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='sort-table']"));
@@ -114,4 +129,46 @@ public class AdminPortalReportsPage {
         if (!actualTime.equals(expectedTime)) {
             softAssert.fail("The time does not match the expected timestamp. Expected: " + expectedTime + ", but got: " + actualTime);
         }
-    }  }
+    }
+
+    public void validateRecord(String recordType){
+        switch(recordType){
+            case "primary person change":
+                validations_primaryPersonChange();
+                break;
+            default: Assert.fail("Invalid argument passed");
+        }
+    }
+
+    private void validations_primaryPersonChange(){
+        basicActions.waitForElementListToBePresent(descendingOrder, 10);
+        basicActions.waitForElementListToBePresent(tableRows, 10);
+    basicActions.wait(2000);
+        descendingOrder.get(1).click();
+        basicActions.waitForElementListToBePresent(tableRows, 10);
+        basicActions.wait(2000);
+
+        WebElement firstRow = tableRows.get(0);
+       List<WebElement> columns = firstRow.findElements(By.tagName("td"));
+
+         columns.get(2).click();
+        Actions actions = new Actions(basicActions.getDriver());
+        actions.moveToElement(columns.get(2)).perform();
+        basicActions.wait(300);
+       softAssert.assertEquals(tooltipText.getText(), "UP_ASSIGN_PRIMARY_CONTACT", "event code did not match");
+
+        columns.get(5).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "New primary contact assigned", "description did not match");
+
+        columns.get(6).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "PrimaryContactAssignment", "detail key did not match");
+
+        columns.get(7).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "From memberId:"+basicActions.getMember("Primary").getMemberId()+", name:"+basicActions.getMemFirstLastNames("Primary")+", To memberId:"+SharedData.getPrimaryMember().getMemberId()+", name:"+SharedData.getPrimaryMember().getFullName().replace(".", "")+", updatedBy:"+SharedData.getPrimaryMember().getEmailId(), "detail value did not match");
+
+        softAssert.assertAll();
+    }
+}
