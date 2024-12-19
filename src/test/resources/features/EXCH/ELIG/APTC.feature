@@ -67,9 +67,9 @@ Feature: UI Tests related to APTC
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$327.63/mo"
+    Then I validate that my APTC value is "$365.60/mo"
     Then I click on view results and shop
-    Then I validate that my Tax Household's 1 APTC value is "$327.63/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$365.60/mo"
 
   @SLER-26
   Scenario: 2 Members Mesa-APTC Calculator
@@ -162,9 +162,9 @@ Feature: UI Tests related to APTC
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$533.09/mo"
+    Then I validate that my APTC value is "$567.40/mo"
     Then I click on view results and shop
-    Then I validate that my Tax Household's 1 APTC value is "$533.09/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$567.40/mo"
 
   @SLER-48
   Scenario: ELIG-2 THH Colorado Springs-APTC Calculator
@@ -261,13 +261,12 @@ Feature: UI Tests related to APTC
     And I Declare as Tax Household 2
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$617.83/mo"
+    Then I validate that my APTC value is "$687.54/mo"
     Then I click on view results and shop
     And I change views to Tax Household 1
-    #Then I validate that my Tax Household's APTC value is "$363.44/mo"
-    Then I validate that my Tax Household's 1 APTC value is "$363.44/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$406.97/mo"
     And I change views to Tax Household 2
-    Then I validate that my Tax Household's 2 APTC value is "$254.39/mo"
+    Then I validate that my Tax Household's 2 APTC value is "$280.57/mo"
 
   @SLER-71
   Scenario: ELIG-APTC Eligible over 400% FPL-APTCRules
@@ -488,6 +487,6 @@ Feature: UI Tests related to APTC
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$1051.47/mo"
+    Then I validate that my APTC value is "$1134.26/mo"
     Then I click on view results and shop
-    Then I validate that my Tax Household's 1 APTC value is "$1051.47/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1134.26/mo"

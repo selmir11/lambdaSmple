@@ -20,7 +20,7 @@ Feature: Seed03 With Exception - COCO
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
@@ -47,7 +47,7 @@ Feature: Seed03 With Exception - COCO
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -72,7 +72,7 @@ Feature: Seed03 With Exception - COCO
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -98,7 +98,7 @@ Feature: Seed03 With Exception - COCO
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -122,6 +122,7 @@ Feature: Seed03 With Exception - COCO
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "CoCo Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife,Son,Daughter" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
@@ -129,8 +130,8 @@ Feature: Seed03 With Exception - COCO
       #  --SES ON--
       #    And I select "Select Health Value Colorado Option Silver Enhanced 94% Off Exchange" coco medical plan
       #  --SES OFF --
-    And I select "Select Health Value Colorado Option Bronze" coco medical plan
-    And I click Continue on the Medical Plans Page CoCo
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:Select Health Value Colorado Option Bronze |
     Then I validate I am on the "Coco Plan Summary" page
     And I click continue on coco plan summary page
     Then I validate I am on the "CoCo Enrollment Agreements" page

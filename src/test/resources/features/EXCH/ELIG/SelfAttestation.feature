@@ -267,7 +267,7 @@ Feature: Self Attestation
       |manual_verification_type|manual_verif_status|
       |Income                  |Open               |
     And I click on expert help to open the find expert help page
-    Then I validate I am on the "Find Expert Help" page
+    And I validate I am on the "We Can Help" page
 
 
   @SLER-1331 @Database
