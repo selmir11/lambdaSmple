@@ -142,7 +142,7 @@ public class DbValidations {
 
     public void validateAccountHolderNameFromBOB() {
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
-        softAssert.assertEquals(SharedData.getMembers().get(0).getFirstName(), acct_holderBOB.get(0));
+        softAssert.assertEquals(SharedData.getPrimaryMember().getFirstName(), acct_holderBOB.get(0));
         softAssert.assertAll();
     }
 
