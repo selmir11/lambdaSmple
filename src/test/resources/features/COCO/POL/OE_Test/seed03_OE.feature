@@ -121,6 +121,7 @@ Feature: Seed03 based on Open Enrollment - COCO
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "CoCo Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife,Daughter,Son" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
@@ -128,8 +129,8 @@ Feature: Seed03 based on Open Enrollment - COCO
       #  --SES ON--
       #    And I select "Select Health Value Colorado Option Silver Enhanced 94% Off Exchange" coco medical plan
       #  --SES OFF --
-    And I select "Select Health Value Colorado Option Bronze" coco medical plan
-    And I click Continue on the Medical Plans Page CoCo
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:Select Health Value Colorado Option Bronze |
     Then I validate I am on the "Coco Plan Summary" page
     And I click continue on coco plan summary page
     Then I validate I am on the "CoCo Enrollment Agreements" page
