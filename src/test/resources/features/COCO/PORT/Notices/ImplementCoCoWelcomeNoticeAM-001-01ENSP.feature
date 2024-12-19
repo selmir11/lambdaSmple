@@ -1,4 +1,4 @@
-@SLCR-366 @portNotice @portCOCO
+@SLCR-366 @portNoticeCoco @portCOCO
 Feature: Implement CoCo Welcome Notice (AM-001-01) in DocGen
 
   Scenario: Trigger Notice IND_Welcome Message AM-001-01 English
@@ -10,6 +10,7 @@ Feature: Implement CoCo Welcome Notice (AM-001-01) in DocGen
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     And I validate I am on the "CAC Screener" page
+    Then I click on Sign Out in the Header for "Elmo"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
     Then I open the notice "AM-001-01" in "English"

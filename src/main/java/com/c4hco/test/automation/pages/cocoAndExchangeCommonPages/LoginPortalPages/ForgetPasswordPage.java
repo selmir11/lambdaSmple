@@ -34,7 +34,7 @@ public class ForgetPasswordPage {
     WebElement submitBtn;
     @FindBy(xpath="//input[@id='un']")
     WebElement emailForgetPassword;
-    @FindBy(xpath ="//span[@class='error-message']")
+    @FindBy(xpath ="//span[@class='error-message ng-star-inserted']")
     WebElement errorUsername;
 
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 m-3 ng-star-inserted']")

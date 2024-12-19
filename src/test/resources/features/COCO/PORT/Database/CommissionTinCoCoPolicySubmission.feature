@@ -100,7 +100,8 @@ Feature: Agency commission TIN update for agency owner CoCo policy submission
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click continue on coco start shopping page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    And I click continue on coco start shopping page
 
     And I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
