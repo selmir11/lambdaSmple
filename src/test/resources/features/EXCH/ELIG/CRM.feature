@@ -139,7 +139,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$443.92/mo"
+    Then I validate that my APTC value is "$481.89/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
       |Income                  |Open               |
@@ -630,7 +630,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click "No" on Before you continue popup on the application history page
-    Then I validate that my APTC value is "$455.61/mo"
+    Then I validate that my APTC value is "$493.58/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
       |Lawful Presence         |Open               |

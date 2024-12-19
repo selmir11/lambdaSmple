@@ -59,5 +59,6 @@ Then I validate I am on the "CoCo Employment Income" page
 And  I click Go back on the Employment income page
 Then I validate I am on the "Elmo Race and Ethnicity" page
 And I click save and continue on the Race and Ethnicity page
+Then I validate I am on the "CoCo Employment Income" page
 And I click on Sign Out in the Header for "Elmo"
 Then I validate I am on the "Login" page
