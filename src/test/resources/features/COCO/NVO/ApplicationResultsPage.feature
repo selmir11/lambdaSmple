@@ -2,7 +2,7 @@ Feature: Coco user on the Application results page
 
     Background: I go the login portal
     Given I open the login page on the "login" portal
-
+#Scenario1
   @SLCR-650
   Scenario: ELIG-As a Coco user on the Application results page, I need to navigate to a specific shopping page based on my age so that I know which page is available to me[CCRT-55]
     Given I open the login page on the "login" portal
@@ -63,7 +63,7 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
-
+#Scenario2
   Scenario: ELIG-Member in the household that is applying for health insurance is over the age of 21
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
