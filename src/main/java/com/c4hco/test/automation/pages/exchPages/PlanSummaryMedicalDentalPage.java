@@ -62,8 +62,7 @@ public class PlanSummaryMedicalDentalPage {
 
     @FindBy(xpath = "//span[normalize-space()='No medical plan selected for this group.']")
     WebElement planSummaryNoMedicalPlan;
-
-    //@FindBy(xpath = "//span[contains(@id,'PlanSummary-MedicalPlanName_1')]")
+    
     @FindBy(id = "PlanSummary-MedicalPlanName_1")
     WebElement planSummaryNoMedicalPlanSingle;
     @FindBy(xpath = "//span[normalize-space()='No dental plan selected for this group.']")
