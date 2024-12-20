@@ -1010,7 +1010,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1888 @PageValidationTaxStatusElmoPage @test
+  @SLER-1888 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1888 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Primary
     Then I click continue on family overview page
     And I Apply for financial help
@@ -1119,7 +1119,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1899 @PageValidationTaxStatusElmoPage @test
+  @SLER-1899 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1899 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Spouse
     Then I click continue on family overview page
     And I Apply for financial help
