@@ -231,6 +231,35 @@ public class AdminPortalIndividualDashboardSteps {
     public void clickBtnOnAccSumm(String button) {
         adminPortalIndividualDashboardPage.clickBtnOnAccSummContainer(button);
     }
+    @And("I check {string} table data")
+    public void iCheckEligibilityTableData(String tableName) {
+        adminPortalIndividualDashboardPage.verifyEligibilityContainer(tableName);
+    }
+    @And("I check Household level application and eligibility data table")
+    public void iVerifyEligibilityContainerMultipleHouseholds() {
+        adminPortalIndividualDashboardPage.verifyEligibilityContainerMultipleHouseholds();
+    }
+    @And("I click View Detailed Eligibility button on Individual dashboard")
+    public void iClickEligibilityButtonOnIndividualDashboard() {
+        adminPortalIndividualDashboardPage.clickEligibilityButtonOnIndividualDashboard();       }
+    @And("I check {string} columns {string} {string} {string}")
+    public void iValidateLCEColumns(String lceTitle, String event, String members, String date) {
+        adminPortalIndividualDashboardPage.validateLCEColumns(lceTitle, event, members, date);  }
+    @And("I check {string} {string} or {string} {string}")
+    public void iValidateLCEdata(String eventSTG, String dateSTG, String eventQA, String dateQA) {
+        adminPortalIndividualDashboardPage.validateLCEdata(eventSTG, dateSTG, eventQA, dateQA);  }
+    @Then("I check message {string} is displayed")
+    public void iCheckMessageIsDisplayed(String textMessage) {
+        adminPortalIndividualDashboardPage.checkMessageIsDisplayed(textMessage);        }
+    @And("I select tax household")
+    public void iSelectTaxHousehold() {
+        adminPortalIndividualDashboardPage.selectHousehold();       }
+    @And("I check {string} columns {string} {string} {string} {string}")
+    public void iValidateMemberColumns(String memberLevelTitleData, String member, String csr, String relationship, String tax) {
+        adminPortalIndividualDashboardPage.verifyMemberTableColumns(memberLevelTitleData, member, csr, relationship, tax);  }
+    @And("I check {string} {string} {string} or {string} {string} {string}")
+    public void iValidateMemberLevelData(String memberSTG, String relationshipSTG, String taxSTG, String memberQA, String relationshipQA, String taxQA) {
+        adminPortalIndividualDashboardPage.validateMemberLevelData(memberSTG, relationshipSTG, taxSTG, memberQA, relationshipQA, taxQA);  }
 
 }
 

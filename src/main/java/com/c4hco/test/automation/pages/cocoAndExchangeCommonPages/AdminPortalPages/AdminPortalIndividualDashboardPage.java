@@ -213,10 +213,56 @@ public class AdminPortalIndividualDashboardPage {
 
     @FindBy(css = ".button-section button a")
     List<WebElement> accSummaryBtns;
+    @FindBy(xpath = "//app-individual-eligibility//app-plan-year-dropdown//app-drop-down-select//div[contains(@class, 'drop-down-option')]")
+    WebElement eligibilityYear;
+    @FindBy(xpath = "//div[@class='col-12 eligibility-date']")
+    WebElement eligibilityDate;
+    @FindBy(xpath = "//button[@class='btn-second-action-button view-elibility-1']")
+    WebElement viewDetailedEligibility;
+    @FindBy(xpath = "//span[normalize-space()='Household level application and eligibility data']")
+    WebElement householdTableTitle;
+    @FindBy(xpath = "//span[normalize-space()='Member level eligibility data']")
+    WebElement memberTableTitle;
+    @FindBy(xpath = "//span[normalize-space()='Life change events']")
+    WebElement lceTableTitle;
+    @FindBy(xpath = "//th[normalize-space()='Life Change Event']")
+    WebElement lceEvent;
+    @FindBy(xpath = "//th[normalize-space()='Impacted Members']")
+    WebElement membersImpacted;
+    @FindBy(xpath = "//th[normalize-space()='Date of Event']")
+    WebElement lceDate;
+    @FindBy(xpath = "//td[@id='eventType']")
+    WebElement lceEventData;
+    @FindBy(xpath = "//div[6]//table[1]//tr[2]//td[1]")
+    WebElement membersImpactedData;
+    @FindBy(xpath = "//td[@id='eventDate']")
+    WebElement lceDateData;
+    @FindBy(xpath = "//div[@class='no-eligibility']")
+    WebElement NoData;
+    @FindBy(xpath = "//button[normalize-space()='Tax Household 2']")
+    WebElement householdSecond;
+    @FindBy(css = "#householdSelect")
+    WebElement householdDropdown;
+    @FindBy(xpath = "//th[normalize-space()='Member']")
+    WebElement memberTitle;
+    @FindBy(xpath = "//th[normalize-space()='CSR']")
+    WebElement csrTitle;
+    @FindBy(xpath = "//th[normalize-space()='Relationship to the Primary Account Holder']")
+    WebElement relationshipTitle;
+    @FindBy(xpath = "//th[normalize-space()='Tax Filer Status']")
+    WebElement taxTitle;
+    @FindBy(xpath = "//td[@id='memberName']")
+    WebElement member;
+    @FindBy(xpath = "//th[normalize-space()='Date of Event']")
+    WebElement csr;
+    @FindBy(xpath = "//td[@id='relationship']")
+    WebElement relationship;
+    @FindBy(xpath = "//td[@id='taxFilerType']")
+    WebElement tax;
 
-    public void clickBtnOnAccSummContainer(String btnName){
+    public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
-        switch(btnName){
+        switch (btnName) {
             case "Manage Account Details":
                 accSummaryBtns.get(1).click();
                 break;
@@ -227,33 +273,33 @@ public class AdminPortalIndividualDashboardPage {
 
     }
 
-    public void validateAccSummaryContainer(){
-    basicActions.waitForElementToBePresent(accountSummaryTitle, 10);
-    MemberDetails primaryMem = SharedData.getPrimaryMember();
-    softAssert.assertEquals(accountSummaryTitle.getText(), "Account Summary", "Account Summary Title did not match!");
-    softAssert.assertEquals(unameAndNameTitles.get(0).getText(), "Username:", "Username Text did not match");
-    softAssert.assertEquals(unameAndNameTitles.get(1).getText(), "Full Name:", "Full name text did not match");
-    softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getEmailId(), "Email Id did not match");
-    softAssert.assertEquals(individualNames.get(1).getText(), primaryMem.getCompleteFullName(), "Name of primary person did not match");
-    softAssert.assertEquals(hhMemTitle.getText(), "Household Members", "Household Members title did not match");
+    public void validateAccSummaryContainer() {
+        basicActions.waitForElementToBePresent(accountSummaryTitle, 10);
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        softAssert.assertEquals(accountSummaryTitle.getText(), "Account Summary", "Account Summary Title did not match!");
+        softAssert.assertEquals(unameAndNameTitles.get(0).getText(), "Username:", "Username Text did not match");
+        softAssert.assertEquals(unameAndNameTitles.get(1).getText(), "Full Name:", "Full name text did not match");
+        softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getEmailId(), "Email Id did not match");
+        softAssert.assertEquals(individualNames.get(1).getText(), primaryMem.getCompleteFullName(), "Name of primary person did not match");
+        softAssert.assertEquals(hhMemTitle.getText(), "Household Members", "Household Members title did not match");
         List<String> memberNamesUi = new ArrayList<>();
         List<String> memberNamesSharedData = basicActions.getAllMemFirstNames();
 
-    for(WebElement memName: memNamesList){
-        memberNamesUi.add(memName.getText());
+        for (WebElement memName : memNamesList) {
+            memberNamesUi.add(memName.getText());
 
-        WebElement memInfo = basicActions.getDriver().findElement(By.xpath("//app-account-summary//*[contains(@class, 'member-name')][contains(text(),'"+memName.getText()+"')]/following-sibling::*"));
-        List<MemberDetails> allMembers = basicActions.getAllMem();
+            WebElement memInfo = basicActions.getDriver().findElement(By.xpath("//app-account-summary//*[contains(@class, 'member-name')][contains(text(),'" + memName.getText() + "')]/following-sibling::*"));
+            List<MemberDetails> allMembers = basicActions.getAllMem();
 
-        for(MemberDetails mem : allMembers){
-            if(mem.getCompleteFullName().contains(memName.getText())){
-                String relation = mem.getRelation_to_subscriber();
-                softAssert.assertEquals(memInfo.getText(), relation.toUpperCase()+" / Age "+basicActions.getAge(mem.getDob()), "Member Info did not match");
+            for (MemberDetails mem : allMembers) {
+                if (mem.getCompleteFullName().contains(memName.getText())) {
+                    String relation = mem.getRelation_to_subscriber();
+                    softAssert.assertEquals(memInfo.getText(), relation.toUpperCase() + " / Age " + basicActions.getAge(mem.getDob()), "Member Info did not match");
+                }
             }
         }
-    }
-    softAssert.assertEqualsNoOrder(memberNamesUi.toArray(), memberNamesSharedData.toArray(), "The member names do not match.");
-    softAssert.assertAll();
+        softAssert.assertEqualsNoOrder(memberNamesUi.toArray(), memberNamesSharedData.toArray(), "The member names do not match.");
+        softAssert.assertAll();
     }
 
 
@@ -663,6 +709,163 @@ public class AdminPortalIndividualDashboardPage {
             softAssert.assertEquals(secondRowClientData.getText(), secondClientQA);
         }
         softAssert.assertAll();
+    }
+
+    public void verifyTitleAndDefaultYear(String eligTitle, String eligYear) {
+        basicActions.waitForElementToBePresent(eligibilityTitle, 10);
+        softAssert.assertEquals(eligibilityTitle.getText(), eligTitle);
+        softAssert.assertEquals(eligibilityYear.getText(), eligYear);
+        softAssert.assertAll();
+    }
+
+    public void clickEligibilityButtonOnIndividualDashboard() {
+        basicActions.waitForElementToBeClickable(viewDetailedEligibility, 20);
+        basicActions.click(viewDetailedEligibility);
+        basicActions.switchtoactiveTab();
+    }
+
+    public void verifyEligibilityContainer(String tableName) {
+        basicActions.waitForElementToBePresent(householdTableTitle, 30);
+        softAssert.assertEquals(householdTableTitle.getText(), tableName);
+        softAssert.assertAll();
+        WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='elig-summary-table']"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        String[][] QAExpectedData = {
+                {"Submitted on:", "06/22/2023 1:53 PM"},
+                {"Application Purpose:", "INITIAL_DETERMINATION"},
+                {"Total APTC:", "N/A"},
+                {"ARP Eligibility:", "No"},
+                {"Quick Submit:", "No"}
+        };
+        String[][] STGExpectedData = {
+                {"Submitted on:", "04/07/2023 12:33 PM"},
+                {"Application Purpose:", "QUALIFIED_LIFE_CHANGE_EVENT"},
+                {"Total APTC:", "$710.84/month"},
+                {"ARP Eligibility:", "No"},
+                {"Quick Submit:", "No"},
+        };
+
+        if (SharedData.getEnv().equals("qa")) {
+            for (int i = 0; i < QAExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < QAExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        } else {
+            for (int i = 0; i < STGExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < STGExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        }
+    }
+
+    public void verifyEligibilityContainerMultipleHouseholds() {
+        basicActions.waitForElementToBePresent(householdTableTitle, 30);
+        softAssert.assertTrue(householdTableTitle.isDisplayed());
+        softAssert.assertAll();
+        WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='elig-summary-table']"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        String[][] QAExpectedData = {
+                {"Submitted on:", "06/22/2023 1:53 PM"},
+                {"Application Purpose:", "INITIAL_DETERMINATION"},
+                {"Total APTC:", "N/A"},
+                {"ARP Eligibility:", "No"},
+                {"Quick Submit:", "No"}
+        };
+        String[][] STGExpectedData = {
+                //     {"Application ID:","72391523"},
+                {"Submitted on:", "06/06/2024 9:44 AM"},
+                {"Application Purpose:", "UPDATE_DETERMINATION"},
+                {"Total APTC:", "$263.61/month"},
+                {"ARP Eligibility:", "No"},
+                {"Quick Submit:", "No"},
+        };
+        if (SharedData.getEnv().equals("qa")) {
+            for (int i = 0; i < QAExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < QAExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        } else {
+            for (int i = 0; i < STGExpectedData.length; i++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < STGExpectedData[i].length; j++) {
+                    String cellText = cells.get(j).getText();
+                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
+                    softAssert.assertAll();
+                }
+            }
+        }
+    }
+
+    public void validateLCEColumns(String lceTitle, String event, String members, String date) {
+        basicActions.waitForElementToBePresent(lceTableTitle, 30);
+        softAssert.assertEquals(lceTableTitle.getText(), lceTitle);
+        softAssert.assertEquals(lceEvent.getText(), event);
+        softAssert.assertEquals(membersImpacted.getText(), members);
+        softAssert.assertEquals(lceDate.getText(), date);
+        softAssert.assertAll();
+    }
+
+    public void verifyMemberTableColumns(String memberLevelTitleData, String member, String csr, String relationship, String tax) {
+        basicActions.waitForElementToBePresent(memberTableTitle, 30);
+        softAssert.assertEquals(memberTableTitle.getText(), memberLevelTitleData);
+        softAssert.assertEquals(memberTitle.getText(), member);
+        softAssert.assertEquals(csrTitle.getText(), csr);
+        softAssert.assertEquals(relationshipTitle.getText(), relationship);
+        softAssert.assertEquals(taxTitle.getText(), tax);
+        softAssert.assertAll();
+    }
+
+    public void validateLCEdata(String eventSTG, String dateSTG, String eventQA, String dateQA) {
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(lceEventData.getText(), eventSTG);
+            softAssert.assertEquals(membersImpactedData.getText(), "Gertrude Simmons");
+            softAssert.assertEquals(lceDateData.getText(), dateSTG);
+        } else {
+            softAssert.assertEquals(lceEventData.getText(), eventQA);
+            softAssert.assertEquals(membersImpactedData.getText(), "Chris Rock");
+            softAssert.assertEquals(lceDateData.getText(), dateQA);
+            softAssert.assertAll();
+        }
+    }
+
+    public void checkMessageIsDisplayed(String textMessage) {
+        basicActions.waitForElementToBePresent(NoData, 10);
+        softAssert.assertEquals(NoData.getText(), textMessage);
+        softAssert.assertAll();
+    }
+
+    public void selectHousehold() {
+        basicActions.waitForElementToBeClickable(householdDropdown, 20);
+        basicActions.click(householdDropdown);
+        basicActions.waitForElementToBePresent(householdSecond, 50);
+        householdSecond.click();
+    }
+
+    public void validateMemberLevelData(String memberSTG, String relationshipSTG, String taxSTG, String memberQA, String relationshipQA, String taxQA) {
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(member.getText(), memberSTG);
+            softAssert.assertEquals(relationship.getText(), relationshipSTG);
+            softAssert.assertEquals(tax.getText(), taxSTG);
+        } else {
+            softAssert.assertEquals(member.getText(), memberQA);
+            softAssert.assertEquals(relationship.getText(), relationshipQA);
+            softAssert.assertEquals(tax.getText(), taxQA);
+            softAssert.assertAll();
+        }
     }
 }
 
