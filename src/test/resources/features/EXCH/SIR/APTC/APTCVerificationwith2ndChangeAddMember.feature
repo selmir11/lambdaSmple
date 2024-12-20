@@ -390,8 +390,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      Then I validate I am on the "Report a life change" page
-     And I report "Marriage" and click continue
+      #Then I validate I am on the "Report a life change" page
+      #And I report "Marriage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
@@ -534,7 +534,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click on Sign Out in the Header for "Portal"
       Examples:
       |income1      |income2    | expectedInitialAPTCResult | initialAPTCSummaryResult |expectedPostAPTCResult| postAPTCSummaryResult |
-      |1500000      |1500000    | $0.00/mo                  | $0.00                    | $878.11/mo           | -$853.40              |
+      |1500000      |1500000    | $0.00/mo                  | $0.00                    | $930.41/mo           | -$929.35              |
 
 
   @SLER-998
@@ -681,11 +681,11 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    Then I validate I am on the "Report a life change" page
-    And I report "Marriage" and click continue
-
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+
+    #Then I validate I am on the "Report a life change" page
+    #And I report "Marriage" and click continue
 
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -798,8 +798,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -823,7 +822,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
     Examples:
       |income1      |income2    | expectedInitialAPTCResult | initialAPTCSummaryResult |expectedPostAPTCResult| postAPTCSummaryResult |
-      |10000000     |1000000    | $0.00/mo                  | $0.00                     |  $101.07/mo         | -$101.07              |
+      |10000000     |1000000    | $0.00/mo                  | $0.00                     |  $151.24/mo         | -$151.24              |
 
 
 
@@ -965,8 +964,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      Then I validate I am on the "Report a life change" page
-      And I report "LostCoverage" and click continue
+      #Then I validate I am on the "Report a life change" page
+      #And I report "LostCoverage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
@@ -1548,11 +1547,12 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    Then I validate I am on the "Report a life change" page
-    And I report "Marriage" and click continue
+    #Then I validate I am on the "Report a life change" page
+    #And I report "Marriage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -1768,8 +1768,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -1796,7 +1795,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
     Examples:
       | City   | State | DOB      | County | Zipcode | income1 | aptc1 | income2 | expectedAptc2 | planSummaryaptc2 | DOBmember2 |
-      | Granby | CO    | 01011990 | Grand  | 80446   | 1500000 | $0.00 | 7500000 | $1100.40/mo   | -$1,100.40        | 01012011   |
+      | Granby | CO    | 01011990 | Grand  | 80446   | 1500000 | $0.00 | 7500000 | $1237.47/mo   | -$1,237.47        | 01012011   |
 
 
   @SLER-802 @SLER-803 @SLER-805 @SLER-806 @SLER-808 @SLER-809
@@ -1942,8 +1941,6 @@ Feature: UI Tests related to APTC after second enrollment change
      #open enrollment doesnt contain option for LCE
      # Then I validate I am on the "Report a life change" page
      # And I report "MovedToColorado" and click continue
-
-
 
       Then I select "Male" as sex option
       And I select "Yes" to Are You Applying

@@ -76,7 +76,7 @@ Feature: Medical Plan Compare page related tests
     Then I validate I am on the "Medical Plan Results" page
     Then I click on Sign Out in the Header for "Portal"
 
-     @SLER-725
+   @SLER-725
   Scenario: SLER-725 - Validate the Navigation and Functionality of Compare Plans Link (Medical) - 3 checks
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -122,10 +122,13 @@ Feature: Medical Plan Compare page related tests
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
     Then I click continue on family overview page
+
     And I Apply for no financial help
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
+
     And I Declare as Tax Household 1
     Then I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
@@ -180,7 +183,7 @@ Feature: Medical Plan Compare page related tests
     Then I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
 
-     Then I enter generic mailing address details
+    Then I enter generic mailing address details
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -195,18 +198,21 @@ Feature: Medical Plan Compare page related tests
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
     Then I click continue on family overview page
+
     And I Apply for no financial help
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare as Tax Household 1
     Then I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
     Then I click on view results and shop
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-     Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page

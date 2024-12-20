@@ -2,7 +2,7 @@
   # contains SLER-73
   Feature: Tests related to medical plans
     @SLER-73
-    Scenario: Validate medical plans count
+    Scenario: SLER-73 - Validate medical plans count
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
       When I click create a new account on login page

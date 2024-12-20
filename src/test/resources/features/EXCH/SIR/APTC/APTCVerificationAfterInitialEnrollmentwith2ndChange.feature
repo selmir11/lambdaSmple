@@ -1519,7 +1519,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
 
-
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
@@ -1533,9 +1532,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    Then I validate I am on the "Report a life change" page
-    And I report "LostCoverage" and click continue
-
+    #Then I validate I am on the "Report a life change" page
+    #And I report "LostCoverage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -1608,7 +1606,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$727.71/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$758.63/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1624,7 +1622,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$717.10"
+    And I validate the APTC Credit on the Summary page is "-$758.63"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page

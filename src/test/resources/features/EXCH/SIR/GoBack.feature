@@ -353,10 +353,7 @@ Feature: Go Back tests
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse"
-    Then I click "No" to the Tobacco usage question on start shopping page for "Brother"
-    Then I click "No" to the Tobacco usage question on start shopping page for "Sister"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Brother,Sister"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

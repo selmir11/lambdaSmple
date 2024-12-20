@@ -3,7 +3,6 @@ Feature: Tests related to medical plans
 
  @SLER-1123
 Scenario:  SLER-1123 - set of medical plan results with plans was consistent through the year - all pages in the results were checked
-
   Given I open the login page on the "login" portal
   And I validate I am on the "Login" page
   When I click create a new account on login page
@@ -35,6 +34,7 @@ Scenario:  SLER-1123 - set of medical plan results with plans was consistent thr
   Then I select "Male" as sex option
   And I select "Yes" to Are You Applying
   And I click continue on Tell us about yourself page
+
   Then I validate I am on the "Add Address" page
   And I enter member with address line1 "P.O.BOX 1454" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
   And I select "Yes" for CO Resident option
@@ -53,10 +53,13 @@ Scenario:  SLER-1123 - set of medical plan results with plans was consistent thr
   Then I select "Yes" for Citizen option
   And I select "No" for Naturalized Immigrant option
   And I click continue on the Citizenship page
+
+
   Then I click continue on family overview page
 
   Then I validate I am on the "Financial Help" page
   And I Apply for no financial help
+
   Then I validate I am on the "Tell us about life changes" page
   Then I select "LostCoverage" QLCE on tell us about life changes page
   Then I click on Save and Continue
@@ -70,8 +73,10 @@ Scenario:  SLER-1123 - set of medical plan results with plans was consistent thr
   Then I validate I am on the "Application Results" page
   Then I click continue on application results page
 
+  Then I validate I am on the "Start Shopping" page
   Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
   Then I click continue on start shopping page
+
   And I validate I am on the "Medical Plan Results" page
   And I store the medical plan market names from results page
   And  I validate there are a total 85 MedicalPlans
