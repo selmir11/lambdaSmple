@@ -3,7 +3,7 @@ Feature: Coco user on the Application results page
     Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-650 #WIP
+  @SLCR-650
   Scenario: ELIG-As a Coco user on the Application results page, I need to navigate to a specific shopping page based on my age so that I know which page is available to me[CCRT-55]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -39,7 +39,7 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "None of these" life change event with event date of "Today"
+     And  I check "None of these" life change event checkbox
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -99,14 +99,14 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    And I select "None of these" life change event with event date of "Today"
+    And  I check "None of these" life change event checkbox
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
-    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
