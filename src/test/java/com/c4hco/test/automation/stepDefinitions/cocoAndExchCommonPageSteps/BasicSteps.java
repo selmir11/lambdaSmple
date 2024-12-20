@@ -44,7 +44,7 @@ public class BasicSteps {
                 pageUrl = "PaymentPortal/payNow";
                 break;
             case "Account Overview":
-                basicActions.wait(5000);
+                basicActions.wait(3000);
                 pageUrl = "nes/accountOverview";
                 break;
             case "My Account Overview":
