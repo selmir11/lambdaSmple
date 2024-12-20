@@ -1,13 +1,13 @@
 @COCO11
-    # @SLCR-WIP1, @SLCR-WIP2, @SLCR-WIP3, @SLCR-WIP4, @SLCR-WIP5, @SLCR-WIP6, @SLCR-WIP7, @SLCR-WIP8, @SLCR-WIP9, @SLCR-WIP10
-Feature: Individual adult - End to End Test
+    # SLCR-652, SLCR-653, SLCR-654, SLCR-655, SLCR-656, SLCR-657, SLCR-658, SLCR-659,
+Feature: LCE Test Runs for COCO
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
 
-  @SLCR-WIP1
-  Scenario: SLCR-WIP1 - COCO LCE Insurance Loss test
+  @SLCR-652
+  Scenario: SLCR-652 - COCO LCE Insurance Loss test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -81,8 +81,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP2
-  Scenario: SLCR-WIP2 - COCO LCE Birth test
+  @SLCR-653
+  Scenario: SLCR-653 - COCO LCE Birth test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -222,8 +222,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP3
-  Scenario: SLCR-WIP3 - COCO LCE Pregnancy test
+  @SLCR-654
+  Scenario: SLCR-654 - COCO LCE Pregnancy test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -297,8 +297,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP4
-  Scenario: SLCR-WIP4 - COCO LCE Marriage test
+  @SLCR-655
+  Scenario: SLCR-655 - COCO LCE Marriage test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -372,8 +372,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP5
-  Scenario: SLCR-WIP5 - COCO LCE Divorce test
+  @SLCR-656
+  Scenario: SLCR-656 - COCO LCE Divorce test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -447,8 +447,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP6
-  Scenario: SLCR-WIP6 - COCO LCE Death test
+  @SLCR-657
+  Scenario: SLCR-657 - COCO LCE Death test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -522,8 +522,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP7
-  Scenario: SLCR-WIP7 - COCO LCE Move Colorado test
+  @SLCR-658
+  Scenario: SLCR-658 - COCO LCE Move Colorado test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -597,8 +597,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP8
-  Scenario: SLCR-WIP8 - COCO LCE Move out of State test
+  @SLCR-659
+  Scenario: SLCR-659 - COCO LCE Move out of State test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
