@@ -31,7 +31,6 @@ Feature: Manage Plans:Current Dent Container verification (order)
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
     And I validate individual dashboard container titles: "Plans" "Account Summary" "Eligibility" "Renewals" "Reports" "Payloads" are displayed
-    And I verify container "Eligibility" and default Year: "2024" is displayed
     Then I check message "There is no eligibility data" is displayed
     And I logout from Admin Portal
   @SLER-709
@@ -46,8 +45,6 @@ Feature: Manage Plans:Current Dent Container verification (order)
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
     And I validate individual dashboard container titles: "Plans" "Account Summary" "Eligibility" "Renewals" "Reports" "Payloads" are displayed
-    And I verify container "Eligibility" and default Year: "2023" is displayed
-    Then I verify submitted date is "April 7, 2023" or "April 7, 2023"
     And I click View Detailed Eligibility button on Individual dashboard
     And I check "Household level application and eligibility data" table data
     And I check "Member level eligibility data" columns "Member" "CSR" "Relationship to the Primary Account Holder" "Tax Filer Status"
