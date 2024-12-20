@@ -513,8 +513,7 @@ Feature: Medical Plan Compare page related tests
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
