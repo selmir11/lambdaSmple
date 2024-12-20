@@ -12,6 +12,7 @@ Feature: Tests broker search results pagination on the Find a Certified Broker p
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
+    And I initiate incoming page
     Then I validate I am on the "Account Overview" page
     And I click on Get Assistance in the "Exch NonElmo" Header
     And I click on Find Expert Assistance in the "individual dashboard" Header
@@ -20,6 +21,8 @@ Feature: Tests broker search results pagination on the Find a Certified Broker p
     And I click on Search button in find certified broker page
     Then I verify the over 50 search results error is displayed in "English"
     And I click the right pagination arrow button 3 times
+    And I wait for 100 milliseconds
     Then I verify the current result page is "5"
     And I click the left pagination arrow button 4 times
+    And I wait for 100 milliseconds
     Then I verify the current result page is "1"
