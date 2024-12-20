@@ -193,7 +193,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickMetalTierDropdown() {
-        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToDisappear( spinner,50 );
         basicActions.waitForElementToBePresent( metalTierDropdown,30 );
         metalTierDropdown.click();
 

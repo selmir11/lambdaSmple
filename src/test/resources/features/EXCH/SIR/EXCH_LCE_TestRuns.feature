@@ -97,7 +97,7 @@ Feature: LCE Test Runs
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -212,8 +212,7 @@ Feature: LCE Test Runs
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -329,8 +328,7 @@ Feature: LCE Test Runs
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -447,8 +445,7 @@ Feature: LCE Test Runs
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -564,8 +561,7 @@ Feature: LCE Test Runs
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

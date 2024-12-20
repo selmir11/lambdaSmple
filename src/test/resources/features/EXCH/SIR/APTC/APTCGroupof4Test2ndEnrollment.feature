@@ -175,6 +175,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Daughter"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -374,6 +375,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Daughter"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -648,6 +650,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -778,6 +781,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -1144,6 +1148,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -1279,6 +1284,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -1805,6 +1811,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,SonTwo"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -2350,6 +2357,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,SonTwo"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

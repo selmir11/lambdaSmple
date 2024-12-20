@@ -42,7 +42,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
   And I click continue on the Add info for yourself page
 
   Then I validate I am on the "Elmo Race and Ethnicity" page
-  And I select "Prefer not to answer" for race and ethnicity option
+  And I select "Prefer not to answer" for race and ethnicity option for "Primary"
   And I click save and continue on the Race and Ethnicity page
 
   Then I validate I am on the "CoCo Employment Income" page
@@ -123,7 +123,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
@@ -215,7 +215,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -284,7 +284,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -316,7 +316,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -349,7 +349,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -379,7 +379,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -476,7 +476,6 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
 
-
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -484,7 +483,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -516,7 +515,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -545,7 +544,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -575,7 +574,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -671,7 +670,6 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
 
-
     Then I enter details on tell us about yourself page and continue with "01161988", "Male", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -679,7 +677,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -712,7 +710,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -741,7 +739,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -839,7 +837,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
