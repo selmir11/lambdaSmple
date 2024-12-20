@@ -342,7 +342,7 @@ public class NoticesPage {
                     softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://qa-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
         }else{
                     softAssert.assertTrue(adminNoticeParag1.getText().contains( "Please click this link to setup your password https://staging-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken="));
-                    softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://qa-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
+                    softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://staging-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
         }
                 softAssert.assertEquals(adminNoticeParag3.getText(),"If you have questions concerning your account or feel it was created in error, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m. .");
                 softAssert.assertAll();

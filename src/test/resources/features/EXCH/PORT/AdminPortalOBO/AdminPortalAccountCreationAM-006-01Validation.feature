@@ -5,7 +5,7 @@ Feature: Admin Portal Account creation and notice AM-006-01 validation
   Scenario: : Admin Portal Account creation and notice AM-006-01 validation
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    When I login as Admin User any environment "adminPortalAccountManagement_UN_STG" password "adminPortalAccountManagement_PW_STG" and "adminPortalAccountManagement_UN_QA" password "adminPortalAccountManagement_PW_QA"
     And I validate I am on the "Admin search" page
     And I click "AP Account Creation" from application links dropdown
     Then I wait for 1000 milliseconds

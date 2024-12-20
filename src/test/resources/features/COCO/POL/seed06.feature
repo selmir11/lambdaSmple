@@ -20,7 +20,7 @@ Feature: Seed06 - COCO
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "35,000.00" income amount
@@ -47,7 +47,7 @@ Feature: Seed06 - COCO
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Husband"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -72,7 +72,7 @@ Feature: Seed06 - COCO
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -98,7 +98,7 @@ Feature: Seed06 - COCO
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -130,8 +130,8 @@ Feature: Seed06 - COCO
     #  --SES ON--
     #    And I select "Elevate Health Elevate Colorado Option Silver Enhanced 94%" coco medical plan
     #  --SES OFF --
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
-    And I click Continue on the Medical Plans Page CoCo
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:Elevate Health Plans Colorado Option Silver Off Exchange |
     Then I validate I am on the "Coco Plan Summary" page
     And I click continue on coco plan summary page
     Then I validate I am on the "CoCo Enrollment Agreements" page
