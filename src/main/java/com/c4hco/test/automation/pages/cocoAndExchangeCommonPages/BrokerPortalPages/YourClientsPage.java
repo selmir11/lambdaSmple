@@ -386,7 +386,7 @@ public class YourClientsPage {
 
     public void verifyClientNameAsPrimary() {
         basicActions.waitForElementToBePresent(clientFullName,20);
-        softAssert.assertTrue(clientFullName.getText().contains(SharedData.getMembers().get(0).getFirstName()));
+        softAssert.assertTrue(clientFullName.getText().contains(SharedData.getPrimaryMember().getFirstName()));
         softAssert.assertAll();
     }
 

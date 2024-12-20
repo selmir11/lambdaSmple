@@ -57,6 +57,7 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void continueWithApplication()  {
+        basicActions.scrollToElement(continueButton);
         basicActions.waitForElementToBeClickable(continueButton, 20);
         continueButton.click();
     }

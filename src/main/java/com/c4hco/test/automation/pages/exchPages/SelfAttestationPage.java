@@ -25,17 +25,13 @@ public class SelfAttestationPage {
     String expectedActionReq =
             "Action Required: Additional Information Needed\n" +
             "\n" +
-            "\n" +
             "Thank you for verifying your information. Unfortunately, we still need additional documentation to confirm the details you provided. This step ensures you receive the correct financial assistance. If you received premium tax credits but did not report them, you must first file and reconcile past credits with the IRS.\n" +
             "\n" +
-            "\n" +
             "Next Steps:\n" +
-            "\n" +
             "File an amended return with the IRS to correct your tax information.\n" +
             "Submit documents to confirm that: (a) you have now filed federal income taxes and reported the premium tax credit that you received and (b) your income is correct.\n" +
             "For more details, please review the information here, contact our support team at 855-752-6749, or get help from an Expert.\n" +
-            "\n" +
-            "Remember:The documents you submit must confirm both your household income and that you have appropriately filed a federal income tax return and reported the premium tax credits you received. You may lose the financial help you’re receiving if you do not provide us with both documents.";
+            "Remember:The documents you submit must confirm both your household income and that you have appropriately filed a federal income tax return and reported the premium tax credits you received. You may lose the financial help you\u2019re receiving if you do not provide us with both documents.";
 
     String expectedActionReqSpanish =
             "Acci\u00F3n requerida: Se necesita m\u00e1s informaci\u00F3n\n" +
@@ -49,11 +45,7 @@ public class SelfAttestationPage {
             "Recuerde:En los documentos que presente, se deben confirmar tanto su ingreso familiar como su presentaci\u00F3n apropiada de una declaraci\u00F3n de impuestos federales sobre el ingreso y el informe de los cr\u00e9ditos fiscales para el pago de la prima que recibi\u00F3. Es posible que pierda la ayuda financiera que est\u00e1 recibiendo si no nos proporciona ambos documentos.";
 
    String expectedUpdateText =
-           "Thank you!\n"+
-           "\n" +
-           "\n" +
-           "It looks like we need updated information about what your household income will be for 2025. Please go here and click on “Apply for 2025\u201D to submit a new application.\n" +
-           "\n" +
+           "It looks like we need updated information about what your household income will be for 2025. Please go here to submit a new application.\n" +
            "\n" +
            "Need more help?   Contact our support team at 855-752-6749 or find an expert near you.";
 
@@ -63,9 +55,6 @@ public class SelfAttestationPage {
            "\u00BFNecesita m\u00e1s ayuda?   Comun\u00edquese con nuestro equipo de soporte llamando al 855-752-6749 o busque a un experto cerca de usted.";
 
    String expectedSuccess =
-           "Thank you!\n"+
-           "\n" +
-           "\n" +
            "Your income and tax filing information were successfully confirmed.";
 
    String expectedSuccessSpanish =
@@ -108,7 +97,7 @@ public class SelfAttestationPage {
     @FindBy(xpath = "//button[text()='here']")
     WebElement btnClickHereToUpdateApp;
 
-    @FindBy(xpath = "//a[text()='expert near you']")
+    @FindBy(xpath = "//a[text()='find an expert near you']")
     WebElement btnFindExpertHelp;
 
 
@@ -205,6 +194,7 @@ public class SelfAttestationPage {
                 softAssert.assertEquals(pageText1.getText(), expectedUpdateText);
                 break;
         }
+        softAssert.assertAll();
     }
 
     public void checkTextSpanish(String scenario){

@@ -96,6 +96,8 @@ Feature:Updates/Inserts Information into BoB Table - Policy updates through Admi
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse" coco
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Enrollment Groups" page
     And I click continue on grouping Members Medical page
@@ -108,6 +110,7 @@ Feature:Updates/Inserts Information into BoB Table - Policy updates through Admi
     Then I select first dental plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
     And I click continue on plan summary page
 
     And I select "Acknowledgement" agreement checkbox

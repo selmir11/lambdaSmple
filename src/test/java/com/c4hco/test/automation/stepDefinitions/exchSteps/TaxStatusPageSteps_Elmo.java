@@ -47,6 +47,9 @@ public class TaxStatusPageSteps_Elmo {
     @And("I enter data for who will be claimed as dependent enter the name question on the Tax Status Elmo page")
     public void iEnterWhoWillBeClaimedDataEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.enterWhoWillBeClaimedDataEnterTheNameQuestion(nameData);}
 
+    @Then("I enter date of {string} for Someone else's DOB on Tax Status Elmo page")
+    public void iEnterDobForSomeoneElse(String dobDate){taxStatusPage_Elmo.enterDobForSomeoneElse(dobDate);}
+
 
 
     /////////////////////////////////// Validation steps ///////////////////////////////////
@@ -79,7 +82,10 @@ public class TaxStatusPageSteps_Elmo {
     public void iVerifyEnterTheNameQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyEnterTheNameQuestion(memPrefix,language);}
 
     @And("I verify for who will claim as dependent enter the name question on the Tax Status Elmo page data")
-    public void iVerifyEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyEnterTheNameAnswers(nameData);}
+    public void iVerifyEnterTheNameAnswers(List<Map<String, String>> nameData){taxStatusPage_Elmo.verifyEnterTheNameAnswers(nameData);}
+
+    @And("I verify error messages with date {string} for who will claim as dependent enter the name question on the Tax Status Elmo page data in {string}")
+    public void iVerifyEnterTheNameErrors(String dateError, String language){taxStatusPage_Elmo.verifyEnterTheNameErrors(dateError, language);}
 
     @And("I verify Save and Back buttons on the Tax Status Elmo page in {string}")
     public void iVerifySaveBackBtns(String language){taxStatusPage_Elmo.verifySaveBackBtns(language);}
@@ -96,6 +102,9 @@ public class TaxStatusPageSteps_Elmo {
     @And("I verify filing jointly with enter the name question on the Tax Status Elmo page in {string}")
     public void iVerifyFilingJointlyWithEnterTheNameQuestion(String language){taxStatusPage_Elmo.verifyFilingJointlyWithEnterTheNameQuestion(language);}
 
+    @And("I verify error messages with date {string} for filing jointly with enter the name question on the Tax Status Elmo page data in {string}")
+    public void iVerifyFilingJointlyWithNameErrors(String dateError, String language){taxStatusPage_Elmo.verifyFilingJointlyWithNameErrors(dateError, language);}
+
     @And("I verify will you claim dependents question on the Tax Status Elmo page for {string} in {string}")
     public void iVerifyWillYouClaimDependentsQuestion(String memPrefix,String language){taxStatusPage_Elmo.verifyWillYouClaimDependentsQuestion(memPrefix,language);}
 
@@ -107,6 +116,9 @@ public class TaxStatusPageSteps_Elmo {
 
     @And("I verify who will be claimed with enter the name question on the Tax Status Elmo page in {string}")
     public void iVerifyWhoClaimedWithEnterTheNameQuestion(String language){taxStatusPage_Elmo.verifyWhoClaimedWithEnterTheNameQuestion(language);}
+
+    @And("I verify error messages with date {string} for who will be claimed with enter the name question on the Tax Status Elmo page data in {string}")
+    public void iVerifyWhoClaimedWithNameErrors(String dateError, String language){taxStatusPage_Elmo.verifyWhoClaimedWithNameErrors(dateError, language);}
 
     @And("I verify select tax filing status {string} selected on the Tax Status Elmo page")
     public void iVerifySelectTaxFilingStatusAnswer(String option){taxStatusPage_Elmo.verifySelectTaxFilingStatusAnswer(option);}

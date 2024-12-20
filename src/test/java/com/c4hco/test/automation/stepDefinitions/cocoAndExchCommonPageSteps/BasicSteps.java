@@ -475,6 +475,9 @@ public class BasicSteps {
             case "MD365 Login":
                 pageUrl = "/login.microsoftonline.com";
                 break;
+            case "We Can Help":
+                pageUrl = "/we-can-help/";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
