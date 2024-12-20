@@ -136,6 +136,8 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     Then I validate I am on the "Application Results" page
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse" coco
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Enrollment Groups" page
@@ -158,6 +160,7 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     Then I click all done from payment portal page OBO
     And I validate I am on the "Broker Portal Your Clients" page
     Then I validate the Your Clients page title
+    And I wait for 9000 milliseconds
     And I search for clients
     And I click on first client search result
     Then I verify that my client's current status is "POLICY SUBMITTED"
@@ -171,7 +174,7 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I validate I am on the "Broker Portal Your Clients" page
     Then I validate the Your Clients page title
-    And I search for the secondary client on the same household
+    And I search for clients
     And I click on first client search result
     Then I verify that the client name match the primary contact
     And I verify the account holder Name in BOB DB

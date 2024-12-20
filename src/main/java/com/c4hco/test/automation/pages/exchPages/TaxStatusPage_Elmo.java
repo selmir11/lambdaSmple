@@ -142,6 +142,9 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-firstName")
     WebElement claimFirstNameInput;
 
+    @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-firstName-container .row.error-row lib-error-msg span")
+    WebElement claimFirstNameError;
+
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-middleName-container label")
     WebElement claimMiddleNameTxt;
 
@@ -153,6 +156,9 @@ public class TaxStatusPage_Elmo {
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-lastName")
     WebElement claimLastNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-lastName-container .row.error-row lib-error-msg span")
+    WebElement claimLastNameError;
 
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-suffix-container label")
     WebElement claimSuffixNameTxt;
@@ -166,11 +172,17 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-dob")
     WebElement claimDobNameInput;
 
+    @FindBy(css = "#ELIG-taxStatus-whoWillClaim-newMember-dob-container .row.error-row lib-error-msg span")
+    WebElement claimDobNameError;
+
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-firstName-container label")
     WebElement filingFirstNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-firstName")
     WebElement filingFirstNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-firstName-container .row.error-row lib-error-msg span")
+    WebElement filingFirstNameError;
 
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-middleName-container label")
     WebElement filingMiddleNameTxt;
@@ -184,6 +196,9 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-lastName")
     WebElement filingLastNameInput;
 
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-lastName-container .row.error-row lib-error-msg span")
+    WebElement filingLastNameError;
+
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-suffix-container label")
     WebElement filingSuffixNameTxt;
 
@@ -196,11 +211,17 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-dob")
     WebElement filingDobNameInput;
 
+    @FindBy(css = "#ELIG-taxStatus-filingJointlyWith-newMember-dob-container .row.error-row lib-error-msg span")
+    WebElement filingDobNameError;
+
     @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-firstName-container label")
     WebElement claimedFirstNameTxt;
 
     @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-firstName")
     WebElement claimedFirstNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-firstName-container .row.error-row lib-error-msg span")
+    WebElement claimedFirstNameError;
 
     @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-middleName-container label")
     WebElement claimedMiddleNameTxt;
@@ -214,6 +235,9 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-lastName")
     WebElement claimedLastNameInput;
 
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-lastName-container .row.error-row lib-error-msg span")
+    WebElement claimedLastNameError;
+
     @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-suffix-container label")
     WebElement claimedSuffixNameTxt;
 
@@ -225,6 +249,9 @@ public class TaxStatusPage_Elmo {
 
     @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-dob")
     WebElement claimedDobNameInput;
+
+    @FindBy(css = "#ELIG-taxStatus-dependentName-newMember-dob-container .row.error-row lib-error-msg span")
+    WebElement claimedDobNameError;
 
     @FindBy(id = "ELIG-taxStatus-nav-GoBack")
     WebElement goBackBtn;
@@ -386,6 +413,19 @@ public class TaxStatusPage_Elmo {
             claimedSuffixNameDpd.sendKeys(suffix);
         }
         claimedDobNameInput.sendKeys(nameData.get(0).get("DOB"));
+    }
+
+    public void enterDobForSomeoneElse(String dobDate) {
+        WebElement dobInput = basicActions.getDriver().findElement(By.xpath("//input[@type='date']"));
+        basicActions.waitForElementToBePresent(dobInput,10);
+        String dateValue = "";
+        if ("Partial".equalsIgnoreCase(dobDate)) {
+            dateValue = "0615"+Keys.DELETE;
+        }
+        else {
+            dateValue = basicActions.getDateBasedOnRequirement(dobDate);
+        }
+        dobInput.sendKeys(dateValue);
     }
 
 
@@ -732,11 +772,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
                     softAssert.assertEquals(claimDobNameTxt.getText(), "Date of birth");
-                } else {
-                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
-                }
+//                } else {
+//                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
+//                }
                 softAssert.assertAll();
                 break;
             default:
@@ -761,6 +801,84 @@ public class TaxStatusPage_Elmo {
         softAssert.assertEquals(claimLastNameInput.getAttribute("value").trim().isEmpty() ? null : claimLastNameInput.getAttribute("value"), lastName);
         softAssert.assertEquals(claimSuffixNameDpd.getAttribute("value").trim().isEmpty() || "0: null".equals(claimSuffixNameDpd.getAttribute("value")) ? null : claimSuffixNameDpd.getAttribute("value"), suffix);
         softAssert.assertEquals(claimDobNameInput.getAttribute("value").trim().isEmpty() ? null : claimDobNameInput.getAttribute("value"), dob);
+        softAssert.assertAll();
+    }
+
+    public void verifyEnterTheNameErrors(String dateError, String language) {
+        basicActions.waitForElementToBePresent(claimFirstNameError,10);
+
+        String firstNameErrorTxt;
+        String lastNameErrorTxt;
+        String dobErrorTxt;
+        String firstNameTxt;
+        String lastNameTxt;
+        String dobTxt;
+        switch (language) {
+            case "English":
+                firstNameErrorTxt = "First name is required";
+                lastNameErrorTxt = "Last name is required";
+                firstNameTxt = "First name";
+                lastNameTxt = "Last name";
+                dobTxt = "Date of birth";
+                if ("not valid".equals(dateError)) {
+                    dobErrorTxt = "Date is not valid";
+                } else if ("required".equals(dateError)) {
+                    dobErrorTxt = "Date of birth is required";
+                } else {
+                    throw new IllegalArgumentException("Invalid dateError option: " + dateError);
+                }
+                break;
+            case "Spanish":
+                firstNameErrorTxt = "El primer nombre es obligatorio";
+                lastNameErrorTxt = "El apellido es obligatorio";
+                firstNameTxt = "Nombre";
+                lastNameTxt = "Apellido(s)";
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                    dobTxt = "Fecha de nacimiento";
+                } else {
+                    dobTxt = "Date of birth";
+                }
+                if ("not valid".equals(dateError)) {
+                    dobErrorTxt = "La fecha no es v\u00E1lida";
+                } else if ("required".equals(dateError)) {
+                    dobErrorTxt = "La fecha de nacimiento es obligatoria";
+                } else {
+                    throw new IllegalArgumentException("Invalid dateError option: " + dateError);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+        softAssert.assertEquals(claimFirstNameError.getText(), firstNameErrorTxt);
+        softAssert.assertEquals(claimFirstNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(claimFirstNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(claimFirstNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimFirstNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimLastNameError.getText(), lastNameErrorTxt);
+        softAssert.assertEquals(claimLastNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(claimLastNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(claimLastNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimLastNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimDobNameError.getText(), dobErrorTxt);
+        softAssert.assertEquals(claimDobNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(claimDobNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(claimDobNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimDobNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimFirstNameTxt.getText(), firstNameTxt);
+        softAssert.assertEquals(claimFirstNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(claimFirstNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(claimFirstNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimFirstNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimLastNameTxt.getText(), lastNameTxt);
+        softAssert.assertEquals(claimLastNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(claimLastNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(claimLastNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimLastNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimDobNameTxt.getText(), dobTxt);
+        softAssert.assertEquals(claimDobNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(claimDobNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(claimDobNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimDobNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertAll();
     }
 
@@ -846,40 +964,22 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
                 softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Select Option");
                 softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Married filing jointly");
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4903 (will go into Staging with next release)
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Qualified widow(er) with dependent(s)");
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Married filing separately");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Head of household");
-                } else {
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Qualified widow(er) with dependent(s)");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Married filing single");
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Head of household");
-                }
+                softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Married filing separately");
+                softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Head of household");
+                softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Qualified widow(er) with dependent(s)");
                 softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Single");
                 softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Exceptional circumstances?");
                 break;
             case "Spanish":
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4903 (will go into Staging with next release)
-                    softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
-                    softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
-                    softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
-                    softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Casados que declaran juntos");
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Casados que declaran por separado");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Jefe/a de hogar");
-                    softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Soltero/a");
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Viudo/a calificado con dependiente");
-                    softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
-                } else {
-                    softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
-                    softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
-                    softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
-                    softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Married filing jointly");
-                    softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Qualified widow(er) with dependent(s)");
-                    softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Married filing single");
-                    softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Single");
-                    softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Head of household");
-                    softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
-        }
+                softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
+                softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
+                softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
+                softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Casados que declaran juntos");
+                softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Casados que declaran por separado");
+                softAssert.assertEquals(filingStatusDpd.get(3).getText(), "Jefe/a de hogar");
+                softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Soltero/a");
+                softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Viudo/a calificado con dependiente");
+                softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
@@ -900,15 +1000,9 @@ public class TaxStatusPage_Elmo {
                     ? "Someone else"
                     : "Otra persona";
         } else {
-            if (SharedData.getEnv().equals("qa")) {//bug TAM-4900 (will go into Staging with next release)
-                expectedQuestionText = language.equalsIgnoreCase("English")
-                        ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" be filing jointly with?"
-                        : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
-            } else {
-                expectedQuestionText = language.equalsIgnoreCase("English")
-                        ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" you be filing jointly with?"
-                        : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
-            }
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Who will "+basicActions.getMemFirstNames(memPrefix)+" be filing jointly with?"
+                    : "\u00BFCon qui\u00E9n declarar\u00E1 impuestos en conjunto "+basicActions.getMemFirstNames(memPrefix)+"?";
             someoneElseText = language.equalsIgnoreCase("English")
                     ? "Someone else"
                     : "Otra persona";
@@ -986,11 +1080,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(filingLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(filingSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(filingSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug ???
+//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
                     softAssert.assertEquals(filingDobNameTxt.getText(), "Date of birth");
-                } else {
-                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
-                }
+//                } else {
+//                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
+//                }
                 softAssert.assertAll();
                 break;
             default:
@@ -998,34 +1092,112 @@ public class TaxStatusPage_Elmo {
         }
     }
 
-        public void verifyWillYouClaimDependentsQuestion(String memPrefix,String language){
-            basicActions.waitForElementToBePresent(willClaimDependentsTxt, 15);
-            String expectedQuestionText = "";
-            if ("primary".equalsIgnoreCase(memPrefix)) {
-                expectedQuestionText = language.equalsIgnoreCase("English")
-                        ? "Will you be claiming dependents on your tax return next year?"
-                        : "\u00BFRegistrar\u00E1 alg\u00FAn dependiente en su declaraci\u00F3n de impuestos el pr\u00F3ximo a\u00F1o?";
-            } else {
-                expectedQuestionText = language.equalsIgnoreCase("English")
-                        ? "Will "+basicActions.getMemFirstNames(memPrefix)+" be claiming dependents on your tax return next year?"
-                        : "\u00BF"+basicActions.getMemFirstNames(memPrefix)+" registrar\u00E1 alg\u00FAn dependiente en su declaraci\u00F3n de impuestos el pr\u00F3ximo a\u00F1o?";
-            }
-            softAssert.assertEquals(willClaimDependentsTxt.getText(), expectedQuestionText);
-            switch (language) {
-                case "English":
-                    softAssert.assertEquals(willClaimDependentsYesTxt.getText(), "Yes");
-                    softAssert.assertEquals(willClaimDependentsNoTxt.getText(), "No");
-                    softAssert.assertAll();
-                    break;
-                case "Spanish":
-                    softAssert.assertEquals(willClaimDependentsYesTxt.getText(), "S\u00ED");
-                    softAssert.assertEquals(willClaimDependentsNoTxt.getText(), "No");
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unsupported language: " + language);
-            }
-            softAssert.assertAll();
+    public void verifyFilingJointlyWithNameErrors(String dateError, String language) {
+        basicActions.waitForElementToBePresent(filingFirstNameError,10);
+
+        String firstNameErrorTxt;
+        String lastNameErrorTxt;
+        String dobErrorTxt;
+        String firstNameTxt;
+        String lastNameTxt;
+        String dobTxt;
+        switch (language) {
+            case "English":
+                firstNameErrorTxt = "First name is required";
+                lastNameErrorTxt = "Last name is required";
+                firstNameTxt = "First name";
+                lastNameTxt = "Last name";
+                dobTxt = "Date of birth";
+                if ("not valid".equals(dateError)) {
+                    dobErrorTxt = "Date is not valid";
+                } else if ("required".equals(dateError)) {
+                    dobErrorTxt = "Date of birth is required";
+                } else {
+                    throw new IllegalArgumentException("Invalid dateError option: " + dateError);
+                }
+                break;
+            case "Spanish":
+                firstNameErrorTxt = "El primer nombre es obligatorio";
+                lastNameErrorTxt = "El apellido es obligatorio";
+                firstNameTxt = "Nombre";
+                lastNameTxt = "Apellido(s)";
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                    dobTxt = "Fecha de nacimiento";
+                } else {
+                    dobTxt = "Date of birth";
+                }
+                if ("not valid".equals(dateError)) {
+                    dobErrorTxt = "La fecha no es v\u00E1lida";
+                } else if ("required".equals(dateError)) {
+                    dobErrorTxt = "La fecha de nacimiento es obligatoria";
+                } else {
+                    throw new IllegalArgumentException("Invalid dateError option: " + dateError);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
         }
+        softAssert.assertEquals(filingFirstNameError.getText(), firstNameErrorTxt);
+        softAssert.assertEquals(filingFirstNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(filingFirstNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(filingFirstNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(filingFirstNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(filingLastNameError.getText(), lastNameErrorTxt);
+        softAssert.assertEquals(filingLastNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(filingLastNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(filingLastNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(filingLastNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(filingDobNameError.getText(), dobErrorTxt);
+        softAssert.assertEquals(filingDobNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(filingDobNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(filingDobNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(filingDobNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(filingFirstNameTxt.getText(), firstNameTxt);
+        softAssert.assertEquals(filingFirstNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(filingFirstNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(filingFirstNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(filingFirstNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(filingLastNameTxt.getText(), lastNameTxt);
+        softAssert.assertEquals(filingLastNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(filingLastNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(filingLastNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(filingLastNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(filingDobNameTxt.getText(), dobTxt);
+        softAssert.assertEquals(filingDobNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(filingDobNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(filingDobNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(filingDobNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertAll();
+    }
+
+    public void verifyWillYouClaimDependentsQuestion(String memPrefix,String language){
+        basicActions.waitForElementToBePresent(willClaimDependentsTxt, 15);
+        String expectedQuestionText = "";
+        if ("primary".equalsIgnoreCase(memPrefix)) {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Will you be claiming dependents on your tax return next year?"
+                    : "\u00BFRegistrar\u00E1 alg\u00FAn dependiente en su declaraci\u00F3n de impuestos el pr\u00F3ximo a\u00F1o?";
+        } else {
+            expectedQuestionText = language.equalsIgnoreCase("English")
+                    ? "Will "+basicActions.getMemFirstNames(memPrefix)+" be claiming dependents on your tax return next year?"
+                    : "\u00BF"+basicActions.getMemFirstNames(memPrefix)+" registrar\u00E1 alg\u00FAn dependiente en su declaraci\u00F3n de impuestos el pr\u00F3ximo a\u00F1o?";
+        }
+        softAssert.assertEquals(willClaimDependentsTxt.getText(), expectedQuestionText);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(willClaimDependentsYesTxt.getText(), "Yes");
+                softAssert.assertEquals(willClaimDependentsNoTxt.getText(), "No");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(willClaimDependentsYesTxt.getText(), "S\u00ED");
+                softAssert.assertEquals(willClaimDependentsNoTxt.getText(), "No");
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+        softAssert.assertAll();
+    }
 
     public void verifyWillYouClaimDependentsAnswers(String yesStatus, String noStatus){
         basicActions.waitForElementToBePresent(willClaimDependentsYes,20);
@@ -1102,16 +1274,94 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimedLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimedSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimedSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug ???
+//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
                     softAssert.assertEquals(claimedDobNameTxt.getText(), "Date of birth");
-                } else {
-                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
-                }
+//                } else {
+//                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
+//                }
                 softAssert.assertAll();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+    }
+
+    public void verifyWhoClaimedWithNameErrors(String dateError, String language) {
+        basicActions.waitForElementToBePresent(claimedFirstNameError,10);
+
+        String firstNameErrorTxt;
+        String lastNameErrorTxt;
+        String dobErrorTxt;
+        String firstNameTxt;
+        String lastNameTxt;
+        String dobTxt;
+        switch (language) {
+            case "English":
+                firstNameErrorTxt = "First name is required";
+                lastNameErrorTxt = "Last name is required";
+                firstNameTxt = "First name";
+                lastNameTxt = "Last name";
+                dobTxt = "Date of birth";
+                if ("not valid".equals(dateError)) {
+                    dobErrorTxt = "Date is not valid";
+                } else if ("required".equals(dateError)) {
+                    dobErrorTxt = "Date of birth is required";
+                } else {
+                    throw new IllegalArgumentException("Invalid dateError option: " + dateError);
+                }
+                break;
+            case "Spanish":
+                firstNameErrorTxt = "El primer nombre es obligatorio";
+                lastNameErrorTxt = "El apellido es obligatorio";
+                firstNameTxt = "Nombre";
+                lastNameTxt = "Apellido(s)";
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                    dobTxt = "Fecha de nacimiento";
+                } else {
+                    dobTxt = "Date of birth";
+                }
+                if ("not valid".equals(dateError)) {
+                    dobErrorTxt = "La fecha no es v\u00E1lida";
+                } else if ("required".equals(dateError)) {
+                    dobErrorTxt = "La fecha de nacimiento es obligatoria";
+                } else {
+                    throw new IllegalArgumentException("Invalid dateError option: " + dateError);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+        softAssert.assertEquals(claimedFirstNameError.getText(), firstNameErrorTxt);
+        softAssert.assertEquals(claimedFirstNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(claimedFirstNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(claimedFirstNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimedFirstNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimedLastNameError.getText(), lastNameErrorTxt);
+        softAssert.assertEquals(claimedLastNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(claimedLastNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(claimedLastNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimedLastNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimedDobNameError.getText(), dobErrorTxt);
+        softAssert.assertEquals(claimedDobNameError.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(claimedDobNameError.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(claimedDobNameError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimedDobNameError.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimedFirstNameTxt.getText(), firstNameTxt);
+        softAssert.assertEquals(claimedFirstNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(claimedFirstNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(claimedFirstNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimedFirstNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimedLastNameTxt.getText(), lastNameTxt);
+        softAssert.assertEquals(claimedLastNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(claimedLastNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(claimedLastNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimedLastNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(claimedDobNameTxt.getText(), dobTxt);
+        softAssert.assertEquals(claimedDobNameTxt.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(claimedDobNameTxt.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(claimedDobNameTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(claimedDobNameTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertAll();
     }
 
     public void verifySelectTaxFilingStatusAnswer(String option){

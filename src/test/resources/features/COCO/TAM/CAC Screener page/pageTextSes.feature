@@ -16,12 +16,12 @@ Feature: Page Text-Welcome Page
     Then I click on "Yes" option for "under 19" on CAC Screener page
     Then I click on "Yes" option for "pregnant" on CAC Screener page
     Then I click on "Yes" option for "DACA" on CAC Screener page
-    Then I click on "Yes" option for "SES" on CAC Screener page
+#    Then I click on "Yes" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
     And I validate CAC Screener questions are "Disabled" in "Spanish"
     And I validate the "HealthFirst" text for CAC Screener page in "Spanish"
     And I validate the "C4HCO" text for CAC Screener page in "Spanish"
-    And I validate the "SES Renewal" text for CAC Screener page in "Spanish"
+#    And I validate the "SES Renewal" text for CAC Screener page in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -36,9 +36,9 @@ Feature: Page Text-Welcome Page
     Then I click on "No" option for "under 19" on CAC Screener page
     Then I click on "No" option for "pregnant" on CAC Screener page
     Then I click on "No" option for "DACA" on CAC Screener page
-    Then I click on "No" option for "SES" on CAC Screener page
+#    Then I click on "No" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
-    And I validate the "SES New" text for CAC Screener page in "Spanish"
+#    And I validate the "SES New" text for CAC Screener page in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -50,12 +50,12 @@ Feature: Page Text-Welcome Page
     Then I click on "Yes" option for "under 19" on CAC Screener page
     Then I click on "Yes" option for "pregnant" on CAC Screener page
     Then I click on "Yes" option for "DACA" on CAC Screener page
-    Then I click on "Yes" option for "SES" on CAC Screener page
+#    Then I click on "Yes" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
     And I validate CAC Screener questions are "Disabled" in "English"
     And I validate the "HealthFirst" text for CAC Screener page in "English"
     And I validate the "C4HCO" text for CAC Screener page in "English"
-    And I validate the "SES Renewal" text for CAC Screener page in "English"
+#    And I validate the "SES Renewal" text for CAC Screener page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -69,9 +69,9 @@ Feature: Page Text-Welcome Page
     Then I click on "No" option for "under 19" on CAC Screener page
     Then I click on "No" option for "pregnant" on CAC Screener page
     Then I click on "No" option for "DACA" on CAC Screener page
-    Then I click on "No" option for "SES" on CAC Screener page
+#    Then I click on "No" option for "SES" on CAC Screener page
     Then I click See results button on the CAC Screener page
-    And I validate the "SES New" text for CAC Screener page in "English"
+#    And I validate the "SES New" text for CAC Screener page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

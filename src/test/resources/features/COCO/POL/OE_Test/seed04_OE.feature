@@ -68,8 +68,8 @@ Feature: SEED04 based on Open Enrollment - COCO
     Then I validate I am on the "Start Shopping" page
     Then I click continue on coco start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Bronze" coco medical plan
-    And I click Continue on the Medical Plans Page CoCo
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:KP Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount
     And I click continue on coco plan summary page

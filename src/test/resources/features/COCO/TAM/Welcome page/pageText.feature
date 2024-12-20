@@ -96,6 +96,7 @@ Feature: Page Text-Welcome Page
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
@@ -107,8 +108,8 @@ Feature: Page Text-Welcome Page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
 
-    And I select year "2024" from My Current Plan container
-    Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "English"
+    And I select year "2025" from My Current Plan container
+    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"331.70" in "English"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -209,6 +210,7 @@ Feature: Page Text-Welcome Page
     And I click Continue on the Declarations And Signature Page CoCo
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
@@ -221,8 +223,8 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And I select year "2024" from My Current Plan container
-    Then I verify text on the Welcome page with policy "Elevate Health Plans Colorado Option Bronze" "Bronze/HMO" for $"285.37" in "Spanish"
+    And I select year "2025" from My Current Plan container
+    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"331.70" in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

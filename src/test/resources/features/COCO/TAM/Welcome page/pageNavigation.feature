@@ -95,6 +95,7 @@ Feature: Navigation-Welcome Page
     Then I verify text on the Welcome page for an account without a policy in "Header Spanish"
     Then I click on "Application Results" link on welcome page
     Then I validate I am on the "Application Results CoCo" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify the header in "Spanish" on the Application Results Page CoCo
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
