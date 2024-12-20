@@ -25,13 +25,13 @@ public class DentalPlanComparePage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id = "SHP-DentalComparePlans-GoBacktoPlans")
+    @FindBy(id = "ComparePlans-GoBackToPlans")
     WebElement goBackDentalCompare;
 
-    @FindBy(id = "SHP-DentalComparePlans-InNetworkTier1")
+    @FindBy(id = "DentalPlanCompare_InNetworkTab")
     WebElement inNetworkDentalLink;
 
-    @FindBy(id = "SHP-DentalComparePlans-OutOfNetwork")
+    @FindBy(id = "DentalPlanCompare_OutOfNetworkTab")
     WebElement outNetworkDentalLink;
 
     @FindBy(xpath = "//div[@class='disclaimer body-text-2']")
@@ -90,7 +90,8 @@ public class DentalPlanComparePage {
     WebElement txtOutMajorServicesAdult;
 
     public void clickGoBackCompare() {
-        basicActions.waitForElementToBeClickable( goBackDentalCompare, 15 );
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresentWithRetries( goBackDentalCompare, 15 );
         goBackDentalCompare.click(); }
 
 
