@@ -50,6 +50,12 @@ public class TaxStatusPageSteps_Elmo {
     @Then("I enter date of {string} for Someone else's DOB on Tax Status Elmo page")
     public void iEnterDobForSomeoneElse(String dobDate){taxStatusPage_Elmo.enterDobForSomeoneElse(dobDate);}
 
+    @Then("I click on the {string} help link on Tax Status Elmo page")
+    public void iClickHelp(String helpBtn){taxStatusPage_Elmo.clickHelp(helpBtn);}
+
+    @Then("I click on Contact Us link in Help Drawer on the Tax Status Elmo page")
+    public void iClickHelpContactUs(){taxStatusPage_Elmo.clickHelpContactUs();}
+
 
 
     /////////////////////////////////// Validation steps ///////////////////////////////////
@@ -164,5 +170,8 @@ public class TaxStatusPageSteps_Elmo {
 
     @And("I verify no errors show on the Tax Status Elmo page")
     public void iVerifyNoErrors(){taxStatusPage_Elmo.verifyNoErrors();}
+
+    @And("I verify the help drawer {string} text on Tax Status Elmo page in {string}")
+    public void iVerifyHelpDrawerTxt(String helpTxt, String language){taxStatusPage_Elmo.verifyHelpDrawerTxt(helpTxt, language);}
 
 }
