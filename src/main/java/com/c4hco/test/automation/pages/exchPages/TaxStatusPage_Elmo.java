@@ -49,6 +49,9 @@ public class TaxStatusPage_Elmo {
     @FindBy(xpath = "//span[contains(text(), 'Seleccione una de las opciones siguientes')]")
     WebElement spanishErrorTxt;
 
+    @FindBy(xpath = "//lib-input-error/lib-error-msg/div/span")
+    WebElement someoneElseErrorTxt;
+
     @FindBy(css = "#ELIG-taxStatus-claimedAsDependent-container span")
     WebElement claimedAsDependentTxt;
 
@@ -2019,8 +2022,9 @@ public class TaxStatusPage_Elmo {
 
     public void verifyNoErrors() {
         basicActions.waitForElementToBePresent(existingTaxStatusHeader,10);
-        softAssert.assertFalse(basicActions.waitForElementPresence(englishErrorTxt,15));
-        softAssert.assertFalse(basicActions.waitForElementPresence(spanishErrorTxt,15));
+        softAssert.assertFalse(basicActions.waitForElementPresence(englishErrorTxt,10));
+        softAssert.assertFalse(basicActions.waitForElementPresence(spanishErrorTxt,10));
+        softAssert.assertFalse(basicActions.waitForElementPresence(someoneElseErrorTxt,10));
         softAssert.assertAll();
     }
 
