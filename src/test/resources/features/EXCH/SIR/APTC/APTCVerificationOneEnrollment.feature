@@ -1,6 +1,6 @@
 @APTC,@APTC-SIR3, @APTC-SIR-Single
 
-  # SLER-1006, SLER-1036,
+  # SLER-1005, SLER-1006, SLER-1036,
 Feature: UI Tests related to APTC after initial enrollment
 
   Background: I go the login portal
@@ -106,6 +106,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -137,10 +138,10 @@ Feature: UI Tests related to APTC after initial enrollment
       | City    | State | DOB      | County   | Zipcode | income   | applicationHistoryAPTC| applicationResultAPTC  | planSummaryAPTC |
       | NewTown | CO    | 01011958 | EAGLE    | 81657   | $7758000 | $728.11/mo            | $728.11/mo             | -$728.11        |
       | NewTown | CO    | 01011958 | LARIMER  | 80524   | $8710000 | $440.49/mo            | $440.49/mo             | -$440.49        |
-      | NewTown | CO    | 01011958 | WELD     | 80634   | $6997000 | $504.52/mo            | $504.52/mo             | -$504.52        |
-      | NewTown | CO    | 01011958 | PARK     | 80449   | $6000000 | $554.32/mo            | $554.32/mo             | -$554.32        |
-      | NewTown | CO    | 01011958 | PROWERS  | 81052   | $5000000 | $1154.84/mo           | $1154.84/mo            | -$1,028.25      |
-      | NewTown | CO    | 01011958 | PHILLIPS | 80731   | $4300000 | $1241.85/mo           | $1241.85/m             | -$1,166.73      |
+      | NewTown | CO    | 01011958 | WELD     | 80634   | $6997000 | $561.83/mo            | $561.83/mo             | -$561.83        |
+      | NewTown | CO    | 01011958 | PARK     | 80449   | $6000000 | $614.95/mo            | $614.95/mo             | -$614.95        |
+      | NewTown | CO    | 01011958 | PROWERS  | 81052   | $5000000 | $987.99/mo            | $987.99/mo             | -$987.99        |
+      | NewTown | CO    | 01011958 | PHILLIPS | 80731   | $4300000 | $1061.10/mo           | $1061.10/mo            | -$1,041.08      |
 
   @SLER-1036
   Scenario: SLER-1036 - ELIG-APTCRules - verify initial APTC calculation - linked to EXCH Plan Load SIR-2505 - 10k - Good News path
@@ -244,6 +245,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -364,6 +366,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -737,6 +740,7 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

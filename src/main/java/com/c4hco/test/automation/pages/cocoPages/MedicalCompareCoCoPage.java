@@ -50,7 +50,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath="//div[normalize-space()= 'Comparar planes médicos']")
     public WebElement compareTopHeaderSP;
 
-    @FindBy(id = "MedicalComparePlans-TopGoBackToPlans")
+    @FindBy(id = "ComparePlans-TopGoBackToPlans")
     public WebElement goBackToPlansCompareLink;
 
     @FindBy(id = "SHP-MedicalComparePlans-DownloadSummaryOfThisPage")
@@ -410,7 +410,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtInfertilityTreatmentSP;
 
 
-    @FindBy(id= "MedicalComparePlans-GoBackToPlans")
+    @FindBy(xpath=  "//button[@id = 'ComparePlans-GoBackToPlans']")
     public WebElement goBackToPlansCompareButton;
 
 
@@ -1192,7 +1192,8 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     public void  clickMedicalCompareGoBackButton() {
             basicActions.waitForElementToDisappear( spinner, 30 );
-            basicActions.waitForElementToBePresent(goBackToPlansCompareButton, 20);
+            basicActions.waitForElementToBePresent(goBackToPlansCompareButton, 40);
+            basicActions.scrollToElement( goBackToPlansCompareButton );
             goBackToPlansCompareButton.click();}
 
     public void selectPlanDeselectionOne() {
