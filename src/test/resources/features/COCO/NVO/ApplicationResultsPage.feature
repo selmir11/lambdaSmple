@@ -64,6 +64,8 @@ Feature: Coco user on the Application results page
     And I click on Sign Out in the Header for "Elmo"
 
 #Scenario2
+
+  @SLCR-650
   Scenario: ELIG-Member in the household that is applying for health insurance is over the age of 21
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

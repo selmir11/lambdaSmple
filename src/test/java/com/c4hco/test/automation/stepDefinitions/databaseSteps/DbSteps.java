@@ -51,6 +51,18 @@ public class DbSteps {
         dbValidations.validateMemberCSRNonAIANData();
     }
 
+    @And("I verify the application result details in DB for OFF_EXCHANGE_ELIGIBLE")
+    public void iVerifyApplicationResult() {
+        dbValidations.validateApplicationResult("OFF_EXCHANGE_ELIGIBLE");
+    }
+
+    @And("I verify the application result details in DB for OFF_EXCHANGE_NOT_ELIGIBLE")
+    public void iVerifyApplicationResultOffExch() {
+        dbValidations.validateApplicationResult("OFF_EXCHANGE_NOT_ELIGIBLE");
+    }
+
+
+
     @And("I verify the client's updated email address in BoB DB")
     public void iVerifyUpdatedEmailAddressBOBDB() {
         dbValidations.verifyUpdatedEmailAddressBOB();

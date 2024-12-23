@@ -237,6 +237,23 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateApplicationResult(String expectedReasonCode) {
+        SoftAssert softAssert = new SoftAssert();
+
+        String householdID = exchDbDataProvider.getHouseholdID();
+        String memberID = exchDbDataProvider.getMemberID(householdID);
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID);
+
+        System.out.println("Household ID: " + householdID);
+        System.out.println("Member ID: " + memberID);
+        System.out.println("Reason Code: " + reasonCode);
+
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+
+        softAssert.assertAll();
+    }
+
+
     public void validateCurrentDentalPlanNameForTheYear(String year) {
         String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
         softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
