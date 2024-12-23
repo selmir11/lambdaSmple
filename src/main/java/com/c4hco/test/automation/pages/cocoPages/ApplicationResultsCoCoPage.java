@@ -51,14 +51,18 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css = "div.plan-name.eligible")
     WebElement eligiblePlan;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
         backToWelcomeButton.click();
     }
 
     public void continueWithApplication()  {
-        basicActions.scrollToElement(continueButton);
-        basicActions.waitForElementToBeClickable(continueButton, 20);
+        basicActions.waitForElementToDisappear( spinner, 60 );
+        basicActions.scrollToElement( continueButton );
+        basicActions.waitForElementToBePresentWithRetries( continueButton, 40);
         continueButton.click();
     }
 

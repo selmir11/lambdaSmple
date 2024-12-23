@@ -675,6 +675,7 @@ Then I select the projected income option "No" and continue
   Then I click continue on application results page
 
   Then I validate I am on the "Start Shopping" page
+  Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
   And I click continue on start shopping page
 
   Then I validate I am on the "Grouping Members Medical" page
@@ -685,7 +686,7 @@ Then I select the projected income option "No" and continue
 
 @SLER-1288
 Scenario: SLER-1288 - Test out Smoker/Non-smoker divergence to the Medical Plan Results page - SIR-2586 scenario2
-  # - SIR-2586 scenario2
+  # - SIR-2586 scenario2 - husband and spouse diverge on smoking selection
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

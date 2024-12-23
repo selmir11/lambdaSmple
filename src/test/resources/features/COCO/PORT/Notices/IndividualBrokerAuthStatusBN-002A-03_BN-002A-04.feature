@@ -1,4 +1,4 @@
-@portNotice @portCOCO
+@portNoticeCoco @portCOCO
 Feature: CoCo broker authorization status notices BN-0024-03 and BN-002A-04 sent to the individual
 
   @SLCR-415

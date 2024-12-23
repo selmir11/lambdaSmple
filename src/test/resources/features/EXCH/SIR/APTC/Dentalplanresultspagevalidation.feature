@@ -65,6 +65,7 @@ Feature: UI Page Validation - Plan Results (Dental)
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page

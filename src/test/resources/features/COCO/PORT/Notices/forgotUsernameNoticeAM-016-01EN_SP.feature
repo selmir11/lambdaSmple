@@ -1,4 +1,4 @@
-@SLCR-158 @portNotice @portCOCO
+@SLCR-158 @portNoticeCoco @portCOCO
 Feature: CoCo Forgot Username Notice (AM-016-01) in DocGen
 
   @SLCR-158
