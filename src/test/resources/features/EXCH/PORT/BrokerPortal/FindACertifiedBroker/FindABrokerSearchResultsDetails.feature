@@ -73,6 +73,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     And I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I switch to the tab number 1
     Then I validate I am on the "Account Overview" page
     And I click on Get Assistance in the "Exch NonElmo" Header
     And I click on Find Expert Assistance in the "individual dashboard" Header

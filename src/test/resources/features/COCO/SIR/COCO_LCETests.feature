@@ -32,7 +32,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -68,6 +68,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -106,7 +107,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -139,7 +140,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -173,7 +174,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "No" employment option
@@ -205,6 +206,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -246,7 +248,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -282,6 +284,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -320,7 +323,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -356,6 +359,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -394,7 +398,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -430,6 +434,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -468,7 +473,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -504,6 +509,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -542,7 +548,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -578,6 +584,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -616,7 +623,7 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -652,6 +659,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
