@@ -1227,3 +1227,120 @@ Feature: Page Validation-Tax Status Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-1901 @PageValidationTaxStatusElmoPage
+  Scenario: SLER-1901 I want the "Someone else" errors cleared so that I don't continue to see these errors as I answer questions
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
+#    Step 2
+    Then I select "Yes" for will you be claimed as dependent question
+    Then I select "Someone else" for who will claim as dependent question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will you be claimed as dependent question
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify for who will claim as dependent enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 3
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "Spouse" for who will claim as dependent question
+    Then I select "Someone else" for who will claim as dependent question
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify for who will claim as dependent enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 4
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Someone else" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+    And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "English"
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify filing jointly with enter the name question on the Tax Status Elmo page
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 5
+    Then I click Save and Continue on Tax Status Elmo page
+    And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "No" for will file tax return question
+    Then I select "Yes" for will file tax return question
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify filing jointly with enter the name question on the Tax Status Elmo page
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 6
+    Then I click Save and Continue on Tax Status Elmo page
+    And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "Yes" for will you be claimed as dependent question
+    Then I select "No" for will you be claimed as dependent question
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify filing jointly with enter the name question on the Tax Status Elmo page
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 7
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "Yes" for will claim dependents question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify who will be claimed enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 8
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "No" for will claim dependents question
+    Then I select "Yes" for will claim dependents question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify who will be claimed enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 9
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "No" for will file tax return question
+    Then I select "Yes" for will file tax return question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify who will be claimed enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+#    Step 10
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
+    Then I select "Yes" for will you be claimed as dependent question
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify no errors show on the Tax Status Elmo page
+    And I verify who will be claimed enter the name question on the Tax Status Elmo page data
+      |First Name|Middle Name|Last Name|Suffix   |   DOB    |
+      |          |           |         |         |          |
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
