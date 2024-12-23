@@ -35,4 +35,9 @@ public class AdminToolPageSteps {
     public void iInitiateIncomingPage() {
         adminLceToolPage.initiateIncomingPage();
     }
+
+    @And("I change effective date to current date of {string} from admin portal")
+    public void changeEffDate(String planYear){
+        adminLceToolPage.currentDateAsLCEDate(planYear);
+    }
 }

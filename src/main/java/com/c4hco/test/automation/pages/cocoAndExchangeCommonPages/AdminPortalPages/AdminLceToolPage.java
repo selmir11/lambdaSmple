@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -133,4 +134,8 @@ public class AdminLceToolPage {
     }
     public void initiateIncomingPage() {
         basicActions.switchtoactiveTab();   }
+
+    public void currentDateAsLCEDate(String planYear){
+        changeEffectiveDate(basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MM/dd"),planYear);
+    }
 }
