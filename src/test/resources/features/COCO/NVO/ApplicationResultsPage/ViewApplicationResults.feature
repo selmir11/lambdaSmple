@@ -118,7 +118,7 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Application Results CoCo" page
     #DB STEP WIP
 
-    And I verify the application result details in DB for OFF_EXCHANGE_ELIGIBLE
+    And I verify the application result details in DB for "OFF_EXCHANGE_ELIGIBLE"
 
 
 #Scenario2
@@ -175,7 +175,7 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     #DB STEP
-    And I verify the application result details in DB for OFF_EXCHANGE_ELIGIBLE
+    And I verify the application result details in DB for "OFF_EXCHANGE_ELIGIBLE"
 
 
 
@@ -236,6 +236,6 @@ Feature: Coco user on the Application results page
 
     Then I validate I am on the "Application Results CoCo" page
     #DBSTEP
-    And I verify the application result details in DB for OFF_EXCHANGE_NOT_ELIGIBLE
+    And I verify the application result details in DB for "OFF_EXCHANGE_NOT_ELIGIBLE"
 
 
