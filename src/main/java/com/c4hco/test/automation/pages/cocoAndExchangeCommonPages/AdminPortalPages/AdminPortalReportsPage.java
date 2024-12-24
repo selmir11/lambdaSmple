@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -132,22 +133,88 @@ public class AdminPortalReportsPage {
     }
 
     public void validateRecord(String recordType){
-        switch(recordType){
-            case "primary person change":
-                validations_primaryPersonChange();
-                break;
-            default: Assert.fail("Invalid argument passed");
-        }
-    }
-
-    private void validations_primaryPersonChange(){
         basicActions.waitForElementListToBePresent(descendingOrder, 10);
         basicActions.waitForElementListToBePresent(tableRows, 10);
-    basicActions.wait(2000);
+        basicActions.wait(2000);
         descendingOrder.get(1).click();
         basicActions.waitForElementListToBePresent(tableRows, 10);
         basicActions.wait(2000);
 
+        switch(recordType){
+            case "primary person change":
+                validations_primaryPersonChange();
+                break;
+            case "Info update":
+                validate_primaryInfoUpdated();
+                break;
+            case "Email Update":
+                validate_updatedPrimaryEmail();
+                break;
+            case "Account Creation":
+                validate_accCreated();
+                break;
+
+            default: Assert.fail("Invalid argument passed");
+        }
+    }
+
+    private void validate_accCreated(){
+        WebElement firstRow = tableRows.get(0);
+        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
+
+        softAssert.assertEquals(columns.get(2).getText(), "UI_ACCT_CREATED", "event code did not match");
+        softAssert.assertEquals(columns.get(5).getText(), "Account created", "description did not match");
+
+        columns.get(6).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "useronboardingdata", "detail key did not match");
+
+        columns.get(7).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        softAssert.assertEquals(tooltipText.getText(), "IND_WCN "+primaryMem.getSignature());
+        softAssert.assertAll();
+    }
+
+    private void validate_updatedPrimaryEmail(){
+        validateChangePrimContactProfile();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        softAssert.assertEquals(tooltipText.getText(), "Email: from:"+primaryMem.getIncorrectEmail()+" to:"+primaryMem.getEmailId());
+        softAssert.assertAll();
+    }
+
+    private void validateChangePrimContactProfile(){
+        WebElement firstRow = tableRows.get(0);
+        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
+
+        columns.get(2).click();
+        Actions actions = new Actions(basicActions.getDriver());
+        actions.moveToElement(columns.get(2)).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(tooltipText.getText(), "UP_CHANGE_PRIMARY_CONTACT_PROFILE", "event code did not match");
+
+        columns.get(5).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "User profile data has been updated", "description did not match");
+
+        columns.get(6).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "PrimaryContactProfileChange", "detail key did not match");
+
+        columns.get(7).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+    }
+
+    private void validate_primaryInfoUpdated(){
+        // Includes all changes other than email
+        validateChangePrimContactProfile();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+      softAssert.assertEquals(tooltipText.getText(), "Mobile phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectMobilePhone())+" to:"+primaryMem.getAlternatePhNum()+", Home phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectHomePhone())+" to:"+primaryMem.getPhoneNumber()+", Preferred Contact Method: from:"+primaryMem.getIncorrectContactPref().toUpperCase()+" to:"+primaryMem.getContactPref().toUpperCase()+", Preferred Language: from:"+primaryMem.getIncorrectLanguage()+" to:"+primaryMem.getPrefLang(), "detail value did not match");
+     softAssert.assertAll();
+    }
+
+    private void validations_primaryPersonChange(){
         WebElement firstRow = tableRows.get(0);
        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
 

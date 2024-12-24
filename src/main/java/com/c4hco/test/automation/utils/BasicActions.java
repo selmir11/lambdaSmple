@@ -1056,6 +1056,13 @@ public class BasicActions {
         return Period.between(LocalDate.parse(dob, DateTimeFormatter.ofPattern("MM/dd/yyyy")), LocalDate.now()).getYears();
     }
 
+    public String formatPhNum(String number){
+        // inputFormat - 1234567890 outputFormat - 123-456-7890
+        return number.substring(0, 3) + "-" +
+                number.substring(3, 6) + "-" +
+                number.substring(6);
+    }
+
 }
 
 
