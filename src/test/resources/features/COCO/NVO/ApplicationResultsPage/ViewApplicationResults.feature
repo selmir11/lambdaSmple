@@ -63,7 +63,7 @@ Feature: Coco user on the Application results page
 
 #Scenario1
   @SLCR-661
-  Scenario:  CLONE - ELIG-As a Coco user on the Application Results page, I need an ENR endpoint called for me so that I know if I can continue to shopping[CCRT-58]
+    Scenario:  CLONE - ELIG-As a Coco user on the Application Results page, I need an ENR endpoint called for me so that I know if I can continue to shopping[CCRT-58]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -93,31 +93,23 @@ Feature: Coco user on the Application results page
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
-
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-
     Then I validate I am on the "CoCo Deductions" page
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
-
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
-
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
-
     Then I validate I am on the "CoCo life change event" page
     And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
-
-
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     #DB STEP WIP
-
     And I verify the application result details in DB for "OFF_EXCHANGE_ELIGIBLE"
 
 
@@ -153,20 +145,15 @@ Feature: Coco user on the Application results page
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
-
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-
     Then I validate I am on the "CoCo Deductions" page
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
-
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
-
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
-
     Then I validate I am on the "CoCo life change event" page
     And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
@@ -176,12 +163,10 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Application Results CoCo" page
     #DB STEP
     And I verify the application result details in DB for "OFF_EXCHANGE_ELIGIBLE"
-
-
-
+    
 #Scenario3
   @SLCR-661
-  Scenario:  Scenario 3 -  User is not eligible for anything - do not call the ENR endpoint[CCRT-58]
+    Scenario:  Scenario 3 -  User is not eligible for anything - do not call the ENR endpoint[CCRT-58]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -211,29 +196,21 @@ Feature: Coco user on the Application results page
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
-
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-
     Then I validate I am on the "CoCo Deductions" page
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
-
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
-
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
-
     Then I validate I am on the "CoCo life change event" page
     And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
-
-
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
-
     Then I validate I am on the "Application Results CoCo" page
     #DBSTEP
     And I verify the application result details in DB for "OFF_EXCHANGE_NOT_ELIGIBLE"
