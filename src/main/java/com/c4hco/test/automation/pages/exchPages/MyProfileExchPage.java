@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -439,23 +440,39 @@ public class MyProfileExchPage {
 
     public void PreferredContactMethod(String contactPrefrences) {
         clickPreferredContactDrp();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
         switch (contactPrefrences) {
             case "Email":
                 PreferredContactDrpOptions.get(1).click();
+                primaryMem.setContactPref("Email");
+                primaryMem.setIncorrectContactPref("Mail");
                 break;
             case "Mail":
                 PreferredContactDrpOptions.get(2).click();
+                primaryMem.setContactPref("Mail");
+                primaryMem.setIncorrectContactPref("Email");
+                break;
+            default:
+                Assert.fail("Invalid argument passed");
         }
     }
 
     public void PreferredContactLanguageMethod(String langContactPreferred) {
         clickPreferredLanguageDrp();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
         switch (langContactPreferred) {
             case "English":
                 LanguageDrpOptions.get(1).click();
+                primaryMem.setPrefLang("English");
+                primaryMem.setIncorrectLanguage("Spanish");
                 break;
             case "Spanish":
                 LanguageDrpOptions.get(2).click();
+                primaryMem.setPrefLang("Spanish");
+                primaryMem.setIncorrectLanguage("English");
+                break;
+            default:
+                Assert.fail("Invalid argument passed");
         }
     }
 
@@ -466,8 +483,9 @@ public class MyProfileExchPage {
 
     public void UpdateContactEmailAddress() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
-        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "Updated"+SharedData.getPrimaryMember().getEmailId();
+        String oldEmail = SharedData.getPrimaryMember().getEmailId();
+        SharedData.getPrimaryMember().setIncorrectEmail(oldEmail);
+        String newEmail = "Updated"+oldEmail;
         SharedData.getPrimaryMember().setEmailId(newEmail);
         InputEmail.clear();
         InputEmail.sendKeys(newEmail);
@@ -475,10 +493,22 @@ public class MyProfileExchPage {
 
     public void updateContactPhoneNumber() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        String oldHomePhNum = SharedData.getPrimaryMember().getPhoneNumber();
+        SharedData.getPrimaryMember().setIncorrectHomePhone(oldHomePhNum);
         String newPhone = (String) CreateAccountPage.generatePhoneNumber();
         SharedData.getPrimaryMember().setPhoneNumber(newPhone);
         Homephone.clear();
         Homephone.sendKeys(newPhone);
+    }
+
+    public void updateMobilePhNum() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        String oldMobilePhNum = SharedData.getPrimaryMember().getPhoneNumber();
+        SharedData.getPrimaryMember().setIncorrectMobilePhone(oldMobilePhNum);
+        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        SharedData.getPrimaryMember().setAlternatePhNum(newPhone);
+        Mobilephone.clear();
+        Mobilephone.sendKeys(newPhone);
     }
     
     public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
