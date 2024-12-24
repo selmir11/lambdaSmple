@@ -107,8 +107,14 @@ public class MyProfilePageSteps {
 
 
     @And("I update the contact home phone number on profile page")
-    public void iUpdateContactPhoneNumber() { // updates both home phone and mobile phone
-        myProfileExchPage.updateContactPhoneNumber();}
+    public void iUpdateContactPhoneNumber() {
+        myProfileExchPage.updateContactPhoneNumber();
+    }
+
+    @And("I update the contact mobile phone number on profile page")
+    public void updateMobileNum() {
+        myProfileExchPage.updateMobilePhNum();
+    }
 
     @Then("I update {string} as primary member")
     public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {

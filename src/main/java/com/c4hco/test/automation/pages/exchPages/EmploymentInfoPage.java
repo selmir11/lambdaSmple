@@ -186,6 +186,7 @@ public class EmploymentInfoPage {
         dropdown.selectByVisibleText(" CO ");
 
         txtZip.sendKeys("80205");
+        txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys(Salary);
 
         dropdown = new Select(selectIncomeFreq);
@@ -217,6 +218,7 @@ public class EmploymentInfoPage {
         }
         txtCompanyName.sendKeys(companyName);
 
+        txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys(Salary);
         Select dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
