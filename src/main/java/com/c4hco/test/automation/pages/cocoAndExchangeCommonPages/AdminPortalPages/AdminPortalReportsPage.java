@@ -163,10 +163,7 @@ public class AdminPortalReportsPage {
         List<WebElement> columns = firstRow.findElements(By.tagName("td"));
 
         softAssert.assertEquals(columns.get(2).getText(), "UI_ACCT_CREATED", "event code did not match");
-
-        columns.get(5).click();
-        basicActions.waitForElementToBePresent(tooltipText, 10);
-        softAssert.assertEquals(tooltipText.getText(), "Account created", "description did not match");
+        softAssert.assertEquals(columns.get(5).getText(), "Account created", "description did not match");
 
         columns.get(6).click();
         basicActions.waitForElementToBePresent(tooltipText, 10);
