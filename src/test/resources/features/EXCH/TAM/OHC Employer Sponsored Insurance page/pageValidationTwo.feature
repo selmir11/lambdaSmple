@@ -170,12 +170,12 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "894.72/mo"
+    Then I validate that my APTC value is "943.37/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
       |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan    |
-    Then I validate that my Tax Household's 1 APTC value is "$894.72/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$943.37/mo"
 #    Step 9
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -327,12 +327,12 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "894.72/mo"
+    Then I validate that my APTC value is "943.37/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
       |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan    |
-    Then I validate that my Tax Household's 1 APTC value is "$894.72/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$943.37/mo"
 #    Step Extra 1
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -374,12 +374,12 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "338.33/mo"
+    Then I validate that my APTC value is "360.23/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
       |      Spouse:Qualified Health Plan    |
-    Then I validate that my Tax Household's 1 APTC value is "$338.33/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$360.23/mo"
 #    Step Extra 3
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -431,11 +431,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "439.11/mo"
+    Then I validate that my APTC value is "465.86/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Qualified Health Plan   |
       |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan    |
-    Then I validate that my Tax Household's 1 APTC value is "$439.11/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$465.86/mo"
 
     And I click on Sign Out in the Header for "NonElmo"

@@ -119,6 +119,7 @@ Feature: Broker Portal OBO - Single subscriber FA Application and enroll in a pl
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select the first medical plan

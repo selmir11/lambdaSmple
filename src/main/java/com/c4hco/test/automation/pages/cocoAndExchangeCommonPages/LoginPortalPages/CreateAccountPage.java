@@ -37,8 +37,9 @@ public class CreateAccountPage {
     @FindBy(css = ".boot-input-group .help-label")
     WebElement helpLabel;
 
-    @FindBy(id = "fn")
+    @FindBy(xpath = "//input[@id='fn']")
      WebElement firstName;
+
     @FindBy(id = "fn-label")
      WebElement firstNameText;
 
@@ -48,14 +49,15 @@ public class CreateAccountPage {
     @FindBy(id = "mn-label")
      WebElement middleNameText;
 
-    @FindBy(id = "mn")
+    @FindBy(xpath = "//input[@id='mn']")
     WebElement middleName;
 
     @FindBy(xpath = "//span[@id='mn-error']")
     WebElement middleNameErrorMessage;
 
-    @FindBy(id = "ln")
+    @FindBy(xpath = "//input[@id='ln']")
      WebElement lastName;
+
     @FindBy(css = "div:nth-child(4) > label:nth-child(1)")
      WebElement lastNameText;
 

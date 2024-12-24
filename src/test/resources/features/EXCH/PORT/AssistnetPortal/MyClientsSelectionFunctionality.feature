@@ -4,7 +4,7 @@ Feature: My Clients list client selection functionality in the AssistNet Portal
   @SLER-1297
   Scenario: My Clients selection functionality
     And I open the login page on the "assistNet" portal
-    When I login as Assistnet User any environment "carrimautomation+AssistersInc@gmail.com" password "ALaska15!" and "c4assistorportal+UT6JO3BqP@gmail.com" password "ALaska16!"
+    When I login as Assistnet User any environment "carrimautomation+AssistersInc@gmail.com" password "ALaska16!" and "c4assistorportal+UT6JO3BqP@gmail.com" password "ALaska16!"
     And  I validate I am on the "MFA" page
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"

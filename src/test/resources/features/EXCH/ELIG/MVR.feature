@@ -82,6 +82,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
@@ -187,6 +188,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
@@ -292,6 +294,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
@@ -397,6 +400,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
@@ -502,6 +506,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
@@ -608,6 +613,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
@@ -721,6 +727,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan

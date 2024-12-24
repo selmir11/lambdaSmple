@@ -48,10 +48,11 @@ Feature: Seed01 based on Open Enrollment - COCO
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
-    And I click Continue on the Medical Plans Page CoCo
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:Cigna Connect Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
