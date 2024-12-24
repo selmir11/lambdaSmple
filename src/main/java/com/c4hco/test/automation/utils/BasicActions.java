@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
@@ -24,6 +25,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 public class BasicActions {
     private WebDriver driver;
@@ -1061,6 +1064,19 @@ public class BasicActions {
         return number.substring(0, 3) + "-" +
                 number.substring(3, 6) + "-" +
                 number.substring(6);
+    }
+
+    public static boolean isPageAtTop(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Long scrollPosition = (Long) js.executeScript("return window.scrollY;");
+        System.out.println("Scroll position is "+scrollPosition);
+        return scrollPosition <= 60;
+    }
+
+    public void pageAtTop() {
+        wait(50);
+        assertTrue("The page is not at the top.", isPageAtTop(driver));
+        System.out.println("The page is at the top.");
     }
 
 }
