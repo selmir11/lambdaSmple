@@ -535,9 +535,11 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
     public void validateRelationshipLable(){
         for(MemberDetails member : basicActions.getAllMem()) {
             basicActions.waitForElementToBePresent(txtFirstName,10);
-            txtFirstName.sendKeys(SharedData.getPrimaryMember().getFirstName()+"test");
-            txtMiddleName.sendKeys(SharedData.getPrimaryMember().getMiddleName()+"test");
-            txtLastName.sendKeys(SharedData.getPrimaryMember().getLastName()+"test");
+            if(!txtFirstName.getAttribute("class").contains("ng-valid")) {
+                txtFirstName.sendKeys(SharedData.getPrimaryMember().getFirstName() + "test");
+                txtMiddleName.sendKeys(SharedData.getPrimaryMember().getMiddleName() + "test");
+                txtLastName.sendKeys(SharedData.getPrimaryMember().getLastName() + "test");
+            }
             WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + member.getFirstName() + "')]/parent::div/parent::form-label"));
             basicActions.waitForElementToBePresent(element, 10);
             softAssert.assertTrue(element.isDisplayed());
