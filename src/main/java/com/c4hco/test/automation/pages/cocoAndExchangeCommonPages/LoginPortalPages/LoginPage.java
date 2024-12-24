@@ -110,7 +110,7 @@ public class LoginPage {
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresentWithRetries(username, 10);
         basicActions.wait(2000);
-        String emailId = SharedData.getPrimaryMember().getEmailId();
+        String emailId = SharedData.getPrimaryMember().getIncorrectEmail()!=null? SharedData.getPrimaryMember().getIncorrectEmail():SharedData.getPrimaryMember().getEmailId();
         System.out.println("Email::" + emailId);
         String pswd = SharedData.getPrimaryMember().getPassword();
         basicActions.wait(2000);

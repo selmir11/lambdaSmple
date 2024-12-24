@@ -234,6 +234,8 @@ Feature: My Profile Page Exch
       And I click on Make Changes Button
       And I update the contact email address
       And I update the contact home phone number on profile page
+     And I update the contact mobile phone number on profile page
+      And I click on Save Button
       Then I click on Go back to Welcome page Button on My Profile Exch
       Then I validate the details from rq_queue_messages database
 
@@ -315,3 +317,85 @@ Feature: My Profile Page Exch
   Then I validate the account activity record for "primary person change"
   Then I validate member id of all members
   Then logout from Admin Portal
+
+  @SLER-1882
+  Scenario: Admin portal validations after updating the editable fields for primary person on my profile page
+    Then I validate I am on the "Add Address" page
+    Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for no financial help
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I click on ClickHere link for "My Profile"
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    And I update the contact email address
+    And I click on Save Button
+    And I wait for hold on content to disappear
+    Then I validate I am on the "My Profile" page
+    And I click on Sign Out in the Header for "Elmo"
+
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for the user with account id
+    Then I select the first record from the search results
+    Then I validate I am on the "Admin Portal individual dashboard" page
+    And I click on view button for "Account Activity" report
+    Then I validate I am on the "Account Activity" page
+    Then I validate the account activity record for "Email Update"
+    And I close current tab and switch back to previous tab
+    Then logout from Admin Portal
+
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Profile"
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    And I update the contact home phone number on profile page
+    And I update the contact mobile phone number on profile page
+    And I change the Preferred Contact Method to "Mail"
+    And I change Preferred Language Contact Method to "Spanish"
+    And I click on Save Button
+    And I wait for hold on content to disappear
+    Then I validate I am on the "My Profile" page
+    And I click on Sign Out in the Header for "Elmo"
+
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for the user with account id
+    Then I select the first record from the search results
+    Then I validate I am on the "Admin Portal individual dashboard" page
+    And I click on view button for "Account Activity" report
+    Then I validate I am on the "Account Activity" page
+    Then I validate the account activity record for "Info update"
+    Then logout from Admin Portal
