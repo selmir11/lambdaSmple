@@ -76,6 +76,6 @@ Feature: Validation - Tell us about yourself page
     Then I validate I am on the "CoCo Family Overview" page
 
     Then I click EditUpdate on Family Overview page for "Primary"
-    Then Then I validate the member names displayed in the label text above relationship dropdown field
+    Then I validate the member names displayed in the label text above relationship dropdown field in Tell us About yourself page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

@@ -110,7 +110,7 @@ Feature: Navigation-Additional information for additional member page
 #    SON
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
-    Then Then I validate the member names displayed in the label text above relationship dropdown field
+    Then I validate the member names displayed in the label text above relationship dropdown field in Tell us About additional member page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 

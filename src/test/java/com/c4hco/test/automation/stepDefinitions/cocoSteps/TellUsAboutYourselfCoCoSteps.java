@@ -30,26 +30,9 @@ public class TellUsAboutYourselfCoCoSteps {
     @Then("I validate errors are displaying on Tell Us About Yourself Page CoCo {string}")
     public void iverifyErrorTextOnTellUsAboutYourselfPage(String language){tellUsAboutYourselfCoCoPage.verifyErrorTextOnTellUsAboutYourselfPage(language); }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Then("I validate the member names displayed in the label text above relationship dropdown field in Tell us About yourself page")
+    public void iValidateRelationshipLabel() {
+        tellUsAboutYourselfCoCoPage.validateRelationshipLabel();
+    }
 
 }
