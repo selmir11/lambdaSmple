@@ -503,7 +503,7 @@ public class MyProfileExchPage {
 
     public void updateMobilePhNum() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
-        String oldMobilePhNum = SharedData.getPrimaryMember().getPhoneNumber();
+        String oldMobilePhNum = SharedData.getPrimaryMember().getIncorrectHomePhone()!=null ? SharedData.getPrimaryMember().getIncorrectHomePhone() :SharedData.getPrimaryMember().getPhoneNumber();
         SharedData.getPrimaryMember().setIncorrectMobilePhone(oldMobilePhNum);
         String newPhone = (String) CreateAccountPage.generatePhoneNumber();
         SharedData.getPrimaryMember().setAlternatePhNum(newPhone);

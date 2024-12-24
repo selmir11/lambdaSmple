@@ -354,6 +354,31 @@ Feature: My Profile Page Exch
     Then I validate I am on the "My Profile" page
     And I click on Make Changes Button
     And I update the contact email address
+    And I click on Save Button
+    And I wait for hold on content to disappear
+    Then I validate I am on the "My Profile" page
+    And I click on Sign Out in the Header for "Elmo"
+
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for the user with account id
+    Then I select the first record from the search results
+    Then I validate I am on the "Admin Portal individual dashboard" page
+    And I click on view button for "Account Activity" report
+    Then I validate I am on the "Account Activity" page
+    Then I validate the account activity record for "Email Update"
+    And I close current tab and switch back to previous tab
+    Then logout from Admin Portal
+
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Profile"
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
     And I update the contact home phone number on profile page
     And I update the contact mobile phone number on profile page
     And I change the Preferred Contact Method to "Mail"
@@ -374,5 +399,3 @@ Feature: My Profile Page Exch
     Then I validate I am on the "Account Activity" page
     Then I validate the account activity record for "Info update"
     Then logout from Admin Portal
-
-
