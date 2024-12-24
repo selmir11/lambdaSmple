@@ -2029,30 +2029,25 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHelpDrawerTxt(String helpTxt, String language) {
-        switch (helpTxt){
+        String methodName;
+        switch (helpTxt) {
             case "Full":
-                if(language.equals("English")){
-                    verifyHelpDrawerTxtEnglish();
-                } else if (language.equals("Spanish")) {
-                    verifyHelpDrawerTxtSpanish();
-                }
+                methodName = "verifyHelpDrawerTxt" + language;
                 break;
             case "Claim":
-                if(language.equals("English")){
-                    verifyHelpDrawerClaimedTxtEnglish();
-                } else if (language.equals("Spanish")) {
-                    verifyHelpDrawerClaimedTxtSpanish();
-                }
+                methodName = "verifyHelpDrawerClaimedTxt" + language;
                 break;
             case "Exceptional Circumstances":
-                if(language.equals("English")){
-                    verifyHelpDrawerExceptionalTxtEnglish();
-                } else if (language.equals("Spanish")) {
-                    verifyHelpDrawerExceptionalTxtSpanish();
-                }
+                methodName = "verifyHelpDrawerExceptionalTxt" + language;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + language);
+                throw new IllegalArgumentException("Invalid option: " + helpTxt);
+        }
+
+        try {
+            this.getClass().getMethod(methodName).invoke(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to execute method: " + methodName, e);
         }
     }
 
