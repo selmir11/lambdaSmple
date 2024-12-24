@@ -156,31 +156,13 @@ public class AdminPortalReportsPage {
     }
 
     private void validate_updatedPrimaryEmail(){
-        WebElement firstRow = tableRows.get(0);
-        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
-
-        columns.get(2).click();
-        Actions actions = new Actions(basicActions.getDriver());
-        actions.moveToElement(columns.get(2)).perform();
-        basicActions.wait(300);
-        softAssert.assertEquals(tooltipText.getText(), "UP_CHANGE_PRIMARY_CONTACT_PROFILE", "event code did not match");
-        columns.get(5).click();
-        basicActions.waitForElementToBePresent(tooltipText, 10);
-        softAssert.assertEquals(tooltipText.getText(), "User profile data has been updated", "description did not match");
-
-        columns.get(6).click();
-        basicActions.waitForElementToBePresent(tooltipText, 10);
-        softAssert.assertEquals(tooltipText.getText(), "PrimaryContactProfileChange", "detail key did not match");
-
-        columns.get(7).click();
-        basicActions.waitForElementToBePresent(tooltipText, 10);
+        validateChangePrimContactProfile();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         softAssert.assertEquals(tooltipText.getText(), "Email: from:"+primaryMem.getIncorrectEmail()+" to:"+primaryMem.getEmailId());
         softAssert.assertAll();
-
     }
 
-    private void validate_primaryInfoUpdated(){
+    private void validateChangePrimContactProfile(){
         WebElement firstRow = tableRows.get(0);
         List<WebElement> columns = firstRow.findElements(By.tagName("td"));
 
@@ -200,6 +182,10 @@ public class AdminPortalReportsPage {
 
         columns.get(7).click();
         basicActions.waitForElementToBePresent(tooltipText, 10);
+    }
+
+    private void validate_primaryInfoUpdated(){
+        validateChangePrimContactProfile();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
 
       softAssert.assertEquals(tooltipText.getText(), "Mobile phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectMobilePhone())+" to:"+primaryMem.getAlternatePhNum()+", Home phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectHomePhone())+" to:"+primaryMem.getPhoneNumber()+", Preferred Contact Method: from:"+primaryMem.getIncorrectContactPref().toUpperCase()+" to:"+primaryMem.getContactPref().toUpperCase()+", Preferred Language: from:"+primaryMem.getIncorrectLanguage()+" to:"+primaryMem.getPrefLang(), "detail value did not match");
