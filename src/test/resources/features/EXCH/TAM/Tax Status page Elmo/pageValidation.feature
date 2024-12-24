@@ -451,7 +451,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1853 @PageValidationTaxStatusElmoPage @test
+  @SLER-1853 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1853 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Primary
     Then I click continue on family overview page
     And I Apply for financial help
@@ -558,7 +558,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1864 @PageValidationTaxStatusElmoPage @test
+  @SLER-1864 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1864 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Secondary
     Then I click continue on family overview page
     And I Apply for financial help
