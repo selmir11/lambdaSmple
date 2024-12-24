@@ -5,7 +5,7 @@ Feature: Coco user on the Application results page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-651
+  @SLCR-651 #WIP
   Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -58,7 +58,6 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
-
     #DB STEP WIP
 
 
@@ -181,7 +180,7 @@ Feature: Coco user on the Application results page
 
 
 #Scenario3
-  @SLCR-6618
+  @SLCR-661
   Scenario:  Scenario 3 -  User is not eligible for anything - do not call the ENR endpoint[CCRT-58]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
