@@ -150,9 +150,34 @@ public class AdminPortalReportsPage {
             case "Email Update":
                 validate_updatedPrimaryEmail();
                 break;
+            case "Account Creation":
+                validate_accCreated();
+                break;
 
             default: Assert.fail("Invalid argument passed");
         }
+    }
+
+    private void validate_accCreated(){
+        WebElement firstRow = tableRows.get(0);
+        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
+
+        softAssert.assertEquals(columns.get(2).getText(), "UI_ACCT_CREATED", "event code did not match");
+
+        columns.get(5).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "Account created", "description did not match");
+
+        columns.get(6).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+        softAssert.assertEquals(tooltipText.getText(), "useronboardingdata", "detail key did not match");
+
+        columns.get(7).click();
+        basicActions.waitForElementToBePresent(tooltipText, 10);
+
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        softAssert.assertEquals(tooltipText.getText(), "IND_WCN "+primaryMem.getSignature());
+        softAssert.assertAll();
     }
 
     private void validate_updatedPrimaryEmail(){
@@ -185,15 +210,12 @@ public class AdminPortalReportsPage {
     }
 
     private void validate_primaryInfoUpdated(){
+        // Includes all changes other than email
         validateChangePrimContactProfile();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
-
       softAssert.assertEquals(tooltipText.getText(), "Mobile phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectMobilePhone())+" to:"+primaryMem.getAlternatePhNum()+", Home phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectHomePhone())+" to:"+primaryMem.getPhoneNumber()+", Preferred Contact Method: from:"+primaryMem.getIncorrectContactPref().toUpperCase()+" to:"+primaryMem.getContactPref().toUpperCase()+", Preferred Language: from:"+primaryMem.getIncorrectLanguage()+" to:"+primaryMem.getPrefLang(), "detail value did not match");
      softAssert.assertAll();
     }
-
-
-
 
     private void validations_primaryPersonChange(){
         WebElement firstRow = tableRows.get(0);
