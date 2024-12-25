@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -349,6 +350,17 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertAll();
+    }
+
+    public void validateRelationshipLabel(){
+        for(MemberDetails member : basicActions.getAllMem()) {
+            basicActions.waitForElementToBePresent(firstNameText,10);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + member.getFirstName() + "')]/parent::div/parent::form-label"));
+            basicActions.waitForElementToBePresent(element, 10);
+            softAssert.assertTrue(element.isDisplayed());
+            softAssert.assertTrue(element.getText().toLowerCase().contains(member.getFullName().toLowerCase()));
+            softAssert.assertAll();
+        }
     }
 }
 
