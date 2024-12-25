@@ -722,4 +722,7 @@ public class BasicSteps {
     public void iSetMemberRelationToSubscriber(List<String> Relations) {
         basicActions.setRelationToSubscriber(Relations);
     }
+
+    @And("I verify the page is scrolled to the top")
+    public void iPageAtTop() {basicActions.pageAtTop();}
 }
