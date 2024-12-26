@@ -326,6 +326,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and pmc.account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'";
     }
 
+    public String esMemberWithMemberId(String memId){
+        return "select * from "+dbName+".es_member em\n"+
+                "where member_id = '"+memId+"'";
+    }
+
     public String getEmailStored() {
         return "select * from " + dbName + ".es_household p\n" +
                 "join " + dbName + ".es_household_contact m on m.household_id=p.household_id\n" +
