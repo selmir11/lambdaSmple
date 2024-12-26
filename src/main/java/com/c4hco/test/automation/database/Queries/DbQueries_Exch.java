@@ -326,6 +326,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and pmc.account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'";
     }
 
+    public String esMemberWithMemberId(String memId){
+        return "select * from "+dbName+".es_member em\n"+
+                "where member_id = '"+memId+"'";
+    }
+
     public String getEmailStored() {
         return "select * from " + dbName + ".es_household p\n" +
                 "join " + dbName + ".es_household_contact m on m.household_id=p.household_id\n" +
@@ -394,6 +399,29 @@ public String policyTablesCombinedQuery(String coverageType){
         return "SELECT P.plan_marketing_name FROM " + dbName + ".en_policy_ah ESH JOIN " + dbName + ".en_plan P ON ESH.plan_id = P.plan_id WHERE ESH.account_id = '" + acctId + "' " +
                 "AND ESH.plan_year = '" + planYear + "' AND ESH.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' ORDER BY ESH.created_ts DESC LIMIT 1";
     }
+
+    public String householdIdQuery() {
+        return "SELECT household_id " +
+                "FROM " + dbName + ".es_household " +
+                "WHERE account_id = " + acctId;
+    }
+
+
+    public String memberIdQuery(String householdId) {
+        return "SELECT member_id " +
+                "FROM " + dbName + ".es_member " +
+                "WHERE household_id = " + householdId + " " +
+                "AND household_contact = 1";
+    }
+
+    public String reasonCodeQuery(String memberId) {
+        return "SELECT reason_code " +
+                "FROM " + dbName + ".es_member_rules_result " +
+                "WHERE eligibility_type = 'OFFEXCH' " +
+                "AND member_id = " + memberId;
+    }
+
+
 
     public String getDental_policy_date() {
         return "Select policy_start_date , policy_end_date From " + dbName + ".en_policy_ah ESH Where ESH.account_id = '" + acctId + "' and coverage_type = '1' and policy_status != 'CANCELLED' order by created_ts desc limit 1;";

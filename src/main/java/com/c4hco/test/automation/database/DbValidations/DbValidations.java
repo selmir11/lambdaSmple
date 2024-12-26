@@ -237,6 +237,23 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateApplicationResult(String expectedReasonCode) {
+        SoftAssert softAssert = new SoftAssert();
+
+        String householdID = exchDbDataProvider.getHouseholdID();
+        String memberID = exchDbDataProvider.getMemberID(householdID);
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID);
+
+        System.out.println("Household ID: " + householdID);
+        System.out.println("Member ID: " + memberID);
+        System.out.println("Reason Code: " + reasonCode);
+
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+
+        softAssert.assertAll();
+    }
+
+
     public void validateCurrentDentalPlanNameForTheYear(String year) {
         String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
         softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
@@ -468,6 +485,21 @@ public class DbValidations {
            softAssert.assertEquals(memberIdFromDb, member.getMemberId(), "MemberId did not match");
            softAssert.assertAll();
         }
+    }
+
+    public void validateTellUsAbtUrslfDetails(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        String memberIdFromDb =  exchDbDataProvider.getMemberId(primaryMem.getFirstName());
+        System.out.println("memberID from DB ::"+memberIdFromDb);
+       EsMemberEntity primaryMemFromDb = exchDbDataProvider.getEsMemberDetails(memberIdFromDb);
+       softAssert.assertEquals(primaryMem.getFirstName(), primaryMemFromDb.getFirst_name(), "First name did not match");
+        softAssert.assertEquals(primaryMem.getMiddleName(), primaryMemFromDb.getMiddle_name(), "Middle name did not match");
+        softAssert.assertEquals(primaryMem.getLastName(), primaryMemFromDb.getLast_name(), "Last name did not match");
+        softAssert.assertTrue(primaryMemFromDb.getBirth_date().contains(basicActions.formatDob(primaryMem.getDob())), "Dob did not match");
+        softAssert.assertEquals(primaryMem.getGender(), primaryMemFromDb.getGender(), "Gender did not match");
+        softAssert.assertEquals(primaryMem.getSuffix().replace(".", "").toUpperCase(),primaryMemFromDb.getName_suffix() , "Suffix did not match");
+       softAssert.assertTrue(primaryMem.getApplyingforCov().equals("Yes")? primaryMemFromDb.getApplying_for_coverage_ind().equals("1") : primaryMemFromDb.getApplying_for_coverage_ind().equals("2"), "Applying for coverage ind did not match");
+        softAssert.assertAll();
     }
 
  }

@@ -41,9 +41,9 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    @And("I get the newborn {string} dob as {string} in CoCo page")
    public void iGetMemberDOB(String namePrefix, String dob){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.getDob(namePrefix, dob);}
 
-   @Then("I validate in relationship field member names are displayed in label")
+   @Then("I validate the member names displayed in the label text above relationship dropdown field in Tell us About additional member page")
    public void iValidateRelationshipLabel() {
-      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateRelationshipLable();
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateRelationshipLabel();
    }
 
 }
