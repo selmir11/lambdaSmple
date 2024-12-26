@@ -35,6 +35,8 @@ public class DbDataProvider_Exch {
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
 
 
+
+
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
     }
@@ -416,6 +418,20 @@ public class DbDataProvider_Exch {
     public String getPlanMarketingName(String year){
         return postgresHandler.getResultFor("plan_marketing_name",exchDbQueries.getPlan_marketing_name(year));
     }
+
+    public String getHouseholdID() {
+        return postgresHandler.getResultFor("household_id",exchDbQueries.householdIdQuery());
+    }
+
+    public String getMemberID(String householdId) {
+        return postgresHandler.getResultFor("member_id", exchDbQueries.memberIdQuery(householdId));
+    }
+
+    public String getReasonCode(String memberId) {
+        return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId));
+    }
+
+
 
     public String[] getDentalPolicyDate() {
         return postgresHandler.getResultForTwoColumnValues("policy_start_date","policy_end_date",exchDbQueries.getDental_policy_date());}

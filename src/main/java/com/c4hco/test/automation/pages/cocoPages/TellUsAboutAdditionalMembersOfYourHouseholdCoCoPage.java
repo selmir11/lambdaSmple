@@ -532,12 +532,12 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         basicActions.getDob(namePrefix, dob);
     }
 
-    public void validateRelationshipLable(){
+    public void validateRelationshipLabel(){
         for(MemberDetails member : basicActions.getAllMem()) {
             basicActions.waitForElementToBePresent(txtFirstName,10);
-            txtFirstName.sendKeys(SharedData.getPrimaryMember().getFirstName()+"test");
-            txtMiddleName.sendKeys(SharedData.getPrimaryMember().getMiddleName()+"test");
-            txtLastName.sendKeys(SharedData.getPrimaryMember().getLastName()+"test");
+            txtFirstName.sendKeys(SharedData.getPrimaryMember().getFirstName() + "test");
+            txtMiddleName.sendKeys(SharedData.getPrimaryMember().getMiddleName() + "test");
+            txtLastName.sendKeys(SharedData.getPrimaryMember().getLastName() + "test");
             WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + member.getFirstName() + "')]/parent::div/parent::form-label"));
             basicActions.waitForElementToBePresent(element, 10);
             softAssert.assertTrue(element.isDisplayed());

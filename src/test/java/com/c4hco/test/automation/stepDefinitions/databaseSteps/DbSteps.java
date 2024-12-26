@@ -51,6 +51,12 @@ public class DbSteps {
         dbValidations.validateMemberCSRNonAIANData();
     }
 
+    @And("I verify the application result details in DB for {string}")
+    public void iVerifyApplicationResult(String eligibilityStatus) {
+        dbValidations.validateApplicationResult(eligibilityStatus);
+    }
+
+
     @And("I verify the client's updated email address in BoB DB")
     public void iVerifyUpdatedEmailAddressBOBDB() {
         dbValidations.verifyUpdatedEmailAddressBOB();
