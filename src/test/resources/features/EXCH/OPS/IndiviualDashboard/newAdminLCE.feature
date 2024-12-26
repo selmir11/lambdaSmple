@@ -17,7 +17,7 @@ Feature: new admin LCE
     And I click on Privacy Policy in the "Admin Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
 
-#    Verify Look up button, displaying last three financial years, dropdown arrows and app data message
+#    Verify Look up button, displaying current - last three financial years, dropdown arrows and app data message
     Then I enter an account ID in "5890916640" "4007384519" accountID field
     Then I click on Look up button
     Then I wait for 3000 milliseconds
