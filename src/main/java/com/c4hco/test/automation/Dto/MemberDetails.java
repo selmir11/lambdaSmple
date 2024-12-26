@@ -92,6 +92,7 @@ public class MemberDetails {
     String denSubscriberName;
     List<String> taxReturnId;
     String contactPref;
+    String applyingforCov;
 }
 
 
