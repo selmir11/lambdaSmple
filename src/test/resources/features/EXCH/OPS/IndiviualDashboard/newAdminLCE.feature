@@ -25,3 +25,4 @@ Feature: new admin LCE
     Then I verify current year and previous three financial years are displaying in applictaion data
     Then I click on application data dropdown arrow
     Then I verify no application data message is displayed
+

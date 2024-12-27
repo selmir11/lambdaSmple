@@ -238,8 +238,7 @@ public class AdminLceToolPage {
     }
 
     public void clickAppDataDropdown() {
-        List<WebElement> dropdowns = appDataDropdowns;
-        for (WebElement element : dropdowns) {
+        for (WebElement element : appDataDropdowns) {
             try {
                 element.click();
             } catch (Exception e) {
@@ -249,10 +248,9 @@ public class AdminLceToolPage {
     }
 
     public void noappdatamessage() {
-        List<WebElement> elements = appDatatext;
         String expectedMessage = "There is no application data for this year.";
 
-        for (WebElement element : elements) {
+        for (WebElement element : appDatatext) {
             String elementText = element.getText().trim();
 
             if (elementText.contains(expectedMessage)) {
