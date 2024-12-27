@@ -335,3 +335,4 @@ Feature: Validation - Tell us about yourself page
       | Partner:Partner |
       | OtherRelative:Other Relative |
       | Unrelated:Unrelated |
+    And I click on Sign Out in the Header for "Elmo"
