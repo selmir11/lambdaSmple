@@ -115,6 +115,16 @@ public class WelcomePage {
         applyForYrCoco.click();
     }
 
+    public void applyForNextYear() {
+        basicActions.waitForElementToDisappear( spinner, 40 );
+        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+        WebElement applyForYrCoco = btnApplyForNextYearCoco;
+        basicActions.waitForElementToBePresent(applyForYrCoco, 40);
+        String year = applyForYrCoco.getText().replace("Apply for ", "");
+        SharedData.setPlanYear(year);
+        applyForYrCoco.click();
+    }
+
     public void selectPlanyear(String planYear) {
         basicActions.waitForElementToBeClickable(planYearSelectorDp, 10);
         basicActions.scrollToElement(planYearSelectorDp);
