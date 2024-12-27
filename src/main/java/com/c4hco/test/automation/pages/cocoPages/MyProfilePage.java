@@ -179,6 +179,7 @@ public class MyProfilePage {
                 PreferredContactDrpOptionsCoCo.get(2).click();
                 primaryMem.setContactPref("Mail");
                 primaryMem.setIncorrectContactPref("Email");
+                break;
             default:
                 Assert.fail("Invalid argument passed");
         }
