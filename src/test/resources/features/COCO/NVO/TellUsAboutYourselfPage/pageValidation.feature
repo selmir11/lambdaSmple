@@ -81,7 +81,7 @@ Feature: Validation - Tell us about yourself page
     Then I validate I am on the "Login" page
 
   @SLCR-665 @NVOCoCoRegression
-  Scenario: Validate relationship type automatically populate on Tell us about yourself page
+  Scenario: Validate the auto-populated option in the relationship dropdown field on the Tell us About Yourself page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
