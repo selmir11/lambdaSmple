@@ -1,12 +1,15 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.CreateAccountPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -148,7 +151,6 @@ public class MyProfilePage {
         PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
         basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
         PasswordSaveChangesCoCo.click();
-
     }
 
 
@@ -165,25 +167,39 @@ public class MyProfilePage {
 
 
     public void PreferredContactMethod(String contactPrefrences) {
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
         clickPreferredContactDrpCoCo();
         switch (contactPrefrences) {
             case "Email":
                 PreferredContactDrpOptionsCoCo.get(1).click();
+                primaryMem.setContactPref("Email");
+                primaryMem.setIncorrectContactPref("Mail");
                 break;
             case "Mail":
                 PreferredContactDrpOptionsCoCo.get(2).click();
+                primaryMem.setContactPref("Mail");
+                primaryMem.setIncorrectContactPref("Email");
+            default:
+                Assert.fail("Invalid argument passed");
         }
     }
 
     public void PreferredContactLanguageMethod(String langContactPreferred) {
         clickPreferredLanguageDrpCoCo();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
         switch (langContactPreferred) {
             case "English":
                 LanguageDrpOptionsCoCo.get(1).click();
+                primaryMem.setPrefLang("English");
+                primaryMem.setIncorrectLanguage("Spanish");
                 break;
             case "Spanish":
                 LanguageDrpOptionsCoCo.get(2).click();
+                primaryMem.setPrefLang("Spanish");
+                primaryMem.setIncorrectLanguage("English");
                 break;
+            default:
+                Assert.fail("Invalid argument passed");
         }
     }
 
@@ -524,6 +540,17 @@ public class MyProfilePage {
         softAssert.assertEquals(SuccessfulBannerCoCo.getText(), "Your changes have been successfully saved!");
         softAssert.assertAll();
     }
+
+    public void updateContactEmailAddressCoco() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        String oldEmail = SharedData.getPrimaryMember().getEmailId();
+        SharedData.getPrimaryMember().setIncorrectEmail(oldEmail);
+        String newEmail = "Updated"+oldEmail;
+        SharedData.getPrimaryMember().setEmailId(newEmail);
+        InputEmailCoCo.clear();
+        InputEmailCoCo.sendKeys(newEmail);
+    }
+
     public void ValidateSaveChangesPhonenumberCoCo() {
         /////update mobile number//////
         basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 200);
@@ -704,6 +731,26 @@ public class MyProfilePage {
         softAssert.assertEquals(PasswordMessageCoCo.getCssValue("color"), "rgba(182, 38, 38, 1)");
         softAssert.assertEquals(PasswordButtonCoCo.getText(), "Cambiar contrase\u00F1a");
         softAssert.assertAll();
+    }
+
+    public void updateContactPhoneNumberCoco() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        String oldHomePhNum = SharedData.getPrimaryMember().getPhoneNumber();
+        SharedData.getPrimaryMember().setIncorrectHomePhone(oldHomePhNum);
+        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        SharedData.getPrimaryMember().setPhoneNumber(newPhone);
+        HomephoneCoCo.clear();
+        HomephoneCoCo.sendKeys(newPhone);
+    }
+
+    public void updateMobilePhNumCoco() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        String oldMobilePhNum = SharedData.getPrimaryMember().getIncorrectHomePhone()!=null ? SharedData.getPrimaryMember().getIncorrectHomePhone() :SharedData.getPrimaryMember().getPhoneNumber();
+        SharedData.getPrimaryMember().setIncorrectMobilePhone(oldMobilePhNum);
+        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        SharedData.getPrimaryMember().setAlternatePhNum(newPhone);
+        MobilephoneCoCo.clear();
+        MobilephoneCoCo.sendKeys(newPhone);
     }
 
 

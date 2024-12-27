@@ -206,12 +206,12 @@ public class AdminPortalReportsPage {
         basicActions.waitForElementToBePresent(tooltipText, 10);
     }
 
-    private void validate_primaryInfoUpdated(){
+    private void validate_primaryInfoUpdated() {
         // Includes all changes other than email
         validateChangePrimContactProfile();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
-      softAssert.assertEquals(tooltipText.getText(), "Mobile phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectMobilePhone())+" to:"+primaryMem.getAlternatePhNum()+", Home phone: from:"+basicActions.formatPhNum(primaryMem.getIncorrectHomePhone())+" to:"+primaryMem.getPhoneNumber()+", Preferred Contact Method: from:"+primaryMem.getIncorrectContactPref().toUpperCase()+" to:"+primaryMem.getContactPref().toUpperCase()+", Preferred Language: from:"+primaryMem.getIncorrectLanguage()+" to:"+primaryMem.getPrefLang(), "detail value did not match");
-     softAssert.assertAll();
+        softAssert.assertEquals(tooltipText.getText(), "Mobile phone: from:" + basicActions.formatPhNum(primaryMem.getIncorrectMobilePhone()) + " to:" + primaryMem.getAlternatePhNum() + ", Home phone: from:" + basicActions.formatPhNum(primaryMem.getIncorrectHomePhone()) + " to:" + primaryMem.getPhoneNumber() + ", Preferred Contact Method: from:" + primaryMem.getIncorrectContactPref().toUpperCase() + " to:" + primaryMem.getContactPref().toUpperCase() + ", Preferred Language: from:" + primaryMem.getIncorrectLanguage() + " to:" + primaryMem.getPrefLang(), "detail value did not match");
+        softAssert.assertAll();
     }
 
     private void validations_primaryPersonChange(){

@@ -40,6 +40,16 @@ public class MyProfilePageStepsCoco {
         myProfilePage.PreferredContactLanguageMethod(langContactPreferred);
     }
 
+    @And("I update the contact home phone number on profile page in coco")
+    public void updateHomePhone(){
+        myProfilePage.updateContactPhoneNumberCoco();
+    }
+
+    @And("I update the contact mobile phone number on profile page in coco")
+    public void updateMobilePhone(){
+        myProfilePage.updateMobilePhNumCoco();
+    }
+
     @Then("I verify Password Popup text on My profile page CoCo {string}")
     public void iverifyPasswordPopupTextOnMyProfileCoCoPage(String language) {
         myProfilePage.verifyPasswordPopupTextOnMyProfileCoCoPage(language);
@@ -66,6 +76,11 @@ public class MyProfilePageStepsCoco {
     @Then("I validate member is logged out of account after third incorrect attempt on password popup CoCo")
     public void iValidatethirdattemptincorrectPasswordCoCo() {
         myProfilePage.ValidatethirdattemptincorrectPasswordCoCo();
+    }
+
+    @And("I update the contact email address on my profile page in coco")
+    public void updateEmailAddress(){
+        myProfilePage.updateContactEmailAddressCoco();
     }
 
     @And("I validate Email save changes on My Profile page CoCo")
