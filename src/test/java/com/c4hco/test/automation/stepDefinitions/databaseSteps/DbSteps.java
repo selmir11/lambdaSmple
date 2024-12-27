@@ -217,5 +217,10 @@ public class DbSteps {
         dbValidations.validateMemIds();
     }
 
+    @Then("I validate the data entered on tell us about yourself page is saved in DB")
+    public void validateAbtUrslfDataInDb(){
+        dbValidations.validateTellUsAbtUrslfDetails();
+    }
+
 }
 

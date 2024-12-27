@@ -487,4 +487,19 @@ public class DbValidations {
         }
     }
 
+    public void validateTellUsAbtUrslfDetails(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        String memberIdFromDb =  exchDbDataProvider.getMemberId(primaryMem.getFirstName());
+        System.out.println("memberID from DB ::"+memberIdFromDb);
+       EsMemberEntity primaryMemFromDb = exchDbDataProvider.getEsMemberDetails(memberIdFromDb);
+       softAssert.assertEquals(primaryMem.getFirstName(), primaryMemFromDb.getFirst_name(), "First name did not match");
+        softAssert.assertEquals(primaryMem.getMiddleName(), primaryMemFromDb.getMiddle_name(), "Middle name did not match");
+        softAssert.assertEquals(primaryMem.getLastName(), primaryMemFromDb.getLast_name(), "Last name did not match");
+        softAssert.assertTrue(primaryMemFromDb.getBirth_date().contains(basicActions.formatDob(primaryMem.getDob())), "Dob did not match");
+        softAssert.assertEquals(primaryMem.getGender(), primaryMemFromDb.getGender(), "Gender did not match");
+        softAssert.assertEquals(primaryMem.getSuffix().replace(".", "").toUpperCase(),primaryMemFromDb.getName_suffix() , "Suffix did not match");
+       softAssert.assertTrue(primaryMem.getApplyingforCov().equals("Yes")? primaryMemFromDb.getApplying_for_coverage_ind().equals("1") : primaryMemFromDb.getApplying_for_coverage_ind().equals("0"), "Applying for coverage ind did not match");
+        softAssert.assertAll();
+    }
+
  }

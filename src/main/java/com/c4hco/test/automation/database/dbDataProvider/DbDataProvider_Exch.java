@@ -33,9 +33,7 @@ public class DbDataProvider_Exch {
     MemberDetails primaryMember = SharedData.getPrimaryMember();
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
-
-
-
+    EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -431,8 +429,6 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId));
     }
 
-
-
     public String[] getDentalPolicyDate() {
         return postgresHandler.getResultForTwoColumnValues("policy_start_date","policy_end_date",exchDbQueries.getDental_policy_date());}
 
@@ -507,8 +503,12 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForThreeColumnValues("status", "changeevent", "requesttype", exchDbQueries.getRqQueMsg());
     }
 
-    public String getMemberId(String fname){
-        return postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fname));
+    public String getMemberId(String fName){
+        return postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+    }
+
+    public EsMemberEntity getEsMemberDetails(String memId){
+        return esMemberDbHandler.getEsMemberDbHandler(exchDbQueries.esMemberWithMemberId(memId));
     }
 
 }
