@@ -13,11 +13,11 @@ Feature: Additional information for yourself page - Validate te zip code and cou
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
+    Then I validate I am on the "CoCo Additional information for yourself" page
 
   @SLCR-667 @NVOCoCoRegression
   Scenario Outline: County validations
-    And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
-    Then I validate I am on the "CoCo Additional information for yourself" page
     And I enter my residential address "1234 Road", "<city>", "<State>", "<zipCode>", "<county>"
     And I validate the available counties from dropdown to select are
       | <expectedCounties> |
@@ -48,8 +48,6 @@ Feature: Additional information for yourself page - Validate te zip code and cou
 
   @SLCR-667
   Scenario Outline: Validate County is greyed out
-    And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
-    Then I validate I am on the "CoCo Additional information for yourself" page
     And I enter my residential address "1234 Road", "DENVER", "CO", "80205", "DENVER"
     And I update the state and zipcode to "<state>" and "<zipcode>"
     Then I validate the county field is greyed out
