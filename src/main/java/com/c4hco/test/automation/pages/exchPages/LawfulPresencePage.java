@@ -464,60 +464,72 @@ public class LawfulPresencePage {
     public void validateHelpVerbiage(String helpText, String language) {
         basicActions.waitForElementToBePresent(helpDrawerHelpText.get(2), 30);
         switch (helpText) {
-            case "Eligible Immigration Status": {
-                switch (language) {
-                    case "English":
-                        validateEligibleImmigrationStatusHelpTextVerbiageEng();
-                        break;
-                    case "Spanish":
-                        validateEligibleImmigrationStatusHelpTextVerbiageSp();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + language);
-                }
+            case "Eligible Immigration Status":
+                handleEligibleImmigrationStatus(language);
                 break;
-            }
-            case "Document Type": {
-                switch (language) {
-                    case "English":
-                        validateDocumentTypeHelpTextVerbiageEng();
-                        break;
-                    case "Spanish":
-                        validateDocumentTypeHelpTextVerbiageSp();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + language);
-                }
+            case "Document Type":
+                handleDocumentType(language);
                 break;
-            }
-            case "Lived in the U.S. since 1996": {
-                switch (language) {
-                    case "English":
-                        validateLivedInUSSince1996HelpTextVerbiageEng();
-                        break;
-                    case "Spanish":
-                        validateLivedInUSSince1996HelpTextVerbiageSp();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + language);
-                }
+            case "Lived in the U.S. since 1996":
+                handleLivedInUSSince1996(language);
                 break;
-            }
-            case "Active Duty Military Members or Honorably Discharged Veterans": {
-                switch (language) {
-                    case "English":
-                        validateMilitaryMembersOrVeteransHelpTextVerbiageEng();
-                        break;
-                    case "Spanish":
-                        validateMilitaryMembersOrVeteransHelpTextVerbiageSp();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + language);
-                }
+            case "Active Duty Military Members or Honorably Discharged Veterans":
+                handleMilitaryMembersOrVeterans(language);
                 break;
-            }
             default:
                 throw new IllegalArgumentException("Invalid option: " + helpText);
+        }
+    }
+
+    private void handleEligibleImmigrationStatus(String language) {
+        switch (language) {
+            case "English":
+                validateEligibleImmigrationStatusHelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateEligibleImmigrationStatusHelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void handleDocumentType(String language) {
+        switch (language) {
+            case "English":
+                validateDocumentTypeHelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateDocumentTypeHelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void handleLivedInUSSince1996(String language) {
+        switch (language) {
+            case "English":
+                validateLivedInUSSince1996HelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateLivedInUSSince1996HelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void handleMilitaryMembersOrVeterans(String language) {
+        switch (language) {
+            case "English":
+                validateMilitaryMembersOrVeteransHelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateMilitaryMembersOrVeteransHelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
         }
     }
 
