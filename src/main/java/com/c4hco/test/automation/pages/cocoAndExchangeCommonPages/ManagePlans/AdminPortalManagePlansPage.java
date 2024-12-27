@@ -833,6 +833,7 @@ public class AdminPortalManagePlansPage {
         SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
         SharedData.getManagePlanDentalMedicalPlan().setPlanType("1");
         //set marketing Medical Plan
+        basicActions.clickElementWithRetries(currentMedicalPlanName,50);
         String currentMedPlan = currentMedicalPlanName.getText();
         managePlanDentalMedicalPlan.setPlanMarketingName(currentMedPlan);
         //set Medical Policy Coverage
