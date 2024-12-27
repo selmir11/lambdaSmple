@@ -133,6 +133,7 @@ Feature: Additional information for yourself page - Validate te zip code and cou
     And I enter residential address details for additional member "1234 Road", "DENVER", "CO", "80205", "DENVER"
     And I update the state and zipcode to "<state>" and "<zipcode>" for additional member
     Then I validate the county field is greyed out for additional member
+    And I click on Sign Out in the Header for "Elmo"
     Examples:
       | state | zipcode |
       | CA    | 80504   |
