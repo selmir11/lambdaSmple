@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -359,6 +360,21 @@ public class TellUsAboutYourselfCoCoPage {
             basicActions.waitForElementToBePresent(element, 10);
             softAssert.assertTrue(element.isDisplayed());
             softAssert.assertTrue(element.getText().toLowerCase().contains(member.getFullName().toLowerCase()));
+            softAssert.assertAll();
+        }
+    }
+
+    public void validateAutoPopRelationshipOption(List<String> relationship){
+        for(String relationInfo : relationship) {
+            String[] parts = relationInfo.split(":");
+            String Name = parts[0];  // "Primary"
+            String Relation = parts[1]; // "Spouse"
+            basicActions.waitForElementToBePresent(firstNameText,10);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::div/parent::form-label/parent::div //select"));
+            basicActions.waitForElementToBeClickableWithRetries(element,10);
+            // Perform actions on the element
+            Select dropdown = new Select(element);
+            softAssert.assertEquals(dropdown.getFirstSelectedOption().getText(),Relation,"Autopopulated relationship for "+Name+" is not matching with expected");
             softAssert.assertAll();
         }
     }
