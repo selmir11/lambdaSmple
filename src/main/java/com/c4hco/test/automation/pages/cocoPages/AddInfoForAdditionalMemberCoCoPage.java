@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -272,6 +273,22 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertEquals(errorMessages.get(2).getText(), "El nombre de la ciudad debe de tener al menos 2 caracteres de largo");
         zipcodeInput.sendKeys("1234");
         softAssert.assertEquals(errorMessages.get(4).getText(), "C\u00F3digo postal debe de tener 5 numeros");
+        softAssert.assertAll();
+    }
+
+    public void updateStateAndZipAddtlMem(String state, String zipcode){
+        basicActions.waitForElementToBePresent(stateDropdown, 30);
+        stateDropdown.click();
+        basicActions.selectValueFromDropdown(stateDropdown, stateDropdownOptions, state);
+
+        basicActions.waitForElementToBePresent(zipcodeInput, 30);
+        Assert.assertTrue(basicActions.clearElementWithRetries(zipcodeInput));
+        zipcodeInput.sendKeys(zipcode);
+    }
+
+    public void validateCountyFieldAddtlMem(){
+        basicActions.waitForElementToBePresent(countyDropdown, 30);
+        softAssert.assertFalse(countyDropdown.isEnabled(), "Dropdown field is not disabled");
         softAssert.assertAll();
     }
 
