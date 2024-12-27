@@ -93,7 +93,8 @@ public class LugyPage {
     }
 
     public void selectIncomeAndOptionInLetUsGuideYouPage(String amount, String option) {
-        basicActions.waitForElementToBePresent(householdIncome,30);
+        basicActions.waitForElementToBePresent(householdIncome,40);
+        householdIncome.clear();
         householdIncome.sendKeys(amount);
         incomePeriodOption.click();
         basicActions.getDriver().findElement(By.xpath("//option[@value='"+option+"']")).click();
@@ -102,5 +103,12 @@ public class LugyPage {
     public void clickApplyForFinancialHelpInLetUsGuideYouPage() {
         basicActions.waitForElementToBePresent(ApplyForFinancialHelpBtn,30);
         ApplyForFinancialHelpBtn.click();
+    }
+
+    public void validateApplyForFinancialHelpIsDisplayedInLetUsGuideYouPage() {
+        basicActions.waitForElementToBePresent(ApplyForFinancialHelpBtn,30);
+        softAssert.assertTrue(ApplyForFinancialHelpBtn.isDisplayed());
+        softAssert.assertEquals(ApplyForFinancialHelpBtn.getAttribute("value"),"Apply for Financial Help");
+        softAssert.assertAll();
     }
 }
