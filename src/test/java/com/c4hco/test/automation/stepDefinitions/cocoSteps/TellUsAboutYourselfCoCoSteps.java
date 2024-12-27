@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class TellUsAboutYourselfCoCoSteps {
     TellUsAboutYourselfCoCoPage tellUsAboutYourselfCoCoPage = new TellUsAboutYourselfCoCoPage(WebDriverManager.getDriver());
 
@@ -61,6 +63,11 @@ public class TellUsAboutYourselfCoCoSteps {
     @Then("I validate the data entered is saved on tell us about yourself page")
     public void validateData(){
         tellUsAboutYourselfCoCoPage.validateDataEntered();
+    }
+
+    @Then("I validate the auto-populated option in the relationship dropdown field on the Tell us About Yourself page")
+    public void iValidateRelationshipOption(List<String> Relationship) {
+        tellUsAboutYourselfCoCoPage.validateAutoPopRelationshipOption(Relationship);
     }
 
 }
