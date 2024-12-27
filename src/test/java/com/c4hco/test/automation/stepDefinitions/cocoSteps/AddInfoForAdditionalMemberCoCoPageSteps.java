@@ -33,4 +33,14 @@ public class AddInfoForAdditionalMemberCoCoPageSteps {
     public void verifyErrorMessagesOnTheAddInfoForAddMemberPage (String Language) {
         addInfoForAdditionalMemberPage.verifyErrorMessagesAddInfoForAddMember(Language);
     }
+
+    @And("I update the state and zipcode to {string} and {string} for additional member")
+    public void updateStateAndZip(String state, String zip){
+        addInfoForAdditionalMemberPage.updateStateAndZipAddtlMem(state, zip);
+    }
+
+    @Then("I validate the county field is greyed out for additional member")
+    public void validateCountyDisabled(){
+        addInfoForAdditionalMemberPage.validateCountyFieldAddtlMem();
+    }
 }
