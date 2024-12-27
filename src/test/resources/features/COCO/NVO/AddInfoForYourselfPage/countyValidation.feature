@@ -57,12 +57,3 @@ Feature: Additional information for yourself page - Validate te zip code and cou
       | state | zipcode |
       | CA    | 80504   |
       | NV    | 95959   |
-
-
-
-
-
-
-
-
-
