@@ -33,4 +33,20 @@ public class AddInfoForYourselfPageSteps {
 
     @Then("I validate the error messages on the Add info for yourself page in {string}")
     public void verifyErrorMessagesOnTheAddInfoForYourselfPage(String Language) { addInfoForYourselfPage.verifyErrorMessagesAddInfoForYourself(Language); }
+
+    @And("I validate the available counties from dropdown to select are")
+    public void validateCounties(String counties){
+        addInfoForYourselfPage.validateCounties(counties);
+    }
+
+    @And("I update the state and zipcode to {string} and {string}")
+    public void updateStateAndZip(String state, String zipcode){
+        addInfoForYourselfPage.updateStateAndZip(state, zipcode);
+    }
+
+    @Then("I validate the county field is greyed out")
+    public void validateCountyDisabled(){
+        addInfoForYourselfPage.validateCountyField();
+    }
+
 }

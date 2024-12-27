@@ -498,7 +498,7 @@ public class DbValidations {
         softAssert.assertTrue(primaryMemFromDb.getBirth_date().contains(basicActions.formatDob(primaryMem.getDob())), "Dob did not match");
         softAssert.assertEquals(primaryMem.getGender(), primaryMemFromDb.getGender(), "Gender did not match");
         softAssert.assertEquals(primaryMem.getSuffix().replace(".", "").toUpperCase(),primaryMemFromDb.getName_suffix() , "Suffix did not match");
-       softAssert.assertTrue(primaryMem.getApplyingforCov().equals("Yes")? primaryMemFromDb.getApplying_for_coverage_ind().equals("1") : primaryMemFromDb.getApplying_for_coverage_ind().equals("2"), "Applying for coverage ind did not match");
+       softAssert.assertTrue(primaryMem.getApplyingforCov().equals("Yes")? primaryMemFromDb.getApplying_for_coverage_ind().equals("1") : primaryMemFromDb.getApplying_for_coverage_ind().equals("0"), "Applying for coverage ind did not match");
         softAssert.assertAll();
     }
 

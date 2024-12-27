@@ -78,6 +78,19 @@ public class TellUsAboutYourselfPage {
 
     @FindBy(id = "backButton" )
     WebElement btnBack;
+    @FindBy(css = "div.modal-body p")
+    List<WebElement> restrictMultipleEditsPopUp;
+
+    @FindBy(css ="div.modal-body span")
+    List<WebElement> restrictMultipleEditsPopUpPart;
+    @FindBy(xpath = "//button[text()='Close']")
+    WebElement closeRestrictedEditsPopupEnglish;
+    @FindBy(xpath = "//button[text()='Cerrar']")
+    WebElement closeRestrictedEditsPopupSpanish;
+    @FindBy(css = "input.linkButton.redirect-link")
+    WebElement primaryContactChangeLink;
+    @FindBy(xpath = "//*[@id='restrictMultipleEdits']/div/div/div[1]/label[2]/input")
+    WebElement linkToAddNewPerson;
 
     
 
@@ -256,5 +269,36 @@ public class TellUsAboutYourselfPage {
         basicActions.waitForElementToBePresent(btnBack, 20);
         btnBack.click();
     }
+    public void validateRestrictMultipleFieldEditsError(List<String> textToVerify) {
+        basicActions.waitForElementToBePresent(restrictMultipleEditsPopUp.get(0), 20);
+        softAssert.assertEquals(restrictMultipleEditsPopUp.get(0).getText(), textToVerify.get(0) );
+        softAssert.assertEquals(restrictMultipleEditsPopUp.get(1).getText(), textToVerify.get(1));
+        softAssert.assertEquals(restrictMultipleEditsPopUpPart.get(0).getText(), textToVerify.get(2));
+        softAssert.assertEquals(restrictMultipleEditsPopUp.get(2).getText(), textToVerify.get(3));
+        softAssert.assertEquals(restrictMultipleEditsPopUpPart.get(1).getText(), textToVerify.get(4));
+        softAssert.assertAll();
+    }
 
+    public void closeRestrictMultipleFieldEditsErrorPopup(String language){
+        basicActions.waitForElementToBePresent(closeRestrictedEditsPopupEnglish, 20);
+        switch (language) {
+            case ("English"):
+                basicActions.click(closeRestrictedEditsPopupEnglish);
+                break;
+            case ("Spanish"):
+                basicActions.click(closeRestrictedEditsPopupSpanish);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void iClickPrimaryContactChangeLink(){
+        basicActions.waitForElementToBeClickable(primaryContactChangeLink, 20);
+        basicActions.click(primaryContactChangeLink);
+    }
+    public void iClickLinkToAddNewPerson(){
+        basicActions.waitForElementToBePresent(linkToAddNewPerson, 20);
+        basicActions.click(linkToAddNewPerson);
+    }
 }
