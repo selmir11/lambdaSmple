@@ -51,14 +51,17 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css = ".body-text-1")
     WebElement submitNewApplicationText;
 
-    @FindBy(css = ".plan-name.")
+    @FindBy(css = ".plan-name")
     WebElement eligiblePlan;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(css = "app-year-links .yearlink-disable")
-    WebElement resultsForYear;
+    @FindBy(id = "currentYear_link")
+    WebElement currentYr;
+
+    @FindBy(id = "nextYear_link")
+    WebElement nextYr;
 
     @FindBy(css=".overview-title")
     WebElement overviewTitle;
@@ -68,9 +71,6 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css="app-container .message-row div div")
     List<WebElement> yellowBanner;
-
-    @FindBy(css="app-container .message-row div div a")
-    WebElement yellowBannerHyperLink;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -221,18 +221,24 @@ public class ApplicationResultsCoCoPage {
         }
 
     public void validateResultsOfYr(String year){
-        basicActions.waitForElementToBePresent(resultsForYear, 10);
         String expectedYr = "";
+        String actualYr = "";
         switch(year){
             case "current year":
                 expectedYr = String.valueOf(Year.now().getValue());
+                Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(currentYr, 10));
+                actualYr = currentYr.getText();
+                softAssert.assertTrue(currentYr.getAttribute("class").contains("disable"), "showing results for next year");
                 break;
             case "next year":
                 expectedYr = String.valueOf(Year.now().getValue()+1);
+                Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(nextYr, 10));
+                actualYr = nextYr.getText();
+                softAssert.assertTrue(nextYr.getAttribute("class").contains("disable"), "showing results for current year");
                 break;
             default: Assert.fail("Invalid argument");
         }
-        softAssert.assertEquals(expectedYr, resultsForYear.getText(), "Results displayed for the improper year");
+        softAssert.assertEquals(expectedYr, actualYr, "Results displayed for the improper year");
         softAssert.assertAll();
     }
 
@@ -250,10 +256,9 @@ public class ApplicationResultsCoCoPage {
     }
 
     private void validateYellowBannerTxt(){
-        softAssert.assertEquals(yellowBanner.get(0).getText(), "If someone in your family is not undocumented, they may qualify for other coverage options and financial help. This year, there are also new ", "Yellow banner text - line 1 did not match");
+        softAssert.assertEquals(yellowBanner.get(0).getText(), "If someone in your family is not undocumented, they may qualify for other coverage options and financial help. This year, there are also new", "Yellow banner text - line 1 did not match");
         softAssert.assertEquals(yellowBanner.get(1).getText(), "coverage options for undocumented people who are pregnant, under age 19, or DACA recipients.", "Yellow banner text - line 2 did not match");
-        softAssert.assertEquals(yellowBanner.get(2).getText(), "To find the best option for you, you can  ", "Yellow banner text - line 3 did not match");
-        softAssert.assertEquals(yellowBannerHyperLink.getText(), "get free, expert help", "Hyperlink from yellow banner did not match");
+        softAssert.assertEquals(yellowBanner.get(2).getText(), "To find the best option for you, you can get free, expert help", "Yellow banner text - line 3 did not match");
     }
 
     private void validateNameAndPlan(){

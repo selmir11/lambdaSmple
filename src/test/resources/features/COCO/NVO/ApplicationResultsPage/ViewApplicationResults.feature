@@ -211,7 +211,7 @@ Feature: Coco user on the Application results page
     #DBSTEP
     And I verify the application result details in DB for "OFF_EXCHANGE_NOT_ELIGIBLE"
 
-  @SLCR-676
+  @SLCR-676 @OE_NVO_COCO
   Scenario: Validate Application results page is different when applying for current year and next year during open enrollment period
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
