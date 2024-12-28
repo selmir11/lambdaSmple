@@ -49,7 +49,7 @@ Feature: Coco user on the Application results page - Tests Run during Open Enrol
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
 
-  @SLCR-676 @OE_NVO_COCO @n1
+  @SLCR-676 @OE_NVO_COCO
   Scenario: Validate Application results page is different when applying for current year and next year during open enrollment period
     Then I validate that "current year" results are displayed
     Then I validate the text on the application results page coco
