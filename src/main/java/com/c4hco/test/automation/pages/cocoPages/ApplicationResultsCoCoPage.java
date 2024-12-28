@@ -226,12 +226,14 @@ public class ApplicationResultsCoCoPage {
         switch(year){
             case "current year":
                 expectedYr = String.valueOf(Year.now().getValue());
+                basicActions.wait(2000);
                 Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(currentYr, 10));
                 actualYr = currentYr.getText();
                 softAssert.assertTrue(currentYr.getAttribute("class").contains("disable"), "showing results for next year");
                 break;
             case "next year":
                 expectedYr = String.valueOf(Year.now().getValue()+1);
+                basicActions.wait(2000);
                 Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(nextYr, 10));
                 actualYr = nextYr.getText();
                 softAssert.assertTrue(nextYr.getAttribute("class").contains("disable"), "showing results for current year");
