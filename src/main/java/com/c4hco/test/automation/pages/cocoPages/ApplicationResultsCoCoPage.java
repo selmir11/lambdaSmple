@@ -6,8 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.time.Year;
 import java.util.List;
 
 public class ApplicationResultsCoCoPage {
@@ -28,7 +30,7 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css = ".container .header-1")
     WebElement applicationResultsHeader;
 
-    @FindBy(css = "div.body-text-2.member-name")
+    @FindBy(css = ".member-name")
     WebElement memberName;
 
     @FindBy(css = "div.plan-name.eligible")
@@ -48,11 +50,27 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css = ".body-text-1")
     WebElement submitNewApplicationText;
-    @FindBy(css = "div.plan-name.eligible")
+
+    @FindBy(css = ".plan-name")
     WebElement eligiblePlan;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
+    @FindBy(id = "currentYear_link")
+    WebElement currentYr;
+
+    @FindBy(id = "nextYear_link")
+    WebElement nextYr;
+
+    @FindBy(css=".overview-title")
+    WebElement overviewTitle;
+
+    @FindBy(css=".overview-text p")
+    List<WebElement> overviewTxt;
+
+    @FindBy(css="app-container .message-row div div")
+    List<WebElement> yellowBanner;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -192,6 +210,7 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void verifyEligibleplans(){
+        // WIP - we should not rely on ses value from application.properties. That field should go away
         basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
         if(SharedData.getSes().equals("yes")){
             softAssert.assertEquals(eligiblePlan.getText(), "SilverEnhanced Savings");
@@ -200,4 +219,52 @@ public class ApplicationResultsCoCoPage {
         }
         softAssert.assertAll();
         }
+
+    public void validateResultsOfYr(String year){
+        String expectedYr = "";
+        String actualYr = "";
+        switch(year){
+            case "current year":
+                expectedYr = String.valueOf(Year.now().getValue());
+                Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(currentYr, 10));
+                actualYr = currentYr.getText();
+                softAssert.assertTrue(currentYr.getAttribute("class").contains("disable"), "showing results for next year");
+                break;
+            case "next year":
+                expectedYr = String.valueOf(Year.now().getValue()+1);
+                Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(nextYr, 10));
+                actualYr = nextYr.getText();
+                softAssert.assertTrue(nextYr.getAttribute("class").contains("disable"), "showing results for current year");
+                break;
+            default: Assert.fail("Invalid argument");
+        }
+        softAssert.assertEquals(expectedYr, actualYr, "Results displayed for the improper year");
+        softAssert.assertAll();
+    }
+
+    public void validateTextOnPage() {
+        validateNameAndPlan();
+        validateOverviewContainerTxt();
+        validateYellowBannerTxt();
+        softAssert.assertAll();
+    }
+
+    private void validateOverviewContainerTxt() {
+        softAssert.assertEquals(overviewTitle.getText(), "Overview", "Overview Title did not match");
+        softAssert.assertEquals(overviewTxt.get(0).getText(), "Health insurance plans through Colorado Connect", "Overview text line 1 did not match");
+        softAssert.assertEquals(overviewTxt.get(1).getText(), "Plans with monthly premiums offering essential health benefits and protections", "Overview text line 2 did not match");
+    }
+
+    private void validateYellowBannerTxt(){
+        softAssert.assertEquals(yellowBanner.get(0).getText(), "If someone in your family is not undocumented, they may qualify for other coverage options and financial help. This year, there are also new", "Yellow banner text - line 1 did not match");
+        softAssert.assertEquals(yellowBanner.get(1).getText(), "coverage options for undocumented people who are pregnant, under age 19, or DACA recipients.", "Yellow banner text - line 2 did not match");
+        softAssert.assertEquals(yellowBanner.get(2).getText(), "To find the best option for you, you can get free, expert help", "Yellow banner text - line 3 did not match");
+    }
+
+    private void validateNameAndPlan(){
+        basicActions.waitForElementToBePresent(memberName, 10);
+        softAssert.assertEquals(memberName.getText(), SharedData.getPrimaryMember().getSignature(), "Member name did not match");
+        softAssert.assertEquals(eligiblePlan.getText(), "Health insurance plans through Colorado Connect", "COCO Text under name did not match");
+    }
+
 }
