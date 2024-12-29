@@ -44,4 +44,10 @@ public class LugySteps {
     public void iClickApplyForFinancialHelpInLetUsGuideYouPage() {
         lugyPage.clickApplyForFinancialHelpInLetUsGuideYouPage();
     }
+
+    @Then("I validate Apply for Financial Help is displayed in Let us guide you Page")
+    public void iValidateApplyForFinancialHelpIsDisplayedInLetUsGuideYouPage() {
+        lugyPage.validateApplyForFinancialHelpIsDisplayedInLetUsGuideYouPage();
+
+    }
 }
