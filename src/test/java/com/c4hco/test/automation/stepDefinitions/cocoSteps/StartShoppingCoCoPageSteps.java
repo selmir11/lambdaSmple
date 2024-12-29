@@ -43,6 +43,9 @@ public class StartShoppingCoCoPageSteps {
     public void clickYestoTobaccoQuestion(String tobaccoUsageYesOrNo, String member){
         startShoppingCoCoPage.selectTobaccoUsagecoco(tobaccoUsageYesOrNo, member);}
 
-
+    @And("I get the application id from the url from tobacco page coco")
+    public void getApplicationId(){
+        startShoppingCoCoPage.getApplicationId();
+    }
 
 }

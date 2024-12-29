@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class StartShoppingCoCoPage {
 
@@ -46,6 +48,9 @@ public class StartShoppingCoCoPage {
 
     @FindBy(css="#loader-icon .fa-spinner")
     WebElement spinner;
+
+    @FindBy(css="app-start-shopping .container")
+    WebElement pageContainer;
 
     public void clickSaveAndExit(){
         basicActions.waitForElementToDisappear(spinner, 10);
@@ -136,5 +141,11 @@ public class StartShoppingCoCoPage {
         allMemList.stream().filter(mem -> mem.getFirstName().contains(namePrefix)).findFirst().ifPresent(mem -> mem.setTobacco_user(tobaccoUsageYesOrNo));
     }
 
+    public void getApplicationId(){
+        basicActions.waitForElementToBePresent(pageContainer, 10);
+        String url = basicActions.getCurrentUrl();
+        String applicationId =  Pattern.compile("\\d+").matcher(url).group();
+        SharedData.getPrimaryMember().setApplication_id(applicationId);
+    }
 
 }

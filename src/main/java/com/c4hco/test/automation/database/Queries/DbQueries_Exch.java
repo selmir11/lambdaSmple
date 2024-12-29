@@ -602,4 +602,15 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where first_name = '"+memFname+"'";
     }
 
+    public String geApplicationId(String householId){
+        return "select application_id from "+dbName+".es_member_lce\n" +
+                "where household_id  = '"+householId+"'\n"+
+                "and plan_year = '"+SharedData.getPlanYear()+"'";
+    }
+
+    public String geAllApplicationIds(String householId){
+        return "select application_id from "+dbName+".es_member_lce\n" +
+                "where household_id  = '"+householId+"'";
+    }
+
 }

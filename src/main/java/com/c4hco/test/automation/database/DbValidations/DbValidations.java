@@ -502,4 +502,17 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateApplicationId(){
+        softAssert.assertEquals(exchDbDataProvider.getApplicationId_esApplication(), SharedData.getPrimaryMember().getApplication_id(), "Application Id's did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationIds(){
+        List<String> applicationIds = exchDbDataProvider.getAllApplicationIds_esApplication();
+        Set<String> applicationIdsList_unique = new HashSet<>(applicationIds);
+        Assert.assertEquals(applicationIdsList_unique.size(), applicationIds.size(), "Application id's are not unique");
+    }
+
+
+
  }
