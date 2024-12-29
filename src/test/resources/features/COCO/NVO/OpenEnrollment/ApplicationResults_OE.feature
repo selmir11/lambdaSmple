@@ -72,7 +72,7 @@ Feature: Coco user on the Application results page - Tests Run during Open Enrol
     Then I validate the text on the application results page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-677  @OE_NVO_COCO
+  @SLCR-677 @OE_NVO_COCO
   Scenario: Validate we are able to shop and application id's are different for same member when applied for current and next year
     Then I validate that "current year" results are displayed
     Then I validate the text on the application results page coco

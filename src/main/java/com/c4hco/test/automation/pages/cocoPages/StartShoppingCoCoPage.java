@@ -13,7 +13,6 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class StartShoppingCoCoPage {
 
@@ -144,7 +143,7 @@ public class StartShoppingCoCoPage {
     public void getApplicationId(){
         basicActions.waitForElementToBePresent(pageContainer, 10);
         String url = basicActions.getCurrentUrl();
-        String applicationId =  Pattern.compile("\\d+").matcher(url).group();
+        String applicationId = url.substring(url.lastIndexOf("/") + 1);
         SharedData.getPrimaryMember().setApplication_id(applicationId);
     }
 
