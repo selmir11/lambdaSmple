@@ -1,4 +1,4 @@
-#SLCR-676
+#SLCR-676, SLCR-677
 Feature: Coco user on the Application results page - Tests Run during Open Enrollment
 
   Background: I go the login portal
@@ -72,11 +72,16 @@ Feature: Coco user on the Application results page - Tests Run during Open Enrol
     Then I validate the text on the application results page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-677
+  @SLCR-677 @OE_NVO_COCO
   Scenario: Validate we are able to shop and application id's are different for same member when applied for current and next year
     Then I validate that "current year" results are displayed
     Then I validate the text on the application results page coco
-
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    And I get the application id from the url from tobacco page coco
+    Then I validate the application id from the db
+    Then I click continue on coco start shopping page
+    Then I validate I am on the "CoCo Medical Plan Results" page
 
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
@@ -94,4 +99,11 @@ Feature: Coco user on the Application results page - Tests Run during Open Enrol
     Then I validate I am on the "Application Results CoCo" page
     Then I validate that "next year" results are displayed
     Then I validate the text on the application results page coco
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    And I get the application id from the url from tobacco page coco
+    Then I validate the application id from the db
+    Then I click continue on coco start shopping page
+    Then I validate I am on the "CoCo Medical Plan Results" page
+    Then I validate that applications id's are different for current and next year
     And I click on Sign Out in the Header for "Elmo"
