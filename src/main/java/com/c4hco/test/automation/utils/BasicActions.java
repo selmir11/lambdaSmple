@@ -238,7 +238,7 @@ public class BasicActions {
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 webElement.click();
                 return true;
-            } catch (ElementClickInterceptedException e) {
+            } catch (ElementClickInterceptedException|NoSuchElementException e) {
                 retries--;
                 Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {

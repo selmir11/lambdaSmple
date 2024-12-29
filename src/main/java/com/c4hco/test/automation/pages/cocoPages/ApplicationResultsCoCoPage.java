@@ -10,6 +10,8 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class ApplicationResultsCoCoPage {
@@ -21,7 +23,7 @@ public class ApplicationResultsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "ELIG-MemberPlanInfo-SaveAndContinue")
+    @FindBy(css = "#ELIG-MemberPlanInfo-SaveAndContinue")
     public WebElement continueButton;
 
     @FindBy(id = "ELIG-NoApplication-BackToWelcomePage")
@@ -32,6 +34,9 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css = ".member-name")
     WebElement memberName;
+
+    @FindBy(css = ".member-name")
+    List<WebElement> memberNames;
 
     @FindBy(css = "div.plan-name.eligible")
     List<WebElement> healthInsuranceCoCoEligible; //SES, Limited text, Health insurance coco plans
@@ -79,9 +84,7 @@ public class ApplicationResultsCoCoPage {
 
     public void continueWithApplication()  {
         basicActions.waitForElementToDisappear( spinner, 60 );
-        basicActions.scrollToElement( continueButton );
-        basicActions.waitForElementToBePresentWithRetries( continueButton, 40);
-        continueButton.click();
+        basicActions.clickElementWithRetries(continueButton, 10);
     }
 
     public void verifyHeader(String language)  {
@@ -267,6 +270,17 @@ public class ApplicationResultsCoCoPage {
         basicActions.waitForElementToBePresent(memberName, 10);
         softAssert.assertEquals(memberName.getText(), SharedData.getPrimaryMember().getSignature(), "Member name did not match");
         softAssert.assertEquals(eligiblePlan.getText(), "Health insurance plans through Colorado Connect", "COCO Text under name did not match");
+    }
+
+    public void validateEligibleMembers(){
+        basicActions.waitForElementListToBePresent(memberNames, 10);
+        List<String> allMemNames = basicActions.getAllMemCompleteNames();
+        List<String> memNamesFromUi = new ArrayList<>();
+        for(WebElement memName: memberNames){
+            memNamesFromUi.add(memName.getText());
+        }
+        softAssert.assertEquals(new HashSet<>(allMemNames), new HashSet<>(memNamesFromUi), "Names are not matching!");
+        softAssert.assertAll();
     }
 
 }

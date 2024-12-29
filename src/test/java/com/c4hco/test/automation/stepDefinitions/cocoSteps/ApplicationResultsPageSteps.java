@@ -50,4 +50,9 @@ public class ApplicationResultsPageSteps {
         applicationResultsCoCoPage.validateTextOnPage();
     }
 
+    @Then("I validate eligible members list")
+    public void validateEligibleMembers(){
+        applicationResultsCoCoPage.validateEligibleMembers();
+    }
+
 }
