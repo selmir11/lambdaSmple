@@ -55,7 +55,6 @@ public class MyProfilePageStepsCoco {
         myProfilePage.verifyPasswordPopupTextOnMyProfileCoCoPage(language);
     }
 
-
     @Then("I Validate the error message when no password in provided on the password popup on My profile page in CoCo {string}")
     public void iverifyErrortextpopupOnMyProfileCoCoPage(String language) {
         myProfilePage.verifyErrortextpopupOnMyProfileCoCoPage(language);
