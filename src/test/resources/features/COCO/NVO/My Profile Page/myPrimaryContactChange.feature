@@ -3,9 +3,6 @@ Feature:  My Profile Page Coco
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
-
-  @SLCR-358 @NVOCoCoRegression
-  Scenario: Verify Change of Primary Contact Page validation, Navigation, Spanish and text
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -17,13 +14,16 @@ Feature:  My Profile Page Coco
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I click EditUpdate on Family Overview page for "Primary"
+
+  @SLCR-358 @SLCR-673 @NVOCoCoRegression
+  Scenario: Verify Change of Primary Contact Page validation, Navigation, Spanish and text
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
@@ -48,7 +48,7 @@ Feature:  My Profile Page Coco
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Husband"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -79,3 +79,4 @@ Feature:  My Profile Page Coco
     Then I validate Primary Contact Change Popup "Spanish" on My profile page CoCo
     And I change the language from header to "English"
     And I click on Sign Out in the Header for "Elmo"
+
