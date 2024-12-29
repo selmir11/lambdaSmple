@@ -12,14 +12,16 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+
+
+  @SLCR-651 #WIP
+  Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
-
-  @SLCR-651 #WIP
-  Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
@@ -62,15 +64,6 @@ Feature: Coco user on the Application results page
 
   @SLCR-661
     Scenario: ELIG-As a Coco user on the Application Results page, I need an ENR endpoint called for me so that I know if I can continue to shopping[CCRT-58]
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
-    Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -113,14 +106,6 @@ Feature: Coco user on the Application results page
 
   @SLCR-661
   Scenario:  Scenario 2 - User clicks on the Save and Continue button on the Application results page user is not able to shop[CCRT-58]
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -163,14 +148,6 @@ Feature: Coco user on the Application results page
 
   @SLCR-661
     Scenario:  Scenario 3 -  User is not eligible for anything - do not call the ENR endpoint[CCRT-58]
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -210,3 +187,14 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Application Results CoCo" page
     #DBSTEP
     And I verify the application result details in DB for "OFF_EXCHANGE_NOT_ELIGIBLE"
+
+  @SLCR-678
+  Scenario: Validate the page in Spanish when navigated without submitting an application
+    And I click on "Application Results" link on welcome page
+    Then I validate I am on the "Application Results CoCo" page
+    And I change the language from header to "Spanish"
+    Then I verify the header in "Spanish" on the Application Results Page CoCo
+    Then I validate the Application Results page text in "Spanish" when no application is submitted
+    And I click on Sign Out in the Header for "Elmo"
+
+

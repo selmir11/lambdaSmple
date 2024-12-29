@@ -55,4 +55,9 @@ public class ApplicationResultsPageSteps {
         applicationResultsCoCoPage.validateEligibleMembers();
     }
 
+    @Then("I validate the Application Results page text in {string} when no application is submitted")
+    public void validateTextWithoutApplication(String language){
+        applicationResultsCoCoPage.validatePageTextWithoutApplication(language);
+    }
+
 }
