@@ -57,7 +57,7 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "UnrelatedThree"
+    And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "50,000.00" income amount

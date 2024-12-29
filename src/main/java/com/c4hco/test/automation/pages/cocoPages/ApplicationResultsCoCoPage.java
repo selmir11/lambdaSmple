@@ -77,6 +77,9 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css="app-container .message-row div div")
     List<WebElement> yellowBanner;
 
+    @FindBy(css="app-container .no-application-text")
+    WebElement noAppTxt;
+
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
         backToWelcomeButton.click();
@@ -280,6 +283,19 @@ public class ApplicationResultsCoCoPage {
             memNamesFromUi.add(memName.getText());
         }
         softAssert.assertEquals(new HashSet<>(allMemNames), new HashSet<>(memNamesFromUi), "Names are not matching!");
+        softAssert.assertAll();
+    }
+
+    public void validatePageTextWithoutApplication(String language){
+        basicActions.waitForElementToBePresent(noAppTxt, 10);
+        switch(language){
+            case "Spanish":
+             softAssert.assertEquals(noAppTxt.getText().trim(), "Presente una solicitud para consultar sus resultados", "NoAppText did not match in spanish");
+             softAssert.assertEquals(backToWelcomeButton.getText().trim(), "Regresar a la Página de bienvenida", "Back to welcome button text doesn't match in spanish");
+             break;
+
+             default: Assert.fail("Invalid argument passed");
+        }
         softAssert.assertAll();
     }
 
