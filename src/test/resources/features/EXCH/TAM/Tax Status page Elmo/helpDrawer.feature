@@ -79,19 +79,19 @@ Feature: Page Validation-Tax Status Elmo Page
   @SLER-1902 @HelpDrawerTaxStatusElmoPage
   Scenario: SLER-1902 I want English and Spanish text added to the help drawer so that I can find more information about the questions on the page (desktop)
     Then I click on the "Header" help link on Tax Status Elmo page
-    And I verify the help drawer "Full" text on Tax Status Elmo page in "English"
+    And I verify the help drawer "Full:English" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Header" help link on Tax Status Elmo page
 
     Then I click on the "Side" help link on Tax Status Elmo page
-    And I verify the help drawer "Full" text on Tax Status Elmo page in "English"
+    And I verify the help drawer "Full:English" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Side" help link on Tax Status Elmo page
 
     Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim" text on Tax Status Elmo page in "English"
+    And I verify the help drawer "Claim:English" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
@@ -99,7 +99,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
-    And I verify the help drawer "Exceptional Circumstances" text on Tax Status Elmo page in "English"
+    And I verify the help drawer "Exceptional Circumstances:English" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
@@ -107,7 +107,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
     Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
     Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim" text on Tax Status Elmo page in "English"
+    And I verify the help drawer "Claim:English" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
@@ -116,31 +116,31 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I validate I am on the "Tax status Elmo" page
     And I validate I am on the "Spanish" page
     Then I click on the "Header" help link on Tax Status Elmo page
-    And I verify the help drawer "Full" text on Tax Status Elmo page in "Spanish"
+    And I verify the help drawer "Full:Spanish" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Header" help link on Tax Status Elmo page
 
     Then I click on the "Side" help link on Tax Status Elmo page
-    And I verify the help drawer "Full" text on Tax Status Elmo page in "Spanish"
+    And I verify the help drawer "Full:Spanish" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Side" help link on Tax Status Elmo page
 
     Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim" text on Tax Status Elmo page in "Spanish"
+    And I verify the help drawer "Claim:Spanish" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
 
     Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
-    And I verify the help drawer "Exceptional Circumstances" text on Tax Status Elmo page in "Spanish"
+    And I verify the help drawer "Exceptional Circumstances:Spanish" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
 
     Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim" text on Tax Status Elmo page in "Spanish"
+    And I verify the help drawer "Claim:Spanish" text on Tax Status Elmo page
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Claiming Dependent" help link on Tax Status Elmo page

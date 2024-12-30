@@ -171,7 +171,7 @@ public class TaxStatusPageSteps_Elmo {
     @And("I verify no errors show on the Tax Status Elmo page")
     public void iVerifyNoErrors(){taxStatusPage_Elmo.verifyNoErrors();}
 
-    @And("I verify the help drawer {string} text on Tax Status Elmo page in {string}")
-    public void iVerifyHelpDrawerTxt(String helpTxt, String language){taxStatusPage_Elmo.verifyHelpDrawerTxt(helpTxt, language);}
+    @And("I verify the help drawer {string} text on Tax Status Elmo page")
+    public void iVerifyHelpDrawerTxt(String helpTxt){taxStatusPage_Elmo.verifyHelpDrawerTxt(helpTxt);}
 
 }

@@ -2028,26 +2028,28 @@ public class TaxStatusPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyHelpDrawerTxt(String helpTxt, String language) {
-        String methodName;
+    public void verifyHelpDrawerTxt(String helpTxt) {
         switch (helpTxt) {
-            case "Full":
-                methodName = "verifyHelpDrawerTxt" + language;
+            case "Full:English":
+                verifyHelpDrawerTxtEnglish();
                 break;
-            case "Claim":
-                methodName = "verifyHelpDrawerClaimedTxt" + language;
+            case "Full:Spanish":
+                verifyHelpDrawerTxtSpanish();
                 break;
-            case "Exceptional Circumstances":
-                methodName = "verifyHelpDrawerExceptionalTxt" + language;
+            case "Claim:English":
+                verifyHelpDrawerClaimedTxtEnglish();
+                break;
+            case "Claim:Spanish":
+                verifyHelpDrawerClaimedTxtSpanish();
+                break;
+            case "Exceptional Circumstances:English":
+                verifyHelpDrawerExceptionalTxtEnglish();
+                break;
+            case "Exceptional Circumstances:Spanish":
+                verifyHelpDrawerExceptionalTxtSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + helpTxt);
-        }
-
-        try {
-            this.getClass().getMethod(methodName).invoke(this);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to execute method: " + methodName, e);
         }
     }
 
