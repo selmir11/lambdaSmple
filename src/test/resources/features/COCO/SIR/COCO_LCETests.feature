@@ -32,9 +32,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -42,6 +43,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -107,9 +109,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -117,6 +120,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -140,9 +144,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
     And I select "Annually" income frequency option
@@ -150,6 +155,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -174,12 +180,14 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "No" employment option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -248,9 +256,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -258,6 +267,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -323,9 +333,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -333,6 +344,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -357,9 +369,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
     And I select "Annually" income frequency option
@@ -367,6 +380,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -395,6 +409,9 @@ Feature: LCE Test Runs for COCO
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on start shopping page
+
+    Then I validate I am on the "Medical Enrollment Groups" page
+    Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan option CoCo
@@ -432,9 +449,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -442,6 +460,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -508,9 +527,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -518,6 +538,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -541,9 +562,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
     And I select "Annually" income frequency option
@@ -551,6 +573,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -577,7 +600,7 @@ Feature: LCE Test Runs for COCO
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -616,9 +639,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -626,6 +650,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -691,9 +716,10 @@ Feature: LCE Test Runs for COCO
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -701,6 +727,7 @@ Feature: LCE Test Runs for COCO
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
