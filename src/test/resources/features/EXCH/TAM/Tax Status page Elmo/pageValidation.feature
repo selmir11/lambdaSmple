@@ -491,11 +491,10 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |     SNGL        |           1            |
-#    And I verify the tax return data for "Spouse" in DB// UPDATE other areas as well after TAM-4964 is fixed
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |               |                              |                 |                        |
-    And I verify tax_return_id is "Same" as last ID for "Primary" on the Tax Status Elmo page
+      |   DEPENDENT   |                              |     SNGL        |           1            |
+    And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 6
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
@@ -522,24 +521,24 @@ Feature: Page Validation-Tax Status Elmo Page
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
-#    Step 10 bug TAM-4964
+#    Step 10
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
-#    Then I select "Yes" for will claim dependents question
-#    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
-#    And I enter data for who will be claimed as dependent enter the name question on the Tax Status Elmo page
-#      |First Name|Middle Name|Last Name|Suffix|   DOB  |
-#      |  Anna    |  Marie    |  Bean   |      |02162020|
+    Then I select "Yes" for will claim dependents question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I enter data for who will be claimed as dependent enter the name question on the Tax Status Elmo page
+      |First Name|Middle Name|Last Name|Suffix|   DOB  |
+      |  Anna    |  Marie    |  Bean   |      |02162020|
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 11
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |     SNGL        |           1            |
+      |    FILER      |                              |      QWD        |           1            |
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
-    And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
+    And I verify tax_return_id is "Same" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 12
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
@@ -599,12 +598,10 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |     SNGL        |           1            |
-#    And I verify the tax return data for "Primary" in DB //UPDATE other areas as well after TAM-4964 is fixed
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |               |                              |                 |                        |
-#    And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
-    And I verify tax_return_id is "Same" as last ID for "Spouse" on the Tax Status Elmo page
+      |   DEPENDENT   |                              |     SNGL        |           1            |
+    And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 6
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
@@ -617,7 +614,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
-#    Step 8 bug TAM-4878
+#    Step 8
     Then I select "Yes" for will file tax return question
     Then I select the "Qualified widow(er)" tax filing option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
@@ -631,24 +628,24 @@ Feature: Page Validation-Tax Status Elmo Page
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
-#    Step 10 bug TAM-4964
+#    Step 10
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
-#    Then I select "Yes" for will claim dependents question
-#    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
-#    And I enter data for who will be claimed as dependent enter the name question on the Tax Status Elmo page
-#      |First Name|Middle Name|Last Name|Suffix|   DOB  |
-#      |  Anna    |  Marie    |  Bean   |      |02162020|
+    Then I select "Yes" for will claim dependents question
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I enter data for who will be claimed as dependent enter the name question on the Tax Status Elmo page
+      |First Name|Middle Name|Last Name|Suffix|   DOB  |
+      |  Anna    |  Marie    |  Bean   |      |02162020|
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 11
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |     SNGL        |           1            |
+      |    FILER      |                              |      QWD        |           1            |
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
-    And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
+    And I verify tax_return_id is "Same" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 12
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page

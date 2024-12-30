@@ -8,9 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddInfoForYourselfPage {
     private BasicActions basicActions;
@@ -253,6 +257,7 @@ public class AddInfoForYourselfPage {
         softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
         softAssert.assertAll();
     }
+
     public void verifyTextOnAddInfoForYourselfSpanish() {
         softAssert.assertEquals(hdrAddInfoForYourself.getText(), "Informaci\u00F3n adicional sobre usted" );
         softAssert.assertEquals(AddInfoForYourselfPageText.get(0).getText(), "Ingrese su domicilio particular");
@@ -420,6 +425,33 @@ public class AddInfoForYourselfPage {
         mailingZipcodeInput.sendKeys("1234");
         softAssert.assertEquals(errorMessages.get(10).getText(), "C\u00F3digo postal debe de tener 5 numeros");
         softAssert.assertAll();
+    }
+
+    public void validateCounties(String counties){
+       List<String> expectedCounties = Arrays.asList(counties.split(","));
+        basicActions.waitForElementToBeClickable(countyDropdown, 30);
+        countyDropdown.click();
+        basicActions.waitForElementListToBePresent(countyDropdownOptions, 10);
+        List<String> countyOptionsFromDropdown = countyDropdownOptions.stream().map(WebElement::getText).collect(Collectors.toList());
+        countyOptionsFromDropdown.remove("Select Option");
+        softAssert.assertEquals(new HashSet<>(expectedCounties), new HashSet<>(countyOptionsFromDropdown), "Available county options did not match");
+        softAssert.assertAll();
+    }
+
+    public void updateStateAndZip(String state, String zipcode){
+        basicActions.waitForElementToBePresent(stateDropdown, 30);
+        stateDropdown.click();
+        basicActions.selectValueFromDropdown(stateDropdown, stateDropdownOptions, state);
+
+        basicActions.waitForElementToBePresent(zipcodeInput, 30);
+        Assert.assertTrue(basicActions.clearElementWithRetries(zipcodeInput));
+        zipcodeInput.sendKeys(zipcode);
+    }
+
+    public void validateCountyField(){
+           basicActions.waitForElementToBePresent(countyDropdown, 30);
+           softAssert.assertFalse(countyDropdown.isEnabled(), "Dropdown field is not disabled");
+           softAssert.assertAll();
     }
 
 }

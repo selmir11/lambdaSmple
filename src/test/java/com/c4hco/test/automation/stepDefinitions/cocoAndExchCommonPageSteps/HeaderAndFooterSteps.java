@@ -11,7 +11,6 @@ public class HeaderAndFooterSteps {
     @And("I click on the Colorado Connect or C4 Logo in the {string} Header")
     public void iClickConnectLogoLink(String pageType){ headerAndFooterPage.clickConnectLogoLink(pageType); }
 
-
     @And("I click on Apply for Coverage in the {string} Header")
     public void iClickApplyForCoverageLink(String pageType){ headerAndFooterPage.clickApplyForCoverageLink(pageType); }
 
