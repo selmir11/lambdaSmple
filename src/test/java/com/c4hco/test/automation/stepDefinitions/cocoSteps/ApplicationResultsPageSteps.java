@@ -39,4 +39,25 @@ public class ApplicationResultsPageSteps {
     public void verifyEligiblePlan() {
         applicationResultsCoCoPage.verifyEligibleplans();
     }
+
+    @Then("I validate that {string} results are displayed")
+    public void validateResultsForYr(String year){
+        applicationResultsCoCoPage.validateResultsOfYr(year);
+    }
+
+    @Then("I validate the text on the application results page coco")
+    public void validateText(){
+        applicationResultsCoCoPage.validateTextOnPage();
+    }
+
+    @Then("I validate eligible members list")
+    public void validateEligibleMembers(){
+        applicationResultsCoCoPage.validateEligibleMembers();
+    }
+
+    @Then("I validate the Application Results page text in {string} when no application is submitted")
+    public void validateTextWithoutApplication(String language){
+        applicationResultsCoCoPage.validatePageTextWithoutApplication(language);
+    }
+
 }

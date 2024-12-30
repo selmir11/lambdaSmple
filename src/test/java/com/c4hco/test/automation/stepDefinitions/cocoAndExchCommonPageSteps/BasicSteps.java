@@ -91,6 +91,9 @@ public class BasicSteps {
             case "Create Account":
                 pageUrl = "createAccount";
                 break;
+            case "Associated Brokers":
+            pageUrl = "associated-brokers";
+            break;
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
                 break;
@@ -412,6 +415,18 @@ public class BasicSteps {
             case "LUGY Find expert help":
                 pageUrl = "broker-portal/find-expert-help";
                 break;
+            case "LUGY Family Details":
+            pageUrl = "nes/letUsGuideYou/familyDetails";
+            break;
+            case "LUGY Family Income":
+            pageUrl = "nes/letUsGuideYou/familyIncome";
+            break;
+            case "LUGY Prescreener Result":
+            pageUrl = "nes/letUsGuideYou/prescreenerResult";
+            break;
+            case "LUGY":
+            pageUrl = "nes/letUsGuideYou/household";
+            break;
             case "Agency dashboard":
                 pageUrl = "AdminPortal/agency";
                 break;
@@ -722,4 +737,7 @@ public class BasicSteps {
     public void iSetMemberRelationToSubscriber(List<String> Relations) {
         basicActions.setRelationToSubscriber(Relations);
     }
+
+    @And("I verify the page is scrolled to the top")
+    public void iPageAtTop() {basicActions.pageAtTop();}
 }

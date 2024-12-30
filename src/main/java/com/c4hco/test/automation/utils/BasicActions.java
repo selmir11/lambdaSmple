@@ -25,6 +25,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class BasicActions {
     private WebDriver driver;
 
@@ -236,7 +238,7 @@ public class BasicActions {
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 webElement.click();
                 return true;
-            } catch (ElementClickInterceptedException e) {
+            } catch (ElementClickInterceptedException|NoSuchElementException e) {
                 retries--;
                 Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
@@ -1054,6 +1056,62 @@ public class BasicActions {
     public int getAge(String dob){
         dob = changeDateFormat(dob, "MMddyyyy", "MM/dd/yyyy");
         return Period.between(LocalDate.parse(dob, DateTimeFormatter.ofPattern("MM/dd/yyyy")), LocalDate.now()).getYears();
+    }
+
+    public String formatPhNum(String number){
+        // inputFormat - 1234567890 outputFormat - 123-456-7890
+        return number.substring(0, 3) + "-" +
+                number.substring(3, 6) + "-" +
+                number.substring(6);
+    }
+
+    public String formatDob(String dob) {
+        // inputFormat - MMddyyyy outputFormat - yyyy-MM-dd
+        String formattedDob = "";
+        try{
+            formattedDob = new SimpleDateFormat("yyyy-MM-dd")
+                    .format(new SimpleDateFormat("MMddyyyy").parse(dob));
+        } catch(ParseException e){
+            Assert.fail();
+        }
+        return formattedDob;
+    }
+
+    public static boolean isPageAtTop(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Long scrollPosition = (Long) js.executeScript("return window.scrollY;");
+        System.out.println("Scroll position is "+scrollPosition);
+        return scrollPosition <= 60;
+    }
+
+    public void pageAtTop() {
+        wait(50);
+        assertTrue("The page is not at the top.", isPageAtTop(driver));
+        System.out.println("The page is at the top.");
+    }
+
+    public Boolean clearElementWithRetries(WebElement webElement) {
+        Boolean isCleared = false;
+        try{
+            for (int i = 0; i < 5; i++) {
+                webElement.click();
+                webElement.clear();
+                wait(2000);
+                webElement.clear();
+                // Use JavaScriptExecutor to clear the field
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].value = '';", webElement);
+
+                if (webElement.getAttribute("value").isEmpty()) {
+                    isCleared = true;
+                    break; // Exit if the field is cleared
+                }
+                Thread.sleep(200); // Wait before retrying
+            }
+        } catch (InterruptedException e){
+            Assert.fail();
+        }
+        return isCleared;
     }
 
 }

@@ -51,6 +51,12 @@ public class DbSteps {
         dbValidations.validateMemberCSRNonAIANData();
     }
 
+    @And("I verify the application result details in DB for {string}")
+    public void iVerifyApplicationResult(String eligibilityStatus) {
+        dbValidations.validateApplicationResult(eligibilityStatus);
+    }
+
+
     @And("I verify the client's updated email address in BoB DB")
     public void iVerifyUpdatedEmailAddressBOBDB() {
         dbValidations.verifyUpdatedEmailAddressBOB();
@@ -209,6 +215,21 @@ public class DbSteps {
     @Then("I validate member id of all members")
     public void validateMemberId() {
         dbValidations.validateMemIds();
+    }
+
+    @Then("I validate the data entered on tell us about yourself page is saved in DB")
+    public void validateAbtUrslfDataInDb(){
+        dbValidations.validateTellUsAbtUrslfDetails();
+    }
+
+    @Then("I validate the application id from the db")
+    public void validateApplicationId(){
+        dbValidations.validateApplicationId();
+    }
+
+    @Then("I validate that applications id's are different for current and next year")
+    public void validateApplicationIds(){
+        dbValidations.validateApplicationIds();
     }
 
 }
