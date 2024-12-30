@@ -22,7 +22,7 @@ public class ApplicationResultsCoCoPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    
+
     @FindBy(xpath = "//span[@class = 'push']")
     public WebElement continueButton;
 
