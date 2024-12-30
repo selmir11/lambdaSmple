@@ -344,6 +344,40 @@ Feature: LCE Test Runs for COCO
     And I select continue on the income Summary CoCo page
 
     Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
+    And I click save and continue on the Race and Ethnicity page
+
+    And I select "Yes" employment option
+    And I enter "10,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
@@ -359,7 +393,7 @@ Feature: LCE Test Runs for COCO
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -448,6 +482,7 @@ Feature: LCE Test Runs for COCO
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-657
+    # This will only pass in Closed Enrollment or if the ernollee had previously had another participant who then died.
   Scenario: SLCR-657 - COCO LCE Death test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -494,6 +529,39 @@ Feature: LCE Test Runs for COCO
     And I select continue on the income Summary CoCo page
 
     Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
+    And I click save and continue on the Race and Ethnicity page
+
+    And I select "Yes" employment option
+    And I enter "10,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
@@ -509,7 +577,7 @@ Feature: LCE Test Runs for COCO
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
