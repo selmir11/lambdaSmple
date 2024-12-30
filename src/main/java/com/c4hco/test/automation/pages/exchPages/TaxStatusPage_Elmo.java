@@ -97,9 +97,6 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-taxFilingStatus-container .row.error-row span")
     WebElement filingStatusErrorTxt;
 
-    @FindBy(css = "#ELIG-taxStatus-taxFilingStatus-help")
-    WebElement filingStatusHelp;
-
     @FindBy(css = "#ELIG-taxStatus-taxFilingStatus")
     WebElement filingStatusDpdTxt;
 
@@ -109,11 +106,17 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = "#ELIG-taxStatus-exceptional-container label")
     WebElement exceptionalCircumstancesTxt;
 
+    @FindBy(css = "#ELIG-taxStatus-exceptional-help")
+    WebElement exceptionalCircumstancesHlpIcon;
+
     @FindBy(css = "#ELIG-taxStatus-willClaimDependents-container span")
     WebElement willClaimDependentsTxt;
 
     @FindBy(css = "#ELIG-taxStatus-willClaimDependents-container .row.error-row span")
     WebElement willClaimDependentsErrorTxt;
+
+    @FindBy(css = "#ELIG-taxStatus-willClaimDependents-help")
+    WebElement claimingDependentHlpIcon;
 
     @FindBy(id = "ELIG-taxStatus-willClaimDependents-yesButton")
     WebElement willClaimDependentsYes;
@@ -289,6 +292,27 @@ public class TaxStatusPage_Elmo {
     @FindBy(id = "ELIG-taxStatus-nav-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
+    @FindBy(css = ".drawer-controls lib-button")
+    WebElement sideHelpBtn;
+
+    @FindBy(css = ".drawer-heading div")
+    WebElement helpHdr;
+
+    @FindBy(css = ".drawer-heading h3")
+    WebElement helpSubHdr;
+
+    @FindBy(css = ".drawer-text-content strong")
+    List<WebElement> helpContentHdr;
+
+    @FindBy(css = ".drawer-text-content p")
+    List<WebElement> helpContentTxt;
+
+    @FindBy(css = ".drawer-footer > h3")
+    WebElement helpFooterTxt;
+
+    @FindBy(css = ".drawer-footer > h3 a")
+    WebElement helpFooterLnk;
+
     public void selectClaimedAsDependent(String claimedAsDependent){
         switch (claimedAsDependent) {
             case "Yes":
@@ -456,6 +480,38 @@ public class TaxStatusPage_Elmo {
             dateValue = basicActions.getDateBasedOnRequirement(dobDate);
         }
         dobInput.sendKeys(dateValue);
+    }
+
+    public void clickHelp(String helpBtn) {
+        switch (helpBtn){
+            case "Header":
+                basicActions.waitForElementToBePresent(helpTaxStatusHeader,10);
+                helpTaxStatusHeader.click();
+                break;
+            case "Side":
+                basicActions.waitForElementToBePresent(sideHelpBtn,10);
+                sideHelpBtn.click();
+                break;
+            case "Claimed as Dependent":
+                basicActions.waitForElementToBePresent(claimedAsDependentHlpIcon,10);
+                claimedAsDependentHlpIcon.click();
+                break;
+            case "Exceptional Circumstances":
+                basicActions.waitForElementToBePresent(exceptionalCircumstancesHlpIcon,10);
+                exceptionalCircumstancesHlpIcon.click();
+                break;
+            case "Claiming Dependent":
+                basicActions.waitForElementToBePresent(claimingDependentHlpIcon,10);
+                claimingDependentHlpIcon.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + helpBtn);
+        }
+    }
+
+    public void clickHelpContactUs() {
+        basicActions.waitForElementToBePresent(helpFooterLnk,10);
+        helpFooterLnk.click();
     }
 
 
@@ -906,11 +962,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
+                } else {
                     softAssert.assertEquals(claimDobNameTxt.getText(), "Date of birth");
-//                } else {
-//                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
-//                }
+                }
                 softAssert.assertAll();
                 break;
             default:
@@ -1156,7 +1212,6 @@ public class TaxStatusPage_Elmo {
         switch (language) {
             case "English":
                 softAssert.assertEquals(filingStatusTxt.getText(), "Select tax filing status");
-                softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
                 softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Select Option");
                 softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Married filing jointly");
                 softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Married filing separately");
@@ -1164,10 +1219,10 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Qualified widow(er) with dependent(s)");
                 softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Single");
                 softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Exceptional circumstances?");
+                softAssert.assertTrue(exceptionalCircumstancesHlpIcon.getAttribute("class").contains("help-icon"), "Found "+exceptionalCircumstancesHlpIcon.getAttribute("class"));
                 break;
             case "Spanish":
                 softAssert.assertEquals(filingStatusTxt.getText(), "Seleccione su estatus de declaraci\u00F3n de impuestos");
-                softAssert.assertTrue(filingStatusHelp.getAttribute("class").contains("help-icon"), "Found "+filingStatusHelp.getAttribute("class"));
                 softAssert.assertEquals(filingStatusDpd.get(0).getText(), "Seleccione");
                 softAssert.assertEquals(filingStatusDpd.get(1).getText(), "Casados que declaran juntos");
                 softAssert.assertEquals(filingStatusDpd.get(2).getText(), "Casados que declaran por separado");
@@ -1175,6 +1230,7 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(filingStatusDpd.get(4).getText(), "Soltero/a");
                 softAssert.assertEquals(filingStatusDpd.get(5).getText(), "Viudo/a calificado con dependiente");
                 softAssert.assertEquals(exceptionalCircumstancesTxt.getText(), "Circunstancias excepcionales");
+                softAssert.assertTrue(exceptionalCircumstancesHlpIcon.getAttribute("class").contains("help-icon"), "Found "+exceptionalCircumstancesHlpIcon.getAttribute("class"));
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
@@ -1414,11 +1470,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(filingLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(filingSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(filingSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
+                } else {
                     softAssert.assertEquals(filingDobNameTxt.getText(), "Date of birth");
-//                } else {
-//                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
-//                }
+                }
                 softAssert.assertAll();
                 break;
             default:
@@ -1569,6 +1625,7 @@ public class TaxStatusPage_Elmo {
         softAssert.assertEquals(willClaimDependentsTxt.getCssValue("font-size"), "16px","Question Text is not as expected");
         softAssert.assertEquals(willClaimDependentsTxt.getCssValue("color"), "rgba(150, 0, 0, 1)","Question Text is not as expected");
         softAssert.assertEquals(willClaimDependentsTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif","Question Text is not as expected");
+        softAssert.assertTrue(claimingDependentHlpIcon.getAttribute("class").contains("help-icon"), "Found "+claimingDependentHlpIcon.getAttribute("class"));
         softAssert.assertEquals(willClaimDependentsErrorTxt.getText(), errorTxt);
         softAssert.assertEquals(willClaimDependentsErrorTxt.getCssValue("font-weight"), "400","Error Text is not as expected");
         softAssert.assertEquals(willClaimDependentsErrorTxt.getCssValue("font-size"), "14px","Error Text is not as expected");
@@ -1714,11 +1771,11 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimedLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimedSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimedSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-//                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
+                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
+                } else {
                     softAssert.assertEquals(claimedDobNameTxt.getText(), "Date of birth");
-//                } else {
-//                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
-//                }
+                }
                 softAssert.assertAll();
                 break;
             default:
@@ -1968,6 +2025,105 @@ public class TaxStatusPage_Elmo {
         softAssert.assertFalse(basicActions.waitForElementPresence(englishErrorTxt,10));
         softAssert.assertFalse(basicActions.waitForElementPresence(spanishErrorTxt,10));
         softAssert.assertFalse(basicActions.waitForElementPresence(someoneElseErrorTxt,10));
+        softAssert.assertAll();
+    }
+
+    public void verifyHelpDrawerTxt(String helpTxt) {
+        switch (helpTxt) {
+            case "Full:English":
+                verifyHelpDrawerTxtEnglish();
+                break;
+            case "Full:Spanish":
+                verifyHelpDrawerTxtSpanish();
+                break;
+            case "Claim:English":
+                verifyHelpDrawerClaimedTxtEnglish();
+                break;
+            case "Claim:Spanish":
+                verifyHelpDrawerClaimedTxtSpanish();
+                break;
+            case "Exceptional Circumstances:English":
+                verifyHelpDrawerExceptionalTxtEnglish();
+                break;
+            case "Exceptional Circumstances:Spanish":
+                verifyHelpDrawerExceptionalTxtSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + helpTxt);
+        }
+    }
+
+    public void verifyHelpDrawerTxtEnglish() {
+        basicActions.waitForElementToBePresent(helpHdr,10);
+        softAssert.assertEquals(helpHdr.getText(), "Help");
+        softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
+        softAssert.assertEquals(helpContentHdr.get(0).getText(), "Overview");
+        softAssert.assertEquals(helpContentTxt.get(0).getText(), "You are only eligible for help paying for health insurance if you file a federal tax return.");
+        softAssert.assertEquals(helpContentHdr.get(1).getText(), "Dependents");
+        softAssert.assertEquals(helpContentTxt.get(1).getText(), "Dependents are children or any others this person is responsible for taking care of financially.");
+        softAssert.assertEquals(helpContentHdr.get(2).getText(), "Exceptional Circumstances");
+        softAssert.assertEquals(helpContentTxt.get(2).getText(), "If you have been a victim of domestic violence, are still married to the perpetrator, and unable to file a joint tax return, please select 'Married Filing Separately' as your tax filing status and check the 'Exceptional circumstances' box.");
+        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpFooterLnk.getText(), "Contact us");
+        softAssert.assertAll();
+    }
+
+    public void verifyHelpDrawerTxtSpanish() {
+        basicActions.waitForElementToBePresent(helpHdr,10);
+        softAssert.assertEquals(helpHdr.getText(), "Ayuda");
+        softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
+        softAssert.assertEquals(helpContentHdr.get(0).getText(), "Resumen");
+        softAssert.assertEquals(helpContentTxt.get(0).getText(), "Tendr\u00E1 derecho a ayuda para pagar el seguro de salud solamente si presenta declaraci\u00F3n de impuestos federal.");
+        softAssert.assertEquals(helpContentHdr.get(1).getText(), "Dependientes");
+        softAssert.assertEquals(helpContentTxt.get(1).getText(), "Los dependientes son hijos u otros individuos que la persona tenga a su cargo en cuesti\u00F3n financiera.");
+        softAssert.assertEquals(helpContentHdr.get(2).getText(), "Circunstancias excepcionales");
+        softAssert.assertEquals(helpContentTxt.get(2).getText(), "Si ha sido v\u00EDctima de violencia dom\u00E9stica, sigue casado con la persona que ejerce violencia y no puede presentar una declaraci\u00F3n conjunta de impuestos, seleccione \"Married Filing Separately\" (Casado que declara por separado) como su estatus de declaraci\u00F3n de impuestos y marque la casilla \"Exceptional circumstances\" (Circunstancias excepcionales).");
+        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpFooterLnk.getText(), "Cont\u00E1ctenos");
+        softAssert.assertAll();
+    }
+
+    public void verifyHelpDrawerClaimedTxtEnglish() {
+        basicActions.waitForElementToBePresent(helpHdr,10);
+        softAssert.assertEquals(helpHdr.getText(), "Help");
+        softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
+        softAssert.assertEquals(helpContentHdr.get(0).getText(), "Dependents");
+        softAssert.assertEquals(helpContentTxt.get(0).getText(), "Dependents are children or any others this person is responsible for taking care of financially.");
+        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpFooterLnk.getText(), "Contact us");
+        softAssert.assertAll();
+    }
+
+    public void verifyHelpDrawerClaimedTxtSpanish() {
+        basicActions.waitForElementToBePresent(helpHdr,10);
+        softAssert.assertEquals(helpHdr.getText(), "Ayuda");
+        softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
+        softAssert.assertEquals(helpContentHdr.get(0).getText(), "Dependientes");
+        softAssert.assertEquals(helpContentTxt.get(0).getText(), "Los dependientes son hijos u otros individuos que la persona tenga a su cargo en cuesti\u00F3n financiera.");
+        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpFooterLnk.getText(), "Cont\u00E1ctenos");
+        softAssert.assertAll();
+    }
+
+    public void verifyHelpDrawerExceptionalTxtEnglish() {
+        basicActions.waitForElementToBePresent(helpHdr,10);
+        softAssert.assertEquals(helpHdr.getText(), "Help");
+        softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
+        softAssert.assertEquals(helpContentHdr.get(0).getText(), "Exceptional Circumstances");
+        softAssert.assertEquals(helpContentTxt.get(0).getText(), "If you have been a victim of domestic violence, are still married to the perpetrator, and unable to file a joint tax return, please select 'Married Filing Separately' as your tax filing status and check the 'Exceptional circumstances' box.");
+        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpFooterLnk.getText(), "Contact us");
+        softAssert.assertAll();
+    }
+
+    public void verifyHelpDrawerExceptionalTxtSpanish() {
+        basicActions.waitForElementToBePresent(helpHdr,10);
+        softAssert.assertEquals(helpHdr.getText(), "Ayuda");
+        softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
+        softAssert.assertEquals(helpContentHdr.get(0).getText(), "Circunstancias excepcionales");
+        softAssert.assertEquals(helpContentTxt.get(0).getText(), "Si ha sido v\u00EDctima de violencia dom\u00E9stica, sigue casado con la persona que ejerce violencia y no puede presentar una declaraci\u00F3n conjunta de impuestos, seleccione \"Married Filing Separately\" (Casado que declara por separado) como su estatus de declaraci\u00F3n de impuestos y marque la casilla \"Exceptional circumstances\" (Circunstancias excepcionales).");
+        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpFooterLnk.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
