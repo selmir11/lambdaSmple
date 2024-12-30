@@ -208,6 +208,18 @@ public class ApplicationDetailsPdf {
             endingDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM-dd-yyyy", "MM/dd/yyyy");
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
             endingDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy");
+        } else if (endDate.startsWith("Future Day:")) {
+            String[] parts = endDate.split(":");
+            if (parts.length != 2) {
+                throw new IllegalArgumentException("Invalid format for Future Day: " + endDate);
+            }
+            int daysInFuture;
+            try {
+                daysInFuture = Integer.parseInt(parts[1]);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Invalid number of days for Future Day: " + parts[1], e);
+            }
+            endingDate = basicActions.getFutureDate(daysInFuture);
         } else {
             System.out.println("Invalid option: " + endDate);
         }
