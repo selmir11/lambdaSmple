@@ -249,6 +249,7 @@ public class DbValidations {
                 break;
             case "QLCE":
                 expReasonCode = "GAIN_DEP_QLCE";
+                break;
             default:
                 Assert.fail("Expected Reason Code is not valid");
         }
