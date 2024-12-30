@@ -425,8 +425,8 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("member_id", exchDbQueries.memberIdQuery(householdId));
     }
 
-    public String getReasonCode(String memberId) {
-        return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId));
+    public String getReasonCode(String memberId, String expectedReasonCode) {
+        return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId, expectedReasonCode));
     }
 
     public String[] getDentalPolicyDate() {
