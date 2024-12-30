@@ -23,7 +23,7 @@ public class ApplicationResultsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(xpath = "//span[@class = 'push']")
+    @FindBy(css = "#ELIG-MemberPlanInfo-SaveAndContinue")
     public WebElement continueButton;
 
     @FindBy(id = "ELIG-NoApplication-BackToWelcomePage")
