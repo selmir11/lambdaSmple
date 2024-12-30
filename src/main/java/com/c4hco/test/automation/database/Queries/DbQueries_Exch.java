@@ -326,6 +326,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and pmc.account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'";
     }
 
+    public String esMemberWithMemberId(String memId){
+        return "select * from "+dbName+".es_member em\n"+
+                "where member_id = '"+memId+"'";
+    }
+
     public String getEmailStored() {
         return "select * from " + dbName + ".es_household p\n" +
                 "join " + dbName + ".es_household_contact m on m.household_id=p.household_id\n" +
@@ -595,6 +600,17 @@ public String policyTablesCombinedQuery(String coverageType){
     public String getMemberId(String memFname){
         return "select member_id from "+dbName+".es_member\n" +
                 "where first_name = '"+memFname+"'";
+    }
+
+    public String geApplicationId(String householId){
+        return "select application_id from "+dbName+".es_application\n" +
+                "where household_id  = '"+householId+"'\n"+
+                "and plan_year = '"+SharedData.getPlanYear()+"'";
+    }
+
+    public String geAllApplicationIds(String householId){
+        return "select application_id from "+dbName+".es_application\n" +
+                "where household_id  = '"+householId+"'";
     }
 
 }

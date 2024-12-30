@@ -79,7 +79,7 @@ public class DetailedEDIPage {
     public void verifyEDIData() {
         basicActions.waitForElementListToBePresent(outboundData, 5000);
         if (SharedData.getEnv().equals("staging")) {
-            String[] expectedData = {"KPCONNECTOR", "834_KPCONNECTOR_I_2023112814087678_100003081_P_O", "8335642700", "2023-11-28 14:08:34.795595", "ADD", "021", "3726202010", "1", "2", "4207904816", "18", "4207904816", "N", "21032CO041006701", "20240101", "20241231", "20240101", "N", "3", "344.45", "0.00", "606.90", "606.90", "0.00", "Evile", "Scott", "456434564", "19981205", "M", "sevile@testing.com", "4564135646", "4564135646", "123 Eve Ave", "", "Denver", "CO", "80202", "08031", "", "", "", "", "", "", "", "", "Scott Evile", "456434564", "", "", "", "", "", "", "", "", "", "", "100003081", "N", "", "", "", "EDI_COMPLETE"};
+            String[] expectedData = {"KPCONNECTOR", "834_KPCONNECTOR_I_2024112217546379_100006682_P_O", "8335642700", "2024-11-22 14:13:34.69265", "ADD", "021", "3543302020", "1", "2", "4207904816", "18", "4207904816", "N", "21032CO041006701", "20250101", "20251231", "20250101", "N", "3", "377.79", "0.00", "660.03", "660.03", "0.00", "Evile", "Scott", "456434564", "19981205", "M", "sevile@testing.com", "4564135646", "4564135646", "123 Eve Ave", "", "Denver", "CO", "80202", "08031", "", "", "", "", "", "", "", "", "Scott Evile", "456434564", "", "", "", "", "", "", "", "", "", "", "100006682", "N", "", "", "", "EDI_COMPLETE"};
             for (int i = 0; i < outboundData.size(); i++) {
                 String actualHeader = outboundData.get(i).getText();
                 if (!actualHeader.equals(expectedData[i])) {

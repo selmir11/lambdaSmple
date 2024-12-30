@@ -2,22 +2,22 @@ Feature: Coco user on the Application results page
 
     Background: I go the login portal
     Given I open the login page on the "login" portal
-#Scenario1
+      Given I open the login page on the "login" portal
+      And I validate I am on the "Login" page
+      When I click create a new account on login page
+      Then I click create my account from pre-screen page
+      And I enter general mandatory data for "coco" account creation
+      Then I validate I am on the "Login" page
+      And I enter valid credentials to login
+      Then I click continue signing in on the CAC Screener page
+      And I apply for the current year in CoCo
+      Then I validate I am on the "Find Expert Help" page
+      And I click Continue on my own button from Manage who helps you page
+      Then I validate I am on the "CoCo Family Overview" page
+      Then I click EditUpdate on Family Overview page for "Primary"
+
   @SLCR-650
   Scenario: ELIG-As a Coco user on the Application results page, I need to navigate to a specific shopping page based on my age so that I know which page is available to me[CCRT-55]
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
-    And I apply for the current year in CoCo
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
@@ -63,23 +63,8 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
-#Scenario2
-
   @SLCR-650
   Scenario: ELIG-Member in the household that is applying for health insurance is over the age of 21
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
-    And I apply for the current year in CoCo
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11281995", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option

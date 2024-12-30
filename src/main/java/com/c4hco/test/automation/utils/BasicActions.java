@@ -5,7 +5,6 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
@@ -239,7 +238,7 @@ public class BasicActions {
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 webElement.click();
                 return true;
-            } catch (ElementClickInterceptedException e) {
+            } catch (ElementClickInterceptedException|NoSuchElementException e) {
                 retries--;
                 Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
@@ -1066,6 +1065,18 @@ public class BasicActions {
                 number.substring(6);
     }
 
+    public String formatDob(String dob) {
+        // inputFormat - MMddyyyy outputFormat - yyyy-MM-dd
+        String formattedDob = "";
+        try{
+            formattedDob = new SimpleDateFormat("yyyy-MM-dd")
+                    .format(new SimpleDateFormat("MMddyyyy").parse(dob));
+        } catch(ParseException e){
+            Assert.fail();
+        }
+        return formattedDob;
+    }
+
     public static boolean isPageAtTop(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Long scrollPosition = (Long) js.executeScript("return window.scrollY;");
@@ -1077,6 +1088,30 @@ public class BasicActions {
         wait(50);
         assertTrue("The page is not at the top.", isPageAtTop(driver));
         System.out.println("The page is at the top.");
+    }
+
+    public Boolean clearElementWithRetries(WebElement webElement) {
+        Boolean isCleared = false;
+        try{
+            for (int i = 0; i < 5; i++) {
+                webElement.click();
+                webElement.clear();
+                wait(2000);
+                webElement.clear();
+                // Use JavaScriptExecutor to clear the field
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].value = '';", webElement);
+
+                if (webElement.getAttribute("value").isEmpty()) {
+                    isCleared = true;
+                    break; // Exit if the field is cleared
+                }
+                Thread.sleep(200); // Wait before retrying
+            }
+        } catch (InterruptedException e){
+            Assert.fail();
+        }
+        return isCleared;
     }
 
 }
