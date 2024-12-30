@@ -239,10 +239,23 @@ public class DbValidations {
 
     public void validateApplicationResult(String expectedReasonCode) {
         SoftAssert softAssert = new SoftAssert();
+        String expReasonCode = null;
+        switch (expectedReasonCode) {
+            case "OFF_EXCHANGE_ELIGIBLE":
+                expReasonCode= "OFFEXCH";
+                break;
+            case "ELIGIBLE_FOR_HP2_LIMITED":
+                expReasonCode = "HP2";
+                break;
+            case "QLCE":
+                expReasonCode = "GAIN_DEP_QLCE";
+            default:
+                Assert.fail("Expected Reason Code is not valid");
+        }
 
         String householdID = exchDbDataProvider.getHouseholdID();
         String memberID = exchDbDataProvider.getMemberID(householdID);
-        String reasonCode = exchDbDataProvider.getReasonCode(memberID);
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode );
 
         System.out.println("Household ID: " + householdID);
         System.out.println("Member ID: " + memberID);

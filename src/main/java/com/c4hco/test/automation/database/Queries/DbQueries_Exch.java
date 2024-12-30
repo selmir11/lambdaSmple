@@ -414,10 +414,10 @@ public String policyTablesCombinedQuery(String coverageType){
                 "AND household_contact = 1";
     }
 
-    public String reasonCodeQuery(String memberId) {
+    public String reasonCodeQuery(String memberId, String determination) {
         return "SELECT reason_code " +
                 "FROM " + dbName + ".es_member_rules_result " +
-                "WHERE eligibility_type = 'OFFEXCH' " +
+                "WHERE determination = '"+determination+"' " +
                 "AND member_id = " + memberId;
     }
 
