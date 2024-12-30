@@ -282,8 +282,8 @@ Feature: Coco user on the Application results page
     And I verify the application result details in DB for "OFF_EXCHANGE_ELIGIBLE"
     And I verify the application result details in DB for "ELIGIBLE_FOR_HP2_LIMITED"
 
-    @SLCR-559
-    Scenario: Scenario 1- ELIG-NVO Validate 2025 SES Reached limit with no LCE during SES limited/ 2025 SES eligible during open enrollment
+  @SLCR-682
+  Scenario: Scenario 1- ELIG-NVO Validate 2025 SES Reached limit with no LCE during SES limited/ 2025 SES eligible during open enrollment
       And I apply for the current year in CoCo
       Then I validate I am on the "Find Expert Help" page
       And I click Continue on my own button from Manage who helps you page
@@ -323,6 +323,7 @@ Feature: Coco user on the Application results page
       #DB STEP
       And I verify the application result details in DB for "ELIGIBLE_FOR_HP2_LIMITED"
 
+  @SLCR-682
   Scenario: scenario 2- User submits 2025 application with no LCE during open and able to shop
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -371,7 +372,8 @@ Feature: Coco user on the Application results page
 
     Then I validate I am on the "Medical Plan Results" page
 
-    Scenario: scenario 3 - User submits 2025 application with LCE during OE and able to shop
+  @SLCR-682
+  Scenario: scenario 3 - User submits 2025 application with LCE during OE and able to shop
       And I apply for the current year in CoCo
       Then I validate I am on the "Find Expert Help" page
       And I click Continue on my own button from Manage who helps you page
@@ -419,7 +421,7 @@ Feature: Coco user on the Application results page
       #DB STEP
       And I verify the application result details in DB for "ELIGIBLE_FOR_HP2_LIMITED"
 
-      #    Scenario: scenario 4 - User submits 2025 application with LCE during SES limited  -(SHOULD BE DONE WHEN SES PLANS ARE AVAILABLE) WIP
+      #    @SLCR-682 Scenario: scenario 4 - User submits 2025 application with LCE during SES limited  -(SHOULD BE DONE WHEN SES PLANS ARE AVAILABLE) WIP
 
 
 
