@@ -427,6 +427,9 @@ public class BasicSteps {
             case "LUGY":
             pageUrl = "nes/letUsGuideYou/household";
             break;
+            case "PEAK skeleton error message":
+                pageUrl = "login-portal/peak-login-failed";
+                break;
             case "Agency dashboard":
                 pageUrl = "AdminPortal/agency";
                 break;

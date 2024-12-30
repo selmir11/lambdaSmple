@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.*;
 
 public class ApplicationDetailsPdf {
-    private static BasicActions basicActions;
+    private static BasicActions basicActions = new BasicActions();
 
     public ApplicationDetailsPdf(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
@@ -198,6 +198,54 @@ public class ApplicationDetailsPdf {
         }
         return memberFName + " " + memberLName;
         }
+
+    public static String getBasicApplicationDetails(String coverageType, String currentlyEnrolled, String insuranceEnding, String endDate, String voluntarilyEnding) {
+        String endingDate = "";
+
+        if (endDate == null || endDate.trim().isEmpty()) {
+            endingDate = "No end date provided";
+        } else if ("Today".equalsIgnoreCase(endDate)) {
+            endingDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM-dd-yyyy", "MM/dd/yyyy");
+        } else if ("Current Month".equalsIgnoreCase(endDate)) {
+            endingDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy");
+        } else {
+            System.out.println("Invalid option: " + endDate);
+        }
+
+        return String.format("Other Health Coverage\n" +
+                SharedData.getPrimaryMember().getFullName() + "\n" +
+                coverageType + "\n" +
+                "Currently enrolled " + currentlyEnrolled + "\n" +
+                "Insurance ending in next 60 days " + insuranceEnding + "\n" )+
+                (insuranceEnding.equals("Yes") ?
+                        "End date " + endingDate + "\n" +
+                        "Voluntarily ending insurance " + voluntarilyEnding + "\n" : "");
+    }
+
+    public static String getBasicApplicationDetailsSp(String coverageType, String currentlyEnrolled, String insuranceEnding, String endDate, String voluntarilyEnding) {
+        String endingDate = "";
+
+        if ("Today".equalsIgnoreCase(insuranceEnding)) {
+            endingDate = basicActions.getTodayDate();
+        } else if ("Current Month".equalsIgnoreCase(insuranceEnding)) {
+            endingDate = basicActions.lastDateOfCurrMonth();
+        } else {
+            System.out.println("Invalid option: " + insuranceEnding);
+        }
+        return String.format("Other Health Coverage\n" +
+                SharedData.getPrimaryMember().getFullName() + "\n" +
+                "Employer Sponsored Insurance\n" +
+                "Job " + SharedData.getPrimaryMember().getEmployerName() + "\n" );//+
+//                "Minimum Value Standard " + minValue + "\n" +
+//                "Lowest-Cost Monthly Individual\n" +
+//                "Premium Amount " + premium + "\n" +
+//                "Currently enrolled " + enrolled + "\n" +
+//                (insruanceEnding.equals("Insurance ending") ?
+//                        "Insurance ending in next 60 days " + ending + "\n" +
+//                                (lastSet.equals("Voluntarily ending") ?
+//                                        "End date " + endingDate + "\n" +
+//                                                "Voluntarily ending insurance " + voluntarily + "\n" : "") : ""));
+    }
 
 
 

@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 
 import java.util.List;
 import java.io.IOException;
+import java.util.Map;
 
 public class ApplicationDetailsPageSteps {
 
@@ -41,6 +42,9 @@ public class ApplicationDetailsPageSteps {
 
     @Then("I verify PDF OHC data for family with Family offered {string} and Premium {string}")
     public void iVerifyOhcPdfFamilyText(String offered, String premium, DataTable familyOptionTable) throws IOException {List<String> familyOption = familyOptionTable.asList(String.class);applicationDetailsPage.verifyOhcPdfFamilyText(offered, premium, familyOption);}
+
+    @Then("I validate basic PDF OHC data on Application Details in {string}")
+    public void iVerifyBasicOhcPdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationDetailsPage.verifyBasicOhcPdfText(language, pdfData);}
 
 
 
