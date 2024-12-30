@@ -1,6 +1,6 @@
 Feature: Seed03 based on open enrollment - Exchange
 
-  Scenario: Seed 03 For Exchange OE - Husband + Wife Both Smokers with Broker - NFA
+  Background: Seed 03 For Exchange OE - Husband + Wife Both Smokers with Broker - NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 2            | 1                 | 1                | 2               |
@@ -137,3 +137,38 @@ Feature: Seed03 based on open enrollment - Exchange
 #    And I download the medical and dental files from sftp server with location "/outboundedi/"
 #    And I validate the ob834 "medical" file data
 #    And I validate the ob834 "dental" file data
+
+
+  @SLER-1835-OE_WIP
+  Scenario: RT-2250 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - GENDER & RACE
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Female" as sex option
+    Then I select "No" as pregnancy option
+    Then I select "Spouse" as new Relationship
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I select "White or European" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"

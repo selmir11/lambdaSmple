@@ -133,6 +133,7 @@ Feature: Seed03 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
@@ -142,17 +143,50 @@ Feature: Seed03 - Exchange
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
-
-
     And I click on Sign Out in the Header for "Elmo"
-
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    
+
+
+  @SLER-1835-WIP
+  Scenario: RT-2250 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - GENDER & RACE
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Female" as sex option
+    Then I select "No" as pregnancy option
+    Then I select "Spouse" as new Relationship
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I select "White or European" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"

@@ -1,6 +1,6 @@
 Feature: Seed06 based on open enrollment - Exchange
 
-  Scenario: Seed 06 For Exchange OE - Family of Four - FA
+  Background: Seed 06 For Exchange OE - Family of Four - FA
 #    Given I set the test scenario details
 #      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
 #      | 1           | 4            | 1                 | 3                | 4               |
@@ -189,6 +189,7 @@ Feature: Seed06 based on open enrollment - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
@@ -238,3 +239,23 @@ Feature: Seed06 based on open enrollment - Exchange
 #    And I download the medical and dental files from sftp server with location "/outboundedi/"
 #    And I validate the ob834 "medical" file data
 #    And I validate the ob834 "dental" file data
+
+
+  @SLER-1834-OE_WIP
+  Scenario: RT-2306 ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS - ADMIN OBO
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    And I initiate incoming page
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I click on "Cancel 2025 Dental Plan" button
+    And I validate I am on the "Cancellation Request" page
+    Then I affirm and cancel the active plan
+    Then I click continue on Cancellation Request page
+    Then I click Okay on Thank you popup
+    And I click on Sign Out in the Header for "Elmo"

@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -92,7 +93,8 @@ public class TellUsAboutYourselfPage {
     @FindBy(xpath = "//*[@id='restrictMultipleEdits']/div/div/div[1]/label[2]/input")
     WebElement linkToAddNewPerson;
 
-    
+    @FindBy(id = "memberRelationship0")
+    WebElement drpdwnRealtionship;
 
     public void userPregnantQuestion(String Pregnant) {
         switch (Pregnant){
@@ -279,6 +281,11 @@ public class TellUsAboutYourselfPage {
         softAssert.assertAll();
     }
 
+    public void selectRelationship(String Relationship){
+        basicActions.waitForElementToBePresent(drpdwnRealtionship, 20);
+        Select dropdown = new Select(drpdwnRealtionship);
+        dropdown.selectByVisibleText(Relationship);
+    }
     public void closeRestrictMultipleFieldEditsErrorPopup(String language){
         basicActions.waitForElementToBePresent(closeRestrictedEditsPopupEnglish, 20);
         switch (language) {
