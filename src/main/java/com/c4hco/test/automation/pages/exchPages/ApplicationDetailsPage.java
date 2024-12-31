@@ -22,8 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static com.microsoft.sqlserver.jdbc.StringUtils.isNumeric;
-
 public class ApplicationDetailsPage {
 
     SoftAssert softAssert = new SoftAssert();
