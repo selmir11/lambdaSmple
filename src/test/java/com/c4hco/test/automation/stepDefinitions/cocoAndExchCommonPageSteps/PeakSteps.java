@@ -23,4 +23,19 @@ public class PeakSteps {
     public void iValidatePeakSkeletonErrorMessage() {
         peakPage.validatePeakSkeletonErrorMessage();
     }
+
+    @Then("I click on the Sign in with Connect for Health Colorado button")
+    public void iClickSignInWIthConnectForHealthColoradoButton() {
+        peakPage.clickSignInWIthConnectForHealthColoradoButton();
+    }
+
+    @Then("I click on the PEAK Sign out button")
+    public void iClickPeakSignOUtButton() {
+        peakPage.clickPeakSignOUtButton();
+    }
+
+    @And("I validate the PEAK welcome text")
+    public void iValidatePeakWelcomeText() {
+        peakPage.validatePeakWelcomeText();
+    }
 }
