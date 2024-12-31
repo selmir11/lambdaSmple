@@ -49,6 +49,14 @@ public class ApplicationResultsPageSteps {
     public void validateText(){
         applicationResultsCoCoPage.validateTextOnPage();
     }
+    @Then("I validate the text in Spanish on the application results page coco")
+    public void validateSpanishText(){
+        applicationResultsCoCoPage.validateSpanishTextOnPage();
+    }
+    @Then("I validate text in Spanish on the application results page when not eligible")
+    public void validateSpanishTextNotEligible(){
+        applicationResultsCoCoPage.verifyNotEligibleSpanishText();
+    }
 
     @Then("I validate eligible members list")
     public void validateEligibleMembers(){
