@@ -495,3 +495,152 @@ Feature: Tests related to the Application Summary/Detail for Retire
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
+
+  @SLER-1914
+  Scenario: SLER-1914 I want to show and hide changes for Retiree information in the OBO Application Details Single Members
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "5160000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I click "Yes" for currently enrolled in Retiree question
+    Then I click "Yes" for insurance ending in 60 days in Retiree question
+    Then I enter the end date as "Current Month" on the Retiree page
+    Then I click "Yes" for insurance ending voluntary for Retiree question
+    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
+#    Step 2
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I search for user and click email from search results
+    Then I verify Primary account holder and account number displays
+    Then I verify the option in years displays
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    And I initiate incoming page
+    Then I validate I am on the "Account Overview" page
+#    Step 3
+    And I click on Find a Plan in the "NonElmo" Header
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click View Application Summary link
+    Then I validate I am on the "Application Summary Completed" page
+    Then I click on View Application Details
+    Then I validate I am on the "Application Details" page
+    Then I click on Show Changes on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
+    Then I click on "Other Health Coverage" on Application Details
+    And I verify the basic OHC detail on Application Details
+      |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Retiree Health Plan|     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
+#    Step 4
+    Then I click on Show Changes on Application Details
+    And I verify the OHC header highlight "Plain" on Application Details
+    Then I click on "Other Health Coverage" on Application Details
+    And I verify the basic OHC detail on Application Details
+      |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Retiree Health Plan|     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Current Month|     Plain    |       Yes        |       Plain         |
+#    Step 5
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+#    Step 7
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click View Application Summary link
+    Then I validate I am on the "Application Summary Completed" page
+    Then I click on View Application Details
+    Then I validate I am on the "Application Details" page
+    Then I click on Show Changes on Application Details
+    And I verify the OHC header highlight "Yellow" on Application Details
+    Then I click on "Other Health Coverage" on Application Details
+    And I verify the OHC detail "None" highlight "Green" on Application Details with data of ""
+    And I verify the OHC detail "1 Removed" highlight "Red" on Application Details with data of ""
+    Then I click on Show Changes on Application Details
+    And I verify the OHC header highlight "Plain" on Application Details
+    Then I click on "Other Health Coverage" on Application Details
+    And I verify the OHC detail "None" highlight "Plain" on Application Details with data of ""
+
+    And I close current tab and switch back to previous tab
+    Then logout from Admin Portal
