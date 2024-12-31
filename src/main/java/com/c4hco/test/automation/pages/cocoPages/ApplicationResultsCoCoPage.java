@@ -38,7 +38,7 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css = ".member-name")
     List<WebElement> memberNames;
 
-    @FindBy(css = "div.plan-name.eligible")
+    @FindBy(css = ".plan-name")
     List<WebElement> healthInsuranceCoCoEligible; //SES, Limited text, Health insurance coco plans
 
     @FindBy(xpath = "//div[contains(text(), \"Here's what your household qualifies for\")]")
@@ -79,6 +79,8 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css="app-container .no-application-text")
     WebElement noAppTxt;
+    @FindBy(css=".not-qualified-text p")
+    List<WebElement> notEligibleOverviewTxt;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -258,6 +260,48 @@ public class ApplicationResultsCoCoPage {
         validateYellowBannerTxt();
         softAssert.assertAll();
     }
+    public void validateSpanishTextOnPage(){
+        validateSpanishNameAndPlan();
+        validateSpanishOverviewContainerTxt();
+        validateSpanishYellowBannerTxt();
+        softAssert.assertAll();
+    }
+
+    private void validateSpanishYellowBannerTxt() {
+        softAssert.assertEquals(yellowBanner.get(0).getText(), "Si alguien en su familia no es indocumentado, es posible que califique para otras opciones de cobertura y ayuda financiera. Este a\u00F1o, tambi\u00E9n hay nuevas", "Spanish Yellow banner text - line 1 did not match");
+        softAssert.assertEquals(yellowBanner.get(1).getText(), "opciones de cobertura para personas indocumentadas que est\u00E1n embarazadas, son menores de 19 a\u00F1os o son beneficiarios de DACA.", "Yellow banner text - line 2 did not match");
+        softAssert.assertEquals(yellowBanner.get(2).getText(), "Para encontrar la mejor opci\u00F3n para usted, puede obtener ayuda de un experto sin costo", "Yellow banner text - line 3 did not match");
+    }
+
+    private void validateSpanishOverviewContainerTxt() {
+        softAssert.assertEquals(overviewTitle.getText(), "Resumen", "Spanish: Overview Title did not match");
+        softAssert.assertEquals(overviewTxt.get(0).getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect", "Overview text line 1 did not match");
+        softAssert.assertEquals(overviewTxt.get(1).getText(), "Planes con primas mensuales que ofrecen protecciones y beneficios esenciales de salud", "Overview text line 2 did not match");
+    }
+
+    private void validateSpanishNameAndPlan() {
+        basicActions.waitForElementToBePresent(memberName, 10);
+        validateEligibleMembers();
+        validatePlaneNameSpanish();
+    }
+    public void validatePlaneNameSpanish(){
+       for(WebElement element: healthInsuranceCoCoEligible){
+           softAssert.assertEquals(element.getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect", "Spanish COCO Text under name did not match");
+           softAssert.assertAll();
+       }
+    }
+    public void verifyNotEligibleSpanishText(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeaderSpanish,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeaderSpanish.getText(), "Usted y/o su familia califica para lo siguiente");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(0).getText(), "De acuerdo con la informaci\u00F3n indicada en su solicitud, usted no califica para obtener un plan de salud en este momento.", "Spanish- not eligible- overview text 0 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(1).getText(), "Si su situaci\u00F3n cambia, usted puede volver a presentar una solicitud nueva para calificar nuevamente.","Spanish- not eligible- overview text 1 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(2).getText(), "Estos son los requisitos b\u00E1sicos para calificar", "Spanish- not eligible- overview text 2 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(3).getText(),"Debe vivir en Colorado", "Spanish- not eligible- overview text 3 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(4).getText(),"Recursos para usted", "Spanish- not eligible- overview text 4 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(5).getText(),"Ll\u00E1menos al 855-675-2626 para revisar los resultados de su solicitud y las calificaciones para adquirir un plan de salud.", "Spanish- not eligible- overview text 5 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(6).getText(),"Tambi\u00E9n puede contactar a un agente o asistente certificado para obtener ayuda de un experto.", "Spanish- not eligible- overview text 6 does not match.");
+        softAssert.assertAll();
+    }
 
     private void validateOverviewContainerTxt() {
         softAssert.assertEquals(overviewTitle.getText(), "Overview", "Overview Title did not match");
@@ -300,5 +344,4 @@ public class ApplicationResultsCoCoPage {
         }
         softAssert.assertAll();
     }
-
 }
