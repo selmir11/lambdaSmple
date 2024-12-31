@@ -306,17 +306,12 @@ public class ApplicationDetailsPage {
     }
 
     public void verifyBasicOhcEndDate(String data) {
-        String endDate;
+        String endDate = data;
         int daysInFuture = 0;
         if (data.startsWith("Future Day:")) {
             String[] parts = data.split(":");
-            if (parts.length != 2 || !isNumeric(parts[1])) {
-                throw new IllegalArgumentException("Invalid format for Future Day: " + data);
-            }
             endDate = parts[0];
             daysInFuture = Integer.parseInt(parts[1]);
-        } else {
-            endDate = data;
         }
         switch (endDate){
             case "Today":
