@@ -142,21 +142,12 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void enterEndDate(String endDateData){
         basicActions.waitForElementToBePresent(inputEndDate, 60);
-        String endDate;
+        String endDate = endDateData;
         int daysInFuture = 0;
         if (endDateData.startsWith("Future Day:")) {
             String[] parts = endDateData.split(":");
-            if (parts.length != 2) {
-                throw new IllegalArgumentException("Invalid format for Future Day: " + endDateData);
-            }
             endDate = parts[0];
-            try {
-                daysInFuture = Integer.parseInt(parts[1]);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Invalid number for daysInFuture: " + parts[1], e);
-            }
-        } else {
-            endDate = endDateData;
+            daysInFuture = Integer.parseInt(parts[1]);
         }
 
         switch (endDate){

@@ -436,11 +436,9 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the basic OHC detail "Retiree Health Plan" highlight "Plain" on Application Details with data of ""
-    And I verify the basic OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the basic OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the basic OHC detail "End date" highlight "Yellow" on Application Details with data of "Future Day:3"
-    And I verify the basic OHC detail "Voluntarily ending insurance" highlight "Yellow" on Application Details with data of " No"
+    And I verify the basic OHC detail on Application Details
+    |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+    |Retiree Health Plan|     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Future Day:3|    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
     Then I validate basic PDF OHC data on Application Details in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
@@ -487,11 +485,9 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the basic OHC detail "Retiree Health Plan" highlight "Plain" on Application Details with data of ""
-    And I verify the basic OHC detail "Currently enrolled" highlight "Yellow" on Application Details with data of " No"
-    And I verify the basic OHC detail "Insurance ending in next 60 days" highlight "Red" on Application Details with data of ""
-    And I verify the basic OHC detail "End date" highlight "Red" on Application Details with data of "None"
-    And I verify the basic OHC detail "Voluntarily ending insurance" highlight "Red" on Application Details with data of ""
+    And I verify the basic OHC detail on Application Details
+      |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Retiree Health Plan|     Plain    |       No         |      Yellow      |                |      Red       |            |     Red      |                  |        Red          |
     Then I click on Download as PDF on Application Details
     Then I validate basic PDF OHC data on Application Details in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|

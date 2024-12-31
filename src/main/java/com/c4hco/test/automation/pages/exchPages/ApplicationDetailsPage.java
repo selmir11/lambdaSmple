@@ -254,99 +254,97 @@ public class ApplicationDetailsPage {
         }
     }
 
-    public void verifyBasicOhcDetailsColor(String detail, String highlight, String data){
-//        for data, add space in front due to no space if data is blank
-//        Ex: " Yes"
+    public void verifyBasicOhcDetailsColor(List<Map<String, String>> ohcData){
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
-        String backgroundColor = switch (highlight) {
+        String coverageType = ohcData.get(0).get("OHC Type");
+        String coverageTypeHighlight = ohcData.get(0).get("Type Highlight");
+        String currentlyEnrolled = ohcData.get(0).get("Currently enrolled");
+        String currentlyEnrolledHighlight = ohcData.get(0).get("Enrolled Highlight");
+        String insuranceEnding = ohcData.get(0).get("Insurance ending");
+        String insuranceEndingHighlight = ohcData.get(0).get("Ending Highlight");
+        String endDate = ohcData.get(0).get("End date");
+        String endDateHighlight = ohcData.get(0).get("Date Highlight");
+        String voluntarilyEnding = ohcData.get(0).get("Voluntarily ending");
+        String voluntarilyEndingHighlight = ohcData.get(0).get("Voluntarily Highlight");
+
+        switch (coverageType){
+            case "Retiree Health Plan":
+                softAssert.assertEquals(ohcDetails.get(0).getText(), "Retiree Health Plan");
+                softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),highlightedColor(coverageTypeHighlight),"Retiree Health Plan highlight");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + coverageType);
+        }
+        softAssert.assertEquals(ohcDetails.get(1).getText(), "Currently enrolled "+ currentlyEnrolled);
+        softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),highlightedColor(currentlyEnrolledHighlight),"Currently enrolled highlight");
+        if (insuranceEnding != null) {
+            softAssert.assertEquals(ohcDetails.get(2).getText(), "Insurance ending in next 60 days " + insuranceEnding);
+        }
+        softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),highlightedColor(insuranceEndingHighlight),"Insurance ending in next 60 days highlight");
+        if (endDate != null) {
+            verifyBasicOhcEndDate(endDate);
+        }
+        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),highlightedColor(endDateHighlight),"End date highlight");
+        if (voluntarilyEnding != null) {
+            softAssert.assertEquals(ohcDetails.get(4).getText(), "Voluntarily ending insurance " + voluntarilyEnding);
+        }
+        softAssert.assertEquals(ohcDetails.get(4).getCssValue("background"),highlightedColor(voluntarilyEndingHighlight),"Voluntarily ending insurance highlight");
+        softAssert.assertAll();
+    }
+
+    public String highlightedColor(String highlight) {
+        return switch (highlight) {
             case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Plain" -> "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
             default -> throw new IllegalArgumentException("Invalid option: " + highlight);
         };
-        switch (detail){
-            case "Retiree Health Plan":
-                softAssert.assertEquals(ohcDetails.get(0).getText(), "Retiree Health Plan");
-                softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),backgroundColor);
+    }
+
+    public void verifyBasicOhcEndDate(String data) {
+        String endDate = data;
+        int daysInFuture = 0;
+        if (data.startsWith("Future Day:")) {
+            String[] parts = data.split(":");
+            endDate = parts[0];
+            daysInFuture = Integer.parseInt(parts[1]);
+        }
+        switch (endDate){
+            case "Today":
+                String todayDate = basicActions.getTodayDate();
+                softAssert.assertEquals(ohcDetails.get(3).getText(), "End date " + todayDate);
                 softAssert.assertAll();
                 break;
-            case "Currently enrolled":
-                softAssert.assertEquals(ohcDetails.get(1).getText(), "Currently enrolled"+ data);
-                softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),backgroundColor);
+            case "Future Month":
+                String futureDate = basicActions.getFutureDate(60);
+                softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ futureDate);
                 softAssert.assertAll();
                 break;
-            case "Insurance ending in next 60 days":
-                softAssert.assertEquals(ohcDetails.get(2).getText(), "Insurance ending in next 60 days"+ data);
-                softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),backgroundColor);
+            case "Prior Month":
+                String lastDayOfPriorMonth = basicActions.lastDateOfPriorMonth();
+                lastDayOfPriorMonth = basicActions.changeDateFormat(lastDayOfPriorMonth, "MM-dd-yyyy", "MM/dd/yyyy");
+                softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ lastDayOfPriorMonth);
                 softAssert.assertAll();
                 break;
-            case "End date":
-                String endDate;
-                int daysInFuture = 0;
-                if (data.startsWith("Future Day:")) {
-                    String[] parts = data.split(":");
-                    if (parts.length != 2) {
-                        throw new IllegalArgumentException("Invalid format for Future Day: " + data);
-                    }
-                    endDate = parts[0];
-                    try {
-                        daysInFuture = Integer.parseInt(parts[1]);
-                    } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException("Invalid number for daysInFuture: " + parts[1], e);
-                    }
-                } else {
-                    endDate = data;
-                }
-                switch (endDate){
-                    case "Today":
-                        String todayDate = basicActions.getTodayDate();
-                        softAssert.assertEquals(ohcDetails.get(3).getText(), "End date " + todayDate);
-                        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "Future Month":
-                        String futureDate = basicActions.getFutureDate(60);
-                        softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ futureDate);
-                        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "Prior Month":
-                        String lastDayOfPriorMonth = basicActions.lastDateOfPriorMonth();
-                        lastDayOfPriorMonth = basicActions.changeDateFormat(lastDayOfPriorMonth, "MM-dd-yyyy", "MM/dd/yyyy");
-                        softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ lastDayOfPriorMonth);
-                        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "Current Month":
-                        String lastDayOfMonth = basicActions.lastDateOfCurrMonth();
-                        lastDayOfMonth = basicActions.changeDateFormat(lastDayOfMonth, "MM-dd-yyyy", "MM/dd/yyyy");
-                        softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ lastDayOfMonth);
-                        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "Future Day":
-                        String futureDate1 = basicActions.getFutureDate(daysInFuture);
-                        softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ futureDate1);
-                        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "None":
-                        softAssert.assertEquals(ohcDetails.get(3).getText(), "End date");
-                        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + data);
-                }
+            case "Current Month":
+                String lastDayOfMonth = basicActions.lastDateOfCurrMonth();
+                lastDayOfMonth = basicActions.changeDateFormat(lastDayOfMonth, "MM-dd-yyyy", "MM/dd/yyyy");
+                softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ lastDayOfMonth);
+                softAssert.assertAll();
                 break;
-            case "Voluntarily ending insurance":
-                softAssert.assertEquals(ohcDetails.get(4).getText(), "Voluntarily ending insurance"+ data);
-                softAssert.assertEquals(ohcDetails.get(4).getCssValue("background"),backgroundColor);
+            case "Future Day":
+                String futureDate1 = basicActions.getFutureDate(daysInFuture);
+                softAssert.assertEquals(ohcDetails.get(3).getText(), "End date "+ futureDate1);
+                softAssert.assertAll();
+                break;
+            case "None":
+                softAssert.assertEquals(ohcDetails.get(3).getText(), "End date");
                 softAssert.assertAll();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + detail);
+                throw new IllegalArgumentException("Invalid option: " + data);
         }
     }
 
