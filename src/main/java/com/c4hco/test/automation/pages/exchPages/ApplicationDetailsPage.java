@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import static com.microsoft.sqlserver.jdbc.StringUtils.isNumeric;
+
 public class ApplicationDetailsPage {
 
     SoftAssert softAssert = new SoftAssert();
@@ -308,15 +310,11 @@ public class ApplicationDetailsPage {
         int daysInFuture = 0;
         if (data.startsWith("Future Day:")) {
             String[] parts = data.split(":");
-            if (parts.length != 2) {
+            if (parts.length != 2 || !isNumeric(parts[1])) {
                 throw new IllegalArgumentException("Invalid format for Future Day: " + data);
             }
             endDate = parts[0];
-            try {
-                daysInFuture = Integer.parseInt(parts[1]);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Invalid number for daysInFuture: " + parts[1], e);
-            }
+            daysInFuture = Integer.parseInt(parts[1]);
         } else {
             endDate = data;
         }
