@@ -38,4 +38,9 @@ public class PeakSteps {
     public void iValidatePeakWelcomeText() {
         peakPage.validatePeakWelcomeText();
     }
+
+    @Then("I validate the current PEAK connection URL is {string}")
+    public void iValidatePeakStgUrlRedirection(String peakUrl) {
+        peakPage.validatePeakStgUrlRedirection(peakUrl);
+    }
 }
