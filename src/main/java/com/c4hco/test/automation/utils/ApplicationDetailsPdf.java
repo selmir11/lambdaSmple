@@ -208,8 +208,10 @@ public class ApplicationDetailsPdf {
             endingDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM-dd-yyyy", "MM/dd/yyyy");
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
             endingDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy");
-        } else {
-            System.out.println("Invalid option: " + endDate);
+        } else if (endDate.startsWith("Future Day:")) {
+            String[] parts = endDate.split(":");
+            int daysInFuture = Integer.parseInt(parts[1]);
+            endingDate = basicActions.getFutureDate(daysInFuture);
         }
 
         return String.format("Other Health Coverage\n" +
