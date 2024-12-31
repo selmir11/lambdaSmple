@@ -38,7 +38,7 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css = ".member-name")
     List<WebElement> memberNames;
 
-    @FindBy(css = "div.plan-name.eligible")
+    @FindBy(css = ".plan-name")
     List<WebElement> healthInsuranceCoCoEligible; //SES, Limited text, Health insurance coco plans
 
     @FindBy(xpath = "//div[contains(text(), \"Here's what your household qualifies for\")]")
@@ -258,6 +258,36 @@ public class ApplicationResultsCoCoPage {
         validateYellowBannerTxt();
         softAssert.assertAll();
     }
+    public void validateSpanishTextOnPage(){
+        validateSpanishNameAndPlan();
+        validateSpanishOverviewContainerTxt();
+        validateSpanishYellowBannerTxt();
+        softAssert.assertAll();
+    }
+
+    private void validateSpanishYellowBannerTxt() {
+        softAssert.assertEquals(yellowBanner.get(0).getText(), "Si alguien en su familia no es indocumentado, es posible que califique para otras opciones de cobertura y ayuda financiera. Este a\u00F1o, tambi\u00E9n hay nuevas", "Spanish Yellow banner text - line 1 did not match");
+        softAssert.assertEquals(yellowBanner.get(1).getText(), "opciones de cobertura para personas indocumentadas que est\u00E1n embarazadas, son menores de 19 a\u00F1os o son beneficiarios de DACA.", "Yellow banner text - line 2 did not match");
+        softAssert.assertEquals(yellowBanner.get(2).getText(), "Para encontrar la mejor opci\u00F3n para usted, puede obtener ayuda de un experto sin costo", "Yellow banner text - line 3 did not match");
+    }
+
+    private void validateSpanishOverviewContainerTxt() {
+        softAssert.assertEquals(overviewTitle.getText(), "Resumen", "Spanish: Overview Title did not match");
+        softAssert.assertEquals(overviewTxt.get(0).getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect", "Overview text line 1 did not match");
+        softAssert.assertEquals(overviewTxt.get(1).getText(), "Planes con primas mensuales que ofrecen protecciones y beneficios esenciales de salud", "Overview text line 2 did not match");
+    }
+
+    private void validateSpanishNameAndPlan() {
+        basicActions.waitForElementToBePresent(memberName, 10);
+        validateEligibleMembers();
+        validatePlaneNameSpanish();
+    }
+    public void validatePlaneNameSpanish(){
+       for(WebElement element: healthInsuranceCoCoEligible){
+           softAssert.assertEquals(element.getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect", "Spanish COCO Text under name did not match");
+           softAssert.assertAll();
+       }
+    }
 
     private void validateOverviewContainerTxt() {
         softAssert.assertEquals(overviewTitle.getText(), "Overview", "Overview Title did not match");
@@ -299,6 +329,10 @@ public class ApplicationResultsCoCoPage {
              default: Assert.fail("Invalid argument passed");
         }
         softAssert.assertAll();
+    }
+
+    public void validatePageTextInOE(String language){
+
     }
 
 }
