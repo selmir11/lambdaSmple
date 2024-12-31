@@ -86,8 +86,10 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void continueWithApplication()  {
-        basicActions.waitForElementToDisappear( spinner, 60 );
-        basicActions.clickElementWithRetries(continueButton, 10);
+        basicActions.waitForElementToDisappear( spinner, 100 );
+        basicActions.waitForElementToBePresentWithRetries( continueButton, 60);
+        basicActions.scrollToElement( continueButton );
+        continueButton.click();
     }
 
     public void verifyHeader(String language)  {
