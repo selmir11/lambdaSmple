@@ -424,4 +424,111 @@ Feature: Coco user on the Application results page
       #    @SLCR-682 Scenario: scenario 4 - User submits 2025 application with LCE during SES limited  -(SHOULD BE DONE WHEN SES PLANS ARE AVAILABLE) WIP
 
 
+@SLCR-684
+Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results page (eligible Spanish text)
+  And I apply for the current year in CoCo
+  Then I validate I am on the "Find Expert Help" page
+  And I click Continue on my own button from Manage who helps you page
+  Then I click EditUpdate on Family Overview page for "Primary"
+  And I enter details on tell us about yourself page and continue with "01011988", "Male", and applying "Yes"
+  And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+  And I select "Yes" for mailing address option
+  And I select "Yes" for live in Colorado option
+  And I click continue on the Add info for yourself page
+  Then I validate I am on the "Elmo Race and Ethnicity" page
+  And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+  And I click save and continue on the Race and Ethnicity page
+  And I select "Yes" employment option
+  And I enter "45,000.00" income amount
+  And I select "Annually" income frequency option
+  And I select "No" income seasonal option
+  And I select "No" income changes option
+  And I click continue on the Employment income page
+  And I select None of these as additional income option
+  And I select continue on the Additional Income CoCO page
+  Then I validate I am on the "CoCo Deductions" page
+  And I select "None of these" as deductions option
+  And I select continue on the Deductions CoCo page
+  Then I select the projected income option "No" on Income Summary CoCo page
+  And I select continue on the income Summary CoCo page
+  Then I validate I am on the "CoCo Family Overview" page
+  And I wait for 9000 milliseconds
+
+  Then I select add another family member on the Family Overview page
+  Then I validate I am on the "CoCo Tell us about additional members" page
+  Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
+    | Primary:Spouse |
+  And I click continue on Tell us about additional members of your household page
+  Then I validate I am on the "CoCo Additional info for additional member" page
+  And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+  And I select "Yes" for live in Colorado option for additional member
+  And I click continue on the Additional information for additional member page
+  Then I validate I am on the "Elmo Race and Ethnicity" page
+  And I select "Prefer not to answer" for race and ethnicity option for "Wife"
+  And I click save and continue on the Race and Ethnicity page
+  And I select "No" employment option
+  And I click continue on the Employment income page
+  And I select None of these as additional income option
+  And I select continue on the Additional Income CoCO page
+  Then I validate I am on the "CoCo Deductions" page
+  And I select "None of these" as deductions option
+  And I select continue on the Deductions CoCo page
+  And I select the No projected Income button on the Income Summary page
+  And I select continue on the income Summary CoCo page
+
+  Then I validate I am on the "CoCo Family Overview" page
+  And I select continue on the Family Overview page
+  Then I validate I am on the "CoCo life change event" page
+  And I select "MoveToCO" life change event with event date of "Today"
+  And I select continue on the LCE page
+  Then I validate I am on the "CoCo Declarations and Signature" page
+  And I enter a valid signature
+  And I click Continue on the Declarations And Signature Page CoCo
+  Then I validate I am on the "Application Results CoCo" page
+  And I change the language from header to "Spanish"
+  Then I validate eligible members list
+  Then I validate the text in Spanish on the application results page coco
+
+  @SLCR-684
+  Scenario: scenario 2 ELIG-Verify the Spanish text on the Application Results page (not eligible Spanish text)
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    And I enter details on tell us about yourself page and continue with "01011991", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Los Angeles", "CA", "90005", "LOS ANGELES"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "30,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I wait for 9000 milliseconds
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I check "None of these" life change event checkbox
+
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I change the language from header to "Spanish"
+
+    Then I validate text in Spanish on the application results page when not eligible
 
