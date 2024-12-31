@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -75,5 +76,10 @@ public class PeakPage {
         basicActions.waitForElementToBePresentWithRetries(peakWelcomeText, 20);
         softAssert.assertEquals(peakWelcomeText.getText(), "Hello " + SharedData.getPrimaryMember().getFirstName() + ", welcome to PEAK");
         softAssert.assertAll();
+    }
+
+    public void validatePeakStgUrlRedirection(String peakUrl) {
+        basicActions.waitForElementToBePresentWithRetries(peakSignInWithConnectForHealthColoradoButton, 20);
+        Assert.assertTrue(basicActions.getUrlWithWait(peakUrl, 45).contains(peakUrl), "expected page::" + peakUrl + "::did not load");
     }
 }
