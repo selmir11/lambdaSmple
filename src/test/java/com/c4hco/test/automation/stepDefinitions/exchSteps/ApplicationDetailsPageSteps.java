@@ -34,8 +34,8 @@ public class ApplicationDetailsPageSteps {
     @And("I verify the OHC detail {string} highlight {string} on Application Details with data of {string}")
     public void iVerifyOhcDetailsColor(String detail, String highlight, String data) {applicationDetailsPage.verifyOhcDetailsColor(detail, highlight, data);}
 
-    @And("I verify the basic OHC detail {string} highlight {string} on Application Details with data of {string}")
-    public void iVerifyBasicOhcDetailsColor(String detail, String highlight, String data) {applicationDetailsPage.verifyBasicOhcDetailsColor(detail, highlight, data);}
+    @And("I verify the basic OHC detail on Application Details")
+    public void iVerifyBasicOhcDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyBasicOhcDetailsColor(ohcData);}
 
     @Then("I validate PDF OHC data {string} in {string} with Min Value {string} Premium {string} Currently enrolled {string} {string} {string} end date of {string} {string} {string}")
     public void iVerifyOhcPdfText(String data, String language, String minValue, String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily) throws IOException {applicationDetailsPage.verifyOhcPdfText(data, language, minValue,  premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily);}
