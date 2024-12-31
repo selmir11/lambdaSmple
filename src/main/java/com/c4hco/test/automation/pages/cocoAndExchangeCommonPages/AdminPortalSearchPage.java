@@ -608,7 +608,7 @@ public class AdminPortalSearchPage {
     public void verifyPMData() {
         basicActions.waitForElementListToBePresent(aactsearchResults, 30);
         List<String> qaexpectedTitles = List.of("2640006565", "John", "Winterhouse", "johnc4hcoautomation+..", "760-579-8438", "Twoeightsevennine", "jrzvp", "PROGRAM_MANAGER");
-        List<String> stgexpectedTitles = List.of("9005375045", "adszcnkgvl", "adsdzazuqql", "c4assistorportal+Rqn..", "333-328-9892", "stg", "eNrQP", "PROGRAM_MANAGER");
+        List<String> stgexpectedTitles = List.of("9005375045", "adszcnkgvl", "adsdzazuqql", "c4assistorportal+Rqn..", "333-328-9892", "apifwjbuifspducrphut..", "eNrQP", "PROGRAM_MANAGER");
         List<String> actualTitles = aactsearchResults.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());

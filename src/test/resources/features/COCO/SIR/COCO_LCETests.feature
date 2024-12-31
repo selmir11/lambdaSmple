@@ -1,13 +1,13 @@
 @COCO11
-    # @SLCR-WIP1, @SLCR-WIP2, @SLCR-WIP3, @SLCR-WIP4, @SLCR-WIP5, @SLCR-WIP6, @SLCR-WIP7, @SLCR-WIP8, @SLCR-WIP9, @SLCR-WIP10
-Feature: Individual adult - End to End Test
+    # SLCR-652, SLCR-653, SLCR-654, SLCR-655, SLCR-656, SLCR-657, SLCR-658, SLCR-659,
+Feature: LCE Test Runs for COCO
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
 
-  @SLCR-WIP1
-  Scenario: SLCR-WIP1 - COCO LCE Insurance Loss test
+  @SLCR-652
+  Scenario: SLCR-652 - COCO LCE Insurance Loss test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -32,9 +32,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -42,6 +43,7 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -81,8 +83,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP2
-  Scenario: SLCR-WIP2 - COCO LCE Birth test
+  @SLCR-653
+  Scenario: SLCR-653 - COCO LCE Birth test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -107,9 +109,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -117,6 +120,7 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -140,9 +144,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "10,000.00" income amount
     And I select "Annually" income frequency option
@@ -150,6 +155,7 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -174,12 +180,14 @@ Feature: Individual adult - End to End Test
     And I click continue on the Additional information for additional member page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "No" employment option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -222,8 +230,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP3
-  Scenario: SLCR-WIP3 - COCO LCE Pregnancy test
+  @SLCR-654
+  Scenario: SLCR-654 - COCO LCE Pregnancy test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -248,9 +256,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -258,6 +267,7 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -297,8 +307,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP4
-  Scenario: SLCR-WIP4 - COCO LCE Marriage test
+  @SLCR-655
+  Scenario: SLCR-655 - COCO LCE Marriage test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -323,9 +333,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -333,6 +344,43 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Wife"
+    And I click save and continue on the Race and Ethnicity page
+
+    Then I validate I am on the "CoCo Employment Income" page
+    And I select "Yes" employment option
+    And I enter "10,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -359,8 +407,11 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on start shopping page
+
+    Then I validate I am on the "Medical Enrollment Groups" page
+    Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan option CoCo
@@ -372,8 +423,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP5
-  Scenario: SLCR-WIP5 - COCO LCE Divorce test
+  @SLCR-656
+  Scenario: SLCR-656 - COCO LCE Divorce test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -398,9 +449,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -408,6 +460,7 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -447,8 +500,9 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP6
-  Scenario: SLCR-WIP6 - COCO LCE Death test
+  @SLCR-657
+    # This will only pass in Closed Enrollment or if the ernollee had previously had another participant who then died.
+  Scenario: SLCR-657 - COCO LCE Death test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -473,9 +527,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -483,6 +538,42 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    Then I validate I am on the "CoCo Tell us about additional members" page
+    Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Female", and applying "Yes"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members of your household page
+
+    Then I validate I am on the "CoCo Additional info for additional member" page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Wife"
+    And I click save and continue on the Race and Ethnicity page
+
+    Then I validate I am on the "CoCo Employment Income" page
+    And I select "Yes" employment option
+    And I enter "10,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -522,8 +613,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP7
-  Scenario: SLCR-WIP7 - COCO LCE Move Colorado test
+  @SLCR-658
+  Scenario: SLCR-658 - COCO LCE Move Colorado test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -548,9 +639,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -558,6 +650,7 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -597,8 +690,8 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-WIP8
-  Scenario: SLCR-WIP8 - COCO LCE Move out of State test
+  @SLCR-659
+  Scenario: SLCR-659 - COCO LCE Move out of State test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -623,9 +716,10 @@ Feature: Individual adult - End to End Test
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -633,6 +727,7 @@ Feature: Individual adult - End to End Test
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 

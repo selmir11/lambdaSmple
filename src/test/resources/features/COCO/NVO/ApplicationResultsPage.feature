@@ -63,8 +63,6 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
-#Scenario2
-
   @SLCR-650
   Scenario: ELIG-Member in the household that is applying for health insurance is over the age of 21
     Then I enter details on tell us about yourself page and continue with "11281995", "Male", and applying "Yes"

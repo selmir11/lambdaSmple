@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationDetailsPage {
@@ -474,6 +475,75 @@ public class ApplicationDetailsPage {
                 }
             }
         return true;
+    }
+
+    public boolean verifyBasicOhcPdfText(String language, List<Map<String, String>> pdfData)throws IOException {
+        String filePath = SharedData.getLocalPathToDownloadFile();
+        String fileName = SharedData.getNoticeFileName();
+        String pathAndName = filePath + "//" + fileName;
+        System.out.println("path and name is " + pathAndName);
+        String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+        String coverageType = pdfData.get(0).get("Coverage Type");
+        String currentlyEnrolled = pdfData.get(0).get("Currently Enrolled");
+        String insuranceEnding = pdfData.get(0).get("Insurance Ending");
+        String endDate = pdfData.get(0).get("End date");
+        String voluntarilyEnding = pdfData.get(0).get("Voluntarily ending insurance");
+
+        switch (language) {
+            case "English":
+                String startPhrase = "Other Health Coverage";
+                int startIndex = pdfContent.indexOf(startPhrase);
+                if (startIndex != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getBasicApplicationDetails(coverageType, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationDetailsPdf.getBasicApplicationDetails(coverageType, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding).split("\n");
+
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
+
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                            }
+                        }
+                    }
+                }
+                break;
+            case "Spanish":
+                String startPhraseSp = "Other Health Coverage";
+                int startIndexSp = pdfContent.indexOf(startPhraseSp);
+                if (startIndexSp != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getBasicApplicationDetailsSp(coverageType, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationDetailsPdf.getBasicApplicationDetailsSp(coverageType, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding).split("\n");
+
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
+
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        return false;
     }
 
 

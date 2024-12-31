@@ -222,5 +222,15 @@ public class DbSteps {
         dbValidations.validateTellUsAbtUrslfDetails();
     }
 
+    @Then("I validate the application id from the db")
+    public void validateApplicationId(){
+        dbValidations.validateApplicationId();
+    }
+
+    @Then("I validate that applications id's are different for current and next year")
+    public void validateApplicationIds(){
+        dbValidations.validateApplicationIds();
+    }
+
 }
 

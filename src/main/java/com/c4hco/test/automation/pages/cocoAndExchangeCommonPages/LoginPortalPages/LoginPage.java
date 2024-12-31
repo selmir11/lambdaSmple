@@ -41,6 +41,9 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
     WebElement signAdmin;
 
+    @FindBy(id = "sign-in-peak")
+    WebElement signInWithPeak;
+
     @FindBy(xpath = "//a[text()=' password']")
     WebElement forgotPassword;
 
@@ -194,6 +197,10 @@ public class LoginPage {
 
     public void clickSignIn() {
         signAdmin.click();
+    }
+
+    public void clickSignInWithPeak() {
+        signInWithPeak.click();
     }
 
     public void usernameRequiredMessage() {

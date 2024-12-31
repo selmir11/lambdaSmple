@@ -196,6 +196,10 @@ public class ApplicationSummarySubmittedPage {
                         softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), "Employer Sponsored Insurance");
                         softAssert.assertAll();
                         break;
+                    case "Retiree Health Plan":
+                        softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), "Retiree Health Plan");
+                        softAssert.assertAll();
+                        break;
                     case "Currently enrolled":
                         softAssert.assertEquals(ohcDetailsPrimary.get(1).getText(), "Currently Enrolled" + data);
                         softAssert.assertAll();
@@ -216,6 +220,10 @@ public class ApplicationSummarySubmittedPage {
                         break;
                     case "Employer Sponsored Insurance":
                         softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), "Employer Sponsored Insurance");
+                        softAssert.assertAll();
+                        break;
+                    case "Retiree Health Plan":
+                        softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), "Retiree Health Plan");
                         softAssert.assertAll();
                         break;
                     case "Currently enrolled":
@@ -248,6 +256,9 @@ public class ApplicationSummarySubmittedPage {
                 break;
             case "Current Month":
                 expectedDate = basicActions.changeDateFormat(basicActions.firstDateOfCurrMonth(), "yyyy-MM-dd", "yyyy-MM-dd");
+                break;
+            case "Last Current Month":
+                expectedDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + data);

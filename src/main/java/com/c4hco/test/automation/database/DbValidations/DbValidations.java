@@ -239,10 +239,24 @@ public class DbValidations {
 
     public void validateApplicationResult(String expectedReasonCode) {
         SoftAssert softAssert = new SoftAssert();
+        String expReasonCode = null;
+        switch (expectedReasonCode) {
+            case "OFF_EXCHANGE_ELIGIBLE":
+                expReasonCode= "OFFEXCH";
+                break;
+            case "ELIGIBLE_FOR_HP2_LIMITED":
+                expReasonCode = "HP2";
+                break;
+            case "QLCE":
+                expReasonCode = "GAIN_DEP_QLCE";
+                break;
+            default:
+                Assert.fail("Expected Reason Code is not valid");
+        }
 
         String householdID = exchDbDataProvider.getHouseholdID();
         String memberID = exchDbDataProvider.getMemberID(householdID);
-        String reasonCode = exchDbDataProvider.getReasonCode(memberID);
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode );
 
         System.out.println("Household ID: " + householdID);
         System.out.println("Member ID: " + memberID);
@@ -501,5 +515,18 @@ public class DbValidations {
        softAssert.assertTrue(primaryMem.getApplyingforCov().equals("Yes")? primaryMemFromDb.getApplying_for_coverage_ind().equals("1") : primaryMemFromDb.getApplying_for_coverage_ind().equals("0"), "Applying for coverage ind did not match");
         softAssert.assertAll();
     }
+
+    public void validateApplicationId(){
+        softAssert.assertEquals(exchDbDataProvider.getApplicationId_esApplication(), SharedData.getPrimaryMember().getApplication_id(), "Application Id's did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationIds(){
+        List<String> applicationIds = exchDbDataProvider.getAllApplicationIds_esApplication();
+        Set<String> applicationIdsList_unique = new HashSet<>(applicationIds);
+        Assert.assertEquals(applicationIdsList_unique.size(), applicationIds.size(), "Application id's are not unique");
+    }
+
+
 
  }

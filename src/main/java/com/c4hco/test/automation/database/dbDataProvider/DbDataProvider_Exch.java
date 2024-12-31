@@ -425,8 +425,8 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("member_id", exchDbQueries.memberIdQuery(householdId));
     }
 
-    public String getReasonCode(String memberId) {
-        return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId));
+    public String getReasonCode(String memberId, String expectedReasonCode) {
+        return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId, expectedReasonCode));
     }
 
     public String[] getDentalPolicyDate() {
@@ -454,6 +454,7 @@ public class DbDataProvider_Exch {
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return postgresHandler.getResultForTwoColumnValues("lce_type","plan_year", exchDbQueries.getLceTpePlanYear(householdId));
     }
+
     public String getEnrollmentEndDate() {
         return postgresHandler.getResultFor("enrollment_period_end_date", exchDbQueries.getEnrollmentPeriodEndDate());
     }
@@ -509,6 +510,16 @@ public class DbDataProvider_Exch {
 
     public EsMemberEntity getEsMemberDetails(String memId){
         return esMemberDbHandler.getEsMemberDbHandler(exchDbQueries.esMemberWithMemberId(memId));
+    }
+
+    public String getApplicationId_esApplication() {
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return postgresHandler.getResultFor("application_id", exchDbQueries.geApplicationId(householdId));
+    }
+
+    public List<String> getAllApplicationIds_esApplication() {
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return postgresHandler.getResultListFor("application_id", exchDbQueries.geAllApplicationIds(householdId));
     }
 
 }

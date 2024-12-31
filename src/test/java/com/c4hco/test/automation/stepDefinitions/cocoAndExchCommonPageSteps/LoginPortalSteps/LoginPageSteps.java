@@ -66,6 +66,11 @@ public class LoginPageSteps {
             loginPage.clickSignIn();
         }
 
+        @When("I click on Sign in with PEAK on the login page")
+        public void iClickOnSignInWithPeakonloginpage() {
+            loginPage.clickSignInWithPeak();
+        }
+
     @And("I receive error message for Username")
     public void iReceiveErrorMessageForUsername() {
         loginPage.usernameRequiredMessage();

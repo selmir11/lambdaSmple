@@ -76,7 +76,7 @@ public class MyProfilePage {
 
     @FindBy(css = ".row.header-2.popup-page-header")
     WebElement headerChangePrimaryCoCo;
-    @FindBy(css = ".action-link.col-sm-2.float-end.ng-star-inserted")
+    @FindBy(css = ".action-link")
     WebElement changePrimaryContactCoCo;
     @FindBy(id = "contactNames")
     WebElement primaryContactDRPCoCo;
@@ -93,6 +93,9 @@ public class MyProfilePage {
     WebElement cancelPrimaryPopupCoCo;
     @FindBy(xpath = "//button[normalize-space()='Cancelar'] ")
     WebElement getCancelPrimaryPopupSpCoCo;
+
+    @FindBy(css="app-change-primary-contact-modal .dialog-label")
+    WebElement nameLabel;
 
     @FindBy(css = "a#privacyPolicyLink.action-link1")
     WebElement privacyPolicyCoCo;
@@ -459,7 +462,7 @@ public class MyProfilePage {
 
 
     public void validateChangePrimaryContactpopupSpanish() {
-        basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 2000);
+        basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 10);
         softAssert.assertEquals(headerChangePrimaryCoCo.getText(), "Cambiar el contacto principal");
         primaryContactDRPCoCo.click();
         softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
@@ -471,6 +474,7 @@ public class MyProfilePage {
         softAssert.assertEquals(savePrimaryContactCoCo.getText(), "Guardar");
         softAssert.assertEquals(privacyPolicyCoCo.getText(), "Pol\u00EDtica de privacidad");
         softAssert.assertEquals(termsOfUseCoCo.getText(), "T\u00E9rminos de uso");
+        softAssert.assertEquals(nameLabel.getText(), "Nombre", "Name label in spanish did not match");
         savePrimaryContactCoCo.click();
         softAssert.assertAll();
     }

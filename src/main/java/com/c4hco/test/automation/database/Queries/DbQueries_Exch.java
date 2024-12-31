@@ -414,10 +414,10 @@ public String policyTablesCombinedQuery(String coverageType){
                 "AND household_contact = 1";
     }
 
-    public String reasonCodeQuery(String memberId) {
+    public String reasonCodeQuery(String memberId, String determination) {
         return "SELECT reason_code " +
                 "FROM " + dbName + ".es_member_rules_result " +
-                "WHERE eligibility_type = 'OFFEXCH' " +
+                "WHERE determination = '"+determination+"' " +
                 "AND member_id = " + memberId;
     }
 
@@ -600,6 +600,17 @@ public String policyTablesCombinedQuery(String coverageType){
     public String getMemberId(String memFname){
         return "select member_id from "+dbName+".es_member\n" +
                 "where first_name = '"+memFname+"'";
+    }
+
+    public String geApplicationId(String householId){
+        return "select application_id from "+dbName+".es_application\n" +
+                "where household_id  = '"+householId+"'\n"+
+                "and plan_year = '"+SharedData.getPlanYear()+"'";
+    }
+
+    public String geAllApplicationIds(String householId){
+        return "select application_id from "+dbName+".es_application\n" +
+                "where household_id  = '"+householId+"'";
     }
 
 }
