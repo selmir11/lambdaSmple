@@ -79,6 +79,8 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css="app-container .no-application-text")
     WebElement noAppTxt;
+    @FindBy(css=".not-qualified-text p")
+    List<WebElement> notEligibleOverviewTxt;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -288,6 +290,18 @@ public class ApplicationResultsCoCoPage {
            softAssert.assertAll();
        }
     }
+    public void verifyNotEligibleSpanishText(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeaderSpanish,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeaderSpanish.getText(), "Usted y/o su familia califica para lo siguiente");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(0).getText(), "De acuerdo con la informaci\u00F3n indicada en su solicitud, usted no califica para obtener un plan de salud en este momento.", "Spanish- not eligible- overview text 0 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(1).getText(), "Si su situaci\u00F3n cambia, usted puede volver a presentar una solicitud nueva para calificar nuevamente.","Spanish- not eligible- overview text 1 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(2).getText(), "Estos son los requisitos b\u00E1sicos para calificar", "Spanish- not eligible- overview text 2 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(3).getText(),"Debe vivir en Colorado", "Spanish- not eligible- overview text 3 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(4).getText(),"Recursos para usted", "Spanish- not eligible- overview text 4 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(5).getText(),"Ll\u00E1menos al 855-675-2626 para revisar los resultados de su solicitud y las calificaciones para adquirir un plan de salud.", "Spanish- not eligible- overview text 5 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(6).getText(),"Tambi\u00E9n puede contactar a un agente o asistente certificado para obtener ayuda de un experto.", "Spanish- not eligible- overview text 6 does not match.");
+        softAssert.assertAll();
+    }
 
     private void validateOverviewContainerTxt() {
         softAssert.assertEquals(overviewTitle.getText(), "Overview", "Overview Title did not match");
@@ -330,9 +344,4 @@ public class ApplicationResultsCoCoPage {
         }
         softAssert.assertAll();
     }
-
-    public void validatePageTextInOE(String language){
-
-    }
-
 }
