@@ -153,7 +153,7 @@ Feature: Seed03 based on open enrollment - Exchange
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Female" as sex option
     Then I select "No" as pregnancy option
-    Then I select "Spouse" as new Relationship
+    Then I select "Spouse" as new Relationship to "Spouse"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
     And I select "White or European" for race and ethnicity for "Primary"

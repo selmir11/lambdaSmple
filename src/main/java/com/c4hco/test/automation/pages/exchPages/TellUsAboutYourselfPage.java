@@ -281,12 +281,12 @@ public class TellUsAboutYourselfPage {
         softAssert.assertAll();
     }
 
-    public void selectRelationship(String Relationship){
+    public void selectRelationship(String Relationship,String memPrefix){
         basicActions.waitForElementToBePresent(drpdwnRealtionship, 20);
         Select dropdown = new Select(drpdwnRealtionship);
         dropdown.selectByVisibleText(Relationship);
     }
-    public void closeRestrictMultipleFieldEditsErrorPopup(String language){
+        public void closeRestrictMultipleFieldEditsErrorPopup(String language){
         basicActions.waitForElementToBePresent(closeRestrictedEditsPopupEnglish, 20);
         switch (language) {
             case ("English"):

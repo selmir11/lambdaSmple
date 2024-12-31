@@ -253,7 +253,7 @@ Feature: Seed06 based on open enrollment - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And I click on "Cancel 2025 Dental Plan" button
+    And I click on "Cancel Dental Plan" button
     And I validate I am on the "Cancellation Request" page
     Then I affirm and cancel the active plan
     Then I click continue on Cancellation Request page
