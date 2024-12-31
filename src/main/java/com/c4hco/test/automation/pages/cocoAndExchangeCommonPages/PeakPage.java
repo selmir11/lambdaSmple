@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
@@ -27,8 +28,17 @@ public class PeakPage {
     @FindBy(xpath = "//button[@name='SignInButton']")
     WebElement peakSignInButton;
 
+    @FindBy(xpath = "//button[@title='Sign in with Connect for Health Colorado']")
+    WebElement peakSignInWithConnectForHealthColoradoButton;
+
+    @FindBy(xpath = "//div[normalize-space()='Sign out']")
+    WebElement peakSignOUtButton;
+
     @FindBy(xpath = "//div[@class='inner-wrapper']//div")
     List<WebElement> peakSkeletonErrorMessage;
+
+    @FindBy(xpath = "//div[@role='heading']//lightning-formatted-rich-text")
+    WebElement peakWelcomeText;
 
     public void clickOkOnThePeakAlertWindow() {
         Alert peakAlertWindow = basicActions.getDriver().switchTo().alert();
@@ -48,6 +58,22 @@ public class PeakPage {
         softAssert.assertEquals(peakSkeletonErrorMessage.get(0).getText(), "We\u2019re sorry, but there was an error,");
         softAssert.assertEquals(peakSkeletonErrorMessage.get(1).getText(), "and we cannot sign you into Connect for Health Colorado.");
         softAssert.assertEquals(peakSkeletonErrorMessage.get(2).getText(), "Please call us at 855-752-6749.");
+        softAssert.assertAll();
+    }
+
+    public void clickSignInWIthConnectForHealthColoradoButton() {
+        basicActions.waitForElementToBePresentWithRetries(peakSignInWithConnectForHealthColoradoButton, 20);
+        peakSignInWithConnectForHealthColoradoButton.click();
+    }
+
+    public void clickPeakSignOUtButton() {
+        basicActions.waitForElementToBePresentWithRetries(peakSignOUtButton, 20);
+        peakSignOUtButton.click();
+    }
+
+    public void validatePeakWelcomeText() {
+        basicActions.waitForElementToBePresentWithRetries(peakWelcomeText, 20);
+        softAssert.assertEquals(peakWelcomeText.getText(), "Hello " + SharedData.getPrimaryMember().getFirstName() + ", welcome to PEAK");
         softAssert.assertAll();
     }
 }
