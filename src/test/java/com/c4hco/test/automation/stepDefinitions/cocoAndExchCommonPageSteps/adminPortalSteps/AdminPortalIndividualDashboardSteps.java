@@ -260,6 +260,5 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I check {string} {string} {string} or {string} {string} {string}")
     public void iValidateMemberLevelData(String memberSTG, String relationshipSTG, String taxSTG, String memberQA, String relationshipQA, String taxQA) {
         adminPortalIndividualDashboardPage.validateMemberLevelData(memberSTG, relationshipSTG, taxSTG, memberQA, relationshipQA, taxQA);  }
-
 }
 

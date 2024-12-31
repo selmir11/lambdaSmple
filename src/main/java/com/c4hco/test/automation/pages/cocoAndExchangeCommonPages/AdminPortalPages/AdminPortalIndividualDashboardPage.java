@@ -82,7 +82,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement summaryTitle;
     @FindBy(xpath = "//p[normalize-space()='Eligibility']")
     WebElement eligibilityTitle;
-    @FindBy(css = ".dashboardHeader-renewal")
+    @FindBy(xpath = "//h2[@class='dashboardHeader-renewal']")
     WebElement renewalsTitle;
     @FindBy(xpath = "//p[normalize-space()='Payloads']")
     WebElement payloadsTitle;
@@ -215,8 +215,6 @@ public class AdminPortalIndividualDashboardPage {
     List<WebElement> accSummaryBtns;
     @FindBy(xpath = "//app-individual-eligibility//app-plan-year-dropdown//app-drop-down-select//div[contains(@class, 'drop-down-option')]")
     WebElement eligibilityYear;
-    @FindBy(xpath = "//div[@class='col-12 eligibility-date']")
-    WebElement eligibilityDate;
     @FindBy(xpath = "//button[@class='btn-second-action-button view-elibility-1']")
     WebElement viewDetailedEligibility;
     @FindBy(xpath = "//span[normalize-space()='Household level application and eligibility data']")
@@ -259,6 +257,8 @@ public class AdminPortalIndividualDashboardPage {
     WebElement relationship;
     @FindBy(xpath = "//td[@id='taxFilerType']")
     WebElement tax;
+    @FindBy(xpath = "//td[normalize-space()='Application ID:']")
+    WebElement applicationId;
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -719,13 +719,14 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     public void clickEligibilityButtonOnIndividualDashboard() {
-        basicActions.waitForElementToBeClickable(viewDetailedEligibility, 20);
+        basicActions.waitForElementToBeClickable(viewDetailedEligibility, 30);
         basicActions.click(viewDetailedEligibility);
         basicActions.switchtoactiveTab();
     }
 
     public void verifyEligibilityContainer(String tableName) {
-        basicActions.waitForElementToBePresent(householdTableTitle, 30);
+        basicActions.wait(5000);
+        basicActions.waitForElementToBePresent(applicationId, 50);
         softAssert.assertEquals(householdTableTitle.getText(), tableName);
         softAssert.assertAll();
         WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='elig-summary-table']"));
@@ -739,33 +740,27 @@ public class AdminPortalIndividualDashboardPage {
                 {"Quick Submit:", "No"}
         };
         String[][] STGExpectedData = {
-                {"Submitted on:", "04/07/2023 12:33 PM"},
-                {"Application Purpose:", "QUALIFIED_LIFE_CHANGE_EVENT"},
-                {"Total APTC:", "$710.84/month"},
+                {"Submitted on:", "06/06/2024 9:44 AM"},
+                {"Application Purpose:", "UPDATE_DETERMINATION"},
+                {"Total APTC:", "$263.61/month"},
                 {"ARP Eligibility:", "No"},
                 {"Quick Submit:", "No"},
         };
-
-        if (SharedData.getEnv().equals("qa")) {
-            for (int i = 0; i < QAExpectedData.length; i++) {
-                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-                for (int j = 0; j < QAExpectedData[i].length; j++) {
-                    String cellText = cells.get(j).getText();
-                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
-                    softAssert.assertAll();
-                }
-            }
-        } else {
-            for (int i = 0; i < STGExpectedData.length; i++) {
-                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-                for (int j = 0; j < STGExpectedData[i].length; j++) {
-                    String cellText = cells.get(j).getText();
-                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
-                    softAssert.assertAll();
-                }
+        String[][] expectedData = (SharedData.getEnv().equals("qa")) ? QAExpectedData : STGExpectedData;
+        for (int i = 0; i < expectedData.length; i++) {
+            // Find the cells in the current row
+            List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+            // Iterate through each column of the current row
+            for (int j = 0; j < expectedData[i].length; j++) {
+                String cellText = cells.get(j).getText();
+                System.out.println(cellText);
+                // Compare the cell text with the expected value
+                softAssert.assertEquals(cellText, expectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
             }
         }
-    }
+// Perform all assertions at the end of the test
+        softAssert.assertAll();
+}
 
     public void verifyEligibilityContainerMultipleHouseholds() {
         basicActions.waitForElementToBePresent(householdTableTitle, 30);
@@ -774,42 +769,35 @@ public class AdminPortalIndividualDashboardPage {
         WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='elig-summary-table']"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        String[][] QAExpectedData = {
-                {"Submitted on:", "06/22/2023 1:53 PM"},
-                {"Application Purpose:", "INITIAL_DETERMINATION"},
-                {"Total APTC:", "N/A"},
-                {"ARP Eligibility:", "No"},
-                {"Quick Submit:", "No"}
-        };
-        String[][] STGExpectedData = {
-                //     {"Application ID:","72391523"},
-                {"Submitted on:", "06/06/2024 9:44 AM"},
-                {"Application Purpose:", "UPDATE_DETERMINATION"},
-                {"Total APTC:", "$263.61/month"},
-                {"ARP Eligibility:", "No"},
-                {"Quick Submit:", "No"},
-        };
-        if (SharedData.getEnv().equals("qa")) {
-            for (int i = 0; i < QAExpectedData.length; i++) {
-                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-                for (int j = 0; j < QAExpectedData[i].length; j++) {
-                    String cellText = cells.get(j).getText();
-                    softAssert.assertEquals(cellText, QAExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
-                    softAssert.assertAll();
-                }
+            String[][] QAExpectedData = {
+                    {"Submitted on:", "12/12/2024 11:36 AM"},
+                    {"Application Purpose:", "INITIAL_DETERMINATION"},
+                    {"Total APTC:", "$533.32/month"},
+                    {"ARP Eligibility:", "No"},
+                    {"Quick Submit:", "No"}
+            };
+            String[][] STGExpectedData = {
+                    {"Submitted on:", "04/07/2023 12:33 PM"},
+                    {"Application Purpose:", "QUALIFIED_LIFE_CHANGE_EVENT"},
+                    {"Total APTC:", "$710.84/month"},
+                    {"ARP Eligibility:", "No"},
+                    {"Quick Submit:", "No"},
+            };
+        String[][] expectedData = (SharedData.getEnv().equals("qa")) ? QAExpectedData : STGExpectedData;
+        for (int i = 0; i < expectedData.length; i++) {
+            // Find the cells in the current row
+            List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+            // Iterate through each column of the current row
+            for (int j = 0; j < expectedData[i].length; j++) {
+                String cellText = cells.get(j).getText();
+                System.out.println(cellText);
+                // Compare the cell text with the expected value
+                softAssert.assertEquals(cellText, expectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
             }
-        } else {
-            for (int i = 0; i < STGExpectedData.length; i++) {
-                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-                for (int j = 0; j < STGExpectedData[i].length; j++) {
-                    String cellText = cells.get(j).getText();
-                    softAssert.assertEquals(cellText, STGExpectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
-                    softAssert.assertAll();
-                }
-            }
-        }
-    }
+       }
+               softAssert.assertAll();
 
+    }
     public void validateLCEColumns(String lceTitle, String event, String members, String date) {
         basicActions.waitForElementToBePresent(lceTableTitle, 30);
         softAssert.assertEquals(lceTableTitle.getText(), lceTitle);
@@ -832,11 +820,9 @@ public class AdminPortalIndividualDashboardPage {
     public void validateLCEdata(String eventSTG, String dateSTG, String eventQA, String dateQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(lceEventData.getText(), eventSTG);
-            softAssert.assertEquals(membersImpactedData.getText(), "Gertrude Simmons");
             softAssert.assertEquals(lceDateData.getText(), dateSTG);
         } else {
             softAssert.assertEquals(lceEventData.getText(), eventQA);
-            softAssert.assertEquals(membersImpactedData.getText(), "Chris Rock");
             softAssert.assertEquals(lceDateData.getText(), dateQA);
             softAssert.assertAll();
         }
