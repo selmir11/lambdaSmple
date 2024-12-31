@@ -891,12 +891,12 @@ public class BasicActions {
     }
 
     public List<String> getAllMemFirstNames() {
-        List<String> firstName = new ArrayList<>();
+        List<String> firstNames = new ArrayList<>();
         List<MemberDetails> allMembers = getAllMem();
         for (MemberDetails mem : allMembers) {
-            firstName.add(mem.getFirstName());
+            firstNames.add(mem.getFirstName());
         }
-        return firstName;
+        return firstNames;
     }
 
     public List<String> getAllMemCompleteNames() {
@@ -908,7 +908,6 @@ public class BasicActions {
         }
         return firstAndLastName;
     }
-
 
     public String getDobOfMember(String namePrefix){
         String dob = null;
