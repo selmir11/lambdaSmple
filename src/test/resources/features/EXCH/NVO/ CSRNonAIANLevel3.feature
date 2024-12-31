@@ -1,6 +1,6 @@
 Feature: Enrollment end date validation for multiple scenarios
 
-  @SLER-1807
+  @SLER-1807 @NVOExchRegression
   Scenario:[RT-2107] As a user who in plan year 2024 would qualify for the CSR Non AIAN Level 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -72,7 +72,7 @@ Feature: Enrollment end date validation for multiple scenarios
     #DBSTEP
    And  I verify the Member will be CSR NON_AIAN
 
-  @SLER-1827
+  @SLER-1827 @NVOExchRegression
   Scenario:[RT-2108] As a user who in plan year 2024 would qualify for the CSR Non AIAN Level 3
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -141,6 +141,8 @@ Feature: Enrollment end date validation for multiple scenarios
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
     #DBSTEP
     And  I verify the Member will be CSR NON_AIAN
 
