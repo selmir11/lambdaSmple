@@ -1,10 +1,10 @@
 @SIRRegression @APTC-SIR5 @APTC
-  # SLER-778 formerly RT-1618
+  # SLER-778
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
   @SLER-778
   Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
-
+  # SLER-778 formerly RT-1618
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     Then I click create account on admin portal
@@ -217,6 +217,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -343,6 +344,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

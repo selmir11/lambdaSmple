@@ -41,6 +41,9 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
     WebElement signAdmin;
 
+    @FindBy(id = "sign-in-peak")
+    WebElement signInWithPeak;
+
     @FindBy(xpath = "//a[text()=' password']")
     WebElement forgotPassword;
 
@@ -110,7 +113,7 @@ public class LoginPage {
     public void logInWithValidCredentials() {
         basicActions.waitForElementToBePresentWithRetries(username, 10);
         basicActions.wait(2000);
-        String emailId = SharedData.getPrimaryMember().getEmailId();
+        String emailId = SharedData.getPrimaryMember().getIncorrectEmail()!=null? SharedData.getPrimaryMember().getIncorrectEmail():SharedData.getPrimaryMember().getEmailId();
         System.out.println("Email::" + emailId);
         String pswd = SharedData.getPrimaryMember().getPassword();
         basicActions.wait(2000);
@@ -194,6 +197,10 @@ public class LoginPage {
 
     public void clickSignIn() {
         signAdmin.click();
+    }
+
+    public void clickSignInWithPeak() {
+        signInWithPeak.click();
     }
 
     public void usernameRequiredMessage() {

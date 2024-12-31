@@ -543,10 +543,7 @@ Feature: Verify COCO Medical Plan results
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-    Then I click "No" to the Tobacco usage question on start shopping page for "Wife" coco
-    Then I click "No" to the Tobacco usage question on start shopping page for "UnrelatedOne" coco
-    Then I click "No" to the Tobacco usage question on start shopping page for "UnrelatedTwo" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife,UnrelatedOne,UnrelatedTwo" coco
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
