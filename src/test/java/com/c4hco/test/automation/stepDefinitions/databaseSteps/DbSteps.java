@@ -51,9 +51,9 @@ public class DbSteps {
         dbValidations.validateMemberCSRNonAIANData();
     }
 
-    @And("I verify the application result details in DB for {string}")
-    public void iVerifyApplicationResult(String eligibilityStatus) {
-        dbValidations.validateApplicationResult(eligibilityStatus);
+    @And("I verify the application result details in DB as {string} for {string}")
+    public void iVerifyApplicationResult(String eligibilityStatus, String memPrefix) {
+        dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
     }
 
 

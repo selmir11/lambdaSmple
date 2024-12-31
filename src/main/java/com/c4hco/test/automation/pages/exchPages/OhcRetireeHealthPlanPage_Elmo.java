@@ -140,8 +140,16 @@ public class OhcRetireeHealthPlanPage_Elmo {
         }
     }
 
-    public void enterEndDate(String endDate){
+    public void enterEndDate(String endDateData){
         basicActions.waitForElementToBePresent(inputEndDate, 60);
+        String endDate = endDateData;
+        int daysInFuture = 0;
+        if (endDateData.startsWith("Future Day:")) {
+            String[] parts = endDateData.split(":");
+            endDate = parts[0];
+            daysInFuture = Integer.parseInt(parts[1]);
+        }
+
         switch (endDate){
             case "Current Month":
                 inputEndDate.sendKeys(basicActions.lastDateOfCurrMonth());
@@ -151,6 +159,9 @@ public class OhcRetireeHealthPlanPage_Elmo {
                 break;
             case "Future Month":
                 inputEndDate.sendKeys(basicActions.getFutureDate(61));
+                break;
+            case "Future Day":
+                inputEndDate.sendKeys(basicActions.getFutureDate(daysInFuture));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);
