@@ -528,7 +528,7 @@ public class DbValidations {
         String FirstName=null;
         List<MemberDetails> memberList=basicActions.getAllMem();
         for(MemberDetails actualMember : memberList) {
-            if(FName.contains(actualMember.getFirstName())) {
+            if(actualMember.getFirstName().contains(FName)) {
                 FirstName = actualMember.getFirstName();
             }
         }

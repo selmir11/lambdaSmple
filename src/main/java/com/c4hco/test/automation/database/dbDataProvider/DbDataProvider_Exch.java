@@ -523,7 +523,8 @@ public class DbDataProvider_Exch {
     }
 
     public String[] getAddressInformation(String fName){
-       return postgresHandler.getResultForSixColumnValues("address_line1", "address_line2", "city", "state", "zip", "county",exchDbQueries.getAddressDetails(fName));
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+       return postgresHandler.getResultForSixColumnValues("address_line1", "address_line2", "city", "state", "zip", "county",exchDbQueries.getAddressDetails(memberId));
     }
 
 }

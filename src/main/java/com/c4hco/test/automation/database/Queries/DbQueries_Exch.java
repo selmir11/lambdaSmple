@@ -613,8 +613,7 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where household_id  = '"+householId+"'";
     }
 
-    public String getAddressDetails(String FName){
-        String memberId = getMemberId(FName);
+    public String getAddressDetails(String memberId){
         return "SELECT address_line1,address_line2, city, state, zip, county FROM "+dbName+".es_address\n"+
                 "where address_id = (SELECT residence_address_id FROM "+dbName+".es_member where member_id = "+memberId+")";
     }
