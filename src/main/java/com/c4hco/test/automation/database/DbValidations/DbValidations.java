@@ -238,11 +238,10 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateApplicationResult(String expectedReasonCode) {
-        SoftAssert softAssert = new SoftAssert();
+    public void validateApplicationResult(String expectedReasonCode, String memPrefix) {
         String expReasonCode = null;
         switch (expectedReasonCode) {
-            case "OFF_EXCHANGE_ELIGIBLE":
+            case "OFF_EXCHANGE_ELIGIBLE", "OFF_EXCHANGE_NOT_ELIGIBLE":
                 expReasonCode= "OFFEXCH";
                 break;
             case "ELIGIBLE_FOR_HP2_LIMITED":
@@ -255,16 +254,13 @@ public class DbValidations {
                 Assert.fail("Expected Reason Code is not valid");
         }
 
-        String householdID = exchDbDataProvider.getHouseholdID();
-        String memberID = exchDbDataProvider.getMemberID(householdID);
-        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode );
+        String memberID = exchDbDataProvider.getMemberId(basicActions.getMemFirstNames(memPrefix));
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode);
 
-        System.out.println("Household ID: " + householdID);
         System.out.println("Member ID: " + memberID);
         System.out.println("Reason Code: " + reasonCode);
 
         softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
-
         softAssert.assertAll();
     }
 
