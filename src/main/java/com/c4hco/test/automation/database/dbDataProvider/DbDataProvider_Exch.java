@@ -522,4 +522,8 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("application_id", exchDbQueries.geAllApplicationIds(householdId));
     }
 
+    public String[] getAddressInformation(String fName){
+       return postgresHandler.getResultForSixColumnValues("address_line1", "address_line2", "city", "state", "zip", "county",exchDbQueries.getAddressDetails(fName));
+    }
+
 }

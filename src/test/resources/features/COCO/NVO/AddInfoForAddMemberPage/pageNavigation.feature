@@ -114,7 +114,7 @@ Feature: Navigation-Additional information for additional member page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-672_WIP @NVOCoCoRegression
+  @SLCR-672 @NVOCoCoRegression
   Scenario: Verify that the information entered on the Additional Information for Household Member page can be saved and viewed
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -187,4 +187,5 @@ Feature: Navigation-Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     Then I click Go Back on the Race and Ethnicity page
     And I validate complete residential address details for additional member addressLine1 "12345 testRoad",addressLine2 "12345 testarea",city "Denver",state "CO",zipcode "80205",county "DENVER"
+    And I validate complete residential address details for "Son" member in DB addressLine1 "12345 testRoad",addressLine2 "12345 testarea",city "Denver",state "CO",zipcode "80205",county "DENVER"
 

@@ -232,5 +232,10 @@ public class DbSteps {
         dbValidations.validateApplicationIds();
     }
 
+    @Then("I validate complete residential address details for {string} member in DB addressLine1 {string},addressLine2 {string},city {string},state {string},zipcode {string},county {string}")
+    public void validateAddressInformation(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
+        dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
+    }
+
 }
 

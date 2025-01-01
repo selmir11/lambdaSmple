@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.database.DbValidations;
 
+import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
@@ -527,6 +528,24 @@ public class DbValidations {
         Assert.assertEquals(applicationIdsList_unique.size(), applicationIds.size(), "Application id's are not unique");
     }
 
+    public void validateAddressDetailsinDB(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
+        String FirstName=null;
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(FName.contains(actualMember.getFirstName())) {
+                FirstName = actualMember.getFirstName();
+            }
+        }
+
+        String dbValues[] = exchDbDataProvider.getAddressInformation(FirstName);
+        softAssert.assertEquals(dbValues[0], address_line1);
+        softAssert.assertEquals(dbValues[1], address_line2);
+        softAssert.assertEquals(dbValues[2], city);
+        softAssert.assertEquals(dbValues[3], state);
+        softAssert.assertEquals(dbValues[4], zip);
+        softAssert.assertEquals(dbValues[5], county);
+        softAssert.assertAll();
+    }
 
 
  }

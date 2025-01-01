@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.Address;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
@@ -331,5 +333,15 @@ public class AddInfoForAdditionalMemberCoCoPage {
         addressLine2Input.click();
         addressLine2Input.sendKeys(Keys.CONTROL + "a");
         addressLine2Input.sendKeys(addressLine2);
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        String actualMemberInfo = hdrAddInfoForAddMember.getText().replace("Additional information for ","");
+        for(MemberDetails actualMember : memberList) {
+            if(actualMemberInfo.contains(actualMember.getFirstName())) {
+                Address address = new Address();
+                address.setAddressLine1(addressLine1);
+                address.setAddressLine2(addressLine2);
+                actualMember.setResAddress(address);
+            }
+        }
     }
 }

@@ -172,6 +172,20 @@ public class PostgresHandler {
         return resultList;
     }
 
+    public String[] getResultForSixColumnValues(String columnValue1, String columnValue2, String columnValue3, String columnValue4, String columnValue5, String columnValue6, String query) {
+        String[] results = new String[5];
+        try {
+            ResultSet rs = executor.executeQuery(query);
+            if (rs.next()) {
+                results = new String[]{rs.getString(columnValue1), rs.getString(columnValue2), rs.getString(columnValue3), rs.getString(columnValue4), rs.getString(columnValue5), rs.getString(columnValue6)};
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Assert.fail("Error with db occurred: " + e.getMessage());
+        }
+        return results;
+    }
+
 }
 
 
