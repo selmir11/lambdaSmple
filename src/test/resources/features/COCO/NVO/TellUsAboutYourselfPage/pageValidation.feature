@@ -3,7 +3,7 @@ Feature: Validation - Tell us about yourself page
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-82 @NVOCoCoRegression
+  @SLCR-82 @SLCR-681 @NVOCoCoRegression
   Scenario: Validation on the Tell us about yourself page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
