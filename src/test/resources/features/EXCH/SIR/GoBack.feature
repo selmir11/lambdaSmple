@@ -24,7 +24,7 @@ Feature: Go Back tests
       
       # Question not asked during Open Enrollment
       #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+      And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -113,7 +113,7 @@ Feature: Go Back tests
 
       # Question not asked during Open Enrollment
       #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+      And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -245,7 +245,7 @@ Feature: Go Back tests
 
       # Question not asked during Open Enrollment
       #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+      And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -442,7 +442,7 @@ Feature: Go Back tests
 
     # Question not asked during Open Enrollment
     #Then I validate I am on the "Report a life change" page
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
