@@ -79,8 +79,24 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css="app-container .no-application-text")
     WebElement noAppTxt;
+
     @FindBy(css=".not-qualified-text p")
     List<WebElement> notEligibleOverviewTxt;
+
+    @FindBy(css="app-not-eligible-shop .warning-container")
+    WebElement warningModalHeader;
+
+    @FindBy(css="app-not-eligible-shop .contact-us-text")
+    List<WebElement> contactUsTxt;
+
+    @FindBy(css="app-not-eligible-shop .contact-us-link-text a")
+    WebElement contactUsLink;
+
+    @FindBy(css="app-not-eligible-shop .contact-us-text span:nth-child(2)")
+    WebElement contactUsText2;
+
+    @FindBy(css="not-elig-shop-close-button")
+    WebElement warningModalCloseBtn;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -234,6 +250,8 @@ public class ApplicationResultsCoCoPage {
         String expectedYr = "";
         String actualYr = "";
         switch(year){
+            // WIP - For both the cases, the locators are different when we have both current year and next year and on Jan 1st (new year) - the locators change
+            // We need to handle below based on time period
             case "current year":
                 expectedYr = String.valueOf(Year.now().getValue());
                 basicActions.wait(2000);
@@ -343,5 +361,19 @@ public class ApplicationResultsCoCoPage {
              default: Assert.fail("Invalid argument passed");
         }
         softAssert.assertAll();
+    }
+
+    public void validateOeEndPopup() {
+        basicActions.waitForElementToBePresent(warningModalHeader, 10);
+        softAssert.assertEquals(contactUsTxt.get(0).getText(), "You can't enroll in health insurance because it is currently not Open Enrollment.", "The text line 1 did not match");
+        softAssert.assertEquals(contactUsTxt.get(1).getText(), "The annual Open Enrollment Period for health insurance is from November 1 to January 15. Outside of this timeframe, you can only enroll if you have a ", "Part1 of the text highlighted in yellow did not match");
+        softAssert.assertEquals(contactUsLink.getText(), "qualifying life change event", "The link text did not match");
+        softAssert.assertEquals(contactUsText2.getText(), " If you have any questions, call our Customer Service Center 855-675-2626.", "The text after the link on pop up did not match");
+        softAssert.assertAll();
+    }
+
+    public void clickCloseOnPopup(){
+        basicActions.waitForElementToBePresent(warningModalCloseBtn, 10);
+        warningModalCloseBtn.click();
     }
 }
