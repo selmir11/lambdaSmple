@@ -523,6 +523,40 @@ public class DbValidations {
         Assert.assertEquals(applicationIdsList_unique.size(), applicationIds.size(), "Application id's are not unique");
     }
 
+    public void validateSelfAttest(List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+
+            EsSelfAttestationEntity actualResult = exchDbDataProvider.getEsSelfAttest_options();
+            System.out.println(actualResult);
+
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "attests_to_income":
+                        softAssert.assertEquals(actualResult.getAttests_to_income(), value,"Validation failed for attests_to_income at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_received":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_received(), value, "Validation failed for attests_to_aptc_received at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_tax_reporting(), value, "Validation failed for attests_to_aptc_tax_reporting at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_future_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_future_tax_reporting(), value,"Validation failed for attests_to_aptc_future_tax_reporting at row " + (i + 1));
+                        break;
+                    case "outcome":
+                        softAssert.assertEquals(actualResult.getOutcome(), value,"Validation failed for outcome at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
+            }
+        }
+        softAssert.assertAll();
+    }
 
 
  }
