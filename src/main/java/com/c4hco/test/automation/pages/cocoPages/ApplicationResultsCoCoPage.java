@@ -390,6 +390,7 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(contactUsTxt.get(0).getText(), "You can't enroll in health insurance because it is currently not Open Enrollment.", "The text line 1 did not match");
         softAssert.assertEquals(contactUsTxt.get(1).getText(), "The annual Open Enrollment Period for health insurance is from November 1 to January 15. Outside of this timeframe, you can only enroll if you have a qualifying life change event. If you have any questions, call our Customer Service Center 855-675-2626.", "Paragraph in yellow did not match");
         softAssert.assertEquals(contactUsLink.getText(), "qualifying life change event", "The link text did not match");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/get-started/when-can-i-buy-insurance", "URL for hyperlink did not match in English");
     }
 
     private void validateWarningModalEn_SES(){
@@ -398,6 +399,7 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(contactUsTxt.get(1).getText(), "You can't enroll in health insurance because your Special Enrollment Period ended.", "Ses specific text did not match");
         softAssert.assertEquals(contactUsTxt.get(2).getText(), "The annual Open Enrollment Period for health insurance is from November 1 to January 15. Outside of this timeframe, you can only enroll if you have a qualifying life change event. If you have any questions, call our Customer Service Center 855-675-2626.", "Paragraph in yellow did not match");
         softAssert.assertEquals(contactUsLink.getText(), "qualifying life change event", "The link text did not match");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/get-started/when-can-i-buy-insurance", "URL for hyperlink did not match in English");
     }
 
     private void validateWarningModalSp(){
@@ -405,6 +407,7 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el período de inscripción abierta.", "The text line 1 did not match in spanish");
         softAssert.assertEquals(contactUsTxt.get(1).getText(), "El período de inscripción abierta anual para el seguro de salud va del 1º de noviembre al 15 de enero. Fuera de este período, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atención al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
         softAssert.assertEquals(contactUsLink.getText(), "evento de vida calificado", "The link text did not match in spanish");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/", "URL for hyperlink did not match in Spanish");
     }
 
     private void validateWarningModalSp_Ses(){
@@ -413,6 +416,7 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(contactUsTxt.get(1).getText(), "No puede inscribirse en el seguro de salud porque terminó su período de inscripción especial.", "SES specific text did not match in spanish");
         softAssert.assertEquals(contactUsTxt.get(2).getText(), "El período de inscripción abierta anual para el seguro de salud va del 1º de noviembre al 15 de enero. Fuera de este período, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atención al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
         softAssert.assertEquals(contactUsLink.getText(), "evento de vida calificado", "The link text did not match in spanish");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/", "URL for hyperlink did not match in Spanish");
     }
 
     public void clickCloseOnPopup(){
