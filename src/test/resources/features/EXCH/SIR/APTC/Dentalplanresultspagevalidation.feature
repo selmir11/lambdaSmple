@@ -24,7 +24,7 @@ Feature: UI Page Validation - Plan Results (Dental)
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "Birth" and click continue
+    And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
