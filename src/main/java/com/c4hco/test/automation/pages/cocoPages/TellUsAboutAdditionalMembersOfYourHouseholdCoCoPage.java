@@ -147,6 +147,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         member.setSignature(frstName + " " + lastName);
         member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
         member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
+        member.setApplyingforCov(applying);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
@@ -546,4 +547,55 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         }
     }
 
+    public void validateTellUsAboutAdditionalMembersCoCo(String FName,String DOB, String Gender, String applying, List<String> relationship) {
+        basicActions.waitForElementToBePresent(txtFirstName, 30);
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                softAssert.assertEquals(txtFirstName.getAttribute("value"),actualMember.getFirstName());
+                softAssert.assertEquals(txtMiddleName.getAttribute("value"),actualMember.getMiddleName());
+                softAssert.assertEquals(txtLastName.getAttribute("value"),actualMember.getLastName());
+                softAssert.assertEquals(DOB,actualMember.getDob());
+                softAssert.assertEquals(Gender,actualMember.getGender());
+                softAssert.assertEquals(applying,actualMember.getApplyingforCov());
+            }
+        }
+
+        for(String relationInfo : relationship) {
+            String[] parts = relationInfo.split(":");
+            String Name = parts[0];  // "Primary"
+            String Relation = parts[1]; // "Spouse"
+            basicActions.waitForElementToBePresent(txtFirstName,10);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::div/parent::form-label/parent::div //select"));
+            basicActions.waitForElementToBeClickableWithRetries(element,10);
+            // Perform actions on the element
+            Select dropdown = new Select(element);
+            softAssert.assertEquals(dropdown.getFirstSelectedOption().getText(),Relation,"Autopopulated relationship for "+Name+" is not matching with expected");
+            //softAssert.assertAll();
+        }
+        softAssert.assertAll();
+    }
+
+    public void updateAdditionalMemberDetailsCoCo(String FName, String DOB, String gender, String applying, List<String> Relations) {
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if (actualMember.getFirstName().contains(FName)) {
+                if (DOB.equals("getFromSharedData")) {
+                    DOB = SharedData.getCalculatedDob().get(FName);
+                    DOB = basicActions.changeDateFormat(DOB, "MM/dd/yyyy", "MMddyyyy");
+                } else if (DOB.contains("Age")) {
+                    memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
+                }
+                enterMemberDOB(DOB);
+                genderSelection(gender);
+                for (String Relation : Relations) {
+                    selectRelationship(Relation);
+                }
+                applyingForCoverage(applying);
+                actualMember.setDob(DOB);
+                actualMember.setGender(gender);
+                actualMember.setApplyingforCov(applying);
+            }
+        }
+    }
 }
