@@ -119,6 +119,22 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(submitNewApplicationText.getText(), "If your situation changes you can submit a new application to re-apply and newly qualify.");
         softAssert.assertAll();
     }
+    private void verifyTextHoulseholdQualifyForOnAppResultsPage() {
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader, 10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeader.getText(), "Here's what your household qualifies for");
+        softAssert.assertAll();
+    }
+    public void verifyPageTextOnApplicationResultPage(String resident){
+        if(resident.equals("Yes")) {
+            verifyTextHoulseholdQualifyForOnAppResultsPage();
+            validateNameAndPlan();
+            validateOverviewContainerTxt();
+            validateYellowBannerTxt();
+        }else{
+            verifyTextNotQualifyForPlanOnAppResultsPage();
+        }
+        softAssert.assertAll();
+    }
     public void verifySESlimitedOnAppResultsPage(String language) {
         switch (language) {
             case "English":

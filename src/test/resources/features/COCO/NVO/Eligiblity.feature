@@ -283,3 +283,43 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     And I select continue on the income Summary CoCo page
     Then I verify no one is applying text on the Family Overview page
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-679
+  Scenario Outline: Validate text application result
+    Then I enter details on tell us about yourself page and continue with "11281992", "Male", and applying "<isApplying>"
+    And I enter my residential address "101 Coco Drive", "<city>", "<state>", "<zipcode>", "<county>"
+    And I select "Yes" for mailing address option
+    And I select "<isCoResident>" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Employment Income" page
+    And I select "Yes" employment option
+    And I enter "27,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "InsuranceLoss" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    Then I validate the top to bottom eligible text based on "<isCoResident>" the application results page coco
+    And I click on Sign Out in the Header for "Elmo"
+    Examples:
+      | city        | state | zipcode | county      | isApplying | isCoResident |
+      | Denver      | CO    | 80205   | DENVER      | Yes        | Yes          |
+      | Los Angeles | CA    | 90005   | LOS ANGELES | Yes        | No           |
