@@ -176,6 +176,13 @@ public class DentalPlanComparePage {
 
         softAssert.assertEquals( collapseAllLink.getText(),"Collapse All Categories" );
         basicActions.click(collapseAllLink );
+        softAssert.assertEquals( txtDentalDiagnosticChild.getText(),"Diagnostic and Preventive Services Child" );
+        basicActions.click( txtDentalDiagnosticChild );
+
+        basicActions.scrollToElement(collapseAllLink);
+        softAssert.assertEquals( collapseAllLink.getText(),"Collapse All Categories" );
+        basicActions.click(collapseAllLink );
+        basicActions.waitForElementToBePresent(expandAllLink,20  );
         softAssert.assertEquals( expandAllLink.getText(),"Expand All Categories" );
         basicActions.click( expandAllLink );
         basicActions.click(collapseAllLink );
