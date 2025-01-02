@@ -237,11 +237,10 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateApplicationResult(String expectedReasonCode) {
-        SoftAssert softAssert = new SoftAssert();
+    public void validateApplicationResult(String expectedReasonCode, String memPrefix) {
         String expReasonCode = null;
         switch (expectedReasonCode) {
-            case "OFF_EXCHANGE_ELIGIBLE":
+            case "OFF_EXCHANGE_ELIGIBLE", "OFF_EXCHANGE_NOT_ELIGIBLE":
                 expReasonCode= "OFFEXCH";
                 break;
             case "ELIGIBLE_FOR_HP2_LIMITED":
@@ -254,16 +253,13 @@ public class DbValidations {
                 Assert.fail("Expected Reason Code is not valid");
         }
 
-        String householdID = exchDbDataProvider.getHouseholdID();
-        String memberID = exchDbDataProvider.getMemberID(householdID);
-        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode );
+        String memberID = exchDbDataProvider.getMemberId(basicActions.getMemFirstNames(memPrefix));
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode);
 
-        System.out.println("Household ID: " + householdID);
         System.out.println("Member ID: " + memberID);
         System.out.println("Reason Code: " + reasonCode);
 
         softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
-
         softAssert.assertAll();
     }
 
@@ -527,6 +523,40 @@ public class DbValidations {
         Assert.assertEquals(applicationIdsList_unique.size(), applicationIds.size(), "Application id's are not unique");
     }
 
+    public void validateSelfAttest(List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+
+            EsSelfAttestationEntity actualResult = exchDbDataProvider.getEsSelfAttest_options();
+            System.out.println(actualResult);
+
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "attests_to_income":
+                        softAssert.assertEquals(actualResult.getAttests_to_income(), value,"Validation failed for attests_to_income at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_received":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_received(), value, "Validation failed for attests_to_aptc_received at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_tax_reporting(), value, "Validation failed for attests_to_aptc_tax_reporting at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_future_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_future_tax_reporting(), value,"Validation failed for attests_to_aptc_future_tax_reporting at row " + (i + 1));
+                        break;
+                    case "outcome":
+                        softAssert.assertEquals(actualResult.getOutcome(), value,"Validation failed for outcome at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
+            }
+        }
+        softAssert.assertAll();
+    }
 
 
  }
