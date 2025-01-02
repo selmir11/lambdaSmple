@@ -1,7 +1,6 @@
 
 #SLCR-651,SLCR-661
 Feature: Coco user on the Application results page
-
   Background: I go the login portal
     Given I open the login page on the "login" portal
     Given I open the login page on the "login" portal
@@ -14,8 +13,8 @@ Feature: Coco user on the Application results page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
 
-
-  @SLCR-651 #WIP
+  @SLCR-651
+    #Scenario1
   Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -60,7 +59,23 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
-    #DB STEP WIP
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    And I get the application id from the url from tobacco page coco
+    #DB STEP
+    Then I validate the application id from the db
+
+
+
+  @SLCR-651
+    #Scenario2
+  Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
+    And I click on "Application Results" link on welcome page
+    Then I validate I am on the "Application Results CoCo" page
+    Then  I validate the Application Results page text in "English" when no application is submitted
+
+
 
   @SLCR-661
     Scenario: ELIG-As a Coco user on the Application Results page, I need an ENR endpoint called for me so that I know if I can continue to shopping[CCRT-58]
@@ -101,7 +116,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    #DB STEP WIP
+    #DB STEP
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
 
   @SLCR-661
@@ -143,6 +158,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+
     #DB STEP
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
 
@@ -198,7 +214,7 @@ Feature: Coco user on the Application results page
     And I click on Sign Out in the Header for "Elmo"
 
 
-    @SLCR-680  #WIP
+    @SLCR-680
     Scenario: ELIG-As a Coco user on the application results page, I need to see my results information when I do not qualify for any benefit [CCRT-248]
       And I apply for the current year in CoCo
       Then I validate I am on the "Find Expert Help" page
@@ -231,13 +247,13 @@ Feature: Coco user on the Application results page
       Then I validate I am on the "CoCo Family Overview" page
       And I select continue on the Family Overview page
       Then I validate I am on the "CoCo life change event" page
-      And I select "InsuranceLoss" life change event with event date of "Today"
+      And I check "None of these" life change event checkbox
       And I select continue on the LCE page
       Then I validate I am on the "CoCo Declarations and Signature" page
       And I enter a valid signature
       And I click Continue on the Declarations And Signature Page CoCo
       Then I validate I am on the "Application Results CoCo" page
-      #WIP FINAL STEP
+      Then I validate the text on the application results page coco
 
   @SLCR-669
   Scenario: ELIG-NVO E2E members able to shop for 2025PY with valid QLCE (CE)
