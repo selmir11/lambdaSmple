@@ -232,5 +232,8 @@ public class DbSteps {
         dbValidations.validateApplicationIds();
     }
 
+    @Then("I validate the Self Attestation details in DB")
+    public void iValidateSelfAttestation(List<Map<String, String>> expectedValues){dbValidations.validateSelfAttest(expectedValues);}
+
 }
 
