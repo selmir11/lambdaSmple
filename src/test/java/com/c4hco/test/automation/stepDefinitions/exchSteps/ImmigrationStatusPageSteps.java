@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.ImmigrationStatusPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class ImmigrationStatusPageSteps {
@@ -21,5 +22,11 @@ public class ImmigrationStatusPageSteps {
     @Then("I click continue on the Immigration Status page")
         public void clickContinue(){
         ImmigrationStatusPage.clickContinue();}
+
+
+    @And("I validate Citizenship and Immigration status for juvenile {string}")
+    public void ivalidateCitizenshipAndImmigrationJuvenileText(String language) {
+        ImmigrationStatusPage.validateCitizenshipAndImmigrationJuvenileText(language);
+    }
 
 }

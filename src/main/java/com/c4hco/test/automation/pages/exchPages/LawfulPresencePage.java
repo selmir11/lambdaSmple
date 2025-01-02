@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.jsoup.internal.FieldsAreNonnullByDefault;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -182,7 +183,7 @@ public class LawfulPresencePage {
     }
 
     public void enterUSCISNumber(String citizenship) {
-        switch (citizenship){
+        switch (citizenship) {
             case "NonCitizen":
                 enterUSCISNumberNonCitizen();
                 break;
@@ -205,7 +206,7 @@ public class LawfulPresencePage {
     }
 
     public void clickDocType(String docType) {
-        switch (docType){
+        switch (docType) {
             case "Naturalization Certificate":
                 dpdNaturalizationCertificate.click();
                 break;
@@ -229,7 +230,7 @@ public class LawfulPresencePage {
     }
 
     public void enterCardNumber() {
-        String CardNumberValue = "AAA5"+generateCardNumber();
+        String CardNumberValue = "AAA5" + generateCardNumber();
         cardNumber.sendKeys(CardNumberValue);
     }
 
@@ -428,7 +429,7 @@ public class LawfulPresencePage {
                 validateUndocumentedCitizenInfoTextSpanish();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " +language );
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -580,6 +581,4 @@ public class LawfulPresencePage {
         softAssert.assertEquals(helpDrawerHelpText.get(9).getText(), "Servicio activo del ej\u00E9rcito o veterano dado de baja honrosamente\nUn inmigrante autorizado que tambi\u00E9n: (1) sea veterano dado de baja honrosamente, (2) est\u00E9 en servicio activo en el ej\u00E9rcito de Estados Unidos o (3) sea c\u00F3nyuge (incluso un c\u00F3nyuge sobreviviente que no se haya vuelto a casar) o sea hijo dependiente soltero de un veterano dado de baja honrosamente o de un miembro en servicio activo del ej\u00E9rcito de Estados Unidos, puede solicitar seguro de salud por medio de Connect for Health Colorado antes de concluir un per\u00EDodo de espera de cinco a\u00F1os. Tenga en cuenta que: los beneficiarios de DACA deben responder \"no\" a esta pregunta, incluso si cumplen con los requisitos que se mencionan en la parte superior.");
         softAssert.assertAll();
     }
-
-
 }
