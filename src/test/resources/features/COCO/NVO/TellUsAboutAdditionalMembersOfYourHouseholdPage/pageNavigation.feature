@@ -46,7 +46,7 @@ Feature: Navigation - Tell us about additional members of your household page
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
 
-  @SLCR-685 @NVOCoCoRegression
+  @SLCR-685_WIP @NVOCoCoRegression
   Scenario: Verify that the information entered on the Tell us about additional members of your household page can be saved and viewed
     When I click create a new account on login page
     Then I click create my account from pre-screen page
