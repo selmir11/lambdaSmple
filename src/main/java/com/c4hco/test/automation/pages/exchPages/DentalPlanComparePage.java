@@ -174,11 +174,6 @@ public class DentalPlanComparePage {
         softAssert.assertEquals( txtDentalMajorServicesAdult.getText(),"Major Services Adult" );
         basicActions.click( txtDentalMajorServicesAdult );
 
-        softAssert.assertEquals( collapseAllLink.getText(),"Collapse All Categories" );
-        basicActions.click(collapseAllLink );
-        softAssert.assertEquals( txtDentalDiagnosticChild.getText(),"Diagnostic and Preventive Services Child" );
-        basicActions.click( txtDentalDiagnosticChild );
-
         basicActions.scrollToElement(collapseAllLink);
         softAssert.assertEquals( collapseAllLink.getText(),"Collapse All Categories" );
         basicActions.click(collapseAllLink );
@@ -186,6 +181,24 @@ public class DentalPlanComparePage {
         softAssert.assertEquals( expandAllLink.getText(),"Expand All Categories" );
         basicActions.click( expandAllLink );
         basicActions.click(collapseAllLink );
+    }
+
+    public void validateSpecificExpandCollapseDentalCompareHeaders() {
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        softAssert.assertEquals( txtHighlights.getText(), "Highlights" );
+        softAssert.assertEquals( txtPlanDocuments.getText(), "Plan Documents" );
+
+        softAssert.assertEquals( txtDentalDiagnosticChild.getText(),"Diagnostic and Preventive Services Child" );
+        basicActions.click( txtDentalDiagnosticChild );
+        softAssert.assertEquals(getTxtCleaningChild.getText(), "Cleaning Child");
+
+        softAssert.assertEquals( collapseAllLink.getText(),"Collapse All Categories" );
+        basicActions.click(collapseAllLink );
+        softAssert.assertNull( collapseAllLink.getText(), "Individual Collapse function works ");
+        softAssert.assertNull( getTxtCleaningChild.getText(), "Individual Collapse function works ");
+
+        softAssert.assertEquals( txtDentalDiagnosticChild.getText(),"Diagnostic and Preventive Services Child" );
+        basicActions.click( txtDentalDiagnosticChild );
     }
 
     public void validateInNetworkDental(){
