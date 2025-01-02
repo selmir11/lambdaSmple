@@ -1,8 +1,5 @@
-
-#SLCR-651,SLCR-661
 Feature: Coco user on the Application results page
   Background: I go the login portal
-    Given I open the login page on the "login" portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -14,7 +11,6 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Welcome" page
 
   @SLCR-651
-    #Scenario1
   Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -63,19 +59,13 @@ Feature: Coco user on the Application results page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     And I get the application id from the url from tobacco page coco
-    #DB STEP
     Then I validate the application id from the db
 
-
-
   @SLCR-651
-    #Scenario2
   Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
     And I click on "Application Results" link on welcome page
     Then I validate I am on the "Application Results CoCo" page
     Then  I validate the Application Results page text in "English" when no application is submitted
-
-
 
   @SLCR-661
     Scenario: ELIG-As a Coco user on the Application Results page, I need an ENR endpoint called for me so that I know if I can continue to shopping[CCRT-58]
@@ -116,7 +106,6 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    #DB STEP
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
 
   @SLCR-661
@@ -158,8 +147,6 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-
-    #DB STEP
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
 
   @SLCR-661
@@ -201,7 +188,6 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    #DBSTEP
     And I verify the application result details in DB as "OFF_EXCHANGE_NOT_ELIGIBLE" for "Primary"
 
   @SLCR-678
@@ -212,7 +198,6 @@ Feature: Coco user on the Application results page
     Then I verify the header in "Spanish" on the Application Results Page CoCo
     Then I validate the Application Results page text in "Spanish" when no application is submitted
     And I click on Sign Out in the Header for "Elmo"
-
 
     @SLCR-680
     Scenario: ELIG-As a Coco user on the application results page, I need to see my results information when I do not qualify for any benefit [CCRT-248]
@@ -335,9 +320,8 @@ Feature: Coco user on the Application results page
       And I click Continue on the Declarations And Signature Page CoCo
       Then I validate I am on the "Application Results CoCo" page
       Then I verify text that the member qualifies for SES and no spots are available in "English" on the App Results Page CoCo
-      And I click on Sign Out in the Header for "Elmo"
-      #DB STEP
       And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
+      And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-682
   Scenario: scenario 2- User submits 2025 application with no LCE during open enrollment and able to shop
@@ -434,7 +418,6 @@ Feature: Coco user on the Application results page
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
 
    #@SLCR-682 Scenario: scenario 4 - User submits 2025 application with LCE during SES limited-(SHOULD BE DONE WHEN SES PLANS ARE AVAILABLE) WIP
-
 
 @SLCR-684
 Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results page (eligible Spanish text)
@@ -541,7 +524,6 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I change the language from header to "Spanish"
-
     Then I validate text in Spanish on the application results page when not eligible
 
     @SLCR-688
@@ -584,7 +566,4 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       Then I validate I am on the "Application Results CoCo" page
       Then I validate the text on the application results page coco
       And I click Continue on the Application Results Page CoCo
-          #DB STEP
       And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
-
-
