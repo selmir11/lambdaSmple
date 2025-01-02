@@ -139,6 +139,17 @@ public class NoticesPage {
     @FindBy(xpath = "//p[@class='x_body']")
     List<WebElement> BodyTextBN002A0404;
 
+    @FindBy(xpath = "//*[@id='x_accountCreationCommon']/p[1]")
+    WebElement bodyTextAM00301Parag1;
+    @FindBy(xpath = "//*[@id='x_accountCreationCommon']/p[3]")
+    WebElement bodyTextAM00301Parag2;
+    @FindBy(xpath = "//*[@id='x_brokerAccountCreationNoticeBody']/p[1]")
+    WebElement bodyTextAM00301Parag3;
+    @FindBy(xpath = "//*[@id='x_brokerAccountCreationNoticeBody']/p[2]")
+    WebElement bodyTextAM00301Parag4;
+    @FindBy(xpath = "//*[@id='x_brokerAccountCreationNoticeBody']/p[3]")
+    WebElement bodyTextAM00301Parag5;
+
 
     public String MFACode = "";
 
@@ -370,11 +381,41 @@ public class NoticesPage {
             case "BN-002A-02 Exch":
                 VerifyTheNoticeTextBN002A02Exchbroker();
                 break;
+            case "AM-003-01":
+                VerifyTheNoticeTextAM00301Exchbroker();
+            break;
+            case "AM-003-01 Agency":
+                VerifyTheNoticeTextAM00301ExchAgency();
+            break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
     }
 
+    private void VerifyTheNoticeTextAM00301ExchAgency() {
+        String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MMMM dd, yyyy");
+        basicActions.wait(100);
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getFirstName()+" "+SharedData.getAgencyOwner().getLastName());
+        softAssert.assertEquals(bodyTextAM00301Parag1.getText(), "Welcome to Connect for Health Colorado\u00AE. An account was opened for you on "+ Date+":");
+        softAssert.assertEquals(bodyTextAM00301Parag2.getText(), "Login ID: "+ SharedData.getAgencyOwner().getEmail());
+        softAssert.assertEquals(bodyTextAM00301Parag3.getText(), "To get started, visit us online at https://connectforhealthco.com/for-certified-brokers/.");
+        softAssert.assertEquals(bodyTextAM00301Parag4.getText(), "Log in to your account to complete your profile. You must complete training before you can be certified to place business through Connect for Health Colorado\u00AE. Visit https://c4hco.csod.com/ for more training information and resources..");
+        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.");
+        softAssert.assertAll();
+    }
+
+    private void VerifyTheNoticeTextAM00301Exchbroker() {
+        String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MMMM dd, yyyy");
+        basicActions.wait(100);
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getBroker().getFirstName()+" "+SharedData.getBroker().getLastName());
+        softAssert.assertEquals(bodyTextAM00301Parag1.getText(), "Welcome to Connect for Health Colorado\u00AE. An account was opened for you on "+ Date+":");
+        softAssert.assertEquals(bodyTextAM00301Parag2.getText(), "Login ID: "+ SharedData.getBroker().getEmail());
+        softAssert.assertEquals(bodyTextAM00301Parag3.getText(), "To get started, visit us online at https://connectforhealthco.com/for-certified-brokers/.");
+        softAssert.assertEquals(bodyTextAM00301Parag4.getText(), "Log in to your account to complete your profile. You must complete training before you can be certified to place business through Connect for Health Colorado\u00AE. Visit https://c4hco.csod.com/ for more training information and resources..");
+        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.");
+        softAssert.assertAll();
+
+    }
 
 
     private void VerifyTheNoticeTextAM01608broker() {

@@ -1,5 +1,5 @@
 Feature: LR Enrollment Period end date is set when user has
-  @SLER-1808
+  @SLER-1808 @NVOExchRegression
   Scenario: [RT-2314]LCE Loss of MEC
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -74,7 +74,7 @@ Feature: LR Enrollment Period end date is set when user has
 #DBSTEP
     And  I Validate enrollment period end date is set to 60 days from current QLCE days
 
-    @SLER-1838
+    @SLER-1838 @NVOExchRegression
     Scenario: [RT-2333] LCE of Marriage
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
@@ -149,7 +149,7 @@ Feature: LR Enrollment Period end date is set when user has
 #DBSTEP
       And  I Validate enrollment period end date is set to 60 days from current QLCE days
 
-  @SLER-1848
+  @SLER-1848 @NVOExchRegression
   Scenario: [RT-2334] LCE Gain Lawful Presence
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -293,9 +293,10 @@ Feature: LR Enrollment Period end date is set when user has
       Then I Declare as Tax Household 1
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
-      Then I click on "No Thanks" on good news page
+    #  Then I click on "No Thanks" on good news page
       Then I validate I am on the "Application History" page
       Then I click on view results and shop
+      And I click on Sign Out in the Header for "NonElmo"
 #DBSTEP
       And  I Validate enrollment period end date is set to <enrollmentEndDate> days from current QLCE days
       Examples:
