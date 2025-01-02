@@ -748,17 +748,13 @@ public class AdminPortalIndividualDashboardPage {
         };
         String[][] expectedData = (SharedData.getEnv().equals("qa")) ? QAExpectedData : STGExpectedData;
         for (int i = 0; i < expectedData.length; i++) {
-            // Find the cells in the current row
             List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-            // Iterate through each column of the current row
             for (int j = 0; j < expectedData[i].length; j++) {
                 String cellText = cells.get(j).getText();
                 System.out.println(cellText);
-                // Compare the cell text with the expected value
                 softAssert.assertEquals(cellText, expectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
             }
         }
-// Perform all assertions at the end of the test
         softAssert.assertAll();
 }
 
@@ -785,13 +781,10 @@ public class AdminPortalIndividualDashboardPage {
             };
         String[][] expectedData = (SharedData.getEnv().equals("qa")) ? QAExpectedData : STGExpectedData;
         for (int i = 0; i < expectedData.length; i++) {
-            // Find the cells in the current row
-            List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
-            // Iterate through each column of the current row
-            for (int j = 0; j < expectedData[i].length; j++) {
+                List<WebElement> cells = rows.get(i + 1).findElements(By.tagName("td"));
+                for (int j = 0; j < expectedData[i].length; j++) {
                 String cellText = cells.get(j).getText();
                 System.out.println(cellText);
-                // Compare the cell text with the expected value
                 softAssert.assertEquals(cellText, expectedData[i][j], "Mismatch found in row " + (i + 1) + ", column " + (j + 1));
             }
        }
