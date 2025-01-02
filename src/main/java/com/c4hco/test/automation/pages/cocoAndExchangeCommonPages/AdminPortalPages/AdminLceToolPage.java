@@ -71,7 +71,8 @@ public class AdminLceToolPage {
     @FindBy(xpath = "//div[@class='select-info']")
     WebElement selectPlanYearMessage;
 
-    @FindBy(xpath = "//span[normalize-space()='Plan year 2024']")
+//    @FindBy(xpath = "//span[normalize-space()='Plan year 2024']")
+    @FindBy(xpath = "//app-admin-lce-portal[1]/div[1]/div[1]/div[2]/div[2]/div[3]/div[1]/span[1]")
     WebElement currentYear;
 
     @FindBy(xpath = "//span[@class = 'plan-year']")
@@ -238,26 +239,24 @@ public class AdminLceToolPage {
     }
 
     public void clickAppDataDropdown() {
-        for (WebElement element : appDataDropdowns) {
+        this.appDataDropdowns.forEach(element -> {
             try {
                 element.click();
             } catch (Exception e) {
                 System.out.println("Error clicking element: " + e.getMessage());
             }
-        }
+        });
     }
 
     public void noappdatamessage() {
         String expectedMessage = "There is no application data for this year.";
 
-        for (WebElement element : appDatatext) {
-            String elementText = element.getText().trim();
-
-            if (elementText.contains(expectedMessage)) {
-               return;
+        appDatatext.forEach(element -> {
+            if (element.getText().trim().contains(expectedMessage)) {
+                return; // Message found, exit the method
             } else {
-                System.out.println("Message NOT found in: " + elementText);
+                System.out.println("Message NOT found in: " + element.getText().trim());
             }
-        }
+        });
     }
 }
