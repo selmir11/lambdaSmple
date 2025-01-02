@@ -32,6 +32,9 @@ public class DentalPlanComparePageSteps {
     @And( "I will validate the expand all and collapse all header functionality for the Dental Compare page" )
     public void validateExpandCollapseDentalCompareHeaders(){dentalPlanComparePage.validateExpandCollapseDentalCompareHeaders();}
 
+    @And( "I will validate the expand and collapse header functionality for a specific header on the Dental Compare page" )
+    public void validateSpecificExpandCollapseDentalCompareHeaders(){dentalPlanComparePage.validateSpecificExpandCollapseDentalCompareHeaders();}
+
 }
 
 

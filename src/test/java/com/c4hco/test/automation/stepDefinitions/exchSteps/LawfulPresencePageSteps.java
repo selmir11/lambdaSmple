@@ -98,4 +98,5 @@ public class LawfulPresencePageSteps {
 
     @Then("I validate Lawful Presence help drawer {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language){lawfulPresencePage.validateHelpVerbiage(helpText, language);}
+
 }

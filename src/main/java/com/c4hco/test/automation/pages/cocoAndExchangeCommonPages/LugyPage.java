@@ -31,6 +31,8 @@ public class LugyPage {
     WebElement incomePeriodOption;
     @FindBy(id = "submitButton")
     WebElement ApplyForFinancialHelpBtn;
+    @FindBy(xpath = "//*[@value='Apply for Health First Colorado']")
+    WebElement ApplyForHeathFirstColoradoBtn;
 
 
     public void selectTellUsAboutYourHouseholdOptionInLetUsGuideYouPage(String lugyOptions) {
@@ -110,5 +112,10 @@ public class LugyPage {
         softAssert.assertTrue(ApplyForFinancialHelpBtn.isDisplayed());
         softAssert.assertEquals(ApplyForFinancialHelpBtn.getAttribute("value"),"Apply for Financial Help");
         softAssert.assertAll();
+    }
+
+    public void clickApplyForHealthFirstColoradoInLetUsGuideYouPage() {
+        basicActions.waitForElementToBePresent(ApplyForHeathFirstColoradoBtn,30);
+        ApplyForHeathFirstColoradoBtn.click();
     }
 }

@@ -147,7 +147,7 @@ public class CreateAccountPage {
     @FindBy(id = "role")
     WebElement roleDropdown;
 
-    @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[1]")
+    @FindBy(xpath = "//select[@id='role']/option[2]")
     WebElement certifiedBrokerRole;
 
     @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[2]")

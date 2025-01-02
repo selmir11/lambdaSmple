@@ -613,4 +613,9 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where household_id  = '"+householId+"'";
     }
 
+    public String getSelfAttestationDetails(String householdID){
+        return "select * from "+dbName+".es_self_attestation\n" +
+                "where household_id = '"+householdID+"'";
+    }
+
 }
