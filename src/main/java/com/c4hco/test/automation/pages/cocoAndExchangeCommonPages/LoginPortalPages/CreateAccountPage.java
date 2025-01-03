@@ -567,6 +567,7 @@ public class CreateAccountPage {
         lastName.sendKeys(subscriber.getLastName());
         subscriber.setIncorrectEmail(subscriber.getEmailId());
         String newEmail = basicActions.getUniqueString(8)+"oldMem@test.com";
+        SharedData.setOldAccountId(subscriber.getAccount_id());
         subscriber.setEmailId(newEmail);
         email.sendKeys(newEmail);
         phoneNumber.sendKeys(subscriber.getPhoneNumber());

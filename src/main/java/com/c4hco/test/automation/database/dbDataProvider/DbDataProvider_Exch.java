@@ -537,4 +537,9 @@ public class DbDataProvider_Exch {
         return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
     }
 
+    public List<EsMemberHouseholdEntity> getExchPersonIdFieldsOldAcc_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdIdForOldAccount());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
 }

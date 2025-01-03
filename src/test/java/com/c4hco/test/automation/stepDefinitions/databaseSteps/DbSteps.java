@@ -245,6 +245,11 @@ public class DbSteps {
         dbValidations.validateExchPersonIdRelatedFields();
     }
 
+    @Then("I validate the exch_person_id related fields from db for a duplicate member after tell us about yourself page")
+    public void validateExchPersonIdFields_duplicateMem(){
+        dbValidations.validateExchPersonIdFields_duplicateMem();
+    }
+
     @Then("I validate eventCD when no notices are sent")
     public void iValidateEventCD(){
         dbValidations.validateEventCD();
