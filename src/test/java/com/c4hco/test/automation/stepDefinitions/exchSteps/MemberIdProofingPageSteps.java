@@ -16,4 +16,14 @@ public class MemberIdProofingPageSteps {
     public void iValidateTheVerbiageOnTheIdentityProofingInitialPageIn(String language) {
         memberIdProofingPage.validateTheVerbiageOnTheIdentityProofingInitialPage(language);
     }
+
+    @Then("I answer the wrong Id proofing answers and click continue")
+    public void iAnswerTheWrongIdProofingAnswersAndClickContinue() {
+        memberIdProofingPage.answerTheWrongIdProofingAnswersAndClickContinue();
+    }
+
+    @And("I validate the id proofing error message is displayed")
+    public void iValidateTheIdProofingErrorMessageIsDisplayed() {
+        memberIdProofingPage.validateTheIdProofingErrorMessageIsDisplayed();
+    }
 }
