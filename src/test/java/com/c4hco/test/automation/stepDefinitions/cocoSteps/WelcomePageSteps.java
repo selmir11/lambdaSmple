@@ -59,6 +59,8 @@ public class WelcomePageSteps {
     @And("I validate no notification banner on welcome page")
     public void verifyNoNotificationBanner()  { welcomePage.validateNoNotificationBanner(); }
 
+    @Then("I validate the action link properties on welcome page")
+    public void iValidateActionLinks() {welcomePage.validateActionLinks();}
 }
 
 
