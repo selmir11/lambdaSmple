@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.database.DbValidations;
 
-import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
@@ -524,22 +523,38 @@ public class DbValidations {
         Assert.assertEquals(applicationIdsList_unique.size(), applicationIds.size(), "Application id's are not unique");
     }
 
-    public void validateAddressDetailsinDB(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
-        String FirstName=null;
-        List<MemberDetails> memberList=basicActions.getAllMem();
-        for(MemberDetails actualMember : memberList) {
-            if(actualMember.getFirstName().contains(FName)) {
-                FirstName = actualMember.getFirstName();
+    public void validateSelfAttest(List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+
+            EsSelfAttestationEntity actualResult = exchDbDataProvider.getEsSelfAttest_options();
+            System.out.println(actualResult);
+
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "attests_to_income":
+                        softAssert.assertEquals(actualResult.getAttests_to_income(), value,"Validation failed for attests_to_income at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_received":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_received(), value, "Validation failed for attests_to_aptc_received at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_tax_reporting(), value, "Validation failed for attests_to_aptc_tax_reporting at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_future_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_future_tax_reporting(), value,"Validation failed for attests_to_aptc_future_tax_reporting at row " + (i + 1));
+                        break;
+                    case "outcome":
+                        softAssert.assertEquals(actualResult.getOutcome(), value,"Validation failed for outcome at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
             }
         }
-
-        String dbValues[] = exchDbDataProvider.getAddressInformation(FirstName);
-        softAssert.assertEquals(dbValues[0], address_line1);
-        softAssert.assertEquals(dbValues[1], address_line2);
-        softAssert.assertEquals(dbValues[2], city);
-        softAssert.assertEquals(dbValues[3], state);
-        softAssert.assertEquals(dbValues[4], zip);
-        softAssert.assertEquals(dbValues[5], county);
         softAssert.assertAll();
     }
 

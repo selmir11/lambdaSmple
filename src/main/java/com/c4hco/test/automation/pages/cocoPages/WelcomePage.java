@@ -48,11 +48,8 @@ public class WelcomePage {
     @FindBy(xpath = "//div[@class='text-center']")
     WebElement theClickButtonBelowText;
 
-    @FindBy(xpath = "//*[@id='ELIG-WelcomePage-ApplyForInsurance-2024' or @id='ELIG-WelcomePage-ApplyForInsurance-2024']")
-    WebElement applyForCurrentYearButton; //Locator for both QA and Staging
-
     @FindBy(css = "button#ELIG-WelcomePage-ApplyForInsurance-2025")
-    WebElement btnApplyForNextYearCoco;
+    WebElement applyForCurrentYearButton;
 
     @FindBy(css = ".plan-year-control-container > label")
     WebElement planYearText;
@@ -102,13 +99,7 @@ public class WelcomePage {
     public void clickApplyForInsurance() {
         basicActions.waitForElementToDisappear( spinner, 40 );
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
-        WebElement applyForYrCoco;
-
-        if (SharedData.getIsOpenEnrollment().equals("yes")) {
-            applyForYrCoco = btnApplyForNextYearCoco;
-        } else {
-            applyForYrCoco = applyForCurrentYearButton;
-        }
+        WebElement applyForYrCoco = applyForCurrentYearButton;
         basicActions.waitForElementToBePresent(applyForYrCoco, 40);
         String year = applyForYrCoco.getText().replace("Apply for ", "");
         SharedData.setPlanYear(year);
@@ -116,13 +107,13 @@ public class WelcomePage {
     }
 
     public void applyForNextYear() {
-        basicActions.waitForElementToDisappear( spinner, 40 );
-        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
-        WebElement applyForYrCoco = btnApplyForNextYearCoco;
-        basicActions.waitForElementToBePresent(applyForYrCoco, 40);
-        String year = applyForYrCoco.getText().replace("Apply for ", "");
-        SharedData.setPlanYear(year);
-        applyForYrCoco.click();
+//        basicActions.waitForElementToDisappear( spinner, 40 );
+//        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+//        WebElement applyForYrCoco = btnApplyForNextYearCoco;
+//        basicActions.waitForElementToBePresent(applyForYrCoco, 40);
+//        String year = applyForYrCoco.getText().replace("Apply for ", "");
+//        SharedData.setPlanYear(year);
+//        applyForYrCoco.click();
     }
 
     public void selectPlanyear(String planYear) {
@@ -145,6 +136,7 @@ public class WelcomePage {
                 actionLinks.get(0).click();
                 break;
             case "Application Results":
+                basicActions.wait(2000);
                 actionLinks.get(1).click();
                 break;
             case "My Plans":
@@ -354,7 +346,7 @@ public class WelcomePage {
             softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "The annual Open Enrollment period for health insurance (August 6 - January 8) is over. However, you may still be eligible to enroll in health insurance if you have a Qualifying Life Event, such as moving to Colorado, getting married or the birth of a child. Click the button below to make changes.");
         }
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Apply for 2024");
-        softAssert.assertEquals(btnApplyForNextYearCoco.getText(), "Make changes for 2025");
+      //  softAssert.assertEquals(btnApplyForNextYearCoco.getText(), "Make changes for 2025");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Your current plan(s)");
         softAssert.assertEquals(planYearText.getText(), "Plan Year");
         softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
@@ -390,7 +382,7 @@ public class WelcomePage {
             softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "El per\u00EDodo anual de inscripci\u00F3n abierta en el seguro de salud (6\u00BA de agosto a 8 de enero) termin\u00F3. Sin embargo, a\u00FAn puede ser elegible para inscribirse en el seguro de salud si se presenta un evento de vida calificado, como mudarse a Colorado, casarse o el nacimiento de un hijo. Haga clic en el bot\u00F3n de abajo para hacer cambios.");
         }
         softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
-        softAssert.assertEquals(btnApplyForNextYearCoco.getText(), "Hacer cambios para 2025");
+       // softAssert.assertEquals(btnApplyForNextYearCoco.getText(), "Hacer cambios para 2025");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
         softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");

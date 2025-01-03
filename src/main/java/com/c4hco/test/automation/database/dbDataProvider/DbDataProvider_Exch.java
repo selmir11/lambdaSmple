@@ -34,6 +34,7 @@ public class DbDataProvider_Exch {
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
     EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
+    EsSelfAttestationDbHandler esSelfAttestationDbHandler = new EsSelfAttestationDbHandler();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -522,9 +523,9 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("application_id", exchDbQueries.geAllApplicationIds(householdId));
     }
 
-    public String[] getAddressInformation(String fName){
-        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
-       return postgresHandler.getResultForSixColumnValues("address_line1", "address_line2", "city", "state", "zip", "county",exchDbQueries.getAddressDetails(memberId));
+    public EsSelfAttestationEntity getEsSelfAttest_options() {
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return esSelfAttestationDbHandler.getOptionsFromSelfAttestTable(exchDbQueries.getSelfAttestationDetails(householdId));
     }
 
 }

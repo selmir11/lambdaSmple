@@ -391,7 +391,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
 
       #Then I validate I am on the "Report a life change" page
-      #And I report "Marriage" and click continue
+      And I report "Marriage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
@@ -684,7 +684,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click Continue on my own button from Manage who helps you page
 
     #Then I validate I am on the "Report a life change" page
-    #And I report "Marriage" and click continue
+    And I report "Marriage" and click continue
 
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -964,7 +964,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
 
       #Then I validate I am on the "Report a life change" page
-      #And I report "LostCoverage" and click continue
+      And I report "LostCoverage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
@@ -1547,7 +1547,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
     #Then I validate I am on the "Report a life change" page
-    #And I report "Marriage" and click continue
+    And I report "Marriage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page

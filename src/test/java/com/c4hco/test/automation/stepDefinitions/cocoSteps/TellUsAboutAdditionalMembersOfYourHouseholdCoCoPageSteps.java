@@ -46,4 +46,14 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateRelationshipLabel();
    }
 
+   @Then("I validate details on tell us about additional members of your household page for {string} with DOB as {string}, gender {string} and applying {string}")
+   public void iValidateValuesinTellUsAboutAddMemb(String FName,String DOB, String Gender, String applying, List<String> relationship) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateTellUsAboutAdditionalMembersCoCo(FName,DOB,Gender,applying,relationship);
+   }
+
+   @Then("I update details on tell us about additional members of your household page for {string} with DOB as {string}, gender {string} and applying {string}")
+   public void iUpdateValuesinTellUsAboutAddMemb(String FName, String DOB, String Gender, String applying, List<String> relationship) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.updateAdditionalMemberDetailsCoCo(FName,DOB,Gender,applying,relationship);
+   }
+
 }

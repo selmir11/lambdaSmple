@@ -50,4 +50,9 @@ public class LugySteps {
         lugyPage.validateApplyForFinancialHelpIsDisplayedInLetUsGuideYouPage();
 
     }
+
+    @Then("I click Apply for Health First Colorado in Let us guide you Page")
+    public void iClickApplyForHealthFirstColoradoInLetUsGuideYouPage() {
+        lugyPage.clickApplyForHealthFirstColoradoInLetUsGuideYouPage();
+    }
 }
