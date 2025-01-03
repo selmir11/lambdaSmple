@@ -235,5 +235,10 @@ public class DbSteps {
     @Then("I validate the Self Attestation details in DB")
     public void iValidateSelfAttestation(List<Map<String, String>> expectedValues){dbValidations.validateSelfAttest(expectedValues);}
 
+    @Then("I validate eventCD when no notices are sent")
+    public void iValidateEventCD(){
+        dbValidations.validateEventCD();
+    }
+
 }
 

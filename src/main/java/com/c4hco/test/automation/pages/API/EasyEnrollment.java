@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.API;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -64,6 +65,36 @@ public class EasyEnrollment {
         requestBody.put("taxpayerKey", String.valueOf(System.currentTimeMillis()));
         requestBody.put("year", "2023");
 
+        System.out.println("Request Body: " + requestBody.toString());
+    }
+    public void dorForTaxHousehold(String adjustedGrossIncome, String emailAddress, String filedByDeadline, String filingType, String firstName, String householdSize, String lastName,String mailingAddressLine1, String mailingAddressLine2, String city,String zipCode, String middleInitial, String phoneNumber,  String dateOfBirth, String ssn ){
+        requestBody.put("adjustedGrossIncome", adjustedGrossIncome);
+        requestBody.put("emailAddress", emailAddress);
+        requestBody.put("filedByDeadline", filedByDeadline);
+        requestBody.put("filingType", filingType);
+        requestBody.put("firstName", firstName);
+        requestBody.put("householdSize", householdSize);
+        requestBody.put("lastName", lastName);
+        requestBody.put("mailingAddressCity", city);
+        requestBody.put("mailingAddressLine1", mailingAddressLine1);
+        requestBody.put("mailingAddressLine2", mailingAddressLine2);
+        requestBody.put("mailingAddressState", "CO");
+        requestBody.put("mailingAddressZip", zipCode);
+        requestBody.put("middleInitial", middleInitial);
+        requestBody.put("phoneNumber", phoneNumber);
+
+        Map<String, Object> taxHouseholdMember = new LinkedHashMap<>();
+        taxHouseholdMember.put("dateOfBirth", dateOfBirth);
+        taxHouseholdMember.put("firstName", firstName);
+        taxHouseholdMember.put("lastName", lastName);
+        taxHouseholdMember.put("middleInitial", middleInitial);
+        taxHouseholdMember.put("ssn", ssn);
+
+        requestBody.put("taxHouseholdMembers", Arrays.asList(taxHouseholdMember));
+        String taxpayerkey = String.valueOf(System.currentTimeMillis());
+        requestBody.put("taxpayerKey", taxpayerkey);
+        requestBody.put("year", "2021");
+        SharedData.setPrimarytaxpayerkey(taxpayerkey);
         System.out.println("Request Body: " + requestBody.toString());
     }
 
