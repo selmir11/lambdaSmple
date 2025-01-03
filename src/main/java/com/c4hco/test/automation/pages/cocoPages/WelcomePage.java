@@ -136,6 +136,7 @@ public class WelcomePage {
                 actionLinks.get(0).click();
                 break;
             case "Application Results":
+                basicActions.wait(2000);
                 actionLinks.get(1).click();
                 break;
             case "My Plans":
