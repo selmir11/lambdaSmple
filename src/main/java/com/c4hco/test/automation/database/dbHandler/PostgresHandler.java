@@ -186,6 +186,22 @@ public class PostgresHandler {
         return results;
     }
 
+    public List<String> getResultForDynamicColumns(String query, String... columnNames) {
+        List<String> results = new ArrayList<>();
+        try {
+            ResultSet rs = executor.executeQuery(query);
+            if (rs.next()) {
+                for (String columnName : columnNames) {
+                    results.add(rs.getString(columnName));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Assert.fail("Error with DB occurred: " + e.getMessage());
+        }
+        return results;
+    }
+
 }
 
 

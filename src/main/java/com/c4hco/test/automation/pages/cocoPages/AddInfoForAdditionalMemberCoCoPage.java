@@ -341,6 +341,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
                 address.setAddressLine1(addressLine1);
                 address.setAddressLine2(addressLine2);
                 actualMember.setResAddress(address);
+                break;
             }
         }
     }

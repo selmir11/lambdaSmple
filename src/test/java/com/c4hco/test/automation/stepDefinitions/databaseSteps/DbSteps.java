@@ -235,5 +235,10 @@ public class DbSteps {
     @Then("I validate the Self Attestation details in DB")
     public void iValidateSelfAttestation(List<Map<String, String>> expectedValues){dbValidations.validateSelfAttest(expectedValues);}
 
+    @Then("I validate complete residential address details for {string} member in DB addressLine1 {string},addressLine2 {string},city {string},state {string},zipcode {string},county {string}")
+    public void validateAddressInformation(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
+        dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
+    }
+
 }
 

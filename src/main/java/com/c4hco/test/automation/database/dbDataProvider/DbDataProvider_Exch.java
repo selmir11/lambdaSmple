@@ -527,5 +527,10 @@ public class DbDataProvider_Exch {
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return esSelfAttestationDbHandler.getOptionsFromSelfAttestTable(exchDbQueries.getSelfAttestationDetails(householdId));
     }
+    public List<String> getAddressInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        //return postgresHandler.getResultForSixColumnValues("address_line1", "address_line2", "city", "state", "zip", "county", exchDbQueries.getAddressDetails(memberId));
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getAddressDetails(memberId),"address_line1","address_line2","city","state","zip","county");
+    }
 
-}
+    }
