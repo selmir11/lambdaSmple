@@ -618,4 +618,9 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where household_id = '"+householdID+"'";
     }
 
+    public String getExchPersonIdFields_esMem(String householdId){
+        return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
+                "where household_id = '"+householdId+"'";
+    }
+
 }

@@ -528,4 +528,9 @@ public class DbDataProvider_Exch {
         return esSelfAttestationDbHandler.getOptionsFromSelfAttestTable(exchDbQueries.getSelfAttestationDetails(householdId));
     }
 
+    public List<EsMemberHouseholdEntity> getExchPersonIdFields_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
 }

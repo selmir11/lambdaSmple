@@ -486,7 +486,6 @@ public class LoginPage {
                 LoginCredentials.setSepCredentials();
                 break;
             default: Assert.fail("Invalid case");
-
         }
         loginWithExistingCreds();
     }

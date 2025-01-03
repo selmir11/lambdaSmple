@@ -560,7 +560,25 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + language);}
     }
 
-    public void enterDuplicateAccountCreationData(){
+    public void duplicateAccWithNewEmail(String appType){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 10);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        subscriber.setIncorrectEmail(subscriber.getEmailId());
+        String newEmail = basicActions.getUniqueString(8)+"oldMem@test.com";
+        subscriber.setEmailId(newEmail);
+        email.sendKeys(newEmail);
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        preferredLanguageButtonEnglish.click();
+        primaryUserCheckbox.click();
+        SharedData.setPrimaryMember(subscriber);
+        selectBasedOnApp(appType);
+    }
+
+    public void enterDuplicateAccountCreationData(String appType){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 10);
         firstName.sendKeys(subscriber.getFirstName());
@@ -571,9 +589,7 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
-        exchangeTermsOfUseCheckbox.click();
-
-        submitButton.click();
+        selectBasedOnApp(appType);
     }
 
     public void enterDuplicateBrokerAccountCreationData(){
