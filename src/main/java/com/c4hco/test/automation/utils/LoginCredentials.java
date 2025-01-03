@@ -5,7 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 
 public class LoginCredentials {
 
-    public static void setSesCredentials() {
+    public static void setSepCredentials() {
         MemberDetails primaryMember = new MemberDetails();
         if (SharedData.getEnv().equals("qa")) {
             primaryMember.setEmailId("julie.cascade@test.com");
