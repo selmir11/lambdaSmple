@@ -317,7 +317,7 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    Then I validate the top to bottom eligible text based on "<isCoResident>" the application results page coco
+    Then I validate the text on the application results page coco
     And I click on Sign Out in the Header for "Elmo"
     Examples:
       | city        | state | zipcode | county      | isApplying | isCoResident |

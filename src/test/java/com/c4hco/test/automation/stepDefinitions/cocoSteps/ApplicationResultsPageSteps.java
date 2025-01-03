@@ -67,8 +67,4 @@ public class ApplicationResultsPageSteps {
     public void validateTextWithoutApplication(String language){
         applicationResultsCoCoPage.validatePageTextWithoutApplication(language);
     }
-    @Then("I validate the top to bottom eligible text based on {string} the application results page coco")
-    public void validatePageText(String resident){
-        applicationResultsCoCoPage.verifyPageTextOnApplicationResultPage(resident);
-    }
 }
