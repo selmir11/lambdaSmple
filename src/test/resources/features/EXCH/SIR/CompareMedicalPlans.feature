@@ -1,5 +1,5 @@
 @SIR-EXCH2 @MedicalCompare
-  #@SLER-46, @SLER-725, @SLER-726 , @SLER-1086, SLER-1929
+  #@SLER-46, @SLER-725, @SLER-726 , @SLER-1086, SLER-1236, SLER-1929, SLER-1935
 Feature: Medical Plan Compare page related tests
 
   Background:
@@ -373,7 +373,7 @@ Feature: Medical Plan Compare page related tests
     Then I click on Sign Out in the Header for "Portal"
 
 
-  @SLER-1236-OBO
+  @SLER-1236
   Scenario: SLER-1236 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the Compare page
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
