@@ -617,5 +617,14 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select * from "+dbName+".es_self_attestation\n" +
                 "where household_id = '"+householdID+"'";
     }
+    public String dorTaxHousehold(String taxpayerKey){
+        return "select b.event_cd\n" +
+                "from "+dbName+".dor_tax_household a\n" +
+                "join "+dbName+".easy_enrollment_event_log b\n" +
+                "on a.id = b.dor_tax_household_id\n" +
+                "join "+dbName+".dor_tax_household_member c\n" +
+                "on a.id = c.dor_tax_household_id\n" +
+                "where a.taxpayer_key = '"+taxpayerKey+"'";
+    }
 
 }

@@ -558,5 +558,13 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateEventCD(){
+      List<String> queryResult = exchDbDataProvider.getEventCD();
+      System.out.println(queryResult);
+        softAssert.assertTrue(queryResult.contains("FAILED_POSTAL_ADDRESS_VALIDATION"), "EventCD contains FAILED_POSTAL_ADDRESS_VALIDATION");
+        softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "EventCD contains FAILED_EMAIL_ADDRESS_VALIDATION");
+        softAssert.assertAll();
+    }
+
 
  }

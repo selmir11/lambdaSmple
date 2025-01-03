@@ -79,6 +79,7 @@ public class SharedData {
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
     @Getter @Setter private static AdminDetails adminDetails;
+    @Getter @Setter private static String primarytaxpayerkey;
 
 
 
