@@ -482,8 +482,8 @@ public class LoginPage {
 
     public void loginWitExistingAcc(String loginType){
         switch(loginType){
-            case "SES":
-                LoginCredentials.setSesCredentials();
+            case "SEP":
+                LoginCredentials.setSepCredentials();
                 break;
             default: Assert.fail("Invalid case");
 

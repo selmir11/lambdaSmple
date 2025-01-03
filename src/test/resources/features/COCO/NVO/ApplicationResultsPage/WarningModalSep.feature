@@ -3,7 +3,7 @@ Feature: Coco user validations for warning modal when SES Period Ended
   Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
-    And I login with "SES" credentials
+    And I login with "SEP" credentials
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I click on "Application Results" link on welcome page

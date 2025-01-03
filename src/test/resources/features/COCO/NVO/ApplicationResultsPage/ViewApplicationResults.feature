@@ -241,7 +241,7 @@ Feature: Coco user on the Application results page
       Then I validate the text on the application results page coco
 
   @SLCR-669
-  Scenario: ELIG-NVO E2E members able to shop for 2025PY with valid QLCE (CE)
+  Scenario: ELIG-NVO E2E members able to shop for Current Year with valid QLCE (CE)
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -359,19 +359,16 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
-
     Then I validate I am on the "Application Results CoCo" page
     Then I verify text that the member qualifies for SES and no spots are available in "English" on the App Results Page CoCo
     And I click Continue on the Application Results Page CoCo
-
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on start shopping page
-
     Then I validate I am on the "Medical Plan Results" page
 
-  @SLCR-682
-  Scenario: scenario 3 - User submits 2025 application with LCE during OE and able to shop
+  @SLCR-682 @SLCR-697
+  Scenario: scenario 3 - User submits Next year application with LCE during OE and able to shop
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -416,8 +413,6 @@ Feature: Coco user on the Application results page
 
     Then I validate I am on the "Medical Plan Results" page
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
-
-   #@SLCR-682 Scenario: scenario 4 - User submits 2025 application with LCE during SES limited-(SHOULD BE DONE WHEN SES PLANS ARE AVAILABLE) WIP
 
 @SLCR-684
 Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results page (eligible Spanish text)
@@ -526,7 +521,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
     And I change the language from header to "Spanish"
     Then I validate text in Spanish on the application results page when not eligible
 
-    @SLCR-688
+  @SLCR-688
     Scenario: scenario 2 ELIG-As a CoCo user on the Application results page, I need to view my real results in the left container after application submission and eligibility determination.
       And I apply for the current year in CoCo
       Then I validate I am on the "Find Expert Help" page
