@@ -557,7 +557,7 @@ public class DbValidations {
         }
         softAssert.assertAll();
     }
-
+    
     public void validateExchPersonIdRelatedFieldsToBeNull(){
         List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
         softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
@@ -567,7 +567,7 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateExchPersonIdRelatedFields(){
+    public void validateExchPersonIdRelatedFields() {
         List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
         softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
         softAssert.assertNotNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is null");
@@ -576,5 +576,12 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateEventCD(){
+      List<String> queryResult = exchDbDataProvider.getEventCD();
+      System.out.println(queryResult);
+        softAssert.assertTrue(queryResult.contains("FAILED_POSTAL_ADDRESS_VALIDATION"), "EventCD contains FAILED_POSTAL_ADDRESS_VALIDATION");
+        softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "EventCD contains FAILED_EMAIL_ADDRESS_VALIDATION");
+        softAssert.assertAll();
+    }
 
  }

@@ -244,5 +244,11 @@ public class DbSteps {
     public void validateExchPersonIdFields(){
         dbValidations.validateExchPersonIdRelatedFields();
     }
+
+    @Then("I validate eventCD when no notices are sent")
+    public void iValidateEventCD(){
+        dbValidations.validateEventCD();
+    }
+
 }
 
