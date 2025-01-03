@@ -558,6 +558,43 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateExchPersonIdRelatedFieldsToBeNull(){
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
+        softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+        softAssert.assertAll();
+    }
+
+    public void validateExchPersonIdRelatedFields() {
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
+        softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
+        softAssert.assertNotNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+        softAssert.assertAll();
+    }
+
+    public void validateExchPersonIdFields_duplicateMem() {
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
+        String exchPersonId_currentMem = esMemberHouseholdEntities.get(0).getExch_person_id();
+        softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
+        softAssert.assertNotNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities_oldMem = exchDbDataProvider.getExchPersonIdFieldsOldAcc_esMember();
+        String exchPersonId_OldMem = esMemberHouseholdEntities_oldMem.get(0).getExch_person_id();
+        softAssert.assertEquals(esMemberHouseholdEntities_oldMem.size(), 1, "Size of records did not match");
+        softAssert.assertNotNull(esMemberHouseholdEntities_oldMem.get(0).getExch_person_id(), "exch_person_id is null");
+        softAssert.assertNull(esMemberHouseholdEntities_oldMem.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities_oldMem.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+
+       softAssert.assertEquals(exchPersonId_OldMem, exchPersonId_currentMem, "Exch person ids did not match");
+        softAssert.assertAll();
+    }
+
     public void validateEventCD(){
       List<String> queryResult = exchDbDataProvider.getEventCD();
       System.out.println(queryResult);
@@ -565,6 +602,5 @@ public class DbValidations {
         softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "EventCD contains FAILED_EMAIL_ADDRESS_VALIDATION");
         softAssert.assertAll();
     }
-
 
  }

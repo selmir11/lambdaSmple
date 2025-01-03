@@ -532,4 +532,14 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("event_cd", exchDbQueries.dorTaxHousehold(taxpayerKey));
     }
 
+    public List<EsMemberHouseholdEntity> getExchPersonIdFields_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
+    public List<EsMemberHouseholdEntity> getExchPersonIdFieldsOldAcc_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdIdForOldAccount());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
 }

@@ -477,6 +477,10 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
 
+    public String getHouseholdIdForOldAccount(){
+        return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getOldAccountId()+"'";
+    }
+
     public String getLceTpePlanYear(String householId){
         return "Select lce_type, plan_year from "+dbName+".es_member_lce\n" +
                 "where household_id  = '"+householId+"'";
@@ -625,6 +629,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "join "+dbName+".dor_tax_household_member c\n" +
                 "on a.id = c.dor_tax_household_id\n" +
                 "where a.taxpayer_key = '"+taxpayerKey+"'";
+    }
+
+    public String getExchPersonIdFields_esMem(String householdId){
+        return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
+                "where household_id = '"+householdId+"'";
     }
 
 }
