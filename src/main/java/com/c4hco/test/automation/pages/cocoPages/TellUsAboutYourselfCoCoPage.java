@@ -84,6 +84,12 @@ public class TellUsAboutYourselfCoCoPage {
 
     public void specificMemberDetailsCoCo(String dateOfBirth, String gender, String applying) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        if(dateOfBirth.equals("getFromSharedData")){
+            dateOfBirth = subscriber.getDob();
+        }
+        if(gender.equals("getFromSharedData")){
+            gender = subscriber.getGender();
+        }
         enterMemberDOBTbox(dateOfBirth);
         genderSelection(gender);
         applyingForCoverage(applying);
@@ -94,14 +100,6 @@ public class TellUsAboutYourselfCoCoPage {
 
     public void addMemberDetailsCoCo(String dateOfBirth, String gender, String applying) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
-        if(dateOfBirth.equals("getFromSharedData")){
-            dateOfBirth = subscriber.getDob();
-        }
-
-        if(gender.equals("getFromSharedData")){
-            gender = subscriber.getGender();
-        }
-
         enterMemberDOBTbox(dateOfBirth);
         genderSelection(gender);
         applyingForCoverage(applying);

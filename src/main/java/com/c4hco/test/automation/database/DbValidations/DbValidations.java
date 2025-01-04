@@ -607,7 +607,7 @@ public class DbValidations {
         List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
         softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
         softAssert.assertNotNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is null");
-        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertEquals(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id_review_id is not equal to exch person id");
         softAssert.assertEquals(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "MANUAL_REVIEW_REQUIRED", "exch_person_id_review_status is not null");
         softAssert.assertAll();
     }
