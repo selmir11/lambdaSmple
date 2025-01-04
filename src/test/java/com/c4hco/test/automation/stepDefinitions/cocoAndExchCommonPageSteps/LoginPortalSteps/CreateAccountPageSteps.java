@@ -20,6 +20,11 @@ public class CreateAccountPageSteps {
         createAccountPage.createGeneralAccount(appType);
     }
 
+    @Then("I enter general mandatory data for {string} account creation for the script {string}")
+    public void enterScriptBasedData(String appType, String scriptNum){
+        createAccountPage.createAccountForScript(appType, scriptNum);
+    }
+
     @Then("I enter first name {string}, middle name {string}, last name {string} and general mandatory data for {string} account creation")
     public void iEnterSpecificDataForAccCreation(String fName, String mName, String lName, String appType){createAccountPage.createSpecificAccount(fName, mName, lName, appType);}
 
