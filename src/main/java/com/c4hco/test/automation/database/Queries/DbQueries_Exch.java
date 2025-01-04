@@ -630,6 +630,10 @@ public String policyTablesCombinedQuery(String coverageType){
                 "on a.id = c.dor_tax_household_id\n" +
                 "where a.taxpayer_key = '"+taxpayerKey+"'";
     }
+    public String easyEnrollmentEventLog(String taxpayerKey){
+        return "select event_cd \n" +
+                "from "+dbName+".easy_enrollment_event_log where taxpayer_key = '"+taxpayerKey+"'";
+    }
 
     public String getExchPersonIdFields_esMem(String householdId){
         return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +

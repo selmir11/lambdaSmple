@@ -528,8 +528,12 @@ public class DbDataProvider_Exch {
         return esSelfAttestationDbHandler.getOptionsFromSelfAttestTable(exchDbQueries.getSelfAttestationDetails(householdId));
     }
     public List<String> getEventCD(){
-        String taxpayerKey = SharedData.getPrimarytaxpayerkey();
+        String taxpayerKey = SharedData.getPrimaryTaxPayerKey();
         return postgresHandler.getResultListFor("event_cd", exchDbQueries.dorTaxHousehold(taxpayerKey));
+    }
+    public List<String> getEventLog(){
+        String taxpayerKey = SharedData.getPrimaryTaxPayerKey();
+        return postgresHandler.getResultListFor("event_cd", exchDbQueries.easyEnrollmentEventLog(taxpayerKey));
     }
 
     public List<EsMemberHouseholdEntity> getExchPersonIdFields_esMember(){

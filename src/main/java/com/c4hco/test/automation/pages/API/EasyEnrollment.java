@@ -67,7 +67,7 @@ public class EasyEnrollment {
 
         System.out.println("Request Body: " + requestBody.toString());
     }
-    public void dorForTaxHousehold(String adjustedGrossIncome, String emailAddress, String filedByDeadline, String filingType, String firstName, String householdSize, String lastName,String mailingAddressLine1, String mailingAddressLine2, String city,String zipCode, String middleInitial, String phoneNumber,  String dateOfBirth, String ssn ){
+    public void dorForTaxHousehold(String adjustedGrossIncome, String emailAddress, String filedByDeadline, String filingType, String firstName, String householdSize, String lastName,String mailingAddressLine1, String mailingAddressLine2, String city,String zipCode, String middleInitial, String phoneNumber,  String dateOfBirth, String ssn, String year){
         requestBody.put("adjustedGrossIncome", adjustedGrossIncome);
         requestBody.put("emailAddress", emailAddress);
         requestBody.put("filedByDeadline", filedByDeadline);
@@ -93,8 +93,8 @@ public class EasyEnrollment {
         requestBody.put("taxHouseholdMembers", Arrays.asList(taxHouseholdMember));
         String taxpayerkey = String.valueOf(System.currentTimeMillis());
         requestBody.put("taxpayerKey", taxpayerkey);
-        requestBody.put("year", "2021");
-        SharedData.setPrimarytaxpayerkey(taxpayerkey);
+        requestBody.put("year", year);
+        SharedData.setPrimaryTaxPayerKey(taxpayerkey);
         System.out.println("Request Body: " + requestBody.toString());
     }
 

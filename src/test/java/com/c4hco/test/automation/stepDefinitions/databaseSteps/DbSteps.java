@@ -254,6 +254,10 @@ public class DbSteps {
     public void iValidateEventCD(){
         dbValidations.validateEventCD();
     }
+    @Then("I validate event log in DB")
+    public void iValidateEventLog(){
+        dbValidations.validateEventLog();
+    }
 
 }
 
