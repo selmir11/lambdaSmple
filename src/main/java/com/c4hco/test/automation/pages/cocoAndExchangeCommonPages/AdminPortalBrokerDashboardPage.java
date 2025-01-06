@@ -353,4 +353,24 @@ public class AdminPortalBrokerDashboardPage {
     public void clickOnSearchButtonInAPBrokerDashboardPage() {
     basicActions.waitForElementToBePresent(searchBtn,30);
     searchBtn.click();}
+
+    public void validateTheAgencyTINInSTGAndQA(String tinStg, String tinQa) {
+        basicActions.waitForElementToBePresentWithRetries(agencyTIN,30);
+        if (SharedData.getEnv().equals("staging")){
+            softAssert.assertEquals(agencyTIN.getText(),tinStg);
+        }else{
+            softAssert.assertEquals(agencyTIN.getText(),tinQa);
+        }
+        softAssert.assertAll();
+        BrokerDetails owner = new BrokerDetails();
+        owner.setAgencyTin(agencyTIN.getText());
+        SharedData.setAgencyOwner(owner);
+    }
+
+
+    public void validateTheStatusCertificationIs(String certification) {
+        basicActions.waitForElementToBePresentWithRetries(certificationStatus,30);
+        softAssert.assertEquals(certificationStatus.getText(),certification);
+        softAssert.assertAll();
+    }
 }

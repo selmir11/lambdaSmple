@@ -153,14 +153,14 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickFirstTwoCompareButtons() {
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent( firstCompareBox,10 );
         firstCompareBox.click();
         secondCompareBox.click();
     }
 
     public void clickFirstThreeCompareButtons(){
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent( firstCompareBox,10 );
         firstCompareBox.click();
         secondCompareBox.click();

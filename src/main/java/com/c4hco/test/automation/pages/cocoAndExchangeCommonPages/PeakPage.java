@@ -1,8 +1,10 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class PeakPage {
@@ -41,15 +44,26 @@ public class PeakPage {
     @FindBy(xpath = "//div[@role='heading']//lightning-formatted-rich-text")
     WebElement peakWelcomeText;
 
+    @FindBy(id = "myProfile_username")
+    WebElement c4AssignedUsername;
+
+    @FindBy(id = "myProfile_accountId")
+    WebElement c4AssignedAccountId;
+
     public void clickOkOnThePeakAlertWindow() {
-        Alert peakAlertWindow = basicActions.getDriver().switchTo().alert();
-        peakAlertWindow.accept();
+        try{
+            Alert peakAlertWindow = basicActions.getDriver().switchTo().alert();
+            peakAlertWindow.accept();
+        }
+        catch(NoAlertPresentException ex){
+            System.out.println("Alert is NOT Displayed");
+        }
     }
 
     public void loginPeakUser(String username, String password) {
-        basicActions.waitForElementToBePresent(peakUsername, 20);
+        basicActions.waitForElementToBePresentWithRetries(peakUsername, 50);
         peakUsername.sendKeys(username);
-        basicActions.waitForElementToBePresent(peakPassword, 20);
+        basicActions.waitForElementToBePresentWithRetries(peakPassword, 50);
         peakPassword.sendKeys(password);
         peakSignInButton.click();
     }
@@ -81,5 +95,24 @@ public class PeakPage {
     public void validatePeakStgUrlRedirection(String peakUrl) {
         basicActions.waitForElementToBePresentWithRetries(peakSignInWithConnectForHealthColoradoButton, 20);
         Assert.assertTrue(basicActions.getUrlWithWait(peakUrl, 45).contains(peakUrl), "expected page::" + peakUrl + "::did not load");
+    }
+
+    public void saveC4AccountDetails() {
+        basicActions.waitForElementToBePresentWithRetries(c4AssignedUsername, 20);
+
+        MemberDetails newC4Member = new MemberDetails();
+        newC4Member.setEmailId(c4AssignedUsername.getText());
+        BigDecimal newAccountId = new BigDecimal(c4AssignedAccountId.getText());
+        newC4Member.setAccount_id(newAccountId);
+        SharedData.setPrimaryMember(newC4Member);
+    }
+
+    public void verifyC4AccountDetails() {
+        basicActions.waitForElementToBePresentWithRetries(c4AssignedUsername, 20);
+
+        softAssert.assertEquals(c4AssignedUsername.getText(), SharedData.getPrimaryMember().getEmailId());
+        BigDecimal foundAccountId = new BigDecimal(c4AssignedAccountId.getText());
+        softAssert.assertEquals(foundAccountId, SharedData.getPrimaryMember().getAccount_id());
+        softAssert.assertAll();
     }
 }

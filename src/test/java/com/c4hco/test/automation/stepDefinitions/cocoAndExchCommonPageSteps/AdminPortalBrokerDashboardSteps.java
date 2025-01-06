@@ -107,4 +107,14 @@ public class AdminPortalBrokerDashboardSteps {
     public void iClickOnSearchButtonInAPBrokerDashboardPage() {
         adminPortalBrokerDashboardPage.clickOnSearchButtonInAPBrokerDashboardPage();
     }
+
+    @Then("I validate the agency TIN in STG {string} and QA {string}")
+    public void iValidateTheAgencyTINInSTGAndQA(String TINSTG, String TINQA) {
+        adminPortalBrokerDashboardPage.validateTheAgencyTINInSTGAndQA(TINSTG,TINQA);
+    }
+
+    @And("I validate the status certification is {string}")
+    public void iValidateTheStatusCertificationIs(String certificationStatus) {
+        adminPortalBrokerDashboardPage.validateTheStatusCertificationIs(certificationStatus);
+    }
 }

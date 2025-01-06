@@ -43,4 +43,14 @@ public class PeakSteps {
     public void iValidatePeakStgUrlRedirection(String peakUrl) {
         peakPage.validatePeakStgUrlRedirection(peakUrl);
     }
+
+    @And("I save my new Connect for Health Colorado username and account number")
+    public void iSaveC4AccountDetails() {
+        peakPage.saveC4AccountDetails();
+    }
+
+    @And("I verify my new Connect for Health Colorado username and account number")
+    public void iVerifyC4AccountDetails() {
+        peakPage.verifyC4AccountDetails();
+    }
 }
