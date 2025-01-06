@@ -148,16 +148,14 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Yellow" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Yellow" on Application Details with data of " No"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Yellow" on Application Details with data of " 300.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Yellow" on Application Details with data of "Today"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Yellow" on Application Details with data of " No"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Yellow   |          No          |        Yellow         |                    300.0                    |       Yellow        |       Yes        |      Plain       |             Yes                |     Plain      |   Today    |    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "No" Premium "300.0" Currently enrolled "Yes" "Insurance ending" "Yes" end date of "Today" "Voluntarily ending" "No"
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|          No          |                    300.0                    |       Yes        |             Yes                |   Today    |        No        |
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -203,16 +201,14 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " No"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 300.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Yellow" on Application Details with data of " No"
-    And I verify the OHC detail "End date" highlight "Red" on Application Details with data of "None"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Red" on Application Details with data of ""
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |          No          |         Plain         |                    300.0                    |       Plain         |       Yes        |      Plain       |             No                 |    Yellow      |    None    |      Red     |     None         |         Red         |
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "No" Premium "300.0" Currently enrolled "Yes" "Insurance ending" "No" end date of "Today" "" ""
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|          No          |                    300.0                    |       Yes        |             No                 |            |                  |
 #    Step 9
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -254,14 +250,14 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " No"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 300.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Yellow" on Application Details with data of " No"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Red" on Application Details with data of ""
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |          No          |         Plain         |                    300.0                    |       Plain         |       No         |      Yellow      |               None             |      Red       |            |              |                  |                     |
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "No" Premium "300.0" Currently enrolled "No" "" "" end date of "" "" ""
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|          No          |                    300.0                    |       No         |                                |            |                  |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
@@ -471,22 +467,18 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 500.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Plain" on Application Details with data of "Current Month"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Family plan offered" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Family Premium Amount" highlight "Yellow" on Application Details with data of " 200.00"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500.0                    |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |        Plain           |                   200.00                |           Yellow           |
     Then I verify the OHC detail family enrollment details on Application Details
       | Member3FullName:Enrolled:Yellow                        |
       | Member1FullName:Offered a plan but not enrolled:Yellow |
       | Member2FullName:No option to enroll:Yellow             |
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Insurance ending" "Yes" end date of "Current Month" "Voluntarily ending" "Yes"
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|          Yes         |                    500.0                    |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "200.00"
       | Member3FullName:Enrolled                        |
       | Member1FullName:Offered a plan but not enrolled |
@@ -542,22 +534,18 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 500.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Plain" on Application Details with data of "Current Month"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Family plan offered" highlight "Yellow" on Application Details with data of " No"
-    And I verify the OHC detail "Lowest-Cost Monthly Family Premium Amount" highlight "Red" on Application Details with data of ""
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500.0                    |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |         No        |        Yellow          |               None                      |             Red            |
     Then I verify the OHC detail family enrollment details on Application Details
       | :Enrolled:Red                        |
       | :Offered a plan but not enrolled:Red |
       | :No option to enroll:Red             |
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Insurance ending" "Yes" end date of "Current Month" "Voluntarily ending" "Yes"
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|          Yes         |                    500.0                    |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "No" and Premium ""
       |  |
 #   Step 10
@@ -617,22 +605,18 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 500.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Plain" on Application Details with data of "Current Month"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Family plan offered" highlight "Yellow" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Family Premium Amount" highlight "Green" on Application Details with data of " 300.00"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500.0                    |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |        Yellow          |              300.00                     |           Green            |
     Then I verify the OHC detail family enrollment details on Application Details
       | Member1FullName:Enrolled:Green                        |
       | Member2FullName:Offered a plan but not enrolled:Green |
       | Member3FullName:No option to enroll:Green             |
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Insurance ending" "Yes" end date of "Current Month" "Voluntarily ending" "Yes"
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|          Yes         |                    500.0                    |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "300.00"
       | Member1FullName:Enrolled                        |
       | Member2FullName:Offered a plan but not enrolled |
@@ -694,16 +678,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 500.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Plain" on Application Details with data of "Current Month"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Family plan offered" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Family Premium Amount" highlight "Plain" on Application Details with data of " 300.00"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500.0                    |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |         Plain          |              300.00                     |           Plain            |
     Then I verify the OHC detail family enrollment details on Application Details
       | Member1FullName:Enrolled:Yellow      |
       | Member2FullName:Enrolled:Yellow      |
@@ -711,7 +688,10 @@ Feature: Tests related to the Application Summary/Detail for ESI
       | :Offered a plan but not enrolled:Red |
       | :No option to enroll:Red             |
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Insurance ending" "Yes" end date of "Current Month" "Voluntarily ending" "Yes"
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|          Yes         |                    500.0                    |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "300.00"
       | Member1FullName:Enrolled |
       | Member2FullName:Enrolled |
@@ -767,11 +747,12 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
+    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
+    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -796,10 +777,16 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain" on Application Details
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "English" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Yes" "Current Month" end date of "" "" ""
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "English"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|         Yes          |                    500.0                    |       Yes        |             Yes                |Current Month|       Yes        |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    Then I validate PDF OHC data "Other Health Coverage" in "Spanish" with Min Value "Yes" Premium "500.0" Currently enrolled "Yes" "Yes" "Current Month" end date of "" "" ""
+    And I wait for 3000 milliseconds
+    Then I validate ESI PDF OHC data on Application Details in "Spanish"
+      |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
+      |Employer Sponsored Insurance|         Yes          |                    500.0                    |       Yes        |             Yes                |Current Month|       Yes        |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
@@ -896,26 +883,16 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Green" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Green" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Green" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Green" on Application Details with data of " 300.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Green" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Green" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Green" on Application Details with data of "Today"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Green" on Application Details with data of " No"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Employer Sponsored Insurance|     Green    |    Green    |         Yes          |         Green         |                    300.0                    |       Green         |       Yes        |      Green       |            Yes                 |     Green      |   Today    |     Green    |       No         |        Green        |
 #    Step 4
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Plain" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 300.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Plain" on Application Details with data of "Today"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Plain" on Application Details with data of " No"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    300.0                    |       Plain         |       Yes        |      Plain       |            Yes                 |     Plain      |   Today    |     Plain    |       No         |        Plain        |
 #    Step 5
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -956,12 +933,15 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "None" highlight "Green" on Application Details with data of ""
-    And I verify the OHC detail "1 Removed" highlight "Red" on Application Details with data of ""
+    And I verify None OHC detail on Application Details
+      |None Highlight|Removed|Removed Highlight|
+      |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Plain" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "None" highlight "Plain" on Application Details with data of ""
+    And I verify None OHC detail on Application Details
+      |None Highlight|Removed|Removed Highlight|
+      |     Plain    |       |                 |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
@@ -1096,31 +1076,17 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 500.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Plain" on Application Details with data of "Current Month"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Family plan offered" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Family Premium Amount" highlight "Plain" on Application Details with data of " 400.00"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500.0                    |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|     Plain    |      Yes         |        Plain        |        Yes        |        Plain           |                    400.00               |           Plain            |
     Then I verify the OHC detail family enrollment details on Application Details
       | :Enrolled:Red      |
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Plain" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "Employer Sponsored Insurance" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Job" highlight "Plain" on Application Details with data of ""
-    And I verify the OHC detail "Minimum Value Standard" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Individual Premium Amount" highlight "Plain" on Application Details with data of " 500.0"
-    And I verify the OHC detail "Currently enrolled" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Insurance ending in next 60 days" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "End date" highlight "Plain" on Application Details with data of "Current Month"
-    And I verify the OHC detail "Voluntarily ending insurance" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Family plan offered" highlight "Plain" on Application Details with data of " Yes"
-    And I verify the OHC detail "Lowest-Cost Monthly Family Premium Amount" highlight "Plain" on Application Details with data of " 400.00"
+    And I verify the ESI OHC details on Application Details
+      |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
+      |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500.0                    |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|     Plain    |      Yes         |        Plain        |        Yes        |        Plain           |                    400.00               |           Plain            |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
@@ -1216,22 +1182,27 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Yes" in "English"
-    And I verify the OHC detail on Application Summary "End date" with data of "Today" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+    |          OHC Type          |Currently Enrolled|  End date  |
+    |Employer Sponsored Insurance|       Yes        |   Today    |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "Yes" end date of "Today"
+    And I wait for 3000 milliseconds
+    Then I validate PDF OHC data on Application Summary in "English"
+      |       Coverage Type    	  |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       Yes       |    Today    |
     And I change the language from header to "Spanish NonElmo"
+    Then I wait for 50 milliseconds
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Sí" in "Spanish"
-    And I verify the OHC detail on Application Summary "End date" with data of "Today" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       Sí         |   Today    |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "Sí" end date of "Today"
+    And I wait for 3000 milliseconds
+    Then I validate PDF OHC data on Application Summary in "Spanish"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|         Sí       |    Today    |
     And I change the language from header to "English NonElmo"
 #    Step 5
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -1275,20 +1246,27 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Yes" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       Yes        |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "Yes" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF OHC data on Application Summary in "English"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|        Yes       |             |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Sí" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       Sí         |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "Sí" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF OHC data on Application Summary in "Spanish"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|        Sí        |             |
+
     And I change the language from header to "English NonElmo"
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -1328,20 +1306,26 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "No" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF OHC data on Application Summary in "English"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       No         |             |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "No" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF OHC data on Application Summary in "Spanish"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       No         |             |
 
     And I click on Sign Out in the Header for "NonElmo"
 
@@ -1527,20 +1511,26 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "No" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "English"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       No         |             |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "No" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "Spanish"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       No         |             |
     And I change the language from header to "English NonElmo"
 #    Step 6
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -1598,20 +1588,26 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Yes" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       Yes        |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "Yes" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "English"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       Yes        |             |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Sí" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       Sí         |            |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "Sí" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "Spanish"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       Sí         |             |
     And I change the language from header to "English NonElmo"
 #   Step 8
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -1669,23 +1665,26 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Yes" in "English"
-    And I verify the OHC detail on Application Summary "End date" with data of "Today" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       Yes        |   Today    |
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "Yes" end date of "Today"
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "English"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       Yes        |   Today     |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Sí" in "Spanish"
-    And I verify the OHC detail on Application Summary "End date" with data of "Today" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       Sí         |   Today    |
     Then I click on Download as PDF on Application Summary
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "Sí" end date of "Today"
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "Spanish"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       Sí         |    Today    |
     And I change the language from header to "English NonElmo"
 #    Step 10
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -1736,22 +1735,26 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "English" for "Employer Sponsored Insurance" with Currently enrolled "No" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "English"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       No         |             |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Employer Sponsored Insurance" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type          |Currently Enrolled|  End date  |
+      |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
-    Then I validate PDF Family OHC on Application Summary with data "Other Health Coverage" in "Spanish" for "Employer Sponsored Insurance" with Currently enrolled "Sí" end date of ""
+    And I wait for 3000 milliseconds
+    Then I validate PDF Family OHC on Application Summary in "Spanish"
+      |       Coverage Type    	   |Currently Enrolled|   End date  |
+      |Employer Sponsored Insurance|       No         |             |
     And I change the language from header to "English NonElmo"
 
     And I click on Sign Out in the Header for "NonElmo"
