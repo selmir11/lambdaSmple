@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -136,6 +137,12 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(submitNewApplicationText.getText(), "If your situation changes you can submit a new application to re-apply and newly qualify.");
         softAssert.assertAll();
     }
+    private void verifyTextHoulseholdQualifyForOnAppResultsPage() {
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader, 10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeader.getText(), "Here's what your household qualifies for");
+        softAssert.assertAll();
+    }
+
     public void verifySESlimitedOnAppResultsPage(String language) {
         switch (language) {
             case "English":
@@ -274,9 +281,15 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void validateTextOnPage() {
+        String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
+        if(residentialState.equals("CO")||residentialState!=null) {
+        verifyTextHoulseholdQualifyForOnAppResultsPage();
         validateNameAndPlan();
         validateOverviewContainerTxt();
         validateYellowBannerTxt();
+        }else{
+            verifyTextNotQualifyForPlanOnAppResultsPage();
+        }
         softAssert.assertAll();
     }
     public void validateSpanishTextOnPage(){
