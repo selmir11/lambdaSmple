@@ -96,11 +96,6 @@ public class LoginPageSteps {
         loginPage.verifyInvalidLoginErrorMessage();
     }
 
-    @Then("I verify the account is locked text on the Login page")
-    public void iVerifyAccountLockedMessage() {
-        loginPage.verifyAccountLockedMessage();
-    }
-
     @And("I receive message I forgot username and password")
     public void iReceiveMessageIForgotUsernameAndPassword() {
         loginPage.usernameandpasswordRequiredMessage();
