@@ -59,6 +59,9 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy(css = "small.required")
     List<WebElement> requiredValidationError;
 
+    @FindBy(css = "span.required")
+    WebElement invalidDateError;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -81,6 +84,12 @@ public class TellUsAboutYourselfCoCoPage {
 
     public void specificMemberDetailsCoCo(String dateOfBirth, String gender, String applying) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        if(dateOfBirth.equals("getFromSharedData")){
+            dateOfBirth = subscriber.getDob();
+        }
+        if(gender.equals("getFromSharedData")){
+            gender = subscriber.getGender();
+        }
         enterMemberDOBTbox(dateOfBirth);
         genderSelection(gender);
         applyingForCoverage(applying);
@@ -376,6 +385,21 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
+        firstNameText.sendKeys("1234@#ABCD");
+        softAssert.assertEquals(firstNameText.getAttribute("value"), "ABCD");
+        firstNameText.sendKeys("ABCDEFGHIJKLMNOPQRSTUV");
+        softAssert.assertEquals(firstNameText.getAttribute("value"), "ABCDABCDEFGHIJKLMNOPQRSTU");
+        middleNameText.sendKeys("1234@#ABCD");
+        softAssert.assertEquals(middleNameText.getAttribute("value"), "ABCD");
+        middleNameText.sendKeys("ABCDEFGHIJKLMNOPQRSTUV");
+        softAssert.assertEquals(middleNameText.getAttribute("value"), "ABCDABCDEFGHIJKLMNOPQRSTU");
+        lastNameText.sendKeys("1234@#ABCD");
+        softAssert.assertEquals(lastNameText.getAttribute("value"), "ABCD");
+        lastNameText.sendKeys("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM");
+        softAssert.assertEquals(lastNameText.getAttribute("value"), "ABCDABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJ");
+        softAssert.assertEquals(suffixDropdown.getText(), "Select Option\nJr.\nSr.\nIII\nIV");
+        memberDOBTbox.sendKeys("01012030");
+        softAssert.assertEquals(invalidDateError.getText(), "Date is not valid");
         softAssert.assertAll();
     }
 

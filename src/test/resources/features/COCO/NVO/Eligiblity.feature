@@ -157,7 +157,7 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     Then I verify no one is applying text on the Family Overview page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-683
+  @SLCR-695
   Scenario Outline: Validate the eligibility for HIAE Phase 2 and/or Off Exchange plans for additional member
     Then I enter details on tell us about yourself page and continue with "11281992", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
@@ -227,7 +227,7 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
       | Denver      | CO    | 80205   | DENVER      | Yes        | Yes          | OFF_EXCHANGE_ELIGIBLE     |
       | Los Angeles | CA    | 90005   | LOS ANGELES | Yes        | No           | OFF_EXCHANGE_NOT_ELIGIBLE |
 
-  @SLCR-683
+  @SLCR-695
   Scenario: Validate the ineligibility for HIAE Phase 2 and/or Off Exchange plans for additional member
     Then I enter details on tell us about yourself page and continue with "11281992", "Male", and applying "No"
     And I enter my residential address "101 Coco Drive", "DENVER", "CO", "80205", "DENVER"

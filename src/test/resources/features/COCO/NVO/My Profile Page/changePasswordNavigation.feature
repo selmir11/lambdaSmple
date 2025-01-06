@@ -5,7 +5,7 @@ Feature: My Profile Page Coco
     Given I open the login page on the "login" portal
 
 
-@SLCR-647 @WIP
+@SLCR-647 @NVOCoCoRegression
   Scenario: English Change password on My Profile coco
   When I click create a new account on login page
   Then I click create my account from pre-screen page
@@ -22,9 +22,10 @@ Feature: My Profile Page Coco
   And I wait for 10000 milliseconds
   And I click the Change Password Button
   Then I validate I am on the "Forgot my password" page
+  Then I validate the Forgot my password page title in "English"
 
 
-  @SLCR-648 @WIP
+  @SLCR-648 @NVOCoCoRegression
   Scenario: Spanish Change password on My Profile coco
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -42,3 +43,4 @@ Feature: My Profile Page Coco
     And I wait for 10000 milliseconds
     And I click the Change Password Button
     Then I validate I am on the "Forgot my password" page
+    Then I validate the Forgot my password page title in "Spanish"

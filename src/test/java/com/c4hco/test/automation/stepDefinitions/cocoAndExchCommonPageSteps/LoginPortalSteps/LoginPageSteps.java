@@ -157,4 +157,9 @@ public class LoginPageSteps {
     public void iClickTheOptionRequested(String userOption) {
         loginPage.clickTheOptionRequested(userOption);
     }
+
+    @And("I login with {string} credentials")
+    public void loginWithExistingCreds(String loginType){
+            loginPage.loginWitExistingAcc(loginType);
+    }
 }

@@ -477,6 +477,10 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
 
+    public String getHouseholdIdForOldAccount(){
+        return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getOldAccountId()+"'";
+    }
+
     public String getLceTpePlanYear(String householId){
         return "Select lce_type, plan_year from "+dbName+".es_member_lce\n" +
                 "where household_id  = '"+householId+"'";
@@ -611,6 +615,29 @@ public String policyTablesCombinedQuery(String coverageType){
     public String geAllApplicationIds(String householId){
         return "select application_id from "+dbName+".es_application\n" +
                 "where household_id  = '"+householId+"'";
+    }
+
+    public String getSelfAttestationDetails(String householdID){
+        return "select * from "+dbName+".es_self_attestation\n" +
+                "where household_id = '"+householdID+"'";
+    }
+    public String dorTaxHousehold(String taxpayerKey){
+        return "select b.event_cd\n" +
+                "from "+dbName+".dor_tax_household a\n" +
+                "join "+dbName+".easy_enrollment_event_log b\n" +
+                "on a.id = b.dor_tax_household_id\n" +
+                "join "+dbName+".dor_tax_household_member c\n" +
+                "on a.id = c.dor_tax_household_id\n" +
+                "where a.taxpayer_key = '"+taxpayerKey+"'";
+    }
+    public String easyEnrollmentEventLog(String taxpayerKey){
+        return "select event_cd \n" +
+                "from "+dbName+".easy_enrollment_event_log where taxpayer_key = '"+taxpayerKey+"'";
+    }
+
+    public String getExchPersonIdFields_esMem(String householdId){
+        return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
+                "where household_id = '"+householdId+"'";
     }
 
 }

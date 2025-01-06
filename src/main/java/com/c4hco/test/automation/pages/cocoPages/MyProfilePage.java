@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class MyProfilePage {
@@ -127,6 +128,8 @@ public class MyProfilePage {
     @FindBy(css = "span.change-password-msg")
     WebElement PasswordMessageCoCo;
 
+    @FindBy(id="myProfile_accountId")
+    WebElement accountId;
 
 
     SoftAssert softAssert = new SoftAssert();
@@ -758,6 +761,11 @@ public class MyProfilePage {
         MobilephoneCoCo.sendKeys(newPhone);
     }
 
+    public void getAcctId(){
+        basicActions.waitForElementToBePresent(accountId, 10);
+        SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accountId.getText()));
+        System.out.println("Account Id::"+SharedData.getPrimaryMember().getAccount_id());
+    }
 
 }
 
