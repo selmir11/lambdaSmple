@@ -31,11 +31,12 @@ public class DentalPlanComparePage {
     @FindBy(id = "ComparePlans-GoBackToPlans")
     WebElement goBackDentalCompareBtn;
 
-    @FindBy(id = "DentalPlanCompare_InNetworkTab")
+    @FindBy(xpath = "//*[normalize-space()='In-Network']")
     WebElement inNetworkDentalLink;
 
-    @FindBy(id = "DentalPlanCompare_OutOfNetworkTab")
+    @FindBy(xpath = "//*[normalize-space()='Out-of-Network']")
     WebElement outNetworkDentalLink;
+
 
     // headers
 
@@ -146,11 +147,16 @@ public class DentalPlanComparePage {
         goBackDentalCompareLink.click(); }
 
     public void clickInNetworkDental() {
-        basicActions.waitForElementToBeClickable( inNetworkDentalLink,15 );
+        basicActions.waitForElementToDisappear( spinner,120 );
+        basicActions.scrollToElement( goBackDentalCompareLink );
+        basicActions.waitForElementToBePresentWithRetries( inNetworkDentalLink,120 );
         inNetworkDentalLink.click();}
 
     public void clickOutNetworkDental() {
-        basicActions.waitForElementToBeClickable( outNetworkDentalLink, 15 );
+        basicActions.waitForElementToDisappear( spinner,120 );
+        basicActions.scrollToElement( goBackDentalCompareLink );
+        basicActions.waitForElementToBePresentWithRetries(goBackDentalCompareLink,30);
+        basicActions.waitForElementToBePresentWithRetries( outNetworkDentalLink, 120 );
         outNetworkDentalLink.click();}
 
     public void validateExpandCollapseDentalCompareHeaders(){
@@ -208,7 +214,7 @@ public class DentalPlanComparePage {
         softAssert.assertEquals(txtDentalDiagnosticChild.getText(), "Diagnostic and Preventive Services Child");
         basicActions.click( txtDentalDiagnosticChild );
         softAssert.assertEquals(getTxtCleaningChild.getText(), "Cleaning Child");
-        softAssert.assertEquals(getTxtFlourideTreatmentChild.getText(), "Flouride Treatments Child");
+        softAssert.assertEquals(getTxtFlourideTreatmentChild.getText(), "Fluoride Treatments Child");
         softAssert.assertEquals(getTxtOralExamsChild.getText(), "Oral Exams Child");
         softAssert.assertEquals(getTxtXrayChild.getText(), "X-rays Child");
 
@@ -254,7 +260,7 @@ public class DentalPlanComparePage {
         softAssert.assertEquals(txtDentalDiagnosticChild.getText(), "Diagnostic and Preventive Services Child");
         basicActions.click( txtDentalDiagnosticChild );
         softAssert.assertEquals(getTxtCleaningChild.getText(), "Cleaning Child");
-        softAssert.assertEquals(getTxtFlourideTreatmentChild.getText(), "Flouride Treatments Child");
+        softAssert.assertEquals(getTxtFlourideTreatmentChild.getText(), "Fluoride Treatments Child");
         softAssert.assertEquals(getTxtOralExamsChild.getText(), "Oral Exams Child");
         softAssert.assertEquals(getTxtXrayChild.getText(), "X-rays Child");
 
