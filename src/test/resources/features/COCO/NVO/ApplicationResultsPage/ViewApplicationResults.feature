@@ -279,7 +279,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-        #DB STEP WIP
+
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
 
@@ -368,7 +368,7 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Medical Plan Results" page
 
   @SLCR-682 @SLCR-697
-  Scenario: scenario 3 - User submits Next year application with LCE during OE and able to shop
+  Scenario: scenario3-SLCR-682 and Scenario1-SLCR-697:: User submits Next year application with LCE during OE and able to shop
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
