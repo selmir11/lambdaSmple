@@ -53,6 +53,9 @@ public class FamilyOverviewPage {
     }
 
     public void clickEditUpdateLink(String name) {
+        if(name.equals("getFromSharedData")){
+            name = SharedData.getPrimaryMember().getFirstName();
+        }
         basicActions.waitForElementListToBePresentWithRetries(editUpdateLink, 30);
         String xpath = String.format("//*[contains(text(),'"+name+"')]//following::a[1]");
         WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));

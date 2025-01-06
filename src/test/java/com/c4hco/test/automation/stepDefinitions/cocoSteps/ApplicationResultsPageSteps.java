@@ -68,4 +68,14 @@ public class ApplicationResultsPageSteps {
         applicationResultsCoCoPage.validatePageTextWithoutApplication(language);
     }
 
+    @Then("I validate open enrollment ended pop up in {string}")
+    public void validateOeEnded(String language){
+        applicationResultsCoCoPage.validateOeEndPopup(language);
+    }
+
+    @And("I click close on open enrollment ended pop up modal")
+    public void clickCloseOnPopup(){
+        applicationResultsCoCoPage.clickCloseOnPopup();
+    }
+
 }

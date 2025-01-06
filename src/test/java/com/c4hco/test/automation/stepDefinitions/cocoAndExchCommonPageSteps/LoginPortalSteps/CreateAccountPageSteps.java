@@ -20,6 +20,11 @@ public class CreateAccountPageSteps {
         createAccountPage.createGeneralAccount(appType);
     }
 
+    @Then("I enter general mandatory data for {string} account creation for the script {string}")
+    public void enterScriptBasedData(String appType, String scriptNum){
+        createAccountPage.createAccountForScript(appType, scriptNum);
+    }
+
     @Then("I enter first name {string}, middle name {string}, last name {string} and general mandatory data for {string} account creation")
     public void iEnterSpecificDataForAccCreation(String fName, String mName, String lName, String appType){createAccountPage.createSpecificAccount(fName, mName, lName, appType);}
 
@@ -32,7 +37,6 @@ public class CreateAccountPageSteps {
     public void iCreateGeneralAccountGmail(String appType, String emailBase){
         createAccountPage.createGeneralAccountGmail(appType, emailBase);
     }
-
 
     @Then("I enter mandatory data for {string} account creation with email {string}@outlook.com")
     public void iEnterDataForBrokerAccCreation(String accountType, String emailBase){
@@ -69,9 +73,14 @@ public class CreateAccountPageSteps {
         createAccountPage.verifyInformationSharingOptions(language);
     }
 
-    @And("I enter duplicate data for account creation")
-    public void iEnterDuplicateDateForAccountCreation(){
-        createAccountPage.enterDuplicateAccountCreationData();
+    @And("I enter duplicate data for account creation for {string}")
+    public void iEnterDuplicateDateForAccountCreation(String appType){
+        createAccountPage.enterDuplicateAccountCreationData(appType);
+    }
+
+    @And("I enter duplicate data for account creation for {string} with new email")
+    public void duplicateAccWithNewEmail(String appType){
+        createAccountPage.duplicateAccWithNewEmail(appType);
     }
 
     @And("I enter duplicate data for Agency Owner account creation")

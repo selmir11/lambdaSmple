@@ -1,6 +1,6 @@
 Feature: Coco user on the Application results page
 
-    Background: I go the login portal
+  Background: I go the login portal
     Given I open the login page on the "login" portal
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page

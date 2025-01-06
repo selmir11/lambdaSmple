@@ -33,12 +33,20 @@ public class MemberIdProofingPage {
 
     @FindBy(xpath = "//div/input[@id='answer11']")
     WebElement firstOptionInEmployerName;
+    @FindBy(xpath = "//div/input[@id='answer12']")
+    WebElement secondOptionInEmployerName;
     @FindBy(xpath = "//div/input[@id='answer21']")
     WebElement firstOptionInHomeAddress;
+    @FindBy(xpath = "//div/input[@id='answer22']")
+    WebElement incorrectOptionInHomeAddress;
     @FindBy(xpath = "//div/input[@id='answer31']")
     WebElement firstOptionInCarLoanBank;
+    @FindBy(xpath = "//div/input[@id='answer32']")
+    WebElement incorrectOptionInCarLoanBank;
     @FindBy(id = "submitButton")
     WebElement saveContinue;
+    @FindBy(xpath = "//div[@id='ridpErrorContainer']")
+    WebElement idProofingError;
 
     public void selectFirstOptionToAll(){
         basicActions.waitForElementToDisappear( spinner, 30  );
@@ -110,5 +118,19 @@ public class MemberIdProofingPage {
         softAssert.assertEquals(textAnswers.get(10).getText(), "03 DCU", "03 DCU text mismatch");
         softAssert.assertEquals(textAnswers.get(11).getText(), "04 First Bank", "04 First Bank text mismatch");
         softAssert.assertAll();
+    }
+
+    public void answerTheWrongIdProofingAnswersAndClickContinue() {
+        basicActions.waitForElementToDisappear( spinner, 30  );
+        basicActions.waitForElementToBePresent(firstOptionInEmployerName, 30);
+        secondOptionInEmployerName.click();
+        incorrectOptionInHomeAddress.click();
+        incorrectOptionInCarLoanBank.click();
+        saveContinue.click();
+    }
+
+    public void validateTheIdProofingErrorMessageIsDisplayed() {
+        basicActions.waitForElementToBePresentWithRetries(idProofingError,30);
+        basicActions.isElementDisplayed(idProofingError,30);
     }
 }

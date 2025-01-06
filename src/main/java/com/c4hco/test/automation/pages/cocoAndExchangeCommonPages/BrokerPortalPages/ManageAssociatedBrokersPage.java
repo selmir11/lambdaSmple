@@ -17,11 +17,17 @@ public class ManageAssociatedBrokersPage {
     @FindBy(id = "action-description")
     WebElement manageAssocBrokersActionDescription;
 
-    @FindBy(id = "action-link")
+    @FindBy(id = "action-value")
     WebElement manageAssocBrokersRemoveBroker;
 
     @FindBy(id = "BP-ManageAssociatedBrokers-GoBack")
     WebElement manageAssocBrokersGoBack;
+    @FindBy(id = "full-name")
+    WebElement brokerNameSearched;
+    @FindBy(id = "certification-status")
+    WebElement BrokerCertificationStatus;
+    @FindBy(id = "action-value")
+    WebElement brokerActionStatus;
 
     private BasicActions basicActions;
     public ManageAssociatedBrokersPage(WebDriver webDriver){
@@ -84,4 +90,31 @@ public class ManageAssociatedBrokersPage {
 
         softAssert.assertAll();
     }
+
+    public void validateTheBrokerResultsMatchMyBrokerNamedOnAssociatedBrokers(String brokerName) {
+        basicActions.waitForElementToBePresentWithRetries(brokerNameSearched,30);
+        softAssert.assertEquals(brokerNameSearched.getText(),brokerName);
+        softAssert.assertAll();
+    }
+
+    public void validateTheBrokerStatusInviteIsOnTheRightAction() {
+            basicActions.waitForElementToBePresentWithRetries(BrokerCertificationStatus, 100);
+            basicActions.waitForElementToBePresentWithRetries(manageAssocBrokersActionDescription, 100);
+        if (basicActions.isElementDisplayed(brokerActionStatus,20)&& brokerActionStatus.getText().equals("Remove") ){
+            System.out.println("The specified broker is not in the correct state for this test");
+            manageAssocBrokerRemove();
+            System.out.println("Broker state has been corrected");
+            basicActions.waitForElementToBePresentWithRetries(manageAssocBrokersSendInvite, 50);
+            manageAssocBrokersSendInvite.click();
+
+        } else if (basicActions.isElementDisplayed(manageAssocBrokersActionDescription,20)&&manageAssocBrokersActionDescription.getText().equals("Pending Acceptance") ) {
+            System.out.println("Broker current state is Pending Acceptance");
+
+        } else if (basicActions.isElementDisplayed(manageAssocBrokersSendInvite,20)){
+            System.out.println("The specified broker has been verified and is in the correct state for this test");
+            basicActions.waitForElementToBePresentWithRetries(manageAssocBrokersSendInvite, 50);
+            manageAssocBrokersSendInvite.click();
+        }}
+
+
 }

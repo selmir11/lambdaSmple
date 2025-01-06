@@ -2,15 +2,13 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPa
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.ApplicationProperties;
-import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Utils;
-import com.c4hco.test.automation.utils.WebDriverManager;
+import com.c4hco.test.automation.utils.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
@@ -480,5 +478,29 @@ public class LoginPage {
                 break;
             }
         }
+    }
+
+    public void loginWitExistingAcc(String loginType){
+        switch(loginType){
+            case "SEP":
+                LoginCredentials.setSepCredentials();
+                break;
+            default: Assert.fail("Invalid case");
+        }
+        loginWithExistingCreds();
+    }
+
+    private void loginWithExistingCreds(){
+        basicActions.waitForElementToBePresentWithRetries(username, 10);
+        basicActions.wait(2000);
+        String emailId = SharedData.getPrimaryMember().getEmailId();
+        System.out.println("Email::" + emailId);
+        String pswd = SharedData.getPrimaryMember().getPassword();
+        basicActions.wait(2000);
+        username.sendKeys(emailId);
+        basicActions.waitForElementToBePresent(password, 10);
+        password.sendKeys(pswd);
+        System.out.println("Password::" + pswd);
+        signInButton.click();
     }
 }
