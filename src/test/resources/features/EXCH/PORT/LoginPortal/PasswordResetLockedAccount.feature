@@ -15,7 +15,7 @@ Feature: Password reset verification when an individual's account is locked
     Then I enter invalid credentials
     And I verify the invalid login error text
     Then I enter invalid credentials
-    Then I verify the account is locked text on the Login page
+    Then I validate account is locked message on the Login page
 
     Then I click create forgot "password"
     And I validate I am on the "Forgot my password" page

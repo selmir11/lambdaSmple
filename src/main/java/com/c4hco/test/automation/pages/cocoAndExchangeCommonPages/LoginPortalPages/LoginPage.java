@@ -443,7 +443,6 @@ public class LoginPage {
         softAssert.assertEquals(lockedOutMessage.getText(), "Your account is locked");
         softAssert.assertTrue(lockedOutMessage.isDisplayed());
         softAssert.assertAll();
-        basicActions.closeBrowserTab();
     }
 
     public void enterInvalidCredentials() {
@@ -466,13 +465,6 @@ public class LoginPage {
         basicActions.waitForElementToBePresentWithRetries(invalidLoginMessage, 100);
         softAssert.assertEquals(invalidLoginMessage.getText(), "Invalid login and/or password");
         softAssert.assertTrue(invalidLoginMessage.isDisplayed());
-        softAssert.assertAll();
-    }
-
-    public void verifyAccountLockedMessage() {
-        basicActions.waitForElementToBePresent(lockedOutMessage, 100);
-        softAssert.assertEquals(lockedOutMessage.getText(), "Your account is locked");
-        softAssert.assertTrue(lockedOutMessage.isDisplayed());
         softAssert.assertAll();
     }
 
