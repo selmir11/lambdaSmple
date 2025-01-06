@@ -84,7 +84,7 @@ Feature: Easy Enrollment API
     #Db steps
     Then I validate eventCD when no notices are sent
 
-  @SLER-1938 - WIP
+  @SLER-1938 @WIP
   Scenario: ELIG - Easy Enrollment: 1 member, QLCE is not granted, shopping is not allowed, only paper notice (EE 1-2) is triggered
     Given I get Easy Enrollment API base URL
     Then I send a request body with the following data: adjustedGrossIncome:"55000", emailAddress:"null", filedByDeadline:"0", filingType:"1", firstName:"Peter", householdSize:"1", lastName:"Pan", mailingAddressLine1:"11 Stroh Road", mailingAddressLine2:"Suite 2", city:"Denver", zipCode:"80205", middleInitial:"M", phoneNumber:"7206661280", dateOfBirth:"12011971", ssn:"134251980", year:"2022"
