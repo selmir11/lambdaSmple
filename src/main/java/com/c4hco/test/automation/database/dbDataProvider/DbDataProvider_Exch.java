@@ -527,5 +527,23 @@ public class DbDataProvider_Exch {
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return esSelfAttestationDbHandler.getOptionsFromSelfAttestTable(exchDbQueries.getSelfAttestationDetails(householdId));
     }
+    public List<String> getEventCD(){
+        String taxpayerKey = SharedData.getPrimaryTaxPayerKey();
+        return postgresHandler.getResultListFor("event_cd", exchDbQueries.dorTaxHousehold(taxpayerKey));
+    }
+    public List<String> getEventLog(){
+        String taxpayerKey = SharedData.getPrimaryTaxPayerKey();
+        return postgresHandler.getResultListFor("event_cd", exchDbQueries.easyEnrollmentEventLog(taxpayerKey));
+    }
+
+    public List<EsMemberHouseholdEntity> getExchPersonIdFields_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
+    public List<EsMemberHouseholdEntity> getExchPersonIdFieldsOldAcc_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdIdForOldAccount());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
 
 }

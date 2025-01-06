@@ -235,5 +235,34 @@ public class DbSteps {
     @Then("I validate the Self Attestation details in DB")
     public void iValidateSelfAttestation(List<Map<String, String>> expectedValues){dbValidations.validateSelfAttest(expectedValues);}
 
+    @Then("I validate the exch_person_id related fields to be null")
+    public void validateExchPersonIdFieldsTobeNull(){
+        dbValidations.validateExchPersonIdRelatedFieldsToBeNull();
+    }
+
+    @Then("I validate the exch_person_id related fields from db for a new member after tell us about yourself page")
+    public void validateExchPersonIdFields(){
+        dbValidations.validateExchPersonIdRelatedFields();
+    }
+
+    @Then("I validate the exch_person_id related fields from db for a specific member after tell us about yourself page")
+    public void validateExchPersnIdFields(){
+        dbValidations.validateExchPersonIdFields_specifcPerson();
+    }
+
+    @Then("I validate the exch_person_id related fields from db for a duplicate member after tell us about yourself page")
+    public void validateExchPersonIdFields_duplicateMem(){
+        dbValidations.validateExchPersonIdFields_duplicateMem();
+    }
+
+    @Then("I validate eventCD when no notices are sent")
+    public void iValidateEventCD(){
+        dbValidations.validateEventCD();
+    }
+    @Then("I validate event log in DB")
+    public void iValidateEventLog(){
+        dbValidations.validateEventLog();
+    }
+
 }
 
