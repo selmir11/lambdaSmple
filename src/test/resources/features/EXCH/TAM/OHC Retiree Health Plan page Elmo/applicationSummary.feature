@@ -201,22 +201,22 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Retiree Health Plan" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Yes" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type    	   |Currently Enrolled|   End date  |
+      |     Retiree Health Plan    |       Yes        |             |
     Then I click on Download as PDF on Application Summary
-    Then I validate basic PDF OHC data on Application Details in "English"
+    Then I validate PDF OHC data on Application Summary in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Retiree Health Plan|       Yes        |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Retiree Health Plan" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Sí" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type    	   |Currently Enrolled|   End date  |
+      |     Retiree Health Plan    |        Sí        |             |
     Then I click on Download as PDF on Application Summary
-    Then I validate basic PDF OHC data on Application Details in "Spanish"
+    Then I validate PDF OHC data on Application Summary in "Spanish"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Retiree Health Plan|       Sí         |                |             |                            |
     And I change the language from header to "English NonElmo"
@@ -261,26 +261,24 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Retiree Health Plan" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Yes" in "English"
-    And I verify the OHC detail on Application Summary "End date" with data of "Last Current Month" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type    	   |Currently Enrolled|   End date  |
+      |     Retiree Health Plan    |       Yes        |Last Current Month|
     Then I click on Download as PDF on Application Summary
-    Then I validate basic PDF OHC data on Application Details in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       Yes        |      Yes       |Current Month|           Yes              |
+    Then I validate PDF OHC data on Application Summary in "English"
+      |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
+      |Retiree Health Plan|       Yes        |      Yes       |Last Current Month|           Yes              |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Retiree Health Plan" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " Sí" in "Spanish"
-    And I verify the OHC detail on Application Summary "End date" with data of "Last Current Month" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type    	   |Currently Enrolled|     End date     |
+      |     Retiree Health Plan    |        Sí        |Last Current Month|
     Then I click on Download as PDF on Application Summary
-    Then I validate basic PDF OHC data on Application Details in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       Sí         |      Sí        |Current Month|           Sí               |
+    Then I validate PDF OHC data on Application Summary in "Spanish"
+      |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
+      |Retiree Health Plan|       Sí         |      Sí        |Last Current Month|           Sí               |
     And I change the language from header to "English NonElmo"
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -320,22 +318,22 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Retiree Health Plan" with data of "" in "English"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "English"
+    And I verify the OHC detail on Application Summary in "English"
+      |          OHC Type    	   |Currently Enrolled|   End date  |
+      |     Retiree Health Plan    |       No         |             |
     Then I click on Download as PDF on Application Summary
-    Then I validate basic PDF OHC data on Application Details in "English"
+    Then I validate PDF OHC data on Application Summary in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Retiree Health Plan|       No         |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
-    And I verify the OHC detail on Application Summary "Name" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Retiree Health Plan" with data of "" in "Spanish"
-    And I verify the OHC detail on Application Summary "Currently enrolled" with data of " No" in "Spanish"
+    And I verify the OHC detail on Application Summary in "Spanish"
+      |          OHC Type    	   |Currently Enrolled|   End date  |
+      |     Retiree Health Plan    |       No         |             |
     Then I click on Download as PDF on Application Summary
-    Then I validate basic PDF OHC data on Application Details in "Spanish"
+    Then I validate PDF OHC data on Application Summary in "Spanish"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Retiree Health Plan|       No         |                |             |                            |
 
@@ -635,12 +633,15 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "None" highlight "Green" on Application Details with data of ""
-    And I verify the OHC detail "1 Removed" highlight "Red" on Application Details with data of ""
+    And I verify None OHC detail on Application Details
+      |None Highlight|Removed|Removed Highlight|
+      |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Plain" on Application Details
     Then I click on "Other Health Coverage" on Application Details
-    And I verify the OHC detail "None" highlight "Plain" on Application Details with data of ""
+    And I verify None OHC detail on Application Details
+      |None Highlight|Removed|Removed Highlight|
+      |     Plain    |       |                 |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
