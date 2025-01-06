@@ -620,4 +620,24 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateAddressDetailsinDB(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
+        String FirstName=null;
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+
+        List<String> dbValues = exchDbDataProvider.getAddressInformation(FirstName);
+        softAssert.assertEquals(dbValues.get(0), address_line1);
+        softAssert.assertEquals(dbValues.get(1), address_line2);
+        softAssert.assertEquals(dbValues.get(2), city);
+        softAssert.assertEquals(dbValues.get(3), state);
+        softAssert.assertEquals(dbValues.get(4), zip);
+        softAssert.assertEquals(dbValues.get(5), county);
+        softAssert.assertAll();
+    }
+
  }
