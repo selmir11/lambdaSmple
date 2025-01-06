@@ -282,7 +282,7 @@ public class ApplicationResultsCoCoPage {
 
     public void validateTextOnPage() {
         String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
-        if(residentialState.equals("CO")) {
+        if(residentialState.equals("CO")||residentialState!=null) {
         verifyTextHoulseholdQualifyForOnAppResultsPage();
         validateNameAndPlan();
         validateOverviewContainerTxt();
