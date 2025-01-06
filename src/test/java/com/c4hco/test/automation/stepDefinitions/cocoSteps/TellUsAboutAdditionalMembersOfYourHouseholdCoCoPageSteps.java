@@ -56,4 +56,10 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.updateAdditionalMemberDetailsCoCo(FName,DOB,Gender,applying,relationship);
    }
 
+   @Then("I validate the relationship dropdown values")
+   public void validateRelationshipDropdownValues(List<String> relationship) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateDropdownOptions(relationship);
+   }
+
+
 }

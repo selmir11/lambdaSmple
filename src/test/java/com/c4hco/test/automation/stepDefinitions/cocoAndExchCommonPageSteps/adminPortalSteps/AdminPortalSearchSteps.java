@@ -179,6 +179,10 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.clickResetAdminPortal();
     }
 
+    @Then("I select the first broker record from the search results")
+    public void iSelectTheFirstBrokerRecordFromTheSearchResults() {
+        adminPortalSearchPage.selectTheFirstBrokerRecordFromTheSearchResults();
+    }
 }
 
 

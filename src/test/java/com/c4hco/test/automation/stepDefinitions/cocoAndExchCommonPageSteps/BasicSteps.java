@@ -97,6 +97,9 @@ public class BasicSteps {
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
                 break;
+            case "my agency":
+            pageUrl = "broker-agency-info";
+            break;
             case "Admin search":
                 pageUrl = "/AdminPortal/search";
                 break;

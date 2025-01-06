@@ -102,6 +102,11 @@ public class MyProfilePageStepsCoco {
         myProfilePage.ClickChangePrimaryContactOnMyProfilePageCoCo();
     }
 
+    @And("I get the account Id from my profile page coco")
+    public void getAcctId(){
+        myProfilePage.getAcctId();
+    }
+
     @Then("I validate Primary Contact Change Popup {string} on My profile page CoCo")
     public void ivalidateChangePrimaryContactPopupCoCo(String language)  { myProfilePage.validateChangePrimaryContactPopupCoCo(language); }
 

@@ -86,6 +86,16 @@ public class LoginPageSteps {
         loginPage.validateLockedOutMessage();
     }
 
+    @Then("I enter invalid credentials")
+    public void iEnterInvalidCredentials() {
+        loginPage.enterInvalidCredentials();
+    }
+
+    @And("I verify the invalid login error text")
+    public void iVerifyInvalidLoginErrorMessage() {
+        loginPage.verifyInvalidLoginErrorMessage();
+    }
+
     @And("I receive message I forgot username and password")
     public void iReceiveMessageIForgotUsernameAndPassword() {
         loginPage.usernameandpasswordRequiredMessage();

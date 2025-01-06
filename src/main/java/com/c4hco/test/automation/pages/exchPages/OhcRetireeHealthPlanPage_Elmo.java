@@ -152,16 +152,16 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
         switch (endDate){
             case "Current Month":
-                inputEndDate.sendKeys(basicActions.lastDateOfCurrMonth());
+                inputEndDate.sendKeys(basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MMdd"));
                 break;
             case "Prior Month":
-                inputEndDate.sendKeys(basicActions.getPastDate(1));
+                inputEndDate.sendKeys(basicActions.changeDateFormat(basicActions.getPastDate(1), "MM/dd/yyyy", "MMdd"));
                 break;
             case "Future Month":
-                inputEndDate.sendKeys(basicActions.getFutureDate(61));
+                inputEndDate.sendKeys(basicActions.changeDateFormat(basicActions.getFutureDate(61), "MM/dd/yyyy", "MMdd"));
                 break;
             case "Future Day":
-                inputEndDate.sendKeys(basicActions.getFutureDate(daysInFuture));
+                inputEndDate.sendKeys(basicActions.changeDateFormat(basicActions.getFutureDate(daysInFuture), "MM/dd/yyyy", "MMdd"));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);

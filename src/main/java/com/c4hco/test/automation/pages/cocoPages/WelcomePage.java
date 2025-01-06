@@ -134,13 +134,13 @@ public class WelcomePage {
     }
 
     public void clickActionLinks(String actionLink) {
-        basicActions.waitForElementListToBePresentWithRetries(actionLinks, 5);
+        basicActions.waitForElementListToBePresentWithRetries(actionLinks, 10);
+        basicActions.wait(2000);
         switch (actionLink) {
             case "My Profile":
                 actionLinks.get(0).click();
                 break;
             case "Application Results":
-                basicActions.wait(2000);
                 actionLinks.get(1).click();
                 break;
             case "My Plans":

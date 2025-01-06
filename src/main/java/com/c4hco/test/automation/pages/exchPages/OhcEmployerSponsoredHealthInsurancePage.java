@@ -269,19 +269,18 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     public void enterEndDate(String endDate){
         basicActions.waitForElementToBePresent(esiEndDateInput, 60);
-
         switch (endDate){
             case "Today":
-                esiEndDateInput.sendKeys(basicActions.getTodayDate());
+                esiEndDateInput.sendKeys(basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MMdd"));
                 break;
             case "Current Month":
-                esiEndDateInput.sendKeys(basicActions.lastDateOfCurrMonth());
+                esiEndDateInput.sendKeys(basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MMdd"));
                 break;
             case "Prior Month":
-                esiEndDateInput.sendKeys(basicActions.getPastDate(1));
+                esiEndDateInput.sendKeys(basicActions.changeDateFormat(basicActions.getPastDate(1), "MM/dd/yyyy", "MMdd"));
                 break;
             case "Future Month":
-                esiEndDateInput.sendKeys(basicActions.getFutureDate(61));
+                esiEndDateInput.sendKeys(basicActions.changeDateFormat(basicActions.getFutureDate(61), "MM/dd/yyyy", "MMdd"));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + endDate);

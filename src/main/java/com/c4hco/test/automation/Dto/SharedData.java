@@ -7,6 +7,7 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +80,8 @@ public class SharedData {
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
     @Getter @Setter private static AdminDetails adminDetails;
-    @Getter @Setter private static String primarytaxpayerkey;
+    @Getter @Setter private static String primaryTaxPayerKey;
+    @Getter @Setter private static BigDecimal oldAccountId;
 
 
 
@@ -126,6 +128,8 @@ public class SharedData {
         ib834TransactionDetails=null;
         expectedCalculatedDates_medicalPlan = null;
         expectedCalculatedDates_dentalPlan = null;
+        oldAccountId = null;
+        primaryTaxPayerKey=null;
     }
 
 }
