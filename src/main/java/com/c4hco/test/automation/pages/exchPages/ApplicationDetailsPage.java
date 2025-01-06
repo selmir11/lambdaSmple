@@ -538,6 +538,9 @@ public class ApplicationDetailsPage {
         System.out.println("path and name is " + pathAndName);
         String pdfContent = extractTextFromPDF(Path.of(pathAndName));
         String coverageType = pdfData.get(0).get("Coverage Type");
+        if ("Individual Insurance (Outside of Marketplace)".equals(coverageType)) {
+            coverageType = "Individual Insurance (Outside of \nMarketplace)";
+        }
         String currentlyEnrolled = pdfData.get(0).get("Currently Enrolled");
         String insuranceEnding = pdfData.get(0).get("Insurance Ending");
         String endDate = pdfData.get(0).get("End date");
