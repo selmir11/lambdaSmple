@@ -639,5 +639,7 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
                 "where household_id = '"+householdId+"'";
     }
-
+    public String getResidentialAddress(String memberId){
+        return "select address_line1, address_line2, city, state, zip, county  from "+dbName+".es_address where address_id in (select residence_address_id from "+dbName+".es_member where member_id = "+memberId+")";
+    }
 }
