@@ -43,4 +43,19 @@ public class AddInfoForAdditionalMemberCoCoPageSteps {
     public void validateCountyDisabled(){
         addInfoForAdditionalMemberPage.validateCountyFieldAddtlMem();
     }
+
+    @Then("I validate complete residential address details for additional member addressLine1 {string},addressLine2 {string},city {string},state {string},zipcode {string},county {string}")
+    public void validateAddMemberResidentialAddress(String addressLine1, String addressLine2, String city, String state, String zipcode, String county){
+        addInfoForAdditionalMemberPage.validateAddMemberCompleteResidentialAddressCoCo(addressLine1, addressLine2, city, state, zipcode, county);
+    }
+
+    @Then("I am validating that the {string} option was selected for living in Colorado for the additional member.")
+    public void validateliveInColoradoButton(String liveInColoradoButton){
+        addInfoForAdditionalMemberPage.validateColoradoOption(liveInColoradoButton);
+    }
+
+    @And("I update the AddressLine1 and AddressLine2 to {string} and {string} for additional member")
+    public void updateaddressLine1AndaddressLine2(String addressLine1, String addressLine2){
+        addInfoForAdditionalMemberPage.updateAddressLine1AndAddressLine2AddtlMem(addressLine1, addressLine2);
+    }
 }
