@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DbQueries_Exch {
-    String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
+    String acctId = SharedData.getPrimaryMember().getAccount_id()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
     String dbName = SharedData.getDbName();
 
