@@ -27,6 +27,9 @@ public class FamilyOverviewPage {
     @FindBy (css = "app-family-member-overview a.edit-update-btn")
     List<WebElement> editUpdateLink;
 
+    @FindBy (xpath = "//*[contains(@id, 'remove-family-member-')]")
+    WebElement removeFamilyMemberLink;
+
     @FindBy (xpath = "//a/parent::div/preceding-sibling::div/div[contains(text(), '$')]")
     WebElement annualIncomeAmount;
 
@@ -143,6 +146,10 @@ public class FamilyOverviewPage {
         softAssert.assertEquals(addAnotherMemberButton.getCssValue("font-weight"),"700");
         softAssert.assertEquals(addAnotherMemberButton.getCssValue("line-height"),"28px");
         softAssert.assertEquals(addAnotherMemberButton.getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("font-size"),"14px");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("font-weight"),"400");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("line-height"),"12px");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("color"),"rgba(26, 112, 179, 1)");
         softAssert.assertAll();
         actions.moveToElement(editUpdateLink.get(0)).perform();
         basicActions.wait(300);
@@ -155,6 +162,10 @@ public class FamilyOverviewPage {
         actions.moveToElement(addAnotherMemberButton).perform();
         basicActions.wait(300);
         softAssert.assertEquals(addAnotherMemberButton.getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(removeFamilyMemberLink).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("color"),"rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 
