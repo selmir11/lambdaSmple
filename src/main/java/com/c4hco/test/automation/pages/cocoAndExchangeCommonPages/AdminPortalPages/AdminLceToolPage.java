@@ -252,7 +252,7 @@ public class AdminLceToolPage {
     public void validateMessageFound(List<WebElement> appDatatext, String expectedMessage) {
         boolean messageFound = appDatatext.stream()
                 .anyMatch(element -> element.getText().trim().contains(expectedMessage));
-        
+
         softAssert.assertTrue(messageFound,"Expected message not found in any of the elements.");
     }
 
