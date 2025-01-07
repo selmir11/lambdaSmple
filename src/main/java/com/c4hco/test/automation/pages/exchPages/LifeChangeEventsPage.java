@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -128,8 +129,12 @@ public class LifeChangeEventsPage {
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
 
-        basicActions.scrollToElement(saveAndContinueOnlyButton);
-        saveAndContinueOnlyButton.click();
+        if (SharedData.getEnv().equals("qa")) {
+            saveAndContinueButton.get(0).click();
+        } else {
+            basicActions.scrollToElement(saveAndContinueOnlyButton);
+            saveAndContinueOnlyButton.click();
+        }
     }
 
     public void clickContinueWithApplication(){

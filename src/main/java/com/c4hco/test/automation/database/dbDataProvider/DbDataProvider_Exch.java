@@ -345,6 +345,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.dbRecordsExisting(exchDbQueries.verifyExchHouseholdIdBOB());
     }
 
+    public Boolean getPasswordResetNotArchivedDb(String currentDate) {
+
+        return postgresHandler.dbRecordsExisting(exchDbQueries.verifyPasswordResetNotArchivedDb(currentDate));
+    }
+
     public List<String> getBrokerAuthorizationStatusBoB() {
 
         return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
