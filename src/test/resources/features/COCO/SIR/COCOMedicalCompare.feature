@@ -615,10 +615,10 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Medical Plan Compare" page
     And I click on Sign Out in the Header for "Elmo"
-    
+
 
   @SLCR-277 @CoCo_RegressionTest
-  Scenario: SLCR-277 - This will verify the spanish text in COCO Compare plan page
+  Scenario: SLCR-277 - This will verify the header and footer spanish text on the COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
