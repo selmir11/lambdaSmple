@@ -82,6 +82,7 @@ public class SharedData {
     @Getter @Setter private static AdminDetails adminDetails;
     @Getter @Setter private static String primaryTaxPayerKey;
     @Getter @Setter private static BigDecimal oldAccountId;
+    @Getter @Setter private static AssisterDetails assisterDetails;
 
 
 
