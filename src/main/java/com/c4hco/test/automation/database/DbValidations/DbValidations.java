@@ -8,6 +8,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -638,6 +639,47 @@ public class DbValidations {
         softAssert.assertEquals(dbValues.get(4), zip);
         softAssert.assertEquals(dbValues.get(5), county);
         softAssert.assertAll();
+    }
+
+    public void validateTellAboutAdditionalInformationinDB(String FName){
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                String FirstName = actualMember.getFirstName();
+                String MiddleName = actualMember.getMiddleName();
+                String LastName = actualMember.getLastName();
+                String gender = actualMember.getGender();
+                String dateOfBirth = actualMember.getDob();
+                String applyForCover = actualMember.getApplyingforCov();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(0), FirstName);
+                softAssert.assertEquals(dbValues.get(1), MiddleName);
+                softAssert.assertEquals(dbValues.get(2), LastName);
+                softAssert.assertEquals(dbValues.get(3), gender);
+
+                // The date string in the format yyyy-MM-dd HH:mm:ss
+                String dbDOBDate = dateOfBirth;
+                System.out.println(dbDOBDate);
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("MMddyyyy");
+
+                try {
+                    // Parse the foundDate to Date object
+                    Date date = inputFormat.parse(dbDOBDate);
+
+                    // Format the Date object into the desired format
+                    String formattedDateValue = outputFormat.format(date);
+
+                    // Output the formatted date (Expected: 03052005)
+                    softAssert.assertEquals(dbValues.get(4), formattedDateValue);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                softAssert.assertEquals(dbValues.get(5), (applyForCover.equals("Yes")) ? "1" : "0");
+                softAssert.assertAll();
+                break;
+            }
+        }
     }
 
  }

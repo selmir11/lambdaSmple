@@ -119,3 +119,4 @@ Feature: Navigation - Tell us about additional members of your household page
     Then I validate details on tell us about additional members of your household page for "Son" with DOB as "03052005", gender "Male" and applying "Yes"
       | Primary:Child or Other dependent |
       | Spouse:Child or Other dependent |
+    Then I validate the details of the Tell us about additional members of your household page for the "Son" in the database
