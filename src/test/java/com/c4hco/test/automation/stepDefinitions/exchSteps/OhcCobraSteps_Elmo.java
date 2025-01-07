@@ -21,7 +21,7 @@ public class OhcCobraSteps_Elmo {
     public void iClickInsuranceEndingOption(String insuranceEnding){OhcCobraPage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
     @Then("I enter the end date as {string} on the Cobra page")
-    public void iEnterEndDate(String endDate){OhcCobraPage_Elmo.enterEndDate(endDate);}
+    public void iEnterEndDate(String endDateData){OhcCobraPage_Elmo.enterEndDate(endDateData);}
 
     @Then("I click {string} for insurance ending voluntary for COBRA question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){OhcCobraPage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}
