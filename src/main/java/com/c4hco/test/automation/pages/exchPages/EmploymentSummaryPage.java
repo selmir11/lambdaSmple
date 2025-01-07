@@ -145,6 +145,9 @@ public class EmploymentSummaryPage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
 
     public void clickContinue(){
         basicActions.waitForElementToBePresent(btnContinue,30);
@@ -162,6 +165,7 @@ public class EmploymentSummaryPage {
     }
 
     public void clickAddJob(){
+        basicActions.waitForElementToBePresent(spinner,20);
         basicActions.waitForElementToBePresent(btnAddJob,20);
         btnAddJob.click();
     }

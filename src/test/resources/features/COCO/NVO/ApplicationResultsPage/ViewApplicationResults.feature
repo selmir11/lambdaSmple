@@ -279,7 +279,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-        #DB STEP WIP
+
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
 

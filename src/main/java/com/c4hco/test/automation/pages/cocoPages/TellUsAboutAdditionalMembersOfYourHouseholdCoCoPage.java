@@ -598,4 +598,23 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             }
         }
     }
+
+
+    public void validateDropdownOptions(List<String> expectedValues) {
+        Select select = new Select(selectRelationship1.get(0));
+        List<String> actualValues = new ArrayList<>();
+        for (WebElement option : select.getOptions()) {
+            actualValues.add(option.getText());
+        }
+        if (!actualValues.containsAll(expectedValues)) {
+            throw new AssertionError("Dropdown validation failed. Expected: " + expectedValues + ", Actual: " + actualValues);
+        }
+    }
+
+
+
+
+
 }
+
+

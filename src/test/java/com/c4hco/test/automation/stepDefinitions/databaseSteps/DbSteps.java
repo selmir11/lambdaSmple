@@ -102,6 +102,11 @@ public class DbSteps {
         dbValidations.verifyExchHouseholdIdDb();
     }
 
+    @And("I verify the password reset notice is not being archived in the DB for account number STG {string} QA {string}")
+    public void iVerifyPasswordResetNotArchivedDb(String accountStg, String accountQa) {
+        dbValidations.verifyPasswordResetNotArchivedDb(accountStg, accountQa);
+    }
+
     @And("I verify broker deauthorization in the database")
     public void iVerifyBrokerAuthorizationStatusDb() {
         dbValidations.verifyBrokerAuthorizationStatusDb();
@@ -264,5 +269,14 @@ public class DbSteps {
         dbValidations.validateEventLog();
     }
 
+    @Then("I validate complete residential address details for {string} member in DB addressLine1 {string},addressLine2 {string},city {string},state {string},zipcode {string},county {string}")
+    public void validateAddressInformation(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
+        dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
+    }
+
+    @Then("I validate the details of the Tell us about additional members of your household page for the {string} in the database")
+    public void validateTellUsAboutAdditionalInformation(String FName){
+        dbValidations.validateTellAboutAdditionalInformationinDB(FName);
+    }
 }
 

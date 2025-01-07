@@ -345,6 +345,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.dbRecordsExisting(exchDbQueries.verifyExchHouseholdIdBOB());
     }
 
+    public Boolean getPasswordResetNotArchivedDb(String currentDate) {
+
+        return postgresHandler.dbRecordsExisting(exchDbQueries.verifyPasswordResetNotArchivedDb(currentDate));
+    }
+
     public List<String> getBrokerAuthorizationStatusBoB() {
 
         return postgresHandler.getResultListFor("authorization_status", exchDbQueries.verifyBrokerAuthorizationStatusBOB());
@@ -544,6 +549,16 @@ public class DbDataProvider_Exch {
     public List<EsMemberHouseholdEntity> getExchPersonIdFieldsOldAcc_esMember(){
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdIdForOldAccount());
         return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
+    public List<String> getAddressInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getAddressDetails(memberId),"address_line1","address_line2","city","state","zip","county");
+    }
+
+    public List<String> getInfoForTellAboutAdditionalInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getTellAboutAdditionalInformation(memberId),"first_name","middle_name","last_name","gender","birth_date","applying_for_coverage_ind");
     }
 
 }

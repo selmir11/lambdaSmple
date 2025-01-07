@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DbQueries_Exch {
-    String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
-    String applicationId = SharedData.getPrimaryMember().getApplication_id();
+    String acctId = SharedData.getPrimaryMember()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
+    String applicationId = SharedData.getPrimaryMember()!=null ? SharedData.getPrimaryMember().getApplication_id(): "";
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
@@ -239,6 +239,12 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select ehc.household_id from " + dbName + ".es_household_contact ehc\n" +
                 "join " + dbName + ".es_member em on em.household_id  = ehc.household_id \n" +
                 "where ehc.email = '" + SharedData.getPrimaryMember().getEmailId() + "';";
+    }
+
+    public String verifyPasswordResetNotArchivedDb(String currentDate) {
+        return "select *\n" +
+        "from " + dbName + ".ds_item di \n" +
+        "where account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "' and item_name = 'IND_Reset Password (AM-016-07) - " + currentDate + "';";
     }
 
     public String verifyBrokerAuthorizationStatusBOB() {
@@ -638,6 +644,16 @@ public String policyTablesCombinedQuery(String coverageType){
     public String getExchPersonIdFields_esMem(String householdId){
         return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
                 "where household_id = '"+householdId+"'";
+    }
+
+    public String getAddressDetails(String memberId){
+        return "SELECT address_line1,address_line2, city, state, zip, county FROM "+dbName+".es_address\n"+
+                "where address_id = (SELECT residence_address_id FROM "+dbName+".es_member where member_id = "+memberId+")";
+    }
+
+    public String getTellAboutAdditionalInformation(String memberId){
+        return "SELECT first_name, middle_name, last_name, gender, birth_date, applying_for_coverage_ind FROM "+dbName+".es_member\n"+
+                "where member_id = "+memberId+"";
     }
 
 }
