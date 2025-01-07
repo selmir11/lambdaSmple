@@ -640,4 +640,28 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateTellAboutAdditionalInformationinDB(String FName){
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                String FirstName = actualMember.getFirstName();
+                String MiddleName = actualMember.getMiddleName();
+                String LastName = actualMember.getLastName();
+                String gender = actualMember.getGender();
+                String dateOfBirth = actualMember.getDob();
+                String applyForCover = actualMember.getApplyingforCov();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(0), FirstName);
+                softAssert.assertEquals(dbValues.get(1), MiddleName);
+                softAssert.assertEquals(dbValues.get(2), LastName);
+                softAssert.assertEquals(dbValues.get(3), gender);
+                String formattedDbDOBDate = basicActions.changeDateFormat(dbValues.get(4), "yyyy-MM-dd HH:mm:ss", "MMddyyyy");
+                softAssert.assertEquals(formattedDbDOBDate, dateOfBirth);
+                softAssert.assertEquals(dbValues.get(5), (applyForCover.equals("Yes")) ? "1" : "0");
+                softAssert.assertAll();
+                break;
+            }
+        }
+    }
+
  }
