@@ -112,10 +112,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
 
 
 
-Feature: ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment
-  Background:
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
+
 
   @SLER-1941
   Scenario:  ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment Period is granted, shopping is allowed, email notice is triggered EE-11[RT-2187]
@@ -124,6 +121,8 @@ Feature: ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment
     And I send the DOR to C4 API request
     Then response status code should be 200
 
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
 
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -136,7 +135,7 @@ Feature: ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Colorado Springs" in State "CO" with dob "01011980" in county "EL PASO" with zipcode "80916"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -144,7 +143,7 @@ Feature: ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
-    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    Then I enter member with address line1 "1234 Street" in city "Colorado Springs" in state "CO" with zipcode "80916" and county "EL PASO"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
@@ -179,13 +178,13 @@ Feature: ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I select "TaxTimeEnrollmentPeriod" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate I am on the "Application History" page
+
     And I click on Sign Out in the Header for "NonElmo"
 
 
