@@ -1,6 +1,6 @@
 Feature: Coco Initial Application Multi group
   @SLCR-146
-  Scenario: COCO Initial Application - MULTI-GROUP (Husband+wife & Son+DIL)
+  Scenario: CCRT-94 COCO Initial Application - MULTI-GROUP (Husband+wife & Son+DIL)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

@@ -1,6 +1,6 @@
 Feature: Seed02 - Exchange - OE
 
-  Background: Seed 02 For Exchange- Single Applicant with FA
+  Background: Seed 02 For Exchange OE - Single Applicant with FA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                |   1             |
@@ -131,7 +131,7 @@ Feature: Seed02 - Exchange - OE
     And I validate the ob834 "dental" file data
 
   @SLER-1281_OE @pol_exch_passed_oe
-  Scenario:RT-2328 ENR-EXCH: EDIT POLICY - PREMIUM & APTC AMOUNT UPDATES
+  Scenario: RT-2328 ENR-EXCH: EDIT POLICY - PREMIUM & APTC AMOUNT UPDATES
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -163,7 +163,7 @@ Feature: Seed02 - Exchange - OE
     And I validate the ob834 "dental" file data
 
   @SLER-95_OE @pol_exch_passed_oe
-  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+  Scenario:RT-2244 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -228,7 +228,7 @@ Feature: Seed02 - Exchange - OE
     And I validate the ob834 "dental" file data
 
   @SLER-133-WIP
-  Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
+  Scenario: RT-2135 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                |   1             |

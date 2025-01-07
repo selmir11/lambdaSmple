@@ -1,5 +1,5 @@
-@TAM @TamPdf @applicationSummaryRetiree
-Feature: Tests related to the Application Summary/Detail for Retire
+@TAM @TamPdf @applicationSummaryCobra
+Feature: Tests related to the Application Summary/Detail for Cobra
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
@@ -39,8 +39,8 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select "No" for Naturalized Immigrant option
     Then I click continue on the Citizenship page
 
-  @SLER-1905
-  Scenario: SLER-1905 I want to verify OHC header on Application Summary and Application Details
+  @SLER-1947
+  Scenario: SLER-1947 I want to verify OHC header on Application Summary and Application Details
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -59,19 +59,18 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I click "Yes" for currently enrolled in Retiree question
-    Then I click "Yes" for insurance ending in 60 days in Retiree question
-    Then I enter the end date as "Current Month" on the Retiree page
-    Then I click "Yes" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "Yes" for insurance ending in 60 days in COBRA question
+    Then I enter the end date as "Current Month" on the Cobra page
+    Then I click "Yes" for insurance ending voluntary for COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
@@ -86,7 +85,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
+    Then I wait for 2500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -113,20 +112,20 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       Yes        |      Yes       |Current Month|         Yes                |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |       Yes        |      Yes       |Current Month|         Yes                |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       Yes        |      Yes       |Current Month|         Yes                |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |       Yes        |      Yes       |Current Month|         Yes                |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-1909
-  Scenario: SLER-1909 I want changes to my job's Retiree information and see changes made to Retiree information in the Application Summary
+  @SLER-1948
+  Scenario: SLER-1948 I want changes to Cobra information and see changes made to Cobra information in the Application Summary
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -145,15 +144,15 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo COBRA" page
 #    Step 2
-    Then I click "Yes" for currently enrolled in Retiree question
-    Then I click "Yes" for insurance ending in 60 days in Retiree question
-    Then I enter the end date as "Current Month" on the Retiree page
-    Then I click "Yes" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "Yes" for insurance ending in 60 days in COBRA question
+    Then I enter the end date as "Current Month" on the Cobra page
+    Then I click "Yes" for insurance ending voluntary for COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -184,9 +183,9 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
-    Then I click "No" for insurance ending in 60 days in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I validate I am on the "Elmo COBRA" page
+    Then I click "No" for insurance ending in 60 days in COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -202,23 +201,25 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "English"
-      |          OHC Type    	   |Currently Enrolled|   End date  |
-      |     Retiree Health Plan    |       Yes        |             |
+      |   OHC Type  |Currently Enrolled|   End date  |
+      |    COBRA    |       Yes        |             |
     Then I click on Download as PDF on Application Summary
+    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       Yes        |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |       Yes        |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "Spanish"
-      |          OHC Type    	   |Currently Enrolled|   End date  |
-      |     Retiree Health Plan    |        Sí        |             |
+      |   OHC Type  |Currently Enrolled|   End date  |
+      |    COBRA    |        Sí        |             |
     Then I click on Download as PDF on Application Summary
+    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       Sí         |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |       Sí         |                |             |                            |
     And I change the language from header to "English NonElmo"
 #    Step 5
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -242,11 +243,11 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
-    Then I click "Yes" for insurance ending in 60 days in Retiree question
-    Then I enter the end date as "Current Month" on the Retiree page
-    Then I click "Yes" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I validate I am on the "Elmo COBRA" page
+    Then I click "Yes" for insurance ending in 60 days in COBRA question
+    Then I enter the end date as "Current Month" on the Cobra page
+    Then I click "Yes" for insurance ending voluntary for COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -262,23 +263,25 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "English"
-      |          OHC Type    	   |Currently Enrolled|   End date  |
-      |     Retiree Health Plan    |       Yes        |Last Current Month|
+      |   OHC Type  |Currently Enrolled|     End date     |
+      |    COBRA    |       Yes        |Last Current Month|
     Then I click on Download as PDF on Application Summary
+    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
-      |Retiree Health Plan|       Yes        |      Yes       |Last Current Month|           Yes              |
+      |Coverage Type|Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
+      |    COBRA    |       Yes        |      Yes       |Last Current Month|           Yes              |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "Spanish"
-      |          OHC Type    	   |Currently Enrolled|     End date     |
-      |     Retiree Health Plan    |        Sí        |Last Current Month|
+      |   OHC Type  |Currently Enrolled|     End date     |
+      |    COBRA    |        Sí        |Last Current Month|
     Then I click on Download as PDF on Application Summary
+    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
-      |Retiree Health Plan|       Sí         |      Sí        |Last Current Month|           Sí               |
+      |Coverage Type|Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
+      |    COBRA    |       Sí         |      Sí        |Last Current Month|           Sí               |
     And I change the language from header to "English NonElmo"
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -301,9 +304,9 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
-    Then I click "No" for currently enrolled in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I validate I am on the "Elmo COBRA" page
+    Then I click "No" for currently enrolled in COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -319,28 +322,30 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "English"
-      |          OHC Type    	   |Currently Enrolled|   End date  |
-      |     Retiree Health Plan    |       No         |             |
+      |   OHC Type  |Currently Enrolled|     End date     |
+      |    COBRA    |        No        |                  |
     Then I click on Download as PDF on Application Summary
+    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       No         |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |       No         |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "Spanish"
-      |          OHC Type    	   |Currently Enrolled|   End date  |
-      |     Retiree Health Plan    |       No         |             |
+      |   OHC Type  |Currently Enrolled|     End date     |
+      |    COBRA    |        No        |                  |
     Then I click on Download as PDF on Application Summary
+    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       No         |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |       No         |                |             |                            |
 
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1911
-  Scenario: SLER-1911 I want changes to my Retiree information and see changes made to Retiree information in the OBO Application Details
+  @SLER-1949
+  Scenario: SLER-1949 I want changes to my Cobra information and see changes made to Cobra information in the OBO Application Details
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -359,15 +364,15 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo COBRA" page
 #    Step 2
-    Then I click "Yes" for currently enrolled in Retiree question
-    Then I click "Yes" for insurance ending in 60 days in Retiree question
-    Then I enter the end date as "Current Month" on the Retiree page
-    Then I click "Yes" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "Yes" for insurance ending in 60 days in COBRA question
+    Then I enter the end date as "Current Month" on the Cobra page
+    Then I click "Yes" for insurance ending voluntary for COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -398,10 +403,10 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
-    Then I enter the end date as "Future Day:3" on the Retiree page
-    Then I click "No" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I validate I am on the "Elmo COBRA" page
+    Then I enter the end date as "Future Day:3" on the Cobra page
+    Then I click "No" for insurance ending voluntary for COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -435,12 +440,13 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-    |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-    |Retiree Health Plan|     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Future Day:3|    Yellow    |        No        |       Yellow        |
+      |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |    COBRA    |     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Future Day:3|    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
+    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|       Yes        |      Yes       | Future Day:3|           Yes              |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |       Yes        |      Yes       | Future Day:3|           Yes              |
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -463,9 +469,9 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
-    Then I click "No" for currently enrolled in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I validate I am on the "Elmo COBRA" page
+    Then I click "No" for currently enrolled in COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -484,18 +490,19 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-      |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-      |Retiree Health Plan|     Plain    |       No         |      Yellow      |                |      Red       |            |     Red      |                  |        Red          |
+      |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |    COBRA    |     Plain    |       No         |      Yellow      |                |      Red       |             |     Red      |                  |        Red          |
     Then I click on Download as PDF on Application Details
+    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |Retiree Health Plan|        No        |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      |    COBRA    |        No        |                |             |                            |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-1914
-  Scenario: SLER-1914 I want to show and hide changes for Retiree information in the OBO Application Details Single Members
+  @SLER-1950
+  Scenario: SLER-1950 I want to show and hide changes for Cobra information in the OBO Application Details Single Members
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -544,14 +551,14 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
-    Then I click "Yes" for currently enrolled in Retiree question
-    Then I click "Yes" for insurance ending in 60 days in Retiree question
-    Then I enter the end date as "Current Month" on the Retiree page
-    Then I click "Yes" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I validate I am on the "Elmo COBRA" page
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "Yes" for insurance ending in 60 days in COBRA question
+    Then I enter the end date as "Current Month" on the Cobra page
+    Then I click "Yes" for insurance ending voluntary for COBRA question
+    Then I click continue on the Elmo OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -584,15 +591,15 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-      |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-      |Retiree Health Plan|     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
+      |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |    COBRA    |     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
 #    Step 4
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Plain" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-      |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-      |Retiree Health Plan|     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Current Month|     Plain    |       Yes        |       Plain         |
+      |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      |    COBRA    |     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Current Month|     Plain    |       Yes        |       Plain         |
 #    Step 5
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year

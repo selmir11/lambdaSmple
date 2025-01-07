@@ -183,7 +183,7 @@ Feature: Seed02 - Exchange
 
 
   @SLER-95 @pol_exch_passed
-  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+  Scenario: RT-2244 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -248,7 +248,7 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "dental" file data
 
   @SLER-133-WIP
-  Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
+  Scenario: RT-2135 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                |   1             |

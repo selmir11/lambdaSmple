@@ -5,8 +5,10 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.ScenarioDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -14,6 +16,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.*;
 
 public class WelcomePage {
+
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
@@ -130,13 +134,13 @@ public class WelcomePage {
     }
 
     public void clickActionLinks(String actionLink) {
-        basicActions.waitForElementListToBePresentWithRetries(actionLinks, 5);
+        basicActions.waitForElementListToBePresentWithRetries(actionLinks, 10);
+        basicActions.wait(2000);
         switch (actionLink) {
             case "My Profile":
                 actionLinks.get(0).click();
                 break;
             case "Application Results":
-                basicActions.wait(2000);
                 actionLinks.get(1).click();
                 break;
             case "My Plans":
@@ -204,7 +208,7 @@ public class WelcomePage {
         } else if (currentUrl == "https://qa") {
             softAssert.assertEquals(theAnnualOpenEnrollmentText.getText(), "El per\u00EDodo anual de inscripci\u00F3n abierta en el seguro de salud (6\u00BA de agosto a 8 de enero) termin\u00F3. Sin embargo, a\u00FAn puede ser elegible para inscribirse en el seguro de salud si se presenta un evento de vida calificado, como mudarse a Colorado, casarse o el nacimiento de un hijo. Haga clic en el bot\u00F3n de abajo para comenzar.");
         }
-        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2024");
+        softAssert.assertEquals(applyForCurrentYearButton.getText(), "Solicitar para 2025");
         softAssert.assertEquals(containerHeaderText.get(0).getText(), "Sus planes actuales");
         softAssert.assertEquals(planYearText.getText(), "A\u00F1o del plan");
         softAssert.assertEquals(planYearSelectorDp.getText(), "2025\n2024\n2023");
@@ -527,6 +531,35 @@ public class WelcomePage {
         basicActions.waitForElementToBePresent(containerMainHeaderText, 5);
         basicActions.waitForElementToDisappear(notificationBannerIcon,5);
         basicActions.waitForElementToDisappear(notificationBannerTxt,5);
+    }
+
+    public void validateActionLinks(){
+        basicActions.waitForElementToBePresent(applyForCurrentYearButton, 10);
+        softAssert.assertEquals(actionLinks.get(0).getCssValue("font-size"),"18px");
+        softAssert.assertEquals(actionLinks.get(0).getCssValue("font-weight"),"700");
+        softAssert.assertEquals(actionLinks.get(0).getCssValue("line-height"),"28px");
+        softAssert.assertEquals(actionLinks.get(0).getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(actionLinks.get(1).getCssValue("font-size"),"18px");
+        softAssert.assertEquals(actionLinks.get(1).getCssValue("font-weight"),"700");
+        softAssert.assertEquals(actionLinks.get(1).getCssValue("line-height"),"28px");
+        softAssert.assertEquals(actionLinks.get(1).getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(actionLinks.get(2).getCssValue("font-size"),"18px");
+        softAssert.assertEquals(actionLinks.get(2).getCssValue("font-weight"),"700");
+        softAssert.assertEquals(actionLinks.get(2).getCssValue("line-height"),"28px");
+        softAssert.assertEquals(actionLinks.get(2).getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(actionLinks.get(0)).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(actionLinks.get(0).getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(actionLinks.get(1)).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(actionLinks.get(1).getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(actionLinks.get(1)).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(actionLinks.get(1).getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
     }
 }
 

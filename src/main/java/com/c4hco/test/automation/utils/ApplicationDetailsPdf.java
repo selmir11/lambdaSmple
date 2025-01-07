@@ -14,54 +14,62 @@ public class ApplicationDetailsPdf {
         PageFactory.initElements((basicActions.getDriver()),this);
     }
 
-    public static String getApplicationDetails(String minValue, String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily) {
+    public static String getEsiApplicationDetails(String coverageType, String minimumValueStandard,  String lowestCostAmount, String currentlyEnrolled, String insuranceEnding, String endDate, String voluntarilyEnding) {
         String endingDate = "";
 
         if ("Today".equalsIgnoreCase(endDate)) {
             endingDate = basicActions.getTodayDate();
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
-            endingDate = basicActions.lastDateOfCurrMonth();
+            endingDate = (basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy"));
         } else {
             System.out.println("Invalid option: " + endDate);
         }
-        return String.format("Other Health Coverage\n" +
-                SharedData.getPrimaryMember().getFullName() + "\n" +
-                "Employer Sponsored Insurance\n" +
-                "Job " + SharedData.getPrimaryMember().getEmployerName() + "\n" +
-                "Minimum Value Standard " + minValue + "\n" +
-                "Lowest-Cost Monthly Individual\n" +
-                "Premium Amount " + premium + "\n" +
-                "Currently enrolled " + enrolled + "\n" +
-                (insruanceEnding.equals("Insurance ending") ?
-                        "Insurance ending in next 60 days " + ending + "\n" +
-                                (lastSet.equals("Voluntarily ending") ?
-                                        "End date " + endingDate + "\n" +
-                                                "Voluntarily ending insurance " + voluntarily + "\n" : "") : ""));
+        StringBuilder details = new StringBuilder();
+        details.append("Other Health Coverage\n")
+                .append(SharedData.getPrimaryMember().getFullName()).append("\n")
+                .append(coverageType).append("\n")
+                .append("Job ").append(SharedData.getPrimaryMember().getEmployerName()).append("\n")
+                .append("Minimum Value Standard ").append(minimumValueStandard).append("\n")
+                .append("Lowest-Cost Monthly Individual\n")
+                .append("Premium Amount ").append(lowestCostAmount).append("\n")
+                .append("Currently enrolled ").append(currentlyEnrolled).append("\n");
+        if (insuranceEnding != null) {
+            details.append("Insurance ending in next 60 days ").append(insuranceEnding).append("\n");
+        }
+        if (voluntarilyEnding != null) {
+            details.append("End date ").append(endingDate).append("\n")
+                    .append("Voluntarily ending insurance ").append(voluntarilyEnding).append("\n");
+        }
+        return details.toString();
     }
 
-    public static String getApplicationDetailsSp(String minValue, String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily) {
+    public static String getEsiApplicationDetailsSp(String coverageType, String minimumValueStandard,  String lowestCostAmount, String currentlyEnrolled, String insuranceEnding, String endDate, String voluntarilyEnding) {
         String endingDate = "";
 
         if ("Today".equalsIgnoreCase(endDate)) {
             endingDate = basicActions.getTodayDate();
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
-            endingDate = basicActions.lastDateOfCurrMonth();
+            endingDate = (basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy"));
         } else {
             System.out.println("Invalid option: " + endDate);
         }
-        return String.format("Other Health Coverage\n" +
-                SharedData.getPrimaryMember().getFullName() + "\n" +
-                "Employer Sponsored Insurance\n" +
-                "Job " + SharedData.getPrimaryMember().getEmployerName() + "\n" +
-                "Minimum Value Standard " + minValue + "\n" +
-                "Lowest-Cost Monthly Individual\n" +
-                "Premium Amount " + premium + "\n" +
-                "Currently enrolled " + enrolled + "\n" +
-                (insruanceEnding.equals("Insurance ending") ?
-                        "Insurance ending in next 60 days " + ending + "\n" +
-                                (lastSet.equals("Voluntarily ending") ?
-                                        "End date " + endingDate + "\n" +
-                                                "Voluntarily ending insurance " + voluntarily + "\n" : "") : ""));
+        StringBuilder details = new StringBuilder();
+        details.append("Otra cobertura de salud\n")
+                .append(SharedData.getPrimaryMember().getFullName()).append("\n")
+                .append(coverageType).append("\n")
+                .append("Job ").append(SharedData.getPrimaryMember().getEmployerName()).append("\n")
+                .append("Minimum Value Standard ").append(minimumValueStandard).append("\n")
+                .append("Lowest-Cost Monthly Individual\n")
+                .append("Premium Amount ").append(lowestCostAmount).append("\n")
+                .append("Currently enrolled ").append(currentlyEnrolled).append("\n");
+        if (insuranceEnding != null) {
+            details.append("Insurance ending in next 60 days ").append(insuranceEnding).append("\n");
+        }
+        if (voluntarilyEnding != null) {
+            details.append("End date ").append(endingDate).append("\n")
+                    .append("Voluntarily ending insurance ").append(voluntarilyEnding).append("\n");
+        }
+        return details.toString();
     }
 
     public static String getFamilyApplicationDetails(String offered, String premium, List<String> familyOption) {
@@ -205,7 +213,7 @@ public class ApplicationDetailsPdf {
         if (endDate == null || endDate.trim().isEmpty()) {
             endingDate = "No end date provided";
         } else if ("Today".equalsIgnoreCase(endDate)) {
-            endingDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM-dd-yyyy", "MM/dd/yyyy");
+            endingDate = basicActions.getTodayDate();
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
             endingDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy");
         } else if (endDate.startsWith("Future Day:")) {
@@ -230,14 +238,14 @@ public class ApplicationDetailsPdf {
         if (endDate == null || endDate.trim().isEmpty()) {
             endingDate = "No end date provided";
         } else if ("Today".equalsIgnoreCase(endDate)) {
-            endingDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM-dd-yyyy", "MM/dd/yyyy");
+            endingDate = basicActions.getTodayDate();
         } else if ("Current Month".equalsIgnoreCase(endDate)) {
             endingDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy");
         } else {
             System.out.println("Invalid option: " + endDate);
         }
 
-        return String.format("Other Health Coverage\n" +
+        return String.format("Otra cobertura de salud\n" +
                 SharedData.getPrimaryMember().getFullName() + "\n" +
                 coverageType + "\n" +
                 "Currently enrolled " + currentlyEnrolled + "\n" )+
