@@ -687,4 +687,11 @@ Feature: Medical Plan Compare page related tests
     And I click the Go Back Link on the Medical Compare page
 
     Then I validate I am on the "Medical Plan Results" page
+    And I click on the compare links on the first 2 medical plans
+    Then I click on the compare button
+
+    Then I validate I am on the "Medical Plan Compare" page
+    And I click the Go Back Button on the Medical Compare page
+
+    Then I validate I am on the "Medical Plan Results" page
     Then I click on Sign Out in the Header for "Portal"
