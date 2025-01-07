@@ -546,4 +546,9 @@ public class DbDataProvider_Exch {
         return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
     }
 
+    public List<String> getAddressInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getAddressDetails(memberId),"address_line1","address_line2","city","state","zip","county");
+    }
+
 }
