@@ -269,5 +269,9 @@ public class DbSteps {
         dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
     }
 
+    @Then("I validate the details of the Tell us about additional members of your household page for the {string} in the database")
+    public void validateTellUsAboutAdditionalInformation(String FName){
+        dbValidations.validateTellAboutAdditionalInformationinDB(FName);
+    }
 }
 

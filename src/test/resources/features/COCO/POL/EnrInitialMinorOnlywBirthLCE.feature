@@ -1,6 +1,6 @@
 Feature: Initial Application Minor only with Birth LCE(Admin OBO)
   @SLCR-299
-  Scenario: COCO Initial Application - Minor only with Birth LCE through Admin OBO
+  Scenario: CCRT-99 COCO Initial Application - Minor only with Birth LCE through Admin OBO
 
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page

@@ -645,4 +645,9 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where address_id = (SELECT residence_address_id FROM "+dbName+".es_member where member_id = "+memberId+")";
     }
 
+    public String getTellAboutAdditionalInformation(String memberId){
+        return "SELECT first_name, middle_name, last_name, gender, birth_date, applying_for_coverage_ind FROM "+dbName+".es_member\n"+
+                "where member_id = "+memberId+"";
+    }
+
 }
