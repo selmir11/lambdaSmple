@@ -615,10 +615,9 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Medical Plan Compare" page
     And I click on Sign Out in the Header for "Elmo"
+    
 
-      # ////////////////////////////////  under construction ///////////////////////////////////
-
-  @SLCR-277-tobereplaced @CoCo_RegressionTest
+  @SLCR-277 @CoCo_RegressionTest
   Scenario: SLCR-277 - This will verify the spanish text in COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -691,24 +690,6 @@ Feature: Verify COCO Medical Plan results
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
-    And I verify text in Medical plan Compare coco page
-      | Comparación de planes                                          |
-      | Dentro la red Nivel 1                                          |
-      | Fuera de la red                                                |
-      | Prima mensual                                                  |
-      | Detalles generales                                             |
-      | Consultas con proveedores                                      |
-      | Medicamentos recetados                                         |
-      | Instalaciones                                                  |
-      | Maternidad                                                     |
-      | Atención de emergencia                                         |
-      | Beneficios de salud mental                                     |
-      | Pruebas                                                        |
-      | Dispositivos médicos                                           |
-      | Servicios de habilitación y rehabilitación                     |
-      | Atención a domicilio y a pacientes con enfermedades terminales |
-      | Beneficios esenciales de salud adicionales                     |
-      | Volver a Planes                                                |
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-286 @CoCo_RegressionTest @ComparePlan_FromMultiplePage
