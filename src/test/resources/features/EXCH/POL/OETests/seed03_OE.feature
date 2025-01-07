@@ -147,13 +147,13 @@ Feature: Seed03 based on open enrollment - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
     Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Female" as sex option
     Then I select "No" as pregnancy option
-    Then I select "Spouse" as new Relationship to "Spouse"
+    Then I update the relationship of members to primary
+      |Spouse:Spouse|
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
     And I select "White or European" for race and ethnicity for "Primary"

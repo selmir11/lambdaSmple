@@ -75,8 +75,8 @@ public class TellUsAboutYourselfPageSteps {
     @Then("I click on please click here link to add new person")
     public void iClickToAddNewPerson() { tellUsAboutYourselfPage.iClickLinkToAddNewPerson();}
 
-    @Then("I select {string} as new Relationship to {string}")
-    public void selectRelationship(String Relationship,String memPrefix) {
-        tellUsAboutYourselfPage.selectRelationship(Relationship,memPrefix );
+    @Then("I select new relationship of members to primary")
+    public void iSelectNewRelationship(List<String> relationship) {
+        tellUsAboutYourselfPage.selectNewRelationship(relationship);
     }
 }
