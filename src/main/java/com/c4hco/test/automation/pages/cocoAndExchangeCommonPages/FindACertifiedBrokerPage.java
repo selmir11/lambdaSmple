@@ -434,6 +434,16 @@ public class FindACertifiedBrokerPage {
         softAssert.assertAll();
     }
 
+    public void saveBrokerDetails(){
+        basicActions.waitForElementToBePresent(brokerDisplayedName,100);
+
+        BrokerDetails owner = new BrokerDetails();
+        owner.setBroker_name(brokerDisplayedName.getText());
+        owner.setAgencyName(agencyDisplayedName.getText());
+        owner.setLicense(licenseNumber.getText());
+        SharedData.setAgencyOwner(owner);
+    }
+
     public void validateBrokerContactYouText(String marketplace, String language){
         String market = "";
 

@@ -151,6 +151,10 @@ public class FindACertifiedBrokerSteps {
     public void IVerifyCurrentResultPage(String currentPage){
         findACertifiedBrokerPage.verifyCurrentBrokerResultsPage(currentPage);}
 
+    @And("I save the broker's details from the Find a Certified Broker page")
+    public void ISaveBrokerDetails(){
+        findACertifiedBrokerPage.saveBrokerDetails();}
+
     @And("I validate the have a {string} broker call you text in {string}")
     public void iValidateHaveBrokerCallYouText(String marketplace, String language){
         findACertifiedBrokerPage.validateBrokerContactYouText(marketplace, language);
