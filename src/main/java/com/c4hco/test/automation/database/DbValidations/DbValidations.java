@@ -658,8 +658,8 @@ public class DbValidations {
                 softAssert.assertEquals(dbValues.get(3), gender);
 
                 // The date string in the format yyyy-MM-dd HH:mm:ss
-                String dbDOBDate = dateOfBirth;
-                System.out.println(dbDOBDate);
+                String dbDOBDate = dbValues.get(4);
+                
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 SimpleDateFormat outputFormat = new SimpleDateFormat("MMddyyyy");
 
@@ -671,7 +671,7 @@ public class DbValidations {
                     String formattedDateValue = outputFormat.format(date);
 
                     // Output the formatted date (Expected: 03052005)
-                    softAssert.assertEquals(dbValues.get(4), formattedDateValue);
+                    softAssert.assertEquals(formattedDateValue, dateOfBirth);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
