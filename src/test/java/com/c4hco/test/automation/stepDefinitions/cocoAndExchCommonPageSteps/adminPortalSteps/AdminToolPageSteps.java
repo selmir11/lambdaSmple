@@ -4,6 +4,9 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPag
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class AdminToolPageSteps {
     AdminLceToolPage adminLceToolPage = new AdminLceToolPage(WebDriverManager.getDriver());
@@ -73,7 +76,7 @@ public class AdminToolPageSteps {
     }
 
     @Then("I verify no application data message is displayed")
-    public void iVerifyNoApplicationDataMessageIsDisplayed() {
-        adminLceToolPage.noappdatamessage();
+    public void iVerifyNoApplicationDataMessageIsDisplayed(List<WebElement> appDatatext, String expectedMessage) {
+        adminLceToolPage.validateMessageFound(appDatatext,expectedMessage);
     }
 }

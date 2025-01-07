@@ -229,10 +229,7 @@ public class AdminLceToolPage {
             displayedPlanYears.add(year);
         }
 
-        if (displayedPlanYears.equals(expectedPlanYears)) {
-        } else {
-            System.out.println("Plan years are incorrect.");
-        }
+        softAssert.assertEquals(displayedPlanYears,expectedPlanYears,"Plan years not match");
 
     }
 
@@ -252,14 +249,12 @@ public class AdminLceToolPage {
         }
     }
 
-    public void noappdatamessage() {
-        String expectedMessage = "There is no application data for this year.";
-
+    public void validateMessageFound(List<WebElement> appDatatext, String expectedMessage) {
         boolean messageFound = appDatatext.stream()
                 .anyMatch(element -> element.getText().trim().contains(expectedMessage));
-
-        if (!messageFound) {
-            throw new IllegalArgumentException("Expected message not found: " + expectedMessage);
-        }
+        
+        softAssert.assertTrue(messageFound,"Expected message not found in any of the elements.");
     }
+
 }
+
