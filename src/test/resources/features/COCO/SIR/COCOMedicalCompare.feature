@@ -668,8 +668,8 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Move" life change event with event date of "Past 1"
-    And I select continue on the LCE page
+    And I select "Move" life change event with event date of "Today"
+    #And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -763,10 +763,9 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Medical Plan Compare" page
     And I click on Sign Out in the Header for "Elmo"
 
-      # ////////////////////////////////  under construction ///////////////////////////////////
-    # ////////////////////////////////  this test doesnt do what the description says  ///////////////////////////////////
-  @SLCR-287-to-be-replaced @CoCo_RegressionTest
-  Scenario: SLCR-287 - This will verify  Dropdown Text headers in COCO Compare plan page from medical plan page
+
+  @SLCR-287 @CoCo_RegressionTest
+  Scenario: SLCR-287 - This will validate the Dropdown header functionality in COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -834,24 +833,8 @@ Feature: Verify COCO Medical Plan results
     And I select 2 plans from page one and 1 plan from page two and click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
-    And I verify text in Medical plan Compare coco page
-      | Plan Comparison                          |
-      | In Network Tier 1                        |
-      | Out of Network                           |
-      | Monthly Premium                          |
-      | General Details                          |
-      | Provider Office Visits                   |
-      | Prescription Drugs                       |
-      | Facilities                               |
-      | Maternity                                |
-      | Emergency Care                           |
-      | Mental Health Benefits                   |
-      | Testing                                  |
-      | Medical Devices                          |
-      | Habilitative and Rehabilitative Services |
-      | Home Care & Hospice                      |
-      | Additional EHB Benefits                  |
-      | Go Back to Plans                         |
+    And I validate the Compare header dropdown functionality
+
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-419 @CoCo_Compare2documentcolumns
