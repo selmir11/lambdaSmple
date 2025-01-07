@@ -8,7 +8,6 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -656,25 +655,8 @@ public class DbValidations {
                 softAssert.assertEquals(dbValues.get(1), MiddleName);
                 softAssert.assertEquals(dbValues.get(2), LastName);
                 softAssert.assertEquals(dbValues.get(3), gender);
-
-                // The date string in the format yyyy-MM-dd HH:mm:ss
-                String dbDOBDate = dbValues.get(4);
-                
-                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                SimpleDateFormat outputFormat = new SimpleDateFormat("MMddyyyy");
-
-                try {
-                    // Parse the foundDate to Date object
-                    Date date = inputFormat.parse(dbDOBDate);
-
-                    // Format the Date object into the desired format
-                    String formattedDateValue = outputFormat.format(date);
-
-                    // Output the formatted date (Expected: 03052005)
-                    softAssert.assertEquals(formattedDateValue, dateOfBirth);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                String formattedDbDOBDate = basicActions.changeDateFormat(dbValues.get(4), "yyyy-MM-dd HH:mm:ss", "MMddyyyy");
+                softAssert.assertEquals(formattedDbDOBDate, dateOfBirth);
                 softAssert.assertEquals(dbValues.get(5), (applyForCover.equals("Yes")) ? "1" : "0");
                 softAssert.assertAll();
                 break;
