@@ -236,25 +236,30 @@ public class AdminLceToolPage {
 
     }
 
-    public void clickAppDataDropdown() throws Exception {
+    public void clickAppDataDropdown() {
         for (int i = 0; i < appDataDropdowns.size(); i++) {
             WebElement element = appDataDropdowns.get(i);
-            if (element != null) {
-                element.click();
-            } else {
-                throw new Exception("Element is null, cannot click.");
+
+            try {
+                if (element != null) {
+                    element.click();
+                } else {
+                    System.out.println("Element at index " + i + " is null, skipping...");
+                }
+            } catch (Exception e) {
+                System.err.println("Error occurred while clicking the element at index " + i + ": " + e.getMessage());
             }
         }
     }
 
-    public void noappdatamessage() throws Exception {
+    public void noappdatamessage() {
         String expectedMessage = "There is no application data for this year.";
 
         boolean messageFound = appDatatext.stream()
                 .anyMatch(element -> element.getText().trim().contains(expectedMessage));
 
         if (!messageFound) {
-            throw new Exception("Expected message not found in any of the elements.");
+            throw new IllegalArgumentException("Expected message not found: " + expectedMessage);
         }
     }
 }

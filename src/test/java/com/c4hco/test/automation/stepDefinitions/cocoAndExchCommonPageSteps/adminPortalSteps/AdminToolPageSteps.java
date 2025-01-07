@@ -68,12 +68,12 @@ public class AdminToolPageSteps {
     }
 
     @Then("I click on application data dropdown arrow")
-    public void iClickOnApplicationDataDropdownArrow() throws Exception {
+    public void iClickOnApplicationDataDropdownArrow() {
        adminLceToolPage.clickAppDataDropdown();
     }
 
     @Then("I verify no application data message is displayed")
-    public void iVerifyNoApplicationDataMessageIsDisplayed() throws Exception {
+    public void iVerifyNoApplicationDataMessageIsDisplayed() {
         adminLceToolPage.noappdatamessage();
     }
 }
