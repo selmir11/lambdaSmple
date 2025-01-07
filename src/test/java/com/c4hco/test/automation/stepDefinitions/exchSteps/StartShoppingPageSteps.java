@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.StartShoppingPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class StartShoppingPageSteps {
@@ -23,13 +24,12 @@ public class StartShoppingPageSteps {
     }
 
     @Then("I click Go Back on start shopping page")
-    public void clickGoBackStartShoppingPage(){
+    public void clickGoBackStartShoppingPage() {
         startShoppingPage.iclickGoBack();
     }
 
-    @Then("I click Yes to the Tobacco usage question on start shopping page")
-    public void clickYestoTobaccoQuestion(String tobaccoUsageUserDetails){
-        startShoppingPage.enterTobaccoUsageInfo(tobaccoUsageUserDetails);
-    }
+    @Then("I click {string} to the Tobacco usage question on start shopping page for {string}")
+    public void clickYestoTobaccoQuestion(String tobaccoUsageYesOrNo, String member){
+        startShoppingPage.selectTobaccoUsage(tobaccoUsageYesOrNo, member);}
 
 }

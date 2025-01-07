@@ -3,14 +3,17 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TellUsAboutYourselfPage {
 
@@ -78,8 +81,22 @@ public class TellUsAboutYourselfPage {
 
     @FindBy(id = "backButton" )
     WebElement btnBack;
+    @FindBy(css = "div.modal-body p")
+    List<WebElement> restrictMultipleEditsPopUp;
 
-    
+    @FindBy(css ="div.modal-body span")
+    List<WebElement> restrictMultipleEditsPopUpPart;
+    @FindBy(xpath = "//button[text()='Close']")
+    WebElement closeRestrictedEditsPopupEnglish;
+    @FindBy(xpath = "//button[text()='Cerrar']")
+    WebElement closeRestrictedEditsPopupSpanish;
+    @FindBy(css = "input.linkButton.redirect-link")
+    WebElement primaryContactChangeLink;
+    @FindBy(xpath = "//*[@id='restrictMultipleEdits']/div/div/div[1]/label[2]/input")
+    WebElement linkToAddNewPerson;
+
+    @FindBy(id = "memberRelationship0")
+    WebElement drpdwnRealtionship;
 
     public void userPregnantQuestion(String Pregnant) {
         switch (Pregnant){
@@ -256,5 +273,74 @@ public class TellUsAboutYourselfPage {
         basicActions.waitForElementToBePresent(btnBack, 20);
         btnBack.click();
     }
+    public void validateRestrictMultipleFieldEditsError(List<String> textToVerify) {
+        basicActions.waitForElementToBePresent(restrictMultipleEditsPopUp.get(0), 20);
+        softAssert.assertEquals(restrictMultipleEditsPopUp.get(0).getText(), textToVerify.get(0) );
+        softAssert.assertEquals(restrictMultipleEditsPopUp.get(1).getText(), textToVerify.get(1));
+        softAssert.assertEquals(restrictMultipleEditsPopUpPart.get(0).getText(), textToVerify.get(2));
+        softAssert.assertEquals(restrictMultipleEditsPopUp.get(2).getText(), textToVerify.get(3));
+        softAssert.assertEquals(restrictMultipleEditsPopUpPart.get(1).getText(), textToVerify.get(4));
+        softAssert.assertAll();
+    }
 
+    public void selectNewRelationship(List <String > relationship) {
+        String relationshipString = relationship.get(0);
+        String[] parts = relationshipString.split(":");
+        String Name = parts[0];  // "Primary"
+        String Relation = parts[1]; // "Spouse"
+
+        try {
+            List<MemberDetails> members = SharedData.getMembers();
+
+            basicActions.waitForElementToBePresent(drpdwnRealtionship, 40);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + Name + "')]/ancestor-or-self::label/parent::div //select"));
+            basicActions.waitForElementToBePresent(element, 10);
+            basicActions.scrollToElement(element);
+            basicActions.waitForElementToBeClickableWithRetries(element, 10);
+
+            // Perform actions on the element
+            Select dropdown = new Select(element);
+            dropdown.selectByVisibleText(Relation);
+            softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
+            softAssert.assertAll();
+
+            for (MemberDetails member : members) {
+                if (member.getFirstName().contains(Relation)) {
+                    if (Relation.equals("Spouse") && member.getGender().equals("Female")) {
+                        Relation = "Wife";
+                    } else if (Relation.equals("Spouse") && member.getGender().equals("Male")) {
+                        Relation = "Husband";
+                    }
+                    member.setRelation_to_subscriber(Relation.toUpperCase());
+                    break;
+                }
+            }
+            SharedData.setMembers(members);
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + e.getMessage());
+            // Handle the exception as needed
+        }
+    }
+        public void closeRestrictMultipleFieldEditsErrorPopup(String language){
+        basicActions.waitForElementToBePresent(closeRestrictedEditsPopupEnglish, 20);
+        switch (language) {
+            case ("English"):
+                basicActions.click(closeRestrictedEditsPopupEnglish);
+                break;
+            case ("Spanish"):
+                basicActions.click(closeRestrictedEditsPopupSpanish);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void iClickPrimaryContactChangeLink(){
+        basicActions.waitForElementToBeClickable(primaryContactChangeLink, 20);
+        basicActions.click(primaryContactChangeLink);
+    }
+    public void iClickLinkToAddNewPerson(){
+        basicActions.waitForElementToBePresent(linkToAddNewPerson, 20);
+        basicActions.click(linkToAddNewPerson);
+    }
 }

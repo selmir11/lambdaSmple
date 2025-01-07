@@ -24,11 +24,8 @@ Feature: Tests related to What's Next Page
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click continue on the Race and Ethnicity page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
-    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -49,14 +46,13 @@ Feature: Tests related to What's Next Page
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Plan Summary" page
     And I click Continue button on the Medical Dental Page CoCo
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
     And I select "Submit" agreement checkbox CoCo
@@ -66,7 +62,3 @@ Feature: Tests related to What's Next Page
     Then I click all done from payment portal page coco
 
 
-
-
-
-    Then I click all done from payment portal page coco

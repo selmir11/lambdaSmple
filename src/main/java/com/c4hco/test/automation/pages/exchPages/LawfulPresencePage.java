@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.jsoup.internal.FieldsAreNonnullByDefault;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -127,6 +128,9 @@ public class LawfulPresencePage {
     @FindBy(id = "citizenshipCertificate")
     WebElement dpdCitizenshipCertificate;
 
+    @FindBy(css = "*[role='presentation']")
+    List<WebElement> helpDrawerHelpText;
+
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
             case "Yes":
@@ -179,7 +183,7 @@ public class LawfulPresencePage {
     }
 
     public void enterUSCISNumber(String citizenship) {
-        switch (citizenship){
+        switch (citizenship) {
             case "NonCitizen":
                 enterUSCISNumberNonCitizen();
                 break;
@@ -202,7 +206,7 @@ public class LawfulPresencePage {
     }
 
     public void clickDocType(String docType) {
-        switch (docType){
+        switch (docType) {
             case "Naturalization Certificate":
                 dpdNaturalizationCertificate.click();
                 break;
@@ -226,7 +230,7 @@ public class LawfulPresencePage {
     }
 
     public void enterCardNumber() {
-        String CardNumberValue = "AAA5"+generateCardNumber();
+        String CardNumberValue = "AAA5" + generateCardNumber();
         cardNumber.sendKeys(CardNumberValue);
     }
 
@@ -425,7 +429,7 @@ public class LawfulPresencePage {
                 validateUndocumentedCitizenInfoTextSpanish();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " +language );
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -447,4 +451,134 @@ public class LawfulPresencePage {
         softAssert.assertAll();
     }
 
+    public void clickHelpIcon(String label) {
+        basicActions.waitForElementToBePresent (helpMeUnderstandLink, 10);
+        switch(label){
+            case "Help me understand":
+                helpMeUnderstandLink.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + label);
+        }
+    }
+
+    public void validateHelpVerbiage(String helpText, String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(2), 30);
+        switch (helpText) {
+            case "Eligible Immigration Status":
+                handleEligibleImmigrationStatus(language);
+                break;
+            case "Document Type":
+                handleDocumentType(language);
+                break;
+            case "Lived in the U.S. since 1996":
+                handleLivedInUSSince1996(language);
+                break;
+            case "Active Duty Military Members or Honorably Discharged Veterans":
+                handleMilitaryMembersOrVeterans(language);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + helpText);
+        }
+    }
+
+    private void handleEligibleImmigrationStatus(String language) {
+        switch (language) {
+            case "English":
+                validateEligibleImmigrationStatusHelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateEligibleImmigrationStatusHelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void handleDocumentType(String language) {
+        switch (language) {
+            case "English":
+                validateDocumentTypeHelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateDocumentTypeHelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void handleLivedInUSSince1996(String language) {
+        switch (language) {
+            case "English":
+                validateLivedInUSSince1996HelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateLivedInUSSince1996HelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void handleMilitaryMembersOrVeterans(String language) {
+        switch (language) {
+            case "English":
+                validateMilitaryMembersOrVeteransHelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateMilitaryMembersOrVeteransHelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    public void validateEligibleImmigrationStatusHelpTextVerbiageEng() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(4),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(4).getText(), "Eligible Immigration Status\nThose who have eligible immigration status are those who have permission to live and work in the United States but are not U.S. citizens. If you have an Employment Authorization Document (EAD), you are also considered lawfully present.\nA full list of qualifying situations can be found here: https://www.healthcare.gov/immigrants/ immigration-status/");
+        softAssert.assertAll();
+    }
+
+    public void validateEligibleImmigrationStatusHelpTextVerbiageSp() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(4),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(4).getText(), "Estatus migratorio elegible\nTienen estatus migratorio elegible aquellas personas que tienen autorizaci\u00F3n para vivir y trabajar en Estados Unidos pese a no ser ciudadanas estadounidenses. Tambi\u00E9n se le considera con \"presencia legal\" si cuenta con un documento de autorizaci\u00F3n de empleo (EAD).\nPuede consultar una lista completa de las situaciones calificadas en: https://www. cuidadodesalud.gov/es/immigrants/immigration-status/");
+        softAssert.assertAll();
+    }
+
+    public void validateDocumentTypeHelpTextVerbiageEng() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(5),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(5).getText(), "Document Type\nFor more information on these documents, please see: https://www.healthcare.gov/help/ immigration-document-types/");
+        softAssert.assertAll();
+    }
+
+    public void validateDocumentTypeHelpTextVerbiageSp() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(5),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(5).getText(), "Tipo de documento\nSi desea mayor informaci\u00F3n sobre estos documentos, visite: https://www.cuidadode salud.gov/es/help/immigration-document-types/");
+        softAssert.assertAll();
+    }
+
+    public void validateLivedInUSSince1996HelpTextVerbiageEng() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(8),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(8).getText(), "Lived in the U.S. since 1996\nPeople with certain immigration statuses are subject to a 5-year waiting period before they can qualify for Medicaid. People who lawfully entered the US before 1996 are not subject to this same 5-year waiting period. People with a status that is not subject to this 5-year waiting period should answer \u201Cno\u201D to this question. That includes people with Deferred Action for Childhood Arrivals (DACA) status.");
+        softAssert.assertAll();
+    }
+
+    public void validateLivedInUSSince1996HelpTextVerbiageSp() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(8),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(8).getText(), "Vivido en Estados Unidos desde 1996\nLas personas con ciertos estatus migratorios est\u00E1n sujetas a un per\u00EDodo de espera de 5 a\u00F1os antes de que puedan calificar a Medicaid. Las personas que ingresaron a los EE. UU. de manera legal antes de 1996 no est\u00E1n sujetas a este per\u00EDodo de espera de 5 a\u00F1os. Personas con un estatus que no est\u00E1 sujeto a este per\u00EDodo de espera de 5 a\u00F1os deben responder \u201Cno\u201D a esta pregunta. Esto incluye a personas con el estatus de Acci\u00F3n Diferida para los Llegados en la Infancia (DACA).");
+        softAssert.assertAll();
+    }
+
+    public void validateMilitaryMembersOrVeteransHelpTextVerbiageEng() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(9),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(9).getText(), "Active Duty Military Members or Honorably Discharged Veterans\nQualified immigrants who also are (1) an honorably discharged veteran, (2) on active duty in the U.S. military or (3) the spouse (including a surviving spouse who has not remarried) or unmarried dependent child of an honorably discharged veteran or individual on active duty in the U.S. military are able to apply for health insurance through Connect for Health Colorado before the end of a five-year waiting period. Please note: DACA recipients should answer this question \"no\", even if they meet the qualifications noted above.");
+        softAssert.assertAll();
+    }
+
+    public void validateMilitaryMembersOrVeteransHelpTextVerbiageSp() {
+        basicActions.waitForElementToBePresent( helpDrawerHelpText.get(9),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(9).getText(), "Servicio activo del ej\u00E9rcito o veterano dado de baja honrosamente\nUn inmigrante autorizado que tambi\u00E9n: (1) sea veterano dado de baja honrosamente, (2) est\u00E9 en servicio activo en el ej\u00E9rcito de Estados Unidos o (3) sea c\u00F3nyuge (incluso un c\u00F3nyuge sobreviviente que no se haya vuelto a casar) o sea hijo dependiente soltero de un veterano dado de baja honrosamente o de un miembro en servicio activo del ej\u00E9rcito de Estados Unidos, puede solicitar seguro de salud por medio de Connect for Health Colorado antes de concluir un per\u00EDodo de espera de cinco a\u00F1os. Tenga en cuenta que: los beneficiarios de DACA deben responder \"no\" a esta pregunta, incluso si cumplen con los requisitos que se mencionan en la parte superior.");
+        softAssert.assertAll();
+    }
 }

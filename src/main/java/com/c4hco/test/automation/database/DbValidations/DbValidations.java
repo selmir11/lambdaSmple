@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.database.DbValidations;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
@@ -15,8 +16,7 @@ public class DbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
     String formattedDate; //formatted in YYYY-MM-DD
-    Calendar calendar = Calendar.getInstance();
-    int currentYear = calendar.get(Calendar.YEAR);
+
     BasicActions basicActions = new BasicActions();
 
     public String getCurrentdate() {
@@ -126,7 +126,7 @@ public class DbValidations {
         for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", "Bob routing key mismatch");
-            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), String.valueOf(currentYear), "Bob plan year mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), SharedData.getPlanYear(), "Bob plan year mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
             softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
             softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
@@ -142,7 +142,7 @@ public class DbValidations {
 
     public void validateAccountHolderNameFromBOB() {
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
-        softAssert.assertEquals(SharedData.getMembers().get(0).getFirstName(), acct_holderBOB.get(0));
+        softAssert.assertEquals(SharedData.getPrimaryMember().getFirstName(), acct_holderBOB.get(0));
         softAssert.assertAll();
     }
 
@@ -229,6 +229,41 @@ public class DbValidations {
         List<String> expectedMedicalPlanList = SharedData.getMedicalPlansList();
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
+
+    public void validateMemberCSRNonAIANData() {
+        String[] dbValues = exchDbDataProvider.getmemberNonAIAN();
+        softAssert.assertEquals(dbValues[0], "NON_AIAN", "Reason code mismatch: Expected 'NONAIAN'");
+        softAssert.assertEquals(dbValues[1], "CSR", "Eligibility type mismatch: Expected 'CSR'");
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationResult(String expectedReasonCode, String memPrefix) {
+        String expReasonCode = null;
+        switch (expectedReasonCode) {
+            case "OFF_EXCHANGE_ELIGIBLE", "OFF_EXCHANGE_NOT_ELIGIBLE":
+                expReasonCode= "OFFEXCH";
+                break;
+            case "ELIGIBLE_FOR_HP2_LIMITED":
+                expReasonCode = "HP2";
+                break;
+            case "QLCE":
+                expReasonCode = "GAIN_DEP_QLCE";
+                break;
+            default:
+                Assert.fail("Expected Reason Code is not valid");
+        }
+
+        String memberID = exchDbDataProvider.getMemberId(basicActions.getMemFirstNames(memPrefix));
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode);
+
+        System.out.println("Member ID: " + memberID);
+        System.out.println("Reason Code: " + reasonCode);
+
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+        softAssert.assertAll();
+    }
+
+
     public void validateCurrentDentalPlanNameForTheYear(String year) {
         String dbdentalPlanName = exchDbDataProvider.getPlanMarketingName(year);
         softAssert.assertEquals(dbdentalPlanName,SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
@@ -257,7 +292,9 @@ public class DbValidations {
             softAssert.assertNull(dbValues[1], "Race Other Text is null");
         } else {
             softAssert.assertEquals(dbValues[1], expectedRaceOtherText, "Race Other Text mismatch");
-        }}
+        }
+        softAssert.assertAll();
+    }
 
     public void validateTheLatestApplicationDateForTheYearDB() {
        String medLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
@@ -365,4 +402,266 @@ public class DbValidations {
        softAssert.assertAll();
     }
 
-}
+
+    public void validateTheDentalLatestApplicationDateForTheYearDB() {
+        String denLatestAppDateDB = exchDbDataProvider.getMedLatestApplicationDate();
+        softAssert.assertTrue(denLatestAppDateDB.contains(SharedData.getManagePlanDentalMedicalPlan().getDenLatestAppDate()));
+        softAssert.assertAll();}
+
+    public void validateTheBrokerEmailInDB() {
+        String brokerEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(brokerEmail,SharedData.getBroker().getEmail());
+        softAssert.assertAll();
+    }
+
+    public void validateTheAgencyEmailInDB() {
+        String agencyEmail = exchDbDataProvider.getTheBrokerEmailInDB();
+        softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
+        softAssert.assertAll();
+    }
+    public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
+        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
+        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate twoMonthsLater = currentDate.plusDays(enrollmentEndDate);
+
+        String formattedEnrolmentEndDate = basicActions.changeDateFormat(String.valueOf(twoMonthsLater),"yyyy-MM-dd","MM/dd/yyyy");
+        softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
+        softAssert.assertAll();
+    }
+
+    public void verifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {
+        String[] dbValues = exchDbDataProvider.getTaxFilingData(basicActions.getMemberId(memPrefix));
+        System.out.println(Arrays.toString(dbValues));
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("claimed_as_dep_on_othr_ftr_ind"));
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("tax_filing_type"));
+        softAssert.assertAll();
+    }
+
+    public void verifyTaxReturnData(String memPrefix, List<Map<String, String>> expectedValues) {
+        String[] rawDbValues = exchDbDataProvider.getTaxReturnData(basicActions.getMemberId(memPrefix));
+
+        String[] dbValues = new String[5];
+        Arrays.fill(dbValues, null);
+        for (int i = 0; i < rawDbValues.length && i < 5; i++) {
+            dbValues[i] = rawDbValues[i];
+        }
+
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("tax_filing_type"), "Mismatch in tax_filing_type");
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("claimed_as_dep_on_othr_ftr_ind"), "Mismatch in claimed_as_dep_on_othr_ftr_ind");
+        softAssert.assertEquals(dbValues[2], expectedValues.get(0).get("tax_filing_status"), "Mismatch in tax_filing_status");
+        softAssert.assertEquals(dbValues[3], expectedValues.get(0).get("exceptional_circumstance"), "Mismatch in exceptional_circumstance");
+        softAssert.assertAll();
+
+        String taxReturnIdValue = dbValues[4] == null ? "null" : dbValues[4];
+
+        List<String> taxReturnIdList;
+        if (memPrefix.startsWith("Primary")) {
+            taxReturnIdList = SharedData.getPrimaryMember().getTaxReturnId();
+        } else {
+            taxReturnIdList = SharedData.getMembers().stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElseThrow(() -> new IllegalStateException("Member not found")).getTaxReturnId();
+        }
+        if (taxReturnIdList == null) {
+            taxReturnIdList = new ArrayList<>();
+        }
+        taxReturnIdList.add(taxReturnIdValue);
+        if (memPrefix.startsWith("Primary")) {
+            SharedData.getPrimaryMember().setTaxReturnId(taxReturnIdList);
+        } else {
+            MemberDetails targetMember = SharedData.getMembers().stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElseThrow(() -> new IllegalStateException("Member not found"));
+            targetMember.setTaxReturnId(taxReturnIdList);
+        }
+
+        String formattedList = String.join(", ", taxReturnIdList);
+        System.out.println("Adjusted DB values: " + Arrays.toString(dbValues));
+        System.out.println("Tax return ID value to be processed: " + taxReturnIdValue);
+        System.out.println("Tax return ID list before updating: " + taxReturnIdList);
+        System.out.println("Updated tax_return_id list for " + memPrefix + ": " + formattedList);
+    }
+
+    public void validate_rq_queue_msg(){
+        String dbValues[] = exchDbDataProvider.get_rq_queue_msg();
+        softAssert.assertEquals(dbValues[0], "PROCESSED", "status from rq_queue_msg table did not match");
+        softAssert.assertEquals(dbValues[1], "\"REASSIGN_PRIMARY_CONTACT\"", "changeEvent from rq_queue_msg table did not match");
+        softAssert.assertEquals(dbValues[2], "\"TransferContactInfo\"", "requestType from rq_queue_msg table did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateMemIds(){
+        List<MemberDetails> allMembers = basicActions.getAllMem();
+        for(MemberDetails member: allMembers){
+           String memberIdFromDb = exchDbDataProvider.getMemberId(member.getFirstName());
+           softAssert.assertEquals(memberIdFromDb, member.getMemberId(), "MemberId did not match");
+           softAssert.assertAll();
+        }
+    }
+
+    public void validateTellUsAbtUrslfDetails(){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        String memberIdFromDb =  exchDbDataProvider.getMemberId(primaryMem.getFirstName());
+        System.out.println("memberID from DB ::"+memberIdFromDb);
+       EsMemberEntity primaryMemFromDb = exchDbDataProvider.getEsMemberDetails(memberIdFromDb);
+       softAssert.assertEquals(primaryMem.getFirstName(), primaryMemFromDb.getFirst_name(), "First name did not match");
+        softAssert.assertEquals(primaryMem.getMiddleName(), primaryMemFromDb.getMiddle_name(), "Middle name did not match");
+        softAssert.assertEquals(primaryMem.getLastName(), primaryMemFromDb.getLast_name(), "Last name did not match");
+        softAssert.assertTrue(primaryMemFromDb.getBirth_date().contains(basicActions.formatDob(primaryMem.getDob())), "Dob did not match");
+        softAssert.assertEquals(primaryMem.getGender(), primaryMemFromDb.getGender(), "Gender did not match");
+        softAssert.assertEquals(primaryMem.getSuffix().replace(".", "").toUpperCase(),primaryMemFromDb.getName_suffix() , "Suffix did not match");
+       softAssert.assertTrue(primaryMem.getApplyingforCov().equals("Yes")? primaryMemFromDb.getApplying_for_coverage_ind().equals("1") : primaryMemFromDb.getApplying_for_coverage_ind().equals("0"), "Applying for coverage ind did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationId(){
+        softAssert.assertEquals(exchDbDataProvider.getApplicationId_esApplication(), SharedData.getPrimaryMember().getApplication_id(), "Application Id's did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationIds(){
+        List<String> applicationIds = exchDbDataProvider.getAllApplicationIds_esApplication();
+        Set<String> applicationIdsList_unique = new HashSet<>(applicationIds);
+        Assert.assertEquals(applicationIdsList_unique.size(), applicationIds.size(), "Application id's are not unique");
+    }
+
+    public void validateSelfAttest(List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+
+            EsSelfAttestationEntity actualResult = exchDbDataProvider.getEsSelfAttest_options();
+            System.out.println(actualResult);
+
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "attests_to_income":
+                        softAssert.assertEquals(actualResult.getAttests_to_income(), value,"Validation failed for attests_to_income at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_received":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_received(), value, "Validation failed for attests_to_aptc_received at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_tax_reporting(), value, "Validation failed for attests_to_aptc_tax_reporting at row " + (i + 1));
+                        break;
+                    case "attests_to_aptc_future_tax_reporting":
+                        softAssert.assertEquals(actualResult.getAttests_to_aptc_future_tax_reporting(), value,"Validation failed for attests_to_aptc_future_tax_reporting at row " + (i + 1));
+                        break;
+                    case "outcome":
+                        softAssert.assertEquals(actualResult.getOutcome(), value,"Validation failed for outcome at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
+            }
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateExchPersonIdRelatedFieldsToBeNull(){
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
+        softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+        softAssert.assertAll();
+    }
+
+    public void validateExchPersonIdRelatedFields() {
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
+        softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
+        softAssert.assertNotNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+        softAssert.assertAll();
+    }
+
+    public void validateExchPersonIdFields_duplicateMem() {
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
+        String exchPersonId_currentMem = esMemberHouseholdEntities.get(0).getExch_person_id();
+        softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
+        softAssert.assertNotNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities_oldMem = exchDbDataProvider.getExchPersonIdFieldsOldAcc_esMember();
+        String exchPersonId_OldMem = esMemberHouseholdEntities_oldMem.get(0).getExch_person_id();
+        softAssert.assertEquals(esMemberHouseholdEntities_oldMem.size(), 1, "Size of records did not match");
+        softAssert.assertNotNull(esMemberHouseholdEntities_oldMem.get(0).getExch_person_id(), "exch_person_id is null");
+        softAssert.assertNull(esMemberHouseholdEntities_oldMem.get(0).getExch_person_id_review_id(), "exch_person_id_review_id is not null");
+        softAssert.assertNull(esMemberHouseholdEntities_oldMem.get(0).getExch_person_id_review_status(), "exch_person_id_review_status is not null");
+
+       softAssert.assertEquals(exchPersonId_OldMem, exchPersonId_currentMem, "Exch person ids did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateEventCD(){
+      List<String> queryResult = exchDbDataProvider.getEventCD();
+
+        softAssert.assertTrue(queryResult.contains("FAILED_POSTAL_ADDRESS_VALIDATION"), "EventCD contains FAILED_POSTAL_ADDRESS_VALIDATION");
+        softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "EventCD contains FAILED_EMAIL_ADDRESS_VALIDATION");
+        softAssert.assertAll();
+    }
+    public void validateEventLog(){
+        List<String> queryResult = exchDbDataProvider.getEventLog();
+        softAssert.assertTrue(queryResult.contains("PASSED_MEMBER_VALIDATION"), "Event log contains PASSED_MEMBER_VALIDATION");
+        softAssert.assertTrue(queryResult.contains("PASSED_POSTAL_ADDRESS_VALIDATION"), "Event log contains PASSED_POSTAL_ADDRESS_VALIDATION");
+        softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "Event log contains FAILED_EMAIL_ADDRESS_VALIDATION");
+        softAssert.assertTrue(queryResult.contains("INITIAL_EE_12_NOTICE_SENT"), "Event log contains INITIAL_EE_12_NOTICE_SENT");
+        softAssert.assertAll();
+    }
+
+    public void validateExchPersonIdFields_specifcPerson() {
+        List<EsMemberHouseholdEntity> esMemberHouseholdEntities = exchDbDataProvider.getExchPersonIdFields_esMember();
+        softAssert.assertEquals(esMemberHouseholdEntities.size(), 1, "Size of records did not match");
+        softAssert.assertNotNull(esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id is null");
+        softAssert.assertEquals(esMemberHouseholdEntities.get(0).getExch_person_id_review_id(), esMemberHouseholdEntities.get(0).getExch_person_id(), "exch_person_id_review_id is not equal to exch person id");
+        softAssert.assertEquals(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "MANUAL_REVIEW_REQUIRED", "exch_person_id_review_status is not null");
+        softAssert.assertAll();
+    }
+
+    public void validateAddressDetailsinDB(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
+        String FirstName=null;
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+
+        List<String> dbValues = exchDbDataProvider.getAddressInformation(FirstName);
+        softAssert.assertEquals(dbValues.get(0), address_line1);
+        softAssert.assertEquals(dbValues.get(1), address_line2);
+        softAssert.assertEquals(dbValues.get(2), city);
+        softAssert.assertEquals(dbValues.get(3), state);
+        softAssert.assertEquals(dbValues.get(4), zip);
+        softAssert.assertEquals(dbValues.get(5), county);
+        softAssert.assertAll();
+    }
+
+    public void validateTellAboutAdditionalInformationinDB(String FName){
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                String FirstName = actualMember.getFirstName();
+                String MiddleName = actualMember.getMiddleName();
+                String LastName = actualMember.getLastName();
+                String gender = actualMember.getGender();
+                String dateOfBirth = actualMember.getDob();
+                String applyForCover = actualMember.getApplyingforCov();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(0), FirstName);
+                softAssert.assertEquals(dbValues.get(1), MiddleName);
+                softAssert.assertEquals(dbValues.get(2), LastName);
+                softAssert.assertEquals(dbValues.get(3), gender);
+                String formattedDbDOBDate = basicActions.changeDateFormat(dbValues.get(4), "yyyy-MM-dd HH:mm:ss", "MMddyyyy");
+                softAssert.assertEquals(formattedDbDOBDate, dateOfBirth);
+                softAssert.assertEquals(dbValues.get(5), (applyForCover.equals("Yes")) ? "1" : "0");
+                softAssert.assertAll();
+                break;
+            }
+        }
+    }
+
+ }

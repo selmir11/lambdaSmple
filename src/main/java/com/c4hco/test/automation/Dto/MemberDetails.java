@@ -3,6 +3,7 @@ package com.c4hco.test.automation.Dto;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class MemberDetails {
@@ -13,8 +14,8 @@ public class MemberDetails {
     String suffix;
     String emailId;
     String password = "ALaska12!";
-    String phoneNumber;
-    String alternatePhNum;
+    String phoneNumber; //homephone
+    String alternatePhNum; //mobilephone
     String ssn;
     String oldSsn;
     String relation_to_subscriber;
@@ -59,6 +60,7 @@ public class MemberDetails {
     String fipcode;
     String writtenLanguage;
     String spokenLanguage;
+    String prefLang;
     String maritalStatus;
     Boolean isMinor= false;
     Boolean hasIncorrectEntities = false;
@@ -74,11 +76,23 @@ public class MemberDetails {
     String incorrect_first_name ;
     String incorrect_middle_name ;
     String incorrect_last_name ;
+    String incorrectEmail;
+    String incorrectHomePhone;
+    String incorrectMobilePhone;
+    String incorrectLanguage;
+    String incorrectContactPref;
     String employerName;
     String prior_subscriber_id;
     Boolean csrEligible=false;
-    String medGroupInd;
-    String denGroupInd;
+    String medGroupInd="1";
+    String denGroupInd="1";
+    Boolean hasMedicalPlan=true;
+    Boolean hasDentalPlan=true;
+    String medSubscriberName;
+    String denSubscriberName;
+    List<String> taxReturnId;
+    String contactPref;
+    String applyingforCov;
 }
 
 

@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 
 import java.util.List;
 import java.io.IOException;
+import java.util.Map;
 
 public class ApplicationDetailsPageSteps {
 
@@ -30,17 +31,26 @@ public class ApplicationDetailsPageSteps {
     @And("I verify the OHC header highlight {string} on Application Details")
     public void iVerifyOhcHeaderColor(String highlight) {applicationDetailsPage.verifyOhcHeaderColor(highlight);}
 
-    @And("I verify the OHC detail {string} highlight {string} on Application Details with data of {string}")
-    public void iVerifyOhcDetailsColor(String detail, String highlight, String data) {applicationDetailsPage.verifyOhcDetailsColor(detail, highlight, data);}
+    @And("I verify the ESI OHC details on Application Details")
+    public void iVerifyOhcDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyOhcDetailsColor(ohcData);}
 
-    @Then("I validate PDF OHC data {string} in {string} with Min Value {string} Premium {string} Currently enrolled {string} {string} {string} end date of {string} {string} {string}")
-    public void iVerifyOhcPdfText(String data, String language, String minValue, String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily) throws IOException {applicationDetailsPage.verifyOhcPdfText(data, language, minValue,  premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily);}
+    @And("I verify the basic OHC detail on Application Details")
+    public void iVerifyBasicOhcDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyBasicOhcDetailsColor(ohcData);}
+
+    @And("I verify None OHC detail on Application Details")
+    public void iVerifyNoneOhcDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyNoneOhcDetailsColor(ohcData);}
+
+    @Then("I validate ESI PDF OHC data on Application Details in {string}")
+    public void iVerifyOhcPdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationDetailsPage.verifyOhcPdfText(language, pdfData);}
 
     @Then("I verify the OHC detail family enrollment details on Application Details")
     public void iVerifyOhcFamilyDetailsColor(DataTable familyOptionTable) {List<String> familyOption = familyOptionTable.asList(String.class);applicationDetailsPage.verifyOhcFamilyDetailsColor(familyOption);}
 
     @Then("I verify PDF OHC data for family with Family offered {string} and Premium {string}")
     public void iVerifyOhcPdfFamilyText(String offered, String premium, DataTable familyOptionTable) throws IOException {List<String> familyOption = familyOptionTable.asList(String.class);applicationDetailsPage.verifyOhcPdfFamilyText(offered, premium, familyOption);}
+
+    @Then("I validate basic PDF OHC data on Application Details in {string}")
+    public void iVerifyBasicOhcPdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationDetailsPage.verifyBasicOhcPdfText(language, pdfData);}
 
 
 

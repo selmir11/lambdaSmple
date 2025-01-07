@@ -2,9 +2,11 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -15,14 +17,18 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
 public class FamilyOverviewPage {
+
+    Actions actions = new Actions(WebDriverManager.getDriver());
+
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
     WebElement familyOverviewHeader;
 
     @FindBy (css = "app-family-member-overview a.edit-update-btn")
     List<WebElement> editUpdateLink;
+
+    @FindBy (xpath = "//*[contains(@id, 'remove-family-member-')]")
+    WebElement removeFamilyMemberLink;
 
     @FindBy (xpath = "//a/parent::div/preceding-sibling::div/div[contains(text(), '$')]")
     WebElement annualIncomeAmount;
@@ -55,6 +61,9 @@ public class FamilyOverviewPage {
     }
 
     public void clickEditUpdateLink(String name) {
+        if(name.equals("getFromSharedData")){
+            name = SharedData.getPrimaryMember().getFirstName();
+        }
         basicActions.waitForElementListToBePresentWithRetries(editUpdateLink, 30);
         String xpath = String.format("//*[contains(text(),'"+name+"')]//following::a[1]");
         WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
@@ -123,6 +132,43 @@ public class FamilyOverviewPage {
     public void verifyNoOneIsApplyingText(){
         basicActions.waitForElementToBePresent(noOneApplyingErrorText, 30);
         softAssert.assertEquals(noOneApplyingErrorText.getText(), "You\u2019ve indicated that no one is applying for health insurance.\nTo continue, please indicate which member(s) are applying by clicking the \u201CEdit/Update\u201D button in the table below");
+        softAssert.assertAll();
+    }
+
+    public void validateActionLinksFamilyOverview(){
+        basicActions.waitForElementToBePresent(continueButton, 15);
+        softAssert.assertEquals(editUpdateLink.get(0).getCssValue("font-size"),"14px");
+        softAssert.assertEquals(editUpdateLink.get(0).getCssValue("font-weight"),"400");
+        softAssert.assertEquals(editUpdateLink.get(0).getCssValue("line-height"),"24px");
+        softAssert.assertEquals(editUpdateLink.get(0).getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(editUpdateLink.get(1).getCssValue("font-size"),"14px");
+        softAssert.assertEquals(editUpdateLink.get(1).getCssValue("font-weight"),"400");
+        softAssert.assertEquals(editUpdateLink.get(1).getCssValue("line-height"),"24px");
+        softAssert.assertEquals(editUpdateLink.get(1).getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(addAnotherMemberButton.getCssValue("font-size"), "18px");
+        softAssert.assertEquals(addAnotherMemberButton.getCssValue("font-weight"),"700");
+        softAssert.assertEquals(addAnotherMemberButton.getCssValue("line-height"),"28px");
+        softAssert.assertEquals(addAnotherMemberButton.getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("font-size"),"14px");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("font-weight"),"400");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("line-height"),"12px");
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("color"),"rgba(26, 112, 179, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(editUpdateLink.get(0)).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(editUpdateLink.get(0).getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(editUpdateLink.get(1)).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(editUpdateLink.get(1).getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(addAnotherMemberButton).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(addAnotherMemberButton.getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
+        actions.moveToElement(removeFamilyMemberLink).perform();
+        basicActions.wait(300);
+        softAssert.assertEquals(removeFamilyMemberLink.getCssValue("color"),"rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 

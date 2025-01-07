@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
@@ -9,15 +11,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import static com.c4hco.test.automation.utils.BasicActions.capitalizeFirstLetter;
+
 public class AdminPortalBrokerDashboardPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+    MemberDetails memberDetails = new MemberDetails();
+    BrokerDetails brokerDetails = new BrokerDetails();
     public AdminPortalBrokerDashboardPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -99,6 +106,23 @@ public class AdminPortalBrokerDashboardPage {
     WebElement labelCertificationAgencyPortal;
     @FindBy(css = "#accountSummary-data-agencyCertification")
     WebElement certStatusAgencyPortal;
+    @FindBy(id = "edit-brokerAccount")
+    WebElement editProfile;
+    @FindBy(xpath = "//button[@class='btn-manage-account-access btn-primary-action-button manage-account-button']")
+    WebElement manageAccountAccess;
+    @FindBy(id = "broker-email-input")
+    WebElement emailAddress;
+    @FindBy(id = "save-edit-button")
+    WebElement savebtn;
+    @FindBy(id = "cancel-edit-button")
+    WebElement cancelBtn;
+    @FindBy(xpath = "//div[@class='body-text-1 success-message']")
+    WebElement updateSuccessful;
+    @FindBy(xpath = "//a[@routerlink='search']")
+    WebElement searchBtn;
+
+
+
 
     public void validateAPBrokerDashboardHeader(String qaName, String qaID, String qaUserType, String stgName, String stgID, String stgUserType) {
         if (SharedData.getEnv().equals("staging")){
@@ -257,6 +281,96 @@ public class AdminPortalBrokerDashboardPage {
         basicActions.waitForElementToBePresent(labelCertificationAgencyPortal, 10);
         softAssert.assertEquals(labelCertificationAgencyPortal.getText(),"Agency Certification:");
         softAssert.assertEquals(certStatusAgencyPortal.getText(), certificationStatusBrokerPortal);
+        softAssert.assertAll();
+    }
+
+    public void clickOnAccountSummaryContainerAPBrokerDashboardPage(String accountSummaryType) {
+        basicActions.waitForElementToBePresentWithRetries(editProfile,20);
+        switch (accountSummaryType){
+            case "Edit Profile":
+                editProfile.click();
+                break;
+            case "Manage Account Access":
+                manageAccountAccess.click();
+                break;
+        }
+    }
+    public void EnterNewEmailEmailAdresseInTheSummaryContainer(String newEmail) {
+            basicActions.waitForElementToBeClickable(emailAddress,30);
+            emailAddress.click();
+            emailAddress.clear();
+            emailAddress.sendKeys(newEmail+"+"+capitalizeFirstLetter(basicActions.getUniqueString(5)+"@outlook.com"));
+    }
+
+    public void clickButtonOnAccountSummaryContainerAPBrokerDashboardPage(String saveCancelBtn) {
+        basicActions.waitForElementToBePresentWithRetries(savebtn,100);
+        basicActions.waitForElementToBePresent(cancelBtn,200);
+        switch (saveCancelBtn){
+            case "Save":
+               savebtn.click();
+                break;
+            case "cancel":
+                cancelBtn.click();
+                break;
+        }
+        basicActions.waitForElementToBePresentWithRetries(editProfile,200);
+    }
+    public void setTheEmailValue(String STGAccount, String QAAccount) {
+        String primaryMemberId;
+        if (SharedData.getEnv().contains("qa")) {
+            primaryMemberId = QAAccount;
+        } else {
+            primaryMemberId = STGAccount;
+        }
+        BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
+
+        memberDetails.setAccount_id(bigDecimal);
+        SharedData.setPrimaryMember(memberDetails);
+        brokerDetails.setAgencyEmail(emailAddress.getAttribute("value"));
+        SharedData.setBroker(brokerDetails);
+    }
+
+    public void validateTheSuccessMessageIsDisplayed() {
+        basicActions.waitForElementToBePresentWithRetries(updateSuccessful,20);
+        softAssert.assertEquals(updateSuccessful.getText(),"Update successful.");
+        softAssert.assertAll();
+    }
+
+
+    public void setTheEmailValueForBrokerSTGQA(String STGAccount, String QAAccount) {
+        String primaryMemberId;
+        if (SharedData.getEnv().contains("qa")) {
+            primaryMemberId = QAAccount;
+        } else {
+            primaryMemberId = STGAccount;
+        }
+        BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
+        memberDetails.setAccount_id(bigDecimal);
+        SharedData.setPrimaryMember(memberDetails);
+        SharedData.getBroker().setEmail(emailAddress.getAttribute("value"));
+    }
+
+    public void clickOnSearchButtonInAPBrokerDashboardPage() {
+    basicActions.waitForElementToBePresent(searchBtn,30);
+    searchBtn.click();}
+
+    public void validateTheAgencyTINInSTGAndQA(String tinStg, String tinQa) {
+        basicActions.waitForElementToBePresentWithRetries(agencyTIN,30);
+        if (SharedData.getEnv().equals("staging")){
+            softAssert.assertEquals(agencyTIN.getText(),tinStg);
+        }else{
+            softAssert.assertEquals(agencyTIN.getText(),tinQa);
+        }
+        softAssert.assertAll();
+        BrokerDetails owner = new BrokerDetails();
+        owner.setAgencyTin(agencyTIN.getText());
+        SharedData.setAgencyOwner(owner);
+    }
+
+
+    public void validateTheStatusCertificationIs(String certification) {
+        basicActions.waitForElementToBePresentWithRetries(certificationStatus,30);
+        softAssert.assertEquals(certificationStatus.getText(),certification);
         softAssert.assertAll();
     }
 }

@@ -1,4 +1,4 @@
- @portNotice @SLCR-433
+@portNoticeCoco @SLCR-433
 Feature: Trigger COCO IND Password reset and confirmation Notices AM-016-07 AND AM-016-08
 
   Scenario: Trigger COCO IND Password reset and confirmation Notices AM-016-07 AND AM-016-08 English

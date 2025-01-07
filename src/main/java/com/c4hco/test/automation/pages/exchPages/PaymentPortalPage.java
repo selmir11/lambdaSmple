@@ -2,11 +2,14 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class PaymentPortalPage {
     SoftAssert softAssert = new SoftAssert();
@@ -41,14 +44,8 @@ public class PaymentPortalPage {
     @FindBy(css = "#SOL-PayNow-ModalContinue-Medical-0")
     WebElement PayLaterContinue;
 
-    @FindBy(xpath = "//button[@id='pendo-close-guide-a06a6288']")
-    WebElement recomendC4HCOToFriendPopUp;
-
     @FindBy(xpath = "//div[@class= 'payment-option-disabled ng-star-inserted']")
     WebElement CoordinatePayment;
-
-
-
 
 
     public void clickAllDone(){
@@ -56,9 +53,10 @@ public class PaymentPortalPage {
         basicActions.waitForElementToBePresent( allDone,40 );
         basicActions.scrollToElement( allDone );
         basicActions.waitForElementToBeClickable(allDone,10);
-        basicActions.wait(1000);
-        if(recomendC4HCOToFriendPopUp.isDisplayed()) {
-            recomendC4HCOToFriendPopUp.click();
+        basicActions.wait(2000);
+        List<WebElement> popups = basicActions.getDriver().findElements(By.cssSelector("._pendo-close-guide"));
+        if (!popups.isEmpty() && popups.get(0).isDisplayed()) {
+            popups.get(0).click();
         }
         basicActions.scrollToElement( allDone );
         basicActions.clickElementWithRetries(allDone, 30);
@@ -108,4 +106,3 @@ public class PaymentPortalPage {
     }
 
 }
-

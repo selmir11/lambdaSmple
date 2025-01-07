@@ -1,13 +1,19 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class ApplicationResultsCoCoPage {
@@ -19,7 +25,7 @@ public class ApplicationResultsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "ELIG-MemberPlanInfo-SaveAndContinue")
+    @FindBy(css = "#ELIG-MemberPlanInfo-SaveAndContinue")
     public WebElement continueButton;
 
     @FindBy(id = "ELIG-NoApplication-BackToWelcomePage")
@@ -28,10 +34,13 @@ public class ApplicationResultsCoCoPage {
     @FindBy(css = ".container .header-1")
     WebElement applicationResultsHeader;
 
-    @FindBy(css = "div.body-text-2.member-name")
+    @FindBy(css = ".member-name")
     WebElement memberName;
 
-    @FindBy(css = "div.plan-name.eligible")
+    @FindBy(css = ".member-name")
+    List<WebElement> memberNames;
+
+    @FindBy(css = ".plan-name")
     List<WebElement> healthInsuranceCoCoEligible; //SES, Limited text, Health insurance coco plans
 
     @FindBy(xpath = "//div[contains(text(), \"Here's what your household qualifies for\")]")
@@ -48,8 +57,48 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css = ".body-text-1")
     WebElement submitNewApplicationText;
-    @FindBy(css = "div.plan-name.eligible")
+
+    @FindBy(css = ".plan-name")
     WebElement eligiblePlan;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+    @FindBy(id = "currentYear_link")
+    WebElement currentYr;
+
+    @FindBy(id = "nextYear_link")
+    WebElement nextYr;
+
+    @FindBy(css=".overview-title")
+    WebElement overviewTitle;
+
+    @FindBy(css=".overview-text p")
+    List<WebElement> overviewTxt;
+
+    @FindBy(css="app-container .message-row div div")
+    List<WebElement> yellowBanner;
+
+    @FindBy(css="app-container .no-application-text")
+    WebElement noAppTxt;
+
+    @FindBy(css=".not-qualified-text p")
+    List<WebElement> notEligibleOverviewTxt;
+
+    @FindBy(css="app-not-eligible-shop .warning-container")
+    WebElement warningModalHeader;
+
+    @FindBy(css="app-not-eligible-shop .contact-us-text")
+    List<WebElement> contactUsTxt;
+
+    @FindBy(css="app-not-eligible-shop .contact-us-link-text a")
+    WebElement contactUsLink;
+
+    @FindBy(css="app-not-eligible-shop .contact-us-text span:nth-child(2)")
+    WebElement contactUsText2;
+
+    @FindBy(css="not-elig-shop-close-button")
+    WebElement warningModalCloseBtn;
 
     public void backToWelcomeButton() {
         basicActions.waitForElementToBeClickable(backToWelcomeButton, 5);
@@ -57,7 +106,9 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void continueWithApplication()  {
-        basicActions.waitForElementToBeClickable(continueButton, 20);
+        basicActions.waitForElementToDisappear( spinner, 100 );
+        basicActions.waitForElementToBePresentWithRetries( continueButton, 60);
+        basicActions.scrollToElement( continueButton );
         continueButton.click();
     }
 
@@ -86,6 +137,12 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(submitNewApplicationText.getText(), "If your situation changes you can submit a new application to re-apply and newly qualify.");
         softAssert.assertAll();
     }
+    private void verifyTextHoulseholdQualifyForOnAppResultsPage() {
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader, 10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeader.getText(), "Here's what your household qualifies for");
+        softAssert.assertAll();
+    }
+
     public void verifySESlimitedOnAppResultsPage(String language) {
         switch (language) {
             case "English":
@@ -187,6 +244,7 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void verifyEligibleplans(){
+        // WIP - we should not rely on ses value from application.properties. That field should go away
         basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeader,10);
         if(SharedData.getSes().equals("yes")){
             softAssert.assertEquals(eligiblePlan.getText(), "SilverEnhanced Savings");
@@ -195,4 +253,187 @@ public class ApplicationResultsCoCoPage {
         }
         softAssert.assertAll();
         }
+
+    public void validateResultsOfYr(String year){
+        String expectedYr = "";
+        String actualYr = "";
+        switch(year){
+            // WIP - For both the cases, the locators are different when we have both current year and next year and on Jan 1st (new year) - the locators change
+            // We need to handle below based on time period
+            case "current year":
+                expectedYr = String.valueOf(Year.now().getValue());
+                basicActions.wait(2000);
+                Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(currentYr, 10));
+                actualYr = currentYr.getText();
+                softAssert.assertTrue(currentYr.getAttribute("class").contains("disable"), "showing results for next year");
+                break;
+            case "next year":
+                expectedYr = String.valueOf(Year.now().getValue()+1);
+                basicActions.wait(2000);
+                Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(nextYr, 10));
+                actualYr = nextYr.getText();
+                softAssert.assertTrue(nextYr.getAttribute("class").contains("disable"), "showing results for current year");
+                break;
+            default: Assert.fail("Invalid argument");
+        }
+        softAssert.assertEquals(expectedYr, actualYr, "Results displayed for the improper year");
+        softAssert.assertAll();
+    }
+
+    public void validateTextOnPage() {
+        String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
+        if(residentialState.equals("CO")||residentialState!=null) {
+        verifyTextHoulseholdQualifyForOnAppResultsPage();
+        validateNameAndPlan();
+        validateOverviewContainerTxt();
+        validateYellowBannerTxt();
+        }else{
+            verifyTextNotQualifyForPlanOnAppResultsPage();
+        }
+        softAssert.assertAll();
+    }
+    public void validateSpanishTextOnPage(){
+        validateSpanishNameAndPlan();
+        validateSpanishOverviewContainerTxt();
+        validateSpanishYellowBannerTxt();
+        softAssert.assertAll();
+    }
+
+    private void validateSpanishYellowBannerTxt() {
+        softAssert.assertEquals(yellowBanner.get(0).getText(), "Si alguien en su familia no es indocumentado, es posible que califique para otras opciones de cobertura y ayuda financiera. Este a\u00F1o, tambi\u00E9n hay nuevas", "Spanish Yellow banner text - line 1 did not match");
+        softAssert.assertEquals(yellowBanner.get(1).getText(), "opciones de cobertura para personas indocumentadas que est\u00E1n embarazadas, son menores de 19 a\u00F1os o son beneficiarios de DACA.", "Yellow banner text - line 2 did not match");
+        softAssert.assertEquals(yellowBanner.get(2).getText(), "Para encontrar la mejor opci\u00F3n para usted, puede obtener ayuda de un experto sin costo", "Yellow banner text - line 3 did not match");
+    }
+
+    private void validateSpanishOverviewContainerTxt() {
+        softAssert.assertEquals(overviewTitle.getText(), "Resumen", "Spanish: Overview Title did not match");
+        softAssert.assertEquals(overviewTxt.get(0).getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect", "Overview text line 1 did not match");
+        softAssert.assertEquals(overviewTxt.get(1).getText(), "Planes con primas mensuales que ofrecen protecciones y beneficios esenciales de salud", "Overview text line 2 did not match");
+    }
+
+    private void validateSpanishNameAndPlan() {
+        basicActions.waitForElementToBePresent(memberName, 10);
+        validateEligibleMembers();
+        validatePlaneNameSpanish();
+    }
+    public void validatePlaneNameSpanish(){
+       for(WebElement element: healthInsuranceCoCoEligible){
+           softAssert.assertEquals(element.getText(), "Planes de seguro de salud a trav\u00E9s de Colorado Connect", "Spanish COCO Text under name did not match");
+           softAssert.assertAll();
+       }
+    }
+    public void verifyNotEligibleSpanishText(){
+        basicActions.waitForElementToBePresent(hereIsWhatYourHouseholdQualifiesHeaderSpanish,10);
+        softAssert.assertEquals(hereIsWhatYourHouseholdQualifiesHeaderSpanish.getText(), "Usted y/o su familia califica para lo siguiente");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(0).getText(), "De acuerdo con la informaci\u00F3n indicada en su solicitud, usted no califica para obtener un plan de salud en este momento.", "Spanish- not eligible- overview text 0 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(1).getText(), "Si su situaci\u00F3n cambia, usted puede volver a presentar una solicitud nueva para calificar nuevamente.","Spanish- not eligible- overview text 1 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(2).getText(), "Estos son los requisitos b\u00E1sicos para calificar", "Spanish- not eligible- overview text 2 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(3).getText(),"Debe vivir en Colorado", "Spanish- not eligible- overview text 3 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(4).getText(),"Recursos para usted", "Spanish- not eligible- overview text 4 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(5).getText(),"Ll\u00E1menos al 855-675-2626 para revisar los resultados de su solicitud y las calificaciones para adquirir un plan de salud.", "Spanish- not eligible- overview text 5 does not match.");
+        softAssert.assertEquals(notEligibleOverviewTxt.get(6).getText(),"Tambi\u00E9n puede contactar a un agente o asistente certificado para obtener ayuda de un experto.", "Spanish- not eligible- overview text 6 does not match.");
+        softAssert.assertAll();
+    }
+
+    private void validateOverviewContainerTxt() {
+        softAssert.assertEquals(overviewTitle.getText(), "Overview", "Overview Title did not match");
+        softAssert.assertEquals(overviewTxt.get(0).getText(), "Health insurance plans through Colorado Connect", "Overview text line 1 did not match");
+        softAssert.assertEquals(overviewTxt.get(1).getText(), "Plans with monthly premiums offering essential health benefits and protections", "Overview text line 2 did not match");
+    }
+
+    private void validateYellowBannerTxt(){
+        softAssert.assertEquals(yellowBanner.get(0).getText(), "If someone in your family is not undocumented, they may qualify for other coverage options and financial help. This year, there are also new", "Yellow banner text - line 1 did not match");
+        softAssert.assertEquals(yellowBanner.get(1).getText(), "coverage options for undocumented people who are pregnant, under age 19, or DACA recipients.", "Yellow banner text - line 2 did not match");
+        softAssert.assertEquals(yellowBanner.get(2).getText(), "To find the best option for you, you can get free, expert help", "Yellow banner text - line 3 did not match");
+    }
+
+    private void validateNameAndPlan(){
+        basicActions.waitForElementToBePresent(memberName, 10);
+        softAssert.assertEquals(memberName.getText(), SharedData.getPrimaryMember().getSignature(), "Member name did not match");
+        softAssert.assertEquals(eligiblePlan.getText(), "Health insurance plans through Colorado Connect", "COCO Text under name did not match");
+    }
+
+    public void validateEligibleMembers(){
+        basicActions.waitForElementListToBePresent(memberNames, 10);
+        List<String> allMemNames = basicActions.getAllMemCompleteNames();
+        List<String> memNamesFromUi = new ArrayList<>();
+        for(WebElement memName: memberNames){
+            memNamesFromUi.add(memName.getText());
+        }
+        softAssert.assertEquals(new HashSet<>(allMemNames), new HashSet<>(memNamesFromUi), "Names are not matching!");
+        softAssert.assertAll();
+    }
+
+    public void validatePageTextWithoutApplication(String language){
+        basicActions.waitForElementToBePresent(noAppTxt, 10);
+        switch(language){
+            case "Spanish":
+             softAssert.assertEquals(noAppTxt.getText().trim(), "Presente una solicitud para consultar sus resultados", "NoAppText did not match in spanish");
+             softAssert.assertEquals(backToWelcomeButton.getText().trim(), "Regresar a la Página de bienvenida", "Back to welcome button text doesn't match in spanish");
+             break;
+
+             default: Assert.fail("Invalid argument passed");
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateOeEndPopup(String language) {
+        basicActions.waitForElementToBePresent(warningModalHeader, 10);
+        softAssert.assertEquals(contactUsTxt.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)", "color on second paragraph did not match");
+        switch(language){
+            case "English":
+                validateWarningModalEn();
+                break;
+            case "Spanish":
+                validateWarningModalSp();
+                break;
+            case "English-SES":
+                validateWarningModalEn_SES();
+                break;
+            case "Spanish-SES":
+                validateWarningModalSp_Ses();
+                break;
+            default: Assert.fail("Language passed is incorrect");
+        }
+        softAssert.assertAll();
+    }
+
+    private void validateWarningModalEn(){
+        softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANT!", "Header text did not match in english");
+        softAssert.assertEquals(contactUsTxt.get(0).getText(), "You can't enroll in health insurance because it is currently not Open Enrollment.", "The text line 1 did not match");
+        softAssert.assertEquals(contactUsTxt.get(1).getText(), "The annual Open Enrollment Period for health insurance is from November 1 to January 15. Outside of this timeframe, you can only enroll if you have a qualifying life change event. If you have any questions, call our Customer Service Center 855-675-2626.", "Paragraph in yellow did not match");
+        softAssert.assertEquals(contactUsLink.getText(), "qualifying life change event", "The link text did not match");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/get-started/when-can-i-buy-insurance", "URL for hyperlink did not match in English");
+    }
+
+    private void validateWarningModalEn_SES(){
+        softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANT!", "Header text did not match in english");
+        softAssert.assertEquals(contactUsTxt.get(0).getText(), "You can't enroll in health insurance because it is currently not Open Enrollment.", "The text line 1 did not match");
+        softAssert.assertEquals(contactUsTxt.get(1).getText(), "You can't enroll in health insurance because your Special Enrollment Period ended.", "Ses specific text did not match");
+        softAssert.assertEquals(contactUsTxt.get(2).getText(), "The annual Open Enrollment Period for health insurance is from November 1 to January 15. Outside of this timeframe, you can only enroll if you have a qualifying life change event. If you have any questions, call our Customer Service Center 855-675-2626.", "Paragraph in yellow did not match");
+        softAssert.assertEquals(contactUsLink.getText(), "qualifying life change event", "The link text did not match");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/get-started/when-can-i-buy-insurance", "URL for hyperlink did not match in English");
+    }
+
+    private void validateWarningModalSp(){
+        softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANTE!", "Header text did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el período de inscripción abierta.", "The text line 1 did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(1).getText(), "El período de inscripción abierta anual para el seguro de salud va del 1º de noviembre al 15 de enero. Fuera de este período, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atención al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
+        softAssert.assertEquals(contactUsLink.getText(), "evento de vida calificado", "The link text did not match in spanish");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/", "URL for hyperlink did not match in Spanish");
+    }
+
+    private void validateWarningModalSp_Ses(){
+        softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANTE!", "Header text did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el período de inscripción abierta.", "The text line 1 did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(1).getText(), "No puede inscribirse en el seguro de salud porque terminó su período de inscripción especial.", "SES specific text did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(2).getText(), "El período de inscripción abierta anual para el seguro de salud va del 1º de noviembre al 15 de enero. Fuera de este período, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atención al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
+        softAssert.assertEquals(contactUsLink.getText(), "evento de vida calificado", "The link text did not match in spanish");
+        softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/", "URL for hyperlink did not match in Spanish");
+    }
+
+    public void clickCloseOnPopup(){
+        basicActions.waitForElementToBePresent(warningModalCloseBtn, 10);
+        basicActions.getDriver().findElement(By.id("not-elig-shop-close-button")).click();
+    }
 }

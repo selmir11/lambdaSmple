@@ -100,6 +100,8 @@ Feature: Seed02 - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
@@ -126,10 +128,7 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
     And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
@@ -184,7 +183,7 @@ Feature: Seed02 - Exchange
 
 
   @SLER-95 @pol_exch_passed
-  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+  Scenario: RT-2244 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -230,10 +229,7 @@ Feature: Seed02 - Exchange
 #    Then I validate I am on the "My Policies" page
 #    And I validate "medical" details on my policies page
 #    And I validate "dental" details on my policies page
-#    And I click View Plan History link from "medical" plan card
 #    And I validate "medical" plan details from plan history
-#    And I click on to Back to Current Plan Details button
-#    And I click View Plan History link from "dental" plan card
 #    And I validate "dental" plan details from plan history
 #    And I click on Sign Out in the Header for "Elmo"
 
@@ -244,7 +240,6 @@ Feature: Seed02 - Exchange
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
-
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
@@ -253,7 +248,7 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "dental" file data
 
   @SLER-133-WIP
-  Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
+  Scenario: RT-2135 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - DIFF CARRIER / DIFF PLANS
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                |   1             |
@@ -324,8 +319,7 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click Yes to the Tobacco usage question on start shopping page
-      |Primary,Spouse|
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page

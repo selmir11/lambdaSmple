@@ -36,13 +36,21 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(id = "MedicalComparePlans-GoBackToPlans")
     public WebElement medicalCompareGoBack;
 
+    @FindBy(id = "PlanCompare-removePlan_1")
+    public WebElement firstplan;
+
+    @FindBy(id = "PlanCompare-removePlan_2")
+    public WebElement secondplan;
+
+    @FindBy(id = "PlanCompare-removePlan_1")
+    public WebElement thirdplan;
     @FindBy(xpath="//div[normalize-space()= 'Compare Medical Plans']")
     public WebElement compareTopHeader;
 
     @FindBy(xpath="//div[normalize-space()= 'Comparar planes médicos']")
     public WebElement compareTopHeaderSP;
 
-    @FindBy(id = "MedicalComparePlans-TopGoBackToPlans")
+    @FindBy(id = "ComparePlans-TopGoBackToPlans")
     public WebElement goBackToPlansCompareLink;
 
     @FindBy(id = "SHP-MedicalComparePlans-DownloadSummaryOfThisPage")
@@ -402,7 +410,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtInfertilityTreatmentSP;
 
 
-    @FindBy(id= "MedicalComparePlans-GoBackToPlans")
+    @FindBy(xpath=  "//button[@id = 'ComparePlans-GoBackToPlans']")
     public WebElement goBackToPlansCompareButton;
 
 
@@ -1184,7 +1192,8 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     public void  clickMedicalCompareGoBackButton() {
             basicActions.waitForElementToDisappear( spinner, 30 );
-            basicActions.waitForElementToBePresent(goBackToPlansCompareButton, 20);
+            basicActions.waitForElementToBePresent(goBackToPlansCompareButton, 40);
+            basicActions.scrollToElement( goBackToPlansCompareButton );
             goBackToPlansCompareButton.click();}
 
     public void selectPlanDeselectionOne() {

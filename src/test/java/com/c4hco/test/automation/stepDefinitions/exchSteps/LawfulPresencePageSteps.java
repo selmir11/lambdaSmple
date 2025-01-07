@@ -92,4 +92,11 @@ public class LawfulPresencePageSteps {
     public void verifyTextForUndocumentedCitizenInfo(String language) {
         lawfulPresencePage.validateUndocumentedCitizenInfoText(language);
     }
+
+    @And("I select {string} icon on the Citizenship and Immigration Status page")
+    public void iSelectHelpIcon(String labelIcon){lawfulPresencePage.clickHelpIcon(labelIcon);}
+
+    @Then("I validate Lawful Presence help drawer {string} verbiage in {string}")
+    public void iValidateHelp(String helpText, String language){lawfulPresencePage.validateHelpVerbiage(helpText, language);}
+
 }

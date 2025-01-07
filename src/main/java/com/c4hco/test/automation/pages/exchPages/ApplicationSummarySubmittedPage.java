@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.ApplicationSummaryPdf;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
@@ -17,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationSummarySubmittedPage {
@@ -172,65 +174,35 @@ public class ApplicationSummarySubmittedPage {
     }
 
     private static String extractTextFromPDF(Path pdfPath) throws IOException {
-        try (PDDocument document = PDDocument.load(new File(pdfPath.toString()))) {
+        try (PDDocument document = Loader.loadPDF(new File(String.valueOf(pdfPath)))) {
             PDFTextStripper pdfStripper = new PDFTextStripper();
             return pdfStripper.getText(document).trim();
         }
     }
 
-    public void verifyOhcDetails(String detail, String data, String language) {
-//        for data, add space in front due to no space if data is blank
-//        Ex: " Yes"
+    public void verifyOhcDetails(String language, List<Map<String, String>> ohcData) {
         WebElement ohcMemberNamePrimary = basicActions.getDriver().findElement(By.xpath("//*[@id='existingHealthInsurance']//span[contains(text(), '"+SharedData.getPrimaryMember().getFirstName()+"')]"));
         List<WebElement> ohcDetailsPrimary = basicActions.getDriver().findElements(By.xpath("//*[@id='existingHealthInsurance']//span[contains(text(), '" + SharedData.getPrimaryMember().getFirstName() + "')]//following::tr"));
-        switch (language) {
-            case "English":
-                switch (detail) {
-                    case "Name":
-                        basicActions.waitForElementToBePresent(hdrOtherHealthCoverage, 20);
-                        softAssert.assertEquals(ohcMemberNamePrimary.getText(), SharedData.getPrimaryMember().getFullName());
-                        softAssert.assertAll();
-                        break;
-                    case "Employer Sponsored Insurance":
-                        softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), "Employer Sponsored Insurance");
-                        softAssert.assertAll();
-                        break;
-                    case "Currently enrolled":
-                        softAssert.assertEquals(ohcDetailsPrimary.get(1).getText(), "Currently Enrolled" + data);
-                        softAssert.assertAll();
-                        break;
-                    case "End date":
-                        verifyEndDate(data, "End Date ");
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + detail);
-                }
-                break;
-            case "Spanish":
-                switch (detail) {
-                    case "Name":
-                        basicActions.waitForElementToBePresent(hdrOtherHealthCoverage, 20);
-                        softAssert.assertEquals(ohcMemberNamePrimary.getText(), SharedData.getPrimaryMember().getFullName());
-                        softAssert.assertAll();
-                        break;
-                    case "Employer Sponsored Insurance":
-                        softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), "Employer Sponsored Insurance");
-                        softAssert.assertAll();
-                        break;
-                    case "Currently enrolled":
-                        softAssert.assertEquals(ohcDetailsPrimary.get(1).getText(), "Inscrito(a) actualmente" + data);
-                        softAssert.assertAll();
-                        break;
-                    case "End date":
-                        verifyEndDate(data, "Fecha de terminaci\u00F3n ");
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + detail);
-                }
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
+        String coverageType = ohcData.get(0).get("OHC Type");
+        String currentlyEnrolled = ohcData.get(0).get("Currently Enrolled");
+        String endDate = ohcData.get(0).get("End date");
+
+        String currentlyEnrolledLabel = "Currently Enrolled";
+        String endDateLabel = "End Date";
+
+        if ("Spanish".equalsIgnoreCase(language)) {
+            currentlyEnrolledLabel = "Inscrito(a) actualmente";
+            endDateLabel = "Fecha de terminaci\u00F3n";
         }
+
+        basicActions.waitForElementToBePresent(hdrOtherHealthCoverage, 20);
+        softAssert.assertEquals(ohcMemberNamePrimary.getText(), SharedData.getPrimaryMember().getFullName());
+        softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), coverageType);
+        softAssert.assertEquals(ohcDetailsPrimary.get(1).getText(), currentlyEnrolledLabel + " " + currentlyEnrolled);
+        if (endDate != null && !endDate.isEmpty()) {
+            verifyEndDate(endDate, endDateLabel + " ");
+        }
+        softAssert.assertAll();
     }
 
     private void verifyEndDate(String data, String label) {
@@ -243,10 +215,13 @@ public class ApplicationSummarySubmittedPage {
                 expectedDate = basicActions.getFutureDate(60);
                 break;
             case "Prior Month":
-                expectedDate = basicActions.changeDateFormat(basicActions.firstDateOfLastMonth(), "yyyy-MM-dd", "yyyy-MM-dd");
+                expectedDate = basicActions.changeDateFormat(basicActions.firstDateOfLastMonth(), "yyyy-MM-dd", "MM/dd/yyyy");
                 break;
             case "Current Month":
-                expectedDate = basicActions.changeDateFormat(basicActions.firstDateOfCurrMonth(), "yyyy-MM-dd", "yyyy-MM-dd");
+                expectedDate = basicActions.changeDateFormat(basicActions.firstDateOfCurrMonth(), "yyyy-MM-dd", "MM/dd/yyyy");
+                break;
+            case "Last Current Month":
+                expectedDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + data);
@@ -254,152 +229,145 @@ public class ApplicationSummarySubmittedPage {
 
         List<WebElement> ohcDetailsPrimary = basicActions.getDriver().findElements(By.xpath("//*[@id='existingHealthInsurance']//span[contains(text(), '" + SharedData.getPrimaryMember().getFirstName() + "')]//following::tr"));
         softAssert.assertEquals(ohcDetailsPrimary.get(2).getText(), label + expectedDate);
-        softAssert.assertAll();
     }
 
-    public boolean verifyOhcPdfText(String data, String language, String ohcType, String enrolled, String endDate)throws IOException {
+    public boolean verifyOhcFamilyPdfText(String language, List<Map<String, String>> pdfData)throws IOException {
+        verifyOhcPdfHeaderText("Other Health Coverage", language);
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
         String pathAndName = filePath+"//"+fileName;
         System.out.println("path and name is "+pathAndName);
         // Read the PDF content using PDFBox
         String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+        String coverageType = pdfData.get(0).get("Coverage Type");
+        String currentlyEnrolled = pdfData.get(0).get("Currently Enrolled");
+//        String insuranceEnding = pdfData.get(0).get("Insurance Ending");
+        String endDate = pdfData.get(0).get("End date");
 
         // Verify the text
-        switch (data) {
-            case "Other Health Coverage":
-                switch (language){
-                    case "English":
-                        String startPhrase = "Other Health Coverage";
-                        int startIndex = pdfContent.indexOf(startPhrase);
-                        if (startIndex != -1) {
-                            String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getApplicationSummaryDetails(ohcType, enrolled, endDate))) {
-                                String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationSummaryPdf.getApplicationSummaryDetails(ohcType, enrolled, endDate).split("\n");
+        switch (language){
+            case "English":
+                String startPhrase = SharedData.getPrimaryMember().getFullName() + "\n" + coverageType;
+                int startIndex = pdfContent.lastIndexOf(startPhrase);
+                if (startIndex != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getFamilyApplicationSummaryDetails(coverageType, currentlyEnrolled, endDate))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationSummaryPdf.getFamilyApplicationSummaryDetails(coverageType, currentlyEnrolled, endDate).split("\n");
 
-                                StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
-                                for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
-                                    String pdfLine = pdfLines[i].trim();
-                                    String expectedLine = expectedLines[i].trim();
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
 
-                                    if (!pdfLine.equals(expectedLine)) {
-                                        differences.append("Difference at line ").append(i + 1).append(":\n");
-                                        differences.append("PDF line.....: [").append(pdfLine).append("]\n");
-                                        differences.append("Expected line: [").append(expectedLine).append("]\n");
-                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
-                                    }
-                                }
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                             }
                         }
-                        break;
-                    case "Spanish":
-                        String startPhraseSp = "Otra cobertura de salud";
-                        int startIndexSp = pdfContent.indexOf(startPhraseSp);
-                        if (startIndexSp != -1) {
-                            String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getApplicationSummaryDetailsSp(ohcType, enrolled, endDate))) {
-                                String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationSummaryPdf.getApplicationSummaryDetailsSp(ohcType, enrolled, endDate).split("\n");
+                    }
+                }
+                break;
+            case "Spanish":
+                String startPhraseSp = SharedData.getPrimaryMember().getFullName() + "\n" + coverageType;
+                int startIndexSp = pdfContent.lastIndexOf(startPhraseSp);
+                if (startIndexSp != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getFamilyApplicationSummaryDetailsSp(coverageType, currentlyEnrolled, endDate))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationSummaryPdf.getFamilyApplicationSummaryDetailsSp(coverageType, currentlyEnrolled, endDate).split("\n");
 
-                                StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
-                                for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
-                                    String pdfLine = pdfLines[i].trim();
-                                    String expectedLine = expectedLines[i].trim();
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
 
-                                    if (!pdfLine.equals(expectedLine)) {
-                                        differences.append("Difference at line ").append(i + 1).append(":\n");
-                                        differences.append("PDF line.....: [").append(pdfLine).append("]\n");
-                                        differences.append("Expected line: [").append(expectedLine).append("]\n");
-                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
-                                    }
-                                }
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                             }
                         }
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + language);
+                    }
                 }
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + data);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
         return true;
     }
 
-    public boolean verifyOhcFamilyPdfText(String data, String language, String ohcType, String enrolled, String endDate)throws IOException {
-        verifyOhcPdfHeaderText(data, language);
+    public boolean verifyBasicOhcPdfText(String language, List<Map<String, String>> pdfData)throws IOException {
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
         String pathAndName = filePath+"//"+fileName;
         System.out.println("path and name is "+pathAndName);
-        // Read the PDF content using PDFBox
         String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+        String coverageType = pdfData.get(0).get("Coverage Type");
+        String currentlyEnrolled = pdfData.get(0).get("Currently Enrolled");
+        String insuranceEnding = pdfData.get(0).get("Insurance Ending");
+        String endDate = pdfData.get(0).get("End date");
 
-        // Verify the text
-        switch (data) {
-            case "Other Health Coverage":
-                switch (language){
-                    case "English":
-                        String startPhrase = SharedData.getPrimaryMember().getFullName() + "\n" + ohcType;
-                        int startIndex = pdfContent.lastIndexOf(startPhrase);
-                        if (startIndex != -1) {
-                            String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getFamilyApplicationSummaryDetails(ohcType, enrolled, endDate))) {
-                                String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationSummaryPdf.getFamilyApplicationSummaryDetails(ohcType, enrolled, endDate).split("\n");
+        switch (language) {
+            case "English":
+                String startPhrase = "Other Health Coverage";
+                int startIndex = pdfContent.indexOf(startPhrase);
+                if (startIndex != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getBasicApplicationDetails(coverageType, currentlyEnrolled, insuranceEnding, endDate))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationSummaryPdf.getBasicApplicationDetails(coverageType, currentlyEnrolled, insuranceEnding, endDate).split("\n");
 
-                                StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
-                                for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
-                                    String pdfLine = pdfLines[i].trim();
-                                    String expectedLine = expectedLines[i].trim();
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
 
-                                    if (!pdfLine.equals(expectedLine)) {
-                                        differences.append("Difference at line ").append(i + 1).append(":\n");
-                                        differences.append("PDF line.....: [").append(pdfLine).append("]\n");
-                                        differences.append("Expected line: [").append(expectedLine).append("]\n");
-                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
-                                    }
-                                }
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                             }
                         }
-                        break;
-                    case "Spanish":
-                        String startPhraseSp = SharedData.getPrimaryMember().getFullName() + "\n" + ohcType;
-                        int startIndexSp = pdfContent.lastIndexOf(startPhraseSp);
-                        if (startIndexSp != -1) {
-                            String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getFamilyApplicationSummaryDetailsSp(ohcType, enrolled, endDate))) {
-                                String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationSummaryPdf.getFamilyApplicationSummaryDetailsSp(ohcType, enrolled, endDate).split("\n");
+                    }
+                }
+                break;
+            case "Spanish":
+                String startPhraseSp = "Otra cobertura de salud";
+                int startIndexSp = pdfContent.indexOf(startPhraseSp);
+                if (startIndexSp != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationSummaryPdf.getBasicApplicationDetailsSp(coverageType, currentlyEnrolled, insuranceEnding, endDate))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationSummaryPdf.getBasicApplicationDetailsSp(coverageType, currentlyEnrolled, insuranceEnding, endDate).split("\n");
 
-                                StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
-                                for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
-                                    String pdfLine = pdfLines[i].trim();
-                                    String expectedLine = expectedLines[i].trim();
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
 
-                                    if (!pdfLine.equals(expectedLine)) {
-                                        differences.append("Difference at line ").append(i + 1).append(":\n");
-                                        differences.append("PDF line.....: [").append(pdfLine).append("]\n");
-                                        differences.append("Expected line: [").append(expectedLine).append("]\n");
-                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
-                                    }
-                                }
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                             }
                         }
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + language);
+                    }
                 }
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + data);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
-        return true;
+        return false;
     }
 
 }

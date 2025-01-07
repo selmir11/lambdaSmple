@@ -1,6 +1,5 @@
 Feature: Regression Tests that require Seed 1
 
-
   @SLCR-137 # WIP
 Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
 
@@ -15,7 +14,7 @@ And I enter general mandatory data for "coco" account creation
 Then I validate I am on the "Login" page
 And I enter valid credentials to login
 Then I click continue signing in on the CAC Screener page
-Given I set the dynamic policy, coverage and financial dates for "medical" plan in coco
+Given I set the dynamic policy, coverage and financial dates in coco
 | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
 | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
 And I apply for the current year in CoCo
@@ -30,7 +29,7 @@ And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVE
 And I select "Yes" for live in Colorado option
 And I click continue on the Add info for yourself page
 Then I validate I am on the "Elmo Race and Ethnicity" page
-And I select "Prefer not to answer" for race and ethnicity option
+And I select "Prefer not to answer" for race and ethnicity option for "Primary"
 And I click save and continue on the Race and Ethnicity page
 And I select "Yes" employment option
 And I enter "30,000.00" income amount
@@ -56,12 +55,13 @@ And I click Continue on the Declarations And Signature Page CoCo
 Then I validate I am on the "Application Results CoCo" page
 And I click Continue on the Application Results Page CoCo
 Then I validate I am on the "Start Shopping" page
+Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
 Then I click continue on coco start shopping page
 Then I validate I am on the "Medical Plan Results" page
-And I select "Cigna Connect Colorado Option Bronze" coco medical plan
-And I click Continue on the Medical Plans Page CoCo
+And I select or skip the medical plans for groups on medical plan page
+    | Group 1:Cigna Connect Colorado Option Bronze |
 Then I validate I am on the "planSummaryMedicalDental" page
-And I validate medical premium amount
+And I set medical premium amount
 And I click continue on coco plan summary page
 Then I validate I am on the "Enrollment Agreements" page
 And I select "Acknowledgement" agreement checkbox CoCo

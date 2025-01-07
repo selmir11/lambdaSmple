@@ -56,6 +56,7 @@ Scenario: Verify access the Find expert help/Manage who helps you page from top 
   And I click on Get Assistance in the "Exch" Header
   And I click on Find Expert Assistance in the "Exch" Header
   Then I click Go Back button from chrome browser
+  Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
   And I click continue on start shopping page
   Then I validate I am on the "Start Shopping" page
   And I select the first medical plan

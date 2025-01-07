@@ -2,6 +2,7 @@ package com.c4hco.test.automation.utils;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
@@ -10,9 +11,11 @@ import org.testng.Assert;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
@@ -21,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 public class BasicActions {
     private WebDriver driver;
@@ -42,12 +47,13 @@ public class BasicActions {
     public static BasicActions getInstance() {
         return LazyHolder.INSTANCE;
     }
+
     private static final String SSN_REGEX =
             "^(?!000|666|9\\d{2})\\d{3}[- ]?(?!00)\\d{2}[- ]?(?!0000)\\d{4}$";
     private static final Pattern SSN_PATTERN = Pattern.compile(SSN_REGEX);
 
     public void clickBackButtonFromBrowser() {
-       getDriver().navigate().back();
+        getDriver().navigate().back();
     }
 
     private static class LazyHolder {
@@ -67,32 +73,32 @@ public class BasicActions {
 
     public void openUrlWithQueryStringInNewTab(String query) {
         String currUrl = getCurrentUrl();
-        String newUrl = currUrl+query;
+        String newUrl = currUrl + query;
         openNewTab();
         driver.get(newUrl);
     }
 
-    public String extractDateFromUrl(String url){
-        try{
+    public String extractDateFromUrl(String url) {
+        try {
             URL u = new URL(url);
             URI uri = u.toURI();
             String query = uri.getQuery();
-            if(query != null){
+            if (query != null) {
                 String[] pairs = query.split("&");
-                for (String pair : pairs){
+                for (String pair : pairs) {
                     String[] keyValue = pair.split("=");
-                    if(keyValue[0].equals("dateOverride")){
+                    if (keyValue[0].equals("dateOverride")) {
                         return keyValue[1];
                     }
                 }
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public void openNewTab(){
+    public void openNewTab() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.open();");
         Set<String> windowHandles = driver.getWindowHandles();
@@ -106,9 +112,9 @@ public class BasicActions {
         driver.switchTo().window(newTabHandle);
     }
 
-    public void openCurrPageInNewTab(){
+    public void openCurrPageInNewTab() {
         String currentUrl = getCurrentUrl();
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+        JavascriptExecutor jse = (JavascriptExecutor) getDriver();
         jse.executeScript("window.open()");
         for (String handle : getDriver().getWindowHandles()) {
             getDriver().switchTo().window(handle);
@@ -188,19 +194,19 @@ public class BasicActions {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException|NoSuchElementException ignore) {
+        } catch (TimeoutException | NoSuchElementException | IndexOutOfBoundsException ignore) {
             Log.info("Element is not present");
             return false;
         }
         return true;
     }
 
-    public Boolean isElementDisplayed(WebElement webElement, int waitTime){
+    public Boolean isElementDisplayed(WebElement webElement, int waitTime) {
         Boolean isElementPresent = true;
-        try{
+        try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch(NoSuchElementException|TimeoutException ignore){
+        } catch (NoSuchElementException | TimeoutException ignore) {
             isElementPresent = false;
         }
         return isElementPresent;
@@ -213,7 +219,7 @@ public class BasicActions {
                 new WebDriverWait(driver,
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 return true;
-            } catch (StaleElementReferenceException|NoSuchElementException e) {
+            } catch (StaleElementReferenceException | NoSuchElementException | IndexOutOfBoundsException e) {
                 retries--;
                 Log.info("StaleElementReferenceException or NoSuchElementException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
@@ -230,9 +236,9 @@ public class BasicActions {
             try {
                 new WebDriverWait(driver,
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-               webElement.click();
+                webElement.click();
                 return true;
-            } catch (ElementClickInterceptedException e) {
+            } catch (ElementClickInterceptedException|NoSuchElementException e) {
                 retries--;
                 Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
@@ -247,7 +253,7 @@ public class BasicActions {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException|NoSuchElementException ignore) {
+        } catch (TimeoutException | NoSuchElementException ignore) {
             Log.info("Element is not present");
             return false;
         }
@@ -316,9 +322,9 @@ public class BasicActions {
         }
     }
 
-    public void clickById(String elementId){
+    public void clickById(String elementId) {
         WebElement element = WebDriverManager.getDriver().findElement(By.id(elementId));
-        ((JavascriptExecutor) WebDriverManager.getDriver()).executeScript("arguments[0].click()",element );
+        ((JavascriptExecutor) WebDriverManager.getDriver()).executeScript("arguments[0].click()", element);
     }
 
     public void waitForPresence(WebElement webElement) {
@@ -339,39 +345,43 @@ public class BasicActions {
             }
         }
     }
+
     public void switchToUrlPage(String URL) {
-    Set<String> handles = getDriver().getWindowHandles();
+        Set<String> handles = getDriver().getWindowHandles();
         for (String handle : handles) {
-        if (getDriver().getCurrentUrl().contains(URL)) {
-            System.out.println(getDriver().getCurrentUrl());
-            System.out.println("The URL matches the desired link.");
-            getDriver().switchTo().window(handle);
-                break;}
-        switchtoactiveTab();
-        }}
+            if (getDriver().getCurrentUrl().contains(URL)) {
+                System.out.println(getDriver().getCurrentUrl());
+                System.out.println("The URL matches the desired link.");
+                getDriver().switchTo().window(handle);
+                break;
+            }
+            switchtoactiveTab();
+        }
+    }
+
     public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public void updateElementWithRetries(String locator, String value) {
-            int attempts = 0;
-            while (attempts < 5) {
-                try {
-                    WebElement element = getDriver().findElement(By.xpath(locator));
-                    element.click();
-                    element.clear();
-                    element.sendKeys(value);
-                    return;
-                } catch (StaleElementReferenceException e) {
-                    attempts++;
-                    System.out.println("Stale element reference exception. Retrying... Attempt " + attempts);
-                } catch (Exception e) {
-                    System.out.println("Error occurred while updating element: " + e.getMessage());
-                    break;
-                }
+        int attempts = 0;
+        while (attempts < 5) {
+            try {
+                WebElement element = getDriver().findElement(By.xpath(locator));
+                element.click();
+                element.clear();
+                element.sendKeys(value);
+                return;
+            } catch (StaleElementReferenceException e) {
+                attempts++;
+                System.out.println("Stale element reference exception. Retrying... Attempt " + attempts);
+            } catch (Exception e) {
+                System.out.println("Error occurred while updating element: " + e.getMessage());
+                break;
             }
-            throw new RuntimeException("Failed to update element after 5 attempts.");
         }
+        throw new RuntimeException("Failed to update element after 5 attempts.");
+    }
 
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
         List<MemberDetails> members = SharedData.getMembers();
@@ -381,25 +391,26 @@ public class BasicActions {
         }
         return members;
     }
-     public Boolean waitUntilUrlIsPresent(String pageUrl){
+
+    public Boolean waitUntilUrlIsPresent(String pageUrl) {
         try {
-         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                 .withTimeout(Duration.ofSeconds(30))
-                 .pollingEvery(Duration.ofMillis(100))
-                 .ignoring(NoSuchElementException.class);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(30))
+                    .pollingEvery(Duration.ofMillis(100))
+                    .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.urlContains(pageUrl));
-        }
-        catch(TimeoutException e) {
+        } catch (TimeoutException e) {
             System.out.println("Url waiting for is not displayed");
             return false;
         }
-         return true;
-     }
+        return true;
+    }
 
     public void switchtoactiveTab() {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
     }
+
     public void switchtoPreviousTab() {
         tabs = new ArrayList<>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(0));
@@ -410,11 +421,10 @@ public class BasicActions {
         getDriver().switchTo().window(tabs.get(tabNumber));
     }
 
-    public void changeToNewUrl(String page){
+    public void changeToNewUrl(String page) {
         String currentUrl = getCurrentUrl();
-        String primaryMemId = SharedData.getPrimaryMemberId();
         String newUrl = "";
-        switch(page){
+        switch (page) {
             case "Income portal Error CoCo":
                 newUrl = "income-portal/error";
                 newUrl = currentUrl.replaceAll("income-portal/additionalIncome/[^/]*", newUrl);
@@ -486,25 +496,36 @@ public class BasicActions {
                 getDriver().navigate().to(newUrl);
                 break;
             case "Tax Status Elmo page":
-                newUrl = "TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus";
+                newUrl = "TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Status Elmo page Son":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Son")+"/taxStatus";
+                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Tax Status Elmo page Spouse":
+                newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
-                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             case "Tax Return portal Unauthorized Exch":
                 newUrl = "TaxReturnPortal/unauthorized";
-                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" +getMemberId("Primary")+"/taxStatus", newUrl);
+                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
     }
-    public static boolean isSSNValid(String SSNvalue){
+
+    public static boolean isSSNValid(String SSNvalue) {
         if (SSNvalue == null) {
             return false;
         }
@@ -519,7 +540,7 @@ public class BasicActions {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
-    public String getNoticesDownloadPath(){
+    public String getNoticesDownloadPath() {
         String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
         String noticesFolderPath = "target/notices-downloads/download-" + timestamp;
         File reportFolder = new File(noticesFolderPath);
@@ -532,21 +553,23 @@ public class BasicActions {
         SharedData.setLocalPathToDownloadFile(noticesFolderPath);
         return noticesFolderPath;
     }
-    public static String getUniquePW(){
-        return  RandomStringUtils.random(2, "@&%@@")+RandomStringUtils.randomAlphanumeric(8)+RandomStringUtils.random(1,"QWERTYUIOPASD")+RandomStringUtils.randomNumeric(2);
+
+    public static String getUniquePW() {
+        return RandomStringUtils.random(2, "@&%@@") + RandomStringUtils.randomAlphanumeric(8) + RandomStringUtils.random(1, "QWERTYUIOPASD") + RandomStringUtils.randomNumeric(2);
     }
 
     public Boolean waitForPageLoad(int waitTime) {
         try {
-            new WebDriverWait( driver, Duration.ofSeconds( waitTime ) ).until( (ExpectedCondition<Boolean>) wd ->
-                    ((JavascriptExecutor) wd).executeScript( "return document.readyState" ).equals( "complete" ) );
+            new WebDriverWait(driver, Duration.ofSeconds(waitTime)).until((ExpectedCondition<Boolean>) wd ->
+                    ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         } catch (TimeoutException ignore) {
-            Log.info( "Document ready state not complete" );
-            Assert.fail( "Document ready state not complete" );
+            Log.info("Document ready state not complete");
+            Assert.fail("Document ready state not complete");
             return false;
         }
         return true;
     }
+
     public Boolean waitForAngular(int waitTime) {
         driver.manage().timeouts().setScriptTimeout(waitTime, TimeUnit.SECONDS);
         try {
@@ -556,8 +579,8 @@ public class BasicActions {
             ((JavascriptExecutor) driver).executeAsyncScript(
                     "getAllAngularTestabilities()[0].whenStable(arguments[arguments.length - 1], " + (waitTime * 1000) + ")");
         } catch (TimeoutException ignore) {
-            Log.info( "Angular ready state not complete" );
-            Assert.fail( "Angular ready state not complete" );
+            Log.info("Angular ready state not complete");
+            Assert.fail("Angular ready state not complete");
             return false;
         }
         return true;
@@ -568,7 +591,7 @@ public class BasicActions {
     }
 
     public boolean isSortedAscending(List<WebElement> objectDetails) {
-        waitForElementListToBePresentWithRetries(objectDetails,10);
+        waitForElementListToBePresentWithRetries(objectDetails, 10);
         List<String> stringList = objectDetails.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
@@ -584,7 +607,7 @@ public class BasicActions {
     }
 
     public boolean isSortedDescending(List<WebElement> objectDetails) {
-        waitForElementListToBePresentWithRetries(objectDetails,10);
+        waitForElementListToBePresentWithRetries(objectDetails, 10);
         List<String> amounts = objectDetails.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
@@ -598,7 +621,8 @@ public class BasicActions {
         }
         return true;
     }
-    public String doubleAmountFormat(String amountText){
+
+    public String doubleAmountFormat(String amountText) {
         String formattedAmt = amountText.replaceAll("[^\\d.]", "");
         // Parse the amount string to a double
         double amount = Double.parseDouble(formattedAmt);
@@ -609,6 +633,7 @@ public class BasicActions {
             return String.format("%.2f", amount); // Two decimals for fractional amounts
         }
     }
+
     public String getCurrYear() {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear());
@@ -628,7 +653,7 @@ public class BasicActions {
 
     public String getFutureYear() {
         LocalDate today = LocalDate.now();
-        return Integer.toString(today.getYear()+1);
+        return Integer.toString(today.getYear() + 1);
     }
 
     public String getFirstOfJanCurrYr() { // January 1st of current year
@@ -637,6 +662,7 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return date.format(formatter);
     }
+
     public String getLastDayOfCurrYr() {// December 31st of the current year
         LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.of(today.getYear(), 12, 31);
@@ -644,42 +670,42 @@ public class BasicActions {
         return date.format(formatter);
     }
 
-    public String firstDateOfNextMonth(){
+    public String firstDateOfNextMonth() {
         LocalDate today = LocalDate.now();
         LocalDate firstDayOfNextMonth = today.plusMonths(1).withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
 
-    public String firstDateOfLastMonth(){
+    public String firstDateOfLastMonth() {
         LocalDate today = LocalDate.now();
         LocalDate firstDayOfLastMonth = today.minusMonths(1).withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfLastMonth.format(formatter);
     }
 
-    public String firstDateOfCurrMonth(){
+    public String firstDateOfCurrMonth() {
         LocalDate today = LocalDate.now();
         LocalDate firstDayOfCurrMonth = today.withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfCurrMonth.format(formatter);
     }
 
-    public String lastDateOfNextMonth(){
+    public String lastDateOfNextMonth() {
         LocalDate today = LocalDate.now();
         LocalDate lastDayOfNextMonth = YearMonth.from(today).plusMonths(1).atEndOfMonth();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return lastDayOfNextMonth.format(formatter);
     }
 
-    public String lastDateOfCurrMonth(){
+    public String lastDateOfCurrMonth() {
         LocalDate today = LocalDate.now();
         LocalDate lastDayOfCurrMonth = YearMonth.from(today).atEndOfMonth();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         return lastDayOfCurrMonth.format(formatter);
     }
 
-    public String lastDateOfPriorMonth(){
+    public String lastDateOfPriorMonth() {
         LocalDate today = LocalDate.now();
         LocalDate lastDayOfPriorMonth = YearMonth.from(today).minusMonths(1).atEndOfMonth();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
@@ -691,16 +717,19 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
+
     public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
+
     public String getPastDate(int daysToMove) {
         LocalDate date = LocalDate.now().minusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
+
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat); // e.g., "yyyy-MM-dd"
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat); // e.g., "MM/dd/yyyy"
@@ -709,9 +738,17 @@ public class BasicActions {
         return date.format(outputFormatter);
     }
 
-    public String  getDateBasedOnRequirement(String dateRequirement) {
+    public String changeDateFormat(String dateString, String inputFormat, String outputFormat, Locale locale) {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat, locale);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat, locale);
+        LocalDate date = LocalDate.parse(dateString, inputFormatter);
+
+        return date.format(outputFormatter);
+    }
+
+    public String getDateBasedOnRequirement(String dateRequirement) {
         String date;
-        if(dateRequirement.contains("Future") ||dateRequirement.contains("Past")) {
+        if (dateRequirement.contains("Future") || dateRequirement.contains("Past")) {
             String[] parts = dateRequirement.split(" ");
             String dateRequirementPart = parts[0];
             int daysToMove = Integer.parseInt(parts[1]);
@@ -725,32 +762,31 @@ public class BasicActions {
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirementPart);
             }
-        }
-        else{
+        } else {
             switch (dateRequirement) {
-                    case "First Day Of Current Year":
-                        date = getFirstOfJanCurrYr();
-                        break;
-                    case "Last Day Of Current Year":
-                        date = getLastDayOfCurrYr();
-                        break;
-                    case "getFromSharedData":
-                        String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
-                        date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
-                        break;
-                    case "First Of Next Month":
-                        date = firstDateOfNextMonth();
-                        break;
+                case "First Day Of Current Year":
+                    date = getFirstOfJanCurrYr();
+                    break;
+                case "Last Day Of Current Year":
+                    date = getLastDayOfCurrYr();
+                    break;
+                case "getFromSharedData":
+                    String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
+                    date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
+                    break;
+                case "First Of Next Month":
+                    date = firstDateOfNextMonth();
+                    break;
                 case "Last Of Next Month":
                     date = lastDateOfNextMonth();
                     break;
-                    case "Today":
-                        date = getTodayDate();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + dateRequirement);
-                }
+                case "Today":
+                    date = getTodayDate();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + dateRequirement);
             }
+        }
         return date;
     }
 
@@ -761,17 +797,21 @@ public class BasicActions {
         return endOfMonth.format(formatter);
     }
 
-    public void getDob(String namePrefix, String dob){
+    public void getDob(String namePrefix, String dob) {
         LocalDate currentDate = LocalDate.now();
         LocalDate dobCalculator = currentDate;
-        switch(dob){
+        switch (dob) {
             case "current date minus 5days":
                 dobCalculator = currentDate.minusDays(5);
                 break;
             case "current date":
                 dobCalculator = currentDate;
                 break;
-            default: Assert.fail("Did not find the case entered");
+            case "first day of current month":
+                dobCalculator = currentDate.withDayOfMonth(1);
+                break;
+            default:
+                Assert.fail("Did not find the case entered");
         }
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String actualdob = dateFormat.format(dobCalculator);
@@ -781,22 +821,58 @@ public class BasicActions {
         SharedData.setCalculatedDob(nameAndDob);
     }
 
-    public String getFullNameWithPrefix(String memPrefix){
-      List<MemberDetails> allMem = getAllMem();
-      return allMem.stream().map(MemberDetails::getFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
+    public String getFullNameWithPrefix(String memPrefix) {
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
     }
 
-    public String getCompleteFullNameWithPrefix(String memPrefix){
+    public String getCompleteFullNameWithPrefix(String memPrefix) {
         List<MemberDetails> allMem = getAllMem();
         return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
+    }
+    public List<MemberDetails> getAllSubscribers(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allSubscribers = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            if(member.getIsSubscriber().equals("Y")){
+                allSubscribers.add(member);
+            }
+        }
+        return allSubscribers;
+    }
+    public List<MemberDetails> getAllDependents(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allDependents = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            if(member.getIsSubscriber().equals("N")){
+                allDependents.add(member);
+            }
+        }
+        return allDependents;
+    }
+
+
+    public String getMemFirstNames(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().map(MemberDetails::getFirstName).filter(firstName -> firstName.contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public MemberDetails getMember(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElse(null);
+    }
+
+    public String getMemFirstLastNames(String memPrefix){
+        List<MemberDetails> allMem = getAllMem();
+        return allMem.stream().filter(member -> member.getFirstName().contains(memPrefix)).map(member -> member.getFirstName() + " " + member.getLastName()).findFirst().orElse(null);
     }
 
     public List<MemberDetails> getAllMem(){
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         List<MemberDetails> dependents = SharedData.getMembers();
         List<MemberDetails> allMembers = new ArrayList<>();
-        if(dependents!=null){
-            for(MemberDetails dependent: dependents){
+        if (dependents != null) {
+            for (MemberDetails dependent : dependents) {
                 allMembers.add(dependent);
             }
         }
@@ -804,35 +880,55 @@ public class BasicActions {
         return allMembers;
     }
 
-    public List<String> getAllMemNames(){
+    public List<String> getAllMemNames() {
         // returns first and last name
         List<String> firstAndLastName = new ArrayList<>();
         List<MemberDetails> allMembers = getAllMem();
-        for(MemberDetails mem: allMembers){
-           firstAndLastName.add(mem.getSignature());
+        for (MemberDetails mem : allMembers) {
+            firstAndLastName.add(mem.getSignature());
         }
         return firstAndLastName;
     }
 
-    public List<String> getAllMemCompleteNames(){
+    public List<String> getAllMemFirstNames() {
+        List<String> firstNames = new ArrayList<>();
+        List<MemberDetails> allMembers = getAllMem();
+        for (MemberDetails mem : allMembers) {
+            firstNames.add(mem.getFirstName());
+        }
+        return firstNames;
+    }
+
+    public List<String> getAllMemCompleteNames() {
         // returns first, middle, last name
         List<String> firstAndLastName = new ArrayList<>();
         List<MemberDetails> allMembers = getAllMem();
-        for(MemberDetails mem: allMembers){
+        for (MemberDetails mem : allMembers) {
             firstAndLastName.add(mem.getCompleteFullName());
         }
         return firstAndLastName;
+    }
+
+    public String getDobOfMember(String namePrefix){
+        String dob = null;
+        List<MemberDetails> allMembers = getAllMem();
+        for(MemberDetails mem: allMembers){
+            if(mem.getFirstName().contains(namePrefix)){
+              dob = mem.getDob();
+              break;
+            }
+        }
+        return dob;
     }
 
     public String getMemberId(String memPrefix){
         String memId = "";
         if (memPrefix.equals("Primary")) {
             memId = SharedData.getPrimaryMemberId();
-        }
-        else {
+        } else {
             List<MemberDetails> members = SharedData.getMembers();
-            for(MemberDetails mem: members){
-                if(mem.getFirstName().contains(memPrefix)){
+            for (MemberDetails mem : members) {
+                if (mem.getFirstName().contains(memPrefix)) {
                     memId = mem.getMemberId();
                 }
             }
@@ -840,10 +936,185 @@ public class BasicActions {
         return memId;
     }
 
-    public static String getUniqueString(int length){
+    public static String getUniqueString(int length) {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
+    public List<MemberDetails> getAllMedicalEligibleMemInfo(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allEligibleMembers = new ArrayList<>();
+        for (MemberDetails memInfo : allMembers) {
+            if (memInfo.getHasMedicalPlan()) {
+                allEligibleMembers.add(memInfo);
+            }
+        }
+        return allEligibleMembers;
+    }
+
+    public List<MemberDetails> getAllDentalEligibleMemInfo(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allEligibleMembers = new ArrayList<>();
+        for (MemberDetails memInfo : allMembers) {
+            if (memInfo.getHasDentalPlan()) {
+                allEligibleMembers.add(memInfo);
+            }
+        }
+        return allEligibleMembers;
+    }
+
+    public void setRelationToSubscriber(List<String> relationToSubscriber){
+        for(String relation : relationToSubscriber){
+            String[] relationDetails = relation.split(":");
+            String nameOfMem = relationDetails[0].trim();
+            String relationship = relationDetails[1].trim();
+            List<MemberDetails> allMemList = getAllMem();
+            allMemList.stream().filter(mem -> mem.getFirstName().contains(nameOfMem)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(relationship));
+        }
+    }
+
+    public Map<String, List<Ob834DetailsEntity>> getFileBasedMedOb834DbEntities(){
+        List<Ob834DetailsEntity> allEntities = SharedData.getOb834DetailsMedEntities();
+        Map<String, List<Ob834DetailsEntity>> medEntitiesWithFilename = allEntities.stream().collect(Collectors.groupingBy(Ob834DetailsEntity::getFilename));
+        return medEntitiesWithFilename;
+    }
+
+    public String getSubscriber(String name, String type){
+        String subscriberName = "";
+                List<MemberDetails> allDependents = getAllDependents();
+                for(MemberDetails mem: allDependents){
+                    if(mem.getFirstName().equals(name)){
+                        switch(type){
+                            case "medical":
+                                subscriberName = mem.getMedSubscriberName();
+                                break;
+                            case "dental":
+                                subscriberName = mem.getDenSubscriberName();
+                                break;
+                            default: Assert.fail("Invalid argument passed!!!");
+                        }
+                    }
+                }
+        return subscriberName;
+    }
+
+    public boolean hardRefreshUntilVisible(WebElement element, int timeout, int pollInterval) {
+                FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(timeout))
+                        .pollingEvery(Duration.ofMillis(pollInterval))
+                        .ignoring(NoSuchElementException.class);
+        int attempts = 0;
+        while (attempts < timeout) {
+            try {
+                wait.until(driver -> {
+                    return (element != null && element.isDisplayed()) ? element : null;
+                });
+                return true;
+            } catch (TimeoutException e) {
+                driver.navigate().refresh();
+                System.out.println("Element not found, refreshing the page...");
+                attempts++;
+            }
+        }
+        System.out.println("Timeout reached, element not found.");
+        return false;
+    }
+
+    public void validateTimeWithinLast10Minutes(String actualTime) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("America/Denver"));
+
+        try {
+            Date actualDate = dateFormat.parse(actualTime);
+            Date currentDate = new Date();
+
+            SimpleDateFormat currentDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            currentDateFormat.setTimeZone(TimeZone.getTimeZone("America/Denver"));
+            String formattedCurrentTime = currentDateFormat.format(currentDate);
+            Date currentMountainTime = currentDateFormat.parse(formattedCurrentTime);
+
+            long diffInMillis = currentMountainTime.getTime() - actualDate.getTime();
+            long diffInMinutes = diffInMillis / (60 * 1000);
+
+            if (diffInMinutes <= 10) {
+                return;
+            }
+            System.out.println("The time is not within the last 10 minutes.");
+
+        } catch (ParseException e) {
+            System.out.println("Error parsing the time: " + e.getMessage());
+        }
+    
+	}
+
+    public String getDateAndTime(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HH_mm");
+        return sdf.format(date);
+    }
+
+    public int getAge(String dob){
+        dob = changeDateFormat(dob, "MMddyyyy", "MM/dd/yyyy");
+        return Period.between(LocalDate.parse(dob, DateTimeFormatter.ofPattern("MM/dd/yyyy")), LocalDate.now()).getYears();
+    }
+
+    public String formatPhNum(String number){
+        // inputFormat - 1234567890 outputFormat - 123-456-7890
+        return number.substring(0, 3) + "-" +
+                number.substring(3, 6) + "-" +
+                number.substring(6);
+    }
+
+    public String formatDob(String dob) {
+        // inputFormat - MMddyyyy outputFormat - yyyy-MM-dd
+        String formattedDob = "";
+        try{
+            formattedDob = new SimpleDateFormat("yyyy-MM-dd")
+                    .format(new SimpleDateFormat("MMddyyyy").parse(dob));
+        } catch(ParseException e){
+            Assert.fail();
+        }
+        return formattedDob;
+    }
+
+    public static boolean isPageAtTop(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Long scrollPosition = (Long) js.executeScript("return window.scrollY;");
+        System.out.println("Scroll position is "+scrollPosition);
+        return scrollPosition <= 60;
+    }
+
+    public void pageAtTop() {
+        wait(50);
+        assertTrue("The page is not at the top.", isPageAtTop(driver));
+        System.out.println("The page is at the top.");
+    }
+
+    public Boolean clearElementWithRetries(WebElement webElement) {
+        Boolean isCleared = false;
+        try{
+            for (int i = 0; i < 5; i++) {
+                webElement.click();
+                webElement.clear();
+                wait(2000);
+                webElement.clear();
+                // Use JavaScriptExecutor to clear the field
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].value = '';", webElement);
+
+                if (webElement.getAttribute("value").isEmpty()) {
+                    isCleared = true;
+                    break; // Exit if the field is cleared
+                }
+                Thread.sleep(200); // Wait before retrying
+            }
+        } catch (InterruptedException e){
+            Assert.fail();
+        }
+        return isCleared;
+    }
 
 }
+
+
+
 

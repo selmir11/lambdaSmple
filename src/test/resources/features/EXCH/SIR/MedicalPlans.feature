@@ -2,7 +2,7 @@
   # contains SLER-73
   Feature: Tests related to medical plans
     @SLER-73
-    Scenario: Validate medical plans count
+    Scenario: SLER-73 - Validate medical plans count
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
       When I click create a new account on login page
@@ -21,7 +21,7 @@
       Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -70,6 +70,9 @@
 
       Then I validate I am on the "Application Results" page
       Then I click continue on application results page
+
+      Then I validate I am on the "Start Shopping" page
+      Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
       Then I click continue on start shopping page
 
       And I validate I am on the "Medical Plan Results" page
@@ -96,7 +99,7 @@
       Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -143,6 +146,9 @@
 
       Then I validate I am on the "Application Results" page
       Then I click continue on application results page
+
+      Then I validate I am on the "Start Shopping" page
+      Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
       Then I click continue on start shopping page
 
       And I validate I am on the "Medical Plan Results" page

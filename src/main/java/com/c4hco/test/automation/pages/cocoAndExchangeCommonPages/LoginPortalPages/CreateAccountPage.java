@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.LoginCredentials;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,29 +38,31 @@ public class CreateAccountPage {
     @FindBy(css = ".boot-input-group .help-label")
     WebElement helpLabel;
 
-    @FindBy(id = "fn")
+    @FindBy(xpath = "//input[@id='fn']")
      WebElement firstName;
+
     @FindBy(id = "fn-label")
      WebElement firstNameText;
 
-    @FindBy(css = "lib-input-error[controlname='firstName'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='fn-mf-error']")
     WebElement firstNameErrorMessage;
 
     @FindBy(id = "mn-label")
      WebElement middleNameText;
 
-    @FindBy(id = "mn")
+    @FindBy(xpath = "//input[@id='mn']")
     WebElement middleName;
 
-    @FindBy(css = "lib-input-error[controlname='middleName'] span[class='error-message']")
+    @FindBy(xpath = "//span[@id='mn-error']")
     WebElement middleNameErrorMessage;
 
-    @FindBy(id = "ln")
+    @FindBy(xpath = "//input[@id='ln']")
      WebElement lastName;
+
     @FindBy(css = "div:nth-child(4) > label:nth-child(1)")
      WebElement lastNameText;
 
-    @FindBy(css = "lib-input-error[controlname='lastName'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='ln-mf-error']")
     WebElement lastNameErrorMessage;
 
     @FindBy(id = "email")
@@ -67,7 +70,7 @@ public class CreateAccountPage {
     @FindBy(id = "email-label")
      WebElement emailText;
 
-    @FindBy(css = "lib-input-error[controlname='email'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='em-mf-error']")
     WebElement emailErrorMessage;
 
     @FindBy(id = "phone")
@@ -75,7 +78,7 @@ public class CreateAccountPage {
     @FindBy(id = "phone-label")
      WebElement phoneNumberTxt;
 
-    @FindBy(css = "lib-input-error[controlname='phoneNumber'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='ph-mf-error']")
     WebElement phoneNumberErrorMessage;
 
     @FindBy(id = "password")
@@ -83,7 +86,7 @@ public class CreateAccountPage {
     @FindBy(id = "password-label")
      WebElement passwordText;
 
-    @FindBy(css = "lib-input-error[controlname='password'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='pw-mf-error']")
     WebElement passwordErrorMessage;
 
     @FindBy(id = "confirm-password")
@@ -91,10 +94,10 @@ public class CreateAccountPage {
     @FindBy(id = "confirm-password-label")
      WebElement confirmPasswordTxt;
 
-    @FindBy(css = "lib-input-error[controlname='confirmPassword'] span[class='error-message']")
+    @FindBy(xpath = "//lib-input-error[@uniqueerrorid='cp-mf-error']")
     WebElement confirmPasswordErrorMessage;
 
-    @FindBy(css = "div[class='col'] span[class='error-message']")
+    @FindBy(xpath = "//span[@id='ls-mf-error']")
     WebElement languageErrorMessage;
 
     @FindBy(id = "English")
@@ -102,7 +105,7 @@ public class CreateAccountPage {
     @FindBy(id = "Spanish")
      WebElement preferredLanguageButtonSpanish;
 
-    @FindBy(xpath = "//lib-list-error[@id='ahp-mf-error']//span[@class='error-message']")
+    @FindBy(xpath = "//lib-list-error[@uniqueerrorid='ahp-mf-error']")
     WebElement accountHolderPreferencesErrorMessage;
 
     @FindBy(id = "pu-input")
@@ -111,7 +114,7 @@ public class CreateAccountPage {
     @FindBy(id = "rr-input")
     WebElement onBehalfOfPrimaryUserCheckbox;
 
-    @FindBy(xpath = "//lib-list-error[@id='miso-mf-error']//span[@class='error-message']")
+    @FindBy(xpath = "//lib-list-error[@uniqueerrorid='miso-mf-error']")
     WebElement informationSharingOptionsErrorMessage;
 
     @FindBy(id = "cocoUser-input")
@@ -145,13 +148,13 @@ public class CreateAccountPage {
     @FindBy(id = "role")
     WebElement roleDropdown;
 
-    @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[1]")
+    @FindBy(xpath = "//select[@id='role']/option[2]")
     WebElement certifiedBrokerRole;
 
     @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[2]")
     WebElement adminStaffRole;
 
-    @FindBy(css = "lib-input-error[controlname='role'] span[class='error-message']")
+    @FindBy(xpath = "//span[@id='role-dropdown-mf-error']")
     WebElement roleDropdownErrorMessage;
 
     @FindBy(id = "loginPortal-createAccount-indicatePrimary")
@@ -206,6 +209,11 @@ public class CreateAccountPage {
         selectBasedOnApp(appType);
     }
 
+    public void createAccountForScript(String appType, String script){
+        addDetailsForScript(script);
+        selectBasedOnApp(appType);
+    }
+
     public void createSpecificAccount(String fName, String mName, String lName, String appType){
         addSpecificDetails(fName, mName, lName);
         selectBasedOnApp(appType);
@@ -226,6 +234,10 @@ public class CreateAccountPage {
             case "exchange":
                 exchangeTermsOfUseCheckbox.click();
                 break;
+            case "exchange Spanish":
+            exchangeTermsOfUseCheckbox.click();
+            preferredLanguageButtonSpanish.click();
+            break;
             case "Admin exchange":
                 onBehalfOfPrimaryUserCheckbox.click();
                 exchangeTermsOfUseCheckbox.click();
@@ -287,6 +299,20 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
         allMembersList.add(subscriber);
         SharedData.setAllMembers(allMembersList);
+    }
+
+    private void addDetailsForScript(String scriptNum){
+        initializeDataForScript(scriptNum);
+        sendDetails();
+    }
+
+    private void initializeDataForScript(String scriptNum){
+        LoginCredentials.setScriptBasedDetails(scriptNum);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setEmailId("AutomationUser."+basicActions.getUniqueString(8)+"@test.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void addDetails(){
@@ -554,7 +580,26 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + language);}
     }
 
-    public void enterDuplicateAccountCreationData(){
+    public void duplicateAccWithNewEmail(String appType){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 10);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        subscriber.setIncorrectEmail(subscriber.getEmailId());
+        String newEmail = basicActions.getUniqueString(8)+"oldMem@test.com";
+        SharedData.setOldAccountId(subscriber.getAccount_id());
+        subscriber.setEmailId(newEmail);
+        email.sendKeys(newEmail);
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        preferredLanguageButtonEnglish.click();
+        primaryUserCheckbox.click();
+        SharedData.setPrimaryMember(subscriber);
+        selectBasedOnApp(appType);
+    }
+
+    public void enterDuplicateAccountCreationData(String appType){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 10);
         firstName.sendKeys(subscriber.getFirstName());
@@ -565,9 +610,7 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
-        exchangeTermsOfUseCheckbox.click();
-
-        submitButton.click();
+        selectBasedOnApp(appType);
     }
 
     public void enterDuplicateBrokerAccountCreationData(){
@@ -604,7 +647,7 @@ public class CreateAccountPage {
     }
 
     public void validateMandatoryFieldErrorMessages(String language){
-        basicActions.waitForElementToBePresent(submitButton, 10);
+        basicActions.waitForElementToBePresentWithRetries(submitButton, 10);
         submitButton.click();
 
         switch(language){

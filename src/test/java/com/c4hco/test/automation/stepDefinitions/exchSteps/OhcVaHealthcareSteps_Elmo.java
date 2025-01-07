@@ -21,7 +21,7 @@ public class OhcVaHealthcareSteps_Elmo {
     public void iClickInsuranceEndingOption(String insuranceEnding){OhcVaHealthcarePage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
     @Then("I enter the end date as {string} on the VA Healthcare page")
-    public void iEnterEndDate(String endDate){OhcVaHealthcarePage_Elmo.enterEndDate(endDate);}
+    public void iEnterEndDate(String endDateData){OhcVaHealthcarePage_Elmo.enterEndDate(endDateData);}
 
     @Then("I click {string} for insurance ending voluntary for VA Healthcare question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){OhcVaHealthcarePage_Elmo.clickEndVoluntaryOption(voluntaryEnding);}

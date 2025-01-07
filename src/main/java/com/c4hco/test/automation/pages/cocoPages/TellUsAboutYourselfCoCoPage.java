@@ -3,11 +3,14 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -23,12 +26,17 @@ public class TellUsAboutYourselfCoCoPage {
     @FindBy(css = "input#firstName")
     WebElement firstNameText;
 
-
     @FindBy(css = "input#middleName")
     WebElement middleNameText;
 
     @FindBy(css = "input#lastName")
     WebElement lastNameText;
+
+    @FindBy(id = "suffix-text1")
+    WebElement suffixDropdown;
+
+    @FindBy(css = "#suffix-text1 option")
+    List<WebElement> suffixOptions;
 
     @FindBy(id = "birthDate")
     WebElement memberDOBTbox;
@@ -50,6 +58,9 @@ public class TellUsAboutYourselfCoCoPage {
 
     @FindBy(css = "small.required")
     List<WebElement> requiredValidationError;
+
+    @FindBy(css = "span.required")
+    WebElement invalidDateError;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -73,6 +84,12 @@ public class TellUsAboutYourselfCoCoPage {
 
     public void specificMemberDetailsCoCo(String dateOfBirth, String gender, String applying) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        if(dateOfBirth.equals("getFromSharedData")){
+            dateOfBirth = subscriber.getDob();
+        }
+        if(gender.equals("getFromSharedData")){
+            gender = subscriber.getGender();
+        }
         enterMemberDOBTbox(dateOfBirth);
         genderSelection(gender);
         applyingForCoverage(applying);
@@ -81,7 +98,17 @@ public class TellUsAboutYourselfCoCoPage {
         clickSaveAndContinueButton();
     }
 
-    public void genderSelection(String gender) {
+    public void addMemberDetailsCoCo(String dateOfBirth, String gender, String applying) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        enterMemberDOBTbox(dateOfBirth);
+        genderSelection(gender);
+        applyingForCoverage(applying);
+        subscriber.setDob(dateOfBirth);
+        subscriber.setGender(gender);
+        subscriber.setApplyingforCov(applying);
+    }
+
+    private void genderSelection(String gender) {
         basicActions.waitForElementListToBePresent(genderButton, 30);
         switch (gender) {
             case "Male":
@@ -121,6 +148,47 @@ public class TellUsAboutYourselfCoCoPage {
 
         basicActions.waitForElementToBePresent(lastNameText, 30);
         lastNameText.sendKeys(subscriber.getLastName());
+    }
+
+    public void enterPrimaryNewFirstLastInfo() {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        Assert.assertTrue(basicActions.waitForElementToBePresent(firstNameText, 30));
+        String fName =  "Primary"+basicActions.getUniqueString(8);
+        Assert.assertTrue(basicActions.clearElementWithRetries(firstNameText), "First Name Field is not cleared!!");
+        firstNameText.sendKeys(fName);
+        subscriber.setFirstName(fName);
+
+        basicActions.waitForElementToBePresent(lastNameText, 30);
+        lastNameText.clear();
+        String lName = basicActions.getUniqueString(8);
+        Assert.assertTrue(basicActions.clearElementWithRetries(lastNameText), "Last Name Field is not cleared!!");
+        lastNameText.sendKeys(lName);
+        subscriber.setLastName(lName);
+        subscriber.setSignature(fName+" "+lName);
+    }
+
+    public void enterPrimaryMemMiddleName() {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(middleNameText, 30);
+       String middleName = subscriber.getMiddleName()!=null ? subscriber.getMiddleName() : basicActions.getUniqueString(5);
+        middleNameText.sendKeys(middleName);
+        subscriber.setMiddleName(middleName);
+    }
+
+    public void enterPrimaryMemNewMiddleName() {
+        basicActions.waitForElementToBePresent(middleNameText, 30);
+        String middleName = basicActions.getUniqueString(5);
+        Assert.assertTrue(basicActions.clearElementWithRetries(middleNameText), "Middle Name Field is not cleared!!");
+        middleNameText.sendKeys(middleName);
+        SharedData.getPrimaryMember().setMiddleName(middleName);
+    }
+
+    public void enterSuffix(String suffix) {
+        basicActions.waitForElementToBePresent(suffixDropdown, 10);
+        suffixDropdown.click();
+        basicActions.waitForElementListToBePresent(suffixOptions, 10);
+        suffixOptions.stream().filter(option -> option.getText().equals(suffix)).findFirst().ifPresent(WebElement::click);
+        SharedData.getPrimaryMember().setSuffix(suffix);
     }
 
     public void verifyTextOnTellUsAboutYourselfPage(String language) {
@@ -317,6 +385,21 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
+        firstNameText.sendKeys("1234@#ABCD");
+        softAssert.assertEquals(firstNameText.getAttribute("value"), "ABCD");
+        firstNameText.sendKeys("ABCDEFGHIJKLMNOPQRSTUV");
+        softAssert.assertEquals(firstNameText.getAttribute("value"), "ABCDABCDEFGHIJKLMNOPQRSTU");
+        middleNameText.sendKeys("1234@#ABCD");
+        softAssert.assertEquals(middleNameText.getAttribute("value"), "ABCD");
+        middleNameText.sendKeys("ABCDEFGHIJKLMNOPQRSTUV");
+        softAssert.assertEquals(middleNameText.getAttribute("value"), "ABCDABCDEFGHIJKLMNOPQRSTU");
+        lastNameText.sendKeys("1234@#ABCD");
+        softAssert.assertEquals(lastNameText.getAttribute("value"), "ABCD");
+        lastNameText.sendKeys("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM");
+        softAssert.assertEquals(lastNameText.getAttribute("value"), "ABCDABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJ");
+        softAssert.assertEquals(suffixDropdown.getText(), "Select Option\nJr.\nSr.\nIII\nIV");
+        memberDOBTbox.sendKeys("01012030");
+        softAssert.assertEquals(invalidDateError.getText(), "Date is not valid");
         softAssert.assertAll();
     }
 
@@ -349,6 +432,55 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(requiredValidationError.get(4).getCssValue("color"), "rgba(255, 0, 0, 1)");
         softAssert.assertAll();
+    }
+
+    public void validateRelationshipLabel(){
+        for(MemberDetails member : basicActions.getAllMem()) {
+            basicActions.waitForElementToBePresent(firstNameText,10);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + member.getFirstName() + "')]/parent::div/parent::form-label"));
+            basicActions.waitForElementToBePresent(element, 10);
+            softAssert.assertTrue(element.isDisplayed());
+            softAssert.assertTrue(element.getText().toLowerCase().contains(member.getFullName().toLowerCase()));
+            softAssert.assertAll();
+        }
+    }
+
+    public void validateDataEntered(){
+        basicActions.waitForElementToBePresent(firstNameText, 10);
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        softAssert.assertEquals(firstNameText.getAttribute("value"), primaryMem.getFirstName(), "FirstName did not match" );
+        softAssert.assertEquals(middleNameText.getAttribute("value"), primaryMem.getMiddleName(), "Middle Name did not match");
+        softAssert.assertEquals(lastNameText.getAttribute("value"), primaryMem.getLastName(), "Last Name did not match");
+        softAssert.assertEquals(suffixDropdown.getAttribute("value"), primaryMem.getSuffix().replace(".", "").toUpperCase(), "Suffix did not match");
+        softAssert.assertEquals(memberDOBTbox.getAttribute("value"), basicActions.formatDob(primaryMem.getDob()), "DOB did not match");
+
+        if(primaryMem.getGender().equals("Female")){
+            softAssert.assertTrue(genderButton.get(0).getAttribute("class").contains("selected"), "Gender is not selected as Female");
+        } else{
+            softAssert.assertTrue(genderButton.get(1).getAttribute("class").contains("selected"), "Gender is not selected as Male");
+        }
+
+        if(primaryMem.getApplyingforCov().equals("Yes")){
+            softAssert.assertTrue(applyButton.get(0).getAttribute("class").contains("selected"), "Applying for coverage is not selected as Yes");
+        }else {
+            softAssert.assertTrue(applyButton.get(1).getAttribute("class").contains("selected"), "Applying for coverage is not selected as No");
+        }
+    softAssert.assertAll();
+    }
+
+    public void validateAutoPopRelationshipOption(List<String> relationship){
+        for(String relationInfo : relationship) {
+            String[] parts = relationInfo.split(":");
+            String Name = parts[0];  // "Primary"
+            String Relation = parts[1]; // "Spouse"
+            basicActions.waitForElementToBePresent(firstNameText,10);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::div/parent::form-label/parent::div //select"));
+            basicActions.waitForElementToBeClickableWithRetries(element,10);
+            // Perform actions on the element
+            Select dropdown = new Select(element);
+            softAssert.assertEquals(dropdown.getFirstSelectedOption().getText(),Relation,"Autopopulated relationship for "+Name+" is not matching with expected");
+            softAssert.assertAll();
+        }
     }
 }
 

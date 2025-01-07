@@ -2,75 +2,68 @@ package com.c4hco.test.automation.utils;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+
 public class EligNotices {
-    private static String getCurrentTimestamp(String language) {
-        Locale locale;
+    private BasicActions basicActions;
+    public EligNotices(WebDriver webDriver){
+        basicActions = new BasicActions(webDriver);
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
 
+    private static String getCurrentTimestamp(String language, BasicActions basicActions) {
+        String todayDate = basicActions.getTodayDate();
         switch (language.toLowerCase()) {
             case "spanish":
-                locale = new Locale("es", "ES");
-                return new SimpleDateFormat("d 'de' MMMM 'del' yyyy", locale).format(new Date());
+                Locale spanishLocale = new Locale("es", "ES");
+                return basicActions.changeDateFormat(todayDate, "MM/dd/yyyy", "d 'de' MMMM 'del' yyyy", spanishLocale);
             case "english":
-                locale = Locale.ENGLISH;
-                return new SimpleDateFormat("MMMM d, yyyy", locale).format(new Date());
+                return basicActions.changeDateFormat(todayDate, "MM/dd/yyyy", "MMMM d, yyyy", Locale.ENGLISH);
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
         }
     }
 
-    private static String getLceCloseDate(String language, String docType) {
-        Locale locale;
-        Integer daysFromNow = 60;
-        
-        if (docType.equals("ANAI")){daysFromNow=90;}
-        
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, daysFromNow);
-
+    private static String getLceCloseDate(String language, String docType, BasicActions basicActions) {
+        String futureDate = basicActions.getFutureDate(60);
+        if (docType.equals("ANAI")) {
+            futureDate = basicActions.getFutureDate(90);
+        }
         switch (language.toLowerCase()) {
-            case "spanish":
-                locale = new Locale("es", "ES");
-                return new SimpleDateFormat("d 'de' MMMM 'del' yyyy", locale).format(calendar.getTime());
-            case "english":
-                locale = Locale.ENGLISH;
-                return new SimpleDateFormat("MMMM d, yyyy", locale).format(calendar.getTime());
+            case "spanish": {
+                Locale spanishLocale = new Locale("es", "ES");
+                return basicActions.changeDateFormat(futureDate, "MM/dd/yyyy", "d 'de' MMMM 'del' yyyy", spanishLocale);
+            }
+            case "english": {
+                return basicActions.changeDateFormat(futureDate, "MM/dd/yyyy", "MMMM d, yyyy", Locale.ENGLISH);
+            }
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
         }
     }
 
-    private static String getFirstOfNextMonth(String language) {
-        Locale locale;
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, 1); // Add one month
-        calendar.set(Calendar.DAY_OF_MONTH, 1); // Set to the first day of the month
-
+    private static String getFirstOfNextMonth(String language, BasicActions basicActions) {
+        String futureDate = basicActions.firstDateOfNextMonth();
         switch (language.toLowerCase()) {
-            case "spanish":
-                locale = new Locale("es", "ES");
-                return new SimpleDateFormat("d 'de' MMMM 'del' yyyy", locale).format(calendar.getTime());
-            case "english":
-                locale = Locale.ENGLISH;
-                return new SimpleDateFormat("MMMM d, yyyy", locale).format(calendar.getTime());
+            case "spanish": {
+                Locale spanishLocale = new Locale("es", "ES");
+                return basicActions.changeDateFormat(futureDate, "yyyy-MM-dd", "d 'de' MMMM 'del' yyyy", spanishLocale);
+            }
+            case "english": {
+                return basicActions.changeDateFormat(futureDate, "yyyy-MM-dd", "MMMM d, yyyy", Locale.ENGLISH);
+            }
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
         }
     }
 
-    private static String getCurrentYear() {
-        Calendar calendar = Calendar.getInstance();
-        return new SimpleDateFormat("yyyy").format(calendar.getTime());
-    }
-
-    public static String getMailApplicationResults(String docType, String language, String memberNumber) {
-        String timestamp = getCurrentTimestamp(language);
+    public static String getMailApplicationResults(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String timestamp = getCurrentTimestamp(language, basicActions);
         String pageTotal = "0";
 
         switch (docType) {
@@ -105,15 +98,15 @@ public class EligNotices {
                 timestamp+" at \n");
     }
 
-    public static String getApplicationResults(String docType, String language, String memberNumber) {
-        String timestamp = getCurrentTimestamp(language);
+    public static String getApplicationResults(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String timestamp = getCurrentTimestamp(language, basicActions);
 
         return String.format("ELG-101-01\n" +
             SharedData.getPrimaryMember().getEmailId()+"\n" +
             "Account Number: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
             timestamp+" at \n" +
-            introParagraph(docType, language) +
-            resultsType(docType, language, memberNumber) +
+            introParagraph(docType, language, basicActions) +
+            resultsType(docType, language, memberNumber, basicActions) +
             "Reporting changes about your household:\n" +
             "If you have changes in your household after you enroll in a plan through Connect for Health Colorado, you should report \n" +
             "them to us within 30 days. Some changes, called \u201CQualified Life Change Events,\u201D may allow your household to shop for \n" +
@@ -131,7 +124,7 @@ public class EligNotices {
             "of the information we used for your eligibility determination.\n" +
             "You can request an appeal in one of these four ways\n" +
             "1. Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" +
-            "Monday - Friday 8:00a.m. - 6:00p.m.\n" +
+            "Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.\n" +
             "2. Visit  and go to \"Resources\" to download an Appeal Request form. You can upload the ConnectforHealthCO.com\n" +
             "completed Appeal Request form to your Connect for Health Colorado\u00AE account in \"My Documents.\"\n" +
             "3. Mail or bring your Appeal Request form to:\n" +
@@ -160,7 +153,8 @@ public class EligNotices {
             "interpreters, and information translated into other languages. Aids and services can be provided in a timely \n" +
             "manner and free of charge.\n" +
             "To request free aids or services, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-\n" +
-            "752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n" +
+            "752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:\n" +
+                "00p.m.\n" +
             "To file a discrimination complaint or learn more about this policy, please call 303-590-9640, fax us at 303-322-4217, or \n" +
             "contact us by mail at:\n" +
             "Connect for Health Colorado\n" +
@@ -194,9 +188,9 @@ public class EligNotices {
             " Additional Language Assistance");
     }
 
-    public static String introParagraph(String docType, String language) {
-        String timestamp = getCurrentTimestamp(language);
-        String lceCloseDate = getLceCloseDate(language, docType);
+    public static String introParagraph(String docType, String language, BasicActions basicActions) {
+        String timestamp = getCurrentTimestamp(language, basicActions);
+        String lceCloseDate = getLceCloseDate(language, docType, basicActions);
         String inelig = "did not open a Special Enrollment Period";
         String ineligES = "familiar no permite un Per\u00EDodo de inscripci\u00F3n especial";
 
@@ -204,13 +198,13 @@ public class EligNotices {
             switch (language) {
                 case "English" -> {
                     return String.format("Dear "+SharedData.getPrimaryMember().getFullName()+",\n" +
-                            "We received new or updated information about your household on "+timestamp+". The change to your household\u2019 \n" +
-                            "s information for your household to enroll in a new health insurance plan. If "+inelig+"\n" +
+                            "We received new or updated information about your household on "+timestamp+". The change to your household\u2019s \n" +
+                            "information for your household to enroll in a new health insurance plan. If "+inelig+"\n" +
                             "you disagree with this determination, including the ability to enroll in a new plan, you can appeal this decision following\n" +
                             "the steps in the Disagree with your determination section below.\n");
                 }
                 case "Spanish" -> {
-                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+getCurrentTimestamp(language)+". El cambio a su informaci\u00F3n\n" +
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+getCurrentTimestamp(language, basicActions)+". El cambio a su informaci\u00F3n\n" +
                     "para que su familia se inscriba en un nuevo plan de seguro "+ineligES+"\n" +
                     "de salud. Si no est\u00E1 de acuerdo con tal determinaci\u00F3n, incluida la posibilidad de inscribirse en un nuevo plan, puede\n" +
                     "apelar contra esta decisi\u00F3n siguiendo los pasos que se indican en la secci\u00F3n siguiente No est\u00E1 de acuerdo con la\n" +
@@ -228,7 +222,7 @@ public class EligNotices {
                     "You can enroll in a new plan or make changes to your current plan by December 31, 2024.\n");
                 }
                 case "Spanish" -> {
-                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+getCurrentTimestamp(language)+". El cambio en la informaci\u00F3n\n" +
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+getCurrentTimestamp(language, basicActions)+". El cambio en la informaci\u00F3n\n" +
                             "de su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan\n" +
                             "de seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
                             "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del 31 de diciembre del 2024.\n");
@@ -245,9 +239,9 @@ public class EligNotices {
                             "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n");
                 }
                 case "Spanish" -> {
-                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de su\n" +
-                    "familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
-                    "seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n\n" +
+                    "de su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan\n" +
+                    "de seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
                     "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n");
                 }
                 default -> throw new IllegalArgumentException("Invalid language: " + language);
@@ -255,21 +249,21 @@ public class EligNotices {
         }
     }
     
-    public static String resultsType(String docType, String language, String memberNumber){
+    public static String resultsType(String docType, String language, String memberNumber, BasicActions basicActions){
         return switch (docType) {
-            case "Health First Colorado" -> healthFirstColorado(docType, language, memberNumber);
-            case "CHP" -> chpPlus(docType, language, memberNumber);
-            case "Cobra" -> cobra(docType, language, memberNumber);
-            case "Individual Insurance" -> individualInsurance(docType, language, memberNumber);
-            case "Ineligible: Did Not Apply" -> ineligDidNotApply(language, memberNumber);
-            case "Ineligible: Not CO Resident" -> ineligNotCORes(language, memberNumber);
-            case "ANAI" -> ANAIGain(docType, language, memberNumber);
-            case "QHP" -> QHP(docType, language, memberNumber);
+            case "Health First Colorado" -> healthFirstColorado(docType, language, memberNumber, basicActions);
+            case "CHP" -> chpPlus(docType, language, memberNumber, basicActions);
+            case "Cobra" -> cobra(docType, language, memberNumber, basicActions);
+            case "Individual Insurance" -> individualInsurance(docType, language, memberNumber, basicActions);
+            case "Ineligible: Did Not Apply" -> ineligDidNotApply(language, memberNumber, basicActions);
+            case "Ineligible: Not CO Resident" -> ineligNotCORes(language, memberNumber, basicActions);
+            case "ANAI" -> ANAIGain(docType, language, memberNumber, basicActions);
+            case "QHP" -> QHP(docType, language, memberNumber, basicActions);
             default -> throw new IllegalArgumentException("Invalid option: " + docType);
         };
     }
 
-    public static String infoNeeded(String docType, String language, String memberNumber) {
+    public static String infoNeeded(String docType, String language, String memberNumber, BasicActions basicActions) {
 
         List<MemberDetails> memberList = SharedData.getMembers();
         String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName().replace(".",".\n") : "";
@@ -282,9 +276,9 @@ public class EligNotices {
                                 "What information is needed? When is the information due?\n" +
                                 "%s Proof of your American Indian or\n" +
                                 "Alaska Native status\n" +
-                                getLceCloseDate(language, docType)+"\n" +
+                                getLceCloseDate(language, docType, basicActions)+"\n" +
                                 "%s Proof of financial help eligibility\n" +
-                                getLceCloseDate(language, docType)+"\n",
+                                getLceCloseDate(language, docType, basicActions)+"\n",
                         SharedData.getPrimaryMember().getFullName(),
                         SharedData.getPrimaryMember().getFullName()
                 );
@@ -296,10 +290,10 @@ public class EligNotices {
                                 "%s Comprobante de su estatus de\n" +
                                 "ind\u00EDgena norteamericano o nativo de\n" +
                                 "Alaska\n" +
-                                getLceCloseDate(language, docType)+"\n" +
+                                getLceCloseDate(language, docType, basicActions)+"\n" +
                                 "%s Comprobante de su elegibilidad para\n" +
                                 "recibir ayuda financiera\n" +
-                                getLceCloseDate(language, docType)+"\n",
+                                getLceCloseDate(language, docType, basicActions)+"\n",
                         SharedData.getPrimaryMember().getFullName(),
                         SharedData.getPrimaryMember().getFullName()
                 );
@@ -311,14 +305,14 @@ public class EligNotices {
                         "What information is needed? When is the information due?\n" +
                         "%s Proof of your American Indian or\n" +
                         "Alaska Native status\n" +
-                        getLceCloseDate(language, docType)+"\n" +
-                        "%s Proof of financial help eligibility "+getLceCloseDate(language, docType)+"\n" +
+                        getLceCloseDate(language, docType, basicActions)+"\n" +
+                        "%s Proof of financial help eligibility "+getLceCloseDate(language, docType, basicActions)+"\n" +
                         member0Name+"\n" +
                         "Proof of your American Indian or\n" +
                         "Alaska Native status\n" +
-                        getLceCloseDate(language, docType)+"\n" +
+                        getLceCloseDate(language, docType, basicActions)+"\n" +
                         member0Name+"\n"+
-                        "Proof of financial help eligibility "+getLceCloseDate(language, docType)+"\n",
+                        "Proof of financial help eligibility "+getLceCloseDate(language, docType, basicActions)+"\n",
                         SharedData.getPrimaryMember().getFullName(),
                         SharedData.getPrimaryMember().getFullName());
                 case "Spanish" -> String.format("Mensaje para el miembro 2 en espa\u00F1ol.");
@@ -328,7 +322,7 @@ public class EligNotices {
         };
     }
 
-    public static String moreInformationNeeded(String docType, String language, String memberNumber) {
+    public static String moreInformationNeeded(String docType, String language, String memberNumber, BasicActions basicActions) {
 
        switch (memberNumber) {
            case "1" -> {
@@ -340,7 +334,7 @@ public class EligNotices {
                                "pay for your health insurance plan. Even if someone in your household is not applying through Connect for Health\n" +
                                "Colorado or may qualify for Health First Colorado or Child Health Plan Plus, we still need the information listed below.\n" +
                                "Please note you only have a few days to submit your documents by the due date!\n" +
-                               infoNeeded(docType, language, memberNumber) +
+                               infoNeeded(docType, language, memberNumber, basicActions) +
                                "Potential reasons we were unable to verify your eligibility for financial help:\n" +
                                "Advance payments of the premium tax credit were made to your health insurance company in a previous\n" +
                                "year to reduce your premium costs, and we cannot verify whether a federal income tax return was filed\n" +
@@ -407,7 +401,7 @@ public class EligNotices {
                                "Denver CO 80237\n" +
                                "We will notify you once we review your document(s). If you have questions, believe you already provided the information\n" +
                                "listed above, or need more time to provide the requested information, please call the Connect for Health Colorado\u00AE\n" +
-                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n");
+                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.\n");
                    }
                    case "Spanish" -> {
                        return String.format("Se requiere m\u00E1s informaci\u00F3n\n" +
@@ -417,7 +411,7 @@ public class EligNotices {
                                "solicitud, aun cuando alguien de su familia no est\u00E9 solicitando seguro por medio de Connect for Health Colorado, o si\n" +
                                "califica para Health First Colorado o Child Health Plan Plus.\n" +
                                "\u00A1Tenga en cuenta que solo tiene pocos d\u00EDas para enviar sus documentos para la fecha l\u00EDmite!\n") +
-                               infoNeeded(docType, language, memberNumber) +
+                               infoNeeded(docType, language, memberNumber, basicActions) +
                                "Posibles motivos por lo que no pudimos verificar su elegibilidad para recibir ayuda financiera:\n" +
                                "Los pagos anticipados del cr\u00E9dito fiscal para la prima fueron pagados el a\u00F1o anterior a su compa\u00F1\u00EDa de\n" +
                                "seguros de salud para reducir los costos de su prima, y no podemos verificar si se present\u00F3 una\n" +
@@ -489,7 +483,7 @@ public class EligNotices {
                                "Le notificaremos una vez que hayamos revisado su(s) documento(s). Si tiene alguna pregunta, si cree que ya\n" +
                                "proporcion\u00F3 la informaci\u00F3n anteriormente mencionada, o si necesita m\u00E1s tiempo para proporcionar la informaci\u00F3n\n" +
                                "requerida, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432)\n" +
-                               "de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n"
+                               "de lunes a viernes de 8:00 a.m. a 6:00 p.m. y del 2\u00BA al 17 de diciembre, de 8:00 a.m. a 8:00 p.m.\n"
                                ;
                    }
                    default -> throw new IllegalArgumentException("Unexpected value: " + language);
@@ -504,7 +498,7 @@ public class EligNotices {
                                "pay for your health insurance plan. Even if someone in your household is not applying through Connect for Health\n" +
                                "Colorado or may qualify for Health First Colorado or Child Health Plan Plus, we still need the information listed below.\n" +
                                "Please note you only have a few days to submit your documents by the due date!\n" +
-                               infoNeeded(docType, language, memberNumber) +
+                               infoNeeded(docType, language, memberNumber, basicActions) +
                                "Potential reasons we were unable to verify your eligibility for financial help:\n" +
                                "Advance payments of the premium tax credit were made to your health insurance company in a previous\n" +
                                "year to reduce your premium costs, and we cannot verify whether a federal income tax return was filed\n" +
@@ -571,7 +565,7 @@ public class EligNotices {
                                "Denver CO 80237\n" +
                                "We will notify you once we review your document(s). If you have questions, believe you already provided the information\n" +
                                "listed above, or need more time to provide the requested information, please call the Connect for Health Colorado\u00AE\n" +
-                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n");
+                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.\n");
                    }
                    case "Spanish" -> {
                        return String.format("");
@@ -583,11 +577,11 @@ public class EligNotices {
        }
     }
 
-    public static String QHP(String docType, String language, String memberNumber){
-        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language, docType)+".\n";
-        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType)+".\n";
+    public static String QHP(String docType, String language, String memberNumber, BasicActions basicActions){
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language, docType, basicActions)+".\n";
+        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language, basicActions)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType, basicActions)+".\n";
         String atpc = "$295.29";
         String pct = "94";
 
@@ -600,7 +594,7 @@ public class EligNotices {
                         englishTemplate +
                         "Premium\n" +
                         "Tax Credits\n" +
-                        "for "+getCurrentYear()+"\n" +
+                        "for "+basicActions.getCurrYear()+"\n" +
                         "Your household qualifies to receive up to $295.29 a month to use towards\n" +
                         "lowering the cost of your monthly health insurance premiums when you\n" +
                         "enroll through Connect for Health Colorado. Based on your application,\n" +
@@ -609,7 +603,7 @@ public class EligNotices {
                         englishTemplate +
                         "Cost-Sharing\n" +
                         "Reduction for\n" +
-                        getCurrentYear()+"\n"+
+                        basicActions.getCurrYear()+"\n"+
                         "You qualify for a reduction in your out-of-pocket costs, such as deductibles\n" +
                         "and copayments when you visit a doctor or fill a prescription. Your Cost-\n" +
                         "Sharing Reduction level is "+pct+". This is the average amount the health\n" +
@@ -618,7 +612,7 @@ public class EligNotices {
                         englishTemplate2 +
                         "Health\n" +
                         "insurance\n" +
-                        "plan for "+getCurrentYear()+"\n" +
+                        "plan for "+basicActions.getCurrYear()+"\n" +
                         "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
                         "Period or if it\u2019s Open Enrollment.\n" +
                         englishTemplate2,
@@ -630,7 +624,7 @@ public class EligNotices {
                                 "fiscales para\n" +
                                 "el pago de la\n" +
                                 "cuota para\n" +
-                                getCurrentYear()+"\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "Su familia tiene derecho a recibir hasta $295.29 al mes para reducir el\n" +
                                 "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
                                 "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
@@ -640,7 +634,7 @@ public class EligNotices {
                                 "Reducci\u00F3n\n" +
                                 "de los costos\n" +
                                 "compartidos\n" +
-                                "para "+getCurrentYear()+"\n" +
+                                "para "+basicActions.getCurrYear()+"\n" +
                                 "Usted califica para la reducci\u00F3n de sus costos de desembolso, como\n" +
                                 "deducibles y copagos, cuando acuda al m\u00E9dico o surta una receta. Su nivel\n" +
                                 "de reducci\u00F3n de los costos compartidos es de "+pct+". Es el importe promedio\n" +
@@ -652,7 +646,7 @@ public class EligNotices {
                                 "Plan de\n" +
                                 "seguro de\n" +
                                 "salud para\n" +
-                                getCurrentYear()+"\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "Puede inscribirse en un plan de seguro de salud para 2024 si califica para un per\u00EDodo\n" +
                                 "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
                                 spanishTemplate2
@@ -675,17 +669,17 @@ public class EligNotices {
 
     }
 
-    public static String ANAIGain(String docType, String language, String memberNumber) {
+    public static String ANAIGain(String docType, String language, String memberNumber, BasicActions basicActions) {
 
         List<MemberDetails> memberList = SharedData.getMembers();
         String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
-        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String englishTemplate2 = ", starting as early as "+getFirstOfNextMonth(language)+" you are approved for:"+member0Name+"\n ";
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:"+member0Name+"\n ";
         String englishTemplate3 = "Verification is\n"+"needed\n"+"We\u2019re missing some information!\n"+
                                     "You are temporarily approved for 90 days, but we need more information\n"+
                                     "from you to continue your coverage after the 90 days. Please see the\n"+
                                     "\u201cMore information needed\u201D section below for what is needed and next\n"+"steps.\n";
-        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language, basicActions)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
         String spanishTemplate2 = "Se requiere\n" + "verificaci\u00F3n\n" + "Nos falta alguna informaci\u00F3n!\n" +
                                     "Ha sido aprobado provisionalmente por 90 d\u00EDas, pero necesitamos m\u00E1s\n" +
                                     "informaci\u00F3n para que su cobertura contin\u00FAe despu\u00E9s de esos 90 d\u00EDas. En\n" +
@@ -698,7 +692,7 @@ public class EligNotices {
                         englishTemplate +
                                 "Premium Tax\n" +
                                 "Credits for\n" +
-                                getCurrentYear() + "\n" +
+                                basicActions.getCurrYear() + "\n" +
                                 "Your household qualifies to receive up to $399.89 a month to use towards\n" +
                                 "lowering the cost of your monthly health insurance premiums when you\n" +
                                 "enroll through Connect for Health Colorado. Based on your application,\n" +
@@ -708,7 +702,7 @@ public class EligNotices {
                                 englishTemplate +
                                 "Cost-Sharing\n" +
                                 "Reduction for\n" +
-                                getCurrentYear()+"\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "You qualify for a Zero Cost-Sharing Reduction plan. This means you won\u2019t\n" +
                                 "have to pay any out-of-pocket costs, such as deductibles and copayments\n" +
                                 "when you visit a doctor or fill a prescription.\n" +
@@ -719,12 +713,12 @@ public class EligNotices {
                                 englishTemplate +
                                 "Health\n" +
                                 "insurance\n" +
-                                "plan for "+getCurrentYear()+"\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
                                 "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 "Enroll in a plan by December 31, 2024.\n" +
                                 englishTemplate2 +
-                                moreInformationNeeded(docType, language, memberNumber)
+                                moreInformationNeeded(docType, language, memberNumber, basicActions)
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate +
@@ -732,7 +726,7 @@ public class EligNotices {
                                 "fiscales para\n" +
                                 "el pago de la\n" +
                                 "cuota para\n" +
-                                getCurrentYear()+"\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "Su familia tiene derecho a recibir hasta $399.89 al mes para reducir el\n" +
                                 "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
                                 "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
@@ -743,7 +737,7 @@ public class EligNotices {
                                 "Reducci\u00F3n\n" +
                                 "de los costos\n" +
                                 "compartidos\n" +
-                                "para "+getCurrentYear()+"\n" +
+                                "para "+basicActions.getCurrYear()+"\n" +
                                 "Usted califica para un plan de cero costos compartidos. Eso significa que no\n" +
                                 "tendr\u00E1 que pagar costos de desembolso, como deducibles y copagos,\n" +
                                 "cuando acuda al m\u00E9dico o surta una receta.\n" +
@@ -755,12 +749,12 @@ public class EligNotices {
                                 "Plan de\n" +
                                 "seguro de\n" +
                                 "salud para\n" +
-                                getCurrentYear()+"\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "Puede inscribirse en un plan de seguro de salud para 2024 si califica para un per\u00EDodo\n" +
                                 "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
                                 "Inscr\u00EDbase en un plan antes del 31 de diciembre del 2024.\n" +
                                 spanishTemplate2 +
-                                moreInformationNeeded(docType, language, memberNumber)
+                                moreInformationNeeded(docType, language, memberNumber, basicActions)
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
@@ -769,7 +763,7 @@ public class EligNotices {
                         englishTemplate +
                                 "Premium Tax\n" +
                                 "Credits for\n" +
-                                getCurrentYear() + "\n" +
+                                basicActions.getCurrYear() + "\n" +
                                 "Your household qualifies to receive up to $573.06 a month to use towards\n" +
                                 "lowering the cost of your monthly health insurance premiums when you\n" +
                                 "enroll through Connect for Health Colorado. Based on your application,\n" +
@@ -779,7 +773,7 @@ public class EligNotices {
                                 englishTemplate +
                                 "Cost-Sharing\n" +
                                 "Reduction for\n" +
-                                getCurrentYear()+"\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "You qualify for a Zero Cost-Sharing Reduction plan. This means you won\u2019t\n" +
                                 "have to pay any out-of-pocket costs, such as deductibles and copayments\n" +
                                 "when you visit a doctor or fill a prescription.\n" +
@@ -790,7 +784,7 @@ public class EligNotices {
                                 englishTemplate +
                                 "Health\n" +
                                 "insurance\n" +
-                                "plan for "+getCurrentYear()+"\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
                                 "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 "Enroll in a plan by December 31, 2024.\n" +
@@ -798,7 +792,7 @@ public class EligNotices {
                                 englishTemplate2 +
                                 "Premium Tax\n" +
                                 "Credits for\n" +
-                                getCurrentYear() + "\n" +
+                                basicActions.getCurrYear() + "\n" +
                                 "Your household qualifies to receive up to $573.06 a month to use towards\n" +
                                 "lowering the cost of your monthly health insurance premiums when you\n" +
                                 "enroll through Connect for Health Colorado. Based on your application,\n" +
@@ -808,7 +802,7 @@ public class EligNotices {
                                 englishTemplate2 +
                                 "Cost-Sharing\n" +
                                 "Reduction for\n" +
-                                getCurrentYear()+"\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "You qualify for a Zero Cost-Sharing Reduction plan. This means you won\u2019t\n" +
                                 "have to pay any out-of-pocket costs, such as deductibles and copayments\n" +
                                 "when you visit a doctor or fill a prescription.\n" +
@@ -819,12 +813,12 @@ public class EligNotices {
                                 englishTemplate2 +
                                 "Health\n" +
                                 "insurance\n" +
-                                "plan for "+getCurrentYear()+"\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
                                 "You can enroll in a health insurance plan for 2024 if you qualify for a Special Enrollment\n" +
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 "Enroll in a plan by December 31, 2024.\n" +
                                 englishTemplate3 +
-                                moreInformationNeeded(docType, language, memberNumber)
+                                moreInformationNeeded(docType, language, memberNumber, basicActions)
 
                 );
                 case "Spanish" -> String.format(
@@ -837,10 +831,10 @@ public class EligNotices {
 
     }
 
-    public static String ineligNotCORes(String language, String memberNumber) {
+    public static String ineligNotCORes(String language, String memberNumber, BasicActions basicActions) {
         String englishTemplate = " , you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
         String englishTemplate2 = "You are not a Colorado resident\n";
-        String spanishTemplate = " , no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName();
+        String spanishTemplate = " , no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
         String spanishTemplate2 = "Usted no es residente de Colorado\n";
 
         List<MemberDetails> memberList = SharedData.getMembers();
@@ -854,60 +848,13 @@ public class EligNotices {
                         "Credits or\n" +
                         "Cost-Sharing\n" +
                         "Reduction for\n" +
-                        getCurrentYear() + "\n" +
+                        basicActions.getCurrYear() + "\n" +
                         "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because: \n" +
                         englishTemplate2 +
                         englishTemplate +
                         "Health\n" +
                         "insurance\n" +
-                        "plan for "+getCurrentYear()+"\n" +
-                        "You do not qualify for a health insurance plan through Connect for Health Colorado\n" +
-                        "because:\n" +
-                        englishTemplate2
-                );
-                case "Spanish" -> String.format(
-                        spanishTemplate
-                );
-                default -> throw new IllegalArgumentException("Invalid language option: " + language);
-            };
-            case "2" -> switch (language) {
-                case "English" -> String.format(
-                        englishTemplate + englishTemplate2
-                );
-                case "Spanish" -> String.format(
-                        spanishTemplate + spanishTemplate2
-                );
-                default -> throw new IllegalArgumentException("Invalid language option: " + language);
-            };
-            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
-        };
-
-    }
-
-    public static String ineligDidNotApply(String language, String memberNumber) {
-        String englishTemplate = ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String englishTemplate2 = "You did not apply for health insurance\n";
-        String spanishTemplate = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String spanishTemplate2 = "Usted no solicit\u00F3 seguro de salud\n";
-
-        List<MemberDetails> memberList = SharedData.getMembers();
-        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
-
-        return switch (memberNumber) {
-            case "1" -> switch (language) {
-                case "English" -> String.format(
-                        englishTemplate +
-                        "Premium Tax\n" +
-                        "Credits or\n" +
-                        "Cost-Sharing\n" +
-                        "Reduction for\n" +
-                        getCurrentYear() + "\n" +
-                        "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because: \n" +
-                        englishTemplate2 +
-                        englishTemplate +
-                        "Health\n" +
-                        "insurance\n" +
-                        "plan for "+getCurrentYear()+"\n" +
+                        "plan for "+basicActions.getCurrYear()+"\n" +
                         "You do not qualify for a health insurance plan through Connect for Health Colorado\n" +
                         "because:\n" +
                         englishTemplate2
@@ -921,15 +868,15 @@ public class EligNotices {
                         "reducci\u00F3n de\n" +
                         "los costos\n" +
                         "compartidos\n" +
-                        "para "+getCurrentYear()+"\n" +
+                        "para "+basicActions.getCurrYear()+"\n"+
                         "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
-                        "costos compartidos porque:\n"+
+                        "costos compartidos porque:\n" +
                         spanishTemplate2 +
                         spanishTemplate +
                         "Plan de\n" +
                         "seguro de\n" +
                         "salud para\n" +
-                        getCurrentYear()+"\n" +
+                        basicActions.getCurrYear()+"\n"+
                         "No califica para adquirir un plan de seguro de salud a trav\u00E9s de Connect for Health\n" +
                         "Colorado porque:\n" +
                         spanishTemplate2
@@ -950,11 +897,77 @@ public class EligNotices {
 
     }
 
-    public static String healthFirstColorado(String docType, String language, String memberNumber) {
-        String firstOfNextMonth = getFirstOfNextMonth(language);
+    public static String ineligDidNotApply(String language, String memberNumber, BasicActions basicActions) {
+        String englishTemplate = ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = "You did not apply for health insurance\n";
+        String spanishTemplate = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate2 = "Usted no solicit\u00F3 seguro de salud\n";
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                        "Premium Tax\n" +
+                        "Credits or\n" +
+                        "Cost-Sharing\n" +
+                        "Reduction for\n" +
+                        basicActions.getCurrYear() + "\n" +
+                        "You do not qualify for Premium Tax Credits or Cost-Sharing Reduction because: \n" +
+                        englishTemplate2 +
+                        englishTemplate +
+                        "Health\n" +
+                        "insurance\n" +
+                        "plan for "+basicActions.getCurrYear()+"\n" +
+                        "You do not qualify for a health insurance plan through Connect for Health Colorado\n" +
+                        "because:\n" +
+                        englishTemplate2
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate +
+                        "Cr\u00E9ditos\n" +
+                        "fiscales para\n" +
+                        "el pago de la\n" +
+                        "cuota o\n" +
+                        "reducci\u00F3n de\n" +
+                        "los costos\n" +
+                        "compartidos\n" +
+                        "para "+basicActions.getCurrYear()+"\n" +
+                        "No califica para obtener cr\u00E9ditos fiscales para el pago de la cuota ni reducci\u00F3n de los\n" +
+                        "costos compartidos porque:\n"+
+                        spanishTemplate2 +
+                        spanishTemplate +
+                        "Plan de\n" +
+                        "seguro de\n" +
+                        "salud para\n" +
+                        basicActions.getCurrYear()+"\n" +
+                        "No califica para adquirir un plan de seguro de salud a trav\u00E9s de Connect for Health\n" +
+                        "Colorado porque:\n" +
+                        spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate2
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate2
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+
+    }
+
+    public static String healthFirstColorado(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String firstOfNextMonth = getFirstOfNextMonth(language, basicActions);
 
         String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
-        String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
         String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa Medicaid de %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
         String spanishTemplate2 = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
 
@@ -971,9 +984,9 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoMedicaid(language)
+                        taxCreditInfoMedicaid(language, basicActions)
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate,
@@ -982,9 +995,9 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoMedicaid(language)
+                        taxCreditInfoMedicaid(language, basicActions)
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
@@ -996,16 +1009,16 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoMedicaid(language),
+                        taxCreditInfoMedicaid(language, basicActions),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         member0Name,
-                        taxCreditInfoMedicaidSecondary(language)
+                        taxCreditInfoMedicaidSecondary(language, basicActions)
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate + spanishTemplate2,
@@ -1014,16 +1027,16 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoMedicaid(language),
+                        taxCreditInfoMedicaid(language, basicActions),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         member0Name,
-                        taxCreditInfoMedicaidSecondary(language)
+                        taxCreditInfoMedicaidSecondary(language, basicActions)
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
@@ -1086,7 +1099,7 @@ public class EligNotices {
     public static String healthFirstInfoSecondary (String language){
         return switch (language) {
             case "English"->
-                    "Medicaid Program) or Child Health Plan Plus (CHP+).\n" +
+                    "Program) or Child Health Plan Plus (CHP+).\n" +
                             "Information \n" +
                             "about Health \n" +
                             "First \n" +
@@ -1121,9 +1134,9 @@ public class EligNotices {
         };
     }
 
-    public static String healthPlanInfo(String docType, String language){
-        String lceCloseDate = getLceCloseDate(language, docType);
-        String currentYear = getCurrentYear();
+    public static String healthPlanInfo(String docType, String language, BasicActions basicActions){
+        String lceCloseDate = getLceCloseDate(language, docType, basicActions);
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1145,8 +1158,8 @@ public class EligNotices {
         };
     }
 
-    public static String taxCreditInfoMedicaid(String language){
-        String currentYear = getCurrentYear();
+    public static String taxCreditInfoMedicaid(String language, BasicActions basicActions){
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1175,8 +1188,8 @@ public class EligNotices {
         };
     }
 
-    public static String taxCreditInfoMedicaidSecondary(String language){
-        String currentYear = getCurrentYear();
+    public static String taxCreditInfoMedicaidSecondary(String language, BasicActions basicActions){
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1205,11 +1218,11 @@ public class EligNotices {
         };
     }
 
-    public static String chpPlus(String docType, String language, String memberNumber) {
-        String firstOfNextMonth = getFirstOfNextMonth(language);
+    public static String chpPlus(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String firstOfNextMonth = getFirstOfNextMonth(language, basicActions);
 
         String englishTemplate = "%s, it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
-        String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
+        String englishTemplate2 = ", it looks like you may qualify for Health First Colorado (Colorado\u2019s Medicaid %s\n%s, starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
         String spanishTemplate = "%s, por lo visto, podr\u00EDa calificar para Health First Colorado (el programa Medicaid de %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
         String spanishTemplate2 = ", por lo visto, podr\u00EDa calificar para Health First Colorado (el programa %s\n%s, a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
 
@@ -1226,9 +1239,9 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoChp(language)
+                        taxCreditInfoChp(language, basicActions)
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate,
@@ -1237,9 +1250,9 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoChp(language)
+                        taxCreditInfoChp(language, basicActions)
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
@@ -1251,16 +1264,16 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoChp(language),
+                        taxCreditInfoChp(language, basicActions),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         member0Name,
-                        taxCreditInfoChpSecondary(language)
+                        taxCreditInfoChpSecondary(language, basicActions)
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate + spanishTemplate2,
@@ -1269,16 +1282,16 @@ public class EligNotices {
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         primaryName,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         primaryName,
-                        taxCreditInfoChp(language),
+                        taxCreditInfoChp(language, basicActions),
                         member0Name,
                         healthFirstInfoSecondary(language),
                         firstOfNextMonth,
                         member0Name,
-                        healthPlanInfo(docType, language),
+                        healthPlanInfo(docType, language, basicActions),
                         member0Name,
-                        taxCreditInfoChpSecondary(language)
+                        taxCreditInfoChpSecondary(language, basicActions)
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
@@ -1286,8 +1299,8 @@ public class EligNotices {
         };
     }
 
-    public static String taxCreditInfoChp(String language){
-        String currentYear = getCurrentYear();
+    public static String taxCreditInfoChp(String language, BasicActions basicActions){
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1320,8 +1333,8 @@ public class EligNotices {
         };
     }
 
-    public static String taxCreditInfoChpSecondary(String language){
-        String currentYear = getCurrentYear();
+    public static String taxCreditInfoChpSecondary(String language, BasicActions basicActions){
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1354,8 +1367,8 @@ public class EligNotices {
         };
     }
 
-    public static String cobra(String docType, String language, String memberNumber) {
-        String firstOfNextMonth = getFirstOfNextMonth(language);
+    public static String cobra(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String firstOfNextMonth = getFirstOfNextMonth(language, basicActions);
 
         String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
         String spanishTemplate = ", a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
@@ -1370,18 +1383,18 @@ public class EligNotices {
                         englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        cobraInfo(language),
+                        cobraInfo(language, basicActions),
                         primaryName
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        cobraInfo(language),
+                        cobraInfo(language, basicActions),
                         primaryName
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
@@ -1391,30 +1404,30 @@ public class EligNotices {
                         englishTemplate + englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        cobraInfo(language),
+                        cobraInfo(language, basicActions),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         firstOfNextMonth,
                         member0Name,
-                        cobraInfo(language),
+                        cobraInfo(language, basicActions),
                         member0Name
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate + spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        cobraInfo(language),
+                        cobraInfo(language, basicActions),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         firstOfNextMonth,
                         member0Name,
-                        cobraInfo(language),
+                        cobraInfo(language, basicActions),
                         member0Name
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
@@ -1423,8 +1436,8 @@ public class EligNotices {
         };
     }
 
-    public static String individualInsurance(String docType, String language, String memberNumber) {
-        String firstOfNextMonth = getFirstOfNextMonth(language);
+    public static String individualInsurance(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String firstOfNextMonth = getFirstOfNextMonth(language, basicActions);
 
         String englishTemplate = ", starting as early as %s you are approved for:%s\n%s, you do not qualify for the following:%s\n%s";
         String spanishTemplate = ", a partir del %s usted est\u00E1 aprobado para:%s\n%s, no califica para lo siguiente:%s\n%s";
@@ -1439,18 +1452,18 @@ public class EligNotices {
                         englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        IndividualInsuranceInfo(language),
+                        IndividualInsuranceInfo(language, basicActions),
                         primaryName
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        IndividualInsuranceInfo(language),
+                        IndividualInsuranceInfo(language, basicActions),
                         primaryName
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
@@ -1460,30 +1473,30 @@ public class EligNotices {
                         englishTemplate + englishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        IndividualInsuranceInfo(language),
+                        IndividualInsuranceInfo(language, basicActions),
                         primaryName,
                         member0Name,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         firstOfNextMonth,
                         member0Name,
-                        IndividualInsuranceInfo(language),
+                        IndividualInsuranceInfo(language, basicActions),
                         member0Name
                 );
                 case "Spanish" -> String.format(
                         spanishTemplate + spanishTemplate,
                         firstOfNextMonth,
                         primaryName,
-                        healthInsuranceInfo(docType, language),
+                        healthInsuranceInfo(docType, language, basicActions),
                         primaryName,
-                        IndividualInsuranceInfo(language),
+                        IndividualInsuranceInfo(language, basicActions),
                         primaryName,
                         member0Name,
                         healthFirstInfo(language),
                         firstOfNextMonth,
                         member0Name,
-                        IndividualInsuranceInfo(language),
+                        IndividualInsuranceInfo(language, basicActions),
                         member0Name
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
@@ -1492,9 +1505,9 @@ public class EligNotices {
         };
     }
 
-    public static String healthInsuranceInfo(String docType, String language){
-        String lceCloseDate = getLceCloseDate(language, docType);
-        String currentYear = getCurrentYear();
+    public static String healthInsuranceInfo(String docType, String language, BasicActions basicActions){
+        String lceCloseDate = getLceCloseDate(language, docType, basicActions);
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1516,8 +1529,8 @@ public class EligNotices {
         };
     }
 
-    public static String cobraInfo(String language){
-        String currentYear = getCurrentYear();
+    public static String cobraInfo(String language, BasicActions basicActions){
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1544,8 +1557,8 @@ public class EligNotices {
         };
     }
 
-    public static String IndividualInsuranceInfo(String language){
-        String currentYear = getCurrentYear();
+    public static String IndividualInsuranceInfo(String language, BasicActions basicActions){
+        String currentYear = basicActions.getCurrYear();
 
         return switch (language) {
             case "English"->
@@ -1620,17 +1633,17 @@ public class EligNotices {
         return "";
     }
 
-    public static String getApplicationResultsSpanish(String docType, String language, String memberNumber) {
-        String timestamp = getCurrentTimestamp(language);
-        String lceCloseDate = getLceCloseDate(language, docType);
+    public static String getApplicationResultsSpanish(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String timestamp = getCurrentTimestamp(language, basicActions);
+        String lceCloseDate = getLceCloseDate(language, docType, basicActions);
 
         return String.format("ELG-101-01\n" +
                 SharedData.getPrimaryMember().getEmailId()+"\n" +
                 "N\u00FAmero de Cuenta: "+SharedData.getPrimaryMember().getAccount_id()+"\n" +
                 timestamp+" a las \n" +
                 "Apreciable "+SharedData.getPrimaryMember().getFullName()+",\n" +
-                introParagraph(docType,language) +
-                resultsType(docType, language, memberNumber)+
+                introParagraph(docType,language, basicActions) +
+                resultsType(docType, language, memberNumber, basicActions)+
                 "Informe de cambios en su situaci\u00F3n familiar:\n" +
                 "Si ocurren cambios en su situaci\u00F3n familiar despu\u00E9s de haberse inscrito en un plan por medio de Connect for Health\n" +
                 "Colorado, deber\u00E1 informarnos de ellos dentro de un plazo de 30 d\u00EDas. Algunos cambios, llamados \"eventos calificados\n" +
@@ -1651,7 +1664,7 @@ public class EligNotices {
                 "elegibilidad.\n" +
                 "Puede solicitar una apelaci\u00F3n en una de estas cuatro formas:\n" +
                 "1. Llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" +
-                "lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
+                "lunes a viernes de 8:00 a.m. a 6:00 p.m. y del 2\u00BA al 17 de diciembre, de 8:00 a.m. a 8:00 p.m.\n" +
                 "2. Visite  para descargar un formulario de solicitud de apelaci\u00F3n. Puede llenar su Es.ConnectForHealthCO.com\n" +
                 "solicitud de apelaci\u00F3n y subirla a su cuenta de Connect for Health Colorado en \u201CMis documentos\u201D.\n" +
                 "3. Lleve o env\u00EDe por correo su Solicitud de apelaci\u00F3n a:\n" +
@@ -1683,7 +1696,8 @@ public class EligNotices {
                 "la impresi\u00F3n en letra grande), int\u00E9rpretes de idiomas extranjeros y traducci\u00F3n de informaci\u00F3n a otros idiomas. Los\n" +
                 "apoyos y servicios pueden brindarse de manera oportuna y sin costo.\n" +
                 "Para solicitar apoyos o servicios gratuitos, llame al Centro de atenci\u00F3n al cliente de Connect for Health\n" +
-                "Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
+                "Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m. y del 2\u00BA al 17 de\n" +
+                "diciembre, de 8:00 a.m. a 8:00 p.m.\n" +
                 "Para presentar una denuncia de discriminaci\u00F3n o para conocer mejor esta pol\u00EDtica, llame al 303-590-9640, env\u00EDe un\n" +
                 "fax al 303-322-4217, o escr\u00EDbanos por correo postal a:\n" +
                 "Connect for Health Colorado\n" +

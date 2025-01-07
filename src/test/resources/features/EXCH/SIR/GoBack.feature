@@ -24,7 +24,7 @@ Feature: Go Back tests
       
       # Question not asked during Open Enrollment
       #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+      And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -60,10 +60,12 @@ Feature: Go Back tests
     And I Declare as Tax Household 1
     Then I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
     Then I click on view results and shop
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -111,7 +113,7 @@ Feature: Go Back tests
 
       # Question not asked during Open Enrollment
       #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+      And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -162,17 +164,28 @@ Feature: Go Back tests
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
+
     And I Apply for no financial help
+
+    Then I validate I am on the "Tell us about life changes" page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
     And I Declare as Tax Household 1
     Then I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+
+    Then I validate I am on the "Application History" page
     Then I click on view results and shop
+
+    Then I validate I am on the "Application Results" page
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -232,7 +245,7 @@ Feature: Go Back tests
 
       # Question not asked during Open Enrollment
       #Then I validate I am on the "Report a life change" page
-      #And I report "MovedToColorado" and click continue
+      And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -340,6 +353,7 @@ Feature: Go Back tests
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Brother,Sister"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -428,7 +442,7 @@ Feature: Go Back tests
 
     # Question not asked during Open Enrollment
     #Then I validate I am on the "Report a life change" page
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -581,6 +595,7 @@ Feature: Go Back tests
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

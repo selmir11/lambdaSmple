@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class BasicSteps {
     BasicActions basicActions = new BasicActions(WebDriverManager.getDriver());
     BasicActions actions = BasicActions.getInstance();
@@ -26,10 +28,10 @@ public class BasicSteps {
             case "Admin Login":
                 pageUrl = "login-portal/login/adminUsers";
                 break;
-                case "Program Manager Login":
+            case "Program Manager Login":
                 pageUrl = "login-portal/login/programManagers";
                 break;
-                case "Broker Portal Login":
+            case "Broker Portal Login":
                 pageUrl = "login-portal/login/brokers";
                 break;
             case "Prescreen":
@@ -38,7 +40,7 @@ public class BasicSteps {
             case "Add Member":
                 pageUrl = "nes/addMember";
                 break;
-                case "Pay now":
+            case "Pay now":
                 pageUrl = "PaymentPortal/payNow";
                 break;
             case "Account Overview":
@@ -66,6 +68,9 @@ public class BasicSteps {
             case "Deductions":
                 pageUrl = "/IncomePortal/deductions";
                 break;
+            case "Admin account creation":
+                pageUrl = "AdminPortal/applinks/account-creation";
+                break;
             case "Financial Help":
                 pageUrl = "IncomePortal/financialHelp";
                 break;
@@ -86,13 +91,22 @@ public class BasicSteps {
             case "Create Account":
                 pageUrl = "createAccount";
                 break;
+            case "Associated Brokers":
+            pageUrl = "associated-brokers";
+            break;
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
                 break;
+            case "my agency":
+            pageUrl = "broker-agency-info";
+            break;
             case "Admin search":
                 pageUrl = "/AdminPortal/search";
                 break;
-                case "Individual CoCo":
+            case "account details":
+                pageUrl = "account-details";
+                break;
+            case "Individual CoCo":
                 pageUrl = "/AdminPortal/coco/individual/";
                 break;
             case "Application Results":
@@ -130,7 +144,7 @@ public class BasicSteps {
                 pageUrl = "coco/PlanSelectionPortal/medicalPlanCarrierDetails";
                 break;
             case "CoCo Compare Medical Plan Detail":
-                basicActions.waitForElementToDisappear( spinner, 40 );
+                basicActions.waitForElementToDisappear(spinner, 40);
                 basicActions.wait(20000);
                 pageUrl = "coco/PlanSelectionPortal/medicalPlanCarrierDetails";
                 break;
@@ -167,7 +181,7 @@ public class BasicSteps {
             case "Find Expert Help Exch":
                 pageUrl = "/broker-portal/individual/find-expert-help?lang=en";
                 break;
-                case "Find Expert Help Exch OBO":
+            case "Find Expert Help Exch OBO":
                 pageUrl = "broker-portal/obo/find-expert-help";
                 break;
             case "Find Expert Help Exch Spanish":
@@ -317,16 +331,16 @@ public class BasicSteps {
             case "My Plans CoCo":
                 pageUrl = "coco/EnrollmentPortal/myPolicies";
                 break;
-            case "Financial Help Agreements" :
+            case "Financial Help Agreements":
                 pageUrl = "PaymentPortal/agreements";
                 break;
-            case "Payment Selection" :
+            case "Payment Selection":
                 pageUrl = "PaymentPortal/paymentSelection";
                 break;
-            case "Initial Payment" :
+            case "Initial Payment":
                 pageUrl = "PaymentPortal/initialPayment";
                 break;
-            case "Admin Portal search" :
+            case "Admin Portal search":
                 pageUrl = "AdminPortal/search";
                 break;
             case "Congratulations - What's Next?":
@@ -344,19 +358,19 @@ public class BasicSteps {
             case "EDI Transactions":
                 pageUrl = "/edi-transactions";
                 break;
-            case "Elmo Race and Ethnicity" :
+            case "Elmo Race and Ethnicity":
                 pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
-            case "Ethnicity and Race" :
+            case "Ethnicity and Race":
                 pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
-            case "CoCo Tell us about yourself" :
+            case "CoCo Tell us about yourself":
                 pageUrl = "/coco/member-details-portal/member-details/";
                 break;
-            case "CoCo Tell us about additional members" :
+            case "CoCo Tell us about additional members":
                 pageUrl = "/coco/member-details-portal/additional-member-details";
                 break;
-            case "CoCo Additional info for additional member" :
+            case "CoCo Additional info for additional member":
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
                 break;
             case "Elmo Ohi Retiree":
@@ -373,7 +387,7 @@ public class BasicSteps {
                 break;
             case "Elmo Ohi Peace Corps":
                 pageUrl = "/otherHealthCoverage/peaceCorps";
-				break;
+                break;
             case "Elmo Ohi Tricare":
                 pageUrl = "/otherHealthCoverage/tricare";
                 break;
@@ -398,76 +412,98 @@ public class BasicSteps {
             case "Admin LCE":
                 pageUrl = "/nes/adminLce";
                 break;
-            case "Admin Portal individual dashboard" :
+            case "Admin Portal individual dashboard":
                 pageUrl = "/AdminPortal/individual/";
                 break;
-            case "LUGY Find expert help" :
+            case "LUGY Find expert help":
                 pageUrl = "broker-portal/find-expert-help";
                 break;
-            case "Agency dashboard" :
+            case "LUGY Family Details":
+            pageUrl = "nes/letUsGuideYou/familyDetails";
+            break;
+            case "LUGY Family Income":
+            pageUrl = "nes/letUsGuideYou/familyIncome";
+            break;
+            case "LUGY Prescreener Result":
+            pageUrl = "nes/letUsGuideYou/prescreenerResult";
+            break;
+            case "LUGY":
+            pageUrl = "nes/letUsGuideYou/household";
+            break;
+            case "PEAK skeleton error message":
+                pageUrl = "login-portal/peak-login-failed";
+                break;
+            case "Agency dashboard":
                 pageUrl = "AdminPortal/agency";
                 break;
-            case "AP Broker dashboard" :
+            case "AP Broker dashboard":
                 pageUrl = "AdminPortal/broker";
                 break;
-            case "Broker Portal C4U link" :
+            case "Broker Portal C4U link":
                 pageUrl = "https://c4hco.csod.com/login/render.aspx?id=defaultclp";
                 break;
-            case "Broker Portal Your Clients" :
+            case "Broker Portal Your Clients":
                 pageUrl = "/view-clients";
                 break;
-            case "assistnet dashboard" :
+            case "assistnet dashboard":
                 pageUrl = "assistnet-portal/program-manager";
                 break;
-            case "Authorize Assister Organization" :
+            case "Authorize Assister Organization":
                 pageUrl = "assistnet-portal/individual/authorize-assister";
                 break;
-            case "Authorize Assister Organization AP OBO" :
+            case "Authorize Assister Organization AP OBO":
                 pageUrl = "assistnet-portal/csr/authorize-assister";
                 break;
-            case "Error" :
+            case "Error":
                 pageUrl = "/error";
                 break;
-            case "Unauthorized" :
+            case "Unauthorized":
                 pageUrl = "/unauthorized";
                 break;
-            case "Admin Portal Exclusion Reason Report" :
+            case "Admin Portal Exclusion Reason Report":
                 pageUrl = "/exclusions";
                 break;
-            case "Admin Portal EDI Transactions" :
+            case "Admin Portal EDI Transactions":
                 pageUrl = "edi-transactions";
                 break;
-            case "Admin Portal Detailed EDI" :
+            case "Admin Portal Detailed EDI":
                 pageUrl = "/detailed-edi";
                 break;
-            case "Access Gateway" :
+            case "Access Gateway":
                 pageUrl = "/AdminPortal/";
                 break;
-            case "Elmo HRA" :
+            case "Elmo HRA":
                 pageUrl = "otherHealthCoverage/hra";
                 break;
-            case "Program Manager" :
+            case "Program Manager":
                 pageUrl = "/AdminPortal/programManager/";
                 break;
-            case "Application Summary Completed" :
+            case "Application Summary Completed":
                 pageUrl = "applicationSummary";
                 break;
-            case "Application Details" :
+            case "Application Details":
                 pageUrl = "oboApplSummary";
                 break;
-                case "Medical Enrollment Groups" :
+            case "Medical Enrollment Groups":
                 pageUrl = "PreShoppingPortal/viewGroupingMembers";
                 break;
-            case "Manage Plans" :
+            case "Manage Plans":
                 pageUrl = "/policies";
                 break;
-            case "Self Attestation" :
+            case "Self Attestation":
                 pageUrl = "/ManualVerificationPortal/";
+                break;
+            case "MD365 Login":
+                pageUrl = "/login.microsoftonline.com";
+                break;
+            case "We Can Help":
+                pageUrl = "/we-can-help/";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;
         }
-        Assert.assertTrue( basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl), "expected page::" + pageUrl + "::did not load");
+        Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl), "expected page::" + pageUrl + "::did not load");
     }
 
     @And("I validate I am on the {string} page and close tab")
@@ -635,12 +671,13 @@ public class BasicSteps {
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
             if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 50).contains(pageUrl), "expected page::"+ pageUrl+"::did not load");
+                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 50).contains(pageUrl), "expected page::" + pageUrl + "::did not load");
             }
         }
         basicActions.closeBrowserTab();
         basicActions.getDriver().switchTo().window(origin);
     }
+
     @And("I close current tab and switch back to previous tab")
     public void closeCurrentTabAndSwitchToPrevious() {
         basicActions.closeBrowserTab();
@@ -658,7 +695,9 @@ public class BasicSteps {
     }
 
     @And("I switch to the tab number {int}")
-    public void switchTab(int tabNumber) { basicActions.switchTabs(tabNumber);}
+    public void switchTab(int tabNumber) {
+        basicActions.switchTabs(tabNumber);
+    }
 
     @And("I set the browser resolution to {int} x {int}")
     public void setResolution(int width, int height) {
@@ -666,10 +705,14 @@ public class BasicSteps {
     }
 
     @And("I set the browser resolution to Maximized")
-    public void setResolutionMax(){basicActions.getDriver().manage().window().maximize();}
+    public void setResolutionMax() {
+        basicActions.getDriver().manage().window().maximize();
+    }
 
     @And("I change the C4 url to {string}")
-    public void iChangeToNewUrl(String page){basicActions.changeToNewUrl(page);}
+    public void iChangeToNewUrl(String page) {
+        basicActions.changeToNewUrl(page);
+    }
 
     @Then("I click Go Back button from chrome browser")
     public void iClickGoBackButtonFromChromeBrowser() {
@@ -677,14 +720,30 @@ public class BasicSteps {
     }
 
     @Then("I wait for {int} milliseconds")
-    public void iWait(int waitTime) {actions.wait(waitTime);}
+    public void iWait(int waitTime) {
+        actions.wait(waitTime);
+    }
 
     @Then("I open a new browser tab")
-    public void iOpenNewTab(){basicActions.openNewTab();}
+    public void iOpenNewTab() {
+        basicActions.openNewTab();
+    }
 
     @Then("I open url with {string} query in new tab")
-    public void iAddQueryInNewTab(String query){basicActions.openUrlWithQueryStringInNewTab(query);}
+    public void iAddQueryInNewTab(String query) {
+        basicActions.openUrlWithQueryStringInNewTab(query);
+    }
 
     @Then("I open current page in new tab")
-    public void iOpenCurrPageInNewTab(){basicActions.openCurrPageInNewTab();}
+    public void iOpenCurrPageInNewTab() {
+        basicActions.openCurrPageInNewTab();
+    }
+
+    @And("I set the member relationship to the subscriber")
+    public void iSetMemberRelationToSubscriber(List<String> Relations) {
+        basicActions.setRelationToSubscriber(Relations);
+    }
+
+    @And("I verify the page is scrolled to the top")
+    public void iPageAtTop() {basicActions.pageAtTop();}
 }

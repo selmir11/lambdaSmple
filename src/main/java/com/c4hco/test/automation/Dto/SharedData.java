@@ -7,6 +7,7 @@ import com.c4hco.test.automation.database.EntityObj.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +17,10 @@ public class SharedData {
     @Getter @Setter private static String appType;
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
-    @Getter @Setter private static List<MemberDetails> allMembers;
+    @Getter @Setter private static List<MemberDetails> allMembers; // should be removed
     @Getter @Setter private static String primaryMemberId;
-    @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsEntities; // Should be removed
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsMedEntities;
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsDenEntities;
-    @Getter @Setter private static List<PolicyTablesEntity> policyTablesEntities; // Should be removed
     @Getter @Setter private static List<PolicyTablesEntity> medicalPolicyTablesEntities;
     @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
     @Getter @Setter private static String medicalFileName;
@@ -45,6 +44,9 @@ public class SharedData {
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
     @Getter @Setter private static Map<String, PlanDbData> dentalPlanDbData;
+    @Getter @Setter private static List<Map<String, DbData>> dbDataNew;
+    @Getter @Setter private static List<Map<String, PlanDbData>> medicalPlanDbDataNew;
+    @Getter @Setter private static List<Map<String, PlanDbData>> dentalPlanDbDataNew;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;
@@ -77,6 +79,10 @@ public class SharedData {
     @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
+    @Getter @Setter private static AdminDetails adminDetails;
+    @Getter @Setter private static String primaryTaxPayerKey;
+    @Getter @Setter private static BigDecimal oldAccountId;
+
 
 
     public static void reset(){
@@ -89,9 +95,10 @@ public class SharedData {
         edi834TransactionDetails = null;
         commonEDISegments = null;
         env = null;
-        ob834DetailsEntities = null;
-        policyTablesEntities = null;
         dbData = null;
+        dbDataNew = null;
+        medicalPlanDbDataNew = null;
+        dentalPlanDbDataNew = null;
         planYear = null;
         groupDetails = null;
         dbName = null;
@@ -121,6 +128,8 @@ public class SharedData {
         ib834TransactionDetails=null;
         expectedCalculatedDates_medicalPlan = null;
         expectedCalculatedDates_dentalPlan = null;
+        oldAccountId = null;
+        primaryTaxPayerKey=null;
     }
 
 }

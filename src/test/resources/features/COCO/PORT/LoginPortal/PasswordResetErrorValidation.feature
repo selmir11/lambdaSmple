@@ -58,6 +58,7 @@ Feature:Password reset error validation English/Spanish
     And I search for user and click email from search results
     Then I wait for 200 milliseconds
     Then I click on view button for "Account Activity" report
+    Then I switch to the tab number 2    
     And I validate Account Activity title row
     Then I wait for 200 milliseconds
     Then I validate "UI_ACCT_CREATED" event code and description "Account created" in activity event report

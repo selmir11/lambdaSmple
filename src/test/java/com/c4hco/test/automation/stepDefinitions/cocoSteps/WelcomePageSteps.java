@@ -15,6 +15,9 @@ public class WelcomePageSteps {
     @And("I apply for the current year in CoCo")
     public void iApplyForCurrentYear(){welcomePage.clickApplyForInsurance();}
 
+    @And("I apply for the next year in CoCo during open enrollment")
+    public void iApplyForNextYear(){welcomePage.applyForNextYear();}
+
     @And("I click on {string} link on welcome page")
     public void iClickActionLink(String actionLink) { welcomePage.clickActionLinks(actionLink); }
 
@@ -56,8 +59,8 @@ public class WelcomePageSteps {
     @And("I validate no notification banner on welcome page")
     public void verifyNoNotificationBanner()  { welcomePage.validateNoNotificationBanner(); }
 
-
-
+    @Then("I validate the action link properties on welcome page")
+    public void iValidateActionLinks() {welcomePage.validateActionLinks();}
 }
 
 

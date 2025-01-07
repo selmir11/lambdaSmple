@@ -41,4 +41,25 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    @And("I get the newborn {string} dob as {string} in CoCo page")
    public void iGetMemberDOB(String namePrefix, String dob){tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.getDob(namePrefix, dob);}
 
+   @Then("I validate the member names displayed in the label text above relationship dropdown field in Tell us About additional member page")
+   public void iValidateRelationshipLabel() {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateRelationshipLabel();
+   }
+
+   @Then("I validate details on tell us about additional members of your household page for {string} with DOB as {string}, gender {string} and applying {string}")
+   public void iValidateValuesinTellUsAboutAddMemb(String FName,String DOB, String Gender, String applying, List<String> relationship) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateTellUsAboutAdditionalMembersCoCo(FName,DOB,Gender,applying,relationship);
+   }
+
+   @Then("I update details on tell us about additional members of your household page for {string} with DOB as {string}, gender {string} and applying {string}")
+   public void iUpdateValuesinTellUsAboutAddMemb(String FName, String DOB, String Gender, String applying, List<String> relationship) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.updateAdditionalMemberDetailsCoCo(FName,DOB,Gender,applying,relationship);
+   }
+
+   @Then("I validate the relationship dropdown values")
+   public void validateRelationshipDropdownValues(List<String> relationship) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateDropdownOptions(relationship);
+   }
+
+
 }

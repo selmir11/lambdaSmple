@@ -1,9 +1,9 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Constants;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +15,8 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class DentalPlansResultsPage {
@@ -81,23 +83,17 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-ResetFilters")
     WebElement resetButton;
 
-    @FindBy(id = "PlanResults-MonthlyPremium_1")
-    WebElement dentalPremium1;
-
-    @FindBy(id = "PlanResults-PlanName_4")
+    @FindBy(id = "PlanResults-PlanName_1")
     WebElement pediatricdental1;
 
-    @FindBy(id = "PlanResults-PlanName_5")
+    @FindBy(id = "PlanResults-PlanName_2")
     WebElement pediatricdental2;
 
-    @FindBy(id = "PlanResults-PlanName_6")
+    @FindBy(id = "PlanResults-PlanName_3")
     WebElement pediatricdental3;
 
     @FindBy(xpath = "(//div[@class='col detail-pane'])[1]")
     WebElement firstDentalPlanCard;
-
-    @FindBy(xpath = "(//*[@id='DentalPlanResults-MonthlyPremium'])[1]")
-    WebElement monthlypremiumdropdown;
 
     @FindBy(xpath = "//div[@id='MPDcollapse'] //span[contains(@class,'ngx-slider-limit ngx-slider-floor')]")
     WebElement txtpremiumamnt;
@@ -189,6 +185,16 @@ public class DentalPlansResultsPage {
         dentalSkipBtn.click();
     }
 
+    private void setSkippedGroupNumber(String groupNum){
+        List<MemberDetails> allEligMembers = basicActions.getAllDentalEligibleMemInfo();
+        for(MemberDetails member: allEligMembers){
+            if(member.getDenGroupInd().equals(groupNum)){
+                member.setHasDentalPlan(false);
+            }
+        }
+        clickSkip();
+    }
+
     public void clickFirstTwoCompareBoxes() {
         basicActions.waitForElementToBePresent( comparePlanBox1, 10 );
         comparePlanBox1.click();
@@ -249,9 +255,9 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToDisappear( spinner, 15 );
         basicActions.waitForElementToBePresent( disclaimerDental,10 );
         basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
-        softAssert.assertEquals( pediatricdental1.getText(), "Anthem Dental Family", "Cigna Dental Pediatric not appearing" );
-        softAssert.assertEquals( pediatricdental2.getText(), "Delta Dental of Colorado Family Basic Plan", "Cigna Dental Family + Pediatric not appearing" );
-        softAssert.assertEquals( pediatricdental3.getText(), "Cigna Dental Family + Pediatric", "Delta Dental of Colorado Pediatric Enhanced Plan not appearing" );
+        softAssert.assertEquals( pediatricdental1.getText(), "Anthem Dental Family Value", "Cigna Dental Pediatric not appearing" );
+        softAssert.assertEquals( pediatricdental2.getText(), "EssentialSmile Colorado - Total Care", "Cigna Dental Family + Pediatric not appearing" );
+        softAssert.assertEquals( pediatricdental3.getText(), "Delta Dental of Colorado Family Value Plan", "Delta Dental of Colorado Pediatric Enhanced Plan not appearing" );
         softAssert.assertAll();
     }
 
@@ -334,23 +340,47 @@ public class DentalPlansResultsPage {
         softAssert.assertAll();
         }
 
-    public void SelectSpecificDentalPlanPerGrp(String SpecificPlan,String member){
+    public void selectDentalPlansForGroups(List<String> plansOfGroups) {
+        for (String planOfGroup : plansOfGroups) {
+            String[] parts = planOfGroup.split(":");
+            String plan = parts[1];
+            Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
+            String groupNum = matcher.find() ? matcher.group() : null;
 
-        basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementToBePresent(dentalplanheader,20);
+            basicActions.waitForElementToDisappear(spinner, 30);
+            basicActions.wait(3000);
+            basicActions.waitForElementToBePresent(dentalplanheader, 10);
+            Matcher matcher_header = Pattern.compile("\\d+").matcher(dentalplanheader.getText());
+            String headerGroupNum = matcher_header.find() ? matcher.group() : null;
 
-        String headerText = dentalplanheader.getText();
-        if (headerText.contains(member)) {
-            clickSkip();
-        } else {
-
-            selectDentalPlan(SpecificPlan);
-             clickContinueOnDentalResultsPage();
-                System.out.println("Selected plan: " + SpecificPlan);
-
+            Assert.assertEquals(headerGroupNum, groupNum, "Group number from header and step did not match!");
+            if (plan.equals("skip")) {
+                setSkippedGroupNumber(groupNum);
+            } else {
+                selectDentalPlanForGrp(plan, groupNum);
+            }
         }
-
     }
+
+    public void selectDentalPlanForGrp(String planName, String grpNum){
+        List<MemberDetails> memberslist = basicActions.getAllDentalEligibleMemInfo();
+        basicActions.waitForElementToDisappear(spinner, 30);
+        for(MemberDetails member: memberslist){
+            if(member.getDenGroupInd().equals(grpNum)){
+                member.setDentalPlan(planName);
+            }
+        }
+        do {
+            optionalInt = checkIfPlanPresent(planName);
+            if (optionalInt.isPresent()) {
+                clickPlanButton(optionalInt.get()+1);
+            } else {
+                paginateRight();
+            }
+        } while(optionalInt.isEmpty());
+        clickContinueOnDentalResultsPage();
+    }
+
 
     public void verifyPremiumAmountIsZero() {
         basicActions.waitForElementToDisappear(spinner, 30);

@@ -26,7 +26,7 @@ Then I validate I am on the "Elmo Race and Ethnicity" page
 And I click Go Back on the Race and Ethnicity page
 Then I validate I am on the "CoCo Additional information for yourself" page
 And I click continue on the Add info for yourself page
-And I select "White or European" for race and ethnicity option
+And I select "White or European" for race and ethnicity option for "Primary"
 And I click save and continue on the Race and Ethnicity page
 Then I validate I am on the "CoCo Employment Income" page
 And I select "Yes" employment option
@@ -53,11 +53,12 @@ Then I validate I am on the "Elmo Race and Ethnicity" page
 And I click Go Back on the Race and Ethnicity page
 Then I validate I am on the "CoCo Additional info for additional member" page
 And I click continue on the Additional information for additional member page
-And I select "White or European" for race and ethnicity option
+And I select "White or European" for race and ethnicity option for "Spouse"
 And I click save and continue on the Race and Ethnicity page
 Then I validate I am on the "CoCo Employment Income" page
 And  I click Go back on the Employment income page
 Then I validate I am on the "Elmo Race and Ethnicity" page
 And I click save and continue on the Race and Ethnicity page
+Then I validate I am on the "CoCo Employment Income" page
 And I click on Sign Out in the Header for "Elmo"
 Then I validate I am on the "Login" page

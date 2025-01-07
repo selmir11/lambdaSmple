@@ -407,3 +407,138 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Login" page
+
+  @SLER-1904 @PageNavigationOtherHealthCoveragePage
+  Scenario: SLER-1904 Verify page scrolls to top for OHC pages.
+    Then I click Add Another Family Member
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "04161981", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Married filing jointly" tax filing status
+    And I select spouse to file taxes jointly
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+#    Step 2
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the page is scrolled to the top
+#    Step 3
+    Then I select "Medicare" as ELMO health coverage option
+    Then I select "HRA" as ELMO health coverage option
+    Then I select "TRICARE" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohi Medicare" page
+    And I verify the page is scrolled to the top
+    Then I click "No" for currently eligible in Medicare question
+    Then I click continue on the Elmo OHC Medicare page
+    And I validate I am on the "Elmo HRA" page
+    And I verify the page is scrolled to the top
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "500.00" amount on the Elmo OHI HRA page
+    Then I select "QSEHRA" for HRA type
+    Then I click continue on the Elmo OHI HRA page
+    And I validate I am on the "Elmo COBRA" page
+    And I verify the page is scrolled to the top
+    Then I click "No" for currently enrolled in COBRA question
+    Then I click continue on the Elmo OHC Cobra page
+    And I validate I am on the "Elmo Ohi Tricare" page
+    And I verify the page is scrolled to the top
+    Then I click "No" for currently enrolled in Tricare question
+    Then I click continue on the Elmo OHC Tricare page
+#    Step 4
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the page is scrolled to the top
+#    Step 5
+    Then I select "Medicare" as ELMO health coverage option
+    Then I select "HRA" as ELMO health coverage option
+    Then I select "TRICARE" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohi Medicare" page
+    And I verify the page is scrolled to the top
+    Then I click "No" for currently eligible in Medicare question
+    Then I click continue on the Elmo OHC Medicare page
+    And I validate I am on the "Elmo HRA" page
+    And I verify the page is scrolled to the top
+    Then I select Current Year year dropdown on the Elmo OHI HRA page
+    Then I enter "500.00" amount on the Elmo OHI HRA page
+    Then I select "QSEHRA" for HRA type
+    Then I click continue on the Elmo OHI HRA page
+    And I validate I am on the "Elmo COBRA" page
+    And I verify the page is scrolled to the top
+    Then I click "No" for currently enrolled in COBRA question
+    Then I click continue on the Elmo OHC Cobra page
+    And I validate I am on the "Elmo Ohi Tricare" page
+    And I verify the page is scrolled to the top
+    Then I click "No" for currently enrolled in Tricare question
+    Then I click continue on the Elmo OHC Tricare page
+#    Step 6
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I click the save and continue button on the Income Summary Detail page
+    And I click save and continue on tax status page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohi Medicare" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHC Medicare page
+    And I validate I am on the "Elmo HRA" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHI HRA page
+    And I validate I am on the "Elmo COBRA" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHC Cobra page
+    And I validate I am on the "Elmo Ohi Tricare" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHC Tricare page
+    And I validate I am on the "Elmo Other Health Coverage" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohi Medicare" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHC Medicare page
+    And I validate I am on the "Elmo HRA" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHI HRA page
+    And I validate I am on the "Elmo COBRA" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHC Cobra page
+    And I validate I am on the "Elmo Ohi Tricare" page
+    And I verify the page is scrolled to the top
+    Then I click continue on the Elmo OHC Tricare page
+
+    And I click on Sign Out in the Header for "NonElmo"
+    Then I validate I am on the "Login" page

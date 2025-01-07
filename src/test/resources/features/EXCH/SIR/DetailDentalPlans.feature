@@ -24,7 +24,7 @@ Feature: Dental Plan Verification test
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -68,6 +68,7 @@ Feature: Dental Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -100,7 +101,7 @@ Feature: Dental Plan Verification test
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -143,6 +144,7 @@ Feature: Dental Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -178,7 +180,7 @@ Feature: Dental Plan Verification test
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -222,6 +224,7 @@ Feature: Dental Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -258,7 +261,7 @@ Feature: Dental Plan Verification test
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -303,6 +306,7 @@ Feature: Dental Plan Verification test
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page

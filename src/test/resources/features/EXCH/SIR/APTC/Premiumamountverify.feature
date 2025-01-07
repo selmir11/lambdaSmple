@@ -20,7 +20,7 @@ Feature: Premium is not $0 when 4+ children
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "Birth" and click continue
+    And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -278,6 +278,9 @@ Feature: Premium is not $0 when 4+ children
 
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -297,10 +300,13 @@ Feature: Premium is not $0 when 4+ children
 
     And I validate I am on the "Dental Plan Results" page
     And  I validate dental premium amount is  zero
+
     And I click Skip on Dental Plan Results page
     And  I validate dental premium amount is  zero
+
     And I click Skip on Dental Plan Results page
     And  I validate dental premium amount is  zero
+
     And I click Skip on Dental Plan Results page
     And I click on Sign Out in the Header for "Portal"
 

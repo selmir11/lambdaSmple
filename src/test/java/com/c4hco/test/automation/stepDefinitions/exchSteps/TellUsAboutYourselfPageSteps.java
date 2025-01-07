@@ -4,6 +4,8 @@ import com.c4hco.test.automation.pages.exchPages.TellUsAboutYourselfPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
+
 public class TellUsAboutYourselfPageSteps {
     TellUsAboutYourselfPage tellUsAboutYourselfPage = new TellUsAboutYourselfPage(WebDriverManager.getDriver());
 
@@ -56,5 +58,25 @@ public class TellUsAboutYourselfPageSteps {
     @Then("I click Back on Tell us about yourself page")
     public void clickBackButton() {
         tellUsAboutYourselfPage.clickBackButton();
+    }
+
+    @And("I validate restrict multiple field edits pop up text on Tell us about yourself page")
+    public void iValidateRestrictMultipleField(List<String> validationText) {
+        tellUsAboutYourselfPage.validateRestrictMultipleFieldEditsError(validationText);
+    }
+
+    @Then("I click {string} close button under restrict multiple field edits pop up on Tell us about yourself page")
+    public void iClickCloseRestrictedFieldPopup(String language) {
+        tellUsAboutYourselfPage.closeRestrictMultipleFieldEditsErrorPopup(language);
+    }
+
+    @Then("I click on please click here link to change primary contact")
+    public void iClickPrimaryContactChange() { tellUsAboutYourselfPage.iClickPrimaryContactChangeLink();}
+    @Then("I click on please click here link to add new person")
+    public void iClickToAddNewPerson() { tellUsAboutYourselfPage.iClickLinkToAddNewPerson();}
+
+    @Then("I select new relationship of members to primary")
+    public void iSelectNewRelationship(List<String> relationship) {
+        tellUsAboutYourselfPage.selectNewRelationship(relationship);
     }
 }

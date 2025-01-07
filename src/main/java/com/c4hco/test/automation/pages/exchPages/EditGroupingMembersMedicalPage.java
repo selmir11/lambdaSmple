@@ -68,6 +68,10 @@ public class EditGroupingMembersMedicalPage {
     WebElement whatWorksBestLink;
     @FindBy(css = "ngb-tooltip-window .tooltip-inner")
     WebElement tootlTip;
+
+    @FindBy(id = "SOL-ManageGroupingMembers-MemberDetails")
+    List<WebElement> manageGroupingMember;
+
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
@@ -209,14 +213,15 @@ public class EditGroupingMembersMedicalPage {
 
     public void createNewGroup(List<String> grouping) {
         basicActions.waitForElementToDisappear(spinner, 20);
+        removeSuggestedGroups();
         for (String group : grouping) {
-            basicActions.waitForElementToBePresent(createNewGroupLink,10);
+            basicActions.waitForElementToBePresent(createNewGroupLink, 10);
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
             String[] groupDetail = group.split(":");
             String[] Names = groupDetail[0].split(",");
             for (String Name : Names) {
-                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + Name + "')]"));
+                WebElement dragElement = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + Name + "')]"));
                 WebElement dropElement = dragAMemberHere.get(dragAMemberHere.size() - 1);
                 basicActions.wait(3000);
                 basicActions.scrollToElement(dragElement);
@@ -250,6 +255,28 @@ public class EditGroupingMembersMedicalPage {
         softAssert.assertEquals(goBackButton.getText(), "Go back");
         softAssert.assertEquals(saveButtonOnEditGroupingPage.getText(), "Save groups");
         softAssert.assertAll();
+    }
+
+    private void removeSuggestedGroups() {
+        basicActions.waitForElementListToBePresent(manageGroupingMember,10);
+        for (WebElement dragElement : manageGroupingMember) {
+            WebElement dropElement = dragAMemberNotEnrolling.get(0);
+
+            basicActions.scrollToElement(dragElement);
+            basicActions.scrollToElement(dropElement);
+
+            builder.clickAndHold(dragElement)
+                    .moveToElement(dropElement)
+                    .release(dropElement).build()
+                    .perform();
+
+            basicActions.wait(3000);
+        }
+
+        List<WebElement> closeIcons = basicActions.getDriver().findElements(By.xpath("//i[contains(@class,'float-end')]"));
+        for (WebElement closeIcon : closeIcons) {
+            closeIcon.click();
+        }
     }
 
 }

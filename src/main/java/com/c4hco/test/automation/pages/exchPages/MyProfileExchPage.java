@@ -9,12 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import java.lang.reflect.Field;
 
 import java.util.List;
-
-import static org.apache.logging.log4j.core.util.Assert.isEmpty;
 
 
 public class MyProfileExchPage {
@@ -52,10 +50,10 @@ public class MyProfileExchPage {
     WebElement FullNameProfile;
 
 
-    @FindBy(id = "myProfile_mobilePhone")
+    @FindBy(id = "mobilePhone")
     WebElement Mobilephone;
 
-    @FindBy(id = "myProfile_homePhone")
+    @FindBy(id = "homePhone")
     WebElement Homephone;
 
     @FindBy(css = "h1.myProfile_title")
@@ -112,16 +110,16 @@ public class MyProfileExchPage {
     @FindBy(css = ".content_line_label.red-text")
     WebElement  EmailinUseMessage;
 
-    @FindBy(css = ".session-expiration-alert-modal-header.ng-tns-c1380103175-0")
+    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c3387428997-0")
     WebElement Headertimeout;
 
-    @FindBy(css = "p[class='ng-tns-c1380103175-0']")
+    @FindBy(css = "p.ng-tns-c3387428997-0")
     WebElement Questiontext;
 
-    @FindBy(css = "button[class='btn-primary-action-button ng-tns-c1380103175-0']")
+    @FindBy(id = "sessionExpirationAlert-Continue")
     WebElement YesTimeout;
 
-    @FindBy(css = "button[class='btn-second-action-button ng-tns-c1380103175-0']\n")
+    @FindBy(id = "sessionExpirationAlert-Logout")
     WebElement NoTimeout;
 
     @FindBy(css = ".row.header-2.popup-page-header")
@@ -442,23 +440,39 @@ public class MyProfileExchPage {
 
     public void PreferredContactMethod(String contactPrefrences) {
         clickPreferredContactDrp();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
         switch (contactPrefrences) {
             case "Email":
                 PreferredContactDrpOptions.get(1).click();
+                primaryMem.setContactPref("Email");
+                primaryMem.setIncorrectContactPref("Mail");
                 break;
             case "Mail":
                 PreferredContactDrpOptions.get(2).click();
+                primaryMem.setContactPref("Mail");
+                primaryMem.setIncorrectContactPref("Email");
+                break;
+            default:
+                Assert.fail("Invalid argument passed");
         }
     }
 
     public void PreferredContactLanguageMethod(String langContactPreferred) {
         clickPreferredLanguageDrp();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
         switch (langContactPreferred) {
             case "English":
                 LanguageDrpOptions.get(1).click();
+                primaryMem.setPrefLang("English");
+                primaryMem.setIncorrectLanguage("Spanish");
                 break;
             case "Spanish":
                 LanguageDrpOptions.get(2).click();
+                primaryMem.setPrefLang("Spanish");
+                primaryMem.setIncorrectLanguage("English");
+                break;
+            default:
+                Assert.fail("Invalid argument passed");
         }
     }
 
@@ -469,8 +483,9 @@ public class MyProfileExchPage {
 
     public void UpdateContactEmailAddress() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
-        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "Updated"+SharedData.getPrimaryMember().getEmailId();
+        String oldEmail = SharedData.getPrimaryMember().getEmailId();
+        SharedData.getPrimaryMember().setIncorrectEmail(oldEmail);
+        String newEmail = "Updated"+oldEmail;
         SharedData.getPrimaryMember().setEmailId(newEmail);
         InputEmail.clear();
         InputEmail.sendKeys(newEmail);
@@ -478,10 +493,22 @@ public class MyProfileExchPage {
 
     public void updateContactPhoneNumber() {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        String oldHomePhNum = SharedData.getPrimaryMember().getPhoneNumber();
+        SharedData.getPrimaryMember().setIncorrectHomePhone(oldHomePhNum);
         String newPhone = (String) CreateAccountPage.generatePhoneNumber();
         SharedData.getPrimaryMember().setPhoneNumber(newPhone);
         Homephone.clear();
         Homephone.sendKeys(newPhone);
+    }
+
+    public void updateMobilePhNum() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
+        String oldMobilePhNum = SharedData.getPrimaryMember().getIncorrectHomePhone()!=null ? SharedData.getPrimaryMember().getIncorrectHomePhone() :SharedData.getPrimaryMember().getPhoneNumber();
+        SharedData.getPrimaryMember().setIncorrectMobilePhone(oldMobilePhNum);
+        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        SharedData.getPrimaryMember().setAlternatePhNum(newPhone);
+        Mobilephone.clear();
+        Mobilephone.sendKeys(newPhone);
     }
     
     public void SelectTheHouseholdMemberAsPrimaryContact(String memberName) {
@@ -718,7 +745,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1025@test.com";
+        String newEmail = "updated.automation1026@test.com";
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(newEmail);
         MyProfileButtonExch.get(1).click();
@@ -895,12 +922,12 @@ public class MyProfileExchPage {
 
 
     public void verifyTimeoutPopupEnglish() {
-        basicActions.wait(900000);
-        basicActions.waitForElementToBePresent(Headertimeout, 2000000);
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
         softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
         softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
         softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
-        basicActions.waitForElementToBePresent(YesTimeout, 10);
+        basicActions.isElementDisplayed(Questiontext, 10);
         YesTimeout.click();
         basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
         softAssert.assertAll();
@@ -908,12 +935,13 @@ public class MyProfileExchPage {
 
 
     public void verifyTimeoutPopupSpanish() {
-        basicActions.waitForElementToBePresent(Headertimeout, 840000);
-        softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
-        softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
-        softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
-        YesTimeout.click();
-        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        basicActions.wait(840000);
+        //basicActions.waitForElementToBePresent(NoTimeout, 20);
+        softAssert.assertEquals(Headertimeout.getText(), "El tiempo de su sesi\u00F3n est\u00E1 por terminar.");
+        softAssert.assertEquals(NoTimeout.getText(), "No, cierre mi sesi\u00F3n");
+        softAssert.assertEquals(YesTimeout.getText(), "S\u00ED, deseo seguir en la sesi\u00F3n");
+        basicActions.isElementDisplayed(Questiontext, 10);
+        NoTimeout.click();
         softAssert.assertAll();
     }
 
@@ -977,10 +1005,24 @@ public class MyProfileExchPage {
             newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
             newPrimaryMem.setResAddress(primaryMem.getResAddress());
             newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
+            setRelation(newPrimaryMem);
             memberList.remove(newPrimaryMem);
             SharedData.setPrimaryMember(newPrimaryMem);
         });
         SharedData.setMembers(memberList);
+    }
+
+    private void setRelation(MemberDetails member){
+     String relation = member.getRelation_to_subscriber();
+        MemberDetails memWithPrimaryPrefix = basicActions.getMember("Primary");;
+        if(relation.toLowerCase().contains("spouse") || relation.toLowerCase().contains("wife") || relation.toLowerCase().contains("husband")){
+                 if(memWithPrimaryPrefix.getGender().toLowerCase().equals("male")){
+                   memWithPrimaryPrefix.setRelation_to_subscriber("HUSBAND");
+                 } else{
+                     memWithPrimaryPrefix.setRelation_to_subscriber("WIFE");
+                 }
+            }
+        member.setRelation_to_subscriber("SELF");
     }
 
     public void validateErrorMessage(String language) {

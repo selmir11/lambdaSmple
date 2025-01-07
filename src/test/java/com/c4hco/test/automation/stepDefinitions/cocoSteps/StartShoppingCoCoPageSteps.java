@@ -39,5 +39,13 @@ public class StartShoppingCoCoPageSteps {
         startShoppingCoCoPage.validateBtnTxt(goBackTxt, saveExitTxt, continueBtnTxt);
     }
 
+    @Then("I click {string} to the Tobacco usage question on start shopping page for {string} coco")
+    public void clickYestoTobaccoQuestion(String tobaccoUsageYesOrNo, String member){
+        startShoppingCoCoPage.selectTobaccoUsagecoco(tobaccoUsageYesOrNo, member);}
+
+    @And("I get the application id from the url from tobacco page coco")
+    public void getApplicationId(){
+        startShoppingCoCoPage.getApplicationId();
+    }
 
 }

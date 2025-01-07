@@ -40,16 +40,27 @@ public class MyProfilePageStepsCoco {
         myProfilePage.PreferredContactLanguageMethod(langContactPreferred);
     }
 
+    @And("I update the contact home phone number on profile page in coco")
+    public void updateHomePhone(){
+        myProfilePage.updateContactPhoneNumberCoco();
+    }
+
+    @And("I update the contact mobile phone number on profile page in coco")
+    public void updateMobilePhone(){
+        myProfilePage.updateMobilePhNumCoco();
+    }
+
     @Then("I verify Password Popup text on My profile page CoCo {string}")
     public void iverifyPasswordPopupTextOnMyProfileCoCoPage(String language) {
         myProfilePage.verifyPasswordPopupTextOnMyProfileCoCoPage(language);
     }
 
-
     @Then("I Validate the error message when no password in provided on the password popup on My profile page in CoCo {string}")
     public void iverifyErrortextpopupOnMyProfileCoCoPage(String language) {
         myProfilePage.verifyErrortextpopupOnMyProfileCoCoPage(language);
     }
+    @And("I validate timeout session popup {string} on My Profile page CoCo")
+    public void iVerifyTimeoutPopupCoco(String language)  { myProfilePage.VerifyTimeoutPopupCoco(language); }
 
     @And("I validate the incorrect password error message on My profile page in CoCo {string}")
     public void iverifyIncorrectPasswordErrortextpopupOnMyProfileCoCoPage(String language) {
@@ -66,10 +77,42 @@ public class MyProfilePageStepsCoco {
         myProfilePage.ValidatethirdattemptincorrectPasswordCoCo();
     }
 
+    @And("I update the contact email address on my profile page in coco")
+    public void updateEmailAddress(){
+        myProfilePage.updateContactEmailAddressCoco();
+    }
+
+    @And("I validate Email save changes on My Profile page CoCo")
+    public void iValidateSaveChangesEmailCoCo() {myProfilePage.ValidateSaveChangesEmailCoCo();
+    }
+
+    @And("I validate phone number save changes on My Profile page CoCo")
+    public void iValidateSaveChangesPhonenumberCoCo() {myProfilePage.ValidateSaveChangesPhonenumberCoCo();
+    }
+
+    @And("I validate Preferred Language save changes on My Profile page CoCo")
+    public void iValidateSaveChangesLanguageCoCo() {myProfilePage.ValidateSaveChangesLanguageCoCo();
+    }
+
+    @And("I validate Preferred Contact Method save changes on My Profile page CoCo")
+    public void iValidateSaveChangesContactMethodCoCo() {myProfilePage.ValidateSaveChangesContactMethodCoCo();
+    }
+
     @And("I click change primary contact on my profile page CoCo") public void iClickChangePrimaryContactOnMyProfilePage() {
         myProfilePage.ClickChangePrimaryContactOnMyProfilePageCoCo();
     }
 
+    @And("I get the account Id from my profile page coco")
+    public void getAcctId(){
+        myProfilePage.getAcctId();
+    }
+
     @Then("I validate Primary Contact Change Popup {string} on My profile page CoCo")
     public void ivalidateChangePrimaryContactPopupCoCo(String language)  { myProfilePage.validateChangePrimaryContactPopupCoCo(language); }
+
+    @And("I validate error messages {string} on My Profile page CoCo")
+    public void validateErrorMessageCoCo(String language)  { myProfilePage.validateErrorMessageCoCo(language); }
+
+    @Then("I verify Password text on My profile page {string} coco")
+    public void verifyPasswordTextOnMyProfilePageCoCo(String language)  { myProfilePage.verifyPasswordTextOnMyProfileExchPageCoCo(language); }
 }

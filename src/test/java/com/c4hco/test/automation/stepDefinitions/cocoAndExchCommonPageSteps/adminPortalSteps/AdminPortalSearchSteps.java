@@ -1,15 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalSearchPage;
-import com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.BasicSteps;
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.util.List;
 
 public class AdminPortalSearchSteps {
 
@@ -25,8 +21,13 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.logoutFromAdmin();
     }
 
+    @And("I search for the user with account id")
+    public void searchWithAccId() {
+        adminPortalSearchPage.searchWithAccId();
+    }
+
     @And("I search for user and click email from search results")
-    public void changeEffectiveDateForAccount() {
+    public void searchAndClickUser() {
         adminPortalSearchPage.searchForUser();
         adminPortalSearchPage.clickEmailLinkFrmSrchResults();
     }
@@ -163,7 +164,6 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.entersearchdata(dataTable);
     }
     
-
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
             adminPortalSearchPage.accountCreatedMessage();
@@ -173,9 +173,15 @@ public class AdminPortalSearchSteps {
     public void iVerifyDataInTheFieldsOnTheAdminPortalSearchPageShouldBeBlank(DataTable dataTable) {
         adminPortalSearchPage.verifyblankfield(dataTable);
     }
+
     @Then("I click on Reset button in AP dashboard page")
     public void iClickOnResetButtonInAPDashboardPage() {
         adminPortalSearchPage.clickResetAdminPortal();
+    }
+
+    @Then("I select the first broker record from the search results")
+    public void iSelectTheFirstBrokerRecordFromTheSearchResults() {
+        adminPortalSearchPage.selectTheFirstBrokerRecordFromTheSearchResults();
     }
 }
 

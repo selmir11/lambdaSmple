@@ -4,8 +4,12 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
+
 import com.c4hco.test.automation.utils.EligNotices;
+import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import lombok.SneakyThrows;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
@@ -29,6 +33,7 @@ public class MyDocumentsPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
+    PDF pdf = new PDF(WebDriverManager.getDriver());
     public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -42,7 +47,7 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".documents-notices-title.header-2")
     WebElement myDocumentsSubTitle;
-    
+
     @FindBy(css = ".documents-notices-content-container > div")
     WebElement documentsInfoMessage;
 
@@ -61,6 +66,9 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//div[@class='doc-type-select']")
     WebElement docTypeDrpDwn;
+
+    @FindBy(xpath = "//span[@id='mvrActionButtonTitle_0']")
+    WebElement verifyFinancialHelpEligbilityButton;
 
     //English modal text
 
@@ -125,7 +133,7 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//button[normalize-space()='Cargar Mi Documento']")
     WebElement btnCargarMisDocumento;
 
-//    modal options
+    //    modal options
     @FindBy(css = ".doc-subtype-select .drop-down-option.drop-down-option-selected")
     WebElement dpdWhichDocument;
 
@@ -201,21 +209,17 @@ public class MyDocumentsPage {
     }
 
     public boolean verifyPDFText(String expectedText, String docType, String language, String memberNumber) throws IOException {
-        String filePath = SharedData.getLocalPathToDownloadFile();
-        String fileName = SharedData.getNoticeFileName();
-        String pathAndName = filePath+"//"+fileName;
-        System.out.println("path and name is "+pathAndName);
-        // Read the PDF content using PDFBox
-        String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+
+        String pdfContent = extractTextFromPDF(pdf.PDFDownloaded());
 
         // Verify the text
         switch (expectedText) {
             case "Application Results":
                 switch (language){
                     case "English":
-                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResults(docType, language, memberNumber, basicActions))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResults(docType, language, memberNumber, basicActions).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -244,9 +248,9 @@ public class MyDocumentsPage {
                         }
                         break;
                     case "Spanish":
-                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber))) {
+                        if (!pdfContent.contains(EligNotices.getApplicationResultsSpanish(docType, language, memberNumber, basicActions))) {
                             String[] pdfLines = pdfContent.split("\n");
-                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber).split("\n");
+                            String[] expectedLines = EligNotices.getApplicationResultsSpanish(docType, language, memberNumber, basicActions).split("\n");
 
                             StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
@@ -284,20 +288,33 @@ public class MyDocumentsPage {
         return true;
     }
 
-    private static String extractTextFromPDF(Path pdfPath) throws IOException {
-        try (PDDocument document = PDDocument.load(new File(pdfPath.toString()))) {
+
+    private static String extractTextFromPDF(String pdfPath) throws IOException {
+        try (PDDocument document = Loader.loadPDF(new File(pdfPath))) {
             PDFTextStripper pdfStripper = new PDFTextStripper();
             return pdfStripper.getText(document).trim();
         }
     }
 
-                //============================VALIDATION STEPS==============//
+    //============================VALIDATION STEPS==============//
+    @SneakyThrows
     public void validateNoticeText(String docType) {
         switch(docType){
             case "EN-002-04 English":
                 validateEnr00204Notice();
                 break;
-            default: Assert.fail("Illegal argument Exception");
+            case "ELIG-001-01 English", "ELIG-001-01 NO CO RES English", "ELIG-001-01 MA QHP English",
+                    "ELIG-001-01 QHP English", "ELIG-001-01 Gain of Tribal Status English 1",
+                    "ELIG-001-01 Gain of Tribal Status English 2", "ELIG-001-01 Spanish", "ELIG-001-01 NO CO RES Spanish",
+                    "ELIG-001-01 MA QHP Spanish", "ELIG-001-01 QHP Spanish", "ELIG-001-01 Gain of Tribal Status Spanish 1",
+                    "ELIG-001-01 Gain of Tribal Status Spanish 2", "ELIG-001-01 English Mail", "ELIG-001-01 NO CO RES English Mail",
+                    "ELIG-001-01 MA QHP English Mail", "ELIG-001-01 QHP English Mail", "ELIG-001-01 Gain of Tribal Status English 1 Mail",
+                    "ELIG-001-01 Gain of Tribal Status English 2 Mail", "ELIG-001-01 Spanish Mail", "ELIG-001-01 NO CO RES Spanish Mail",
+                    "ELIG-001-01 MA QHP Spanish Mail", "ELIG-001-01 QHP Spanish Mail", "ELIG-001-01 Gain of Tribal Status Spanish 1 Mail",
+                    "ELIG-001-01 Gain of Tribal Status Spanish 2 Mail":
+                    pdf.validateEntirePDF(docType);
+            break;
+            default: Assert.fail("Illegal argument Exception: Notice Name Incorrect");
         }
     }
 
@@ -326,7 +343,7 @@ public class MyDocumentsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
-     }
+    }
 
     public void validateTheNoticeExistInMyDocumentLetterPage(String documentName) {
         basicActions.waitForElementToBePresent(myDocumentsSubTitle, 100);
@@ -400,47 +417,18 @@ public class MyDocumentsPage {
 
     private void validateEnr00204Notice(){
         try {
-            String filePath = SharedData.getLocalPathToDownloadFile();
-            String fileName = SharedData.getNoticeFileName();
-            String pathAndName = filePath + "//" + fileName;
-            System.out.println("File path and name is " + pathAndName);
 
-            String pdfText = extractTextFromPDF(Path.of(pathAndName));
+            String pdfText = extractTextFromPDF(pdf.PDFDownloaded());
 
             // WIP - append text for coverage start date, welcome text, Dear tag, refactor household members validation
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate(), "yyyy-MM-dd", "MMMM dd, yyyy")), "coverage start date failed");
             softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "primary member email Id is not matching");
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy")), "current date is not matching");
-            validateMemNames(pdfText);
-            validatePlanDetails(pdfText);
+            pdf.validateMemNames(pdfText);
+            pdf.validatePlanDetails(pdfText);
             softAssert.assertAll();
         } catch(IOException e){
 
-        }
-    }
-
-    private void validatePlanDetails(String pdfText){
-        PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get("group1");
-        String medicalPolicyId = "Your Connect for Health Colorado\u00AE Policy ID is " + SharedData.getPrimaryMember().getMedicalEapid_db()+".";
-
-      softAssert.assertTrue(pdfText.contains(medicalPlanDbData.getPlanName()), "medical plan name doesn't match");
-      softAssert.assertTrue(pdfText.contains("Monthly Premium: $"+SharedData.getPrimaryMember().getTotalMedAmtAfterReduction()), "medical premium amt doesn't match");
-      softAssert.assertTrue(pdfText.contains(medicalPolicyId), "policy id is not matching");
-
-        if(SharedData.getAppType().equals("exchange")){
-            String dentalPolicyId = "Your Connect for Health Colorado\u00AE Policy ID is " + SharedData.getPrimaryMember().getDentalEapid_db()+".";
-            PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get("group1");
-          softAssert.assertTrue(pdfText.contains(dentalPlanDbData.getPlanName()), "dental plan name doesn't match");
-          softAssert.assertTrue(pdfText.contains("Monthly Premium: $"+SharedData.getPrimaryMember().getTotalDentalPremAfterReduction()), "dental premium amt doesn't match");
-          softAssert.assertTrue(pdfText.contains(dentalPolicyId), "policy id is not matching");
-        }
-
-    }
-    private void validateMemNames(String pdfText){
-        List<String> allMemNames = basicActions.getAllMemCompleteNames();
-        for(String memName : allMemNames) {
-            System.out.println(memName);
-            softAssert.assertTrue((pdfText.contains(memName)),memName+" text not exist in downloaded pdf file");
         }
     }
 
@@ -503,5 +491,10 @@ public class MyDocumentsPage {
     public void verifyMvrNeeded(String mvrType) {
         basicActions.waitForElementToBePresent(myDocumentsTitle,30);
         WebElement mvrNameType = basicActions.getDriver().findElement(By.xpath("//app-documents-upload//p[contains(text(), 'Proof of "+mvrType+"')]"));
+    }
+
+    public void clickFinancialHelpEligibilltybutton(){
+      basicActions.waitForElementToBePresent(verifyFinancialHelpEligbilityButton,30);
+        verifyFinancialHelpEligbilityButton.click();
     }
 }

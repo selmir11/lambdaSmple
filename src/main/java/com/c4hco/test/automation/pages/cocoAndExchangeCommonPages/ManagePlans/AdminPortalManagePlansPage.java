@@ -136,6 +136,8 @@ public class AdminPortalManagePlansPage {
     WebElement pnlMedPolicyCoverage;
     @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest Application Date:']//following::div[1]")
     WebElement medLatestAppDateUI;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest Application Date:']//following::div[1]")
+    WebElement denLatestAppDateUI;
 
     @FindBy(xpath = "//p[@class= 'plan-header header-2']")
     List<WebElement> currentMedicalDentalPlan;
@@ -162,6 +164,12 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[8]")
     WebElement EHBPremiumamtDental;
 
+    //Select medical and dental checks
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Dental']")
+    WebElement selectDental;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Medical']")
+    WebElement selectMedical;
     //Validation errors
     @FindBy(xpath = "//div[@Class='body-text-1 validation-error']")
     WebElement ValidationError;
@@ -174,6 +182,132 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for APTC')]")
     WebElement APTCInvalidError;
+
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Financial Start Date:']//following::div[1]")
+    WebElement pnlMedFinancialStartDate;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Financial Start Date:']//following::div[1]")
+    WebElement pnlDenFinancialStartDate;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Financial End Date:']//following::div[1]")
+    WebElement pnlMedFinancialEndDate;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Financial End Date:']//following::div[1]")
+    WebElement pnlDenFinancialEndDate;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='CSR Amount:']//following::div[1]")
+    WebElement medCsrAmount;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='CSR Amount:']//following::div[1]")
+    WebElement denCsrAmount;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Plan Premium:']//following::div[1]")
+    WebElement MedplnPremiumAmt;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Plan Premium:']//following::div[1]")
+    WebElement denplnPremiumAmt;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Plan APTC:']//following::div[1]")
+    WebElement medPlanAPTCAMount;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Plan APTC:']//following::div[1]")
+    WebElement denPlanAPTCAMount;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Rating Area:']//following::div[1]")
+    WebElement medRatingArea;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Rating Area:']//following::div[1]")
+    WebElement denRatingArea;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Premium after Subsidy:']//following::div[1]")
+    WebElement medpremiumAfterSubsidy;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Premium after Subsidy:']//following::div[1]")
+    WebElement denPremiumAfterSubsidy;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Service Area:']//following::div[1]")
+    WebElement medServiceArea;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Service Area:']//following::div[1]")
+    WebElement denServiceArea;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Plan AV:']//following::div[1]")
+    WebElement medPlanAv;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Plan AV:']//following::div[1]")
+    WebElement denPlanAv;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Policy ID:']//following::div[1]")
+    WebElement medpolicyId;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Policy ID:']//following::div[1]")
+    WebElement denpolicyId;
+
+
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='HIOS ID:']//following::div[1]")
+    WebElement medHiosId;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='HIOS ID:']//following::div[1]")
+    WebElement denHiosId;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='EHB Premium:']//following::div[1]")
+    WebElement medEHBPremium;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='EHB Premium:']//following::div[1]")
+    WebElement denEHBPremium;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest LCE and Date:']//following::div[1]")
+    WebElement medLCEEventDateType;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest LCE and Date:']//following::div[1]")
+    WebElement denLCEEventDateType;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='member-details-grid']/div")
+    List<WebElement> medicalMemberDetailsTableHeader;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='member-details-grid']/div")
+    List<WebElement> dentalMemberDetailsTableHeader;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='body-text-1 member-details-grid-item bold-text']")
+    List<WebElement> coverageDetailsTableTableHeader;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='body-text-1 member-details-grid-item bold-text']")
+    List<WebElement> dencoverageDetailsTableTableHeader;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='financial-details-grid']/div")
+    List<WebElement> coverageFinancialTableTableHeader;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='financial-details-grid']/div")
+    List<WebElement> dencoverageFinancialTableTableHeader;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='referenceId_1']")
+    WebElement PersonID;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='referenceId_1']")
+    WebElement denPersonID;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='firstName_1']")
+    WebElement Name;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='firstName_1']")
+    WebElement denName;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='dateOfBirth_1']")
+    WebElement DateOfBirth;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='dateOfBirth_1']")
+    WebElement denDateOfBirth;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='relationshipToSubscriber_1']")
+    WebElement relationshipToSubscriber_1;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='relationshipToSubscriber_1']")
+    WebElement denrelationshipToSubscriber_1;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='tobacco_1']")
+    WebElement tobacco;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='tobacco_1']")
+    WebElement dentobacco;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='coverageStartDate_1']")
+    WebElement coverageStartDateCoTable;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='coverageStartDate_1']")
+    WebElement dencoverageStartDateCoTable;
+    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='coverageEndDate_1']")
+    WebElement coverageEndDateCoTable;
+    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='coverageEndDate_1']")
+    WebElement dencoverageEndDateCoTable;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='effectuated_1']")
+    WebElement medEffectuated;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='effectuated_1']")
+    WebElement denEffectuated;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='terminationReason_1']")
+    WebElement medTerminationReason;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='terminationReason_1']")
+    WebElement denTerminationReason;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='financialStartDate_1']")
+    WebElement medFinancialStartDateFNTable;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='financialStartDate_1']")
+    WebElement denFinancialStartDateFNTable;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='financialEndDate_1']")
+    WebElement medFinancialEndDateFNTable;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='financialEndDate_1']")
+    WebElement denFinancialEndDateFNTable;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='premium_1']")
+    WebElement medPlanPremiumAmtFnTable;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='premium_1']")
+    WebElement denPlanPremiumAmtFnTable;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='planAPTC_1']")
+    WebElement medAPTCAmtFnTable;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@class='plan-member-info']//div[@id='planAPTC_1']")
+    WebElement denAPTCAmtFnTable;
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div[1]")
+    WebElement currentMedicalPlanName;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div[1]")
+    WebElement dencurrentMedicalPlanName;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[contains(text(), 'Policy Coverage:')]")
+    WebElement pnlDenPolicyCoverage;
+
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -476,18 +610,15 @@ public class AdminPortalManagePlansPage {
             primaryMemberId = stgAccountId;
         }
         BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
+        basicActions.waitForElementToBePresentWithRetries(currentDentalPlanName,20);
 
         memberDetails.setAccount_id(bigDecimal);
         SharedData.setPrimaryMember(memberDetails);
         String currentDentalPlan = currentDentalPlanName.getText();
-
-
         managePlanDentalMedicalPlan.setPlanMarketingName(currentDentalPlan);
-        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
 
         String MedPolicyCoverage = pnlMedPolicyCoverage.getText();
         managePlanDentalMedicalPlan.setPolicyCoverageDate(MedPolicyCoverage);
-        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
 
         String pnlMedLatestAppDate = medLatestAppDateUI.getText();
         pnlMedLatestAppDate = basicActions.changeDateFormat(pnlMedLatestAppDate, "MM/dd/yyyy", "MM/dd/yyyy");
@@ -606,9 +737,10 @@ public class AdminPortalManagePlansPage {
             APTCMem.click();
             APTCMem.clear();
             APTCMem.sendKeys(aptcvalue);
+            if(SharedData.getPrimaryMember()!= null){
             SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
             String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
-            SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);
+            SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);}
         }
     }
 
@@ -621,7 +753,8 @@ public class AdminPortalManagePlansPage {
             premiumMem.click();
             premiumMem.clear();
             premiumMem.sendKeys(newPremiumAmt);
-            SharedData.getPrimaryMember().setMedicalPremiumAmt(newPremiumAmt);
+            if(SharedData.getPrimaryMember()!=null){
+            SharedData.getPrimaryMember().setMedicalAptcAmt(newPremiumAmt);}
         }
     }
 
@@ -683,6 +816,245 @@ public class AdminPortalManagePlansPage {
     public void validatePremiumErrors(){
         basicActions.waitForElementToBePresent(PremiumInvalidError, 50);
         softAssert.assertTrue(PremiumInvalidError.isDisplayed());
+    }
+
+
+    public void clickDentalButton(){
+        basicActions.waitForElementToBePresent(selectDental, 50);
+        selectDental.click();
+    }
+
+    public void clickMedicalButton(){
+        basicActions.waitForElementToBePresent(selectMedical, 50);
+        selectMedical.click();
+    }
+
+    public void updateTheMedicalPlanForTheUI() {
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+        SharedData.getManagePlanDentalMedicalPlan().setPlanType("1");
+        //set marketing Medical Plan
+        basicActions.clickElementWithRetries(currentMedicalPlanName,50);
+        String currentMedPlan = currentMedicalPlanName.getText();
+        managePlanDentalMedicalPlan.setPlanMarketingName(currentMedPlan);
+        //set Medical Policy Coverage
+        String MedPolicyCoverage = pnlMedPolicyCoverage.getText();
+        managePlanDentalMedicalPlan.setPolicyCoverageDate(MedPolicyCoverage);
+
+        String pnlMedLatestAppDate = medLatestAppDateUI.getText();
+        pnlMedLatestAppDate =basicActions.changeDateFormat(pnlMedLatestAppDate,"MM/dd/yyyy","yyyy-MM-dd");
+        managePlanDentalMedicalPlan.setMedLatestAppDate(pnlMedLatestAppDate);
+
+        String MedFinancialStrDate= pnlMedFinancialStartDate.getText();
+        MedFinancialStrDate = basicActions.changeDateFormat(MedFinancialStrDate,"MM/dd/yyyy","yyyy-MM-dd");
+        managePlanDentalMedicalPlan.setMedFinancialStartDate(MedFinancialStrDate);
+
+        String MedFinancialEndDate= pnlMedFinancialEndDate.getText();
+        MedFinancialEndDate = basicActions.changeDateFormat(MedFinancialEndDate,"MM/dd/yyyy","yyyy-MM-dd");
+        managePlanDentalMedicalPlan.setMedFinancialEndDate(MedFinancialEndDate);
+
+        String getTotalCsrAmt = medCsrAmount.getText();
+        managePlanDentalMedicalPlan.setTotal_csr_amt(getTotalCsrAmt);
+
+        String planPremiumAmt = MedplnPremiumAmt.getText();
+        managePlanDentalMedicalPlan.setPlanPremiumAmt(planPremiumAmt);
+
+        String planAPtcAMount = medPlanAPTCAMount.getText();
+        managePlanDentalMedicalPlan.setPlanAptcAmt(planAPtcAMount);
+
+        String ratingArea = medRatingArea.getText();
+        managePlanDentalMedicalPlan.setRatingArea(ratingArea);
+
+        String premiumAfterSubsidy = medpremiumAfterSubsidy.getText();
+        managePlanDentalMedicalPlan.setPremiumAfterSubsidy(premiumAfterSubsidy);
+        String serviceArea = medServiceArea.getText();
+        managePlanDentalMedicalPlan.setMedServiceArea(serviceArea);
+        String planAV = medPlanAv.getText();
+        managePlanDentalMedicalPlan.setMedPlanAV(planAV);
+        managePlanDentalMedicalPlan.setPolicyID(medpolicyId.getText());
+        managePlanDentalMedicalPlan.setMedHIOSId(medHiosId.getText());
+        managePlanDentalMedicalPlan.setMedEhbPremiumAmt(medEHBPremium.getText());
+        managePlanDentalMedicalPlan.setMedLCEEventTypeAndDate(medLCEEventDateType.getText().toLowerCase());
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
+
+    public void validateTheMemberDetailsTableTitleColumns(String planType) {
+        int i = 0 ;
+        List<String> expectedMedMemberDetails= Arrays.asList("No." , "Person ID" ,"Name" ,"Date of Birth" ,"Relationship" ,"Tobacco");
+        List<String> actualMedMemberDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+
+        switch (planType) {
+            case "Medical":
+                selectedTableHeader = medicalMemberDetailsTableHeader;
+                break;
+            case "Dental":
+                selectedTableHeader = dentalMemberDetailsTableHeader;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid plan type: " + planType);}
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedMemberDetails.add(each.getText());
+            if(i==5){
+                break;
+            }
+            i++;
+        }
+        softAssert.assertEquals(expectedMedMemberDetails, actualMedMemberDetails);
+        softAssert.assertAll();
+    }
+
+    public void validateTheCoverageDetailsTableTitleColumns(String planType) {
+        List<String> expectedMedMemberDetails= Arrays.asList("No.","Coverage Start","Coverage End" ,"Status","Effectuated" ,"Termination Reason");
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+
+        switch (planType) {
+            case "Medical":
+                selectedTableHeader = coverageDetailsTableTableHeader;
+                break;
+            case "Dental":
+                selectedTableHeader = dencoverageDetailsTableTableHeader;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid plan type: " + planType);}
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+        }
+        softAssert.assertEquals(expectedMedMemberDetails, actualMedCoverageDetails);
+        softAssert.assertAll();
+    }
+
+    public void updateTheMedicalCoverageDetailsTableForTheUI() {
+        managePlanDentalMedicalPlan.setCoverageStartDate(coverageStartDateCoTable.getText());
+        managePlanDentalMedicalPlan.setCoverageEndDate(coverageEndDateCoTable.getText());
+        managePlanDentalMedicalPlan.setMedStatus(medPolicyStatus.getText().toLowerCase());
+        managePlanDentalMedicalPlan.setMedEffectuated(medEffectuated.getText().toLowerCase());
+        managePlanDentalMedicalPlan.setMedTerminationReason(medTerminationReason.getText().toLowerCase());
+
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+
+    }
+
+    public void validateTheFinancialDetailsTableTitleColumns(String planType) {
+        List<String> expectedMedMemberDetails= Arrays.asList("No.", "Financial Start","Financial End","Premium","APTC");
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+
+        switch (planType) {
+            case "Medical":
+                selectedTableHeader = coverageFinancialTableTableHeader;
+                break;
+            case "Dental":
+                selectedTableHeader = dencoverageFinancialTableTableHeader;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid plan type: " + planType);}
+
+        int i=0;
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+            if(i==4){
+                break;
+            }
+            i++;
+        }
+        softAssert.assertEquals(expectedMedMemberDetails, actualMedCoverageDetails);
+        softAssert.assertAll();
+    }
+
+    public void updateTheMedicalFinancialDetailsTableForTheUI(){
+        managePlanDentalMedicalPlan.setMedFinancialStartFnTable(medFinancialStartDateFNTable.getText());
+        managePlanDentalMedicalPlan.setMedFinancialEndFnTable(medFinancialEndDateFNTable.getText());
+        managePlanDentalMedicalPlan.setMedPlanPremiumAmtFnTable(medPlanPremiumAmtFnTable.getText());
+        managePlanDentalMedicalPlan.setMedPlanAptcAmtFnTable(medAPTCAmtFnTable.getText());
+
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);}
+
+    public void updateTheMedicalMemberDetailsTableForTheUI() {
+        managePlanDentalMedicalPlan.setMedPersonID(PersonID.getText());
+        managePlanDentalMedicalPlan.setNameMember(Name.getText());
+        managePlanDentalMedicalPlan.setDateOFBirth(DateOfBirth.getText());
+        managePlanDentalMedicalPlan.setRelationship(relationshipToSubscriber_1.getText().toLowerCase());
+        managePlanDentalMedicalPlan.setTobacco(tobacco.getText());
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
+
+    public void updateTheDentalPlanForTheUI() {
+        SharedData.getManagePlanDentalMedicalPlan().setPlanType("2");
+        //set marketing Medical Plan
+        String currentDentalPlan = currentDentalPlanName.getText();
+        managePlanDentalMedicalPlan.setPlanMarketingName(currentDentalPlan);
+
+        //set Dental Policy Coverage
+        String DenPolicyCoverage = pnlDenPolicyCoverage.getText();
+        managePlanDentalMedicalPlan.setDenPolicyCoverageDate(DenPolicyCoverage);
+
+        String pnlDENLatestAppDate = denLatestAppDateUI.getText();
+        pnlDENLatestAppDate =basicActions.changeDateFormat(pnlDENLatestAppDate,"MM/dd/yyyy","yyyy-MM-dd");
+        managePlanDentalMedicalPlan.setDenLatestAppDate(pnlDENLatestAppDate);
+
+        String denFinancialStrDate= pnlDenFinancialStartDate.getText();
+        denFinancialStrDate = basicActions.changeDateFormat(denFinancialStrDate,"MM/dd/yyyy","yyyy-MM-dd");
+        managePlanDentalMedicalPlan.setDenFinancialStartDate(denFinancialStrDate);
+
+        String denFinancialEndDate= pnlDenFinancialEndDate.getText();
+        denFinancialEndDate = basicActions.changeDateFormat(denFinancialEndDate,"MM/dd/yyyy","yyyy-MM-dd");
+        managePlanDentalMedicalPlan.setDenFinancialEndDate(denFinancialEndDate);
+
+        String getDenTotalCsrAmt = denCsrAmount.getText();
+        managePlanDentalMedicalPlan.setDenTotal_csr_amt(getDenTotalCsrAmt);
+
+        String denPlanPremiumAmt = denplnPremiumAmt.getText();
+        managePlanDentalMedicalPlan.setDenPlanPremiumAmt(denPlanPremiumAmt);
+
+        String denPlanAPtcAMount = denPlanAPTCAMount.getText();
+        managePlanDentalMedicalPlan.setDenPlanAptcAmt(denPlanAPtcAMount);
+
+        String DenRatingArea = denRatingArea.getText();
+        managePlanDentalMedicalPlan.setDenRatingArea(DenRatingArea);
+
+        String denpremiumAfterSubsidy = denPremiumAfterSubsidy.getText();
+        managePlanDentalMedicalPlan.setDenPremiumAfterSubsidy(denpremiumAfterSubsidy);
+        String denserviceArea = denServiceArea.getText();
+        managePlanDentalMedicalPlan.setDenServiceArea(denserviceArea);
+        String denplanAV = denPlanAv.getText();
+        managePlanDentalMedicalPlan.setDenPlanAV(denplanAV);
+        managePlanDentalMedicalPlan.setDenPolicyID(denpolicyId.getText());
+        managePlanDentalMedicalPlan.setDenHIOSId(denHiosId.getText());
+        managePlanDentalMedicalPlan.setDenEhbPremiumAmt(denEHBPremium.getText());
+        managePlanDentalMedicalPlan.setDenLCEEventTypeAndDate(denLCEEventDateType.getText().toLowerCase());
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
+
+    public void updateTheDentalMemberDetailsTableForTheUI() {
+        managePlanDentalMedicalPlan.setDenPersonID(denPersonID.getText());
+        managePlanDentalMedicalPlan.setDenNameMember(denName.getText());
+        managePlanDentalMedicalPlan.setDenDateOFBirth(denDateOfBirth.getText());
+        managePlanDentalMedicalPlan.setDenRelationship(denrelationshipToSubscriber_1.getText().toLowerCase());
+        managePlanDentalMedicalPlan.setDenTobacco(dentobacco.getText());
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
+
+
+    public void updateTheDentalCoverageDetailsTableForTheUI() {
+        managePlanDentalMedicalPlan.setDenCoverageStartDate(dencoverageStartDateCoTable.getText());
+        managePlanDentalMedicalPlan.setDenCoverageEndDate(dencoverageEndDateCoTable.getText());
+        managePlanDentalMedicalPlan.setDenStatus(denPolicyStatus.getText().toLowerCase());
+        managePlanDentalMedicalPlan.setDenEffectuated(denEffectuated.getText().toLowerCase());
+        managePlanDentalMedicalPlan.setDenTerminationReason(denTerminationReason.getText().toLowerCase());
+
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
+
+    public void updateTheDentalFinancialDetailsTableForTheUI() {
+        managePlanDentalMedicalPlan.setDenFinancialStartFnTable(denFinancialStartDateFNTable.getText());
+        managePlanDentalMedicalPlan.setDenFinancialEndFnTable(denFinancialEndDateFNTable.getText());
+        managePlanDentalMedicalPlan.setDenPlanPremiumAmtFnTable(denPlanPremiumAmtFnTable.getText());
+        managePlanDentalMedicalPlan.setDenPlanAptcAmtFnTable(denAPTCAmtFnTable.getText());
+
+       SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
     }
 }
 

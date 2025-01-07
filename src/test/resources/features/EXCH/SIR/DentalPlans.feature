@@ -23,7 +23,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I click on continue with  application button on Before you begin page
 
     # Open Enrollment deactivates this page
-    #And I report "Birth" and click continue
+    And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -72,6 +72,9 @@ Scenario: SLER-747 - Validate dental plans count - single adult
 
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     And I validate I am on the "Medical Plan Results" page
@@ -102,7 +105,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -210,7 +213,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
 
@@ -260,6 +263,9 @@ Scenario: SLER-747 - Validate dental plans count - single adult
 
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     And I validate I am on the "Medical Plan Results" page

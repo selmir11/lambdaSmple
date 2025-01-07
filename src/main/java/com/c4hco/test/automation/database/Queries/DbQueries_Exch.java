@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DbQueries_Exch {
-    String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
+    String acctId = SharedData.getPrimaryMember().getAccount_id()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
     String dbName = SharedData.getDbName();
 
@@ -106,10 +106,18 @@ public String policyTablesCombinedQuery(String coverageType){
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return currentDate.format(dateFormat);
     }
-
     public String getEAPID() {
-        return "select exchange_assigned_policy_id, coverage_type from  " + dbName + ".en_policy_ah\n" +
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
                 "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED'";
+    }
+    public String getMedicalEAPID() {
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
+                "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED' and coverage_type ='1'";
+    }
+    public String getDentalEAPID() {
+        return "select exchange_assigned_policy_id, shopping_group_number from  " + dbName + ".en_policy_ah\n" +
+                "where account_id = '" + acctId + "'" + " and policy_status='SUBMITTED'\n"+
+                "and coverage_type = '2'";
     }
 
     public String getOhiRecordsAll(String memberId) {
@@ -167,7 +175,7 @@ public String policyTablesCombinedQuery(String coverageType){
     }
 
     public String getCSRRecords() {
-        return "SELECT mcf.csr_amt, p.coverage_type\n" +
+        return "SELECT DISTINCT mcf.csr_amt, p.coverage_type\n" +
                 "FROM  " + dbName + ".en_member_coverage_financial_ah mcf\n" +
                 "JOIN " + dbName + ".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
                 "JOIN " + dbName + ".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
@@ -318,6 +326,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and pmc.account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'";
     }
 
+    public String esMemberWithMemberId(String memId){
+        return "select * from "+dbName+".es_member em\n"+
+                "where member_id = '"+memId+"'";
+    }
+
     public String getEmailStored() {
         return "select * from " + dbName + ".es_household p\n" +
                 "join " + dbName + ".es_household_contact m on m.household_id=p.household_id\n" +
@@ -376,15 +389,39 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select em.race_ethnicity, em.race_other_text " +
                 "from " + dbName + ".es_member em " +
                 "join " + dbName + ".es_household eh on eh.household_id = em.household_id " +
-                "where eh.account_id = '" + acctId + "' " +
+                "join " + dbName + ".es_household_contact hc on hc.household_id = eh.household_id " +
+                "where hc.email = '" + SharedData.getPrimaryMember().getEmailId() + "' " +
                 "order by em.member_id";
     }
 
 
     public String getPlan_marketing_name(String planYear) {
         return "SELECT P.plan_marketing_name FROM " + dbName + ".en_policy_ah ESH JOIN " + dbName + ".en_plan P ON ESH.plan_id = P.plan_id WHERE ESH.account_id = '" + acctId + "' " +
-                "AND ESH.plan_year = '" + planYear + "' AND ESH.coverage_type = '2' ORDER BY ESH.created_ts DESC LIMIT 1";
+                "AND ESH.plan_year = '" + planYear + "' AND ESH.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' ORDER BY ESH.created_ts DESC LIMIT 1";
     }
+
+    public String householdIdQuery() {
+        return "SELECT household_id " +
+                "FROM " + dbName + ".es_household " +
+                "WHERE account_id = " + acctId;
+    }
+
+
+    public String memberIdQuery(String householdId) {
+        return "SELECT member_id " +
+                "FROM " + dbName + ".es_member " +
+                "WHERE household_id = " + householdId + " " +
+                "AND household_contact = 1";
+    }
+
+    public String reasonCodeQuery(String memberId, String determination) {
+        return "SELECT reason_code " +
+                "FROM " + dbName + ".es_member_rules_result " +
+                "WHERE determination = '"+determination+"' " +
+                "AND member_id = " + memberId;
+    }
+
+
 
     public String getDental_policy_date() {
         return "Select policy_start_date , policy_end_date From " + dbName + ".en_policy_ah ESH Where ESH.account_id = '" + acctId + "' and coverage_type = '1' and policy_status != 'CANCELLED' order by created_ts desc limit 1;";
@@ -395,7 +432,7 @@ public String policyTablesCombinedQuery(String coverageType){
                 "FROM " + dbName + ".en_policy_ah ESH\n" +
                 "JOIN " + dbName + ".en_policy EP ON ESH.application_id = EP.application_id\n" +
                 "WHERE ESH.account_id = '" + acctId + "' \n" +
-                "  AND ESH.coverage_type = '1' \n" +
+                "  AND ESH.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' \n" +
                 "ORDER BY ESH.created_ts DESC \n" +
                 "LIMIT 1;";
     }
@@ -440,8 +477,177 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
 
+    public String getHouseholdIdForOldAccount(){
+        return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getOldAccountId()+"'";
+    }
+
     public String getLceTpePlanYear(String householId){
         return "Select lce_type, plan_year from "+dbName+".es_member_lce\n" +
                 "where household_id  = '"+householId+"'";
     }
+
+    public String getMemberNonAIAn()
+    {
+        return "SELECT * from "+dbName+".es_member_rules_result t1\n " +
+                "JOIN "+dbName+".es_member_rules_result t2 \n"+
+                "ON t1.member_id = t2.member_id \n" +
+                "WHERE t1.member_id = '" + SharedData.getPrimaryMember().getMemberId()+ "'\n" +
+                "AND t1.eligibility_type = 'CSR' \n" +
+                "AND t1.reason_code LIKE '%AIAN%' \n" +
+                "AND t2.reason_code = 'NO-OVERRIDE'\n";
+    }
+
+
+
+
+
+    public String getMedicalDental_policy_date(){
+        return "Select policy_start_date , policy_end_date From "+dbName+".en_policy_ah ESH Where ESH.account_id = '"+ acctId+"' and coverage_type = '"+ SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' and policy_status != 'CANCELLED' order by created_ts desc limit 1;";
+    }
+
+    public String getMedDentalCurrentLatestAppDate(){
+        return "SELECT ESH.policy_submitted_ts\n" +
+                "FROM "+dbName+".en_policy_ah ESH\n" +
+                "JOIN "+dbName+".en_policy EP ON ESH.application_id = EP.application_id\n" +
+                "WHERE ESH.account_id = '"+acctId+"' \n" +
+                "  AND ESH.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' \n" +
+                "ORDER BY ESH.created_ts DESC \n" +
+                "LIMIT 1;";
+    }
+
+    public String nameRatingPolicy() {
+        return "SELECT ESH2.name FROM "+dbName+".en_policy_ah ESH1 JOIN "+dbName+".en_rating_area ESH2 ON ESH1.rating_area_id = ESH2.rating_area_id WHERE ESH1.account_id = '"+acctId+"' AND ESH1.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' ORDER BY ESH1.created_ts DESC LIMIT 1;";
+    }
+
+    public String ehb_percent_of_total_premiumForYear(String year) {
+        return "SELECT ep.ehb_percent_of_total_premium \n" +
+                "FROM "+dbName+".en_policy_ah ESH\n" +
+                "JOIN "+dbName+".en_plan EP\n" +
+                "ON ESH.plan_id = EP.plan_id WHERE \n" +
+                "    ESH.account_id = '"+acctId+"'AND ESH.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' AND ESH.plan_year = '"+year+"' \n" +
+                "ORDER BY ESH.created_ts DESC LIMIT 1;";
+    }
+
+    public String lCEEventTypeAndLCEDateTypeForTheYearDB() {
+        return "SELECT LCE.lce_type, LCE.lce_event_date \n" +
+                "FROM exch.en_policy_ah ESH \n" +
+                "JOIN exch.es_application EVAL \n" +
+                "    ON EVAL.application_id = ESH.application_id \n" +
+                "JOIN exch.es_member_lce MLC \n" +
+                "    ON MLC.evaluation_id = CAST(EVAL.evaluation_id AS varchar) \n" +
+                "    AND MLC.lce_type != 'NEWLY_APTC_ELIGIBLE' \n" +
+                "JOIN exch.es_member_lce_ah LCE \n" +
+                "    ON LCE.member_lce_id = MLC.member_lce_id \n" +
+                "WHERE ESH.account_id = '"+acctId+"' \n" +
+                "  AND ESH.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' \n" +
+                "ORDER BY ESH.created_ts DESC LIMIT 1;";
+    }
+
+    public String serviceAreaForTheYearDB() {
+        return "select service_area_id From exch.en_plan ESH \n" +
+                "join exch.en_policy_ah EPA on ESH.plan_id = EPA.plan_id\n" +
+                "where EPA.account_id = '"+acctId+"'\n" +
+                "and EPA.coverage_type = '"+SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"' order by EPA.created_ts desc limit 1;";
+    }
+
+    public String prior_6_months_tobacco_use_ind() {
+        return "SELECT ESH_POL.prior_6_months_tobacco_use_ind\n" +
+                "FROM exch.en_policy_ah ESH_PO\n" +
+                "JOIN exch.es_member_ah ESH_MEM \n" +
+                " ON ESH_PO.submission_id = ESH_MEM.submission_id\n" +
+                "JOIN exch.en_policy_member_ah ESH_POL \n" +
+                " ON ESH_MEM.member_ah_id = ESH_POL.member_ah_id\n" +
+                "WHERE ESH_PO.account_id = '" + acctId + "'\n" +
+                "    AND ESH_PO.coverage_type = '" +SharedData.getManagePlanDentalMedicalPlan().getPlanType()+ "'\n" +
+                "    AND ESH_PO.policy_status != 'CANCELLED'\n" +
+                "ORDER BY \n" +
+                "    ESH_PO.policy_submitted_ts DESC\n" +
+                "LIMIT 1;";
+    }
+
+    public String getAv_calculator_outputDB() {
+        return "SELECT ESH.av_calculator_output\n" +
+                "FROM "+dbName+".en_plan ESH\n" +
+                "JOIN "+dbName+".en_policy_ah ESH2\n" +
+                " ON ESH.plan_id = ESH2.plan_id\n" +
+                "WHERE ESH2.account_id = '"+acctId+"'\n" +
+                " AND ESH2.coverage_type = '"+ SharedData.getManagePlanDentalMedicalPlan().getPlanType()+"'\n" +
+                "ORDER BY ESH2.created_ts DESC\n LIMIT 1;";
+    }
+    public String getEnrollmentPeriodEndDate(){
+        return "SELECT * from "+dbName+".es_enrollment_period_end_date\n" +
+                "where application_id = '"+applicationId+"'";
+    }
+
+    public String getBrokerEmailIn() {
+        return "SELECT CI.email FROM "+dbName+".bp_staff AS ST JOIN "+dbName+".bp_contact_info AS CI ON ST.contact_info_id = CI.contact_info_id " +
+                "WHERE ST.account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"';";
+    }
+
+    public String getTaxFilingDataDB(String memberId){
+        return "SELECT * from "+dbName+".es_member\n" +
+                "where member_id = '"+memberId+"'";
+    }
+
+    public String getTaxReturnDataDB(String memberId){
+        return "SELECT p.tax_filing_type, p.claimed_as_dep_on_othr_ftr_ind, m.tax_filing_status, m.exceptional_circumstance,m.tax_return_id\n" +
+                "from "+dbName+".es_member p\n" +
+                "inner join "+dbName+".es_tax_return m on m.tax_return_id=p.tax_return_id\n" +
+                "where member_id = '"+memberId+"'";
+    }
+
+    public String getRqQueMsg(){
+        return "SELECT status, message -> 'changeEvent' as changeEvent, message -> 'requestType' as requestType \n" +
+                "FROM "+dbName+".rq_queue_messages where correlation_id like '"+SharedData.getPrimaryMember().getAccount_id()+"-REASSIGN-PRIMARY-CONTACT'";
+    }
+
+    public String getMemberId(String memFname){
+        return "select member_id from "+dbName+".es_member\n" +
+                "where first_name = '"+memFname+"'";
+    }
+
+    public String geApplicationId(String householId){
+        return "select application_id from "+dbName+".es_application\n" +
+                "where household_id  = '"+householId+"'\n"+
+                "and plan_year = '"+SharedData.getPlanYear()+"'";
+    }
+
+    public String geAllApplicationIds(String householId){
+        return "select application_id from "+dbName+".es_application\n" +
+                "where household_id  = '"+householId+"'";
+    }
+
+    public String getSelfAttestationDetails(String householdID){
+        return "select * from "+dbName+".es_self_attestation\n" +
+                "where household_id = '"+householdID+"'";
+    }
+    public String dorTaxHousehold(String taxpayerKey){
+        return "select b.event_cd\n" +
+                "from "+dbName+".dor_tax_household a\n" +
+                "join "+dbName+".easy_enrollment_event_log b\n" +
+                "on a.id = b.dor_tax_household_id\n" +
+                "join "+dbName+".dor_tax_household_member c\n" +
+                "on a.id = c.dor_tax_household_id\n" +
+                "where a.taxpayer_key = '"+taxpayerKey+"'";
+    }
+    public String easyEnrollmentEventLog(String taxpayerKey){
+        return "select event_cd \n" +
+                "from "+dbName+".easy_enrollment_event_log where taxpayer_key = '"+taxpayerKey+"'";
+    }
+
+    public String getExchPersonIdFields_esMem(String householdId){
+        return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
+                "where household_id = '"+householdId+"'";
+    }
+
+    public String getAddressDetails(String memberId){
+        return "SELECT address_line1,address_line2, city, state, zip, county FROM "+dbName+".es_address\n"+
+                "where address_id = (SELECT residence_address_id FROM "+dbName+".es_member where member_id = "+memberId+")";
+    }
+
+    public String getTellAboutAdditionalInformation(String memberId){
+        return "SELECT first_name, middle_name, last_name, gender, birth_date, applying_for_coverage_ind FROM "+dbName+".es_member\n"+
+                "where member_id = "+memberId+"";
+    }
+
 }

@@ -9,4 +9,13 @@ public class CRMDetailsPageSteps {
 
     @And("I verify the Individual Details data in the CRM")
     public void iVerifyContactData(){crmDetailsPage.verifyDetailsData();}
+
+    @And("I verify the broker authorization start date is today")
+    public void iVerifyBrokerAuthStartDate(){crmDetailsPage.verifyBrokerAuthStartDate();}
+
+    @And("I verify the broker authorization end date is today")
+    public void iVerifyBrokerAuthEndDate(){crmDetailsPage.verifyBrokerAuthEndDate();}
+
+    @And("I verify the new license number and effective dates")
+    public void iVerifyBrokerLicense(){crmDetailsPage.verifyBrokerLicense();}
 }

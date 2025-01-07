@@ -39,4 +39,43 @@ public class ApplicationResultsPageSteps {
     public void verifyEligiblePlan() {
         applicationResultsCoCoPage.verifyEligibleplans();
     }
+
+    @Then("I validate that {string} results are displayed")
+    public void validateResultsForYr(String year){
+        applicationResultsCoCoPage.validateResultsOfYr(year);
+    }
+
+    @Then("I validate the text on the application results page coco")
+    public void validateText(){
+        applicationResultsCoCoPage.validateTextOnPage();
+    }
+    @Then("I validate the text in Spanish on the application results page coco")
+    public void validateSpanishText(){
+        applicationResultsCoCoPage.validateSpanishTextOnPage();
+    }
+    @Then("I validate text in Spanish on the application results page when not eligible")
+    public void validateSpanishTextNotEligible(){
+        applicationResultsCoCoPage.verifyNotEligibleSpanishText();
+    }
+
+    @Then("I validate eligible members list")
+    public void validateEligibleMembers(){
+        applicationResultsCoCoPage.validateEligibleMembers();
+    }
+
+    @Then("I validate the Application Results page text in {string} when no application is submitted")
+    public void validateTextWithoutApplication(String language){
+        applicationResultsCoCoPage.validatePageTextWithoutApplication(language);
+    }
+
+    @Then("I validate open enrollment ended pop up in {string}")
+    public void validateOeEnded(String language){
+        applicationResultsCoCoPage.validateOeEndPopup(language);
+    }
+
+    @And("I click close on open enrollment ended pop up modal")
+    public void clickCloseOnPopup(){
+        applicationResultsCoCoPage.clickCloseOnPopup();
+    }
+
 }

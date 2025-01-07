@@ -25,7 +25,7 @@ Feature: Medical Plan Detail page related tests
 
     # Question not asked during Open Enrollment
     #Then I validate I am on the "Report a life change" page
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -64,6 +64,7 @@ Feature: Medical Plan Detail page related tests
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -94,7 +95,7 @@ Feature: Medical Plan Detail page related tests
 
     # Question not asked during Open Enrollment
     #Then I validate I am on the "Report a life change" page
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -133,6 +134,7 @@ Feature: Medical Plan Detail page related tests
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -170,7 +172,7 @@ Feature: Medical Plan Detail page related tests
 
     # Question not asked during Open Enrollment
     #Then I validate I am on the "Report a life change" page
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -207,7 +209,9 @@ Feature: Medical Plan Detail page related tests
     And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page
+
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
@@ -244,7 +248,7 @@ Feature: Medical Plan Detail page related tests
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    #And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -283,6 +287,7 @@ Feature: Medical Plan Detail page related tests
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page

@@ -77,6 +77,10 @@ public class QlceConfirmationPage {
     //Lost Coverage
     @FindBy(id = "loseOrLostHealthInsurance")
     WebElement lostCoverageLCE;
+
+    @FindBy(id = "taxTimeEnrollmentPeriod")
+    WebElement taxTimeEnrollmentPeriod;
+
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> allMemberLostCoverageCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
@@ -182,6 +186,10 @@ public class QlceConfirmationPage {
                 basicActions.waitForElementToBeClickable(noneOfTheseLCE, 10);
                 noneOfTheseLCE.click();
                 break;
+            case "TaxTimeEnrollmentPeriod":
+                basicActions.waitForElementToBeClickable(taxTimeEnrollmentPeriod, 10);
+                taxTimeEnrollmentPeriod.click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
@@ -197,6 +205,8 @@ public class QlceConfirmationPage {
                 .findFirst()
                 .ifPresent(eventDateElement -> eventDateElement.sendKeys(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual())));
     }
+
+
 
     public void saveAndContinue() {
         saveAndContinue.click();

@@ -144,6 +144,8 @@ public class AdminPortalSearchPage {
 
     @FindBy(xpath = "//app-search-container/form/div[3]/div/p")
     WebElement statusMessage;
+    @FindBy(xpath = "//tr[@class='clickable']/td[1]")
+    WebElement firstBrokerResult;
 
 
     public void searchForUser() {
@@ -156,9 +158,14 @@ public class AdminPortalSearchPage {
         buttonsList.get(0).click();
     }
 
+    public void searchWithAccId(){
+        basicActions.waitForElementListToBePresent(searchInputList, 10);
+        searchInputList.get(0).sendKeys(String.valueOf(SharedData.getPrimaryMember().getAccount_id()));
+        buttonsList.get(0).click();
+    }
+
 
     public void clickEmailLinkFrmSrchResults() {
-
         basicActions.waitForElementToBePresent(searchResults, 10);
         primaryEmail.click();
         setAccountId();
@@ -264,7 +271,7 @@ public class AdminPortalSearchPage {
     }
 
     public void selectRecord() {
-        basicActions.waitForElementToBeClickable(primaryEmail, 20);
+        basicActions.waitForElementToBeClickableWithRetries(primaryEmail, 20);
         primaryEmail.click();
     }
 
@@ -603,7 +610,7 @@ public class AdminPortalSearchPage {
     public void verifyPMData() {
         basicActions.waitForElementListToBePresent(aactsearchResults, 30);
         List<String> qaexpectedTitles = List.of("2640006565", "John", "Winterhouse", "johnc4hcoautomation+..", "760-579-8438", "Twoeightsevennine", "jrzvp", "PROGRAM_MANAGER");
-        List<String> stgexpectedTitles = List.of("9005375045", "adszcnkgvl", "adsdzazuqql", "c4assistorportal+Rqn..", "333-328-9892", "stg", "eNrQP", "PROGRAM_MANAGER");
+        List<String> stgexpectedTitles = List.of("9005375045", "adszcnkgvl", "adsdzazuqql", "c4assistorportal+Rqn..", "333-328-9892", "apifwjbuifspducrphut..", "eNrQP", "PROGRAM_MANAGER");
         List<String> actualTitles = aactsearchResults.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
@@ -676,6 +683,11 @@ public class AdminPortalSearchPage {
     public void clickResetAdminPortal () {
         basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(1).click();
+    }
+
+    public void selectTheFirstBrokerRecordFromTheSearchResults() {
+        basicActions.waitForElementToBeClickableWithRetries(firstBrokerResult,30);
+        firstBrokerResult.click();
     }
 }
 
