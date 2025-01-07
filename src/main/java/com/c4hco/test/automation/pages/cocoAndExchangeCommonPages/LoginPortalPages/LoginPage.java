@@ -2,15 +2,13 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPa
 
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.ApplicationProperties;
-import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Utils;
-import com.c4hco.test.automation.utils.WebDriverManager;
+import com.c4hco.test.automation.utils.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
@@ -87,6 +85,8 @@ public class LoginPage {
 
     @FindBy(css = "div.help-block.text-danger.mb-3.form-group-custom.mb-0.ng-star-inserted")
     WebElement lockedOutMessage;
+    @FindBy(xpath = "//div[@class='help-block text-danger mb-3 form-group-custom mb-0 ng-star-inserted']")
+    WebElement invalidLoginMessage;
     @FindBy(id = "user-type-selection")
     WebElement userIcon;
     @FindBy(xpath = "//a[@id='user-type-selection']//p")
@@ -443,7 +443,29 @@ public class LoginPage {
         softAssert.assertEquals(lockedOutMessage.getText(), "Your account is locked");
         softAssert.assertTrue(lockedOutMessage.isDisplayed());
         softAssert.assertAll();
-        basicActions.closeBrowserTab();
+    }
+
+    public void enterInvalidCredentials() {
+        basicActions.waitForElementToBePresent(createAccountLink, 100);
+
+        String emailId = SharedData.getPrimaryMember().getEmailId();
+        System.out.println("Email::" + emailId);
+        String pswd = SharedData.getPrimaryMember().getPassword() + "Invalid";
+        basicActions.wait(2000);
+        username.sendKeys(emailId);
+        basicActions.waitForElementToBePresent(password, 10);
+        password.sendKeys(pswd);
+        System.out.println("Password::" + pswd);
+        signInButton.click();
+    }
+
+    public void verifyInvalidLoginErrorMessage() {
+        basicActions.waitForElementToBePresent(createAccountLink, 100);
+
+        basicActions.waitForElementToBePresentWithRetries(invalidLoginMessage, 100);
+        softAssert.assertEquals(invalidLoginMessage.getText(), "Invalid login and/or password");
+        softAssert.assertTrue(invalidLoginMessage.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void clickUserTypeIconInTheLoginPage(String portal) {
@@ -480,5 +502,29 @@ public class LoginPage {
                 break;
             }
         }
+    }
+
+    public void loginWitExistingAcc(String loginType){
+        switch(loginType){
+            case "SEP":
+                LoginCredentials.setSepCredentials();
+                break;
+            default: Assert.fail("Invalid case");
+        }
+        loginWithExistingCreds();
+    }
+
+    private void loginWithExistingCreds(){
+        basicActions.waitForElementToBePresentWithRetries(username, 10);
+        basicActions.wait(2000);
+        String emailId = SharedData.getPrimaryMember().getEmailId();
+        System.out.println("Email::" + emailId);
+        String pswd = SharedData.getPrimaryMember().getPassword();
+        basicActions.wait(2000);
+        username.sendKeys(emailId);
+        basicActions.waitForElementToBePresent(password, 10);
+        password.sendKeys(pswd);
+        System.out.println("Password::" + pswd);
+        signInButton.click();
     }
 }

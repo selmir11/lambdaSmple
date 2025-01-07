@@ -34,6 +34,7 @@ public class DbDataProvider_Exch {
     EsMemberHouseholdHandler esMemberHouseholdHandler = new EsMemberHouseholdHandler();
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
     EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
+    EsSelfAttestationDbHandler esSelfAttestationDbHandler = new EsSelfAttestationDbHandler();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -520,6 +521,34 @@ public class DbDataProvider_Exch {
     public List<String> getAllApplicationIds_esApplication() {
         String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
         return postgresHandler.getResultListFor("application_id", exchDbQueries.geAllApplicationIds(householdId));
+    }
+
+    public EsSelfAttestationEntity getEsSelfAttest_options() {
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return esSelfAttestationDbHandler.getOptionsFromSelfAttestTable(exchDbQueries.getSelfAttestationDetails(householdId));
+    }
+    public List<String> getEventCD(){
+        String taxpayerKey = SharedData.getPrimaryTaxPayerKey();
+        return postgresHandler.getResultListFor("event_cd", exchDbQueries.dorTaxHousehold(taxpayerKey));
+    }
+    public List<String> getEventLog(){
+        String taxpayerKey = SharedData.getPrimaryTaxPayerKey();
+        return postgresHandler.getResultListFor("event_cd", exchDbQueries.easyEnrollmentEventLog(taxpayerKey));
+    }
+
+    public List<EsMemberHouseholdEntity> getExchPersonIdFields_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdId());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
+    public List<EsMemberHouseholdEntity> getExchPersonIdFieldsOldAcc_esMember(){
+        String householdId = postgresHandler.getResultFor("household_id", exchDbQueries.getHouseholdIdForOldAccount());
+        return esMemberHouseholdHandler.getEsMemberHouseholdDetails(exchDbQueries.getExchPersonIdFields_esMem(householdId));
+    }
+
+    public List<String> getAddressInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getAddressDetails(memberId),"address_line1","address_line2","city","state","zip","county");
     }
 
 }

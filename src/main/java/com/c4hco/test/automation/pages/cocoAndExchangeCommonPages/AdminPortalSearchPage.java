@@ -144,6 +144,8 @@ public class AdminPortalSearchPage {
 
     @FindBy(xpath = "//app-search-container/form/div[3]/div/p")
     WebElement statusMessage;
+    @FindBy(xpath = "//tr[@class='clickable']/td[1]")
+    WebElement firstBrokerResult;
 
 
     public void searchForUser() {
@@ -269,7 +271,7 @@ public class AdminPortalSearchPage {
     }
 
     public void selectRecord() {
-        basicActions.waitForElementToBeClickable(primaryEmail, 20);
+        basicActions.waitForElementToBeClickableWithRetries(primaryEmail, 20);
         primaryEmail.click();
     }
 
@@ -681,6 +683,11 @@ public class AdminPortalSearchPage {
     public void clickResetAdminPortal () {
         basicActions.waitForElementListToBePresent(buttonsList, 10);
         buttonsList.get(1).click();
+    }
+
+    public void selectTheFirstBrokerRecordFromTheSearchResults() {
+        basicActions.waitForElementToBeClickableWithRetries(firstBrokerResult,30);
+        firstBrokerResult.click();
     }
 }
 

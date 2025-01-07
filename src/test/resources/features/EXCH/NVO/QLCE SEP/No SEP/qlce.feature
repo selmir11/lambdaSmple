@@ -17,7 +17,7 @@ Feature: QLCE Birth during closed enrollment
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "<qlceOption>" and click continue
+    #And I report "<qlceOption>" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -71,6 +71,7 @@ Feature: QLCE Birth during closed enrollment
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
+    And I wait for 10000 milliseconds
 
     Examples:
     | qlceOption           |

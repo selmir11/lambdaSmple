@@ -23,4 +23,34 @@ public class PeakSteps {
     public void iValidatePeakSkeletonErrorMessage() {
         peakPage.validatePeakSkeletonErrorMessage();
     }
+
+    @Then("I click on the Sign in with Connect for Health Colorado button")
+    public void iClickSignInWIthConnectForHealthColoradoButton() {
+        peakPage.clickSignInWIthConnectForHealthColoradoButton();
+    }
+
+    @Then("I click on the PEAK Sign out button")
+    public void iClickPeakSignOUtButton() {
+        peakPage.clickPeakSignOUtButton();
+    }
+
+    @And("I validate the PEAK welcome text")
+    public void iValidatePeakWelcomeText() {
+        peakPage.validatePeakWelcomeText();
+    }
+
+    @Then("I validate the current PEAK connection URL is {string}")
+    public void iValidatePeakStgUrlRedirection(String peakUrl) {
+        peakPage.validatePeakStgUrlRedirection(peakUrl);
+    }
+
+    @And("I save my new Connect for Health Colorado username and account number")
+    public void iSaveC4AccountDetails() {
+        peakPage.saveC4AccountDetails();
+    }
+
+    @And("I verify my new Connect for Health Colorado username and account number")
+    public void iVerifyC4AccountDetails() {
+        peakPage.verifyC4AccountDetails();
+    }
 }

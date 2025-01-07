@@ -11,6 +11,10 @@ public class DentalPlanComparePageSteps {
     public void clickGoBackDentalCompare() {dentalPlanComparePage.clickGoBackCompare();
     }
 
+    @And( "I click Go Back Link on the Dental Compare page" )
+    public void clickGoBackCompareLink() {dentalPlanComparePage.clickGoBackCompareLink();
+    }
+
     @And( "I select the OutNetwork link on the Dental Compare page")
     public void clickOutNetworkDentalCompare() {dentalPlanComparePage.clickOutNetworkDental();
     }
@@ -25,6 +29,11 @@ public class DentalPlanComparePageSteps {
     @And( "I validate the text headers and subheaders for the OutNetwork Dental Compare page" )
     public void validateOutNetworkDentalCompare(){dentalPlanComparePage.validateOutNetworkDental();}
 
+    @And( "I will validate the expand all and collapse all header functionality for the Dental Compare page" )
+    public void validateExpandCollapseDentalCompareHeaders(){dentalPlanComparePage.validateExpandCollapseDentalCompareHeaders();}
+
+    @And( "I will validate the expand and collapse header functionality for a specific header on the Dental Compare page" )
+    public void validateSpecificExpandCollapseDentalCompareHeaders(){dentalPlanComparePage.validateSpecificExpandCollapseDentalCompareHeaders();}
 
 }
 

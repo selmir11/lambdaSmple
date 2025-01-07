@@ -140,118 +140,171 @@ public class ApplicationDetailsPage {
         softAssert.assertAll();
     }
 
-    public void verifyOhcDetailsColor(String detail, String highlight, String data){
-//        for data, add space in front due to no space if data is blank
-//        Ex: " Yes"
+    public void verifyOhcDetailsColor(List<Map<String, String>> ohcData){
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
-        String backgroundColor = switch (highlight) {
+        String coverageType = ohcData.get(0).get("OHC Type");
+        String coverageTypeHighlight = ohcData.get(0).get("Type Highlight");
+        String jobHighlight = ohcData.get(0).get("Job Highlight");
+        String minimumValueStandard = ohcData.get(0).get("Minimum Value Standard");
+        String minimumValueHighlight = ohcData.get(0).get("Minimum Value Highlight");
+        String lowestCostAmount = ohcData.get(0).get("Lowest-Cost Monthly Individual Premium Amount");
+        String lowestCostAmountHighlight = ohcData.get(0).get("Lowest-Cost Highlight");
+        String currentlyEnrolled = ohcData.get(0).get("Currently enrolled");
+        String currentlyEnrolledHighlight = ohcData.get(0).get("Enrolled Highlight");
+        String insuranceEnding = ohcData.get(0).get("Insurance ending in next 60 days");
+        String insuranceEndingHighlight = ohcData.get(0).get("Ending Highlight");
+        String endDate = ohcData.get(0).get("End date");
+        String endDateHighlight = ohcData.get(0).get("Date Highlight");
+        String voluntarilyEnding = ohcData.get(0).get("Voluntarily ending");
+        String voluntarilyEndingHighlight = ohcData.get(0).get("Voluntarily Highlight");
+        String familyPlanOffered = ohcData.get(0).get("Family plan offered");
+        String familyOfferedHighlight = ohcData.get(0).get("Family offered Highlight");
+        String faimlyLowestCostAmount = ohcData.get(0).get("Lowest-Cost Monthly Family Premium Amount");
+        String faimlyLowestCostHighlight = ohcData.get(0).get("Lowest-Cost Family Highlight");
+
+        softAssert.assertEquals(ohcDetails.get(0).getText(), coverageType);
+        softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),highlightedColor(coverageTypeHighlight),coverageType+" highlight");
+        softAssert.assertEquals(ohcDetails.get(1).getText(), "Job "+ SharedData.getPrimaryMember().getEmployerName());
+        softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),highlightedColor(jobHighlight),"Job highlight");
+        softAssert.assertEquals(ohcDetails.get(2).getText(), "Minimum Value Standard "+ minimumValueStandard);
+        softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),highlightedColor(minimumValueHighlight),"Minimum Value Standard highlight");
+        softAssert.assertEquals(ohcDetails.get(3).getText(), "Lowest-Cost Monthly Individual Premium Amount "+ lowestCostAmount);
+        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),highlightedColor(lowestCostAmountHighlight),"Lowest-Cost highlight");
+        softAssert.assertEquals(ohcDetails.get(4).getText(), "Currently enrolled "+ currentlyEnrolled);
+        softAssert.assertEquals(ohcDetails.get(4).getCssValue("background"),highlightedColor(currentlyEnrolledHighlight),"Currently enrolled highlight");
+        if (insuranceEnding != null) {
+            String expectedText = "Insurance ending in next 60 days";
+            if (!"None".equals(insuranceEnding)) {
+                expectedText += " " + insuranceEnding;
+            }
+            softAssert.assertEquals(ohcDetails.get(5).getText(), expectedText);
+            softAssert.assertEquals(ohcDetails.get(5).getCssValue("background"), highlightedColor(insuranceEndingHighlight), "Insurance ending in next 60 days highlight");
+        }
+        if (endDate != null) {
+            verifyBasicOhcEndDate(endDate, 6);
+            softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),highlightedColor(endDateHighlight),"End date highlight");
+        }
+        if (voluntarilyEnding != null) {
+            String expectedText = "Voluntarily ending insurance";
+            if (!"None".equals(voluntarilyEnding)) {
+                expectedText += " " + voluntarilyEnding;
+            }
+            softAssert.assertEquals(ohcDetails.get(7).getText(), expectedText);
+            softAssert.assertEquals(ohcDetails.get(7).getCssValue("background"), highlightedColor(voluntarilyEndingHighlight), "Voluntarily ending insurance highlight");
+        }
+        if (familyPlanOffered != null) {
+            softAssert.assertEquals(ohcDetails.get(8).getText(), "Family plan offered " + familyPlanOffered);
+            softAssert.assertEquals(ohcDetails.get(8).getCssValue("background"), highlightedColor(familyOfferedHighlight), "Family plan offered highlight");
+            if (faimlyLowestCostAmount != null) {
+                String expectedText = "Lowest-Cost Monthly Family Premium Amount";
+                if (!"None".equals(faimlyLowestCostAmount)) {
+                    expectedText += " " + faimlyLowestCostAmount;
+                }
+                softAssert.assertEquals(ohcDetails.get(9).getText(), expectedText);
+                softAssert.assertEquals(ohcDetails.get(9).getCssValue("background"), highlightedColor(faimlyLowestCostHighlight), "Lowest-Cost Monthly Family Premium Amount highlight");
+            }
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyBasicOhcDetailsColor(List<Map<String, String>> ohcData){
+        basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
+        String coverageType = ohcData.get(0).get("OHC Type");
+        String coverageTypeHighlight = ohcData.get(0).get("Type Highlight");
+        String currentlyEnrolled = ohcData.get(0).get("Currently enrolled");
+        String currentlyEnrolledHighlight = ohcData.get(0).get("Enrolled Highlight");
+        String insuranceEnding = ohcData.get(0).get("Insurance ending");
+        String insuranceEndingHighlight = ohcData.get(0).get("Ending Highlight");
+        String endDate = ohcData.get(0).get("End date");
+        String endDateHighlight = ohcData.get(0).get("Date Highlight");
+        String voluntarilyEnding = ohcData.get(0).get("Voluntarily ending");
+        String voluntarilyEndingHighlight = ohcData.get(0).get("Voluntarily Highlight");
+
+        softAssert.assertEquals(ohcDetails.get(0).getText(), coverageType);
+        softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),highlightedColor(coverageTypeHighlight),coverageType+" highlight");
+        softAssert.assertEquals(ohcDetails.get(1).getText(), "Currently enrolled "+ currentlyEnrolled);
+        softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),highlightedColor(currentlyEnrolledHighlight),"Currently enrolled highlight");
+        if (insuranceEnding != null) {
+            softAssert.assertEquals(ohcDetails.get(2).getText(), "Insurance ending in next 60 days " + insuranceEnding);
+        }
+        softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),highlightedColor(insuranceEndingHighlight),"Insurance ending in next 60 days highlight");
+        if (endDate != null) {
+            verifyBasicOhcEndDate(endDate, 3);
+        }
+        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),highlightedColor(endDateHighlight),"End date highlight");
+        if (voluntarilyEnding != null) {
+            String expectedText = "Voluntarily ending insurance";
+            if (!"None".equals(voluntarilyEnding)) {
+                expectedText += " " + voluntarilyEnding;
+            }
+            softAssert.assertEquals(ohcDetails.get(4).getText(), expectedText);
+            softAssert.assertEquals(ohcDetails.get(4).getCssValue("background"), highlightedColor(voluntarilyEndingHighlight), "Voluntarily ending insurance highlight");
+        }
+        softAssert.assertAll();
+    }
+
+    public String highlightedColor(String highlight) {
+        return switch (highlight) {
             case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Plain" -> "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
             default -> throw new IllegalArgumentException("Invalid option: " + highlight);
         };
-        switch (detail){
-            case "Employer Sponsored Insurance":
-                softAssert.assertEquals(ohcDetails.get(0).getText(), "Employer Sponsored Insurance");
-                softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
+    }
+
+    public void verifyBasicOhcEndDate(String data,int getNum) {
+        String endDate = data;
+        int daysInFuture = 0;
+        if (data.startsWith("Future Day:")) {
+            String[] parts = data.split(":");
+            endDate = parts[0];
+            daysInFuture = Integer.parseInt(parts[1]);
+        }
+        switch (endDate){
+            case "Today":
+                String todayDate = basicActions.getTodayDate();
+                softAssert.assertEquals(ohcDetails.get(getNum).getText(), "End date " + todayDate);
                 break;
-            case "Job":
-                softAssert.assertEquals(ohcDetails.get(1).getText(), "Job "+ SharedData.getPrimaryMember().getEmployerName());
-                softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
+            case "Future Month":
+                String futureDate = basicActions.getFutureDate(60);
+                softAssert.assertEquals(ohcDetails.get(getNum).getText(), "End date "+ futureDate);
                 break;
-            case "Minimum Value Standard":
-                softAssert.assertEquals(ohcDetails.get(2).getText(), "Minimum Value Standard"+ data);
-                softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
+            case "Prior Month":
+                String lastDayOfPriorMonth = basicActions.lastDateOfPriorMonth();
+                lastDayOfPriorMonth = basicActions.changeDateFormat(lastDayOfPriorMonth, "MM-dd-yyyy", "MM/dd/yyyy");
+                softAssert.assertEquals(ohcDetails.get(getNum).getText(), "End date "+ lastDayOfPriorMonth);
                 break;
-            case "Lowest-Cost Monthly Individual Premium Amount":
-                softAssert.assertEquals(ohcDetails.get(3).getText(), "Lowest-Cost Monthly Individual Premium Amount"+ data);
-                softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
+            case "Current Month":
+                String lastDayOfMonth = basicActions.lastDateOfCurrMonth();
+                lastDayOfMonth = basicActions.changeDateFormat(lastDayOfMonth, "MM-dd-yyyy", "MM/dd/yyyy");
+                softAssert.assertEquals(ohcDetails.get(getNum).getText(), "End date "+ lastDayOfMonth);
                 break;
-            case "Currently enrolled":
-                softAssert.assertEquals(ohcDetails.get(4).getText(), "Currently enrolled"+ data);
-                softAssert.assertEquals(ohcDetails.get(4).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
-                break;
-            case "Insurance ending in next 60 days":
-                softAssert.assertEquals(ohcDetails.get(5).getText(), "Insurance ending in next 60 days"+ data);
-                softAssert.assertEquals(ohcDetails.get(5).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
-                break;
-            case "End date":
-                switch (data){
-                    case "Today":
-                        String todayDate = basicActions.getTodayDate();
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date " + todayDate);
-                        softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "Future Month":
-                        String futureDate = basicActions.getFutureDate(60);
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ futureDate);
-                        softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "Prior Month":
-                        String lastDayOfPriorMonth = basicActions.lastDateOfPriorMonth();
-                        lastDayOfPriorMonth = basicActions.changeDateFormat(lastDayOfPriorMonth, "MM-dd-yyyy", "MM/dd/yyyy");
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ lastDayOfPriorMonth);
-                        softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "Current Month":
-                        String lastDayOfMonth = basicActions.lastDateOfCurrMonth();
-                        lastDayOfMonth = basicActions.changeDateFormat(lastDayOfMonth, "MM-dd-yyyy", "MM/dd/yyyy");
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date "+ lastDayOfMonth);
-                        softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    case "None":
-                        softAssert.assertEquals(ohcDetails.get(6).getText(), "End date");
-                        softAssert.assertEquals(ohcDetails.get(6).getCssValue("background"),backgroundColor);
-                        softAssert.assertAll();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + data);
-                }
-                break;
-            case "Voluntarily ending insurance":
-                softAssert.assertEquals(ohcDetails.get(7).getText(), "Voluntarily ending insurance"+ data);
-                softAssert.assertEquals(ohcDetails.get(7).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
-                break;
-            case "Family plan offered":
-                softAssert.assertEquals(ohcDetails.get(8).getText(), "Family plan offered"+ data);
-                softAssert.assertEquals(ohcDetails.get(8).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
-                break;
-            case "Lowest-Cost Monthly Family Premium Amount":
-                softAssert.assertEquals(ohcDetails.get(9).getText(), "Lowest-Cost Monthly Family Premium Amount"+ data);
-                softAssert.assertEquals(ohcDetails.get(9).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
-                break;
-            case "Enrolled":
-                softAssert.assertEquals(ohcDetails.get(10).getText(), "Enrolled"+ data);
-                softAssert.assertEquals(ohcDetails.get(10).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
+            case "Future Day":
+                String futureDate1 = basicActions.getFutureDate(daysInFuture);
+                softAssert.assertEquals(ohcDetails.get(getNum).getText(), "End date "+ futureDate1);
                 break;
             case "None":
-                softAssert.assertEquals(ohcDetails.get(0).getText(), "None"+ data);
-                softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
-                break;
-            case "1 Removed":
-                softAssert.assertEquals(ohcDetails.get(1).getText(), "1 Current Coverage(s) removed"+ data);
-                softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),backgroundColor);
-                softAssert.assertAll();
+                softAssert.assertEquals(ohcDetails.get(getNum).getText(), "End date");
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + detail);
+                throw new IllegalArgumentException("Invalid option: " + data);
         }
+    }
+
+    public void verifyNoneOhcDetailsColor(List<Map<String, String>> ohcData){
+        basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
+        String noneHighlight = ohcData.get(0).get("None Highlight");
+        String removedNumber = ohcData.get(0).get("Removed");
+        String removedHighlight = ohcData.get(0).get("Removed Highlight");
+
+        softAssert.assertEquals(ohcDetails.get(0).getText(), "None");
+        softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),highlightedColor(noneHighlight),"None highlight");
+        if (removedNumber != null) {
+            softAssert.assertEquals(ohcDetails.get(1).getText(), removedNumber + " Current Coverage(s) removed");
+            softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),highlightedColor(removedHighlight),"Remove highlight");
+        }
+        softAssert.assertAll();
     }
 
     public void verifyOhcFamilyDetailsColor(List<String> familyOption){
@@ -370,74 +423,75 @@ public class ApplicationDetailsPage {
         }
     }
 
-    public boolean verifyOhcPdfText(String data, String language, String minValue,  String premium, String enrolled, String insruanceEnding, String ending, String lastSet, String endDate, String voluntarily)throws IOException {
+    public boolean verifyOhcPdfText(String language, List<Map<String, String>> pdfData)throws IOException {
         String filePath = SharedData.getLocalPathToDownloadFile();
         String fileName = SharedData.getNoticeFileName();
         String pathAndName = filePath+"//"+fileName;
         System.out.println("path and name is "+pathAndName);
         // Read the PDF content using PDFBox
         String pdfContent = extractTextFromPDF(Path.of(pathAndName));
+        String coverageType = pdfData.get(0).get("OHC Type");
+        String minimumValueStandard = pdfData.get(0).get("Minimum Value Standard");
+        String lowestCostAmount = pdfData.get(0).get("Lowest-Cost Monthly Individual Premium Amount");
+        String currentlyEnrolled = pdfData.get(0).get("Currently enrolled");
+        String insuranceEnding = pdfData.get(0).get("Insurance ending in next 60 days");
+        String endDate = pdfData.get(0).get("End date");
+        String voluntarilyEnding = pdfData.get(0).get("Voluntarily ending");
 
         // Verify the text
-        switch (data) {
-            case "Other Health Coverage":
-                switch (language){
-                    case "English":
-                        String startPhrase = "Other Health Coverage";
-                        int startIndex = pdfContent.indexOf(startPhrase);
-                        if (startIndex != -1) {
-                            String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getApplicationDetails(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily))) {
-                                String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationDetailsPdf.getApplicationDetails(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily).split("\n");
+        switch (language){
+            case "English":
+                String startPhrase = "Other Health Coverage";
+                int startIndex = pdfContent.indexOf(startPhrase);
+                if (startIndex != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndex);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getEsiApplicationDetails(coverageType, minimumValueStandard,  lowestCostAmount, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationDetailsPdf.getEsiApplicationDetails(coverageType, minimumValueStandard,  lowestCostAmount, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding).split("\n");
 
-                                StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
-                                for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
-                                    String pdfLine = pdfLines[i].trim();
-                                    String expectedLine = expectedLines[i].trim();
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
 
-                                    if (!pdfLine.equals(expectedLine)) {
-                                        differences.append("Difference at line ").append(i + 1).append(":\n");
-                                        differences.append("PDF line.....: [").append(pdfLine).append("]\n");
-                                        differences.append("Expected line: [").append(expectedLine).append("]\n");
-                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
-                                    }
-                                }
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                             }
                         }
-                        break;
-                    case "Spanish":
-                        String startPhraseSp = "Other Health Coverage";
-                        int startIndexSp = pdfContent.indexOf(startPhraseSp);
-                        if (startIndexSp != -1) {
-                            String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
-                            if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getApplicationDetailsSp(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily))) {
-                                String[] pdfLines = pdfContentFromStartPhrase.split("\n");
-                                String[] expectedLines = ApplicationDetailsPdf.getApplicationDetailsSp(minValue, premium, enrolled, insruanceEnding, ending, lastSet, endDate, voluntarily).split("\n");
+                    }
+                }
+                break;
+            case "Spanish":
+                String startPhraseSp = "Other Health Coverage";
+                int startIndexSp = pdfContent.indexOf(startPhraseSp);
+                if (startIndexSp != -1) {
+                    String pdfContentFromStartPhrase = pdfContent.substring(startIndexSp);
+                    if (!pdfContentFromStartPhrase.contains(ApplicationDetailsPdf.getEsiApplicationDetailsSp(coverageType, minimumValueStandard,  lowestCostAmount, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding))) {
+                        String[] pdfLines = pdfContentFromStartPhrase.split("\n");
+                        String[] expectedLines = ApplicationDetailsPdf.getEsiApplicationDetailsSp(coverageType, minimumValueStandard,  lowestCostAmount, currentlyEnrolled, insuranceEnding, endDate, voluntarilyEnding).split("\n");
 
-                                StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
+                        StringBuilder differences = new StringBuilder("Differences found in PDF content:\n");
 
-                                for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
-                                    String pdfLine = pdfLines[i].trim();
-                                    String expectedLine = expectedLines[i].trim();
+                        for (int i = 0; i < Math.min(pdfLines.length, expectedLines.length); i++) {
+                            String pdfLine = pdfLines[i].trim();
+                            String expectedLine = expectedLines[i].trim();
 
-                                    if (!pdfLine.equals(expectedLine)) {
-                                        differences.append("Difference at line ").append(i + 1).append(":\n");
-                                        differences.append("PDF line.....: [").append(pdfLine).append("]\n");
-                                        differences.append("Expected line: [").append(expectedLine).append("]\n");
-                                        Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
-                                    }
-                                }
+                            if (!pdfLine.equals(expectedLine)) {
+                                differences.append("Difference at line ").append(i + 1).append(":\n");
+                                differences.append("PDF line.....: [").append(pdfLine).append("]\n");
+                                differences.append("Expected line: [").append(expectedLine).append("]\n");
+                                Assert.fail("PDF content does not contain expected text for notice.\n" + differences.toString());
                             }
                         }
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " + language);
+                    }
                 }
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + data);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
         return true;
     }
@@ -484,6 +538,9 @@ public class ApplicationDetailsPage {
         System.out.println("path and name is " + pathAndName);
         String pdfContent = extractTextFromPDF(Path.of(pathAndName));
         String coverageType = pdfData.get(0).get("Coverage Type");
+        if ("Individual Insurance (Outside of Marketplace)".equals(coverageType)) {
+            coverageType = "Individual Insurance (Outside of \nMarketplace)";
+        }
         String currentlyEnrolled = pdfData.get(0).get("Currently Enrolled");
         String insuranceEnding = pdfData.get(0).get("Insurance Ending");
         String endDate = pdfData.get(0).get("End date");
