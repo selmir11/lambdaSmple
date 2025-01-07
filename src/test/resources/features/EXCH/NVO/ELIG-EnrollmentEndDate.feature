@@ -224,8 +224,8 @@ Feature: LR Enrollment Period end date is set when user has
 #DBSTEP
     And  I Validate enrollment period end date is set to 60 days from current QLCE days
 
-    @SLER-1849-WIP @SLER-1868
-    Scenario Outline: Validate enrollment period end date
+    @SLER-1849
+    Scenario: Validate enrollment period end date for AI&AN
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
       When I click create a new account on login page
@@ -240,7 +240,7 @@ Feature: LR Enrollment Period end date is set when user has
       Then I validate I am on the "Before you begin" page
       And I click on continue with  application button on Before you begin page
       Then I validate I am on the "Report a life change" page
-      And I report "<reportLifeChangeOption>" and click continue
+      And I report "GainedAmericanIndianAlaskaNative" and click continue
       Then I select "member" from the who are you question
       And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
       Then I answer all Id proofing questions and click continue
@@ -253,7 +253,8 @@ Feature: LR Enrollment Period end date is set when user has
       Then I validate I am on the "Add Address" page
       Then I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
       And I select "Yes" for CO Resident option
-      And I select "No" for Federally Recognized Tribe option
+      And I select "Yes" for Federally Recognized Tribe option
+      Then I add the tribe details state as "Colorado" and tribe name as "Ute Mountain Tribe of the Ute Mountain Reservation"
       And I select "No" for Hardship Exemption option
       And I select "No" for Disability option
       And I select "No" to the recently denied medicaid question
@@ -288,19 +289,16 @@ Feature: LR Enrollment Period end date is set when user has
       Then I select "None of these" as ELMO health coverage option
       Then I click continue on the ELMO health coverage page
       Then I click continue on family overview page
-      Then I select "<qlceOption>" QLCE on tell us about life changes page
+      Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
       Then I click on Save and Continue
       Then I Declare as Tax Household 1
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
-    #  Then I click on "No Thanks" on good news page
       Then I validate I am on the "Application History" page
+      Then I click "No" on Before you continue popup on the application history page
       Then I click on view results and shop
       And I click on Sign Out in the Header for "NonElmo"
 #DBSTEP
-      And  I Validate enrollment period end date is set to <enrollmentEndDate> days from current QLCE days
-      Examples:
-        | reportLifeChangeOption           | qlceOption         | enrollmentEndDate |
-        | GainedAmericanIndianAlaskaNative | GainOfTribalStatus | 60                |
-        | Birth                            | Birth              | 60                |
+      Then I validate enrollment period end date for AI&AN should be lastdayofYear
+
 

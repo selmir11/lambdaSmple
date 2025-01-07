@@ -268,6 +268,7 @@ public class DbSteps {
     public void validateAddressInformation(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
         dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
     }
-
+    @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
+    public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
 }
 
