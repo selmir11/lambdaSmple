@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DbQueries_Exch {
-    String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
+    String acctId = SharedData.getPrimaryMember().getAccount_id()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
     String applicationId = SharedData.getPrimaryMember().getApplication_id();
     String dbName = SharedData.getDbName();
 
@@ -638,6 +638,11 @@ public String policyTablesCombinedQuery(String coverageType){
     public String getExchPersonIdFields_esMem(String householdId){
         return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
                 "where household_id = '"+householdId+"'";
+    }
+
+    public String getAddressDetails(String memberId){
+        return "SELECT address_line1,address_line2, city, state, zip, county FROM "+dbName+".es_address\n"+
+                "where address_id = (SELECT residence_address_id FROM "+dbName+".es_member where member_id = "+memberId+")";
     }
 
 }

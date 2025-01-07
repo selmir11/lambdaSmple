@@ -43,10 +43,10 @@ public class MedicalComparePage {
     @FindBy(id = "PlanCompare_InNetworkTab")
     WebElement inNetwork1;
 
-    @FindBy(id = "PlanCompare_InNetworkTier2Tab")
+    @FindBy(xpath = "//*[normalize-space()='In-Network']")
     WebElement inNetwork2;
 
-    @FindBy(id = "PlanCompare_OutOfNetworkTab")
+    @FindBy(xpath = "//*[normalize-space()='Out-of-Network']")
     WebElement outNetwork;
 
     //// Header page title
@@ -160,7 +160,7 @@ public class MedicalComparePage {
 
     // Doctor Visits
 
-    @FindBy(id = "PlanCompare_DoctorsVisits")
+    @FindBy(id = "PlanCompare_DoctorVisits")
     WebElement txtMedicalDoctorsVisits;
     @FindBy(xpath = "//td[normalize-space()='Preventive Care/ Screening/ Immunization']")
     WebElement txtMedicalPreventative;
@@ -505,12 +505,16 @@ public class MedicalComparePage {
     }
 
     public void clickInNetworkLink(){
-        basicActions.waitForElementToBePresent( inNetwork1,15 );
+        basicActions.waitForElementToDisappear( spinner,120 );
+        basicActions.scrollToElement( goBackCompareLink );
+        basicActions.waitForElementToBePresentWithRetries( inNetwork1,120 );
         inNetwork1.click();
     }
 
     public void clickOutNetworkLink(){
-        basicActions.waitForElementToBePresent( outNetwork, 15 );
+        basicActions.waitForElementToDisappear( spinner,120 );
+        basicActions.scrollToElement( goBackCompareLink );
+        basicActions.waitForElementToBePresentWithRetries( outNetwork, 120 );
         outNetwork.click();
     }
 

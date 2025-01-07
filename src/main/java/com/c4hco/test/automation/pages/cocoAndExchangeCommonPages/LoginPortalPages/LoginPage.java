@@ -85,6 +85,8 @@ public class LoginPage {
 
     @FindBy(css = "div.help-block.text-danger.mb-3.form-group-custom.mb-0.ng-star-inserted")
     WebElement lockedOutMessage;
+    @FindBy(xpath = "//div[@class='help-block text-danger mb-3 form-group-custom mb-0 ng-star-inserted']")
+    WebElement invalidLoginMessage;
     @FindBy(id = "user-type-selection")
     WebElement userIcon;
     @FindBy(xpath = "//a[@id='user-type-selection']//p")
@@ -441,7 +443,29 @@ public class LoginPage {
         softAssert.assertEquals(lockedOutMessage.getText(), "Your account is locked");
         softAssert.assertTrue(lockedOutMessage.isDisplayed());
         softAssert.assertAll();
-        basicActions.closeBrowserTab();
+    }
+
+    public void enterInvalidCredentials() {
+        basicActions.waitForElementToBePresent(createAccountLink, 100);
+
+        String emailId = SharedData.getPrimaryMember().getEmailId();
+        System.out.println("Email::" + emailId);
+        String pswd = SharedData.getPrimaryMember().getPassword() + "Invalid";
+        basicActions.wait(2000);
+        username.sendKeys(emailId);
+        basicActions.waitForElementToBePresent(password, 10);
+        password.sendKeys(pswd);
+        System.out.println("Password::" + pswd);
+        signInButton.click();
+    }
+
+    public void verifyInvalidLoginErrorMessage() {
+        basicActions.waitForElementToBePresent(createAccountLink, 100);
+
+        basicActions.waitForElementToBePresentWithRetries(invalidLoginMessage, 100);
+        softAssert.assertEquals(invalidLoginMessage.getText(), "Invalid login and/or password");
+        softAssert.assertTrue(invalidLoginMessage.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void clickUserTypeIconInTheLoginPage(String portal) {
