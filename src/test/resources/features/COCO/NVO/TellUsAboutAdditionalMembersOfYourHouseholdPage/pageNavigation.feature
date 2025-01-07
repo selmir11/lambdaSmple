@@ -120,3 +120,4 @@ Feature: Navigation - Tell us about additional members of your household page
       | Primary:Child or Other dependent |
       | Spouse:Child or Other dependent |
     Then I validate the details of the Tell us about additional members of your household page for the "Son" in the database
+    And I click on Sign Out in the Header for "Elmo"
