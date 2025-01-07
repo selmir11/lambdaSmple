@@ -56,7 +56,7 @@ Feature: End to End broker authorization notice validation for an individual, ag
     Then I validate the Find a Certified Broker near you page title in "English"
     Then I Search authorized Broker "153957"
     And I click on Search button in find certified broker page
-    And I save the broker's details from the Find a Certified Broker page
+    And I click more details from the first broker result container
 
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4AgencyTesting@outlook.com" and "ALaska12!"

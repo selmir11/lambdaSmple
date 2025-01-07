@@ -236,7 +236,7 @@ public class FindACertifiedBrokerPage {
         broker.setBroker_lic_num(licenseNumber.getText());
         broker.setAgencyName(agencyDisplayedName.getText());
         SharedData.setBroker(broker);
-        SharedData.getBroker();
+        SharedData.setAgencyOwner(broker);
     }
 
 
@@ -432,16 +432,6 @@ public class FindACertifiedBrokerPage {
         basicActions.waitForElementToBeClickable(findBrokerCurrentPage,10);
         softAssert.assertEquals(findBrokerCurrentPage.getText(), currentPage);
         softAssert.assertAll();
-    }
-
-    public void saveBrokerDetails(){
-        basicActions.waitForElementToBePresent(brokerDisplayedName,100);
-
-        BrokerDetails owner = new BrokerDetails();
-        owner.setBroker_name(brokerDisplayedName.getText());
-        owner.setAgencyName(agencyDisplayedName.getText());
-        owner.setLicense(licenseNumber.getText());
-        SharedData.setAgencyOwner(owner);
     }
 
     public void validateBrokerContactYouText(String marketplace, String language){
