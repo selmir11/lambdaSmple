@@ -114,7 +114,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
 
 
 
-  @SLER-1941
+  @SLER-1941 #WIP
   Scenario:  ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment Period is granted, shopping is allowed, email notice is triggered EE-11[RT-2187]
     Given I get Easy Enrollment API base URL
     Then I send a request body with the following data: adjustedGrossIncome:"27000", emailAddress:"Matt@test.com", filedByDeadline:"1", filingType:"1", firstName:"Matt", householdSize:"1", lastName:"Gaetz", mailingAddressLine1:"7655 Matchlock", mailingAddressLine2:"test", city:"Denver", zipCode:"80205", middleInitial:"M", phoneNumber:"7206661280", dateOfBirth:"01011980", ssn:"134251980", year:"2025"
@@ -186,5 +186,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
     And I wait for hold on content to disappear
 
     And I click on Sign Out in the Header for "NonElmo"
+
+    #DBSTEP WIP
 
 
