@@ -145,7 +145,7 @@ Feature: Tests to determine the eligibility to shop
 
 
   @SLER-1885
-  Scenario:  Admin LCE reported for them
+  Scenario: Enrollment period end date is set to 7 days from the day the Admin LCE event date was set for user
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -188,6 +188,13 @@ Feature: Tests to determine the eligibility to shop
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
     Then I validate I am on the "Tell us about life changes" page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
     Given I open the login page on the "admin" portal
@@ -197,7 +204,7 @@ Feature: Tests to determine the eligibility to shop
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    Then I change effective date to current date of "last available year" from admin portal
+    Then I change effective date to current date of "current year" from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -206,6 +213,8 @@ Feature: Tests to determine the eligibility to shop
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
     And I click on Sign Out in the Header for "NonElmo"
     And I Validate enrollment period end date is set to 7 days from current QLCE days
 
