@@ -194,7 +194,7 @@ public class BasicActions {
         try {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException | NoSuchElementException ignore) {
+        } catch (TimeoutException | NoSuchElementException | IndexOutOfBoundsException ignore) {
             Log.info("Element is not present");
             return false;
         }
@@ -219,7 +219,7 @@ public class BasicActions {
                 new WebDriverWait(driver,
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 return true;
-            } catch (StaleElementReferenceException | NoSuchElementException e) {
+            } catch (StaleElementReferenceException | NoSuchElementException | IndexOutOfBoundsException e) {
                 retries--;
                 Log.info("StaleElementReferenceException or NoSuchElementException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
@@ -891,12 +891,12 @@ public class BasicActions {
     }
 
     public List<String> getAllMemFirstNames() {
-        List<String> firstName = new ArrayList<>();
+        List<String> firstNames = new ArrayList<>();
         List<MemberDetails> allMembers = getAllMem();
         for (MemberDetails mem : allMembers) {
-            firstName.add(mem.getFirstName());
+            firstNames.add(mem.getFirstName());
         }
-        return firstName;
+        return firstNames;
     }
 
     public List<String> getAllMemCompleteNames() {
@@ -908,7 +908,6 @@ public class BasicActions {
         }
         return firstAndLastName;
     }
-
 
     public String getDobOfMember(String namePrefix){
         String dob = null;

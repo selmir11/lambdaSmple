@@ -1,4 +1,4 @@
-@CRMNvo
+@CRMNvo  @NVOExchRegression
 Feature: Testing CRM (MD365) updates
 
   Background: I go the login portal

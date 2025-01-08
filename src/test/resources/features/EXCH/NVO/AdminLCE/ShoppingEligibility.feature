@@ -1,6 +1,6 @@
 Feature: Tests to determine the eligibility to shop
 
-  @SLER-1767 @SLER-1770
+  @SLER-1767 @SLER-1770 @NVOExchRegression
   Scenario: Verify member is eligible to shop when they have Admin LCE reported for them
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -73,11 +73,12 @@ Feature: Tests to determine the eligibility to shop
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I click on Sign Out in the Header for "Elmo"
 
-    @SLER-1771
+    @SLER-1771 @NVOExchRegression
     Scenario: Validate the DB Record is updated for changes in admin portal
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page

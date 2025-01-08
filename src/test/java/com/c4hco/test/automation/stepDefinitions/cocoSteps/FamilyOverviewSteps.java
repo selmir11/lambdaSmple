@@ -35,6 +35,9 @@ public class FamilyOverviewSteps {
     @Then("I verify no one is applying text on the Family Overview page")
     public void verifyNoOneIsApplyingTextFamOverview() { familyOverviewPage.verifyNoOneIsApplyingText(); }
 
+    @Then("I validate the action link properties on the CoCo Family Overview page")
+    public void iValidateActionLinksFamilyOverview() {familyOverviewPage.validateActionLinksFamilyOverview();}
+
 
 
 

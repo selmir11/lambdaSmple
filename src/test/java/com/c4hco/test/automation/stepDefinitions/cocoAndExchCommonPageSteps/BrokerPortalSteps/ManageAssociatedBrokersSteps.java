@@ -37,5 +37,15 @@ public class ManageAssociatedBrokersSteps {
     public void verifyAgencyInvite(String expectedStatus){
         manageAssociatedBrokersPage.verifyAgencyInviteStatus(expectedStatus);
     }
+
+    @And("I validate the broker results match my broker named {string} on associated brokers")
+    public void iValidateTheBrokerResultsMatchMyBrokerNamedOnAssociatedBrokers(String brokerName) {
+        manageAssociatedBrokersPage.validateTheBrokerResultsMatchMyBrokerNamedOnAssociatedBrokers(brokerName);
+    }
+
+    @Then("I validate the broker status invite is on the right action")
+    public void iValidateTheBrokerStatusInviteIsOnTheRightAction() {
+        manageAssociatedBrokersPage.validateTheBrokerStatusInviteIsOnTheRightAction();
+    }
 }
 

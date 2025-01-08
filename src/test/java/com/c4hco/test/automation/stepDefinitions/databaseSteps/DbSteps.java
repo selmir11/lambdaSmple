@@ -51,9 +51,9 @@ public class DbSteps {
         dbValidations.validateMemberCSRNonAIANData();
     }
 
-    @And("I verify the application result details in DB for {string}")
-    public void iVerifyApplicationResult(String eligibilityStatus) {
-        dbValidations.validateApplicationResult(eligibilityStatus);
+    @And("I verify the application result details in DB as {string} for {string}")
+    public void iVerifyApplicationResult(String eligibilityStatus, String memPrefix) {
+        dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
     }
 
 
@@ -100,6 +100,11 @@ public class DbSteps {
     @And("I verify the new Exchange individual account's household ID in the database")
     public void iVerifyExchHouseholdIdDb() {
         dbValidations.verifyExchHouseholdIdDb();
+    }
+
+    @And("I verify the password reset notice is not being archived in the DB for account number STG {string} QA {string}")
+    public void iVerifyPasswordResetNotArchivedDb(String accountStg, String accountQa) {
+        dbValidations.verifyPasswordResetNotArchivedDb(accountStg, accountQa);
     }
 
     @And("I verify broker deauthorization in the database")
@@ -232,5 +237,46 @@ public class DbSteps {
         dbValidations.validateApplicationIds();
     }
 
+    @Then("I validate the Self Attestation details in DB")
+    public void iValidateSelfAttestation(List<Map<String, String>> expectedValues){dbValidations.validateSelfAttest(expectedValues);}
+
+    @Then("I validate the exch_person_id related fields to be null")
+    public void validateExchPersonIdFieldsTobeNull(){
+        dbValidations.validateExchPersonIdRelatedFieldsToBeNull();
+    }
+
+    @Then("I validate the exch_person_id related fields from db for a new member after tell us about yourself page")
+    public void validateExchPersonIdFields(){
+        dbValidations.validateExchPersonIdRelatedFields();
+    }
+
+    @Then("I validate the exch_person_id related fields from db for a specific member after tell us about yourself page")
+    public void validateExchPersnIdFields(){
+        dbValidations.validateExchPersonIdFields_specifcPerson();
+    }
+
+    @Then("I validate the exch_person_id related fields from db for a duplicate member after tell us about yourself page")
+    public void validateExchPersonIdFields_duplicateMem(){
+        dbValidations.validateExchPersonIdFields_duplicateMem();
+    }
+
+    @Then("I validate eventCD when no notices are sent")
+    public void iValidateEventCD(){
+        dbValidations.validateEventCD();
+    }
+    @Then("I validate event log in DB")
+    public void iValidateEventLog(){
+        dbValidations.validateEventLog();
+    }
+
+    @Then("I validate complete residential address details for {string} member in DB addressLine1 {string},addressLine2 {string},city {string},state {string},zipcode {string},county {string}")
+    public void validateAddressInformation(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
+        dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
+    }
+
+    @Then("I validate the details of the Tell us about additional members of your household page for the {string} in the database")
+    public void validateTellUsAboutAdditionalInformation(String FName){
+        dbValidations.validateTellAboutAdditionalInformationinDB(FName);
+    }
 }
 

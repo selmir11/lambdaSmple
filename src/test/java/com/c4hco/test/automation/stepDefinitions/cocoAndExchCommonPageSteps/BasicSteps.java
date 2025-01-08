@@ -25,6 +25,9 @@ public class BasicSteps {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
+                case "tax Silver":
+                pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
+                break;
             case "Admin Login":
                 pageUrl = "login-portal/login/adminUsers";
                 break;
@@ -34,6 +37,9 @@ public class BasicSteps {
             case "Broker Portal Login":
                 pageUrl = "login-portal/login/brokers";
                 break;
+            case "Admin Program manager account creation":
+            pageUrl = "AdminPortal/program-manager/account-creation";
+            break;
             case "Prescreen":
                 pageUrl = "/prescreen";
                 break;
@@ -97,6 +103,9 @@ public class BasicSteps {
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
                 break;
+            case "my agency":
+            pageUrl = "broker-agency-info";
+            break;
             case "Admin search":
                 pageUrl = "/AdminPortal/search";
                 break;
@@ -427,6 +436,9 @@ public class BasicSteps {
             case "LUGY":
             pageUrl = "nes/letUsGuideYou/household";
             break;
+            case "PEAK skeleton error message":
+                pageUrl = "login-portal/peak-login-failed";
+                break;
             case "Agency dashboard":
                 pageUrl = "AdminPortal/agency";
                 break;

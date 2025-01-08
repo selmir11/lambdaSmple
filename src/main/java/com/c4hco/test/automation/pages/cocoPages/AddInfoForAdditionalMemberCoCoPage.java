@@ -1,7 +1,10 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.Address;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -292,4 +295,54 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertAll();
     }
 
+    public void validateAddMemberCompleteResidentialAddressCoCo(String addressLine1, String addressLine2, String city, String state, String zipcode, String county) {
+        basicActions.waitForElementToBePresent(addressLine1Input, 30);
+        softAssert.assertEquals(addressLine1Input.getAttribute("value"),addressLine1);
+        softAssert.assertEquals(addressLine2Input.getAttribute("value"),addressLine2);
+        softAssert.assertEquals(cityInput.getAttribute("value"),city);
+        softAssert.assertEquals(stateDropdown.getAttribute("value"),state);
+        softAssert.assertEquals(zipcodeInput.getAttribute("value"),zipcode);
+        softAssert.assertEquals(countyDropdown.getAttribute("value"),county);
+        softAssert.assertAll();
+    }
+
+    public void validateColoradoOption(String liveInColoradoButton){
+        basicActions.waitForElementListToBePresent(liveInColoradoButtons, 10);
+        switch (liveInColoradoButton) {
+            case "Yes":
+                // if the Yes option is selected
+                boolean isYesSelected = liveInColoradoButtons.get(0).getAttribute("class").contains("option-button-selected");
+                softAssert.assertTrue(isYesSelected);
+                break;
+            case "No":
+                // if the No option is selected
+                boolean isNoSelected = liveInColoradoButtons.get(1).getAttribute("class").contains("option-button-selected");
+                softAssert.assertTrue(isNoSelected);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + liveInColoradoButton);
+        }
+        softAssert.assertAll();
+    }
+
+    public void updateAddressLine1AndAddressLine2AddtlMem(String addressLine1, String addressLine2){
+        basicActions.waitForElementToBePresent(addressLine1Input, 30);
+        addressLine1Input.click();
+        addressLine1Input.sendKeys(Keys.CONTROL + "a");
+        addressLine1Input.sendKeys(addressLine1);
+        addressLine2Input.click();
+        addressLine2Input.sendKeys(Keys.CONTROL + "a");
+        addressLine2Input.sendKeys(addressLine2);
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        String actualMemberInfo = hdrAddInfoForAddMember.getText().replace("Additional information for ","");
+        for(MemberDetails actualMember : memberList) {
+            if(actualMemberInfo.contains(actualMember.getFirstName())) {
+                Address address = new Address();
+                address.setAddressLine1(addressLine1);
+                address.setAddressLine2(addressLine2);
+                actualMember.setResAddress(address);
+                break;
+            }
+        }
+    }
 }

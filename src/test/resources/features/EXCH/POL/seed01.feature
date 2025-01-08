@@ -125,7 +125,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob834 "dental" file data
 
   @SLER-1038 @pol_exch_passed
-  Scenario:SLER-1038 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN - RT-2246
+  Scenario: RT-2246 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -171,7 +171,7 @@ Feature: Regression Tests that require Seed 1
 
 
   @SLER-296-WIP
-  Scenario:ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
+  Scenario: RT-2248 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -210,7 +210,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob834 files should have the values
 
   @SLER-132-WIP
-  Scenario:ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
+  Scenario: ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login

@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.LoginCredentials;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -147,7 +148,7 @@ public class CreateAccountPage {
     @FindBy(id = "role")
     WebElement roleDropdown;
 
-    @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[1]")
+    @FindBy(xpath = "//select[@id='role']/option[2]")
     WebElement certifiedBrokerRole;
 
     @FindBy(xpath = "//*[@id='role']/app-option-select-dropdown/div/div[2]/div[2]")
@@ -205,6 +206,11 @@ public class CreateAccountPage {
 
     public void createGeneralAccount(String appType){
         addDetails();
+        selectBasedOnApp(appType);
+    }
+
+    public void createAccountForScript(String appType, String script){
+        addDetailsForScript(script);
         selectBasedOnApp(appType);
     }
 
@@ -293,6 +299,20 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
         allMembersList.add(subscriber);
         SharedData.setAllMembers(allMembersList);
+    }
+
+    private void addDetailsForScript(String scriptNum){
+        initializeDataForScript(scriptNum);
+        sendDetails();
+    }
+
+    private void initializeDataForScript(String scriptNum){
+        LoginCredentials.setScriptBasedDetails(scriptNum);
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        subscriber.setEmailId("AutomationUser."+basicActions.getUniqueString(8)+"@test.com");
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setIsSubscriber("Y");
+        SharedData.setPrimaryMember(subscriber);
     }
 
     public void addDetails(){
@@ -560,7 +580,26 @@ public class CreateAccountPage {
                 throw new IllegalArgumentException("Invalid option: " + language);}
     }
 
-    public void enterDuplicateAccountCreationData(){
+    public void duplicateAccWithNewEmail(String appType){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.waitForElementToBePresent(firstName, 10);
+        firstName.sendKeys(subscriber.getFirstName());
+        lastName.sendKeys(subscriber.getLastName());
+        subscriber.setIncorrectEmail(subscriber.getEmailId());
+        String newEmail = basicActions.getUniqueString(8)+"oldMem@test.com";
+        SharedData.setOldAccountId(subscriber.getAccount_id());
+        subscriber.setEmailId(newEmail);
+        email.sendKeys(newEmail);
+        phoneNumber.sendKeys(subscriber.getPhoneNumber());
+        password.sendKeys(subscriber.getPassword());
+        confirmPassword.sendKeys(subscriber.getPassword());
+        preferredLanguageButtonEnglish.click();
+        primaryUserCheckbox.click();
+        SharedData.setPrimaryMember(subscriber);
+        selectBasedOnApp(appType);
+    }
+
+    public void enterDuplicateAccountCreationData(String appType){
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 10);
         firstName.sendKeys(subscriber.getFirstName());
@@ -571,9 +610,7 @@ public class CreateAccountPage {
         confirmPassword.sendKeys(subscriber.getPassword());
         preferredLanguageButtonEnglish.click();
         primaryUserCheckbox.click();
-        exchangeTermsOfUseCheckbox.click();
-
-        submitButton.click();
+        selectBasedOnApp(appType);
     }
 
     public void enterDuplicateBrokerAccountCreationData(){

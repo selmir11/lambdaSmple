@@ -3,14 +3,17 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TellUsAboutYourselfPage {
 
@@ -92,7 +95,8 @@ public class TellUsAboutYourselfPage {
     @FindBy(xpath = "//*[@id='restrictMultipleEdits']/div/div/div[1]/label[2]/input")
     WebElement linkToAddNewPerson;
 
-    
+    @FindBy(id = "memberRelationship0")
+    WebElement drpdwnRealtionship;
 
     public void userPregnantQuestion(String Pregnant) {
         switch (Pregnant){
@@ -279,7 +283,45 @@ public class TellUsAboutYourselfPage {
         softAssert.assertAll();
     }
 
-    public void closeRestrictMultipleFieldEditsErrorPopup(String language){
+    public void selectNewRelationship(List <String > relationship) {
+        String relationshipString = relationship.get(0);
+        String[] parts = relationshipString.split(":");
+        String Name = parts[0];  // "Primary"
+        String Relation = parts[1]; // "Spouse"
+
+        try {
+            List<MemberDetails> members = SharedData.getMembers();
+
+            basicActions.waitForElementToBePresent(drpdwnRealtionship, 40);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + Name + "')]/ancestor-or-self::label/parent::div //select"));
+            basicActions.waitForElementToBePresent(element, 10);
+            basicActions.scrollToElement(element);
+            basicActions.waitForElementToBeClickableWithRetries(element, 10);
+
+            // Perform actions on the element
+            Select dropdown = new Select(element);
+            dropdown.selectByVisibleText(Relation);
+            softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
+            softAssert.assertAll();
+
+            for (MemberDetails member : members) {
+                if (member.getFirstName().contains(Relation)) {
+                    if (Relation.equals("Spouse") && member.getGender().equals("Female")) {
+                        Relation = "Wife";
+                    } else if (Relation.equals("Spouse") && member.getGender().equals("Male")) {
+                        Relation = "Husband";
+                    }
+                    member.setRelation_to_subscriber(Relation.toUpperCase());
+                    break;
+                }
+            }
+            SharedData.setMembers(members);
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + e.getMessage());
+            // Handle the exception as needed
+        }
+    }
+        public void closeRestrictMultipleFieldEditsErrorPopup(String language){
         basicActions.waitForElementToBePresent(closeRestrictedEditsPopupEnglish, 20);
         switch (language) {
             case ("English"):

@@ -59,6 +59,7 @@ public class TellUsAboutYourselfPageSteps {
     public void clickBackButton() {
         tellUsAboutYourselfPage.clickBackButton();
     }
+
     @And("I validate restrict multiple field edits pop up text on Tell us about yourself page")
     public void iValidateRestrictMultipleField(List<String> validationText) {
         tellUsAboutYourselfPage.validateRestrictMultipleFieldEditsError(validationText);
@@ -73,4 +74,9 @@ public class TellUsAboutYourselfPageSteps {
     public void iClickPrimaryContactChange() { tellUsAboutYourselfPage.iClickPrimaryContactChangeLink();}
     @Then("I click on please click here link to add new person")
     public void iClickToAddNewPerson() { tellUsAboutYourselfPage.iClickLinkToAddNewPerson();}
+
+    @Then("I select new relationship of members to primary")
+    public void iSelectNewRelationship(List<String> relationship) {
+        tellUsAboutYourselfPage.selectNewRelationship(relationship);
+    }
 }

@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DbQueries_Exch {
-    String acctId = String.valueOf(SharedData.getPrimaryMember().getAccount_id());
-    String applicationId = SharedData.getPrimaryMember().getApplication_id();
+    String acctId = SharedData.getPrimaryMember()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
+    String applicationId = SharedData.getPrimaryMember()!=null ? SharedData.getPrimaryMember().getApplication_id(): "";
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
@@ -241,6 +241,12 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where ehc.email = '" + SharedData.getPrimaryMember().getEmailId() + "';";
     }
 
+    public String verifyPasswordResetNotArchivedDb(String currentDate) {
+        return "select *\n" +
+        "from " + dbName + ".ds_item di \n" +
+        "where account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "' and item_name = 'IND_Reset Password (AM-016-07) - " + currentDate + "';";
+    }
+
     public String verifyBrokerAuthorizationStatusBOB() {
         return "select bca.authorization_status from " + dbName + ".es_household_contact ehc\n" +
                 "join " + dbName + ".bp_client_authorization bca on bca.household_id  = ehc.household_id \n" +
@@ -414,10 +420,10 @@ public String policyTablesCombinedQuery(String coverageType){
                 "AND household_contact = 1";
     }
 
-    public String reasonCodeQuery(String memberId) {
+    public String reasonCodeQuery(String memberId, String determination) {
         return "SELECT reason_code " +
                 "FROM " + dbName + ".es_member_rules_result " +
-                "WHERE eligibility_type = 'OFFEXCH' " +
+                "WHERE determination = '"+determination+"' " +
                 "AND member_id = " + memberId;
     }
 
@@ -475,6 +481,10 @@ public String policyTablesCombinedQuery(String coverageType){
 
     public String getHouseholdId(){
         return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
+
+    public String getHouseholdIdForOldAccount(){
+        return "select household_id from "+dbName+".es_household where account_id = '"+SharedData.getOldAccountId()+"'";
     }
 
     public String getLceTpePlanYear(String householId){
@@ -611,6 +621,39 @@ public String policyTablesCombinedQuery(String coverageType){
     public String geAllApplicationIds(String householId){
         return "select application_id from "+dbName+".es_application\n" +
                 "where household_id  = '"+householId+"'";
+    }
+
+    public String getSelfAttestationDetails(String householdID){
+        return "select * from "+dbName+".es_self_attestation\n" +
+                "where household_id = '"+householdID+"'";
+    }
+    public String dorTaxHousehold(String taxpayerKey){
+        return "select b.event_cd\n" +
+                "from "+dbName+".dor_tax_household a\n" +
+                "join "+dbName+".easy_enrollment_event_log b\n" +
+                "on a.id = b.dor_tax_household_id\n" +
+                "join "+dbName+".dor_tax_household_member c\n" +
+                "on a.id = c.dor_tax_household_id\n" +
+                "where a.taxpayer_key = '"+taxpayerKey+"'";
+    }
+    public String easyEnrollmentEventLog(String taxpayerKey){
+        return "select event_cd \n" +
+                "from "+dbName+".easy_enrollment_event_log where taxpayer_key = '"+taxpayerKey+"'";
+    }
+
+    public String getExchPersonIdFields_esMem(String householdId){
+        return "select member_id, exch_person_id, exch_person_id_review_id, exch_person_id_review_status from "+dbName+".es_member em \n" +
+                "where household_id = '"+householdId+"'";
+    }
+
+    public String getAddressDetails(String memberId){
+        return "SELECT address_line1,address_line2, city, state, zip, county FROM "+dbName+".es_address\n"+
+                "where address_id = (SELECT residence_address_id FROM "+dbName+".es_member where member_id = "+memberId+")";
+    }
+
+    public String getTellAboutAdditionalInformation(String memberId){
+        return "SELECT first_name, middle_name, last_name, gender, birth_date, applying_for_coverage_ind FROM "+dbName+".es_member\n"+
+                "where member_id = "+memberId+"";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.AssisterDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
@@ -138,6 +139,45 @@ public class NoticesPage {
     WebElement adminNoticeParag3;
     @FindBy(xpath = "//p[@class='x_body']")
     List<WebElement> BodyTextBN002A0404;
+
+    @FindBy(xpath = "//*[@id='x_accountCreationCommon']/p[1]")
+    WebElement bodyTextAM00301Parag1;
+    @FindBy(xpath = "//*[@id='x_accountCreationCommon']/p[3]")
+    WebElement bodyTextAM00301Parag2;
+    @FindBy(xpath = "//*[@id='x_brokerAccountCreationNoticeBody']/p[1]")
+    WebElement bodyTextAM00301Parag3;
+    @FindBy(xpath = "//*[@id='x_brokerAccountCreationNoticeBody']/p[2]")
+    WebElement bodyTextAM00301Parag4;
+    @FindBy(xpath = "//*[@id='x_brokerAccountCreationNoticeBody']/p[3]")
+    WebElement bodyTextAM00301Parag5;
+    @FindBy(xpath = "//*[@id='x_programManagerActivateAccountNoticeBody']/p[1]")
+    WebElement bodyTextAM00401Parag1;
+    @FindBy(xpath = "//*[@id='x_programManagerActivateAccountNoticeBody']/p[2]")
+    WebElement bodyTextAM00401Parag2;
+    @FindBy(xpath = "//*[@id='x_programManagerActivateAccountNoticeBody']/ul/li[1]")
+    WebElement bodyTextAM00401Parag3;
+    @FindBy(xpath = "//*[@id='x_programManagerActivateAccountNoticeBody']/ul/ul[1]/li")
+    WebElement bodyTextAM00401Parag4;
+    @FindBy(xpath = "//*[@id='x_programManagerActivateAccountNoticeBody']/ul/li[2]")
+    WebElement bodyTextAM00401Parag5;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/ul/ul[2]/li[1]")
+    WebElement bodyTextAM00401Parag6;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/ul/ul[2]/li[2]")
+    WebElement bodyTextAM00401Parag7;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/ul/ul[2]/ul[1]/li[2]")
+    WebElement bodyTextAM00401Parag8;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/ul/ul[2]/li[3]")
+    WebElement bodyTextAM00401Parag9;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/ul/ul[2]/li[4]")
+    WebElement bodyTextAM00401Parag10;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/ul/ul[2]/ul[2]/li[1]")
+    WebElement bodyTextAM00401Parag11;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/ul/ul[2]/ul[2]/li[2]")
+    WebElement bodyTextAM00401Parag12;
+    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/p[3]/strong")
+    WebElement bodyTextAM00401Parag13;
+    @FindBy(xpath = "//*[@id=\"x_accountCreatedInErrorAssistnet\"]")
+    WebElement bodyTextAM00401Parag14;
 
 
     public String MFACode = "";
@@ -310,12 +350,46 @@ public class NoticesPage {
             case "Broker":
                 verifyTheNoticeBroker(noticeNumber, language);
                 break;
-                case "Admin":
-                verifyTheNoticeAdmin(noticeNumber, language);
-                break;
+            case "Admin":
+            verifyTheNoticeAdmin(noticeNumber, language);
+            break;
+            case "Program Manager":
+            verifyTheNoticeProgramManager(noticeNumber, language);
+            break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber + typeAPP);
         }
+    }
+
+    private void verifyTheNoticeProgramManager(String noticeNumber, String language) {
+        switch (noticeNumber) {
+            case "AM-004-01":
+                VerifyTheNoticeTextAM00401PM();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
+        }
+    }
+
+    private void VerifyTheNoticeTextAM00401PM() {
+        softAssert.assertEquals(adminNoticeEmail.getText(), SharedData.getAssisterDetails().getEmail());
+        softAssert.assertEquals(individualNameBN002A0304.getText(), SharedData.getAssisterDetails().getFirstName()+" "+SharedData.getAssisterDetails().getLastName());
+        String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MM-dd-yyyy");
+        softAssert.assertEquals(bodyTextAM00401Parag1.getText(), "Welcome to the Connect for Health Colorado\u00AE Assistance Network Portal! You are invited to create an account for "+SharedData.getAssisterDetails().getOrganizationGroupName()+" effective "+Date+".");
+        softAssert.assertEquals(bodyTextAM00401Parag2.getText(), "Next Steps:");
+        softAssert.assertEquals(bodyTextAM00401Parag3.getText(), "Use this link and select Create a new Account: https://"+SharedData.getEnv()+"-aws.connectforhealthco.com/login-portal/createAccount?targetUrl=https://"+SharedData.getEnv()+"-aws.connectforhealthco.com/assistnet-portal/landing");
+        softAssert.assertEquals(bodyTextAM00401Parag4.getText(), "Do not use the C4HCO customer account creation page.");
+        softAssert.assertEquals(bodyTextAM00401Parag5.getText(), "Complete the fields for the Program Manager role and accept the terms and conditions to create your account.");
+        softAssert.assertEquals(bodyTextAM00401Parag6.getText(), "Copy and Paste the Invitation Code below.");
+        softAssert.assertEquals(bodyTextAM00401Parag7.getText(), "Use the email address that this notice came to in the field for email address.");
+        softAssert.assertEquals(bodyTextAM00401Parag8.getText(), "Notices and password resets will be sent to this email address.");
+        softAssert.assertEquals(bodyTextAM00401Parag9.getText(), "Enter a phone number for Connect for Health Colorado\u00AE to reach you.");
+        softAssert.assertEquals(bodyTextAM00401Parag10.getText(), "After your account is created, sign in to complete your profile and add your organization location information.");
+        softAssert.assertEquals(bodyTextAM00401Parag11.getText(), "Your Organization will not be able to be associated to customers until the profile is completed and you have added an organization location.");
+        softAssert.assertEquals(bodyTextAM00401Parag12.getText(), "You will receive a second notice to remind you to complete your Profile.");
+        softAssert.assertEquals(bodyTextAM00401Parag13.getText(), "Invitation Code:");
+        softAssert.assertEquals(bodyTextAM00401Parag14.getText(), "If you believe that your account has been created in error or if you have additional questions, please contact the Connect for Health Colorado\u00AE Assistance Network at AssistanceNetwork@ConnectforHealthCO.com.");
+        softAssert.assertAll();
     }
 
     private void verifyTheNoticeAdmin(String noticeNumber, String language) {
@@ -370,11 +444,41 @@ public class NoticesPage {
             case "BN-002A-02 Exch":
                 VerifyTheNoticeTextBN002A02Exchbroker();
                 break;
+            case "AM-003-01":
+                VerifyTheNoticeTextAM00301Exchbroker();
+            break;
+            case "AM-003-01 Agency":
+                VerifyTheNoticeTextAM00301ExchAgency();
+            break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
     }
 
+    private void VerifyTheNoticeTextAM00301ExchAgency() {
+        String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MMMM dd, yyyy");
+        basicActions.wait(100);
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getFirstName()+" "+SharedData.getAgencyOwner().getLastName());
+        softAssert.assertEquals(bodyTextAM00301Parag1.getText(), "Welcome to Connect for Health Colorado\u00AE. An account was opened for you on "+ Date+":");
+        softAssert.assertEquals(bodyTextAM00301Parag2.getText(), "Login ID: "+ SharedData.getAgencyOwner().getEmail());
+        softAssert.assertEquals(bodyTextAM00301Parag3.getText(), "To get started, visit us online at https://connectforhealthco.com/for-certified-brokers/.");
+        softAssert.assertEquals(bodyTextAM00301Parag4.getText(), "Log in to your account to complete your profile. You must complete training before you can be certified to place business through Connect for Health Colorado\u00AE. Visit https://c4hco.csod.com/ for more training information and resources..");
+        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.");
+        softAssert.assertAll();
+    }
+
+    private void VerifyTheNoticeTextAM00301Exchbroker() {
+        String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MMMM dd, yyyy");
+        basicActions.wait(100);
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getBroker().getFirstName()+" "+SharedData.getBroker().getLastName());
+        softAssert.assertEquals(bodyTextAM00301Parag1.getText(), "Welcome to Connect for Health Colorado\u00AE. An account was opened for you on "+ Date+":");
+        softAssert.assertEquals(bodyTextAM00301Parag2.getText(), "Login ID: "+ SharedData.getBroker().getEmail());
+        softAssert.assertEquals(bodyTextAM00301Parag3.getText(), "To get started, visit us online at https://connectforhealthco.com/for-certified-brokers/.");
+        softAssert.assertEquals(bodyTextAM00301Parag4.getText(), "Log in to your account to complete your profile. You must complete training before you can be certified to place business through Connect for Health Colorado\u00AE. Visit https://c4hco.csod.com/ for more training information and resources..");
+        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.");
+        softAssert.assertAll();
+
+    }
 
 
     private void VerifyTheNoticeTextAM01608broker() {

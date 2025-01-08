@@ -66,6 +66,11 @@ public class LoginPageSteps {
             loginPage.clickSignIn();
         }
 
+        @When("I click on Sign in with PEAK on the login page")
+        public void iClickOnSignInWithPeakonloginpage() {
+            loginPage.clickSignInWithPeak();
+        }
+
     @And("I receive error message for Username")
     public void iReceiveErrorMessageForUsername() {
         loginPage.usernameRequiredMessage();
@@ -79,6 +84,16 @@ public class LoginPageSteps {
     @Then("I validate account is locked message on the Login page")
     public void ivalidateLockedOutMessage() {
         loginPage.validateLockedOutMessage();
+    }
+
+    @Then("I enter invalid credentials")
+    public void iEnterInvalidCredentials() {
+        loginPage.enterInvalidCredentials();
+    }
+
+    @And("I verify the invalid login error text")
+    public void iVerifyInvalidLoginErrorMessage() {
+        loginPage.verifyInvalidLoginErrorMessage();
     }
 
     @And("I receive message I forgot username and password")
@@ -151,5 +166,10 @@ public class LoginPageSteps {
     @Then("I click the option {string} requested")
     public void iClickTheOptionRequested(String userOption) {
         loginPage.clickTheOptionRequested(userOption);
+    }
+
+    @And("I login with {string} credentials")
+    public void loginWithExistingCreds(String loginType){
+            loginPage.loginWitExistingAcc(loginType);
     }
 }
