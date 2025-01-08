@@ -1,5 +1,7 @@
 @COCO11
     # SLCR-652, SLCR-653, SLCR-654, SLCR-655, SLCR-656, SLCR-657, SLCR-658, SLCR-659,
+
+    # for closed enrollment post Jan 15 - Pregnancy, Death, and Divorce are not qualifed LCEs
 Feature: LCE Test Runs for COCO
 
   Background: I go the login portal
