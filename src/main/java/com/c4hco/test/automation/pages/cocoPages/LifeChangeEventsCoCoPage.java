@@ -159,7 +159,7 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        //dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         basicActions.waitForElementToBePresent(checkboxes.get(0), 10);
 
         for (int i = 0; i < checkboxes.size(); i++) {
@@ -189,7 +189,7 @@ public class LifeChangeEventsCoCoPage {
         List<WebElement> changeOfAddressEventDate = qachangeOfAddressEventDate;
 
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        //dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
 
         for (int i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
             basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i), 10);
@@ -307,7 +307,7 @@ public class LifeChangeEventsCoCoPage {
 
     private void setDateForCheckboxes(List<WebElement> eventDates, String dateType) {
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+       // dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         for (int i = 0; i < eventDates.size(); i++) {
             basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
             eventDates.get(i).sendKeys(dateValue);
@@ -316,10 +316,10 @@ public class LifeChangeEventsCoCoPage {
 
     private void setDateForInsuranceLossCheckboxes(List<WebElement> eventDates, String dateType) {
         String date = basicActions.getDateBasedOnRequirement(dateType);
-        String dateValue = basicActions.changeDateFormat(date, "MM-dd-yyyy", "MM/dd/yyyy");
+      //  String dateValue = basicActions.changeDateFormat(date, "MM-dd-yyyy", "MM/dd/yyyy");
         for (int i = 0; i < eventDates.size(); i++) {
             basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
-            eventDates.get(i).sendKeys(dateValue);
+            eventDates.get(i).sendKeys(date);
         }
     }
 
@@ -865,6 +865,7 @@ public class LifeChangeEventsCoCoPage {
         birthEventDate.stream()
                 .filter(WebElement::isEnabled)
                 .findFirst()
-                .ifPresent(eventDateElement -> eventDateElement.sendKeys((basicActions.changeDateFormat(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()), "MM/dd/yyyy", "MM/dd"))));
+             //   .ifPresent(eventDateElement -> eventDateElement.sendKeys((basicActions.changeDateFormat(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()), "MM/dd/yyyy", "MM/dd"))));
+                .ifPresent(eventDateElement -> eventDateElement.sendKeys((SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()))));
     }
 }
