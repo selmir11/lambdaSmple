@@ -12,6 +12,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
+import static com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.CreateAccountPage.generatePhoneNumber;
+
 public class AdminPortalProgramManagerAccountCreationPage {
     private BasicActions basicActions;
     static SoftAssert softAssert = new SoftAssert();
@@ -39,6 +41,7 @@ public class AdminPortalProgramManagerAccountCreationPage {
         assister.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         assister.setEmail(emailBase+"+"+assister.getLastName()+"@outlook.com");
         assister.setOrganizationGroupName("AP"+basicActions.capitalizeFirstLetter(basicActions.getUniqueString(4)));
+        assister.setPhoneNumber((String) generatePhoneNumber());
         SharedData.setAssisterDetails(assister);
     }
 
