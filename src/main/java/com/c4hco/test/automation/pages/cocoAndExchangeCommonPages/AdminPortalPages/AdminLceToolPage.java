@@ -234,20 +234,17 @@ public class AdminLceToolPage {
     }
 
     public void clickAppDataDropdown() {
-        for (int i = 0; i < appDataDropdowns.size(); i++) {
-            WebElement element = appDataDropdowns.get(i);
+        appDataDropdowns.stream()
+                .filter(element -> element != null) // Filter null elements
+                .forEach(this::clickElement);  // Delegate to another method to handle clicking
+    }
 
-            try {
-                if (element != null) {
-                    element.click();
-                } else {
-                    System.out.println("Element at index " + i + " is null, skipping...");
-                }
-            } catch (Exception e) {
-                System.err.println("Error occurred while clicking the element at index " + i + ": " + e.getMessage());
-            }
+    private void clickElement(WebElement element) {
+        if (element != null && element.isDisplayed() && element.isEnabled()) {
+            element.click();  // Perform the click if valid
         }
     }
+
 
     public void validateMessageFound(List<WebElement> appDatatext, String expectedMessage) {
         boolean messageFound = appDatatext.stream()
