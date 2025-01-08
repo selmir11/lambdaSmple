@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class LifeChangeEventsCoCoPage {
@@ -126,7 +127,6 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToDisappear(spinner, 20);
         switch (LCEType) {
             case "InsuranceLoss":
-//                handleLCESelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType); //bug TAM-4777
                 handleLCEInsuranceLossSelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType);
                 break;
             case "Birth":
@@ -159,12 +159,14 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
-        basicActions.waitForElementToBePresent(checkboxes.get(0), 10);
+
+        if (isWithin60DaysAfterStartOfYear()) {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
+        } else {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        }
 
         for (int i = 0; i < checkboxes.size(); i++) {
-            WebElement checkbox = checkboxes.get(i);
-            ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", checkbox);
             checkboxes.get(i).click();
             eventDates.get(i).sendKeys(dateValue);
         }
@@ -174,12 +176,32 @@ public class LifeChangeEventsCoCoPage {
         basicActions.waitForElementToBeClickable(lceElement, 10);
         lceElement.click();
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        //dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+
+        if (isWithin60DaysOfYearEndOrStart()) {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
+        } else {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        }
 
         for (int i = 0; i < checkboxes.size(); i++) {
             checkboxes.get(i).click();
             eventDates.get(i).sendKeys(dateValue);
         }
+    }
+
+    private boolean isWithin60DaysOfYearEndOrStart() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfYear = LocalDate.of(today.getYear(), 1, 1);
+        LocalDate endOfYear = LocalDate.of(today.getYear(), 12, 31);
+
+        return today.isBefore(startOfYear.plusDays(60)) || today.isAfter(endOfYear.minusDays(60));
+    }
+
+    private boolean isWithin60DaysAfterStartOfYear() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfYear = LocalDate.of(today.getYear(), 1, 1);
+
+        return today.isBefore(startOfYear.plusDays(60));
     }
 
     private void handleMoveToCO(String dateType) {
@@ -189,7 +211,12 @@ public class LifeChangeEventsCoCoPage {
         List<WebElement> changeOfAddressEventDate = qachangeOfAddressEventDate;
 
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+
+        if (isWithin60DaysAfterStartOfYear()) {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
+        } else {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        }
 
         for (int i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
             basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i), 10);
