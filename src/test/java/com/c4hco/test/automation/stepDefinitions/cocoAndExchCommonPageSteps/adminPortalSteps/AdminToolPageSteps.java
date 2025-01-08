@@ -76,7 +76,7 @@ public class AdminToolPageSteps {
     }
 
     @Then("I verify no application data message is displayed")
-    public void iVerifyNoApplicationDataMessageIsDisplayed(List<WebElement> appDatatext, String expectedMessage) {
-        adminLceToolPage.validateMessageFound(appDatatext,expectedMessage);
+    public void iVerifyNoApplicationDataMessageIsDisplayed() {
+        adminLceToolPage.validateMessage();
     }
 }

@@ -234,21 +234,20 @@ public class AdminLceToolPage {
     }
 
     public void clickAppDataDropdown() {
-        appDataDropdowns.stream()
-                .filter(element -> element != null)
-                .forEach(this::clickElement);
-    }
-    private void clickElement(WebElement element) {
-        if (element != null && element.isDisplayed() && element.isEnabled()) {
-            element.click();
+        basicActions.waitForElementListToBePresent(appDataDropdowns,30);
+        for (WebElement option : appDataDropdowns) {
+            int i=0;
+            option.click();
+          basicActions.isElementDisplayed(appDatatext.get(i),30);
         }
     }
 
-    public void validateMessageFound(List<WebElement> appDatatext, String expectedMessage) {
+    public void validateMessage() {
+        String expectedMessage = "There is no application data for this year.";
         boolean messageFound = appDatatext.stream()
+                .filter(element -> element != null)
                 .anyMatch(element -> element.getText().trim().contains(expectedMessage));
-
-        softAssert.assertTrue(messageFound,"Expected message not found in any of the elements.");
+        softAssert.assertTrue(messageFound, "Expected message not found in any of the elements.");
     }
 }
 
