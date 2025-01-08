@@ -1,4 +1,4 @@
-@TAM @pageVal @TamCoCo
+@TAM @pageVal @TamCoCo @test
 Feature: Page validation - Life Change Event page
 
   Background: I go to the login portal
@@ -17,7 +17,7 @@ Feature: Page validation - Life Change Event page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount
@@ -40,7 +40,7 @@ Feature: Page validation - Life Change Event page
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -59,7 +59,7 @@ Feature: Page validation - Life Change Event page
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Kid"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -109,7 +109,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "AllSingle" life change event "is not" selected
     #Then I verify "NoneOfThese" life change event "is" selected
 
-  @SLCR-330
+  @SLCR-330 @test1
   Scenario: SLCR-330 Verify error states of LCE page.
     Then I verify "AllSingle" life change event "is not" selected
     Then I verify "Please select option" error does not exist in "English"
@@ -269,7 +269,7 @@ Feature: Page validation - Life Change Event page
     And I select Go Back on the Declarations and Signature page
     Then I verify "NoneOfThese" life change event "is" selected
 
-  @SLCR-380
+  @SLCR-380 @test1
   Scenario: SLCR-380 I want to see standard errors on the LCE page so that errors are displayed consistently - English
     #Step2
     And I select continue on the LCE page
@@ -302,7 +302,7 @@ Feature: Page validation - Life Change Event page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-382
+  @SLCR-382 @test1
   Scenario: SLCR-382 I want to see standard errors on the LCE page so that errors are displayed consistently - Spanish
     And I change the language from header to "Spanish"
     #Step2

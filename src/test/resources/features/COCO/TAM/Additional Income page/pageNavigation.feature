@@ -1,4 +1,4 @@
-@TAM @pageNavigation @TamCoCo
+@TAM @pageNavigation @TamCoCo @test
 Feature: Tests related to the Additional Income page
 
   Background: I go to the login portal
@@ -18,7 +18,7 @@ Feature: Tests related to the Additional Income page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "2000000" income amount
@@ -62,7 +62,7 @@ Feature: Tests related to the Additional Income page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-136 @PageNavigationAdditionalIncome
+  @SLCR-136 @PageNavigationAdditionalIncome @test1
   Scenario: SLCR-136 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages
     #Step1
     Then I validate I am on the "CoCo Additional Income" page
