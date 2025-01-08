@@ -41,8 +41,7 @@ public class AccountOverviewPageSteps {
 
     @Given("I set the dynamic policy, coverage and financial dates for {string} plan")
     public void iSetDates(String planType, List<Map<String, String>> expectedResult){
-        //accountOverviewPage.setDates(planType, expectedResult);
-        accountOverviewPage.setDatesforAllMembers_WIP(planType, expectedResult);
+        accountOverviewPage.setDates(planType, expectedResult);
     }
 
     @And("I verify the gmail Notices")
