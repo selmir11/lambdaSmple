@@ -108,7 +108,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     Then I validate I am on the "Application Summary Completed" page
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
@@ -595,7 +595,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
       |   TRICARE   |     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
 #    Step 4
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
       |  OHC Type   |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
@@ -644,7 +644,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
       |None Highlight|Removed|Removed Highlight|
       |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify None OHC detail on Application Details
       |None Highlight|Removed|Removed Highlight|
