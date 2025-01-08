@@ -235,16 +235,14 @@ public class AdminLceToolPage {
 
     public void clickAppDataDropdown() {
         appDataDropdowns.stream()
-                .filter(element -> element != null) // Filter null elements
-                .forEach(this::clickElement);  // Delegate to another method to handle clicking
+                .filter(element -> element != null)
+                .forEach(this::clickElement);
     }
-
     private void clickElement(WebElement element) {
         if (element != null && element.isDisplayed() && element.isEnabled()) {
-            element.click();  // Perform the click if valid
+            element.click();
         }
     }
-
 
     public void validateMessageFound(List<WebElement> appDatatext, String expectedMessage) {
         boolean messageFound = appDatatext.stream()
@@ -252,6 +250,5 @@ public class AdminLceToolPage {
 
         softAssert.assertTrue(messageFound,"Expected message not found in any of the elements.");
     }
-
 }
 
