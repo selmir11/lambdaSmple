@@ -1,4 +1,4 @@
-@TAM @pageVal @TamCoCo @test
+@TAM @pageVal @TamCoCo
 Feature: Page validation - Life Change Event page
 
   Background: I go to the login portal
@@ -109,7 +109,7 @@ Feature: Page validation - Life Change Event page
     Then I verify "AllSingle" life change event "is not" selected
     #Then I verify "NoneOfThese" life change event "is" selected
 
-  @SLCR-330 @test1
+  @SLCR-330
   Scenario: SLCR-330 Verify error states of LCE page.
     Then I verify "AllSingle" life change event "is not" selected
     Then I verify "Please select option" error does not exist in "English"
@@ -269,7 +269,7 @@ Feature: Page validation - Life Change Event page
     And I select Go Back on the Declarations and Signature page
     Then I verify "NoneOfThese" life change event "is" selected
 
-  @SLCR-380 @test1
+  @SLCR-380
   Scenario: SLCR-380 I want to see standard errors on the LCE page so that errors are displayed consistently - English
     #Step2
     And I select continue on the LCE page
@@ -302,7 +302,7 @@ Feature: Page validation - Life Change Event page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-382 @test1
+  @SLCR-382
   Scenario: SLCR-382 I want to see standard errors on the LCE page so that errors are displayed consistently - Spanish
     And I change the language from header to "Spanish"
     #Step2

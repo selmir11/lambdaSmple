@@ -1,4 +1,4 @@
-@TAM @pageNavigation @TamCoCo @test
+@TAM @pageNavigation @TamCoCo
 Feature: Tests related to the Additional Income page
 
   Background: I go to the login portal
@@ -62,7 +62,7 @@ Feature: Tests related to the Additional Income page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-136 @PageNavigationAdditionalIncome @test1
+  @SLCR-136 @PageNavigationAdditionalIncome
   Scenario: SLCR-136 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages
     #Step1
     Then I validate I am on the "CoCo Additional Income" page

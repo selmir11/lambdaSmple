@@ -1,4 +1,4 @@
-@SOLRegression @COCO_SOL @test
+@SOLRegression @COCO_SOL
 Feature: UI Page Validation - Tobacco Usage page related tests
 
   Background:
@@ -67,7 +67,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     Then I verify text on Tobacco Usage Page CoCo
     Then I click continue on coco start shopping page
 
-  @SLCR-185 @test1
+  @SLCR-185
   Scenario: Validate page navigation on tobacco usage page - make sure we can navigate back and forth with no errors
     When I click create a new account on login page
     Then I click create my account from pre-screen page
