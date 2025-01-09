@@ -107,7 +107,7 @@ public class ApplicationResultsCoCoPage {
 
     public void continueWithApplication()  {
         basicActions.waitForElementToDisappear( spinner, 100 );
-        basicActions.waitForElementToBePresentWithRetries( continueButton, 60);
+        basicActions.waitForElementToBePresentWithRetries( continueButton, 90);
         basicActions.scrollToElement( continueButton );
         continueButton.click();
     }

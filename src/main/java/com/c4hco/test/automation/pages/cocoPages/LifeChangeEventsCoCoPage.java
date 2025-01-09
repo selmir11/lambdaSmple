@@ -126,142 +126,61 @@ public class LifeChangeEventsCoCoPage {
     public void selectLCE(String LCEType, String dateType) {
         basicActions.waitForElementToDisappear(spinner, 20);
         switch (LCEType) {
-            case "InsuranceLoss":
-                handleLCEInsuranceLossSelection(insuranceLossLCE, allMemberInsuranceLossCheckbox, insuranceLossEventDate, dateType);
-                break;
-            case "Birth":
-                handleLCESelection(birthLCE, allMembersBirthCheckbox, birthEventDate, dateType);
-                break;
-            case "Pregnancy":
-                handleLCESelection(pregnancyLCE, allMembersPregnancyCheckbox, pregnancyEventDate, dateType);
-                break;
-            case "Marriage":
-                handleLCESelection(marriageLCE, allMembersMarriageCheckbox, marriageEventDate, dateType);
-                break;
-            case "Divorce":
-                handleLCESelection(divorceLCE, allMembersDivorceCheckbox, divorceEventDate, dateType);
-                break;
-            case "Death":
-                handleLCESelection(deathLCE, allMembersDeathCheckbox, deathEventDate, dateType);
+            case "InsuranceLoss", "Pregnancy", "Birth", "Marriage", "Divorce", "Death", "Move", "BirthLceIndividual":
+                selectLCECheckbox(LCEType);
+                selectMemberForLCE(LCEType);
+                setDateForLCE(LCEType, dateType);
                 break;
             case "MoveToCO":
-                handleMoveToCO(dateType);
-                break;
-            case "Move":
-                handleLCESelection(addressChangeLCE, qamemberChangeOfAddressCheckbox, qachangeOfAddressEventDate, dateType);
+                selectLCECheckbox(LCEType);
+                selectMemberForLCE(LCEType);
+                setDateForLCE(LCEType, dateType);
+                clickMoveToCO();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
         }
     }
 
-    private void handleLCESelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
-        basicActions.waitForElementToBeClickable(lceElement, 10);
-        lceElement.click();
-        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-
-        if (isWithin60DaysAfterStartOfYear()) {
-            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
-        } else {
-            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
-        }
-
-        for (int i = 0; i < checkboxes.size(); i++) {
-            checkboxes.get(i).click();
-            eventDates.get(i).sendKeys(dateValue);
-        }
-    }
-
-    private void handleLCEInsuranceLossSelection(WebElement lceElement, List<WebElement> checkboxes, List<WebElement> eventDates, String dateType) {
-        basicActions.waitForElementToBeClickable(lceElement, 10);
-        lceElement.click();
-        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-
-        if (isWithin60DaysOfYearEndOrStart()) {
-            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
-        } else {
-            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
-        }
-
-        for (int i = 0; i < checkboxes.size(); i++) {
-            checkboxes.get(i).click();
-            eventDates.get(i).sendKeys(dateValue);
-        }
-    }
-
-    private boolean isWithin60DaysOfYearEndOrStart() {
-        LocalDate today = LocalDate.now();
-        LocalDate startOfYear = LocalDate.of(today.getYear(), 1, 1);
-        LocalDate endOfYear = LocalDate.of(today.getYear(), 12, 31);
-
-        return today.isBefore(startOfYear.plusDays(60)) || today.isAfter(endOfYear.minusDays(60));
-    }
-
-    private boolean isWithin60DaysAfterStartOfYear() {
-        LocalDate today = LocalDate.now();
-        LocalDate startOfYear = LocalDate.of(today.getYear(), 1, 1);
-
-        return today.isBefore(startOfYear.plusDays(60));
-    }
-
-    private void handleMoveToCO(String dateType) {
+    private void clickMoveToCO() {
         basicActions.waitForElementToBeClickable(addressChangeLCE, 10);
-        addressChangeLCE.click();
-        List<WebElement> memberChangeOfAddressCheckbox = qamemberChangeOfAddressCheckbox;
-        List<WebElement> changeOfAddressEventDate = qachangeOfAddressEventDate;
-
-        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-
-        if (isWithin60DaysAfterStartOfYear()) {
-            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
-        } else {
-            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
-        }
-
-        for (int i = 0; i < memberChangeOfAddressCheckbox.size(); i++) {
-            basicActions.waitForElementToBeClickable(memberChangeOfAddressCheckbox.get(i), 10);
-            memberChangeOfAddressCheckbox.get(i).click();
-            basicActions.waitForElementToBePresent(changeOfAddressEventDate.get(i), 10);
-            changeOfAddressEventDate.get(i).sendKeys(dateValue);
-            movedToColoradoCheckbox.get(i).click();
+        for (WebElement toColoradoCheckbox : movedToColoradoCheckbox) {
+            basicActions.waitForElementToBeClickable(toColoradoCheckbox, 10);
+            toColoradoCheckbox.click();
         }
     }
 
     public void selectLCECheckbox(String LCEType) {
         basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(addressChangeLCE,20);
         switch (LCEType) {
             case "InsuranceLoss":
-                clickLCE(insuranceLossLCE);
+                insuranceLossLCE.click();
                 break;
-            case "Birth":
-                clickLCE(birthLCE);
+            case "Birth", "BirthLceIndividual":
+                birthLCE.click();
                 break;
             case "Pregnancy":
-                clickLCE(pregnancyLCE);
+                pregnancyLCE.click();
                 break;
             case "Marriage":
-                clickLCE(marriageLCE);
+                marriageLCE.click();
                 break;
             case "Divorce":
-                clickLCE(divorceLCE);
+                divorceLCE.click();
                 break;
             case "Death":
-                clickLCE(deathLCE);
+                deathLCE.click();
                 break;
-            case "Move":
-                clickLCE(addressChangeLCE);
+            case "Move", "MoveToCO":
+                addressChangeLCE.click();
                 break;
             case "None of these":
-                clickLCE(noneOfTheseLCE);
+                noneOfTheseLCE.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
         }
-    }
-
-    private void clickLCE(WebElement lceElement) {
-        basicActions.waitForElementToBeClickable(lceElement, 10);
-        lceElement.click();
     }
 
     public void selectMemberForLCE(String LCEType) {
@@ -272,6 +191,9 @@ public class LifeChangeEventsCoCoPage {
                 break;
             case "Birth":
                 clickAllMembers(allMembersBirthCheckbox);
+                break;
+            case "BirthLceIndividual":
+                clickBirthLceIndividual();
                 break;
             case "Pregnancy":
                 clickAllMembers(allMembersPregnancyCheckbox);
@@ -285,10 +207,7 @@ public class LifeChangeEventsCoCoPage {
             case "Death":
                 clickAllMembers(allMembersDeathCheckbox);
                 break;
-            case "Move":
-                clickAllMembers(qamemberChangeOfAddressCheckbox);
-                break;
-            case "MoveToCO":
+            case "Move", "MoveToCO":
                 clickAllMembers(qamemberChangeOfAddressCheckbox);
                 break;
             default:
@@ -303,51 +222,93 @@ public class LifeChangeEventsCoCoPage {
         }
     }
 
+    private void clickBirthLceIndividual() {
+        String newbornFullName =basicActions.getCompleteFullNameWithPrefix(SharedData.getBirthLceIndividual());
+        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//span[contains(text(),'" + newbornFullName + "')]/parent::label//button[contains(@class,'checkbox')and contains(@id,'ELIG-LceMember-BIRTH')]"));
+        basicActions.waitForElementToBeClickable(birthLceMemCheckbox, 90);
+        basicActions.scrollToElement(birthLceMemCheckbox);
+        birthLceMemCheckbox.click();
+    }
+
     public void setDateForLCE(String LCEType, String dateType) {
         switch (LCEType) {
             case "InsuranceLoss":
-//                setDateForCheckboxes(insuranceLossEventDate, dateType); //bug TAM-4777
                 setDateForInsuranceLossCheckboxes(insuranceLossEventDate, dateType);
                 break;
-            case "Birth":
-                setDateForCheckboxes(birthEventDate, dateType);
+            case "Birth", "BirthLceIndividual":
+                setDateForCheckboxes(LCEType, birthEventDate, dateType);
                 break;
             case "Pregnancy":
-                setDateForCheckboxes(pregnancyEventDate, dateType);
+                setDateForCheckboxes(LCEType, pregnancyEventDate, dateType);
                 break;
             case "Marriage":
-                setDateForCheckboxes(marriageEventDate, dateType);
+                setDateForCheckboxes(LCEType, marriageEventDate, dateType);
                 break;
             case "Divorce":
-                setDateForCheckboxes(divorceEventDate, dateType);
+                setDateForCheckboxes(LCEType, divorceEventDate, dateType);
                 break;
             case "Death":
-                setDateForCheckboxes(deathEventDate, dateType);
+                setDateForCheckboxes(LCEType, deathEventDate, dateType);
                 break;
-            case "Move":
-                setDateForCheckboxes(stgchangeOfAddressEventDate, dateType);
+            case "Move", "MoveToCO":
+                setDateForCheckboxes(LCEType, stgchangeOfAddressEventDate, dateType);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
         }
     }
 
-    private void setDateForCheckboxes(List<WebElement> eventDates, String dateType) {
+    private void setDateForCheckboxes(String LCEType, List<WebElement> eventDates, String dateType) {
         String dateValue = basicActions.getDateBasedOnRequirement(dateType);
-        dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
-        for (int i = 0; i < eventDates.size(); i++) {
-            basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
-            eventDates.get(i).sendKeys(dateValue);
+        if (LCEType.equals("BirthLceIndividual")) {
+            dateValue = basicActions.changeDateFormat(dateValue, "yyyy-MM-dd", "MM/dd/yyyy");
+        }
+        if (isWithin60DaysAfterStartOfYear()) {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
+        } else {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
+        }
+
+        if (LCEType.equals("BirthLceIndividual")) {
+            String finalDateValue = dateValue;
+            birthEventDate.stream()
+                    .filter(WebElement::isEnabled)
+                    .findFirst()
+                    .ifPresent(eventDateElement -> eventDateElement.sendKeys(finalDateValue));
+        } else {
+            for (WebElement eventDate : eventDates) {
+                basicActions.waitForElementToBeClickable(eventDate, 10);
+                eventDate.sendKeys(dateValue);
+            }
         }
     }
 
+    private boolean isWithin60DaysAfterStartOfYear() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfYear = LocalDate.of(today.getYear(), 1, 1);
+
+        return today.isBefore(startOfYear.plusDays(60));
+    }
+
     private void setDateForInsuranceLossCheckboxes(List<WebElement> eventDates, String dateType) {
-        String date = basicActions.getDateBasedOnRequirement(dateType);
-        String dateValue = basicActions.changeDateFormat(date, "MM-dd-yyyy", "MM/dd/yyyy");
-        for (int i = 0; i < eventDates.size(); i++) {
-            basicActions.waitForElementToBeClickable(eventDates.get(i), 10);
-            eventDates.get(i).sendKeys(dateValue);
+        String dateValue = basicActions.getDateBasedOnRequirement(dateType);
+        if (isWithin60DaysOfYearEndOrStart()) {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd/yyyy");
+        } else {
+            dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         }
+        for (WebElement eventDate : eventDates) {
+            basicActions.waitForElementToBeClickable(eventDate, 10);
+            eventDate.sendKeys(dateValue);
+        }
+    }
+
+    private boolean isWithin60DaysOfYearEndOrStart() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfYear = LocalDate.of(today.getYear(), 1, 1);
+        LocalDate endOfYear = LocalDate.of(today.getYear(), 12, 31);
+
+        return today.isBefore(startOfYear.plusDays(60)) || today.isAfter(endOfYear.minusDays(60));
     }
 
     public void saveAndContinue(){
@@ -880,18 +841,5 @@ public class LifeChangeEventsCoCoPage {
             softAssert.assertAll();
             basicActions.wait(200);
         }
-    }
-    public void selectBirthQLCE(){
-        basicActions.waitForElementToBeClickable(birthLCE, 10);
-        birthLCE.click();
-        String newbornFullName =basicActions.getCompleteFullNameWithPrefix(SharedData.getBirthLceIndividual());
-        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//span[contains(text(),'" + newbornFullName + "')]/parent::label//button[contains(@class,'checkbox')and contains(@id,'ELIG-LceMember-BIRTH')]"));
-        basicActions.waitForElementToBeClickable(birthLceMemCheckbox, 10);
-        birthLceMemCheckbox.click();
-
-        birthEventDate.stream()
-                .filter(WebElement::isEnabled)
-                .findFirst()
-                .ifPresent(eventDateElement -> eventDateElement.sendKeys((basicActions.changeDateFormat(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()), "MM/dd/yyyy", "MM/dd"))));
     }
 }
