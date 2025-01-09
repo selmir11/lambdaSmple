@@ -221,6 +221,7 @@ public class NoticesPage {
         outlookLogOutIcon.click();
         basicActions.waitForElementPresence(outlookLogOut, 20);
         try {
+            basicActions.wait(2000);
             WebElement element = basicActions.getDriver().findElement(By.id("mectrl_body_signOut"));
             if (element.isDisplayed()) {
                 element.click();
@@ -901,6 +902,14 @@ public class NoticesPage {
     public void clickThePasswordResetLink() {
         basicActions.waitForElementToBePresent(resetPWLink, 20);
         resetPWLink.click();
+    }
+
+    public void verifyNoticeAbsence(String noticeNumber) {
+        basicActions.waitForElementToBePresentWithRetries(EmailDate, 30);
+
+        List<WebElement> elements = basicActions.getDriver().findElements(By.xpath("//span[contains(@title, '" + noticeNumber + "')]"));
+        softAssert.assertTrue(elements.isEmpty());
+        softAssert.assertAll();
     }
 
     public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {

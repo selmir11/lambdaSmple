@@ -105,4 +105,9 @@ public class NoticesPageSteps {
     public void iClickThePasswordResetLink() {
         noticesPage.clickThePasswordResetLink();
     }
+
+    @Then("I verify the notice {string} doesn't appear")
+    public void iVerifyNoticeAbsence(String noticeNumber) {
+        noticesPage.verifyNoticeAbsence(noticeNumber);
+    }
 }
