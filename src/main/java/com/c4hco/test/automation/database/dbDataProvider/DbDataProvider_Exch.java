@@ -550,5 +550,17 @@ public class DbDataProvider_Exch {
         String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
         return postgresHandler.getResultForDynamicColumns(exchDbQueries.getAddressDetails(memberId),"address_line1","address_line2","city","state","zip","county");
     }
+    public List<String> getMailingAddressInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getMailingAddressDetails(memberId),"address_line1","city","state","zip","county");
+    }
+    public String getStateInformationYes(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultFor("co_resident_ind", exchDbQueries.getStateDetailsYes(memberId));
+    }
+    public String getStateInformationNo(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultFor("co_resident_ind", exchDbQueries.getStateDetailsNo(memberId));
+    }
 
 }

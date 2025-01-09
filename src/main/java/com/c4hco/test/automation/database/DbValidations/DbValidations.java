@@ -629,7 +629,6 @@ public class DbValidations {
                 break;
             }
         }
-
         List<String> dbValues = exchDbDataProvider.getAddressInformation(FirstName);
         softAssert.assertEquals(dbValues.get(0), address_line1);
         softAssert.assertEquals(dbValues.get(1), address_line2);
@@ -639,5 +638,40 @@ public class DbValidations {
         softAssert.assertEquals(dbValues.get(5), county);
         softAssert.assertAll();
     }
+    public void validateMailingAddressDetailsinDB(String FName,String address_line1, String city, String state, String zip, String county){
+        String FirstName=null;
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+        List<String> dbValues = exchDbDataProvider.getMailingAddressInformation(FirstName);
+        softAssert.assertEquals(dbValues.get(0), address_line1);
+        softAssert.assertEquals(dbValues.get(1), city);
+        softAssert.assertEquals(dbValues.get(2), state);
+        softAssert.assertEquals(dbValues.get(3), zip);
+        softAssert.assertEquals(dbValues.get(4), county);
+        softAssert.assertAll();
+    }
+    public void validateStateInformation(String FName, int state) {
+        String FirstName = null;
+        List<MemberDetails> memberList = basicActions.getAllMem();
 
- }
+        for (MemberDetails actualMember : memberList) {
+            if (actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+        if (state == 1) {
+            Integer actualStateYes = Integer.valueOf(exchDbDataProvider.getStateInformationYes(FirstName));
+            softAssert.assertEquals(actualStateYes.intValue(), 1, "State mismatched");
+        } else {
+            Integer actualStateNo = Integer.valueOf(exchDbDataProvider.getStateInformationNo(FirstName));
+            softAssert.assertEquals(actualStateNo != null ? actualStateNo.intValue() : -1, 0, "State mismatched");
+        }
+        softAssert.assertAll();
+    }
+}
