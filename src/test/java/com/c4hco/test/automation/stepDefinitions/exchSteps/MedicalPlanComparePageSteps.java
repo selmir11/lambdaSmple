@@ -40,6 +40,9 @@ public class MedicalPlanComparePageSteps {
     @And( "I validate the Plan Detail link and click" )
     public void validateComparePlanDetailLink(){medicalComparePage.clickPlanDetailLink();}
 
+    @And( "I validate the header dropdown functionality" )
+    public void validateHeaderFunctionality(){medicalComparePage.validateHeaderFunctionality();}
+
 
 
 
