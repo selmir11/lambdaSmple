@@ -1,6 +1,6 @@
 Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
   @SLCR-298 #WIP
-  Scenario: COCO Initial Application HUSBAND + WIFE (Colorado Option) (BROKER OBO)
+  Scenario: CCRT-49 COCO Initial Application HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

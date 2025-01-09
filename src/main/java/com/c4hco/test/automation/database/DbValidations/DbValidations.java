@@ -8,6 +8,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -187,6 +188,22 @@ public class DbValidations {
     public void verifyExchHouseholdIdDb() {
         Boolean hasRecords = exchDbDataProvider.getExchHouseholdIdBoB();
         Assert.assertTrue(hasRecords, "Query returned no records");
+        softAssert.assertAll();
+    }
+
+    public void verifyPasswordResetNotArchivedDb(String accountStg, String accountQa) {
+        MemberDetails user = new MemberDetails();
+        String currentDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "M/d/yyyy");
+
+        if(SharedData.getEnv().equals("staging")){
+            user.setAccount_id(new BigDecimal(accountStg));
+        } else{
+            user.setAccount_id(new BigDecimal(accountQa));
+        }
+        SharedData.setPrimaryMember(user);
+
+        Boolean hasRecords = exchDbDataProvider.getPasswordResetNotArchivedDb(currentDate);
+        Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
@@ -629,6 +646,7 @@ public class DbValidations {
                 break;
             }
         }
+
         List<String> dbValues = exchDbDataProvider.getAddressInformation(FirstName);
         softAssert.assertEquals(dbValues.get(0), address_line1);
         softAssert.assertEquals(dbValues.get(1), address_line2);
@@ -638,40 +656,29 @@ public class DbValidations {
         softAssert.assertEquals(dbValues.get(5), county);
         softAssert.assertAll();
     }
-    public void validateMailingAddressDetailsinDB(String FName,String address_line1, String city, String state, String zip, String county){
-        String FirstName=null;
+
+    public void validateTellAboutAdditionalInformationinDB(String FName){
         List<MemberDetails> memberList=basicActions.getAllMem();
         for(MemberDetails actualMember : memberList) {
             if(actualMember.getFirstName().contains(FName)) {
-                FirstName = actualMember.getFirstName();
+                String FirstName = actualMember.getFirstName();
+                String MiddleName = actualMember.getMiddleName();
+                String LastName = actualMember.getLastName();
+                String gender = actualMember.getGender();
+                String dateOfBirth = actualMember.getDob();
+                String applyForCover = actualMember.getApplyingforCov();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(0), FirstName);
+                softAssert.assertEquals(dbValues.get(1), MiddleName);
+                softAssert.assertEquals(dbValues.get(2), LastName);
+                softAssert.assertEquals(dbValues.get(3), gender);
+                String formattedDbDOBDate = basicActions.changeDateFormat(dbValues.get(4), "yyyy-MM-dd HH:mm:ss", "MMddyyyy");
+                softAssert.assertEquals(formattedDbDOBDate, dateOfBirth);
+                softAssert.assertEquals(dbValues.get(5), (applyForCover.equals("Yes")) ? "1" : "0");
+                softAssert.assertAll();
                 break;
             }
         }
-        List<String> dbValues = exchDbDataProvider.getMailingAddressInformation(FirstName);
-        softAssert.assertEquals(dbValues.get(0), address_line1);
-        softAssert.assertEquals(dbValues.get(1), city);
-        softAssert.assertEquals(dbValues.get(2), state);
-        softAssert.assertEquals(dbValues.get(3), zip);
-        softAssert.assertEquals(dbValues.get(4), county);
-        softAssert.assertAll();
     }
-    public void validateStateInformation(String FName, int state) {
-        String FirstName = null;
-        List<MemberDetails> memberList = basicActions.getAllMem();
 
-        for (MemberDetails actualMember : memberList) {
-            if (actualMember.getFirstName().contains(FName)) {
-                FirstName = actualMember.getFirstName();
-                break;
-            }
-        }
-        if (state == 1) {
-            Integer actualStateYes = Integer.valueOf(exchDbDataProvider.getStateInformationYes(FirstName));
-            softAssert.assertEquals(actualStateYes.intValue(), 1, "State mismatched");
-        } else {
-            Integer actualStateNo = Integer.valueOf(exchDbDataProvider.getStateInformationNo(FirstName));
-            softAssert.assertEquals(actualStateNo != null ? actualStateNo.intValue() : -1, 0, "State mismatched");
-        }
-        softAssert.assertAll();
-    }
-}
+ }
