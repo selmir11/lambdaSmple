@@ -265,5 +265,10 @@ public class AdminPortalIndividualDashboardSteps {
     public void iVerifyIndividualAccountSummaryDetails() {
         adminPortalIndividualDashboardPage.VerifyIndividualAccountSummary();
     }
+
+    @Then("I verify coco individual Account Summary details")
+    public void iVerifyCocoIndividualAccountSummaryDetails() {
+        adminPortalIndividualDashboardPage.VerifyCocoIndividualAccountSummary();
+    }
 }
 

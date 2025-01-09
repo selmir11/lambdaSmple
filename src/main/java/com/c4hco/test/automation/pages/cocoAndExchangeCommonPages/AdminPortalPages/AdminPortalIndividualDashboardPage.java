@@ -894,6 +894,33 @@ public class AdminPortalIndividualDashboardPage {
         }
         softAssert.assertAll();
     }
+
+    public void VerifyCocoIndividualAccountSummary(){
+        basicActions.waitForElementToBePresent(accountSummaryTitle,100);
+        softAssert.assertEquals(accountSummaryTitle.getText(),"Account Summary");
+        basicActions.waitForElementToBePresent(memberFullName,60);
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(membername.getText(),"Username:MGC4Test+apindzmqbhflapeliz@gmail.com");
+            softAssert.assertEquals(memberfullName.getText(),"Full Name:apelizafbrl apindzmqbhfl");
+            softAssert.assertEquals(txtMember1QA.getText(),"apelizafbrl");
+            softAssert.assertEquals(txtMember2QA.getText(),"test");
+            softAssert.assertEquals(txtPrimaryRelationAgeQA.getText(),"SELF / Age 38");
+            softAssert.assertEquals(txtSecondaryRelationAgeQA.getText(),"SPOUSE / Age 1");
+            softAssert.assertTrue(txtMember3QA.isEmpty(),"Third member is displayed when it should not be.");
+            softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
+            softAssert.assertAll();
+        }else{
+            softAssert.assertEquals(membername.getText(),"Username:MGC4Test+apindkhkbtgkapeliz@gmail.com");
+            softAssert.assertEquals(memberfullName.getText(),"Full Name:apelizabmum apindkhkbtgk");
+            softAssert.assertEquals(txtMember1QA.getText(),"apelizabmum");
+            softAssert.assertEquals(txtMember2QA.getText(),"FrVQbD");
+            softAssert.assertEquals(txtPrimaryRelationAgeQA.getText(),"SELF / Age 34");
+            softAssert.assertEquals(txtSecondaryRelationAgeQA.getText(),"SPOUSE / Age 33");
+            softAssert.assertTrue(txtMember3QA.isEmpty(),"Third member is displayed when it should not be.");
+            softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
+        }
+        softAssert.assertAll();
+    }
 }
 
 
