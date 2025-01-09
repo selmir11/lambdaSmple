@@ -257,7 +257,7 @@ Feature: End to End Testing
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I select year "2025" from My Current Plan container
-    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"331.70" in "English"
+    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"333.88" in "English"
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
     Then I validate the Total Income on the Family Overview page equals "14,088.00"

@@ -38,7 +38,7 @@ public class IncomeSummaryCoCoPage {
     @FindBy(css = "div.body-text-1.income-details-row.margin-left-32.ng-star-inserted")
     WebElement noDeductionName;
 
-    @FindBy(css = "div:nth-child(5) > div.income-details-left.margin-left-32")
+    @FindBy(xpath = "//div[@class='total-income-width']/preceding-sibling::div[1]/div[1]")
     WebElement deductionName;
 
     @FindBy(css = "div.total-income-width div span")
@@ -220,12 +220,12 @@ public class IncomeSummaryCoCoPage {
         switch (language){
             case "English":
                 softAssert.assertEquals(projectedIncomeHeader.getText(), "Projected Income");
-                softAssert.assertEquals(projectedIncomeText.getText(), "Based on the income information you've provided so far, we've calculated your annual income as listed above. Do you expect your income to be different than the amount we calculated above for 2024?");
+                softAssert.assertEquals(projectedIncomeText.getText(), "Based on the income information you've provided so far, we've calculated your annual income as listed above. Do you expect your income to be different than the amount we calculated above for 2025?");
                 softAssert.assertAll();
                 break;
             case "Spanish":
                 softAssert.assertEquals(projectedIncomeHeader.getText(), "Ingresos que proyecta");
-                softAssert.assertEquals(projectedIncomeText.getText(), "\u00bfConforme a la informaci\u00f3n que ha proporcionado, hemos calculado su ingreso anual como se menciona anteriormente. \u00bfEspera que sus ingresos sean diferentes a la cantidad que calculamos anteriormente para 2024?");
+                softAssert.assertEquals(projectedIncomeText.getText(), "\u00bfConforme a la informaci\u00f3n que ha proporcionado, hemos calculado su ingreso anual como se menciona anteriormente. \u00bfEspera que sus ingresos sean diferentes a la cantidad que calculamos anteriormente para 2025?");
                 softAssert.assertAll();
                 break;
             default:
@@ -495,11 +495,11 @@ public class IncomeSummaryCoCoPage {
         basicActions.waitForElementToBePresent(enterProjectedIncomeText, 15);
         switch (language){
             case "English":
-                softAssert.assertEquals(enterProjectedIncomeText.getText(), "Enter your projected income in 2024.");
+                softAssert.assertEquals(enterProjectedIncomeText.getText(), "Enter your projected income in 2025.");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(enterProjectedIncomeText.getText(), "Indique los ingresos que proyecta tener en 2024.");
+                softAssert.assertEquals(enterProjectedIncomeText.getText(), "Indique los ingresos que proyecta tener en 2025.");
                 softAssert.assertAll();
                 break;
             default:
