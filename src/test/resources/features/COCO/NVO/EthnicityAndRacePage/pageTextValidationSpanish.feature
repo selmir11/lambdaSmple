@@ -24,13 +24,13 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And I select "Not listed" for race and ethnicity option
+    And I select "Not listed" for race and ethnicity option for "Primary"
     Then I verify text on the Ethnicity And Race page in "Spanish"
-    And I select "Not listed" for race and ethnicity option
+    And I select "Not listed" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate the error messages on the Ethnicity and Race page in "Spanish"
     Then I validate the text box input and checkbox selection behavior
-    And I select "White or European" for race and ethnicity option
+    And I select "White or European" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I click Go back on the Employment income page

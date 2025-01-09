@@ -46,7 +46,7 @@ Feature: Navigation - Tell us about additional members of your household page
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
 
-  @SLCR-685_WIP @NVOCoCoRegression
+  @SLCR-685 @NVOCoCoRegression
   Scenario: Verify that the information entered on the Tell us about additional members of your household page can be saved and viewed
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -119,3 +119,5 @@ Feature: Navigation - Tell us about additional members of your household page
     Then I validate details on tell us about additional members of your household page for "Son" with DOB as "03052005", gender "Male" and applying "Yes"
       | Primary:Child or Other dependent |
       | Spouse:Child or Other dependent |
+    Then I validate the details of the Tell us about additional members of your household page for the "Son" in the database
+    And I click on Sign Out in the Header for "Elmo"

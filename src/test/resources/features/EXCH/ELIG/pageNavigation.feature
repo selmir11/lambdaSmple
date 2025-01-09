@@ -141,6 +141,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I validate I am on the "Application Results" page
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-142 @PageNavigation
   Scenario: Navigating to Pre-Shopping for Household with at least One Member Over 21
@@ -238,6 +239,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I validate I am on the "Application Results" page
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-143 @PageNavigation
   Scenario: Navigating to Spanish Pre-Shopping for Household with One Member Under 21
