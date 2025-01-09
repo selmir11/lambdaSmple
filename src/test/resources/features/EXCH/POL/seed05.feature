@@ -71,7 +71,7 @@ Feature: Seed05 - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-      Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "04212013", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "04212013", "Female" and applying "Yes"
         |Primary:Daughter|
         |Spouse:Daughter|
     And I click continue on Tell us about additional members page
@@ -93,7 +93,7 @@ Feature: Seed05 - Exchange
     Then I click continue on the Citizenship page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-      Then I enter details on tell us about additional members of your household exch page and continue with "Son", "12222016", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "12222016", "Male" and applying "Yes"
         |Primary:Son|
         |Spouse:Son|
         |Daughter:Brother|

@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -73,7 +74,7 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(id = "haveSsn")
     WebElement rdbhaveSsn;
 
-    @FindBy(id = "continueButton")
+    @FindBy(xpath = "//*[@id='continueButton']")
     WebElement btnsaveAndContinue;
 
     SoftAssert softAssert = new SoftAssert();
@@ -86,8 +87,8 @@ public class TellUsAboutAdditionalMemberPage {
         String frstName = basicActions.capitalizeFirstLetter(getUniqueString(20));
         String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(8));
         String lastName = basicActions.capitalizeFirstLetter(getUniqueString(13));
-        basicActions.waitForElementToBePresent(txtheader,1);
-        basicActions.waitForElementToBePresent(txtfirstName,30);
+        basicActions.waitForElementToBePresent(txtheader, 1);
+        basicActions.waitForElementToBePresent(txtfirstName, 30);
         txtfirstName.sendKeys(frstName);
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
@@ -102,25 +103,25 @@ public class TellUsAboutAdditionalMemberPage {
         member.setLastName(lastName);
         member.setMiddleName(mdlName);
         member.setDob(DOB);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
+        member.setSignature(frstName + " " + lastName);
+        member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
+        member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
         memberList.add(member);
 
         SharedData.setMembers(memberList);
     }
 
-    public  void selectNoSSn(String memberPrefix){
+    public void selectNoSSn(String memberPrefix) {
         List<MemberDetails> members = SharedData.getMembers();
-        basicActions.waitForElementToBePresent(rdbhaveSsn,1);
+        basicActions.waitForElementToBePresent(rdbhaveSsn, 1);
         rdbhaveSsn.click();
-        basicActions.waitForElementToBePresent(rdbhaveAppliedForSSNYes,1);
+        basicActions.waitForElementToBePresent(rdbhaveAppliedForSSNYes, 1);
         rdbhaveAppliedForSSNYes.click();
         members.stream().filter(member -> member.getFirstName().contains(memberPrefix)).findFirst().ifPresent(member -> member.setSsn(null));
     }
 
-    public void selectSex(String Sex){
-        switch(Sex){
+    public void selectSex(String Sex) {
+        switch (Sex) {
             case "Female":
                 rdobtngenderFemale.click();
                 break;
@@ -131,8 +132,8 @@ public class TellUsAboutAdditionalMemberPage {
                 throw new IllegalArgumentException("Invalid option: " + Sex);
         }
     }
-    public void selectIsPersonPregnant(String pregnant){
-        switch(pregnant){
+    public void selectIsPersonPregnant(String pregnant) {
+        switch (pregnant) {
             case "Yes":
                 IsPersonPregnentYes.click();
                 break;
@@ -143,26 +144,29 @@ public class TellUsAboutAdditionalMemberPage {
                 throw new IllegalArgumentException("Invalid option: " + pregnant);
         }
     }
-      public void setSelectRelationship(String Relation){
+
+    public void setSelectRelationship(String Relation) {
         basicActions.waitForElementToBePresent(selectRelationship, 15);
         Select dropdown = new Select(selectRelationship);
         dropdown.selectByVisibleText(Relation);
         List<MemberDetails> memberList = SharedData.getMembers();
-        memberList.get(memberList.size()-1).setRelation_to_subscriber(Relation);
+        memberList.get(memberList.size() - 1).setRelation_to_subscriber(Relation);
     }
 
-    public void setSelectRelationship1(String Relation){
+    public void setSelectRelationship1(String Relation) {
         basicActions.waitForElementToBePresent(selectRelationship1, 15);
 
         Select dropdown = new Select(selectRelationship1);
         dropdown.selectByVisibleText(Relation);
     }
-    public void setSelectRelationship2(String Relation){
+
+    public void setSelectRelationship2(String Relation) {
         basicActions.waitForElementToBePresent(selectRelationship2, 15);
 
         Select dropdown = new Select(selectRelationship2);
         dropdown.selectByVisibleText(Relation);
     }
+
     public void setSelectRelationship3(String Relation) {
         basicActions.waitForElementToBePresent(selectRelationship3, 15);
 
@@ -170,8 +174,8 @@ public class TellUsAboutAdditionalMemberPage {
         dropdown.selectByVisibleText(Relation);
     }
 
-    public void isMemberApplyingForInsurance(String Applying){
-        switch(Applying){
+    public void isMemberApplyingForInsurance(String Applying) {
+        switch (Applying) {
             case "Yes":
                 rdobtnIsMemberApplingYes.click();
                 break;
@@ -183,51 +187,55 @@ public class TellUsAboutAdditionalMemberPage {
         }
     }
 
-    public void clickSaveAndContinue(){btnsaveAndContinue.click();}
+    public void clickSaveAndContinue()    {
+        basicActions.waitForElementToBePresent(btnsaveAndContinue,90);
+        basicActions.scrollToElement(btnsaveAndContinue);
+        btnsaveAndContinue.click();
+    }
 
-    public void memberDetailswithAge(int Age){
+    public void memberDetailswithAge(int Age) {
         LocalDate currentDate = LocalDate.now();
         LocalDate DOBCalculate = currentDate.minusYears(Age);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String actualdob=dateFormat.format(DOBCalculate);
+        String actualdob = dateFormat.format(DOBCalculate);
         enterMemberDetails(actualdob);
     }
 
-    public void getDob(String namePrefix, String dob){
+    public void getDob(String namePrefix, String dob) {
         basicActions.getDob(namePrefix, dob);
     }
 
-    public void specificAdditionalMemberDetailsExch(String name, String dob, String gender, List<String> relations, String applying){
-        String frstName = name+getUniqueString(8);
+    public void specificAdditionalMemberDetailsExch(String name, String dob, String gender, List<String> relations, String applying) {
+        String frstName = name + getUniqueString(8);
         String mdlName = basicActions.capitalizeFirstLetter(getUniqueString(8));
         String lastName = basicActions.capitalizeFirstLetter(getUniqueString(13));
-        basicActions.waitForElementToBePresent(txtheader,1);
-        basicActions.waitForElementToBePresent(txtfirstName,30);
+        basicActions.waitForElementToBePresent(txtheader, 1);
+        basicActions.waitForElementToBePresent(txtfirstName, 30);
         txtfirstName.sendKeys(frstName);
         txtmiddleName.sendKeys(mdlName);
         txtlastName.sendKeys(lastName);
-        if(dob.equals("getFromSharedData")){
+        if (dob.equals("getFromSharedData")) {
             dob = SharedData.getCalculatedDob().get(name);
-          dob = basicActions.changeDateFormat(dob, "MM/dd/yyyy", "MMddyyyy");
-        } else if(dob.contains("Age")){
+            dob = basicActions.changeDateFormat(dob, "MM/dd/yyyy", "MMddyyyy");
+        } else if (dob.contains("Age")) {
             memberDetailswithAge(Integer.parseInt(dob.replaceAll("\\D", "")));
         }
         txtdateOfBirth.sendKeys(dob);
         txtSSN.sendKeys("653035280");
         selectSex(gender);
 
-        if(IsPersonPregnentNo.isDisplayed() ){
+        if (IsPersonPregnentNo.isDisplayed()) {
             selectIsPersonPregnant("No");
         }
         setMember(frstName, lastName, mdlName, dob, gender);
 
-        for(String Relation : relations) {
+        for (String Relation : relations) {
             selectRelationship(Relation);
         }
         isMemberApplyingForInsurance(applying);
     }
 
-    private void setMember(String frstName, String lastName, String mdlName, String dob, String gender){
+    private void setMember(String frstName, String lastName, String mdlName, String dob, String gender) {
         List<MemberDetails> memberList = SharedData.getMembers();
         if (memberList == null) {
             memberList = new ArrayList<>();
@@ -238,27 +246,27 @@ public class TellUsAboutAdditionalMemberPage {
         member.setMiddleName(mdlName);
         member.setDob(dob);
         member.setGender(gender);
-        member.setSignature(frstName+" "+lastName);
-        member.setFullName(frstName+" "+mdlName.charAt(0)+". "+lastName);
-        member.setCompleteFullName(frstName+" "+mdlName+" "+lastName);
+        member.setSignature(frstName + " " + lastName);
+        member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
+        member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
         member.setSsn("653035280");
         memberList.add(member);
         SharedData.setMembers(memberList);
     }
 
-    public void selectRelationship(String Relationship){
+    public void selectRelationship(String Relationship) {
         String[] parts = Relationship.split(":");
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
 
         try {
-           List<MemberDetails> members = SharedData.getMembers();
+            List<MemberDetails> members = SharedData.getMembers();
 
             basicActions.waitForElementToBePresent(selectRelationship, 40);
-            WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+Name+"')]/ancestor-or-self::label/parent::div //select"));
-            basicActions.waitForElementToBePresent(element,10);
+            WebElement element = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'" + Name + "')]/ancestor-or-self::label/parent::div //select"));
+            basicActions.waitForElementToBePresent(element, 10);
             basicActions.scrollToElement(element);
-            basicActions.waitForElementToBeClickableWithRetries(element,10);
+            basicActions.waitForElementToBeClickableWithRetries(element, 10);
 
             // Perform actions on the element
             Select dropdown = new Select(element);
@@ -266,11 +274,11 @@ public class TellUsAboutAdditionalMemberPage {
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
 
-            for(MemberDetails member: members){
-                if(member.getFirstName().contains(Relation)){
-                    if(Relation.equals("Spouse") && member.getGender().equals("Female")){
+            for (MemberDetails member : members) {
+                if (member.getFirstName().contains(Relation)) {
+                    if (Relation.equals("Spouse") && member.getGender().equals("Female")) {
                         Relation = "Wife";
-                    } else if(Relation.equals("Spouse")&&member.getGender().equals("Male")){
+                    } else if (Relation.equals("Spouse") && member.getGender().equals("Male")) {
                         Relation = "Husband";
                     }
                     member.setRelation_to_subscriber(Relation.toUpperCase());
@@ -282,12 +290,12 @@ public class TellUsAboutAdditionalMemberPage {
             System.out.println("Element not found: " + e.getMessage());
             // Handle the exception as needed
         }
-
     }
-
+    public void updateMemSSN(String updatedSSN) {
+        basicActions.waitForElementToBePresent(txtSSN, 20);
+        txtSSN.clear();
+        txtSSN.sendKeys(updatedSSN);
+        txtSSN.sendKeys(Keys.TAB);
+        System.out.println("SSN updated successfully");
     }
-
-
-
-
-
+}

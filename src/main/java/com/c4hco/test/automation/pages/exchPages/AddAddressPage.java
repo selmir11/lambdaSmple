@@ -98,6 +98,10 @@ public class AddAddressPage {
     WebElement rdobtnIncarceratedNo;
     @FindBy(name = "saveAndContinue")
     WebElement btnSaveContinue;
+
+    @FindBy(id = "submitButton")
+    WebElement btnSaveAndContinue;
+
     @FindBy(name = "backToMember")
     WebElement btnGoBack;
 
@@ -386,6 +390,8 @@ public class AddAddressPage {
     }
 
     public void saveContinue(){btnSaveContinue.click();}
+
+    public void SaveAndContinue(){btnSaveAndContinue.click();}
 
     public void clickGoBack(){
         basicActions.waitForElementToBePresent(btnGoBack,50);
