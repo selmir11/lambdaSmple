@@ -18,10 +18,10 @@ Feature:Pagination and Search Field in the Open Verification Requests container
   Then I verify the current result page is "5" in mvr container
   And I click the left pagination arrow button 4 times in mvr container
   Then I verify the current result page is "1" in mvr container
-  And I wait for 500 milliseconds
-  Then I search for "tr" in search mvr container
-  And I wait for 300 milliseconds
-  And I validate the result contains "tr"
+  And I wait for 2000 milliseconds
+  Then I search for "Triy" in search mvr container
+  And I wait for 1000 milliseconds
+  And I validate the result contains "Triy"
 
   @SLER-1990
   Scenario: Admin Staff should not be able to see the MVR container

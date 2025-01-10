@@ -233,7 +233,7 @@ public class DashboardPage {
     }
 
     public void searchForInSearchMvrContainer(String client) {
-        basicActions.waitForElementToBePresentWithRetries(searchBtn,50);
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,50);
         basicActions.waitForElementToBePresentWithRetries(searchInput,30);
         searchInput.sendKeys(client);
         basicActions.waitForElementToBePresentWithRetries(searchBtn,30);
@@ -274,14 +274,20 @@ public class DashboardPage {
     }
 
     public void validateTheResultContains(String search) {
-        basicActions.waitForElementListToBePresent(firstRowsOptions,100);
+        basicActions.waitForElementListToBePresentWithRetries(firstRowsOptions,300);
+        basicActions.wait(500);
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,500);
+        boolean found = false;
         for (WebElement each : firstRowsOptions) {
            if (each.getText().contains(search)){
                softAssert.assertTrue(each.getText().contains(search));
                softAssert.assertAll();
+               found = true;
                break;
            }
         }
+        softAssert.assertTrue(found, "element is not found");
+        softAssert.assertAll();
     }
 
     public void validateTheMvrContainerIsNotDisplayed() {
