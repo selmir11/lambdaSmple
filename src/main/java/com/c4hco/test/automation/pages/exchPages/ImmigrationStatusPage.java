@@ -54,6 +54,15 @@ public class ImmigrationStatusPage {
     @FindBy(css = "input#submitButton.back-button-link")
     WebElement backButton;
 
+    @FindBy(css = "input[name='grantDate']")
+    WebElement grantDateInputField;
+
+    @FindBy(id = "livedSince1996Yes")
+    WebElement livedSince1996Yes;
+
+    @FindBy(id = "livedSince1996No")
+    WebElement livedSince1996No;
+
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
         switch(YNLawfulPermanentResident){
             case "Yes":
@@ -137,4 +146,21 @@ public class ImmigrationStatusPage {
         softAssert.assertAll();
     }
 
+    public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
+        switch (YNLivedInUSSince1996) {
+            case "Yes":
+                livedSince1996Yes.click();
+                break;
+            case "No":
+                livedSince1996No.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNLivedInUSSince1996);
+        }
+    }
+
+    public void inputGrantDate(String grantDate) {
+        basicActions.waitForElementToBePresent(grantDateInputField, 10);
+        grantDateInputField.sendKeys(grantDate);
+    }
 }
