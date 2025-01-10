@@ -26,8 +26,8 @@ public class OhcMedicareSteps_Elmo {
     @Then("I enter Part A amount of {string}")
     public void iEnterPartAAmount(String premiumAmount){OhcMedicarePage_Elmo.enterPartAAmount(premiumAmount);}
 
-    @Then("I enter end date of end of current month for Medicare part {string}")
-    public void iEnterEndDate(String insurancePart){OhcMedicarePage_Elmo.enterEndDate(insurancePart);}
+    @Then("I enter end date of {string} for Medicare part {string}")
+    public void iEnterEndDate(String endDateData, String insurancePart){OhcMedicarePage_Elmo.enterEndDate(endDateData, insurancePart);}
 
     @And("I select {string} icon on the Medicare Page")
     public void iSelectHelpIcon(String labelIcon){OhcMedicarePage_Elmo.clickHelpIcon(labelIcon);}
