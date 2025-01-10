@@ -495,7 +495,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         String oldHomePhNum = SharedData.getPrimaryMember().getPhoneNumber();
         SharedData.getPrimaryMember().setIncorrectHomePhone(oldHomePhNum);
-        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        String newPhone = (String) basicActions.generatePhoneNumber();
         SharedData.getPrimaryMember().setPhoneNumber(newPhone);
         Homephone.clear();
         Homephone.sendKeys(newPhone);
@@ -505,7 +505,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         String oldMobilePhNum = SharedData.getPrimaryMember().getIncorrectHomePhone()!=null ? SharedData.getPrimaryMember().getIncorrectHomePhone() :SharedData.getPrimaryMember().getPhoneNumber();
         SharedData.getPrimaryMember().setIncorrectMobilePhone(oldMobilePhNum);
-        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        String newPhone = (String) basicActions.generatePhoneNumber();
         SharedData.getPrimaryMember().setAlternatePhNum(newPhone);
         Mobilephone.clear();
         Mobilephone.sendKeys(newPhone);
