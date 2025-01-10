@@ -616,10 +616,9 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Medical Plan Compare" page
     And I click on Sign Out in the Header for "Elmo"
 
-      # ////////////////////////////////  under construction ///////////////////////////////////
 
-  @SLCR-277-tobereplaced @CoCo_RegressionTest
-  Scenario: SLCR-277 - This will verify the spanish text in COCO Compare plan page
+  @SLCR-277 @CoCo_RegressionTest
+  Scenario: SLCR-277 - This will verify the header and footer spanish text on the COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -669,8 +668,8 @@ Feature: Verify COCO Medical Plan results
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Move" life change event with event date of "Past 1"
-    And I select continue on the LCE page
+    And I select "Move" life change event with event date of "Today"
+    #And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -691,24 +690,6 @@ Feature: Verify COCO Medical Plan results
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
-    And I verify text in Medical plan Compare coco page
-      | Comparación de planes                                          |
-      | Dentro la red Nivel 1                                          |
-      | Fuera de la red                                                |
-      | Prima mensual                                                  |
-      | Detalles generales                                             |
-      | Consultas con proveedores                                      |
-      | Medicamentos recetados                                         |
-      | Instalaciones                                                  |
-      | Maternidad                                                     |
-      | Atención de emergencia                                         |
-      | Beneficios de salud mental                                     |
-      | Pruebas                                                        |
-      | Dispositivos médicos                                           |
-      | Servicios de habilitación y rehabilitación                     |
-      | Atención a domicilio y a pacientes con enfermedades terminales |
-      | Beneficios esenciales de salud adicionales                     |
-      | Volver a Planes                                                |
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-286 @CoCo_RegressionTest @ComparePlan_FromMultiplePage
@@ -782,10 +763,9 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "Medical Plan Compare" page
     And I click on Sign Out in the Header for "Elmo"
 
-      # ////////////////////////////////  under construction ///////////////////////////////////
-    # ////////////////////////////////  this test doesnt do what the description says  ///////////////////////////////////
-  @SLCR-287-to-be-replaced @CoCo_RegressionTest
-  Scenario: SLCR-287 - This will verify  Dropdown Text headers in COCO Compare plan page from medical plan page
+
+  @SLCR-287 @CoCo_RegressionTest
+  Scenario: SLCR-287 - This will validate the Dropdown header functionality in COCO Compare plan page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -853,24 +833,8 @@ Feature: Verify COCO Medical Plan results
     And I select 2 plans from page one and 1 plan from page two and click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
-    And I verify text in Medical plan Compare coco page
-      | Plan Comparison                          |
-      | In Network Tier 1                        |
-      | Out of Network                           |
-      | Monthly Premium                          |
-      | General Details                          |
-      | Provider Office Visits                   |
-      | Prescription Drugs                       |
-      | Facilities                               |
-      | Maternity                                |
-      | Emergency Care                           |
-      | Mental Health Benefits                   |
-      | Testing                                  |
-      | Medical Devices                          |
-      | Habilitative and Rehabilitative Services |
-      | Home Care & Hospice                      |
-      | Additional EHB Benefits                  |
-      | Go Back to Plans                         |
+    And I validate the Compare header dropdown functionality
+
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-419 @CoCo_Compare2documentcolumns

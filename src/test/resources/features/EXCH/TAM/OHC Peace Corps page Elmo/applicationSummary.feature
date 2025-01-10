@@ -1,5 +1,5 @@
-@TAM @TamPdf @applicationSummaryVaHealthcare
-Feature: Tests related to the Application Summary/Detail for VA Healthcare
+@TAM @TamPdf @applicationSummaryPeaceCorps
+Feature: Tests related to the Application Summary/Detail for Peace Corps
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
@@ -39,8 +39,8 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select "No" for Naturalized Immigrant option
     Then I click continue on the Citizenship page
 
-  @SLER-1915
-  Scenario: SLER-1915 I want to verify OHC header on Application Summary and Application Details
+  @SLER-1956
+  Scenario: SLER-1956 I want to verify OHC header on Application Summary and Application Details
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -59,13 +59,13 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "VA Health Care" as ELMO health coverage option
+    Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I click "Yes" for currently enrolled in VA Healthcare question
-    Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
-    Then I enter the end date as "Current Month" on the VA Healthcare page
-    Then I click "Yes" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    Then I enter the end date as "Current Month" on the Peace Corps page
+    Then I click "Yes" for insurance ending voluntary for Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -85,7 +85,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
+    Then I wait for 2500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -108,24 +108,24 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I validate I am on the "Application Summary Completed" page
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
-    And I verify the OHC header highlight "Plain header" on Application Details
+    And I verify the OHC header highlight "Plain" on Application Details
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |       Yes        |      Yes       |Current Month|         Yes                |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |       Yes        |      Yes       |Current Month|         Yes                |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |       Yes        |      Yes       |Current Month|         Yes                |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |       Yes        |      Yes       |Current Month|         Yes                |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-1916
-  Scenario: SLER-1916 I want changes to VA Healthcare information and see changes made to VA Healthcare information in the Application Summary
+  @SLER-1957
+  Scenario: SLER-1957 I want changes to Peace Corps information and see changes made to Peace Corps information in the Application Summary
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -144,15 +144,15 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "VA Health Care" as ELMO health coverage option
+    Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
 #    Step 2
-    Then I click "Yes" for currently enrolled in VA Healthcare question
-    Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
-    Then I enter the end date as "Current Month" on the VA Healthcare page
-    Then I click "Yes" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    Then I enter the end date as "Current Month" on the Peace Corps page
+    Then I click "Yes" for insurance ending voluntary for Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -183,9 +183,9 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
-    Then I click "No" for insurance ending in 60 days in VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I click "No" for insurance ending in 60 days in Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -201,25 +201,25 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "English"
-      |          OHC Type    	   |Currently Enrolled|   End date  |
-      |        VA Health Care      |       Yes        |             |
+      |  OHC Type   |Currently Enrolled|   End date  |
+      | Peace Corps |       Yes        |             |
     Then I click on Download as PDF on Application Summary
     Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |       Yes        |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |       Yes        |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "Spanish"
-      |          OHC Type    	   |Currently Enrolled|   End date  |
-      |        VA Health Care      |        Sí        |             |
+      |  OHC Type   |Currently Enrolled|   End date  |
+      | Peace Corps |        Sí        |             |
     Then I click on Download as PDF on Application Summary
     Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |       Sí         |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |       Sí         |                |             |                            |
     And I change the language from header to "English NonElmo"
 #    Step 5
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -243,11 +243,11 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
-    Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
-    Then I enter the end date as "Current Month" on the VA Healthcare page
-    Then I click "Yes" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    Then I enter the end date as "Current Month" on the Peace Corps page
+    Then I click "Yes" for insurance ending voluntary for Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -263,25 +263,25 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "English"
-      |          OHC Type    	   |Currently Enrolled|     End date     |
-      |        VA Health Care      |       Yes        |Last Current Month|
+      |  OHC Type   |Currently Enrolled|     End date     |
+      | Peace Corps |       Yes        |Last Current Month|
     Then I click on Download as PDF on Application Summary
     Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
-      |   VA Health Care  |       Yes        |      Yes       |Last Current Month|           Yes              |
+      |Coverage Type|Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
+      | Peace Corps |       Yes        |      Yes       |Last Current Month|           Yes              |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "Spanish"
-      |          OHC Type    	   |Currently Enrolled|     End date     |
-      |        VA Health Care      |        Sí        |Last Current Month|
+      |  OHC Type   |Currently Enrolled|     End date     |
+      | Peace Corps |        Sí        |Last Current Month|
     Then I click on Download as PDF on Application Summary
     Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
-      |   VA Health Care  |       Sí         |      Sí        |Last Current Month|           Sí               |
+      |Coverage Type|Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
+      | Peace Corps |       Sí         |      Sí        |Last Current Month|           Sí               |
     And I change the language from header to "English NonElmo"
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -304,9 +304,9 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
-    Then I click "No" for currently enrolled in VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I click "No" for currently enrolled in Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -322,30 +322,30 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I verify the OHC header on Application Summary in "English"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "English"
-      |          OHC Type    	   |Currently Enrolled|     End date     |
-      |        VA Health Care      |        No        |                  |
+      |  OHC Type   |Currently Enrolled|     End date     |
+      | Peace Corps |        No        |                  |
     Then I click on Download as PDF on Application Summary
     Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |       No         |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |       No         |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
     And I verify the OHC detail on Application Summary in "Spanish"
-      |          OHC Type    	   |Currently Enrolled|     End date     |
-      |        VA Health Care      |        No        |                  |
+      |  OHC Type   |Currently Enrolled|     End date     |
+      | Peace Corps |        No        |                  |
     Then I click on Download as PDF on Application Summary
     Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |       No         |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |       No         |                |             |                            |
 
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1917
-  Scenario: SLER-1917 I want changes to my VA Healthcare information and see changes made to VA Healthcare information in the OBO Application Details
+  @SLER-1958
+  Scenario: SLER-1958 I want changes to my Peace Corps information and see changes made to Peace Corps information in the OBO Application Details
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -364,15 +364,15 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "VA Health Care" as ELMO health coverage option
+    Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
 #    Step 2
-    Then I click "Yes" for currently enrolled in VA Healthcare question
-    Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
-    Then I enter the end date as "Current Month" on the VA Healthcare page
-    Then I click "Yes" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    Then I enter the end date as "Current Month" on the Peace Corps page
+    Then I click "Yes" for insurance ending voluntary for Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -403,10 +403,10 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
-    Then I enter the end date as "Future Day:3" on the VA Healthcare page
-    Then I click "No" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I enter the end date as "Future Day:3" on the Peace Corps page
+    Then I click "No" for insurance ending voluntary for Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -440,13 +440,13 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-      |    OHC Type     |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-      |	VA Health Care	|     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Future Day:3|    Yellow    |        No        |       Yellow        |
+      |  OHC Type   |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      | Peace Corps |     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Future Day:3|    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |       Yes        |      Yes       | Future Day:3|           Yes              |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |       Yes        |      Yes       | Future Day:3|           Yes              |
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -469,9 +469,9 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
-    Then I click "No" for currently enrolled in VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I click "No" for currently enrolled in Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -490,19 +490,19 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-      |    OHC Type     |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-      |	VA Health Care	|     Plain    |       No         |      Yellow      |                |      Red       |             |     Red      |                  |        Red          |
+      |  OHC Type   |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      | Peace Corps |     Plain    |       No         |      Yellow      |                |      Red       |             |     Red      |                  |        Red          |
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
-      |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
-      |   VA Health Care  |        No        |                |             |                            |
+      |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
+      | Peace Corps |        No        |                |             |                            |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-1918
-  Scenario: SLER-1918 I want to show and hide changes for VA Healthcare information in the OBO Application Details Single Members
+  @SLER-1959
+  Scenario: SLER-1959 I want to show and hide changes for Peace Corps information in the OBO Application Details Single Members
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -551,14 +551,14 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
-    Then I select "VA Health Care" as ELMO health coverage option
+    Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
-    Then I click "Yes" for currently enrolled in VA Healthcare question
-    Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
-    Then I enter the end date as "Current Month" on the VA Healthcare page
-    Then I click "Yes" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    Then I enter the end date as "Current Month" on the Peace Corps page
+    Then I click "Yes" for insurance ending voluntary for Peace Corps question
+    Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -591,15 +591,16 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     And I verify the OHC header highlight "Yellow" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-      |    OHC Type     |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-      |	VA Health Care	|     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
+      |  OHC Type   |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      | Peace Corps |     Green    |       Yes        |      Green       |      Yes       |     Plain      |Current Month|     Green    |       Yes        |       Green         |
+#Bug TAM-5037      | Peace Corps |     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
 #    Step 4
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain header" on Application Details
+    And I verify the OHC header highlight "Plain" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
-      |    OHC Type     |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
-      |	VA Health Care	|     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Current Month|     Plain    |       Yes        |       Plain         |
+      |  OHC Type   |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
+      | Peace Corps |     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Current Month|     Plain    |       Yes        |       Plain         |
 #    Step 5
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -644,7 +645,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |None Highlight|Removed|Removed Highlight|
       |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain header" on Application Details
+    And I verify the OHC header highlight "Plain" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify None OHC detail on Application Details
       |None Highlight|Removed|Removed Highlight|
