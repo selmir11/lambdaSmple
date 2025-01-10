@@ -1,3 +1,4 @@
+@NVOCoCoRegression
 Feature: As a Coco user on the “Tell us about yourself” page
 
   Background: I go the login portal

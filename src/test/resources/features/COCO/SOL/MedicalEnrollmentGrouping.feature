@@ -71,7 +71,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Grouping Members Medical" page
-    Then I validate the text on "Go back" "Save and Exit" and "Continue" buttons on medical grouping page coco
+    Then I validate the text on "Go back" "Save and exit" and "Continue" buttons on medical grouping page coco
     Then I validate text on the medical grouping page coco
 
     Then I click Go Back on the Medical Grouping page coco

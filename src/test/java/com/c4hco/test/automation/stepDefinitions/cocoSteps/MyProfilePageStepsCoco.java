@@ -62,6 +62,11 @@ public class MyProfilePageStepsCoco {
     @And("I validate timeout session popup {string} on My Profile page CoCo")
     public void iVerifyTimeoutPopupCoco(String language)  { myProfilePage.VerifyTimeoutPopupCoco(language); }
 
+    @Then("I update {string} as primary member coco")
+    public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {
+        myProfilePage.SelectTheHouseholdMemberAsPrimaryContactCoco(memberName);
+    }
+
     @And("I validate the incorrect password error message on My profile page in CoCo {string}")
     public void iverifyIncorrectPasswordErrortextpopupOnMyProfileCoCoPage(String language) {
         myProfilePage.verifyIncorrectPasswordErrortextpopupOnMyProfileCoCoPage(language);
@@ -115,4 +120,14 @@ public class MyProfilePageStepsCoco {
 
     @Then("I verify Password text on My profile page {string} coco")
     public void verifyPasswordTextOnMyProfilePageCoCo(String language)  { myProfilePage.verifyPasswordTextOnMyProfileExchPageCoCo(language); }
+
+    @And("I verify text on My profile page Coco {string}")
+    public void verifyTextOnMyProfileCocoPage(String language)  { myProfilePage.verifyTextOnMyProfileCocoPage(language); }
+
+    @Then("I verify Password text on My profile page Coco {string}")
+    public void verifyPasswordTextOnMyProfileCocoPage(String language)  { myProfilePage.verifyPasswordTextOnMyProfileCocoPage(language); }
+
 }
+
+
+

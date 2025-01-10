@@ -47,7 +47,6 @@ Feature: Determine lawful presence/eligible immigration status
     Then I select "I-551 Permanent Resident Card" as Document type
     Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
     And I enter Card Number
-    Then I select "No" for the question have you lived in the US since 1996
     Then I select "None of the above" active-duty members of the military or honorably discharged veterans
     Then I select "Yes" for name matching the document
     And I click continue on the Citizenship page
