@@ -29,4 +29,8 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void EnterspecificAdditionalMemberDetailsExch(String Name, String DOB, String gender, String applying, List<String> Relations) {
         tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch(Name, DOB, gender, Relations, applying);
     }
+
+    @Then("I update member SSN number to new SSN number {string}")
+    public void iUpdateMemSSN(String updatedSSN) {tellUsAboutAdditionalMemberPage.updateMemSSN(updatedSSN);
+    }
 }

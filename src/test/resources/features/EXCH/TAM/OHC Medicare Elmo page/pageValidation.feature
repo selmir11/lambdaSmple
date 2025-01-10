@@ -76,7 +76,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify "Part A Amount Required" error in "English" on the Medicare page
     And I verify "Part A Date" error in "English" on the Medicare page
     Then I check checkbox for Part "A Don't Pay"
-    Then I enter end date of end of current month for Medicare part "A"
+    Then I enter end date of "Current Month" for Medicare part "A"
     And I verify "Part A Amount Required" error does not show for Medicare page
     And I verify "Part A Date" error does not show for Medicare page
 
@@ -89,7 +89,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify "Part B" error does not show for Medicare page
     Then I click continue on the Elmo OHC Medicare page
     And I verify "Part B Date" error in "English" on the Medicare page
-    Then I enter end date of end of current month for Medicare part "B"
+    Then I enter end date of "Current Month" for Medicare part "B"
     And I verify "Part B Date" error does not show for Medicare page
 
     And I click on Sign Out in the Header for "Elmo"
@@ -119,7 +119,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify "Part A Amount Required" error in "Spanish" on the Medicare page
     And I verify "Part A Date" error in "Spanish" on the Medicare page
     Then I check checkbox for Part "A Don't Pay"
-    Then I enter end date of end of current month for Medicare part "A"
+    Then I enter end date of "Current Month" for Medicare part "A"
     And I verify "Part A Amount Required" error does not show for Medicare page
     And I verify "Part A Date" error does not show for Medicare page
 
@@ -132,7 +132,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I verify "Part B" error does not show for Medicare page
     Then I click continue on the Elmo OHC Medicare page
     And I verify "Part B Date" error in "Spanish" on the Medicare page
-    Then I enter end date of end of current month for Medicare part "B"
+    Then I enter end date of "Current Month" for Medicare part "B"
     And I verify "Part B Date" error does not show for Medicare page
 
 
@@ -163,7 +163,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "250.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
-    Then I enter end date of end of current month for Medicare part "A"
+    Then I enter end date of "Current Month" for Medicare part "A"
     Then I click continue on the Elmo OHC Medicare page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
@@ -181,7 +181,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
-    Then I enter end date of end of current month for Medicare part "B"
+    Then I enter end date of "Current Month" for Medicare part "B"
     Then I click continue on the Elmo OHC Medicare page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
@@ -199,7 +199,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "300.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
-    Then I enter end date of end of current month for Medicare part "A"
+    Then I enter end date of "Current Month" for Medicare part "A"
     Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
     Then I click continue on the Elmo OHC Medicare page
     And I verify the OHI options selected in the DB for "Primary"
