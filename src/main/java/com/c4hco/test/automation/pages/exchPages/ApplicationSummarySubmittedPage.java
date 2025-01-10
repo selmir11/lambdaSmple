@@ -198,7 +198,9 @@ public class ApplicationSummarySubmittedPage {
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage, 20);
         softAssert.assertEquals(ohcMemberNamePrimary.getText(), SharedData.getPrimaryMember().getFullName());
         softAssert.assertEquals(ohcDetailsPrimary.get(0).getText(), coverageType);
-        softAssert.assertEquals(ohcDetailsPrimary.get(1).getText(), currentlyEnrolledLabel + " " + currentlyEnrolled);
+        if (currentlyEnrolled != null && !currentlyEnrolled.isEmpty()) {
+            softAssert.assertEquals(ohcDetailsPrimary.get(1).getText(), currentlyEnrolledLabel + " " + currentlyEnrolled);
+        }
         if (endDate != null && !endDate.isEmpty()) {
             verifyEndDate(endDate, endDateLabel + " ");
         }

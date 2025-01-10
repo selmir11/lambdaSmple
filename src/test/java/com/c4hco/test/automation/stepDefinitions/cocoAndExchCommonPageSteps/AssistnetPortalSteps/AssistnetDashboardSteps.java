@@ -79,4 +79,8 @@ public class AssistnetDashboardSteps {
         assistnetDashboardPage.validateUpdatedOrgNameListed();
     }
 
+    @Then("I validate the email is updated correctly")
+    public void iValidateTheEmailIsUpdatedCorrectly() {
+        assistnetDashboardPage.validateTheEmailIsUpdatedCorrectly();
+    }
 }

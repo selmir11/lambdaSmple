@@ -115,4 +115,14 @@ public class MyProfilePageStepsCoco {
 
     @Then("I verify Password text on My profile page {string} coco")
     public void verifyPasswordTextOnMyProfilePageCoCo(String language)  { myProfilePage.verifyPasswordTextOnMyProfileExchPageCoCo(language); }
+
+    @And("I verify text on My profile page Coco {string}")
+    public void verifyTextOnMyProfileCocoPage(String language)  { myProfilePage.verifyTextOnMyProfileCocoPage(language); }
+
+    @Then("I verify Password text on My profile page Coco {string}")
+    public void verifyPasswordTextOnMyProfileCocoPage(String language)  { myProfilePage.verifyPasswordTextOnMyProfileCocoPage(language); }
+
 }
+
+
+
