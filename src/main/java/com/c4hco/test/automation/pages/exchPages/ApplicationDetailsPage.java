@@ -128,15 +128,8 @@ public class ApplicationDetailsPage {
     // Add only validation methods below this line
     public void verifyOhcHeaderColor(String highlight){
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
-        String backgroundColor = switch (highlight) {
-            case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
-            case "Plain" -> "rgb(230, 242, 213) none repeat scroll 0% 0% / auto padding-box border-box";
-            case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
-            case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
-            default -> throw new IllegalArgumentException("Invalid option: " + highlight);
-        };
         softAssert.assertEquals(hdrOtherHealthCoverage.getText(), "Other Health Coverage");
-        softAssert.assertEquals(hdrOtherHealthCoverage.getCssValue("background"),backgroundColor);
+        softAssert.assertEquals(hdrOtherHealthCoverage.getCssValue("background"),highlightedColor(highlight));
         softAssert.assertAll();
     }
 
@@ -222,22 +215,32 @@ public class ApplicationDetailsPage {
 
         softAssert.assertEquals(ohcDetails.get(0).getText(), coverageType);
         softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),highlightedColor(coverageTypeHighlight),coverageType+" highlight");
-        softAssert.assertEquals(ohcDetails.get(1).getText(), "Currently enrolled "+ currentlyEnrolled);
-        softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),highlightedColor(currentlyEnrolledHighlight),"Currently enrolled highlight");
+        if (currentlyEnrolled != null) {
+            softAssert.assertEquals(ohcDetails.get(1).getText(), "Currently enrolled "+ currentlyEnrolled);
+        }
+        if (currentlyEnrolledHighlight != null) {
+            softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),highlightedColor(currentlyEnrolledHighlight),"Currently enrolled highlight");
+        }
         if (insuranceEnding != null) {
             softAssert.assertEquals(ohcDetails.get(2).getText(), "Insurance ending in next 60 days " + insuranceEnding);
         }
-        softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),highlightedColor(insuranceEndingHighlight),"Insurance ending in next 60 days highlight");
+        if (insuranceEndingHighlight != null) {
+            softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),highlightedColor(insuranceEndingHighlight),"Insurance ending in next 60 days highlight");
+        }
         if (endDate != null) {
             verifyBasicOhcEndDate(endDate, 3);
         }
-        softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),highlightedColor(endDateHighlight),"End date highlight");
+        if (endDateHighlight != null) {
+            softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),highlightedColor(endDateHighlight),"End date highlight");
+        }
         if (voluntarilyEnding != null) {
             String expectedText = "Voluntarily ending insurance";
             if (!"None".equals(voluntarilyEnding)) {
                 expectedText += " " + voluntarilyEnding;
             }
             softAssert.assertEquals(ohcDetails.get(4).getText(), expectedText);
+        }
+        if (voluntarilyEndingHighlight != null) {
             softAssert.assertEquals(ohcDetails.get(4).getCssValue("background"), highlightedColor(voluntarilyEndingHighlight), "Voluntarily ending insurance highlight");
         }
         softAssert.assertAll();
@@ -247,6 +250,7 @@ public class ApplicationDetailsPage {
         return switch (highlight) {
             case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Plain" -> "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box";
+            case "Plain header" -> "rgb(230, 242, 213) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
             case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
             default -> throw new IllegalArgumentException("Invalid option: " + highlight);
@@ -344,14 +348,6 @@ public class ApplicationDetailsPage {
                     throw new IllegalArgumentException("Invalid relation: " + relation);
             }
 
-            String backgroundColor = switch (highlight) {
-                case "Yellow" -> "rgb(254, 246, 203) none repeat scroll 0% 0% / auto padding-box border-box";
-                case "Red" -> "rgb(248, 218, 218) none repeat scroll 0% 0% / auto padding-box border-box";
-                case "Green" -> "rgb(215, 233, 202) none repeat scroll 0% 0% / auto padding-box border-box";
-                case "Plain" -> "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box";
-                default -> throw new IllegalArgumentException("Invalid highlight color: " + highlight);
-            };
-
             int index = switch (relation) {
                 case "Enrolled" -> 10;
                 case "Offered a plan but not enrolled" -> 11;
@@ -359,7 +355,7 @@ public class ApplicationDetailsPage {
                 default -> throw new IllegalArgumentException("Invalid relation: " + relation);
             };
 
-            softAssert.assertEquals(ohcDetails.get(index).getCssValue("background"), backgroundColor);
+            softAssert.assertEquals(ohcDetails.get(index).getCssValue("background"),highlightedColor(highlight));
         }
 
         if (!enrolledMembers.isEmpty()) {
