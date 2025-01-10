@@ -181,7 +181,7 @@ Feature: Seed05 - Exchange
     And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
 
-   # And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
