@@ -432,6 +432,34 @@ public class MyProfilePage {
         changePrimaryContactCoCo.click();
     }
 
+    private void updatePrimaryMemInSharedData(String memPrefix){
+        List<MemberDetails> memberList = SharedData.getMembers();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        memberList.add(primaryMem);
+
+        memberList.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(newPrimaryMem -> {
+            newPrimaryMem.setEmailId(primaryMem.getEmailId());
+            newPrimaryMem.setAccount_id(primaryMem.getAccount_id());
+            newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
+            newPrimaryMem.setResAddress(primaryMem.getResAddress());
+            newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
+            memberList.remove(newPrimaryMem);
+            SharedData.setPrimaryMember(newPrimaryMem);
+        });
+        SharedData.setMembers(memberList);
+    }
+
+    public void SelectTheHouseholdMemberAsPrimaryContactCoco(String memberName) {
+        basicActions.waitForElementToBeClickable(primaryContactDRPCoCo, 20);
+        updatePrimaryMemInSharedData(memberName);
+        String firstName = SharedData.getPrimaryMember().getFirstName();
+        System.out.println(firstName);
+        primaryContactDRPCoCo.click();
+        primaryContactDRPCoCo.sendKeys(firstName);
+        primaryContactDRPCoCo.sendKeys(Keys.ENTER);
+        savePrimaryContactCoCo.click();
+        basicActions.wait(60);
+    }
     public void validateChangePrimaryContactPopupCoCo(String language) {
         switch (language) {
             case "English":
