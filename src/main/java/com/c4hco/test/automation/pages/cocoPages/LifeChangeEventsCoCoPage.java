@@ -269,12 +269,15 @@ public class LifeChangeEventsCoCoPage {
             dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         }
 
+        selectLceDate(LCEType, dateValue, eventDates);
+    }
+
+    private void selectLceDate(String LCEType, String dateValue, List<WebElement> eventDates){
         if (LCEType.equals("BirthLceIndividual")) {
-            String finalDateValue = dateValue;
             birthEventDate.stream()
                     .filter(WebElement::isEnabled)
                     .findFirst()
-                    .ifPresent(eventDateElement -> eventDateElement.sendKeys(finalDateValue));
+                    .ifPresent(eventDateElement -> eventDateElement.sendKeys(dateValue));
         } else {
             for (WebElement eventDate : eventDates) {
                 basicActions.waitForElementToBeClickable(eventDate, 10);
