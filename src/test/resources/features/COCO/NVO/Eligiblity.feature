@@ -1,4 +1,5 @@
 #SLCR-674
+@NVOCoCoRegression
 Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
 
   Background: I go the login portal
