@@ -24,6 +24,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -128,6 +129,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Columbus" in State "OH" with dob "01/01/1985" in county "Franklin" with zipcode "43201"
@@ -236,6 +238,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -343,6 +346,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -448,6 +452,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -556,6 +561,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -712,6 +718,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -822,6 +829,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Columbus" in State "OH" with dob "01/01/1985" in county "Franklin" with zipcode "43201"
@@ -914,7 +922,7 @@ Feature: Eligibility Notices
     And I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 NO CO RES English" notice content
+    Then I validate "ELIG-001-01 NO CO RES Spanish" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-962
@@ -936,6 +944,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -1027,7 +1036,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 MA QHP English" notice content
+    Then I validate "ELIG-001-01 MA QHP Spanish" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-959
@@ -1049,6 +1058,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -1139,7 +1149,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 QHP English" notice content
+    Then I validate "ELIG-001-01 QHP Spanish" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-960
@@ -1161,6 +1171,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -1254,7 +1265,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 Gain of Tribal Status English 1" notice content
+    Then I validate "ELIG-001-01 Gain of Tribal Status Spanish 1" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-961
@@ -1275,6 +1286,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -1427,6 +1439,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -1471,6 +1484,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Continue on my own
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help Exch" page
     And I click Continue on my own button from Manage who helps you page
 
@@ -1544,7 +1558,7 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Documents" page
     Then I validate the notice "Application Results" exist in my document letter Containers
     Then I click on download "Application Results" document
-    Then I validate "ELIG-001-01 English" notice content
+    Then I validate "ELIG-001-01 English Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   Scenario: Not Eligible; Not a CO Resident; 1 person; MAIL
@@ -1559,6 +1573,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Columbus" in State "OH" with dob "01/01/1985" in county "Franklin" with zipcode "43201"
@@ -1607,7 +1622,8 @@ Feature: Eligibility Notices
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
 
-    # Continue on my own
+    # Continue on my ow
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help Exch" page
     And I click Continue on my own button from Manage who helps you page
 
@@ -1679,7 +1695,7 @@ Feature: Eligibility Notices
     And I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 NO CO RES English" notice content
+    Then I validate "ELIG-001-01 NO CO RES English Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   Scenario: MA, QHP Eligible; 1 person; MAIL
@@ -1694,6 +1710,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -1741,6 +1758,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Continue on my own
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help Exch" page
     And I click Continue on my own button from Manage who helps you page
 
@@ -1813,7 +1831,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 MA QHP English" notice content
+    Then I validate "ELIG-001-01 MA QHP English Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   Scenario: APTC, CSR, QHP Eligible; Lost Insurance; 1 person; MAIL
@@ -1828,6 +1846,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -1876,6 +1895,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Continue on my own
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help Exch" page
     And I click Continue on my own button from Manage who helps you page
 
@@ -1946,7 +1966,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 QHP English" notice content
+    Then I validate "ELIG-001-01 QHP English Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   Scenario: APTC, CSR, QHP Eligible; Gain of Tribal Status; 1 person; MAIL
@@ -1960,6 +1980,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -2009,6 +2030,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Continue on my own
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help Exch" page
     And I click Continue on my own button from Manage who helps you page
 
@@ -2081,7 +2103,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 Gain of Tribal Status English 1" notice content
+    Then I validate "ELIG-001-01 Gain of Tribal Status English 1 Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   Scenario: APTC, CSR, QHP Eligible; Gain of Tribal Status; 2 person; MAIL
@@ -2095,6 +2117,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -2144,6 +2167,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Continue on my own
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help Exch" page
     And I click Continue on my own button from Manage who helps you page
 
@@ -2257,7 +2281,7 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Documents" page
     Then I validate the notice "Application Results" exist in my document letter Containers
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 Gain of Tribal Status English 2" notice content
+    Then I validate "ELIG-001-01 Gain of Tribal Status English 2 Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   Scenario: Not Eligible; Didn't Apply; 1 person; ES; MAIL
@@ -2278,6 +2302,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -2303,6 +2328,8 @@ Feature: Eligibility Notices
     Then I click continue on the Add Address page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
+
+
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -2366,7 +2393,7 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Documents" page
     Then I validate the notice "Application Results" exist in my document letter Containers
     Then I click on download "Application Results" document
-    Then I validate "ELIG-001-01 Spanish" notice content
+    Then I validate "ELIG-001-01 Spanish Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-954
@@ -2388,6 +2415,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Columbus" in State "OH" with dob "01/01/1985" in county "Franklin" with zipcode "43201"
@@ -2417,6 +2445,35 @@ Feature: Eligibility Notices
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
+          # Change preference to mail
+    And I click on the Username in the "Exch NonElmo" Header
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    Then I change the Preferred Contact Method to "Mail"
+    And I click on Save Button
+    Then I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+
+    # Reapply again
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "no" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    And I click on continue with  application button on Before you begin page
+
+    # Continue on my own
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help Exch" page
+    And I click Continue on my own button from Manage who helps you page
+
+    # About yourself
+    Then I validate I am on the "Tell us about yourself" page
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -2480,7 +2537,7 @@ Feature: Eligibility Notices
     And I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 NO CO RES English" notice content
+    Then I validate "ELIG-001-01 NO CO RES Spanish Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-962
@@ -2502,6 +2559,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -2529,6 +2587,35 @@ Feature: Eligibility Notices
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
+          # Change preference to mail
+    And I click on the Username in the "Exch NonElmo" Header
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    Then I change the Preferred Contact Method to "Mail"
+    And I click on Save Button
+    Then I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+
+    # Reapply again
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "no" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    And I click on continue with  application button on Before you begin page
+
+    # Continue on my own
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help Exch" page
+    And I click Continue on my own button from Manage who helps you page
+
+    # About yourself
+    Then I validate I am on the "Tell us about yourself" page
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -2593,7 +2680,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 MA QHP English" notice content
+    Then I validate "ELIG-001-01 MA QHP Spanish Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-959
@@ -2615,6 +2702,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -2643,6 +2731,34 @@ Feature: Eligibility Notices
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+          # Change preference to mail
+    And I click on the Username in the "Exch NonElmo" Header
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    Then I change the Preferred Contact Method to "Mail"
+    And I click on Save Button
+    Then I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+
+    # Reapply again
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "no" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    And I click on continue with  application button on Before you begin page
+
+    # Continue on my own
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help Exch" page
+    And I click Continue on my own button from Manage who helps you page
+
+    # About yourself
+    Then I validate I am on the "Tell us about yourself" page
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -2705,7 +2821,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 QHP English" notice content
+    Then I validate "ELIG-001-01 QHP Spanish Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-960
@@ -2727,6 +2843,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -2756,6 +2873,34 @@ Feature: Eligibility Notices
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+          # Change preference to mail
+    And I click on the Username in the "Exch NonElmo" Header
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    Then I change the Preferred Contact Method to "Mail"
+    And I click on Save Button
+    Then I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+
+    # Reapply again
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "no" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    And I click on continue with  application button on Before you begin page
+
+    # Continue on my own
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help Exch" page
+    And I click Continue on my own button from Manage who helps you page
+
+    # About yourself
+    Then I validate I am on the "Tell us about yourself" page
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -2820,7 +2965,7 @@ Feature: Eligibility Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 Gain of Tribal Status English 1" notice content
+    Then I validate "ELIG-001-01 Gain of Tribal Status Spanish 1 Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-961
@@ -2841,6 +2986,7 @@ Feature: Eligibility Notices
     And I click on continue with  application button on Before you begin page
 
     # Who are you
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -2870,6 +3016,35 @@ Feature: Eligibility Notices
     Then I select "No" for Incarceration option
     Then I click continue on the Add Address page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
+          # Change preference to mail
+    And I click on the Username in the "Exch NonElmo" Header
+    Then I validate I am on the "My Profile" page
+    And I click on Make Changes Button
+    Then I change the Preferred Contact Method to "Mail"
+    And I click on Save Button
+    Then I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+
+    # Reapply again
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "no" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    And I click on continue with  application button on Before you begin page
+
+    # Continue on my own
+    And I report "Birth" and click continue
+    Then I validate I am on the "Find Expert Help Exch" page
+    And I click Continue on my own button from Manage who helps you page
+
+    # About yourself
+    Then I validate I am on the "Tell us about yourself" page
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -2975,5 +3150,5 @@ Feature: Eligibility Notices
     Then I validate I am on the "My Documents" page
     Then I validate the notice "Application Results" exist in my document letter Containers
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 Gain of Tribal Status English 2" notice content
+    Then I validate "ELIG-001-01 Gain of Tribal Status Spanish 2 Mail" notice content
     And I click on Sign Out in the Header for "Elmo"
