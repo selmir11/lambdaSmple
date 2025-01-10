@@ -775,7 +775,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
     And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
@@ -888,7 +888,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |Employer Sponsored Insurance|     Green    |    Green    |         Yes          |         Green         |                    300.0                    |       Green         |       Yes        |      Green       |            Yes                 |     Green      |   Today    |     Green    |       No         |        Green        |
 #    Step 4
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the ESI OHC details on Application Details
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
@@ -937,7 +937,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |None Highlight|Removed|Removed Highlight|
       |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify None OHC detail on Application Details
       |None Highlight|Removed|Removed Highlight|
@@ -1082,7 +1082,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I verify the OHC detail family enrollment details on Application Details
       | :Enrolled:Red      |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the ESI OHC details on Application Details
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|

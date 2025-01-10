@@ -17,6 +17,24 @@ import java.util.List;
 
 public class MyProfilePage {
 
+    @FindBy(css = "div.myProfile_fullName")
+    WebElement FullNameProfileCoCo;
+    @FindBy(id = "myProfile_email")
+    WebElement EmailAddressCoCo;
+
+    @FindBy(css = "#email")
+    WebElement InputEmail;
+
+    @FindBy(id = "myProfile_username")
+    WebElement UsernameProfileCoCo;
+    @FindBy(css = "h1.myProfile_title")
+    WebElement MyProfileHeaderCoCo;
+
+    @FindBy(css = ".myProfile_subheading")
+    List<WebElement> MyProfileSubHeadingCoCo; ///// Primary contact, Contact Information, Login & Security, Settings & Preferences
+
+    @FindBy(css = "span.content_line_label")
+    List<WebElement> MyProfileContentlineCoCo;  ///// Name, Date of Birth, Social security number, Email, Mobile phone, Home phone, Residential address, Username, Password, account number, Preferred language contact, Preferred contact Method
 
     @FindBy(id = "preferredLanguage")
     WebElement PreferredLanguageDrpCoCo;
@@ -38,10 +56,10 @@ public class MyProfilePage {
     @FindBy(css = "#email")
     WebElement InputEmailCoCo;
 
-    @FindBy(id = "mobilePhone")
+    @FindBy(id = "myProfile_mobilePhone")
     WebElement MobilephoneCoCo;
 
-    @FindBy(id = "homePhone")
+    @FindBy(id = "myProfile_homePhone")
     WebElement HomephoneCoCo;
 
     @FindBy(css = "#userPassword")
@@ -765,6 +783,232 @@ public class MyProfilePage {
         basicActions.waitForElementToBePresent(accountId, 10);
         SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accountId.getText()));
         System.out.println("Account Id::"+SharedData.getPrimaryMember().getAccount_id());
+    }
+
+    public void verifyTextOnMyProfileCocoPage(String language) {
+        switch (language) {
+            case "English":
+                verifyTextOnMyProfilePageCocoEnglish();
+                break;
+            case "Spanish":
+                verifyTextOnMyProfilePageCocoSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+    public void verifyTextOnMyProfilePageCocoEnglish() {
+        String formatedPhoneNumber = SharedData.getPrimaryMember().getPhoneNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
+        basicActions.waitForElementToBePresent(MyProfileHeaderCoCo, 10);
+        softAssert.assertEquals(MyProfileHeaderCoCo.getText(), "My Profile");
+        softAssert.assertEquals(MyProfileHeaderCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileHeaderCoCo.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(MyProfileHeaderCoCo.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getText(), "Primary Contact");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getText(), "Name");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(FullNameProfileCoCo.getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(FullNameProfileCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(FullNameProfileCoCo.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(FullNameProfileCoCo.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getText(), "Date of Birth");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getText(), "Social Security Number");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getText(), "Contact Information");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getText(), "Email");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(UsernameProfileCoCo.getText(), SharedData.getPrimaryMember().getEmailId());
+        softAssert.assertEquals(EmailAddressCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(EmailAddressCoCo.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(EmailAddressCoCo.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getText(), "Mobile Phone");
+        softAssert.assertEquals(MobilephoneCoCo.getText(), formatedPhoneNumber);
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getText(), "Home Phone");
+        softAssert.assertEquals(HomephoneCoCo.getText(), formatedPhoneNumber);
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getText(), "Residential Address");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getText(), "Login & Security");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(UsernameProfileCoCo.getText(), SharedData.getPrimaryMember().getEmailId());
+        softAssert.assertEquals(UsernameProfileCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(UsernameProfileCoCo.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(UsernameProfileCoCo.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getText(), "Username");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getText(), "Password");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getText(), "Account Number");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(accountId.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(accountId.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(accountId.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getText(), "Settings & Preferences");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileButtonCoCo.get(0).getText(), "Go back to welcome page");
+        softAssert.assertEquals(MyProfileButtonCoCo.get(1).getText(), "Make changes");
+        clickMakeChangesButtonCoCo();
+        clickPreferredLanguageDrpCoCo();
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getText(), "Preferred Language of Contact");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(LanguageDrpOptionsCoCo.get(1).getText(), "English");
+        softAssert.assertEquals(LanguageDrpOptionsCoCo.get(2).getText(), "Spanish");
+        clickPreferredContactDrpCoCo();
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getText(), "Preferred Contact Method");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(PreferredContactDrpOptionsCoCo.get(1).getText(), "Email");
+        //softAssert.assertEquals(PreferredContactDrpOptions.get(2).getText(), "Mail");
+        clickSaveButtonCoCo();
+        softAssert.assertEquals(MyProfileButtonCoCo.get(0).getText(), "Go back to welcome page");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextOnMyProfilePageCocoSpanish() {
+        basicActions.waitForElementToBePresent(MyProfileHeaderCoCo, 10);
+        softAssert.assertEquals(MyProfileHeaderCoCo.getText(), "Mi P\u00E9rfil");
+        softAssert.assertEquals(MyProfileHeaderCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileHeaderCoCo.getCssValue("font-size"), "36px");
+        softAssert.assertEquals(MyProfileHeaderCoCo.getCssValue("color"), "rgba(43, 49, 60, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getText(), "Contacto principal");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getText(), "Nombre");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getText(), "Fecha de Nacimiento");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getText(), "N\u00FAmero de Seguro Social");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getText(), "Informacion de Contacto");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getText(), "Email");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getText(), "Telefono Movil");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getText(), "Telefono Residencial");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getText(), "Direcci\u00F3n del Domicilio");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(6).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getText(), "Acceso y Seguridad");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(2).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getText(), "Nombre de Usario");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(7).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getText(), "Contrase\u00F1a");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(8).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getText(), "N\u00FAmero de Cuenta");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(9).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getText(), "Configuraciones y Preferencias");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getCssValue("font-size"), "19px");
+        softAssert.assertEquals(MyProfileSubHeadingCoCo.get(3).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getText(), "Idioma de Contacto Preferido");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(10).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getText(), "Medio de Contacto Preferido");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getCssValue("font-size"), "16px");
+        softAssert.assertEquals(MyProfileContentlineCoCo.get(11).getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(MyProfileButtonCoCo.get(0).getText(), "Volver a la pagina de bienvenida");
+        softAssert.assertEquals(MyProfileButtonCoCo.get(1).getText(), "Hacer cambios");
+        softAssert.assertAll();
+    }
+
+
+    public void verifyPasswordTextOnMyProfileCocoPage(String language) {
+        switch (language) {
+            case "English":
+                verifyPasswordTextOnMyProfilePageCocoEnglish();
+                break;
+            case "Spanish":
+                verifyPasswordTextOnMyProfilePageCocoSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyPasswordTextOnMyProfilePageCocoEnglish() {
+        basicActions.waitForElementToBePresent(PasswordMessageCoCo, 10);
+        softAssert.assertEquals(PasswordMessageCoCo.getText(), "Clicking on Change Password will log you out and take you to a Password Reset page.");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordButtonCoCo.getText(), "Change password");
+        softAssert.assertAll();
+    }
+
+
+    public void verifyPasswordTextOnMyProfilePageCocoSpanish() {
+        basicActions.waitForElementToBePresent(PasswordMessageCoCo, 10);
+        softAssert.assertEquals(PasswordMessageCoCo.getText(), "Al hacer clic en Cambiar contrase\u00F1a se cerrar\u00E1 su sesi\u00F3n y lo llevar\u00E1 a la p\u00E1gina de Restablecer contrase\u00F1a");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("font-size"), "12px");
+        softAssert.assertEquals(PasswordMessageCoCo.getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertEquals(PasswordButtonCoCo.getText(), "Cambiar contrase\u00F1a");
+        softAssert.assertAll();
     }
 
 }
