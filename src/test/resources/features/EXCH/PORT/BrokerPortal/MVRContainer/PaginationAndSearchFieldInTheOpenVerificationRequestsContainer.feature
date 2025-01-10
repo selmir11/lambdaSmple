@@ -28,7 +28,7 @@ Feature:Pagination and Search Field in the Open Verification Requests container
     Given I open the login page on the "broker" portal
     Then I validate I am on the "Login" page
     When I open the login page on the "broker" portal
-    And I login as Broker User any environment "" password "ALaska12!" and "carrimautomation+HaroldPottermore@gmail.com" password "ALaska13!"
+    And I login as Broker User any environment "carrimautomation+HaroldPottermore@gmail.com" password "ALaska12!" and "carrimautomation+HaroldPottermore@gmail.com" password "ALaska13!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
