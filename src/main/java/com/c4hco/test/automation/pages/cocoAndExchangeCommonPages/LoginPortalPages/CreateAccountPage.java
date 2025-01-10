@@ -214,17 +214,6 @@ public class CreateAccountPage {
         helpDrawerButton.click();
     }
 
-    public static CharSequence generatePhoneNumber(){
-        Random rand = new Random();
-        int num1 = (rand.nextInt(7)+1)*100;
-        int num2 = rand.nextInt(743);
-        int num3 = rand.nextInt(10000);
-        DecimalFormat df3 = new DecimalFormat("000");
-        DecimalFormat df4 = new DecimalFormat("0000");
-        String phoneNumber = df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
-        return phoneNumber;
-    }
-
     public void createGeneralAccount(String appType){
         addDetails();
         selectBasedOnApp(appType);
@@ -283,7 +272,7 @@ public class CreateAccountPage {
         subscriber.setFirstName("PrimaryMember"+basicActions.getUniqueString(8));
         subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
-        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -294,7 +283,7 @@ public class CreateAccountPage {
         subscriber.setFirstName("Primary"+ basicActions.getUniqueString(6));
         subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(7)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
-        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -303,7 +292,7 @@ public class CreateAccountPage {
         subscriber.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"TestMember"));
         subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@gmail.com");
-        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -315,7 +304,7 @@ public class CreateAccountPage {
         subscriber.setMiddleName(mName);
         subscriber.setLastName(lName);
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+basicActions.getUniqueString(6)+"@test.com");
-        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
         allMembersList.add(subscriber);
@@ -331,7 +320,7 @@ public class CreateAccountPage {
         LoginCredentials.setScriptBasedDetails(scriptNum);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setEmailId("AutomationUser."+basicActions.getUniqueString(8)+"@test.com");
-        subscriber.setPhoneNumber((String) generatePhoneNumber());
+        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -457,7 +446,7 @@ public class CreateAccountPage {
         user.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"TestBroker"));
         user.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
-        user.setPhoneNumber((String) generatePhoneNumber());
+        user.setPhoneNumber((String) basicActions.generatePhoneNumber());
         user.setLicense((String) generateBrokerLicense());
         switch(accountType){
             case "Agency Owner":
@@ -950,6 +939,7 @@ public class CreateAccountPage {
                 softAssert.assertEquals(invitationErrorMsg.getText(),"El C\u00F3digo de invitaci\u00F3n es obligatorio");
                 break;
         }
+        softAssert.assertAll();
 
     }
 
