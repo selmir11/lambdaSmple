@@ -46,8 +46,6 @@ public class CreateAccountPage {
 
     @FindBy(xpath = "//lib-input-error[@uniqueerrorid='fn-mf-error']")
     WebElement firstNameErrorMessage;
-    @FindBy(id = "fn-error")
-    WebElement firstNameErrorMessageAssistNet;
 
     @FindBy(id = "mn-label")
      WebElement middleNameText;
@@ -57,8 +55,6 @@ public class CreateAccountPage {
 
     @FindBy(xpath = "//span[@id='mn-error']")
     WebElement middleNameErrorMessage;
-    @FindBy(id = "mn-error")
-    WebElement middleNameErrorMessageAssistNet;
 
     @FindBy(xpath = "//input[@id='ln']")
      WebElement lastName;
@@ -68,8 +64,6 @@ public class CreateAccountPage {
 
     @FindBy(xpath = "//lib-input-error[@uniqueerrorid='ln-mf-error']")
     WebElement lastNameErrorMessage;
-    @FindBy(id = "ln-error")
-    WebElement lastNameErrorMessageAssistNet;
 
     @FindBy(id = "email")
      WebElement email;
@@ -78,8 +72,6 @@ public class CreateAccountPage {
 
     @FindBy(xpath = "//lib-input-error[@uniqueerrorid='em-mf-error']")
     WebElement emailErrorMessage;
-    @FindBy(id = "em-error")
-    WebElement emailErrorMessageAssistNet;
 
     @FindBy(id = "phone")
      WebElement phoneNumber;
@@ -88,8 +80,6 @@ public class CreateAccountPage {
 
     @FindBy(xpath = "//lib-input-error[@uniqueerrorid='ph-mf-error']")
     WebElement phoneNumberErrorMessage;
-    @FindBy(id = "ph-error")
-    WebElement phoneNumberErrorMessageAssistNet;
 
     @FindBy(id = "password")
      WebElement password;
@@ -106,8 +96,6 @@ public class CreateAccountPage {
 
     @FindBy(xpath = "//lib-input-error[@uniqueerrorid='cp-mf-error']")
     WebElement confirmPasswordErrorMessage;
-    @FindBy(id = "cp-error")
-    WebElement confirmPasswordErrorMessageAssistNet;
 
     @FindBy(xpath = "//span[@id='ls-mf-error']")
     WebElement languageErrorMessage;
@@ -159,8 +147,6 @@ public class CreateAccountPage {
 
     @FindBy(id = "role")
     WebElement roleDropdown;
-    @FindBy(xpath = "//select[@id='role']/option[2]")
-    WebElement assistNetOption;
 
     @FindBy(xpath = "//select[@id='role']/option[2]")
     WebElement certifiedBrokerRole;
@@ -179,13 +165,6 @@ public class CreateAccountPage {
 
     @FindBy(id = "loginPortal-createAccount-termsRead")
     WebElement termsOfUseErrorMessage;
-    @FindBy(xpath = "//lib-input[@id='invitation']//span")
-    WebElement invitationErrorMsg;
-    @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/p[3]/span")
-    WebElement invitationPMCode;
-    @FindBy(xpath = "//input[@id='invitation']")
-    WebElement invitationCodeInput;
-
 
 
     private BasicActions basicActions;
@@ -212,6 +191,17 @@ public class CreateAccountPage {
     public void clickHelpIconButton(){
         basicActions.waitForElementToBeClickable(helpDrawerButton,1000);
         helpDrawerButton.click();
+    }
+
+    public static CharSequence generatePhoneNumber(){
+        Random rand = new Random();
+        int num1 = (rand.nextInt(7)+1)*100;
+        int num2 = rand.nextInt(743);
+        int num3 = rand.nextInt(10000);
+        DecimalFormat df3 = new DecimalFormat("000");
+        DecimalFormat df4 = new DecimalFormat("0000");
+        String phoneNumber = df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
+        return phoneNumber;
     }
 
     public void createGeneralAccount(String appType){
@@ -272,7 +262,7 @@ public class CreateAccountPage {
         subscriber.setFirstName("PrimaryMember"+basicActions.getUniqueString(8));
         subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"@test.com");
-        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -283,7 +273,7 @@ public class CreateAccountPage {
         subscriber.setFirstName("Primary"+ basicActions.getUniqueString(6));
         subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(7)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@outlook.com");
-        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -292,7 +282,7 @@ public class CreateAccountPage {
         subscriber.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"TestMember"));
         subscriber.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(10)+"Test"));
         subscriber.setEmailId(emailBase+"+"+subscriber.getLastName()+"@gmail.com");
-        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -304,7 +294,7 @@ public class CreateAccountPage {
         subscriber.setMiddleName(mName);
         subscriber.setLastName(lName);
         subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+basicActions.getUniqueString(6)+"@test.com");
-        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
         allMembersList.add(subscriber);
@@ -320,7 +310,7 @@ public class CreateAccountPage {
         LoginCredentials.setScriptBasedDetails(scriptNum);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setEmailId("AutomationUser."+basicActions.getUniqueString(8)+"@test.com");
-        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
+        subscriber.setPhoneNumber((String) generatePhoneNumber());
         subscriber.setIsSubscriber("Y");
         SharedData.setPrimaryMember(subscriber);
     }
@@ -446,7 +436,7 @@ public class CreateAccountPage {
         user.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"TestBroker"));
         user.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         user.setEmail(emailBase+"+"+user.getLastName()+"@outlook.com");
-        user.setPhoneNumber((String) basicActions.generatePhoneNumber());
+        user.setPhoneNumber((String) generatePhoneNumber());
         user.setLicense((String) generateBrokerLicense());
         switch(accountType){
             case "Agency Owner":
@@ -745,38 +735,6 @@ public class CreateAccountPage {
         softAssert.assertAll();
     }
 
-    public void validateSpecialCharactersErrorAssistNetMessage(String language){
-        basicActions.waitForElementToBePresent(firstName, 10);
-        firstName.sendKeys("12345-ABCD-!@#$");
-        middleName.sendKeys("12345-ABCD-!@#$");
-        lastName.sendKeys("12345-ABCD-!@#$");
-        email.sendKeys("12345-ABCD-!@#$");
-        phoneNumber.sendKeys("2");
-        confirmPassword.sendKeys("ALaka12!");
-
-        switch(language){
-            case "English":
-                softAssert.assertEquals(firstNameErrorMessageAssistNet.getText(),"First Name cannot contain special characters");
-                softAssert.assertEquals(middleNameErrorMessageAssistNet.getText(),"Middle Name cannot contain special characters");
-                softAssert.assertEquals(lastNameErrorMessageAssistNet.getText(), "Last Name cannot contain special characters");
-                softAssert.assertEquals(emailErrorMessageAssistNet.getText(), "A valid Email is required");
-                softAssert.assertEquals(phoneNumberErrorMessageAssistNet.getText(), "Please enter valid phone number");
-                softAssert.assertEquals(confirmPasswordErrorMessageAssistNet.getText(), "Password does not match");
-                break;
-            case "Spanish":
-                softAssert.assertEquals(firstNameErrorMessageAssistNet.getText(),"El nombre no puede incluir caracteres especiales");
-                softAssert.assertEquals(middleNameErrorMessageAssistNet.getText(),"El segundo nombre no puede incluir caracteres especiales");
-                softAssert.assertEquals(lastNameErrorMessageAssistNet.getText(), "El apellido no puede incluir caracteres especiales");
-                softAssert.assertEquals(emailErrorMessageAssistNet.getText(), "Es obligatorio un correo electr\u00F3nico v\u00E1lido");
-                softAssert.assertEquals(phoneNumberErrorMessageAssistNet.getText(), "Ingrese un n\u00FAmero de tel\u00E9fono v\u00E1lido");
-                softAssert.assertEquals(confirmPasswordErrorMessageAssistNet.getText(), "La contrase\u00F1a no coincide");
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-        softAssert.assertAll();
-    }
-
     public void validatePasswordMinimumCharacterErrorMessage(String language){
         basicActions.waitForElementToBePresent(password, 10);
         password.clear();
@@ -928,59 +886,5 @@ public class CreateAccountPage {
     public void EnterPasswordInCreateAccountPage() {
         password.sendKeys("ALaska12!");
         confirmPassword.sendKeys("ALaska12!");
-    }
-
-    public void validateTheInvitationCodeErrorMessageOnAssistNetPageIn(String language) {
-        switch (language){
-            case "English":
-                softAssert.assertEquals(invitationErrorMsg.getText(),"Invitation code is required");
-                break;
-                case "Spanish":
-                softAssert.assertEquals(invitationErrorMsg.getText(),"El C\u00F3digo de invitaci\u00F3n es obligatorio");
-                break;
-        }
-        softAssert.assertAll();
-
-    }
-
-    public void completeMandatoryDataForProgramManagerAccountCreation() {
-        basicActions.waitForElementToBePresentWithRetries(roleDropdown,30);
-        roleDropdown.click();
-        assistNetOption.click();
-        basicActions.waitForElementToBePresent(invitationCodeInput,30);
-        invitationCodeInput.sendKeys(SharedData.getAssisterDetails().getProgramManagerInviteCode());
-        firstName.sendKeys(SharedData.getAssisterDetails().getFirstName());
-        lastName.sendKeys(SharedData.getAssisterDetails().getLastName());
-        email.sendKeys(SharedData.getAssisterDetails().getEmail());
-        phoneNumber.sendKeys(SharedData.getAssisterDetails().getPhoneNumber());
-        password.sendKeys(SharedData.getAssisterDetails().getPassword());
-        confirmPassword.sendKeys(SharedData.getAssisterDetails().getPassword());
-        primaryUserCheckbox.click();
-        termsOfUseCheckbox.click();
-        submitButton.click();
-
-
-    }
-
-    public void savedTheInvitationCodeForTheNewProgramManagerAccount() {
-        basicActions.waitForElementToBePresentWithRetries(invitationPMCode,30);
-        SharedData.getAssisterDetails().setProgramManagerInviteCode( invitationPMCode.getText());
-    }
-
-    public void enterDuplicateDataForProgramManagerAccountCreation() {
-        basicActions.waitForElementToBePresentWithRetries(roleDropdown,30);
-        roleDropdown.click();
-        assistNetOption.click();
-        basicActions.waitForElementToBePresent(invitationCodeInput,30);
-        invitationCodeInput.sendKeys(SharedData.getAssisterDetails().getProgramManagerInviteCode());
-        firstName.sendKeys(SharedData.getAssisterDetails().getFirstName());
-        lastName.sendKeys(SharedData.getAssisterDetails().getLastName());
-        email.sendKeys(SharedData.getAssisterDetails().getEmail());
-        phoneNumber.sendKeys(SharedData.getAssisterDetails().getPhoneNumber());
-        password.sendKeys(SharedData.getAssisterDetails().getPassword());
-        confirmPassword.sendKeys(SharedData.getAssisterDetails().getPassword());
-        primaryUserCheckbox.click();
-        termsOfUseCheckbox.click();
-        submitButton.click();
     }
 }
