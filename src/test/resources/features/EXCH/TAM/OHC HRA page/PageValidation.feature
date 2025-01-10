@@ -116,7 +116,7 @@ Feature: Page Validation-OHI HRA Elmo Page
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |    500.00   | QSEHRA |                    |          0           |
+      |   2025  |    500.00   | QSEHRA |                    |          0           |
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -134,7 +134,7 @@ Feature: Page Validation-OHI HRA Elmo Page
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |     60.00   | QSEHRA |                    |          1           |
+      |   2025  |     60.00   | QSEHRA |                    |          1           |
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -154,7 +154,7 @@ Feature: Page Validation-OHI HRA Elmo Page
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |     25.00   |  ICHRA |         1          |          1           |
+      |   2025  |     25.00   |  ICHRA |         1          |          1           |
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -174,7 +174,7 @@ Feature: Page Validation-OHI HRA Elmo Page
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |     25.00   |  ICHRA |         1          |          1           |
+      |   2025  |     25.00   |  ICHRA |         1          |          1           |
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -193,7 +193,7 @@ Feature: Page Validation-OHI HRA Elmo Page
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |     45.00   |  ICHRA |         1          |          1           |
+      |   2025  |     45.00   |  ICHRA |         1          |          1           |
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -204,14 +204,14 @@ Feature: Page Validation-OHI HRA Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I enter "450.00" amount on the Elmo OHI HRA page
+    Then I enter "500.00" amount on the Elmo OHI HRA page
     Then I click continue on the Elmo OHI HRA page
     And I verify the OHI options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |    450.00   |  ICHRA |                    |          0           |
+      |   2025  |    500.00   |  ICHRA |                    |          0           |
 
     And I click on Sign Out in the Header for "NonElmo"
 
@@ -232,7 +232,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I validate I am on the "Application History" page
     And I verify the HRA options selected in the DB after Application Results
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |    6.00     |  ICHRA |         1          |          1           |
+      |   2025  |    6.00     |  ICHRA |         1          |          1           |
 
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -269,7 +269,7 @@ Feature: Page Validation-OHI HRA Elmo Page
     Then I validate I am on the "Application History" page
     And I verify the HRA options selected in the DB after Application Results
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |    575.65   | QSEHRA |                    |            0         |
+      |   2025  |    575.65   | QSEHRA |                    |            0         |
 
     And I click on Sign Out in the Header for "NonElmo"
 
