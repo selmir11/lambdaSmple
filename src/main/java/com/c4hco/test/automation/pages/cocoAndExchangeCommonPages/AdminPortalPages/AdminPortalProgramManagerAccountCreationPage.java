@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages;
 
 import com.c4hco.test.automation.Dto.AssisterDetails;
-import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.util.List;
 
 public class AdminPortalProgramManagerAccountCreationPage {
@@ -39,6 +37,7 @@ public class AdminPortalProgramManagerAccountCreationPage {
         assister.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         assister.setEmail(emailBase+"+"+assister.getLastName()+"@outlook.com");
         assister.setOrganizationGroupName("AP"+basicActions.capitalizeFirstLetter(basicActions.getUniqueString(4)));
+        assister.setPhoneNumber((String) basicActions.generatePhoneNumber());
         SharedData.setAssisterDetails(assister);
     }
 

@@ -172,4 +172,9 @@ public class LoginPageSteps {
     public void loginWithExistingCreds(String loginType){
             loginPage.loginWitExistingAcc(loginType);
     }
+
+    @And("I log into my Program Manager account")
+    public void iLogIntoMyProgramManagerAccount() {
+            loginPage.logIntoMyProgramManagerAccount();
+    }
 }

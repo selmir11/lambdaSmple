@@ -125,8 +125,9 @@ public class ApplicationSummaryPdf {
 
         return String.format("Other Health Coverage\n" +
                 SharedData.getPrimaryMember().getFullName() + "\n" +
-                coverageType + "\n" +
-                "Currently enrolled " + currentlyEnrolled + "\n" )+
+                coverageType + "\n" )+
+                ((currentlyEnrolled != null && currentlyEnrolled.equals("Currently enrolled")) ?
+                        "Currently enrolled " + currentlyEnrolled + "\n" : "")+
                 ((insuranceEnding != null && insuranceEnding.equals("Insurance ending")) ?
                         "Insurance ending in next 60 days " + insuranceEnding + "\n" +
                                 "End date " + endingDate + "\n" : "");
@@ -147,8 +148,9 @@ public class ApplicationSummaryPdf {
 
         return String.format("Otra cobertura de salud\n" +
                 SharedData.getPrimaryMember().getFullName() + "\n" +
-                coverageType + "\n" +
-                "Currently enrolled " + currentlyEnrolled + "\n" )+
+                coverageType + "\n" )+
+                ((currentlyEnrolled != null && currentlyEnrolled.equals("Currently enrolled")) ?
+                        "Currently enrolled " + currentlyEnrolled + "\n" : "")+
                 ((insuranceEnding != null && insuranceEnding.equals("Insurance ending")) ?
                         "Insurance ending in next 60 days " + insuranceEnding + "\n" +
                                 "End date " + endingDate + "\n" : "");
