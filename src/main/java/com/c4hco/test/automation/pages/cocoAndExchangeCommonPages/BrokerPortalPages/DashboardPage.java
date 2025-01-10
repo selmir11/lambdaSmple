@@ -277,6 +277,8 @@ public class DashboardPage {
         basicActions.waitForElementListToBePresent(firstRowsOptions,100);
         for (WebElement each : firstRowsOptions) {
            if (each.getText().contains(search)){
+               softAssert.assertTrue(each.getText().contains(search));
+               softAssert.assertAll();
                break;
            }
         }
