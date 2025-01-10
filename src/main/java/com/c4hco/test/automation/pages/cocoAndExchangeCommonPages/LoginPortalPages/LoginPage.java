@@ -527,11 +527,4 @@ public class LoginPage {
         System.out.println("Password::" + pswd);
         signInButton.click();
     }
-
-    public void logIntoMyProgramManagerAccount() {
-        basicActions.waitForElementToBePresentWithRetries(username,30);
-        username.sendKeys(SharedData.getAssisterDetails().getEmail());
-        password.sendKeys(SharedData.getAssisterDetails().getPassword());
-        signInButton.click();
-    }
 }

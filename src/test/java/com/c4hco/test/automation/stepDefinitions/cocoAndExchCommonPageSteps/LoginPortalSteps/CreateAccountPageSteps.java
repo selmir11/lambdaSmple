@@ -157,29 +157,4 @@ public class CreateAccountPageSteps {
     public void iEnterPasswordInCreateAccountPage() {
         createAccountPage.EnterPasswordInCreateAccountPage();
     }
-
-    @Then("I validate the fields on assistNet Page cannot contain special characters error message in {string}")
-    public void iValidateSpecialCharactersOnAssistNetPageErrorMessages(String language){
-        createAccountPage.validateSpecialCharactersErrorAssistNetMessage(language);
-    }
-
-    @Then("I validate the invitation code error message on assistNet Page in {string}")
-    public void iValidateTheInvitationCodeErrorMessageOnAssistNetPageIn(String language) {
-        createAccountPage.validateTheInvitationCodeErrorMessageOnAssistNetPageIn(language);
-    }
-
-    @Then("I complete mandatory data for program manager account creation")
-    public void iCompleteMandatoryDataForProgramManagerAccountCreation() {
-        createAccountPage.completeMandatoryDataForProgramManagerAccountCreation();
-    }
-
-    @Then("I saved the invitation code for the new program manager account")
-    public void iSavedTheInvitationCodeForTheNewProgramManagerAccount() {
-        createAccountPage.savedTheInvitationCodeForTheNewProgramManagerAccount();
-    }
-
-    @And("I enter duplicate data for Program Manager account creation")
-    public void iEnterDuplicateDataForProgramManagerAccountCreation() {
-        createAccountPage.enterDuplicateDataForProgramManagerAccountCreation();
-    }
 }
