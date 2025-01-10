@@ -24,8 +24,8 @@ public class OhcPeaceCorpsSteps_Elmo {
         ohcPeaceCorpsPage_Elmo.clickInsuranceEndingOption(insuranceEnding);}
 
     @Then("I enter the end date as {string} on the Peace Corps page")
-    public void iEnterEndDate(String endDate){
-        ohcPeaceCorpsPage_Elmo.enterEndDate(endDate);}
+    public void iEnterEndDate(String endDateData){
+        ohcPeaceCorpsPage_Elmo.enterEndDate(endDateData);}
 
     @Then("I click {string} for insurance ending voluntary for Peace Corps question")
     public void iClickEndVoluntaryOption(String voluntaryEnding){

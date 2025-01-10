@@ -95,6 +95,13 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath = "//p[normalize-space()='No hay planes seleccionados para comparar']")
     public WebElement noTextPlanSP;
 
+
+    @FindBy(id = "PlanCompare_ExpandAll")
+    WebElement expandCOCOAllLink;
+
+    @FindBy(id = "PlanCompare_CollapseAll")
+    WebElement collapseCOCOAllLink;
+
     @FindBy(id = "MedicalPlanCompare_InNetworkTab")
     public WebElement selectInNetworkTier1Link;
 
@@ -1213,6 +1220,40 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertTrue( noTextPlan.isDisplayed(), "There are no plans selected to compare" );
     }
 
+    public void validateCompareHeaderDropdown(){
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(1).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(2).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(3).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(4).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(5).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(6).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(7).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(8).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(9).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(10).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(11).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(12).click();
+
+        basicActions.scrollToElement( headerHighlights );
+        collapseCOCOAllLink.click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(1).click();
+        collapseCOCOAllLink.click();
+        basicActions.scrollToElement( headerHighlights );
+        expandCOCOAllLink.click();
+    }
     public void  verifyTxtCompareHeader() {
         basicActions.waitForElementToBePresent(txtCompareHeaderMonthlyPremium, 10 );
         softAssert.assertTrue(txtCompareHeaderMonthlyPremium.isDisplayed(),"Incorrect Header");

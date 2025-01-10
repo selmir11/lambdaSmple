@@ -66,6 +66,11 @@ public class MedicalCompareCoCoPageSteps {
         medicalCompareCoCoPage.verifyTextinMedicalCompare( planDetails );
     }
 
+    @And( "I validate the Compare header dropdown functionality" )
+    public void validateCompareHeaderDropdown() {
+        medicalCompareCoCoPage.validateCompareHeaderDropdown();
+    }
+
 
     // used for SCLR-90
     @And("I validate the {string} Medical Compare page Network headers and subheaders")
@@ -73,22 +78,11 @@ public class MedicalCompareCoCoPageSteps {
         medicalCompareCoCoPage.validateTextComparePlanCoCoPageInNetwork( language );
     }
 
-    // old SCLR-90
-    @And("I verify the Medical Compare page In-Network headers and subheaders")
-    public void verifyTxtCompareHeader() {
-        medicalCompareCoCoPage.verifyTxtCompareHeader();
-    }
 
     // used for SCLR-93
     @And("I validate the {string} Medical Compare page Out-Network headers and subheaders")
     public void verifyTxtCompareOutOfNetworkCoCoPage(String language) {
         medicalCompareCoCoPage.validateTextComparePlanCoCoPageOutNetwork( language );
-    }
-
-    // old SCLR-93
-    @And("I verify the Medical Compare page Out-Network headers and subheaders")
-    public void verifyTxtOutofNetworkHeader() {
-        medicalCompareCoCoPage.verifyTxtOutofNetworkCompareHeader();
     }
 
 
