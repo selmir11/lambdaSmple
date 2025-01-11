@@ -72,6 +72,90 @@ public class ApplicationDetailsPdf {
         return details.toString();
     }
 
+    public static String getMedicareApplicationDetails(String coverageType, String premiumFree, String enrolled, String partAPremium, String partAEnding, String partAEndDate, String partBEnding, String partBEndDate) {
+        String endingDateA = "";
+        String endingDateB = "";
+        if ("Today".equalsIgnoreCase(partAEndDate)) {
+            endingDateA = basicActions.getTodayDate();
+        } else if ("Current Month".equalsIgnoreCase(partAEndDate)) {
+            endingDateA = (basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy"));
+        } else {
+            System.out.println("Invalid option: " + partAEndDate);
+        }
+        if ("Today".equalsIgnoreCase(partBEndDate)) {
+            endingDateB = basicActions.getTodayDate();
+        } else if ("Current Month".equalsIgnoreCase(partBEndDate)) {
+            endingDateB = (basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy"));
+        } else {
+            System.out.println("Invalid option: " + partBEndDate);
+        }
+
+        StringBuilder details = new StringBuilder();
+        details.append("Other Health Coverage\n")
+                .append(SharedData.getPrimaryMember().getFullName()).append("\n")
+                .append(coverageType).append("\n")
+                .append("Currently Eligible for Medicare\n" + "Premium Free Part A ").append(premiumFree).append("\n")
+                .append("Enrolled in Part A or B ").append(enrolled).append("\n");
+        if (partAPremium != null) {
+            details.append("Part A Premium Amount ").append(partAPremium).append("\n");
+        }
+        if (partAEnding != null) {
+            details.append("Part A Ending in Next 60 Days ").append(partAEnding).append("\n");
+        }
+        if (endingDateA != null && !endingDateA.isEmpty()) {
+            details.append("Part A End Date ").append(endingDateA).append("\n");
+        }
+        if (partBEnding != null) {
+            details.append("Part B ending in next 60 days ").append(partBEnding).append("\n");
+        }
+        if (endingDateB != null && !endingDateB.isEmpty()) {
+            details.append("Part B End Date ").append(endingDateB).append("\n");
+        }
+        return details.toString();
+    }
+
+    public static String getMedicareApplicationDetailsSp(String coverageType, String premiumFree, String enrolled, String partAPremium, String partAEnding, String partAEndDate, String partBEnding, String partBEndDate) {
+        String endingDateA = "";
+        String endingDateB = "";
+
+        if ("Today".equalsIgnoreCase(partAEndDate)) {
+            endingDateA = basicActions.getTodayDate();
+        } else if ("Current Month".equalsIgnoreCase(partAEndDate)) {
+            endingDateA = (basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy"));
+        } else {
+            System.out.println("Invalid option: " + partAEndDate);
+        }
+        if ("Today".equalsIgnoreCase(partBEndDate)) {
+            endingDateB = basicActions.getTodayDate();
+        } else if ("Current Month".equalsIgnoreCase(partBEndDate)) {
+            endingDateB = (basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MM/dd/yyyy"));
+        } else {
+            System.out.println("Invalid option: " + partBEndDate);
+        }
+        StringBuilder details = new StringBuilder();
+        details.append("Otra cobertura de salud\n")
+                .append(SharedData.getPrimaryMember().getFullName()).append("\n")
+                .append(coverageType).append("\n")
+                .append("Currently Eligible for Medicare\n" + "Premium Free Part A ").append(premiumFree).append("\n")
+                .append("Enrolled in Part A or B ").append(enrolled).append("\n");
+        if (partAPremium != null) {
+            details.append("Part A Premium Amount ").append(partAPremium).append("\n");
+        }
+        if (partAEnding != null) {
+            details.append("Part A Ending in Next 60 Days ").append(partAEnding).append("\n");
+        }
+        if (endingDateA != null && !endingDateA.isEmpty()) {
+            details.append("Part A End Date ").append(endingDateA).append("\n");
+        }
+        if (partBEnding != null) {
+            details.append("Part B ending in next 60 days ").append(partBEnding).append("\n");
+        }
+        if (endingDateB != null && !endingDateB.isEmpty()) {
+            details.append("Part B End Date ").append(endingDateB).append("\n");
+        }
+        return details.toString();
+    }
+
     public static String getFamilyApplicationDetails(String offered, String premium, List<String> familyOption) {
         StringBuilder detailsBuilder = new StringBuilder();
 
