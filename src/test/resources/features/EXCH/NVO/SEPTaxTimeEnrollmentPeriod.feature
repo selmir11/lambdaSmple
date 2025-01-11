@@ -208,6 +208,12 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
     And I send the DOR to C4 API request
     Then response status code should be 200
 
+    Then I validate event_cd in easy enrollment event log in DB
+      | PASSED_MEMBER_VALIDATION         |
+      | FAILED_POSTAL_ADDRESS_VALIDATION |
+      | PASSED_EMAIL_ADDRESS_VALIDATION  |
+      | INITIAL_EE_11_NOTICE_SENT        |
+
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
