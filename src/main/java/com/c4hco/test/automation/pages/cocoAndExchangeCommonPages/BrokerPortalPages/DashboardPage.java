@@ -280,8 +280,6 @@ public class DashboardPage {
         boolean found = false;
         for (WebElement each : firstRowsOptions) {
            if (each.getText().contains(search)){
-               softAssert.assertTrue(each.getText().contains(search));
-               softAssert.assertAll();
                found = true;
                break;
            }
