@@ -442,7 +442,7 @@ public class WelcomePage {
 
     private void verifyMyPlanDetails() {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
-        softAssert.assertEquals(planYearSelectorOptions.get(1).getText(), SharedData.getPlanYear(), "Plan Year does not match");
+        softAssert.assertEquals(planYearSelectorOptions.get(0).getText(), SharedData.getPlanYear(), "Plan Year does not match");
         softAssert.assertEquals(policyMedicalDetails.get(0).getText(), primaryMember.getMedicalPlan(), "Primary Medical Plan Name does not match");
         softAssert.assertEquals(policyMonthlyDetails.get(1).getText().substring(0, 7), "$" + primaryMember.getMedicalPremiumAmt(), "Primary Medical premium amount does not match");
     }
@@ -501,10 +501,10 @@ public class WelcomePage {
         expectedCalculatedDates.setFinancialStartDate(financialStartDate);
         expectedCalculatedDates.setFinancialEndDate(financialEndDate);
 
+        SharedData.setExpectedCalculatedDates_medicalPlan(expectedCalculatedDates);
         subscriber.setMedicalPlanStartDate(planStartDate);
         subscriber.setMedicalPlanEndDate(planEndDate);
 
-      //  SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
 
     }

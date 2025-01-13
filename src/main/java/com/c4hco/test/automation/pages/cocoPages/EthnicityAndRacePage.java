@@ -336,9 +336,17 @@ public class EthnicityAndRacePage {
                 throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
         }
         setRaceAndEthnicity(raceEthnicity, memPrefix);
+        setMemberID(memPrefix);
     }
     private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
           List<MemberDetails> members = basicActions.getAllMem();
           members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
         }
+    private void setMemberID(String memPrefix){
+        List<MemberDetails> members = basicActions.getAllMem();
+        String url = basicActions.getCurrentUrl();
+        String memberId = basicActions.getMemberIDFromURL(url);
+        members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setMemberId(memberId));
+    }
+
     }

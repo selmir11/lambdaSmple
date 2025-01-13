@@ -109,6 +109,7 @@ public class AddInfoForYourselfPage {
     }
 
     public void mailingAddressSelection(String mailingAddress) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementListToBePresent(mailingAddressButtons, 30);
         switch (mailingAddress) {
             case "Yes":
@@ -120,6 +121,7 @@ public class AddInfoForYourselfPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + mailingAddress);
         }
+        subscriber.setMailingAddress(subscriber.getResAddress());
     }
 
     public void liveInColoradoSelection(String liveInColorado) {

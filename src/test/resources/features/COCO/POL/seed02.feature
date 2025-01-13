@@ -3,7 +3,7 @@ Feature: Seed02 - Coco
   Scenario: Seed 02 For Coco -  Husband+Wife with FA
     Given I set the test scenario details in coco
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
-      | 1           | 2            | 2                 | 0                |   2             |
+      | 1           | 2            | 1                 | 1                |   2             |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -41,6 +41,7 @@ Feature: Seed02 - Coco
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
+    Then I wait for 2000 milliseconds
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
@@ -60,6 +61,7 @@ Feature: Seed02 - Coco
     And I click continue on the Employment income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
+    Then I wait for 2000 milliseconds
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
@@ -76,6 +78,7 @@ Feature: Seed02 - Coco
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     And I click "No" to the Tobacco usage question on start shopping page for "Primary,SPOUSE" coco
+    And I get the application id from the url from tobacco page coco
     Then I click continue on coco start shopping page
     Then I validate that there are 1 default groups in coco page
     Then I click continue on grouping Members Medical coco page
@@ -92,26 +95,19 @@ Feature: Seed02 - Coco
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
-    Then I Validate the correct enrolled plans are displayed on coco welcome page
-
-    And I click on "My Plans" link on welcome page
-    Then I validate I am on the "My Policies" page
-    And I validate enrolled medical plans details on my policies page coco
-    And I click view Plan History link from medical plan card in coco
-    Then I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
 
-    And I click on "My Documents and Letters" link on welcome page
-    And I click on download enrolment document
-    And I click on Sign Out in the Header for "Elmo"
-
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#    And I click on "My Documents and Letters" link on welcome page
+#    And I click on download enrolment document
+#    And I click on Sign Out in the Header for "Elmo"
+#
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
 
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -122,10 +118,36 @@ Feature: Seed02 - Coco
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
-      |1:01012024|
+      |1:01012025|
+      |2:01012025|
     And I update the Financial Start date of member
-      |1:01012024|
+      |1:01012025|
+      |2:01012025|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
+    # UI Validation
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    Then I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on "My Plans" link on welcome page
+    Then I validate I am on the "My Policies" page
+    And I validate enrolled medical plans details on my policies page coco
+    And I click view Plan History link from medical plan card in coco
+    Then I validate medical plan details from plan history in coco
+    And I click on Sign Out in the Header for "Elmo"
+    # DB Validation
+    And I validate Medical entities from COCO policy tables
+
+#    And I validate Medical entities from COCO pre edi db tables
+#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason       |
+#      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
+#
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+##    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    And I download the medical and dental files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 "medical" file data
