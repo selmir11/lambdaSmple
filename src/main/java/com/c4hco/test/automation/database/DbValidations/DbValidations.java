@@ -266,6 +266,9 @@ public class DbValidations {
             case "QLCE":
                 determination = "GAIN_DEP_QLCE";
                 break;
+            case "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY":
+                expReasonCode = "TAX_TIME_ENROLLMENT_QLCE";
+                break;
             default:
                 Assert.fail("Expected Reason Code is not valid");
         }
@@ -627,12 +630,11 @@ public class DbValidations {
         softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "EventCD contains FAILED_EMAIL_ADDRESS_VALIDATION");
         softAssert.assertAll();
     }
-    public void validateEventLog(){
+    public void validateEventLog(List<String> eventCD){
         List<String> queryResult = exchDbDataProvider.getEventLog();
-        softAssert.assertTrue(queryResult.contains("PASSED_MEMBER_VALIDATION"), "Event log contains PASSED_MEMBER_VALIDATION");
-        softAssert.assertTrue(queryResult.contains("PASSED_POSTAL_ADDRESS_VALIDATION"), "Event log contains PASSED_POSTAL_ADDRESS_VALIDATION");
-        softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "Event log contains FAILED_EMAIL_ADDRESS_VALIDATION");
-        softAssert.assertTrue(queryResult.contains("INITIAL_EE_12_NOTICE_SENT"), "Event log contains INITIAL_EE_12_NOTICE_SENT");
+        for(String eventcd: eventCD) {
+            softAssert.assertTrue(queryResult.contains(eventcd), "Event log contains eventCD "+eventcd);
+        }
         softAssert.assertAll();
     }
 

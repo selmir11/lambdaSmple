@@ -39,6 +39,7 @@ public class AdminPortalProgramManagerAccountCreationPage {
         assister.setLastName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"Test"));
         assister.setEmail(emailBase+"+"+assister.getLastName()+"@outlook.com");
         assister.setOrganizationGroupName("AP"+basicActions.capitalizeFirstLetter(basicActions.getUniqueString(4)));
+        assister.setPhoneNumber((String) basicActions.generatePhoneNumber());
         SharedData.setAssisterDetails(assister);
     }
 

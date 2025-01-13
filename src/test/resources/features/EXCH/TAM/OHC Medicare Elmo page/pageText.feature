@@ -496,7 +496,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "500.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
-    Then I enter end date of end of current month for Medicare part "A"
+    Then I enter end date of "Current Month" for Medicare part "A"
     Then I click continue on the Elmo OHC Medicare page
 #Step8
     And I click plus icon next to member on household page for "Primary"
@@ -517,7 +517,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
-    Then I enter end date of end of current month for Medicare part "B"
+    Then I enter end date of "Current Month" for Medicare part "B"
     Then I click continue on the Elmo OHC Medicare page
 #Step10
     And I click plus icon next to member on household page for "Primary"

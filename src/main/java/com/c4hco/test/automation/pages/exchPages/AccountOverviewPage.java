@@ -39,7 +39,7 @@ public class AccountOverviewPage {
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
 
-    @FindBy(id = "submit-curr-yr-4")
+    @FindBy(xpath = "//*[id = 'submit-curr-yr-4' or @id='submit-curr-yr-5']")
     WebElement makeChangesButton;
 
     @FindBy(css = ".c4PageHeader-large")

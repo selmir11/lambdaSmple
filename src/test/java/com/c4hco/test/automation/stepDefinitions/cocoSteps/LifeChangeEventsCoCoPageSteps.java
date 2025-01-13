@@ -9,9 +9,7 @@ public class LifeChangeEventsCoCoPageSteps {
     LifeChangeEventsCoCoPage lifeChangeEventsCoCoPage = new LifeChangeEventsCoCoPage(WebDriverManager.getDriver());
 
     @And("I select {string} life change event with event date of {string}")
-    public void selectQLCEOption(String lceOption, String dateType){
-        lifeChangeEventsCoCoPage.selectLCE(lceOption, dateType);
-    }
+    public void selectQLCEOption(String lceOption, String dateType){lifeChangeEventsCoCoPage.selectLCE(lceOption, dateType);}
 
     @And("I check {string} life change event checkbox")
     public void selectQLCEOptionCheckbox(String lceOption){lifeChangeEventsCoCoPage.selectLCECheckbox(lceOption);}
@@ -49,8 +47,4 @@ public class LifeChangeEventsCoCoPageSteps {
     @Then("I verify LCE checkbox COCO in {string} state")
     public void iVerifyStateOfLCECheckboxesCOCO(String state){
         lifeChangeEventsCoCoPage.verifyLCECheckboxesCOCO(state);}
-
-    @Then("I select Birth QLCE on tell us about life changes page for the Newborn")
-    public void selectQlceTypeforlastmemebr(){
-        lifeChangeEventsCoCoPage.selectBirthQLCE();}
 }
