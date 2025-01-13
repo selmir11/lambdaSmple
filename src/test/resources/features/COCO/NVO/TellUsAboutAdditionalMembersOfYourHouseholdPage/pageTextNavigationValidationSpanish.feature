@@ -1,4 +1,3 @@
-@test
 Feature: Text - Tell us about additional members of your household page
 
   Background: I go the login portal
