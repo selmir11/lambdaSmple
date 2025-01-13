@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DbQueries_Exch {
-    String acctId = SharedData.getPrimaryMember().getAccount_id()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
-    String applicationId = SharedData.getPrimaryMember().getApplication_id();
+    String acctId = SharedData.getPrimaryMember()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
+    String applicationId = SharedData.getPrimaryMember()!=null ? SharedData.getPrimaryMember().getApplication_id(): "";
     String dbName = SharedData.getDbName();
 
     public String policyTablesQuery() {
@@ -239,6 +239,12 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select ehc.household_id from " + dbName + ".es_household_contact ehc\n" +
                 "join " + dbName + ".es_member em on em.household_id  = ehc.household_id \n" +
                 "where ehc.email = '" + SharedData.getPrimaryMember().getEmailId() + "';";
+    }
+
+    public String verifyPasswordResetNotArchivedDb(String currentDate) {
+        return "select *\n" +
+        "from " + dbName + ".ds_item di \n" +
+        "where account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "' and item_name = 'IND_Reset Password (AM-016-07) - " + currentDate + "';";
     }
 
     public String verifyBrokerAuthorizationStatusBOB() {

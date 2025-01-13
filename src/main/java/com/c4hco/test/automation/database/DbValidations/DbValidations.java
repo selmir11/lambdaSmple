@@ -8,6 +8,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -187,6 +188,22 @@ public class DbValidations {
     public void verifyExchHouseholdIdDb() {
         Boolean hasRecords = exchDbDataProvider.getExchHouseholdIdBoB();
         Assert.assertTrue(hasRecords, "Query returned no records");
+        softAssert.assertAll();
+    }
+
+    public void verifyPasswordResetNotArchivedDb(String accountStg, String accountQa) {
+        MemberDetails user = new MemberDetails();
+        String currentDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "M/d/yyyy");
+
+        if(SharedData.getEnv().equals("staging")){
+            user.setAccount_id(new BigDecimal(accountStg));
+        } else{
+            user.setAccount_id(new BigDecimal(accountQa));
+        }
+        SharedData.setPrimaryMember(user);
+
+        Boolean hasRecords = exchDbDataProvider.getPasswordResetNotArchivedDb(currentDate);
+        Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 

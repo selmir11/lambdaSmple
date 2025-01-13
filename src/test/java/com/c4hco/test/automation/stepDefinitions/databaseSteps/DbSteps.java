@@ -107,6 +107,11 @@ public class DbSteps {
         dbValidations.verifyExchHouseholdIdDb();
     }
 
+    @And("I verify the password reset notice is not being archived in the DB for account number STG {string} QA {string}")
+    public void iVerifyPasswordResetNotArchivedDb(String accountStg, String accountQa) {
+        dbValidations.verifyPasswordResetNotArchivedDb(accountStg, accountQa);
+    }
+
     @And("I verify broker deauthorization in the database")
     public void iVerifyBrokerAuthorizationStatusDb() {
         dbValidations.verifyBrokerAuthorizationStatusDb();

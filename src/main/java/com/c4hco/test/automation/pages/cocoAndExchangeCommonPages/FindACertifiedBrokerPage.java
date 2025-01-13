@@ -236,7 +236,7 @@ public class FindACertifiedBrokerPage {
         broker.setBroker_lic_num(licenseNumber.getText());
         broker.setAgencyName(agencyDisplayedName.getText());
         SharedData.setBroker(broker);
-        SharedData.getBroker();
+        SharedData.setAgencyOwner(broker);
     }
 
 
