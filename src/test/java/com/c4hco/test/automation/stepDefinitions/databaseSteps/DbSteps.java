@@ -56,6 +56,11 @@ public class DbSteps {
         dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
     }
 
+    @Then("I verify the created by value as {string} for {string}")
+    public void validateCreatedBy(String createdBy, String memPrefix) {
+        dbValidations.validateCreatedBy(createdBy, memPrefix);
+    }
+
 
     @And("I verify the client's updated email address in BoB DB")
     public void iVerifyUpdatedEmailAddressBOBDB() {

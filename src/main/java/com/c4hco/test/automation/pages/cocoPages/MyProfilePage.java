@@ -131,6 +131,9 @@ public class MyProfilePage {
     @FindBy(id="myProfile_accountId")
     WebElement accountId;
 
+    @FindBy(css=".myProfile_fullName span")
+    List<WebElement> primaryName;
+
 
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
@@ -765,6 +768,14 @@ public class MyProfilePage {
         basicActions.waitForElementToBePresent(accountId, 10);
         SharedData.getPrimaryMember().setAccount_id(new BigDecimal(accountId.getText()));
         System.out.println("Account Id::"+SharedData.getPrimaryMember().getAccount_id());
+    }
+
+    public void getNameOfPrimary(){
+        basicActions.waitForElementListToBePresent(primaryName, 10);
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        primaryMem.setFirstName(primaryName.get(0).getText());
+        primaryMem.setLastName(primaryName.get(2).getText());
+        primaryMem.setSignature(primaryName.get(0).getText()+" "+primaryName.get(2).getText());
     }
 
 }

@@ -17,6 +17,18 @@ public class LoginCredentials {
         SharedData.setPrimaryMember(primaryMember);
     }
 
+    public static void setSesCredentials() {
+        MemberDetails primaryMember = new MemberDetails();
+        if (SharedData.getEnv().equals("qa")) {
+            primaryMember.setEmailId("");
+        } else {
+            primaryMember.setEmailId("smile.joy@test.com");
+        }
+        primaryMember.setPassword("ALaska12!");
+        SharedData.setPrimaryMember(primaryMember);
+    }
+
+
     public static void setScriptBasedDetails(String scriptNum){
         MemberDetails primaryMember = new MemberDetails();
         switch(scriptNum){
