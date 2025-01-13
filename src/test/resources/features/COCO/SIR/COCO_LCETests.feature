@@ -1,7 +1,7 @@
 @COCO11
     # SLCR-652, SLCR-653, SLCR-654, SLCR-655, SLCR-656, SLCR-657, SLCR-658, SLCR-659,
 
-    # for closed enrollment post Jan 15 - Pregnancy, Death, and Divorce are not qualifed LCEs
+    # for closed enrollment post Jan 15 - Pregnancy, Death, and Divorce are not qualified LCEs  - only the Admin can override this status
 Feature: LCE Test Runs for COCO
 
   Background: I go the login portal
@@ -232,6 +232,7 @@ Feature: LCE Test Runs for COCO
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
+     # This will only pass in Open Enrollment unless thru Admin assistance
   @SLCR-654
   Scenario: SLCR-654 - COCO LCE Pregnancy test
     When I click create a new account on login page
@@ -425,6 +426,7 @@ Feature: LCE Test Runs for COCO
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
+     # This will only pass in Open Enrollment unless thru Admin assistance
   @SLCR-656
   Scenario: SLCR-656 - COCO LCE Divorce test
     When I click create a new account on login page
@@ -503,7 +505,7 @@ Feature: LCE Test Runs for COCO
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-657
-    # This will only pass in Closed Enrollment or if the ernollee had previously had another participant who then died.
+    # This will only pass in Open Enrollment unless thru Admin assistance
   Scenario: SLCR-657 - COCO LCE Death test
     When I click create a new account on login page
     Then I click create my account from pre-screen page

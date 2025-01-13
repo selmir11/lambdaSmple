@@ -141,6 +141,7 @@ Feature: Seed04 - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -177,7 +178,7 @@ Feature: Seed04 - Exchange
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
@@ -194,7 +195,7 @@ Feature: Seed04 - Exchange
     And I validate the ob834 "dental" file data
 
     @SLER-1235-WIP
-    Scenario: RT-2150 ENR-EXCH: AUTO PROCESS POLICY - RATING AREA CHANGE (w/LCE: Change in Permanent Residence)
+    Scenario: RT-2051 ENR-EXCH: APPS - CHANGE PRIMARY RESIDENTIAL ADDRESS (Different Rating Area)
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
       And I enter valid credentials to login
@@ -250,8 +251,8 @@ Feature: Seed04 - Exchange
       And I validate "medical" entities from policy tables
       And I validate "dental" entities from policy tables
 
-#      And I verify the policy data quality check with Policy Ah keyset size 4
-#      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+      And I verify the policy data quality check with Policy Ah keyset size 4
+      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
       And I validate "medical" entities from pre edi db tables
         | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
@@ -263,3 +264,41 @@ Feature: Seed04 - Exchange
       And I download the medical and dental files from sftp server with location "/outboundedi/"
       And I validate the ob834 "medical" file data
       And I validate the ob834 "dental" file data
+
+  @SLER-1836-WIP
+  Scenario: RT-2532 ENR-EXCH: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - CHANGE BROKER
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    And I click on change the existing broker
+    Then I Search authorized Broker "Mister Broker"
+    And I click on Search button in find certified broker page
+    And I click more details from the first broker result container
+    Then I click Authorize button in container
+    Then I click on "Authorize New Broker" in the warning container to authorize new or keep the same broker
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    And I click on Sign Out in the Header for "NonElmo"

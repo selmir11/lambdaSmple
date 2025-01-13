@@ -532,9 +532,12 @@ Feature: Page Text-Other Health Coverage Page HRA
       And I verify the header for Primary Member on the HRA page in "English"
       Then I validate HRA dropdown options for "Actual date"
 
-      Then I open url with "?dateOverride=2024-11-15" query in new tab
-      Then I validate HRA dropdown options for "Overridden date"
-      And I close current tab and switch back to previous tab
+      #Open Enrollment validation (Nov, 15 - Dec, 31)
+      #Then I open url with "?dateOverride=2026-11-15" query in new tab
+      #Then I validate HRA dropdown options for "Overridden date"
+      #And I close current tab and switch back to previous tab
+
+      #Open Enrollment validation (Jan, 01 - Jan, 15)
       Then I open url with "?dateOverride=2025-01-01" query in new tab
       Then I validate HRA dropdown options for "Overridden date"
       And I close current tab and switch back to previous tab

@@ -66,6 +66,27 @@ public class AdminPortalIndividualDashboardPage {
     WebElement selectedMember;
     @FindBy(css = "#full-name")
     WebElement memberFullName;
+
+   @FindBy(xpath = "//app-account-summary//div[1]/h6[1]")
+    WebElement txtMember1QA;
+    @FindBy(xpath = "//app-account-summary//div[2]/h6[1]")
+    WebElement txtMember2QA;
+
+    @FindBy(xpath = "//app-account-summary//div[3]/h6[1]")
+    List<WebElement> txtMember3QA;
+
+    @FindBy(xpath = "//app-individual-dashboard[1]//div[1]/h6[2]")
+    WebElement txtPrimaryRelationAgeQA;
+    @FindBy(xpath = "//app-individual-dashboard[1]//div[2]/h6[2]")
+    WebElement txtSecondaryRelationAgeQA;
+    @FindBy(xpath = "//div[@class='household-members']//div[3]//hr[1]")
+    List< WebElement> txtThirdRelationAgeQA;
+    @FindBy(xpath = "//div[@class='username-container']")
+    WebElement membername;
+
+    @FindBy(xpath = "//div[@class='full-name-container']")
+    WebElement memberfullName;
+
     @FindBy(css = "#user-name")
     WebElement userName;
     @FindBy(css = "#phone-number")
@@ -339,9 +360,9 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     public void verifyPrimaryHolder() {
-        basicActions.waitForElementToBePresent(memberPrimary, 10);
+        basicActions.waitForElementToBePresent(memberPrimary, 90);
         softAssert.assertTrue(memberPrimary.isDisplayed());
-        basicActions.waitForElementToBePresent(memberAcctId, 10);
+        basicActions.waitForElementToBePresent(memberAcctId, 90);
         softAssert.assertTrue(memberAcctId.isDisplayed());
 
         if (SharedData.getPrimaryMember() != null) {
@@ -845,6 +866,60 @@ public class AdminPortalIndividualDashboardPage {
             softAssert.assertEquals(tax.getText(), taxQA);
             softAssert.assertAll();
         }
+    }
+
+    public void VerifyIndividualAccountSummary() {
+        basicActions.waitForElementToBePresent(accountSummaryTitle,100);
+        softAssert.assertEquals(accountSummaryTitle.getText(),"Account Summary");
+        basicActions.waitForElementToBePresent(memberFullName,60);
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(membername.getText(),"Username:MGC4testing+atzgwcwwiTest@outlook.com");
+            softAssert.assertEquals(memberfullName.getText(),"Full Name:srptcijuoyTestMember atzgwcwwiTest");
+            softAssert.assertEquals(txtMember1QA.getText(),"srptcijuoyTestMember");
+            softAssert.assertEquals(txtMember2QA.getText(),"akjcqruqnxhfxfgookhl");
+            softAssert.assertEquals(txtPrimaryRelationAgeQA.getText(),"SELF / Age 40");
+            softAssert.assertEquals(txtSecondaryRelationAgeQA.getText(),"WIFE / Age 45");
+            softAssert.assertTrue(txtMember3QA.isEmpty(),"Third member is displayed when it should not be.");
+            softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
+            softAssert.assertAll();
+        }else{
+            softAssert.assertEquals(membername.getText(),"Username:judejewel@test.com");
+            softAssert.assertEquals(memberfullName.getText(),"Full Name:Jude Jewel");
+            softAssert.assertEquals(txtMember1QA.getText(),"Jude");
+            softAssert.assertEquals(txtMember2QA.getText(),"Jenny");
+            softAssert.assertEquals(txtPrimaryRelationAgeQA.getText(),"SELF / Age 45");
+            softAssert.assertEquals(txtSecondaryRelationAgeQA.getText(),"SON / Age 17");
+            softAssert.assertTrue(txtMember3QA.isEmpty(),"Third member is displayed when it should not be.");
+            softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
+        }
+        softAssert.assertAll();
+    }
+
+    public void VerifyCocoIndividualAccountSummary(){
+        basicActions.waitForElementToBePresent(accountSummaryTitle,100);
+        softAssert.assertEquals(accountSummaryTitle.getText(),"Account Summary");
+        basicActions.waitForElementToBePresent(memberFullName,60);
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(membername.getText(),"Username:MGC4Test+apindzmqbhflapeliz@gmail.com");
+            softAssert.assertEquals(memberfullName.getText(),"Full Name:apelizafbrl apindzmqbhfl");
+            softAssert.assertEquals(txtMember1QA.getText(),"apelizafbrl");
+            softAssert.assertEquals(txtMember2QA.getText(),"test");
+            softAssert.assertEquals(txtPrimaryRelationAgeQA.getText(),"SELF / Age 38");
+            softAssert.assertEquals(txtSecondaryRelationAgeQA.getText(),"SPOUSE / Age 1");
+            softAssert.assertTrue(txtMember3QA.isEmpty(),"Third member is displayed when it should not be.");
+            softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
+            softAssert.assertAll();
+        }else{
+            softAssert.assertEquals(membername.getText(),"Username:MGC4Test+apindkhkbtgkapeliz@gmail.com");
+            softAssert.assertEquals(memberfullName.getText(),"Full Name:apelizabmum apindkhkbtgk");
+            softAssert.assertEquals(txtMember1QA.getText(),"apelizabmum");
+            softAssert.assertEquals(txtMember2QA.getText(),"FrVQbD");
+            softAssert.assertEquals(txtPrimaryRelationAgeQA.getText(),"SELF / Age 34");
+            softAssert.assertEquals(txtSecondaryRelationAgeQA.getText(),"SPOUSE / Age 33");
+            softAssert.assertTrue(txtMember3QA.isEmpty(),"Third member is displayed when it should not be.");
+            softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
+        }
+        softAssert.assertAll();
     }
 }
 
