@@ -44,6 +44,9 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath ="//*[@id='agency-manage-account-button']")
     WebElement authorizeBrokerButton;
 
+    @FindBy(id="agency-manage-account-button")
+    WebElement authorizeButton;
+
     @FindBy(id ="terms-checkbox-input")
     WebElement authorizeBrokerTermsCheckbox;
 
@@ -212,6 +215,10 @@ public class FindACertifiedBrokerPage {
         basicActions.waitForElementToBePresent(searchBrokerLocation,60);
         searchBrokerLocation.clear();
     }
+    public void clickAuthorizeButton() {
+        basicActions.waitForElementToBePresent(authorizeButton,60);
+        authorizeButton.click();
+    }
 
     public void clickSearchButton() {
         basicActions.waitForElementToBePresent(searchButton,100);
@@ -236,7 +243,7 @@ public class FindACertifiedBrokerPage {
         broker.setBroker_lic_num(licenseNumber.getText());
         broker.setAgencyName(agencyDisplayedName.getText());
         SharedData.setBroker(broker);
-        SharedData.getBroker();
+        SharedData.setAgencyOwner(broker);
     }
 
 

@@ -25,6 +25,9 @@ public class BasicSteps {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
+                case "tax Silver":
+                pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
+                break;
             case "Admin Login":
                 pageUrl = "login-portal/login/adminUsers";
                 break;
@@ -34,11 +37,17 @@ public class BasicSteps {
             case "Broker Portal Login":
                 pageUrl = "login-portal/login/brokers";
                 break;
+            case "Admin Program manager account creation":
+            pageUrl = "AdminPortal/program-manager/account-creation";
+            break;
             case "Prescreen":
                 pageUrl = "/prescreen";
                 break;
             case "Add Member":
                 pageUrl = "nes/addMember";
+                break;
+            case "Member":
+                pageUrl = "nes/member";
                 break;
             case "Pay now":
                 pageUrl = "PaymentPortal/payNow";

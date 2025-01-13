@@ -1,3 +1,4 @@
+@NVOCoCoRegression
 Feature: Admin Portal Validations
 
   Background: I go the login portal

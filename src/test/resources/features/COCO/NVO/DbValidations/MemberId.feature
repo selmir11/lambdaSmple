@@ -1,3 +1,4 @@
+@NVOCoCoRegression
 Feature: Coco user - Db Validations related to member id
 
   Background: I go the login portal

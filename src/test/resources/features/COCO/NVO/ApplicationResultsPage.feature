@@ -1,3 +1,4 @@
+@NVOCoCoRegression
 Feature: Coco user on the Application results page
 
   Background: I go the login portal
