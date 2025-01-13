@@ -114,6 +114,7 @@ public class AddInfoForYourselfPage {
         switch (mailingAddress) {
             case "Yes":
                 mailingAddressButtons.get(0).click();
+                subscriber.setMailingAddress(subscriber.getResAddress());
                 break;
             case "No":
                 mailingAddressButtons.get(1).click();
@@ -121,7 +122,6 @@ public class AddInfoForYourselfPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + mailingAddress);
         }
-        subscriber.setMailingAddress(subscriber.getResAddress());
     }
 
     public void liveInColoradoSelection(String liveInColorado) {
