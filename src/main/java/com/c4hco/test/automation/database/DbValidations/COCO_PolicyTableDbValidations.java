@@ -25,7 +25,7 @@ public class COCO_PolicyTableDbValidations {
     public void recordsValidations() {
         setData();
         medicalRecordsValidations();
-       // softAssert.assertAll();
+        softAssert.assertAll();
     }
 
    private void medicalRecordsValidations() {
@@ -57,7 +57,7 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
         softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
         softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
-      //  softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     private void validateMedDenForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member) {
@@ -95,7 +95,7 @@ public class COCO_PolicyTableDbValidations {
                 softAssert.assertNull(policyTablesEntity.getTotal_csr_amt(), "Medical Policy total CSR amount does not match");
                 softAssert.assertNull(policyTablesEntity.getFinancial_period_start_date(), "Medical financial start date does not match");
                 softAssert.assertNull(policyTablesEntity.getFinancial_period_end_date(), "Medical financial end date does not match");
-             //   softAssert.assertAll();
+                softAssert.assertAll();
             }
         }
     }
@@ -111,7 +111,7 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), medicalPlanDbData.getCsrAmt(), "Medical Policy total CSR amount does not match");
         softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical financial start date does not match");
         softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical financial end date does not match");
-      //  softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     private void medValidationsCommonForAllMembers(PolicyTablesEntity policyTablesEntity) {
@@ -124,7 +124,7 @@ public class COCO_PolicyTableDbValidations {
 
         softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical member financial start date does not match");
         softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
-       // softAssert.assertAll();
+        softAssert.assertAll();
     }
     private void setData() {
         subscriber = SharedData.getPrimaryMember();

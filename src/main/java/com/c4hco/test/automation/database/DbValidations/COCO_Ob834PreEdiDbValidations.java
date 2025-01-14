@@ -80,7 +80,7 @@ public class COCO_Ob834PreEdiDbValidations {
         softAssert.assertNull(ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
         softAssert.assertNull(ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
         softAssert.assertNull(ob834Entity.getPremium_reduction_type(),"Plan premium reduction type does not match");
-      //  softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     private void validateMedDenForSubscriberAndMem(Ob834DetailsEntity ob834Entity, MemberDetails member){
@@ -105,7 +105,7 @@ public class COCO_Ob834PreEdiDbValidations {
         softAssert.assertEquals(member.getResAddress().getAddressState(), ob834Entity.getResidence_st(), "Residential address state does not match");
         softAssert.assertEquals(member.getResAddress().getAddressZipcode(), ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
         softAssert.assertEquals(dbData.getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
-       // softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     private void validateMailingAddressIsNull(Ob834DetailsEntity ob834Entity){
@@ -144,7 +144,7 @@ public class COCO_Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getIncorrect_marital_status_code(), member.getIncorrect_marital_status_code(), "Incorrect_marital_status_code did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_race(), member.getIncorrect_race(), "Incorrect_race did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_middle_name(), member.getIncorrect_middle_name()!=null && !member.getIncorrect_middle_name().isEmpty()? member.getIncorrect_middle_name(): null, "Incorrect_middle_name did not match!");
-        //softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     private void validateBrokerDetails(Ob834DetailsEntity ob834Entity) {
@@ -267,7 +267,6 @@ public class COCO_Ob834PreEdiDbValidations {
         subscriberOnlyMedDenFields(ob834Entity);
     }
     private void subscriberOnlyMedDenFields(Ob834DetailsEntity ob834Entity){
-       //  Bug - POL-9149 - Plan Sponsor Name should be primary member name - it is not updated with name change - Need to revert the code after the bug is fixed.
         softAssert.assertEquals( ob834Entity.getPlan_sponsor_name(), subscriber.getSignature(), "plan sponsor name did not match");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
