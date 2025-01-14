@@ -1,5 +1,5 @@
 @APTC @APTC-SIR2 @APTC-SIR-Single
-  # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-692
+  # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-691, SLER-692
 Feature: UI Tests related to APTC after second enrollment change
 
   Background: I go the login portal
