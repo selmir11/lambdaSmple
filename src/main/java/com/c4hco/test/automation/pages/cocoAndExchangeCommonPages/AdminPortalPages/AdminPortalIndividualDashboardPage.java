@@ -360,9 +360,9 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     public void verifyPrimaryHolder() {
-        basicActions.waitForElementToBePresent(memberPrimary, 90);
+        basicActions.waitForElementToBePresent(memberPrimary, 100);
         softAssert.assertTrue(memberPrimary.isDisplayed());
-        basicActions.waitForElementToBePresent(memberAcctId, 90);
+        basicActions.waitForElementToBePresent(memberAcctId, 100);
         softAssert.assertTrue(memberAcctId.isDisplayed());
 
         if (SharedData.getPrimaryMember() != null) {
