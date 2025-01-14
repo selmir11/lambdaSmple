@@ -845,18 +845,4 @@ public class LifeChangeEventsCoCoPage {
             basicActions.wait(200);
         }
     }
-    public void selectBirthQLCE(){
-        basicActions.waitForElementToBeClickable(birthLCE, 10);
-        birthLCE.click();
-        String newbornFullName =basicActions.getCompleteFullNameWithPrefix(SharedData.getBirthLceIndividual());
-        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//span[contains(text(),'" + newbornFullName + "')]/parent::label//button[contains(@class,'checkbox')and contains(@id,'ELIG-LceMember-BIRTH')]"));
-        basicActions.waitForElementToBeClickable(birthLceMemCheckbox, 10);
-        birthLceMemCheckbox.click();
-
-        birthEventDate.stream()
-                .filter(WebElement::isEnabled)
-                .findFirst()
-               .ifPresent(eventDateElement -> eventDateElement.sendKeys((basicActions.changeDateFormat(SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual()), "MM/dd/yyyy", "MM/dd"))));
-
-    }
 }
