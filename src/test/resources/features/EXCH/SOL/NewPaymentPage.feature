@@ -177,6 +177,7 @@ Feature: New payment portal - currently in QA only
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "RMHP Colorado Doctors Plan Colorado Option Silver" medical plan

@@ -51,6 +51,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I select the first medical plan
     Then I click continue on medical plan results page
@@ -221,6 +222,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select the first medical plan
@@ -253,7 +255,7 @@ Feature: Initial Payment Page test
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    And I report "MovedToColorado" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011989" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -323,13 +325,10 @@ Feature: Initial Payment Page test
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter member details with "04152000" date of birth
-    And I select "Female" as sex option
-    And I mark the Additional member is pregnant as "No"
-    And I select "In Law" as relationship option
-    And I select "In Law" as relationship one option
-    And I select "Spouse" as relationship two option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "InLaw", "Age24", "Female" and applying "Yes"
+      | Primary:Inlaw |
+      | Spouse:Inlaw  |
+      | Son: Spouse   |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -342,7 +341,7 @@ Feature: Initial Payment Page test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -358,6 +357,7 @@ Feature: Initial Payment Page test
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Son"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
