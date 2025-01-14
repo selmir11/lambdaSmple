@@ -350,7 +350,7 @@ Feature: Page Text-Other Health Coverage Page
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   1   |
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2024  |   500.00    |  QSEHRA |                    |          0           |
+      |   2025  |   500.00    |  QSEHRA |                    |          0           |
 
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
