@@ -323,7 +323,7 @@ Feature: Dental Plan Verification test
     Then I validate I am on the "Dental Plan Results" page
     # validate that pediatric plans do not appear for someone over 19 in the same area as before in minor test- we will verify from the plan title
     And I validate that Pediatric Dental Plans are not available
-    #And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-863 @SelectVerifyDentalPediatricPlansAdultWithMinor
   Scenario: SLER-863 - Verify Pediatric plans available for group of two

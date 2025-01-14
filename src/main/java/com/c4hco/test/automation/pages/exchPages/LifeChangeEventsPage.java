@@ -30,7 +30,7 @@ public class LifeChangeEventsPage {
     @FindBy(id = "continueButton")
     List<WebElement> saveAndContinueButton;
 
-    @FindBy(css = "div.col-sm-6.text-right > input")
+    @FindBy(id = "continueButton")
     WebElement saveAndContinueOnlyButton;
 
     @FindBy(css = "h1.c4PageHeader")
