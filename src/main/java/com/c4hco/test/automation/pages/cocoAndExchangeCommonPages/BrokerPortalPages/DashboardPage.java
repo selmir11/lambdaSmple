@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -66,12 +68,34 @@ public class DashboardPage {
 
     @FindBy(id = "accountSummary-data-agencyOwner")
     WebElement accountSummaryAgencyOwnerName;
+    @FindBy(id = "openVerificationRequests")
+    WebElement mvrContainerTitle;
+    @FindBy(id = "searchParam-label")
+    WebElement searchLabel;
+
+    @FindBy(xpath = "//button[@type='searchParam-btn']")
+    WebElement searchBtn;
+    @FindBy(id = "searchParam-input")
+    WebElement searchInput;
+    @FindBy(id = "searchParam-errorMsg")
+    WebElement speacialCharactersError;
+    @FindBy(xpath = "//table[@id='mvr-table']/tr[1]//th")
+    List<WebElement> mvrTableHeader;
+    @FindBy(id = "pagination-next-page-btn")
+    WebElement nextPage;
+    @FindBy(id = "pagination-curr-page")
+    WebElement currentPageText;
+    @FindBy(id = "pagination-prev-page-btn")
+    WebElement PaginationLeft;
+    @FindBy(xpath = "//table[@id='mvr-table']//tr[2]//td")
+    List<WebElement> firstRowsOptions;
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
+
 
     public void clickAgencyDashboard(){
         basicActions.waitForElementToBePresent(agencyDashboard,10);
@@ -182,5 +206,92 @@ public class DashboardPage {
         SharedData.getAgencyOwner().setBroker_name(accountSummaryAgencyOwnerName.getText());
         SharedData.getAgencyOwner().setFirstName(accountSummaryAgencyOwnerName.getText().split(" ")[0].trim());
 
+    }
+
+    public void validateTheMVRContainerTextInTheDashboardPage() {
+        basicActions.waitForElementToBePresentWithRetries(mvrContainerTitle,50);
+        basicActions.scrollToElement(mvrContainerTitle);
+        softAssert.assertEquals(mvrContainerTitle.getText(),"Open Verification Requests");
+        softAssert.assertEquals(searchLabel.getText(),"Search By First Name or Last Name:");
+        softAssert.assertEquals(searchBtn.getText(),"Search");
+        List<String> actualTitleHeader = new ArrayList<>();
+        List<String> expectedTitleHeader = new ArrayList<>(Arrays.asList("First Name","Last Name","Type","Due Date",""));
+
+        for (WebElement each : mvrTableHeader) {
+            actualTitleHeader.add(each.getText());
+            System.out.println(each.getText());
+        }
+        softAssert.assertEquals(expectedTitleHeader,actualTitleHeader);
+        softAssert.assertAll();
+    }
+
+    public void validateTheICanTSearchForSpecialCharactersOnSearchBar() {
+        basicActions.waitForElementToBePresentWithRetries(speacialCharactersError,100);
+        basicActions.isElementDisplayed(speacialCharactersError,100);
+        softAssert.assertEquals(speacialCharactersError.getText(),"No special characters allowed");
+        softAssert.assertAll();
+    }
+
+    public void searchForInSearchMvrContainer(String client) {
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,50);
+        basicActions.waitForElementToBePresentWithRetries(searchInput,30);
+        searchInput.sendKeys(client);
+        basicActions.waitForElementToBePresentWithRetries(searchBtn,30);
+        searchBtn.click();
+    }
+
+    public void clearTheMVRSearchBoxInBrokerDashboardPage() {
+        basicActions.waitForElementToBePresentWithRetries(searchInput,30);
+        searchInput.clear();
+        basicActions.waitForElementToBePresentWithRetries(searchBtn,30);
+        searchBtn.click();
+    }
+
+    public void clickTheRightPaginationArrowButtonTimesInMvrContainer(int numberTimes) {
+        basicActions.waitForElementToBePresent(nextPage,30);
+        for(int i=0; i<=numberTimes; i++){
+            basicActions.waitForElementToBeClickable(nextPage,10);
+            basicActions.waitForElementToBeClickable(searchBtn,30);
+            nextPage.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void verifyTheCurrentResultPageIsInMvrContainer(String currentPage) {
+        basicActions.waitForElementToBePresent(currentPageText,30);
+        basicActions.waitForElementToBeClickable(currentPageText,10);
+        softAssert.assertEquals(currentPageText.getText(), currentPage);
+        softAssert.assertAll();
+    }
+
+    public void clickTheLeftPaginationArrowButtonTimesInMvrContainer(int numberTimes) {
+        basicActions.waitForElementToBePresent(PaginationLeft,30);
+        for(int i=0; i<numberTimes; i++){
+            basicActions.waitForElementToBeClickable(PaginationLeft,10);
+            PaginationLeft.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void validateTheResultContains(String search) {
+        basicActions.waitForElementListToBePresentWithRetries(firstRowsOptions,300);
+        basicActions.wait(500);
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,500);
+        boolean found = false;
+        for (WebElement each : firstRowsOptions) {
+           if (each.getText().contains(search)){
+               found = true;
+               break;
+           }
+        }
+        softAssert.assertTrue(found, "element is not found");
+        softAssert.assertAll();
+    }
+
+    public void validateTheMvrContainerIsNotDisplayed() {
+        basicActions.waitForElementToBePresentWithRetries(ViewYourClientsButton,30);
+        basicActions.scrollToElement(ViewYourClientsButton);
+        softAssert.assertFalse(basicActions.isElementDisplayed(mvrContainerTitle,30));
+        softAssert.assertAll();
     }
 }

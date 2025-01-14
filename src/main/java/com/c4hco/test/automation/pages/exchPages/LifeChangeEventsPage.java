@@ -129,12 +129,7 @@ public class LifeChangeEventsPage {
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
 
-        if (SharedData.getEnv().equals("qa")) {
             saveAndContinueButton.get(0).click();
-        } else {
-            basicActions.scrollToElement(saveAndContinueOnlyButton);
-            saveAndContinueOnlyButton.click();
-        }
     }
 
     public void clickContinueWithApplication(){
