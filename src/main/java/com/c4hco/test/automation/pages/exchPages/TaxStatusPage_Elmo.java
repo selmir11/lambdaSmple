@@ -962,11 +962,7 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
-                    softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
-                } else {
-                    softAssert.assertEquals(claimDobNameTxt.getText(), "Date of birth");
-                }
+                softAssert.assertEquals(claimDobNameTxt.getText(), "Fecha de nacimiento");
                 softAssert.assertAll();
                 break;
             default:
@@ -1084,11 +1080,7 @@ public class TaxStatusPage_Elmo {
                 lastNameErrorTxt = "El apellido es obligatorio";
                 firstNameTxt = "Nombre";
                 lastNameTxt = "Apellido(s)";
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
-                    dobTxt = "Fecha de nacimiento";
-                } else {
-                    dobTxt = "Date of birth";
-                }
+                dobTxt = "Fecha de nacimiento";
                 if ("not valid".equals(dateError)) {
                     dobErrorTxt = "La fecha no es v\u00E1lida";
                 } else if ("required".equals(dateError)) {
@@ -1470,11 +1462,7 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(filingLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(filingSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(filingSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
-                    softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
-                } else {
-                    softAssert.assertEquals(filingDobNameTxt.getText(), "Date of birth");
-                }
+                softAssert.assertEquals(filingDobNameTxt.getText(), "Fecha de nacimiento");
                 softAssert.assertAll();
                 break;
             default:
@@ -1511,11 +1499,7 @@ public class TaxStatusPage_Elmo {
                 lastNameErrorTxt = "El apellido es obligatorio";
                 firstNameTxt = "Nombre";
                 lastNameTxt = "Apellido(s)";
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
-                    dobTxt = "Fecha de nacimiento";
-                } else {
-                    dobTxt = "Date of birth";
-                }
+                dobTxt = "Fecha de nacimiento";
                 if ("not valid".equals(dateError)) {
                     dobErrorTxt = "La fecha no es v\u00E1lida";
                 } else if ("required".equals(dateError)) {
@@ -1771,11 +1755,7 @@ public class TaxStatusPage_Elmo {
                 softAssert.assertEquals(claimedLastNameTxt.getText(), "Apellido(s)");
                 softAssert.assertEquals(claimedSuffixNameTxt.getText(), "Titulo o tratamiento");
                 softAssert.assertEquals(claimedSuffixNameDpd.getText(), "Seleccione\n" + "Jr.\n" + "Sr.\n" + "III\n" + "IV");
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
-                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
-                } else {
-                    softAssert.assertEquals(claimedDobNameTxt.getText(), "Date of birth");
-                }
+                softAssert.assertEquals(claimedDobNameTxt.getText(), "Fecha de nacimiento");
                 softAssert.assertAll();
                 break;
             default:
@@ -1812,11 +1792,7 @@ public class TaxStatusPage_Elmo {
                 lastNameErrorTxt = "El apellido es obligatorio";
                 firstNameTxt = "Nombre";
                 lastNameTxt = "Apellido(s)";
-                if (SharedData.getEnv().equals("qa")) {//bug TAM-4947
-                    dobTxt = "Fecha de nacimiento";
-                } else {
-                    dobTxt = "Date of birth";
-                }
+                dobTxt = "Fecha de nacimiento";
                 if ("not valid".equals(dateError)) {
                     dobErrorTxt = "La fecha no es v\u00E1lida";
                 } else if ("required".equals(dateError)) {
