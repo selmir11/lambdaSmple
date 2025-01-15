@@ -139,7 +139,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$481.89/mo"
+    Then I validate that my APTC value is "$486.09/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
       |Income                  |Open               |
@@ -148,6 +148,7 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "PrimaryMember"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
