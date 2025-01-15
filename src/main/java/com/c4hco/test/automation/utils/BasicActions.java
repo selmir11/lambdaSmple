@@ -854,6 +854,11 @@ public class BasicActions {
         return allDependents;
     }
 
+    public String getMemberIDFromURL() {
+        String[] parts = getCurrentUrl().split("/");
+        return parts[parts.length - 1];
+    }
+
 
     public String getMemFirstNames(String memPrefix){
         List<MemberDetails> allMem = getAllMem();
@@ -929,10 +934,11 @@ public class BasicActions {
         if (memPrefix.equals("Primary")) {
             memId = SharedData.getPrimaryMemberId();
         } else {
-            List<MemberDetails> members = SharedData.getMembers();
+            List<MemberDetails> members = getAllMem();
             for (MemberDetails mem : members) {
                 if (mem.getFirstName().contains(memPrefix)) {
                     memId = mem.getMemberId();
+                    break;
                 }
             }
         }

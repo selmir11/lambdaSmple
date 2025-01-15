@@ -21,6 +21,11 @@ public class TellUsAboutYourselfCoCoSteps {
         tellUsAboutYourselfCoCoPage.clickGoBackButton();
     }
 
+    @And("I get the memberId of primary member from url")
+    public void getMemId(){
+        tellUsAboutYourselfCoCoPage.getMemberId();
+    }
+
     @Then("I enter first name and last name on Tell Us About Yourself Page Coco")
     public void ienterPrimaryFirstLastInfo() {
         tellUsAboutYourselfCoCoPage.enterPrimaryFirstLastInfo();

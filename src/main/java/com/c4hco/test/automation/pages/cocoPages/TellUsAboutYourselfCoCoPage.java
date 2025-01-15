@@ -141,6 +141,13 @@ public class TellUsAboutYourselfCoCoPage {
         goBackButton.click();
     }
 
+    public void getMemberId(){
+        String memberId = basicActions.getMemberIDFromURL();
+        SharedData.getPrimaryMember().setMemberId(memberId);
+        SharedData.setPrimaryMemberId(memberId);
+
+    }
+
     public void enterPrimaryFirstLastInfo() {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstNameText, 30);

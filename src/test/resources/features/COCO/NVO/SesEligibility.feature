@@ -1,6 +1,5 @@
 Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
-
-  @n1
+  
   Scenario: Validate SES
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -17,27 +16,11 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
-#    Then I click EditUpdate on Family Overview page for "getFromSharedData"
-#    Then I validate I am on the "CoCo Tell us about yourself" page
-#    Then I click Save and Continue only on the tell us about yourself page
-#    Then I validate I am on the "CoCo Additional information for yourself" page
-#    And I click continue on the Add info for yourself page
-#    Then I validate I am on the "Elmo Race and Ethnicity" page
-#    And I click save and continue on the Race and Ethnicity page
-#    Then I validate I am on the "CoCo Employment Income" page
-#    And I click continue on the Employment income page
-#
-#    Then I validate I am on the "CoCo Additional Income" page
-#    And I select continue on the Additional Income CoCO page
-#
-#    Then I validate I am on the "CoCo Deductions" page
-#    And I select continue on the Deductions CoCo page
-#
-#    Then I validate I am on the "CoCo Income Summary" page
-#    And I select continue on the income Summary CoCo page
-#
-#    Then I validate I am on the "CoCo Family Overview" page
-
+    Then I click EditUpdate on Family Overview page for "getFromSharedData"
+    Then I validate I am on the "CoCo Tell us about yourself" page
+    And I get the memberId of primary member from url
+    Then I click Go Back on the tell us about yourself page
+    Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
     And I enter details on tell us about additional members of your household page with name "Wife", dob "03051989", gender "Female", and applying "Yes"
     And I select the relationship to primary member as "Spouse"
@@ -70,10 +53,5 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     Then I validate I am on the "Application Results CoCo" page
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2" for "getFromSharedData"
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Wife"
-    Then I verify the created by value as "HiaePhaseTwoGrandfatheringAppenderService" for "getFromSharedData"
-    Then I verify the created by value as "RulesEngineAppenderService" for "Wife"
-    # - primary member - member id - tell us abt urself - grab if getFromSharedData
-
-
-
-
+    Then I verify the created by value as "HiaePhaseTwoGrandfatheringAppenderService" for "getFromSharedData" and determination as "ELIGIBLE_FOR_HP2"
+    Then I verify the created by value as "RulesEngineAppenderService" for "Wife" and determination as "ELIGIBLE_FOR_HP2_LIMITED"

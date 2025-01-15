@@ -255,6 +255,20 @@ public class DbValidations {
     }
 
     public void validateApplicationResult(String expectedReasonCode, String memPrefix) {
+        String determination = getDeterminationValue(expectedReasonCode);
+
+        if(memPrefix.equals("getFromSharedData")){
+           memPrefix = SharedData.getPrimaryMember().getFirstName();
+        }
+
+        String memberID = basicActions.getMemberId(memPrefix);
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, determination);
+
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+        softAssert.assertAll();
+    }
+
+    private String getDeterminationValue(String expectedReasonCode){
         String determination = null;
         switch (expectedReasonCode) {
             case "OFF_EXCHANGE_ELIGIBLE", "OFF_EXCHANGE_NOT_ELIGIBLE":
@@ -267,28 +281,25 @@ public class DbValidations {
                 determination = "GAIN_DEP_QLCE";
                 break;
             case "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY":
-                expReasonCode = "TAX_TIME_ENROLLMENT_QLCE";
+                determination = "TAX_TIME_ENROLLMENT_QLCE";
                 break;
             default:
                 Assert.fail("Expected Reason Code is not valid");
         }
-
-        if(memPrefix.equals("getFromSharedData")){
-           memPrefix = SharedData.getPrimaryMember().getFirstName();
-        }
-
-        String memberID = exchDbDataProvider.getMemberId(basicActions.getMemFirstNames(memPrefix));
-        String reasonCode = exchDbDataProvider.getReasonCode(memberID, determination);
-
-        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
-       // softAssert.assertAll();
+        return determination;
     }
 
-    public void validateCreatedBy(String createdBy, String memPrefix){
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode){
+        String determination = getDeterminationValue(expectedReasonCode);
+
         if(memPrefix.equals("getFromSharedData")){
             memPrefix = SharedData.getPrimaryMember().getFirstName();
         }
 
+        String memberID = basicActions.getMemberId(memPrefix);
+        String createdByFromDb = exchDbDataProvider.getCreatedBy(memberID, determination);
+        softAssert.assertEquals(createdByFromDb, createdBy, "CreatedBy validation failed");
+        softAssert.assertAll();
     }
 
 

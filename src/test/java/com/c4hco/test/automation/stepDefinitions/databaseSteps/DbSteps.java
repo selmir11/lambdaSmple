@@ -56,9 +56,9 @@ public class DbSteps {
         dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
     }
 
-    @Then("I verify the created by value as {string} for {string}")
-    public void validateCreatedBy(String createdBy, String memPrefix) {
-        dbValidations.validateCreatedBy(createdBy, memPrefix);
+    @Then("I verify the created by value as {string} for {string} and determination as {string}")
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode) {
+        dbValidations.validateCreatedBy(createdBy, memPrefix, expectedReasonCode);
     }
 
 

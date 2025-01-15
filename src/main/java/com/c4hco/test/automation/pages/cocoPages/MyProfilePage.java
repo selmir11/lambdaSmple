@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.CreateAccountPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -1047,9 +1046,12 @@ public class MyProfilePage {
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         primaryMem.setFirstName(primaryName.get(0).getText());
         primaryMem.setLastName(primaryName.get(2).getText());
-        primaryMem.setSignature(primaryName.get(0).getText() + " " + primaryName.get(2).getText());
+     String signature = primaryName.get(0).getText()+" "+primaryName.get(2).getText();
+      if(!primaryName.get(1).getText().equals("")){
+          signature = primaryName.get(0).getText() + " " +primaryName.get(1).getText()+" "+ primaryName.get(2).getText();
+      }
+        primaryMem.setSignature(signature);
     }
-
 }
 
 
