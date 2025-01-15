@@ -1,4 +1,4 @@
-@NVO @NVOPDF
+@NVO @NVOPDF @AM @Notices
 Feature: AM 011-02 Notices
 
   Background:
