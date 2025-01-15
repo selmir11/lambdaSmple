@@ -55,10 +55,10 @@ public class MyProfilePage {
     @FindBy(css = "#email")
     WebElement InputEmailCoCo;
 
-    @FindBy(id = "myProfile_mobilePhone")
+    @FindBy(id = "mobilePhone")
     WebElement MobilephoneCoCo;
 
-    @FindBy(id = "myProfile_homePhone")
+    @FindBy(id = "homePhone")
     WebElement HomephoneCoCo;
 
     @FindBy(css = "#userPassword")
