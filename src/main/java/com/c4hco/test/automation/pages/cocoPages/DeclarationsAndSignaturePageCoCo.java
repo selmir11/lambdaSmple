@@ -39,8 +39,7 @@ public class DeclarationsAndSignaturePageCoCo {
 
     public void enterSignatureinCoCo(){
         basicActions.waitForElementToBePresent(signatureInputField, 20);
-       String signature = SharedData.getPrimaryMember().getSignature();
-        signatureInputField.sendKeys(signature);
+        signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
     }
     public void goBack() {
         basicActions.waitForElementToBeClickable(goBackButton,10);
