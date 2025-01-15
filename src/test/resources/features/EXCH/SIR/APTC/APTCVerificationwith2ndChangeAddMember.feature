@@ -24,7 +24,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-#     And I report "Marriage" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "Marriage" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -148,9 +149,9 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
+     # Question not asked during Open Enrollment
    Then I validate I am on the "Report a life change" page
    And I report "MovedToColorado" and click continue
-
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -168,7 +169,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -225,7 +225,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$1134.70/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$968.54/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -264,7 +264,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-#     And I report "MovedToColorado" and click continue
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -390,7 +391,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
+      # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
       And I report "Marriage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
@@ -410,7 +412,6 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -449,7 +450,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Application Summary" page
       Then I select the Edit Income link
-      #
+
       Then I validate I am on the "Employment Info" page
       Then I select the option "Yes" to employment
       And I select the option "No" to self employment
@@ -457,7 +458,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select the option "No" to seasonal employment
       And I select the option "No" to projected income
       And I click continue on the Employment Info Page
-      #
+
       Then I validate I am on the "Employment Summary" page
       Then I click continue on the Employment Summary Page
 
@@ -551,8 +552,9 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #Not available during Open Enrollment
-#    And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -677,14 +679,14 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
-    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
+
+     # Question not asked during Open Enrollment
+    Then I validate I am on the "Report a life change" page
+    And I report "Marriage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-
-    #Then I validate I am on the "Report a life change" page
-    And I report "Marriage" and click continue
 
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -700,7 +702,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -739,7 +740,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
-      #
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -747,7 +748,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
-      #
+
     Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
 
@@ -841,8 +842,9 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      #Not available during Open Enrollment
-#      And I report "MovedToColorado" and click continue
+       # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -963,12 +965,14 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
+     # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
       And I report "LostCoverage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
-      Then I select "Male" as sex option
+
+    Then I select "Male" as sex option
       And I select "Yes" to Are You Applying
       And I click continue on Tell us about yourself page
 
@@ -982,7 +986,6 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity option for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -1007,6 +1010,10 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Disability option
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
+
+      And I select "No" for Fulltime Student option
+      Then I select "No" for Foster care in state of Colorado
+
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
@@ -1072,7 +1079,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
 
-      #### Good News insert
+      # Good News insert
       Then I validate I am on the "Good News" page
       Then I click on "No Thanks" on good news page
 
@@ -1111,7 +1118,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click on Sign Out in the Header for "Portal"
       Examples:
         |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
-        |Leadville  |CO       |01011990   |Lake     |80461        |1500000  |$0.00      |5240000      |$310.05/mo      |-$310.05    |01012007   |
+        |Leadville  |CO       |01011990   |Lake     |80461        |1500000  |$0.00      |5240000      |$362.74/mo      |-$362.74    |01012007   |
 
   @SLER-804
   Scenario Outline: SLER-804 -APTCRules - formerly RT-2411 - Add a daughter on 2nd enrollmnent - primary income change
@@ -1129,7 +1136,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-#    And I report "Birth" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -1240,7 +1248,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
-      # End of initial enrollment
+    # End of initial enrollment
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1252,6 +1260,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
+     # Question not asked during Open Enrollment
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
 
@@ -1271,7 +1280,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1396,7 +1404,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
     Examples:
       |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
-      |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
+      |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$412.32/mo      |-$412.32    | 01012011  |
 
   @SLER-1007
   Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2345
@@ -1415,7 +1423,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-#    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -1546,7 +1555,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #Then I validate I am on the "Report a life change" page
+     # Question not asked during Open Enrollment
+    Then I validate I am on the "Report a life change" page
     And I report "Marriage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
@@ -1566,7 +1576,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1662,8 +1671,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    
-    # edit income information
+
     #member2
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "Spouse"
@@ -1681,7 +1689,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-        # added member 3
+     # added member 3
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "DaughterOne"
     And I click the edit income icon on household page for "DaughterOne"
@@ -1817,8 +1825,9 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-#      Then I validate I am on the "Report a life change" page
-#      And I report "MovedToColorado" and click continue
+       # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -1933,13 +1942,13 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
-  #
+
+      # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
+
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
-  #
-     #open enrollment doesnt contain option for LCE
-     # Then I validate I am on the "Report a life change" page
-     # And I report "MovedToColorado" and click continue
 
       Then I select "Male" as sex option
       And I select "Yes" to Are You Applying
@@ -1955,7 +1964,6 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
