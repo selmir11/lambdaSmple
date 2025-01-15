@@ -1,4 +1,4 @@
-@SIR-EXCH11
+@SIR-EXCH12
 Feature: Tests related to medical plans
 
  @SLER-1123

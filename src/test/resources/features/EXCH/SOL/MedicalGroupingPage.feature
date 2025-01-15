@@ -36,7 +36,7 @@ Feature: UI Page Validation - Medical Grouping Page
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primay"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -78,6 +78,7 @@ Feature: UI Page Validation - Medical Grouping Page
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups

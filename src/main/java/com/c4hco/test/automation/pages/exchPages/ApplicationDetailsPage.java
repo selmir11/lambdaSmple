@@ -279,34 +279,37 @@ public class ApplicationDetailsPage {
         String voluntarilyEndingHighlight = ohcData.get(0).get("Voluntarily Highlight");
 
         softAssert.assertEquals(ohcDetails.get(0).getText(), coverageType);
-        softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),highlightedColor(coverageTypeHighlight),coverageType+" highlight");
-        if (currentlyEnrolled != null) {
-            softAssert.assertEquals(ohcDetails.get(1).getText(), "Currently enrolled "+ currentlyEnrolled);
-        }
+        softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"), highlightedColor(coverageTypeHighlight), coverageType + " highlight");
+        int nextIndex = 1;
         if (currentlyEnrolledHighlight != null) {
-            softAssert.assertEquals(ohcDetails.get(1).getCssValue("background"),highlightedColor(currentlyEnrolledHighlight),"Currently enrolled highlight");
+            softAssert.assertEquals(ohcDetails.get(nextIndex).getCssValue("background"), highlightedColor(currentlyEnrolledHighlight), "Currently enrolled highlight");
         }
-        if (insuranceEnding != null) {
-            softAssert.assertEquals(ohcDetails.get(2).getText(), "Insurance ending in next 60 days " + insuranceEnding);
+        if (currentlyEnrolled != null) {
+            softAssert.assertEquals(ohcDetails.get(nextIndex).getText(), "Currently enrolled " + currentlyEnrolled);
+            nextIndex++;
         }
         if (insuranceEndingHighlight != null) {
-            softAssert.assertEquals(ohcDetails.get(2).getCssValue("background"),highlightedColor(insuranceEndingHighlight),"Insurance ending in next 60 days highlight");
+            softAssert.assertEquals(ohcDetails.get(nextIndex).getCssValue("background"), highlightedColor(insuranceEndingHighlight), "Insurance ending highlight");
         }
-        if (endDate != null) {
-            verifyBasicOhcEndDate(endDate,"End date", 3);
+        if (insuranceEnding != null && !"None".equals(insuranceEnding)) {
+            softAssert.assertEquals(ohcDetails.get(nextIndex).getText(), "Insurance ending in next 60 days " + insuranceEnding);
+            nextIndex++;
         }
         if (endDateHighlight != null) {
-            softAssert.assertEquals(ohcDetails.get(3).getCssValue("background"),highlightedColor(endDateHighlight),"End date highlight");
+            softAssert.assertEquals(ohcDetails.get(nextIndex).getCssValue("background"), highlightedColor(endDateHighlight), "End date highlight");
+        }
+        if (endDate != null) {
+            verifyBasicOhcEndDate(endDate, "End date", nextIndex);
+            nextIndex++;
+        }
+        if (voluntarilyEndingHighlight != null) {
+            softAssert.assertEquals(ohcDetails.get(nextIndex).getCssValue("background"), highlightedColor(voluntarilyEndingHighlight), "Voluntarily ending highlight");
         }
         if (voluntarilyEnding != null) {
             String expectedText = "Voluntarily ending insurance";
-            if (!"None".equals(voluntarilyEnding)) {
-                expectedText += " " + voluntarilyEnding;
-            }
-            softAssert.assertEquals(ohcDetails.get(4).getText(), expectedText);
-        }
-        if (voluntarilyEndingHighlight != null) {
-            softAssert.assertEquals(ohcDetails.get(4).getCssValue("background"), highlightedColor(voluntarilyEndingHighlight), "Voluntarily ending insurance highlight");
+            expectedText += " " + voluntarilyEnding;
+            softAssert.assertEquals(ohcDetails.get(nextIndex).getText(), expectedText);
+            nextIndex++;
         }
         softAssert.assertAll();
     }

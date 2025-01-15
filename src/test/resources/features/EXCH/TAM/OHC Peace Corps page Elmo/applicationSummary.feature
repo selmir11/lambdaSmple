@@ -108,7 +108,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     Then I validate I am on the "Application Summary Completed" page
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
@@ -116,7 +116,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
       | Peace Corps |       Yes        |      Yes       |Current Month|         Yes                |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
+    Then I wait for 2500 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       | Peace Corps |       Yes        |      Yes       |Current Month|         Yes                |
@@ -596,7 +596,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
 #Bug TAM-5037      | Peace Corps |     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
 #    Step 4
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
       |  OHC Type   |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
@@ -645,7 +645,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
       |None Highlight|Removed|Removed Highlight|
       |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify None OHC detail on Application Details
       |None Highlight|Removed|Removed Highlight|

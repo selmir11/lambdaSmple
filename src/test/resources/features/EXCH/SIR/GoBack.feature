@@ -94,7 +94,7 @@ Feature: Go Back tests
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SelectGoBackFromAgreementsToPreShoppingSingleGrouping @SLER-734
+  @SLER-734 @SelectGoBackFromAgreementsToPreShoppingSingleGrouping
   Scenario: SLER-734 - Navigation thru the SIR pages to the first Agreement page and back to the Pre-shopping page - one group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -186,6 +186,7 @@ Feature: Go Back tests
 
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
