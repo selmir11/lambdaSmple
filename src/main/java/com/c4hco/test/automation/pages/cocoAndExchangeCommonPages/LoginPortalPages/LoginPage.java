@@ -509,6 +509,12 @@ public class LoginPage {
             case "SEP":
                 LoginCredentials.setSepCredentials();
                 break;
+            case "SES":
+                LoginCredentials.setSesCredentials();
+                break;
+            case "SES Constant":
+                LoginCredentials.setSesCredentials_Constant();
+                break;
             default: Assert.fail("Invalid case");
         }
         loginWithExistingCreds();

@@ -475,7 +475,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -584,7 +584,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -608,7 +608,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Household" for Residential Address
     Then I select "Yes" for CO Resident option
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -1194,7 +1194,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -1309,7 +1309,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -1333,7 +1333,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Household" for Residential Address
     Then I select "Yes" for CO Resident option
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -2007,7 +2007,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -2145,7 +2145,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -2198,7 +2198,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Household" for Residential Address
     Then I select "Yes" for CO Resident option
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -2872,7 +2872,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -3015,7 +3015,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Yes" for CO Resident option
     # Below is specific case context: user has tribal status
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
@@ -3068,7 +3068,7 @@ Feature: Eligibility 101-01 Notices
     Then I select "Household" for Residential Address
     Then I select "Yes" for CO Resident option
     Then I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     Then I select "No" for Hardship Exemption option
     Then I select "No" for Disability option
     Then I select "No" to the recently denied medicaid question
