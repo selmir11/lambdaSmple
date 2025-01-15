@@ -169,7 +169,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -413,7 +412,6 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -452,7 +450,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Application Summary" page
       Then I select the Edit Income link
-      #
+
       Then I validate I am on the "Employment Info" page
       Then I select the option "Yes" to employment
       And I select the option "No" to self employment
@@ -460,7 +458,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select the option "No" to seasonal employment
       And I select the option "No" to projected income
       And I click continue on the Employment Info Page
-      #
+
       Then I validate I am on the "Employment Summary" page
       Then I click continue on the Employment Summary Page
 
@@ -681,7 +679,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
-    #Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
@@ -705,7 +702,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -744,7 +740,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
-      #
+
     Then I validate I am on the "Employment Info" page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -752,7 +748,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
-      #
+
     Then I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
 
@@ -990,7 +986,6 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity option for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
@@ -1084,7 +1079,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
 
-      #### Good News insert
+      # Good News insert
       Then I validate I am on the "Good News" page
       Then I click on "No Thanks" on good news page
 
@@ -1253,7 +1248,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
-      # End of initial enrollment
+    # End of initial enrollment
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1285,7 +1280,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1582,7 +1576,6 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on the Add Address page
 
     Then I validate I am on the "Ethnicity and Race" page
-    #And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -1678,8 +1671,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    
-    # edit income information
+
     #member2
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "Spouse"
@@ -1697,7 +1689,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-        # added member 3
+     # added member 3
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "DaughterOne"
     And I click the edit income icon on household page for "DaughterOne"
@@ -1972,7 +1964,6 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
-      #And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
       Then I validate I am on the "Citizenship" page
