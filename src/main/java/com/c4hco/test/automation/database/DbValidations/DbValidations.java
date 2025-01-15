@@ -10,6 +10,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -675,6 +677,14 @@ public class DbValidations {
         softAssert.assertEquals(dbValues.get(3), state);
         softAssert.assertEquals(dbValues.get(4), zip);
         softAssert.assertEquals(dbValues.get(5), county);
+        softAssert.assertAll();
+    }
+    public void validateEnrollmentEndDateForAIANDB() {
+        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
+        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
+        LocalDate lastDayOfYear = Year.now().atMonth(Month.DECEMBER).atDay(31);
+        String formattedLastDayOfYear = basicActions.changeDateFormat(lastDayOfYear.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+        softAssert.assertEquals(formattedDateEnd, formattedLastDayOfYear);
         softAssert.assertAll();
     }
 
