@@ -1,15 +1,14 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EthnicityAndRacePage {
@@ -336,7 +335,15 @@ public class EthnicityAndRacePage {
                 throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
         }
         setRaceAndEthnicity(raceEthnicity, memPrefix);
+        setMemberID(memPrefix);
     }
+
+    private void setMemberID(String memPrefix){
+        List<MemberDetails> members = basicActions.getAllMem();
+        String memberId = basicActions.getMemberIDFromURL();
+        members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setMemberId(memberId));
+    }
+
     private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
           List<MemberDetails> members = basicActions.getAllMem();
           members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));

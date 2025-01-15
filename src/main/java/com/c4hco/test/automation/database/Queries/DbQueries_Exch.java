@@ -427,6 +427,14 @@ public String policyTablesCombinedQuery(String coverageType){
                 "AND member_id = " + memberId;
     }
 
+    public String createdByQuery(String memberId, String determination) {
+        return "SELECT created_by " +
+                "FROM " + dbName + ".es_member_rules_result " +
+                "WHERE determination = '"+determination+"' " +
+                "AND member_id = " + memberId+
+                " and created_ts::TEXT LIKE CURRENT_DATE || '%'";
+    }
+
 
 
     public String getDental_policy_date() {
