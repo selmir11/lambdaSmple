@@ -1,6 +1,7 @@
 Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
-  
-  Scenario: Validate SES
+
+  @SLCR-711
+  Scenario: Validate fields from member rules result table by adding a dependent to an active ses eligibility during ses limited for new year
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I login with "SES" credentials
