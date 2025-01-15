@@ -105,11 +105,21 @@ public class MyProfilePageSteps {
         myProfileExchPage.UpdateContactEmailAddress();
     }
 
+    @And("I update the contact email address on profile page")
+    public void updateContactEmailAddress() {
+        myProfileExchPage.UpdateContactEmailAddress();
+    }
 
     @And("I update the contact home phone number on profile page")
     public void iUpdateContactPhoneNumber() {
         myProfileExchPage.updateContactPhoneNumber();
     }
+
+    @And("I update the contact preferred language on profile page")
+    public void updateContactPreferredLang() {myProfileExchPage.PreferredContactLanguageMethod("Spanish");}
+
+    @And("I update the contact preferred method on profile page")
+    public void updateContactPreferredMethod() {myProfileExchPage.PreferredContactMethod("Mail");}
 
     @And("I update the contact mobile phone number on profile page")
     public void updateMobileNum() {
