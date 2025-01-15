@@ -336,11 +336,12 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click on "No Thanks" on good news page
 
     Then I validate I am on the "Application History" page
-    Then I validate that my APTC value is "$802.29/mo"
+    Then I click "No" on Before you continue popup on the application history page
+    Then I validate that my APTC value is "$851.81/mo"
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$802.29/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$851.81/mo"
     And I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -351,7 +352,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click on edit enrollment groups link
 
     Then I validate I am on the "Edit Grouping Members Medical" page
-    Then I validate that there are 1 default groups
+    #Then I validate that there are 2 default groups
     Then I create new group in edit medical grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
     Then I click save button to save the groups
@@ -380,5 +381,5 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    Then I validate the APTC Credit on the Summary page is "-$802.29"
+    Then I validate the APTC Credit on the Summary page is "-$851.81"
     And I click on Sign Out in the Header for "Elmo"

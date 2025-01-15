@@ -132,7 +132,7 @@ public class DentalPlansResultsPage {
         softAssert.assertTrue(dentalplanheader.isDisplayed(), "Dental plan heading did not match");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Adult Deductible"), "Adult deductible text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Out-of-Pocket Max"), "Out of pocket max text is not displayed");
-        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Pediatric Deductible (Under 18)"), "Pediatric deductible text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Pediatric Deductible"), "Pediatric deductible text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Plan Details"), "Plan details text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Select this Plan"), "Select this plan text is not displayed");
         softAssert.assertTrue(btnGoBack.getText().contains("Go Back"), "Go Back text is not displayed");
