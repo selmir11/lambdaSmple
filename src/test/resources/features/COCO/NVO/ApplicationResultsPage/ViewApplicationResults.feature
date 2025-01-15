@@ -61,12 +61,16 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Start Shopping" page
     And I get the application id from the url from tobacco page coco
     Then I validate the application id from the db
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-651
   Scenario:  ELIG-As a Coco user viewing the application results page I need to see only the latest application results so that I don't see any outdated/historical information on the page[CCRT-56]
     And I click on "Application Results" link on welcome page
     Then I validate I am on the "Application Results CoCo" page
-    Then  I validate the Application Results page text in "English" when no application is submitted
+    Then I validate the Application Results page text in "English" when no application is submitted
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-661
     Scenario: ELIG-As a Coco user on the Application Results page, I need an ENR endpoint called for me so that I know if I can continue to shopping[CCRT-58]
@@ -108,6 +112,8 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-661
   Scenario:  Scenario 2 - User clicks on the Save and Continue button on the Application results page user is not able to shop[CCRT-58]
@@ -149,6 +155,8 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-661
     Scenario:  Scenario 3 -  User is not eligible for anything - do not call the ENR endpoint[CCRT-58]
@@ -190,6 +198,8 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I verify the application result details in DB as "OFF_EXCHANGE_NOT_ELIGIBLE" for "Primary"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-678
   Scenario: Validate the page in Spanish when navigated without submitting an application
@@ -240,6 +250,8 @@ Feature: Coco user on the Application results page
       And I click Continue on the Declarations And Signature Page CoCo
       Then I validate I am on the "Application Results CoCo" page
       Then I validate the text on the application results page coco
+      And I click on Sign Out in the Header for "Elmo"
+      Then I validate I am on the "Login" page
 
   @SLCR-669
   Scenario: ELIG-NVO E2E members able to shop for Current Year with valid QLCE (CE)
@@ -283,6 +295,8 @@ Feature: Coco user on the Application results page
 
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-682
   Scenario: Scenario 1- ELIG-NVO Validate 2025 SES Reached limit with no LCE during SES limited/ 2025 SES eligible during open enrollment
@@ -554,7 +568,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       Then I validate I am on the "CoCo Family Overview" page
       And I select continue on the Family Overview page
       Then I validate I am on the "CoCo life change event" page
-      And I check "None of these" life change event checkbox
+      And I select "MoveToCO" life change event with event date of "Today"
       And I select continue on the LCE page
       Then I validate I am on the "CoCo Declarations and Signature" page
       And I enter a valid signature
@@ -563,3 +577,5 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       Then I validate the text on the application results page coco
       And I click Continue on the Application Results Page CoCo
       And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+      And I click on Sign Out in the Header for "Elmo"
+      Then I validate I am on the "Login" page

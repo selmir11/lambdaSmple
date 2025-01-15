@@ -3,12 +3,10 @@ package com.c4hco.test.automation.database.dbHandler;
 import com.c4hco.test.automation.database.EntityObj.EsHouseholdContactEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.BasicActions;
-import io.cucumber.java.an.E;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
-import java.util.List;
 
 public class EsHouseholdContactDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
@@ -59,11 +57,4 @@ public class EsHouseholdContactDbHandler {
         }
         return esHouseholdContactEntity;
     }
-
-
-
-
-
-
-
 }
