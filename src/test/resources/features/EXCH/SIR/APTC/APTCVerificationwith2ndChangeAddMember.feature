@@ -24,7 +24,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-#     And I report "Marriage" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "Marriage" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -148,9 +149,9 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
+     # Question not asked during Open Enrollment
    Then I validate I am on the "Report a life change" page
    And I report "MovedToColorado" and click continue
-
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -225,7 +226,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$1134.70/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$968.54/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -264,7 +265,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-#     And I report "MovedToColorado" and click continue
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -390,7 +392,8 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
+      # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
       And I report "Marriage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
@@ -551,8 +554,9 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #Not available during Open Enrollment
-#    And I report "MovedToColorado" and click continue
+    # Question not asked during Open Enrollment
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -677,14 +681,15 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
 
-    Then I validate I am on the "Before you begin" page
+    #Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
+
+     # Question not asked during Open Enrollment
+    Then I validate I am on the "Report a life change" page
+    And I report "Marriage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-
-    #Then I validate I am on the "Report a life change" page
-    And I report "Marriage" and click continue
 
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
@@ -841,8 +846,9 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      #Not available during Open Enrollment
-#      And I report "MovedToColorado" and click continue
+       # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -963,12 +969,14 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-      #Then I validate I am on the "Report a life change" page
+     # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
       And I report "LostCoverage" and click continue
 
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
-      Then I select "Male" as sex option
+
+    Then I select "Male" as sex option
       And I select "Yes" to Are You Applying
       And I click continue on Tell us about yourself page
 
@@ -1007,6 +1015,10 @@ Feature: UI Tests related to APTC after second enrollment change
       And I select "No" for Disability option
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
+
+      And I select "No" for Fulltime Student option
+      Then I select "No" for Foster care in state of Colorado
+
       And I click continue on the Add Address page
 
       Then I validate I am on the "Ethnicity and Race" page
@@ -1111,7 +1123,7 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click on Sign Out in the Header for "Portal"
       Examples:
         |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
-        |Leadville  |CO       |01011990   |Lake     |80461        |1500000  |$0.00      |5240000      |$310.05/mo      |-$310.05    |01012007   |
+        |Leadville  |CO       |01011990   |Lake     |80461        |1500000  |$0.00      |5240000      |$362.74/mo      |-$362.74    |01012007   |
 
   @SLER-804
   Scenario Outline: SLER-804 -APTCRules - formerly RT-2411 - Add a daughter on 2nd enrollmnent - primary income change
@@ -1129,7 +1141,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-#    And I report "Birth" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -1252,6 +1265,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
+     # Question not asked during Open Enrollment
     Then I validate I am on the "Report a life change" page
     And I report "LostCoverage" and click continue
 
@@ -1396,7 +1410,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
     Examples:
       |City       |State    |DOB        |County   |Zipcode      |income1  |aptc1      |income2      |expectedAptc2   |aptc2       |DOBmember2 |
-      |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$334.42/mo      |-$334.42    | 01012011  |
+      |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$412.32/mo      |-$412.32    | 01012011  |
 
   @SLER-1007
   Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2345
@@ -1415,7 +1429,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-#    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -1546,7 +1561,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
 
-    #Then I validate I am on the "Report a life change" page
+     # Question not asked during Open Enrollment
+    Then I validate I am on the "Report a life change" page
     And I report "Marriage" and click continue
 
     Then I validate I am on the "Find Expert Help" page
@@ -1817,8 +1833,9 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
 
-#      Then I validate I am on the "Report a life change" page
-#      And I report "MovedToColorado" and click continue
+       # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
 
       Then I validate I am on the "Who Are You" page
       Then I select "member" from the who are you question
@@ -1933,13 +1950,13 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I validate I am on the "Before you begin" page
       Then I click on continue with  application button on Before you begin page
-  #
+
+      # Question not asked during Open Enrollment
+      Then I validate I am on the "Report a life change" page
+      And I report "MovedToColorado" and click continue
+
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
-  #
-     #open enrollment doesnt contain option for LCE
-     # Then I validate I am on the "Report a life change" page
-     # And I report "MovedToColorado" and click continue
 
       Then I select "Male" as sex option
       And I select "Yes" to Are You Applying

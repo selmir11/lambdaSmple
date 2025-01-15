@@ -193,7 +193,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     And I click on Sign Out in the Header for "Elmo"
 
 
-@DentalPlanResults-WIP @SLER-1004
+  @SLER-1004 @DentalPlanResults-WIP
   Scenario: SLER-1004 - Validate dental plans available under fixed constants - single adult
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
