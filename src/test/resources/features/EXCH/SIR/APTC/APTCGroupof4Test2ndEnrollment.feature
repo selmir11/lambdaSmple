@@ -1308,8 +1308,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1107 @Group9Enroll-SIR-2810
-  Scenario: SLER-1107 - APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents
+  @SLER-1107 @Group9Enroll
+  Scenario: SLER-1107 - APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents - tests SIR-2810 bug
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1389,7 +1389,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "07011999", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "07012000", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
     And I click continue on Tell us about additional members page
@@ -1417,7 +1417,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012001", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012002", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1446,7 +1446,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012005", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012006", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1476,7 +1476,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012006", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012007", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1508,7 +1508,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012006", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012007", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1542,7 +1542,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Add Member" page
      #minor
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012009", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012010", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1575,7 +1575,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Add Member" page
      #minor
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012010", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012011", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1929,7 +1929,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012000", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonOne", "01012001", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
     And I click continue on Tell us about additional members page
@@ -1958,7 +1958,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012000", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonTwo", "01012001", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -1988,7 +1988,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012005", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonThree", "01012006", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -2019,7 +2019,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012006", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFour", "01012007", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -2052,7 +2052,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I click Add Another Family Member
 
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012006", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonFive", "01012007", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -2087,7 +2087,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Add Member" page
      #minor
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012009", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSix", "01012010", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|
@@ -2121,7 +2121,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Add Member" page
      #minor
-    Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012010", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "SonSeven", "01012011", "Male" and applying "Yes"
       |Primary:Son|
       |Spouse:Son |
       |SonOne:Brother|

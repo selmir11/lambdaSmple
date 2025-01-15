@@ -109,7 +109,7 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
 
     And I select year "2025" from My Current Plan container
-    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"331.70" in "English"
+    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"333.88" in "English"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -223,8 +223,8 @@ Feature: Page Text-Welcome Page
     Then I validate I am on the "CoCo Welcome" page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And I select year "2025" from My Current Plan container
-    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"331.70" in "Spanish"
+    And I select year "Hacer cambios" from My Current Plan container
+    Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"333.88" in "Spanish"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

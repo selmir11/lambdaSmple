@@ -273,6 +273,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,SonTwo"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups with different zipcodes
@@ -354,6 +355,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 2 default groups
@@ -504,6 +506,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -608,6 +611,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -684,8 +688,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
+    Then I select "No" for Fulltime Student option
     And I select "No" for Hardship Exemption option
-    And I select "Yes" for Disability option
+    And I select "No" for Disability option
+    Then I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -707,11 +713,11 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -788,8 +794,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
+    Then I select "No" for Fulltime Student option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+    Then I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -815,6 +823,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -901,8 +910,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
+    Then I select "No" for Fulltime Student option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+    Then I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -928,6 +939,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -1021,8 +1033,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
+    Then I select "No" for Fulltime Student option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+    Then I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
@@ -1048,6 +1062,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -1127,6 +1142,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
     And I wait for hold on content to disappear
@@ -1208,6 +1224,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -1340,6 +1357,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups

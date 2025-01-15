@@ -56,12 +56,6 @@ public class LawfulPresencePage {
     @FindBy(id = "documentExpirationDate")
     WebElement documentExpirationDate;
 
-    @FindBy(id = "livedSince1996Yes")
-    WebElement livedSince1996Yes;
-
-    @FindBy(id = "livedSince1996No")
-    WebElement livedSince1996No;
-
     @FindBy(id = "myselfMilitary")
     WebElement chkBoxMyselfMilitary;
 
@@ -237,20 +231,6 @@ public class LawfulPresencePage {
     public void enterExpirationDate() {
         String expirationDateValue = "01012028";
         documentExpirationDate.sendKeys(expirationDateValue);
-    }
-
-
-    public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
-        switch (YNLivedInUSSince1996) {
-            case "Yes":
-                livedSince1996Yes.click();
-                break;
-            case "No":
-                livedSince1996No.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + YNLivedInUSSince1996);
-        }
     }
 
     public void selectActiveDutyMilitaryOrHonorablyDischargedVeterans(String memberOptions) {
@@ -471,9 +451,6 @@ public class LawfulPresencePage {
             case "Document Type":
                 handleDocumentType(language);
                 break;
-            case "Lived in the U.S. since 1996":
-                handleLivedInUSSince1996(language);
-                break;
             case "Active Duty Military Members or Honorably Discharged Veterans":
                 handleMilitaryMembersOrVeterans(language);
                 break;
@@ -502,19 +479,6 @@ public class LawfulPresencePage {
                 break;
             case "Spanish":
                 validateDocumentTypeHelpTextVerbiageSp();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid language option: " + language);
-        }
-    }
-
-    private void handleLivedInUSSince1996(String language) {
-        switch (language) {
-            case "English":
-                validateLivedInUSSince1996HelpTextVerbiageEng();
-                break;
-            case "Spanish":
-                validateLivedInUSSince1996HelpTextVerbiageSp();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid language option: " + language);
@@ -555,18 +519,6 @@ public class LawfulPresencePage {
     public void validateDocumentTypeHelpTextVerbiageSp() {
         basicActions.waitForElementToBePresent(helpDrawerHelpText.get(5),20);
         softAssert.assertEquals(helpDrawerHelpText.get(5).getText(), "Tipo de documento\nSi desea mayor informaci\u00F3n sobre estos documentos, visite: https://www.cuidadode salud.gov/es/help/immigration-document-types/");
-        softAssert.assertAll();
-    }
-
-    public void validateLivedInUSSince1996HelpTextVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(8),20);
-        softAssert.assertEquals(helpDrawerHelpText.get(8).getText(), "Lived in the U.S. since 1996\nPeople with certain immigration statuses are subject to a 5-year waiting period before they can qualify for Medicaid. People who lawfully entered the US before 1996 are not subject to this same 5-year waiting period. People with a status that is not subject to this 5-year waiting period should answer \u201Cno\u201D to this question. That includes people with Deferred Action for Childhood Arrivals (DACA) status.");
-        softAssert.assertAll();
-    }
-
-    public void validateLivedInUSSince1996HelpTextVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(8),20);
-        softAssert.assertEquals(helpDrawerHelpText.get(8).getText(), "Vivido en Estados Unidos desde 1996\nLas personas con ciertos estatus migratorios est\u00E1n sujetas a un per\u00EDodo de espera de 5 a\u00F1os antes de que puedan calificar a Medicaid. Las personas que ingresaron a los EE. UU. de manera legal antes de 1996 no est\u00E1n sujetas a este per\u00EDodo de espera de 5 a\u00F1os. Personas con un estatus que no est\u00E1 sujeto a este per\u00EDodo de espera de 5 a\u00F1os deben responder \u201Cno\u201D a esta pregunta. Esto incluye a personas con el estatus de Acci\u00F3n Diferida para los Llegados en la Infancia (DACA).");
         softAssert.assertAll();
     }
 

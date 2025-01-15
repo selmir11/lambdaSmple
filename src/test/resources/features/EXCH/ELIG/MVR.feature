@@ -683,7 +683,6 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I select "Yes" for Eligible Immigration Status option
     Then I select "I-327 Reentry Permit" as Document type
     Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
-    Then I select "No" for the question have you lived in the US since 1996
     Then I select "None of the above" active-duty members of the military or honorably discharged veterans
     Then I select "Yes" for name matching the document
     And I click continue on the Citizenship page

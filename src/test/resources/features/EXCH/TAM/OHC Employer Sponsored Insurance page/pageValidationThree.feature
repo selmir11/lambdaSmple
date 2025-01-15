@@ -529,10 +529,10 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ELMO health coverage page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
-    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "338.26" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for offer family amount question
     Then I click enrollment status for the members
       |    Spouse:TypeAccess    |
       |    Kid:TypeAccess       |
@@ -543,10 +543,10 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Secondary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
-    Then I enter "314.63" for employee amount question on the ESI page
+    Then I enter "338.26" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for offer family amount question
     Then I click enrollment status for the members
       |    Primary:TypeAccess    |
       |    Kid:TypeAccess        |
@@ -557,10 +557,10 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Third" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
-    Then I enter "314.62" for employee amount question on the ESI page
+    Then I enter "338.25" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    Then I enter "314.62" for offer family amount question
+    Then I enter "338.25" for offer family amount question
     Then I click enrollment status for the members
       |      Spouse:TypeAccess     |
       |      Primary:TypeAccess    |
@@ -613,8 +613,8 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click enrollment status for the members
       |      Spouse:TypeAccess     |
       |      Primary:TypeAccess    |
@@ -630,13 +630,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "1355.96/mo"
+    Then I validate that my APTC value is "1366.05/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan  |
       |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
       |      Kid:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan      |
-    Then I validate that my Tax Household's 1 APTC value is "$1355.96/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1366.05/mo"
 #    Step Extra 3 = Step 9 on SLER-1077
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -663,14 +663,14 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
-    Then I enter "314.62" for employee amount question on the ESI page
-    Then I enter "314.62" for offer family amount question
+    Then I enter "338.25" for employee amount question on the ESI page
+    Then I enter "338.25" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click enrollment status for the members
       |      Spouse:TypeAccess     |
       |      Primary:TypeAccess    |
@@ -716,19 +716,19 @@ Feature: Page Text-Other Health Coverage Page
     And I click save and continue on tax status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
-    Then I enter "314.62" for employee amount question on the ESI page
-    Then I enter "314.62" for offer family amount question
+    Then I enter "338.25" for employee amount question on the ESI page
+    Then I enter "338.25" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
 #    Step Extra 6 = Step 12 on SLER-1077
     Then I click continue on family overview page
@@ -761,19 +761,19 @@ Feature: Page Text-Other Health Coverage Page
     And I click save and continue on tax status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
 #    Step Extra 8 = Step 14 on SLER-1077
     Then I click continue on family overview page
@@ -786,13 +786,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "1355.96/mo"
+    Then I validate that my APTC value is "1366.05/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan  |
       |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
       |      Kid:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan      |
-    Then I validate that my Tax Household's 1 APTC value is "$1355.96/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1366.05/mo"
 #    Step Extra 9 = Step Extra 1 on SLER-1077
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -823,8 +823,8 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "314.62" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.25" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
 #    Step Extra 10 = Step Extra 2 on SLER-1077
     Then I click continue on family overview page
@@ -837,13 +837,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "1014.14/mo"
+    Then I validate that my APTC value is "1024.23/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan  |
       |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
       |      Kid:Qualified Health Plan      |
-    Then I validate that my Tax Household's 1 APTC value is "$1014.14/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1024.23/mo"
 #    Step Extra 11 = Step Extra 3 on SLER-1077
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -871,10 +871,10 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
-    Then I enter "314.62" for employee amount question on the ESI page
+    Then I enter "338.25" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click "Yes" for offer family plans question
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for offer family amount question
     Then I click enrollment status for the members
       |    Spouse:TypeAccess     |
       |    Kid:TypeAccess        |
@@ -884,8 +884,8 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
-    Then I enter "314.63" for employee amount question on the ESI page
-    Then I enter "314.63" for offer family amount question
+    Then I enter "338.26" for employee amount question on the ESI page
+    Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
 #    Step Extra 12 = Step Extra 4 on SLER-1077
     Then I click continue on family overview page
@@ -898,13 +898,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that "Qualified Health Plan" text displays on the Application History page
     Then I validate that "Premium Tax Credit" text displays on the Application History page
     Then I validate that "Cost-Sharing Reductions" text displays on the Application History page
-    Then I validate that my APTC value is "878.45/mo"
+    Then I validate that my APTC value is "888.54/mo"
     Then I click on view results and shop
     Then I validate the member application results
       |      Primary:Qualified Health Plan  |
       |      Spouse:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
       |      Kid:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan      |
-    Then I validate that my Tax Household's 1 APTC value is "$878.45/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$888.54/mo"
 
     And I click on Sign Out in the Header for "NonElmo"
 

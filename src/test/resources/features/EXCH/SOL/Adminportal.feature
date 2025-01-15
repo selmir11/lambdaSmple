@@ -95,6 +95,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   Then I click on view results and shop
   And I click continue on application results page
   Then I validate I am on the "Start Shopping" page
+  Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
   Then I click continue on start shopping page
   Then I click continue on grouping Members Medical page
   And I select the first medical plan
@@ -166,6 +167,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
@@ -259,6 +261,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I click on view results and shop
       And I click continue on application results page
       Then I validate I am on the "Start Shopping" page
+      Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
       Then I click continue on start shopping page
       Then I validate I am on the "Medical Plan Results" page
       Then I click skip on medical plan results page
@@ -386,6 +389,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I click continue on grouping Members Medical page
     And I select "Anthem Colorado Option Gold Pathway Essentials Std" medical plan

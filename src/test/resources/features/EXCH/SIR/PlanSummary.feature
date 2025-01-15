@@ -251,7 +251,7 @@ Feature: Medical and Dental Plan Summary Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     And I click continue on medical plan results page
-    # group 2 - should be Mother/Grandmother
+    # group 2 - should be Mother/Grandmother - skip step found here
     Then I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
 

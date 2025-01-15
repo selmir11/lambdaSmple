@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.APISteps;
 
 import com.c4hco.test.automation.pages.API.EasyEnrollment;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,7 +24,10 @@ public class EasyEnrollmentSteps {
     public void isendDataForTaxHousehold(String adjustedGrossIncome, String emailAddress, String filedByDeadline, String filingType, String firstName, String householdSize, String lastName, String mailingAddressLine1,String mailingAddressLine2, String city, String zipCode, String middleInitial, String phoneNumber, String dateOfBirth, String ssn, String year){
         easyEnrollment.dorForTaxHousehold(adjustedGrossIncome, emailAddress, filedByDeadline, filingType, firstName, householdSize, lastName, mailingAddressLine1,mailingAddressLine2, city, zipCode, middleInitial, phoneNumber, dateOfBirth, ssn, year);
     }
-
+    @Then("I send a request body with out email and addressLine2 the following data: adjustedGrossIncome:{string}, filedByDeadline:{string}, filingType:{string}, householdSize:{string}, mailingAddressLine1:{string}, city:{string}, zipCode:{string}, middleInitial:{string}, phoneNumber:{string}, dateOfBirth:{string}, ssn:{string}, year:{string}")
+    public void isendDataForTaxHousehold(String adjustedGrossIncome, String filedByDeadline, String filingType, String householdSize, String mailingAddressLine1, String city, String zipCode, String middleInitial, String phoneNumber, String dateOfBirth, String ssn, String year){
+        easyEnrollment.dorForSingleTaxHousehold(adjustedGrossIncome, filedByDeadline, filingType, householdSize, mailingAddressLine1, city, zipCode, middleInitial, phoneNumber, dateOfBirth, ssn, year);
+    }
     @And("I send the DOR to C4 API request")
     public void iSendTheDORToC4DataRequest() {
         easyEnrollment.sendDorToC4DataRequest();
@@ -35,5 +39,13 @@ public class EasyEnrollmentSteps {
     @Then("validation message should be {string}")
     public void validationMessageShouldBe(String expectedMessage) {
         easyEnrollment.validateValidationMessage(expectedMessage);
+    }
+    @Then("I have the following API payload")
+    public void iSendApiPayload(DataTable dataTable){
+        easyEnrollment.isendAPIPayload(dataTable);
+    }
+    @Then("I have the following tax household members")
+    public void taxHouseholdMembers(DataTable dataTable){
+        easyEnrollment.payloadForAdditionalTaxHouseholdMem(dataTable);
     }
 }
