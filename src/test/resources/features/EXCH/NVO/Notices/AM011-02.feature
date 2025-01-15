@@ -107,7 +107,7 @@ Feature: AM 011-02 Notices
     Then I validate I am on the "My Account Overview" page
 
   @needTag
-  Scenario: AM Profile Changes
+  Scenario Outline: AM Profile Changes
     And I click on ClickHere link for "My Profile"
     And I click on Make Changes Button
     And I update the <update_action> on profile page
@@ -121,10 +121,10 @@ Feature: AM 011-02 Notices
     And I click on Sign Out in the Header for "Elmo"
 
     Examples:
-      | update_action                                    |
-      | contact home phone number                        |
-      | contact mobile phone number                      |
-      | contact email address                            |
-      | contact preferred language                       |
-      | contact preferred method                         |
+      | update_action               |
+      | contact home phone number   |
+      | contact mobile phone number |
+      | contact email address       |
+      | contact preferred language  |
+      | contact preferred method    |
 
