@@ -1133,6 +1133,13 @@ public class BasicActions {
         return phoneNumber;
     }
 
+    public void setMemberIdFromUrl(){
+        String memberId = getMemberIDFromURL();
+        SharedData.getPrimaryMember().setMemberId(memberId);
+        SharedData.setPrimaryMemberId(memberId);
+
+    }
+
 }
 
 
