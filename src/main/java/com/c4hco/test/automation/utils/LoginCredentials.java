@@ -28,6 +28,17 @@ public class LoginCredentials {
         SharedData.setPrimaryMember(primaryMember);
     }
 
+    public static void setSesCredentials_Constant() {
+        MemberDetails primaryMember = new MemberDetails();
+        if (SharedData.getEnv().equals("qa")) {
+            primaryMember.setEmailId("gillz.amanda@test.com");
+        } else {
+            primaryMember.setEmailId("heard.amber@test.com");
+        }
+        primaryMember.setPassword("ALaska12!");
+        SharedData.setPrimaryMember(primaryMember);
+    }
+
 
     public static void setScriptBasedDetails(String scriptNum){
         MemberDetails primaryMember = new MemberDetails();

@@ -64,6 +64,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I verify text on Tobacco Usage Page CoCo
     Then I click continue on coco start shopping page
 

@@ -56,3 +56,48 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Wife"
     Then I verify the created by value as "HiaePhaseTwoGrandfatheringAppenderService" for "getFromSharedData" and determination as "ELIGIBLE_FOR_HP2"
     Then I verify the created by value as "RulesEngineAppenderService" for "Wife" and determination as "ELIGIBLE_FOR_HP2_LIMITED"
+
+  @SLCR-687 @NVOCoCoRegression
+  Scenario: Validate 2025 eligibility remains after over income is reported
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I login with "SES Constant" credentials
+    Then I validate I am on the "CAC Screener" page
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on the Username in the "CoCo" Header
+    Then I validate I am on the "My Profile" page
+    And I get the account Id from my profile page coco
+    And I get the name of the primary person from my profile page coco
+    Then I click on Go back to Welcome page Button on My Profile CoCo
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "getFromSharedData"
+    And I get the memberId of primary member from url
+    Then I validate I am on the "CoCo Tell us about yourself" page
+    And I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Income Summary" page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I check "None of these" life change event checkbox
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2" for "getFromSharedData"
+    Then I verify the created by value as "HiaePhaseTwoGrandfatheringAppenderService" for "getFromSharedData" and determination as "ELIGIBLE_FOR_HP2"
+
+
