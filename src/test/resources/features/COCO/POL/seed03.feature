@@ -8,6 +8,7 @@ Feature: Seed03 - COCO
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -112,7 +113,6 @@ Feature: Seed03 - COCO
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    #    And I check "None of these" life change event checkbox  --OPEN ENROLLMENT ONLY--
     And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -121,7 +121,7 @@ Feature: Seed03 - COCO
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "CoCo Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife,Son,Daughter" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "CoCo Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
@@ -151,15 +151,15 @@ Feature: Seed03 - COCO
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
-      |1:01012024|
-      |2:01012024|
-      |3:01012024|
-      |4:01012024|
+      |1:01012025|
+      |2:01012025|
+      |3:01012025|
+      |4:01012025|
     And I update the Financial Start date of member
-      |1:01012024|
-      |2:01012024|
-      |3:01012024|
-      |4:01012024|
+      |1:01012025|
+      |2:01012025|
+      |3:01012025|
+      |4:01012025|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

@@ -85,6 +85,8 @@ Feature: Determine lawful presence/eligible immigration status
     And I validate MVR details for account
       | manual_verification_type | manual_verif_status |
       | Lawful Presence          | Canceled                |
+    And I click on Sign Out in the Header for "NonElmo"
+    Then I validate I am on the "Login" page
 
     Examples:
       | firstName    | middleName    | lastName           |

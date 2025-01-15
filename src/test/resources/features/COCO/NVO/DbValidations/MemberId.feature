@@ -87,6 +87,16 @@ Feature: Coco user - Db Validations related to member id
 
   @SLCR-703
   Scenario: Validate exch_person_id related details in DB for an individual right after creating an account
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Profile" link on welcome page
+    Then I validate I am on the "My Profile" page
+    And I get the account Id from my profile page coco
+    Then I click on Go back to Welcome page Button on My Profile CoCo
+    Then I validate I am on the "CoCo Welcome" page
     Then I validate the exch_person_id related fields to be null
     And I click on Sign Out in the Header for "Elmo"
 

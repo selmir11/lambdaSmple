@@ -283,5 +283,7 @@ public class DbSteps {
     public void validateTellUsAboutAdditionalInformation(String FName){
         dbValidations.validateTellAboutAdditionalInformationinDB(FName);
     }
+    @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
+    public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
 }
 
