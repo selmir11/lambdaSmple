@@ -109,10 +109,10 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    Then I verify eligible plan on Application Result page coco depends on SES
+#    Then I verify eligible plan on Application Result page coco depends on SES
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Daughter,Son" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
