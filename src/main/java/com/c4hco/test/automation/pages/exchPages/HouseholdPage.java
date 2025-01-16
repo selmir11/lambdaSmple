@@ -35,6 +35,9 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
 
+    @FindBy(xpath = "//*[@id='memberMgmt']//tr[2]/td[1]/input")
+    WebElement viewDetailsLink;
+
     @FindBy(id = "submitButton_Income")
     WebElement editIncomeLink;
 
@@ -97,6 +100,13 @@ public class HouseholdPage {
         basicActions.waitForElementToBePresent(editPrimaryMember, 30);
         basicActions.waitForElementListToBePresent(tableDropdown, 30);
         String xpath = String.format("//*[contains(@value,'"+namePrefix+"')]//preceding::i[2]");
+        WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
+        button.click();
+    }
+
+    public void clickViewDetails(String namePrefix) {
+        basicActions.waitForElementToBePresent(viewDetailsLink, 15);
+        String xpath = String.format("//*[contains(@value,'"+namePrefix+"')]//following::input[1]");
         WebElement button = basicActions.getDriver().findElement(By.xpath(xpath));
         button.click();
     }
