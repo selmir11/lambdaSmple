@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI Peace Corps Elmo Page
+Feature: Secondary User-OHC Peace Corps Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -81,9 +81,9 @@ Feature: Secondary User-OHI Peace Corps Elmo Page
     And I click save and continue on tax status page
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Peace Corps" page
+    And I validate I am on the "Elmo Ohc Peace Corps" page
 
-  @SLER-499 @SecondaryUserOhiPeaceCorpsElmo
+  @SLER-499 @SecondaryUserOhcPeaceCorpsElmo
   Scenario: SLER-499 I can see Peace Corps' dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Peace Corps page data in "English"
     Then I click "Yes" for currently enrolled in Peace Corps question
@@ -96,7 +96,7 @@ Feature: Secondary User-OHI Peace Corps Elmo Page
 
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Peace Corps" page
+    And I validate I am on the "Elmo Ohc Peace Corps" page
     And I verify the "First Section Secondary" Peace Corps page data in "English"
     Then I click "Yes" for currently enrolled in Peace Corps question
     And I verify the "Second Section Secondary" Peace Corps page data in "English"
@@ -107,7 +107,7 @@ Feature: Secondary User-OHI Peace Corps Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-498 @SecondaryUserOhiPeaceCorpsElmo
+  @SLER-498 @SecondaryUserOhcPeaceCorpsElmo
   Scenario: SLER-498 I can see Peace Corps' dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -122,7 +122,7 @@ Feature: Secondary User-OHI Peace Corps Elmo Page
 
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Peace Corps" page
+    And I validate I am on the "Elmo Ohc Peace Corps" page
     And I verify the "First Section Secondary" Peace Corps page data in "Spanish"
     Then I click "Yes" for currently enrolled in Peace Corps question
     And I verify the "Second Section Secondary" Peace Corps page data in "Spanish"

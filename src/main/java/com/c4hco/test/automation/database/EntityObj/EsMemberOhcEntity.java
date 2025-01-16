@@ -3,7 +3,7 @@ package com.c4hco.test.automation.database.EntityObj;
 import lombok.Data;
 
 @Data
-public class EsMemberOhiEntity {
+public class EsMemberOhcEntity {
     String emp_sponsored_covg_ind;
     String medicare_ind;
     String va_health_care_ind;

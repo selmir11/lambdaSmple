@@ -110,11 +110,11 @@ Feature: TAM Chat Widget
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHI HRA page
+    Then I click Go Back on the Elmo OHC HRA page
     Then I select "None of these" as ELMO health coverage option
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
@@ -123,7 +123,7 @@ Feature: TAM Chat Widget
     Then I select "None of these" as ELMO health coverage option
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi VA Healthcare" page
+    Then I validate I am on the "Elmo Ohc VA Healthcare" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
@@ -141,7 +141,7 @@ Feature: TAM Chat Widget
     Then I select "None of these" as ELMO health coverage option
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
@@ -150,7 +150,7 @@ Feature: TAM Chat Widget
     Then I select "None of these" as ELMO health coverage option
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
@@ -159,7 +159,7 @@ Feature: TAM Chat Widget
     Then I select "None of these" as ELMO health coverage option
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
@@ -168,7 +168,7 @@ Feature: TAM Chat Widget
     Then I select "None of these" as ELMO health coverage option
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Individual Insurance" page
+    Then I validate I am on the "Elmo Ohc Individual Insurance" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window

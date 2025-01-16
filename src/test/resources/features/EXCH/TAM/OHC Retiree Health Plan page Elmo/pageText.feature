@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Text-OHI Retiree Elmo Page
+Feature: Page Text-OHC Retiree Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -52,9 +52,9 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
 
-  @SLER-269 @PageTextOhiRetireeElmo
+  @SLER-269 @PageTextOhcRetireeElmo
   Scenario: SLER-269 I can see Retiree's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
@@ -80,7 +80,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -102,7 +102,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -125,7 +125,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -147,16 +147,16 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
@@ -180,7 +180,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -203,41 +203,41 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
 
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-270 @PageTextOhiRetireeElmo
+  @SLER-270 @PageTextOhcRetireeElmo
   Scenario: SLER-270 I can see Retiree's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the Retiree page in "Spanish"
@@ -266,7 +266,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -290,7 +290,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
@@ -315,7 +315,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -339,18 +339,18 @@ Feature: Page Text-OHI Retiree Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
@@ -376,7 +376,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -402,43 +402,43 @@ Feature: Page Text-OHI Retiree Elmo Page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
 #    And I set the browser resolution to 1200 x 800
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "Spanish"
 
 
@@ -471,7 +471,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
 
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     And I verify the header for Primary Member on the Retiree page in "English"
 
     Then I click "No" for currently enrolled in Retiree question
@@ -486,7 +486,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
 
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     And I verify Currently Enrolled is "No" on the Retiree page
 
     Then I click "Yes" for currently enrolled in Retiree question
@@ -502,7 +502,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
 
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     And I verify Currently Enrolled is "Yes" on the Retiree page
     And I verify Insurance Ending in 60 days is "No" on the Retiree page
 
@@ -520,7 +520,7 @@ Feature: Page Text-OHI Retiree Elmo Page
     And I click save and continue on tax status page
 
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     And I verify Currently Enrolled is "Yes" on the Retiree page
     And I verify Insurance Ending in 60 days is "Yes" on the Retiree page
     And I verify end date is the last day of the month on the Retiree page

@@ -146,7 +146,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     And I click save and continue on tax status page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
@@ -183,7 +183,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
     Then I click "No" for insurance ending in 60 days in Tricare question
     Then I click continue on the Elmo OHC Tricare page
     Then I click continue on family overview page
@@ -243,7 +243,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I enter the end date as "Current Month" on the Tricare page
     Then I click "Yes" for insurance ending voluntary for Tricare question
@@ -304,7 +304,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHC Tricare page
     Then I click continue on family overview page
@@ -366,7 +366,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     And I click save and continue on tax status page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
@@ -403,7 +403,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
     Then I enter the end date as "Future Day:3" on the Tricare page
     Then I click "No" for insurance ending voluntary for Tricare question
     Then I click continue on the Elmo OHC Tricare page
@@ -469,7 +469,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHC Tricare page
     Then I click continue on family overview page
@@ -561,7 +561,7 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     And I click save and continue on tax status page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Tricare" page
+    Then I validate I am on the "Elmo Ohc Tricare" page
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I enter the end date as "Current Month" on the Tricare page

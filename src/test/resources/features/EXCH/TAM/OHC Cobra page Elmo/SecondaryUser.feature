@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI COBRA Elmo Page
+Feature: Secondary User-OHC COBRA Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -83,7 +83,7 @@ Feature: Secondary User-OHI COBRA Elmo Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo COBRA" page
 
-  @SLER-482 @SecondaryUserOhiCobraElmo
+  @SLER-482 @SecondaryUserOhcCobraElmo
   Scenario: SLER-482 I can see Cobra's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Cobra page data in "English"
     Then I click "Yes" for currently enrolled in COBRA question
@@ -107,7 +107,7 @@ Feature: Secondary User-OHI COBRA Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-489 @SecondaryUserOhiCobraElmo
+  @SLER-489 @SecondaryUserOhcCobraElmo
   Scenario: SLER-489 I can see Cobra's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
