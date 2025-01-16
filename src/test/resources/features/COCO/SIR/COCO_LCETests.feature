@@ -1,5 +1,5 @@
 @COCO11
-    # SLCR-652, SLCR-653, SLCR-655, SLCR-658, SLCR-659,
+    # SLCR-719, SLCR-720, SLCR-721, SLCR-722, SLCR-723,
 
     # for closed enrollment post Jan 15 - Pregnancy, Death, and Divorce are not qualified LCEs  - only the Admin can override this status
 Feature: LCE Test Runs for COCO
@@ -8,8 +8,8 @@ Feature: LCE Test Runs for COCO
     Given I open the login page on the "login" portal
 
 
-  @SLCR-652
-  Scenario: SLCR-652 - COCO LCE Insurance Loss test
+  @SLCR-719
+  Scenario: SLCR-719 - COCO LCE Insurance Loss test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -85,8 +85,8 @@ Feature: LCE Test Runs for COCO
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-653
-  Scenario: SLCR-653 - COCO LCE Birth test
+  @SLCR-720
+  Scenario: SLCR-720 - COCO LCE Birth test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -232,8 +232,8 @@ Feature: LCE Test Runs for COCO
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-655
-  Scenario: SLCR-655 - COCO LCE Marriage test
+  @SLCR-721
+  Scenario: SLCR-721 - COCO LCE Marriage test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -349,8 +349,8 @@ Feature: LCE Test Runs for COCO
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLCR-658
-  Scenario: SLCR-658 - COCO LCE Move Colorado test
+  @SLCR-722
+  Scenario: SLCR-722 - COCO LCE Move into Colorado test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -426,8 +426,8 @@ Feature: LCE Test Runs for COCO
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-659
-  Scenario: SLCR-659 - COCO LCE Move out of State test
+  @SLCR-723
+  Scenario: SLCR-723 - COCO LCE Move out of State test
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -502,10 +502,5 @@ Feature: LCE Test Runs for COCO
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Elmo"
-
-
-
-
-
 
 
