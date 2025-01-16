@@ -59,7 +59,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
 
-  @SLER-284 @PageTextOhiHraElmo
+  @SLER-284 @PageTextOhcHraElmo
   Scenario: SLER-284 I can see HRA's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
@@ -241,7 +241,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-286 @PageTextOhiHraElmo
+  @SLER-286 @PageTextOhcHraElmo
   Scenario: SLER-286 I can see HRA's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the HRA page in "Spanish"
@@ -468,11 +468,11 @@ Feature: Page Text-Other Health Coverage Page HRA
     And I verify the "Initial Page" amount "" HRA page data in "English"
     And I verify year is "Not Selected", amount is "Not Selected", type is "Not Selected", "Without" APTC question "" on the HRA page
 #Set-up
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "500.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "500.00" amount on the Elmo OHC HRA page
     Then I select "QSEHRA" for HRA type
     And I validate I am on the "Elmo HRA" page
-    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
@@ -485,10 +485,10 @@ Feature: Page Text-Other Health Coverage Page HRA
 #Step 3
     And I verify year is "Current Year", amount is "500.00", type is "QSEHRA", "Without" APTC question "" on the HRA page
 #Set-up
-    Then I enter "6.00" amount on the Elmo OHI HRA page
+    Then I enter "6.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHI HRA page
-    Then I click continue on the Elmo OHI HRA page
+    Then I select "Yes" for opt out on the Elmo OHC HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
@@ -501,15 +501,15 @@ Feature: Page Text-Other Health Coverage Page HRA
 #Step 4
     And I verify year is "Current Year", amount is "6.00", type is "ICHRA", "With" APTC question "Yes" on the HRA page
 #Step 5
-    Then I enter "350.00" amount on the Elmo OHI HRA page
+    Then I enter "350.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I validate I am on the "Elmo HRA" page
     And I verify year is "Current Year", amount is "350.00", type is "ICHRA", "Without" APTC question "" on the HRA page
 #Set-up
-    Then I enter "15.00" amount on the Elmo OHI HRA page
+    Then I enter "15.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "No" for opt out on the Elmo OHI HRA page
-    Then I click continue on the Elmo OHI HRA page
+    Then I select "No" for opt out on the Elmo OHC HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
     Then I click continue on the Employment Summary Page
