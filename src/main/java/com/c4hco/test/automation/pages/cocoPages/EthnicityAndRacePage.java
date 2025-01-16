@@ -343,8 +343,7 @@ public class EthnicityAndRacePage {
         }
     private void setMemberID(String memPrefix){
         List<MemberDetails> members = basicActions.getAllMem();
-        String url = basicActions.getCurrentUrl();
-        String memberId = basicActions.getMemberIDFromURL(url);
+        String memberId = basicActions.getMemberIDFromURL();
         members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setMemberId(memberId));
     }
 

@@ -19,7 +19,6 @@ public class COCO_PolicyTableDbValidations {
     List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
     DbData dbData = new DbData();
     PlanDbData medicalPlanDbData = new PlanDbData();
-    PlanDbData dentalPlanDbData = new PlanDbData();
     MemberDetails subscriber = new MemberDetails();
 
     public void recordsValidations() {

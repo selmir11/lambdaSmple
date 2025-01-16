@@ -198,8 +198,8 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         genderSelection(gender);
         for (String Relation : Relations) {
             selectRelationship(Relation);
-            applyingForCoverage(applying);
         }
+        applyingForCoverage(applying);
     }
 
     public void memberDetailswithAge(int Age){
@@ -565,6 +565,19 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             dropdown.selectByVisibleText(Relation);
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
+            List<MemberDetails> members = SharedData.getMembers();
+            for (MemberDetails member : members) {
+                if (member.getFirstName().contains(Relation)) {
+                    if (Relation.equals("Spouse") || Relation.equals("Wife")) {
+                        Relation = "Spouse";
+                    } else if (Relation.equals("Son") || Relation.equals("Daughter")) {
+                        Relation = "Child or Other dependent";
+                    }
+                    member.setRelation_to_subscriber(Relation.toUpperCase());
+                    break;
+                }
+            }
+            SharedData.setMembers(members);
         } catch (NoSuchElementException e) {
             System.out.println("Element not found: " + e.getMessage());
             // Handle the exception as needed

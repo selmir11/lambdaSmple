@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class DbSteps {
     private final DbValidations dbValidations = new DbValidations();
-    private final COCO_DbValidations cocodbValidations = new COCO_DbValidations();
     private final IndividualPolicyTableValidations policyTableValidations = new IndividualPolicyTableValidations();
 
     @And("I validate member exists in policy table")
@@ -37,18 +36,9 @@ public class DbSteps {
         dbValidations.validatePolicyDqCheck(keysetSize);
     }
 
-    @And("I verify the COCO policy data quality check with Policy Ah keyset size {int}")
-    public void iValidateCOCOPolicyDqCheck(int keysetSize) {
-        cocodbValidations.validatePolicyDqCheck(keysetSize);
-    }
-
     @And("I verify the data from book of business queue table with {string} as event type")
     public void iValidateBookOfBusinessQ(String eventType) {
         dbValidations.validateBookOfBusinessQ(eventType);
-    }
-    @And("I verify the data from COCO book of business queue table with {string} as event type")
-    public void iValidateCOCOBookOfBusinessQ(String eventType) {
-        cocodbValidations.validateBookOfBusinessQ(eventType);
     }
 
     @And("I verify the account holder Name in BOB DB")

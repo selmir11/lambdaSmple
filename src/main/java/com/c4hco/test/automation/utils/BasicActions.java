@@ -71,11 +71,6 @@ public class BasicActions {
         return getDriver().getCurrentUrl();
     }
 
-    public String getMemberIDFromURL(String url){
-        String[] parts = url.split("/");
-        return parts[parts.length - 1];
-    }
-
     public void openUrlWithQueryStringInNewTab(String query) {
         String currUrl = getCurrentUrl();
         String newUrl = currUrl + query;

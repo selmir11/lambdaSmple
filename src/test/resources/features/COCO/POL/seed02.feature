@@ -47,7 +47,7 @@ Feature: Seed02 - Coco
     And I select continue on the income Summary CoCo page
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page with "SPOUSE", "03021995", "Female", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Spouse", "03021995", "Female", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
@@ -75,7 +75,7 @@ Feature: Seed02 - Coco
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    And I click "No" to the Tobacco usage question on start shopping page for "Primary,SPOUSE" coco
+    And I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     And I get the application id from the url from tobacco page coco
     Then I click continue on coco start shopping page
     Then I validate that there are 1 default groups in coco page
