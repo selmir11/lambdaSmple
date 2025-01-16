@@ -2,12 +2,8 @@ package com.c4hco.test.automation.database.Queries;
 
 import com.c4hco.test.automation.Dto.SharedData;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class DbQueries_COCO {
     String acctId = SharedData.getPrimaryMember()!=null ? String.valueOf(SharedData.getPrimaryMember().getAccount_id()): "";
-    String applicationId = SharedData.getPrimaryMember()!=null ? SharedData.getPrimaryMember().getApplication_id(): "";
     String dbName = SharedData.getDbName();
 
 
@@ -50,44 +46,9 @@ public String policyTablesCombinedQuery(String coverageType){
             "and eph.policy_status != 'CANCELLED'";
     return query;
 }
-    public String getRatingArea(String fipcode) {
-        return "select name from " + dbName + ".en_rating_area " +
-                "where fips = '" + fipcode + "'";
-    }
-
-    public String getRatingAreaId(String fipcode) {
-        return "select rating_area_id from " + dbName + ".en_rating_area " +
-                "where fips = '" + fipcode + "'";
-    }
-
     public String getFipcode(String zipCode) {
         return "select fips from " + dbName + ".en_county " +
                 "where zip = '" + zipCode + "'";
     }
-    public String en_plan(String planName) {
-        return "select * from " + dbName + ".en_plan ep \n" +
-                "where plan_marketing_name = '" + planName + "'" +
-                "and plan_year = '2024'\n" +
-                "limit 1";
-    }
-    public String en_issuer(String hiosIssuerId) {
-        return "select name, tin_num from " + dbName + ".en_issuer ei\n" +
-                "where hios_issuer_id = '" + hiosIssuerId + "'" +
-                "and plan_year = '2024'";
-    }
-    public String exchPersonId(String memId) {
-        return "select  exch_person_id from " + dbName + ".es_member where member_id='" + memId + "'";
-    }
-    public String getCSRRecords() {
-        return "SELECT DISTINCT mcf.csr_amt, p.coverage_type\n" +
-                "FROM  " + dbName + ".en_member_coverage_financial_ah mcf\n" +
-                "JOIN " + dbName + ".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
-                "JOIN " + dbName + ".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
-                "JOIN " + dbName + ".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
-                "WHERE p.account_id = '" + acctId + "'";
-    }
-    public String getMemberId(String memFname){
-        return "select member_id from "+dbName+".es_member\n" +
-                "where first_name = '"+memFname+"'";
-    }
+
 }
