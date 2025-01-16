@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI ESI Elmo Page
+Feature: Secondary User-OHC ESI Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -92,7 +92,7 @@ Feature: Secondary User-OHI ESI Elmo Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
 
-  @SLER-536 @SecondaryUserOhiEsiElmo
+  @SLER-536 @SecondaryUserOhcEsiElmo
   Scenario: SLER-536 I can see ESI's dynamic data for Primary and Secondary user - English
     And I verify the "No Job Section" ESI page data in "English"
     Then I select the "0" employer for "Primary" member on the ESI page
@@ -130,7 +130,7 @@ Feature: Secondary User-OHI ESI Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-537 @SecondaryUserOhiEsiElmo
+  @SLER-537 @SecondaryUserOhcEsiElmo
   Scenario: SLER-537 I can see ESI's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page

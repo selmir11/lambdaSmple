@@ -12,7 +12,9 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -73,14 +75,26 @@ public class PDF {
         return isValid;
     }
 
-    // Gathering PDF ignore configuration (may be expanded in future)
+    // Gathering PDF ignore configuration (might be expanded in future)
     private String PDFIgnore() {
-        return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/ignore.conf");
+
+        if (SharedData.getIsOpenEnrollment().equals("no")) {
+            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Closed Enrollment/ignore.conf");
+        } else {
+            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Open Enrollment/ignore.conf");
+        }
+
+
     }
 
     // Getting the expected PDF path
     public String PDFExpected(String pdfExpected) {
-        return String.format("src/main/resources/MyDocs/Elig/Elig/Source/" + pdfExpected + ".pdf");
+
+        if (SharedData.getIsOpenEnrollment().equals("no")) {
+            return String.format("src/main/resources/MyDocs/Elig/Elig/Source/Closed Enrollment/" + pdfExpected + ".pdf");
+        } else {
+            return String.format("src/main/resources/MyDocs/Elig/Elig/Source/Open Enrollment/" + pdfExpected + ".pdf");
+        }
     }
 
     // Getting the downloaded PDF path
@@ -94,6 +108,19 @@ public class PDF {
 
     // Getting the output path for comparison
     public String PDFOutput(String pdfOutput) {
+
+        Path outputDirectory = Paths.get("target/PDF-Output");
+
+        // Check if the directory exists, and create it if it doesn't
+        if (Files.notExists(outputDirectory)) {
+            try {
+                Files.createDirectories(outputDirectory);  // Create the directory if it doesn't exist
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;  // Return null or handle the error appropriately
+            }
+        }
+
         return String.format("target/PDF-Output/" + pdfOutput + "_" + BasicActions.getInstance().getDateAndTime());
     }
 

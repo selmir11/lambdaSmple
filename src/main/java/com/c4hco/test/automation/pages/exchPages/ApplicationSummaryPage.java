@@ -14,6 +14,12 @@ public class ApplicationSummaryPage {
     WebElement editBasicInfoButton;
     @FindBy(id = "submitButton_Income")
     WebElement editIncome;
+    @FindBy(css = ":nth-child(21) b")
+    WebElement existingHealthInsuranceLabel;
+    @FindBy(css = ":nth-child(21) div div")
+    WebElement existingHealthInsuranceData;
+    @FindBy(css = "#submitButton")
+    WebElement backButton;
 
     private BasicActions basicActions;
 
@@ -29,6 +35,28 @@ public class ApplicationSummaryPage {
     }
     public void clickEditIncomelink(){
         editIncome.click();
+    }
+
+    public void clickBackButton(){
+        basicActions.waitForElementToBePresent(backButton,20);
+        backButton.click();
+    }
+
+
+
+
+    // ############################## VALIDATION METHODS #########################
+    // Add only validation methods below this line
+
+    public void verifyExistingHealthInsurance(String OhcData, String language){
+        basicActions.waitForElementToBePresent(existingHealthInsuranceLabel, 30);
+        String expectedText = switch (language.toLowerCase()) {
+            case "spanish" -> "Seguro de salud existente:";
+            default -> "Existing health insurance:";
+        };
+        softAssert.assertEquals(existingHealthInsuranceLabel.getText(), expectedText);
+        softAssert.assertEquals(existingHealthInsuranceData.getText(), OhcData);
+        softAssert.assertAll();
     }
 
 }

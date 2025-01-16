@@ -139,7 +139,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-278 @PageTextOhiCobraElmo
+  @SLER-278 @PageTextOhcCobraElmo
   Scenario: SLER-278 I can see Cobra's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
@@ -322,7 +322,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-279 @PageTextOhiCobraElmo
+  @SLER-279 @PageTextOhcCobraElmo
   Scenario: SLER-279 I can see Cobra's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the Cobra page in "Spanish"

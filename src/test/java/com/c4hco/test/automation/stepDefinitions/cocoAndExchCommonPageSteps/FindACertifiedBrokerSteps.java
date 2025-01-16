@@ -57,6 +57,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clickMoreDetailsInTheBrokerContainer();
     }
 
+    @And("I click more details on the first broker result")
+    public void iClickMoreDetailsBrokerResult() {
+        findACertifiedBrokerPage.clickMoreDetailsBroker();
+    }
+
     @And("I click hide details")
     public void iClickHideDetails(){
         findACertifiedBrokerPage.clickHideDetails();

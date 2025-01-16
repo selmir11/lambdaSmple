@@ -225,7 +225,7 @@ Feature: LR Enrollment Period end date is set when user has
     And  I Validate enrollment period end date is set to 60 days from current QLCE days
 
   @SLER-1868
-  Scenario : Validate enrollment period end date
+  Scenario: Validate enrollment period end date
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page

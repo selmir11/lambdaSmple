@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Navigation-OHI ESI Page
+Feature: Page Navigation-OHC ESI Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -62,7 +62,7 @@ Feature: Page Navigation-OHI ESI Page
 
 
   @SLER-687 @PageNavigationESI
-  Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHI Portal, Exchange
+  Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHC Portal, Exchange
     #Step1
     And I change the C4 url to "Other Health Coverage portal Error Exch"
     Then I validate I am on the "Error" page
@@ -106,7 +106,7 @@ Feature: Page Navigation-OHI ESI Page
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
     Then I validate I am on the "Login" page
 
-  @SLER-958 @PageTextESI
+  @SLER-958 @PageTextESI @test
   Scenario: SLER-958 Delete employer from Employer Summary and ESI is removed from DB
     Then I select the Go Back button on the ESI page
     Then I click Go back on the ELMO health coverage page
@@ -142,11 +142,11 @@ Feature: Page Navigation-OHI ESI Page
     Then I select the Edit Income link
 
     And I validate I am on the "Employment Summary" page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |             1           |             1           |
     Then I click on Remove job "Second" entered for Primary on the Employment Summary Page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            0         |                            |                          |                      |                         |                             |                                     |                               |        1           |            0           |                        |                         |                         |
     Then I click continue on the Employment Summary Page
@@ -194,12 +194,12 @@ Feature: Page Navigation-OHI ESI Page
     Then I select the Edit Income link
 
     And I validate I am on the "Employment Summary" page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |             1           |             1           |
     Then I click on Remove job "First" entered for Primary on the Employment Summary Page
     And I validate I am on the "Employment Summary" page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     1   |     0     |       0       |        1           |             1            |            0           |   0   |            1         |             1              |            0             |                      |           1             |           250.00            |                                     |                               |        1           |            0           |                        |             1           |             1           |
     Then I click continue on the Employment Summary Page
@@ -214,7 +214,7 @@ Feature: Page Navigation-OHI ESI Page
 
 
   @SLER-964 @PageVerificationEsiPage
-  Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHI application to the ELMO Exch ESI page
+  Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHC application to the ELMO Exch ESI page
     Then I select the Go Back button on the ESI page
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -230,14 +230,14 @@ Feature: Page Navigation-OHI ESI Page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
     And I validate I am on the "Elmo HRA" page
-    Then I click Go Back on the Elmo OHI HRA page
+    Then I click Go Back on the Elmo OHC HRA page
     And I validate I am on the "ESI" page
     Then I select the Go Back button on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "HRA" as ELMO health coverage option
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "150.00"
@@ -245,7 +245,7 @@ Feature: Page Navigation-OHI ESI Page
     Then I click continue on the Elmo OHC Medicare page
     And I validate I am on the "ESI" page
     Then I select the Go Back button on the ESI page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     Then I click continue on the Elmo OHC Medicare page
     And I validate I am on the "ESI" page
     Then I click continue on the ESI page

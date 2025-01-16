@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Validation-OHI Medicare Elmo Page
+Feature: Page Validation-OHC Medicare Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -52,9 +52,9 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
 
-  @SLER-329 @PageValidationOhiMedicareElmo
+  @SLER-329 @PageValidationOhcMedicareElmo
   Scenario: SLER-329 I can see Medicare's standard errors consistently - English
     And I verify the "First Section" Medicare page data in "English"
     Then I click continue on the Elmo OHC Medicare page
@@ -95,7 +95,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-330 @PageValidationOhiMedicareElmo @TAMSmoke
+  @SLER-330 @PageValidationOhcMedicareElmo @TAMSmoke
   Scenario: SLER-330 I can see Medicare's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -138,16 +138,16 @@ Feature: Page Validation-OHI Medicare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-711 @PageValidationOhiMedicareElmo
+  @SLER-711 @PageValidationOhcMedicareElmo
   Scenario: SLER-711 I validate save, update and remove on Medicare are updated in the DB
     And I verify Currently eligible is "Not Selected" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |                        |                            |                            |
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |            0           |                            |                            |
     And I click plus icon next to member on household page for "Primary"
@@ -158,14 +158,14 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "250.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     Then I enter end date of "Current Month" for Medicare part "A"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |                  |        250.00         |                            |            1           |             1              |                            |
     And I click plus icon next to member on household page for "Primary"
@@ -176,14 +176,14 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
     Then I enter end date of "Current Month" for Medicare part "B"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |        1         |                       |                            |            1           |                            |              1             |
     And I click plus icon next to member on household page for "Primary"
@@ -194,7 +194,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "No" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "300.00"
@@ -202,7 +202,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I enter end date of "Current Month" for Medicare part "A"
     Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         1        |        300.00         |                            |            0           |             1              |               0            |
     And I click plus icon next to member on household page for "Primary"
@@ -213,13 +213,13 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A Don't Pay"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
     Then I check checkbox for Part "B"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         0        |                       |              1             |            1           |             0              |                            |
     And I click plus icon next to member on household page for "Primary"
@@ -230,17 +230,17 @@ Feature: Page Validation-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     Then I check checkbox for Part "A"
     Then I click continue on the Elmo OHC Medicare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |         0        |                       |                            |            1           |                            |                            |
 
     And I click on Sign Out in the Header for "NonElmo"
 
 
-  @SLER-1161 @PageValidationOhiMedicareElmo
+  @SLER-1161 @PageValidationOhcMedicareElmo
   Scenario: SLER-1161 Errors cleared so that I don't continue to see errors when I answer questions
     #step1 - verify the initial state of the Medicare page
     And I verify the header for "Primary" Member on the Medicare page in "English"
@@ -284,7 +284,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1125 @PageValidationOhiMedicareElmo @TAMSmoke
+  @SLER-1125 @PageValidationOhcMedicareElmo @TAMSmoke
   Scenario: SLER-1125 I validate no errors displayed on the Family Overview page after user selects Medicare coverage
     And I verify Currently eligible is "Not Selected" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
@@ -327,7 +327,7 @@ Feature: Page Validation-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
     Then I click "No" for currently eligible in Medicare question

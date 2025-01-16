@@ -95,7 +95,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
 
-  @SLER-1077 @PageValidationOhiEsiElmo
+  @SLER-1077 @PageValidationOhcEsiElmo
   Scenario: SLER-1077 I want the family affordability flags aggregated on submitted application
 #    Step 5
     Then I select the Go Back button on the ESI page

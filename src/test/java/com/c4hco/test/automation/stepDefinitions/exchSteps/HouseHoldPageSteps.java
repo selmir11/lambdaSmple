@@ -25,6 +25,9 @@ public class HouseHoldPageSteps {
     @And("I click plus icon next to member on household page for {string}")
     public void iClickTableItem(String namePrefix) {houseHoldPage.iClickTableItem(namePrefix);}
 
+    @And("I click View Details under member on household page for {string}")
+    public void iClickViewDetails(String namePrefix) {houseHoldPage.clickViewDetails(namePrefix);}
+
     @And("I click the edit income icon on household page for {string}")
     public void iClickEditIncomeLink(String namePrefix) {houseHoldPage.iClickEditIncomeLink(namePrefix);}
 
