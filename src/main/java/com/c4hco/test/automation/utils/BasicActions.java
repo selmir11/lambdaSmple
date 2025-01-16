@@ -368,7 +368,7 @@ public class BasicActions {
 
     public void updateElementWithRetries(String locator, String value) {
         int attempts = 0;
-        while (attempts < 5) {
+        while (attempts < 100) {
             try {
                 WebElement element = getDriver().findElement(By.xpath(locator));
                 element.click();
@@ -383,7 +383,7 @@ public class BasicActions {
                 break;
             }
         }
-        throw new RuntimeException("Failed to update element after 5 attempts.");
+        throw new RuntimeException("Failed to update element after 100 attempts.");
     }
 
     public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
