@@ -46,14 +46,19 @@ public class DbSteps {
         dbValidations.validateAccountHolderNameFromBOB();
     }
 
-    @And("I verify the Member will be CSR NON_AIAN")
-    public void iVerifyTheMemberCSRNonAIAN() {
-        dbValidations.validateMemberCSRNonAIANData();
+    @And("I verify the Member will be CSR {string}")
+    public void iVerifyTheMemberCSRNonAIAN(String reasonCode) {
+        dbValidations.validateMemberCSRNonAIANData(reasonCode);
     }
 
     @Then("I verify the application result details in DB as {string} for {string}")
     public void iVerifyApplicationResult(String eligibilityStatus, String memPrefix) {
         dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
+    }
+
+    @Then("I verify the created by value as {string} for {string} and determination as {string}")
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode) {
+        dbValidations.validateCreatedBy(createdBy, memPrefix, expectedReasonCode);
     }
 
 
@@ -278,5 +283,7 @@ public class DbSteps {
     public void validateTellUsAboutAdditionalInformation(String FName){
         dbValidations.validateTellAboutAdditionalInformationinDB(FName);
     }
+    @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
+    public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
 }
 

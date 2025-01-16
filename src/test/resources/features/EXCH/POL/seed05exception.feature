@@ -19,7 +19,7 @@ Feature: Seed05exception - Exchange
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
       | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month |
-    And I apply for the current year
+
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page

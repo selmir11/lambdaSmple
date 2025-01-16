@@ -411,9 +411,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
     }
 
-    public String[] getmemberNonAIAN(){
-        return postgresHandler.getResultForTwoColumnValues("reason_code", "eligibility_type", exchDbQueries.getMemberNonAIAn()) ;}
 
+    public String[] getmemberNonAIAN(String reasonCode) {
+        return postgresHandler.getResultForTwoColumnValues("reason_code", "eligibility_type", exchDbQueries.getMemberNonAIAn(reasonCode));
+    }
 
     public String[] getEsMemberRaceEthnicityDetails() {
         return postgresHandler.getResultForTwoColumnValues("race_ethnicity", "race_other_text", exchDbQueries.getRaceEthnicityStored());}
@@ -433,6 +434,10 @@ public class DbDataProvider_Exch {
 
     public String getReasonCode(String memberId, String expectedReasonCode) {
         return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId, expectedReasonCode));
+    }
+
+    public String getCreatedBy(String memberId, String expectedReasonCode) {
+        return postgresHandler.getResultFor("created_by", exchDbQueries.createdByQuery(memberId, expectedReasonCode));
     }
 
     public String[] getDentalPolicyDate() {

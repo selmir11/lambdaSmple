@@ -246,6 +246,11 @@ public class FindACertifiedBrokerPage {
         SharedData.setAgencyOwner(broker);
     }
 
+    public void clickMoreDetailsBroker() {
+        basicActions.waitForElementToBePresentWithRetries(moreDetails,10);
+        moreDetails.click();
+        basicActions.waitForElementToBePresent(agencyDisplayedName, 10);
+    }
 
     public void clickHideDetails() {
         basicActions.waitForElementToBePresent(hideDetails,10);

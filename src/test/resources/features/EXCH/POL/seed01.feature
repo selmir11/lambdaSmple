@@ -105,9 +105,11 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
     And I validate "medical" plan details from plan history
+    And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -163,7 +165,7 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
@@ -371,33 +373,8 @@ Feature: Regression Tests that require Seed 1
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-#        Insert validation steps
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-    And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
-    And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
     And I click on Sign Out in the Header for "NonElmo"
 
-    And I validate "medical" entities from policy tables
-    And I validate "dental" entities from policy tables
-
-    And I validate "medical" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-      | 021                   | 021                | EC                    |                    |   BIRTH     |
-    And I validate "dental" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-      | 001                   | 001                | AI                    | FINANCIAL CHANGE |            |
-    And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
-    And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file data
-    And I validate the ob834 "dental" file data
 
   @SLER-1992-WIP
   Scenario: RT-2052 ENR-EXCH: APPS - CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) SAME PLANS

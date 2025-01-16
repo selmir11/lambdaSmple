@@ -755,4 +755,9 @@ public class BasicSteps {
 
     @And("I verify the page is scrolled to the top")
     public void iPageAtTop() {basicActions.pageAtTop();}
+
+    @And("I get the memberId of primary member from url")
+    public void getMemId(){
+        basicActions.setMemberIdFromUrl();
+    }
 }
