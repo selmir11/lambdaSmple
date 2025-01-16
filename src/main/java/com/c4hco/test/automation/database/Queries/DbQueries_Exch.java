@@ -120,7 +120,7 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and coverage_type = '2'";
     }
 
-    public String getOhiRecordsAll(String memberId) {
+    public String getOhcRecordsAll(String memberId) {
         return "select ohi.*\n" +
                 "From  " + dbName + ".es_member_other_health_ins ohi\n" +
                 "where member_id = '" + memberId + "'";

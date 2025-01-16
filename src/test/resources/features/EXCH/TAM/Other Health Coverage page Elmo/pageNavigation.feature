@@ -127,7 +127,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I click on Sign Out in the Header for "NonElmo"
 
   @SLER-967 @PageNavigationOtherHealthCoveragePage
-  Scenario: SLER-967 I need navigation functionality so I am navigated to the correct page based on my OHI selections and family members
+  Scenario: SLER-967 I need navigation functionality so I am navigated to the correct page based on my OHC selections and family members
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "04161981", "Female" and applying "Yes"
       | Primary:Spouse |
@@ -245,14 +245,14 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
 #Step 9
-    Then I click Go Back on the Elmo OHI HRA page
+    Then I click Go Back on the Elmo OHC HRA page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I select "HRA" as ELMO health coverage option
 #Step 10
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
 
     Then I click Go Back on the Elmo OHC Retiree page
     Then I select "Retiree Health Plan" as ELMO health coverage option
@@ -262,13 +262,13 @@ Feature: Secondary User-Other Health Coverage Elmo Page
 #Step 11
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
 #Step 12
     Then I click Go Back on the Elmo OHC Tricare page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
 #Step 13
     Then I click Go Back on the Elmo OHC Tricare page
     Then I select "TRICARE" as ELMO health coverage option
@@ -277,13 +277,13 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
 #Step 14
     Then I click Go Back on the Elmo OHC Individual Insurance page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
 
     And I click on Sign Out in the Header for "Elmo"
 
@@ -456,21 +456,21 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "TRICARE" as ELMO health coverage option
     Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "500.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "500.00" amount on the Elmo OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHC Tricare page
@@ -483,21 +483,21 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select "TRICARE" as ELMO health coverage option
     Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "500.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "500.00" amount on the Elmo OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHC Tricare page
@@ -512,31 +512,31 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the page is scrolled to the top
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
     Then I click continue on the Elmo OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
     Then I click continue on the Elmo OHC Cobra page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
     Then I click continue on the Elmo OHC Tricare page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the page is scrolled to the top
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
     Then I click continue on the Elmo OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
     Then I click continue on the Elmo OHC Cobra page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
     Then I click continue on the Elmo OHC Tricare page
 

@@ -206,7 +206,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-341 @PageValidationOhiEsiElmo
+  @SLER-341 @PageValidationOhcEsiElmo
   Scenario: SLER-341 I can see ESI's standard errors consistently - English
     And I verify the "No Job Section" ESI page data in "English"
     Then I click continue on the ESI page
@@ -265,7 +265,7 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-342 @PageValidationOhiEsiElmo
+  @SLER-342 @PageValidationOhcEsiElmo
   Scenario: SLER-342 I can see ESI's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -326,10 +326,10 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-723 @PageValidationOhiEsiElmo
+  @SLER-723 @PageValidationOhcEsiElmo
   Scenario: SLER-723 I validate save, update and remove on ESI are updated in the DB
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |                            |                          |                      |                         |                             |                                     |                               |
 
@@ -347,7 +347,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          1           |           1             |           220.03            |                     0               |                               |            0            |            0            |
 
@@ -361,7 +361,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          0           |           0             |            80.95            |                     0               |                               |            1            |          1              |
 
@@ -380,7 +380,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          1           |           2             |           111.46            |                     1               |            650.00             |            1            |            1            |               0                |               0                |
 
@@ -397,7 +397,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           1             |            73.03            |                     1               |            325.27             |            1            |             1           |               0                |               0                |
 
@@ -413,7 +413,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           0             |           230.01            |                     1               |             700.00            |          0              |            0            |                0               |                 0              |
 
@@ -429,7 +429,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           2             |           120.87            |                     1               |            456.45             |           1             |            1            |                0               |                 0              |
 
@@ -445,7 +445,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           1             |           221.03            |                     1               |           963.45              |           0             |            0            |                0               |                 0              |
 
@@ -458,7 +458,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           506.03            |                   0                 |                               |           0             |            0            |
 
@@ -470,7 +470,7 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |           257.00            |                   0                 |                               |           0             |            0            |
 
@@ -482,13 +482,13 @@ Feature: Page Text-Other Health Coverage Page
     Then  I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           2             |           475.00            |                   0                 |                               |           0             |            0            |
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1084 @PageValidationOhiEsiElmo
+  @SLER-1084 @PageValidationOhcEsiElmo
   Scenario: SLER-1084 I want the family of 3 affordability flags aggregated on submitted application
     Then I select the Go Back button on the ESI page
     Then I click Go back on the ELMO health coverage page
@@ -908,7 +908,7 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1165 @PageValidationOhiEsiElmo
+  @SLER-1165 @PageValidationOhcEsiElmo
   Scenario: SLER-1165 I want errors cleared on the family ESI page so that I don't continue to see errors when I answer questions
     #step1 - verify errors are cleared after job is selected
     And I verify the "No Job Section" ESI page data in "English"

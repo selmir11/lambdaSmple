@@ -99,10 +99,10 @@ Feature: Tests related to the Application Summary/Detail for HRA
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "175.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "175.00" amount on the Elmo OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHI HRA page
+    Then I click continue on the Elmo OHC HRA page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "Health Reimbursement Arrangement" on the Application Summary page in "English"

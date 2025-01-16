@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Validation-OHI Tricare Elmo Page
+Feature: Page Validation-OHC Tricare Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -52,9 +52,9 @@ Feature: Page Validation-OHI Tricare Elmo Page
     And I click save and continue on tax status page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
 
-  @SLER-335 @PageValidationOhiTricareElmo
+  @SLER-335 @PageValidationOhcTricareElmo
   Scenario: SLER-335 I can see Tricare's standard errors consistently - English
     And I verify the "First Section" Tricare page data in "English"
     Then I click continue on the Elmo OHC Tricare page
@@ -88,7 +88,7 @@ Feature: Page Validation-OHI Tricare Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-336 @PageValidationOhiTricareElmo
+  @SLER-336 @PageValidationOhcTricareElmo
   Scenario: SLER-336 I can see Tricare's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -123,20 +123,20 @@ Feature: Page Validation-OHI Tricare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-721 @PageValidationOhiTricareElmo @TAMSmoke
+  @SLER-721 @PageValidationOhcTricareElmo @TAMSmoke
   Scenario: SLER-721 I validate save, update and remove on Tricare are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |                      |                          |                          |
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |                      |                          |                          |
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |          0           |                          |                          |
     And I click plus icon next to member on household page for "Primary"
@@ -147,16 +147,16 @@ Feature: Page Validation-OHI Tricare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |            0          |       0       |        0           |             0            |            0           |   0   |     1     |          0           |                          |                          |
     Then I click "No" for insurance ending in 60 days in Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             0            |                          |
     And I click plus icon next to member on household page for "Primary"
@@ -167,12 +167,12 @@ Feature: Page Validation-OHI Tricare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I enter the end date as "Current Month" on the Tricare page
     Then I click "No" for insurance ending voluntary for Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |            0          |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             1            |               0          |
     And I click plus icon next to member on household page for "Primary"
@@ -183,10 +183,10 @@ Feature: Page Validation-OHI Tricare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     Then I click "Yes" for insurance ending voluntary for Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |            0          |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             1            |               1          |
     And I click plus icon next to member on household page for "Primary"
@@ -197,10 +197,10 @@ Feature: Page Validation-OHI Tricare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     Then I click "No" for insurance ending in 60 days in Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |     1     |          1           |             0            |                          |
     And I click plus icon next to member on household page for "Primary"
@@ -211,10 +211,10 @@ Feature: Page Validation-OHI Tricare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the Elmo OHC Tricare page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|tricare_ind|tricare_enrl_covg_ind3|tricare_covg_end_soon_ind3|tricare_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |           0           |       0       |        0           |             0            |            0           |   0   |    1      |           0          |                          |                          |
 

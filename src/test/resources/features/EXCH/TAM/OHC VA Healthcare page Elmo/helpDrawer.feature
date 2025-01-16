@@ -53,10 +53,10 @@ Feature: Help Drawer-OHC VA Healthcare Elmo Page
 
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi VA Healthcare" page
+    And I validate I am on the "Elmo Ohc VA Healthcare" page
     And I set the browser resolution to 2000 x 800
 
-  @SLER-904 @HelpDrawerOhiVaHealthcareElmo
+  @SLER-904 @HelpDrawerOhcVaHealthcareElmo
   Scenario: SLER-904 Validate help drawer text on the VA Healthcare page - English
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
@@ -88,7 +88,7 @@ Feature: Help Drawer-OHC VA Healthcare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-905 @HelpDrawerOhiVaHealthcareElmo
+  @SLER-905 @HelpDrawerOhcVaHealthcareElmo
   Scenario: SLER-905 Validate help drawer text on the VA Healthcare page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the VA Healthcare page in "Spanish"
