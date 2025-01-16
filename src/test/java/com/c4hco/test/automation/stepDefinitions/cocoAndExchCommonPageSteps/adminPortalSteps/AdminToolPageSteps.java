@@ -79,4 +79,30 @@ public class AdminToolPageSteps {
     public void iVerifyNoApplicationDataMessageIsDisplayed() {
         adminLceToolPage.validateMessage();
     }
+
+
+    @Then("I verify Confirm change effective dates pop up displays on Admin LCE page")
+    public void iVerifyConfirmChangeEffectiveDatesPopUpDisplaysOnAdminLCEPage() {
+        adminLceToolPage.confirmEffectiveDatePopUp();
+    }
+
+    @Then("I verify Go back button displays previous page")
+    public void iVerifyGoBackButtonDisplaysPreviousPage() {
+        adminLceToolPage.clickGoBackButton();
+    }
+
+    @Then("I click on {int}st link for Recreate application for plan year {int} on the Admin LCE page")
+    public void iClickOnStLinkForRecreateApplicationForPlanYearOnTheAdminLCEPage(int planYear,int linkIndex) {
+        adminLceToolPage.clickRecreateApplicationLink(linkIndex,planYear);
+    }
+
+    @Then("I enter the effective date to {string}")
+    public void iEnterTheEffectiveDateTo(String endDate) {
+        adminLceToolPage.enterDate(endDate);
+    }
+
+    @Then("I click on confirm button on Admin LCE page")
+    public void iClickOnConfirmButtononAdminLCEPpage() {
+        adminLceToolPage.clickConfirmButton();
+    }
 }
