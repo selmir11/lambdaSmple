@@ -15,15 +15,14 @@ Feature: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-01
     And I verify the notice Text for "AM-016-07" in "English" for "Exch"
     Then I click the password reset link
     Then I delete the open notice
-    And I sign out of Outlook
-    Then I switch to the tab number 1
+    Then I switch to the tab number 3
     And I enter the new password in create new password page
     Then I validate I am on the "Login" page
     And I login as individual with password reset code to any env QA "testing.reset+obfcjxalgTest@outlook.com" STG "testing.reset+jtjnlxektTest@outlook.com"
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
+    And I close current tab and switch back to previous tab
+    Then I switch to the tab number 2
     Then I open the notice "Confirmation: Account Password Reset" in "English"
     And I verify the notice Text for "AM-016-08" in "English" for "Exch"
     Then I delete the open notice
@@ -45,15 +44,14 @@ Feature: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-01
     And I verify the notice Text for "AM-016-07" in "Spanish" for "Exch"
     Then I click the password reset link
     Then I delete the open notice
-    And I sign out of Outlook
-    Then I switch to the tab number 1
+    Then I switch to the tab number 3
     And I enter the new password in create new password page
     Then I validate I am on the "Login" page
     And I login as individual with password reset code to any env QA "testing.soukaina+hpjwlmcTest@outlook.com" STG "AutomationUser.gabmbhgpTest@test.com"
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
+    And I close current tab and switch back to previous tab
+    Then I switch to the tab number 2
     Then I open the notice "Confirmación: Restablecimiento de la contraseña de la cuenta" in "Spanish"
     And I verify the notice Text for "AM-016-08" in "Spanish" for "Exch"
     Then I delete the open notice
