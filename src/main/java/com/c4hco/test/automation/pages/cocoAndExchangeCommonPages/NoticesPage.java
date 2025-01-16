@@ -895,7 +895,7 @@ public class NoticesPage {
         todayDate = basicActions.changeDateFormat(todayDate, "MM/dd/yyyy", "MMMM d, yyyy");
         softAssert.assertEquals(emailDeartxt.getText(), SharedData.getPrimaryMember().getFullName());
         softAssert.assertTrue(EmailDate.getText().contains(todayDate), "Email generated date mismatch");
-        softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + todayDate + " for Plan Year 2024.");
+        softAssert.assertEquals(bodyTextEN00204.get(0).getText(), "Welcome! This notice confirms that you chose an insurance plan on " + todayDate + " for Plan Year 2025.");
         softAssert.assertAll();
     }
 

@@ -249,9 +249,9 @@ public class DbValidations {
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
 
-    public void validateMemberCSRNonAIANData() {
-        String[] dbValues = exchDbDataProvider.getmemberNonAIAN();
-        softAssert.assertEquals(dbValues[0], "NON_AIAN", "Reason code mismatch: Expected 'NONAIAN'");
+    public void validateMemberCSRNonAIANData(String reasonCode) {
+        String[] dbValues = exchDbDataProvider.getmemberNonAIAN(reasonCode);
+        softAssert.assertEquals(dbValues[0], "NON_AIAN_LEVEL_3", "Reason code mismatch: Expected 'NONAIAN'");
         softAssert.assertEquals(dbValues[1], "CSR", "Eligibility type mismatch: Expected 'CSR'");
         softAssert.assertAll();
     }

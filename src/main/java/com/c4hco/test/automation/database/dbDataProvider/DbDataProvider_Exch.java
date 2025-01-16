@@ -411,9 +411,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
     }
 
-    public String[] getmemberNonAIAN(){
-        return postgresHandler.getResultForTwoColumnValues("reason_code", "eligibility_type", exchDbQueries.getMemberNonAIAn()) ;}
 
+    public String[] getmemberNonAIAN(String reasonCode) {
+        return postgresHandler.getResultForTwoColumnValues("reason_code", "eligibility_type", exchDbQueries.getMemberNonAIAn(reasonCode));
+    }
 
     public String[] getEsMemberRaceEthnicityDetails() {
         return postgresHandler.getResultForTwoColumnValues("race_ethnicity", "race_other_text", exchDbQueries.getRaceEthnicityStored());}

@@ -46,9 +46,9 @@ public class DbSteps {
         dbValidations.validateAccountHolderNameFromBOB();
     }
 
-    @And("I verify the Member will be CSR NON_AIAN")
-    public void iVerifyTheMemberCSRNonAIAN() {
-        dbValidations.validateMemberCSRNonAIANData();
+    @And("I verify the Member will be CSR {string}")
+    public void iVerifyTheMemberCSRNonAIAN(String reasonCode) {
+        dbValidations.validateMemberCSRNonAIANData(reasonCode);
     }
 
     @Then("I verify the application result details in DB as {string} for {string}")
