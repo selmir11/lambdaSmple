@@ -523,6 +523,14 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -559,6 +567,14 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     Then I enter the end date as "Current Month" on the Tricare page
     Then I click "Yes" for insurance ending voluntary for Tricare question
     Then I click continue on the Elmo OHC Tricare page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "TRICARE" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "TRICARE" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -623,6 +639,14 @@ Feature: Tests related to the Application Summary/Detail for Tricare
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
