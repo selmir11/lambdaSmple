@@ -81,5 +81,5 @@ Feature: Agency owner/associated broker license and profile update verification
     Then I validate broker name is "Stella Santos"
     Then I validate agency name is "Augusta Morse Agency"
     Then I validate the new agency address
-    And I click more details from the first broker result container
+    And I click more details on the first broker result
     Then I validate the new agency details "AugustaMorseAgency@Agency.com", "719-326-5891", "Monday", "08:00 AM to 05:00 PM", "English"
