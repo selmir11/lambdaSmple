@@ -107,7 +107,7 @@ Feature: AM 011-02 Notices
     Then I validate I am on the "My Account Overview" page
 
   @needTag
-  Scenario Outline: AM Profile Changes
+  Scenario Outline: AM Profile Changes- English
     And I click on ClickHere link for "My Profile"
     And I click on Make Changes Button
     And I update the <update_action> on profile page
@@ -117,14 +117,36 @@ Feature: AM 011-02 Notices
     Then I click on ClickHere link for "My Documents"
     Then I validate I am on the "My Documents" page
     And I click on download "IND_Profile Change (AM-011-02)" document
-    Then I validate "AM-011-02" notice content
+    Then I validate "AM-011-02 English" notice content
     And I click on Sign Out in the Header for "Elmo"
 
     Examples:
       | update_action               |
-      | contact home phone number   |
       | contact mobile phone number |
       | contact email address       |
       | contact preferred language  |
       | contact preferred method    |
+
+  Scenario Outline: AM Profile Changes- Spanish
+    And I click on ClickHere link for "My Profile"
+    And I click on Make Changes Button
+    And I update the <update_action1> on profile page
+    And I click on Save Button
+    And I wait for 3000 milliseconds
+    And I click on Make Changes Button
+    And I update the <update_action2> on profile page
+    And I click on Save Button
+    And I wait for 3000 milliseconds
+    And I click on My Account in the "Elmo" Header
+    Then I click on ClickHere link for "My Documents"
+    Then I validate I am on the "My Documents" page
+    And I click on download "IND_Profile Change (AM-011-02)" document
+    Then I validate "AM-011-02 Spanish" notice content
+    And I click on Sign Out in the Header for "Elmo"
+
+    Examples:
+      |update_action1                |update_action2              |
+      | contact preferred language   |contact home phone number   |
+
+
 
