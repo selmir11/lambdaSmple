@@ -128,7 +128,9 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
+    And I click View Plan History link from "medical" plan card
     And I validate "medical" plan details from plan history
+    And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
@@ -220,6 +222,7 @@ Feature: Seed02 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click on view results and shop
 
     # - New updated name is not being displayed on the below pages - Bug - POL-9149
 #    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
