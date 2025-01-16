@@ -18,7 +18,7 @@ Feature: FA - 4groups - enroll in plan
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-    #And I report "Birth" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "07271963" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -132,7 +132,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "Yes" for CO Resident option
     And I select "Yes" for Federally Recognized Tribe option
       #Tribe Selection to be added
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
     And I select "No" for Foster care in state of Colorado
@@ -327,7 +327,7 @@ Feature: FA - 4groups - enroll in plan
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,Daughter,Niece"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page

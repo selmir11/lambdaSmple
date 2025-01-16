@@ -435,6 +435,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId, expectedReasonCode));
     }
 
+    public String getCreatedBy(String memberId, String expectedReasonCode) {
+        return postgresHandler.getResultFor("created_by", exchDbQueries.createdByQuery(memberId, expectedReasonCode));
+    }
+
     public String[] getDentalPolicyDate() {
         return postgresHandler.getResultForTwoColumnValues("policy_start_date","policy_end_date",exchDbQueries.getDental_policy_date());}
 

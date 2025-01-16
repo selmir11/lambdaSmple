@@ -112,6 +112,7 @@ public class MedicalPlanResultsPage {
 
 
     public void selectfromProviderList(String Selecting) {
+        basicActions.waitForElementToDisappear( spinner,15 );
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
@@ -138,7 +139,8 @@ public class MedicalPlanResultsPage {
 
     public void clickSkip(){
         basicActions.waitForElementToDisappear(spinner, 30);
-         basicActions.waitForElementToBePresent(btnSkip, 30);
+        basicActions.waitForElementToBePresentWithRetries(btnSkip, 30);
+        basicActions.scrollToElement( btnSkip );
         btnSkip.click();
     }
 
@@ -187,7 +189,7 @@ public class MedicalPlanResultsPage {
 
     public void clickInsuranceCompanyDropdown() {
         basicActions.waitForElementToDisappear( spinner,120 );
-        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,40 );
+        basicActions.waitForElementToBePresent( insuranceCompanyDropdown,60 );
         insuranceCompanyDropdown.click();
 
     }

@@ -812,7 +812,7 @@ Scenario Outline: SLCR-85 - This will verify the existence of the COCO Silver En
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-195
-  Scenario: SLCR-195 - This will create Individual Minor with no assistance annually salary of 10K
+  Scenario: SLCR-195 - former CCRT-15 - Individual Minor SES enrollment with no assistance - annual salary of 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation

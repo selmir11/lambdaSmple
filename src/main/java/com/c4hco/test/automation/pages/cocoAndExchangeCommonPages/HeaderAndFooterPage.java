@@ -365,7 +365,7 @@ public class HeaderAndFooterPage {
             case "CoCo":
                 basicActions.waitForElementToBeClickable(languageDrp, 90);
                 basicActions.waitForElementToBeClickable(userNameLink, 90);
-                userNameLink.click();
+                basicActions.clickElementWithRetries(userNameLink, 20);
                 break;
             case "Exch":
                 basicActions.waitForElementToBeClickable(languageDrp, 90);
@@ -897,7 +897,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
         softAssert.assertEquals(termsOfUseLink.getText(), "Terms Of Use");
         softAssert.assertEquals(contactUsLink.getText(), "Contact Us");
-        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92024 COLORADO CONNECT. ALL RIGHTS RESERVED.");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92025 COLORADO CONNECT. ALL RIGHTS RESERVED.");
         softAssert.assertAll();
     }
 
@@ -906,7 +906,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(privacyPolicyLink.getText(), "Pol\u00EDtica de privacidad");
         softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos de uso");
         softAssert.assertEquals(contactUsLink.getText(), "P\u00F3ngase en contacto");
-        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92024 COLORADO CONNECT. Todos los derechos reservados.");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a92025 COLORADO CONNECT. Todos los derechos reservados.");
         softAssert.assertAll();
     }
 
@@ -916,7 +916,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(privacyPolicyLink.getText(), "Privacy Policy");
         softAssert.assertEquals(termsOfUseLink.getText(), "Terms of Use");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Contact Us");
-        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2025 Connect for Health Colorado. All Rights Reserved.");
         softAssert.assertTrue(followUsText.getText().contains("Follow"));
         softAssert.assertTrue(followUsText.getText().contains("Us:"));
         softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
@@ -934,7 +934,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
         softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
-        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. Todos los derechos reservados.");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2025 Connect for Health Colorado. Todos los derechos reservados.");
         softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
         softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
         softAssert.assertEquals(xIcon.getAttribute("title"), "X");
@@ -950,7 +950,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
         softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
         softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
-        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2024 Connect for Health Colorado. Todos los derechos reservados.");
+        softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 2025 Connect for Health Colorado. Todos los derechos reservados.");
         softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
         softAssert.assertEquals(FacebookIcon.getAttribute("title"), "Facebook");
         softAssert.assertEquals(xIcon.getAttribute("title"), "X");
@@ -967,7 +967,7 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(APprivacyPolicyLink.getText(), "Privacy Policy");
         softAssert.assertEquals(APtermsOfUseLink.getText(), "Terms of Use");
         softAssert.assertEquals(APcontactUsLink.getText(), "Contact Us");
-        softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 2024 Connect for Health Colorado. All Rights Reserved.");
+        softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 2025 Connect for Health Colorado. All Rights Reserved.");
         softAssert.assertAll();
     }
 

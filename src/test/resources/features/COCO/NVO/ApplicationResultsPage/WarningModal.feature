@@ -1,3 +1,4 @@
+@NVOCoCoRegression
 Feature: Open Enrollment Ended Warning Modal related tests
 
   Background:

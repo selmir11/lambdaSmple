@@ -122,7 +122,7 @@ public class GroupingMembersMedicalCoCoPage {
         basicActions.waitForElementListToBePresent(medicalGroupTitle, 10);
         softAssert.assertEquals(header.getText()+" "+groupsTitle.getText(), "Medical Enrollment Groups","header mismatch");
         softAssert.assertEquals(firstParaTxt.getText(), "Enrollment groups let you choose who enrolls in the same plan together. Remember that costs within a group count towards each group’s deductible and out-of-pocket maximum. In some cases, changing your enrollment groups may make coverage more affordable for your household.", "Text from first paragraph did not match");
-        softAssert.assertEquals(secondParaTxt.getText(), "We\u2019ve set up suggested groups based on who is in your family, where they live, and what they\u2019re eligible for, but you can choose to move them into groups of your choice.", "Text from second paragraph did not match");
+        softAssert.assertEquals(secondParaTxt.getText(), "We’ve set up suggested groups based on who is in your family, where they live, and what they’re eligible for, but you can choose to move them into groups of your choice.", "Text from second paragraph did not match");
         softAssert.assertEquals(editMyEnrollmentGroupsButton.getText(), "Edit my suggested groups", "Edit Enrollment link text did not match");
         softAssert.assertEquals(medicalGroupTitle.get(0).getText(), "Medical Group #1","medical group title mismatch");
         softAssert.assertAll();

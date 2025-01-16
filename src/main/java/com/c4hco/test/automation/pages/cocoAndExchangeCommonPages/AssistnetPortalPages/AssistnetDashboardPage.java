@@ -40,6 +40,8 @@ public class AssistnetDashboardPage {
     WebElement phoneNumberAP;
     @FindBy(id = "emailAddress-name")
     WebElement emailAP;
+    @FindBy(id = "EmailData")
+    WebElement emailText;
     @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Cancel")
     WebElement cancelBTN;
     @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Save")
@@ -162,5 +164,11 @@ public class AssistnetDashboardPage {
                 break;
             }
         }
+    }
+
+    public void validateTheEmailIsUpdatedCorrectly() {
+        basicActions.waitForElementToBePresentWithRetries(emailText,30);
+        softAssert.assertEquals(emailText.getText(),SharedData.getAssisterDetails().getEmail());
+        softAssert.assertAll();
     }
 }

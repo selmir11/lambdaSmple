@@ -223,27 +223,38 @@ public class OhcMedicarePage_Elmo {
         }
     }
 
-    public void enterEndDate(String insurancePart){
+    public void enterEndDate(String endDateData, String insurancePart){
         switch (insurancePart) {
             case "A":
-                enterEndDatePartA();
+                enterEndDate(endDateData, partAInsuranceEndInput);
                 break;
             case "B":
-                enterEndDatePartB();
+                enterEndDate(endDateData, partBInsuranceEndInput);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insurancePart);
         }
     }
 
-    public void enterEndDatePartA(){
-        basicActions.waitForElementToBePresent(partAInsuranceEndInput, 60);
-        partAInsuranceEndInput.sendKeys(basicActions.lastDateOfCurrMonth());
-    }
-
-    public void enterEndDatePartB(){
-        basicActions.waitForElementToBePresent(partBInsuranceEndInput, 60);
-        partBInsuranceEndInput.sendKeys(basicActions.lastDateOfCurrMonth());
+    public void enterEndDate(String endDateData, WebElement inputElement) {
+        String formattedDate;
+        switch (endDateData) {
+            case "Today":
+                formattedDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MMdd");
+                break;
+            case "Current Month":
+                formattedDate = basicActions.changeDateFormat(basicActions.lastDateOfCurrMonth(), "MM-dd-yyyy", "MMdd");
+                break;
+            case "Prior Month":
+                formattedDate = basicActions.changeDateFormat(basicActions.getPastDate(1), "MM/dd/yyyy", "MMdd");
+                break;
+            case "Future Month":
+                formattedDate = basicActions.changeDateFormat(basicActions.getFutureDate(61), "MM/dd/yyyy", "MMdd");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + endDateData);
+        }
+        inputElement.sendKeys(formattedDate);
     }
 
     public void clickHelpIcon(String label) {

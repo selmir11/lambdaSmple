@@ -51,9 +51,14 @@ public class DbSteps {
         dbValidations.validateMemberCSRNonAIANData();
     }
 
-    @And("I verify the application result details in DB as {string} for {string}")
+    @Then("I verify the application result details in DB as {string} for {string}")
     public void iVerifyApplicationResult(String eligibilityStatus, String memPrefix) {
         dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
+    }
+
+    @Then("I verify the created by value as {string} for {string} and determination as {string}")
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode) {
+        dbValidations.validateCreatedBy(createdBy, memPrefix, expectedReasonCode);
     }
 
 
@@ -264,9 +269,9 @@ public class DbSteps {
     public void iValidateEventCD(){
         dbValidations.validateEventCD();
     }
-    @Then("I validate event log in DB")
-    public void iValidateEventLog(){
-        dbValidations.validateEventLog();
+    @Then("I validate event_cd in easy enrollment event log in DB")
+    public void ivalidateEventCD(List<String> eventCD){
+        dbValidations.validateEventLog(eventCD);
     }
 
     @Then("I validate complete residential address details for {string} member in DB addressLine1 {string},addressLine2 {string},city {string},state {string},zipcode {string},county {string}")
@@ -286,5 +291,7 @@ public class DbSteps {
     public void validateTellUsAboutAdditionalInformation(String FName){
         dbValidations.validateTellAboutAdditionalInformationinDB(FName);
     }
+    @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
+    public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
 }
 

@@ -17,6 +17,16 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.specificAdditionalMemberDetailsCoCo(Name, DOB, gender, Relations, applying);
    }
 
+   @And("I enter details on tell us about additional members of your household page with name {string}, dob {string}, gender {string}, and applying {string}")
+   public void EnterspecificAdditionalMemberDetailsCoCo(String name, String dob, String gender, String applying) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.enterSpecificDetails(name, dob, gender, applying);
+   }
+
+   @And("I select the relationship to primary member as {string}")
+   public void selectRelationToPrimary(String relation){
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.setRelationshipOption(relation);
+   }
+
    @Then("I enter details on tell us about additional members of your household page in Spanish and continue with {string}, {string}, {string}, and applying {string}")
    public void EnterspecificAdditionalMemberDetailsCoCoSpanish(String DOB, String gender, String Relation, String applying) {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.specificAdditionalMemberDetailsCoCoSpanish(DOB, gender, Relation, applying);
@@ -60,6 +70,8 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    public void validateRelationshipDropdownValues(List<String> relationship) {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateDropdownOptions(relationship);
    }
+
+
 
 
 }

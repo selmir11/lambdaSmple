@@ -68,6 +68,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
@@ -94,9 +95,11 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
-      |1:01012024|
+      |1:01012025|
+      |2:01012025|
     And I update the Financial Start date of member
-      |1:01012024|
+      |1:01012025|
+      |2:01012025|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
@@ -135,7 +138,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    Then I select Birth QLCE on tell us about life changes page for the Newborn
+    And I select "BirthLceIndividual" life change event with event date of "getFromSharedData"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
@@ -143,6 +146,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link in coco page
@@ -162,7 +166,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "Plan Summary" page
     And I click Continue button on the Medical Dental Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on coco plan summary page
+#    And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
     And I select "Submit" agreement checkbox CoCo
@@ -308,7 +312,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    Then I select Birth QLCE on tell us about life changes page for the Newborn
+    And I select "BirthLceIndividual" life change event with event date of "getFromSharedData"
     And I select "Birth" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -482,7 +486,7 @@ Feature: CoverageEndDate and Financial end date to day prior to new PolicyStartD
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    Then I select Birth QLCE on tell us about life changes page for the Newborn
+    And I select "BirthLceIndividual" life change event with event date of "getFromSharedData"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature

@@ -71,6 +71,11 @@ public class FindACertifiedBrokerSteps {
     public void iClickAuthorizedBroker() {
         findACertifiedBrokerPage.clickAuthorizedBroker();
     }
+    @Then("I click Authorize button in container")
+    public void iClickAuthorizeButton() {
+        findACertifiedBrokerPage.clickAuthorizeButton();
+    }
+
 
     @And ("I sort the results {string}")
     public void iSortTheResults(String sortOption){

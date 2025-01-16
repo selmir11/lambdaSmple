@@ -69,8 +69,8 @@ public class GroupingMembersMedicalPage {
     }
 
     public void clickGoBackButton(){
-        basicActions.waitForElementToDisappear( spinner,20 );
-        basicActions.waitForElementToBePresent( goBackButton,20 );
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresentWithRetries( goBackButton,40 );
         basicActions.scrollToElement( goBackButton );
         goBackButton.click();;
     }
