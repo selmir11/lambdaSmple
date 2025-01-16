@@ -667,11 +667,8 @@ public String policyTablesCombinedQuery(String coverageType){
         return "SELECT address_line1, city, state, zip, county FROM "+dbName+".es_address\n"+
                 "where address_id = (SELECT hc.mailing_address_id FROM "+dbName+".es_household_contact hc join "+dbName+".es_member m on hc.household_id = m.household_id where m.member_id = "+memberId+")";
     }
-    public String getStateDetailsYes(String memberId){
-        return "SELECT co_resident_ind FROM "+dbName+".es_member where member_id = "+memberId+" and co_resident_ind = '1'";
-    }
-    public String getStateDetailsNo(String memberId){
-        return "SELECT co_resident_ind FROM "+dbName+".es_member where member_id = "+memberId+" and co_resident_ind = '0'";
+    public String getStateDetails(String memberId, int state){
+        return "SELECT co_resident_ind FROM "+dbName+".es_member where member_id = "+memberId+" and co_resident_ind = '"+state+"'";
     }
 
 }
