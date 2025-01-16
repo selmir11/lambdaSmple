@@ -83,4 +83,24 @@ public class AssistnetDashboardSteps {
     public void iValidateTheEmailIsUpdatedCorrectly() {
         assistnetDashboardPage.validateTheEmailIsUpdatedCorrectly();
     }
+
+    @Then("I click Complete Profile on assistnet dashboard page")
+    public void iClickCompleteProfileOnAssistnetDashboardPage() {
+        assistnetDashboardPage.clickCompleteProfileOnAssistnetDashboardPage();
+    }
+
+    @And("I validate the save and continue is displayed")
+    public void iValidateTheSaveAndContinueIsDisplayed() {
+        assistnetDashboardPage.validateTheSaveAndContinueIsDisplayed();
+    }
+
+    @Then("I click save and continue on my information assistnet Page")
+    public void iClickSaveAndContinueOnMyInformationAssistnetPage() {
+        assistnetDashboardPage.clickSaveAndContinueOnMyInformationAssistnetPage();
+    }
+
+    @And("I click go back to my dashboard button from assistNet Dashboared Page")
+    public void iClickGoBackToMyDashboardButtonFromAssistNetDashboaredPage() {
+        assistnetDashboardPage.clickGoBackToMyDashboardButtonFromAssistNetDashboaredPage();
+    }
 }
