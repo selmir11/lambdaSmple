@@ -483,3 +483,16 @@ Feature: Verify Navigation to the ELIG Pages
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
     And I validate I am on the "Spanish" page
+
+  @SLER-2006 @PageNavigation
+  Scenario: ELIG-Before you begin-Page Navigation Current Year(RT-1157)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
