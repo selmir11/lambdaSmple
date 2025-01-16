@@ -985,16 +985,18 @@ Feature: Verify COCO Medical Plan results
     And I select "Anthem" to filter for desired COCO plan provider
     And I select initial plan for Comparison
     And I select "Anthem" to filter for desired COCO plan provider
+
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
     And I select initial plan for Comparison
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
+
     And I select "Kaiser Permanente" to filter for desired COCO plan provider
     And I select initial plan for Comparison
     And I click the Compare button
 
     Then I validate I am on the "Medical Plan Compare" page
     And I validate "3" document columns on the Compare page
-    And I click on Sign Out in the Header for "Elmo"
+    #And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-421 @validateGobackLinkAndButton
   Scenario: SLCR-421 - This will validate the top Go Back Link and the bottom Go Back button on the COCO Compare plan page

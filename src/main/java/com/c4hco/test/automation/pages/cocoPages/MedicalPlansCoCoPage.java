@@ -207,13 +207,15 @@ public class MedicalPlansCoCoPage {
     }
 
     public void select3PlanstoCompare() {
-        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToDisappear( spinner,60 );
         basicActions.waitForElementToBePresent(insuranceCompanyDropdown, 20);
-        basicActions.waitForElementToBePresent( selectFirstComparebox,20 );
+        basicActions.waitForElementToBePresentWithRetries( selectFirstComparebox,20 );
         selectFirstComparebox.click();
-        basicActions.waitForElementToBePresent( selectSecondComparebox,20 );
+        basicActions.waitForElementToDisappear( spinner,60 );
+        basicActions.waitForElementToBePresentWithRetries( selectSecondComparebox,20 );
         selectSecondComparebox.click();
-        basicActions.waitForElementToBePresent( selectThirdComparebox,20 );
+        basicActions.waitForElementToDisappear( spinner,60 );
+        basicActions.waitForElementToBePresentWithRetries( selectThirdComparebox,20 );
         selectThirdComparebox.click();
         selectCompareButton.click();
     }

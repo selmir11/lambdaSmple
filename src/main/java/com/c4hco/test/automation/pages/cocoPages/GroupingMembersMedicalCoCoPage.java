@@ -90,8 +90,9 @@ public class GroupingMembersMedicalCoCoPage {
     }
 
     public void clickOnEditMedicalGroupinglink() {
-        basicActions.waitForElementToDisappear( spinner,80 );
-        basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 40);
+        basicActions.waitForElementToDisappear( spinner,120 );
+        basicActions.waitForElementToBePresentWithRetries(editMyEnrollmentGroupsButton, 60);
+        basicActions.scrollToElement( editMyEnrollmentGroupsButton );
         editMyEnrollmentGroupsButton.click();
     }
 
