@@ -2,7 +2,7 @@ package com.c4hco.test.automation.database.dbHandler;
 
 import com.c4hco.test.automation.database.EntityObj.EsMemberHraAhEntity;
 import com.c4hco.test.automation.database.EntityObj.EsMemberHraEntity;
-import com.c4hco.test.automation.database.EntityObj.EsMemberOhiEntity;
+import com.c4hco.test.automation.database.EntityObj.EsMemberOhcEntity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.BasicActions;
 
@@ -10,12 +10,12 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 
-public class EsMemberOhiDbHandler {
+public class EsMemberOhcDbHandler {
     private PostgresStatementExecutor executor = new PostgresStatementExecutor();
     private final BasicActions basicActions = new BasicActions();
 
-    public EsMemberOhiEntity getOptionsFromOhiTables(String query)  {
-        EsMemberOhiEntity esMemberOhiEntity = new EsMemberOhiEntity();
+    public EsMemberOhcEntity getOptionsFromOhcTables(String query)  {
+        EsMemberOhcEntity esMemberOhcEntity = new EsMemberOhcEntity();
         ResultSet rs;
         basicActions.wait(5000);
         try {
@@ -29,35 +29,35 @@ public class EsMemberOhiDbHandler {
 
                     // Set the field value using reflection
                     try {
-                        Field field = EsMemberOhiEntity.class.getDeclaredField(columnName);
+                        Field field = EsMemberOhcEntity.class.getDeclaredField(columnName);
                         field.setAccessible(true);
                         if (columnValue != null) {
                             // Perform type conversion based on field type
                             if (field.getType() == String.class) {
-                                field.set(esMemberOhiEntity, columnValue.toString());
+                                field.set(esMemberOhcEntity, columnValue.toString());
                             } else if (field.getType() == BigDecimal.class && columnValue instanceof Number) {
-                                field.set(esMemberOhiEntity, BigDecimal.valueOf(((Number) columnValue).doubleValue()));
+                                field.set(esMemberOhcEntity, BigDecimal.valueOf(((Number) columnValue).doubleValue()));
                             } else {
                                 // Handle other types as needed
-                                field.set(esMemberOhiEntity, columnValue);
+                                field.set(esMemberOhcEntity, columnValue);
                             }
                         } else {
                             // Handle the case where columnValue is null
                             // For example, you could set a default value or leave the field uninitialized
-                            // field.set(esMemberOhiEntity, defaultValue);
+                            // field.set(esMemberOhcEntity, defaultValue);
                         }
                     } catch (NoSuchFieldException e) {
                         // Handle the case where the ResultSet column does not match a field in the object
                         // You can ignore it or handle it according to your requirements
                     }
                 }
-//                dbDataList.add(esMemberOhiEntity);
+//                dbDataList.add(esMemberOhcEntity);
             }
         }
         catch(Exception e){
             e.printStackTrace();
         }
-        return esMemberOhiEntity;
+        return esMemberOhcEntity;
     }
     
     public EsMemberHraEntity getOptionsFromHraTables(String query)  {

@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI Medicare Elmo Page
+Feature: Secondary User-OHC Medicare Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -81,9 +81,9 @@ Feature: Secondary User-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
 
-  @SLER-617 @SecondaryUserOhiMedicareElmo
+  @SLER-617 @SecondaryUserOhcMedicareElmo
   Scenario: SLER-617 I can see Medicare's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Medicare page data in "English"
     Then I click "Yes" for currently eligible in Medicare question
@@ -102,7 +102,7 @@ Feature: Secondary User-OHI Medicare Elmo Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the "First Section Secondary" Medicare page data in "English"
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
@@ -115,7 +115,7 @@ Feature: Secondary User-OHI Medicare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-618 @SecondaryUserOhiMedicareElmo
+  @SLER-618 @SecondaryUserOhcMedicareElmo
   Scenario: SLER-618 I can see Medicare's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -136,7 +136,7 @@ Feature: Secondary User-OHI Medicare Elmo Page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the "First Section Secondary" Medicare page data in "Spanish"
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
