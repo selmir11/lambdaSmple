@@ -996,7 +996,7 @@ Feature: Verify COCO Medical Plan results
 
     Then I validate I am on the "Medical Plan Compare" page
     And I validate "3" document columns on the Compare page
-    #And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-421 @validateGobackLinkAndButton
   Scenario: SLCR-421 - This will validate the top Go Back Link and the bottom Go Back button on the COCO Compare plan page
