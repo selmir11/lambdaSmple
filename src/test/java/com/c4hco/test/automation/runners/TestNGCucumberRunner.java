@@ -22,7 +22,7 @@ import java.util.List;
                 "com.c4hco.test.automation.stepDefinitions.sftpSteps",
                 "com.c4hco.test.automation.stepDefinitions.databaseSteps",
                 "com.c4hco.test.automation.stepDefinitions.APISteps",
-                "com.c4hco.test.automation.globalhooks.GlobalHooks"
+                "com.c4hco.test.automation.globalhooks"
         }
 )
 public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
