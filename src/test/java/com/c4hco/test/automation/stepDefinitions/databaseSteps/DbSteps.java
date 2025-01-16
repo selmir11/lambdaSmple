@@ -66,6 +66,11 @@ public class DbSteps {
         dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
     }
 
+    @Then("I verify the created by value as {string} for {string} and determination as {string}")
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode) {
+        dbValidations.validateCreatedBy(createdBy, memPrefix, expectedReasonCode);
+    }
+
 
     @And("I verify the client's updated email address in BoB DB")
     public void iVerifyUpdatedEmailAddressBOBDB() {
@@ -288,5 +293,7 @@ public class DbSteps {
     public void validateTellUsAboutAdditionalInformation(String FName){
         dbValidations.validateTellAboutAdditionalInformationinDB(FName);
     }
+    @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
+    public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
 }
 

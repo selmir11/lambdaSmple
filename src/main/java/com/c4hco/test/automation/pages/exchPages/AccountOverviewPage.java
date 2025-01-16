@@ -39,7 +39,7 @@ public class AccountOverviewPage {
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
 
-    @FindBy(xpath = "//*[id = 'submit-curr-yr-4' or @id='submit-curr-yr-5']")
+    @FindBy(xpath = "//*[id='submit-curr-yr-5' or @id='submit-curr-yr-6']")
     WebElement makeChangesButton;
 
     @FindBy(css = ".c4PageHeader-large")
@@ -142,7 +142,7 @@ public class AccountOverviewPage {
     }
 
     public void iClickOnMakeChanges(){
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(header, 30);
         WebElement makeChanges;
         if(SharedData.getIsOpenEnrollment().equals("yes")){

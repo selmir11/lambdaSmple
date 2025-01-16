@@ -132,7 +132,7 @@ public class DentalPlansResultsPage {
         softAssert.assertTrue(dentalplanheader.isDisplayed(), "Dental plan heading did not match");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Adult Deductible"), "Adult deductible text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Out-of-Pocket Max"), "Out of pocket max text is not displayed");
-        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Pediatric Deductible (Under 18)"), "Pediatric deductible text is not displayed");
+        softAssert.assertTrue(firstDentalPlanCard.getText().contains("Pediatric Deductible"), "Pediatric deductible text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Plan Details"), "Plan details text is not displayed");
         softAssert.assertTrue(firstDentalPlanCard.getText().contains("Select this Plan"), "Select this plan text is not displayed");
         softAssert.assertTrue(btnGoBack.getText().contains("Go Back"), "Go Back text is not displayed");
@@ -245,9 +245,9 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToDisappear( spinner, 15 );
         basicActions.waitForElementToBePresent( disclaimerDental,10 );
         basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
-        softAssert.assertEquals( pediatricdental1.getText(), "Anthem Dental Family" );
-        softAssert.assertEquals( pediatricdental2.getText(), "EssentialSmile Colorado - Total Care" );
-        softAssert.assertEquals( pediatricdental3.getText(), "Delta Dental of Colorado Pediatric Enhanced Plan" );
+        softAssert.assertEquals( pediatricdental1.getText(), "Cigna Dental Family + Pediatric" );
+        softAssert.assertEquals( pediatricdental2.getText(), "Cigna Dental Pediatric" );
+        softAssert.assertEquals( pediatricdental3.getText(), "Anthem Dental Family Value" );
         softAssert.assertAll();
     }
 
@@ -265,9 +265,9 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToDisappear(spinner,15);
         basicActions.waitForElementToBePresent( disclaimerDental,10 );
         basicActions.waitForElementToBePresent( dropdownInsuranceCompany,10 );
-        softAssert.assertEquals(pediatricdental1.getText(),"Delta Dental of Colorado Pediatric Comprehensive Plan");
-        softAssert.assertEquals(pediatricdental2.getText(),"Anthem Dental Family");
-        softAssert.assertEquals(pediatricdental3.getText(),"Cigna Dental Family + Pediatric");
+        softAssert.assertEquals(pediatricdental1.getText(),"Cigna Dental Pediatric");
+        softAssert.assertEquals(pediatricdental2.getText(),"Delta Dental of Colorado Pediatric Enhanced Plan");
+        softAssert.assertEquals(pediatricdental3.getText(),"Anthem Dental Family Value");
         softAssert.assertAll();
         }
 
@@ -461,13 +461,13 @@ public class DentalPlansResultsPage {
         basicActions.waitForElementToBePresent( disclaimerDental,10 );
         basicActions.click( underTTAdultDeductable1 );
         basicActions.waitForElementToBePresent(TTAdultDeductable1,20  );
-        softAssert.assertEquals( TTAdultDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compañía de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible de adultos se aplica a las personas mayores de 19 años.");
+        softAssert.assertEquals( TTAdultDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compa\u00f1\u00eda de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible de adultos se aplica a las personas mayores de 19 a\u00f1os.");
         basicActions.click( underTTPedDeductable1 );
         basicActions.waitForElementToBePresent(TTPedDeductable1,20  );
-        softAssert.assertEquals( TTPedDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compañía de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible pediátrico se aplica a personas de 18 años o menos.");
+        softAssert.assertEquals( TTPedDeductable1.getText(),"La cantidad que debe desembolsar por servicios dentales cubiertos antes de que su compa\u00f1\u00eda de seguros comience a pagar un porcentaje de sus facturas. Esta cantidad de deducible pedi\u00e1trico se aplica a personas de 18 a\u00f1os o menos.");
         basicActions.click( underTTOutOfPocketDeductable1 );
         basicActions.waitForElementToBePresent(TTOutOfPocketDeductable1,20  );
-        softAssert.assertEquals( TTOutOfPocketDeductable1.getText(), "Una cantidad de dinero predeterminada y limitada que un individuo los miembros de su plan familiar deben pagar antes de que una compañía de seguros (o un empleador autoasegurado) pague el 100% de los gastos dentales de dicho individuo cubiertos dentro de la red." );
+        softAssert.assertEquals( TTOutOfPocketDeductable1.getText(), "Una cantidad de dinero predeterminada y limitada que un individuo los miembros de su plan familiar deben pagar antes de que una compa\u00f1\u00eda de seguros (o un empleador autoasegurado) pague el 100% de los gastos dentales de dicho individuo cubiertos dentro de la red." );
         softAssert.assertAll();
     }
 

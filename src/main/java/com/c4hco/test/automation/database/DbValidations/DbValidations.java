@@ -10,6 +10,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -255,31 +257,50 @@ public class DbValidations {
     }
 
     public void validateApplicationResult(String expectedReasonCode, String memPrefix) {
-        String expReasonCode = null;
+        String determination = getDeterminationValue(expectedReasonCode);
+
+        if(memPrefix.equals("getFromSharedData")){
+           memPrefix = SharedData.getPrimaryMember().getFirstName();
+        }
+
+        String memberID = basicActions.getMemberId(memPrefix);
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, determination);
+
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+        softAssert.assertAll();
+    }
+
+    private String getDeterminationValue(String expectedReasonCode){
+        String determination = null;
         switch (expectedReasonCode) {
             case "OFF_EXCHANGE_ELIGIBLE", "OFF_EXCHANGE_NOT_ELIGIBLE":
-                expReasonCode= "OFFEXCH";
+                determination= "OFFEXCH";
                 break;
-            case "ELIGIBLE_FOR_HP2_LIMITED":
-                expReasonCode = "HP2";
+            case "ELIGIBLE_FOR_HP2_LIMITED", "ELIGIBLE_FOR_HP2":
+                determination = "HP2";
                 break;
             case "QLCE":
-                expReasonCode = "GAIN_DEP_QLCE";
+                determination = "GAIN_DEP_QLCE";
                 break;
             case "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY":
-                expReasonCode = "TAX_TIME_ENROLLMENT_QLCE";
+                determination = "TAX_TIME_ENROLLMENT_QLCE";
                 break;
             default:
                 Assert.fail("Expected Reason Code is not valid");
         }
+        return determination;
+    }
 
-        String memberID = exchDbDataProvider.getMemberId(basicActions.getMemFirstNames(memPrefix));
-        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode);
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode){
+        String determination = getDeterminationValue(expectedReasonCode);
 
-        System.out.println("Member ID: " + memberID);
-        System.out.println("Reason Code: " + reasonCode);
+        if(memPrefix.equals("getFromSharedData")){
+            memPrefix = SharedData.getPrimaryMember().getFirstName();
+        }
 
-        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+        String memberID = basicActions.getMemberId(memPrefix);
+        String createdByFromDb = exchDbDataProvider.getCreatedBy(memberID, determination);
+        softAssert.assertEquals(createdByFromDb, createdBy, "CreatedBy validation failed");
         softAssert.assertAll();
     }
 
@@ -656,6 +677,14 @@ public class DbValidations {
         softAssert.assertEquals(dbValues.get(3), state);
         softAssert.assertEquals(dbValues.get(4), zip);
         softAssert.assertEquals(dbValues.get(5), county);
+        softAssert.assertAll();
+    }
+    public void validateEnrollmentEndDateForAIANDB() {
+        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
+        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
+        LocalDate lastDayOfYear = Year.now().atMonth(Month.DECEMBER).atDay(31);
+        String formattedLastDayOfYear = basicActions.changeDateFormat(lastDayOfYear.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+        softAssert.assertEquals(formattedDateEnd, formattedLastDayOfYear);
         softAssert.assertAll();
     }
 

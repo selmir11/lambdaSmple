@@ -1,5 +1,5 @@
 @APTC @APTC-SIR2 @APTC-SIR-Single
-  # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-692
+  # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-691, SLER-692
 Feature: UI Tests related to APTC after second enrollment change
 
   Background: I go the login portal
@@ -219,7 +219,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$139.14/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$191.53/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -235,7 +235,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$139.14"
+    And I validate the APTC Credit on the Summary page is "-$191.53"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -449,7 +449,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$265.98/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$345.46/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -465,7 +465,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$265.98"
+    And I validate the APTC Credit on the Summary page is "-$345.46"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -691,7 +691,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$837.85/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$954.33/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -707,7 +707,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$837.85"
+    And I validate the APTC Credit on the Summary page is "-$954.33"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -919,7 +919,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$944.39/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$1113.38/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -935,7 +935,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$944.39"
+    And I validate the APTC Credit on the Summary page is "-$1,091.54"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -1149,7 +1149,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$646.42/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$630.69/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1165,7 +1165,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$642.40"
+    And I validate the APTC Credit on the Summary page is "-$630.69"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -1378,7 +1378,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$384.17/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$451.65/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1394,7 +1394,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$379.36"
+    And I validate the APTC Credit on the Summary page is "-$451.65"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
@@ -1834,7 +1834,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$1134.70/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$968.54/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -1850,7 +1850,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$1,028.25"
+    And I validate the APTC Credit on the Summary page is "-$968.54"
     And I click continue on plan summary page
     And I click on Sign Out in the Header for "Portal"
 
@@ -2082,7 +2082,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-690
-  Scenario: SLER-690 - APTCRules - formerly RT-2341- income change from 100K to 10K
+  Scenario: SLER-690 - ELIG - APTCRules - formerly RT-2341- income change from 100K to 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2097,7 +2097,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on continue with  application button on Before you begin page
 
      # Question not asked during Open Enrollment
-#     And I report "Birth" and click continue
+     And I report "Birth" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
@@ -2309,7 +2309,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-689
-  Scenario: SLER-689 - APTCRules - formerly RT-2342- income change from 50K to 35K
+  Scenario: SLER-689 - ELIG - APTCRules - formerly RT-2342- income change from 50K to 35K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2513,7 +2513,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$350.03/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$399.23/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2529,14 +2529,14 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "-$350.03"
+    And I validate the APTC Credit on the Summary page is "-$399.23"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-692
-  Scenario: SLEr-692 - APTCRules - formerly RT-2343- income change from 50K to 65K
+  Scenario: SLER-692 - ELIG - APTCRules - formerly RT-2343- income change from 50K to 65K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2743,7 +2743,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click on view results and shop
 
     Then I validate I am on the "Application Results" page
-    Then I validate that my Tax Household's 1 APTC value is "$0.00/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$34.94/mo"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
@@ -2759,7 +2759,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I validate the APTC Credit on the Summary page is "-$34.94"
     And I click continue on plan summary page
 
     Then I validate I am on the "Financial Help Agreements" page

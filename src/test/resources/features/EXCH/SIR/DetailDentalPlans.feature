@@ -184,7 +184,7 @@ Feature: Dental Plan Verification test
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "10012010" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011995" in county "DENVER" with zipcode "80205"
 
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I answer all Id proofing questions and click continue
@@ -232,6 +232,8 @@ Feature: Dental Plan Verification test
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    And I click the Dental Insurance Company Dropdown
+    And I select "Solstice Healthplans / UHC" to filter for a Dental Insurance Company
     Then I click on the First Dental Detail button
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
 

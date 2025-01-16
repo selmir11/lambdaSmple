@@ -108,9 +108,7 @@ public class MyProfilePageStepsCoco {
     }
 
     @And("I get the account Id from my profile page coco")
-    public void getAcctId(){
-        myProfilePage.getAcctId();
-    }
+    public void getAcctId(){myProfilePage.getAcctId();}
 
     @Then("I validate Primary Contact Change Popup {string} on My profile page CoCo")
     public void ivalidateChangePrimaryContactPopupCoCo(String language)  { myProfilePage.validateChangePrimaryContactPopupCoCo(language); }
@@ -127,7 +125,6 @@ public class MyProfilePageStepsCoco {
     @Then("I verify Password text on My profile page Coco {string}")
     public void verifyPasswordTextOnMyProfileCocoPage(String language)  { myProfilePage.verifyPasswordTextOnMyProfileCocoPage(language); }
 
+    @And("I get the name of the primary person from my profile page coco")
+    public void getName(){myProfilePage.getNameOfPrimary();}
 }
-
-
-

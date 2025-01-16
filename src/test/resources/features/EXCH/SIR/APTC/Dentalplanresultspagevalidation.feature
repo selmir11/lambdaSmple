@@ -70,11 +70,14 @@ Feature: UI Page Validation - Plan Results (Dental)
 
     Then I validate I am on the "Medical Plan Results" page
     Then I click skip on medical plan results page
+
     Then I validate I am on the "Dental Plan Results" page
     And  I validate the text in dental plan results page
     Then I click on the First Dental Detail button
+
     Then I validate I am on the "Dental Plan Detail" page
     And I click Go Back on the Dental Detail page
+
     Then I validate I am on the "Dental Plan Results" page
     Then I select first dental plan
     And  I click on the remove plan button on dental plan results page

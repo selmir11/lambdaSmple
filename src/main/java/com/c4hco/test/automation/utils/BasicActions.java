@@ -858,6 +858,11 @@ public class BasicActions {
         return allDependents;
     }
 
+    public String getMemberIDFromURL() {
+        String[] parts = getCurrentUrl().split("/");
+        return parts[parts.length - 1];
+    }
+
 
     public String getMemFirstNames(String memPrefix){
         List<MemberDetails> allMem = getAllMem();
@@ -933,10 +938,11 @@ public class BasicActions {
         if (memPrefix.equals("Primary")) {
             memId = SharedData.getPrimaryMemberId();
         } else {
-            List<MemberDetails> members = SharedData.getMembers();
+            List<MemberDetails> members = getAllMem();
             for (MemberDetails mem : members) {
                 if (mem.getFirstName().contains(memPrefix)) {
                     memId = mem.getMemberId();
+                    break;
                 }
             }
         }
@@ -1129,6 +1135,13 @@ public class BasicActions {
         DecimalFormat df4 = new DecimalFormat("0000");
         String phoneNumber = df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
         return phoneNumber;
+    }
+
+    public void setMemberIdFromUrl(){
+        String memberId = getMemberIDFromURL();
+        SharedData.getPrimaryMember().setMemberId(memberId);
+        SharedData.setPrimaryMemberId(memberId);
+
     }
 
 }

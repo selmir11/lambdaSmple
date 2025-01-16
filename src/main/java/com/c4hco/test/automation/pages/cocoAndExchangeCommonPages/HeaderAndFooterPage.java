@@ -365,7 +365,7 @@ public class HeaderAndFooterPage {
             case "CoCo":
                 basicActions.waitForElementToBeClickable(languageDrp, 90);
                 basicActions.waitForElementToBeClickable(userNameLink, 90);
-                userNameLink.click();
+                basicActions.clickElementWithRetries(userNameLink, 20);
                 break;
             case "Exch":
                 basicActions.waitForElementToBeClickable(languageDrp, 90);

@@ -131,10 +131,10 @@ public class PlanSummaryMedicalDentalPage {
     }
 
     public void verifyNoMedicalSingle() {
-        basicActions.waitForElementToDisappear( spinner, 40 );
-        basicActions.scrollToElement( planSummaryNoMedicalPlanSingle );
-        basicActions.waitForElementToBePresentWithRetries( planSummaryNoMedicalPlanSingle, 30 );
-        softAssert.assertTrue( planSummaryNoMedicalPlanSingle.isDisplayed(), "No medical plan selected for this group." );
+        basicActions.waitForElementToDisappear( spinner, 60 );
+        basicActions.scrollToElement( planSummaryNoMedicalPlan );
+        basicActions.waitForElementToBePresentWithRetries( planSummaryNoMedicalPlan, 30 );
+        softAssert.assertTrue( planSummaryNoMedicalPlan.isDisplayed(), "No medical plan selected for this group." );
         softAssert.assertAll();
     }
    

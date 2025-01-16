@@ -166,11 +166,11 @@ public class AddAddressPage {
         dropdown.selectByValue("DENVER");
     }
 
-    public void Addtribedetails(){
+    public void Addtribedetails(String tState, String tName){
         basicActions.waitForElementToBePresent(tribestate,20);
         basicActions.waitForElementToBePresent(tribeName, 20);
-        tribestate.sendKeys("Colorado");
-        tribeName.sendKeys("Southern Ute Indian Tribe of the Southern Ute Reservation");
+        tribestate.sendKeys(tState);
+        tribeName.sendKeys(tName);
 
     }
 
