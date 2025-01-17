@@ -568,7 +568,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             List<MemberDetails> members = SharedData.getMembers();
             for (MemberDetails member : members) {
                 if (member.getFirstName().contains(Relation)) {
-                    if (Relation.equals("Spouse") || Relation.equals("Wife")) {
+                    if (Relation.equals("Spouse") || Relation.equals("Wife") || Relation.equals("Husband")) {
                         Relation = "Spouse";
                     } else if (Relation.equals("Son") || Relation.equals("Daughter")) {
                         Relation = "Child or Other dependent";
