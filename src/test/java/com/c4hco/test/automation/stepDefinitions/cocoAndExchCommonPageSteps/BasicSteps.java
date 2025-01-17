@@ -140,6 +140,9 @@ public class BasicSteps {
             case "Enter Case ID":
                 pageUrl = "nes/enterCaseId";
                 break;
+            case "load By 1B Result":
+                pageUrl = "nes/loadBy1BResult";
+                break;
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;

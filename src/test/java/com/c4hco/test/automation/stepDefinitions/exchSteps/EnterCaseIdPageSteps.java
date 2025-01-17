@@ -17,4 +17,16 @@ public class EnterCaseIdPageSteps {
     public void iEnterCaseIDdetails(String CaseID, String Zipcode, String Lastname) {
         enterCaseIdPage.enterCaseIDdetails(CaseID, Zipcode, Lastname);
     }
+
+    @And("I click on Sign Out link in header")
+    public void iClickOnSignOutLinkInHeader() {
+        enterCaseIdPage.signout();
+    }
+
+    @And("I click on Back button on Loadby1B result page")
+    public void iClickOnBackButton() {
+        enterCaseIdPage.goBackonLoad1Bresult();
+    }
+
+
 }

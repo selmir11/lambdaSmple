@@ -31,6 +31,12 @@ public class EnterCaseIdPage {
     @FindBy(id = "lastName")
     WebElement lastNamePlaceHolderText;
 
+    @FindBy(xpath = "//*[@value='< Back']")
+    WebElement backbutton;
+
+    @FindBy(linkText = "Sign Out")
+    WebElement signout;
+
 
     public void validateTheVerbiageOnEnterCaseIdPage(String language){
         switch (language){
@@ -71,12 +77,18 @@ public class EnterCaseIdPage {
     public void enterCaseIDdetails(String CaseID, String Zipcode, String Lastname) {
         basicActions.waitForElementToBePresent(bodyText.get(0), 30);
         basicActions.wait(2000);
-        caseIDPlaceHolderText.sendKeys("CaseID");
-        //caseIDPlaceHolderText.sendKeys(Keys.TAB);
-        zipCodePlaceHolderText.sendKeys("Zipcode");
-      //  sendKeys(Keys.TAB);
-        lastNamePlaceHolderText.sendKeys("Lastname");
-        //sendKeys(Keys.TAB);
+        caseIDPlaceHolderText.sendKeys(CaseID);
+        zipCodePlaceHolderText.sendKeys(Zipcode);
+        lastNamePlaceHolderText.sendKeys(Lastname);
 
+    }
+
+    public void signout() {
+        basicActions.wait(2000);
+        signout.click();
+    }
+    public void goBackonLoad1Bresult() {
+        basicActions.wait(2000);
+        backbutton.click();
     }
 }

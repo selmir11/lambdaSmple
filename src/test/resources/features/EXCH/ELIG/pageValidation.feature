@@ -2965,8 +2965,8 @@ Feature: Page validations on ELIG pages
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
 
-  @SLER-2005 @PageValidation @saranya
-  Scenario: Verify Chat Widget on the Enter Case ID page
+  @SLER-2005 @PageValidation
+  Scenario: Verify navigation on Enter Case Info page to Peak Application url (RT-975)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2978,14 +2978,12 @@ Feature: Page validations on ELIG pages
     And I select "Yes" option on the Let us guide you page
     And I click on save and continue button
     Then I enter valid "1BEQ5Q3","81657","Jones" details in enterCaseID page
-
-
     And  I click on save and continue button
     Then I validate I am on the "load By 1B Result" page
-    And  I click on Back button on Load by 1B result page
+    And  I click on Back button on Loadby1B result page
     Then I validate I am on the "Let us guide you" page
     And I select "Yes" option on the Let us guide you page
     And I click on save and continue button
-    Then I enter valid "CaseID" details in CaseID page
+    Then I enter valid "1BEQ5Q3","81657","Jones" details in enterCaseID page
     And I click on Sign Out link in header
     Then I validate I am on the "Login" page
