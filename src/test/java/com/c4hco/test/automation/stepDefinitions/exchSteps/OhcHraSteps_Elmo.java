@@ -8,22 +8,22 @@ import io.cucumber.java.en.Then;
 public class OhcHraSteps_Elmo {
     OhcHraPage_Elmo ohcHraPage_Elmo = new OhcHraPage_Elmo(WebDriverManager.getDriver());
 
-    @Then("I click continue on the Elmo OHI HRA page")
+    @Then("I click continue on the Elmo OHC HRA page")
     public void iClickSaveAndContinue(){ohcHraPage_Elmo.clickSaveAndContinue();}
 
-    @Then("I click Go Back on the Elmo OHI HRA page")
+    @Then("I click Go Back on the Elmo OHC HRA page")
     public void iClickGoBack(){ohcHraPage_Elmo.clickGoBack();}
 
-    @Then("I select Current Year year dropdown on the Elmo OHI HRA page")
+    @Then("I select Current Year year dropdown on the Elmo OHC HRA page")
     public void iClickYear(){ohcHraPage_Elmo.clickYear();}
 
-    @Then("I enter {string} amount on the Elmo OHI HRA page")
+    @Then("I enter {string} amount on the Elmo OHC HRA page")
     public void iEnterAmount(String amount){ohcHraPage_Elmo.enterAmount(amount);}
 
     @Then("I select {string} for HRA type")
     public void iSelectHraType(String type){ohcHraPage_Elmo.selectHraType(type);}
 
-    @Then("I select {string} for opt out on the Elmo OHI HRA page")
+    @Then("I select {string} for opt out on the Elmo OHC HRA page")
     public void iSelectOptOut(String aptc){ohcHraPage_Elmo.selectOptOut(aptc);}
 
     @And("I select {string} icon on the HRA Page")

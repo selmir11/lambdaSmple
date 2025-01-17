@@ -406,22 +406,22 @@ public class BasicSteps {
             case "CoCo Additional info for additional member":
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
                 break;
-            case "Elmo Ohi Retiree":
+            case "Elmo Ohc Retiree":
                 pageUrl = "/otherHealthCoverage/retiree";
                 break;
-            case "Elmo Ohi Medicare":
+            case "Elmo Ohc Medicare":
                 pageUrl = "/otherHealthCoverage/medicare";
                 break;
-            case "Elmo Ohi VA Healthcare":
+            case "Elmo Ohc VA Healthcare":
                 pageUrl = "/otherHealthCoverage/va";
                 break;
-            case "Elmo Ohi Individual Insurance":
+            case "Elmo Ohc Individual Insurance":
                 pageUrl = "/otherHealthCoverage/individual";
                 break;
-            case "Elmo Ohi Peace Corps":
+            case "Elmo Ohc Peace Corps":
                 pageUrl = "/otherHealthCoverage/peaceCorps";
                 break;
-            case "Elmo Ohi Tricare":
+            case "Elmo Ohc Tricare":
                 pageUrl = "/otherHealthCoverage/tricare";
                 break;
             case "CoCo Employment Income":

@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Validation-OHI Retiree Health Plan Elmo Page
+Feature: Page Validation-OHC Retiree Health Plan Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -53,9 +53,9 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
 
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
 
-  @SLER-327 @PageValidationOhiRetireeElmo
+  @SLER-327 @PageValidationOhcRetireeElmo
   Scenario: SLER-327 I can see Retiree's standard errors consistently - English
     And I verify the "First Section" Retiree page data in "English"
     Then I click continue on the Elmo OHC Retiree page
@@ -89,7 +89,7 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-328 @PageValidationOhiRetireeElmo @TAMSmoke
+  @SLER-328 @PageValidationOhcRetireeElmo @TAMSmoke
   Scenario: SLER-328 I can see Retiree's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -124,20 +124,20 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-706 @PageValidationOhiRetireeElmo
+  @SLER-706 @PageValidationOhcRetireeElmo
   Scenario: SLER-706 I validate save, update and remove on Retiree are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |                      |                           |                           |
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |                      |                           |                           |
     Then I click "No" for currently enrolled in Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          0           |                           |                           |
     And I click plus icon next to member on household page for "Primary"
@@ -148,16 +148,16 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          0           |                           |                           |
     Then I click "No" for insurance ending in 60 days in Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             0             |                           |
     And I click plus icon next to member on household page for "Primary"
@@ -168,12 +168,12 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I enter the end date as "Current Month" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             1             |               0           |
     And I click plus icon next to member on household page for "Primary"
@@ -184,10 +184,10 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     Then I click "Yes" for insurance ending voluntary for Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             1             |               1           |
     And I click plus icon next to member on household page for "Primary"
@@ -198,10 +198,10 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     Then I click "No" for insurance ending in 60 days in Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             0             |                           |
     And I click plus icon next to member on household page for "Primary"
@@ -212,10 +212,10 @@ Feature: Page Validation-OHI Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     Then I click "No" for currently enrolled in Retiree question
     Then I click continue on the Elmo OHC Retiree page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          0           |                           |                           |
 
