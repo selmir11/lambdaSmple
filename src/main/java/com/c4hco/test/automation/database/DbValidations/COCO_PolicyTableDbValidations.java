@@ -6,6 +6,7 @@ import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.COCO_DbDataProvider;
+import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.asserts.SoftAssert;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class COCO_PolicyTableDbValidations {
     COCO_DbDataProvider cocoDbDataProvider = new COCO_DbDataProvider();
+    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     BasicActions basicActions = new BasicActions();
     SoftAssert softAssert = new SoftAssert();
     List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
@@ -127,7 +129,7 @@ public class COCO_PolicyTableDbValidations {
     }
     private void setData() {
         subscriber = SharedData.getPrimaryMember();
-        List<PolicyTablesEntity> medicalPolicyEntitiesList = cocoDbDataProvider.getDataFrmPolicyTables("1");
+        List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
 
         SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
 

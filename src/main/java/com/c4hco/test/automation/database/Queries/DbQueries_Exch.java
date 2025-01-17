@@ -67,7 +67,8 @@ public String policyTablesCombinedQuery(String coverageType){
             "AND pf.mySeq = 1\n" +
             "where eph.account_id = '"+acctId+"' \n" +
             "AND eph.current_ind = '1' \n" +
-            "AND eph.coverage_type = '"+coverageType+"'";
+            "AND eph.coverage_type = '"+coverageType+"'" +
+            "and eph.policy_status != 'CANCELLED'";
     return query;
 }
 
@@ -145,6 +146,10 @@ public String policyTablesCombinedQuery(String coverageType){
     public String getFipcode(String zipCode) {
         return "select fip_code from " + dbName + ".es_zip_codes " +
                 "where code = '" + zipCode + "'";
+    }
+    public String getFipcodeCOCO(String zipCode) {
+        return "select fips from " + dbName + ".en_county " +
+                "where zip = '" + zipCode + "'";
     }
 
     public String en_plan(String planName) {

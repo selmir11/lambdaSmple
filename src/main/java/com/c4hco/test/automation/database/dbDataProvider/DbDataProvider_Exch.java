@@ -82,6 +82,10 @@ public class DbDataProvider_Exch {
         String zipcode = primaryMember.getResAddress().getAddressZipcode();
         return  postgresHandler.getResultFor("fip_code", exchDbQueries.getFipcode(zipcode));
     }
+    public String getFipcodeCOCO(){
+        String zipcode = primaryMember.getResAddress().getAddressZipcode();
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcodeCOCO(zipcode));
+    }
 
     public String getRatingAreaName(String fipcode){
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
