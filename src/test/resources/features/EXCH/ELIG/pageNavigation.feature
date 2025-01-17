@@ -511,6 +511,3 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on Click here to access "Apply for dental plans" in Welcome Page
     And I validate that I am in "Apply for dental plans" Page
     Then I click on 'Go back to welcome page'
-
-
-
