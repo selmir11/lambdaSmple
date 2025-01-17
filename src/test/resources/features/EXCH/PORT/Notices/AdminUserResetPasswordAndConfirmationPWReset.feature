@@ -16,12 +16,11 @@ Feature: Trigger Admin user Password reset and confirmation Notices AM-016-07 AN
     And I verify the notice Text for "AM-016-07" in "English" for "Broker"
     Then I click the password reset link
     Then I delete the open notice
-    And I sign out of Outlook
-    Then I switch to the tab number 1
+    Then I switch to the tab number 3
     And I enter the new password in create new password page
     Then I validate I am on the "Login" page
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.reset@outlook.com" and "ALaska12!"
+    And I close current tab and switch back to previous tab
+    Then I switch to the tab number 2
     Then I open the notice "Confirmation: Account Password Reset" in "English"
     And I verify the notice Text for "AM-016-08" in "English" for "Broker"
     Then I delete the open notice

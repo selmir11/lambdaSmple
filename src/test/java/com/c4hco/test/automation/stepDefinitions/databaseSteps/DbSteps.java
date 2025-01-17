@@ -16,14 +16,14 @@ public class DbSteps {
         dbValidations.validateMemberExistsInPolicyTable();
     }
 
-    @And("I verify the OHI info in the DB for {string}")
-    public void validateOhiInfo(String memPrefix) {
-        dbValidations.validateOhiDetails(memPrefix);
+    @And("I verify the OHC info in the DB for {string}")
+    public void validateOhcInfo(String memPrefix) {
+        dbValidations.validateOhcDetails(memPrefix);
     }
 
-    @And("I verify the OHI options selected in the DB for {string}")
-    public void iValidateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues) {
-        dbValidations.validateOhiOptions(memPrefix, expectedValues);
+    @And("I verify the OHC options selected in the DB for {string}")
+    public void iValidateOhcOptions(String memPrefix, List<Map<String, String>> expectedValues) {
+        dbValidations.validateOhcOptions(memPrefix, expectedValues);
     }
 
     @And("I verify the HRA options selected in the DB")
@@ -46,9 +46,9 @@ public class DbSteps {
         dbValidations.validateAccountHolderNameFromBOB();
     }
 
-    @And("I verify the Member will be CSR NON_AIAN")
-    public void iVerifyTheMemberCSRNonAIAN() {
-        dbValidations.validateMemberCSRNonAIANData();
+    @And("I verify the Member will be CSR {string}")
+    public void iVerifyTheMemberCSRNonAIAN(String reasonCode) {
+        dbValidations.validateMemberCSRNonAIANData(reasonCode);
     }
 
     @Then("I verify the application result details in DB as {string} for {string}")

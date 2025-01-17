@@ -46,7 +46,7 @@ Feature: Enrollment end date validation for multiple scenarios
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "1900000" income at "Annually" frequency
+    And I enter employment details with "2240000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -69,8 +69,11 @@ Feature: Enrollment end date validation for multiple scenarios
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+
     #DBSTEP
-   And  I verify the Member will be CSR NON_AIAN
+   And  I verify the Member will be CSR "NO-OVERRIDE"
 
   @SLER-1827 @NVOExchRegression
   Scenario:[RT-2108] As a user who in plan year 2024 would qualify for the CSR Non AIAN Level 3
@@ -143,8 +146,9 @@ Feature: Enrollment end date validation for multiple scenarios
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
+
     #DBSTEP
-    And  I verify the Member will be CSR NON_AIAN
+    And  I verify the Member will be CSR "OVERRIDE"
 
 
 
@@ -194,7 +198,7 @@ Feature: Enrollment end date validation for multiple scenarios
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "30421" income at "Annually" frequency
+    And I enter employment details with "2600000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -217,8 +221,10 @@ Feature: Enrollment end date validation for multiple scenarios
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
     #DBSTEP
-    And  I verify the Member will be CSR NON_AIAN
+    And  I verify the Member will be CSR "OVERRIDE"
 
 
 

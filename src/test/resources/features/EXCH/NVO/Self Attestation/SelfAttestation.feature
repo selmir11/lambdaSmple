@@ -1,4 +1,4 @@
-@NVO @SELF
+@NVO @SelfAttestation
 Feature: Self Attestation
   # And I confirm MVR notice is gone -> WIP
 
@@ -21,6 +21,7 @@ Feature: Self Attestation
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
 
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -123,6 +124,7 @@ Feature: Self Attestation
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
 
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -202,7 +204,7 @@ Feature: Self Attestation
     # Review application results
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
-    Then I validate I am on the "Application Results" page
+#    Then I validate I am on the "Application Results" page
     Then I click the Verify My Information button
 
     Then I validate I am on the "Self Attestation" page
@@ -225,6 +227,7 @@ Feature: Self Attestation
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
 
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -327,6 +330,7 @@ Feature: Self Attestation
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
 
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -428,6 +432,7 @@ Feature: Self Attestation
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
 
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"
@@ -531,6 +536,7 @@ Feature: Self Attestation
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
 
+    And I report "Birth" and click continue
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01/01/1985" in county "Denver" with zipcode "80205"

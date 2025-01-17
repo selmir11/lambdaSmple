@@ -36,14 +36,14 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateOhiDetails(String memPrefix) {
-        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(basicActions.getMemberId(memPrefix));
+    public void validateOhcDetails(String memPrefix) {
+        Boolean hasRecords = exchDbDataProvider.getDataFromOhcTables(basicActions.getMemberId(memPrefix));
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
-    public void validateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues) {
-        EsMemberOhiEntity actualResult = exchDbDataProvider.getOptionsFromOhiDbTables(basicActions.getMemberId(memPrefix));
+    public void validateOhcOptions(String memPrefix, List<Map<String, String>> expectedValues) {
+        EsMemberOhcEntity actualResult = exchDbDataProvider.getOptionsFromOhcDbTables(basicActions.getMemberId(memPrefix));
         System.out.println(actualResult);
 
         softAssert.assertEquals(actualResult.getEmp_sponsored_covg_ind(), expectedValues.get(0).get("emp_sponsored_covg_ind"));
@@ -249,9 +249,9 @@ public class DbValidations {
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
 
-    public void validateMemberCSRNonAIANData() {
-        String[] dbValues = exchDbDataProvider.getmemberNonAIAN();
-        softAssert.assertEquals(dbValues[0], "NON_AIAN", "Reason code mismatch: Expected 'NONAIAN'");
+    public void validateMemberCSRNonAIANData(String reasonCode) {
+        String[] dbValues = exchDbDataProvider.getmemberNonAIAN(reasonCode);
+        softAssert.assertEquals(dbValues[0], "NON_AIAN_LEVEL_3", "Reason code mismatch: Expected 'NONAIAN'");
         softAssert.assertEquals(dbValues[1], "CSR", "Eligibility type mismatch: Expected 'CSR'");
         softAssert.assertAll();
     }

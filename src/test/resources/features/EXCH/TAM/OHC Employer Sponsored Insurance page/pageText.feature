@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Text-OHI ESI Page
+Feature: Page Text-OHC ESI Page
 
   Background:
     Given I open the login page on the "login" portal

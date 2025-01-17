@@ -551,7 +551,7 @@ Feature: Medical Plan Compare page related tests
     And I select the second dependent
     And I select the third dependent
     And I click save and continue on tax status page
-# ohi
+# ohC
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
