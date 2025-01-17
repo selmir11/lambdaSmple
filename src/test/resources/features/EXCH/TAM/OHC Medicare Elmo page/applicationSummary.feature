@@ -61,7 +61,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
 #    Step 2
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHC Medicare page
@@ -100,7 +100,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "75.00"
@@ -172,7 +172,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I enter Part A amount of "150.00"
     Then I enter end date of "Current Month" for Medicare part "A"
     Then I enter end date of "Current Month" for Medicare part "B"
@@ -223,7 +223,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I check checkbox for Part "A Don't Pay"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
     Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
@@ -274,7 +274,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click continue on the Elmo OHC Medicare page
@@ -330,7 +330,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "150.00"
@@ -421,6 +421,14 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -451,7 +459,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "300.00"
@@ -461,6 +469,14 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
     Then I enter end date of "Current Month" for Medicare part "B"
     Then I click continue on the Elmo OHC Medicare page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "Medicare" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "MEDICARE" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -525,6 +541,14 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -577,7 +601,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
 #    Step 2
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the Elmo OHC Medicare page
@@ -617,7 +641,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "75.00"
@@ -685,7 +709,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "No" for currently eligible in Medicare question
     Then I enter end date of "Current Month" for Medicare part "A"
     Then I enter end date of "Current Month" for Medicare part "B"
@@ -746,7 +770,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click continue on the Elmo OHC Medicare page

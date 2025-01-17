@@ -105,7 +105,6 @@ public class MyProfilePageSteps {
         myProfileExchPage.UpdateContactEmailAddress();
     }
 
-
     @And("I update the contact home phone number on profile page")
     public void iUpdateContactPhoneNumber() {
         myProfileExchPage.updateContactPhoneNumber();

@@ -60,10 +60,10 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     And I validate I am on the "Elmo HRA" page
     And I set the browser resolution to 2000 x 800
 
-  @SLER-901 @HelpDrawerOhiHraElmo
+  @SLER-901 @HelpDrawerOhcHraElmo
   Scenario: SLER-901 Validate help drawer text on the ELMO OHC HRA page - English
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "5.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "5.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I select "Help me understand" icon on the HRA Page
     Then I validate HRA help drawer verbiage in "English"
@@ -83,12 +83,12 @@ Feature: Help Drawer-Other Health Coverage Page HRA
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-902 @HelpDrawerOhiHraElmo
+  @SLER-902 @HelpDrawerOhcHraElmo
   Scenario: SLER-902 Validate help drawer text on the ELMO OHC HRA page - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "5.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "5.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I select "Help me understand" icon on the HRA Page
     Then I validate HRA help drawer verbiage in "Spanish"

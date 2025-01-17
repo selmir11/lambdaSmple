@@ -56,13 +56,13 @@ public class CRMDetailsPage {
 
     public void verifyBrokerAuthStartDate(){
         basicActions.waitForElementToBePresent(brokerAuthStartDate,50);
-        softAssert.assertEquals(brokerAuthStartDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MM/d/yyyy"));
+        softAssert.assertEquals(brokerAuthStartDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "M/d/yyyy"));
         softAssert.assertAll();
     }
 
     public void verifyBrokerAuthEndDate(){
         basicActions.waitForElementToBePresent(brokerAuthEndDate,50);
-        softAssert.assertEquals(brokerAuthEndDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MM/d/yyyy"));
+        softAssert.assertEquals(brokerAuthEndDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "M/d/yyyy"));
         softAssert.assertAll();
     }
 
@@ -75,8 +75,8 @@ public class CRMDetailsPage {
     public void verifyBrokerLicense(){
         basicActions.waitForElementToBePresent(brokerLicenseNumber,50);
         softAssert.assertEquals(brokerLicenseNumber.getAttribute("value"), SharedData.getAgencyOwner().getLicense());
-        softAssert.assertEquals(brokerLicenseIssueDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MM/d/yyyy"));
-        softAssert.assertEquals(brokerLicenseExpirationDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getFutureDate(1825), "MM/dd/yyyy", "MM/d/yyyy"));
+        softAssert.assertEquals(brokerLicenseIssueDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "M/d/yyyy"));
+        softAssert.assertEquals(brokerLicenseExpirationDate.getAttribute("value"), basicActions.changeDateFormat(basicActions.getFutureDate(1825), "MM/dd/yyyy", "M/d/yyyy"));
         softAssert.assertAll();
     }
 
