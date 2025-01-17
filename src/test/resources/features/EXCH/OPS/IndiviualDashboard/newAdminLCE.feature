@@ -34,11 +34,11 @@ Feature: new admin LCE
     Then I click on Look up button
     Then I wait for 3000 milliseconds
     Then I click on application data dropdown arrow
-    Then I click on 1st link for Recreate application for plan year 2025 on the Admin LCE page
+    Then I click on Recreate application link number 1 for plan year 2025 on the Admin LCE page
     Then I verify Confirm change effective dates pop up displays on Admin LCE page
     Then I enter the effective date to "Today"
     Then I click on confirm button on Admin LCE page
-    Then I click on 1st link for Recreate application for plan year 2025 on the Admin LCE page
+    Then I click on Recreate application link number 1 for plan year 2024 on the Admin LCE page
     Then I verify Go back button displays previous page
 
 #

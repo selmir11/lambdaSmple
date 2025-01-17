@@ -91,11 +91,6 @@ public class AdminToolPageSteps {
         adminLceToolPage.clickGoBackButton();
     }
 
-    @Then("I click on {int}st link for Recreate application for plan year {int} on the Admin LCE page")
-    public void iClickOnStLinkForRecreateApplicationForPlanYearOnTheAdminLCEPage(int planYear,int linkIndex) {
-        adminLceToolPage.clickRecreateApplicationLink(linkIndex,planYear);
-    }
-
     @Then("I enter the effective date to {string}")
     public void iEnterTheEffectiveDateTo(String endDate) {
         adminLceToolPage.enterDate(endDate);
@@ -104,5 +99,10 @@ public class AdminToolPageSteps {
     @Then("I click on confirm button on Admin LCE page")
     public void iClickOnConfirmButtononAdminLCEPpage() {
         adminLceToolPage.clickConfirmButton();
+    }
+
+    @Then("I click on Recreate application link number {int} for plan year {int} on the Admin LCE page")
+    public void iClickOnRecreateApplicationLinkNumberForPlanYearOnTheAdminLCEPage(int planYear,int linkIndex) {
+        adminLceToolPage.clickRecreateApplicationLink(linkIndex,planYear);
     }
 }
