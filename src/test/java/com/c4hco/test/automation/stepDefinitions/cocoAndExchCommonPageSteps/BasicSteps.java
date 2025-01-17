@@ -25,9 +25,33 @@ public class BasicSteps {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
-                case "tax Silver":
-                pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
-                break;
+            case "tax Silver":
+            pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
+            break;
+            case "QCPF":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
+            break;
+            case "QCPF Input Information":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/input-your-information";
+            break;
+            case "QCPF Preferences":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences";
+            break;
+            case "QCPF Preferences Doctor":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-doctor";
+            break;
+            case "QCPF Preferences Medication":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-medication";
+            break;
+            case "QCPF List of Plans":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/list-of-plans";
+            break;
+            case "QCPF Plan results":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-results";
+            break;
+            case "QCPF Plan Next steps":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-next-steps";
+            break;
             case "Admin Login":
                 pageUrl = "login-portal/login/adminUsers";
                 break;
@@ -382,22 +406,22 @@ public class BasicSteps {
             case "CoCo Additional info for additional member":
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
                 break;
-            case "Elmo Ohi Retiree":
+            case "Elmo Ohc Retiree":
                 pageUrl = "/otherHealthCoverage/retiree";
                 break;
-            case "Elmo Ohi Medicare":
+            case "Elmo Ohc Medicare":
                 pageUrl = "/otherHealthCoverage/medicare";
                 break;
-            case "Elmo Ohi VA Healthcare":
+            case "Elmo Ohc VA Healthcare":
                 pageUrl = "/otherHealthCoverage/va";
                 break;
-            case "Elmo Ohi Individual Insurance":
+            case "Elmo Ohc Individual Insurance":
                 pageUrl = "/otherHealthCoverage/individual";
                 break;
-            case "Elmo Ohi Peace Corps":
+            case "Elmo Ohc Peace Corps":
                 pageUrl = "/otherHealthCoverage/peaceCorps";
                 break;
-            case "Elmo Ohi Tricare":
+            case "Elmo Ohc Tricare":
                 pageUrl = "/otherHealthCoverage/tricare";
                 break;
             case "CoCo Employment Income":

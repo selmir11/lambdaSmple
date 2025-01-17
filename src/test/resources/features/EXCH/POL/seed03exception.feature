@@ -79,7 +79,6 @@ Feature: Seed03exception - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-#    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -105,3 +104,31 @@ Feature: Seed03exception - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-1991-WIP
+  Scenario: RT-2307 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL START DATES EARLIER THAN POLICY START DATE
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member
+      | 1:01012025|
+      | 2:01012025 |
+    And I update the Financial Start date of member
+      | 1:01012025 |
+      | 2:01012025 |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I click Make Changes Dental button
+    And I update the Coverage Start date of member
+      | 1:01012025|
+      | 2:01012025 |
+    And I update the Financial Start date of member
+      | 1:01012025 |
+      | 2:01012025 |
+    And I click Save Button Dental
+    And I select the reason to confirm the changes
+    Then logout from Admin Portal
