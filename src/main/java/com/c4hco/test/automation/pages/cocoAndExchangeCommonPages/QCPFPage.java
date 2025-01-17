@@ -69,6 +69,7 @@ public class QCPFPage {
         for (WebElement each : countyInput) {
             if (each.getText().equals(county)){
                 each.click();
+                break;
             }
         }
     }
@@ -82,6 +83,9 @@ public class QCPFPage {
             case "No":
                 financialHelpOptions.get(1).click();
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + financialOption);
+
         }
     }
 
