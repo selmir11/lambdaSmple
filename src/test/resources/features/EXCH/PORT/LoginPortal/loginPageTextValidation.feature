@@ -19,6 +19,7 @@ Feature:RT-2452 - Update Legal Notice language on Individual Login Portal page
     And I validate the username and password text in the login page in "Spanish"
     Then I validate PEAK Text in "Spanish"
     And I validate legal notice text in "Spanish"
+    Then I change the language from header to "English Login"
 
 
   @SLER-318

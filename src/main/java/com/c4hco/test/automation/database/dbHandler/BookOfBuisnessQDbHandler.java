@@ -44,7 +44,7 @@ public class BookOfBuisnessQDbHandler {
                         } else {
                             // Handle the case where columnValue is null
                             // For example, you could set a default value or leave the field uninitialized
-                            // field.set(esMemberOhiEntity, defaultValue);
+                            // field.set(esMemberOhcEntity, defaultValue);
                         }
                     } catch (NoSuchFieldException e) {
                         // Handle the case where the ResultSet column does not match a field in the object

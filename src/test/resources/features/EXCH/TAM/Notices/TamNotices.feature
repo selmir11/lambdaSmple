@@ -822,7 +822,7 @@ Feature: Elig101-01 - TAM Notices
     And I click save and continue on tax status page
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page
@@ -906,7 +906,7 @@ Feature: Elig101-01 - TAM Notices
     And I click save and continue on tax status page
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the Elmo OHC Individual Insurance page

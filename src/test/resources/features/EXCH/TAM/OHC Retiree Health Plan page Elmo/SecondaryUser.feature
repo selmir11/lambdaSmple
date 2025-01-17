@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI Retiree Elmo Page
+Feature: Secondary User-OHC Retiree Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -81,9 +81,9 @@ Feature: Secondary User-OHI Retiree Elmo Page
     And I click save and continue on tax status page
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
 
-  @SLER-615 @SecondaryUserOhiRetireeElmo
+  @SLER-615 @SecondaryUserOhcRetireeElmo
   Scenario: SLER-615 I can see Retiree's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Retiree page data in "English"
     Then I click "Yes" for currently enrolled in Retiree question
@@ -96,7 +96,7 @@ Feature: Secondary User-OHI Retiree Elmo Page
 
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     And I verify the "First Section Secondary" Retiree page data in "English"
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section Secondary" Retiree page data in "English"
@@ -107,7 +107,7 @@ Feature: Secondary User-OHI Retiree Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-616 @SecondaryUserOhiRetireeElmo
+  @SLER-616 @SecondaryUserOhcRetireeElmo
   Scenario: SLER-616 I can see Retiree's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -122,7 +122,7 @@ Feature: Secondary User-OHI Retiree Elmo Page
 
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Retiree" page
+    And I validate I am on the "Elmo Ohc Retiree" page
     And I verify the "First Section Secondary" Retiree page data in "Spanish"
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section Secondary" Retiree page data in "Spanish"

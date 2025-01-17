@@ -86,19 +86,19 @@ Feature: Page Text-Other Health Coverage Page HRA
 @SLER-812 @PageVerificationHraPage
 Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user - English
     And I verify the "Initial Page" amount "" HRA page data in "English"
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "5.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "5.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I verify the "Opt Out" amount "5.00" HRA page data in "English"
-    Then I select "Yes" for opt out on the Elmo OHI HRA page
-    Then I click continue on the Elmo OHI HRA page
+    Then I select "Yes" for opt out on the Elmo OHC HRA page
+    Then I click continue on the Elmo OHC HRA page
 
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
     And I verify the "Initial Page Secondary" amount "" HRA page data in "English"
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "1.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "1.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I verify the "Opt Out Secondary" amount "1.00" HRA page data in "English"
 
@@ -109,19 +109,19 @@ Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user -
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify the "Initial Page" amount "" HRA page data in "Spanish"
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "5.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "5.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I verify the "Opt Out" amount "5.00" HRA page data in "Spanish"
-    Then I select "Yes" for opt out on the Elmo OHI HRA page
-    Then I click continue on the Elmo OHI HRA page
+    Then I select "Yes" for opt out on the Elmo OHC HRA page
+    Then I click continue on the Elmo OHC HRA page
 
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
     And I verify the "Initial Page Secondary" amount "" HRA page data in "Spanish"
-    Then I select Current Year year dropdown on the Elmo OHI HRA page
-    Then I enter "1.00" amount on the Elmo OHI HRA page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "1.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I verify the "Opt Out Secondary" amount "1.00" HRA page data in "Spanish"
 

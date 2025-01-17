@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI TRICARE Elmo Page
+Feature: Secondary User-OHC TRICARE Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -81,9 +81,9 @@ Feature: Secondary User-OHI TRICARE Elmo Page
     And I click save and continue on tax status page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
 
-  @SLER-495 @SecondaryUserOhiTricareElmo @TAMSmoke
+  @SLER-495 @SecondaryUserOhcTricareElmo @TAMSmoke
   Scenario: SLER-495 I can see Tricare's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Tricare page data in "English"
     Then I click "Yes" for currently enrolled in Tricare question
@@ -96,7 +96,7 @@ Feature: Secondary User-OHI TRICARE Elmo Page
 
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the "First Section Secondary" Tricare page data in "English"
     Then I click "Yes" for currently enrolled in Tricare question
     And I verify the "Second Section Secondary" Tricare page data in "English"
@@ -107,7 +107,7 @@ Feature: Secondary User-OHI TRICARE Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-494 @SecondaryUserOhiTricareElmo
+  @SLER-494 @SecondaryUserOhcTricareElmo
   Scenario: SLER-494 I can see Tricare's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -122,7 +122,7 @@ Feature: Secondary User-OHI TRICARE Elmo Page
 
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the "First Section Secondary" Tricare page data in "Spanish"
     Then I click "Yes" for currently enrolled in Tricare question
     And I verify the "Second Section Secondary" Tricare page data in "Spanish"

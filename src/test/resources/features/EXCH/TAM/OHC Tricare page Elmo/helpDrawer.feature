@@ -57,7 +57,7 @@ Feature: Help Drawer-Other Health Coverage Page
     And I click save and continue on tax status page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Tricare" page
+    And I validate I am on the "Elmo Ohc Tricare" page
     And I set the browser resolution to 2000 x 800
 
   @SLER-910 @HelpDrawerTricarePage
