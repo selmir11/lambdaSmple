@@ -29,6 +29,9 @@ import io.cucumber.java.en.Then;
             medicalDetailPage.clickOutNetworkLink();
         }
 
+        @And("I validate the document upload links for the Medical Detail page")
+        public void validateDocumentsUpload(){medicalDetailPage.validateDocumentsUpload();}
+
         @And("I validate the text headers and subheaders for the OutNetwork Detail page")
         public void validateTextHeadersOutNetwork() {
             medicalDetailPage.validateEnglishTextHeadersOutNetwork();

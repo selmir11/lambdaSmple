@@ -382,4 +382,48 @@ public class MedicalDetailPage {
         softAssert.assertEquals(outTwelveHeader.getText(), "Beneficios esenciales");
         softAssert.assertAll();
     }
+
+    public void validateDocumentsUpload(){
+        basicActions.waitForElementToBePresent( spinner,100 );
+        basicActions.waitForElementToBePresentWithRetries( headerDocEnglish,60 );
+        softAssert.assertEquals(headerDocEnglish.getText(), "Plan Documents");
+
+        lnkSummaryBenefitsEnglish.isDisplayed();
+        basicActions.waitForElementToBePresentWithRetries( lnkSummaryBenefitsEnglish,60 );
+        lnkSummaryBenefitsEnglish.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkQualityOverviewEnglish,60 );
+        lnkQualityOverviewEnglish.isDisplayed();
+        lnkQualityOverviewEnglish.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkProviderNetwork,60 );
+        lnkProviderNetwork.isDisplayed();
+        lnkProviderNetwork.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkBrochureHealthEnglish,60 );
+        lnkBrochureHealthEnglish.isDisplayed();
+        lnkBrochureHealthEnglish.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkEvidenceCoverageEnglish,60 );
+        lnkEvidenceCoverageEnglish.isDisplayed();
+        lnkEvidenceCoverageEnglish.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkSummaryBenefitsSupplementEnglish,60 );
+        lnkSummaryBenefitsSupplementEnglish.isDisplayed();
+        lnkSummaryBenefitsSupplementEnglish.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkQualityOverviewSpanish,60 );
+        lnkQualityOverviewSpanish.isDisplayed();
+        lnkQualityOverviewSpanish.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkSummaryBenefitsSpanish,60 );
+        lnkSummaryBenefitsSpanish.isDisplayed();
+        lnkSummaryBenefitsSpanish.click();
+
+        basicActions.waitForElementToBePresentWithRetries( lnkEvidenceCoverageSpanish,60 );
+        lnkEvidenceCoverageSpanish.isDisplayed();
+        lnkEvidenceCoverageSpanish.click();
+        softAssert.assertAll();
+
+    }
 }
