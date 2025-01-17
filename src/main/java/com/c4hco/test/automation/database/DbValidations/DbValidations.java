@@ -737,13 +737,8 @@ public class DbValidations {
                 break;
             }
         }
-        if (state == 1) {
-            Integer actualStateYes = Integer.valueOf(exchDbDataProvider.getStateInformationYes(FirstName, state));
-            softAssert.assertEquals(actualStateYes.intValue(), 1, "State mismatched");
-        } else {
-            Integer actualStateNo = Integer.valueOf(exchDbDataProvider.getStateInformationYes(FirstName, state));
-            softAssert.assertEquals(actualStateNo != null ? actualStateNo.intValue() : -1, 0, "State mismatched");
-        }
+        String  stateFromDB = exchDbDataProvider.getStateInformation(FirstName);
+        softAssert.assertEquals(stateFromDB, String.valueOf(state), "State mismatched");
         softAssert.assertAll();
     }
 }
