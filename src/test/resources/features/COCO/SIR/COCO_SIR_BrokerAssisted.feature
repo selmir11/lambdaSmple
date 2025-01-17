@@ -1,5 +1,5 @@
 @COCO1
-#contains SLCR-189, SLCR-193,SLCR-194
+#contains SLCR-189, SLCR-193, SLCR-194
 Feature: Broker Assisted - End to End Test
 #Failing-general progression issues in Admin area - not a clean line of functions to test out the SIR pages
   Background: I go the login portal
@@ -37,7 +37,6 @@ Feature: Broker Assisted - End to End Test
     And I delete the open notice
     And I sign out of Outlook
 
-    # review with Carri then remove when transition issue resolved
     Then I enter the MFA code and click Verify
 
     And I validate I am on the "Agency Dashboard" page
@@ -109,8 +108,9 @@ Feature: Broker Assisted - End to End Test
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done obo from payment portal page coco
+
     And I validate I am on the "Agency Dashboard" page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I click on broker userName and logout
 
 
   @SLCR-193
@@ -328,8 +328,12 @@ Feature: Broker Assisted - End to End Test
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done obo from payment portal page coco
 
-    Then I validate I am on the "Agency Dashboard" page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I validate I am on the "Agency Dashboard" page
+    #And I click on the Agency Dashboard Broker Dropdown
+    And I click on Sign Out in the Header for "AgencyDashboard"
+
+    And I validate I am on the "Agency Dashboard" page
+    And I click on broker userName and logout
 
   @SLCR-194
   Scenario: SLCR-194 - This will create couple with children with Broker assistance
@@ -522,21 +526,27 @@ Feature: Broker Assisted - End to End Test
     Then I click save button to save the groups in CoCo Page
     And I validated message on success enrollment grouping pop-up in CoCo Page
     Then I click on continue button on success pop-up in CoCo Page
+
     Then I validate I am on the "Grouping Members Medical" page
     And I validate that there are 4 default groups in coco page
     Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
 
@@ -547,6 +557,6 @@ Feature: Broker Assisted - End to End Test
     And I select submit enrollment button on the Enrollment Agreements CoCo page
 
     Then I click all done obo from payment portal page coco
-    #uncomment the below lines and test after the bug is fixed.
-    #Then I validate I am on the "CoCo Welcome" page
-    #And I click on Sign Out in the Header for "Elmo"
+
+    And I validate I am on the "Agency Dashboard" page
+    And I click on broker userName and logout
