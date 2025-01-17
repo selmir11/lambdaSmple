@@ -38,6 +38,12 @@ public class Utils {
             case "assistNet":
                 baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.ASSISTER;
                 break;
+            case "tax Silver":
+                baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/tax/silver/";
+                break;
+            case "QCPF":
+                baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
+                break;
            default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
         return baseUrl;
