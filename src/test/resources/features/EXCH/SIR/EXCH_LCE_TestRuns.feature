@@ -1,12 +1,12 @@
 @SIR-EXCH13 @SIR-LCE
-  # SLER-1890, SLER-1891, SLER-1892, SLER-1893, SLER-1895, SLER-1896, SLER-1897,
+  # SLER-2011, SLER-2012, SLER-2013, SLER-2014, SLER-2015, SLER-2016, SLER-2017,
 Feature: LCE Test Runs
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-1890 @VerifyLCEBirth
-  Scenario: SLER-1890 - VerifyLCEBirth
+  @SLER-2017 @VerifyLCEBirth
+  Scenario: SLER-2017 - VerifyLCEBirth
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -120,8 +120,8 @@ Feature: LCE Test Runs
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1891 @VerifyLCEMarriage
-  Scenario: SLER-1891 - VerifyLCEMarriage
+  @SLER-2016 @VerifyLCEMarriage
+  Scenario: SLER-2016 - VerifyLCEMarriage
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -235,8 +235,8 @@ Feature: LCE Test Runs
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1892 @VerifyLCEColorado
-  Scenario: SLER-1892 - VerifyLCEColorado
+  @SLER-2015 @VerifyLCEColorado
+  Scenario: SLER-2015 - VerifyLCEColorado
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -352,8 +352,8 @@ Feature: LCE Test Runs
     And I click on Sign Out in the Header for "Portal"
 
 
-  @SLER-1893 @VerifyLCEChangePrimaryResidence
-  Scenario: SLER-1893 - VerifyLCEPrimaryResidence
+  @SLER-2014 @VerifyLCEChangePrimaryResidence
+  Scenario: SLER-2014 - VerifyLCEPrimaryResidence
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -469,8 +469,8 @@ Feature: LCE Test Runs
     And I click on Sign Out in the Header for "Portal"
 
 
-  @SLER-1895 @VerifyLCEGainedLawfulPresence
-  Scenario: SLER-1895 - VerifyLCEGainedLawfulPresence
+  @SLER-2013 @VerifyLCEGainedLawfulPresence
+  Scenario: SLER-2013 - VerifyLCEGainedLawfulPresence
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -584,8 +584,8 @@ Feature: LCE Test Runs
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1896 @VerifyLCELostCoverage
-  Scenario: SLER-1896 - VerifyLCELostCoverage
+  @SLER-2012 @VerifyLCELostCoverage
+  Scenario: SLER-2012 - VerifyLCELostCoverage
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -701,8 +701,8 @@ Feature: LCE Test Runs
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-1897 @VerifyLCEGainOfTribalStatus
-  Scenario: SLER-1897 - VerifyLCEGainOfTribalStatus
+  @SLER-2011 @VerifyLCEGainOfTribalStatus
+  Scenario: SLER-2011 - VerifyLCEGainOfTribalStatus
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
