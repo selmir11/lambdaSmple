@@ -234,7 +234,6 @@ Feature: Seed08 - Exchange
     And I select or skip the medical plans for groups
       | Group 1:KP Select CO Bronze 8500/50 |
       | Group 2:KP Select CO Bronze 8500/50 |
-#    Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
     Then I validate I am on the "Edit Grouping Members Dental" page
