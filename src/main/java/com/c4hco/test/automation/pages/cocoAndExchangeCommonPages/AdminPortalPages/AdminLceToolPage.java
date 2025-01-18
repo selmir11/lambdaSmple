@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPa
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,7 +47,7 @@ public class AdminLceToolPage {
 
     @FindBy(id = "addAdminButton")
     WebElement submitBtn;
-    @FindBy(css = "body > div.outer-container > div.container > h1")
+    @FindBy(css = "#heading, body > div.outer-container > div.container > h1")
     WebElement titleAdminLceTool;
     @FindBy(xpath = "//b[normalize-space()='Account Number']")
     WebElement acctNumberLceTool;
@@ -82,6 +83,24 @@ public class AdminLceToolPage {
 
     @FindBy(css = ".plan-body.active")
     List<WebElement> appDatatext;
+
+    @FindBy(xpath = "//h4[@id='modal-header-title']")
+    WebElement confirmChangeEffectiveDateTitle;
+
+    @FindBy(xpath = "//p[@id='modal-body-text']")
+    WebElement confirmChangemessage;
+
+    @FindBy(xpath = "//input[@id='effective-date']")
+    WebElement dateInputField;
+
+    @FindBy(id = "go-back-btn")
+    WebElement goBackButton;
+
+    @FindBy(id = "confirm-btn")
+    WebElement confirmButton;
+    @FindBy(id = "modal-content")
+    List<WebElement> modals;
+
 
     public void lookUpAccId() {
         tabs = new ArrayList<>(basicActions.getDriver().getWindowHandles());
@@ -229,16 +248,16 @@ public class AdminLceToolPage {
             displayedPlanYears.add(year);
         }
 
-        softAssert.assertEquals(displayedPlanYears,expectedPlanYears,"Plan years not match");
+        softAssert.assertEquals(displayedPlanYears, expectedPlanYears, "Plan years not match");
 
     }
 
     public void clickAppDataDropdown() {
-        basicActions.waitForElementListToBePresent(appDataDropdowns,30);
+        basicActions.waitForElementListToBePresent(appDataDropdowns, 30);
         for (WebElement option : appDataDropdowns) {
-            int i=0;
+            int i = 0;
             option.click();
-          basicActions.isElementDisplayed(appDatatext.get(i),30);
+            basicActions.isElementDisplayed(appDatatext.get(i), 30);
         }
     }
 
@@ -249,5 +268,36 @@ public class AdminLceToolPage {
                 .anyMatch(element -> element.getText().trim().contains(expectedMessage));
         softAssert.assertTrue(messageFound, "Expected message not found in any of the elements.");
     }
+
+    public void clickRecreateApplicationLink(int planYear, int linkIndex) {
+        String createlink = String.format("//*[@id='planYearLabel_%d']//following::*[starts-with(@id, 'recreateLink_')][%d]", planYear, linkIndex);
+        basicActions.getDriver().findElement(By.xpath(createlink)).click();
+    }
+
+    public void confirmEffectiveDatePopUp() {
+        basicActions.waitForElementToBePresent(confirmChangeEffectiveDateTitle, 30);
+        softAssert.assertEquals(confirmChangeEffectiveDateTitle.getText(), "Confirm change effective dates");
+        softAssert.assertEquals(confirmChangemessage.getText(), "You have chosen to recreate and make corrections to the application from Plan Year 2025. Please enter the date the changes will become effective and select confirm to begin.");
+        softAssert.assertAll();
+    }
+
+    public void enterDate(String endDate) {
+        String formattedDate = basicActions.getDateBasedOnRequirement(endDate);
+        dateInputField.sendKeys(formattedDate);
+    }
+
+    public void clickConfirmButton(){
+    basicActions.waitForElementToBePresent(confirmButton, 30);
+    confirmButton.click();
 }
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBePresent(goBackButton, 50);
+        goBackButton.click();
+        softAssert.assertTrue(modals.isEmpty());
+        softAssert.assertAll();
+    }
+
+}
+
+
 
