@@ -307,7 +307,7 @@ public class AccountOverviewPage {
 
     public void verifyMemberNames() {
         List<MemberDetails> allMemberList = basicActions.getAllMedicalEligibleMemInfo();
-        int totalDentalGroups = SharedData.getScenarioDetails().getTotalGroups() != 0 ? SharedData.getScenarioDetails().getTotalGroups():SharedData.getScenarioDetails().getTotalGroups();
+        int totalDentalGroups = SharedData.getScenarioDetails().getTotalDentalGroups() != 0 ? SharedData.getScenarioDetails().getTotalDentalGroups():SharedData.getScenarioDetails().getTotalGroups();
         for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() +totalDentalGroups; i++) {
 
             List<String> expectedMemberNames = new ArrayList<>();
