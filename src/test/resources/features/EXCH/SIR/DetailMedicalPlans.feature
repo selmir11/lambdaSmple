@@ -301,7 +301,7 @@ Feature: Medical Plan Detail page related tests
     Then I click on Sign Out in the Header for "Portal"
 
   @SLER-2009-WIP  @MedicalDetailDocumentSuccessfulDownload
-  Scenario: SLER-1226 - Validate the documents found on the Detail Plans page when the Network Links are switched (Medical)
+  Scenario: SLER-2009 - Validate the documents found on the Detail Plans page when the Network Links are switched (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -348,7 +348,7 @@ Feature: Medical Plan Detail page related tests
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select "Birth" QLCE on tell us about life changes page
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare as Tax Household 1
     Then I click Continue on the Declarations And Signature Page
@@ -361,9 +361,17 @@ Feature: Medical Plan Detail page related tests
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first plan detail
+    And I select "<carrierOption>" to filter for desired plan provider
 
     Then I validate I am on the "Medical Plan Detail" page
-    And I validate the document upload links for the Medical Detail page
-
+    And I validate the "<carrierDocs>" document upload links for the Medical Detail page
     Then I click on Sign Out in the Header for "Portal"
+
+    Examples:
+      | carrierOption                     | carrierDocs |
+      | Anthem                            | Anthem      |
+      | Cigna Healthcare                  | Cigna       |
+      | Denver Health                     | Denver      |
+      | Kaiser Permanente                 | Kaiser      |
+      | Rocky Mountain Health Plans / UHC | Rocky       |
+      | Select Health                     | Select      |

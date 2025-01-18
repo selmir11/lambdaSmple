@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 
         MedicalDetailPage medicalDetailPage = new MedicalDetailPage( WebDriverManager.getDriver() );
 
-
         @And("I validate the Plan Detail summary pdf link")
         public void clickPDFDetail() {
             medicalDetailPage.clickPDFDetail();
@@ -29,8 +28,8 @@ import io.cucumber.java.en.Then;
             medicalDetailPage.clickOutNetworkLink();
         }
 
-        @And("I validate the document upload links for the Medical Detail page")
-        public void validateDocumentsUpload(){medicalDetailPage.validateDocumentsUpload();}
+        @And("I validate the {string} document upload links for the Medical Detail page")
+        public void validateDocumentsUpload(String carrier) {medicalDetailPage.validateDocumentsUpload(carrier);}
 
         @And("I validate the text headers and subheaders for the OutNetwork Detail page")
         public void validateTextHeadersOutNetwork() {
