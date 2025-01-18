@@ -13,10 +13,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
@@ -360,22 +357,46 @@ public class Ob834PreEdiDbValidations_grp {
         getMedicalPlanDbDataMap(getName(ob834Entity, subscriber));
         double amt = Double.parseDouble(subscriber.getMedicalAptcAmt());
         String expectedPMMedicalAptcAmt = String.format("%.2f", amt);
-        SharedData.setMedicalFileName(ob834Entity.getFilename());
         softAssert.assertEquals(expectedPMMedicalAptcAmt, ob834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
         softAssert.assertEquals(medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt() != null ? medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt() : "0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
         softAssert.assertEquals(subscriber.getTotalMedAmtAfterReduction().replace("$", "").replace(",", ""), ob834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
         softAssert.assertEquals(subscriber.getMedicalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         subscriberOnlyMedDenFields(ob834Entity, subscriber);
+        setMedicalFileName(ob834Entity);
+    }
+
+    private void setMedicalFileName(Ob834DetailsEntity ob834Entity){
+        List<String> medFileNames = SharedData.getMedicalFileName_grp();
+        if(medFileNames==null){
+            medFileNames = new ArrayList<>();
+        }
+        medFileNames.add(ob834Entity.getFilename());
+
+        Set<String> set = new LinkedHashSet<>(medFileNames);
+        medFileNames = new ArrayList<>(set);
+        SharedData.setMedicalFileName_grp(medFileNames);
+    }
+
+    private void setDentalFileName(Ob834DetailsEntity ob834Entity){
+        List<String> denFileNames = SharedData.getDentalFileName_grp();
+        if(denFileNames==null){
+            denFileNames = new ArrayList<>();
+        }
+        denFileNames.add(ob834Entity.getFilename());
+
+        Set<String> set = new LinkedHashSet<>(denFileNames);
+        denFileNames = new ArrayList<>(set);
+        SharedData.setMedicalFileName_grp(denFileNames);
     }
 
     private void subscriberOnlyDenValidations(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
         // Subscriber Only Fields
-        SharedData.setDentalFileName(ob834Entity.getFilename());
         softAssert.assertEquals("0.00", ob834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
         softAssert.assertEquals("0.00", ob834Entity.getCsr_amount(), "Medical CSR amount does not match");
         softAssert.assertEquals(subscriber.getTotalDentalPremAfterReduction().replace("$", "").replace(",",""), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
         softAssert.assertEquals(subscriber.getDentalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         subscriberOnlyMedDenFields(ob834Entity, subscriber);
+        setDentalFileName(ob834Entity);
     }
 
     private void subscriberOnlyMedDenFields(Ob834DetailsEntity ob834Entity, MemberDetails subscriber){

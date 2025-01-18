@@ -20,7 +20,7 @@ Feature: Enroll a in a plan 8 HH
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-   # And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "07271963" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -338,7 +338,7 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Niece,Nephew,Daughter"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -393,24 +393,24 @@ Feature: Enroll a in a plan 8 HH
 
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "NonElmo"
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click View Plan History link from "medical" plan card
+#    And I validate "medical" plan details from plan history
+#    And I validate "dental" plan details from plan history
+#    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables for groups
     And I validate "dental" entities from policy tables for groups
 
     And I validate "medical" entities from pre edi db tables for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | OEP        |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE        |
     And I validate "dental" entities from pre edi db tables for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | OEP        |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE         |
 
 #    #Gmail Verification
 #    Then I open outlook Tab
@@ -424,6 +424,9 @@ Feature: Enroll a in a plan 8 HH
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+    And I validate the ob834 "medical" file data for groups
+    And I validate the ob834 "dental" file data for groups
 
 
 

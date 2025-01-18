@@ -25,6 +25,8 @@ public class SharedData {
     @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
     @Getter @Setter private static String medicalFileName;
     @Getter @Setter private static String dentalFileName;
+    @Getter @Setter private static List<String> medicalFileName_grp;
+    @Getter @Setter private static List<String> dentalFileName_grp;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
     @Getter @Setter private static List<Ib834Entity> ib834MedDetailsEntities;

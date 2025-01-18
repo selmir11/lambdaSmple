@@ -1,14 +1,13 @@
 package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.EdiValidations.Ib834FileValidations;
-import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
-import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
-import com.c4hco.test.automation.edi.EdiValidations.Ob999FileValidations;
+import com.c4hco.test.automation.edi.EdiValidations.*;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
@@ -16,6 +15,7 @@ public class sftpStepDefinitions {
    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
    Ob999FileValidations ob999FileValidations = new Ob999FileValidations();
    Ib834FileValidations ib834FileValidations = new Ib834FileValidations();
+   Ob834FileValidations_Grps ob834FileValidations_Grps = new Ob834FileValidations_Grps();
 
     @And("I download the medical and dental files from sftp server with location {string}")
     public void downloadMedDenFiles(String remoteLocation)  {
@@ -50,6 +50,30 @@ public class sftpStepDefinitions {
                 System.out.println("***********Validating Dental EDI File::"+denFileName+"***********");
                 sftpUtil.readEdiFile(denFileName);
                ob834Validations_new.validateOb834DenFile();
+                break;
+            default:
+                Assert.fail("Incorrect Argument passed in the step");
+        }
+    }
+
+    @And("I validate the ob834 {string} file data for groups")
+    public void validateOb834FileDetails_grp(String type) {
+        switch (type) {
+            case "medical":
+                List<String> medFileNames = SharedData.getMedicalFileName_grp();
+                for(String medFileName: medFileNames){
+                    System.out.println("***********Validating Medical EDI File::"+medFileName+"***********");
+                    sftpUtil.readEdiFile(medFileName);
+                    ob834FileValidations_Grps.validateOb834MedFile(medFileName);
+                }
+                break;
+            case "dental":
+                List<String> denFileNames = SharedData.getDentalFileName_grp();
+                for(String denFileName: denFileNames){
+                    System.out.println("***********Validating Dental EDI File::"+denFileName+"***********");
+                    sftpUtil.readEdiFile(denFileName);
+                    ob834FileValidations_Grps.validateOb834DenFile();
+                }
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");
