@@ -40,6 +40,8 @@ public class AssistnetDashboardPage {
     WebElement phoneNumberAP;
     @FindBy(id = "emailAddress-name")
     WebElement emailAP;
+    @FindBy(id = "EmailData")
+    WebElement emailText;
     @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Cancel")
     WebElement cancelBTN;
     @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-Save")
@@ -47,6 +49,12 @@ public class AssistnetDashboardPage {
 
     @FindBy(id = "button-new-org")
     WebElement addNewOrganizationButton;
+    @FindBy(id = "AN-ProgramManagerDashboard-AccountSummary-CompleteProfile")
+    WebElement completeProfileButton;
+    @FindBy(id = "AN-MyInformation-SaveandContinue")
+    WebElement saveAndContinueButton;
+    @FindBy(id = "dashboard-button")
+    WebElement goBckToMyDashboardButton;
 
 
     public void ClickOnViewMyClients() {
@@ -163,4 +171,36 @@ public class AssistnetDashboardPage {
             }
         }
     }
+
+    public void validateTheEmailIsUpdatedCorrectly() {
+        basicActions.waitForElementToBePresentWithRetries(emailText,30);
+        softAssert.assertEquals(emailText.getText(),SharedData.getAssisterDetails().getEmail());
+        softAssert.assertAll();
+    }
+
+
+    public void clickCompleteProfileOnAssistnetDashboardPage() {
+        basicActions.waitForElementToBePresent(completeProfileButton,50);
+        completeProfileButton.click();
+    }
+
+
+    public void validateTheSaveAndContinueIsDisplayed() {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton,60);
+        softAssert.assertEquals(saveAndContinueButton.getText(), "Save and Continue");
+        softAssert.assertAll();
+    }
+
+
+    public void clickSaveAndContinueOnMyInformationAssistnetPage() {
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton,60);
+        saveAndContinueButton.click();
+    }
+
+    public void clickGoBackToMyDashboardButtonFromAssistNetDashboaredPage() {
+        basicActions.waitForElementToBePresent(goBckToMyDashboardButton,60);
+        goBckToMyDashboardButton.click();
+    }
+
+
 }

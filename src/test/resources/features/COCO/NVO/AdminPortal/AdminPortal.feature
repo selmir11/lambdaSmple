@@ -1,3 +1,4 @@
+@NVOCoCoRegression
 Feature: Admin Portal Validations
 
   Background: I go the login portal
@@ -37,7 +38,7 @@ Feature: Admin Portal Validations
       And I select "Yes" for mailing address option
       And I select "Yes" for live in Colorado option
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "CoCo Additional information for yourself" page
+      Then I validate I am on the "Elmo Race and Ethnicity" page
       And I click on the Username in the "CoCo" Header
       Then I validate I am on the "My Profile" page
       And I click on Make Changes Button in CoCo

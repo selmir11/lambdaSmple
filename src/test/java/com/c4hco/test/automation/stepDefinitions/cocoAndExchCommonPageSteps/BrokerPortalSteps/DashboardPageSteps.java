@@ -92,4 +92,48 @@ public class DashboardPageSteps {
         dashboardPage.saveAgencyDetails();
     }
 
+    @And("I validate the MVR container text in the dashboard Page")
+    public void iValidateTheMVRContainerTextInTheDashboardPage() {
+        dashboardPage.validateTheMVRContainerTextInTheDashboardPage();
+    }
+
+    @Then("I validate the I can't search for special characters on Search Bar")
+    public void iValidateTheICanTSearchForSpecialCharactersOnSearchBar() {
+        dashboardPage.validateTheICanTSearchForSpecialCharactersOnSearchBar();
+    }
+
+    @Then("I search for {string} in search mvr container")
+    public void iSearchForInSearchMvrContainer(String client) {
+        dashboardPage.searchForInSearchMvrContainer(client);
+    }
+
+    @And("I clear the MVR search box in broker dashboard page")
+    public void iClearTheMVRSearchBoxInBrokerDashboardPage() {
+        dashboardPage.clearTheMVRSearchBoxInBrokerDashboardPage();
+    }
+
+    @And("I click the right pagination arrow button {int} times in mvr container")
+    public void iClickTheRightPaginationArrowButtonTimesInMvrContainer(int numberTime) {
+        dashboardPage.clickTheRightPaginationArrowButtonTimesInMvrContainer(numberTime);
+    }
+
+    @Then("I verify the current result page is {string} in mvr container")
+    public void iVerifyTheCurrentResultPageIsInMvrContainer(String currentPage) {
+        dashboardPage.verifyTheCurrentResultPageIsInMvrContainer(currentPage);
+    }
+
+    @And("I click the left pagination arrow button {int} times in mvr container")
+    public void iClickTheLeftPaginationArrowButtonTimesInMvrContainer(int numberTime) {
+        dashboardPage.clickTheLeftPaginationArrowButtonTimesInMvrContainer(numberTime);
+    }
+
+    @And("I validate the result contains {string}")
+    public void iValidateTheResultContains(String search) {
+        dashboardPage.validateTheResultContains(search);
+    }
+
+    @Then("I validate the mvr container is not displayed")
+    public void iValidateTheMvrContainerIsNotDisplayed() {
+        dashboardPage.validateTheMvrContainerIsNotDisplayed();
+    }
 }

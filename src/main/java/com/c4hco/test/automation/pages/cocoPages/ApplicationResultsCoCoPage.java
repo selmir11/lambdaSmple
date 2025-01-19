@@ -25,7 +25,7 @@ public class ApplicationResultsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "#ELIG-MemberPlanInfo-SaveAndContinue")
+    @FindBy(xpath = "//*[@id = 'ELIG-MemberPlanInfo-SaveAndContinue']")
     public WebElement continueButton;
 
     @FindBy(id = "ELIG-NoApplication-BackToWelcomePage")
@@ -106,8 +106,8 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void continueWithApplication()  {
-        basicActions.waitForElementToDisappear( spinner, 100 );
-        basicActions.waitForElementToBePresentWithRetries( continueButton, 60);
+        basicActions.waitForElementToDisappear( spinner, 180 );
+        basicActions.waitForElementToBePresentWithRetries( continueButton, 90);
         basicActions.scrollToElement( continueButton );
         continueButton.click();
     }
@@ -282,7 +282,7 @@ public class ApplicationResultsCoCoPage {
 
     public void validateTextOnPage() {
         String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
-        if(residentialState.equals("CO")||residentialState!=null) {
+        if(residentialState != null && residentialState.equals("CO")) {
         verifyTextHoulseholdQualifyForOnAppResultsPage();
         validateNameAndPlan();
         validateOverviewContainerTxt();
@@ -369,9 +369,12 @@ public class ApplicationResultsCoCoPage {
         switch(language){
             case "Spanish":
              softAssert.assertEquals(noAppTxt.getText().trim(), "Presente una solicitud para consultar sus resultados", "NoAppText did not match in spanish");
-             softAssert.assertEquals(backToWelcomeButton.getText().trim(), "Regresar a la Página de bienvenida", "Back to welcome button text doesn't match in spanish");
+             softAssert.assertEquals(backToWelcomeButton.getText().trim(), "Regresar a la P\u00E1gina de bienvenida", "Back to welcome button text doesn't match in spanish");
              break;
-
+            case "English":
+                softAssert.assertEquals(noAppTxt.getText().trim(), "Please submit an application to view your results", "NoAppText did not match in english");
+                softAssert.assertEquals(backToWelcomeButton.getText().trim(), "Back to welcome page", "Back to welcome button text doesn't match in english");
+                break;
              default: Assert.fail("Invalid argument passed");
         }
         softAssert.assertAll();
@@ -417,17 +420,17 @@ public class ApplicationResultsCoCoPage {
 
     private void validateWarningModalSp(){
         softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANTE!", "Header text did not match in spanish");
-        softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el período de inscripción abierta.", "The text line 1 did not match in spanish");
-        softAssert.assertEquals(contactUsTxt.get(1).getText(), "El período de inscripción abierta anual para el seguro de salud va del 1º de noviembre al 15 de enero. Fuera de este período, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atención al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el per\u00EDodo de inscripci\u00F3n abierta.", "The text line 1 did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(1).getText(), "El per\u00EDodo de inscripci\u00F3n abierta anual para el seguro de salud va del 1\u00BA de noviembre al 15 de enero. Fuera de este per\u00EDodo, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atenci\u00F3n al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
         softAssert.assertEquals(contactUsLink.getText(), "evento de vida calificado", "The link text did not match in spanish");
         softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/", "URL for hyperlink did not match in Spanish");
     }
 
     private void validateWarningModalSp_Ses(){
         softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANTE!", "Header text did not match in spanish");
-        softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el período de inscripción abierta.", "The text line 1 did not match in spanish");
-        softAssert.assertEquals(contactUsTxt.get(1).getText(), "No puede inscribirse en el seguro de salud porque terminó su período de inscripción especial.", "SES specific text did not match in spanish");
-        softAssert.assertEquals(contactUsTxt.get(2).getText(), "El período de inscripción abierta anual para el seguro de salud va del 1º de noviembre al 15 de enero. Fuera de este período, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atención al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el per\u00EDodo de inscripci\u00F3n abierta.", "The text line 1 did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(1).getText(), "No puede inscribirse en el seguro de salud porque termin\u00F3 su per\u00EDodo de inscripci\u00F3n especial.", "SES specific text did not match in spanish");
+        softAssert.assertEquals(contactUsTxt.get(2).getText(), "El per\u00EDodo de inscripci\u00F3n abierta anual para el seguro de salud va del 1\u00BA de noviembre al 15 de enero. Fuera de este per\u00EDodo, solo puede inscribirse si tiene un evento de vida calificado. Si tiene preguntas, llame a nuestro centro de atenci\u00F3n al cliente al 855-675-2626.", "Paragraph text highlighted in yellow did not match in spanish");
         softAssert.assertEquals(contactUsLink.getText(), "evento de vida calificado", "The link text did not match in spanish");
         softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/", "URL for hyperlink did not match in Spanish");
     }

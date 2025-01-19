@@ -49,6 +49,12 @@ public class MedicalComparePage {
     @FindBy(xpath = "//*[normalize-space()='Out-of-Network']")
     WebElement outNetwork;
 
+    @FindBy(id = "PlanCompare_ExpandAll")
+    WebElement expandCOCOAllLink;
+
+    @FindBy(id = "PlanCompare_CollapseAll")
+    WebElement collapseCOCOAllLink;
+
     //// Header page title
 
     @FindBy(xpath = "//div[@class='c4-type-header-lg header-container']") // Compare Medical Plans
@@ -479,11 +485,105 @@ public class MedicalComparePage {
         softAssert.assertEquals(txtMedicalPlanDocuments.getText(), "Plan Documents");
         basicActions.click( txtMedicalPlanDocuments );
 
+        softAssert.assertEquals(txtMedicalDoctorsVisits.getText(), "Doctor Visits");
+        basicActions.click( txtMedicalDoctorsVisits );
+        softAssert.assertEquals(txtMedicalPreventative.getText(), "Preventive Care/ Screening/ Immunization");
+        softAssert.assertEquals(txtMedicalPrimary.getText(), "Primary Care Visit to Treat an Injury or Illness");
+        softAssert.assertEquals(txtMedicalSpecialist.getText(), "Specialist Visit");
+        softAssert.assertEquals(txtMedicalTeleHealthPCP.getText(), "Telehealth PCP");
+        softAssert.assertEquals(txtMedicalTeleHealthSpecialist.getText(), "Telehealth Specialist");
 
+        softAssert.assertEquals(getTxtMedicalEmergencyCare.getText(), "Emergency Care");
+        basicActions.click( getTxtMedicalEmergencyCare );
+        softAssert.assertEquals(txtMedicalUrgent.getText(), "Urgent Care Centers or Facilities");
+        softAssert.assertEquals(txtMedicalEmergencyRoom.getText(), "Emergency Room Services");
+        softAssert.assertEquals(txtMedicalEmergencyTransportation.getText(), "Emergency Transportation/ Ambulance");
+
+        softAssert.assertEquals(getTxtMedicalDrugs.getText(), "Drugs");
+        basicActions.click( getTxtMedicalDrugs );
+        softAssert.assertEquals(txtMedicalGenericDrugs.getText(), "Generic Drugs");
+        softAssert.assertEquals(txtMedicalPreferredDrugs.getText(), "Preferred Brand Drugs");
+        softAssert.assertEquals(txtMedicalSpecialtyDrugs.getText(), "Specialty Drugs");
+
+        softAssert.assertEquals(getTxtTesting.getText(), "Testing");
+        basicActions.click( getTxtTesting );
+        softAssert.assertEquals(txtMedicalLaboratory.getText(), "Laboratory Outpatient and Professional Services");
+        softAssert.assertEquals(txtMedicalXrays.getText(), "X-rays and Diagnostic Imaging");
+        softAssert.assertEquals(txtMedicalImaging.getText(), "Imaging (CT/PET Scans, MRIs)");
+
+        softAssert.assertEquals(getTxtMedicalFacilities.getText(), "Facilities");
+        basicActions.click( getTxtMedicalFacilities );
+        softAssert.assertEquals(txtMedicalOutpatientFee.getText(), "Outpatient Facility Fee (e.g., Ambulatory Surgery Center)");
+        softAssert.assertEquals(txtMedicalOutpatientSurgery.getText(), "Outpatient Surgery Physician/Surgical Services");
+        softAssert.assertEquals(txtMedicalInpatientHospital.getText(), "Inpatient Hospital Services (e.g., Hospital Stay)");
+        softAssert.assertEquals(txtMedicalInpatientPhysician.getText(), "Inpatient Physician and Surgical Services");
+
+        softAssert.assertEquals(getTxtMedicalMentalHealthBenefits.getText(), "Mental Health Benefits");
+        basicActions.click( getTxtMedicalMentalHealthBenefits );
+        softAssert.assertEquals(txtMedicalMentalBehavior.getText(), "Mental/Behavioral Health Office Visit");
+        softAssert.assertEquals(txtMedicalMentalBehavorialOutpatient.getText(), "Mental/Behavioral Health Outpatient Services");
+        softAssert.assertEquals(txtMedicalMentalBehavorialInpatient.getText(), "Mental/Behavioral Health Inpatient Services");
+        softAssert.assertEquals(txtMedicalSubstanceAbuseVisit.getText(), "Substance Abuse Disorder Office Visit");
+        softAssert.assertEquals(txtMedicalSubstanceAbuseOutpatientServices.getText(), "Substance Abuse Disorder Outpatient Services");
+        softAssert.assertEquals(txtMedicalSubstanceAbuseInpatientServices.getText(), "Substance Abuse Disorder Inpatient Services");
+
+        softAssert.assertEquals(getTxtMedicalHabilitative.getText(), "Habilitative and Rehabilitative Services");
+        basicActions.click( getTxtMedicalHabilitative );
+        softAssert.assertEquals(txtMedicalHabilitativeServices.getText(), "Habilitation Services");
+        softAssert.assertEquals(txtMedicalRehabSpeechTherapy.getText(), "Rehabilitative Speech Therapy");
+        softAssert.assertEquals(txtMedicalRehabOccupationalTherapy.getText(), "Rehabilitative Occupational Therapy");
+        softAssert.assertEquals(txtMedicalRehabPhysicalTherapy.getText(), "Rehabilitative Physical Therapy");
+
+        softAssert.assertEquals(getTxtMedicalMedicalDevices.getText(), "Medical Devices");
+        basicActions.click( getTxtMedicalMedicalDevices );
+        softAssert.assertEquals(txtMedicalDurableMedical.getText(), "Durable Medical Equipment");
+        softAssert.assertEquals(txtMedicalProstheticDevices.getText(), "Prosthetic Devices");
+
+        softAssert.assertEquals(getTxtMedicalMaternity.getText(), "Maternity");
+        basicActions.click( getTxtMedicalMaternity );
+        softAssert.assertEquals(txtMedicalPrenatal.getText(), "Prenatal and Postnatal Care");
+        softAssert.assertEquals(txtMedicalDelivery.getText(), "Delivery and All Inpatient Services for Maternity Care");
+
+        softAssert.assertEquals(getTxtMedicalHomeCare.getText(), "Home Care & Hospice");
+        basicActions.click( getTxtMedicalHomeCare );
+        softAssert.assertEquals(txtMedicalHomeHealth.getText(), "Home Health Care Services");
+        softAssert.assertEquals(txtMedicalHospice.getText(), "Hospice Services");
+
+        softAssert.assertEquals(getTxtMedicalBenefits.getText(), "Additional Benefits");
+        basicActions.click( getTxtMedicalBenefits );
+        softAssert.assertEquals(txtMedicalChiropractic.getText(), "Chiropractic Care");
+        softAssert.assertEquals(txtMedicalBariatricy.getText(), "Bariatric Surgery");
+        softAssert.assertEquals(txtMedicalInfertility.getText(), "Infertility Treatment");
         softAssert.assertAll();
     }
 
+    public void validateHeaderFunctionality(){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresent(txtMedicalHighlights, 20);
+        basicActions.click( txtMedicalPlanDocuments );
+        basicActions.click( txtMedicalDoctorsVisits );
+        basicActions.click( getTxtMedicalEmergencyCare );
+        basicActions.click( getTxtMedicalDrugs );
+        basicActions.click( getTxtTesting );
+        basicActions.click( getTxtMedicalFacilities );
+        basicActions.click( getTxtMedicalMentalHealthBenefits );
+        basicActions.click( getTxtMedicalHabilitative );
+        basicActions.click( getTxtMedicalMedicalDevices );
+        basicActions.click( getTxtMedicalMaternity );
+        basicActions.click( getTxtMedicalHomeCare );
+        basicActions.click( getTxtMedicalBenefits );
 
+        basicActions.scrollToElement( txtMedicalHighlights );
+        collapseCOCOAllLink.click();
+        basicActions.waitForElementToBePresentWithRetries( txtMedicalPlanDocuments,30 );
+        basicActions.click( txtMedicalPlanDocuments );
+        basicActions.scrollToElement( txtMedicalHighlights );
+        collapseCOCOAllLink.click();
+        basicActions.scrollToElement( txtMedicalHighlights );
+        expandCOCOAllLink.click();
+        collapseCOCOAllLink.click();
+
+    }
 
     public void clickPDFSummary(){
         basicActions.waitForElementToBePresent( pdfCompareSummary,15);

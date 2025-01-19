@@ -1,6 +1,6 @@
 Feature: Seed04 based on open enrollment - Exchange
 
-  Scenario: Seed 04 For Exchange OE - Husband and Wife with FA
+  Background: Seed 04 For Exchange OE - Husband and Wife with FA
 #    Given I set the test scenario details
 #      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
 #      | 1           | 2            | 1                 | 1                | 2               |
@@ -122,6 +122,7 @@ Feature: Seed04 based on open enrollment - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -175,7 +176,7 @@ Feature: Seed04 based on open enrollment - Exchange
 #    And I validate the ob834 "medical" file data
 #    And I validate the ob834 "dental" file data
 
-  @SLER-1227-WIP
+  @SLER-1227-OE_WIP
   Scenario: RT-2303 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL - ALL MEMBERS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -215,5 +216,113 @@ Feature: Seed04 based on open enrollment - Exchange
     Then I validate I am on the "Family Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-1235-OE_WIP
+  Scenario: RT-2051 ENR-EXCH: APPS - CHANGE PRIMARY RESIDENTIAL ADDRESS (Different Rating Area)
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I select "New" for Residential Address
+    And I enter the new residential address details
+      | addressLine1           | addressLine2          | city    | state | zipcode | county  | dob     |
+      | 101 Update Lane        |                       | Denver  | CO    | 80205  | DENVER   | 11181993 |
+    Then I select the Different Mailing Address option
+    Then I enter member with address line1 "101 Update Lane" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Spouse"
+    Then I click edit basic information icon on household page for "Spouse"
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "101 Update Lane" specific Address
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "ChangePrimaryResidence" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    And I click on Sign Out in the Header for "NonElmo"
+#    And I validate "medical" entities from policy tables
+#    And I validate "dental" entities from policy tables
+#
+##      And I verify the policy data quality check with Policy Ah keyset size 4
+##      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+#
+#    And I validate "medical" entities from pre edi db tables
+#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
+#      | 001                   | 001                | 25                    | FINANCIAL CHANGE or DEMOGRAPHIC CHANGE |            |
+#    And I validate "dental" entities from pre edi db tables
+#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+#      | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
+#
+#    And I download the medical and dental files from sftp server with location "/outboundedi/"
+#    And I validate the ob834 "medical" file data
+#    And I validate the ob834 "dental" file data
+
+
+   @SLER-1836-OE_WIP
+  Scenario: RT-2532 ENR-EXCH: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - CHANGE BROKER
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Find Expert Help" page
+    And I click on change the existing broker
+    Then I Search authorized Broker "Mister Broker"
+    And I click on Search button in find certified broker page
+    And I click more details from the first broker result container
+    Then I click Authorize button in container
+    And I click on "Authorize New Broker" in the warning container to authorize new or keep the same broker
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    And I click on Sign Out in the Header for "NonElmo"
 
 

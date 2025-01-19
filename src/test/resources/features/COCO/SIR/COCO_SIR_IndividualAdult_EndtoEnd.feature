@@ -1,5 +1,5 @@
 @COCO5
-    # SLCR-157, SLCR-159, SLCR-195, SLCR-255, SLCR-256, SLCR-257, SLCR-263, SLCR-265, SLCR-267, SLCR-268, SLCR-316, SLCR-317,
+    # SLCR-157, SLCR-159, SLCR-255, SLCR-256, SLCR-257, SLCR-263, SLCR-265, SLCR-267, SLCR-268, SLCR-282, SLCR-316, SLCR-317,
 Feature: Individual adult - End to End Test
 
   Background: I go the login portal
@@ -293,8 +293,8 @@ Feature: Individual adult - End to End Test
     And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-195 @EndToEndTest
-  Scenario: SLCR-195 - This will create Individual Minor with no assistance annually salary of 10K
+  @SLCR-282 @EndToEndTest
+  Scenario: SLCR-282- This will create an individual Minor enrollment (no assistance) and annual salary of 10k
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation

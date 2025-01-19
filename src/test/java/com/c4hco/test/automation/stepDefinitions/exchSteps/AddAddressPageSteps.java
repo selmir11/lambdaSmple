@@ -67,8 +67,8 @@ public class AddAddressPageSteps {
     @Then("I click continue on the Add Address page")
     public void clickContinue(){addAddressPage.saveContinue();}
 
-    @Then("I add the tribe details")
-    public void Addtribedetails(){addAddressPage.Addtribedetails();}
+    @Then("I add the tribe details state as {string} and tribe name as {string}")
+    public void Addtribedetails(String tState, String tName){addAddressPage.Addtribedetails(tState,tName);}
 
     @Then("I select {string} specific Address")
     public  void selectspecificaddress(String SpecificAddress){addAddressPage.specificaddress(SpecificAddress); }

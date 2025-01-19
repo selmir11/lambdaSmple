@@ -142,9 +142,10 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click on view results and shop
     And I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
     Then I click on edit enrollment groups link
     And I validate I am on the "Edit Grouping Members Medical" page
-  Then I validate the text on the edit medical grouping page
+    Then I validate the text on the edit medical grouping page

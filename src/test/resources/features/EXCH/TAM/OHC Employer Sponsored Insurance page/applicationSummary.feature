@@ -775,7 +775,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
     And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
@@ -813,6 +813,14 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -852,6 +860,14 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I enter the end date as "Today" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click continue on the ESI page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "Employer Sponsored Insurance" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "Employer-sponsored insurance through employer" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -888,7 +904,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |Employer Sponsored Insurance|     Green    |    Green    |         Yes          |         Green         |                    300.0                    |       Green         |       Yes        |      Green       |            Yes                 |     Green      |   Today    |     Green    |       No         |        Green        |
 #    Step 4
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the ESI OHC details on Application Details
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
@@ -916,6 +932,14 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -937,7 +961,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |None Highlight|Removed|Removed Highlight|
       |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify None OHC detail on Application Details
       |None Highlight|Removed|Removed Highlight|
@@ -1082,7 +1106,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I verify the OHC detail family enrollment details on Application Details
       | :Enrolled:Red      |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the ESI OHC details on Application Details
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|

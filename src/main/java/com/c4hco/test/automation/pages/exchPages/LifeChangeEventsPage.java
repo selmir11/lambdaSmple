@@ -30,7 +30,7 @@ public class LifeChangeEventsPage {
     @FindBy(id = "continueButton")
     List<WebElement> saveAndContinueButton;
 
-    @FindBy(css = "div.col-sm-6.text-right > input")
+    @FindBy(id = "continueButton")
     WebElement saveAndContinueOnlyButton;
 
     @FindBy(css = "h1.c4PageHeader")
@@ -129,12 +129,7 @@ public class LifeChangeEventsPage {
                 throw new IllegalArgumentException("Invalid option: " + lceOption);
             }
 
-        if (SharedData.getEnv().equals("qa")) {
             saveAndContinueButton.get(0).click();
-        } else {
-            basicActions.scrollToElement(saveAndContinueOnlyButton);
-            saveAndContinueOnlyButton.click();
-        }
     }
 
     public void clickContinueWithApplication(){

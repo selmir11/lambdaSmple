@@ -26,7 +26,7 @@ public class DbDataProvider_Exch {
     Ib999Handler ib999Handler = new Ib999Handler();
     Ob999Handler ob999Handler = new Ob999Handler();
     Ib834Handler ib834Handler = new Ib834Handler();
-    EsMemberOhiDbHandler esMemberOhiDbHandler = new EsMemberOhiDbHandler();
+    EsMemberOhcDbHandler esMemberOhcDbHandler = new EsMemberOhcDbHandler();
     BookOfBuisnessQDbHandler bookOfBuisnessQDbHandler = new BookOfBuisnessQDbHandler();
     EsManualVerifRequestDbHandler manualVerifRequestDbHandler = new EsManualVerifRequestDbHandler();
     PostgresHandler postgresHandler = new PostgresHandler();
@@ -278,16 +278,16 @@ public class DbDataProvider_Exch {
         SharedData.setDentalPlanDbDataNew(dentalPlanDetailsFromDb);
     }
 
-    public Boolean getDataFromOhiTables(String memberId){
-        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhiRecordsAll(memberId));
+    public Boolean getDataFromOhcTables(String memberId){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.getOhcRecordsAll(memberId));
     }
 
-    public EsMemberOhiEntity getOptionsFromOhiDbTables(String memberId) {
-        return esMemberOhiDbHandler.getOptionsFromOhiTables(exchDbQueries.getOhiRecordsAll(memberId));
+    public EsMemberOhcEntity getOptionsFromOhcDbTables(String memberId) {
+        return esMemberOhcDbHandler.getOptionsFromOhcTables(exchDbQueries.getOhcRecordsAll(memberId));
     }
 
     public EsMemberHraEntity getOptionsFromHraDbTables(){
-        return esMemberOhiDbHandler.getOptionsFromHraTables(exchDbQueries.getPrimaryHraRecords());
+        return esMemberOhcDbHandler.getOptionsFromHraTables(exchDbQueries.getPrimaryHraRecords());
     }
 
     public Map<String,String> getPolicyDqCheckAndPolicyAhId(){
@@ -403,7 +403,7 @@ public class DbDataProvider_Exch {
         return esHouseholdContactDbHandler.getEsHouseholdContactDetails(exchDbQueries.getEmailStored());
     }
     public EsMemberHraAhEntity getOptionsFromHraAhDbTables(){
-        return esMemberOhiDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
+        return esMemberOhcDbHandler.getOptionsFromHraAhTables(exchDbQueries.getPrimaryHraAhRecords());
 
     }
 
@@ -411,9 +411,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("plan_marketing_name", exchDbQueries.getDBMedicalPlanList() );
     }
 
-    public String[] getmemberNonAIAN(){
-        return postgresHandler.getResultForTwoColumnValues("reason_code", "eligibility_type", exchDbQueries.getMemberNonAIAn()) ;}
 
+    public String[] getmemberNonAIAN(String reasonCode) {
+        return postgresHandler.getResultForTwoColumnValues("reason_code", "eligibility_type", exchDbQueries.getMemberNonAIAn(reasonCode));
+    }
 
     public String[] getEsMemberRaceEthnicityDetails() {
         return postgresHandler.getResultForTwoColumnValues("race_ethnicity", "race_other_text", exchDbQueries.getRaceEthnicityStored());}
@@ -433,6 +434,10 @@ public class DbDataProvider_Exch {
 
     public String getReasonCode(String memberId, String expectedReasonCode) {
         return postgresHandler.getResultFor("reason_code", exchDbQueries.reasonCodeQuery(memberId, expectedReasonCode));
+    }
+
+    public String getCreatedBy(String memberId, String expectedReasonCode) {
+        return postgresHandler.getResultFor("created_by", exchDbQueries.createdByQuery(memberId, expectedReasonCode));
     }
 
     public String[] getDentalPolicyDate() {
@@ -555,7 +560,14 @@ public class DbDataProvider_Exch {
         String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
         return postgresHandler.getResultForDynamicColumns(exchDbQueries.getAddressDetails(memberId),"address_line1","address_line2","city","state","zip","county");
     }
-
+    public List<String> getMailingAddressInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getMailingAddressDetails(memberId),"address_line1","city","state","zip","county");
+    }
+    public String getStateInformation(String fName) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultFor("co_resident_ind", exchDbQueries.getStateDetails(memberId));
+    }
     public List<String> getInfoForTellAboutAdditionalInformation(String fName) {
         String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
         return postgresHandler.getResultForDynamicColumns(exchDbQueries.getTellAboutAdditionalInformation(memberId),"first_name","middle_name","last_name","gender","birth_date","applying_for_coverage_ind");

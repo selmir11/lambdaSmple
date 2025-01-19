@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI VA Healthcare Elmo Page
+Feature: Secondary User-OHC VA Healthcare Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -81,9 +81,9 @@ Feature: Secondary User-OHI VA Healthcare Elmo Page
     And I click save and continue on tax status page
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi VA Healthcare" page
+    And I validate I am on the "Elmo Ohc VA Healthcare" page
 
-  @SLER-624 @SecondaryUserOhiVAHealthcareElmo
+  @SLER-624 @SecondaryUserOhcVAHealthcareElmo
   Scenario: SLER-624 I can see VA Healthcare's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" VA Healthcare page data in "English"
     Then I click "Yes" for currently enrolled in VA Healthcare question
@@ -96,7 +96,7 @@ Feature: Secondary User-OHI VA Healthcare Elmo Page
 
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi VA Healthcare" page
+    And I validate I am on the "Elmo Ohc VA Healthcare" page
     And I verify the "First Section Secondary" VA Healthcare page data in "English"
     Then I click "Yes" for currently enrolled in VA Healthcare question
     And I verify the "Second Section Secondary" VA Healthcare page data in "English"
@@ -107,7 +107,7 @@ Feature: Secondary User-OHI VA Healthcare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-625 @SecondaryUserOhiVAHealthcareElmo @TAMSmoke
+  @SLER-625 @SecondaryUserOhcVAHealthcareElmo @TAMSmoke
   Scenario: SLER-625 I can see VA Healthcare's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -122,7 +122,7 @@ Feature: Secondary User-OHI VA Healthcare Elmo Page
 
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi VA Healthcare" page
+    And I validate I am on the "Elmo Ohc VA Healthcare" page
     And I verify the "First Section Secondary" VA Healthcare page data in "Spanish"
     Then I click "Yes" for currently enrolled in VA Healthcare question
     And I verify the "Second Section Secondary" VA Healthcare page data in "Spanish"

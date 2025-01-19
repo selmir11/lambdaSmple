@@ -39,7 +39,7 @@ public class AccountOverviewPage {
     @FindBy(css = "h4 .c4PageHeader")
     WebElement txtNextStep;
 
-    @FindBy(id = "submit-curr-yr-4")
+    @FindBy(xpath = "//*[id='submit-curr-yr-5' or @id='submit-curr-yr-6']")
     WebElement makeChangesButton;
 
     @FindBy(css = ".c4PageHeader-large")
@@ -142,7 +142,7 @@ public class AccountOverviewPage {
     }
 
     public void iClickOnMakeChanges(){
-        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(header, 30);
         WebElement makeChanges;
         if(SharedData.getIsOpenEnrollment().equals("yes")){
@@ -307,7 +307,8 @@ public class AccountOverviewPage {
 
     public void verifyMemberNames() {
         List<MemberDetails> allMemberList = basicActions.getAllMedicalEligibleMemInfo();
-        for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() + SharedData.getScenarioDetails().getTotalGroups(); i++) {
+        int totalDentalGroups = SharedData.getScenarioDetails().getTotalDentalGroups() != 0 ? SharedData.getScenarioDetails().getTotalDentalGroups():SharedData.getScenarioDetails().getTotalGroups();
+        for (int i = 1; i <= SharedData.getScenarioDetails().getTotalGroups() +totalDentalGroups; i++) {
 
             List<String> expectedMemberNames = new ArrayList<>();
             List<String> actualMemberNames = new ArrayList<>();
@@ -366,6 +367,5 @@ public class AccountOverviewPage {
         softAssert.assertEquals(txtHeaderVerifyYourInformation.getText(),"We need you to verify your information");
         softAssert.assertEquals(txtContentVerifyYourInformation.getText(),"We attempted to verify your application information but need you to confirm a few things. Don't worry, it will only take a minute or two!");
         softAssert.assertEquals(btnVerifyYourInformation.getText(),"Verify My Information");
-
     }
 }

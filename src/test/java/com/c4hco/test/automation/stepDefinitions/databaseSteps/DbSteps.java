@@ -16,14 +16,14 @@ public class DbSteps {
         dbValidations.validateMemberExistsInPolicyTable();
     }
 
-    @And("I verify the OHI info in the DB for {string}")
-    public void validateOhiInfo(String memPrefix) {
-        dbValidations.validateOhiDetails(memPrefix);
+    @And("I verify the OHC info in the DB for {string}")
+    public void validateOhcInfo(String memPrefix) {
+        dbValidations.validateOhcDetails(memPrefix);
     }
 
-    @And("I verify the OHI options selected in the DB for {string}")
-    public void iValidateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues) {
-        dbValidations.validateOhiOptions(memPrefix, expectedValues);
+    @And("I verify the OHC options selected in the DB for {string}")
+    public void iValidateOhcOptions(String memPrefix, List<Map<String, String>> expectedValues) {
+        dbValidations.validateOhcOptions(memPrefix, expectedValues);
     }
 
     @And("I verify the HRA options selected in the DB")
@@ -46,14 +46,19 @@ public class DbSteps {
         dbValidations.validateAccountHolderNameFromBOB();
     }
 
-    @And("I verify the Member will be CSR NON_AIAN")
-    public void iVerifyTheMemberCSRNonAIAN() {
-        dbValidations.validateMemberCSRNonAIANData();
+    @And("I verify the Member will be CSR {string}")
+    public void iVerifyTheMemberCSRNonAIAN(String reasonCode) {
+        dbValidations.validateMemberCSRNonAIANData(reasonCode);
     }
 
-    @And("I verify the application result details in DB as {string} for {string}")
+    @Then("I verify the application result details in DB as {string} for {string}")
     public void iVerifyApplicationResult(String eligibilityStatus, String memPrefix) {
         dbValidations.validateApplicationResult(eligibilityStatus, memPrefix);
+    }
+
+    @Then("I verify the created by value as {string} for {string} and determination as {string}")
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode) {
+        dbValidations.validateCreatedBy(createdBy, memPrefix, expectedReasonCode);
     }
 
 
@@ -264,19 +269,29 @@ public class DbSteps {
     public void iValidateEventCD(){
         dbValidations.validateEventCD();
     }
-    @Then("I validate event log in DB")
-    public void iValidateEventLog(){
-        dbValidations.validateEventLog();
+    @Then("I validate event_cd in easy enrollment event log in DB")
+    public void ivalidateEventCD(List<String> eventCD){
+        dbValidations.validateEventLog(eventCD);
     }
 
     @Then("I validate complete residential address details for {string} member in DB addressLine1 {string},addressLine2 {string},city {string},state {string},zipcode {string},county {string}")
     public void validateAddressInformation(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
         dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
     }
+    @Then("I validate mailing address details for {string} member in DB addressLine1 {string},city {string},state {string},zipcode {string},county {string}")
+    public void validateMailingAddressInformation(String FName,String address_line1, String city, String state, String zip, String county){
+        dbValidations.validateMailingAddressDetailsinDB(FName,address_line1,city,state,zip,county);
+    }
+    @Then("I validate state details for {string} member in DB {int}")
+    public void validateStateInformation(String FName, int state){
+        dbValidations.validateStateInformation(FName, state);
+    }
 
     @Then("I validate the details of the Tell us about additional members of your household page for the {string} in the database")
     public void validateTellUsAboutAdditionalInformation(String FName){
         dbValidations.validateTellAboutAdditionalInformationinDB(FName);
     }
+    @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
+    public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
 }
 

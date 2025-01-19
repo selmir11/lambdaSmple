@@ -36,10 +36,16 @@ public class ApplicationSummarySubmittedPageSteps {
     @And("I verify the OHC detail on Application Summary in {string}")
     public void iVerifyOhcDetails(String language, List<Map<String, String>> ohcData) {applicationSummaryCompletedPage.verifyOhcDetails(language, ohcData);}
 
+    @And("I verify the Medicare OHC detail on Application Summary in {string}")
+    public void iVerifyMedicareDetails(String language, List<Map<String, String>> ohcData) {applicationSummaryCompletedPage.verifyMedicareDetails(language, ohcData);}
+
     @Then("I validate PDF Family OHC on Application Summary in {string}")
     public void iVerifyOhcPdfFamilyText(String language, List<Map<String, String>> pdfData) throws IOException {applicationSummaryCompletedPage.verifyOhcFamilyPdfText(language, pdfData);}
 
     @Then("I validate PDF OHC data on Application Summary in {string}")
     public void iVerifyBasicOhcPdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationSummaryCompletedPage.verifyBasicOhcPdfText(language, pdfData);}
+
+    @Then("I validate PDF Medicare OHC data on Application Summary in {string}")
+    public void iVerifyMedicareOhcPdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationSummaryCompletedPage.verifyMedicareOhcPdfText(language, pdfData);}
 
 }
