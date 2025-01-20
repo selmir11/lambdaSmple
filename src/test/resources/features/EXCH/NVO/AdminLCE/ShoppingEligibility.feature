@@ -204,7 +204,7 @@ Feature: Tests to determine the eligibility to shop
     And I search for user and click email from search results
     And I click "Admin LCE" from application links dropdown
     And I look up with account id on admin tool page
-    Then I change effective date to current date of "current year" from admin portal
+    Then I change effective date to current date from admin portal
     Then logout from Admin Portal
 
     Given I open the login page on the "login" portal
@@ -216,7 +216,7 @@ Feature: Tests to determine the eligibility to shop
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     And I click on Sign Out in the Header for "NonElmo"
-    And I Validate enrollment period end date is set to 7 days from current QLCE days
+    And I Validate enrollment period end date is set to 7 days from current date of the admin LCE being processed
 
 
 

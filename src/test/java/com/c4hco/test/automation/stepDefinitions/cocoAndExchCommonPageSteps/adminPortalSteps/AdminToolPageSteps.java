@@ -105,4 +105,9 @@ public class AdminToolPageSteps {
     public void iClickOnRecreateApplicationLinkNumberForPlanYearOnTheAdminLCEPage(int planYear,int linkIndex) {
         adminLceToolPage.clickRecreateApplicationLink(linkIndex,planYear);
     }
+
+    @And("I change effective date to current date from admin portal")
+    public void changeEffDate(){
+        adminLceToolPage.currentDateAsLCEDate();
+    }
 }
