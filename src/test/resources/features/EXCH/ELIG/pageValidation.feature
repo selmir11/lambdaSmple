@@ -2985,5 +2985,5 @@ Feature: Page validations on ELIG pages
     And I select "Yes" option on the Let us guide you page
     And I click on save and continue button
     Then I enter valid "1BEQ5Q3","81657","Jones" details in enterCaseID page
-    And I click on Sign Out link in header
+    And  I click on Sign Out in the Header for "CaseId Page"
     Then I validate I am on the "Login" page

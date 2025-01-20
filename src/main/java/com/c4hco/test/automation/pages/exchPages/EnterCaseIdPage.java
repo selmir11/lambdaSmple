@@ -32,10 +32,8 @@ public class EnterCaseIdPage {
     WebElement lastNamePlaceHolderText;
 
     @FindBy(xpath = "//*[@value='< Back']")
-    WebElement backbutton;
+    WebElement backButton;
 
-    @FindBy(linkText = "Sign Out")
-    WebElement signout;
 
 
     public void validateTheVerbiageOnEnterCaseIdPage(String language){
@@ -82,13 +80,8 @@ public class EnterCaseIdPage {
         lastNamePlaceHolderText.sendKeys(Lastname);
 
     }
-
-    public void signout() {
-        basicActions.wait(2000);
-        signout.click();
-    }
     public void goBackonLoad1Bresult() {
         basicActions.wait(2000);
-        backbutton.click();
+        backButton.click();
     }
 }
