@@ -44,8 +44,8 @@ public class Ob834FileValidations_Grps {
         validateSegCount();
     }
 
-    public void validateOb834DenFile() {
-        getOb834DenEntityForSubscriber();
+    public void validateOb834DenFile(String denFileName) {
+        getOb834DenEntityForSubscriber(denFileName);
         List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
         getDataByEmailAndAccNum();
         segCount = 0;

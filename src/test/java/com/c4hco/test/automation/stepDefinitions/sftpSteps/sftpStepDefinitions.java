@@ -72,7 +72,7 @@ public class sftpStepDefinitions {
                 for(String denFileName: denFileNames){
                     System.out.println("***********Validating Dental EDI File::"+denFileName+"***********");
                     sftpUtil.readEdiFile(denFileName);
-                    ob834FileValidations_Grps.validateOb834DenFile();
+                    ob834FileValidations_Grps.validateOb834DenFile(denFileName);
                 }
                 break;
             default:
