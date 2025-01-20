@@ -985,9 +985,11 @@ Feature: Verify COCO Medical Plan results
     And I select "Anthem" to filter for desired COCO plan provider
     And I select initial plan for Comparison
     And I select "Anthem" to filter for desired COCO plan provider
+
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
     And I select initial plan for Comparison
     And I select "Cigna Healthcare" to filter for desired COCO plan provider
+
     And I select "Kaiser Permanente" to filter for desired COCO plan provider
     And I select initial plan for Comparison
     And I click the Compare button

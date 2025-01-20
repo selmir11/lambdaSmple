@@ -1,6 +1,9 @@
 Feature: Seed08 - Exchange
 
-  Background: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
+  Scenario: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
+    Given I set the test scenario details
+      | totalGroups | totalDentalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 2           | 2                 | 4            | 1                 | 1                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -231,7 +234,6 @@ Feature: Seed08 - Exchange
     And I select or skip the medical plans for groups
       | Group 1:KP Select CO Bronze 8500/50 |
       | Group 2:KP Select CO Bronze 8500/50 |
-    Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
     Then I validate I am on the "Edit Grouping Members Dental" page
