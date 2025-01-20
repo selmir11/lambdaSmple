@@ -21,6 +21,11 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.clickContinueWithApplication();
     }
 
+    @Then("I click back button on Report a Life Change Page")
+    public void iClickOnBackButton(){
+        lifeChangeEventsPage.clickBackButton();
+    }
+
     @And("I validate the verbiage on the Report a life change page in {string}")
     public void iValidateTheVerbiageOnTheReportALifeChangePageIn(String language) {
         lifeChangeEventsPage.validateTheVerbiageOnReportALifeChangePage(language);
