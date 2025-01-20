@@ -31,6 +31,10 @@ public class CompletedPeakApplicationPage {
     @FindBy(css = ".c4BodyText1")
     List<WebElement> bodyText;
 
+    @FindBy(xpath = "//input[@name='back']")
+    WebElement backButton;
+
+
     public void setYesImNew(){
         yesImNew.click();
     }
@@ -41,6 +45,10 @@ public class CompletedPeakApplicationPage {
 
     public void clickSaveAndContinueButton(){
         saveAndContinueButton.click();
+    }
+//WIP
+    public  void backButton(){
+       backButton.click();
     }
 
     public void validateTheVerbiageOnLetUsGuideYouPage(String language){

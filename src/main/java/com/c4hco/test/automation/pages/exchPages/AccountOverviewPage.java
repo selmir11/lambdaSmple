@@ -133,7 +133,7 @@ public class AccountOverviewPage {
             case "My Documents":
                 clickHereLinks.get(2).click();
                 break;
-            case "My Plans":
+            case "'[My Plans]'":
                 clickHereLinks.get(3).click();
                 break;
             default: throw new IllegalArgumentException("Entered Invalid option for clickHere link: " + clickHereOption);
