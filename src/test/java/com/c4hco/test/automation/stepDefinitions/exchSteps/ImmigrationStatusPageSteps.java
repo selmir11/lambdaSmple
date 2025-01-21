@@ -44,4 +44,10 @@ public class ImmigrationStatusPageSteps {
         ImmigrationStatusPage.VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(language);
 
     }
+
+    @And("I select {string} icon on the Five-Year Bar Immigration Status page")
+    public void iSelectHelpIcon(String labelIcon){ImmigrationStatusPage.clickHelpIcon(labelIcon);}
+
+    @Then("I validate Lawful Presence help drawer Five-Year Bar page {string} verbiage in {string}")
+    public void iValidateHelp(String helpText, String language){ImmigrationStatusPage.validateHelpVerbiage(helpText, language);}
 }
