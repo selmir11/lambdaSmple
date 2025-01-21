@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,11 @@ public class EnterCaseIdPage {
 
     @FindBy(id = "lastName")
     WebElement lastNamePlaceHolderText;
+
+    @FindBy(xpath = "//*[@value='< Back']")
+    WebElement backButton;
+
+
 
     public void validateTheVerbiageOnEnterCaseIdPage(String language){
         switch (language){
@@ -66,5 +72,16 @@ public class EnterCaseIdPage {
         softAssert.assertEquals(lastNamePlaceHolderText.getAttribute("placeholder"), "", "Last Name placeholder text mismatch");
         softAssert.assertAll();
     }
+    public void enterCaseIDdetails(String CaseID, String Zipcode, String Lastname) {
+        basicActions.waitForElementToBePresent(bodyText.get(0), 30);
+        basicActions.wait(2000);
+        caseIDPlaceHolderText.sendKeys(CaseID);
+        zipCodePlaceHolderText.sendKeys(Zipcode);
+        lastNamePlaceHolderText.sendKeys(Lastname);
 
+    }
+    public void goBackonLoad1Bresult() {
+        basicActions.wait(2000);
+        backButton.click();
+    }
 }

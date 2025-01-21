@@ -101,6 +101,9 @@ public class AdminLceToolPage {
     @FindBy(id = "modal-content")
     List<WebElement> modals;
 
+    @FindBy(id = "planYear")
+    WebElement planYearrDrpdwnOptions;
+
 
     public void lookUpAccId() {
         tabs = new ArrayList<>(basicActions.getDriver().getWindowHandles());
@@ -297,6 +300,17 @@ public class AdminLceToolPage {
         softAssert.assertAll();
     }
 
+    public void currentDateAsLCEDate(){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        planYearrDrpdwnOptions.click();
+        Select select = new Select(planYearrDrpdwnOptions);
+        select.selectByVisibleText(SharedData.getPlanYear());
+        changeEffectiveDt.sendKeys(basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MM/dd"));
+        submitBtn.click();
+        basicActions.waitForElementToDisappear(lookUpSearchResults, 10);
+        SharedData.setPrimaryMember(subscriber);
+        closeTabAndSwitchToCurrentWindow();
+    }
 }
 
 
