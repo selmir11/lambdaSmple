@@ -293,5 +293,10 @@ public class DbSteps {
     }
     @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
     public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
+
+    @Then("^I validate the FPL percent")
+    public void iValidateTheFplPercent() {dbValidations.validateFplPercent();    }
+
 }
+
 
