@@ -7,6 +7,7 @@ import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class sftpStepDefinitions {
@@ -22,8 +23,9 @@ public class sftpStepDefinitions {
         try{
             String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
             SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
-            List<String> allFiles = SharedData.getMedicalFileName_grp();
-          //  allFiles.addAll(SharedData.getDentalFileName_grp());
+            List<String> allFiles = new ArrayList<>();
+            allFiles.addAll(SharedData.getMedicalFileName_grp());
+            allFiles.addAll(SharedData.getDentalFileName_grp());
             for(String fileName: allFiles){
                 sftpUtil.downloadFileWithSftp(remoteLocation, fileName);
             }

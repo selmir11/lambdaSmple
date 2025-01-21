@@ -444,7 +444,7 @@ public class Ob834PreEdiDbValidations_grp {
 
         Set<String> set = new LinkedHashSet<>(denFileNames);
         denFileNames = new ArrayList<>(set);
-        SharedData.setMedicalFileName_grp(denFileNames);
+        SharedData.setDentalFileName_grp(denFileNames);
     }
 
     private void subscriberOnlyDenValidations(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
