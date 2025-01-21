@@ -50,9 +50,9 @@ public class AdminPortalManagePlansPage {
     WebElement chkMedical;
     @FindBy(xpath = "//label[.='Dental']")
     WebElement chkDental;
-    @FindBy(css = "div.select-plan-type-input > div:nth-child(1)")
+    @FindBy(xpath = "//*[@id='enrollments-container']/div[1]/div[3]/div[2]/div[1]/label")
     WebElement btnMedicalChecked;
-    @FindBy(css = "div.select-plan-type-input > div:nth-child(2)")
+    @FindBy(xpath = "//*[@id='enrollments-container']/div[1]/div[3]/div[2]/div[2]/label")
     WebElement btnDentalChecked;
     @FindBy(css = ".tollbar-app-links")
     WebElement appLinks;
@@ -62,9 +62,9 @@ public class AdminPortalManagePlansPage {
     WebElement btnMedReset;
     @FindBy(id = "Manage Plans-Reset Changes Dental")
     WebElement btnDentalReset;
-    @FindBy(css = "button[id='Manage Plans-Make Changes Medical']")
+    @FindBy(xpath = "//button[@id='Manage Plans-Make Changes Medical']")
     WebElement btnMakeChangeMed;
-    @FindBy(id = "Manage Plans-Make Change Dental")
+    @FindBy(xpath = "//button[@id='Manage Plans-Make Change Dental']")
     WebElement btnMakeChangeDental;
     @FindBy(id = "Manage Plans-Save Button Medical")
     WebElement btnMedSave;
@@ -392,8 +392,10 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[@class='financial-details-grid']//div[14]")
     WebElement premiumRowTwo;
-    @FindBy(xpath = "//div[@class='financial-details-grid']//div[15]")
+    @FindBy(xpath = "//div/app-plan-container/div[3]/button")
     WebElement aptcRowTwo;
+    @FindBy(css = "button[type='button']")
+    WebElement btnGoBack;
 
 
     public void validateBluBar() {
@@ -431,7 +433,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void resetMakeChangeButtonsDisplayed() {
-        basicActions.waitForElementToBePresentWithRetries(btnMedReset, 60);
+        basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
         softAssert.assertAll();
@@ -472,12 +474,6 @@ public class AdminPortalManagePlansPage {
         btnDentalReset.click();
     }
 
-    public void clickManagePlans() {
-        basicActions.waitForElementToBePresent(btnManagePlans, 10);
-        btnManagePlans.click();
-        basicActions.switchtoactiveTab();
-    }
-  
     public void validateChangeButtonsNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMedSave, 3));
@@ -677,17 +673,20 @@ public class AdminPortalManagePlansPage {
             financialEndDateMem.sendKeys(financialStartDateValue);
         }
     }
+public void selectThePlanYearOnManagePlan(String planYear) {
+    basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
+    dpdCurrentYearMP.click();
 
-    public void selectThePlanYearOnManagePlan(String planYear) {
-        basicActions.waitForElementListToBePresent(planYearList, 50);
-        dpdCurrentYearMP.click();
-        for (WebElement each : planYearList) {
-            if (each.getText().equals(planYear)) {
-                each.click();
-            }
+        if (planYear.equals("Current Year")){
+            planYear = basicActions.getCurrYear();
         }
-    }
-    MemberDetails memberDetails = new MemberDetails();
+    String xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'"+planYear+"')]");
+    WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
+    planYearBtn.click();
+    basicActions.switchtoactiveTab();
+}
+
+   // MemberDetails memberDetails = new MemberDetails();
 
     public void UpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
         String primaryMemberId;
@@ -699,8 +698,8 @@ public class AdminPortalManagePlansPage {
         BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
         basicActions.waitForElementToBePresentWithRetries(currentDentalPlanName,20);
 
-        memberDetails.setAccount_id(bigDecimal);
-        SharedData.setPrimaryMember(memberDetails);
+      //  memberDetails.setAccount_id(bigDecimal);
+       // SharedData.setPrimaryMember(memberDetails);
         String currentDentalPlan = currentDentalPlanName.getText();
         managePlanDentalMedicalPlan.setPlanMarketingName(currentDentalPlan);
 
@@ -1303,6 +1302,17 @@ public class AdminPortalManagePlansPage {
             softAssert.assertEquals(aptcRowTwo.getText(), APTCRowTwoQA);
         }
         softAssert.assertAll();
+    }
+    public void inspectAndClickGoBackButton() {
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(btnGoBack, 30);
+        basicActions.scrollToElement(btnGoBack);
+        softAssert.assertEquals(btnGoBack.getText(), "Go Back");
+        softAssert.assertTrue(btnGoBack.isDisplayed());
+        softAssert.assertAll();
+        basicActions.click(btnGoBack);
+        basicActions.closeBrowserTab();
+        basicActions.switchToParentPage("C4HCO Admin Portal");
     }
 }
 
