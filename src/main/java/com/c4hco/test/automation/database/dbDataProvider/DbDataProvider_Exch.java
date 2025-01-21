@@ -424,6 +424,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("plan_marketing_name",exchDbQueries.getPlan_marketing_name(year));
     }
 
+    public String getFplPercentDetails() {
+        return postgresHandler.getResultFor("fpl_percent",exchDbQueries.fplPercentDetails());
+    }
+
+
     public String getHouseholdID() {
         return postgresHandler.getResultFor("household_id",exchDbQueries.householdIdQuery());
     }
