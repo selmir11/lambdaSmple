@@ -120,6 +120,7 @@ Feature: Seed04exception - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups
@@ -155,7 +156,7 @@ Feature: Seed04exception - Exchange
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from "dental" plan card
     And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
@@ -211,5 +212,30 @@ Feature: Seed04exception - Exchange
     Then I validate I am on the "Family Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-1994-WIP
+  Scenario: RT-2329 - ENR-EXCH: EDIT POLICY - RE-INSTATE MEMBER FROM A CANCEL (MEDICAL)
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    Then I click Make Changes Medical button
+    Then I update the coverage end date
+      | 2:Cancel |
+    And I update the financial end date
+      | 2:Cancel |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I click Make Changes Medical button
+    Then I update the coverage end date
+      | 2:12312025 |
+    And I update the financial end date
+      | 2:12312025 |
+    Then I update the APTC value for
+      | 2:0.00 |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then logout from Admin Portal
 
 
