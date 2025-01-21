@@ -50,6 +50,12 @@ public class MyProfileExchPage {
     WebElement FullNameProfile;
 
 
+    @FindBy(id = "myProfile_mobilePhone")
+    WebElement MobilephonePrimaryChange;
+
+    @FindBy(id = "myProfile_homePhone")
+    WebElement HomephonePrimaryChange;
+
     @FindBy(id = "mobilePhone")
     WebElement Mobilephone;
 
@@ -745,7 +751,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1026@test.com";
+        String newEmail = "updated.automation1027@test.com";
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(newEmail);
         MyProfileButtonExch.get(1).click();
