@@ -67,8 +67,7 @@ public String policyTablesCombinedQuery(String coverageType){
             "AND pf.mySeq = 1\n" +
             "where eph.account_id = '"+acctId+"' \n" +
             "AND eph.current_ind = '1' \n" +
-            "AND eph.coverage_type = '"+coverageType+"'" +
-            "and eph.policy_status != 'CANCELLED'";
+            "AND eph.coverage_type = '"+coverageType+"'";
     return query;
 }
 
