@@ -194,7 +194,7 @@ public class PolicyTableDbValidations_Grps {
         private void medValidationsCommonForAllMembers(String name, PolicyTablesEntity policyTablesEntity) {
             getMedicalPlanDbDataMap(name);
             getDbDataMap(name);
-            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + dbDataMap.get(name).getCsrLevel(), "Hios id does not match");
+            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + dbDataMap.get(name).getCsrLevel(), "Medical Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
 
@@ -209,7 +209,7 @@ public class PolicyTableDbValidations_Grps {
         private void denValidationsCommonForAllMembers(String name, PolicyTablesEntity policyTablesEntity) {
             getDentalPlanDbDataMap(name);
             getDbDataMap(name);
-            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId() + "-" + dbDataMap.get(name).getCsrLevel(), "Hios id does not match");
+            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId() + "-" + dbDataMap.get(name).getCsrLevel(), "Dental Hios id does not match for "+name);
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
 

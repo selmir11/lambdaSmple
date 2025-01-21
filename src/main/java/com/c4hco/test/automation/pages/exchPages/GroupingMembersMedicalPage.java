@@ -84,8 +84,8 @@ public class GroupingMembersMedicalPage {
 
     public void clickOnEditMedicalGroupinglink() {
         basicActions.waitForElementToDisappear( spinner,20 );
-        basicActions.waitForElementToBePresentWithRetries(editMyEnrollmentGroupsButton, 10);
-        editMyEnrollmentGroupsButton.click();
+        basicActions.waitForElementToBePresent(editMyEnrollmentGroupsButton, 10);
+        basicActions.clickElementWithRetries(editMyEnrollmentGroupsButton, 10);
     }
 
     public void noOfMedicalGroups(int totalGroups) {

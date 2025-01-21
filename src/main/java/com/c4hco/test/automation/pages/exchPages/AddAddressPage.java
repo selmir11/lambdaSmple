@@ -168,7 +168,7 @@ public class AddAddressPage {
 
     public void Addtribedetails(String tState, String tName){
         basicActions.waitForElementToBePresent(tribestate,20);
-        basicActions.waitForElementToBePresent(tribeName, 20);
+        basicActions.waitForElementToBePresentWithRetries(tribeName, 20);
         tribestate.sendKeys(tState);
         tribeName.sendKeys(tName);
 
