@@ -464,11 +464,10 @@ public class DbValidations {
         String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
         LocalDate parsedEndDate = LocalDate.parse(enrolmentEndDate);
         String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
-
+        LocalDate qlceDate = LocalDate.now();
         String openEnrolment = SharedData.getIsOpenEnrollment();
         if (openEnrolment.equals("yes")) {
             LocalDate openEnrollmentEndDate = LocalDate.of(parsedEndDate.getYear(), 1, 15);
-            LocalDate qlceDate = LocalDate.now();
             LocalDate calculatedEndDate = qlceDate.plusDays(60);
 
             if (calculatedEndDate.isAfter(openEnrollmentEndDate)) {
@@ -479,7 +478,6 @@ public class DbValidations {
                 softAssert.assertEquals(formattedDateEnd, formattedOpenEnrollmentEndDate);
             }
         } else {
-            LocalDate qlceDate = LocalDate.now();
             LocalDate calculatedEndDate = qlceDate.plusDays(60);
             String formattedCalculatedEndDate = basicActions.changeDateFormat(calculatedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
             softAssert.assertEquals(formattedDateEnd, formattedCalculatedEndDate);
