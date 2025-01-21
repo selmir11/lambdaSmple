@@ -960,6 +960,28 @@ public class BasicActions {
         return allEligibleMembers;
     }
 
+    public String getTotalMemInMedGrp(String grpInd){
+        List<MemberDetails> allMedicalEligMem = getAllMedicalEligibleMemInfo();
+        int totalMemInGrp = 0;
+        for(MemberDetails member: allMedicalEligMem){
+            if(member.getMedGroupInd().equals(grpInd)){
+                totalMemInGrp++;
+            }
+        }
+        return String.valueOf(totalMemInGrp);
+    }
+
+    public String getTotalMemInDenGrp(String grpInd){
+        List<MemberDetails> allDentalEligMem = getAllDentalEligibleMemInfo();
+        int totalMemInGrp = 0;
+        for(MemberDetails member: allDentalEligMem){
+            if(member.getDenGroupInd().equals(grpInd)){
+                totalMemInGrp++;
+            }
+        }
+        return String.valueOf(totalMemInGrp);
+    }
+
     public List<MemberDetails> getAllDentalEligibleMemInfo(){
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allEligibleMembers = new ArrayList<>();

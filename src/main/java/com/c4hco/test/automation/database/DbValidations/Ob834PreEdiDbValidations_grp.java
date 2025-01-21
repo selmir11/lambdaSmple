@@ -336,20 +336,78 @@ public class Ob834PreEdiDbValidations_grp {
         validateBrokerDetails(ob834Entity);
         validateResponsiblePersonDetails(ob834Entity);
         getDbDataMap(name);
-        int dependents = getTotalDependentsForGrp(ob834Entity);
-        int enrollees = getTotalEnrolleesForGrp(ob834Entity);
+       // int dependents = getTotalDependentsForGrp(ob834Entity);
+       // int enrollees = getTotalEnrolleesForGrp(ob834Entity);
+        String enrollees = getTotalEnrollees(ob834Entity);
         softAssert.assertEquals(primaryMember.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
         softAssert.assertEquals(primaryMember.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(primaryMember.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(primaryMember.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(), "Plan Year is not correct");
-        softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ob834Entity.getTotal_subscribers(), "total subscribers did not match");
-        softAssert.assertEquals(enrollees, Integer.parseInt(ob834Entity.getTotal_enrollees().trim()), "Total enrollees does not match");
-       // softAssert.assertEquals(dependents, ob834Entity.getTotal_dependents().toString().trim(), "total dependents did not match");
+        softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "total subscribers did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertTrue(dbDataMap.get(name).getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(ob834Entity.getCsr_level(), dbDataMap.get(name).getCsrLevel(), "CSR level does not match");
-       // softAssert.assertEquals(String.valueOf(SharedData.getScenarioDetails().getTotalGroups()), ob834Entity.getMember_group(), "member group did not match");
+
+        softAssert.assertEquals(enrollees, ob834Entity.getTotal_enrollees().trim(), "Total enrollees does not match");
+        softAssert.assertEquals(String.valueOf(Integer.parseInt(enrollees)-1), ob834Entity.getTotal_dependents().toString().trim(), "total dependents did not match");
+        softAssert.assertEquals(getGrpNum(ob834Entity), ob834Entity.getMember_group(), "member group did not match");
+   }
+
+   private String getGrpNum(Ob834DetailsEntity ob834DetailsEntity){
+     return ob834DetailsEntity.getInsurance_line_code().equals("HLT")? getMemberMedGrp(ob834DetailsEntity.getMember_first_name()): getMemberDenGrp(ob834DetailsEntity.getMember_first_name());
+   }
+
+   private String getMemberMedGrp(String firstName){
+     List<MemberDetails> allMedEligMem =  basicActions.getAllMedicalEligibleMemInfo();
+     String medGrpInd = "";
+     for(MemberDetails member:allMedEligMem){
+        if(member.getFirstName().equals(firstName)){
+           medGrpInd = member.getMedGroupInd();
+            break;
+        }
+     }
+     return medGrpInd;
+   }
+
+    private String getMemberDenGrp(String firstName){
+        List<MemberDetails> allMedEligMem =  basicActions.getAllDentalEligibleMemInfo();
+        String denGrpInd = "";
+        for(MemberDetails member:allMedEligMem){
+            if(member.getFirstName().equals(firstName)){
+                denGrpInd = member.getDenGroupInd();
+                break;
+            }
+        }
+        return denGrpInd;
+    }
+
+    private String getTotalEnrollees(Ob834DetailsEntity ob834DetailsEntity){
+      return ob834DetailsEntity.getInsurance_line_code().equals("HLT")? getTotalMedEnrollees(ob834DetailsEntity.getMember_first_name()) : getTotalDentalEnrollees(ob834DetailsEntity.getMember_first_name());
+   }
+
+    private String getTotalMedEnrollees(String firstName){
+      List<MemberDetails> allMembers = basicActions.getAllMedicalEligibleMemInfo();
+      String totalMemInGrp = "";
+      for(MemberDetails member: allMembers){
+          if(member.getFirstName().equals(firstName)){
+            totalMemInGrp = basicActions.getTotalMemInMedGrp(member.getMedGroupInd());
+             break;
+          }
+      }
+      return totalMemInGrp;
+    }
+
+    private String getTotalDentalEnrollees(String firstName){
+        List<MemberDetails> allMembers = basicActions.getAllDentalEligibleMemInfo();
+        String totalMemInGrp = "";
+        for(MemberDetails member: allMembers){
+            if(member.getFirstName().equals(firstName)){
+                totalMemInGrp = basicActions.getTotalMemInDenGrp(member.getDenGroupInd());
+                break;
+            }
+        }
+        return totalMemInGrp;
     }
 
     private void subscriberOnlyMedValidations(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
@@ -496,7 +554,7 @@ public class Ob834PreEdiDbValidations_grp {
     }
 
     private int getTotalEnrolleesForGrp(Ob834DetailsEntity ob834Entity){
-        List<MemberDetails> allMemList = basicActions.getAllMem();
+        List<MemberDetails> allMemList = basicActions.getAllMedicalEligibleMemInfo();
         List<MemberDetails> enrollees = allMemList.stream().filter(mem ->
                 ob834Entity.getInsurance_line_code().equals("HLT")? mem.getMedGroupInd().equals(ob834Entity.getMember_group()) :
                         mem.getDenGroupInd().equals(ob834Entity.getMember_group())).collect(Collectors.toList());
