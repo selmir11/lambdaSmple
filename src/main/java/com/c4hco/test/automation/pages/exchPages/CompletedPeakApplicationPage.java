@@ -28,6 +28,9 @@ public class CompletedPeakApplicationPage {
     @FindBy(css = "h1")
     WebElement pageHeaderLetUsGuideYou;
 
+    @FindBy(xpath = "//*[@name='back']")
+    WebElement backBtnLetUsGuideYou;
+
     @FindBy(css = ".c4BodyText1")
     List<WebElement> bodyText;
 
@@ -42,6 +45,8 @@ public class CompletedPeakApplicationPage {
     public void clickSaveAndContinueButton(){
         saveAndContinueButton.click();
     }
+
+    public void clickOnBackBtn(){backBtnLetUsGuideYou.click();}
 
     public void validateTheVerbiageOnLetUsGuideYouPage(String language){
         switch (language){
