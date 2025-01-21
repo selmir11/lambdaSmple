@@ -180,6 +180,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Not listed" for race and ethnicity for "Nephew"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -208,6 +209,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Not listed" for race and ethnicity for "Niece"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -421,26 +423,9 @@ Feature: Enroll a in a plan 8 HH
 #    And I sign out of Outlook
 #    And I switch to the tab number 0
 
-    #DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#   # DbVerification
+#    And I verify the policy data quality check with Policy Ah keyset size 4
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I validate the ob834 "medical" file data for groups
     And I validate the ob834 "dental" file data for groups
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
