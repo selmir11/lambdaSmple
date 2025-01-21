@@ -742,11 +742,12 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateFplPercent() {
+    public void validateFplPercent(String expectedFplPercent) {
         String fplValue = exchDbDataProvider.getFplPercentDetails();
-        softAssert.assertEquals(fplValue.trim(), "100", "FPL Percent mismatch: Expected 100.");
+        softAssert.assertEquals(fplValue.trim(), expectedFplPercent, "FPL Percent mismatch: Expected " + expectedFplPercent + ".");
         softAssert.assertAll();
     }
+
 
 
 }

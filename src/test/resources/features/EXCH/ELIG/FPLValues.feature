@@ -66,5 +66,5 @@ And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page
     #DB step
-    Then  I validate the FPL percent
+    Then  I validate the FPL percent 100
 
