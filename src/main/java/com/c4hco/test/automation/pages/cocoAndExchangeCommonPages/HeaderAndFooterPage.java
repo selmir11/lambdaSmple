@@ -116,6 +116,9 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//a[.='Sign Out']")
     WebElement signOutOverview;
 
+    @FindBy(linkText = "Sign Out")
+    WebElement signOutinCaseIdPage;
+
     @FindBy(css = ".logged-in li:nth-child(3) a")
     WebElement signOutLinkNonElmo;
 
@@ -510,6 +513,11 @@ public class HeaderAndFooterPage {
             case "Account Overview":
                 basicActions.waitForElementToBeClickable(signOutOverview,10);
                 basicActions.click(signOutOverview);
+                break;
+            case "CaseId Page":
+                basicActions.wait(2000);
+                basicActions.waitForElementToBeClickable(signOutinCaseIdPage,10);
+                basicActions.click(signOutinCaseIdPage);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
