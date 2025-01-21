@@ -222,7 +222,7 @@ public class BasicActions {
                 new WebDriverWait(driver,
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 return true;
-            } catch (StaleElementReferenceException | NoSuchElementException | IndexOutOfBoundsException e) {
+            } catch (StaleElementReferenceException | NoSuchElementException | IndexOutOfBoundsException | ElementNotInteractableException e) {
                 retries--;
                 Log.info("StaleElementReferenceException or NoSuchElementException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
