@@ -307,6 +307,93 @@ public class AdminPortalManagePlansPage {
     WebElement dencurrentMedicalPlanName;
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[contains(text(), 'Policy Coverage:')]")
     WebElement pnlDenPolicyCoverage;
+    WebElement goBack;
+    @FindBy(xpath = "//p[normalize-space()='Dental Plan:']")
+    WebElement simplifyDental;
+    @FindBy(xpath = "//p[normalize-space()='Medical Plan:']")
+    WebElement simplifyMedical;
+    @FindBy(xpath = "//div[@class='two-column-twentyfive-row-container header-3']")
+    WebElement medicalPlanName;
+    @FindBy(xpath = "//div[normalize-space()='Latest Application Date:']")                 //*[@id="enrollment-info"]/div/div[3]")
+    WebElement medLatestApplicationUI;
+    @FindBy(xpath = "//div[normalize-space()='CSR Amount:']")
+    WebElement medCsrAmountUI;
+    @FindBy(xpath = "//div[normalize-space()='EHB Premium:']")
+    WebElement medEhbPremiumUI;
+    @FindBy(xpath = "//div[normalize-space()='Latest LCE and Date:']")
+    WebElement medLatestLCEtUI;
+    @FindBy(xpath = "//div[normalize-space()='Rating Area:']")
+    WebElement medRateAreaUI;
+    @FindBy(xpath = "//div[normalize-space()='Service Area:']")
+    WebElement medServiceAreaUI;
+    @FindBy(xpath = "//div[@class='label-container-copy-icon body-text-2']")
+    WebElement medPolicyIdUI;
+    @FindBy(xpath = "//div[normalize-space()='Financial Start Date:']")
+    WebElement medFinancialStartDateUI;
+    @FindBy(xpath = "//div[normalize-space()='Financial End Date:']")
+    WebElement medFinancialEndDateUI;
+    @FindBy(xpath = "//div[normalize-space()='Plan Premium:']")
+    WebElement medPlanPremiumUI;
+    @FindBy(xpath = "//div[@id='aptcLabel']")
+    WebElement medPlanAPTCUI;
+    @FindBy(xpath = "//div[normalize-space()='Premium after Subsidy:']")
+    WebElement medPremiumAfterSubsidyUI;
+    @FindBy(xpath = "//div[normalize-space()='Plan AV:']")
+    WebElement medPlanAVUI;
+    @FindBy(xpath = "//div[normalize-space()='HIOS ID:']")
+    WebElement medHiosIdUI;
+    @FindBy(xpath = "//div[@class='two-column-twentyfive-row-container header-3']")
+    WebElement medPlanNameData;
+    @FindBy(xpath = "//div[@class='two-column-twentyfive-row-container body-text-2']")
+    WebElement medCoverageData;
+    @FindBy(xpath = "//div[@class='plan-summary']//div[4]")
+    WebElement medLatestApplicationDateData;
+    @FindBy(xpath = "//*[@id='no_1']")
+    WebElement rowNumberData;
+    @FindBy(xpath = "//*[@id='referenceId_1']")
+    WebElement personIdData;
+    @FindBy(xpath = "//*[@id='firstName_1']")
+    WebElement nameData;
+    @FindBy(xpath = "//*[@id='dateOfBirth_1']")
+    WebElement dOfBData;
+    @FindBy(xpath = "//*[@id='relationshipToSubscriber_1']")
+    WebElement relationData;
+    @FindBy(xpath = "//*[@id='tobacco_1']")
+    WebElement tobaccoData;
+    @FindBy(xpath = "//*[@id='no_2']")
+    WebElement rowNumberDataTwo;
+    @FindBy(xpath = "//*[@id='referenceId_2']")
+    WebElement personIdDataTwo;
+    @FindBy(xpath = "//*[@id='firstName_2']")
+    WebElement nameDataTwo;
+    @FindBy(xpath = "//*[@id='dateOfBirth_2']")
+    WebElement dOfBDataTwo;
+    @FindBy(xpath = "//*[@id='relationshipToSubscriber_2']")
+    WebElement relationDataTwo;
+    @FindBy(xpath = "//*[@id='tobacco_2']")
+    WebElement tobaccoDataTwo;
+    @FindBy(xpath = "//*[@id='no_2']")
+    WebElement rowTwoData;
+    @FindBy(xpath = "//*[@id='no_1']")
+    WebElement coverageStartRowTwo;
+    @FindBy(xpath = "//*[@id='no_1']")
+    WebElement coverageEndRowTwo;
+    @FindBy(xpath = "//*[@id='no_1']")
+    WebElement statusRowTwo;
+    @FindBy(xpath = "//*[@id='no_1']")
+    WebElement effectuatedRowTwo;
+    @FindBy(xpath = "//*[@id='no_1']")
+    WebElement reasonRowTwo;
+    @FindBy(xpath = "//div[@class='financial-details-grid']//div[12]")
+    WebElement financialStartDateRowTwo;
+
+    @FindBy(xpath = "//div[@class='financial-details-grid']//div[13]")
+    WebElement financialEndDateRowTwo;
+
+    @FindBy(xpath = "//div[@class='financial-details-grid']//div[14]")
+    WebElement premiumRowTwo;
+    @FindBy(xpath = "//div[@class='financial-details-grid']//div[15]")
+    WebElement aptcRowTwo;
 
 
     public void validateBluBar() {
@@ -1062,6 +1149,167 @@ public class AdminPortalManagePlansPage {
         managePlanDentalMedicalPlan.setDenPlanAptcAmtFnTable(denAPTCAmtFnTable.getText());
 
        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
+    public void simplifiedContainerTitleLabels(String simplifyPlanMedical, String simplifyPlanDental) {
+        basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
+        softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
+        softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
+        softAssert.assertEquals(planYearLabel.getText(), "Year:");
+        softAssert.assertEquals(txtSelectPlanType.getText(), "Select plan type:");
+        softAssert.assertEquals(chkMedical.getText(), "Medical");
+        softAssert.assertEquals(chkDental.getText(), "Dental");
+        softAssert.assertEquals(simplifyMedical.getText(), "Medical Plan:");
+        softAssert.assertEquals(simplifyDental.getText(), "Dental Plan:");
+        softAssert.assertAll();
+    }
+    public void clickCheckedToSeeOnlyMedicalPlanData(String planType){
+        basicActions.click(chkDental);
+    }
+    public void verifyLabelsSimplifiedMedical() {
+        basicActions.waitForElementToBePresent(currentMedicalPlanName, 5000);
+        softAssert.assertEquals(currentMedicalPlanName.getText(), "Friday Bronze Rx Copay");
+        softAssert.assertEquals(medLatestApplicationUI.getText(), "Latest Application Date:");
+        softAssert.assertEquals(medFinancialStartDateUI.getText(), "Financial Start Date:");
+        softAssert.assertEquals(medEhbPremiumUI.getText(), "EHB Premium:");
+        softAssert.assertEquals(medFinancialEndDateUI.getText(), "Financial End Date:");
+        softAssert.assertEquals(medCsrAmountUI.getText(), "CSR Amount:");
+        softAssert.assertEquals(medPlanPremiumUI.getText(), "Plan Premium:");
+        softAssert.assertEquals(medLatestLCEtUI.getText(), "Latest LCE and Date:");
+        softAssert.assertEquals(medPlanAPTCUI.getText(), "Plan APTC:");
+        softAssert.assertEquals(medRateAreaUI.getText(), "Rating Area:");
+        softAssert.assertEquals(medPremiumAfterSubsidyUI.getText(), "Premium after Subsidy:");
+        softAssert.assertEquals(medServiceAreaUI.getText(), "Service Area:");
+        softAssert.assertEquals(medPlanAVUI.getText(), "Plan AV:");
+        softAssert.assertEquals(medPolicyIdUI.getText(), "Policy ID:");
+        softAssert.assertEquals(medHiosIdUI.getText(), "HIOS ID:");
+        softAssert.assertAll();
+    }
+    public void validateSimplifyViewMedicalData(String planNameSTG, String policyCoverageSTG, String latestApplicationDateSTG, String planNameQA, String policyCoverageQA, String latestApplicationDateQA) {
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(medPlanNameData, 5000);
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(medPlanNameData.getText(), planNameSTG);
+            softAssert.assertEquals(medCoverageData.getText(), policyCoverageSTG);
+            softAssert.assertEquals(medLatestApplicationDateData.getText(), latestApplicationDateSTG);
+            softAssert.assertAll();
+        } else {
+            softAssert.assertEquals(medPlanNameData.getText(), planNameQA);
+            softAssert.assertEquals(medCoverageData.getText(), policyCoverageQA);
+            softAssert.assertEquals(medLatestApplicationDateData.getText(), latestApplicationDateQA);
+            softAssert.assertAll(); }
+    }
+    public void validateDataForHIOSID(String hiosIdSTG, String hiosIdQA) {
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(medHiosId.getText(), hiosIdSTG);
+        } else {
+            softAssert.assertEquals(medHiosId.getText(), hiosIdQA);
+        }
+        softAssert.assertAll();
+    }
+    public void iValidateMemberTableDataRowOne(String rowNumberSTG, String personIdDataSTG, String nameSTG, String birthSTG, String relationSTG, String tobaccoSTG, String rowNumberQA, String personIdDataQA, String nameQA, String birthQA, String relationQA, String tobaccoQA){
+        if (SharedData.getEnv().equals("staging")) {
+            basicActions.switchtoactiveTab();
+            softAssert.assertEquals(rowNumberData.getText(), rowNumberSTG);
+            softAssert.assertEquals(personIdData.getText(), personIdDataSTG);
+            softAssert.assertEquals(nameData.getText(), nameSTG);
+            softAssert.assertEquals(dOfBData.getText(), birthSTG);
+            softAssert.assertEquals(relationData.getText(), relationSTG);
+            softAssert.assertEquals(tobaccoData.getText(), tobaccoSTG);
+        } else {
+            softAssert.assertEquals(rowNumberData.getText(), rowNumberQA);
+            softAssert.assertEquals(personIdData.getText(), personIdDataQA);
+            softAssert.assertEquals(nameData.getText(), nameQA);
+            softAssert.assertEquals(dOfBData.getText(), birthQA);
+            softAssert.assertEquals(relationData.getText(), relationQA);
+            softAssert.assertEquals(tobaccoData.getText(), tobaccoQA);
+        }
+        softAssert.assertAll();
+    }
+    public void iValidateMemberTableDataRowTwo(String rowNumberTwoSTG, String personIdDataTwoSTG, String nameTwoSTG, String birthTwoSTG, String relationTwoSTG, String tobaccoTwoSTG, String rowNumberTwoQA, String personIdDataTwoQA, String nameTwoQA, String birthTwoQA, String relationTwoQA, String tobaccoTwoQA){
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(rowNumberDataTwo.getText(), rowNumberTwoSTG);
+            softAssert.assertEquals(personIdDataTwo.getText(), personIdDataTwoSTG);
+            softAssert.assertEquals(nameDataTwo.getText(), nameTwoSTG);
+            softAssert.assertEquals(dOfBDataTwo.getText(), birthTwoSTG);
+            softAssert.assertEquals(relationDataTwo.getText(), relationTwoSTG);
+            softAssert.assertEquals(tobaccoDataTwo.getText(), tobaccoTwoSTG);
+        } else {
+            softAssert.assertEquals(rowNumberDataTwo.getText(), rowNumberTwoQA);
+            softAssert.assertEquals(personIdDataTwo.getText(), personIdDataTwoQA);
+            softAssert.assertEquals(nameDataTwo.getText(), nameTwoQA);
+            softAssert.assertEquals(dOfBDataTwo.getText(), birthTwoQA);
+            softAssert.assertEquals(relationDataTwo.getText(), relationTwoQA);
+            softAssert.assertEquals(tobaccoDataTwo.getText(), tobaccoTwoQA);
+        }
+        softAssert.assertAll();
+    }
+    public void iValidateCoverageTableDataRowOne(String type, String rowSTG, String coverageStartSTG, String coverageEndSTG, String statusSTG, String effectuatedSTG, String reasonSTG, String rowQA, String coverageStartQA, String coverageEndQA, String statusQA, String effectuatedQA, String reasonQA){
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(rowNumberData.getText(), rowSTG);
+            softAssert.assertEquals(coverageStartDateCoTable.getText(), coverageStartSTG);
+            softAssert.assertEquals(coverageEndDateCoTable.getText(), coverageEndSTG);
+            softAssert.assertEquals(medPolicyStatus.getText(), statusSTG);
+            softAssert.assertEquals(medEffectuated.getText(), effectuatedSTG);
+            softAssert.assertEquals(medTerminationReason.getText(), reasonSTG);
+        } else {
+            softAssert.assertEquals(rowNumberData.getText(), rowQA);
+            softAssert.assertEquals(coverageStartDateCoTable.getText(), coverageStartQA);
+            softAssert.assertEquals(coverageEndDateCoTable.getText(), coverageEndQA);
+            softAssert.assertEquals(medPolicyStatus.getText(), statusQA);
+            softAssert.assertEquals(medEffectuated.getText(), effectuatedQA);
+            softAssert.assertEquals(medTerminationReason.getText(), reasonQA);
+        }
+        softAssert.assertAll();
+    }
+    public void validateCoverageTableDataRowTwo(String type, String rowTwoSTG, String coverageStartRowTwoSTG, String coverageEndRowTwoSTG, String statusRowTwoSTG, String effectuatedRowTwoSTG, String reasonRowTwoSTG, String rowTwoQA, String coverageStartRowTwoQA, String coverageEndRowTwoQA, String statusRowTwoQA, String effectuatedRowTwoQA, String reasonRowTwoQA){
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(rowTwoData.getText(), rowTwoSTG);
+            softAssert.assertEquals(coverageStartDateCoTable.getText(), coverageStartRowTwoSTG);
+            softAssert.assertEquals(coverageEndDateCoTable.getText(), coverageEndRowTwoSTG);
+            softAssert.assertEquals(medPolicyStatus.getText(), statusRowTwoSTG);
+            softAssert.assertEquals(medEffectuated.getText(), effectuatedRowTwoSTG);
+            softAssert.assertEquals(medTerminationReason.getText(), reasonRowTwoSTG);
+        } else {
+            softAssert.assertEquals(rowTwoData.getText(), rowTwoQA);
+            softAssert.assertEquals(coverageStartRowTwo.getText(), coverageStartRowTwoQA);
+            softAssert.assertEquals(coverageEndRowTwo.getText(), coverageEndRowTwoQA);
+            softAssert.assertEquals(statusRowTwo.getText(), statusRowTwoQA);
+            softAssert.assertEquals(effectuatedRowTwo.getText(), effectuatedRowTwoQA);
+            softAssert.assertEquals(reasonRowTwo.getText(), reasonRowTwoQA);
+        }
+        softAssert.assertAll();
+    }
+    public void iValidateFinancialTableDataRowOne(String type, String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA){
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(rowNumberData.getText(), rowSTG);
+            softAssert.assertEquals(medFinancialStartDateFNTable.getText(), financialStartSTG);
+            softAssert.assertEquals(medFinancialEndDateFNTable.getText(), financialEndSTG);
+            softAssert.assertEquals(medPlanPremiumAmtFnTable.getText(), premiumSTG);
+            softAssert.assertEquals(medAPTCAmtFnTable.getText(), APTCSTG);
+        } else {
+            softAssert.assertEquals(rowNumberData.getText(), rowQA);
+            softAssert.assertEquals(medFinancialStartDateFNTable.getText(), financialStartQA);
+            softAssert.assertEquals(medFinancialEndDateFNTable.getText(), financialEndQA);
+            softAssert.assertEquals(medPlanPremiumAmtFnTable.getText(), premiumQA);
+            softAssert.assertEquals(medAPTCAmtFnTable.getText(), APTCQA);
+        }
+        softAssert.assertAll();
+    }
+    public void validateFinancialTableDataRowTwo(String type, String rowTwoSTG, String financialStartRowTwoSTG, String financialEndRowTwoSTG, String premiumRowTwoSTG, String APTCRowTwoSTG, String rowTwoQA, String financialStartRowTwoQA, String financialEndRowTwoQA, String premiumRowTwoQA, String APTCRowTwoQA){
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(rowTwoData.getText(), rowTwoSTG);
+            softAssert.assertEquals(financialStartDateRowTwo.getText(), financialStartRowTwoSTG);
+            softAssert.assertEquals(financialEndDateRowTwo.getText(), financialEndRowTwoSTG);
+            softAssert.assertEquals(premiumRowTwo.getText(), premiumRowTwoSTG);
+            softAssert.assertEquals(aptcRowTwo.getText(), APTCRowTwoSTG);
+        } else {
+            softAssert.assertEquals(rowTwoData.getText(), rowTwoQA);
+            softAssert.assertEquals(financialStartDateRowTwo.getText(), financialStartRowTwoQA);
+            softAssert.assertEquals(financialEndDateRowTwo.getText(), financialEndRowTwoQA);
+            softAssert.assertEquals(premiumRowTwo.getText(), premiumRowTwoQA);
+            softAssert.assertEquals(aptcRowTwo.getText(), APTCRowTwoQA);
+        }
+        softAssert.assertAll();
     }
 }
 

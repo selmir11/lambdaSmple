@@ -1140,6 +1140,24 @@ public class BasicActions {
 
     }
 
+    public String firstDateOfTheMonthAfterNext() {
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfNextMonth = today.plusMonths(2).withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfNextMonth.format(formatter);
+    }
+
+    public String enrollmentStartDate(){
+        int actualDate = Integer.parseInt(changeDateFormat(getTodayDate(),"MM/dd/yyyy","dd"));
+        if(actualDate<16){
+            //if plan purchase date is from 1 to 15 - Next month 1st will be plan start date
+            return changeDateFormat(firstDateOfNextMonth(),"yyyy-MM-dd","MM/dd/yyyy");
+        }
+        else{
+            //if plan purchase date is from 16 to 31 - Month after Next 1st will be plan start date
+            return changeDateFormat(firstDateOfTheMonthAfterNext(),"yyyy-MM-dd","MM/dd/yyyy");
+        }
+    }
 }
 
 
