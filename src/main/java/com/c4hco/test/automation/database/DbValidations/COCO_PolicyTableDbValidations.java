@@ -6,7 +6,6 @@ import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.COCO_DbDataProvider;
-import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.asserts.SoftAssert;
 
@@ -15,7 +14,6 @@ import java.util.List;
 
 public class COCO_PolicyTableDbValidations {
     COCO_DbDataProvider cocoDbDataProvider = new COCO_DbDataProvider();
-    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     BasicActions basicActions = new BasicActions();
     SoftAssert softAssert = new SoftAssert();
     List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
@@ -23,8 +21,8 @@ public class COCO_PolicyTableDbValidations {
     PlanDbData medicalPlanDbData = new PlanDbData();
     MemberDetails subscriber = new MemberDetails();
 
-    public void recordsValidations() {
-        setData();
+    public void recordsValidations(String policyStatus) {
+        setData(policyStatus);
         medicalRecordsValidations();
         softAssert.assertAll();
     }
@@ -127,9 +125,9 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
         softAssert.assertAll();
     }
-    private void setData() {
+    private void setData(String policyStatus) {
         subscriber = SharedData.getPrimaryMember();
-        List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
+        List<PolicyTablesEntity> medicalPolicyEntitiesList = cocoDbDataProvider.getDataFrmPolicyTablesCOCO("1",policyStatus);
 
         SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
 

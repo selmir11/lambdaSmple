@@ -139,4 +139,4 @@ Feature: Seed02 - Coco
     Then I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
     # DB Validation
-    And I validate Medical entities from COCO policy tables
+    And I validate "SUBMITTED" Medical entities from COCO policy tables

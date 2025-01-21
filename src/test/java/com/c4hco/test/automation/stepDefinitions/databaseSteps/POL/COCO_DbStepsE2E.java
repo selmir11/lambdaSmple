@@ -6,9 +6,9 @@ import io.cucumber.java.en.And;
 public class COCO_DbStepsE2E {
     private final COCO_PolicyTableDbValidations policyTableDBValidations_coco = new COCO_PolicyTableDbValidations();
 
-    @And("I validate Medical entities from COCO policy tables")
-    public void validateCOCOMedicalRecords(){
-        policyTableDBValidations_coco.recordsValidations();
+    @And("I validate {string} Medical entities from COCO policy tables")
+    public void validateCOCOMedicalRecords(String policyStatus){
+        policyTableDBValidations_coco.recordsValidations(policyStatus);
     }
 
 }

@@ -3,13 +3,23 @@ package com.c4hco.test.automation.database.dbDataProvider;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
+import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
+import com.c4hco.test.automation.database.dbHandler.PolicyTableDbHandler;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class COCO_DbDataProvider {
+    private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
     DbDataProvider_Exch dbDataProviderExch = new DbDataProvider_Exch();
+    PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
 
+    public List<PolicyTablesEntity> getDataFrmPolicyTablesCOCO(String coverageType, String policyStatus){
+        List<PolicyTablesEntity> policyTablesList = policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesCombinedQuery(coverageType));
+        return policyTablesList.stream().filter(policy -> policy.getPolicy_status().equals(policyStatus)).collect(Collectors.toList());
+    }
     public void setDataFromDb(){
         String fipcode = dbDataProviderExch.getFipcodeCOCO();
         String ratingAreaName = dbDataProviderExch.getRatingAreaName(fipcode);
