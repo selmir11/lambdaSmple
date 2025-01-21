@@ -11,7 +11,8 @@ public enum Race {
     PreferNotToAnswer("7"),
     MiddleEasternorNorthAfrican("E"),
     NativeHawaiianorPacificIslander("J"),
-    AsianorAsianAmerican("A");
+    AsianorAsianAmerican("A"),
+    NotListed("E");
 
     private final String RaceCode;
     Race(String RaceCode) {

@@ -97,20 +97,13 @@ public class RaceAndEthnicityPage {
         setRaceAndEthnicity(raceEthnicity, memPrefix);
     }
 
-    private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
-        MemberDetails primaryMem = SharedData.getPrimaryMember();
-        if(primaryMem.getFirstName().contains(memPrefix)){
-            primaryMem.setRace(raceEthnicity);
-            SharedData.setPrimaryMember(primaryMem);
-        } else{
-            List<MemberDetails> members = SharedData.getMembers();
-            members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
-            SharedData.setMembers(members);
-        }
+    private void setRaceAndEthnicity(String raceEthnicity, String memPrefix) {
+        List<MemberDetails> members = basicActions.getAllMem();
+        members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member -> member.setRace(raceEthnicity));
     }
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToDisappear( spinner, 50 );
+        basicActions.waitForElementToDisappear(spinner, 50);
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();
