@@ -149,8 +149,16 @@ public String policyTablesCombinedQuery(String coverageType){
 
     public String en_plan(String planName) {
         return "select * from " + dbName + ".en_plan ep \n" +
-                "where plan_marketing_name = '" + planName + "'" +
-                "and plan_year = '2024'\n" +
+                "where plan_marketing_name = '" + planName + "'\n" +
+                "and plan_year = '"+SharedData.getPlanYear()+"'\n" +
+                "limit 1";
+    }
+
+    public String en_Dentalplan(String planName) {
+        return "select * from " + dbName + ".en_plan ep \n" +
+                "where plan_marketing_name = '" + planName + "'\n" +
+                "and plan_year = '"+SharedData.getPlanYear()+"'\n" +
+                "and qhp_type = '1'\n"+
                 "limit 1";
     }
 

@@ -10,8 +10,8 @@ public enum Race {
     WhiteorEuropean("C"),
     PreferNotToAnswer("7"),
     MiddleEasternorNorthAfrican("E"),
-    NativeHawaiianorPacificIslander("J");
-    ;
+    NativeHawaiianorPacificIslander("J"),
+    AsianorAsianAmerican("A");
 
     private final String RaceCode;
     Race(String RaceCode) {
