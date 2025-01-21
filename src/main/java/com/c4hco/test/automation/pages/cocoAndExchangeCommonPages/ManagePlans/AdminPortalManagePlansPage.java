@@ -686,7 +686,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     basicActions.switchtoactiveTab();
 }
 
-   // MemberDetails memberDetails = new MemberDetails();
+    MemberDetails memberDetails = new MemberDetails();
 
     public void UpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
         String primaryMemberId;
@@ -698,8 +698,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
         basicActions.waitForElementToBePresentWithRetries(currentDentalPlanName,20);
 
-      //  memberDetails.setAccount_id(bigDecimal);
-       // SharedData.setPrimaryMember(memberDetails);
+        memberDetails.setAccount_id(bigDecimal);
+        SharedData.setPrimaryMember(memberDetails);
         String currentDentalPlan = currentDentalPlanName.getText();
         managePlanDentalMedicalPlan.setPlanMarketingName(currentDentalPlan);
 
