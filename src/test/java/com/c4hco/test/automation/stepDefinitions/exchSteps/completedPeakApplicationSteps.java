@@ -3,7 +3,6 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.CompletedPeakApplicationPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.When;
 
 public class completedPeakApplicationSteps {
     CompletedPeakApplicationPage completedApplicationPage = new CompletedPeakApplicationPage(WebDriverManager.getDriver());
@@ -20,9 +19,5 @@ public class completedPeakApplicationSteps {
     @And("I select {string} option on the Let us guide you page")
     public void iSelectOptionOnTheLetUsGuideYouPage(String option) {
         completedApplicationPage.iSelectOption(option);
-    }
-    @When("I click on back button on the Let us guide you page")
-    public void clickOnBackBtn(){
-        completedApplicationPage.clickOnBackBtn();
     }
 }
