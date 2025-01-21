@@ -586,7 +586,7 @@ public class Ob834FileValidations_Grps {
         if (SharedData.getHasBroker()) {
             softAssert.assertEquals(n1Segment.get(2).get(0), "BO", "Broker");
             softAssert.assertEquals(n1Segment.get(2).get(1), entry.getTpa_or_broker_name(), "Broker name mismatch");
-            softAssert.assertEquals(n1Segment.get(2).get(2), "94", "Broker Code assigned by the organization that is the ultimate destination of the transaction set");
+            softAssert.assertEquals(n1Segment.get(2).get(2), "FI", "Broker Code assigned by the organization that is the ultimate destination of the transaction set");
             softAssert.assertEquals(n1Segment.get(2).get(3), entry.getTpa_or_broker_id(), "Broker Id mismatch");
             List<String> actSegment = transaction.getCommonSegments().getACT().get(0);
             softAssert.assertEquals(actSegment.get(0), entry.getTpa_or_broker_lic_num(), "Broker License Number did not match");
