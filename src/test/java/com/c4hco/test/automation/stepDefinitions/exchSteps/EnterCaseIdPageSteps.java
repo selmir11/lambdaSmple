@@ -4,6 +4,7 @@ import com.c4hco.test.automation.pages.exchPages.EnterCaseIdPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class EnterCaseIdPageSteps {
     EnterCaseIdPage enterCaseIdPage = new EnterCaseIdPage(WebDriverManager.getDriver());
@@ -23,5 +24,8 @@ public class EnterCaseIdPageSteps {
         enterCaseIdPage.goBackonLoad1Bresult();
     }
 
-
+    @When("I click on back button on Enter Case ID page")
+    public void iClickOnBackBtn() {
+        enterCaseIdPage.goBackonLoad1Bresult();
+    }
 }
