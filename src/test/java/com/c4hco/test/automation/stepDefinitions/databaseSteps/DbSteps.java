@@ -202,9 +202,9 @@ public class DbSteps {
         dbValidations.validateTheAgencyEmailInDB();
     }
 
-    @And("I Validate enrollment period end date is set to {int} days from current date of the admin LCE being processed")
-    public void validateEnrolmentEndDate(int enrollmentEndDate) {
-        dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate);
+    @And("I Validate enrollment period end date based on latest QLCE")
+    public void validateEnrolmentEndDate() {
+        dbValidations.validateEnrollmentEndDateDB();
     }
 
     @And("I verify the tax filing data for {string} in DB")

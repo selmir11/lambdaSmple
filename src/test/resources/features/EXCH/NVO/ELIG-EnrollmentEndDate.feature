@@ -72,7 +72,7 @@ Feature: LR Enrollment Period end date is set when user has
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
 #DBSTEP
-    And  I Validate enrollment period end date is set to 60 days from current QLCE days
+    And  I Validate enrollment period end date based on latest QLCE
 
     @SLER-1838 @NVOExchRegression
     Scenario: [RT-2333] LCE of Marriage
@@ -147,7 +147,7 @@ Feature: LR Enrollment Period end date is set when user has
       Then I validate I am on the "Application History" page
       Then I click on view results and shop
 #DBSTEP
-      And  I Validate enrollment period end date is set to 60 days from current QLCE days
+      And  I Validate enrollment period end date based on latest QLCE
 
   @SLER-1848 @NVOExchRegression
   Scenario: [RT-2334] LCE Gain Lawful Presence
@@ -222,7 +222,7 @@ Feature: LR Enrollment Period end date is set when user has
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
 #DBSTEP
-    And  I Validate enrollment period end date is set to 60 days from current QLCE days
+    And  I Validate enrollment period end date based on latest QLCE
 
   @SLER-1868
   Scenario: Validate enrollment period end date
@@ -298,7 +298,7 @@ Feature: LR Enrollment Period end date is set when user has
     Then I click on view results and shop
     And I click on Sign Out in the Header for "NonElmo"
 #DBSTEP
-    And  I Validate enrollment period end date is set to 60 days from current QLCE days
+    And  I Validate enrollment period end date based on latest QLCE
 
   @SLER-1849
     Scenario: Validate enrollment period end date for AI&AN

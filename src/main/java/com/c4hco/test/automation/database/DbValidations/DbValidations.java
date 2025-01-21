@@ -460,15 +460,30 @@ public class DbValidations {
         softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
         softAssert.assertAll();
     }
-    public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
+    public void validateEnrollmentEndDateDB() {
         String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
-        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
+        LocalDate parsedEndDate = LocalDate.parse(enrolmentEndDate);
+        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
 
-        LocalDate currentDate = LocalDate.now();
-        LocalDate twoMonthsLater = currentDate.plusDays(enrollmentEndDate);
+        String openEnrolment = SharedData.getIsOpenEnrollment();
+        if (openEnrolment.equals("yes")) {
+            LocalDate openEnrollmentEndDate = LocalDate.of(parsedEndDate.getYear(), 1, 15);
+            LocalDate qlceDate = LocalDate.now();
+            LocalDate calculatedEndDate = qlceDate.plusDays(60);
 
-        String formattedEnrolmentEndDate = basicActions.changeDateFormat(String.valueOf(twoMonthsLater),"yyyy-MM-dd","MM/dd/yyyy");
-        softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
+            if (calculatedEndDate.isAfter(openEnrollmentEndDate)) {
+                String formattedCalculatedEndDate = basicActions.changeDateFormat(calculatedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+                softAssert.assertEquals(formattedDateEnd, formattedCalculatedEndDate);
+            } else {
+                String formattedOpenEnrollmentEndDate = basicActions.changeDateFormat(openEnrollmentEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+                softAssert.assertEquals(formattedDateEnd, formattedOpenEnrollmentEndDate);
+            }
+        } else {
+            LocalDate qlceDate = LocalDate.now();
+            LocalDate calculatedEndDate = qlceDate.plusDays(60);
+            String formattedCalculatedEndDate = basicActions.changeDateFormat(calculatedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+            softAssert.assertEquals(formattedDateEnd, formattedCalculatedEndDate);
+        }
         softAssert.assertAll();
     }
 
