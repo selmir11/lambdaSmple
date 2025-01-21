@@ -11,7 +11,7 @@ public class MyProfilePageSteps {
 
     @Then("I click on Go back to Welcome page Button on My Profile Exch")
     public void iBackToWelcomeButtonExch() {
-        myProfileExchPage.backToWelcomeButtonExch();
+    myProfileExchPage.backToWelcomeButtonExch();
     }
 
     // WIP - Rename the below step add include the page name

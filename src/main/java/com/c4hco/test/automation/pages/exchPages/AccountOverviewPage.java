@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class AccountOverviewPage {
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
@@ -92,6 +94,12 @@ public class AccountOverviewPage {
     @FindBy(xpath = "//a[@class='linkButton']/parent::p")
     List<WebElement> txtlinkButton;
 
+    @FindBy(xpath = "//button[text()='Go back to Welcome page']")
+    WebElement goBackFromMyDocuments;
+
+    @FindBy(xpath = "//button[@id='goBackButton']")
+    WebElement goBackFromMyPlans;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -122,7 +130,7 @@ public class AccountOverviewPage {
     }
 
     public void clickHereLinks(String clickHereOption){
-        basicActions.waitForElementListToBePresent(clickHereLinks, 10);
+        basicActions.waitForElementListToBePresent(clickHereLinks, 15);
         switch(clickHereOption){
             case "My Profile":
                 clickHereLinks.get(0).click();
@@ -133,7 +141,7 @@ public class AccountOverviewPage {
             case "My Documents":
                 clickHereLinks.get(2).click();
                 break;
-            case "'[My Plans]'":
+            case "My Plans":
                 clickHereLinks.get(3).click();
                 break;
             default: throw new IllegalArgumentException("Entered Invalid option for clickHere link: " + clickHereOption);
@@ -154,8 +162,28 @@ public class AccountOverviewPage {
         basicActions.click(makeChanges);
     }
 
+    public void goBackToAccountOverviewPageFrom(String page){ //My Documents, MyPlans has been implemented here
+        switch (page){
+            case "My Documents":
+                basicActions.waitForElementToBeClickable(goBackFromMyDocuments,5);
+                basicActions.click(goBackFromMyDocuments);
+                break;
+            case "My Plans":
+                basicActions.waitForElementToBeClickable(goBackFromMyPlans,5);
+                basicActions.click(goBackFromMyPlans);
+                break;
+            default:
+                throw new IllegalArgumentException("Please select the Defined Page Name: " + page);
+        }
+    }
 
     // ================VALIDATION METHODS================//
+
+    public void validateAccountOverviewPage(){
+        basicActions.waitFor(2);
+        assertTrue(basicActions.getDriver().getTitle().contains("C4HCO-Eligibility"));
+    }
+
     public void verifyLanguageText(String language) {
         switch (language) {
             case "English":

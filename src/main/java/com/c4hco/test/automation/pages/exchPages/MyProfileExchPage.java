@@ -161,6 +161,7 @@ public class MyProfileExchPage {
     }
 
     public void backToWelcomeButtonExch() {
+        basicActions.waitFor(10) ;
         basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 60);
         MyProfileButtonExch.get(0).click();
     }

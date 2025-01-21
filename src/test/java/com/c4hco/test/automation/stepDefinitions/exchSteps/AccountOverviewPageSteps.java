@@ -26,10 +26,18 @@ public class AccountOverviewPageSteps {
         accountOverviewPage.iClickOnMakeChanges();
     }
 
+    @Then("I go back to Account Overview page from {string} page")
+    public void goBackToAccountOverviewPageFrom(String page){
+        accountOverviewPage.goBackToAccountOverviewPageFrom(page);
+    }
 
     // ================VALIDATION METHODS================//
     @And("I validate the page is in {string}")
     public void iVerifyLanguageText(String language){accountOverviewPage.verifyLanguageText(language);}
+
+
+    @And("I validate that I am in Account Overview Page")
+    public void validateAccountOverviewPage(){accountOverviewPage.validateAccountOverviewPage();}
 
     @And("I Validate the correct enrolled plans are displayed on account overview page")
     public void validatePlanInfo(){

@@ -22,10 +22,10 @@ public class completedPeakApplicationSteps {
         completedApplicationPage.iSelectOption(option);
     }
 
-    @Then("I click on back button")
+    @Then("I click on back button in Completed Peak Application page")
     public void iclickonbackbutton(){
         //WIP
-        CompletedPeakApplicationPage.backButton();
+        completedApplicationPage.backButton();
     }
 
 }

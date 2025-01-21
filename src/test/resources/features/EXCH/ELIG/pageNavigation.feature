@@ -484,7 +484,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I validate I am on the "Start Shopping" page
     And I validate I am on the "Spanish" page
 
-  @SLER-1951 @PageNavigation @wip
+  @SLER-1951 @PageNavigation
   Scenario:ELIG-Welcome Page-Page Navigation (RT-950)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -492,8 +492,17 @@ Feature: Verify Navigation to the ELIG Pages
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
-    Then I click the Back button in the 'Let us Guide You' page
+    Then I click on back button in Completed Peak Application page
+    And I validate that I am in Account Overview Page
     Then I click on ClickHere link for "My Profile"
+    Then I click on Go back to Welcome page Button on My Profile Exch
+    And I validate that I am in Account Overview Page
     Then I click on ClickHere link for "My Eligibility"
+    Then I go back to Account Overview Page from My Eligibility
+    And I validate that I am in Account Overview Page
     Then I click on ClickHere link for "My Documents"
+    Then I go back to Account Overview page from "My Documents" page
+    And I validate that I am in Account Overview Page
     Then I click on ClickHere link for "My Plans"
+    Then I go back to Account Overview page from "My Plans" page
+    And I validate that I am in Account Overview Page
