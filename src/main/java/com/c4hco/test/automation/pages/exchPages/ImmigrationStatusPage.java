@@ -63,6 +63,21 @@ public class ImmigrationStatusPage {
     @FindBy(id = "livedSince1996No")
     WebElement livedSince1996No;
 
+   //Immigration Status For parolee into US
+
+    @FindBy(css = "h2.c4PageHeader")
+    WebElement paroleePageHeader;
+
+    @FindBy(id = "overviewButton")
+    WebElement  paroleeHelpUnderstandText;
+
+    @FindBy(css = "h2.c4PageTitle")
+    WebElement paroleePageTitle;
+
+    @FindBy(css = "div.c4BodyText1")
+    WebElement  ParoleeNeedMoreInfo;
+
+
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
         switch(YNLawfulPermanentResident){
             case "Yes":
@@ -146,6 +161,33 @@ public class ImmigrationStatusPage {
         softAssert.assertAll();
     }
 
+    public void VerifyCitizenshipAndImmigrationforParoledInToUSTextEnglish() {
+        basicActions.waitForElementToBePresent(paroleePageHeader,40);
+        softAssert.assertEquals(paroleePageHeader.getText(), "Citizenship and Immigration Status: "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), "Help me understand this page");
+        softAssert.assertEquals(paroleePageTitle.getText(), "Immigration Status");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(), "It looks like we need more information about your immigration status");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), "What is the grant date of your parolee status?");
+        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"), "mm/dd/yyyy");
+        basicActions.waitForElementToBeClickable(backButton, 150);
+        softAssert.assertEquals(backButton.getAttribute("value"), "< Back");
+        softAssert.assertEquals(saveContinue.getAttribute("value"), "Save and Continue");
+        softAssert.assertAll();
+    }
+    public void VerifyCitizenshipAndImmigrationforParoledInToUSTextSpanish() {
+        basicActions.waitForElementToBePresent(paroleePageHeader, 40);
+        softAssert.assertEquals(paroleePageHeader.getText(), "Ciudadan\u00EDa y estatus migratorio: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), "Ayuda para entender esta p\u00E1gina");
+        softAssert.assertEquals(paroleePageTitle.getText(), "Estatus Migratorio");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(), "Al parecer, necesitamos más información sobre su estatus migratorio");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), "¿Cuál es la fecha en la que se le otorgó su estatus de libertad condicional?");
+        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"), "mm/dd/yyyy");
+        basicActions.waitForElementToBeClickable(backButton, 150);
+        softAssert.assertEquals(backButton.getAttribute("value"), "< Atr\u00E1s");
+        softAssert.assertEquals(saveContinue.getAttribute("value"),  "Guardar y Continuar");
+        softAssert.assertAll();
+    }
+
     public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
         switch (YNLivedInUSSince1996) {
             case "Yes":
@@ -162,5 +204,18 @@ public class ImmigrationStatusPage {
     public void inputGrantDate(String grantDate) {
         basicActions.waitForElementToBePresent(grantDateInputField, 10);
         grantDateInputField.sendKeys(grantDate);
+    }
+
+    public void VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(String language) {
+        switch (language) {
+            case "English":
+                VerifyCitizenshipAndImmigrationforParoledInToUSTextEnglish();
+                break;
+            case "Spanish":
+                VerifyCitizenshipAndImmigrationforParoledInToUSTextSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
     }
 }

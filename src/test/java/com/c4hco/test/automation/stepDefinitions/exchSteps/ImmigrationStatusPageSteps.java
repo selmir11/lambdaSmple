@@ -38,4 +38,10 @@ public class ImmigrationStatusPageSteps {
     public void inputGrantDate(String grantDate) {
         ImmigrationStatusPage.inputGrantDate(grantDate);
     }
+
+    @Then("I verify the text on the Citizenship and Immigration Status page for Paroled into the U.S. in {string}")
+    public void iVerifyTextOnCitizenshipAndImmigrationStatusForParoledText(String language) {
+        ImmigrationStatusPage.VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(language);
+
+    }
 }
