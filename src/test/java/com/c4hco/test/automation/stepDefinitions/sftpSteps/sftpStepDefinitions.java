@@ -22,10 +22,13 @@ public class sftpStepDefinitions {
         try{
             String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
             SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
-            sftpUtil.downloadFileWithSftp(remoteLocation, SharedData.getMedicalFileName());
-            sftpUtil.downloadFileWithSftp(remoteLocation, SharedData.getDentalFileName());
+            List<String> allFiles = SharedData.getMedicalFileName_grp();
+            allFiles.addAll(SharedData.getDentalFileName_grp());
+            for(String fileName: allFiles){
+                sftpUtil.downloadFileWithSftp(remoteLocation, fileName);
+            }
         } catch(Exception e){
-            // fail
+           Assert.fail("Failed with this exception::"+e);
         }
     }
 
