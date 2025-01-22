@@ -1,13 +1,17 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AssistnetPortalPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.math.BigDecimal;
 
 public class AssistnetDashboardPage {
     private BasicActions basicActions;
@@ -55,6 +59,12 @@ public class AssistnetDashboardPage {
     WebElement saveAndContinueButton;
     @FindBy(id = "dashboard-button")
     WebElement goBckToMyDashboardButton;
+    @FindBy(xpath = "//div[@class='row justify-content-center dashboard-header']")
+    WebElement dashboardWelcomeHeader;
+    @FindBy(xpath = "//div[2]/div[3]/div[2]/div")
+    WebElement certificationStatus;
+    @FindBy(xpath = "//*[@id='userNameLabel']/span")
+    WebElement accountNumber;
 
 
     public void ClickOnViewMyClients() {
@@ -202,5 +212,32 @@ public class AssistnetDashboardPage {
         goBckToMyDashboardButton.click();
     }
 
+    public void verifyPMDashboardWelcomeText() {
+        basicActions.waitForElementToBePresent(dashboardWelcomeHeader,60);
+        softAssert.assertEquals(dashboardWelcomeHeader.getText(), "Welcome " + SharedData.getAssisterDetails().getFirstName() + " " + SharedData.getAssisterDetails().getLastName() + "!");
+        softAssert.assertAll();
+    }
 
+    public void verifyPMCertificationStatus(String certStatus) {
+        basicActions.refreshPage();
+        basicActions.waitForElementToBePresentWithRetries(certificationStatus,60);
+        switch (certStatus){
+            case "Approved" :
+                softAssert.assertEquals(certificationStatus.getText(), "Approved");
+                break;
+            case "Not Approved" :
+                softAssert.assertEquals(certificationStatus.getText(), "Not Approved");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + certStatus);
+        }
+        softAssert.assertAll();
+    }
+
+    public void savePmAccount() {
+        basicActions.waitForElementToBePresentWithRetries(accountNumber,60);
+        MemberDetails programManager = new MemberDetails();
+        programManager.setAccount_id(new BigDecimal(accountNumber.getText()));
+        SharedData.setPrimaryMember(programManager);
+    }
 }
