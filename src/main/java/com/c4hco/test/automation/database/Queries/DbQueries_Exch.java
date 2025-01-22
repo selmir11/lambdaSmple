@@ -146,7 +146,7 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select fip_code from " + dbName + ".es_zip_codes " +
                 "where code = '" + zipCode + "'";
     }
-    public String getFipcodeCOCO(String zipCode) {
+    public String getFipcodeNew(String zipCode) {
         return "select fips from " + dbName + ".en_county " +
                 "where zip = '" + zipCode + "'";
     }
