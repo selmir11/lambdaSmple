@@ -178,6 +178,14 @@ public class NoticesPage {
     WebElement bodyTextAM00401Parag13;
     @FindBy(xpath = "//*[@id=\"x_accountCreatedInErrorAssistnet\"]")
     WebElement bodyTextAM00401Parag14;
+    @FindBy(xpath = "//*[@id='x_programManagerAccountCreationNoticeBody']/p[1]")
+    WebElement bodyTextAM00403NextSteps;
+    @FindBy(xpath = "//*[@id='x_programManagerAccountCreationNoticeBody']/ul/li")
+    List<WebElement> bodyTextAM00403NextStepsBullets;
+    @FindBy(xpath = "//*[@id='x_programManagerAccountCreationNoticeBody']/ul/ul")
+    WebElement bodyTextAM00403LoginWarning;
+    @FindBy(xpath = "//*[@id='x_programManagerAccountCreationNoticeBody']/p[2]")
+    WebElement bodyTextAM00403TrainingLink;
 
 
     public String MFACode = "";
@@ -367,6 +375,9 @@ public class NoticesPage {
             case "AM-004-01":
                 VerifyTheNoticeTextAM00401PM();
                 break;
+            case "AM-004-03":
+                VerifyTheNoticeTextAM00403PM();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
@@ -389,6 +400,21 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextAM00401Parag11.getText(), "Your Organization will not be able to be associated to customers until the profile is completed and you have added an organization location.");
         softAssert.assertEquals(bodyTextAM00401Parag12.getText(), "You will receive a second notice to remind you to complete your Profile.");
         softAssert.assertEquals(bodyTextAM00401Parag13.getText(), "Invitation Code:");
+        softAssert.assertEquals(bodyTextAM00401Parag14.getText(), "If you believe that your account has been created in error or if you have additional questions, please contact the Connect for Health Colorado\u00AE Assistance Network at AssistanceNetwork@ConnectforHealthCO.com.");
+        softAssert.assertAll();
+    }
+    private void VerifyTheNoticeTextAM00403PM() {
+        softAssert.assertEquals(adminNoticeEmail.getText(), SharedData.getAssisterDetails().getEmail());
+        softAssert.assertEquals(individualNameBN002A0304.getText(), SharedData.getAssisterDetails().getFirstName()+" "+SharedData.getAssisterDetails().getLastName());
+        String Date = basicActions.changeDateFormat(basicActions.getTodayDate(),"MM/dd/yyyy","MMMM d, yyyy");
+        softAssert.assertEquals(bodyTextAM00301Parag1.getText(), "Welcome to Connect for Health Colorado\u00AE. Our records indicate that the following Assistance Network Portal account was opened on "+Date+":");
+        softAssert.assertEquals(bodyTextAM00301Parag2.getText(), "Login ID: "+SharedData.getAssisterDetails().getEmail());
+        softAssert.assertEquals(bodyTextAM00403NextSteps.getText(), "Next Steps:");
+        softAssert.assertEquals(bodyTextAM00403NextStepsBullets.get(0).getText(), "Follow the link to Login at https://connectforhealthco.com/for-certified-assisters/");
+        softAssert.assertEquals(bodyTextAM00403LoginWarning.getText(), "Do not use the login for customers");
+        softAssert.assertEquals(bodyTextAM00403NextStepsBullets.get(1).getText(), "Complete your profile");
+        softAssert.assertEquals(bodyTextAM00403NextStepsBullets.get(2).getText(), "Complete your organization details");
+        softAssert.assertEquals(bodyTextAM00403TrainingLink.getText(), "Please visit https://c4hco.csod.com/ for training information and resources.");
         softAssert.assertEquals(bodyTextAM00401Parag14.getText(), "If you believe that your account has been created in error or if you have additional questions, please contact the Connect for Health Colorado\u00AE Assistance Network at AssistanceNetwork@ConnectforHealthCO.com.");
         softAssert.assertAll();
     }
