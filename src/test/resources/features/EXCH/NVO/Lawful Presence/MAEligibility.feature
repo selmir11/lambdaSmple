@@ -147,6 +147,7 @@ Feature: Medical Assistance eligibility - related tests
     Then I click on "No Thanks" on good news page
     Then I click on view results and shop
     Then I verify text that the member eligible for MA on the app results page
+    And I click on Sign Out in the Header for "NonElmo"
 
 
   @SLER-1230 @NVOExchRegression
@@ -221,3 +222,4 @@ Feature: Medical Assistance eligibility - related tests
     And I wait for hold on content to disappear
     Then I validate member is eligible for a Qualified Health Plan
     Then I click on view results and shop
+    And I click on Sign Out in the Header for "NonElmo"

@@ -50,6 +50,7 @@ Feature:  Unable to shop (not eligible for QHP)
     And I wait for hold on content to disappear
     Then I click on view results and shop
     Then I verify text that the member don't qualify for a health plan on the app results page
+    And I click on Sign Out in the Header for "NonElmo"
 
   @SLER-29 @NVOExchRegression
   Scenario: Verify that user not able to shop (not applying for health coverage)
@@ -91,6 +92,7 @@ Feature:  Unable to shop (not eligible for QHP)
     And I wait for hold on content to disappear
     Then I click on view results and shop
     Then I verify text that the member don't qualify for a health plan on the app results page
+    And I click on Sign Out in the Header for "NonElmo"
 
     @SLER-33  @NVOExchRegression
     Scenario: 1 member, no LCE, not allowed to shop during the Closed Enrollment period
