@@ -23,5 +23,4 @@ public class EnterCaseIdPageSteps {
         enterCaseIdPage.goBackonLoad1Bresult();
     }
 
-
 }

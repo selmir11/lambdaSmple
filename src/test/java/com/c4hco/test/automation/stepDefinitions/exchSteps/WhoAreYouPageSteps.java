@@ -19,6 +19,9 @@ public class WhoAreYouPageSteps {
     @And("I am a member with SSN {string} City {string} in State {string} with dob {string} in county {string} with zipcode {string}")
     public void enterSpecificMemberSsnDetails(String ssn, String City, String State, String dateOfBirth, String county, String zipcode) {whoAreYouPage.specificMemberSsnDetails(ssn, City, State, zipcode, county, dateOfBirth);}
 
-
+    @Then("I click back button on Who Are You Page")
+    public void iClickOnBackButton(){
+        whoAreYouPage.clickBackButton();
+    }
 
 }
