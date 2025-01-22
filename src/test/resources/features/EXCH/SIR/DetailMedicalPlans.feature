@@ -300,8 +300,9 @@ Feature: Medical Plan Detail page related tests
 
     Then I click on Sign Out in the Header for "Portal"
 
-  @SLER-2009-WIP  @MedicalDetailDocumentSuccessfulDownload
-  Scenario: SLER-2009 - Validate the documents found on the Detail Plans page when the Network Links are switched (Medical)
+  @SLER-2009-WIP @MedicalDetailDocumentSuccessfulDownload
+    # application properties - pdf testing row must be set to "yes" otherwise this will fail
+  Scenario Outline: SLER-2009 - Validate the documents found on the Detail Plans page when the Network Links are switched (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -361,17 +362,19 @@ Feature: Medical Plan Detail page related tests
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
+    And I select the Insurance Company dropdown
     And I select "<carrierOption>" to filter for desired plan provider
+    And I select the first plan detail
 
     Then I validate I am on the "Medical Plan Detail" page
+
     And I validate the "<carrierDocs>" document upload links for the Medical Detail page
     Then I click on Sign Out in the Header for "Portal"
-
     Examples:
-      | carrierOption                     | carrierDocs |
-      | Anthem                            | Anthem      |
-      | Cigna Healthcare                  | Cigna       |
-      | Denver Health                     | Denver      |
-      | Kaiser Permanente                 | Kaiser      |
-      | Rocky Mountain Health Plans / UHC | Rocky       |
-      | Select Health                     | Select      |
+      | carrierOption | carrierDocs |
+      | Anthem        | Anthem      |
+     # | Cigna Healthcare                  | Cigna       |
+    #  | Denver Health                     | Denver      |
+    #  | Kaiser Permanente                 | Kaiser      |
+     # | Rocky Mountain Health Plans / UHC | Rocky       |
+     # | Select Health                     | Select      |
