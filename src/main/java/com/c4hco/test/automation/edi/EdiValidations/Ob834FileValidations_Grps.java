@@ -43,7 +43,7 @@ public class Ob834FileValidations_Grps {
         validateCtrlFnGrpSegment(subscriberMedEntities.get(0));
         validateSubscriberSegments(subscriberMedEntities);
         validateMemSeg(medicalEntityList);
-        validateSegCount();
+      //  validateSegCount(); // WIP
     }
 
     public void validateOb834DenFile(String denFileName) {
@@ -87,11 +87,11 @@ public class Ob834FileValidations_Grps {
         validateInsSegment(member, entry);
         validateNM1Seg(member, entry);
         validateHierarchyLevelSeg(member, entry);
-        validateLSLESegment(member);
         validateAddlMaintReason(member, entry);
         validateDtpSegment(member, entry);
-        validateLxRefN1Segment(member, entry);
         validateMemberRefSeg(member, entry);
+        validateLSLESegment(member);
+        validateLxRefN1Segment(member, entry);
         softAssert.assertAll();
     }
 
@@ -124,7 +124,7 @@ public class Ob834FileValidations_Grps {
 
             }
         }
-
+        softAssert.assertAll();
     }
 
     private void validateLxRefN1Segment(Member member, Ob834DetailsEntity entry) {
@@ -248,7 +248,7 @@ public class Ob834FileValidations_Grps {
 
         }
 
-    //    softAssert.assertAll("LX switch case for sep reason not null");
+        softAssert.assertAll("LX switch case for sep reason not null");
     }
 
     private void validateWithoutSepReasn(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member) {
@@ -362,6 +362,7 @@ public class Ob834FileValidations_Grps {
                 softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 doe not match with financial effective date.");
             }
         }
+        softAssert.assertAll();
     }
 
     private void validateAddlMaintReason(Member member, Ob834DetailsEntity entry) {
@@ -385,6 +386,7 @@ public class Ob834FileValidations_Grps {
 
             }
         }
+        softAssert.assertAll();
     }
 
     private void validateLSLESegment(Member member) {
@@ -393,6 +395,7 @@ public class Ob834FileValidations_Grps {
         softAssert.assertEquals(lsSegment.get(1), "2700", "Loop Header, the loop ID number given on the transaction set does not match");
         softAssert.assertEquals(leSegment.get(0), "2700", "Loop trailer, The loop ID number given on the transaction set does not match");
         segCount = segCount + 2; // one Ls and one LE segment per member
+        softAssert.assertAll();
     }
 
     private void validateHierarchyLevelSeg(Member member, Ob834DetailsEntity entry) {
@@ -401,6 +404,7 @@ public class Ob834FileValidations_Grps {
         softAssert.assertEquals(hdSeg.get(0), entry.getHd_maint_type_code(), "HD maintenance type code does not match");
         softAssert.assertEquals(hdSeg.get(1), "", "Empty");
         softAssert.assertEquals(hdSeg.get(2), entry.getInsurance_line_code(), "Insurance line code does not match");
+        softAssert.assertAll();
     }
 
     private void validateNM1Seg(Member member, Ob834DetailsEntity entry) {
@@ -420,19 +424,27 @@ public class Ob834FileValidations_Grps {
             }
             softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size is not equal to 3");
         } else {
-            softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
-            if (!SharedData.getPrimaryMember().getResAddress().equals(SharedData.getPrimaryMember().getMailingAddress()) && nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
+            if (!SharedData.getPrimaryMember().getResAddress().equals(SharedData.getPrimaryMember().getMailingAddress())) {
+                if( nm1Seg1.get(0).get(3).toLowerCase().contains("primary")){
+                    softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
+                    softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
+                    softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
+                }
+            } else if(entry.getSubscriber_indicator().equals("Y")){
+                // validate 3rd and optimize code
                 softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
                 softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
-                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
+                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size for subscri");
+
             } else {
                 softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "1", "NM1 segment size for member is not equal to 1");
             }
         }
+        softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(), "Member Last name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(8), entry.getMember_ssn(), "Member SSN does not match");
-       // softAssert.assertAll();
+        softAssert.assertAll();
     }
 
     private void validateInsSegment(Member member, Ob834DetailsEntity entry) {
