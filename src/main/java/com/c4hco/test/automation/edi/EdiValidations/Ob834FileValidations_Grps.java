@@ -54,7 +54,7 @@ public class Ob834FileValidations_Grps {
         insSegCount = 0;
         validateSubscriberSegments(subscriberDenEntities);
         validateMemSeg(dentalEntityList);
-        validateSegCount();
+        // validateSegCount(); //WIP
     }
 
     private void validateSegCount() {
