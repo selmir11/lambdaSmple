@@ -50,4 +50,9 @@ public class LifeChangeEventsPageSteps {
     public void iClickOnTheHelpIconNextToSpecialRequirementOption() {
         lifeChangeEventsPage.clickHelpIconNextToSpecialRequirement();
     }
+
+    @And("I click Help me understand this page link on Report a Life change Page")
+    public void iClickHelpMeUnderstandThisPageLink(){
+        lifeChangeEventsPage.clickHelpMeUnderstandLink();
+    }
 }
