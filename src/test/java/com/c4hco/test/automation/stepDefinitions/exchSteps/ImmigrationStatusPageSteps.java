@@ -38,4 +38,16 @@ public class ImmigrationStatusPageSteps {
     public void inputGrantDate(String grantDate) {
         ImmigrationStatusPage.inputGrantDate(grantDate);
     }
+
+    @Then("I verify the text on the Citizenship and Immigration Status page for Paroled into the U.S. in {string}")
+    public void iVerifyTextOnCitizenshipAndImmigrationStatusForParoledText(String language) {
+        ImmigrationStatusPage.VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(language);
+
+    }
+
+    @And("I select {string} icon on the Five-Year Bar Immigration Status page")
+    public void iSelectHelpIcon(String labelIcon){ImmigrationStatusPage.clickHelpIcon(labelIcon);}
+
+    @Then("I validate Lawful Presence help drawer Five-Year Bar page {string} verbiage in {string}")
+    public void iValidateHelp(String helpText, String language){ImmigrationStatusPage.validateHelpVerbiage(helpText, language);}
 }
