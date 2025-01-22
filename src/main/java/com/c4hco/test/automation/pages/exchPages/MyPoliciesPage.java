@@ -74,7 +74,7 @@ public class MyPoliciesPage {
 
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
-    MemberDetails primaryMember = SharedData.getPrimaryMember();
+
     Set<String> allMemberNames = new HashSet<>();
     Set<String> namesFromUI = new HashSet<>();
 
