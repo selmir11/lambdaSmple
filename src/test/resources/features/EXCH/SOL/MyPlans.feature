@@ -5,7 +5,7 @@ Feature: My Plans Page test
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2000-WIP @MarriageLCE
+  @SLER-2047 @CurrentFuturePlansTabs
   Scenario: One Current Plan and One Future Plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -67,6 +67,7 @@ Feature: My Plans Page test
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
-    Then I validate "Current Plans" on my policies page
-
+    Then I validate I am on the "My Policies" page
+    Then I click on Future Plans
+    Then I click on Current Plans
 

@@ -66,10 +66,15 @@ public class MyPoliciesPage {
     @FindBy(id="Cancel 2025 Dental Plans Button")
     WebElement cancelDentalPlanbtn;
 
+    @FindBy(id="SOL-CurrentPolicies-FuturePlans")
+    WebElement FuturePlans;
+
+    @FindBy(id="SOL-CurrentPolicies-CurrentPlans")
+    WebElement CurrentPlans;
+
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
     MemberDetails primaryMember = SharedData.getPrimaryMember();
-    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     Set<String> allMemberNames = new HashSet<>();
     Set<String> namesFromUI = new HashSet<>();
 
@@ -131,6 +136,7 @@ public class MyPoliciesPage {
     }
 
     private void validateEnrolledDentalPlanDetails(){
+        DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
 
             //WebElements
@@ -173,6 +179,7 @@ public class MyPoliciesPage {
     }
 
     private void validateEnrolledMedicalPlanDetails(){
+        DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
         for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
 
             //WebElements
@@ -276,6 +283,17 @@ public class MyPoliciesPage {
         basicActions.waitForElementToBePresent(backToCurPlansBtn, 10);
         backToCurPlansBtn.click();
     }
+
+    public void clickFuturePlans(){
+        basicActions.waitForElementToBePresent(FuturePlans, 10);
+        FuturePlans.click();
+    }
+
+    public void clickCurrentPlans(){
+        basicActions.waitForElementToBePresent(CurrentPlans, 10);
+        CurrentPlans.click();
+    }
+
 
     public void clickPlanCancelButton(String btnDetail){
         switch (btnDetail) {
