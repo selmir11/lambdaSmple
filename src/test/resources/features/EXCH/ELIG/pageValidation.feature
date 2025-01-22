@@ -3004,7 +3004,7 @@ Feature: Page validations on ELIG pages
     Then I select "Yes" option on the Let us guide you page
     And I click on save and continue button
     Then I validate I am on the "Enter Case ID" page
-    When I click on back button on Enter Case ID page
+    And I click on Back button on Loadby1B result page
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I validate I am on the "Before you begin" page
