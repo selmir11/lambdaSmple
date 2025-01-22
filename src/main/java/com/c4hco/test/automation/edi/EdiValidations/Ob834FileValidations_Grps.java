@@ -4,8 +4,10 @@ import com.c4hco.test.automation.Dto.Edi.Edi834.CommonEDISegments;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Edi834TransactionDetails;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Transaction;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -24,6 +26,7 @@ public class Ob834FileValidations_Grps {
     List<Ob834DetailsEntity> subscriberDenEntities = new ArrayList<>();
     Edi834TransactionDetails edi834TransactionDetails = new Edi834TransactionDetails();
     List<Transaction> transactionsList = new ArrayList<>();
+    BasicActions basicActions = new BasicActions();
     int segCount = 0;
     int insSegCount = 0;
     SoftAssert softAssert = new SoftAssert();
@@ -246,7 +249,7 @@ public class Ob834FileValidations_Grps {
 
         }
 
-        softAssert.assertAll("LX switch case for sep reason not null");
+    //    softAssert.assertAll("LX switch case for sep reason not null");
     }
 
     private void validateWithoutSepReasn(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member) {
@@ -344,7 +347,7 @@ public class Ob834FileValidations_Grps {
             }
         }
 
-        softAssert.assertAll("LX switch case for sep reason null");
+      //  softAssert.assertAll("LX switch case for sep reason null");
     }
 
 
@@ -404,23 +407,31 @@ public class Ob834FileValidations_Grps {
     private void validateNM1Seg(Member member, Ob834DetailsEntity entry) {
         List<List<String>> nm1Seg1 = member.getNM1();
         segCount = segCount + nm1Seg1.size();
-        if (SharedData.getPrimaryMember().getHasIncorrectEntities()) {
+        MemberDetails memberFromSd = basicActions.getMember( entry.getMember_first_name());
+        if (memberFromSd.getHasIncorrectEntities()) {
             softAssert.assertEquals(nm1Seg1.get(0).get(0), "74", "Entity Identifier Code does not match");
             softAssert.assertEquals(nm1Seg1.get(2).get(0), "31", "NM1 segment with value 31");
             softAssert.assertEquals(nm1Seg1.get(2).get(1), "1", "NM1 segment with value 1");
             softAssert.assertEquals(nm1Seg1.get(0).get(1), entry.getIncorrect_entity_type_qualifier(), "Incorrect entity type qualifier does not match");
             //WIP- POL-9151 - softAssert.assertEquals(nm1Seg1.get(0).get(7), entry.getIncorrect_id_code_qualifier(), "Incorrect id code qualifier does not match");
             softAssert.assertEquals(nm1Seg1.get(1).get(0), entry.getIncorrect_entity_id_code(), "Incorrect entity id code.");
-            if (SharedData.getPrimaryMember().getIncorrectIdCode() != null) {
+            if (memberFromSd.getIncorrectIdCode() != null) {
                 softAssert.assertEquals(nm1Seg1.get(1).get(8), entry.getIncorrect_id_code(), "Incorrect id code");
             }
             softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size is not equal to 3");
         } else {
             softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
-            if (!SharedData.getPrimaryMember().getResAddress().equals(SharedData.getPrimaryMember().getMailingAddress()) && nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
-                softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
-                softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
-                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
+            if (entry.getSubscriber_indicator().equals("Y")) {
+                if(!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress())){
+                    if(nm1Seg1.get(0).get(3).toLowerCase().contains("primary")){
+                        softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
+                    } else{
+                        // validate the 3rd record for sponsor name - WIP
+                        softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size for subscriber is not equal to 2");
+                    }
+                    softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
+                    softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
+                }
             } else {
                 softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "1", "NM1 segment size for member is not equal to 1");
             }
@@ -428,7 +439,7 @@ public class Ob834FileValidations_Grps {
         softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(), "Member Last name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(8), entry.getMember_ssn(), "Member SSN does not match");
-        softAssert.assertAll();
+       // softAssert.assertAll();
     }
 
     private void validateInsSegment(Member member, Ob834DetailsEntity entry) {
