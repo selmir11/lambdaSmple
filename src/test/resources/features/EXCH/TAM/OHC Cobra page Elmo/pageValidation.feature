@@ -123,7 +123,7 @@ Feature: Page Validation-OHC COBRA Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-720 @PageValidationOhcCobraElmo @test
+  @SLER-720 @PageValidationOhcCobraElmo
   Scenario: SLER-720 I validate save, update and remove on Cobra are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Cobra page
     And I verify the OHC options selected in the DB for "Primary"
