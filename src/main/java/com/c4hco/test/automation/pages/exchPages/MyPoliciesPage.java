@@ -73,8 +73,6 @@ public class MyPoliciesPage {
     WebElement CurrentPlans;
 
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
-
-
     Set<String> allMemberNames = new HashSet<>();
     Set<String> namesFromUI = new HashSet<>();
 
