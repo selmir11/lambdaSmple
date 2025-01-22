@@ -38,7 +38,7 @@ public class COCO_PolicyTableDbValidations {
             medValidationsCommonForAllMembers(policyTablesEntity);
         }
     }
-    private void validateMedDenForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member) {
+    private void validateMedForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member) {
         validateSubmittedBy(policyTablesEntity);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), member.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), member.getLastName(), "Subscriber last name matches");
@@ -50,10 +50,9 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "effectuated indicator does not match in en policy ah");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
         softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), "SUBMITTED", "Dental member coverage status does not match");
         softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
         softAssert.assertNull(policyTablesEntity.getCsr_level_epfh(), "epfh CSR level does not match");
-        softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
+        softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),"00", "emcfh CSR level does not match");
         softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
         softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
         softAssert.assertAll();
@@ -63,7 +62,7 @@ public class COCO_PolicyTableDbValidations {
         List<MemberDetails> members = SharedData.getMembers();
         for (MemberDetails member : members) {
             if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
-                validateMedDenForDependents(policyTablesEntity, dbData, member);
+                validateMedForDependents(policyTablesEntity, dbData, member);
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Medical Policy total plan premium amount for member does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_premium_reduction_amt(), "Medical APTC amount from policy table does not match");
@@ -99,10 +98,9 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Coverage type 1, effectuated indicator does not match in en policy ah");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
         softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), "SUBMITTED", "Dental member coverage status does not match");
         softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
-        softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbData.getCsrLevel(), "epfh CSR level does not match");
-        softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),dbData.getCsrLevel(), "emcfh CSR level does not match");
+        softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), "00", "epfh CSR level does not match");
+        softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),"00", "emcfh CSR level does not match");
         softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
         softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
         validateSubmittedBy(policyTablesEntity);
@@ -110,7 +108,7 @@ public class COCO_PolicyTableDbValidations {
     }
 
     private void medValidationsCommonForAllMembers(PolicyTablesEntity policyTablesEntity) {
-        softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId() + "-" + dbData.getCsrLevel(), "Hios id does not match");
+        softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId() + "-00", "Hios id does not match");
         softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
         softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
 

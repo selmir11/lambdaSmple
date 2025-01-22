@@ -80,13 +80,8 @@ public class DbDataProvider_Exch {
 
     public String getFipcode(){
         String zipcode = primaryMember.getResAddress().getAddressZipcode();
-        return  postgresHandler.getResultFor("fip_code", exchDbQueries.getFipcode(zipcode));
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode));
     }
-    public String getFipcodeNew(){
-        String zipcode = primaryMember.getResAddress().getAddressZipcode();
-        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcodeNew(zipcode));
-    }
-
     public String getRatingAreaName(String fipcode){
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
 
@@ -117,7 +112,7 @@ public class DbDataProvider_Exch {
     }
 
     public void setDataFromDb(){
-        String fipcode = getFipcodeNew();
+        String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
         String brokerTinNum = null;
@@ -127,9 +122,6 @@ public class DbDataProvider_Exch {
                 brokerTinNum = getTinNumForBroker();
             }
             csrLevel = getCSRLevel();
-        }
-        else {
-            csrLevel = "00";
         }
         DbData dbData = new DbData();
 
@@ -141,7 +133,7 @@ public class DbDataProvider_Exch {
         SharedData.setDbData(dbData);
     }
     public void setDataFromDb_New(String name){
-        String fipcode = getFipcodeNew();
+        String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
         String brokerTinNum = null;
