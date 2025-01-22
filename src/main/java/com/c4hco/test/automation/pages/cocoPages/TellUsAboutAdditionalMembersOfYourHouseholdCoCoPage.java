@@ -566,17 +566,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
             List<MemberDetails> members = SharedData.getMembers();
-            for (MemberDetails member : members) {
-                if (member.getFirstName().contains(Relation)) {
-                    if (Relation.equals("Spouse") || Relation.equals("Wife") || Relation.equals("Husband")) {
-                        Relation = "Spouse";
-                    } else if (Relation.equals("Son") || Relation.equals("Daughter")) {
-                        Relation = "Child or Other dependent";
-                    }
-                    member.setRelation_to_subscriber(Relation.toUpperCase());
-                    break;
-                }
-            }
+            members.stream().filter(mem -> mem.getFirstName().contains(Relation)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(Relation.toUpperCase()));
             SharedData.setMembers(members);
         } catch (NoSuchElementException e) {
             System.out.println("Element not found: " + e.getMessage());

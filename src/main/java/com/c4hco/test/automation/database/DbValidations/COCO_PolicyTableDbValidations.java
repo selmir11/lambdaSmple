@@ -5,15 +5,16 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.DbData;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
-import com.c4hco.test.automation.database.dbDataProvider.COCO_DbDataProvider;
+import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class COCO_PolicyTableDbValidations {
-    COCO_DbDataProvider cocoDbDataProvider = new COCO_DbDataProvider();
+    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     BasicActions basicActions = new BasicActions();
     SoftAssert softAssert = new SoftAssert();
     List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
@@ -31,34 +32,12 @@ public class COCO_PolicyTableDbValidations {
         for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                 validateSubscriberMedDetails(policyTablesEntity);
-                validateMedDenForSubscriber(policyTablesEntity);
             } else {
                 validateDependentMedDetails(policyTablesEntity);
             }
             medValidationsCommonForAllMembers(policyTablesEntity);
         }
     }
-    private void validateMedDenForSubscriber(PolicyTablesEntity policyTablesEntity) {
-        validateSubmittedBy(policyTablesEntity);
-        softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
-        softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
-        softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(subscriber.getAccount_id()), "Subscriber account id does not match");
-        softAssert.assertEquals(policyTablesEntity.getApplication_id(), subscriber.getApplication_id(), "Subscriber application id does not match");
-        softAssert.assertNull(policyTablesEntity.getTobacco_use(), "Tobacco use field is obsolete in policy tables. So, it should be null always. We got a non-null value");
-        softAssert.assertTrue(policyTablesEntity.getBirth_date().contains(basicActions.changeDateFormat(subscriber.getDob(), "MMddyyyy", "yyyy-MM-dd")), "Subscriber DOB does not match");
-        softAssert.assertEquals(policyTablesEntity.getPlan_year(), SharedData.getPlanYear(), " Plan year does not match");
-        softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Coverage type 1, effectuated indicator does not match in en policy ah");
-        softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), "SUBMITTED", "Dental member coverage status does not match");
-        softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
-        softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbData.getCsrLevel(), "epfh CSR level does not match");
-        softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
-        softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
-        softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
-        softAssert.assertAll();
-    }
-
     private void validateMedDenForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member) {
         validateSubmittedBy(policyTablesEntity);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), member.getFirstName(), "Subscriber first name matches");
@@ -110,6 +89,23 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), medicalPlanDbData.getCsrAmt(), "Medical Policy total CSR amount does not match");
         softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical financial start date does not match");
         softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical financial end date does not match");
+        softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
+        softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
+        softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(subscriber.getAccount_id()), "Subscriber account id does not match");
+        softAssert.assertEquals(policyTablesEntity.getApplication_id(), subscriber.getApplication_id(), "Subscriber application id does not match");
+        softAssert.assertNull(policyTablesEntity.getTobacco_use(), "Tobacco use field is obsolete in policy tables. So, it should be null always. We got a non-null value");
+        softAssert.assertTrue(policyTablesEntity.getBirth_date().contains(basicActions.changeDateFormat(subscriber.getDob(), "MMddyyyy", "yyyy-MM-dd")), "Subscriber DOB does not match");
+        softAssert.assertEquals(policyTablesEntity.getPlan_year(), SharedData.getPlanYear(), " Plan year does not match");
+        softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Coverage type 1, effectuated indicator does not match in en policy ah");
+        softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
+        softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
+        softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), "SUBMITTED", "Dental member coverage status does not match");
+        softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
+        softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbData.getCsrLevel(), "epfh CSR level does not match");
+        softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),dbData.getCsrLevel(), "emcfh CSR level does not match");
+        softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
+        softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
+        validateSubmittedBy(policyTablesEntity);
         softAssert.assertAll();
     }
 
@@ -127,20 +123,20 @@ public class COCO_PolicyTableDbValidations {
     }
     private void setData(String policyStatus) {
         subscriber = SharedData.getPrimaryMember();
-        List<PolicyTablesEntity> medicalPolicyEntitiesList = cocoDbDataProvider.getDataFrmPolicyTablesCOCO("1",policyStatus);
-
+        List<PolicyTablesEntity> policyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
+        List<PolicyTablesEntity> medicalPolicyEntitiesList = policyEntitiesList.stream().filter(policy -> policy.getPolicy_status().equals(policyStatus)).collect(Collectors.toList());
         SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
 
-        cocoDbDataProvider.setDataFromDb();
-        cocoDbDataProvider.setMedicalPlanDataFromDb(SharedData.getPrimaryMember().getMedicalPlan()); // Works for one group
+        exchDbDataProvider.setDataFromDb();
+        exchDbDataProvider.setMedicalPlanDataFromDb(SharedData.getPrimaryMember().getMedicalPlan()); // Works for one group
 
         if (SharedData.getScenarioDetails().getTotalMembers() > 1) {
             List<MemberDetails> memberDetailsList = SharedData.getMembers();
             for (MemberDetails member : memberDetailsList) {
-                cocoDbDataProvider.setExchPersonId(member, member.getMemberId());
+                exchDbDataProvider.setExchPersonId(member, member.getMemberId());
             }
         }
-        cocoDbDataProvider.setExchPersonId(subscriber, subscriber.getMemberId());
+        exchDbDataProvider.setExchPersonId(subscriber, subscriber.getMemberId());
 
         medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
         dbData = SharedData.getDbData();
