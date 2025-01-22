@@ -45,6 +45,7 @@ Feature: Manage Plans: Button Go Back navigation
     Then I validate and click Go Back button
     And I validate I am on the "Admin Portal individual dashboard" page
     And I logout from Admin Portal
+
   Scenario:Manage plan 2023 Go Back navigation from Simple View MP page
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
@@ -58,30 +59,34 @@ Feature: Manage Plans: Button Go Back navigation
     And I check default year displays
     Then I click on "Manage Plans" user dashboard button
     And I validate I am on the "Manage Plans" page
+    And I wait for 300 milliseconds
     And I check default year displays
     And I select the "2023" plan year on manage plan
+    And I wait for 300 milliseconds
+    And I validate I am on the "Manage Plans" page
+    Then I validate buttons displayed on Manage page
     Then I check current Simplified Medical container labels
     Then I validate and click Go Back button
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I click on "Manage Plans" user dashboard button
+    And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     And I check default year displays
     And I select the "2023" plan year on manage plan
+    And I wait for 500 milliseconds
     And I validate I am on the "Manage Plans" page
-    And I wait for 300 milliseconds
-    Then I validate buttons displayed on Manage page
-    And I wait for 300 milliseconds
     Then I unchecked "Dental" from plan type
     And I validate I am on the "Manage Plans" page
     Then I validate and click Go Back button
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I click on "Manage Plans" user dashboard button
+    And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     And I select the "2023" plan year on manage plan
     And I wait for 500 milliseconds
     And I validate I am on the "Manage Plans" page
-    Then I unchecked "Medical" from plan type
     And I wait for 300 milliseconds
+    Then I unchecked "Medical" from plan type
     And I validate I am on the "Manage Plans" page
     Then I validate and click Go Back button
     And I validate I am on the "Admin Portal individual dashboard" page
