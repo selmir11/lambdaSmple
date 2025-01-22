@@ -100,7 +100,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-310 @PageTextOtherHealthInsurancePage @test
+  @SLER-310 @PageTextOtherHealthInsurancePage
   Scenario: SLER-310 I can see Other Health Coverage's standard errors consistently - Spanish
     And I validate I am on the "Elmo Other Health Coverage" page
     And I change the language from header to "Spanish"
@@ -116,7 +116,7 @@ Feature: Page Text-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-347 @PageTextOtherHealthInsurancePage @TAMSmoke @test
+  @SLER-347 @PageTextOtherHealthInsurancePage @TAMSmoke
   Scenario: SLER-347 I validate save, update and remove on Other Health Coverage are updated in the DB
     And I validate I am on the "Elmo Other Health Coverage" page
 
@@ -157,7 +157,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-386 @PageTextOtherHealthInsurancePage @test
+  @SLER-386 @PageTextOtherHealthInsurancePage
   Scenario: SLER-386 I validate remove Medicare on Other Health Coverage is updated in the DB
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -206,7 +206,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-400 @PageTextOtherHealthInsurancePage @test
+  @SLER-400 @PageTextOtherHealthInsurancePage
   Scenario: SLER-400 I validate remove Individual Insurance on Other Health Coverage is updated in the DB
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -251,7 +251,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-401 @PageTextOtherHealthInsurancePage @test
+  @SLER-401 @PageTextOtherHealthInsurancePage
   Scenario: SLER-401 I validate remove Individual Insurance on ESI is updated in the DB
     Then I select "job" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -288,7 +288,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-473 @PageTextOtherHealthInsurancePage @test
+  @SLER-473 @PageTextOtherHealthInsurancePage
   Scenario: SLER-473 I validate remove COBRA on Other Health Coverage is updated in the DB
     Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -332,7 +332,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-475 @PageTextOtherHealthInsurancePage @test
+  @SLER-475 @PageTextOtherHealthInsurancePage
   Scenario: SLER-475 I validate remove HRA on Other Health Coverage is updated in the DB
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -383,7 +383,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click on Sign Out in the Header for "NonElmo"
 
 
-  @SLER-476 @PageTextOtherHealthInsurancePage @test
+  @SLER-476 @PageTextOtherHealthInsurancePage
   Scenario: SLER-476 I validate remove VA Healthcare on Other Health Coverage is updated in the DB
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -428,7 +428,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-477 @PageTextOtherHealthInsurancePage @test
+  @SLER-477 @PageTextOtherHealthInsurancePage
   Scenario: SLER-477 I validate remove Retiree Health Plan on Other Health Coverage is updated in the DB
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -473,7 +473,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-478 @PageTextOtherHealthInsurancePage @test
+  @SLER-478 @PageTextOtherHealthInsurancePage
   Scenario: SLER-478 I validate remove TRICARE on Other Health Coverage is updated in the DB
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -518,7 +518,7 @@ Feature: Page Text-Other Health Coverage Page
 
 
 
-  @SLER-479 @PageTextOtherHealthInsurancePage @test
+  @SLER-479 @PageTextOtherHealthInsurancePage
   Scenario: SLER-479 I validate remove Peace Corps on Other Health Coverage is updated in the DB
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
