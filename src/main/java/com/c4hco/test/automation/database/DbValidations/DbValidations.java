@@ -467,9 +467,8 @@ public class DbValidations {
         LocalDate expectedEndDate = qlceDatePlus60Days;
 
         if (SharedData.getIsOpenEnrollment().equals("yes")) {
-            LocalDate openEnrollmentEndDate = getOpenEnrEndDate();
-            if (openEnrollmentEndDate.isAfter(qlceDatePlus60Days)) {
-                expectedEndDate = openEnrollmentEndDate;
+            if (getOpenEnrEndDate().isAfter(qlceDatePlus60Days)) {
+                expectedEndDate = getOpenEnrEndDate();
             }
         }
         String expectedEnrEndDate = basicActions.changeDateFormat(expectedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
