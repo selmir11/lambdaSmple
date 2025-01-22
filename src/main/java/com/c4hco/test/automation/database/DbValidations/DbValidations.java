@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
+import net.bytebuddy.asm.Advice;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -461,28 +462,30 @@ public class DbValidations {
         softAssert.assertAll();
     }
     public void validateEnrollmentEndDateDB() {
-        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
-        LocalDate parsedEndDate = LocalDate.parse(enrolmentEndDate);
-        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
-        LocalDate qlceDate = LocalDate.now();
-        String openEnrolment = SharedData.getIsOpenEnrollment();
-        if (openEnrolment.equals("yes")) {
-            LocalDate openEnrollmentEndDate = LocalDate.of(parsedEndDate.getYear(), 1, 15);
-            LocalDate calculatedEndDate = qlceDate.plusDays(60);
+        String enrEndDateDb = basicActions.changeDateFormat(exchDbDataProvider.getEnrollmentEndDate(), "yyyy-MM-dd", "MM/dd/yyyy");
+        LocalDate qlceDatePlus60Days = LocalDate.now().plusDays(60); // works only when qlce date is today
+        LocalDate expectedEndDate = qlceDatePlus60Days;
 
-            if (calculatedEndDate.isAfter(openEnrollmentEndDate)) {
-                String formattedCalculatedEndDate = basicActions.changeDateFormat(calculatedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
-                softAssert.assertEquals(formattedDateEnd, formattedCalculatedEndDate);
-            } else {
-                String formattedOpenEnrollmentEndDate = basicActions.changeDateFormat(openEnrollmentEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
-                softAssert.assertEquals(formattedDateEnd, formattedOpenEnrollmentEndDate);
+        if (SharedData.getIsOpenEnrollment().equals("yes")) {
+            LocalDate openEnrollmentEndDate = getOpenEnrEndDate();
+            if (openEnrollmentEndDate.isAfter(qlceDatePlus60Days)) {
+                expectedEndDate = openEnrollmentEndDate;
             }
-        } else {
-            LocalDate calculatedEndDate = qlceDate.plusDays(60);
-            String formattedCalculatedEndDate = basicActions.changeDateFormat(calculatedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
-            softAssert.assertEquals(formattedDateEnd, formattedCalculatedEndDate);
         }
+        String expectedEnrEndDate = basicActions.changeDateFormat(expectedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+        softAssert.assertEquals(enrEndDateDb, expectedEnrEndDate);
         softAssert.assertAll();
+    }
+
+    private LocalDate getOpenEnrEndDate(){
+            int year;
+            Month currentMonth = LocalDate.now().getMonth();
+            if(currentMonth.toString().toLowerCase().equals("january")){
+                year = LocalDate.now().getYear();
+            } else {
+                year = LocalDate.now().getYear()+1;
+            }
+            return LocalDate.of(year, 1, 15);
     }
 
     public void verifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {
