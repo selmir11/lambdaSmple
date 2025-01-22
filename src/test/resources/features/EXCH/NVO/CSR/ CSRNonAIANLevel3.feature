@@ -71,6 +71,7 @@ Feature: Enrollment end date validation for multiple scenarios
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
+    And I click on Sign Out in the Header for "NonElmo"
 
     #DBSTEP
    And  I verify the Member will be CSR "NO-OVERRIDE"
@@ -146,7 +147,7 @@ Feature: Enrollment end date validation for multiple scenarios
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
-
+    And I click on Sign Out in the Header for "NonElmo"
     #DBSTEP
     And  I verify the Member will be CSR "OVERRIDE"
 
@@ -223,6 +224,7 @@ Feature: Enrollment end date validation for multiple scenarios
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
+    And I click on Sign Out in the Header for "NonElmo"
     #DBSTEP
     And  I verify the Member will be CSR "OVERRIDE"
 
