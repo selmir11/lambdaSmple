@@ -523,14 +523,14 @@ public class LawfulPresencePage {
     }
 
     public void validateMilitaryMembersOrVeteransHelpTextVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(9),20);
-        softAssert.assertEquals(helpDrawerHelpText.get(9).getText(), "Active Duty Military Members or Honorably Discharged Veterans\nQualified immigrants who also are (1) an honorably discharged veteran, (2) on active duty in the U.S. military or (3) the spouse (including a surviving spouse who has not remarried) or unmarried dependent child of an honorably discharged veteran or individual on active duty in the U.S. military are able to apply for health insurance through Connect for Health Colorado before the end of a five-year waiting period. Please note: DACA recipients should answer this question \"no\", even if they meet the qualifications noted above.");
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(8),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(8).getText(), "Active Duty Military Members or Honorably Discharged Veterans\nQualified immigrants who also are (1) an honorably discharged veteran, (2) on active duty in the U.S. military or (3) the spouse (including a surviving spouse who has not remarried) or unmarried dependent child of an honorably discharged veteran or individual on active duty in the U.S. military are able to apply for health insurance through Connect for Health Colorado before the end of a five-year waiting period. Please note: DACA recipients should answer this question \"no\", even if they meet the qualifications noted above.");
         softAssert.assertAll();
     }
 
     public void validateMilitaryMembersOrVeteransHelpTextVerbiageSp() {
-        basicActions.waitForElementToBePresent( helpDrawerHelpText.get(9),20);
-        softAssert.assertEquals(helpDrawerHelpText.get(9).getText(), "Servicio activo del ej\u00E9rcito o veterano dado de baja honrosamente\nUn inmigrante autorizado que tambi\u00E9n: (1) sea veterano dado de baja honrosamente, (2) est\u00E9 en servicio activo en el ej\u00E9rcito de Estados Unidos o (3) sea c\u00F3nyuge (incluso un c\u00F3nyuge sobreviviente que no se haya vuelto a casar) o sea hijo dependiente soltero de un veterano dado de baja honrosamente o de un miembro en servicio activo del ej\u00E9rcito de Estados Unidos, puede solicitar seguro de salud por medio de Connect for Health Colorado antes de concluir un per\u00EDodo de espera de cinco a\u00F1os. Tenga en cuenta que: los beneficiarios de DACA deben responder \"no\" a esta pregunta, incluso si cumplen con los requisitos que se mencionan en la parte superior.");
+        basicActions.waitForElementToBePresent( helpDrawerHelpText.get(8),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(8).getText(), "Servicio activo del ej\u00E9rcito o veterano dado de baja honrosamente\nUn inmigrante autorizado que tambi\u00E9n: (1) sea veterano dado de baja honrosamente, (2) est\u00E9 en servicio activo en el ej\u00E9rcito de Estados Unidos o (3) sea c\u00F3nyuge (incluso un c\u00F3nyuge sobreviviente que no se haya vuelto a casar) o sea hijo dependiente soltero de un veterano dado de baja honrosamente o de un miembro en servicio activo del ej\u00E9rcito de Estados Unidos, puede solicitar seguro de salud por medio de Connect for Health Colorado antes de concluir un per\u00EDodo de espera de cinco a\u00F1os. Tenga en cuenta que: los beneficiarios de DACA deben responder \"no\" a esta pregunta, incluso si cumplen con los requisitos que se mencionan en la parte superior.");
         softAssert.assertAll();
     }
 }

@@ -1,4 +1,4 @@
-@SLER-1861
+@SLER-1861 @NVOExchRegression
 Feature: Validate Error pop-up that prevents from overwriting multiple fields
 
   Scenario: Add language to the pop-up
@@ -72,7 +72,7 @@ Feature: Validate Error pop-up that prevents from overwriting multiple fields
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
     Then I validate I am on the "Report a life change" page
-    And I report "Other" and click continue
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I update full name of member with prefix "Primary"
@@ -117,7 +117,7 @@ Feature: Validate Error pop-up that prevents from overwriting multiple fields
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
     Then I validate I am on the "Report a life change" page
-    And I report "NoneOfThese" and click continue
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I update full name of member with prefix "Primary"
@@ -162,7 +162,7 @@ Feature: Validate Error pop-up that prevents from overwriting multiple fields
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
     Then I validate I am on the "Report a life change" page
-    And I report "NoneOfThese" and click continue
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     And I change the language from header to "Spanish NonElmo"
@@ -195,7 +195,7 @@ Feature: Validate Error pop-up that prevents from overwriting multiple fields
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
     Then I validate I am on the "Report a life change" page
-    And I report "NoneOfThese" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -251,7 +251,7 @@ Feature: Validate Error pop-up that prevents from overwriting multiple fields
     Then I validate I am on the "Before you begin" page
     And I click on continue with  application button on Before you begin page
     Then I validate I am on the "Report a life change" page
-    And I report "NoneOfThese" and click continue
+    And I report "Birth" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I update full name of member with prefix "Primary"
