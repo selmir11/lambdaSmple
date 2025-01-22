@@ -63,6 +63,12 @@ public class ImmigrationStatusPage {
     @FindBy(id = "livedSince1996No")
     WebElement livedSince1996No;
 
+    @FindBy(css = "label.control-label.label-radio span")
+    WebElement authWorkUsTextYes;
+
+    @FindBy(xpath = "(//*[@class='control-label label-radio'])[2]/span")
+    WebElement authWorkUsTextNo;
+
    //Immigration Status For parolee into US
 
     @FindBy(css = "h2.c4PageHeader")
@@ -194,6 +200,20 @@ public class ImmigrationStatusPage {
         softAssert.assertAll();
     }
 
+    public void VerifyImmigrationStatusText(List<String> dataText) {
+        basicActions.waitForElementToBePresent(paroleePageHeader,40);
+        softAssert.assertEquals(paroleePageHeader.getText(), dataText.get(0)+" "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), dataText.get(1),"mismatch");
+        softAssert.assertEquals(paroleePageTitle.getText(), dataText.get(2),"mismatch");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(),dataText.get(3), "mismatch");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), dataText.get(4),"mismatch");
+        softAssert.assertEquals(authWorkUsTextYes.getText(), dataText.get(5), " Yes RadioButton text mismatch");
+        softAssert.assertEquals(authWorkUsTextNo.getText(), dataText.get(6), " No RadioButton text mismatch");
+        softAssert.assertEquals(backButton.getAttribute("value"),dataText.get(7), "Not match ");
+        softAssert.assertEquals(saveContinue.getAttribute("value"),dataText.get(8), "Button not match");
+        softAssert.assertAll();
+    }
+
     public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
         switch (YNLivedInUSSince1996) {
             case "Yes":
@@ -219,6 +239,16 @@ public class ImmigrationStatusPage {
                 break;
             case "Spanish":
                 VerifyCitizenshipAndImmigrationforParoledInToUSTextSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void VerifyImmigrationStatusPageText(String language, List<String> dataText) {
+        switch (language) {
+            case "English","Spanish":
+                VerifyImmigrationStatusText(dataText);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +language );

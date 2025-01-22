@@ -901,3 +901,68 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I verify the text on the Citizenship and Immigration Status page for Paroled into the U.S. in "Spanish"
     And I change the language from header to "English NonElmo"
     Then  I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2029 @PageText @WIP
+  Scenario: Verify English and Spanish Text for Applicant for asylum status on the Citizenship and immigration status page [RT-989]
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "No" for Citizen option
+    Then I select "Yes" for Eligible Immigration Status option
+    Then I select "I-327 Reentry Permit" as Document type
+    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
+    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
+    Then I select "Yes" for name matching the document
+    And I click continue on the Citizenship page
+    Then I select "No" for Lawful Permanent Resident
+    Then I select "Applicant for asylum" for immigration status
+    Then I click continue on the Immigration Status page
+    Then I verify the text on the Citizenship and Immigration Status page on Applicant for asylum in "English"
+      | Citizenship and Immigration Status:  |
+      | Help me understand this page |
+      | Immigration Status |
+      | It looks like we need more information about your immigration status |
+      | Are you authorized to work in the United States? |
+      | Yes |
+      | No |
+      | < Back |
+      | Save and Continue |
+    And I change the language from header to "Spanish NonElmo"
+    Then I verify the text on the Citizenship and Immigration Status page on Applicant for asylum in "Spanish"
+      | Ciudadanía y estatus migratorio:   |
+      | Ayuda para entender esta página |
+      | Estatus Migratorio |
+      | Al parecer, necesitamos más información sobre su estatus migratorio |
+      | ¿Está autorizado para trabajar en los Estados Unidos? |
+      | Sí |
+      | No |
+      | < Atrás |
+      | Guardar y Continuar |
+    And I change the language from header to "English NonElmo"
+    Then  I click on Sign Out in the Header for "NonElmo"
