@@ -493,16 +493,15 @@ Feature: Verify Navigation to the ELIG Pages
     And  I enter valid credentials to login
     Then I apply for the current year
     Then I click on back button in Completed Peak Application page
-    And I validate that I am in Account Overview Page
     Then I click on ClickHere link for "My Profile"
     Then I click on Go back to Welcome page Button on My Profile Exch
-    And I validate that I am in Account Overview Page
+    And I validate I am on the "My Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I go back to Account Overview Page from My Eligibility
-    And I validate that I am in Account Overview Page
+    And I validate I am on the "My Account Overview" page
     Then I click on ClickHere link for "My Documents"
-    Then I go back to Account Overview page from "My Documents" page
-    And I validate that I am in Account Overview Page
+    Then I validate Welcome back button navigates to welcome page
+    And I validate I am on the "My Account Overview" page
     Then I click on ClickHere link for "My Plans"
-    Then I go back to Account Overview page from "My Plans" page
-    And I validate that I am in Account Overview Page
+    Then I click on to Back to Current Plan Details button
+    And I validate I am on the "My Account Overview" page

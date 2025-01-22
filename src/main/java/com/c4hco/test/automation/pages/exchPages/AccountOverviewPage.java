@@ -129,6 +129,7 @@ public class AccountOverviewPage {
         applyForYr.click();
     }
 
+
     public void clickHereLinks(String clickHereOption){
         basicActions.waitForElementListToBePresent(clickHereLinks, 15);
         switch(clickHereOption){
@@ -162,27 +163,8 @@ public class AccountOverviewPage {
         basicActions.click(makeChanges);
     }
 
-    public void goBackToAccountOverviewPageFrom(String page){ //My Documents, MyPlans has been implemented here
-        switch (page){
-            case "My Documents":
-                basicActions.waitForElementToBeClickable(goBackFromMyDocuments,5);
-                basicActions.click(goBackFromMyDocuments);
-                break;
-            case "My Plans":
-                basicActions.waitForElementToBeClickable(goBackFromMyPlans,5);
-                basicActions.click(goBackFromMyPlans);
-                break;
-            default:
-                throw new IllegalArgumentException("Please select the Defined Page Name: " + page);
-        }
-    }
+        // ================VALIDATION METHODS================//
 
-    // ================VALIDATION METHODS================//
-
-    public void validateAccountOverviewPage(){
-        basicActions.waitFor(2);
-        assertTrue(basicActions.getDriver().getTitle().contains("C4HCO-Eligibility"));
-    }
 
     public void verifyLanguageText(String language) {
         switch (language) {

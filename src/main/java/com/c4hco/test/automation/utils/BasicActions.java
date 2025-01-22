@@ -308,15 +308,6 @@ public class BasicActions {
         }
     }
 
-    //Invoking this wait function to estimate the wait time in Seconds.
-    public void waitFor(int Seconds) {
-        try {
-            Thread.sleep(Seconds * 1000);
-        } catch (Exception e) {
-            // Exception is supressed because it is just wait statement
-        }
-    }
-
     public void click(WebElement element) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(30))

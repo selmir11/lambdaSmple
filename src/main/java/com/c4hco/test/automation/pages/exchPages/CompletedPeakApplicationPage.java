@@ -46,7 +46,6 @@ public class CompletedPeakApplicationPage {
     public void clickSaveAndContinueButton(){
         saveAndContinueButton.click();
     }
-//WIP
     public  void backButton(){
        backButton.click();
     }

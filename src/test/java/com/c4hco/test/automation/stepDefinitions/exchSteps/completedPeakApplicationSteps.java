@@ -24,7 +24,6 @@ public class completedPeakApplicationSteps {
 
     @Then("I click on back button in Completed Peak Application page")
     public void iclickonbackbutton(){
-        //WIP
         completedApplicationPage.backButton();
     }
 

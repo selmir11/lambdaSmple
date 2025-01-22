@@ -149,7 +149,8 @@ public class MyProfileExchPage {
     @FindBy(css = "hr.myProfile_address_hr")
     WebElement grayLineAddress;
 
-
+    @FindBy(xpath = "//button[text()='Go back to welcome page']")
+    WebElement GoBackToWelcomePage;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -161,9 +162,8 @@ public class MyProfileExchPage {
     }
 
     public void backToWelcomeButtonExch() {
-        basicActions.waitFor(10) ;
-        basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 60);
-        MyProfileButtonExch.get(0).click();
+        basicActions.waitForElementToBeClickable(GoBackToWelcomePage, 60);
+        GoBackToWelcomePage.click();
     }
 
     public void clickMakeChangesButton() {
