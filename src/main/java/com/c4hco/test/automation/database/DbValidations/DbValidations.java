@@ -5,7 +5,6 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
-import net.bytebuddy.asm.Advice;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -461,6 +460,7 @@ public class DbValidations {
         softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
         softAssert.assertAll();
     }
+
     public void validateEnrollmentEndDateDB() {
         String enrEndDateDb = basicActions.changeDateFormat(exchDbDataProvider.getEnrollmentEndDate(), "yyyy-MM-dd", "MM/dd/yyyy");
         LocalDate qlceDatePlus60Days = LocalDate.now().plusDays(60); // works only when qlce date is today

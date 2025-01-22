@@ -1,4 +1,5 @@
 Feature: LR Enrollment Period end date is set when user has
+
   @SLER-1808 @NVOExchRegression
   Scenario: [RT-2314]LCE Loss of MEC
     Given I open the login page on the "login" portal
