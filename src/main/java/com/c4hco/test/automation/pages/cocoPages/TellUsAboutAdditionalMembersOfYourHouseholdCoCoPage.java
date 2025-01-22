@@ -197,7 +197,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         enterMemberDOB(DOB);
         genderSelection(gender);
         for (String Relation : Relations) {
-            selectRelationship(Relation);
+            selectRelationship(Name,Relation);
         }
         applyingForCoverage(applying);
     }
@@ -552,7 +552,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         dropdown.selectByVisibleText(Relation);
     }
 
-    public void selectRelationship(String Relationship){
+    public void selectRelationship(String FnamePre,String Relationship){
         String[] parts = Relationship.split(":");
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
@@ -566,7 +566,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
             List<MemberDetails> members = SharedData.getMembers();
-            members.stream().filter(mem -> mem.getFirstName().contains(Relation)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(Relation.toUpperCase()));
+            members.stream().filter(mem -> mem.getFirstName().contains(FnamePre)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(Relation.toUpperCase()));
             SharedData.setMembers(members);
         } catch (NoSuchElementException e) {
             System.out.println("Element not found: " + e.getMessage());
@@ -634,7 +634,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
                 enterMemberDOB(DOB);
                 genderSelection(gender);
                 for (String Relation : Relations) {
-                    selectRelationship(Relation);
+                    selectRelationship(FName,Relation);
                 }
                 applyingForCoverage(applying);
                 actualMember.setDob(DOB);
