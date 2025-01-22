@@ -67,9 +67,6 @@ public class MyPoliciesPage {
     WebElement cancelDentalPlanbtn;
 
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
-
-    MemberDetails primaryMember = SharedData.getPrimaryMember();
-    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     Set<String> allMemberNames = new HashSet<>();
     Set<String> namesFromUI = new HashSet<>();
 
@@ -132,6 +129,7 @@ public class MyPoliciesPage {
 
     private void validateEnrolledDentalPlanDetails(){
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
+            DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
 
             //WebElements
             WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Plan Start Date:')]/following-sibling::*"));
@@ -173,6 +171,7 @@ public class MyPoliciesPage {
     }
 
     private void validateEnrolledMedicalPlanDetails(){
+        DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
         for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
 
             //WebElements
