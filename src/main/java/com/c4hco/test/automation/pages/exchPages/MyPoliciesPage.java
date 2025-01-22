@@ -138,6 +138,7 @@ public class MyPoliciesPage {
     private void validateEnrolledDentalPlanDetails(){
         DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
+            DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
 
             //WebElements
             WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Plan Start Date:')]/following-sibling::*"));

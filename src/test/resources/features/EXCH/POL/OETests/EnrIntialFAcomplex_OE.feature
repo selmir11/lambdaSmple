@@ -143,7 +143,7 @@ Feature: Enroll a in a plan 8 HH - OE
     Then I select "1234 Road" specific Address
     And I select "Yes" for CO Resident option
     And I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
     And I select "No" for Foster care in state of Colorado

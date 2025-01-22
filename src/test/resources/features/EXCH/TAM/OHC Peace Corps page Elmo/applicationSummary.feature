@@ -108,7 +108,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     Then I validate I am on the "Application Summary Completed" page
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
@@ -116,7 +116,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
       | Peace Corps |       Yes        |      Yes       |Current Month|         Yes                |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
+    Then I wait for 2500 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       | Peace Corps |       Yes        |      Yes       |Current Month|         Yes                |
@@ -146,7 +146,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     And I click save and continue on tax status page
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
@@ -183,7 +183,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I click "No" for insurance ending in 60 days in Peace Corps question
     Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
@@ -243,7 +243,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "Yes" for insurance ending voluntary for Peace Corps question
@@ -304,7 +304,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I click "No" for currently enrolled in Peace Corps question
     Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
@@ -366,7 +366,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     And I click save and continue on tax status page
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
@@ -403,7 +403,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I enter the end date as "Future Day:3" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
     Then I click continue on the Elmo OHC Peace Corps page
@@ -469,7 +469,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I click "No" for currently enrolled in Peace Corps question
     Then I click continue on the Elmo OHC Peace Corps page
     Then I click continue on family overview page
@@ -523,6 +523,14 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -553,12 +561,20 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     And I click save and continue on tax status page
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Peace Corps" page
+    Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "Yes" for insurance ending voluntary for Peace Corps question
     Then I click continue on the Elmo OHC Peace Corps page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "Peace Corps" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "Peace Corps" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -596,7 +612,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
 #Bug TAM-5037      | Peace Corps |     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
 #    Step 4
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
       |  OHC Type   |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
@@ -624,6 +640,14 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -645,7 +669,7 @@ Feature: Tests related to the Application Summary/Detail for Peace Corps
       |None Highlight|Removed|Removed Highlight|
       |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify None OHC detail on Application Details
       |None Highlight|Removed|Removed Highlight|

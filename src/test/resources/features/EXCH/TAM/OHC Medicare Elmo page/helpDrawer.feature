@@ -82,7 +82,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I set the browser resolution to 2000 x 800
 
   @SLER-898
@@ -113,7 +113,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I click continue on the Elmo OHC Medicare page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I select "Help me understand" icon on the Medicare Page
     Then I validate Medicare help drawer verbiage in "English"
     And I click Medicare DOI link in help drawer
@@ -168,7 +168,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I click continue on the Elmo OHC Medicare page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Secondary" Member on the Medicare page in "Spanish"
     And I select "Help me understand" icon on the Medicare Page
     Then I validate Medicare help drawer verbiage in "Spanish"

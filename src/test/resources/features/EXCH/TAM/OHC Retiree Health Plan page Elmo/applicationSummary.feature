@@ -109,7 +109,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I validate I am on the "Application Summary Completed" page
     Then I click on View Application Details
     Then I validate I am on the "Application Details" page
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
     Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
@@ -147,7 +147,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I click save and continue on tax status page
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
@@ -184,7 +184,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     Then I click "No" for insurance ending in 60 days in Retiree question
     Then I click continue on the Elmo OHC Retiree page
     Then I click continue on family overview page
@@ -242,7 +242,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I enter the end date as "Current Month" on the Retiree page
     Then I click "Yes" for insurance ending voluntary for Retiree question
@@ -301,7 +301,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     Then I click "No" for currently enrolled in Retiree question
     Then I click continue on the Elmo OHC Retiree page
     Then I click continue on family overview page
@@ -361,7 +361,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I click save and continue on tax status page
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
@@ -398,7 +398,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     Then I enter the end date as "Future Day:3" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
     Then I click continue on the Elmo OHC Retiree page
@@ -463,7 +463,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     Then I click "No" for currently enrolled in Retiree question
     Then I click continue on the Elmo OHC Retiree page
     Then I click continue on family overview page
@@ -516,6 +516,14 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -546,12 +554,20 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I click save and continue on tax status page
     Then I select "Retiree Health Plan" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Ohi Retiree" page
+    Then I validate I am on the "Elmo Ohc Retiree" page
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I enter the end date as "Current Month" on the Retiree page
     Then I click "Yes" for insurance ending voluntary for Retiree question
     Then I click continue on the Elmo OHC Retiree page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "Retiree Health Plan" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "Retiree Health Plan" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -588,7 +604,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
       |Retiree Health Plan|     Green    |       Yes        |      Green       |      Yes       |     Green      |Current Month|     Green    |       Yes        |       Green         |
 #    Step 4
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the basic OHC detail on Application Details
       |     OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
@@ -616,6 +632,14 @@ Feature: Tests related to the Application Summary/Detail for Retire
     And I click save and continue on tax status page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I verify Existing health insurance is "No" on the Application Summary page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    And I verify Existing health insurance is "No" on the Application Summary page in "Spanish"
+    And I change the language from header to "English NonElmo"
+    Then I back button on the Application Summary page
+    Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -637,7 +661,7 @@ Feature: Tests related to the Application Summary/Detail for Retire
       |None Highlight|Removed|Removed Highlight|
       |     Green    |   1   |      Red        |
     Then I click on Show Changes on Application Details
-    And I verify the OHC header highlight "Plain" on Application Details
+    And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify None OHC detail on Application Details
       |None Highlight|Removed|Removed Highlight|

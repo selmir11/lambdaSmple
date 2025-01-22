@@ -25,6 +25,33 @@ public class BasicSteps {
             case "Login":
                 pageUrl = "/login-portal/login";
                 break;
+            case "tax Silver":
+            pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
+            break;
+            case "QCPF":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
+            break;
+            case "QCPF Input Information":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/input-your-information";
+            break;
+            case "QCPF Preferences":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences";
+            break;
+            case "QCPF Preferences Doctor":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-doctor";
+            break;
+            case "QCPF Preferences Medication":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-medication";
+            break;
+            case "QCPF List of Plans":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/list-of-plans";
+            break;
+            case "QCPF Plan results":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-results";
+            break;
+            case "QCPF Plan Next steps":
+            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-next-steps";
+            break;
             case "Admin Login":
                 pageUrl = "login-portal/login/adminUsers";
                 break;
@@ -34,11 +61,17 @@ public class BasicSteps {
             case "Broker Portal Login":
                 pageUrl = "login-portal/login/brokers";
                 break;
+            case "Admin Program manager account creation":
+            pageUrl = "AdminPortal/program-manager/account-creation";
+            break;
             case "Prescreen":
                 pageUrl = "/prescreen";
                 break;
             case "Add Member":
                 pageUrl = "nes/addMember";
+                break;
+            case "Member":
+                pageUrl = "nes/member";
                 break;
             case "Pay now":
                 pageUrl = "PaymentPortal/payNow";
@@ -130,6 +163,9 @@ public class BasicSteps {
                 break;
             case "Enter Case ID":
                 pageUrl = "nes/enterCaseId";
+                break;
+            case "load By 1B Result":
+                pageUrl = "nes/loadBy1BResult";
                 break;
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
@@ -373,22 +409,22 @@ public class BasicSteps {
             case "CoCo Additional info for additional member":
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
                 break;
-            case "Elmo Ohi Retiree":
+            case "Elmo Ohc Retiree":
                 pageUrl = "/otherHealthCoverage/retiree";
                 break;
-            case "Elmo Ohi Medicare":
+            case "Elmo Ohc Medicare":
                 pageUrl = "/otherHealthCoverage/medicare";
                 break;
-            case "Elmo Ohi VA Healthcare":
+            case "Elmo Ohc VA Healthcare":
                 pageUrl = "/otherHealthCoverage/va";
                 break;
-            case "Elmo Ohi Individual Insurance":
+            case "Elmo Ohc Individual Insurance":
                 pageUrl = "/otherHealthCoverage/individual";
                 break;
-            case "Elmo Ohi Peace Corps":
+            case "Elmo Ohc Peace Corps":
                 pageUrl = "/otherHealthCoverage/peaceCorps";
                 break;
-            case "Elmo Ohi Tricare":
+            case "Elmo Ohc Tricare":
                 pageUrl = "/otherHealthCoverage/tricare";
                 break;
             case "CoCo Employment Income":
@@ -746,4 +782,9 @@ public class BasicSteps {
 
     @And("I verify the page is scrolled to the top")
     public void iPageAtTop() {basicActions.pageAtTop();}
+
+    @And("I get the memberId of primary member from url")
+    public void getMemId(){
+        basicActions.setMemberIdFromUrl();
+    }
 }

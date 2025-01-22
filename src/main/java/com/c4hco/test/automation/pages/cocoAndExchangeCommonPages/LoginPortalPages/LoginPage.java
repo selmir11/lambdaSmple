@@ -509,6 +509,12 @@ public class LoginPage {
             case "SEP":
                 LoginCredentials.setSepCredentials();
                 break;
+            case "SES":
+                LoginCredentials.setSesCredentials();
+                break;
+            case "SES Constant":
+                LoginCredentials.setSesCredentials_Constant();
+                break;
             default: Assert.fail("Invalid case");
         }
         loginWithExistingCreds();
@@ -525,6 +531,13 @@ public class LoginPage {
         basicActions.waitForElementToBePresent(password, 10);
         password.sendKeys(pswd);
         System.out.println("Password::" + pswd);
+        signInButton.click();
+    }
+
+    public void logIntoMyProgramManagerAccount() {
+        basicActions.waitForElementToBePresentWithRetries(username,30);
+        username.sendKeys(SharedData.getAssisterDetails().getEmail());
+        password.sendKeys(SharedData.getAssisterDetails().getPassword());
         signInButton.click();
     }
 }

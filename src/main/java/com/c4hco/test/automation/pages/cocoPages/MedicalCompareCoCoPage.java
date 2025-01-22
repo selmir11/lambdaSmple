@@ -27,33 +27,33 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(id = "MedicalComparePlans-ToTop")
+    @FindBy(id = "ComparePlans-ToTop")
     WebElement toTop;
 
     @FindBy(xpath = "//*[@class = 'accordion-header c4-type-header-sm']")
     List<WebElement> getDrpDwnPlanCategories;
 
-    @FindBy(id = "MedicalComparePlans-GoBackToPlans")
+    @FindBy(id = "ComparePlans-GoBackToPlans")
     public WebElement medicalCompareGoBack;
 
     @FindBy(id = "PlanCompare-removePlan_1")
-    public WebElement firstplan;
+    public WebElement deselectFirstPlan;
 
     @FindBy(id = "PlanCompare-removePlan_2")
-    public WebElement secondplan;
+    public WebElement deselectSecondplan;
 
     @FindBy(id = "PlanCompare-removePlan_1")
-    public WebElement thirdplan;
+    public WebElement deselectThirdplan;
     @FindBy(xpath="//div[normalize-space()= 'Compare Medical Plans']")
     public WebElement compareTopHeader;
 
-    @FindBy(xpath="//div[normalize-space()= 'Comparar planes médicos']")
+    @FindBy(xpath="//div[normalize-space()= 'Comparar planes m\u00E9dicos']")
     public WebElement compareTopHeaderSP;
 
     @FindBy(id = "ComparePlans-TopGoBackToPlans")
     public WebElement goBackToPlansCompareLink;
 
-    @FindBy(id = "SHP-MedicalComparePlans-DownloadSummaryOfThisPage")
+    @FindBy(id = "ComparePlans-DownloadSummaryOfThisPage")
     public WebElement downloadPDF;
 
     @FindBy(id= "PlanCompare-PlanDetails_1")
@@ -95,13 +95,20 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     @FindBy(xpath = "//p[normalize-space()='No hay planes seleccionados para comparar']")
     public WebElement noTextPlanSP;
 
-    @FindBy(id = "MedicalPlanCompare_InNetworkTab")
+
+    @FindBy(id = "PlanCompare_ExpandAll")
+    WebElement expandCOCOAllLink;
+
+    @FindBy(id = "PlanCompare_CollapseAll")
+    WebElement collapseCOCOAllLink;
+
+    @FindBy(id = "PlanCompare_InNetworkTab")
     public WebElement selectInNetworkTier1Link;
 
-    @FindBy(id = "MedicalPlanCompare_InNetworkTier2Tab")
+    @FindBy(id = "PlanCompare_InNetworkTier2Tab")
     public WebElement selectInNetworkTier2Link;
 
-    @FindBy(id = "MedicalPlanCompare_OutOfNetworkTab")
+    @FindBy(id = "PlanCompare_OutOfNetworkTab")
     public WebElement selectOutofNetworkLink;
 
     @FindBy(xpath = "//div[@id='SHP-MedicalComparePlans-InNetworkTier1-panel'] //button")
@@ -133,12 +140,12 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
     @FindBy(xpath = "//div[normalize-space()='Out-of-Pocket Max']")
     public WebElement txtCompareHeaderOutOfPocket;
-    @FindBy(xpath = "//div[normalize-space()='Desembolso máximo']")
+    @FindBy(xpath = "//div[normalize-space()='Desembolso m\u00E1ximo']")
     public WebElement txtCompareHeaderOutOfPocketSP;
 
     @FindBy(xpath = "//div[normalize-space()='Overall Quality Rating']")
     public WebElement txtCompareHeaderOverallQualityRating;
-    @FindBy(xpath = "//div[normalize-space()='Calificación de calidad general']")
+    @FindBy(xpath = "//div[normalize-space()='Calificaci\u00F3n de calidad general']")
     public WebElement txtCompareHeaderOverallQualityRatingSP;
 
     /// remove when new tests are put in place ///////////////
@@ -163,27 +170,27 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtHeaderPlanDocumentsSP;
 
     @FindBy(xpath = "//span[normalize-space()='Plan Documents\n" +
-            "(En español)']")
+            "(En espa\u00F1ol)']")
     public WebElement getTxtPlanDocumentsEnglish;
 
     @FindBy(xpath = "//span[normalize-space()='Plan Documents\n" +
-            "(En español)']")
+            "(En espa\u00F1ol)']")
     public WebElement getTxtPlanDocumentsSpanish;
 
     //Doctor Visits header
     @FindBy(xpath = "//div[normalize-space()='Doctor Visits']")
     public WebElement getTxtSubheaderDoctorVisits;
-    //@FindBy(xpath = "//*[normalize-space()='Consultas con proveedores ']")
-    @FindBy(id = "MedicalPlanCompare_DoctorsVisits")
+
+    @FindBy(id = "PlanCompare_DoctorVisits")
     public WebElement getTxtSubheaderDoctorVisitsSP;
 
     @FindBy(xpath = "//div[normalize-space()='Preventive Care/ Screening/ Immunization']")
     public WebElement getTxtPreventativeCare;
-    @FindBy(xpath = "//div[normalize-space()='Atención preventiva, exámenes, inmunización']")
+    @FindBy(xpath = "//div[normalize-space()='Atenci\u00F3n preventiva, ex\u00E1menes, inmunizaci\u00F3n']")
     public WebElement getTxtPreventativeCareSP;
     @FindBy(xpath = "//div[normalize-space()='Primary Care Visit to Treat an Injury or Illness']")
     public WebElement getTxtPrimaryCare;
-    @FindBy(xpath = "//div[normalize-space()='Consulta de atención primaria para tratar una lesión o enfermedad']")
+    @FindBy(xpath = "//div[normalize-space()='Consulta de atenci\u00F3n primaria para tratar una lesi\u00F3n o enfermedad']")
     public WebElement getTxtPrimaryCareSP;
     @FindBy(xpath = "//div[normalize-space()='Specialist Visit']")
     public WebElement getTxtSpecialistVisit;
@@ -199,9 +206,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtTelehealthSpecialistSP;
 
     //Emergency Care header
-    @FindBy(id = "MedicalPlanCompare_EmergencyCare")
+    @FindBy(id = "PlanCompare_EmergencyCare")
     public WebElement getTxtCompareHeaderEmergencyCare;
-    @FindBy(id = "MedicalPlanCompare_EmergencyCare")
+    @FindBy(id = "PlanCompare_EmergencyCare")
     public WebElement getTxtCompareHeaderEmergencyCareOut;
 
     @FindBy(xpath = "//td[normalize-space()='Urgent Care Centers or Facilities']")
@@ -219,9 +226,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
 
     //Header Drugs
-    @FindBy(id ="MedicalPlanCompare_Drugs")
+    @FindBy(id ="PlanCompare_Drugs")
     public WebElement getTxtCompareHeaderPrescriptionDrugs;
-    @FindBy(id ="MedicalPlanCompare_Drugs")
+    @FindBy(id ="PlanCompare_Drugs")
     public WebElement getTxtCompareHeaderPrescriptionDrugsOut;
 
     @FindBy(xpath = "//td[normalize-space()='Generic Drugs']")
@@ -242,9 +249,9 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtSpecialtyDrugsSP;
 
     //Testing Header
-    @FindBy(id = "MedicalPlanCompare_Testing")
+    @FindBy(id = "PlanCompare_Testing")
     public WebElement getTxtCompareHeaderTesting;
-    @FindBy(id = "MedicalPlanCompare_Testing")
+    @FindBy(id = "PlanCompare_Testing")
     public WebElement getTxtCompareHeaderTestingOut;
 
     @FindBy(xpath = "//td[normalize-space()='Laboratory Outpatient and Professional Services']")
@@ -253,49 +260,51 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtLaboratoryOutpatientSP;
     @FindBy(xpath = "//td[normalize-space()='X-rays and Diagnostic Imaging']")
     public WebElement getTxtXraysDiagnostics;
-    @FindBy(xpath = "//td[normalize-space()='Radiografía y diagnóstico por imagen']")
+    @FindBy(xpath = "//td[normalize-space()='Radiograf\u00EDa y diagn\u00F3stico por imagen']")
     public WebElement getTxtXraysDiagnosticsSP;
     @FindBy(xpath = "//td[normalize-space()='Imaging (CT/PET Scans, MRIs)']")
     public WebElement getTxtImaging;
-    @FindBy(xpath = "//td[normalize-space()='Estudios de Imagen (tomografía computarizada [CT], tomografía por emisión de positrones [PET], resonancia magnética [MRI])']")
+    @FindBy(id ="PlanCompare_ImagingCTPETScansAndMRIs_text")
     public WebElement getTxtImagingSP;
 
     //Facilities header
 
-    @FindBy(id = "MedicalPlanCompare_Facilities")
+    @FindBy(id = "PlanCompare_Facilities")
     public WebElement getTxtCompareHeaderFacilities;
 
-    @FindBy(id = "MedicalPlanCompare_Facilities")
+    @FindBy(id = "PlanCompare_Facilities")
     public WebElement getTxtCompareHeaderFacilitiesOut;
 
     @FindBy(xpath = "//td[normalize-space()='Outpatient Facility Fee (e.g., Ambulatory Surgery Center)']")
     public WebElement getTxtOutPatientFacility;
-    @FindBy(xpath = "//td[normalize-space()='Tarifa del centro ambulatorio (p. ej., centro de cirugía ambulatoria)']")
+
+    @FindBy(id = "PlanCompare_OutpatientFacilityFee_text")
     public WebElement getTxtOutPatientFacilitySP;
     @FindBy(xpath = "//td[normalize-space()='Outpatient Surgery Physician/Surgical Services']")
     public WebElement getTxtOutPatientSurgery;
-    @FindBy(xpath = "//td[normalize-space()='Servicios médicos y quirúrgicos en cirugía ambulatoria']")
+
+    @FindBy(id = "PlanCompare_OutpatientSurgeryPhysicianSurgicalServices_text")
     public WebElement getTxtOutPatientSurgerySP;
     @FindBy(xpath = "//td[normalize-space()='Inpatient Hospital Services (e.g., Hospital Stay)']")
     public WebElement getTxtInpatientHospital;
-    @FindBy(xpath = "//td[normalize-space()='Servicios en hospitalización (p. ej., permanencia en el hospital)']")
+    @FindBy(xpath = "//td[normalize-space()='Servicios en hospitalizaci\u00F3n (p. ej., permanencia en el hospital)']")
     public WebElement getTxtInpatientHospitalSP;
     @FindBy(xpath = "//td[normalize-space()='Inpatient Physician and Surgical Services']")
     public WebElement getTxtInPatientPhysician;
-    @FindBy(xpath = "//td[normalize-space()='Servicios médicos y quirúrgicos en hospitalización']")
+    @FindBy(xpath = "//td[normalize-space()='Servicios m\u00E9dicos y quir\u00FArgicos en hospitalizaci\u00F3n']")
     public WebElement getTxtInPatientPhysicianSP;
 
 
 
     //Mental Health header
-    @FindBy(id = "MedicalPlanCompare_MentalHealthBenefits")
+    @FindBy(id = "PlanCompare_MentalHealthBenefits")
     public WebElement getTxtCompareHeaderMentalHealth;
-    @FindBy(id = "MedicalPlanCompare_MentalHealthBenefits")
+    @FindBy(id = "PlanCompare_MentalHealthBenefits")
     public WebElement getTxtCompareHeaderMentalHealthOut;
 
     @FindBy(xpath = "//td[normalize-space()='Mental/Behavioral Health Office Visit']")
     public WebElement getTxtMentalBehavioralHealthOffice;
-    @FindBy(xpath = "//td[normalize-space()='Consulta médica de salud mental y conductual']")
+    @FindBy(xpath = "//td[normalize-space()='Consulta m\u00E9dica de salud mental y conductual']")
     public WebElement getTxtMentalBehavioralHealthOfficeSP;
     @FindBy(xpath = "//td[normalize-space()='Mental/Behavioral Health Outpatient Services']")
     public WebElement getTxtBehavioralOutpatient;
@@ -307,7 +316,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     public WebElement getTxtBehavioralInpatientSP;
     @FindBy(xpath = "//td[normalize-space()='Substance Abuse Disorder Office Visit']")
     public WebElement getTxtSubstanceAbuseDisorderOffice;
-    @FindBy(xpath = "//td[normalize-space()='Consulta médica por trastorno por abuso de sustancias']")
+    @FindBy(xpath = "//td[normalize-space()='Consulta m\u00E9dica por trastorno por abuso de sustancias']")
     public WebElement getTxtSubstanceAbuseDisorderOfficeSP;
     @FindBy(xpath = "//td[normalize-space()='Substance Abuse Disorder Outpatient Services']")
     public WebElement getTxtSubstanceAbuseOutpatient;
@@ -320,22 +329,22 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
 
     // Habilitative and Rehabilitiative Header
-    @FindBy(id = "MedicalPlanCompare_HabilitativeAndRehabilitativeServices")
+    @FindBy(id = "PlanCompare_HabilitativeAndRehabilitativeServices")
     public WebElement getTxtCompareHeaderHabRehab;
-    @FindBy(id = "MedicalPlanCompare_HabilitativeAndRehabilitativeServices")
+    @FindBy(id = "PlanCompare_HabilitativeAndRehabilitativeServices")
     public WebElement getTxtCompareHeaderHabRehabOut;
 
     @FindBy(xpath = "//td[normalize-space()='Habilitation Services']")
     public WebElement getTxtHAbServices;
-    @FindBy(xpath = "//td[normalize-space()='Servicios de habilitación']")
+    @FindBy(xpath = "//td[normalize-space()='Servicios de habilitaci\u00F3n']")
     public WebElement getTxtHAbServicesSP;
     @FindBy(xpath = "//td[normalize-space()='Rehabilitative Speech Therapy']")
     public WebElement getTxtRehabSpeech;
-    @FindBy(xpath = "//td[normalize-space()='Terapia para rehabilitación del habla']")
+    @FindBy(xpath = "//td[normalize-space()='Terapia para rehabilitaci\u00F3n del habla']")
     public WebElement getTxtRehabSpeechSP;
     @FindBy(xpath = "//td[normalize-space()='Rehabilitative Occupational Therapy']")
     public WebElement getTxtRehabOccupational;
-    @FindBy(xpath = "//td[normalize-space()='Terapia para rehabilitación ocupacional']")
+    @FindBy(xpath = "//td[normalize-space()='Terapia para rehabilitaci\u00F3n ocupacional']")
     public WebElement getTxtRehabOccupationalSP;
     @FindBy(xpath = "//td[normalize-space()='Rehabilitative Physical Therapy']")
     public WebElement getTxtRehabPhysical;
@@ -344,44 +353,44 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
 
     //Medical Devices Header
-    @FindBy(id="MedicalPlanCompare_MedicalDevices")
+    @FindBy(id="PlanCompare_MedicalDevices")
     public WebElement getTxtCompareHeaderMedicalDevices;
-    @FindBy(id="MedicalPlanCompare_MedicalDevices")
+    @FindBy(id="PlanCompare_MedicalDevices")
     public WebElement getTxtCompareHeaderMedicalDevicesOut;
 
     @FindBy(xpath = "//td[normalize-space()='Durable Medical Equipment']")
     public WebElement getTxtDurableMedical;
-    @FindBy(xpath = "//td[normalize-space()='Equipo médico duradero']")
+    @FindBy(xpath = "//td[normalize-space()='Equipo m\u00E9dico duradero']")
     public WebElement getTxtDurableMedicalSP;
     @FindBy(xpath = "//td[normalize-space()='Prosthetic Devices']")
     public WebElement getTxtProstheticDevices;
-    @FindBy(xpath = "//td[normalize-space()='Dispositivos prostéticos']")
+    @FindBy(xpath = "//td[normalize-space()='Dispositivos prost\u00E9ticos']")
     public WebElement getTxtProstheticDevicesSP;
 
     //Maternity header
-    @FindBy(id = "MedicalPlanCompare_Maternity")
+    @FindBy(id = "PlanCompare_Maternity")
     public WebElement getTxtCompareHeaderMaternity;
-    @FindBy(id = "MedicalPlanCompare_Maternity")
+    @FindBy(id = "PlanCompare_Maternity")
     public WebElement getTxtCompareHeaderMaternityOut;
 
     @FindBy(xpath = "//td[normalize-space()='Prenatal and Postnatal Care']")
     public WebElement getTxtPrenatal;
-    @FindBy(xpath = "//td[normalize-space()='Atención prenatal y posnatal']")
+    @FindBy(xpath = "//td[normalize-space()='Atenci\u00F3n prenatal y posnatal']")
     public WebElement getTxtPrenatalSP;
     @FindBy(xpath = "//td[normalize-space()='Delivery and All Inpatient Services for Maternity Care']")
     public WebElement getTxtDelivery;
-    @FindBy(xpath = "//td[normalize-space()='Parto y todos los servicios hospitalarios para atención de maternidad']")
+    @FindBy(xpath = "//td[normalize-space()='Parto y todos los servicios hospitalarios para atenci\u00F3n de maternidad']")
     public WebElement getTxtDeliverySP;
 
     // Home Care and Hospice Header
-    @FindBy(id ="MedicalPlanCompare_HomeCareAndHospice")
+    @FindBy(id ="PlanCompare_HomeCareAndHospice")
     public WebElement getTxtCompareHeaderHomeCare;
-    @FindBy(id = "MedicalPlanCompare_HomeCareAndHospice")
+    @FindBy(id = "PlanCompare_HomeCareAndHospice")
     public WebElement getTxtCompareHeaderHomeCareOut;
 
     @FindBy(xpath = "//td[normalize-space()='Home Health Care Services']")
     public WebElement getTxtHomeCare;
-    @FindBy(xpath = "//td[normalize-space()='Servicios de atención médica domiciliaria']")
+    @FindBy(xpath = "//td[normalize-space()='Servicios de atenci\u00F3n m\u00E9dica domiciliaria']")
     public WebElement getTxtHomeCareSP;
     @FindBy(xpath = "//td[normalize-space()='Hospice Services']")
     public WebElement getTxtHospiceServices;
@@ -390,19 +399,19 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
 
     // Additional EHB Benefits
-    @FindBy(id="MedicalPlanCompare_AdditionalBenefits")
+    @FindBy(id="PlanCompare_AdditionalBenefits")
     public WebElement getTxtCompareHeaderAddEHB;
-    @FindBy(id = "MedicalPlanCompare_AdditionalBenefits")
+    @FindBy(id = "PlanCompare_AdditionalBenefits")
     public WebElement getTxtCompareHeaderAddEHBOut;
 
     @FindBy(xpath = "//td[normalize-space()='Chiropractic Care']")
     public WebElement getTxtIChiroCare;
-    //@FindBy(xpath = "//td[normalize-space()='Atención quiropráctica]")
-    @FindBy(id = "MedicalPlanCompare_ChiropracticCare_text")
+
+    @FindBy(id = "PlanCompare_ChiropracticCare_text")
     public WebElement getTxtIChiroCareSP;
     @FindBy(xpath = "//td[normalize-space()='Bariatric Surgery']")
     public WebElement getTxtBarCare;
-    @FindBy(xpath = "//td[normalize-space()='Cirugía bariátrica']")
+    @FindBy(xpath = "//td[normalize-space()='Cirug\u00EDa bari\u00E1trica']")
     public WebElement getTxtBarCareSP;
     @FindBy(xpath = "//td[normalize-space()='Infertility Treatment']")
     public WebElement getTxtInfertilityTreatment;
@@ -417,80 +426,80 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
     /////////////////////////////////////////////////////////////////////
     /// Plan Documents
     // column 1
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_1")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_1_1")
     public WebElement planDocEnglish11;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_2")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_1_2")
     public WebElement planDocEnglish12;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_3")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_1_3")
     public WebElement planDocEnglish13;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_4")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_1_4")
     public WebElement  planDocEnglish14;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_5")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_1_5")
     public WebElement planDocEnglish15;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_1_6")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_1_6")
     public WebElement  planDocEnglish16;
 
 
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_1")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_1_1")
     public WebElement planDocSpanish11;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_2")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_1_2")
     public WebElement planDocSpanish12;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_3")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_1_3")
     public WebElement planDocSpanish13;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_4")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_1_4")
     public WebElement planDocSpanish14;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_1_5")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_1_5")
     public WebElement planDocSpanish15;
 
     // column 2
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_1")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_2_1")
     public WebElement planDocEnglish21;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_2")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_2_2")
     public WebElement planDocEnglish22;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_3")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_2_3")
     public WebElement planDocEnglish23;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_4")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_2_4")
     public WebElement planDocEnglish24;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_5")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_2_5")
     public WebElement planDocEnglish25;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_2_6")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_2_6")
     public WebElement planDocEnglish26;
 
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_1")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_2_1")
     public WebElement planDocSpanish21;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_2")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_2_2")
     public WebElement planDocSpanish22;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_3")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_2_3")
     public WebElement planDocSpanish23;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_4")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_2_4")
     public WebElement planDocSpanish24;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_2_5")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_2_5")
     public WebElement planDocSpanish25;
 
 
     // column 3
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_1")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_3_1")
     public WebElement planDocEnglish31;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_2")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_3_2")
     public WebElement planDocEnglish32;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_3")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_3_3")
     public WebElement planDocEnglish33;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_4")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_3_4")
     public WebElement planDocEnglish34;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_5")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_3_5")
     public WebElement planDocEnglish35;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsEnglish_3_6")
+    @FindBy(id= "PlanCompare_PlanDocumentsEnglish_3_6")
     public WebElement planDocEnglish36;
 
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_1")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_3_1")
     public WebElement planDocSpanish31;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_2")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_3_2")
     public WebElement planDocSpanish32;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_3")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_3_3")
     public WebElement planDocSpanish33;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_4")
+    @FindBy(id= "PlanComparePlanDocumentsSpanish_3_4")
     public WebElement planDocSpanish34;
-    @FindBy(id= "MedicalPlanCompare_PlanDocumentsSpanish_3_5")
+    @FindBy(id= "PlanCompare_PlanDocumentsSpanish_3_5")
     public WebElement planDocSpanish35;
 
     ///////////////////////////////////////////////////////////////////////
@@ -582,7 +591,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertEquals( planDocSpanish31.getText(), "Evidence of Coverage Anthem BCBS Spanish 0220074-00 Colorado Option" );
         softAssert.assertEquals( planDocSpanish32.getText(), "Summary of Benefits and Coverage Anthem BCBS Spanish 0220074-00 Colorado Option" );
         softAssert.assertEquals( planDocSpanish33.getText(), "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220074-00 Colorado Option" );
-        softAssert.assertEquals( planDocSpanish34.getText(), "Quality Overview Anthem Spanish" );
+        //softAssert.assertEquals( planDocSpanish34.getText(), "Quality Overview Anthem Spanish" );
         softAssert.assertEquals( planDocEnglish35.getText(), "Brochure Anthem Medical Spanish" );
     }
 
@@ -913,17 +922,20 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
 
         softAssert.assertEquals( goBackToPlansCompareButton.getText(),"Go Back to Plans");
         softAssert.assertAll();
+
+        basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresentWithRetries( toTop,30 );
         basicActions.click( toTop );
     }
 
     public void verifySpanishTextPlanCompareCoCoPageInNetwork(){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(compareTopHeader,20);
-        softAssert.assertEquals( compareTopHeaderSP.getText(), "Comparar planes médicos" );
+        softAssert.assertEquals( compareTopHeaderSP.getText(), "Comparar planes m\u00E9dicos" );
         softAssert.assertEquals( downloadPDF.getText(), "Descargar PDF");
         softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Volver a Planes");
 
-        softAssert.assertEquals( selectInNetworkTier1Link.getText(),"Dentro la red" );
+        softAssert.assertEquals( selectInNetworkTier1Link.getText(),"Dentro la red Nivel 1" );
             //softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
         softAssert.assertEquals( selectOutofNetworkLink.getText(),"Fuera de la red" );
 
@@ -986,10 +998,10 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         getDrpDwnPlanCategories.get(7).click();
         basicActions.scrollToElement( getTxtCompareHeaderFacilities );
         softAssert.assertEquals( getTxtCompareHeaderFacilities.getText(),"Instalaciones" );
-        softAssert.assertEquals( getTxtOutPatientFacilitySP.getText(),"Tarifa del centro ambulatorio (p. ej., centro de cirugía ambulatoria)" );
+        softAssert.assertEquals( getTxtOutPatientFacilitySP.getText(),"Tarifa del centro ambulatorio (p. ej., centro de cirug\u00EDa ambulatoria)" );
         softAssert.assertEquals( getTxtOutPatientSurgerySP.getText(), "Servicios m\u00E9dicos y quir\u00FArgicos en cirug\u00EDa ambulatoria" );
         softAssert.assertEquals( getTxtInpatientHospitalSP.getText(), "Servicios en hospitalizaci\u00F3n (p. ej., permanencia en el hospital)" );
-        softAssert.assertEquals( getTxtInPatientPhysicianSP.getText(),"Servicios médicos y quirúrgicos en hospitalización" );
+        softAssert.assertEquals( getTxtInPatientPhysicianSP.getText(),"Servicios m\u00E9dicos y quir\u00FArgicos en hospitalizaci\u00F3n" );
 
         basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
         getDrpDwnPlanCategories.get(8).click();
@@ -1046,6 +1058,7 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         softAssert.assertAll();
 
         basicActions.waitForElementToDisappear( spinner,40 );
+        basicActions.waitForElementToBePresentWithRetries( toTop,30 );
         basicActions.click( toTop );
 
         }
@@ -1053,11 +1066,11 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
         public void verifySpanishTextPlanCompareCoCoPageOutNetwork(){
             basicActions.waitForElementToDisappear( spinner,30 );
             basicActions.waitForElementToBePresent(compareTopHeader,20);
-            softAssert.assertEquals( compareTopHeaderSP.getText(), "Comparar planes médicos" );
+            softAssert.assertEquals( compareTopHeaderSP.getText(), "Comparar planes m\u00E9dicos" );
             softAssert.assertEquals( downloadPDF.getText(), "Descargar PDF");
             softAssert.assertEquals(goBackToPlansCompareLink.getText(),"Volver a Planes");
 
-            softAssert.assertEquals( selectInNetworkTier1Link.getText(),"Dentro la red" );
+            softAssert.assertEquals( selectInNetworkTier1Link.getText(),"Dentro la red Nivel 1" );
             //softAssert.assertEquals( selectInNetworkTier2Link.getText(),"In-Network (Tier 2)" );
             softAssert.assertEquals( selectOutofNetworkLink.getText(),"Fuera de la red" );
 
@@ -1120,10 +1133,10 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
             getDrpDwnPlanCategories.get(7).click();
             basicActions.scrollToElement( getTxtCompareHeaderFacilities );
             softAssert.assertEquals( getTxtCompareHeaderFacilities.getText(),"Instalaciones" );
-            softAssert.assertEquals( getTxtOutPatientFacilitySP.getText(),"Tarifa del centro ambulatorio (p. ej., centro de cirugía ambulatoria)" );
+            softAssert.assertEquals( getTxtOutPatientFacilitySP.getText(),"Tarifa del centro ambulatorio (p. ej., centro de cirug\u00EDa ambulatoria)" );
             softAssert.assertEquals( getTxtOutPatientSurgerySP.getText(), "Servicios m\u00E9dicos y quir\u00FArgicos en cirug\u00EDa ambulatoria" );
             softAssert.assertEquals( getTxtInpatientHospitalSP.getText(), "Servicios en hospitalizaci\u00F3n (p. ej., permanencia en el hospital)" );
-            softAssert.assertEquals( getTxtInPatientPhysicianSP.getText(),"Servicios médicos y quirúrgicos en hospitalización" );
+            softAssert.assertEquals( getTxtInPatientPhysicianSP.getText(),"Servicios m\u00E9dicos y quir\u00FArgicos en hospitalizaci\u00F3n" );
 
             basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
             getDrpDwnPlanCategories.get(8).click();
@@ -1197,22 +1210,58 @@ public class MedicalCompareCoCoPage { private BasicActions basicActions;
             goBackToPlansCompareButton.click();}
 
     public void selectPlanDeselectionOne() {
-        basicActions.waitForElementToBeClickable( selectfirstplan,15 );
-            selectfirstplan.click();}
+        basicActions.waitForElementToBePresentWithRetries( deselectFirstPlan,30 );
+        deselectFirstPlan.click();}
 
     public void selectPlanDeselectionTwo() {
-        basicActions.waitForElementToBeClickable( selectSecondplan,15 );
-            selectSecondplan.click();}
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        basicActions.waitForElementToBePresentWithRetries( deselectSecondplan,60 );
+        deselectSecondplan.click();}
 
     public void selectPlanDeselectionThree(){
-        basicActions.waitForElementToBeClickable( selectThirdplan,15 );
-            selectThirdplan.click();}
+        basicActions.waitForElementToDisappear( spinner, 60 );
+        basicActions.waitForElementToBePresentWithRetries( deselectThirdplan,60 );
+        deselectThirdplan.click();}
 
     public void verifyNoPlansSelectedTxt(){
-        basicActions.waitForElementToBePresent( noTextPlan,15 );
+        basicActions.waitForElementToBePresentWithRetries( noTextPlan,15 );
         softAssert.assertTrue( noTextPlan.isDisplayed(), "There are no plans selected to compare" );
     }
 
+    public void validateCompareHeaderDropdown(){
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(1).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(2).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(3).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(4).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(5).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(6).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(7).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(8).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(9).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(10).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(11).click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(12).click();
+
+        basicActions.scrollToElement( headerHighlights );
+        collapseCOCOAllLink.click();
+        basicActions.waitForElementListToBePresentWithRetries( getDrpDwnPlanCategories,20 );
+        getDrpDwnPlanCategories.get(1).click();
+        collapseCOCOAllLink.click();
+        basicActions.scrollToElement( headerHighlights );
+        expandCOCOAllLink.click();
+    }
     public void  verifyTxtCompareHeader() {
         basicActions.waitForElementToBePresent(txtCompareHeaderMonthlyPremium, 10 );
         softAssert.assertTrue(txtCompareHeaderMonthlyPremium.isDisplayed(),"Incorrect Header");

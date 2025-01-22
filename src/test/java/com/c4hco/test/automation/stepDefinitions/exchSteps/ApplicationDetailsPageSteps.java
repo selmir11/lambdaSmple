@@ -32,7 +32,10 @@ public class ApplicationDetailsPageSteps {
     public void iVerifyOhcHeaderColor(String highlight) {applicationDetailsPage.verifyOhcHeaderColor(highlight);}
 
     @And("I verify the ESI OHC details on Application Details")
-    public void iVerifyOhcDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyOhcDetailsColor(ohcData);}
+    public void iVerifyEsiDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyEsiDetailsColor(ohcData);}
+
+    @And("I verify the Medicare OHC details on Application Details")
+    public void iVerifyMedicareDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyMedicareDetailsColor(ohcData);}
 
     @And("I verify the basic OHC detail on Application Details")
     public void iVerifyBasicOhcDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyBasicOhcDetailsColor(ohcData);}
@@ -41,7 +44,10 @@ public class ApplicationDetailsPageSteps {
     public void iVerifyNoneOhcDetailsColor(List<Map<String, String>> ohcData) {applicationDetailsPage.verifyNoneOhcDetailsColor(ohcData);}
 
     @Then("I validate ESI PDF OHC data on Application Details in {string}")
-    public void iVerifyOhcPdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationDetailsPage.verifyOhcPdfText(language, pdfData);}
+    public void iVerifyEsiPdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationDetailsPage.verifyEsiPdfText(language, pdfData);}
+
+    @Then("I validate Medicare PDF OHC data on Application Details in {string}")
+    public void iVerifyMedicarePdfText(String language, List<Map<String, String>> pdfData) throws IOException {applicationDetailsPage.verifyMedicarePdfText(language, pdfData);}
 
     @Then("I verify the OHC detail family enrollment details on Application Details")
     public void iVerifyOhcFamilyDetailsColor(DataTable familyOptionTable) {List<String> familyOption = familyOptionTable.asList(String.class);applicationDetailsPage.verifyOhcFamilyDetailsColor(familyOption);}

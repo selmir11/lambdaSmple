@@ -30,7 +30,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I click continue on the Add info for yourself page
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "65,000.00" income amount
@@ -64,6 +64,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I verify text on Tobacco Usage Page CoCo
     Then I click continue on coco start shopping page
 
@@ -86,7 +87,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "65,000.00" income amount
@@ -112,7 +113,7 @@ Feature: UI Page Validation - Tobacco Usage page related tests
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    Then I validate the text on "Go back" "Save and Exit" and "Continue" buttons on tobacco usage page coco
+    Then I validate the text on "Go back" "Save and exit" and "Continue" buttons on tobacco usage page coco
 
     And I click go back on the tobacco usage page coco
     Then I validate I am on the "Application Results CoCo" page

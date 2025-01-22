@@ -6,7 +6,6 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +13,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
-import javax.management.relation.Relation;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -103,16 +101,60 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
     }
 
     public void setRelationshipOption(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToPrimary, 15);
+       WebElement relationToPrimary = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+SharedData.getPrimaryMember().getFirstName()+"')]/parent::div/parent::form-label/parent::div //select"));
+        basicActions.waitForElementToBePresent(relationToPrimary, 15);
 
-        Select dropdown = new Select(selectRelationshipToPrimary);
-        selectRelationshipToPrimary.click();
+        Select dropdown = new Select(relationToPrimary);
+        relationToPrimary.click();
         dropdown.selectByVisibleText(Relation);
     }
 
     public static String getUniqueString(int length) {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
+
+    public void enterSpecificDetails(String Name, String DOB, String gender, String applying) {
+        String frstName = Name + getUniqueString(8);
+        String mdlName = getUniqueString(8);
+        String lastName = getUniqueString(12);
+        basicActions.waitForElementToBePresent(txtFirstName, 30);
+        txtFirstName.sendKeys(frstName);
+        txtMiddleName.sendKeys(mdlName);
+        txtLastName.sendKeys(lastName);
+
+        if(DOB.equals("getFromSharedData")){
+            DOB = SharedData.getCalculatedDob().get(Name);
+            DOB = basicActions.changeDateFormat(DOB, "MM/dd/yyyy", "MMddyyyy");
+        }
+        else if(DOB.contains("Age")){
+            memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
+        }
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+
+        if (memberList == null) {
+            memberList = new ArrayList<>();
+        }
+
+        MemberDetails member = new MemberDetails();
+        member.setFirstName(frstName);
+        member.setLastName(lastName);
+        member.setMiddleName(mdlName);
+        member.setDob(DOB);
+        member.setGender(gender);
+        member.setSignature(frstName + " " + lastName);
+        member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
+        member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
+        member.setApplyingforCov(applying);
+        memberList.add(member);
+
+        SharedData.setMembers(memberList);
+
+        enterMemberDOB(DOB);
+        genderSelection(gender);
+        applyingForCoverage(applying);
+    }
+
 
     public void specificAdditionalMemberDetailsCoCo(String Name, String DOB, String gender, List<String> Relations, String applying) {
 

@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Validation-OHI COBRA Elmo Page
+Feature: Page Validation-OHC COBRA Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -54,7 +54,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo COBRA" page
 
-  @SLER-333 @PageValidationOhiCobraElmo
+  @SLER-333 @PageValidationOhcCobraElmo
   Scenario: SLER-333 I can see Cobra's standard errors consistently - English
     And I verify the "First Section" Cobra page data in "English"
     Then I click continue on the Elmo OHC Cobra page
@@ -88,7 +88,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-334 @PageValidationOhiCobraElmo @TAMSmoke
+  @SLER-334 @PageValidationOhcCobraElmo @TAMSmoke
   Scenario: SLER-334 I can see Cobra's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -123,20 +123,20 @@ Feature: Page Validation-OHI COBRA Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-720 @PageValidationOhiCobraElmo
+  @SLER-720 @PageValidationOhcCobraElmo
   Scenario: SLER-720 I validate save, update and remove on Cobra are updated in the DB
     And I verify Currently Enrolled is "Not Selected" on the Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |                    |                        |                        |
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |                    |                        |                        |
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |          0         |                        |                        |
     And I click plus icon next to member on household page for "Primary"
@@ -151,12 +151,12 @@ Feature: Page Validation-OHI COBRA Elmo Page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |         0          |                        |                        |
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |          1         |            0           |                        |
     And I click plus icon next to member on household page for "Primary"
@@ -172,7 +172,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |        1           |             1          |           0            |
     And I click plus icon next to member on household page for "Primary"
@@ -186,7 +186,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I validate I am on the "Elmo COBRA" page
     Then I click "Yes" for insurance ending voluntary for COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |        1           |             1          |           1            |
 
@@ -201,7 +201,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I validate I am on the "Elmo COBRA" page
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |     1   |         1          |             0          |                        |
 
@@ -216,7 +216,7 @@ Feature: Page Validation-OHI COBRA Elmo Page
     And I validate I am on the "Elmo COBRA" page
     Then I click "No" for currently enrolled in COBRA question
     Then I click continue on the Elmo OHC Cobra page
-    And I verify the OHI options selected in the DB for "Primary"
+    And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|cobra_enrl_covg_ind3|cobra_covg_end_soon_ind3|cobra_end_voluntary_ind3|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   0   |    1    |          0         |                        |                        |
 

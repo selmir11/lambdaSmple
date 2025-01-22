@@ -10,6 +10,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -34,14 +36,14 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateOhiDetails(String memPrefix) {
-        Boolean hasRecords = exchDbDataProvider.getDataFromOhiTables(basicActions.getMemberId(memPrefix));
+    public void validateOhcDetails(String memPrefix) {
+        Boolean hasRecords = exchDbDataProvider.getDataFromOhcTables(basicActions.getMemberId(memPrefix));
         Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
-    public void validateOhiOptions(String memPrefix, List<Map<String, String>> expectedValues) {
-        EsMemberOhiEntity actualResult = exchDbDataProvider.getOptionsFromOhiDbTables(basicActions.getMemberId(memPrefix));
+    public void validateOhcOptions(String memPrefix, List<Map<String, String>> expectedValues) {
+        EsMemberOhcEntity actualResult = exchDbDataProvider.getOptionsFromOhcDbTables(basicActions.getMemberId(memPrefix));
         System.out.println(actualResult);
 
         softAssert.assertEquals(actualResult.getEmp_sponsored_covg_ind(), expectedValues.get(0).get("emp_sponsored_covg_ind"));
@@ -247,36 +249,58 @@ public class DbValidations {
         softAssert.assertEquals(medicalPlanList, expectedMedicalPlanList, "Medical plan lists do not match!");
         softAssert.assertAll();}
 
-    public void validateMemberCSRNonAIANData() {
-        String[] dbValues = exchDbDataProvider.getmemberNonAIAN();
-        softAssert.assertEquals(dbValues[0], "NON_AIAN", "Reason code mismatch: Expected 'NONAIAN'");
+    public void validateMemberCSRNonAIANData(String reasonCode) {
+        String[] dbValues = exchDbDataProvider.getmemberNonAIAN(reasonCode);
+        softAssert.assertEquals(dbValues[0], "NON_AIAN_LEVEL_3", "Reason code mismatch: Expected 'NONAIAN'");
         softAssert.assertEquals(dbValues[1], "CSR", "Eligibility type mismatch: Expected 'CSR'");
         softAssert.assertAll();
     }
 
     public void validateApplicationResult(String expectedReasonCode, String memPrefix) {
-        String expReasonCode = null;
+        String determination = getDeterminationValue(expectedReasonCode);
+
+        if(memPrefix.equals("getFromSharedData")){
+           memPrefix = SharedData.getPrimaryMember().getFirstName();
+        }
+
+        String memberID = basicActions.getMemberId(memPrefix);
+        String reasonCode = exchDbDataProvider.getReasonCode(memberID, determination);
+
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+        softAssert.assertAll();
+    }
+
+    private String getDeterminationValue(String expectedReasonCode){
+        String determination = null;
         switch (expectedReasonCode) {
             case "OFF_EXCHANGE_ELIGIBLE", "OFF_EXCHANGE_NOT_ELIGIBLE":
-                expReasonCode= "OFFEXCH";
+                determination= "OFFEXCH";
                 break;
-            case "ELIGIBLE_FOR_HP2_LIMITED":
-                expReasonCode = "HP2";
+            case "ELIGIBLE_FOR_HP2_LIMITED", "ELIGIBLE_FOR_HP2":
+                determination = "HP2";
                 break;
             case "QLCE":
-                expReasonCode = "GAIN_DEP_QLCE";
+                determination = "GAIN_DEP_QLCE";
+                break;
+            case "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY":
+                determination = "TAX_TIME_ENROLLMENT_QLCE";
                 break;
             default:
                 Assert.fail("Expected Reason Code is not valid");
         }
+        return determination;
+    }
 
-        String memberID = exchDbDataProvider.getMemberId(basicActions.getMemFirstNames(memPrefix));
-        String reasonCode = exchDbDataProvider.getReasonCode(memberID, expReasonCode);
+    public void validateCreatedBy(String createdBy, String memPrefix, String expectedReasonCode){
+        String determination = getDeterminationValue(expectedReasonCode);
 
-        System.out.println("Member ID: " + memberID);
-        System.out.println("Reason Code: " + reasonCode);
+        if(memPrefix.equals("getFromSharedData")){
+            memPrefix = SharedData.getPrimaryMember().getFirstName();
+        }
 
-        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason Code validation failed");
+        String memberID = basicActions.getMemberId(memPrefix);
+        String createdByFromDb = exchDbDataProvider.getCreatedBy(memberID, determination);
+        softAssert.assertEquals(createdByFromDb, createdBy, "CreatedBy validation failed");
         softAssert.assertAll();
     }
 
@@ -436,16 +460,31 @@ public class DbValidations {
         softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
         softAssert.assertAll();
     }
-    public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
-        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
-        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
 
-        LocalDate currentDate = LocalDate.now();
-        LocalDate twoMonthsLater = currentDate.plusDays(enrollmentEndDate);
+    public void validateEnrollmentEndDateDB() {
+        String enrEndDateDb = basicActions.changeDateFormat(exchDbDataProvider.getEnrollmentEndDate(), "yyyy-MM-dd", "MM/dd/yyyy");
+        LocalDate qlceDatePlus60Days = LocalDate.now().plusDays(60); // works only when qlce date is today
+        LocalDate expectedEndDate = qlceDatePlus60Days;
 
-        String formattedEnrolmentEndDate = basicActions.changeDateFormat(String.valueOf(twoMonthsLater),"yyyy-MM-dd","MM/dd/yyyy");
-        softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
+        if (SharedData.getIsOpenEnrollment().equals("yes")) {
+            if (getOpenEnrEndDate().isAfter(qlceDatePlus60Days)) {
+                expectedEndDate = getOpenEnrEndDate();
+            }
+        }
+        String expectedEnrEndDate = basicActions.changeDateFormat(expectedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+        softAssert.assertEquals(enrEndDateDb, expectedEnrEndDate);
         softAssert.assertAll();
+    }
+
+    private LocalDate getOpenEnrEndDate(){
+            int year;
+            Month currentMonth = LocalDate.now().getMonth();
+            if(currentMonth.toString().toLowerCase().equals("january")){
+                year = LocalDate.now().getYear();
+            } else {
+                year = LocalDate.now().getYear()+1;
+            }
+            return LocalDate.of(year, 1, 15);
     }
 
     public void verifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {
@@ -619,12 +658,11 @@ public class DbValidations {
         softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "EventCD contains FAILED_EMAIL_ADDRESS_VALIDATION");
         softAssert.assertAll();
     }
-    public void validateEventLog(){
+    public void validateEventLog(List<String> eventCD){
         List<String> queryResult = exchDbDataProvider.getEventLog();
-        softAssert.assertTrue(queryResult.contains("PASSED_MEMBER_VALIDATION"), "Event log contains PASSED_MEMBER_VALIDATION");
-        softAssert.assertTrue(queryResult.contains("PASSED_POSTAL_ADDRESS_VALIDATION"), "Event log contains PASSED_POSTAL_ADDRESS_VALIDATION");
-        softAssert.assertTrue(queryResult.contains("FAILED_EMAIL_ADDRESS_VALIDATION"), "Event log contains FAILED_EMAIL_ADDRESS_VALIDATION");
-        softAssert.assertTrue(queryResult.contains("INITIAL_EE_12_NOTICE_SENT"), "Event log contains INITIAL_EE_12_NOTICE_SENT");
+        for(String eventcd: eventCD) {
+            softAssert.assertTrue(queryResult.contains(eventcd), "Event log contains eventCD "+eventcd);
+        }
         softAssert.assertAll();
     }
 
@@ -656,6 +694,14 @@ public class DbValidations {
         softAssert.assertEquals(dbValues.get(5), county);
         softAssert.assertAll();
     }
+    public void validateEnrollmentEndDateForAIANDB() {
+        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
+        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
+        LocalDate lastDayOfYear = Year.now().atMonth(Month.DECEMBER).atDay(31);
+        String formattedLastDayOfYear = basicActions.changeDateFormat(lastDayOfYear.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+        softAssert.assertEquals(formattedDateEnd, formattedLastDayOfYear);
+        softAssert.assertAll();
+    }
 
     public void validateTellAboutAdditionalInformationinDB(String FName){
         List<MemberDetails> memberList=basicActions.getAllMem();
@@ -680,5 +726,44 @@ public class DbValidations {
             }
         }
     }
+    public void validateMailingAddressDetailsinDB(String FName,String address_line1, String city, String state, String zip, String county){
+        String FirstName=null;
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+        List<String> dbValues = exchDbDataProvider.getMailingAddressInformation(FirstName);
+        softAssert.assertEquals(dbValues.get(0), address_line1);
+        softAssert.assertEquals(dbValues.get(1), city);
+        softAssert.assertEquals(dbValues.get(2), state);
+        softAssert.assertEquals(dbValues.get(3), zip);
+        softAssert.assertEquals(dbValues.get(4), county);
+        softAssert.assertAll();
+    }
+    public void validateStateInformation(String FName, int state) {
+        String FirstName = null;
+        List<MemberDetails> memberList = basicActions.getAllMem();
+        for (MemberDetails actualMember : memberList) {
+            if (actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+        String  stateFromDB = exchDbDataProvider.getStateInformation(FirstName);
+        softAssert.assertEquals(stateFromDB, String.valueOf(state), "State mismatched");
+        softAssert.assertAll();
+    }
 
- }
+    public void validateFplPercent(String expectedFplPercent) {
+        String fplValue = exchDbDataProvider.getFplPercentDetails();
+        softAssert.assertEquals(fplValue.trim(), expectedFplPercent, "FPL Percent mismatch: Expected " + expectedFplPercent + ".");
+        softAssert.assertAll();
+    }
+
+
+
+}
+

@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Text-OHI Medicare Elmo Page
+Feature: Page Text-OHC Medicare Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -52,11 +52,11 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
 
-  @SLER-271 @PageTextOhiMedicareElmo
+  @SLER-271 @PageTextOhcMedicareElmo
   Scenario: SLER-271 I can see Medicare's Header and footer - English
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
@@ -81,7 +81,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -103,7 +103,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -126,7 +126,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -148,16 +148,16 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
@@ -181,7 +181,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -204,41 +204,41 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
 
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
 
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-272 @PageTextOhiMedicareElmo
+  @SLER-272 @PageTextOhcMedicareElmo
   Scenario: SLER-272 I can see Medicare's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
@@ -267,7 +267,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -291,7 +291,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
@@ -316,7 +316,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -340,18 +340,18 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
@@ -377,7 +377,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -406,39 +406,39 @@ Feature: Page Text-OHI Medicare Elmo Page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Ohi Medicare" page
+    Then I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "Spanish"
 
 
@@ -473,7 +473,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "English"
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
 #Step5
@@ -488,7 +488,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify Currently eligible is "No" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
 #Step7
@@ -496,7 +496,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "500.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
-    Then I enter end date of end of current month for Medicare part "A"
+    Then I enter end date of "Current Month" for Medicare part "A"
     Then I click continue on the Elmo OHC Medicare page
 #Step8
     And I click plus icon next to member on household page for "Primary"
@@ -507,7 +507,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
     And I verify Part A "is" and Part B "is not" checked on the Medicare page
     Then I verify Part A amount of "500.00"
@@ -517,7 +517,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
-    Then I enter end date of end of current month for Medicare part "B"
+    Then I enter end date of "Current Month" for Medicare part "B"
     Then I click continue on the Elmo OHC Medicare page
 #Step10
     And I click plus icon next to member on household page for "Primary"
@@ -528,7 +528,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
     And I verify Part A "is not" and Part B "is" checked on the Medicare page
     And I verify Part "B" Insurance Ending in 60 days is "Yes" on the Medicare page
@@ -548,7 +548,7 @@ Feature: Page Text-OHI Medicare Elmo Page
     Then I select the projected income option "No" and continue
     And I click save and continue on tax status page
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Medicare" page
+    And I validate I am on the "Elmo Ohc Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
     And I verify Part A "is" and Part B "is" checked on the Medicare page
     And I verify Part "B" Insurance Ending in 60 days is "No" on the Medicare page

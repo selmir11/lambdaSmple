@@ -47,14 +47,14 @@ Feature: Seed02 - Coco
     And I select continue on the income Summary CoCo page
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page with "SPOUSE", "03021995", "Female", and applying "Yes"
+    Then I enter details on tell us about additional members of your household page with "Spouse", "03021995", "Female", and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "SPOUSE"
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -75,7 +75,7 @@ Feature: Seed02 - Coco
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    And I click "No" to the Tobacco usage question on start shopping page for "Primary,SPOUSE" coco
+    And I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
     Then I validate that there are 1 default groups in coco page
     Then I click continue on grouping Members Medical coco page
@@ -122,9 +122,9 @@ Feature: Seed02 - Coco
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
-      |1:01012024|
+      |1:01012025|
     And I update the Financial Start date of member
-      |1:01012024|
+      |1:01012025|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

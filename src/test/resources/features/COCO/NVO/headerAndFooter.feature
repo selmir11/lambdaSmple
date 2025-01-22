@@ -827,8 +827,8 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Not listed" for race and ethnicity option for "Primary"
     Then I verify text on the Ethnicity And Race page in "Spanish"
-    And I select "Not listed" for race and ethnicity option
-    And I select "Prefer not to answer" for race and ethnicity option
+    And I select "Not listed" for race and ethnicity option for "Primary"
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "30,000.00" income amount

@@ -120,7 +120,7 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and coverage_type = '2'";
     }
 
-    public String getOhiRecordsAll(String memberId) {
+    public String getOhcRecordsAll(String memberId) {
         return "select ohi.*\n" +
                 "From  " + dbName + ".es_member_other_health_ins ohi\n" +
                 "where member_id = '" + memberId + "'";
@@ -427,6 +427,14 @@ public String policyTablesCombinedQuery(String coverageType){
                 "AND member_id = " + memberId;
     }
 
+    public String createdByQuery(String memberId, String determination) {
+        return "SELECT created_by " +
+                "FROM " + dbName + ".es_member_rules_result " +
+                "WHERE determination = '"+determination+"' " +
+                "AND member_id = " + memberId+
+                " and created_ts::TEXT LIKE CURRENT_DATE || '%'";
+    }
+
 
 
     public String getDental_policy_date() {
@@ -492,18 +500,19 @@ public String policyTablesCombinedQuery(String coverageType){
                 "where household_id  = '"+householId+"'";
     }
 
-    public String getMemberNonAIAn()
-    {
-        return "SELECT * from "+dbName+".es_member_rules_result t1\n " +
-                "JOIN "+dbName+".es_member_rules_result t2 \n"+
-                "ON t1.member_id = t2.member_id \n" +
-                "WHERE t1.member_id = '" + SharedData.getPrimaryMember().getMemberId()+ "'\n" +
-                "AND t1.eligibility_type = 'CSR' \n" +
-                "AND t1.reason_code LIKE '%AIAN%' \n" +
-                "AND t2.reason_code = 'NO-OVERRIDE'\n";
+
+
+    public String getMemberNonAIAn(String reasonCode) {
+        return "SELECT DISTINCT t1.* " +
+                "FROM exch.es_member_rules_result t1 " +
+                "JOIN exch.es_member_rules_result t2 ON t1.member_id = t2.member_id " +
+                "WHERE t1.member_id = '" + SharedData.getPrimaryMember().getMemberId() + "' " +
+                "AND t1.eligibility_type = 'CSR' " +
+                "AND t1.determination = 'CSR' " +
+                "AND t1.reason_code LIKE '%AIAN%' " +
+                "AND t2.reason_code = '" + reasonCode + "' " +
+                "ORDER BY t1.effective_date";
     }
-
-
 
 
 
@@ -655,5 +664,27 @@ public String policyTablesCombinedQuery(String coverageType){
         return "SELECT first_name, middle_name, last_name, gender, birth_date, applying_for_coverage_ind FROM "+dbName+".es_member\n"+
                 "where member_id = "+memberId+"";
     }
+    public String getMailingAddressDetails(String memberId){
+        return "SELECT address_line1, city, state, zip, county FROM "+dbName+".es_address\n"+
+                "where address_id = (SELECT hc.mailing_address_id FROM "+dbName+".es_household_contact hc join "+dbName+".es_member m on hc.household_id = m.household_id where m.member_id = "+memberId+")";
+    }
+    public String getStateDetails(String memberId){
+        return "SELECT co_resident_ind FROM "+dbName+".es_member where member_id = '"+memberId+"'";
+    }
+
+
+    public String fplPercentDetails() {
+        return "select err.fpl_percent \n" +
+                "from " + dbName + ".es_member esm \n" +
+                "join " + dbName + ".es_member_rules_result err \n" +
+                "  on esm.member_id = err.member_id \n" +
+                "join " + dbName + ".es_household esh \n" +
+                "  on esm.household_id = esh.household_id \n" +
+                "where err.determination = 'MA_INCOME_MET' \n" +
+                "  and err.eligibility_type = 'MA' \n" +
+                "  and esh.account_id = '" + acctId + "'";
+    }
+
+
 
 }

@@ -50,6 +50,12 @@ public class MyProfileExchPage {
     WebElement FullNameProfile;
 
 
+    @FindBy(id = "myProfile_mobilePhone")
+    WebElement MobilephonePrimaryChange;
+
+    @FindBy(id = "myProfile_homePhone")
+    WebElement HomephonePrimaryChange;
+
     @FindBy(id = "mobilePhone")
     WebElement Mobilephone;
 
@@ -495,7 +501,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         String oldHomePhNum = SharedData.getPrimaryMember().getPhoneNumber();
         SharedData.getPrimaryMember().setIncorrectHomePhone(oldHomePhNum);
-        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        String newPhone = (String) basicActions.generatePhoneNumber();
         SharedData.getPrimaryMember().setPhoneNumber(newPhone);
         Homephone.clear();
         Homephone.sendKeys(newPhone);
@@ -505,7 +511,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         String oldMobilePhNum = SharedData.getPrimaryMember().getIncorrectHomePhone()!=null ? SharedData.getPrimaryMember().getIncorrectHomePhone() :SharedData.getPrimaryMember().getPhoneNumber();
         SharedData.getPrimaryMember().setIncorrectMobilePhone(oldMobilePhNum);
-        String newPhone = (String) CreateAccountPage.generatePhoneNumber();
+        String newPhone = (String) basicActions.generatePhoneNumber();
         SharedData.getPrimaryMember().setAlternatePhNum(newPhone);
         Mobilephone.clear();
         Mobilephone.sendKeys(newPhone);
@@ -745,7 +751,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1026@test.com";
+        String newEmail = "updated.automation1027@test.com";
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(newEmail);
         MyProfileButtonExch.get(1).click();

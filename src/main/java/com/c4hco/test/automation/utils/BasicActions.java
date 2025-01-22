@@ -11,6 +11,7 @@ import org.testng.Assert;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -77,6 +78,8 @@ public class BasicActions {
         openNewTab();
         driver.get(newUrl);
     }
+
+
 
     public String extractDateFromUrl(String url) {
         try {
@@ -851,6 +854,11 @@ public class BasicActions {
         return allDependents;
     }
 
+    public String getMemberIDFromURL() {
+        String[] parts = getCurrentUrl().split("/");
+        return parts[parts.length - 1];
+    }
+
 
     public String getMemFirstNames(String memPrefix){
         List<MemberDetails> allMem = getAllMem();
@@ -926,10 +934,11 @@ public class BasicActions {
         if (memPrefix.equals("Primary")) {
             memId = SharedData.getPrimaryMemberId();
         } else {
-            List<MemberDetails> members = SharedData.getMembers();
+            List<MemberDetails> members = getAllMem();
             for (MemberDetails mem : members) {
                 if (mem.getFirstName().contains(memPrefix)) {
                     memId = mem.getMemberId();
+                    break;
                 }
             }
         }
@@ -1113,6 +1122,42 @@ public class BasicActions {
         return isCleared;
     }
 
+    public static CharSequence generatePhoneNumber(){
+        Random rand = new Random();
+        int num1 = (rand.nextInt(7)+1)*100;
+        int num2 = rand.nextInt(743);
+        int num3 = rand.nextInt(10000);
+        DecimalFormat df3 = new DecimalFormat("000");
+        DecimalFormat df4 = new DecimalFormat("0000");
+        String phoneNumber = df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
+        return phoneNumber;
+    }
+
+    public void setMemberIdFromUrl(){
+        String memberId = getMemberIDFromURL();
+        SharedData.getPrimaryMember().setMemberId(memberId);
+        SharedData.setPrimaryMemberId(memberId);
+
+    }
+
+    public String firstDateOfTheMonthAfterNext() {
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfNextMonth = today.plusMonths(2).withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfNextMonth.format(formatter);
+    }
+
+    public String enrollmentStartDate(){
+        int actualDate = Integer.parseInt(changeDateFormat(getTodayDate(),"MM/dd/yyyy","dd"));
+        if(actualDate<16){
+            //if plan purchase date is from 1 to 15 - Next month 1st will be plan start date
+            return changeDateFormat(firstDateOfNextMonth(),"yyyy-MM-dd","MM/dd/yyyy");
+        }
+        else{
+            //if plan purchase date is from 16 to 31 - Month after Next 1st will be plan start date
+            return changeDateFormat(firstDateOfTheMonthAfterNext(),"yyyy-MM-dd","MM/dd/yyyy");
+        }
+    }
 }
 
 

@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Secondary User-OHI Individual Insurance Elmo Page
+Feature: Secondary User-OHC Individual Insurance Elmo Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -81,9 +81,9 @@ Feature: Secondary User-OHI Individual Insurance Elmo Page
     And I click save and continue on tax status page
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
 
-  @SLER-490 @SecondaryUserOhiIndividualInsuranceElmo
+  @SLER-490 @SecondaryUserOhcIndividualInsuranceElmo
   Scenario: SLER-490 I can see Individual Insurance's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Individual Insurance page data in "English"
     Then I click "Yes" for currently enrolled in Individual Insurance question
@@ -96,7 +96,7 @@ Feature: Secondary User-OHI Individual Insurance Elmo Page
 
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
     And I verify the "First Section Secondary" Individual Insurance page data in "English"
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify the "Second Section Secondary" Individual Insurance page data in "English"
@@ -107,7 +107,7 @@ Feature: Secondary User-OHI Individual Insurance Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-491 @SecondaryUserOhiIndividualInsuranceElmo
+  @SLER-491 @SecondaryUserOhcIndividualInsuranceElmo
   Scenario: SLER-491 I can see Individual Insurance's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -122,7 +122,7 @@ Feature: Secondary User-OHI Individual Insurance Elmo Page
 
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohi Individual Insurance" page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
     And I verify the "First Section Secondary" Individual Insurance page data in "Spanish"
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify the "Second Section Secondary" Individual Insurance page data in "Spanish"

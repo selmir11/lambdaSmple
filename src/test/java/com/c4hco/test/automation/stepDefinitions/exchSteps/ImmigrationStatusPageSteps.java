@@ -29,4 +29,25 @@ public class ImmigrationStatusPageSteps {
         ImmigrationStatusPage.validateCitizenshipAndImmigrationJuvenileText(language);
     }
 
+    @Then("I select {string} for the question have you lived in the US since 1996")
+    public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
+        ImmigrationStatusPage.isMemberLivedInUSSince1996(YNLivedInUSSince1996);
+    }
+
+    @Then("I input the grant date of my Lawful Permanent Residency as {string}")
+    public void inputGrantDate(String grantDate) {
+        ImmigrationStatusPage.inputGrantDate(grantDate);
+    }
+
+    @Then("I verify the text on the Citizenship and Immigration Status page for Paroled into the U.S. in {string}")
+    public void iVerifyTextOnCitizenshipAndImmigrationStatusForParoledText(String language) {
+        ImmigrationStatusPage.VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(language);
+
+    }
+
+    @And("I select {string} icon on the Five-Year Bar Immigration Status page")
+    public void iSelectHelpIcon(String labelIcon){ImmigrationStatusPage.clickHelpIcon(labelIcon);}
+
+    @Then("I validate Lawful Presence help drawer Five-Year Bar page {string} verbiage in {string}")
+    public void iValidateHelp(String helpText, String language){ImmigrationStatusPage.validateHelpVerbiage(helpText, language);}
 }

@@ -54,6 +54,36 @@ public class ImmigrationStatusPage {
     @FindBy(css = "input#submitButton.back-button-link")
     WebElement backButton;
 
+    @FindBy(css = "input[name='grantDate']")
+    WebElement grantDateInputField;
+
+    @FindBy(id = "livedSince1996Yes")
+    WebElement livedSince1996Yes;
+
+    @FindBy(id = "livedSince1996No")
+    WebElement livedSince1996No;
+
+   //Immigration Status For parolee into US
+
+    @FindBy(css = "h2.c4PageHeader")
+    WebElement paroleePageHeader;
+
+    @FindBy(id = "overviewButton")
+    WebElement  paroleeHelpUnderstandText;
+
+    @FindBy(css = "h2.c4PageTitle")
+    WebElement paroleePageTitle;
+
+    @FindBy(css = "div.c4BodyText1")
+    WebElement  ParoleeNeedMoreInfo;
+
+    @FindBy(css = "#overview")
+    WebElement helpMeUnderstandLink;
+
+    @FindBy(css = "*[role='presentation']")
+    List<WebElement> helpDrawerHelpText;
+
+
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
         switch(YNLawfulPermanentResident){
             case "Yes":
@@ -137,4 +167,107 @@ public class ImmigrationStatusPage {
         softAssert.assertAll();
     }
 
+    public void VerifyCitizenshipAndImmigrationforParoledInToUSTextEnglish() {
+        basicActions.waitForElementToBePresent(paroleePageHeader,40);
+        softAssert.assertEquals(paroleePageHeader.getText(), "Citizenship and Immigration Status: "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), "Help me understand this page");
+        softAssert.assertEquals(paroleePageTitle.getText(), "Immigration Status");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(), "It looks like we need more information about your immigration status");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), "What is the grant date of your parolee status?");
+        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"), "mm/dd/yyyy");
+        basicActions.waitForElementToBeClickable(backButton, 150);
+        softAssert.assertEquals(backButton.getAttribute("value"), "< Back");
+        softAssert.assertEquals(saveContinue.getAttribute("value"), "Save and Continue");
+        softAssert.assertAll();
+    }
+    public void VerifyCitizenshipAndImmigrationforParoledInToUSTextSpanish() {
+        basicActions.waitForElementToBePresent(paroleePageHeader, 40);
+        softAssert.assertEquals(paroleePageHeader.getText(), "Ciudadan\u00EDa y estatus migratorio: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), "Ayuda para entender esta p\u00E1gina");
+        softAssert.assertEquals(paroleePageTitle.getText(), "Estatus Migratorio");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(), "Al parecer, necesitamos más información sobre su estatus migratorio");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), "¿Cuál es la fecha en la que se le otorgó su estatus de libertad condicional?");
+        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"), "mm/dd/yyyy");
+        basicActions.waitForElementToBeClickable(backButton, 150);
+        softAssert.assertEquals(backButton.getAttribute("value"), "< Atr\u00E1s");
+        softAssert.assertEquals(saveContinue.getAttribute("value"),  "Guardar y Continuar");
+        softAssert.assertAll();
+    }
+
+    public void isMemberLivedInUSSince1996(String YNLivedInUSSince1996) {
+        switch (YNLivedInUSSince1996) {
+            case "Yes":
+                livedSince1996Yes.click();
+                break;
+            case "No":
+                livedSince1996No.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + YNLivedInUSSince1996);
+        }
+    }
+
+    public void inputGrantDate(String grantDate) {
+        basicActions.waitForElementToBePresent(grantDateInputField, 10);
+        grantDateInputField.sendKeys(grantDate);
+    }
+
+    public void VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(String language) {
+        switch (language) {
+            case "English":
+                VerifyCitizenshipAndImmigrationforParoledInToUSTextEnglish();
+                break;
+            case "Spanish":
+                VerifyCitizenshipAndImmigrationforParoledInToUSTextSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void clickHelpIcon(String label) {
+        basicActions.waitForElementToBePresent (helpMeUnderstandLink, 10);
+        switch(label){
+            case "Help me understand":
+                helpMeUnderstandLink.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + label);
+        }
+    }
+    public void validateHelpVerbiage(String helpText, String language) {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(2), 30);
+        switch (helpText) {
+            case "Lived in the U.S. since 1996":
+                handleLivedInUSSince1996(language);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + helpText);
+        }
+    }
+
+    private void handleLivedInUSSince1996(String language) {
+        switch (language) {
+            case "English":
+                validateLivedInUSSince1996HelpTextVerbiageEng();
+                break;
+            case "Spanish":
+                validateLivedInUSSince1996HelpTextVerbiageSp();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    public void validateLivedInUSSince1996HelpTextVerbiageEng() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(2),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(2).getText(), "Lived in the U.S. since 1996\nPeople with certain immigration statuses are subject to a 5-year waiting period before they can qualify for Medicaid. People who lawfully entered the US before 1996 are not subject to this same 5-year waiting period. People with a status that is not subject to this 5-year waiting period should answer \u201Cno\u201D to this question. That includes people with Deferred Action for Childhood Arrivals (DACA) status.");
+        softAssert.assertAll();
+    }
+
+    public void validateLivedInUSSince1996HelpTextVerbiageSp() {
+        basicActions.waitForElementToBePresent(helpDrawerHelpText.get(2),20);
+        softAssert.assertEquals(helpDrawerHelpText.get(2).getText(), "Vivido en Estados Unidos desde 1996\nLas personas con ciertos estatus migratorios est\u00E1n sujetas a un per\u00EDodo de espera de 5 a\u00F1os antes de que puedan calificar a Medicaid. Las personas que ingresaron a los EE. UU. de manera legal antes de 1996 no est\u00E1n sujetas a este per\u00EDodo de espera de 5 a\u00F1os. Personas con un estatus que no est\u00E1 sujeto a este per\u00EDodo de espera de 5 a\u00F1os deben responder \u201Cno\u201D a esta pregunta. Esto incluye a personas con el estatus de Acci\u00F3n Diferida para los Llegados en la Infancia (DACA).");
+        softAssert.assertAll();
+    }
 }

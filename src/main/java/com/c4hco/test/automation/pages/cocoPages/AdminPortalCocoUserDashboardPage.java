@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.pages.cocoPages;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,7 @@ public class AdminPortalCocoUserDashboardPage {
         basicActions.switchtoactiveTab();
     }
 }
+
 
 
 

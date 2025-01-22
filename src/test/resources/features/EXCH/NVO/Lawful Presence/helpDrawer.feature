@@ -5,7 +5,7 @@ Feature: Verify the help text in the help drawer
     And I validate I am on the "Login" page
 
 @SLER-1889 @NVOExchRegression
-Scenario: Verify the help text in the help drawer on the Citizenship and immigration status page English and Spanish
+Scenario: Verify the help text in the help drawer on the Citizenship and Five-Year Bar Immigration status page English and Spanish
 When I click create a new account on login page
 Then I click create my account from pre-screen page
 And I enter general mandatory data for "exchange" account creation
@@ -42,7 +42,6 @@ Then I validate I am on the "Citizenship" page
 And I select "Help me understand" icon on the Citizenship and Immigration Status page
 Then I validate Lawful Presence help drawer "Eligible Immigration Status" verbiage in "English"
 Then I validate Lawful Presence help drawer "Document Type" verbiage in "English"
-Then I validate Lawful Presence help drawer "Lived in the U.S. since 1996" verbiage in "English"
 Then I validate Lawful Presence help drawer "Active Duty Military Members or Honorably Discharged Veterans" verbiage in "English"
 And I select "Help me understand" icon on the Citizenship and Immigration Status page
 Then I validate I am on the "Citizenship" page
@@ -52,9 +51,24 @@ Then I validate I am on the "Citizenship" page
 And I select "Help me understand" icon on the Citizenship and Immigration Status page
 Then I validate Lawful Presence help drawer "Eligible Immigration Status" verbiage in "Spanish"
 Then I validate Lawful Presence help drawer "Document Type" verbiage in "Spanish"
-Then I validate Lawful Presence help drawer "Lived in the U.S. since 1996" verbiage in "Spanish"
 Then I validate Lawful Presence help drawer "Active Duty Military Members or Honorably Discharged Veterans" verbiage in "Spanish"
 And I select "Help me understand" icon on the Citizenship and Immigration Status page
+When I change the language from header to "English NonElmo"
+Then I select "No" for Citizen option
+Then I select "Yes" for Eligible Immigration Status option
+Then I select "I-551 Permanent Resident Card" as Document type
+Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
+And I enter Card Number
+Then I select "None of the above" active-duty members of the military or honorably discharged veterans
+Then I select "Yes" for name matching the document
+And I click continue on the Citizenship page
+And I select "Help me understand" icon on the Five-Year Bar Immigration Status page
+Then I validate Lawful Presence help drawer Five-Year Bar page "Lived in the U.S. since 1996" verbiage in "English"
+And I select "Help me understand" icon on the Five-Year Bar Immigration Status page
+When I change the language from header to "Spanish NonElmo"
+Then I validate I am on the "Spanish" page
+And I select "Help me understand" icon on the Five-Year Bar Immigration Status page
+Then I validate Lawful Presence help drawer Five-Year Bar page "Lived in the U.S. since 1996" verbiage in "Spanish"
 When I change the language from header to "English NonElmo"
 And I click on Sign Out in the Header for "NonElmo"
 Then I validate I am on the "Login" page
