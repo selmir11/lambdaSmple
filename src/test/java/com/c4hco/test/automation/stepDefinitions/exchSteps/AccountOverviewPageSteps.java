@@ -18,9 +18,6 @@ public class AccountOverviewPageSteps {
     @Then("I apply for the current year")
     public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 
-    @Then("I apply for the next year")
-    public void btnApplyForNextYear(){accountOverviewPage.clickApplyForCurrentYear();}
-
     @Then("I click on ClickHere link for {string}")
     public void clickHere(String clickOption) {accountOverviewPage.clickHereLinks(clickOption);}
 
