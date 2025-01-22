@@ -13,7 +13,7 @@ Feature: My Profile Page Exch
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-   # And I report "Birth" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -234,8 +234,9 @@ Feature: My Profile Page Exch
       And I click on Make Changes Button
       And I update the contact email address
       And I update the contact home phone number on profile page
-     And I update the contact mobile phone number on profile page
+      And I update the contact mobile phone number on profile page
       And I click on Save Button
+      And I wait for 9000 milliseconds
       Then I click on Go back to Welcome page Button on My Profile Exch
       Then I validate the details from rq_queue_messages database
 

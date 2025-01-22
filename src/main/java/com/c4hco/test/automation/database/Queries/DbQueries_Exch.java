@@ -680,4 +680,19 @@ public String policyTablesCombinedQuery(String coverageType){
         return "SELECT co_resident_ind FROM "+dbName+".es_member where member_id = '"+memberId+"'";
     }
 
+
+    public String fplPercentDetails() {
+        return "select err.fpl_percent \n" +
+                "from " + dbName + ".es_member esm \n" +
+                "join " + dbName + ".es_member_rules_result err \n" +
+                "  on esm.member_id = err.member_id \n" +
+                "join " + dbName + ".es_household esh \n" +
+                "  on esm.household_id = esh.household_id \n" +
+                "where err.determination = 'MA_INCOME_MET' \n" +
+                "  and err.eligibility_type = 'MA' \n" +
+                "  and esh.account_id = '" + acctId + "'";
+    }
+
+
+
 }
