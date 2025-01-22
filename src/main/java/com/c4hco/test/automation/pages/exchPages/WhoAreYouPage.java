@@ -149,4 +149,8 @@ public class WhoAreYouPage {
         saveAndContinue.click();
     }
 
+    public void clickBackButton() {
+        backSaveAndContinue.get(0).click();
+    }
+
 }

@@ -292,4 +292,9 @@ public class LifeChangeEventsPage {
         basicActions.waitForElementToBePresent(iconHelp, 10);
         iconHelp.click();
     }
+
+    public void clickHelpMeUnderstandLink(){
+        basicActions.waitForElementToBeClickable(lnkHelpLink, 20);
+        lnkHelpLink.click();
+    }
 }

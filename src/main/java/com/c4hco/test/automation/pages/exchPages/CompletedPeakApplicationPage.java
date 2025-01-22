@@ -35,6 +35,10 @@ public class CompletedPeakApplicationPage {
         yesImNew.click();
     }
 
+    @FindBy(xpath = "//*[@name='back']")
+    WebElement backBtnLetUsGuideYou;
+
+
     public void selectNoThanksOption(){
         noThanksRadioButton.click();
     }
@@ -92,4 +96,5 @@ public class CompletedPeakApplicationPage {
                 throw new IllegalArgumentException("Invalid option: " + option);
         }
     }
+    public void clickOnBackBtn(){backBtnLetUsGuideYou.click();}
 }
