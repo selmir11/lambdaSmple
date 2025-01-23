@@ -190,16 +190,18 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
         member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
         member.setApplyingforCov(applying);
-        memberList.add(member);
-
-        SharedData.setMembers(memberList);
 
         enterMemberDOB(DOB);
         genderSelection(gender);
         for (String Relation : Relations) {
-            selectRelationship(Name,Relation);
+            selectRelationship(Relation);
+            applyingForCoverage(applying);
+            String[] part = Relation.split(":");
+            if(part[0].equalsIgnoreCase("Primary")){member.setRelation_to_subscriber(part[1].toUpperCase());break;}
         }
-        applyingForCoverage(applying);
+
+        memberList.add(member);
+        SharedData.setMembers(memberList);
     }
 
     public void memberDetailswithAge(int Age){
@@ -552,7 +554,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         dropdown.selectByVisibleText(Relation);
     }
 
-    public void selectRelationship(String FnamePre,String Relationship){
+    public void selectRelationship(String Relationship){
         String[] parts = Relationship.split(":");
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
@@ -565,9 +567,6 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             dropdown.selectByVisibleText(Relation);
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
-            List<MemberDetails> members = SharedData.getMembers();
-            members.stream().filter(mem -> mem.getFirstName().contains(FnamePre)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(Relation.toUpperCase()));
-            SharedData.setMembers(members);
         } catch (NoSuchElementException e) {
             System.out.println("Element not found: " + e.getMessage());
             // Handle the exception as needed
@@ -634,7 +633,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
                 enterMemberDOB(DOB);
                 genderSelection(gender);
                 for (String Relation : Relations) {
-                    selectRelationship(FName,Relation);
+                    selectRelationship(Relation);
                 }
                 applyingForCoverage(applying);
                 actualMember.setDob(DOB);
