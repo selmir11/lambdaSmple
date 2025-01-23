@@ -100,11 +100,6 @@ public class MyProfilePageSteps {
         myProfileExchPage.ClickChangePrimaryContactOnMyProfilePage();
     }
 
-    @And("I update the contact email address")
-    public void iUpdateContactEmailAddress() {
-        myProfileExchPage.UpdateContactEmailAddress();
-    }
-
     @And("I update the contact home phone number on profile page")
     public void iUpdateContactPhoneNumber() {
         myProfileExchPage.updateContactPhoneNumber();
@@ -114,6 +109,15 @@ public class MyProfilePageSteps {
     public void updateMobileNum() {
         myProfileExchPage.updateMobilePhNum();
     }
+
+    @And("I update the contact email address on profile page")
+    public void updateContactEmailAddress() {myProfileExchPage.UpdateContactEmailAddress();}
+
+    @And("I update the contact preferred language on profile page")
+    public void updateContactPreferredLang() {myProfileExchPage.PreferredContactLanguageMethod("Spanish");}
+
+    @And("I update the contact preferred method on profile page")
+    public void updateContactPreferredMethod() {myProfileExchPage.PreferredContactMethod("Mail");}
 
     @Then("I update {string} as primary member")
     public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {
