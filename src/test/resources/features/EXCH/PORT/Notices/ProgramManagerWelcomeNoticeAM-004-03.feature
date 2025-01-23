@@ -1,8 +1,8 @@
-@AssistNet @port
-Feature: Create a new Program Manager account
+@port @portNotice @AssistNet
+Feature:  Create a new Program Manager account and verify the Welcome notice AM-004-03
 
-  @SLER-2044
-  Scenario: Creating a new Program Manager account
+  @SLER-2045
+  Scenario:  Creating a new Program Manager account and verifying the Welcome notice AM-004-03
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -28,25 +28,9 @@ Feature: Create a new Program Manager account
     And I validate I am on the "Create Account" page
     Then I complete mandatory data for program manager account creation
     Then I validate I am on the "Login" page
-    And I log into my Program Manager account
 
     Then I switch to the tab number 2
-    Then I open the MFA notice
-    And I get the MFA code
-    And I delete the open notice
+    Then I open the notice "AM-004-03" in "English"
+    And I verify the notice Text for "AM-004-03" in "English" for "Program Manager"
+    Then I delete the open notice
     Then I sign out of Outlook
-
-    Then I enter the MFA code and click Verify
-    And I validate I am on the "assistnet dashboard" page
-    And I verify the Program Manager Dashboard welcome text
-    Then I verify the program manager certification status is "Not Approved"
-
-    Then I click Complete Profile on assistnet dashboard page
-    Then I click save and continue on my information assistnet Page
-    And I click go back to my dashboard button from assistNet Dashboared Page
-
-    And I wait for 1000 milliseconds
-    And I validate I am on the "assistnet dashboard" page
-    Then I verify the program manager certification status is "Approved"
-    And I click on username dropdown
-    Then I click sign out from the assistnet Dashboard

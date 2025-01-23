@@ -527,3 +527,48 @@ Feature: Verify Navigation to the ELIG Pages
     Then I validate I am on the "Report a life change" page
     Then I click back button on Report a Life Change Page
     Then I validate I am on the "Before you begin" page
+
+  @SLER-2018 @PageNavigation
+  Scenario: ELIG-Report a life change (Initial)-Page Navigation(RT-1158)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
+    Then I click Help me understand this page link on Report a Life change Page
+    And I validate the below help drawer text in "English"
+      | Help |
+      | Qualified Life Change Event |
+      | Overview |
+      | Select any Life Change Event that happened to you or someone in your household within the past 60 days. The loss of other health insurance can be reported up to 60 days before you lose your other insurance. |
+      | Important for people losing Health First Colorado (Colorado's Medicaid program): If you are going to lose or have already lost Health First Colorado coverage, you are eligible for a Special Enrollment Period to sign up for a health insurance plan through July 2024. You can enroll as early as 60 days prior to the end of your Health First Colorado coverage. The sooner you enroll in a health insurance plan, the sooner your coverage begins. |
+      | To see if you are qualified to enroll after losing your health insurance plan please visit: |
+      | https://connectforhealthco.com/get-started/when-can-i-buy-insurance/ |
+      | You can also check this box if your household's annual Modified Adjusted Gross Income is at or below 150% of the federal poverty level: |
+      | https://www.healthcare.gov/glossary/federal-poverty-level-fpl/ |
+      | Please use the list below to see the income limits by household size: |
+      | 1 person: $21,870 |
+      | 2 people: $29,580 |
+      | 3 people: $37,290 |
+      | 4 people: $45,000 |
+      | 5 people: $52,710 |
+      | 6 people: $60,240 |
+      | 7 people: $68,130 |
+      | 8 people: $75,840 |
+      | 9 people: $83,550 |
+      | 10 people: $91,260 |
+      | Need more help? |
+      | Contact us |
+    Then I click Help me understand this page link on Report a Life change Page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I click back button on Who Are You Page
+    Then I validate I am on the "Report a life change" page
+    Then I click back button on Report a Life Change Page
+    Then I validate I am on the "Before you begin" page
