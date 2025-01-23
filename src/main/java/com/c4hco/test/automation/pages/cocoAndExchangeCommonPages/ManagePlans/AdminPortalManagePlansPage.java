@@ -423,7 +423,6 @@ public class AdminPortalManagePlansPage {
         String xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'"+planYear+"')]");
         WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
         planYearBtn.click();
-        basicActions.switchtoactiveTab();
     }
 
     public void checkDefaultCurrentYear() {
@@ -512,6 +511,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void resetMakeChangeButtonsCocoDisplayed() {
+        basicActions.waitForElementToBePresent(btnMakeChangeMed, 20);
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 20);
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertAll();
@@ -687,15 +687,6 @@ public class AdminPortalManagePlansPage {
         }
     }
 
-//    public void selectThePlanYearOnManagePlan(String planYear) {
-//        basicActions.waitForElementListToBePresent(planYearList, 50);
-//        dpdCurrentYearMP.click();
-//        for (WebElement each : planYearList) {
-//            if (each.getText().equals(planYear)) {
-//                each.click();
-//            }
-//        }
-//    }
     MemberDetails memberDetails = new MemberDetails();
 
     public void UpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
