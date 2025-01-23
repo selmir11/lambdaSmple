@@ -411,7 +411,8 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-    @SLER-1160
+  
+  @SLER-1160
     Scenario: AdminLCE Happy Path 2 'No' into 2 'Yes'
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
@@ -544,6 +545,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I click on view results and shop
       And I click continue on application results page
       Then I validate I am on the "Start Shopping" page
+
 
 
 
