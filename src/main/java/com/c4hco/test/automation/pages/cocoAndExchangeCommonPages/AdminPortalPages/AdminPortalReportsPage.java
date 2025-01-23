@@ -132,7 +132,7 @@ public class AdminPortalReportsPage {
         }
     }
 
-    public void validateRecord(String recordType){
+    public void validateRecord(String recordType,String userType){
         basicActions.waitForElementListToBePresent(descendingOrder, 10);
         basicActions.waitForElementListToBePresent(tableRows, 10);
         basicActions.wait(2000);
@@ -142,7 +142,7 @@ public class AdminPortalReportsPage {
 
         switch(recordType){
             case "primary person change":
-                validations_primaryPersonChange();
+                validations_primaryPersonChange(userType);
                 break;
             case "Info update":
                 validate_primaryInfoUpdated();
@@ -207,14 +207,13 @@ public class AdminPortalReportsPage {
     }
 
     private void validate_primaryInfoUpdated() {
-        // Includes all changes other than email
         validateChangePrimContactProfile();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         softAssert.assertEquals(tooltipText.getText(), "Mobile phone: from:" + basicActions.formatPhNum(primaryMem.getIncorrectMobilePhone()) + " to:" + primaryMem.getAlternatePhNum() + ", Home phone: from:" + basicActions.formatPhNum(primaryMem.getIncorrectHomePhone()) + " to:" + primaryMem.getPhoneNumber() + ", Preferred Contact Method: from:" + primaryMem.getIncorrectContactPref().toUpperCase() + " to:" + primaryMem.getContactPref().toUpperCase() + ", Preferred Language: from:" + primaryMem.getIncorrectLanguage() + " to:" + primaryMem.getPrefLang(), "detail value did not match");
         softAssert.assertAll();
     }
 
-    private void validations_primaryPersonChange(){
+    private void validations_primaryPersonChange(String userType){
         WebElement firstRow = tableRows.get(0);
        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
 
@@ -234,8 +233,31 @@ public class AdminPortalReportsPage {
 
         columns.get(7).click();
         basicActions.waitForElementToBePresent(tooltipText, 10);
-        softAssert.assertEquals(tooltipText.getText(), "From memberId:"+basicActions.getMember("Primary").getMemberId()+", name:"+basicActions.getMemFirstLastNames("Primary")+", To memberId:"+SharedData.getPrimaryMember().getMemberId()+", name:"+SharedData.getPrimaryMember().getFullName().replace(".", "")+", updatedBy:"+SharedData.getPrimaryMember().getEmailId(), "detail value did not match");
-
+        if ("adminportal".equals(userType)){
+            if(SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(tooltipText.getText(),
+                    "From memberId:" + basicActions.getMember("Primary").getMemberId() +
+                            ", name:" + basicActions.getMemFirstLastNames("Primary") +
+                            ", To memberId:" + SharedData.getPrimaryMember().getMemberId() +
+                            ", name:" + SharedData.getPrimaryMember().getFullName().replace(".", "") +
+                            ", updatedBy:" + "C4test.aduser123@gmail.com",
+                    "detail value did not match"); } else {
+                softAssert.assertEquals(tooltipText.getText(),
+                        "From memberId:" + basicActions.getMember("Primary").getMemberId() +
+                                ", name:" + basicActions.getMemFirstLastNames("Primary") +
+                                ", To memberId:" + SharedData.getPrimaryMember().getMemberId() +
+                                ", name:" + SharedData.getPrimaryMember().getFullName().replace(".", "") +
+                                ", updatedBy:" + "C4testaduser123@gmail.com",
+                        "detail value did not match");
+            }
+        } else {
+        softAssert.assertEquals(tooltipText.getText(),
+                "From memberId:" + basicActions.getMember("Primary").getMemberId() +
+                        ", name:" + basicActions.getMemFirstLastNames("Primary") +
+                        ", To memberId:" + SharedData.getPrimaryMember().getMemberId() +
+                        ", name:" + SharedData.getPrimaryMember().getFullName().replace(".", "") +
+                        ", updatedBy:" + SharedData.getPrimaryMember().getEmailId(),
+                "detail value did not match");}
         softAssert.assertAll();
     }
 }
