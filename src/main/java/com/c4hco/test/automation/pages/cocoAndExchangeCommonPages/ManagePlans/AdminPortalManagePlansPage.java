@@ -1330,7 +1330,33 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
         basicActions.click(btnGoBack);
         basicActions.closeBrowserTab();
+        basicActions.switchToParentPage("C4HCO Admin Portal");  }
+    public void clickGoBackButtonOnSimplifiedView() {
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(btnGoBack, 30);
+        basicActions.scrollToElement(btnGoBack);
+        basicActions.click(btnGoBack);
+        basicActions.closeBrowserTab();
         basicActions.switchToParentPage("C4HCO Admin Portal");
+    }
+    public void verifyLabelsSimplifiedMedicalCoCo() {
+        basicActions.waitForElementToBePresent(currentMedicalPlanName, 5000);
+        softAssert.assertTrue(currentMedicalPlanName.isDisplayed());
+        softAssert.assertEquals(medLatestApplicationUI.getText(), "Latest Application Date:");
+        softAssert.assertEquals(medFinancialStartDateUI.getText(), "Financial Start Date:");
+        softAssert.assertEquals(medEhbPremiumUI.getText(), "EHB Premium:");
+        softAssert.assertEquals(medFinancialEndDateUI.getText(), "Financial End Date:");
+        softAssert.assertEquals(medCsrAmountUI.getText(), "CSR Amount:");
+        softAssert.assertEquals(medPlanPremiumUI.getText(), "Plan Premium:");
+        softAssert.assertEquals(medLatestLCEtUI.getText(), "Latest LCE and Date:");
+        softAssert.assertEquals(medPlanAPTCUI.getText(), "Plan SES:");
+        softAssert.assertEquals(medRateAreaUI.getText(), "Rating Area:");
+        softAssert.assertEquals(medPremiumAfterSubsidyUI.getText(), "Premium after Subsidy:");
+        softAssert.assertEquals(medServiceAreaUI.getText(), "Service Area:");
+        softAssert.assertEquals(medPlanAVUI.getText(), "Plan AV:");
+        softAssert.assertEquals(medPolicyIdUI.getText(), "Policy ID:");
+        softAssert.assertEquals(medHiosIdUI.getText(), "HIOS ID:");
+        softAssert.assertAll();
     }
 }
 
