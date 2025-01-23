@@ -420,9 +420,6 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
         dpdCurrentYearMP.click();
 
-        if (planYear.equals("Current Year")){
-            planYear = basicActions.getCurrYear();
-        }
         String xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'"+planYear+"')]");
         WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
         planYearBtn.click();
