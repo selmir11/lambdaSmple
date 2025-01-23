@@ -95,18 +95,6 @@ Feature: Seed02 - Coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
-#    And I click on "My Documents and Letters" link on welcome page
-#    And I click on download enrolment document
-#    And I click on Sign Out in the Header for "Elmo"
-#
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
-
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
