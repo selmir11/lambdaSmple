@@ -50,7 +50,7 @@ Feature: Verify Navigation to the ELIG Pages
   Scenario:  ELIG-PersonID Combo 1-PersonID [RT-1799]
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation
+    And I enter first name "PesronFirst", middle name "personmiddle", last name "Pesronlast" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -75,7 +75,7 @@ Feature: Verify Navigation to the ELIG Pages
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I select "Prefer not to answer" for race and ethnicity for "PesronFirst"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -83,8 +83,8 @@ Feature: Verify Navigation to the ELIG Pages
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Other", "01011985", "Male" and applying "Yes"
-      |Primary:Other|
+    Then I enter details on tell us about additional members same as primary
+      |PesronFirst:Other|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "Household" for Residential Address
@@ -95,7 +95,7 @@ Feature: Verify Navigation to the ELIG Pages
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "Other"
+    And I select "Prefer not to answer" for race and ethnicity for "PesronFirst"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
