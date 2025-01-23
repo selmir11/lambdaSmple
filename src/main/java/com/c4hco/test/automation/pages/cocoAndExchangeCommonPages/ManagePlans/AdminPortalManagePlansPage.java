@@ -1309,7 +1309,7 @@ public class AdminPortalManagePlansPage {
         basicActions.scrollToElement(btnMedicalChecked);
         btnMedicalChecked.click();
         }
-    public void inspectAndClickGoBackButton() {
+    public void verifyAndClickGoBackButton() {
         basicActions.switchtoactiveTab();
         basicActions.waitForElementToBePresent(btnGoBack, 30);
         basicActions.scrollToElement(btnGoBack);
