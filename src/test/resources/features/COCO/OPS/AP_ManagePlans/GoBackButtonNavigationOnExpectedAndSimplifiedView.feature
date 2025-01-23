@@ -10,7 +10,7 @@
     Then I enter an accountId in any Env "5720167020" "4006533799" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
-    And I validate I am on the "Admin Portal Individual CoCo" page
+    And I validate I am on the "Individual CoCo" page
     Then I verify Primary account holder and account number displays
     And I check default year displays
     Then I click on "Manage Plans" user dashboard button
@@ -23,7 +23,7 @@
     And I validate I am on the "Manage Plans" page
     Then I validate buttons displayed on CoCo Manage page
     Then I validate and click Go Back button
-    And I validate I am on the "Admin Portal Individual CoCo" page
+    And I validate I am on the "Individual CoCo" page
     And I check default year displays
     Then I click on "Manage Plans" user dashboard button
     And I validate I am on the "Manage Plans" page
@@ -41,7 +41,7 @@
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     Then I validate and click Go Back button
-    And I validate I am on the "Admin Portal Individual CoCo" page
+    And I validate I am on the "Individual CoCo" page
     And I logout from Admin Portal
     @SLCR-724
     Scenario:Manage plan 2025 Go Back navigation
@@ -53,7 +53,7 @@
       Then I enter an accountId in any Env "5010518090" "4006533799" to search user
       And I click on Search button in AP dashboard page
       And I click acct first row from Search Results table in admin portal
-      And I validate I am on the "Admin Portal Individual CoCo" page
+      And I validate I am on the "Individual CoCo" page
       Then I verify Primary account holder and account number displays
       And I check default year displays
       Then I click on "Manage Plans" user dashboard button
@@ -64,7 +64,7 @@
       And I validate I am on the "Manage Plans" page
       Then I validate buttons displayed on CoCo Manage page
       Then I validate and click Go Back button
-      And I validate I am on the "Admin Portal Individual CoCo" page
+      And I validate I am on the "Individual CoCo" page
       And I check default year displays
       Then I click on "Manage Plans" user dashboard button
       And I validate I am on the "Manage Plans" page
@@ -78,7 +78,7 @@
       And I wait for 300 milliseconds
       And I validate I am on the "Manage Plans" page
       Then I validate and click Go Back button
-      And I validate I am on the "Admin Portal Individual CoCo" page
+      And I validate I am on the "Individual CoCo" page
       And I logout from Admin Portal
   @SLCR-724
   Scenario:Manage plan 2023 Go Back navigation from Simple View MP page
@@ -90,7 +90,7 @@
     Then I enter an accountId in any Env "8313683700" "8163138600" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
-    And I validate I am on the "Admin Portal Individual CoCo" page
+    And I validate I am on the "Individual CoCo" page
     Then I verify Primary account holder and account number displays
     And I check default year displays
     Then I click on "Manage Plans" user dashboard button
@@ -100,7 +100,7 @@
     Then I validate buttons displayed on CoCo Manage page
     Then I check current Simplified Medical container labels CoCo
     Then I click Go Back button on Simplified View
-    And I validate I am on the "Admin Portal Individual CoCo" page
+    And I validate I am on the "Individual CoCo" page
     Then I click on "Manage Plans" user dashboard button
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
@@ -115,5 +115,5 @@
     Then I unchecked Medical button on CoCo manage plan
     And I validate I am on the "Manage Plans" page
     Then I click Go Back button on Simplified View
-    And I validate I am on the "Admin Portal Individual CoCo" page
+    And I validate I am on the "Individual CoCo" page
     And I logout from Admin Portal

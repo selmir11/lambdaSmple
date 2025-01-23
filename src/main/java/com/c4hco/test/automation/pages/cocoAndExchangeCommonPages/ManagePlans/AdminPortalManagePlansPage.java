@@ -1315,7 +1315,7 @@ public class AdminPortalManagePlansPage {
     }
     public void uncheckedMedicalCoCo() {
         basicActions.waitForElementToBePresent(btnMedicalChecked, 20);
-        //basicActions.scrollToElement(btnMedicalChecked);
+        basicActions.scrollToElement(btnMedicalChecked);
         btnMedicalChecked.click();
         }
     public void inspectAndClickGoBackButton() {
