@@ -173,44 +173,57 @@ public class ImmigrationStatusPage {
         softAssert.assertAll();
     }
 
-    public void VerifyCitizenshipAndImmigrationforParoledInToUSTextEnglish() {
-        basicActions.waitForElementToBePresent(paroleePageHeader,40);
-        softAssert.assertEquals(paroleePageHeader.getText(), "Citizenship and Immigration Status: "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
-        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), "Help me understand this page");
-        softAssert.assertEquals(paroleePageTitle.getText(), "Immigration Status");
-        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(), "It looks like we need more information about your immigration status");
-        softAssert.assertEquals(lprQuestions.get(0).getText(), "What is the grant date of your parolee status?");
-        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"), "mm/dd/yyyy");
-        basicActions.waitForElementToBeClickable(backButton, 150);
-        softAssert.assertEquals(backButton.getAttribute("value"), "< Back");
-        softAssert.assertEquals(saveContinue.getAttribute("value"), "Save and Continue");
-        softAssert.assertAll();
-    }
-    public void VerifyCitizenshipAndImmigrationforParoledInToUSTextSpanish() {
-        basicActions.waitForElementToBePresent(paroleePageHeader, 40);
-        softAssert.assertEquals(paroleePageHeader.getText(), "Ciudadan\u00EDa y estatus migratorio: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
-        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), "Ayuda para entender esta p\u00E1gina");
-        softAssert.assertEquals(paroleePageTitle.getText(), "Estatus Migratorio");
-        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(), "Al parecer, necesitamos más información sobre su estatus migratorio");
-        softAssert.assertEquals(lprQuestions.get(0).getText(), "¿Cuál es la fecha en la que se le otorgó su estatus de libertad condicional?");
-        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"), "mm/dd/yyyy");
-        basicActions.waitForElementToBeClickable(backButton, 150);
-        softAssert.assertEquals(backButton.getAttribute("value"), "< Atr\u00E1s");
-        softAssert.assertEquals(saveContinue.getAttribute("value"),  "Guardar y Continuar");
-        softAssert.assertAll();
+    public void VerifyImmigrationStatusPageText(String immigrationStatus,List<String> dataText) {
+        switch (immigrationStatus) {
+            case "Conditional Entrant Granted before 1980":
+                VerifyImmigrationForConditionalEntrantGrantedBefore1980Text(dataText);
+                break;
+            case "Paroled into the U.S":
+                VerifyImmigrationForParoledInToUSText(dataText);
+                break;
+            case "Applicant for asylum":
+                VerifyImmigrationForApplicantForAsylumText(dataText);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + immigrationStatus);
+        }
     }
 
-    public void VerifyImmigrationStatusText(List<String> dataText) {
+    public void VerifyImmigrationForParoledInToUSText(List<String> dataText) {
+        basicActions.waitForElementToBePresent(paroleePageHeader,40);
+        softAssert.assertEquals(paroleePageHeader.getText(), dataText.get(0)+" "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName(),"Header Not Matching");
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), dataText.get(1),"Help Link Not Matching");
+        softAssert.assertEquals(paroleePageTitle.getText(), dataText.get(2),"paroled Title Not Matching");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(),dataText.get(3), "paroled Need more info Not Matching");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), dataText.get(4),"paroled Grand Date Not Matching");
+        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"),dataText.get(5), " Date Placeholder Not Matching");
+        softAssert.assertEquals(backButton.getAttribute("value"),dataText.get(6), "Back button Text Not Matching ");
+        softAssert.assertEquals(saveContinue.getAttribute("value"),dataText.get(7), "Save button Text Not Matching");
+        softAssert.assertAll();
+    }
+    public void VerifyImmigrationForConditionalEntrantGrantedBefore1980Text(List<String> dataText) {
         basicActions.waitForElementToBePresent(paroleePageHeader,40);
         softAssert.assertEquals(paroleePageHeader.getText(), dataText.get(0)+" "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
-        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), dataText.get(1),"mismatch");
-        softAssert.assertEquals(paroleePageTitle.getText(), dataText.get(2),"mismatch");
-        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(),dataText.get(3), "mismatch");
-        softAssert.assertEquals(lprQuestions.get(0).getText(), dataText.get(4),"mismatch");
-        softAssert.assertEquals(authWorkUsTextYes.getText(), dataText.get(5), " Yes RadioButton text mismatch");
-        softAssert.assertEquals(authWorkUsTextNo.getText(), dataText.get(6), " No RadioButton text mismatch");
-        softAssert.assertEquals(backButton.getAttribute("value"),dataText.get(7), "Not match ");
-        softAssert.assertEquals(saveContinue.getAttribute("value"),dataText.get(8), "Button not match");
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), dataText.get(1),"Help Link Not Matching");
+        softAssert.assertEquals(paroleePageTitle.getText(), dataText.get(2),"Title Not Matching");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(),dataText.get(3), "Need more info Not Matching");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), dataText.get(4),"Grand Date Not Matching");
+        softAssert.assertEquals(grantDateInputField.getAttribute("placeholder"),dataText.get(5), " date text mismatch");
+        softAssert.assertEquals(backButton.getAttribute("value"),dataText.get(6), "Back button Text Not Matching ");
+        softAssert.assertEquals(saveContinue.getAttribute("value"),dataText.get(7), "Save button Text Not Matching");
+        softAssert.assertAll();
+    }
+    public void VerifyImmigrationForApplicantForAsylumText(List<String> dataText) {
+        basicActions.waitForElementToBePresent(paroleePageHeader,40);
+        softAssert.assertEquals(paroleePageHeader.getText(), dataText.get(0)+" "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(paroleeHelpUnderstandText.getText(), dataText.get(1),"Help Link Not Matching");
+        softAssert.assertEquals(paroleePageTitle.getText(), dataText.get(2),"Title Not Matching");
+        softAssert.assertEquals(ParoleeNeedMoreInfo.getText(),dataText.get(3), "Need more info Not Matching");
+        softAssert.assertEquals(lprQuestions.get(0).getText(), dataText.get(4),"Authorized Text Not Matching");
+        softAssert.assertEquals(authWorkUsTextYes.getText(), dataText.get(5), " Yes RadioButton text Not Matching");
+        softAssert.assertEquals(authWorkUsTextNo.getText(), dataText.get(6), " No RadioButton text Not Matching");
+        softAssert.assertEquals(backButton.getAttribute("value"),dataText.get(7), "Back button Text Not Matching ");
+        softAssert.assertEquals(saveContinue.getAttribute("value"),dataText.get(8), "Save button Text Not Matching");
         softAssert.assertAll();
     }
 
@@ -230,29 +243,6 @@ public class ImmigrationStatusPage {
     public void inputGrantDate(String grantDate) {
         basicActions.waitForElementToBePresent(grantDateInputField, 10);
         grantDateInputField.sendKeys(grantDate);
-    }
-
-    public void VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(String language) {
-        switch (language) {
-            case "English":
-                VerifyCitizenshipAndImmigrationforParoledInToUSTextEnglish();
-                break;
-            case "Spanish":
-                VerifyCitizenshipAndImmigrationforParoledInToUSTextSpanish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " +language );
-        }
-    }
-
-    public void VerifyImmigrationStatusPageText(String language, List<String> dataText) {
-        switch (language) {
-            case "English","Spanish":
-                VerifyImmigrationStatusText(dataText);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " +language );
-        }
     }
 
     public void clickHelpIcon(String label) {
