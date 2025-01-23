@@ -1307,9 +1307,17 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         basicActions.switchtoactiveTab();
         basicActions.waitForElementToBePresent(btnGoBack, 30);
         basicActions.scrollToElement(btnGoBack);
-      //  softAssert.assertEquals(btnGoBack.getText(), "Go Back");
-        //softAssert.assertTrue(btnGoBack.isDisplayed());
-       // softAssert.assertAll();
+        softAssert.assertEquals(btnGoBack.getText(), "Go Back");
+        softAssert.assertTrue(btnGoBack.isDisplayed());
+        softAssert.assertAll();
+        basicActions.click(btnGoBack);
+        basicActions.closeBrowserTab();
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+    }
+    public void clickGoBackButtonOnSimplifiedView() {
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(btnGoBack, 30);
+        basicActions.scrollToElement(btnGoBack);
         basicActions.click(btnGoBack);
         basicActions.closeBrowserTab();
         basicActions.switchToParentPage("C4HCO Admin Portal");

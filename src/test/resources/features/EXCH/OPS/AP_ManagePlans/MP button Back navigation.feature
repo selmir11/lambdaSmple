@@ -66,7 +66,7 @@ Feature: Manage Plans: Button Go Back navigation
     And I validate I am on the "Manage Plans" page
     Then I validate buttons displayed on Manage page
     Then I check current Simplified Medical container labels
-    Then I validate and click Go Back button
+    Then I click Go Back button on Simplified View
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I click on "Manage Plans" user dashboard button
     And I wait for 300 milliseconds
@@ -77,7 +77,7 @@ Feature: Manage Plans: Button Go Back navigation
     And I validate I am on the "Manage Plans" page
     Then I unchecked "Dental" from plan type
     And I validate I am on the "Manage Plans" page
-    Then I validate and click Go Back button
+    Then I click Go Back button on Simplified View
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I click on "Manage Plans" user dashboard button
     And I wait for 300 milliseconds
@@ -88,6 +88,6 @@ Feature: Manage Plans: Button Go Back navigation
     And I wait for 300 milliseconds
     Then I unchecked "Medical" from plan type
     And I validate I am on the "Manage Plans" page
-    Then I validate and click Go Back button
+    Then I click Go Back button on Simplified View
     And I validate I am on the "Admin Portal individual dashboard" page
     And I logout from Admin Portal
