@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
 
@@ -130,11 +129,8 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
         }
 
-        List<MemberDetails> memberList = SharedData.getMembers();
+        List<MemberDetails> memberList = basicActions.getAllMem();
 
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
 
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
@@ -174,12 +170,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
         }
 
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
-
+        List<MemberDetails> memberList = basicActions.getAllMem();
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
@@ -196,8 +187,9 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         for (String Relation : Relations) {
             selectRelationship(Relation);
             applyingForCoverage(applying);
-            String[] part = Relation.split(":");
-            if(part[0].equalsIgnoreCase("Primary")){member.setRelation_to_subscriber(part[1].toUpperCase());}
+            if(Relation.split(":")[0].equalsIgnoreCase("Primary")){
+                member.setRelation_to_subscriber(Relation.split(":")[1].toUpperCase());
+            }
         }
 
         memberList.add(member);
@@ -221,11 +213,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         txtMiddleName.sendKeys(mdlName);
         txtLastName.sendKeys(lastName);
 
-        List<MemberDetails> memberList = SharedData.getMembers();
-
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
+        List<MemberDetails> memberList = basicActions.getAllMem();
 
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
@@ -516,50 +504,10 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertAll();
     }
 
-    public void setRelationshipOption1(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationship1.get(1), 15);
-
-        Select dropdown = new Select(selectRelationship1.get(1));
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void setRelationshipOption2(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationship1.get(2), 15);
-
-        Select dropdown = new Select(selectRelationship1.get(2));
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void RelationshipToPrimary(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToPrimary, 15);
-        Select dropdown = new Select(selectRelationshipToPrimary);
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void RelationshipToSpouse(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToSpouse, 15);
-        Select dropdown = new Select(selectRelationshipToSpouse);
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void RelationshipToDauhter(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToDaughter, 15);
-        Select dropdown = new Select(selectRelationshipToDaughter);
-        dropdown.selectByVisibleText(Relation);
-    }
-
-    public void RelationshipToSon(String Relation){
-        basicActions.waitForElementToBePresent(selectRelationshipToSon, 15);
-        Select dropdown = new Select(selectRelationshipToSon);
-        dropdown.selectByVisibleText(Relation);
-    }
-
     public void selectRelationship(String Relationship){
         String[] parts = Relationship.split(":");
         String Name = parts[0];  // "Primary"
         String Relation = parts[1]; // "Spouse"
-
-        try {
             WebElement element = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+Name+"')]/parent::div/parent::form-label/parent::div //select"));
             basicActions.waitForElementToBeClickableWithRetries(element,10);
             // Perform actions on the element
@@ -567,12 +515,8 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             dropdown.selectByVisibleText(Relation);
             softAssert.assertTrue(dropdown.getFirstSelectedOption().getText().equals(Relation));
             softAssert.assertAll();
-        } catch (NoSuchElementException e) {
-            System.out.println("Element not found: " + e.getMessage());
-            // Handle the exception as needed
-        }
-
     }
+
     public void getDob(String namePrefix, String dob){
         basicActions.getDob(namePrefix, dob);
     }
@@ -654,10 +598,6 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             throw new AssertionError("Dropdown validation failed. Expected: " + expectedValues + ", Actual: " + actualValues);
         }
     }
-
-
-
-
 
 }
 
