@@ -324,7 +324,7 @@ public class AdminPortalManagePlansSteps {
     }
     @And("I validate and click Go Back button")
     public void iInspectAndClickGoBackButton() {
-        adminPortalManagePlansPage.inspectAndClickGoBackButton();       }
+        adminPortalManagePlansPage.verifyAndClickGoBackButton();       }
     @Then("I click Go Back button on Simplified View")
     public void iClickGoBackButtonOnSimplifiedView() {
         adminPortalManagePlansPage.clickGoBackButtonOnSimplifiedView();       }
