@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.MyPoliciesPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class MyPoliciesPageSteps {
     MyPoliciesPage myPoliciesPage = new MyPoliciesPage(WebDriverManager.getDriver());
@@ -30,6 +31,16 @@ public class MyPoliciesPageSteps {
     @And("I click on {string} button")
     public void clickMedicalPlansCancelButton(String btnDetail){
         myPoliciesPage.clickPlanCancelButton(btnDetail);
+    }
+
+    @Then("I click on Future Plans")
+    public void clickFuturePlans(){
+        myPoliciesPage.clickFuturePlans();
+    }
+
+    @Then("I click on Current Plans")
+    public void clickCurrentPlans(){
+        myPoliciesPage.clickCurrentPlans();
     }
 
 }

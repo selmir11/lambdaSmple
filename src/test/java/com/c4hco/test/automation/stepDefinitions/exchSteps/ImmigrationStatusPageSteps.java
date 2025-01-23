@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class ImmigrationStatusPageSteps {
 
     ImmigrationStatusPage ImmigrationStatusPage = new ImmigrationStatusPage(WebDriverManager.getDriver());
@@ -39,10 +41,9 @@ public class ImmigrationStatusPageSteps {
         ImmigrationStatusPage.inputGrantDate(grantDate);
     }
 
-    @Then("I verify the text on the Citizenship and Immigration Status page for Paroled into the U.S. in {string}")
-    public void iVerifyTextOnCitizenshipAndImmigrationStatusForParoledText(String language) {
-        ImmigrationStatusPage.VerifyCitizenshipAndImmigrationTextOnParoledIntoTheUSPage(language);
-
+    @Then("I verify text on the Immigration Status on {string}")
+    public void iVerifyTextOnImmigrationStatusPage1890(String status, List<String> dataText) {
+        ImmigrationStatusPage.VerifyImmigrationStatusPageText(status, dataText);
     }
 
     @And("I select {string} icon on the Five-Year Bar Immigration Status page")
@@ -50,4 +51,6 @@ public class ImmigrationStatusPageSteps {
 
     @Then("I validate Lawful Presence help drawer Five-Year Bar page {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language){ImmigrationStatusPage.validateHelpVerbiage(helpText, language);}
+
+
 }
