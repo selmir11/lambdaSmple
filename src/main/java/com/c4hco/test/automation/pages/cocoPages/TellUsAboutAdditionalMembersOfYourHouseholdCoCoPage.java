@@ -197,7 +197,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             selectRelationship(Relation);
             applyingForCoverage(applying);
             String[] part = Relation.split(":");
-            if(part[0].equalsIgnoreCase("Primary")){member.setRelation_to_subscriber(part[1].toUpperCase());break;}
+            if(part[0].equalsIgnoreCase("Primary")){member.setRelation_to_subscriber(part[1].toUpperCase());}
         }
 
         memberList.add(member);
