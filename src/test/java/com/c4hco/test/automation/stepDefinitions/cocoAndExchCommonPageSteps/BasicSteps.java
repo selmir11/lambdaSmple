@@ -139,7 +139,7 @@ public class BasicSteps {
             case "account details":
                 pageUrl = "account-details";
                 break;
-            case "Individual CoCo":
+            case "Admin Portal Individual CoCo":
                 pageUrl = "/AdminPortal/coco/individual/";
                 break;
             case "Application Results":

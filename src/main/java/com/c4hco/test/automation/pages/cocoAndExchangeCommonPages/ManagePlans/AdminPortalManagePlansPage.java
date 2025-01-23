@@ -394,6 +394,8 @@ public class AdminPortalManagePlansPage {
     WebElement premiumRowTwo;
     @FindBy(xpath = "//div[@class='financial-details-grid']//div[15]")
     WebElement aptcRowTwo;
+    @FindBy(xpath = "//div/app-plan-container/div[3]/button")
+    WebElement btnGoBack;
 
 
     public void validateBluBar() {
@@ -414,6 +416,18 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(chkDental.getText(), "Dental");
         softAssert.assertAll();
     }
+    public void selectThePlanYearOnManagePlan(String planYear) {
+        basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
+        dpdCurrentYearMP.click();
+
+        if (planYear.equals("Current Year")){
+            planYear = basicActions.getCurrYear();
+        }
+        String xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'"+planYear+"')]");
+        WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
+        planYearBtn.click();
+        basicActions.switchtoactiveTab();
+    }
 
     public void checkDefaultCurrentYear() {
         basicActions.waitForElementToBePresent(dpdCurrentYearMP, 20);
@@ -431,7 +445,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void resetMakeChangeButtonsDisplayed() {
-        basicActions.waitForElementToBePresentWithRetries(btnMedReset, 60);
+        basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
         softAssert.assertAll();
@@ -501,7 +515,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void resetMakeChangeButtonsCocoDisplayed() {
-        basicActions.waitForElementToBePresent(btnMedReset, 20);
+        basicActions.waitForElementToBePresent(btnMakeChangeMed, 20);
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertAll();
     }
@@ -566,8 +580,6 @@ public class AdminPortalManagePlansPage {
             basicActions.updateElementWithRetries(coverageStartDatemem, coverageStartDateValue);
         }
     }
-
-
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
         for (String memberFinancialStrtDate : memberFinancialStrtDtList) {
             String[] parts = memberFinancialStrtDate.split(":");
@@ -678,15 +690,15 @@ public class AdminPortalManagePlansPage {
         }
     }
 
-    public void selectThePlanYearOnManagePlan(String planYear) {
-        basicActions.waitForElementListToBePresent(planYearList, 50);
-        dpdCurrentYearMP.click();
-        for (WebElement each : planYearList) {
-            if (each.getText().equals(planYear)) {
-                each.click();
-            }
-        }
-    }
+//    public void selectThePlanYearOnManagePlan(String planYear) {
+//        basicActions.waitForElementListToBePresent(planYearList, 50);
+//        dpdCurrentYearMP.click();
+//        for (WebElement each : planYearList) {
+//            if (each.getText().equals(planYear)) {
+//                each.click();
+//            }
+//        }
+//    }
     MemberDetails memberDetails = new MemberDetails();
 
     public void UpdateMyAccount_idAnyEnv(String stgAccountId, String qaAccountId) {
@@ -1303,6 +1315,22 @@ public class AdminPortalManagePlansPage {
             softAssert.assertEquals(aptcRowTwo.getText(), APTCRowTwoQA);
         }
         softAssert.assertAll();
+    }
+    public void uncheckedMedicalCoCo() {
+        basicActions.waitForElementToBePresent(btnMedicalChecked, 20);
+        //basicActions.scrollToElement(btnMedicalChecked);
+        btnMedicalChecked.click();
+        }
+    public void inspectAndClickGoBackButton() {
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(btnGoBack, 30);
+        basicActions.scrollToElement(btnGoBack);
+        softAssert.assertEquals(btnGoBack.getText(), "Go Back");
+        softAssert.assertTrue(btnGoBack.isDisplayed());
+        softAssert.assertAll();
+        basicActions.click(btnGoBack);
+        basicActions.closeBrowserTab();
+        basicActions.switchToParentPage("C4HCO Admin Portal");
     }
 }
 
