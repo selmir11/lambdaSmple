@@ -134,4 +134,16 @@ public class IndividualPolicyTableValidations {
         softAssert.assertAll();
     }
 
+    public void validateExchPersonIds() {
+        List<String> exchPersonIds = exchDbDataProvider.getExchPersonIds();
+        softAssert.assertEquals(exchPersonIds.size(), 2, "The number of EXCH_PERSON_IDs is not 2");
+        if (exchPersonIds.size() == 2) {
+            softAssert.assertEquals(exchPersonIds.get(0), exchPersonIds.get(1), "EXCH_PERSON_IDs are not the same");
+        } else {
+            softAssert.fail("Cannot validate EXCH_PERSON_IDs as the count is not 2");
+        }
+        softAssert.assertAll();
+    }
+
+
 }
