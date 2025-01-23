@@ -43,7 +43,7 @@ public class Ob834FileValidations_Grps {
         validateCtrlFnGrpSegment(subscriberMedEntities.get(0));
         validateSubscriberSegments(subscriberMedEntities);
         validateMemSeg(medicalEntityList);
-        validateSegCount(); // WIP
+        validateSegCount();
     }
 
     public void validateOb834DenFile(String denFileName) {
@@ -52,9 +52,10 @@ public class Ob834FileValidations_Grps {
         getDataByEmailAndAccNum();
         segCount = 0;
         insSegCount = 0;
+        validateCtrlFnGrpSegment(subscriberDenEntities.get(0));
         validateSubscriberSegments(subscriberDenEntities);
         validateMemSeg(dentalEntityList);
-        // validateSegCount(); //WIP
+        validateSegCount();
     }
 
     private void validateSegCount() {
@@ -689,7 +690,7 @@ public class Ob834FileValidations_Grps {
         List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
         for (Ob834DetailsEntity denEntity : dentalEntityList) {
             if (denEntity.getSubscriber_indicator().equals("Y") && denEntity.getFilename().equals(fileName)) {
-                subscriberMedEntities.add(denEntity);
+                subscriberDenEntities.add(denEntity);
             }
         }
     }
