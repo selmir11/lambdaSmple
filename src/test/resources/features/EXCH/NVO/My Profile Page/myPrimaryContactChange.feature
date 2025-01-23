@@ -232,7 +232,7 @@ Feature: My Profile Page Exch
       And I wait for hold on content to disappear
       Then I validate I am on the "My Profile" page
       And I click on Make Changes Button
-      And I update the contact email address
+      And I update the contact email address on profile page
       And I update the contact home phone number on profile page
       And I update the contact mobile phone number on profile page
       And I click on Save Button
@@ -354,7 +354,7 @@ Feature: My Profile Page Exch
     Then I click on ClickHere link for "My Profile"
     Then I validate I am on the "My Profile" page
     And I click on Make Changes Button
-    And I update the contact email address
+    And I update the contact email address on profile page
     And I click on Save Button
     And I wait for hold on content to disappear
     Then I validate I am on the "My Profile" page
