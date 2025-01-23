@@ -94,12 +94,6 @@ public class AccountOverviewPage {
     @FindBy(xpath = "//a[@class='linkButton']/parent::p")
     List<WebElement> txtlinkButton;
 
-    @FindBy(xpath = "//button[text()='Go back to Welcome page']")
-    WebElement goBackFromMyDocuments;
-
-    @FindBy(xpath = "//button[@id='goBackButton']")
-    WebElement goBackFromMyPlans;
-
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 

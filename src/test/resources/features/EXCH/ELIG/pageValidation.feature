@@ -2974,7 +2974,10 @@ Feature: Page validations on ELIG pages
     And  I enter valid credentials to login
     Then I apply for the current year
     Then I click on save and continue button
-    And I validate that error "<Error Message>" is thrown while clicking on Continue button
+    And I validate that error "<Error Message English>" is thrown while clicking on Continue button
+    Then I change the language from header to "Spanish NonElmo"
+    Then I click on save and continue button
+    And I validate that error "<Error Message Spanish>" is thrown while clicking on Continue button
     Examples:
-      |Error Message|
-      | Please select one of the options below|
+      |Error Message English                  |Error Message Spanish                    |
+      | Please select one of the options below|Seleccione una de las opciones siguientes|

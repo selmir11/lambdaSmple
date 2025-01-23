@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,9 +49,9 @@ public class CompletedPeakApplicationPage {
 
     public void clickSaveAndContinueButton(){
         saveAndContinueButton.click();
-    }
+          }
     public  void backButton(){backButton.click();}
-    public  void errMsgValidation(String errMsg){SoftAssert softAssert = new SoftAssert();softAssert.assertEquals(contErrorMsg.getText(),errMsg);}
+    public  void errMsgValidation(String errMsg){basicActions.waitForElementToBePresent(contErrorMsg,10);SoftAssert softAssert = new SoftAssert();softAssert.assertEquals(contErrorMsg.getText(),errMsg);}
 
 
     public void validateTheVerbiageOnLetUsGuideYouPage(String language){
