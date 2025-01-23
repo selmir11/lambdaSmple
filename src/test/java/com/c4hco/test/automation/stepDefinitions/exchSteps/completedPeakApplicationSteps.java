@@ -23,8 +23,15 @@ public class completedPeakApplicationSteps {
     }
 
     @Then("I click on back button in Completed Peak Application page")
-    public void iclickonbackbutton(){
+    public void iClickOnBackButton(){
         completedApplicationPage.backButton();
+    }
+
+    ///////////////////////////VALIDATION STEPS///////////////////////////////////
+
+    @And("I validate that error {string} is thrown while clicking on Continue button")
+    public void iValidateErrorThrown(String errMsg){
+        completedApplicationPage.errMsgValidation(errMsg);
     }
 
 }

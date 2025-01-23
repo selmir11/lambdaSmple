@@ -2965,10 +2965,16 @@ Feature: Page validations on ELIG pages
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
 
-  @SLER-2003 @PageValidation @wip
-  Scenario: Validate Footer on the Spanish Application Results page
+  @SLER-2003 @PageValidation
+  Scenario Outline: Validate Footer on the Spanish Application Results page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I click on save and continue button
+    And I validate that error "<Error Message>" is thrown while clicking on Continue button
+    Examples:
+      |Error Message|
+      | Please select one of the options below|

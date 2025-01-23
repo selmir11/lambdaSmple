@@ -34,6 +34,9 @@ public class CompletedPeakApplicationPage {
     @FindBy(xpath = "//input[@name='back']")
     WebElement backButton;
 
+    @FindBy(xpath = "//form[@id='peakApplicationQuestion']//following-sibling::label[2]")
+    WebElement contErrorMsg;
+
 
     public void setYesImNew(){
         yesImNew.click();
@@ -46,9 +49,9 @@ public class CompletedPeakApplicationPage {
     public void clickSaveAndContinueButton(){
         saveAndContinueButton.click();
     }
-    public  void backButton(){
-       backButton.click();
-    }
+    public  void backButton(){backButton.click();}
+    public  void errMsgValidation(String errMsg){SoftAssert softAssert = new SoftAssert();softAssert.assertEquals(contErrorMsg.getText(),errMsg);}
+
 
     public void validateTheVerbiageOnLetUsGuideYouPage(String language){
         switch (language){
