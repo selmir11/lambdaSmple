@@ -30,6 +30,8 @@ public class AdminPortalProgramManagerPage {
     WebElement successfulErrorText;
     @FindBy(id = "EmailData")
     WebElement email;
+    @FindBy(xpath = "//app-account-activity/div/a/button")
+    WebElement accountActivityReport;
 
 
     public void clickTheOnTheAPProgramManagerDashboard(String option) {
@@ -40,6 +42,9 @@ public class AdminPortalProgramManagerPage {
             break;
             case "Manage Account Access":
                 profileSummaryOptions.get(0).click();
+                break;
+            case "View Report":
+                accountActivityReport.click();
                 break;
         }
     }
