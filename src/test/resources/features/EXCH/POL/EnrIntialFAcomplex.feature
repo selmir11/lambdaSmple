@@ -430,3 +430,7 @@ Feature: Enroll a in a plan 8 HH
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data for groups
     And I validate the ob834 "dental" file data for groups
+
+    And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+

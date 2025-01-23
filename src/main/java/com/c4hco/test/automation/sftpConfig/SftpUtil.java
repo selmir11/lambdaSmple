@@ -3,13 +3,15 @@ package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.edi.ediUtil.Ib834Util;
-import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ib999Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.jcraft.jsch.*;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import org.testng.Assert;
 
 import java.io.File;
@@ -92,19 +94,23 @@ public class SftpUtil {
     }
 
 
-    public void uploadFileInSftp(String fileName, String remoteFilePath) throws JSchException {
-        connectToSftp();
-        String localPath = SharedData.getLocalPathToDownloadFile();
-        basicActions.wait(3000);
-        ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
-        channelSftp.connect();
-        try{
-           channelSftp.put(localPath+"/"+fileName, remoteFilePath);
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally {
-            channelSftp.disconnect();
-            disconnectFromSftp();
+    public void uploadFileInSftp(String fileName, String remoteFilePath) {
+        try {
+            connectToSftp();
+            String localPath = SharedData.getLocalPathToDownloadFile();
+            basicActions.wait(3000);
+            ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+            try {
+                channelSftp.put(localPath + "/" + fileName, remoteFilePath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                channelSftp.disconnect();
+                disconnectFromSftp();
+            }
+        } catch(JSchException e){
+            Assert.fail("Exception");
         }
     }
 
@@ -237,7 +243,7 @@ public class SftpUtil {
     public void readEdiFromLocal(){
         try{
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("seed01TcMed");
+            InputStream inputStream = classLoader.getResourceAsStream("4STMultiINS");
 
             if (inputStream != null) {
                 System.out.println("File found");

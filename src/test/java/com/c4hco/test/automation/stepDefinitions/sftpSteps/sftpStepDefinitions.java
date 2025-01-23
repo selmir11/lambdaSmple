@@ -86,14 +86,31 @@ public class sftpStepDefinitions {
     }
 
     @And("I upload medical ob834 edi files to sftp server with location {string}")
-    public void uploadMedOb834fileToSftp(String remoteFilePath) throws JSchException {
+    public void uploadMedOb834fileToSftp(String remoteFilePath) {
                 String fileName = SharedData.getMedicalFileName();
                 sftpUtil.uploadFileInSftp(fileName, remoteFilePath);
     }
     @And("I upload dental ob834 edi files to sftp server with location {string}")
-    public void uploadDenOb834fileToSftp(String remoteFilePath) throws JSchException {
+    public void uploadDenOb834fileToSftp(String remoteFilePath) {
                 String fileName = SharedData.getDentalFileName();
                 sftpUtil.uploadFileInSftp(fileName, remoteFilePath);
+    }
+
+    @And("I upload all the {string} ob834 edi files to sftp server with location {string}")
+    public void uploadMedOb834Files(String fileType, String remoteFileLocation) {
+        List<String> fileNames = new ArrayList<>();
+        switch(fileType){
+            case "medical":
+                fileNames = SharedData.getMedicalFileName_grp();
+                break;
+            case "dental":
+                fileNames = SharedData.getDentalFileName_grp();
+                break;
+            default: Assert.fail("Illegal argument passed");
+        }
+        for(String fileName: fileNames){
+            sftpUtil.uploadFileInSftp(fileName, remoteFileLocation);
+        }
     }
 
     @And("I validate the ib999 {string} file data")
