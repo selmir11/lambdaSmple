@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.CompletedPeakApplicationPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class completedPeakApplicationSteps {
@@ -26,4 +27,10 @@ public class completedPeakApplicationSteps {
     public void clickOnBackBtn(){
         completedApplicationPage.clickOnBackBtn();
     }
+
+    @Then("I verify {string} text on Lets us guide page")
+    public void verifyEnglishAndSpanishTextInLetUsGuide(String languageOption){
+        completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
+    }
+
 }

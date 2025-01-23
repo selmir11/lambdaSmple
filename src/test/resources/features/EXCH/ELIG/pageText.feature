@@ -901,3 +901,17 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I verify the text on the Citizenship and Immigration Status page for Paroled into the U.S. in "Spanish"
     And I change the language from header to "English NonElmo"
     Then  I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2041 @PageValidation
+  Scenario: ELIG-Let us guide you (Peak Application)-Page Text (RT-976)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    Then I verify "English" text on Lets us guide page
+    And I change the language from header to "Spanish NonElmo"
+    Then I verify "Spanish" text on Lets us guide page
