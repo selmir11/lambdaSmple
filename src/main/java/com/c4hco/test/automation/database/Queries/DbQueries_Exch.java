@@ -141,12 +141,10 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select rating_area_id from " + dbName + ".en_rating_area " +
                 "where fips = '" + fipcode + "'";
     }
-
     public String getFipcode(String zipCode) {
-        return "select fip_code from " + dbName + ".es_zip_codes " +
-                "where code = '" + zipCode + "'";
+        return "select fips from " + dbName + ".en_county " +
+                "where zip = '" + zipCode + "'";
     }
-
     public String en_plan(String planName) {
         return "select * from " + dbName + ".en_plan ep \n" +
                 "where plan_marketing_name = '" + planName + "'\n" +

@@ -71,7 +71,6 @@ public class BasicActions {
         return getDriver().getCurrentUrl();
     }
 
-
     public void openUrlWithQueryStringInNewTab(String query) {
         String currUrl = getCurrentUrl();
         String newUrl = currUrl + query;
