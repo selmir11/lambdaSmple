@@ -43,7 +43,7 @@ public class Ob834FileValidations_Grps {
         validateCtrlFnGrpSegment(subscriberMedEntities.get(0));
         validateSubscriberSegments(subscriberMedEntities);
         validateMemSeg(medicalEntityList);
-      //  validateSegCount(); // WIP
+        validateSegCount(); // WIP
     }
 
     public void validateOb834DenFile(String denFileName) {
@@ -58,12 +58,15 @@ public class Ob834FileValidations_Grps {
     }
 
     private void validateSegCount() {
+        int transSegCount=0;
+        String seSeg;
         for(Transaction transaction: transactionsList){
-            List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
-            segCount = segCount + 1;
-            softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
-            softAssert.assertAll();
+            seSeg = transaction.getCommonSegments().getSE().get(0).get(0);
+            transSegCount = transSegCount + Integer.parseInt(seSeg);
         }
+        segCount = segCount + 1;
+        softAssert.assertEquals(transSegCount, segCount, "Total number of segments included in a transaction set including ST and SE segments does not match");
+        softAssert.assertAll();
     }
 
     private void validateMemSeg(List<Ob834DetailsEntity> entityList) {
@@ -486,6 +489,7 @@ public class Ob834FileValidations_Grps {
                 for (Member mem : membersList) {
                     if (mem.getNM1().get(0).get(3).equals(dbSubscriberEntity.getMember_first_name())) {
                         validateSponsorPayerDetails(dbSubscriberEntity, transaction);
+                        validateDtpSegment(dbSubscriberEntity, transaction);
                         validateBgnSeg(dbSubscriberEntity, transaction);
                         validateQtySeg(dbSubscriberEntity, transaction);
                         validateTrnSeg(dbSubscriberEntity, transaction);
@@ -583,6 +587,10 @@ public class Ob834FileValidations_Grps {
         softAssert.assertEquals(perSeg.get(5), entry.getPrimary_email(), "Primary email does not match");
         softAssert.assertEquals(perSeg.get(6), "AP", "Alternate phone code does not match");
         softAssert.assertEquals(perSeg.get(7), entry.getAlternate_phone(), "Alternate phone number does not match");
+    }
+    private void validateDtpSegment(Ob834DetailsEntity entry, Transaction transaction){
+        List<List<String>> dtpSegment = transaction.getCommonSegments().getDTP();
+        segCount = segCount +dtpSegment.size();
     }
 
     private void validateSponsorPayerDetails(Ob834DetailsEntity entry, Transaction transaction) {
