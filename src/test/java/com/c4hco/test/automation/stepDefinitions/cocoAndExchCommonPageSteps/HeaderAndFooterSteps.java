@@ -14,6 +14,9 @@ public class HeaderAndFooterSteps {
     @And("I click on Apply for Coverage in the {string} Header")
     public void iClickApplyForCoverageLink(String pageType){ headerAndFooterPage.clickApplyForCoverageLink(pageType); }
 
+    @And("I right click on Apply for Coverage to open in new tab in the ELMO Header")
+    public void iRightClickApplyForCoverageLink(){ headerAndFooterPage.rightClickApplyForCoverageLink(); }
+
     @And("I click on Find a Plan in the {string} Header")
     public void iClickFindAPlanLinkLink(String pageType){ headerAndFooterPage.clickFindAPlanLinkLink(pageType); }
 
