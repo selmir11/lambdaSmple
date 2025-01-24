@@ -248,7 +248,7 @@ public class Ob834PreEdiDbValidations_grp {
     }
 
     private void validateResPerDetailsForMinorMem(){
-       
+      Assert.fail("WRITE CODE TO HANDLE VALIDATIONS");
     }
 
     private void validateResPersonDetailsForMember(Ob834DetailsEntity ob834Entity){
