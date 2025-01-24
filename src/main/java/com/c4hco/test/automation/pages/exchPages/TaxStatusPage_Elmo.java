@@ -431,6 +431,13 @@ public class TaxStatusPage_Elmo {
         saveAndContinueBtn.click();
     }
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 40);
+        basicActions.waitForElementToBeClickableWithRetries(goBackBtn, 20);
+        basicActions.scrollToElement(goBackBtn);
+        goBackBtn.click();
+    }
+
     public void enterDataEnterTheNameQuestion(List<Map<String, String>> nameData) {
         claimFirstNameInput.sendKeys(nameData.get(0).get("First Name"));
         String middleName = nameData.get(0).get("Middle Name");
