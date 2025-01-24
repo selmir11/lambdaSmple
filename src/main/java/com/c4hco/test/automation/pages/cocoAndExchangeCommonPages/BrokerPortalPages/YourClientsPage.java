@@ -87,6 +87,12 @@ public class YourClientsPage {
     @FindBy(id = "fullName0")
     WebElement secondClientFullName;
 
+    @FindBy(id = "county")
+    WebElement secondClientZipCode;
+
+    @FindBy(id = "program-name")
+    WebElement secondClientEligResults;
+
     @FindBy(xpath = "(//span[@id='fullName0'])[2]")
     WebElement thirdClientFullName;
 
@@ -98,6 +104,25 @@ public class YourClientsPage {
 
     @FindBy(xpath = "//*[@id='client-data-title-row']/span[1]")
     WebElement clientFullName;
+
+    @FindBy(id = "home-address-zip")
+    WebElement clientZipCode;
+
+    @FindBy(id = "phone-data")
+    WebElement clientPhoneNumber;
+
+    @FindBy(id = "account-number-data")
+    WebElement clientAccountNumber;
+
+    @FindBy(id = "plan-year")
+    List<WebElement> clientPlanYear;
+
+    @FindBy(id = "program-eligibility")
+    WebElement clientEligResults;
+
+    @FindBy(id = "issuer-name-data")
+    List<WebElement> clientIssuerName;
+
     @FindBy(xpath = "//*[@id='elem']/app-view-clients/div/div[1]")
     WebElement yourClientsTitle;
 
@@ -543,5 +568,37 @@ public class YourClientsPage {
     public void clickTransferAllClients(){
         basicActions.waitForElementToBePresent(transferAllClientsButton,30);
         transferAllClientsButton.click();
+    }
+
+    public void verifyExistingClientDetails(String clientName, String clientZip, String phoneNumber, String clientAccountStg, String clientAccountQA){
+        basicActions.waitForElementToBePresent(clientFullName,30);
+        softAssert.assertEquals(clientFullName.getText(), clientName);
+        softAssert.assertEquals(clientZipCode.getText(), clientZip);
+        softAssert.assertEquals(clientPhoneNumber.getText(), phoneNumber);
+
+        if(SharedData.getEnv().equals("staging")){
+            softAssert.assertEquals(clientAccountNumber.getText(), clientAccountStg);
+        } else{
+            softAssert.assertEquals(clientAccountNumber.getText(), clientAccountQA);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyExistingClientPlanDetails(String planYear, String eligResults, String issuerName){
+        basicActions.waitForElementListToBePresentWithRetries(clientPlanYear,30);
+        softAssert.assertEquals(clientPlanYear.get(0).getText(), planYear);
+        softAssert.assertEquals(clientEligResults.getText(), eligResults);
+        softAssert.assertEquals(clientIssuerName.get(0).getText(), issuerName);
+        softAssert.assertAll();
+    }
+
+    public void verifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults, String issuerName){
+        basicActions.waitForElementListToBePresentWithRetries(clientPlanYear,30);
+        softAssert.assertEquals(secondClientFullName.getText(), clientName);
+        softAssert.assertEquals(secondClientZipCode.getText(), clientZip);
+        softAssert.assertEquals(clientPlanYear.get(1).getText(), planYear);
+        softAssert.assertEquals(secondClientEligResults.getText(), eligResults);
+        softAssert.assertEquals(clientIssuerName.get(1).getText(), issuerName);
+        softAssert.assertAll();
     }
 }
