@@ -421,7 +421,18 @@ Feature: Page Validation-Tax Status Elmo Page
       |claimed_as_dep_on_othr_ftr_ind|tax_filing_type|
       |                              |   DEPENDENT   |
 #    Step 6
-    And I wait for 5000 milliseconds
+    Then I click Go back on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page Spouse"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
     Then I select "Someone else" for who will claim as dependent question
     And I enter data for who will claim as dependent enter the name question on the Tax Status Elmo page
       |First Name|Middle Name|Last Name|Suffix|   DOB  |
@@ -483,6 +494,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |     SNGL        |           1            |
 #    Step 4
+    Then I click Go back on Tax Status Elmo page
     Then I select "Yes" for will claim dependents question
     Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
@@ -496,6 +508,18 @@ Feature: Page Validation-Tax Status Elmo Page
       |   DEPENDENT   |                              |     SNGL        |           1            |
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 6
+    Then I click Go back on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 7
@@ -507,21 +531,33 @@ Feature: Page Validation-Tax Status Elmo Page
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
-#    Step 8 bug TAM-4878
+#    Step 8
+    Then I click Go back on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
     Then I select "Yes" for will file tax return question
     Then I select the "Qualified widow(er)" tax filing option on the Tax Status Elmo page
-    Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 9
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |      QWD        |           1            |
+      |    FILER      |                              |      QWD        |           0            |
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 10
+    Then I click Go back on Tax Status Elmo page
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
     Then I select "Yes" for will claim dependents question
@@ -534,7 +570,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |      QWD        |           1            |
+#      |    FILER      |                              |      SNGL       |                        |#Bug TAM-5084
+      |    FILER      |                              |      QWD        |           0            |
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
@@ -546,14 +583,24 @@ Feature: Page Validation-Tax Status Elmo Page
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |     SNGL        |           1            |
+      |    FILER      |                              |     SNGL        |           0            |
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 14
+    Then I click Go back on Tax Status Elmo page
     Then I check Exceptional circumstances checkbox on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
+    #    Step 15
+    And I wait for 5000 milliseconds
+    And I verify the tax return data for "Primary" in DB
+      |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
+      |    FILER      |                              |     SNGL        |          1             |
+    And I verify the tax return data for "Spouse" in DB
+      |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
+      |               |                              |                 |                        |
+    And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -590,6 +637,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |     SNGL        |           1            |
 #    Step 4
+    Then I click Go back on Tax Status Elmo page
     Then I select "Yes" for will claim dependents question
     Then I select "Primary" for who will be claimed as dependent question on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
@@ -603,6 +651,18 @@ Feature: Page Validation-Tax Status Elmo Page
       |   DEPENDENT   |                              |     SNGL        |           1            |
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 6
+    Then I click Go back on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page Spouse"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 7
@@ -615,20 +675,21 @@ Feature: Page Validation-Tax Status Elmo Page
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 8
+    Then I click Go back on Tax Status Elmo page
     Then I select "Yes" for will file tax return question
     Then I select the "Qualified widow(er)" tax filing option on the Tax Status Elmo page
-    Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 9
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |      QWD        |           1            |
+      |    FILER      |                              |      QWD        |           0            |
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 10
+    Then I click Go back on Tax Status Elmo page
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
     Then I select "Yes" for will claim dependents question
@@ -641,7 +702,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |      QWD        |           1            |
+#      |    FILER      |                              |     SNGL        |                        |#Bug TAM-5084
+      |    FILER      |                              |      QWD        |           0            |
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
@@ -653,14 +715,24 @@ Feature: Page Validation-Tax Status Elmo Page
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |     SNGL        |           1            |
+      |    FILER      |                              |     SNGL        |           0            |
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 14
+    Then I click Go back on Tax Status Elmo page
     Then I check Exceptional circumstances checkbox on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
+#    Step 15
+    And I wait for 5000 milliseconds
+    And I verify the tax return data for "Spouse" in DB
+      |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
+      |    FILER      |                              |     SNGL        |          1             |
+    And I verify the tax return data for "Primary" in DB
+      |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
+      |               |                              |                 |                        |
+    And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -704,6 +776,18 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
     And I verify tax_return_id for "Primary" is "Same" compared to "Spouse" on the Tax Status Elmo page
 #    Step 4
+    Then I click Go back on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status Elmo page
@@ -714,14 +798,14 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |      SNGL       |           1            |
-#    And I verify the tax return data for "Spouse" in DB  //update this and others when bug TAM-4974 is fixed
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    SPOUSE     |                              |      SNGL       |           1            |
+      |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
-    And I verify tax_return_id for "Primary" is "Same" compared to "Spouse" on the Tax Status Elmo page
+    And I verify tax_return_id for "Primary" is "Different" compared to "Spouse" on the Tax Status Elmo page
 #    Step 6
+    Then I click Go back on Tax Status Elmo page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
@@ -740,6 +824,18 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
     And I verify tax_return_id for "Primary" is "Same" compared to "Spouse" on the Tax Status Elmo page
 #    Step 8
+    Then I click Go back on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+#    Workaround until Elmo Tax Status page is in flow
+    Then I validate I am on the "Tax status" page
+    And I change the C4 url to "Tax Status Elmo page"
+#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
@@ -755,10 +851,10 @@ Feature: Page Validation-Tax Status Elmo Page
       |    FILER      |                              |      MFJ        |           1            |
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    SPOUSE     |                              |      MFJ        |           1            |
-    And I verify tax_return_id is "Same" as last ID for "Primary" on the Tax Status Elmo page
-    And I verify tax_return_id is "Same" as last ID for "Spouse" on the Tax Status Elmo page
-    And I verify tax_return_id for "Primary" is "Same" compared to "Spouse" on the Tax Status Elmo page
+      |               |                              |                 |                        |
+    And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
+    And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
+    And I verify tax_return_id for "Primary" is "Different" compared to "Spouse" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

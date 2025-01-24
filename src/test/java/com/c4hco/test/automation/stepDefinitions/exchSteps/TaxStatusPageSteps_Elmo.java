@@ -35,6 +35,9 @@ public class TaxStatusPageSteps_Elmo {
     @Then("I click Save and Continue on Tax Status Elmo page")
     public void iClickSaveAndContinue(){taxStatusPage_Elmo.clickSaveAndContinue();}
 
+    @Then("I click Go back on Tax Status Elmo page")
+    public void iClickGoBack(){taxStatusPage_Elmo.clickGoBack();}
+
     @And("I enter data for who will claim as dependent enter the name question on the Tax Status Elmo page")
     public void iEnterDataEnterTheNameQuestion(List<Map<String, String>> nameData){taxStatusPage_Elmo.enterDataEnterTheNameQuestion(nameData);}
 
