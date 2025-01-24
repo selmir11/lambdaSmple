@@ -4,34 +4,26 @@ import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
 import org.json.JSONArray;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.List;
-
 public class Ib999FileValidations {
-    Edi999Segments ib999MedSegment= new Edi999Segments();
-    Ib999Entity ib999MedEntity = new Ib999Entity();
-    Ib999Entity ib999DenEntity = new Ib999Entity();
+    Edi999Segments ib999Segment= new Edi999Segments();
     SoftAssert softAssert = new SoftAssert();
 
+    public void validateIb999MedFileData(){
+        for (Ib999Entity ib999MedEntity : SharedData.getIb999MedDetailsEntities()) {
+            validateIb999File(ib999MedEntity);
+        }
+    }
 
-    public void validateIb999FileData(String fileType){
-        switch(fileType){
-            case "medical":
-                getMedicalEntity();
-                validateIb999File(ib999MedEntity);
-                break;
-            case "dental":
-                getDentalEntity();
-                validateIb999File(ib999DenEntity);
-                break;
-            default: Assert.fail("Invalid argument::"+fileType);
+    public void validateIb999DenFileData() {
+        for (Ib999Entity ib999DenEntity : SharedData.getIb999DenDetailsEntities()) {
+            validateIb999File(ib999DenEntity);
         }
     }
 
     private void validateIb999File(Ib999Entity entry){
-        ib999MedSegment = SharedData.getIb999Segments();
+        ib999Segment = SharedData.getIb999Segments();
         validateISASegment(entry);
         validateIEASegment(entry);
         validateGSSegment(entry);
@@ -45,7 +37,7 @@ public class Ib999FileValidations {
     }
 
     private void validateISASegment(Ib999Entity entry){
-        JSONArray isaSeg = ib999MedSegment.getISA();
+        JSONArray isaSeg = ib999Segment.getISA();
         String appType = SharedData.getAppType();
         if (appType.equals("exchange")) {
             softAssert.assertEquals(entry.getInterchange_receiver_id(), "CNCT4HLTHCO");
@@ -68,7 +60,7 @@ public class Ib999FileValidations {
         softAssert.assertAll();
     }
     private void validateGSSegment(Ib999Entity entry){
-        JSONArray gsSeg = ib999MedSegment.getGS().getJSONArray(0);
+        JSONArray gsSeg = ib999Segment.getGS().getJSONArray(0);
         softAssert.assertEquals(gsSeg.get(0),"FA", "FA mismatch");
         softAssert.assertEquals(entry.getInterchange_sender_id(), gsSeg.get(1), "Sender Id mismatch");
         softAssert.assertEquals(entry.getInterchange_receiver_id(), gsSeg.get(2), "Receiver Id mismatch");
@@ -81,33 +73,33 @@ public class Ib999FileValidations {
         softAssert.assertAll();
     }
     private void validateSTSegment(Ib999Entity entry){
-        JSONArray stSeg = ib999MedSegment.getST().getJSONArray(0);
+        JSONArray stSeg = ib999Segment.getST().getJSONArray(0);
         softAssert.assertEquals(stSeg.get(0),entry.getTs_id_code(),"Ts_id_code mismatch");
         softAssert.assertEquals(stSeg.get(1),entry.getTs_control_number(),"Ts_control_number mismatch");
         softAssert.assertEquals(stSeg.get(2),entry.getImple_conv_reference(),"Imple_conv_reference() mismatch");
         softAssert.assertAll();
     }
     private void validateAK1Segment(Ib999Entity entry){
-        JSONArray ak1Seg = ib999MedSegment.getAK1().getJSONArray(0);
+        JSONArray ak1Seg = ib999Segment.getAK1().getJSONArray(0);
         softAssert.assertEquals(ak1Seg.get(0),entry.getAk1_functional_id_code(), "Ak1_functional_id_code mismatch");
         softAssert.assertEquals(ak1Seg.get(1), entry.getGroup_ctrl_number(), "Group control number mismatch");
         softAssert.assertEquals(ak1Seg.get(2), entry.getAk1_ver_id_code(), "Ak1 verification id code mismatch");
         softAssert.assertAll();
     }
     private void validateAK2Segment(Ib999Entity entry){
-        JSONArray ak2Seg = ib999MedSegment.getAK2().getJSONArray(0);
+        JSONArray ak2Seg = ib999Segment.getAK2().getJSONArray(0);
         softAssert.assertEquals(ak2Seg.get(0),entry.getAk2_ts_id_code(), "Ak2_ts_id_code mismatch");
         softAssert.assertEquals(ak2Seg.get(1), entry.getAk2_ts_control_number(), "Ak2_ts_control_number mismatch");
         softAssert.assertEquals(ak2Seg.get(2), entry.getAk2_imple_conv_reference(), "Ak2_imple_conv_reference mismatch");
         softAssert.assertAll();
     }
     private void validateIK5Segment(Ib999Entity entry){
-        JSONArray ik5Seg = ib999MedSegment.getIK5().getJSONArray(0);
+        JSONArray ik5Seg = ib999Segment.getIK5().getJSONArray(0);
         softAssert.assertEquals(ik5Seg.get(0), entry.getIk5_ts_ack_code(), "Ik5_ts_ack_code mismatch");
         softAssert.assertAll();
     }
     private void validateAK9Segment(Ib999Entity entry){
-        JSONArray ak9Seg = ib999MedSegment.getAK9().getJSONArray(0);
+        JSONArray ak9Seg = ib999Segment.getAK9().getJSONArray(0);
         softAssert.assertEquals(ak9Seg.get(0),entry.getAk9_funct_group_ack_code(), "Ak9_funct_group_ack_code mismatch");
         softAssert.assertEquals(ak9Seg.get(1), entry.getAk9_number_of_ts_included(), "Ak9_number_of_ts_included mismatch");
         softAssert.assertEquals(ak9Seg.get(2), entry.getAk9_number_of_received_ts(), "Ak9_number_of_received_ts mismatch");
@@ -115,30 +107,20 @@ public class Ib999FileValidations {
         softAssert.assertAll();
     }
     private void validateSESegment(Ib999Entity entry){
-        JSONArray seSeg = ib999MedSegment.getSE().getJSONArray(0);
+        JSONArray seSeg = ib999Segment.getSE().getJSONArray(0);
         softAssert.assertEquals(seSeg.get(1), entry.getTs_control_number(), "Ts control number mismatch");
         softAssert.assertAll();
     }
     private void validateGESegment(Ib999Entity entry){
-        JSONArray geSeg = ib999MedSegment.getGE().getJSONArray(0);
+        JSONArray geSeg = ib999Segment.getGE().getJSONArray(0);
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(),"Group control number in GS segment mismatch" );
         softAssert.assertAll();
     }
     private void validateIEASegment(Ib999Entity entry){
-        JSONArray ieaSeg = ib999MedSegment.getIEA();
+        JSONArray ieaSeg = ib999Segment.getIEA();
         softAssert.assertEquals(ieaSeg.get(0),"1", "functional group mismatch");
         softAssert.assertEquals(ieaSeg.get(1), entry.getInterchange_ctrl_number(), "Interchange control number mismatch");
         softAssert.assertAll();
-    }
-
-    private void getMedicalEntity(){
-       List<Ib999Entity> ib999MedEntities = SharedData.getIb999MedDetailsEntities();
-        ib999MedEntity = ib999MedEntities.get(0);
-    }
-
-    private void getDentalEntity(){
-        List<Ib999Entity> ib999DenEntities = SharedData.getIb999DenDetailsEntities();
-        ib999DenEntity = ib999DenEntities.get(0);
     }
 
 }

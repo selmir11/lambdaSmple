@@ -117,19 +117,25 @@ public class sftpStepDefinitions {
     public void validateIb999FileDetails(String type) {
         switch (type) {
             case "medical":
-                String medFileName = SharedData.getMedicalIb999FileName();
-                System.out.println("***********Validating Medical IB999 File::"+medFileName+"***********");
-                sftpUtil.readIb999File(medFileName);
+                List<String> medFileNames = SharedData.getMedicalIb999FileNames();
+                for(String medFileName:medFileNames){
+                    System.out.println("***********Validating Medical IB999 File::"+medFileName+"***********");
+                    sftpUtil.readIb999File(medFileName);
+                    ib999FileValidations.validateIb999MedFileData();
+                }
                 break;
             case "dental":
-                String denFileName = SharedData.getDentalIb999FileName();
-                System.out.println("***********Validating Dental IB999 File::"+denFileName+"***********");
-                sftpUtil.readIb999File(denFileName);
+                List<String> denFileNames = SharedData.getDentalIb999FileNames();
+                for(String denFileName:denFileNames){
+                    System.out.println("***********Validating Dental IB999 File::"+denFileName+"***********");
+                    sftpUtil.readIb999File(denFileName);
+                    ib999FileValidations.validateIb999DenFileData();
+                }
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");
         }
-        ib999FileValidations.validateIb999FileData(type);
+
     }
 
     @And("I validate the ob999 {string} file data")
@@ -152,22 +158,21 @@ public class sftpStepDefinitions {
     }
 
     @And("I download the {string} ib999 file from sftp server with location {string}")
+    @And("I download the {string} ib999 files from sftp server with location {string}")
     public void downloadIb999Files(String fileType, String inbound999RemotePath) {
-        String fileName;
-        try {
+        List<String> fileNames = null;
             switch (fileType) {
                 case "medical":
-                    fileName = SharedData.getMedicalIb999FileName();
+                    fileNames = SharedData.getMedicalIb999FileNames();
                     break;
                 case "dental":
-                    fileName = SharedData.getDentalIb999FileName();
+                    fileNames = SharedData.getDentalIb999FileNames();
                     break;
                 default:
-                    throw new IllegalArgumentException("Invalid argument: " + fileType);
+                    Assert.fail("Invalid argument: " + fileType);
+            for(String fileName: fileNames){
+                sftpUtil.downloadFileWithSftp(inbound999RemotePath, fileName);
             }
-            sftpUtil.downloadFileWithSftp(inbound999RemotePath, fileName);
-        } catch (Exception e) {
-            Assert.fail("Failed to download IB999 file for fileType: " + fileType + ", error: " + e.getMessage());
         }
     }
 

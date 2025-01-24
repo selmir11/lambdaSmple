@@ -438,3 +438,8 @@ Feature: Enroll a in a plan 8 HH
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
+    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" ib999 files from sftp server with location "/archive/INBOUND999/"
+
+    And I validate the ib999 "medical" file data
+    And I validate the ib999 "dental" file data
