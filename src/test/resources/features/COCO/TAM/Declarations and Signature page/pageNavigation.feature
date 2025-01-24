@@ -3,9 +3,6 @@ Feature: Navigation-Declarations and Signature Page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
-
-  @SLCR-151 @PageNavigationD&SPage @TAMSmoke
-  Scenario: SLCR-151 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in D&S portal
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -38,9 +35,11 @@ Feature: Navigation-Declarations and Signature Page
     And I select continue on the Family Overview page
     And I check "None of these" life change event checkbox
     And I select continue on the LCE page
-
-    #Step1
     Then I validate I am on the "CoCo Declarations and Signature" page
+
+  @SLCR-151 @PageNavigationD&SPage @TAMSmoke
+  Scenario: SLCR-151 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in D&S portal
+    #Step1
     And I change the C4 url to "Declarations and Signature portal Error CoCo"
     Then I validate I am on the "Error" page
     And I click Back to Welcome page Button on error CoCo page
@@ -63,6 +62,27 @@ Feature: Navigation-Declarations and Signature Page
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-727 @PageNavigationD&SPage @TAMSmoke
+  Scenario: SLCR-727 Verify you see the warning banner
+    #Step 4
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I right click on Apply for Coverage to open in new tab in the ELMO Header
+    #Step 5
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    #Step 6
+    And I validate notification banner on welcome page in "English"
+    And I change the language from header to "Spanish"
+    And I validate notification banner on welcome page in "Spanish"
+    And I change the language from header to "English"
+    #Step 7
+    And I switch to the tab number 1
+    And I validate no notification banner on welcome page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
