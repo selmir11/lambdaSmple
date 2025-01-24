@@ -434,3 +434,7 @@ Feature: Enroll a in a plan 8 HH
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
+  # Ib999 DB Validation
+    And I validate "medical" entities from ib999_details db table
+    And I validate "dental" entities from ib999_details db table
+

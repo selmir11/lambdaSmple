@@ -6,31 +6,57 @@ import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ib999DbValidations {
     SoftAssert softAssert = new SoftAssert();
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
-    private void setib999Data(){
-        List<Ib999Entity> ib999MedEntity = exchDbDataProvider.getIb999Details(SharedData.getMedGroupCtlNumber());
-        SharedData.setIb999MedDetailsEntities(ib999MedEntity);
-        SharedData.setMedicalIb999FileName(ib999MedEntity.get(0).getFilename());
-        List<Ib999Entity> ib999DenEntity = exchDbDataProvider.getIb999Details(SharedData.getDenGroupCtlNumber());
-        SharedData.setIb999DenDetailsEntities(ib999DenEntity);
-        SharedData.setDentalIb999FileName(ib999DenEntity.get(0).getFilename());
+    List<Ib999Entity> ib999MedEntities;
+    List<Ib999Entity> ib999DenEntities;
+
+    private void setIb999MedicalData(){
+        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
+        for(String medGrpCtrlNum: medGrpCtrlNums){
+            ib999MedEntities = exchDbDataProvider.getIb999Details(medGrpCtrlNum);
+        }
+
+        SharedData.setIb999MedDetailsEntities(ib999MedEntities);
+        List<String> medFileNames = setIb999FileNames(ib999MedEntities);
+        SharedData.setMedicalIb999FileNames(medFileNames);
+    }
+
+    private void setIb999DentalData(){
+        List<String> denGrpCtrlNums = SharedData.getDenGroupCtlNumbers();
+        for(String denGrpCtrlNum: denGrpCtrlNums){
+            ib999MedEntities = exchDbDataProvider.getIb999Details(denGrpCtrlNum);
+        }
+        SharedData.setIb999DenDetailsEntities(ib999DenEntities);
+        List<String> denFileNames = setIb999FileNames(ib999DenEntities);
+        SharedData.setMedicalIb999FileNames(denFileNames);
+    }
+
+    private List<String> setIb999FileNames(List<Ib999Entity> ib999Entities){
+        List<String> fileNames = new ArrayList<>();
+        for(Ib999Entity ib999Entity: ib999Entities){
+            fileNames.add(ib999Entity.getFilename());
+        }
+        return fileNames;
     }
 
     public void ib999RecordsValidations(String recordType) {
-        setib999Data();
-        int groups = SharedData.getScenarioDetails().getTotalGroups();
-        Ib999Entity med999Entity  = SharedData.getIb999MedDetailsEntities().get(0);
-        Ib999Entity den999Entity  = SharedData.getIb999DenDetailsEntities().get(0);
         switch (recordType) {
             case "medical":
-                ib999MedRecordsValidations(groups, med999Entity);
+                setIb999MedicalData();
+                for(Ib999Entity med999Entity: ib999MedEntities){
+                    ib999MedRecordsValidations(Integer.parseInt(SharedData.getTransForGrpCtrlNum().get(med999Entity.getAk1_group_ctrl_number())), med999Entity);
+                }
                 break;
             case "dental":
-                ib999DenRecordsValidations(groups, den999Entity);
+                setIb999DentalData();
+                for(Ib999Entity den999Entity: ib999DenEntities){
+                    ib999DenRecordsValidations(Integer.parseInt(SharedData.getTransForGrpCtrlNum().get(den999Entity.getAk1_group_ctrl_number())), den999Entity);
+                }
                 break;
             default:
                 Assert.fail("Record Type entered is not valid");

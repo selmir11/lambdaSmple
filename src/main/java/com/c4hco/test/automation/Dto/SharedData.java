@@ -33,6 +33,8 @@ public class SharedData {
     @Getter @Setter private static List<Ib834Entity> ib834DenDetailsEntities;
     @Getter @Setter private static String medicalIb999FileName;
     @Getter @Setter private static String dentalIb999FileName;
+    @Getter @Setter private static List<String> medicalIb999FileNames;
+    @Getter @Setter private static List<String> dentalIb999FileNames;
     @Getter @Setter private static String medicalIb834FileName;
     @Getter @Setter private static String dentalIb834FileName;
     @Getter @Setter private static String localPathToDownloadFile;
@@ -67,9 +69,12 @@ public class SharedData {
     @Getter @Setter private static ScenarioDetails scenarioDetails;
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
+    @Getter @Setter private static List<String> medGroupCtlNumbers;
+    @Getter @Setter private static List<String> denGroupCtlNumbers;
     @Getter @Setter private static List<String> medicalPlansList;
     @Getter @Setter private static List<String> dentalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
+    @Getter @Setter private static Map<String, String> transForGrpCtrlNum;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_medicalPlan;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_dentalPlan;
     @Getter @Setter private static Map<String, String> exchPersonId;

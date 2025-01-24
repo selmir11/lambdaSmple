@@ -6,14 +6,11 @@ import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
-import com.c4hco.test.automation.utils.BasicActions;
 import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Ob834FileValidations_Grps {
 
@@ -25,14 +22,17 @@ public class Ob834FileValidations_Grps {
     List<Ob834DetailsEntity> subscriberDenEntities = new ArrayList<>();
     Edi834TransactionDetails edi834TransactionDetails = new Edi834TransactionDetails();
     List<Transaction> transactionsList = new ArrayList<>();
-    BasicActions basicActions = new BasicActions();
+
     int segCount = 0;
     int insSegCount = 0;
     SoftAssert softAssert = new SoftAssert();
 
     public Ob834FileValidations_Grps() {
         setN1SegList();
+
     }
+
+
 
     public void validateOb834MedFile(String medFileName) {
         getOb834MedEntityForSubscriber(medFileName);
@@ -654,6 +654,11 @@ public class Ob834FileValidations_Grps {
         //GE Segment
         JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
+        Map<String, String> transForGrpCtrlNum = SharedData.getTransForGrpCtrlNum();
+        if(transForGrpCtrlNum.isEmpty()){
+            transForGrpCtrlNum = new HashMap<>();
+        }
+        transForGrpCtrlNum.put(geSeg.get(1).toString(), geSeg.get(0).toString());
     }
 
     private void getDataByEmailAndAccNum() {
