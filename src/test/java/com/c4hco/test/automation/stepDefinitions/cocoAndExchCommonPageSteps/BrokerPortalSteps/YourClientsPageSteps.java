@@ -233,5 +233,20 @@ public class YourClientsPageSteps {
     public void iClickTransferAllClientsButton() {
         yourClientsPage.clickTransferAllClients();
     }
+
+    @Then("I verify existing client details {string}, {string}, {string}, {string} or {string}")
+    public void iVerifyExistingClientDetails(String clientName, String clientZip, String phoneNumber, String clientAccountStg, String clientAccountQA) {
+        yourClientsPage.verifyExistingClientDetails(clientName, clientZip, phoneNumber, clientAccountStg, clientAccountQA);
+    }
+
+    @Then("I verify existing client plan details {string}, {string}, {string}")
+    public void iVerifyExistingClientPlanDetails(String planYear, String eligResults, String issuerName) {
+        yourClientsPage.verifyExistingClientPlanDetails(planYear, eligResults, issuerName);
+    }
+
+    @Then("I verify the existing secondary client details {string}, {string}, {string}, {string}, {string}")
+    public void iVerifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults, String issuerName) {
+        yourClientsPage.verifyExistingSecondaryClientDetails(clientName, clientZip, planYear, eligResults, issuerName);
+    }
 }
 
