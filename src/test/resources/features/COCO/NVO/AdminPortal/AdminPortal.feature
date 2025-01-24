@@ -25,7 +25,7 @@ Feature: Admin Portal Validations
       And I search for user and click email from search results
       Then I click on view button for "Account Activity" report
       Then I validate I am on the "Account Activity" page
-      Then I validate the account activity record for "Account Creation"
+      Then I validate the account activity record for "Account Creation" for "adminportal"
 
     @SLCR-671
     Scenario: Admin portal validations for primary person information update
@@ -56,7 +56,7 @@ Feature: Admin Portal Validations
       And I search for user and click email from search results
       Then I click on view button for "Account Activity" report
       Then I validate I am on the "Account Activity" page
-      Then I validate the account activity record for "Email Update"
+      Then I validate the account activity record for "Email Update" for "adminportal"
       And I close current tab and switch back to previous tab
       Then logout from Admin Portal
 
@@ -85,7 +85,7 @@ Feature: Admin Portal Validations
       And I search for user and click email from search results
       Then I click on view button for "Account Activity" report
       Then I validate I am on the "Account Activity" page
-      Then I validate the account activity record for "Info update"
+      Then I validate the account activity record for "Info update" for "adminportal"
       Then logout from Admin Portal
 
 
