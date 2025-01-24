@@ -233,21 +233,37 @@ public class Ob834PreEdiDbValidations_grp {
 
     private void validateResponsiblePersonDetails(Ob834DetailsEntity ob834Entity, MemberDetails member) {
         if (!member.getIsMinor()) {
-            softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_email(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_alt_phone(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), null);
-            softAssert.assertEquals(ob834Entity.getResidence_street_line2(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_city(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
-            softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
-        } else{
-            Assert.fail("WRITE CODE TO HANDLE THIS BLOCK");
+            validateResPersonDetailsForMember(ob834Entity);
+        } else {
+            if(ob834Entity.getSubscriber_indicator().equals("Y")){
+                validateResPerDetailsForMinorSubscriber();
+            } else {
+                validateResPerDetailsForMinorMem();
+            }
         }
+    }
+
+    private void validateResPerDetailsForMinorSubscriber(){
+
+    }
+
+    private void validateResPerDetailsForMinorMem(){
+       
+    }
+
+    private void validateResPersonDetailsForMember(Ob834DetailsEntity ob834Entity){
+        softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_email(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_alt_phone(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), null);
+        softAssert.assertEquals(ob834Entity.getResidence_street_line2(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_city(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
+        softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
     }
 
     private void validatePersonalDetails(Ob834DetailsEntity ob834Entity, MemberDetails member) {
