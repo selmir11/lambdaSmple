@@ -501,6 +501,7 @@ public class BasicActions {
                 newUrl = "TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus";
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
+                System.out.println("Member ID for Primary is " +getMemberId("Primary"));
                 break;
             case "Tax Status Elmo page Son":
                 newUrl = "TaxReturnPortal/members/" +getMemberId("Son")+"/taxStatus";
@@ -511,6 +512,7 @@ public class BasicActions {
                 newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
+                System.out.println("Member ID for Spouse is " +getMemberId("Spouse"));
                 break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
