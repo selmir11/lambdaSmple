@@ -11,12 +11,14 @@ import java.util.List;
 
 public class CompletedPeakApplicationPage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
+
     public CompletedPeakApplicationPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id="completedApplicationQYes")
+    @FindBy(id = "completedApplicationQYes")
     WebElement yesImNew;
 
     @FindBy(id = "completedApplicationQNo")
@@ -31,24 +33,23 @@ public class CompletedPeakApplicationPage {
     @FindBy(css = ".c4BodyText1")
     List<WebElement> bodyText;
 
-    public void setYesImNew(){
+    public void setYesImNew() {
         yesImNew.click();
     }
 
     @FindBy(xpath = "//*[@name='back']")
     WebElement backBtnLetUsGuideYou;
 
-
-    public void selectNoThanksOption(){
+    public void selectNoThanksOption() {
         noThanksRadioButton.click();
     }
 
-    public void clickSaveAndContinueButton(){
+    public void clickSaveAndContinueButton() {
         saveAndContinueButton.click();
     }
 
-    public void validateTheVerbiageOnLetUsGuideYouPage(String language){
-        switch (language){
+    public void validateTheVerbiageOnLetUsGuideYouPage(String language) {
+        switch (language) {
             case "English":
                 validateTheVerbiageEn();
                 break;
@@ -73,8 +74,6 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheVerbiageEs() {
-        SoftAssert softAssert = new SoftAssert();
-
         basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
         softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Perm\u00edtanos guiarlo", "Header text mismatch: Perm\u00edtanos guiarlo");
         softAssert.assertEquals(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present\u00f3 una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la informaci\u00f3n que envi\u00f3 antes. Usted tendr\u00e1 la oportunidad de revisar y cambiar su informaci\u00f3n seg\u00fan sea necesario. \u00bfDesea buscar una solicitud previamente completada?", "Body text mismatch: Si nunca se ha inscrito...");
@@ -96,5 +95,32 @@ public class CompletedPeakApplicationPage {
                 throw new IllegalArgumentException("Invalid option: " + option);
         }
     }
-    public void clickOnBackBtn(){backBtnLetUsGuideYou.click();}
+
+    public void clickOnBackBtn() {
+        backBtnLetUsGuideYou.click();
+    }
+
+    public void verifyEnglishAndSpanishTextInLetUsGuidePage(String languageOption) {
+        SoftAssert softAssert = new SoftAssert();
+        switch (languageOption) {
+            case "English":
+            softAssert.assertEquals(bodyText.get(0).getText(), "If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?");
+            softAssert.assertEquals(bodyText.get(1).getText(), "You will need your Case ID, which can be found on your Health First Colorado eligibility notice.");
+            softAssert.assertEquals(bodyText.get(2).getText(), "Yes, I’m new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus");
+            softAssert.assertEquals(bodyText.get(3).getText(), "No thanks, take me to the application");
+            softAssert.assertAll();
+            break;
+            case "Spanish":
+            softAssert.assertEquals(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya presentó una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la información que envió antes. Usted tendrá la oportunidad de revisar y cambiar su información según sea necesario. ¿Desea buscar una solicitud previamente completada?");
+            softAssert.assertEquals(bodyText.get(1).getText(), "Necesitará su identificación del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
+            softAssert.assertEquals(bodyText.get(2).getText(), "Sí, soy nuevo a Connect for Health Colorado y ya presenté una solicitud Health First Colorado or Child Health Plan Plus");
+            softAssert.assertEquals(bodyText.get(3).getText(), "No gracias, lléveme a la aplicación");
+            softAssert.assertAll();
+            break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + languageOption);
+        }
+
+    }
+
 }
