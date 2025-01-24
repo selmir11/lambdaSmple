@@ -337,15 +337,14 @@ public class EthnicityAndRacePage {
         setRaceAndEthnicity(raceEthnicity, memPrefix);
         setMemberID(memPrefix);
     }
-
+    private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
+          List<MemberDetails> members = basicActions.getAllMem();
+          members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
+        }
     private void setMemberID(String memPrefix){
         List<MemberDetails> members = basicActions.getAllMem();
         String memberId = basicActions.getMemberIDFromURL();
         members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setMemberId(memberId));
     }
 
-    private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
-          List<MemberDetails> members = basicActions.getAllMem();
-          members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
-        }
     }

@@ -38,6 +38,8 @@ public class MemberIdProofingPage {
     @FindBy(xpath = "//div/input[@id='answer21']")
     WebElement firstOptionInHomeAddress;
     @FindBy(xpath = "//div/input[@id='answer22']")
+    WebElement secondOptionInHomeAddress;
+    @FindBy(xpath = "//div/input[@id='answer22']")
     WebElement incorrectOptionInHomeAddress;
     @FindBy(xpath = "//div/input[@id='answer31']")
     WebElement firstOptionInCarLoanBank;
@@ -53,6 +55,15 @@ public class MemberIdProofingPage {
         basicActions.waitForElementToBePresent(firstOptionInEmployerName, 30);
         firstOptionInEmployerName.click();
         firstOptionInHomeAddress.click();
+        firstOptionInCarLoanBank.click();
+        saveContinue.click();
+    }
+
+    public void selectRequiredOptionsToUploadDocuments(){
+        basicActions.waitForElementToDisappear( spinner, 30  );
+        basicActions.waitForElementToBePresent(firstOptionInEmployerName, 30);
+        firstOptionInEmployerName.click();
+        secondOptionInHomeAddress.click();
         firstOptionInCarLoanBank.click();
         saveContinue.click();
     }

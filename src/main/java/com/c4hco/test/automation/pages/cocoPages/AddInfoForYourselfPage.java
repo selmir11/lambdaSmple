@@ -109,10 +109,12 @@ public class AddInfoForYourselfPage {
     }
 
     public void mailingAddressSelection(String mailingAddress) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementListToBePresent(mailingAddressButtons, 30);
         switch (mailingAddress) {
             case "Yes":
                 mailingAddressButtons.get(0).click();
+                subscriber.setMailingAddress(subscriber.getResAddress());
                 break;
             case "No":
                 mailingAddressButtons.get(1).click();

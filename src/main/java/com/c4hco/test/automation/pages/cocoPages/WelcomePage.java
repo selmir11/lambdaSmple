@@ -501,10 +501,10 @@ public class WelcomePage {
         expectedCalculatedDates.setFinancialStartDate(financialStartDate);
         expectedCalculatedDates.setFinancialEndDate(financialEndDate);
 
+        SharedData.setExpectedCalculatedDates_medicalPlan(expectedCalculatedDates);
         subscriber.setMedicalPlanStartDate(planStartDate);
         subscriber.setMedicalPlanEndDate(planEndDate);
 
-      //  SharedData.setExpectedCalculatedDates(expectedCalculatedDates);
         SharedData.setPrimaryMember(subscriber);
 
     }

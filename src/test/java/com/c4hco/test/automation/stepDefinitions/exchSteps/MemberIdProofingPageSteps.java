@@ -12,6 +12,11 @@ public class MemberIdProofingPageSteps {
         memberIdProofingPage.selectFirstOptionToAll();
     }
 
+    @Then("I answer all Id proofing questions required for uploading documents and click continue")
+    public void iSelectMemberIdProofingOptionsToUploadDocuments(){
+        memberIdProofingPage.selectRequiredOptionsToUploadDocuments();
+    }
+
     @And("I validate the verbiage on the Identity Proofing - Initial page in {string}")
     public void iValidateTheVerbiageOnTheIdentityProofingInitialPageIn(String language) {
         memberIdProofingPage.validateTheVerbiageOnTheIdentityProofingInitialPage(language);

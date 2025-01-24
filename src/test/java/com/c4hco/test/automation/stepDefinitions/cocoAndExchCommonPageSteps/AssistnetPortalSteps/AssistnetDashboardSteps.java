@@ -103,4 +103,19 @@ public class AssistnetDashboardSteps {
     public void iClickGoBackToMyDashboardButtonFromAssistNetDashboaredPage() {
         assistnetDashboardPage.clickGoBackToMyDashboardButtonFromAssistNetDashboaredPage();
     }
+
+    @And("I verify the Program Manager Dashboard welcome text")
+    public void iVerifyPMDashboardWelcomeText() {
+        assistnetDashboardPage.verifyPMDashboardWelcomeText();
+    }
+
+    @Then("I verify the program manager certification status is {string}")
+    public void iVerifyPMCertStatus(String certStatus) {
+        assistnetDashboardPage.verifyPMCertificationStatus(certStatus);
+    }
+
+    @And("I save the program manager's account number")
+    public void iSavePmAccount() {
+        assistnetDashboardPage.savePmAccount();
+    }
 }
