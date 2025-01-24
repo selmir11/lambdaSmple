@@ -61,6 +61,7 @@ public class CompletedPeakApplicationPage {
         basicActions.waitForElementToBePresent(contErrorMsg, 10);
 
         softAssert.assertEquals(contErrorMsg.getText(), errMsg);
+        softAssert.assertAll();
     }
 
     public void validateTheVerbiageOnLetUsGuideYouPage(String language) {
