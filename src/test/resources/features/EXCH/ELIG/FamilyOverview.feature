@@ -1,5 +1,5 @@
 @ELIG
-Feature: Testing will verify eligibility rules for Qualified Health Plan
+Feature: Testing will verify text and navigation for Family Overview page
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
