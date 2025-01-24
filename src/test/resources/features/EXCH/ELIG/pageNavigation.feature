@@ -591,3 +591,10 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "01011981" in county "DENVER" with zipcode "80220"
     Then I answer all Id proofing questions required for uploading documents and click continue
+    Then I validate I am on the "Upload Documents (RIDP)" page
+    Then I click on back button of Upload Documents RIDP page
+    Then I validate I am on the "Report a life change" page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Upload Documents" page
+    Then I click on upload documents button of Upload Documents RIDP page
+    Then I validate I am on the "My Documents" page
