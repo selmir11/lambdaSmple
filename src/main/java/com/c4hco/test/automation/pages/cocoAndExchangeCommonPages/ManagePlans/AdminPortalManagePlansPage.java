@@ -512,7 +512,6 @@ public class AdminPortalManagePlansPage {
 
     public void resetMakeChangeButtonsCocoDisplayed() {
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 20);
-        basicActions.waitForElementToBePresent(btnMakeChangeMed, 20);
         softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
         softAssert.assertAll();
     }
