@@ -103,7 +103,7 @@
     And I validate I am on the "Manage Plans" page
     Then I validate buttons displayed on CoCo Manage page
     Then I check current Simplified Medical container labels CoCo
-    Then I click Go Back button on Simplified View
+    Then I click Go Back button on Simplified View Manage Plans page
     And I validate I am on the "Individual CoCo" page
     Then I click on "Manage Plans" user dashboard button
     And I wait for 300 milliseconds
@@ -118,6 +118,6 @@
     And I wait for 300 milliseconds
     Then I unchecked Medical button on CoCo manage plan
     And I validate I am on the "Manage Plans" page
-    Then I click Go Back button on Simplified View
+    Then I click Go Back button on Simplified View Manage Plans page
     And I validate I am on the "Individual CoCo" page
     And I logout from Admin Portal

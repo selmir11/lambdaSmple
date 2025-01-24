@@ -322,10 +322,7 @@ public class AdminPortalManagePlansSteps {
     public void iUncheckedFromPlanType() {
         adminPortalManagePlansPage.uncheckedMedicalCoCo();
     }
-    @And("I validate and click Go Back button")
-    public void iInspectAndClickGoBackButton() {
-        adminPortalManagePlansPage.verifyAndClickGoBackButton();       }
-    @Then("I click Go Back button on Simplified View")
+    @Then("I click Go Back button on Simplified View Manage Plans page")
     public void iClickGoBackButtonOnSimplifiedView() {
         adminPortalManagePlansPage.clickGoBackButtonOnSimplifiedView();       }
     @And("I validate Go Back button on Manage Plan page")
