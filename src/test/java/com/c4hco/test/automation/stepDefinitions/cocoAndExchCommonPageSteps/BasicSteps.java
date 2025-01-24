@@ -211,6 +211,12 @@ public class BasicSteps {
             case "Before you begin":
                 pageUrl = "nes/beforeYouBegin";
                 break;
+            case "Upload Documents (RIDP)":
+                pageUrl = "nes/IdProofingSecondaryRequest";
+                break;
+            case "Upload Documents":
+                pageUrl = "nes/idProofing";
+                break;
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";
                 break;
