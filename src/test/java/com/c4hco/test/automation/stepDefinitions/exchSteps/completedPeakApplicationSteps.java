@@ -28,7 +28,7 @@ public class completedPeakApplicationSteps {
         completedApplicationPage.clickOnBackBtn();
     }
 
-    @Then("I verify {string} text on Lets us guide page")
+    @Then("I verify the text on Let us guide you page in {string}")
     public void verifyEnglishAndSpanishTextInLetUsGuide(String languageOption){
         completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
     }

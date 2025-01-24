@@ -102,21 +102,26 @@ public class CompletedPeakApplicationPage {
     }
 
     public void verifyEnglishAndSpanishTextInLetUsGuidePage(String languageOption) {
-        if (languageOption.equalsIgnoreCase("English")) {
-            SoftAssert softAssert = new SoftAssert();
+        SoftAssert softAssert = new SoftAssert();
+        switch (languageOption) {
+            case "English":
             softAssert.assertEquals(bodyText.get(0).getText(), "If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?");
             softAssert.assertEquals(bodyText.get(1).getText(), "You will need your Case ID, which can be found on your Health First Colorado eligibility notice.");
             softAssert.assertEquals(bodyText.get(2).getText(), "Yes, I’m new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus");
             softAssert.assertEquals(bodyText.get(3).getText(), "No thanks, take me to the application");
             softAssert.assertAll();
-        } else {
-            SoftAssert softAssert = new SoftAssert();
+            break;
+            case "Spanish":
             softAssert.assertEquals(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya presentó una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la información que envió antes. Usted tendrá la oportunidad de revisar y cambiar su información según sea necesario. ¿Desea buscar una solicitud previamente completada?");
             softAssert.assertEquals(bodyText.get(1).getText(), "Necesitará su identificación del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
             softAssert.assertEquals(bodyText.get(2).getText(), "Sí, soy nuevo a Connect for Health Colorado y ya presenté una solicitud Health First Colorado or Child Health Plan Plus");
             softAssert.assertEquals(bodyText.get(3).getText(), "No gracias, lléveme a la aplicación");
             softAssert.assertAll();
+            break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + languageOption);
         }
+
     }
 
 }

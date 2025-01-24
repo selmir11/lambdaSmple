@@ -912,6 +912,6 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I validate I am on the "Let us guide you" page
-    Then I verify "English" text on Lets us guide page
+    Then I verify the text on Let us guide you page in "English"
     And I change the language from header to "Spanish NonElmo"
-    Then I verify "Spanish" text on Lets us guide page
+    Then I verify the text on Let us guide you page in "Spanish"
