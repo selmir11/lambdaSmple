@@ -11,4 +11,10 @@ public class AdminPortalAccountDetailsSteps {
     public void iEnterGeneralDataToCreateAdminAccountWithEmail() {
         adminPortalAccountDetailsPage.validatePrimaryMemDetails();
     }
+
+    @Then("I click on Edit Fields via OBO button on the account details page")
+    public void iClickOnEditFieldsViaOBOButtonOnTheAccountDetailsPage() {
+        adminPortalAccountDetailsPage.clickEditFieldsViaOBOButton();
+    }
+
 }
