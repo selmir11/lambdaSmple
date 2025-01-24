@@ -176,6 +176,6 @@ Feature:  My Profile Page Coco
   And I close current tab and switch back to previous tab
   And I click on view button for "Account Activity" report
   Then I validate I am on the "Account Activity" page
-  Then I validate the account activity record for "primary person change"
+  Then I validate the account activity record for "primary person change" for "individualportal"
   Then I validate member id of all members
   Then logout from Admin Portal
