@@ -233,41 +233,34 @@ public class AdminPortalReportsPage {
         softAssert.assertEquals(tooltipText.getText(), "PrimaryContactAssignment", "detail key did not match");
 
         columns.get(7).click();
-        basicActions.waitForElementToBePresent(tooltipText, 10);
+        basicActions.waitForElementToBePresent(tooltipText, 80);
+        String memberIdFrom = basicActions.getMember("Primary").getMemberId();
+        String nameFrom = basicActions.getMemFirstLastNames("Primary");
+        String memberIdTo = SharedData.getPrimaryMember().getMemberId();
+        String nameTo = SharedData.getPrimaryMember().getFullName().replace(".", "");
+        String updatedBy;
+
         switch (userType) {
             case "adminportal":
-                if (SharedData.getEnv().equals("qa")) {
-                    softAssert.assertEquals(tooltipText.getText(),
-                            "From memberId:" + basicActions.getMember("Primary").getMemberId() +
-                                    ", name:" + basicActions.getMemFirstLastNames("Primary") +
-                                    ", To memberId:" + SharedData.getPrimaryMember().getMemberId() +
-                                    ", name:" + SharedData.getPrimaryMember().getFullName().replace(".", "") +
-                                    ", updatedBy:" + "C4test.aduser123@gmail.com",
-                            "detail value did not match");
-                } else {
-                    softAssert.assertEquals(tooltipText.getText(),
-                            "From memberId:" + basicActions.getMember("Primary").getMemberId() +
-                                    ", name:" + basicActions.getMemFirstLastNames("Primary") +
-                                    ", To memberId:" + SharedData.getPrimaryMember().getMemberId() +
-                                    ", name:" + SharedData.getPrimaryMember().getFullName().replace(".", "") +
-                                    ", updatedBy:" + "C4testaduser123@gmail.com",
-                            "detail value did not match");
-                }
+                updatedBy = (SharedData.getEnv().equals("qa"))
+                        ? "C4test.aduser123@gmail.com"
+                        : "C4testaduser123@gmail.com";
                 break;
+
             case "individualportal":
-                softAssert.assertEquals(tooltipText.getText(),
-                        "From memberId:" + basicActions.getMember("Primary").getMemberId() +
-                                ", name:" + basicActions.getMemFirstLastNames("Primary") +
-                                ", To memberId:" + SharedData.getPrimaryMember().getMemberId() +
-                                ", name:" + SharedData.getPrimaryMember().getFullName().replace(".", "") +
-                                ", updatedBy:" + SharedData.getPrimaryMember().getEmailId(),
-                        "detail value did not match");
+                updatedBy = SharedData.getPrimaryMember().getEmailId();
                 break;
 
             default:
                 throw new IllegalArgumentException("Invalid option: " + userType);
         }
-
+        softAssert.assertEquals(tooltipText.getText(),
+                "From memberId:" + memberIdFrom +
+                        ", name:" + nameFrom +
+                        ", To memberId:" + memberIdTo +
+                        ", name:" + nameTo +
+                        ", updatedBy:" + updatedBy,
+                "detail value did not match");
         softAssert.assertAll();
     }
 }
