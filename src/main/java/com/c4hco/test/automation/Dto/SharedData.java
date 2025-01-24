@@ -138,6 +138,9 @@ public class SharedData {
         expectedCalculatedDates_dentalPlan = null;
         oldAccountId = null;
         primaryTaxPayerKey=null;
+        transForGrpCtrlNum = null;
+        medGroupCtlNumbers = null;
+        denGroupCtlNumbers = null;
     }
 
 }
