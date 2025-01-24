@@ -131,5 +131,10 @@ public class MyProfilePageSteps {
 
     @And("I validate error messages {string} on My Profile page")
     public void validateErrorMessage(String language)  { myProfileExchPage.validateErrorMessage(language); }
+
+    @Then("I verify change button is not displaying for primary contact on the my profile page")
+    public void iVerifyChangeButtonIsNotDisplayingForPrimaryContactOnTheMyProfilePage() {
+        myProfileExchPage.changePrimaryContactnotdisplay();
+    }
 }
 
