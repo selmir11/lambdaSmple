@@ -1084,12 +1084,21 @@ public class BasicActions {
         return sdf.format(date);
     }
 
-    public int getAge(String dob){
+    public int getAge(String dob) {
         dob = changeDateFormat(dob, "MMddyyyy", "MM/dd/yyyy");
         return Period.between(LocalDate.parse(dob, DateTimeFormatter.ofPattern("MM/dd/yyyy")), LocalDate.now()).getYears();
     }
 
-    public String formatPhNum(String number){
+    public void setMinor() {
+        List<MemberDetails> allMembers = getAllMem();
+        for (MemberDetails mem : allMembers) {
+            if (getAge(mem.getDob()) < 18) {
+                mem.setIsMinor(true);
+            }
+        }
+    }
+
+    public String formatPhNum(String number) {
         // inputFormat - 1234567890 outputFormat - 123-456-7890
         return number.substring(0, 3) + "-" +
                 number.substring(3, 6) + "-" +

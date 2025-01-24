@@ -231,8 +231,8 @@ public class Ob834PreEdiDbValidations_grp {
         }
     }
 
-    private void validateResponsiblePersonDetails(Ob834DetailsEntity ob834Entity) {
-        if (!primaryMember.getIsMinor()) {
+    private void validateResponsiblePersonDetails(Ob834DetailsEntity ob834Entity, MemberDetails member) {
+        if (!member.getIsMinor()) {
             softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), null);
             softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), null);
             softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), null);
@@ -334,7 +334,7 @@ public class Ob834PreEdiDbValidations_grp {
        String name = getName(ob834Entity, member);
         validateConstantFields(ob834Entity);
         validateBrokerDetails(ob834Entity);
-        validateResponsiblePersonDetails(ob834Entity);
+        validateResponsiblePersonDetails(ob834Entity, member);
         getDbDataMap(name);
        // int dependents = getTotalDependentsForGrp(ob834Entity);
        // int enrollees = getTotalEnrolleesForGrp(ob834Entity);
