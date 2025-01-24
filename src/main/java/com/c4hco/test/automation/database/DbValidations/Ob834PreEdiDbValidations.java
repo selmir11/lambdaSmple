@@ -251,7 +251,6 @@ public class Ob834PreEdiDbValidations {
         String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate().replaceAll("-", "");
         String formatedFinStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate().replaceAll("-", "");
 
-        SharedData.setMedGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalDbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), medicalDbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), medicalDbData.getIssuerId(), "Insurer Id did not match!");
@@ -262,6 +261,16 @@ public class Ob834PreEdiDbValidations {
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
          validateIndivMedPremAmt(ob834Entity);
+        setGrpCtrlNums(ob834Entity.getGroup_ctrl_number());
+    }
+
+    private void setGrpCtrlNums(String grpCtrlNum){
+        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
+        if(medGrpCtrlNums==null){
+            medGrpCtrlNums = new ArrayList<>();
+        }
+        medGrpCtrlNums.add(grpCtrlNum);
+        SharedData.setMedGroupCtlNumbers(medGrpCtrlNums);
     }
 
     private void denValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues) {
@@ -269,7 +278,6 @@ public class Ob834PreEdiDbValidations {
         String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyEndDate().replaceAll("-", "");
         String formatedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
 
-        SharedData.setDenGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dentalDbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dentalDbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), dentalDbData.getIssuerId(), "Insurer Id did not match!");
@@ -280,6 +288,7 @@ public class Ob834PreEdiDbValidations {
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateIndivDenPremAmt(ob834Entity);
+        setGrpCtrlNums(ob834Entity.getGroup_ctrl_number());
     }
 
     private void medDenValidationsCommonForAllMem(Ob834DetailsEntity ob834Entity){
