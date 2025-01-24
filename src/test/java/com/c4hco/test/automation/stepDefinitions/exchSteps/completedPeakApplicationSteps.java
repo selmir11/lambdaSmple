@@ -7,8 +7,9 @@ import io.cucumber.java.en.Then;
 
 public class completedPeakApplicationSteps {
     CompletedPeakApplicationPage completedApplicationPage = new CompletedPeakApplicationPage(WebDriverManager.getDriver());
+
     @And("I click on save and continue button")
-    public void selectSaveAndContinue(){
+    public void selectSaveAndContinue() {
         completedApplicationPage.clickSaveAndContinueButton();
     }
 
@@ -23,14 +24,14 @@ public class completedPeakApplicationSteps {
     }
 
     @Then("I click on back button in Completed Peak Application page")
-    public void iClickOnBackButton(){
+    public void iClickOnBackButton() {
         completedApplicationPage.backButton();
     }
 
-    ///////////////////////////VALIDATION STEPS///////////////////////////////////
+    /// ////////////////////////VALIDATION STEPS///////////////////////////////////
 
     @And("I validate that error {string} is thrown while clicking on Continue button")
-    public void iValidateErrorThrown(String errMsg){
+    public void iValidateErrorThrown(String errMsg) {
         completedApplicationPage.errMsgValidation(errMsg);
     }
 

@@ -12,12 +12,14 @@ import java.util.List;
 
 public class CompletedPeakApplicationPage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
+
     public CompletedPeakApplicationPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id="completedApplicationQYes")
+    @FindBy(id = "completedApplicationQYes")
     WebElement yesImNew;
 
     @FindBy(id = "completedApplicationQNo")
@@ -39,23 +41,30 @@ public class CompletedPeakApplicationPage {
     WebElement contErrorMsg;
 
 
-    public void setYesImNew(){
+    public void setYesImNew() {
         yesImNew.click();
     }
 
-    public void selectNoThanksOption(){
+    public void selectNoThanksOption() {
         noThanksRadioButton.click();
     }
 
-    public void clickSaveAndContinueButton(){
+    public void clickSaveAndContinueButton() {
         saveAndContinueButton.click();
-          }
-    public  void backButton(){backButton.click();}
-    public  void errMsgValidation(String errMsg){basicActions.waitForElementToBePresent(contErrorMsg,10);SoftAssert softAssert = new SoftAssert();softAssert.assertEquals(contErrorMsg.getText(),errMsg);}
+    }
 
+    public void backButton() {
+        backButton.click();
+    }
 
-    public void validateTheVerbiageOnLetUsGuideYouPage(String language){
-        switch (language){
+    public void errMsgValidation(String errMsg) {
+        basicActions.waitForElementToBePresent(contErrorMsg, 10);
+
+        softAssert.assertEquals(contErrorMsg.getText(), errMsg);
+    }
+
+    public void validateTheVerbiageOnLetUsGuideYouPage(String language) {
+        switch (language) {
             case "English":
                 validateTheVerbiageEn();
                 break;
@@ -68,7 +77,6 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheVerbiageEn() {
-        SoftAssert softAssert = new SoftAssert();
 
         basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
         softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Let us guide you", "Header text mismatch: Let us guide you");
@@ -80,7 +88,6 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheVerbiageEs() {
-        SoftAssert softAssert = new SoftAssert();
 
         basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
         softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Perm\u00edtanos guiarlo", "Header text mismatch: Perm\u00edtanos guiarlo");
