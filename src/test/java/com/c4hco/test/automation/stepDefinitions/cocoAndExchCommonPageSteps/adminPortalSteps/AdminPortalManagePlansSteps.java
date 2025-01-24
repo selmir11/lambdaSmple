@@ -328,6 +328,12 @@ public class AdminPortalManagePlansSteps {
     @Then("I click Go Back button on Simplified View")
     public void iClickGoBackButtonOnSimplifiedView() {
         adminPortalManagePlansPage.clickGoBackButtonOnSimplifiedView();       }
+    @And("I validate Go Back button on Manage Plan page")
+    public void iValidateGoBackButton() {
+        adminPortalManagePlansPage.validateGoBackButton();       }
+    @And("I click Go Back button on Manage Plan page")
+    public void iClickGoBackButton() {
+        adminPortalManagePlansPage.clickGoBackButton();       }
     @Then("I check current Simplified Medical container labels CoCo")
     public void iVerifyLabelsSimplifiedMedicalCoCo() {
         adminPortalManagePlansPage.verifyLabelsSimplifiedMedicalCoCo();       }

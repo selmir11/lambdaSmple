@@ -22,7 +22,8 @@
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     Then I validate buttons displayed on CoCo Manage page
-    Then I validate and click Go Back button
+      Then I validate Go Back button on Manage Plan page
+      And I click Go Back button on Manage Plan page
     And I validate I am on the "Individual CoCo" page
     And I check default year displays
     Then I click on "Manage Plans" user dashboard button
@@ -40,7 +41,8 @@
     Then I unchecked Medical button on CoCo manage plan
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
-    Then I validate and click Go Back button
+      Then I validate Go Back button on Manage Plan page
+      And I click Go Back button on Manage Plan page
     And I validate I am on the "Individual CoCo" page
     And I logout from Admin Portal
     @SLCR-724
@@ -63,7 +65,8 @@
       And I check default year displays
       And I validate I am on the "Manage Plans" page
       Then I validate buttons displayed on CoCo Manage page
-      Then I validate and click Go Back button
+      Then I validate Go Back button on Manage Plan page
+      And I click Go Back button on Manage Plan page
       And I validate I am on the "Individual CoCo" page
       And I check default year displays
       Then I click on "Manage Plans" user dashboard button
@@ -77,7 +80,8 @@
       Then I unchecked Medical button on CoCo manage plan
       And I wait for 300 milliseconds
       And I validate I am on the "Manage Plans" page
-      Then I validate and click Go Back button
+      Then I validate Go Back button on Manage Plan page
+      And I click Go Back button on Manage Plan page
       And I validate I am on the "Individual CoCo" page
       And I logout from Admin Portal
   @SLCR-724

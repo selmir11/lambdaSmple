@@ -1345,6 +1345,20 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(medHiosIdUI.getText(), "HIOS ID:");
         softAssert.assertAll();
     }
+    public void validateGoBackButton() {
+        basicActions.waitForElementToBePresent(btnGoBack, 30);
+        basicActions.scrollToElement(btnGoBack);
+        softAssert.assertEquals(btnGoBack.getText(), "Go Back");
+        softAssert.assertTrue(btnGoBack.isDisplayed());
+        softAssert.assertAll();
+    }
+    public void clickGoBackButton() {
+        basicActions.waitForElementToBePresent(btnGoBack, 30);
+        basicActions.scrollToElement(btnGoBack);
+        basicActions.click(btnGoBack);
+        basicActions.closeBrowserTab();
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+    }
 }
 
 
