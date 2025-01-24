@@ -85,7 +85,7 @@ Feature: Admin Portal Validations
       And I search for user and click email from search results
       Then I click on view button for "Account Activity" report
       Then I validate I am on the "Account Activity" page
-      Then I validate the account activity record for "Info update"
+      Then I validate the account activity record for "Info update" for "adminportal"
       Then logout from Admin Portal
 
 

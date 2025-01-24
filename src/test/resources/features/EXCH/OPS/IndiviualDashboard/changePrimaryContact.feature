@@ -1,7 +1,7 @@
 @OPS
-Feature: OPS: IndDash: Create account
+Feature: OPS: IndDash: Change primary contact and verify in admin portal
   @SLER-1245
-  Scenario:OPS: IndDash: Create account
+  Scenario:OPS: IndDash: Change primary contact and verify in admin portal
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
