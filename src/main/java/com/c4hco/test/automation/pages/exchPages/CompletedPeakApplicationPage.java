@@ -11,6 +11,7 @@ import java.util.List;
 
 public class CompletedPeakApplicationPage {
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
     public CompletedPeakApplicationPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -73,8 +74,6 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheVerbiageEs() {
-        SoftAssert softAssert = new SoftAssert();
-
         basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
         softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Perm\u00edtanos guiarlo", "Header text mismatch: Perm\u00edtanos guiarlo");
         softAssert.assertEquals(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present\u00f3 una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la informaci\u00f3n que envi\u00f3 antes. Usted tendr\u00e1 la oportunidad de revisar y cambiar su informaci\u00f3n seg\u00fan sea necesario. \u00bfDesea buscar una solicitud previamente completada?", "Body text mismatch: Si nunca se ha inscrito...");
