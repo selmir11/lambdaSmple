@@ -132,7 +132,7 @@ public class AdminPortalReportsPage {
         }
     }
 
-    public void validateRecord(String recordType){
+    public void validateRecord(String recordType, String userType) {
         basicActions.waitForElementListToBePresent(descendingOrder, 10);
         basicActions.waitForElementListToBePresent(tableRows, 10);
         basicActions.wait(2000);
@@ -140,9 +140,9 @@ public class AdminPortalReportsPage {
         basicActions.waitForElementListToBePresent(tableRows, 10);
         basicActions.wait(2000);
 
-        switch(recordType){
+        switch (recordType) {
             case "primary person change":
-                validations_primaryPersonChange();
+                validations_primaryPersonChange(userType);
                 break;
             case "Info update":
                 validate_primaryInfoUpdated();
@@ -154,11 +154,12 @@ public class AdminPortalReportsPage {
                 validate_accCreated();
                 break;
 
-            default: Assert.fail("Invalid argument passed");
+            default:
+                Assert.fail("Invalid argument passed");
         }
     }
 
-    private void validate_accCreated(){
+    private void validate_accCreated() {
         WebElement firstRow = tableRows.get(0);
         List<WebElement> columns = firstRow.findElements(By.tagName("td"));
 
@@ -173,18 +174,18 @@ public class AdminPortalReportsPage {
         basicActions.waitForElementToBePresent(tooltipText, 10);
 
         MemberDetails primaryMem = SharedData.getPrimaryMember();
-        softAssert.assertEquals(tooltipText.getText(), "IND_WCN "+primaryMem.getSignature());
+        softAssert.assertEquals(tooltipText.getText(), "IND_WCN " + primaryMem.getSignature());
         softAssert.assertAll();
     }
 
-    private void validate_updatedPrimaryEmail(){
+    private void validate_updatedPrimaryEmail() {
         validateChangePrimContactProfile();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
-        softAssert.assertEquals(tooltipText.getText(), "Email: from:"+primaryMem.getIncorrectEmail()+" to:"+primaryMem.getEmailId());
+        softAssert.assertEquals(tooltipText.getText(), "Email: from:" + primaryMem.getIncorrectEmail() + " to:" + primaryMem.getEmailId());
         softAssert.assertAll();
     }
 
-    private void validateChangePrimContactProfile(){
+    private void validateChangePrimContactProfile() {
         WebElement firstRow = tableRows.get(0);
         List<WebElement> columns = firstRow.findElements(By.tagName("td"));
 
@@ -207,22 +208,21 @@ public class AdminPortalReportsPage {
     }
 
     private void validate_primaryInfoUpdated() {
-        // Includes all changes other than email
         validateChangePrimContactProfile();
         MemberDetails primaryMem = SharedData.getPrimaryMember();
         softAssert.assertEquals(tooltipText.getText(), "Mobile phone: from:" + basicActions.formatPhNum(primaryMem.getIncorrectMobilePhone()) + " to:" + primaryMem.getAlternatePhNum() + ", Home phone: from:" + basicActions.formatPhNum(primaryMem.getIncorrectHomePhone()) + " to:" + primaryMem.getPhoneNumber() + ", Preferred Contact Method: from:" + primaryMem.getIncorrectContactPref().toUpperCase() + " to:" + primaryMem.getContactPref().toUpperCase() + ", Preferred Language: from:" + primaryMem.getIncorrectLanguage() + " to:" + primaryMem.getPrefLang(), "detail value did not match");
         softAssert.assertAll();
     }
 
-    private void validations_primaryPersonChange(){
+    private void validations_primaryPersonChange(String userType) {
         WebElement firstRow = tableRows.get(0);
-       List<WebElement> columns = firstRow.findElements(By.tagName("td"));
+        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
 
-         columns.get(2).click();
+        columns.get(2).click();
         Actions actions = new Actions(basicActions.getDriver());
         actions.moveToElement(columns.get(2)).perform();
         basicActions.wait(300);
-       softAssert.assertEquals(tooltipText.getText(), "UP_ASSIGN_PRIMARY_CONTACT", "event code did not match");
+        softAssert.assertEquals(tooltipText.getText(), "UP_ASSIGN_PRIMARY_CONTACT", "event code did not match");
 
         columns.get(5).click();
         basicActions.waitForElementToBePresent(tooltipText, 10);
@@ -233,9 +233,34 @@ public class AdminPortalReportsPage {
         softAssert.assertEquals(tooltipText.getText(), "PrimaryContactAssignment", "detail key did not match");
 
         columns.get(7).click();
-        basicActions.waitForElementToBePresent(tooltipText, 10);
-        softAssert.assertEquals(tooltipText.getText(), "From memberId:"+basicActions.getMember("Primary").getMemberId()+", name:"+basicActions.getMemFirstLastNames("Primary")+", To memberId:"+SharedData.getPrimaryMember().getMemberId()+", name:"+SharedData.getPrimaryMember().getFullName().replace(".", "")+", updatedBy:"+SharedData.getPrimaryMember().getEmailId(), "detail value did not match");
+        basicActions.waitForElementToBePresent(tooltipText, 80);
+        String memberIdFrom = basicActions.getMember("Primary").getMemberId();
+        String nameFrom = basicActions.getMemFirstLastNames("Primary");
+        String memberIdTo = SharedData.getPrimaryMember().getMemberId();
+        String nameTo = SharedData.getPrimaryMember().getFullName().replace(".", "");
+        String updatedBy;
 
+        switch (userType) {
+            case "adminportal":
+                updatedBy = (SharedData.getEnv().equals("qa"))
+                        ? "C4test.aduser123@gmail.com"
+                        : "C4testaduser123@gmail.com";
+                break;
+
+            case "individualportal":
+                updatedBy = SharedData.getPrimaryMember().getEmailId();
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid option: " + userType);
+        }
+        softAssert.assertEquals(tooltipText.getText(),
+                "From memberId:" + memberIdFrom +
+                        ", name:" + nameFrom +
+                        ", To memberId:" + memberIdTo +
+                        ", name:" + nameTo +
+                        ", updatedBy:" + updatedBy,
+                "detail value did not match");
         softAssert.assertAll();
     }
 }
