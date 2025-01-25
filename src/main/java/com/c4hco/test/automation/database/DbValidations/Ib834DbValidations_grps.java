@@ -3,7 +3,10 @@ package com.c4hco.test.automation.database.DbValidations;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.*;
+import com.c4hco.test.automation.database.EntityObj.DbData;
+import com.c4hco.test.automation.database.EntityObj.Ib834Entity;
+import com.c4hco.test.automation.database.EntityObj.PlanDbData;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
@@ -11,7 +14,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
 import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
@@ -375,7 +377,7 @@ public class Ib834DbValidations_grps {
     }
 
     private String getGrpNum(Ib834Entity ib834Entity){
-        return ib834Entity.getInsurance_line_code().equals("HLT")? getMemberMedGrp(ib834Entity.getMember_first_name()): getMemberDenGrp(ob834DetailsEntity.getMember_first_name());
+        return ib834Entity.getInsurance_line_code().equals("HLT")? getMemberMedGrp(ib834Entity.getMember_first_name()): getMemberDenGrp(ib834Entity.getMember_first_name());
     }
 
     private String getMemberMedGrp(String firstName){
@@ -403,7 +405,7 @@ public class Ib834DbValidations_grps {
     }
 
     private String getTotalEnrollees(Ib834Entity ib834Entity){
-        return ib834Entity.getInsurance_line_code().equals("HLT")? getTotalMedEnrollees(ib834Entity.getMember_first_name()) : getTotalDentalEnrollees(ob834DetailsEntity.getMember_first_name());
+        return ib834Entity.getInsurance_line_code().equals("HLT")? getTotalMedEnrollees(ib834Entity.getMember_first_name()) : getTotalDentalEnrollees(ib834Entity.getMember_first_name());
     }
 
     private String getTotalMedEnrollees(String firstName){
@@ -471,8 +473,8 @@ public class Ib834DbValidations_grps {
         // Subscriber Only Fields
         softAssert.assertEquals("0.00", ib834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
         softAssert.assertEquals("0.00", ib834Entity.getCsr_amount(), "Medical CSR amount does not match");
-        softAssert.assertEquals(subscriber.getTotalDentalPremAfterReduction().replace("$", "").replace(",",""), ob834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
-        softAssert.assertEquals(subscriber.getDentalPremiumAmt().replace("$", "").replace(",", ""), ob834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
+        softAssert.assertEquals(subscriber.getTotalDentalPremAfterReduction().replace("$", "").replace(",",""), ib834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
+        softAssert.assertEquals(subscriber.getDentalPremiumAmt().replace("$", "").replace(",", ""), ib834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
         subscriberOnlyMedDenFields(ib834Entity, subscriber);
         setDentalFileName(ib834Entity);
     }
