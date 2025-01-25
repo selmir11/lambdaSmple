@@ -14,6 +14,7 @@ public class DbStepsE2E {
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
     private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
     private final Ob834PreEdiDbValidations_grp ob834PreEdiDbValidationsGrp = new Ob834PreEdiDbValidations_grp();
+    private final Ib834DbValidations_grps ib834DbValidationsGrps = new Ib834DbValidations_grps();
 
 
 
@@ -41,6 +42,11 @@ public class DbStepsE2E {
     @And("I validate ib834 {string} details in database")
     public void validateIb834DetailsDb(String recordType, List<Map<String, String>> expectedValues){
         ib834DbValidations.ib834DbRecordsValidations(recordType, expectedValues);
+    }
+
+    @And("I validate ib834 {string} details in database for groups")
+    public void validateIb834DetailsDb_grps(String recordType, List<Map<String, String>> expectedValues){
+        ib834DbValidationsGrps.ib834DbRecordsValidations(recordType, expectedValues);
     }
 
     @And("I validate {string} entities from ob999_details db table")

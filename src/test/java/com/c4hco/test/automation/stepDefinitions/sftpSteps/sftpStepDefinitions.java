@@ -217,19 +217,24 @@ public class sftpStepDefinitions {
     }
 
     @And("I validate the ib834 {string} file data")
+    @And("I validate the ib834 {string} files data")
     public void validateIb834FileDetails(String type) {
         switch (type) {
             case "medical":
-                String medIb834FileName = SharedData.getMedicalIb834FileName();
-                System.out.println("***Validating Ib834 Medical EDI File::"+medIb834FileName+"***");
-                sftpUtil.readIb834EdiFile(medIb834FileName);
-                ib834FileValidations.validateIb834MedFile();
+                List<String> medFileNames = SharedData.getMedicalIb834FileNames();
+                for(String medIb834FileName: medFileNames){
+                    System.out.println("***Validating Ib834 Medical EDI File::"+medIb834FileName+"***");
+                    sftpUtil.readIb834EdiFile(medIb834FileName);
+                    ib834FileValidations.validateIb834MedFile(medIb834FileName);
+                }
                 break;
             case "dental":
-                String denIb834FileName = SharedData.getDentalIb834FileName();
-                System.out.println("***Validating Ib834  Dental EDI File::"+denIb834FileName+"***");
-                sftpUtil.readIb834EdiFile(denIb834FileName);
-                ib834FileValidations.validateIb834DenFile();
+                List<String> denIb834FileNames = SharedData.getDentalIb834FileNames();
+                for(String denIb834FileName: denIb834FileNames){
+                    System.out.println("***Validating Ib834  Dental EDI File::"+denIb834FileName+"***");
+                    sftpUtil.readIb834EdiFile(denIb834FileName);
+                    ib834FileValidations.validateIb834DenFile(denIb834FileName);
+                }
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");
