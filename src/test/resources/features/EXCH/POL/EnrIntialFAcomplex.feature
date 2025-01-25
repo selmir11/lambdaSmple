@@ -455,5 +455,5 @@ Feature: Enroll a in a plan 8 HH
     And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
 
-    And I validate the ib834 "medical" file data
-    And I validate the ib834 "dental" file data
+    And I validate the ib834 "medical" files data
+    And I validate the ib834 "dental" files data
