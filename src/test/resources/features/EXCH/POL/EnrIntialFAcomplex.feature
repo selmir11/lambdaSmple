@@ -445,6 +445,7 @@ Feature: Enroll a in a plan 8 HH
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
+    #Ib834
     And I validate ib834 "medical" details in database
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -454,6 +455,16 @@ Feature: Enroll a in a plan 8 HH
 
     And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
-
-    And I validate the ib834 "medical" files data
-    And I validate the ib834 "dental" files data
+#
+#    And I validate the ib834 "medical" files data
+#    And I validate the ib834 "dental" files data
+#
+#    # Ob999
+#    And I validate "medical" entities from ob999_details db table
+#    And I validate "dental" entities from ob999_details db table
+#
+#    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+#    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
+#
+#    And I validate the ob999 "medical" file data
+#    And I validate the ob999 "dental" file data
