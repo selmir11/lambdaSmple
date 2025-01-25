@@ -37,6 +37,8 @@ public class SharedData {
     @Getter @Setter private static List<String> dentalIb999FileNames;
     @Getter @Setter private static String medicalIb834FileName;
     @Getter @Setter private static String dentalIb834FileName;
+    @Getter @Setter private static List<String> medicalIb834FileNames;
+    @Getter @Setter private static List<String> dentalIb834FileNames;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static Edi834TransactionDetails ib834TransactionDetails;
