@@ -468,6 +468,3 @@ public class Ib834FileValidations_grps {
         Collections.addAll(n1ListWithAddtlMaintReasMem, "ADDL MAINT REASON", "PRE AMT 1");
     }
 }
-
-
-
