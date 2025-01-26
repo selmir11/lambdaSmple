@@ -69,7 +69,7 @@ public class Ib999DbValidations {
         softAssert.assertEquals(groups, Integer.parseInt(medEntity.getAk9_number_of_ts_included()), "groups, ak9 number of ts included mismatch");
         softAssert.assertEquals(groups, Integer.parseInt(medEntity.getAk9_number_of_received_ts()), "groups, ak9 number of received_ts mismatch");
         softAssert.assertEquals(groups, Integer.parseInt(medEntity.getAk9_number_of_accepted_ts()), "groups, ak9 number of accepted_ts mismatch");
-        softAssert.assertEquals(SharedData.getTransForGrpCtrlNum().get(Integer.parseInt(medEntity.getGroup_ctrl_number())), medEntity.getGroup_ctrl_number(), "Medical group control number mismatch");
+        softAssert.assertEquals(SharedData.getMedGroupCtlNumbers().get(0), medEntity.getGroup_ctrl_number(), "Medical group control number mismatch"); // works for multiple groups but only 1 file
         softAssert.assertAll();
     }
 
@@ -78,7 +78,7 @@ public class Ib999DbValidations {
         softAssert.assertEquals(groups, Integer.parseInt(denEntity.getAk9_number_of_ts_included()), "groups, ak9 number of ts included mismatch");
         softAssert.assertEquals(groups, Integer.parseInt(denEntity.getAk9_number_of_received_ts()), "groups, ak9 number of received_ts mismatch");
         softAssert.assertEquals(groups, Integer.parseInt(denEntity.getAk9_number_of_accepted_ts()), "groups, ak9 number of accepted_ts mismatch");
-        softAssert.assertEquals(SharedData.getDenGroupCtlNumber(), denEntity.getGroup_ctrl_number(), "Dental group control number");
+        softAssert.assertEquals(SharedData.getDenGroupCtlNumbers().get(0), denEntity.getGroup_ctrl_number(), "Dental group control number");
         softAssert.assertAll();
     }
 
