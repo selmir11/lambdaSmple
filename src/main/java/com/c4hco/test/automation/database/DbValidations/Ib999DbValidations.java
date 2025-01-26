@@ -29,7 +29,7 @@ public class Ib999DbValidations {
     private void setIb999DentalData(){
         List<String> denGrpCtrlNums = SharedData.getDenGroupCtlNumbers();
         for(String denGrpCtrlNum: denGrpCtrlNums){
-            ib999MedEntities = exchDbDataProvider.getIb999Details(denGrpCtrlNum);
+            ib999DenEntities = exchDbDataProvider.getIb999Details(denGrpCtrlNum);
         }
         SharedData.setIb999DenDetailsEntities(ib999DenEntities);
         List<String> denFileNames = setIb999FileNames(ib999DenEntities);

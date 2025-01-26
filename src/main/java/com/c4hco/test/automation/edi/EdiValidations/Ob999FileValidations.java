@@ -4,30 +4,21 @@ import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob999Entity;
 import org.json.JSONArray;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
-import java.util.List;
 
 public class Ob999FileValidations {
     Edi999Segments ob999Segments= new Edi999Segments();
-    Ob999Entity ob999MedEntity = new Ob999Entity();
-    Ob999Entity ob999DenEntity = new Ob999Entity();
     SoftAssert softAssert = new SoftAssert();
 
+    public void validateOb999MedFileData(){
+        for (Ob999Entity ob999MedEntity : SharedData.getOb999MedDetailsEntities()) {
+            validateOb999File(ob999MedEntity);
+        }
+    }
 
-    public void validateOb999FileData(String fileType){
-        ob999Segments = SharedData.getOb999Segments();
-        switch(fileType){
-            case "medical":
-                getMedicalEntity();
-                validateOb999File(ob999MedEntity);
-                break;
-            case "dental":
-                getDentalEntity();
-                validateOb999File(ob999DenEntity);
-                break;
-            default: Assert.fail("Invalid argument::"+fileType);
+    public void validateOb999DenFileData() {
+        for (Ob999Entity ob999DenEntity : SharedData.getOb999DenDetailsEntities()) {
+            validateOb999File(ob999DenEntity);
         }
     }
 
@@ -130,15 +121,5 @@ public class Ob999FileValidations {
         softAssert.assertEquals(ieaSeg.get(0),"1", "functional group mismatch");
         softAssert.assertEquals(ieaSeg.get(1), entry.getInterchange_ctrl_number(), "Interchange control number mismatch");
         softAssert.assertAll();
-    }
-
-    private void getMedicalEntity(){
-        List<Ob999Entity> ob999MedEntities = SharedData.getOb999MedDetailsEntities();
-        ob999MedEntity = ob999MedEntities.get(0);
-    }
-
-    private void getDentalEntity(){
-        List<Ob999Entity> ob999DenEntities = SharedData.getOb999DenDetailsEntities();
-        ob999DenEntity = ob999DenEntities.get(0);
     }
 }

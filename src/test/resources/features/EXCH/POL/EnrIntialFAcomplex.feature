@@ -465,6 +465,6 @@ Feature: Enroll a in a plan 8 HH
 
     And I download the "medical" ob999 file from sftp server with location "/outbound999/"
     And I download the "dental" ob999 file from sftp server with location "/outbound999/"
-#
-#    And I validate the ob999 "medical" file data
-#    And I validate the ob999 "dental" file data
+
+    And I validate the ob999 "medical" file data
+    And I validate the ob999 "dental" file data
