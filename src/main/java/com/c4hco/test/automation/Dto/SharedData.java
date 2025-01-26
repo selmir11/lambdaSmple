@@ -77,6 +77,7 @@ public class SharedData {
     @Getter @Setter private static List<String> dentalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
     @Getter @Setter private static Map<String, String> transForGrpCtrlNum;
+    @Getter @Setter private static Map<String, String> ib834transForGrpCtrlNum;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_medicalPlan;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_dentalPlan;
     @Getter @Setter private static Map<String, String> exchPersonId;
@@ -88,6 +89,8 @@ public class SharedData {
     @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
+    @Getter @Setter private static List<String> medicalOb999FileNames;
+    @Getter @Setter private static List<String> dentalOb999FileNames;
     @Getter @Setter private static AdminDetails adminDetails;
     @Getter @Setter private static String primaryTaxPayerKey;
     @Getter @Setter private static BigDecimal oldAccountId;
