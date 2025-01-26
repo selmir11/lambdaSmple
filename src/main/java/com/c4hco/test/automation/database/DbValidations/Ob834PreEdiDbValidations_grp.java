@@ -236,15 +236,28 @@ public class Ob834PreEdiDbValidations_grp {
             validateResPersonDetailsForMember(ob834Entity);
         } else {
             if(ob834Entity.getSubscriber_indicator().equals("Y")){
-                validateResPerDetailsForMinorSubscriber();
+                validateResPerDetailsForMinorSubscriber(ob834Entity);
             } else {
                 validateResPerDetailsForMinorMem();
             }
         }
     }
 
-    private void validateResPerDetailsForMinorSubscriber(){
-
+    private void validateResPerDetailsForMinorSubscriber(Ob834DetailsEntity ob834Entity){
+       MemberDetails primaryMember = SharedData.getPrimaryMember();
+        softAssert.assertEquals(ob834Entity.getResponsible_person_first_name(), primaryMember.getFirstName(), "Responsible person first name mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), primaryMember.getLastName(), "Responsible person last name mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), "S1", "Responsible person rel_code mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), primaryMember.getSsn(), "Responsible person SSN does not match");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), primaryMember.getPhoneNumber() ,"Responsible person phone mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_email(), primaryMember.getEmailId(),"Responsible person email mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_alt_phone(), primaryMember.getAlternatePhNum(),"Responsible person alt phone");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), primaryMember.getMailingAddress().getAddressLine1(), "Responsible person mailing street line 1");
+        softAssert.assertEquals(ob834Entity.getResidence_street_line2(),primaryMember.getMailingAddress().getAddressLine2() , "Responsible person mailing street line 2");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_city(), primaryMember.getMailingAddress().getAddressCity(), "Responsible person mailing city mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_st(), primaryMember.getMailingAddress().getAddressState(),"State mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(),primaryMember.getMailingAddress().getAddressZipcode(), "Zipcode mismatch");
+        softAssert.assertAll();
     }
 
     private void validateResPerDetailsForMinorMem(){
