@@ -655,7 +655,7 @@ public class Ob834FileValidations_Grps {
         JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
         Map<String, String> transForGrpCtrlNum = SharedData.getTransForGrpCtrlNum();
-        if(transForGrpCtrlNum.isEmpty()){
+        if(transForGrpCtrlNum==null){
             transForGrpCtrlNum = new HashMap<>();
         }
         transForGrpCtrlNum.put(geSeg.get(1).toString(), geSeg.get(0).toString());

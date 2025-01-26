@@ -15,7 +15,7 @@ public class sftpStepDefinitions {
    Ob834FileValidations ob834Validations_new = new Ob834FileValidations();
    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
    Ob999FileValidations ob999FileValidations = new Ob999FileValidations();
-   Ib834FileValidations ib834FileValidations = new Ib834FileValidations();
+   Ib834FileValidations_grps ib834FileValidations_grps = new Ib834FileValidations_grps();
    Ob834FileValidations_Grps ob834FileValidations_Grps = new Ob834FileValidations_Grps();
 
     @And("I download the medical and dental files from sftp server with location {string}")
@@ -225,7 +225,7 @@ public class sftpStepDefinitions {
                 for(String medIb834FileName: medFileNames){
                     System.out.println("***Validating Ib834 Medical EDI File::"+medIb834FileName+"***");
                     sftpUtil.readIb834EdiFile(medIb834FileName);
-                    ib834FileValidations.validateIb834MedFile(medIb834FileName);
+                    ib834FileValidations_grps.validateIb834MedFile(medIb834FileName);
                 }
                 break;
             case "dental":
@@ -233,7 +233,7 @@ public class sftpStepDefinitions {
                 for(String denIb834FileName: denIb834FileNames){
                     System.out.println("***Validating Ib834  Dental EDI File::"+denIb834FileName+"***");
                     sftpUtil.readIb834EdiFile(denIb834FileName);
-                    ib834FileValidations.validateIb834DenFile(denIb834FileName);
+                    ib834FileValidations_grps.validateIb834DenFile(denIb834FileName);
                 }
                 break;
             default:

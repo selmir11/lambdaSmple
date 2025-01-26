@@ -1,6 +1,6 @@
 Feature: Enroll a in a plan 8 HH
 
-  @SLER-832-WIP
+  @SLER-832-WIP @n1
   Scenario: EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -163,7 +163,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Nephew", "0151995", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Nephew", "01051995", "Male" and applying "Yes"
       |Primary:Nephew|
       |Spouse:Nephew |
       |SonOne:Cousin|
@@ -455,16 +455,16 @@ Feature: Enroll a in a plan 8 HH
 
     And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
     And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
-#
-#    And I validate the ib834 "medical" files data
-#    And I validate the ib834 "dental" files data
-#
-#    # Ob999
-#    And I validate "medical" entities from ob999_details db table
-#    And I validate "dental" entities from ob999_details db table
-#
-#    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
-#    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
+
+    And I validate the ib834 "medical" files data
+    And I validate the ib834 "dental" files data
+
+    # Ob999
+    And I validate "medical" entities from ob999_details db table
+    And I validate "dental" entities from ob999_details db table
+
+    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
 #
 #    And I validate the ob999 "medical" file data
 #    And I validate the ob999 "dental" file data
