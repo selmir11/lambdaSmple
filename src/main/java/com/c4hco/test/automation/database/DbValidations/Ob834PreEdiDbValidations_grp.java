@@ -354,7 +354,7 @@ public class Ob834PreEdiDbValidations_grp {
             denGrpCtrlNums = new ArrayList<>();
         }
         denGrpCtrlNums.add(grpCtrlNum);
-        SharedData.setMedGroupCtlNumbers(denGrpCtrlNums);
+        SharedData.setDenGroupCtlNumbers(denGrpCtrlNums);
     }
 
     private void denValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues, MemberDetails member) {

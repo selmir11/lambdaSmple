@@ -10,9 +10,7 @@ import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Ib834FileValidations_grps {
 
@@ -421,6 +419,16 @@ public class Ib834FileValidations_grps {
         //GE Segment
         JSONArray geSeg = commonIb834EDISegments.getGE().getJSONArray(0);
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
+        setTransGrpCtrlNum(geSeg);
+    }
+
+    private void setTransGrpCtrlNum(JSONArray geSeg){
+        Map<String, String> transForGrpCtrlNum = SharedData.getIb834transForGrpCtrlNum();
+        if(transForGrpCtrlNum == null){
+            transForGrpCtrlNum = new HashMap<>();
+        }
+        transForGrpCtrlNum.put(geSeg.get(1).toString(), geSeg.get(0).toString());
+        SharedData.setIb834transForGrpCtrlNum(transForGrpCtrlNum);
     }
 
     private void getIb834DataByEmailAndAccNum() {
