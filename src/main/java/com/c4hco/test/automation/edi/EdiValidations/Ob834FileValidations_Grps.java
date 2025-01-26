@@ -32,8 +32,6 @@ public class Ob834FileValidations_Grps {
 
     }
 
-
-
     public void validateOb834MedFile(String medFileName) {
         getOb834MedEntityForSubscriber(medFileName);
         List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
@@ -661,6 +659,10 @@ public class Ob834FileValidations_Grps {
         //GE Segment
         JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
+        setTransGrpCtrlNum(geSeg);
+    }
+
+    private void setTransGrpCtrlNum(JSONArray geSeg){
         Map<String, String> transForGrpCtrlNum = SharedData.getTransForGrpCtrlNum();
         if(transForGrpCtrlNum == null){
             transForGrpCtrlNum = new HashMap<>();

@@ -336,16 +336,25 @@ public class Ob834PreEdiDbValidations_grp {
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateIndivMedPremAmt(ob834Entity);
-        setGrpCtrlNums(ob834Entity.getGroup_ctrl_number());
+        setMedGrpCtrlNums(ob834Entity.getGroup_ctrl_number());
     }
 
-    private void setGrpCtrlNums(String grpCtrlNum){
+    private void setMedGrpCtrlNums(String grpCtrlNum){
         List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
         if(medGrpCtrlNums==null){
             medGrpCtrlNums = new ArrayList<>();
         }
         medGrpCtrlNums.add(grpCtrlNum);
         SharedData.setMedGroupCtlNumbers(medGrpCtrlNums);
+    }
+
+    private void setDenGrpCtrlNums(String grpCtrlNum){
+        List<String> denGrpCtrlNums = SharedData.getDenGroupCtlNumbers();
+        if(denGrpCtrlNums==null){
+            denGrpCtrlNums = new ArrayList<>();
+        }
+        denGrpCtrlNums.add(grpCtrlNum);
+        SharedData.setMedGroupCtlNumbers(denGrpCtrlNums);
     }
 
     private void denValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues, MemberDetails member) {
@@ -365,7 +374,7 @@ public class Ob834PreEdiDbValidations_grp {
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateIndivDenPremAmt(ob834Entity);
-        setGrpCtrlNums(ob834Entity.getGroup_ctrl_number());
+        setDenGrpCtrlNums(ob834Entity.getGroup_ctrl_number());
     }
 
     private void medDenValidationsCommonForAllMem(Ob834DetailsEntity ob834Entity, MemberDetails member){

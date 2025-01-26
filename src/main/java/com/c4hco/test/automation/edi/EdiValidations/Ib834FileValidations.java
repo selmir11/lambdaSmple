@@ -31,6 +31,7 @@ public class Ib834FileValidations {
     public Ib834FileValidations(){
         setN1SegList();
     }
+
     public void validateIb834MedFile() {
         getIb834MedEntityForSubscriber();
         List<Ib834Entity> medicalEntityList = SharedData.getIb834MedDetailsEntities();
@@ -51,12 +52,14 @@ public class Ib834FileValidations {
         validateMemSeg(dentalEntityList);
         validateSegCount();
     }
+
     private void validateSegCount() {
         List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
         segCount = segCount + 1;
         softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
         softAssert.assertAll();
     }
+
     private void getIb834MedEntityForSubscriber() {
         List<Ib834Entity> medicalEntityList = SharedData.getIb834MedDetailsEntities();
         for (Ib834Entity medIb834Entity : medicalEntityList) {
@@ -192,8 +195,6 @@ public class Ib834FileValidations {
         softAssert.assertEquals(luiSeg.get(1).get(2), entry.getSpoken_language(), "Spoken Language does not match.");
         softAssert.assertEquals(luiSeg.get(1).get(3), String.valueOf(7), "Spoken Language Use Indicator does not match");
     }
-
-
     private void validateN3N4Segments(Ib834Entity entry) {
         //N3 Segment
         List<List<String>> n3Seg = transaction.getMembersList().get(0).getN3();
@@ -212,8 +213,6 @@ public class Ib834FileValidations {
         softAssert.assertEquals(n4Seg.get(1).get(1), entry.getMail_st(), "Mailing State does not match");
         softAssert.assertEquals(n4Seg.get(1).get(2), entry.getMail_zip_code(), "Mailing zipcode does not match");
     }
-
-
     private void validateTrnSeg(Ib834Entity entry) {
         // ST Segment
         List<String> stSeg = transaction.getCommonSegments().getST().get(0);
@@ -224,7 +223,6 @@ public class Ib834FileValidations {
         softAssert.assertEquals(seSeg.get(1), entry.getTs_control_number(), "Ts control number does not match");
         segCount = segCount + 2;
     }
-
     private void validateSubscriberRefSeg() {
         List<String> refSeg = transaction.getCommonSegments().getREF().get(0);
         segCount = segCount + 1;
