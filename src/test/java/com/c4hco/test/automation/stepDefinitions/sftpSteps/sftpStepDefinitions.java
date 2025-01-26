@@ -153,9 +153,9 @@ public class sftpStepDefinitions {
                     break;
                 default:
                     Assert.fail("Invalid argument: " + fileType);
-            for(String fileName: fileNames){
-                sftpUtil.downloadFileWithSftp(inbound999RemotePath, fileName);
-            }
+        }
+        for(String fileName: fileNames){
+            sftpUtil.downloadFileWithSftp(inbound999RemotePath, fileName);
         }
     }
 
