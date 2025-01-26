@@ -12,11 +12,10 @@ import java.util.List;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
-   Ob834FileValidations ob834Validations_new = new Ob834FileValidations();
    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
    Ob999FileValidations ob999FileValidations = new Ob999FileValidations();
    Ib834FileValidations_grps ib834FileValidations_grps = new Ib834FileValidations_grps();
-   Ob834FileValidations_Grps ob834FileValidations_Grps = new Ob834FileValidations_Grps();
+   Ob834FileValidations ob834FileValidations = new Ob834FileValidations();
 
     @And("I download the medical and dental files from sftp server with location {string}")
     public void downloadMedDenFiles(String remoteLocation)  {
@@ -40,28 +39,7 @@ public class sftpStepDefinitions {
         sftpUtil.validateFileIsNotEmpty(SharedData.getDentalFileName());
     }
 
-
     @And("I validate the ob834 {string} file data")
-    public void validateOb834FileDetails(String type) {
-        switch (type) {
-            case "medical":
-                String medFileName = SharedData.getMedicalFileName();
-                System.out.println("***********Validating Medical EDI File::"+medFileName+"***********");
-                sftpUtil.readEdiFile(medFileName);
-                ob834Validations_new.validateOb834MedFile();
-                break;
-            case "dental":
-                String denFileName = SharedData.getDentalFileName();
-                System.out.println("***********Validating Dental EDI File::"+denFileName+"***********");
-                sftpUtil.readEdiFile(denFileName);
-               ob834Validations_new.validateOb834DenFile();
-                break;
-            default:
-                Assert.fail("Incorrect Argument passed in the step");
-        }
-    }
-
-    @And("I validate the ob834 {string} file data for groups")
     public void validateOb834FileDetails_grp(String type) {
         switch (type) {
             case "medical":
@@ -69,7 +47,7 @@ public class sftpStepDefinitions {
                 for(String medFileName: medFileNames){
                     System.out.println("***********Validating Medical EDI File::"+medFileName+"***********");
                     sftpUtil.readEdiFile(medFileName);
-                    ob834FileValidations_Grps.validateOb834MedFile(medFileName);
+                    ob834FileValidations.validateOb834MedFile(medFileName);
                 }
                 break;
             case "dental":
@@ -77,7 +55,7 @@ public class sftpStepDefinitions {
                 for(String denFileName: denFileNames){
                     System.out.println("***********Validating Dental EDI File::"+denFileName+"***********");
                     sftpUtil.readEdiFile(denFileName);
-                    ob834FileValidations_Grps.validateOb834DenFile(denFileName);
+                    ob834FileValidations.validateOb834DenFile(denFileName);
                 }
                 break;
             default:
