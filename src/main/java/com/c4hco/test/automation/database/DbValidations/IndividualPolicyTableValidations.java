@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class IndividualPolicyTableValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
     //en policy table validations
+    BasicActions basicActions = new BasicActions();
     public void validateEnPolicyTableDetails() {
         List<EnPolicyAhEntity> EnPolicyEntities = exchDbDataProvider.getEnPolicyAh_details();
         DbData dbData = SharedData.getDbData();
@@ -135,11 +137,14 @@ public class IndividualPolicyTableValidations {
     }
 
     public void validateExchPersonIds() {
+
+        int exchPersonIdsSize = basicActions.getAllMem().size();
+        softAssert.assertEquals(exchPersonIdsSize, 2, "The number of EXCH_PERSON_IDs is not 2");
         List<String> exchPersonIds = exchDbDataProvider.getExchPersonIds();
-        softAssert.assertEquals(exchPersonIds.size(), 2, "The number of EXCH_PERSON_IDs is not 2");
-        softAssert.assertTrue(exchPersonIds.size() == 2 && exchPersonIds.get(0).equals(exchPersonIds.get(1)), "EXCH_PERSON_IDs are not the same or the count is not 2");
+        softAssert.assertTrue(exchPersonIdsSize == 2 && exchPersonIds.get(0).equals(exchPersonIds.get(1)), "EXCH_PERSON_IDs are not the same or the count is not 2");
         softAssert.assertAll();
     }
+
 
 
 
