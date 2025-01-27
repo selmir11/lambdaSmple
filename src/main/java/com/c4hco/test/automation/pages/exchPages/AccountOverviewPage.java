@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class AccountOverviewPage {
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
@@ -121,8 +123,9 @@ public class AccountOverviewPage {
         applyForYr.click();
     }
 
+
     public void clickHereLinks(String clickHereOption){
-        basicActions.waitForElementListToBePresent(clickHereLinks, 10);
+        basicActions.waitForElementListToBePresent(clickHereLinks, 15);
         switch(clickHereOption){
             case "My Profile":
                 clickHereLinks.get(0).click();
@@ -154,8 +157,9 @@ public class AccountOverviewPage {
         basicActions.click(makeChanges);
     }
 
+        // ================VALIDATION METHODS================//
 
-    // ================VALIDATION METHODS================//
+
     public void verifyLanguageText(String language) {
         switch (language) {
             case "English":
