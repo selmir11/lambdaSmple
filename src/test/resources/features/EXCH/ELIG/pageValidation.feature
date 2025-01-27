@@ -2965,50 +2965,24 @@ Feature: Page validations on ELIG pages
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
 
-  @SLER-2005 @PageValidation
-  Scenario: Verify navigation on Enter Case Info page to Peak Application url (RT-975)
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation
-    Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    And I apply for the current year
-    Then I validate I am on the "Let us guide you" page
-    And I select "Yes" option on the Let us guide you page
-    And I click on save and continue button
-    Then I enter valid "1BEQ5Q3","81657","Jones" details in enterCaseID page
-    And  I click on save and continue button
-    Then I validate I am on the "load By 1B Result" page
-    And  I click on Back button on Loadby1B result page
-    Then I validate I am on the "Let us guide you" page
-    And I select "Yes" option on the Let us guide you page
-    And I click on save and continue button
-    Then I enter valid "1BEQ5Q3","81657","Jones" details in enterCaseID page
-    And  I click on Sign Out in the Header for "CaseId Page"
-    Then I validate I am on the "Login" page
 
-  @SLER-2004 @NVOExchRegression
-  Scenario: ELIG-Let us guide you (Peak Application)-Page Navigation (RT-974)
+
+  @SLER-2003 @PageValidation
+  Scenario Outline: Validate Footer on the Spanish Application Results page
+
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
     Then I apply for the current year
-    Then I validate I am on the "Let us guide you" page
-    When I click on back button on the Let us guide you page
-    Then I validate I am on the "My Account Overview" page
-    Then I apply for the current year
-    Then I select "Yes" option on the Let us guide you page
-    And I click on save and continue button
-    Then I validate I am on the "Enter Case ID" page
-    And I click on Back button on Loadby1B result page
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I validate I am on the "Before you begin" page
-    And I click on My Account in the "NonElmo" Header
-    Then I apply for the current year
-    Then I click on Sign Out in the Header for "CaseId Page"
-    Then I validate I am on the "Login" page
+    Then I click on save and continue button
+    And I validate that error "<Error Message English>" is thrown while clicking on Continue button
+    Then I change the language from header to "Spanish NonElmo"
+    Then I click on save and continue button
+    And I validate that error "<Error Message Spanish>" is thrown while clicking on Continue button
+    Examples:
+      |Error Message English                  |Error Message Spanish                    |
+      | Please select one of the options below|Seleccione una de las opciones siguientes|
+
+

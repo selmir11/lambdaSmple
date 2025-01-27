@@ -11,7 +11,7 @@ public class MyProfilePageSteps {
 
     @Then("I click on Go back to Welcome page Button on My Profile Exch")
     public void iBackToWelcomeButtonExch() {
-        myProfileExchPage.backToWelcomeButtonExch();
+    myProfileExchPage.backToWelcomeButtonExch();
     }
 
     // WIP - Rename the below step add include the page name
@@ -135,5 +135,10 @@ public class MyProfilePageSteps {
 
     @And("I validate error messages {string} on My Profile page")
     public void validateErrorMessage(String language)  { myProfileExchPage.validateErrorMessage(language); }
+
+    @Then("I verify change button is not displaying for primary contact on the my profile page")
+    public void iVerifyChangeButtonIsNotDisplayingForPrimaryContactOnTheMyProfilePage() {
+        myProfileExchPage.changePrimaryContactnotdisplay();
+    }
 }
 
