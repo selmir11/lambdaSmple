@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,12 +34,20 @@ public class CompletedPeakApplicationPage {
     @FindBy(css = ".c4BodyText1")
     List<WebElement> bodyText;
 
+    @FindBy(xpath = "//input[@name='back']")
+    WebElement backButton;
+
+    @FindBy(xpath = "//form[@id='peakApplicationQuestion']//following-sibling::label[2]")
+    WebElement contErrorMsg;
+
+
     public void setYesImNew() {
         yesImNew.click();
     }
 
     @FindBy(xpath = "//*[@name='back']")
     WebElement backBtnLetUsGuideYou;
+
 
     public void selectNoThanksOption() {
         noThanksRadioButton.click();
@@ -47,6 +56,19 @@ public class CompletedPeakApplicationPage {
     public void clickSaveAndContinueButton() {
         saveAndContinueButton.click();
     }
+
+
+    public void backButton() {
+        backButton.click();
+    }
+
+    public void errMsgValidation(String errMsg) {
+        basicActions.waitForElementToBePresent(contErrorMsg, 10);
+
+        softAssert.assertEquals(contErrorMsg.getText(), errMsg);
+        softAssert.assertAll();
+    }
+
 
     public void validateTheVerbiageOnLetUsGuideYouPage(String language) {
         switch (language) {
@@ -62,7 +84,6 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheVerbiageEn() {
-        SoftAssert softAssert = new SoftAssert();
 
         basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
         softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Let us guide you", "Header text mismatch: Let us guide you");
@@ -74,6 +95,7 @@ public class CompletedPeakApplicationPage {
     }
 
     public void validateTheVerbiageEs() {
+
         basicActions.waitForElementToBePresent(pageHeaderLetUsGuideYou, 30);
         softAssert.assertEquals(pageHeaderLetUsGuideYou.getText(), "Perm\u00edtanos guiarlo", "Header text mismatch: Perm\u00edtanos guiarlo");
         softAssert.assertEquals(bodyText.get(0).getText(), "Si nunca se ha inscrito con nosotros antes pero ya present\u00f3 una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la informaci\u00f3n que envi\u00f3 antes. Usted tendr\u00e1 la oportunidad de revisar y cambiar su informaci\u00f3n seg\u00fan sea necesario. \u00bfDesea buscar una solicitud previamente completada?", "Body text mismatch: Si nunca se ha inscrito...");

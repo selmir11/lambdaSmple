@@ -48,7 +48,7 @@ public class MyPoliciesPage {
     @FindBy(css = "table .body-text-1 p")
     List<WebElement> enrolledMemNames;
 
-    @FindBy(id="backToCurrentPlanDetailsButton")
+    @FindBy(id="goBackButton")
     WebElement backToCurPlansBtn;
 
     @FindBy(xpath = "//span[contains(., 'Monthly Premium')]/following-sibling::span")
@@ -77,8 +77,7 @@ public class MyPoliciesPage {
     Set<String> allMemberNames = new HashSet<>();
     Set<String> namesFromUI = new HashSet<>();
 
-
-    public void validatePlanDetails(String planType){
+     public void validatePlanDetails(String planType){
         basicActions.waitForElementListToBePresent(memberNames, 10);
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
         allMemberNames = new HashSet<>(basicActions.getAllMemNames());
