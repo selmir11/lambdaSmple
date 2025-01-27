@@ -120,6 +120,7 @@ Feature: Seed04exception - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     And I validate I am on the "Grouping Members Medical" page
     Then I validate that there are 1 default groups

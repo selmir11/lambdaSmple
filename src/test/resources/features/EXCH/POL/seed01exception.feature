@@ -53,7 +53,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
+#    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -61,6 +61,9 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click continue on start shopping page
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
