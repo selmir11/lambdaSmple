@@ -36,15 +36,15 @@ public class completedPeakApplicationSteps {
     public void iValidateErrorThrown(String errMsg) {
         completedApplicationPage.errMsgValidation(errMsg);
 
-//    @When("I click on back button on the Let us guide you page")
-//    public void clickOnBackBtn(){
-//        completedApplicationPage.clickOnBackBtn();
-//    }
-//
-//    @Then("I verify the text on Let us guide you page in {string}")
-//    public void verifyEnglishAndSpanishTextInLetUsGuide(String languageOption){
-//        completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
-//
-//    }
+    @When("I click on back button on the Let us guide you page")
+    public void clickOnBackBtn(){
+        completedApplicationPage.clickOnBackBtn();
     }
+
+    @Then("I verify the text on Let us guide you page in {string}")
+    public void verifyEnglishAndSpanishTextInLetUsGuide(String languageOption){
+            completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
+        }
+    }
+
 }
