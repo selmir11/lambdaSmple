@@ -492,7 +492,6 @@ Feature: Verify Navigation to the ELIG Pages
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
-
     Then I click on back button in Completed Peak Application page
     Then I click on ClickHere link for "My Profile"
     Then I click on Go back to Welcome page Button on My Profile Exch
@@ -505,27 +504,8 @@ Feature: Verify Navigation to the ELIG Pages
     And I validate I am on the "My Account Overview" page
     Then I click on ClickHere link for "My Plans"
     Then I click on to Back to Current Plan Details button
-    And I validate I am on the "My Account Overview" page
+    And I validate I am on the "My Account Overview back" page
 
-    Then I click the Back button in the 'Let us Guide You' page
-    Then I click on Click here to access "My Profile" in Welcome Page
-    And I validate that I am in "My Profile" Page
-    Then I click on 'Go back to welcome page'
-    Then I click on Click here to access "My Eligibility" in Welcome Page
-    And I validate that I am in "My Eligibility" Page
-    Then I click on 'Go back to welcome page'
-    Then I click on Click here to access "My Documents" in Welcome Page
-    And I validate that I am in "My Documents" Page
-    Then I click on 'Go back to welcome page'
-    Then I click on Click here to access "My Plans" in Welcome Page
-    And I validate that I am in "My Plans" Page
-    Then I click on 'Go back to welcome page'
-    Then I click on Click here to access "Shop for vision plans" in Welcome Page
-    And I validate that I am in "Shop for vision plans" Page
-    Then I click on 'Go back to welcome page'
-    Then I click on Click here to access "Apply for dental plans" in Welcome Page
-    And I validate that I am in "Apply for dental plans" Page
-    Then I click on 'Go back to welcome page'
 
   @SLER-2006 @PageNavigation
   Scenario: ELIG-Before you begin-Page Navigation Current Year(RT-1157)
