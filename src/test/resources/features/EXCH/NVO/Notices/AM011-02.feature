@@ -106,7 +106,7 @@ Feature: AM 011-02 Notices
     # Check My Documents notice
     Then I validate I am on the "My Account Overview" page
 
-  @needTag
+  @SLER-1094 @SLER-1095 @SLER-1096
   Scenario Outline: AM Profile Changes- English
     And I click on ClickHere link for "My Profile"
     And I click on Make Changes Button
@@ -126,7 +126,7 @@ Feature: AM 011-02 Notices
       | contact mobile phone number |
       | contact home phone number   |
 
-  @needTag
+  @SLER-1097
   Scenario: AM Profile Changes- Spanish
     And I click on ClickHere link for "My Profile"
     And I click on Make Changes Button
