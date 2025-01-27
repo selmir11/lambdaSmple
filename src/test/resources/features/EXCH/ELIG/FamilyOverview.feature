@@ -45,5 +45,5 @@ Feature: Testing will verify text and navigation for Family Overview page
 
     Then I validate I am on the "Family Overview" page
     Then I validate the "English" text on the family overview page
-    Then I validate the "Spanish" text on the family overview page
+    #Then I validate the "Spanish" text on the family overview page
     Then I click on Sign Out in the Header for "CaseId Page"

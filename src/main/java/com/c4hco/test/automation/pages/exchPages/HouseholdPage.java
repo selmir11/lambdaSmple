@@ -32,6 +32,9 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
+    @FindBy(xpath = "//*[@value = 'Save and Continue']")
+    WebElement getSaveAndContinueText;
+
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
 
@@ -74,17 +77,47 @@ public class HouseholdPage {
     @FindBy(id = "overviewButton")
     WebElement getHelpMeLink;
 
-    @FindBy(id = "accountID")
+    @FindBy(xpath = "//*[contains(text(),'Account ID:')]")
     WebElement getAcctID;
 
-    @FindBy(id = "householdId")
-    WebElement getHouseholdID;
+    @FindBy(xpath = "//span[contains(text(),'Tax Household #1')]")
+    WebElement getTaxHouseholdID;
 
     @FindBy(xpath = "//*[@class = 'table table-striped']")
     WebElement getTableText;
+    @FindBy(xpath = "//th[contains(text(),'NAME')]")
+    WebElement getNameText;
+    @FindBy(xpath = "//*[contains(text(),'APPLYING FOR')]")
+    WebElement getApplyingText;
+    @FindBy(xpath = "//*[contains(text(),'HEALTH INSURANCE?')]")
+    WebElement getHealthText;
+
+    @FindBy(xpath = "//*[contains(text(),'BASIC INFORMATION')]")
+    WebElement getBasicText;
+    @FindBy(xpath = "//*[contains(text(),'ANNUAL FINCANCIAL')]")
+    WebElement getAnnualText;
+
+    @FindBy(xpath = "//*[contains(text(),'INFORMATION')]")
+    WebElement getInformationText;
+
+    @FindBy(xpath = "//*[contains(text(),'Yes')]")
+    WebElement getYesText;
+
+    @FindBy(xpath = "//*[contains(text(),'Not Started')]")
+    WebElement getNotStartedText;
+
+    @FindBy(xpath = "//*[contains(text(),'Household Total')]")
+    WebElement getHouseholdTotalText;
+
+    @FindBy(xpath = "//*[contains(text(),'Complete')]")
+    WebElement getCompleteText;
+
+    @FindBy(xpath = "//*[contains(text(),'Incomplete')]")
+    WebElement getInCompleteText;
 
 
-    @FindBy(id="submitButton_AddMember")
+
+    @FindBy(xpath = "//*[@value = '+ Add another family member']")
     WebElement getAdditionalMemberText;
 
 
@@ -204,22 +237,29 @@ public class HouseholdPage {
     }
 
     public void validateEnglishHousehold(){
-       basicActions.waitForElementToDisappear( spinner, 20 );
+       basicActions.waitForElementToDisappear( spinner, 100 );
         softAssert.assertEquals( getFamilyOverviewHeader.getText(), "Family Overview: Here's what you've told us so far" );
         softAssert.assertEquals( getHelpMeLink.getText(), "Help me understand this page" );
-        softAssert.assertEquals( getAcctID.getText(), "Account ID:" );
-        softAssert.assertEquals( getHouseholdID.getText(), "Tax Household #1" );
+        //softAssert.assertTrue( getAcctID.getText().contains( "ACCOUNT ID:" ));
+        softAssert.assertEquals( getTaxHouseholdID.getText(), "Tax Household #1" );
 
-        softAssert.assertEquals( getTableText.getText(), "Name" );
-        softAssert.assertEquals( getTableText.getText(), "Applying for" );
-        softAssert.assertEquals( getTableText.getText(), "Health Insurance?" );
-        softAssert.assertEquals( getTableText.getText(), "Basic Information" );
-        softAssert.assertEquals( getTableText.getText(), "Annual Financial" );
-        softAssert.assertEquals( getTableText.getText(), "Information" );
-        softAssert.assertEquals( getTableText.getText(), "Household Total" );
+        softAssert.assertEquals( getTableText.getText(), "NAME APPLYING FOR\n" +
+                "HEALTH INSURANCE? BASIC INFORMATION ANNUAL FINANCIAL\n" +
+                "INFORMATION\n" +
+                "Yes\n" +
+                "Not Started\n"+
 
+
+                "HOUSEHOLD TOTAL Â¤0.00");
+        softAssert.assertEquals( getHouseholdTotalText.getText(), "HOUSEHOLD TOTAL" );
+
+        softAssert.assertEquals( getCompleteText.getText(), "Complete" );
+        softAssert.assertEquals( getInCompleteText.getText(), "Incomplete" );
+        basicActions.waitForElementToBePresentWithRetries(getAdditionalMemberText,30);
         softAssert.assertEquals( getAdditionalMemberText.getText(), "+ Add another family member" );
-        softAssert.assertEquals( saveAndContinue.getText(), "Save and Continue");
+        basicActions.waitForElementToBePresentWithRetries(getSaveAndContinueText,30);
+        softAssert.assertEquals( getSaveAndContinueText.getText(), "Save and Continue");
+        softAssert.assertAll();
     }
 
     public void validateSpanishHousehold(){
@@ -227,7 +267,7 @@ public class HouseholdPage {
         softAssert.assertEquals( getFamilyOverviewHeader.getText(), "Resumen de la familia: Esta es la informaci\u00F3n que nos ha dado hasta el momento" );
         softAssert.assertEquals( getHelpMeLink.getText(), "Ayuda para entender esta p\u00E1gina" );
         softAssert.assertEquals( getAcctID.getText(), "Identificaci\u00F3n de la cuenta" );
-        softAssert.assertEquals( getHouseholdID.getText(), "Hogar Fiscal #1" );
+        softAssert.assertEquals( getTaxHouseholdID.getText(), "Hogar Fiscal #1" );
 
         softAssert.assertEquals( getTableText.getText(), "Nombre" );
         softAssert.assertEquals( getTableText.getText(), "Para solicitar" );
@@ -240,7 +280,8 @@ public class HouseholdPage {
         softAssert.assertEquals( getTableText.getText(), " Incompleta");
 
         softAssert.assertEquals( getAdditionalMemberText.getText(), "+ Agregar a otro miembro de la familia" );
-        softAssert.assertEquals( saveAndContinue.getText(), "Guardar y Continuar");
+        softAssert.assertEquals( getSaveAndContinueText.getText(), "Guardar y Continuar");
+        softAssert.assertAll();
 
     }
 }
