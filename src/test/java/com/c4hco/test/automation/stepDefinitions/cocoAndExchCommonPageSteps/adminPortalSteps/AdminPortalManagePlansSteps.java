@@ -318,5 +318,15 @@ public class AdminPortalManagePlansSteps {
     public void iValidateFinancialTableDataRowTwo(String type, String rowTwoSTG, String financialStartRowTwoSTG, String financialEndRowTwoSTG, String premiumRowTwoSTG, String APTCRowTwoSTG, String rowTwoQA, String financialStartRowTwoQA, String financialEndRowTwoQA, String premiumRowTwoQA, String APTCRowTwoQA) {
         adminPortalManagePlansPage.validateFinancialTableDataRowTwo(type, rowTwoSTG, financialStartRowTwoSTG, financialEndRowTwoSTG, premiumRowTwoSTG, APTCRowTwoSTG, rowTwoQA, financialStartRowTwoQA, financialEndRowTwoQA, premiumRowTwoQA, APTCRowTwoQA);
     }
+    @And("I validate Go Back button on Manage Plan page")
+    public void iValidateGoBackButton() {
+        adminPortalManagePlansPage.validateGoBackButton();       }
+    @And("I click Go Back button on Manage Plan page")
+    public void iClickGoBackButton() {
+        adminPortalManagePlansPage.clickGoBackButton();       }
+    @Then("I click Go Back button on Simplified View")
+    public void iClickGoBackButtonOnSimplifiedView() {
+        adminPortalManagePlansPage.clickGoBackButtonOnSimplifiedView();       }
 }
+
 

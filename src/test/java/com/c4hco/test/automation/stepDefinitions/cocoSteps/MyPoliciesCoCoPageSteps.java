@@ -1,12 +1,9 @@
 package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.MyPoliciesCoCoPage;
-import com.c4hco.test.automation.pages.exchPages.MyPoliciesPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
-
-import java.util.List;
-import java.util.Map;
+import io.cucumber.java.en.Then;
 
 public class MyPoliciesCoCoPageSteps {
 
@@ -26,4 +23,14 @@ public class MyPoliciesCoCoPageSteps {
     public void medicalPlanDetailsPlanHistory(){
         myPoliciesCoCoPage.validateMedPlanDetailsFromPlanHistoryCoco();
     }
+
+    @Then("I click on Future Plans CoCo")
+    public void clickFuturePlansCoCo(){
+        myPoliciesCoCoPage.clickFuturePlansCoCo();
+    }
+
+    @Then("I click on Current Plans CoCo")
+    public void clickCurrentPlansCoCo(){myPoliciesCoCoPage.clickCurrentPlansCoCo();
+    }
+
 }
