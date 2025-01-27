@@ -460,16 +460,31 @@ public class DbValidations {
         softAssert.assertEquals(agencyEmail,SharedData.getBroker().getAgencyEmail());
         softAssert.assertAll();
     }
-    public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
-        String enrolmentEndDate = exchDbDataProvider.getEnrollmentEndDate();
-        String formattedDateEnd = basicActions.changeDateFormat(enrolmentEndDate ,"yyyy-MM-dd","MM/dd/yyyy");
 
-        LocalDate currentDate = LocalDate.now();
-        LocalDate twoMonthsLater = currentDate.plusDays(enrollmentEndDate);
+    public void validateEnrollmentEndDateDB() {
+        String enrEndDateDb = basicActions.changeDateFormat(exchDbDataProvider.getEnrollmentEndDate(), "yyyy-MM-dd", "MM/dd/yyyy");
+        LocalDate qlceDatePlus60Days = LocalDate.now().plusDays(60); // works only when qlce date is today
+        LocalDate expectedEndDate = qlceDatePlus60Days;
 
-        String formattedEnrolmentEndDate = basicActions.changeDateFormat(String.valueOf(twoMonthsLater),"yyyy-MM-dd","MM/dd/yyyy");
-        softAssert.assertEquals(formattedDateEnd, formattedEnrolmentEndDate);
+        if (SharedData.getIsOpenEnrollment().equals("yes")) {
+            if (getOpenEnrEndDate().isAfter(qlceDatePlus60Days)) {
+                expectedEndDate = getOpenEnrEndDate();
+            }
+        }
+        String expectedEnrEndDate = basicActions.changeDateFormat(expectedEndDate.toString(), "yyyy-MM-dd", "MM/dd/yyyy");
+        softAssert.assertEquals(enrEndDateDb, expectedEnrEndDate);
         softAssert.assertAll();
+    }
+
+    private LocalDate getOpenEnrEndDate(){
+            int year;
+            Month currentMonth = LocalDate.now().getMonth();
+            if(currentMonth.toString().toLowerCase().equals("january")){
+                year = LocalDate.now().getYear();
+            } else {
+                year = LocalDate.now().getYear()+1;
+            }
+            return LocalDate.of(year, 1, 15);
     }
 
     public void verifyTaxFilingData(String memPrefix,List<Map<String, String>> expectedValues) {
@@ -711,5 +726,44 @@ public class DbValidations {
             }
         }
     }
+    public void validateMailingAddressDetailsinDB(String FName,String address_line1, String city, String state, String zip, String county){
+        String FirstName=null;
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+        List<String> dbValues = exchDbDataProvider.getMailingAddressInformation(FirstName);
+        softAssert.assertEquals(dbValues.get(0), address_line1);
+        softAssert.assertEquals(dbValues.get(1), city);
+        softAssert.assertEquals(dbValues.get(2), state);
+        softAssert.assertEquals(dbValues.get(3), zip);
+        softAssert.assertEquals(dbValues.get(4), county);
+        softAssert.assertAll();
+    }
+    public void validateStateInformation(String FName, int state) {
+        String FirstName = null;
+        List<MemberDetails> memberList = basicActions.getAllMem();
+        for (MemberDetails actualMember : memberList) {
+            if (actualMember.getFirstName().contains(FName)) {
+                FirstName = actualMember.getFirstName();
+                break;
+            }
+        }
+        String  stateFromDB = exchDbDataProvider.getStateInformation(FirstName);
+        softAssert.assertEquals(stateFromDB, String.valueOf(state), "State mismatched");
+        softAssert.assertAll();
+    }
 
- }
+    public void validateFplPercent(String expectedFplPercent) {
+        String fplValue = exchDbDataProvider.getFplPercentDetails();
+        softAssert.assertEquals(fplValue.trim(), expectedFplPercent, "FPL Percent mismatch: Expected " + expectedFplPercent + ".");
+        softAssert.assertAll();
+    }
+
+
+
+}
+

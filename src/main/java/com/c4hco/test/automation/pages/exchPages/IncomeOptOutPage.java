@@ -18,6 +18,12 @@ public class IncomeOptOutPage {
     @FindBy(css = "app-financial-help .header-1")
     WebElement headerText;
 
+    @FindBy(css = "#financial-help-percentage")
+    WebElement helpPercentage;
+
+    @FindBy(css = "#financial-help-percentage-text span")
+    List<WebElement> helpPercentageText;
+
     @FindBy(css = "app-financial-help .body-text-1")
     List<WebElement> pageText;
 
@@ -72,6 +78,9 @@ public class IncomeOptOutPage {
         switch(Language){
             case "English":
                 softAssert.assertEquals(headerText.getText(), "Do you want to save money on your health insurance?");
+                softAssert.assertEquals(helpPercentage.getText(), "81");
+                softAssert.assertEquals(helpPercentageText.get(0).getText(), "of customers get financial help");
+                softAssert.assertEquals(helpPercentageText.get(1).getText(), "to lower the cost of health insurance");
                 softAssert.assertEquals(pageText.get(0).getText(), "Connect for Health Colorado is the only place you can apply for financial help to lower the cost of health insurance. When you apply for financial help, we'll ask you about your household's income, tax information, and other health insurance options to see if you qualify.");
                 softAssert.assertEquals(fincancialHelpLnk.getText(),"financial help");
                 softAssert.assertEquals(apply.getText(), "Apply for financial help");
@@ -81,6 +90,9 @@ public class IncomeOptOutPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(headerText.getText(), "\u00BFQuiere ahorrar dinero en su seguro de salud?");
+                softAssert.assertEquals(helpPercentage.getText(), "81");
+                softAssert.assertEquals(helpPercentageText.get(0).getText(), "de los clientes reciben ayuda financiera");
+                softAssert.assertEquals(helpPercentageText.get(1).getText(), "para bajar el costo del seguro de salud");
                 softAssert.assertEquals(pageText.get(0).getText(), "Connect for Health Colorado es el \u00FAnico sitio donde puede solicitar ayuda financiera para reducir el costo de su seguro de salud. Cuando solicite ayuda financiera, le pediremos informaci\u00F3n acerca de su ingreso familiar, informaci\u00F3n sobre los impuestos y otras opciones del seguro de salud para ver si califica.");
                 softAssert.assertEquals(fincancialHelpLnk.getText(),"ayuda financiera");
                 softAssert.assertEquals(apply.getText(), "Solicitar ayuda financiera");

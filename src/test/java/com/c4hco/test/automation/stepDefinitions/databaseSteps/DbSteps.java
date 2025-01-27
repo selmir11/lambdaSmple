@@ -202,9 +202,9 @@ public class DbSteps {
         dbValidations.validateTheAgencyEmailInDB();
     }
 
-    @And("I Validate enrollment period end date is set to {int} days from current QLCE days")
-    public void validateEnrolmentEndDate(int enrollmentEndDate) {
-        dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate);
+    @And("I Validate enrollment period end date based on latest QLCE")
+    public void validateEnrolmentEndDate() {
+        dbValidations.validateEnrollmentEndDateDB();
     }
 
     @And("I verify the tax filing data for {string} in DB")
@@ -278,6 +278,14 @@ public class DbSteps {
     public void validateAddressInformation(String FName,String address_line1, String address_line2, String city, String state, String zip, String county){
         dbValidations.validateAddressDetailsinDB(FName,address_line1,address_line2,city,state,zip,county);
     }
+    @Then("I validate mailing address details for {string} member in DB addressLine1 {string},city {string},state {string},zipcode {string},county {string}")
+    public void validateMailingAddressInformation(String FName,String address_line1, String city, String state, String zip, String county){
+        dbValidations.validateMailingAddressDetailsinDB(FName,address_line1,city,state,zip,county);
+    }
+    @Then("I validate state details for {string} member in DB {int}")
+    public void validateStateInformation(String FName, int state){
+        dbValidations.validateStateInformation(FName, state);
+    }
 
     @Then("I validate the details of the Tell us about additional members of your household page for the {string} in the database")
     public void validateTellUsAboutAdditionalInformation(String FName){
@@ -285,5 +293,12 @@ public class DbSteps {
     }
     @Then("I validate enrollment period end date for AI&AN should be lastdayofYear")
     public void validateEnrollmentEndDateForAIAN() { dbValidations.validateEnrollmentEndDateForAIANDB();}
+
+    @Then("I validate the FPL percent {int}")
+    public void iValidateTheFplPercent(int expectedFplPercent) {dbValidations.validateFplPercent(String.valueOf(expectedFplPercent));
+    }
+
+
 }
+
 

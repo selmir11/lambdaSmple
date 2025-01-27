@@ -141,12 +141,10 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select rating_area_id from " + dbName + ".en_rating_area " +
                 "where fips = '" + fipcode + "'";
     }
-
     public String getFipcode(String zipCode) {
-        return "select fip_code from " + dbName + ".es_zip_codes " +
-                "where code = '" + zipCode + "'";
+        return "select fips from " + dbName + ".en_county " +
+                "where zip = '" + zipCode + "'";
     }
-
     public String en_plan(String planName) {
         return "select * from " + dbName + ".en_plan ep \n" +
                 "where plan_marketing_name = '" + planName + "'" +
@@ -664,5 +662,27 @@ public String policyTablesCombinedQuery(String coverageType){
         return "SELECT first_name, middle_name, last_name, gender, birth_date, applying_for_coverage_ind FROM "+dbName+".es_member\n"+
                 "where member_id = "+memberId+"";
     }
+    public String getMailingAddressDetails(String memberId){
+        return "SELECT address_line1, city, state, zip, county FROM "+dbName+".es_address\n"+
+                "where address_id = (SELECT hc.mailing_address_id FROM "+dbName+".es_household_contact hc join "+dbName+".es_member m on hc.household_id = m.household_id where m.member_id = "+memberId+")";
+    }
+    public String getStateDetails(String memberId){
+        return "SELECT co_resident_ind FROM "+dbName+".es_member where member_id = '"+memberId+"'";
+    }
+
+
+    public String fplPercentDetails() {
+        return "select err.fpl_percent \n" +
+                "from " + dbName + ".es_member esm \n" +
+                "join " + dbName + ".es_member_rules_result err \n" +
+                "  on esm.member_id = err.member_id \n" +
+                "join " + dbName + ".es_household esh \n" +
+                "  on esm.household_id = esh.household_id \n" +
+                "where err.determination = 'MA_INCOME_MET' \n" +
+                "  and err.eligibility_type = 'MA' \n" +
+                "  and esh.account_id = '" + acctId + "'";
+    }
+
+
 
 }

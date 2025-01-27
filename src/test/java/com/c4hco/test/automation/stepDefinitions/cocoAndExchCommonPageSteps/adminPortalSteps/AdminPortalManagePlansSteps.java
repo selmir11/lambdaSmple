@@ -275,5 +275,58 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.updateTheDentalFinancialDetailsTableForTheUI();
 
     }
+    @And("I validate simplified plans {string} and {string} and labels on Manage page")
+    public void iSimplifiedContainerTitleLabels(String simplifyPlanMedical, String simplifyPlanDental) {
+        adminPortalManagePlansPage.simplifiedContainerTitleLabels(simplifyPlanMedical, simplifyPlanDental);      }
+
+    @Then("I click checked {string} to see only medical plan data")
+    public void iClickCheckedToSeeOnlyOnePlanData(String planType) {
+        adminPortalManagePlansPage.clickCheckedToSeeOnlyMedicalPlanData(planType);
+    }
+    @Then("I check current Simplified Medical container labels")
+    public void iVerifyLabelsSimplifiedMedical() {
+        adminPortalManagePlansPage.verifyLabelsSimplifiedMedical();       }
+    @And("I check plan name: {string} {string} {string} or plan name: {string} {string} {string}")
+    public void iValidateSimplifyViewMedicalData(String planNameSTG, String policyCoverageSTG, String latestApplicationDateSTG, String planNameQA, String policyCoverageQA, String latestApplicationDateQA) {
+        adminPortalManagePlansPage.validateSimplifyViewMedicalData(planNameSTG, policyCoverageSTG, latestApplicationDateSTG, planNameQA, policyCoverageQA, latestApplicationDateQA);  }
+    @Then("I validate {string} or {string} data for HIOS ID on manage plans")
+    public void iValidateStringDataForHIOSIDOnManagePlans(String hiosIdSTG, String hiosIdQA) {
+        adminPortalManagePlansPage.validateDataForHIOSID(hiosIdSTG, hiosIdQA);
+    }
+    @Then("I validate member table data row {string}, {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}, {string}")
+    public void iValidateMemberTableDataRow(String rowNumberSTG, String personIdSTG, String nameSTG, String birthSTG, String relationSTG, String tobaccoSTG, String rowNumberQA, String personIdDataQA, String nameQA, String birthQA, String relationQA, String tobaccoQA) {
+        adminPortalManagePlansPage.iValidateMemberTableDataRowOne(rowNumberSTG, personIdSTG, nameSTG, birthSTG, relationSTG, tobaccoSTG, rowNumberQA, personIdDataQA, nameQA, birthQA, relationQA, tobaccoQA);
+    }
+    @Then("I validate member table data row two {string}, {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}, {string}")
+    public void iValidateMemberTableDataRawTwo(String rowNumberSTG, String personIdSTG, String nameSTG, String birthSTG, String relationSTG, String tobaccoSTG, String rowNumberQA, String personIdDataQA, String nameQA, String birthQA, String relationQA, String tobaccoQA) {
+        adminPortalManagePlansPage.iValidateMemberTableDataRowTwo(rowNumberSTG, personIdSTG, nameSTG, birthSTG, relationSTG, tobaccoSTG, rowNumberQA, personIdDataQA, nameQA, birthQA, relationQA, tobaccoQA);
+    }
+
+    @And("I validate {string} coverage table data on Simplified View {string}, {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}, {string}")
+    public void iValidateCoverageTableDataOnSimplifiedView(String type, String rowSTG, String coverageStartSTG, String coverageEndSTG, String statusSTG, String effectuatedSTG, String reasonSTG, String rowQA, String coverageStartQA, String coverageEndQA, String statusQA, String effectuatedQA, String reasonQA) {
+        adminPortalManagePlansPage.iValidateCoverageTableDataRowOne(type, rowSTG, coverageStartSTG, coverageEndSTG, statusSTG, effectuatedSTG, reasonSTG, rowQA, coverageStartQA, coverageEndQA, statusQA, effectuatedQA, reasonQA);
+    }
+    @Then("I validate {string} coverage table data row two on Simplified View {string}, {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}, {string}")
+    public void iValidateCoverageTableDataRowTwo(String type, String rowTwoSTG, String coverageStartRowTwoSTG, String coverageEndRowTwoSTG, String statusRowTwoSTG, String effectuatedRowTwoSTG, String reasonRowTwoSTG, String rowTwoQA, String coverageStartRowTwoQA, String coverageEndRowTwoQA, String statusRowTwoQA, String effectuatedRowTwoQA, String reasonRowTwoQA) {
+        adminPortalManagePlansPage.validateCoverageTableDataRowTwo(type, rowTwoSTG, coverageStartRowTwoSTG, coverageEndRowTwoSTG, statusRowTwoSTG, effectuatedRowTwoSTG, reasonRowTwoSTG, rowTwoQA, coverageStartRowTwoQA, coverageEndRowTwoQA, statusRowTwoQA, effectuatedRowTwoQA, reasonRowTwoQA);
+    }
+    @And("I validate {string} financial table data on Simplified View {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}")
+    public void iValidateFinancialTableDataOnSimplifiedView(String type, String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA) {
+        adminPortalManagePlansPage.iValidateFinancialTableDataRowOne(type, rowSTG, financialStartSTG, financialEndSTG, premiumSTG, APTCSTG, rowQA, financialStartQA, financialEndQA, premiumQA, APTCQA);
+    }
+    @Then("I validate {string} financial table data row two on Simplified View {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}")
+    public void iValidateFinancialTableDataRowTwo(String type, String rowTwoSTG, String financialStartRowTwoSTG, String financialEndRowTwoSTG, String premiumRowTwoSTG, String APTCRowTwoSTG, String rowTwoQA, String financialStartRowTwoQA, String financialEndRowTwoQA, String premiumRowTwoQA, String APTCRowTwoQA) {
+        adminPortalManagePlansPage.validateFinancialTableDataRowTwo(type, rowTwoSTG, financialStartRowTwoSTG, financialEndRowTwoSTG, premiumRowTwoSTG, APTCRowTwoSTG, rowTwoQA, financialStartRowTwoQA, financialEndRowTwoQA, premiumRowTwoQA, APTCRowTwoQA);
+    }
+    @And("I validate Go Back button on Manage Plan page")
+    public void iValidateGoBackButton() {
+        adminPortalManagePlansPage.validateGoBackButton();       }
+    @And("I click Go Back button on Manage Plan page")
+    public void iClickGoBackButton() {
+        adminPortalManagePlansPage.clickGoBackButton();       }
+    @Then("I click Go Back button on Simplified View")
+    public void iClickGoBackButtonOnSimplifiedView() {
+        adminPortalManagePlansPage.clickGoBackButtonOnSimplifiedView();       }
 }
+
 

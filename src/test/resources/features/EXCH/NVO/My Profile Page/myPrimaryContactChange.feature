@@ -13,7 +13,7 @@ Feature: My Profile Page Exch
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-   # And I report "Birth" and click continue
+    And I report "Birth" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -234,8 +234,9 @@ Feature: My Profile Page Exch
       And I click on Make Changes Button
       And I update the contact email address
       And I update the contact home phone number on profile page
-     And I update the contact mobile phone number on profile page
+      And I update the contact mobile phone number on profile page
       And I click on Save Button
+      And I wait for 9000 milliseconds
       Then I click on Go back to Welcome page Button on My Profile Exch
       Then I validate the details from rq_queue_messages database
 
@@ -314,7 +315,7 @@ Feature: My Profile Page Exch
   And I close current tab and switch back to previous tab
   And I click on view button for "Account Activity" report
   Then I validate I am on the "Account Activity" page
-  Then I validate the account activity record for "primary person change"
+  Then I validate the account activity record for "primary person change" for "individualportal"
   Then I validate member id of all members
   Then logout from Admin Portal
 
@@ -368,7 +369,7 @@ Feature: My Profile Page Exch
     Then I validate I am on the "Admin Portal individual dashboard" page
     And I click on view button for "Account Activity" report
     Then I validate I am on the "Account Activity" page
-    Then I validate the account activity record for "Email Update"
+    Then I validate the account activity record for "Email Update" for "individualportal"
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
@@ -397,7 +398,7 @@ Feature: My Profile Page Exch
     Then I validate I am on the "Admin Portal individual dashboard" page
     And I click on view button for "Account Activity" report
     Then I validate I am on the "Account Activity" page
-    Then I validate the account activity record for "Info update"
+    Then I validate the account activity record for "Info update" for "individualportal"
     Then logout from Admin Portal
 
     @SLER-1883
@@ -413,5 +414,5 @@ Feature: My Profile Page Exch
       Then I validate I am on the "Admin Portal individual dashboard" page
       And I click on view button for "Account Activity" report
       Then I validate I am on the "Account Activity" page
-      Then I validate the account activity record for "Account Creation"
+      Then I validate the account activity record for "Account Creation" for "individualportal"
       Then logout from Admin Portal

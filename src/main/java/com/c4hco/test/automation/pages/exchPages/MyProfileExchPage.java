@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.CreateAccountPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -49,6 +48,12 @@ public class MyProfileExchPage {
     @FindBy(css = "div.myProfile_fullName")
     WebElement FullNameProfile;
 
+
+    @FindBy(id = "myProfile_mobilePhone")
+    WebElement MobilephonePrimaryChange;
+
+    @FindBy(id = "myProfile_homePhone")
+    WebElement HomephonePrimaryChange;
 
     @FindBy(id = "mobilePhone")
     WebElement Mobilephone;
@@ -149,8 +154,13 @@ public class MyProfileExchPage {
     @FindBy(css = "hr.myProfile_address_hr")
     WebElement grayLineAddress;
 
+
     @FindBy(xpath = "//button[text()='Go back to welcome page']")
     WebElement GoBackToWelcomePage;
+
+    @FindBy(css = ".action-link.col-sm-2.float-end.ng-star-inserted")
+    List<WebElement>changePrimaryContactnotdisplay;
+
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -746,7 +756,7 @@ public class MyProfileExchPage {
         basicActions.waitForElementListToBePresent(MyProfileButtonExch, 40);
         MyProfileButtonExch.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1026@test.com";
+        String newEmail = "updated.automation1027@test.com";
         InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmail.sendKeys(newEmail);
         MyProfileButtonExch.get(1).click();
@@ -1084,6 +1094,12 @@ public class MyProfileExchPage {
         softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-size"), "16px");
         softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertAll();
+    }
+
+
+    public void changePrimaryContactnotdisplay() {
+        softAssert.assertTrue(changePrimaryContactnotdisplay.isEmpty(),"Button displayed when not expected");
         softAssert.assertAll();
     }
 }

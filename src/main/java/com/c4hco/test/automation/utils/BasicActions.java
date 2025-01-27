@@ -71,7 +71,6 @@ public class BasicActions {
         return getDriver().getCurrentUrl();
     }
 
-
     public void openUrlWithQueryStringInNewTab(String query) {
         String currUrl = getCurrentUrl();
         String newUrl = currUrl + query;
@@ -502,6 +501,7 @@ public class BasicActions {
                 newUrl = "TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus";
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
+                System.out.println("Member ID for Primary is " +getMemberId("Primary"));
                 break;
             case "Tax Status Elmo page Son":
                 newUrl = "TaxReturnPortal/members/" +getMemberId("Son")+"/taxStatus";
@@ -512,6 +512,7 @@ public class BasicActions {
                 newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
                 newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
+                System.out.println("Member ID for Spouse is " +getMemberId("Spouse"));
                 break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
@@ -1140,6 +1141,24 @@ public class BasicActions {
 
     }
 
+    public String firstDateOfTheMonthAfterNext() {
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayOfNextMonth = today.plusMonths(2).withDayOfMonth(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return firstDayOfNextMonth.format(formatter);
+    }
+
+    public String enrollmentStartDate(){
+        int actualDate = Integer.parseInt(changeDateFormat(getTodayDate(),"MM/dd/yyyy","dd"));
+        if(actualDate<16){
+            //if plan purchase date is from 1 to 15 - Next month 1st will be plan start date
+            return changeDateFormat(firstDateOfNextMonth(),"yyyy-MM-dd","MM/dd/yyyy");
+        }
+        else{
+            //if plan purchase date is from 16 to 31 - Month after Next 1st will be plan start date
+            return changeDateFormat(firstDateOfTheMonthAfterNext(),"yyyy-MM-dd","MM/dd/yyyy");
+        }
+    }
 }
 
 

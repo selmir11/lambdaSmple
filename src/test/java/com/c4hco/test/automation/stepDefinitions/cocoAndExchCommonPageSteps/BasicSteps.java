@@ -164,6 +164,9 @@ public class BasicSteps {
             case "Enter Case ID":
                 pageUrl = "nes/enterCaseId";
                 break;
+            case "load By 1B Result":
+                pageUrl = "nes/loadBy1BResult";
+                break;
             case "Medical Plan Results":
                 pageUrl = "medicalPlanResults";
                 break;
@@ -207,6 +210,12 @@ public class BasicSteps {
                 break;
             case "Before you begin":
                 pageUrl = "nes/beforeYouBegin";
+                break;
+            case "Upload Documents (RIDP)":
+                pageUrl = "nes/IdProofingSecondaryRequest";
+                break;
+            case "Upload Documents":
+                pageUrl = "nes/idProofing";
                 break;
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";

@@ -21,6 +21,11 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.clickContinueWithApplication();
     }
 
+    @Then("I click back button on Report a Life Change Page")
+    public void iClickOnBackButton(){
+        lifeChangeEventsPage.clickBackButton();
+    }
+
     @And("I validate the verbiage on the Report a life change page in {string}")
     public void iValidateTheVerbiageOnTheReportALifeChangePageIn(String language) {
         lifeChangeEventsPage.validateTheVerbiageOnReportALifeChangePage(language);
@@ -44,5 +49,10 @@ public class LifeChangeEventsPageSteps {
     @Then("I click on the help icon next to special requirement option")
     public void iClickOnTheHelpIconNextToSpecialRequirementOption() {
         lifeChangeEventsPage.clickHelpIconNextToSpecialRequirement();
+    }
+
+    @And("I click Help me understand this page link on Report a Life change Page")
+    public void iClickHelpMeUnderstandThisPageLink(){
+        lifeChangeEventsPage.clickHelpMeUnderstandLink();
     }
 }

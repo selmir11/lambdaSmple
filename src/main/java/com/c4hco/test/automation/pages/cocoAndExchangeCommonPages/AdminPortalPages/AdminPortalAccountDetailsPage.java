@@ -27,6 +27,9 @@ public class AdminPortalAccountDetailsPage {
     @FindBy(xpath = "//*[contains(@class, 'dashboardHeader1') and contains(text(), 'Primary Account Holder:')]")
     WebElement headerText;
 
+    @FindBy(id = "btn-edit")
+    WebElement EditFieldsButton;
+
     public void validatePrimaryMemDetails(){
         basicActions.waitForElementListToBePresent(accDetailsLabelAndValues, 10);
         MemberDetails primaryMem = SharedData.getPrimaryMember();
@@ -40,5 +43,11 @@ public class AdminPortalAccountDetailsPage {
         basicActions.waitForElementToBePresent(headerText, 10);
         softAssert.assertEquals(headerText.getText(), "Primary Account Holder: "+primaryMem.getSignature(), "Primary person's name from header did not match");
     }
+
+    public void clickEditFieldsViaOBOButton(){
+        basicActions.waitForElementToBePresent(EditFieldsButton, 30);
+        EditFieldsButton.click();
+    }
+
 
 }

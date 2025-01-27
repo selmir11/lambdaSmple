@@ -33,6 +33,9 @@ public class LifeChangeEventsPage {
     @FindBy(id = "continueButton")
     WebElement saveAndContinueOnlyButton;
 
+    @FindBy(css = ".back-button-link")
+    WebElement backButton;
+
     @FindBy(css = "h1.c4PageHeader")
     WebElement textReportLifeChangeHeader;
 
@@ -134,6 +137,10 @@ public class LifeChangeEventsPage {
 
     public void clickContinueWithApplication(){
         saveAndContinueButton.get(1).click();
+    }
+
+    public void clickBackButton() {
+        backButton.click();
     }
 
     public void validateTheVerbiageOnReportALifeChangePage(String language) {
@@ -284,5 +291,10 @@ public class LifeChangeEventsPage {
     public void clickHelpIconNextToSpecialRequirement() {
         basicActions.waitForElementToBePresent(iconHelp, 10);
         iconHelp.click();
+    }
+
+    public void clickHelpMeUnderstandLink(){
+        basicActions.waitForElementToBeClickable(lnkHelpLink, 20);
+        lnkHelpLink.click();
     }
 }
