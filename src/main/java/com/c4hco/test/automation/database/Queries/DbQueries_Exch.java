@@ -683,7 +683,7 @@ public String policyTablesCombinedQuery(String coverageType){
                 "  and esh.account_id = '" + acctId + "'";
     }
 
-    public String selectExchPersonIds() {
+    public String compareExchPersonIds() {
         return "Select esm.exch_person_id\n" +
                 "From " + dbName + ".ES_MEMBER esm\n" +
                 "JOIN " + dbName + ".ES_HOUSEHOLD esh ON esm.household_id = esh.household_id\n" +
