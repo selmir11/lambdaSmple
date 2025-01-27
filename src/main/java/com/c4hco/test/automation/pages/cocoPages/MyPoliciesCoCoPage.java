@@ -71,6 +71,14 @@ public class MyPoliciesCoCoPage {
 
     @FindBy(id="Cancel 2024 Dental Plans Button")
     WebElement cancelDentalPlanbtn;
+
+    @FindBy(id="SOL-CurrentPolicies-FuturePlans")
+    WebElement FuturePlans;
+
+    @FindBy(id="SOL-CurrentPolicies-CurrentPlans")
+    WebElement CurrentPlans;
+
+
     @FindBy(css ="table tr:nth-child(2) p")
     List<WebElement> planhistoryNames;
 
@@ -128,6 +136,16 @@ public class MyPoliciesCoCoPage {
         softAssert.assertTrue(tableRecord.get(4).getText().equals(primaryMember.getMedicalPlanStartDate()), "plan start date mismatch");
         softAssert.assertTrue(tableRecord.get(5).getText().equals(primaryMember.getMedicalPlanEndDate()), "plan end date mismatch");
         softAssert.assertAll();
+    }
+
+    public void clickFuturePlansCoCo(){
+        basicActions.waitForElementToBePresent(FuturePlans, 10);
+        FuturePlans.click();
+    }
+
+    public void clickCurrentPlansCoCo(){
+        basicActions.waitForElementToBePresent(CurrentPlans, 10);
+        CurrentPlans.click();
     }
 
 }

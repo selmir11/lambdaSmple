@@ -572,3 +572,29 @@ Feature: Verify Navigation to the ELIG Pages
     Then I validate I am on the "Report a life change" page
     Then I click back button on Report a Life Change Page
     Then I validate I am on the "Before you begin" page
+
+  @SLER-2042 @PageNavigation
+  Scenario: ELIG-Upload Documents (RIDP)-Page Navigation-CE(RT-1165)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011981" in county "DENVER" with zipcode "80220"
+    Then I answer all Id proofing questions required for uploading documents and click continue
+    Then I validate I am on the "Upload Documents (RIDP)" page
+    Then I click on back button of Upload Documents RIDP page
+    Then I validate I am on the "Report a life change" page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Upload Documents" page
+    Then I click on upload documents button of Upload Documents RIDP page
+    Then I validate I am on the "My Documents" page

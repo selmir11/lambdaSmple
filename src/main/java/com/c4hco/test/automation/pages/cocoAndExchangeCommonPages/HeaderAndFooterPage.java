@@ -1,8 +1,10 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -250,6 +252,20 @@ public class HeaderAndFooterPage {
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);
         }
+    }
+
+    public void rightClickApplyForCoverageLink() {
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);
+        basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 70);
+        basicActions.waitForElementToBePresentWithRetries(getAssistanceLink, 70);
+        basicActions.waitForElementToBePresentWithRetries(languageDrp, 70);
+        basicActions.scrollToElement(learnMoreLink);
+        Actions actions = new Actions(basicActions.getDriver());
+        actions.keyDown(Keys.CONTROL)
+                .click(centerHeaderLink.get(0))
+                .keyUp(Keys.CONTROL)
+                .build()
+                .perform();
     }
 
     public void clickFindAPlanLinkLink(String pageType) {
