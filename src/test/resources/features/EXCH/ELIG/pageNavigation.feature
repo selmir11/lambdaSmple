@@ -504,7 +504,7 @@ Feature: Verify Navigation to the ELIG Pages
     And I validate I am on the "My Account Overview" page
     Then I click on ClickHere link for "My Plans"
     Then I click on to Back to Current Plan Details button
-    And I validate I am on the "My Account Overview back" page
+    And I validate I am on the "Account Overview" page
 
 
   @SLER-2006 @PageNavigation
