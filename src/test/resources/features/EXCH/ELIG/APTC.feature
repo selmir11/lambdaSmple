@@ -493,7 +493,7 @@ Feature: UI Tests related to APTC
 
 
 
-  @SLER-2027 #WIP
+  @SLER-2027
   Scenario:  ELIG-Single Member Denver-APTCCal-BothYears[RT-1639]
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -556,6 +556,6 @@ Feature: UI Tests related to APTC
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$167.74/mo"
+    Then I validate that my APTC value is "$375.57/mo"
     Then I click on view results and shop
-    Then I validate that my Tax Household's 1 APTC value is "$167.74/mo"
+    Then I validate that my Tax Household's 1 APTC value is "$375.57/mo"
