@@ -14,6 +14,7 @@ import java.util.List;
 
 public class HeaderAndFooterPage {
     SoftAssert softAssert = new SoftAssert();
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
@@ -439,6 +440,7 @@ public class HeaderAndFooterPage {
             case "English":
                 basicActions.waitForElementToDisappear(spinner,20);
                 basicActions.waitForElementToBePresent(languageDrp, 60);
+                actions.moveToElement(connectLogoLink).perform();
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
                 languageDrpOption.get(0).click();
