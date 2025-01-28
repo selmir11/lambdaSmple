@@ -229,7 +229,7 @@ public class QlceConfirmationPage {
         basicActions.waitForElementToBeClickable(birthQLCE, 10);
         String newbornFullName = basicActions.getFullNameWithPrefix(SharedData.getBirthLceIndividual());
         birthQLCE.click();
-        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + newbornFullName + "')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
+        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'"+newbornFullName + "')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
         birthLceMemCheckbox.click();
         birthEventDate.stream()
                 .filter(WebElement::isDisplayed)
