@@ -1059,3 +1059,87 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I verify the text on Let us guide you page in "English"
     And I change the language from header to "Spanish NonElmo"
     Then I verify the text on Let us guide you page in "Spanish"
+
+  @SLER-2059 @PageText
+  Scenario: Verify English and Spanish Text for Tell us about life changes page [RT-1012]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "MovedToColorado" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011985" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for no financial help
+    Then I validate I am on the "Tell us about life changes" page
+    And I validate the verbiage on the Tell us about life changes page "English"
+      | Tell us about life changes |
+      | Select any life change event you or someone in your household has experienced within the past 60 days. The loss of other health insurance, including Health First Colorado or Child Health Plans Plus, can be reported up to 60 days before you lose coverage. Members of federally recognized tribes and Alaska natives can enroll in coverage through Connect for Health Colorado anytime of the year. |
+      | Help me understand this page |
+      | Birth/Adoption/Foster Care/Court Order |
+      | Pregnancy |
+      | Marriage |
+      | Divorce |
+      | Death |
+      | Change of primary residence |
+      | Change of income or job |
+      | Enrollment in future or existing health insurance |
+      | Will lose/lost health insurance or my household's annual income meets special requirements |
+      | Gained eligible immigration status |
+      | Change of incarceration status |
+      | Gain of American Indian/Alaskan Native tribal status |
+      | Tax Time Enrollment Period  |
+      | None of these apply to my household |
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the verbiage on the Tell us about life changes page "Spanish"
+      | Infórmenos sobre los cambios importantes en la vida |
+      | Seleccione los eventos de vida calificados que usted o alguien de su familia haya tenido en los últimos 60 días. Se puede reportar la pérdida de seguro de salud, incluyendo Health First Colorado o Child Health Plan Plus, hasta 60 días antes de que pierda la cobertura. Los miembros de las tribus reconocidas a nivel federal o los nativos de Alaska pueden inscribirse en la cobertura a través de Connect for Health Colorado en cualquier momento del año. |
+      | Ayuda para entender esta página |
+      | Nacimiento/Adopción/Colocación en hogar sustituto/Mandato judicial |
+      | Embarazo |
+      | Matrimonio |
+      | Divorcio |
+      | Muerte |
+      | Cambio de residencia primaria |
+      | Cambio de ingreso o trabajo |
+      | Inscripción en seguro de salud futuro o actual |
+      | Perderé o perdí el seguro de salud o mi ingreso familiar anual cumple con los requisitos especiales |
+      | Obtención de estatus migratorio elegible |
+      | Cambio en el estado de encarcelamiento |
+      | Obtención de estatus de indígena norteamericano o nativo de Alaska |
+      | Programa de Inscripción para la declaración de impuestos  |
+      |Ninguno de estos se aplica a mi hogar |
+    And I change the language from header to "English NonElmo"
+    Then  I click on Sign Out in the Header for "NonElmo"

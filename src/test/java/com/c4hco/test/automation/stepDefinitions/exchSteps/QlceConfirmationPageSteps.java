@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 import com.c4hco.test.automation.pages.exchPages.QlceConfirmationPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
+import java.util.List;
 
 public class QlceConfirmationPageSteps {
 
@@ -22,5 +23,10 @@ public class QlceConfirmationPageSteps {
     @Then("I click on Save and Continue")
     public void saveAndContinue(){
         qlceConfirmationPage.saveAndContinue();
+    }
+
+    @And("I validate the verbiage on the Tell us about life changes page {string}")
+    public void iValidateTheVerbiageOnTheTellUsAboutLifeChangesPage(String Language, List<String> data) {
+        qlceConfirmationPage.validateTheVerbiageOnTellUsAboutLifeChangesPage(Language,data);
     }
 }
