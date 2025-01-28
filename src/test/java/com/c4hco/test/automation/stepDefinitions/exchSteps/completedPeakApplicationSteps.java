@@ -35,6 +35,7 @@ public class completedPeakApplicationSteps {
     @And("I validate that error {string} is thrown while clicking on Continue button")
     public void iValidateErrorThrown(String errMsg) {
         completedApplicationPage.errMsgValidation(errMsg);
+    }
 
     @When("I click on back button on the Let us guide you page")
     public void clickOnBackBtn(){
@@ -46,5 +47,3 @@ public class completedPeakApplicationSteps {
             completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
         }
     }
-
-}
