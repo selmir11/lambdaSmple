@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class HeaderAndFooterPage {
     SoftAssert softAssert = new SoftAssert();
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
@@ -437,6 +439,7 @@ public class HeaderAndFooterPage {
             case "English":
                 basicActions.waitForElementToDisappear(spinner,20);
                 basicActions.waitForElementToBePresent(languageDrp, 60);
+                actions.moveToElement(connectLogoLink).perform();
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
                 languageDrpOption.get(0).click();
