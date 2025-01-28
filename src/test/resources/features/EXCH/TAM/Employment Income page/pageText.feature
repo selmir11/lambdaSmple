@@ -363,7 +363,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-2072 @PageTextEmploymentIncome
+  @SLER-2072 @PageTextEmploymentIncome @wip
   Scenario: SLER-2072-ELIG-Income-Page Text(RT-995)
     Then I Verify the page text on Employment Income page, which is in initial state with the language "English"
       |Income:|
