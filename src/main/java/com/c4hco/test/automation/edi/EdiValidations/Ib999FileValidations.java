@@ -4,22 +4,39 @@ import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
 import org.json.JSONArray;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Ib999FileValidations {
     Edi999Segments ib999Segment= new Edi999Segments();
     SoftAssert softAssert = new SoftAssert();
+    List<Ib999Entity> ib999MedEntityList = new ArrayList<>();
+    List<Ib999Entity> ib999DenEntityList = new ArrayList<>();
+    List<String> ak2GrpCtrlNum_file = new ArrayList<>();
+    List<String> ak2GrpCtrlNum_db = new ArrayList<>();
 
     public void validateIb999MedFileData(){
-        for (Ib999Entity ib999MedEntity : SharedData.getIb999MedDetailsEntities()) {
+        ib999MedEntityList = SharedData.getIb999MedDetailsEntities();
+        for (Ib999Entity ib999MedEntity : ib999MedEntityList) {
             validateIb999File(ib999MedEntity);
         }
+        validateAk2GrpCtrlNum();
     }
 
     public void validateIb999DenFileData() {
-        for (Ib999Entity ib999DenEntity : SharedData.getIb999DenDetailsEntities()) {
+        ib999DenEntityList = SharedData.getIb999DenDetailsEntities();
+        for (Ib999Entity ib999DenEntity : ib999DenEntityList) {
             validateIb999File(ib999DenEntity);
         }
+        validateAk2GrpCtrlNum();
+    }
+
+    private void validateAk2GrpCtrlNum(){
+        Assert.assertEquals( new HashSet<>(ak2GrpCtrlNum_file), new HashSet<>(ak2GrpCtrlNum_db), "AK2 group control numbers doesn't match");
     }
 
     private void validateIb999File(Ib999Entity entry){
@@ -90,9 +107,12 @@ public class Ib999FileValidations {
     }
     private void validateAK2Segment(Ib999Entity entry, int i){
         JSONArray ak2Seg = ib999Segment.getAK2().getJSONArray(i);
+
         softAssert.assertEquals(ak2Seg.get(0),entry.getAk2_ts_id_code(), "Ak2_ts_id_code mismatch");
-        softAssert.assertEquals(ak2Seg.get(1), entry.getAk2_ts_control_number(), "Ak2_ts_control_number mismatch");
         softAssert.assertEquals(ak2Seg.get(2), entry.getAk2_imple_conv_reference(), "Ak2_imple_conv_reference mismatch");
+
+        ak2GrpCtrlNum_file.add((String) ak2Seg.get(1));
+        ak2GrpCtrlNum_db.add(entry.getAk2_ts_control_number());
         softAssert.assertAll();
     }
     private void validateIK5Segment(Ib999Entity entry, int i){

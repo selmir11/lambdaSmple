@@ -1,4 +1,7 @@
 Feature: Enroll a in a plan 8 HH
+  @n11
+  Scenario: tst
+    And I read the edi999 file locally
 
   @SLER-832-WIP @n1
   Scenario: EXCH Initial Application - Complex Household
@@ -446,10 +449,10 @@ Feature: Enroll a in a plan 8 HH
     And I validate the ib999 "dental" file data
 
     #Ib834
-    And I validate ib834 "medical" details in database
+    And I validate ib834 "medical" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
-    And I validate ib834 "dental" details in database
+    And I validate ib834 "dental" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
 

@@ -84,6 +84,7 @@ public class Ib999Util {
         ib999Segments.setIK5(ik5Seg);
 
         SharedData.setIb999Segments(ib999Segments);
+        tstEdi999();
     }
 
     public void tstEdi999(){
