@@ -22,7 +22,7 @@ Feature: Manage Plans: Current Med & Dent Data Years dropdown
     And I check for Previous Medical container display
     And I check for Previous Dental container display
     Then I check default year displays
-    Then I verify Years in dropdown starting from "2019" as expected
+    Then I verify Years in dropdown starting from "2022" as expected
     And I collapse year dropdown
     And I check for Previous Medical container display
     And I check for Previous Dental container display

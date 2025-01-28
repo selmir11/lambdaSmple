@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.CreateAccountPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -156,6 +155,12 @@ public class MyProfileExchPage {
     WebElement grayLineAddress;
 
 
+    @FindBy(xpath = "//button[text()='Go back to welcome page']")
+    WebElement GoBackToWelcomePage;
+
+    @FindBy(css = ".action-link.col-sm-2.float-end.ng-star-inserted")
+    List<WebElement>changePrimaryContactnotdisplay;
+
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -167,8 +172,8 @@ public class MyProfileExchPage {
     }
 
     public void backToWelcomeButtonExch() {
-        basicActions.waitForElementToBeClickable(MyProfileButtonExch.get(0), 60);
-        MyProfileButtonExch.get(0).click();
+        basicActions.waitForElementToBeClickable(GoBackToWelcomePage, 60);
+        GoBackToWelcomePage.click();
     }
 
     public void clickMakeChangesButton() {
@@ -1089,6 +1094,12 @@ public class MyProfileExchPage {
         softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("font-size"), "16px");
         softAssert.assertEquals(ErrorMessageContactInformation.get(2).getCssValue("color"), "rgba(182, 38, 38, 1)");
+        softAssert.assertAll();
+    }
+
+
+    public void changePrimaryContactnotdisplay() {
+        softAssert.assertTrue(changePrimaryContactnotdisplay.isEmpty(),"Button displayed when not expected");
         softAssert.assertAll();
     }
 }
