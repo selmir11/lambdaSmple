@@ -24,15 +24,10 @@ public class UnauthorizedPage {
 
     public void verifyUnauthorizedText(String language) {
         basicActions.waitForElementToBePresent(unauthorizedTxt, 60);
-        String color = "";
         String[] parts = language.split(":");
         String lang = parts[0];
         String pageType = (parts.length > 1) ? parts[1] : "";
-        if(pageType.equals("Income")){
-            color = "rgba(33, 37, 41, 1)";
-        } else {
-            color = "rgba(77, 77, 79, 1)";
-        }
+        String color = getColorForPageType(pageType);
         switch (lang) {
             case "English":
                 softAssert.assertEquals(unauthorizedTxt.getText(), "UNAUTHORIZED");
@@ -56,5 +51,12 @@ public class UnauthorizedPage {
         softAssert.assertAll();
     }
 
+    private String getColorForPageType(String pageType) {
+        if ("Income".equals(pageType)) {
+            return "rgba(33, 37, 41, 1)";
+        } else {
+            return "rgba(77, 77, 79, 1)";
+        }
+    }
 
 }

@@ -199,7 +199,6 @@ public class HeaderAndFooterPage {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    Actions actions = new Actions(WebDriverManager.getDriver());
 
     public void clickConnectLogoLink(String pageType) {
         switch (pageType){
