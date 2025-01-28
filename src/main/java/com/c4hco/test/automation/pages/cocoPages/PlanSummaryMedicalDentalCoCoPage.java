@@ -125,8 +125,8 @@ public class PlanSummaryMedicalDentalCoCoPage {
     }
 
     public void iclickGoBack(){
-        basicActions.waitForElementToDisappear(spinner,100);
-        basicActions.waitForElementToBePresentWithRetries(goBackbtn,30);
+        basicActions.waitForElementToDisappear(spinner,120);
+        basicActions.waitForElementToBePresentWithRetries(goBackbtn,50);
         basicActions.scrollToElement(continueBtnOnPlanSummary);
         goBackbtn.click();
     }

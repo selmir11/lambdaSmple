@@ -25,7 +25,7 @@ public class ApplicationResultsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(xpath = "//*[@id = 'ELIG-MemberPlanInfo-SaveAndContinue']")
+    @FindBy(id = "ELIG-MemberPlanInfo-SaveAndContinue")
     public WebElement continueButton;
 
     @FindBy(id = "ELIG-NoApplication-BackToWelcomePage")
