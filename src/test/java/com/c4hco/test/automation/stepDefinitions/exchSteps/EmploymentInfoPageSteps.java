@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class EmploymentInfoPageSteps {
 
     EmploymentInfoPage employmentInfoPage = new EmploymentInfoPage(WebDriverManager.getDriver());
@@ -82,5 +84,17 @@ public class EmploymentInfoPageSteps {
 
     @Then("I validate Seasonal verbiage in {string}")
     public void iValidateSeasonalQsHelpVerbiage(String languageSelection){employmentInfoPage.validateSeasonalHelpVerbiage(languageSelection);};
+
+    @Then("I Verify the page text on Employment Income page, which is in initial state with the language {string}")
+    public void iVerifyTextOnInitialIncomePage(String language,List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnInitialIncomePage(language,dataText);
+    }
+
+    @Then("I Verify the page text on Employment Income page after clicking yes to employment in {string} language")
+    public void iVerifyTextOnIncomePageAfterSelectingYesToEmployment(String language,List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnIncomePageAfterClickingYesToEmploymentQuestion(language,dataText);
+    }
 
 }

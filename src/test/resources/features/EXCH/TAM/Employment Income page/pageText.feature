@@ -362,7 +362,58 @@ Feature: Page Text-Income Opt Out Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
-    
+
+  @SLER-2072 @PageTextEmploymentIncome
+  Scenario: SLER-2072-ELIG-Income-Page Text(RT-995)
+    Then I Verify the page text on Employment Income page, which is in initial state with the language "English"
+      |Income:|
+      |Employment Income|
+      |Do you have a job or are you currently employed?|
+      |Yes                                             |
+      |No                                              |
+      |Go back                                         |
+      |Save and continue                               |
+      |Help                                            |
+    Then I select the option "Yes" to employment
+    Then I Verify the page text on Employment Income page after clicking yes to employment in "English" language
+      |Income:|
+      |Employment Income|
+      |Do you have a job or are you currently employed?|
+      |Yes                                             |
+      |No                                              |
+      |Go back                                         |
+      |Save and continue                               |
+      |Help                                            |
+      |Is this job self-employment?                    |
+      |Yes                                             |
+      |No                                              |
+    And I refresh the page
+   # And I select the option "Yes" to self employment
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I Verify the page text on Employment Income page, which is in initial state with the language "Spanish"
+      |Ingresos:|
+      |Ingresos por empleo|
+      |¿Tiene un trabajo o empleo actualmente?|
+      |Sí                                     |
+      |No                                     |
+      |Volver                                 |
+      |Guardar y continuar                    |
+      |Ayuda                                  |
+    Then I select the option "Yes" to employment
+    Then I Verify the page text on Employment Income page after clicking yes to employment in "Spanish" language
+      |Ingresos:|
+      |Ingresos por empleo|
+      |¿Tiene un trabajo o empleo actualmente?|
+      |Sí                                     |
+      |No                                     |
+      |Volver                                 |
+      |Guardar y continuar                    |
+      |Ayuda                                  |
+      |¿Este trabajo es por cuenta propia?    |
+      |Sí                                     |
+      |No                                     |
+
+
     
     
     

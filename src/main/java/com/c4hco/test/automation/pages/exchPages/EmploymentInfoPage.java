@@ -115,6 +115,18 @@ public class EmploymentInfoPage {
     @FindBy(xpath = "(//a[@class=’clickable link-text-1’])[0]")
     List<WebElement>EditUpdateLink;
 
+    @FindBy(xpath = "(//label[@class='input-label form-label']//span)[1]")
+    WebElement haveAJobOrEmployedQuestion;
+
+    @FindBy(xpath = "(//label[@class='input-label form-label']//span)[2]")
+    WebElement selfEmploymentQuestion;
+
+    @FindBy(id = "ExchEmploymentIncomeJob-GoBack")
+    WebElement goBackButton;
+
+    @FindBy(xpath = "//label[contains(@class,'help-label')]")
+    WebElement helpLabel;
+
     public void clickEditUpdateLink(int employer){
     basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
         EditUpdateLink.get(employer).click();
@@ -665,4 +677,123 @@ public class EmploymentInfoPage {
         }
     }
 
+    public void verifyTextOnInitialIncomePage(String language,List<String> dataText) {
+        switch (language) {
+            case "English":
+                verifyTextOnInitialIncomePageEnglish(dataText);
+                break;
+            case "Spanish":
+                verifyTextOnInitialIncomePageSpanish(dataText);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyTextOnIncomePageAfterClickingYesToEmploymentQuestion(String language,List<String> dataText) {
+        switch (language) {
+            case "English":
+                verifyTextAfterClickingYesToEmploymentQuestionEnglish(dataText);
+                break;
+            case "Spanish":
+                verifyTextAfterClickingYesToEmploymentQuestionSpanish(dataText);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyTextOnInitialIncomePageEnglish(List<String> dataText){
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 10);
+        basicActions.waitForElementToBePresent(txtHeaderPart2, 10);
+        basicActions.waitForElementToBePresent(haveAJobOrEmployedQuestion, 10);
+        basicActions.waitForElementToBePresent(goBackButton, 10);
+        basicActions.waitForElementToBePresent(btnContinue, 10);
+        basicActions.waitForElementToBePresent(helpLabel, 10);
+        basicActions.waitForElementToBePresent(btnYesEmployed, 10);
+        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
+        softAssert.assertEquals(txtHeaderPart1.getText(), dataText.get(0)+" "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(txtHeaderPart2.getText(), dataText.get(1),"Title Not matching");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), dataText.get(2),"Question Not matching");
+        softAssert.assertEquals(btnYesEmployed.getText(), dataText.get(3),"Yes button label not matching");
+        softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4),"No button label not matching");
+        softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5),"back button label not matching");
+        softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6),"continue button label not matching");
+        softAssert.assertEquals(helpLabel.getText(), dataText.get(7),"Help button label not matching");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextOnInitialIncomePageSpanish(List<String> dataText){
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 10);
+        basicActions.waitForElementToBePresent(txtHeaderPart2, 10);
+        basicActions.waitForElementToBePresent(haveAJobOrEmployedQuestion, 10);
+        basicActions.waitForElementToBePresent(goBackButton, 10);
+        basicActions.waitForElementToBePresent(btnContinue, 10);
+        basicActions.waitForElementToBePresent(helpLabel, 10);
+        basicActions.waitForElementToBePresent(btnYesEmployed, 10);
+        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
+        softAssert.assertEquals(txtHeaderPart1.getText(), dataText.get(0)+" "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(txtHeaderPart2.getText(), dataText.get(1),"Title Not matching");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), dataText.get(2),"Question Not matching");
+        softAssert.assertEquals(btnYesEmployed.getText(), dataText.get(3),"Yes button label not matching");
+        softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4),"No button label not matching");
+        softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5),"back button label not matching");
+        softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6),"continue button label not matching");
+        softAssert.assertEquals(helpLabel.getText(), dataText.get(7),"Help button label not matching");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextAfterClickingYesToEmploymentQuestionEnglish(List<String> dataText){
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 10);
+        basicActions.waitForElementToBePresent(txtHeaderPart2, 10);
+        basicActions.waitForElementToBePresent(haveAJobOrEmployedQuestion, 10);
+        basicActions.waitForElementToBePresent(goBackButton, 10);
+        basicActions.waitForElementToBePresent(btnContinue, 10);
+        basicActions.waitForElementToBePresent(helpLabel, 10);
+        basicActions.waitForElementToBePresent(btnYesEmployed, 10);
+        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
+        basicActions.waitForElementToBePresent(selfEmploymentQuestion, 10);
+        basicActions.waitForElementToBePresent(btnYesSelfEmployed, 10);
+        basicActions.waitForElementToBePresent(btnNoSelfEmployed, 10);
+        softAssert.assertEquals(txtHeaderPart1.getText(), dataText.get(0) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(txtHeaderPart2.getText(), dataText.get(1), "Title Not matching");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), dataText.get(2), "Employment Question Not matching");
+        softAssert.assertEquals(btnYesEmployed.getText(), dataText.get(3), "Yes button label for Employment question not matching");
+        softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
+        softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
+        softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
+        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextAfterClickingYesToEmploymentQuestionSpanish(List<String> dataText){
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 10);
+        basicActions.waitForElementToBePresent(txtHeaderPart2, 10);
+        basicActions.waitForElementToBePresent(haveAJobOrEmployedQuestion, 10);
+        basicActions.waitForElementToBePresent(goBackButton, 10);
+        basicActions.waitForElementToBePresent(btnContinue, 10);
+        basicActions.waitForElementToBePresent(helpLabel, 10);
+        basicActions.waitForElementToBePresent(btnYesEmployed, 10);
+        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
+        basicActions.waitForElementToBePresent(selfEmploymentQuestion, 10);
+        basicActions.waitForElementToBePresent(btnYesSelfEmployed, 10);
+        basicActions.waitForElementToBePresent(btnNoSelfEmployed, 10);
+        softAssert.assertEquals(txtHeaderPart1.getText(), dataText.get(0) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(txtHeaderPart2.getText(), dataText.get(1), "Title Not matching");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), dataText.get(2), "Employment Question Not matching");
+        softAssert.assertEquals(btnYesEmployed.getText(), dataText.get(3), "Yes button label for Employment question not matching");
+        softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
+        softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
+        softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
+        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
+        softAssert.assertAll();
+    }
 }
+
+
