@@ -212,7 +212,7 @@ public void verifyHeadersEmploymentIncomePage(String language){
         basicActions.waitForElementToBePresent(hdr_Income,50);
         switch (language){
             case "English":
-                softAssert.assertTrue(hdr_Income.getText().contains( "Income: "  + SharedData.getMembers().get(0).getFirstName()));
+                softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + basicActions.getFullNameWithPrefix("Spouse")));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -224,7 +224,7 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 break;
             case "Spanish":
                 basicActions.waitForElementToBePresent(hdr_EmploymentIncome,50);
-                softAssert.assertTrue(hdr_Income.getText().contains("Ingresos: "  + SharedData.getMembers().get(0).getFirstName()));
+                softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + basicActions.getFullNameWithPrefix("Spouse")));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");

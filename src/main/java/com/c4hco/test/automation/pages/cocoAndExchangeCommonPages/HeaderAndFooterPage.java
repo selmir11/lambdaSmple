@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class HeaderAndFooterPage {
     SoftAssert softAssert = new SoftAssert();
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
@@ -416,9 +418,9 @@ public class HeaderAndFooterPage {
     }
 
     public void headerLanguage(String language){
-        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink,100);
-        basicActions.waitForElementToBePresentWithRetries(languageDrp,100);
-        basicActions.waitForElementToBeClickableWithRetries(languageDrp,100);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 100);
+        basicActions.waitForElementToBePresentWithRetries(languageDrp, 100);
+        basicActions.waitForElementToBeClickableWithRetries(languageDrp, 100);
         for (WebElement headerLink : centerHeaderLink) {
             if (headerLink.getAttribute("text").contains("Apply for Coverage")) {
                 changeLanguage(language);
@@ -437,6 +439,7 @@ public class HeaderAndFooterPage {
             case "English":
                 basicActions.waitForElementToDisappear(spinner,20);
                 basicActions.waitForElementToBePresent(languageDrp, 60);
+                actions.moveToElement(connectLogoLink).perform();
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
                 languageDrpOption.get(0).click();
@@ -552,8 +555,9 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Sign Out");
         softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
-        clickGetAssistanceLink("Exch");
+        actions.moveToElement(getAssistanceLink).perform();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
+        actions.moveToElement(connectLogoLink).perform();
         softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         softAssert.assertAll();
@@ -571,8 +575,9 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
         softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
-        clickGetAssistanceLink("Exch");
+        actions.moveToElement(getAssistanceLink).perform();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
+        actions.moveToElement(connectLogoLink).perform();
         softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         softAssert.assertAll();
@@ -592,9 +597,10 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Sign Out");
         softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
-        clickGetAssistanceLink("Exch");
+        actions.moveToElement(getAssistanceLink).perform();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
         softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
+        actions.moveToElement(connectLogoLink).perform();
         softAssert.assertAll();
     }
 
@@ -656,9 +662,10 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
         softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
-        clickGetAssistanceLink("Exch");
+        actions.moveToElement(getAssistanceLink).perform();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
         softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+        actions.moveToElement(connectLogoLink).perform();
         softAssert.assertAll();
     }
 

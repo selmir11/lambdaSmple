@@ -81,7 +81,8 @@ public class BasicSteps {
                 pageUrl = "nes/accountOverview";
                 break;
             case "My Account Overview":
-                pageUrl = "nes/myAccountOverview";
+                basicActions.wait(2000);
+                pageUrl = "nes/myAccountOverview" ;
                 break;
             case "CAC Screener":
                 pageUrl = "/coco/WelcomePortal/cacScreener";
