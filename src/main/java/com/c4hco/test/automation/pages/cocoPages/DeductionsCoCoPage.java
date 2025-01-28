@@ -309,7 +309,7 @@ public class DeductionsCoCoPage {
         switch (language){
             case "English":
                 basicActions.waitForElementToBePresent(hdr_Deductions,15);
-                softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -324,7 +324,7 @@ public class DeductionsCoCoPage {
                 basicActions.waitForElementToBePresent(hdr_Deductions2,90);
                 basicActions.waitForElementToBePresent(saveAndContinueButton,90);
                 basicActions.waitForElementToBePresent(backButton,90);
-                softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase("Ingresos: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase("Ingresos: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-family"), "\"PT Sans\", sans-serif");
