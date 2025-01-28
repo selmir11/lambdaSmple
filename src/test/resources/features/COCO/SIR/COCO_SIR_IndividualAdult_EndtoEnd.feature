@@ -16,7 +16,7 @@ Feature: Individual adult - End to End Test
     And  I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
 
-    Then I validate I am on the "CoCo Welcome" page
+    Then I validate I am on the "Account Overview" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -95,7 +95,7 @@ Feature: Individual adult - End to End Test
     And  I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
 
-    Then I validate I am on the "CoCo Welcome" page
+    Then I validate I am on the "Account Overview" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -174,7 +174,7 @@ Feature: Individual adult - End to End Test
     And  I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
 
-    Then I validate I am on the "CoCo Welcome" page
+    Then I validate I am on the "Account Overview" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
@@ -1153,7 +1153,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
 
-    Then I enter details on tell us about yourself page and continue with "01162005", "Female", and applying "Yes"
+    Then I enter details on tell us about yourself page and continue with "01161995", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
@@ -1338,7 +1338,6 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

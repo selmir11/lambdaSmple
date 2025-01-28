@@ -92,7 +92,7 @@ Feature: Verify COCO Medical Plan results
     And  I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
 
-    Then I validate I am on the "CoCo Welcome" page
+    Then I validate I am on the "Account Overview" page
     And I apply for the current year in CoCo
 
     Then I validate I am on the "Find Expert Help" page
