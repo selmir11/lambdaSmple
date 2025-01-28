@@ -125,7 +125,9 @@ public class LifeChangeEventsCoCoPage {
 
     public void selectLCE(String LCEType, String dateType) {
         basicActions.waitForElementToDisappear(spinner, 20);
-        switch (LCEType) {
+        String[] parts = LCEType.split(":");
+        String type = parts[0];
+        switch (type) {
             case "InsuranceLoss", "Pregnancy", "Birth", "Marriage", "Divorce", "Death", "Move", "BirthLceIndividual":
                 selectLCECheckbox(LCEType);
                 selectMemberForLCE(LCEType);
@@ -138,7 +140,7 @@ public class LifeChangeEventsCoCoPage {
                 clickMoveToCO();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + LCEType);
+                throw new IllegalArgumentException("Invalid option: " + type);
         }
     }
 
@@ -153,7 +155,9 @@ public class LifeChangeEventsCoCoPage {
     public void selectLCECheckbox(String LCEType) {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBePresent(addressChangeLCE,20);
-        switch (LCEType) {
+        String[] parts = LCEType.split(":");
+        String type = parts[0];
+        switch (type) {
             case "InsuranceLoss":
                 insuranceLossLCE.click();
                 break;
@@ -179,36 +183,70 @@ public class LifeChangeEventsCoCoPage {
                 noneOfTheseLCE.click();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + LCEType);
+                throw new IllegalArgumentException("Invalid option: " + type);
         }
     }
 
     public void selectMemberForLCE(String LCEType) {
         basicActions.waitForElementToDisappear(spinner, 20);
-        switch (LCEType) {
+
+        String[] parts = LCEType.split(":");
+        String type = parts[0];
+        String member = parts.length > 1 ? parts[1] : null;
+
+        switch (type) {
             case "InsuranceLoss":
-                clickAllMembers(allMemberInsuranceLossCheckbox);
+                if (member != null) {
+                    clickOneMember(member, "ELIG-LceMember-LOSS_OF_MEC_OTHER");
+                } else {
+                    clickAllMembers(allMemberInsuranceLossCheckbox);
+                }
                 break;
             case "Birth":
-                clickAllMembers(allMembersBirthCheckbox);
+                if (member != null) {
+                    clickOneMember(member, "ELIG-LceMember-BIRTH");
+                } else {
+                    clickAllMembers(allMembersBirthCheckbox);
+                }
                 break;
             case "BirthLceIndividual":
                 clickBirthLceIndividual();
                 break;
             case "Pregnancy":
-                clickAllMembers(allMembersPregnancyCheckbox);
+                if (member != null) {
+                    clickOneMember(member, "ELIG-LceMember-PREGNANCY");
+                } else {
+                    clickAllMembers(allMembersPregnancyCheckbox);
+                }
                 break;
             case "Marriage":
-                clickAllMembers(allMembersMarriageCheckbox);
+                if (member != null) {
+                    clickOneMember(member, "ELIG-LceMember-MARRIAGE");
+                } else {
+                    clickAllMembers(allMembersMarriageCheckbox);
+                }
                 break;
             case "Divorce":
-                clickAllMembers(allMembersDivorceCheckbox);
+                if (member != null) {
+                    clickOneMember(member, "ELIG-LceMember-DIVORCE");
+                } else {
+                    clickAllMembers(allMembersDivorceCheckbox);
+                }
                 break;
             case "Death":
-                clickAllMembers(allMembersDeathCheckbox);
+                if (member != null) {
+                    clickOneMember(member, "ELIG-LceMember-DEATH");
+                } else {
+                    clickAllMembers(allMembersDeathCheckbox);
+                }
                 break;
-            case "Move", "MoveToCO":
-                clickAllMembers(qamemberChangeOfAddressCheckbox);
+            case "Move":
+            case "MoveToCO":
+                if (member != null) {
+                    clickOneMember(member, "ELIG-LceMember-CHANGE_OF_RESIDENCE-Member");
+                } else {
+                    clickAllMembers(qamemberChangeOfAddressCheckbox);
+                }
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + LCEType);
@@ -230,8 +268,17 @@ public class LifeChangeEventsCoCoPage {
         birthLceMemCheckbox.click();
     }
 
+    private void clickOneMember(String member,String checkboxes) {
+        WebElement lceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//span[contains(text(),'" + member + "')]/parent::label//button[contains(@class,'checkbox')and contains(@id,'"+checkboxes+"')]"));
+        basicActions.waitForElementToBeClickable(lceMemCheckbox, 90);
+        basicActions.scrollToElement(lceMemCheckbox);
+        lceMemCheckbox.click();
+    }
+
     public void setDateForLCE(String LCEType, String dateType) {
-        switch (LCEType) {
+        String[] parts = LCEType.split(":");
+        String type = parts[0];
+        switch (type) {
             case "InsuranceLoss":
                 setDateForInsuranceLossCheckboxes(insuranceLossEventDate, dateType);
                 break;
@@ -254,7 +301,7 @@ public class LifeChangeEventsCoCoPage {
                 setDateForCheckboxes(LCEType, stgchangeOfAddressEventDate, dateType);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + LCEType);
+                throw new IllegalArgumentException("Invalid option: " + type);
         }
     }
 
@@ -279,8 +326,10 @@ public class LifeChangeEventsCoCoPage {
                     .findFirst()
                     .ifPresent(eventDateElement -> eventDateElement.sendKeys(dateValue));
         } else {
-            for (WebElement eventDate : eventDates) {
-                basicActions.waitForElementToBeClickable(eventDate, 10);
+            List<WebElement> clickableEventDates = eventDates.stream()
+                    .filter(eventDate -> basicActions.isElementClickable(eventDate, 10))
+                    .toList();
+            for (WebElement eventDate : clickableEventDates) {
                 eventDate.sendKeys(dateValue);
             }
         }
@@ -300,8 +349,10 @@ public class LifeChangeEventsCoCoPage {
         } else {
             dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         }
-        for (WebElement eventDate : eventDates) {
-            basicActions.waitForElementToBeClickable(eventDate, 10);
+        List<WebElement> clickableEventDates = eventDates.stream()
+                .filter(eventDate -> basicActions.isElementClickable(eventDate, 10))
+                .toList();
+        for (WebElement eventDate : clickableEventDates) {
             eventDate.sendKeys(dateValue);
         }
     }
