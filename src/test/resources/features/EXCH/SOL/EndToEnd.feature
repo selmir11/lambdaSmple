@@ -849,7 +849,7 @@ Feature: End to End Tests
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Niece"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Niece,Nephew"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
