@@ -1060,7 +1060,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I change the language from header to "Spanish NonElmo"
     Then I verify the text on Let us guide you page in "Spanish"
 
-  @SLER-2054 @PageText
+  @SLER-2054 @PageText @wip
   Scenario: ELIG-Declarations and Signature-Page Text (RT-1013)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
