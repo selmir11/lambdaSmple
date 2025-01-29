@@ -25,7 +25,7 @@ public class ApplicationResultsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(xpath = "//*[@id = 'ELIG-MemberPlanInfo-SaveAndContinue']")
+    @FindBy(id = "ELIG-MemberPlanInfo-SaveAndContinue")
     public WebElement continueButton;
 
     @FindBy(id = "ELIG-NoApplication-BackToWelcomePage")
@@ -106,8 +106,8 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void continueWithApplication()  {
-        basicActions.waitForElementToDisappear( spinner, 180 );
-        basicActions.waitForElementToBePresentWithRetries( continueButton, 90);
+        basicActions.waitForElementToDisappear( spinner, 200);
+        basicActions.waitForElementToBePresentWithRetries( continueButton, 120);
         basicActions.scrollToElement( continueButton );
         continueButton.click();
     }
