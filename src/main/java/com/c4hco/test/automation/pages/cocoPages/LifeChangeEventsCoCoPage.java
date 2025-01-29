@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -194,62 +196,62 @@ public class LifeChangeEventsCoCoPage {
         String type = parts[0];
         String member = parts.length > 1 ? parts[1] : null;
 
+        if (member != null) {
+            clickOneMemberLCE(type, member);
+        } else {
+            clickAllMembersLCE(type);
+        }
+    }
+
+    private static final Map<String, String> LCE_TYPE_MAP = new HashMap<>();
+
+    static {
+        LCE_TYPE_MAP.put("InsuranceLoss", "ELIG-LceMember-LOSS_OF_MEC_OTHER");
+        LCE_TYPE_MAP.put("Birth", "ELIG-LceMember-BIRTH");
+        LCE_TYPE_MAP.put("Pregnancy", "ELIG-LceMember-PREGNANCY");
+        LCE_TYPE_MAP.put("Marriage", "ELIG-LceMember-MARRIAGE");
+        LCE_TYPE_MAP.put("Divorce", "ELIG-LceMember-DIVORCE");
+        LCE_TYPE_MAP.put("Death", "ELIG-LceMember-DEATH");
+        LCE_TYPE_MAP.put("Move", "ELIG-LceMember-CHANGE_OF_RESIDENCE-Member");
+        LCE_TYPE_MAP.put("MoveToCO", "ELIG-LceMember-CHANGE_OF_RESIDENCE-Member");
+    }
+
+    private void clickOneMemberLCE(String type, String member) {
+        String element = LCE_TYPE_MAP.get(type);
+        if (element == null) {
+            throw new IllegalArgumentException("Invalid option: " + type);
+        }
+        clickOneMember(member, element);
+    }
+
+    private void clickAllMembersLCE(String type) {
         switch (type) {
             case "InsuranceLoss":
-                if (member != null) {
-                    clickOneMember(member, "ELIG-LceMember-LOSS_OF_MEC_OTHER");
-                } else {
-                    clickAllMembers(allMemberInsuranceLossCheckbox);
-                }
+                clickAllMembers(allMemberInsuranceLossCheckbox);
                 break;
             case "Birth":
-                if (member != null) {
-                    clickOneMember(member, "ELIG-LceMember-BIRTH");
-                } else {
-                    clickAllMembers(allMembersBirthCheckbox);
-                }
+                clickAllMembers(allMembersBirthCheckbox);
+                break;
+            case "Pregnancy":
+                clickAllMembers(allMembersPregnancyCheckbox);
+                break;
+            case "Marriage":
+                clickAllMembers(allMembersMarriageCheckbox);
+                break;
+            case "Divorce":
+                clickAllMembers(allMembersDivorceCheckbox);
+                break;
+            case "Death":
+                clickAllMembers(allMembersDeathCheckbox);
+                break;
+            case "Move", "MoveToCO":
+                clickAllMembers(qamemberChangeOfAddressCheckbox);
                 break;
             case "BirthLceIndividual":
                 clickBirthLceIndividual();
                 break;
-            case "Pregnancy":
-                if (member != null) {
-                    clickOneMember(member, "ELIG-LceMember-PREGNANCY");
-                } else {
-                    clickAllMembers(allMembersPregnancyCheckbox);
-                }
-                break;
-            case "Marriage":
-                if (member != null) {
-                    clickOneMember(member, "ELIG-LceMember-MARRIAGE");
-                } else {
-                    clickAllMembers(allMembersMarriageCheckbox);
-                }
-                break;
-            case "Divorce":
-                if (member != null) {
-                    clickOneMember(member, "ELIG-LceMember-DIVORCE");
-                } else {
-                    clickAllMembers(allMembersDivorceCheckbox);
-                }
-                break;
-            case "Death":
-                if (member != null) {
-                    clickOneMember(member, "ELIG-LceMember-DEATH");
-                } else {
-                    clickAllMembers(allMembersDeathCheckbox);
-                }
-                break;
-            case "Move":
-            case "MoveToCO":
-                if (member != null) {
-                    clickOneMember(member, "ELIG-LceMember-CHANGE_OF_RESIDENCE-Member");
-                } else {
-                    clickAllMembers(qamemberChangeOfAddressCheckbox);
-                }
-                break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + LCEType);
+                throw new IllegalArgumentException("Invalid option: " + type);
         }
     }
 
