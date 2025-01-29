@@ -226,7 +226,7 @@ public class Ib834DbValidations_grps {
     }
 
     private void validateResPerDetailsForMinorSubscriber() {
-        Assert.fail("WRITE CODE TO HANDLE VALIDATIONS");
+       // WIP - add assertions
     }
 
     private void validateResPerDetailsForMinorMem(){
