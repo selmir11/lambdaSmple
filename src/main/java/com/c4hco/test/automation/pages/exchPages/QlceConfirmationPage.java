@@ -296,14 +296,14 @@ public class QlceConfirmationPage {
     public void validateTheVerbiageOnTellUsAboutLifeChangesPage(String Language, List<String> data) {
         switch (Language) {
             case "English","Spanish":
-                validateTheVerbiageEn(data);
+                validateTheVerbiageEnSp(data);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + Language);
         }
     }
 
-    public void validateTheVerbiageEn(List<String> data) {
+     void validateTheVerbiageEnSp(List<String> data) {
 
         softAssert.assertEquals(textReportLifeChangeHeader.getText(), data.get(0), "Qlce header text mismatch");
         softAssert.assertEquals(textLifeChangeSubTitle.getText(), data.get(1), "Life change subtitle text mismatch");
@@ -313,6 +313,9 @@ public class QlceConfirmationPage {
             WebElement CheckBox = AllcheckboxQLCE.get(Clickcheckbox);
             CheckBox.click();
         }
+         validateEachQLCEVerbiage(data);
+    }
+    void validateEachQLCEVerbiage(List<String> data) {
         BirthTextValidate(data); //Calling each LCE Types
         PregnancyTextValidate(data);
         MarriageTextValidate(data);
@@ -328,6 +331,11 @@ public class QlceConfirmationPage {
         TaxTimeEnrollmentPeriodTextValidate(data);
         softAssert.assertEquals(noneOfTheseText.get(0).getText(),data.get(16), "None of these text not match");
         softAssert.assertAll();
+    }
+    void subcontentTextValidate(List<WebElement> Name,List<String>data) {
+        softAssert.assertEquals(Name.get(1).getText(), data.get(17),"Who does this change apply to? Text not match");
+        softAssert.assertEquals(Name.get(2).getText(), "" + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(Name.get(3).getText(), data.get(18),"Event Date text not match");
     }
 
     void BirthTextValidate(List<String>data) {
@@ -410,10 +418,5 @@ public class QlceConfirmationPage {
         softAssert.assertEquals(taxTimeEnrollmentPeriodText.get(0).getText(),data.get(15), "American Indian/Alaskan Native Text not match");
      }
 
-    void subcontentTextValidate(List<WebElement> Name,List<String>data) {
 
-        softAssert.assertEquals(Name.get(1).getText(), data.get(17),"Who does this change apply to? Text not match");
-        softAssert.assertEquals(Name.get(2).getText(), "" + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
-        softAssert.assertEquals(Name.get(3).getText(), data.get(18),"Event Date text not match");
-    }
 }
