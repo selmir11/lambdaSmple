@@ -27,7 +27,7 @@ Feature: Tests related to the Additional Income page
     And I select "No" income changes option
     And I click continue on the Employment income page
 
-  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke
+  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke @test
   Scenario: SLCR-133 There is "None of these" option is selected on the Additional Income page in the first tab after changes are made in the second tab
     #Step1
     Then I validate I am on the "CoCo Additional Income" page
@@ -49,14 +49,14 @@ Feature: Tests related to the Additional Income page
     And I switch to the tab number 1
     Then I validate I am on the "CoCo Additional Income" page
     And I select continue on the Additional Income CoCO page
-    Then I validate the error banner is displayed on the Additional Income CoCo page
+    Then I verify the error banner at the top of the page
     #Step4
     And I switch to the tab number 0
     Then I validate I am on the "CoCo Deductions" page
     And I refresh the page
     And I select Back on the Deductions CoCo page
     #And I unselect "None of these" option on the Additional Income CoCo page
-    Then I validate no errors are displayed on the Additional Income CoCo page
+    Then I validate no error banner is displayed at the top of the page
     Then I validate "None of these" option is selected on the Additional Income CoCo page
 
     And I click on Sign Out in the Header for "Elmo"

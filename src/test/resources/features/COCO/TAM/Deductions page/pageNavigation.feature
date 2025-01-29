@@ -26,7 +26,7 @@ Feature: Tests related to the Deductions page
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
 
-  @SLCR-740
+  @SLCR-740 @test
   Scenario: SLCR-740 Income Service Doesn't Fail Gracefully During Attempt To Delete Non-Existent Income
     And I select "School tuition" as deduction option with "1500.00" amount at "Annually" frequency
     And I select continue on the Deductions CoCo page
@@ -43,7 +43,7 @@ Feature: Tests related to the Deductions page
     And I switch to the tab number 1
     Then I validate I am on the "CoCo Deductions" page
     And I select continue on the Deductions CoCo page
-    Then I verify the error banner at the top of the deductions coco page
+    Then I verify the error banner at the top of the page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
