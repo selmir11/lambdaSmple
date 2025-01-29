@@ -168,8 +168,12 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and current_ind = 1 limit 1";
     }
 
-    public String brokerId() {
-        return "SELECT agency_tin_ein FROM " + dbName + ".bp_agency where agency_name = '" + SharedData.getBroker().getAgencyName() + "'";
+    public String commissionTin() {
+        return "SELECT bpa.commission_tin\n" +
+                "FROM " + dbName + ".bp_client_authorization bpa\n" +
+                "JOIN " + dbName + ".es_household eh\n" +
+                " ON bpa.household_id = eh.household_id\n" +
+                "WHERE eh.account_id = '" + acctId + "'";
     }
 
     public String getCSRRecords() {
