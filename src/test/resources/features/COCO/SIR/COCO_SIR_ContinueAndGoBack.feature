@@ -111,7 +111,7 @@ Feature: Shopping Page - Continue and Go back funtionality
 
 
   @SLCR-332
-  Scenario: SLCR-332 - This will Verify that Go Back path with multiple groups hits each saved medical plan page from the Plan Summary page and back
+  Scenario: SLCR-332 - adult - This will Verify that Go Back path with multiple groups hits each saved medical plan page from the Plan Summary page and back
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -264,7 +264,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "CoCo Grouping Members Medical" page

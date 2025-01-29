@@ -141,12 +141,10 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select rating_area_id from " + dbName + ".en_rating_area " +
                 "where fips = '" + fipcode + "'";
     }
-
     public String getFipcode(String zipCode) {
-        return "select fip_code from " + dbName + ".es_zip_codes " +
-                "where code = '" + zipCode + "'";
+        return "select fips from " + dbName + ".en_county " +
+                "where zip = '" + zipCode + "'";
     }
-
     public String en_plan(String planName) {
         return "select * from " + dbName + ".en_plan ep \n" +
                 "where plan_marketing_name = '" + planName + "'" +
@@ -684,6 +682,14 @@ public String policyTablesCombinedQuery(String coverageType){
                 "  and err.eligibility_type = 'MA' \n" +
                 "  and esh.account_id = '" + acctId + "'";
     }
+
+    public String compareExchPersonIds() {
+        return "Select esm.exch_person_id\n" +
+                "From " + dbName + ".ES_MEMBER esm\n" +
+                "JOIN " + dbName + ".ES_HOUSEHOLD esh ON esm.household_id = esh.household_id\n" +
+                "Where esh.account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'";
+    }
+
 
 
 

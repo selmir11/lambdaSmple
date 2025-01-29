@@ -125,8 +125,8 @@ public class PlanSummaryMedicalDentalCoCoPage {
     }
 
     public void iclickGoBack(){
-        basicActions.waitForElementToDisappear(spinner,80);
-        basicActions.waitForElementToBePresent(goBackbtn,10);
+        basicActions.waitForElementToDisappear(spinner,120);
+        basicActions.waitForElementToBePresentWithRetries(goBackbtn,50);
         basicActions.scrollToElement(continueBtnOnPlanSummary);
         goBackbtn.click();
     }
@@ -185,22 +185,23 @@ public class PlanSummaryMedicalDentalCoCoPage {
     }
     public void setPlansPremiumAmtCoco() {
         basicActions.waitForElementToDisappear(spinner, 20);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToDisappear(spinner, 25);
         basicActions.waitForElementToBePresent(txtPremiumsBeforeSaving, 40);
+        List<MemberDetails> memberslist = basicActions.getAllMedicalEligibleMemInfo();
         String  ses = SharedData.getSes();
         String openEnrolment = SharedData.getIsOpenEnrollment();
         String amountYouPay = totalAmountYouPay.getText().replace("$", "");
+        for(MemberDetails member: memberslist) {
         if(ses.equals("yes") && openEnrolment.equals("yes")){
             //assuming we have budget for allocation - WIP
             softAssert.assertEquals(totalAmountYouPay.getText(), medicalPremiumAfterAPTCAmt.getText(), "Amount doesn't match");
             softAssert.assertEquals(amountYouPay, "0.00", "Amount is not equal to zero");
         }else {
-            subscriber.setAptcAmt("0");
+            member.setAptcAmt("0.00");
             softAssert.assertEquals(totalAmountYouPay.getText(), premiumBeforeSaving.getText(), "Amount doesn't match");
         }
-        subscriber.setMedicalPremiumAmt(amountYouPay);
+        member.setMedicalPremiumAmt(amountYouPay);
+        member.setTotalMedAmtAfterReduction(amountYouPay);
         softAssert.assertAll();
-        SharedData.setPrimaryMember(subscriber);
-    }
+    }}
 }

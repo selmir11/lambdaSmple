@@ -81,7 +81,8 @@ public class BasicSteps {
                 pageUrl = "nes/accountOverview";
                 break;
             case "My Account Overview":
-                pageUrl = "nes/myAccountOverview";
+                basicActions.wait(2000);
+                pageUrl = "nes/myAccountOverview" ;
                 break;
             case "CAC Screener":
                 pageUrl = "/coco/WelcomePortal/cacScreener";
@@ -210,6 +211,12 @@ public class BasicSteps {
                 break;
             case "Before you begin":
                 pageUrl = "nes/beforeYouBegin";
+                break;
+            case "Upload Documents (RIDP)":
+                pageUrl = "nes/IdProofingSecondaryRequest";
+                break;
+            case "Upload Documents":
+                pageUrl = "nes/idProofing";
                 break;
             case "FindExpertHelpCoco":
                 pageUrl = "broker-portal/individual/find-expert-help?cocoUser=true";

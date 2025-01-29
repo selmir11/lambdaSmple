@@ -298,6 +298,11 @@ public class DbSteps {
     public void iValidateTheFplPercent(int expectedFplPercent) {dbValidations.validateFplPercent(String.valueOf(expectedFplPercent));
     }
 
+    @And("I verify Persons ID are validated in the DB")
+    public void iValidateExchPersonIds() {policyTableValidations.validateExchPersonIds();
+    }
+
+
 
 }
 

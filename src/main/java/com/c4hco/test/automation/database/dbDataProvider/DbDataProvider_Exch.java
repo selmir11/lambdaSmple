@@ -80,9 +80,8 @@ public class DbDataProvider_Exch {
 
     public String getFipcode(){
         String zipcode = primaryMember.getResAddress().getAddressZipcode();
-        return  postgresHandler.getResultFor("fip_code", exchDbQueries.getFipcode(zipcode));
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode));
     }
-
     public String getRatingAreaName(String fipcode){
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
 
@@ -577,5 +576,9 @@ public class DbDataProvider_Exch {
         String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
         return postgresHandler.getResultForDynamicColumns(exchDbQueries.getTellAboutAdditionalInformation(memberId),"first_name","middle_name","last_name","gender","birth_date","applying_for_coverage_ind");
     }
+    public List<String> getExchPersonIds() {
+        return postgresHandler.getResultListFor("exch_person_id", exchDbQueries.compareExchPersonIds());
+    }
+
 
 }
