@@ -1108,6 +1108,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Tell us about life changes |
       | Select any life change event you or someone in your household has experienced within the past 60 days. The loss of other health insurance, including Health First Colorado or Child Health Plans Plus, can be reported up to 60 days before you lose coverage. Members of federally recognized tribes and Alaska natives can enroll in coverage through Connect for Health Colorado anytime of the year. |
       | Help me understand this page |
+      #LCE Types
       | Birth/Adoption/Foster Care/Court Order |
       | Pregnancy |
       | Marriage |
@@ -1122,11 +1123,23 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Gain of American Indian/Alaskan Native tribal status |
       | Tax Time Enrollment Period  |
       | None of these apply to my household |
+      #SubContent details for QLCEtpes
+      |Who does this change apply to?       |
+      |Event Date                           |
+       #EventDate text for Loss of Coverage
+      |Event Date: If you are losing Health First Colorado or CHP+ coverage, enter the date coverage ends. If it has already ended, enter today's date. If you are losing other coverage, please enter the last day of the month that you are covered.    |
+     #Change of address addtional checkbox
+      |Moved to Colorado                                                                                                                                                                                                                                  |
+      #Additonal content for Pregancy
+      |IMPORTANT                            |
+      |When you become pregnant, you can enroll in a health insurance plan. Your coverage can start as early as the month in which a health care provider certified your pregnancy, or it can start on the first day of the month after you choose a plan.|
+      |To enroll and choose the start date for your plan, call our Customer Service Center at 855-752-6749. You cannot enroll through your online account.                                                                                                |
     And I change the language from header to "Spanish NonElmo"
     And I validate the verbiage on the Tell us about life changes page "Spanish"
       | Infórmenos sobre los cambios importantes en la vida |
       | Seleccione los eventos de vida calificados que usted o alguien de su familia haya tenido en los últimos 60 días. Se puede reportar la pérdida de seguro de salud, incluyendo Health First Colorado o Child Health Plan Plus, hasta 60 días antes de que pierda la cobertura. Los miembros de las tribus reconocidas a nivel federal o los nativos de Alaska pueden inscribirse en la cobertura a través de Connect for Health Colorado en cualquier momento del año. |
       | Ayuda para entender esta página |
+            #LCE Types
       | Nacimiento/Adopción/Colocación en hogar sustituto/Mandato judicial |
       | Embarazo |
       | Matrimonio |
@@ -1141,5 +1154,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Obtención de estatus de indígena norteamericano o nativo de Alaska |
       | Programa de Inscripción para la declaración de impuestos  |
       |Ninguno de estos se aplica a mi hogar |
+      #SubContent details for QLCEtpes
+      |¿A quién aplica este cambio?      |
+      |Fecha del evento                           |
+       #EventDate text for Loss of Coverage
+      |Fecha del evento: (Si usted va a perder la cobertura de Health First Colorado o CHP+, ingrese la fecha en que terminará. Si ya terminó, ingrese la fecha de hoy). Si va a perder otra cobertura, ingrese el último día del mes en que estará cubierto.|
+      #Change of address addtional checkbox
+      |Mudanza a Colorado                                                                                                                                                                                                                                  |
+      #Additonal content for Pregancy
+      |IMPORTANTE                            |
+      |Cuando se embaraza, usted puede inscribirse en un plan de seguro de salud. La cobertura puede comenzar el mes en que un proveedor de atención médica dé constancia del embarazo; o bien, puede comenzar el primer día del mes luego de que usted elija un plan.|
+      |Para inscribirse y elegir la fecha de inicio de su plan, llame a nuestro Centro de atención al cliente al 855-752-6749. No puede inscribirse a través de su cuenta en línea.                                                                                   |
     And I change the language from header to "English NonElmo"
     Then  I click on Sign Out in the Header for "NonElmo"
