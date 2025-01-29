@@ -1,11 +1,8 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Constants;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -433,7 +430,7 @@ public void verifyHeadersAdditionalIncomePage(String language){
         switch (language){
             case "English":
                 basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
-                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -448,7 +445,7 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
                 basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
                 basicActions.waitForElementListToBePresent(addIncomeButton, 90);
-                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
