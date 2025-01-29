@@ -48,12 +48,6 @@ public class AdditionalIncomeCoCoPageSteps {
     @Then("I verify the navigation buttons on the CoCO Additional Income page in {string}")
     public void iVerifyAdditionalIncomeNavigationButtons(String language) {additionalIncomeCoCoPage.verifyAdditionalIncomeNavigationButtonsCoCo(language);}
 
-    @Then("I validate no errors are displayed on the Additional Income CoCo page")
-    public void iValidateNoErrorsPresent(){additionalIncomeCoCoPage.verifyNoErrorMessage_AdditionalIncome();}
-
-    @Then("I validate the error banner is displayed on the Additional Income CoCo page")
-    public void iValidateErrorsPresent(){additionalIncomeCoCoPage.verifyErrorMessage_AdditionalIncome();}
-
     @Then("I validate {string} option is selected on the Additional Income CoCo page")
     public void iValidateOptionSelection(String incomeOption){additionalIncomeCoCoPage.verifyOptionSelected_AdditionalIncome(incomeOption);}
 

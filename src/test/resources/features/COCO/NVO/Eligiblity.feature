@@ -90,6 +90,7 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
 
   @SLCR-683
   Scenario Outline: Validate the eligibility for HIAE Phase 2 and/or Off Exchange plans for single member
+    And I get the memberId of primary member from url
     Then I enter details on tell us about yourself page and continue with "11281992", "Male", and applying "<isApplying>"
     And I enter my residential address "101 Coco Drive", "<city>", "<state>", "<zipcode>", "<county>"
     And I select "No" for mailing address option
@@ -122,7 +123,7 @@ Feature: Coco user Validate the eligibility - Tests Run during Open Enrollment
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    And I verify the application result details in DB as "<reasonCode>" for "Primary"
+    And I verify the application result details in DB as "<reasonCode>" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Examples:
       | city        | state | zipcode | county      | isApplying | isCoResident | reasonCode               |

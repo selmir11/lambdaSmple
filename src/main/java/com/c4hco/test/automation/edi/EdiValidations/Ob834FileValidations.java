@@ -596,6 +596,10 @@ public class Ob834FileValidations {
     private void validateDtpSegment(Ob834DetailsEntity entry, Transaction transaction){
         List<List<String>> dtpSegment = transaction.getCommonSegments().getDTP();
         segCount = segCount +dtpSegment.size();
+        softAssert.assertEquals(dtpSegment.get(0).get(0), "303", "DTP01 segment, Date Time Qualifier, mismatch");
+        softAssert.assertEquals(dtpSegment.get(0).get(1),"D8","DTP02 segment, Date Time Period Format Qualifier D8 mismatch");
+        softAssert.assertEquals(dtpSegment.get(0).get(2),entry.getApplication_date(), "Application date mismatch" );
+        softAssert.assertAll();
     }
 
     private void validateSponsorPayerDetails(Ob834DetailsEntity entry, Transaction transaction) {
