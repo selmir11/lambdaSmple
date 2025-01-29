@@ -405,7 +405,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
   @SLER-GroupOf4-WIP-PASS
     #review  - grouping failed
-  Scenario: GroupOf4 - APTCRules - group of 4  - 60K to 80K
+  Scenario: SLER-GroupOf4-WIP - GroupOf4 - APTCRules - group of 4  - 60K to 80K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -808,7 +808,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
   @Group6ReEnroll-WIP-PASS
     #review grouping failure
- Scenario: Group6ReEnroll - APTCRules - group of 6 - 4 under 21 with 2 adult
+ Scenario: SLER-Group6ReEnroll-WIP - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
