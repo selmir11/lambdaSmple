@@ -57,18 +57,18 @@ public class Ib834DbValidations_grps {
                 for(MemberDetails subscriber: subscribers){
                     setMedicalFileName(ib834Entity);
                     if(subscriber.getFirstName().equals(ib834Entity.getMember_first_name())){
-                        subscriberOnlyMedDenFields(ib834Entity, subscriber);
-                        validateMedDenForSubscriberAndMem(ib834Entity, subscriber);
-                        medValidationsCommonForAllMembers(ib834Entity, expectedValues, subscriber);
+                        subscriberOnlyMedDenFields(ib834Entity, subscriber); // done
+                        validateMedDenForSubscriberAndMem(ib834Entity, subscriber); // done
+                        medValidationsCommonForAllMembers(ib834Entity, expectedValues, subscriber); // WIP
                         break;
                     }
                 }
             } else {
-                validateDependentMedDenDetails(ib834Entity);
-                validateMedForMem(ib834Entity, expectedValues);
+                validateDependentMedDenDetails(ib834Entity); // WIP
+                validateMedForMem(ib834Entity, expectedValues); // WIP
             }
 
-            medDenValidationsCommonForAllMem(ib834Entity);
+            medDenValidationsCommonForAllMem(ib834Entity); // WIP
         }
         softAssert.assertAll();
     }
@@ -146,8 +146,8 @@ public class Ib834DbValidations_grps {
     }
 
     private void validateMedDenForSubscriberAndMem(Ib834Entity ib834Entity, MemberDetails member){
+        softAssert.assertEquals(String.valueOf(member.getAccount_id()),ib834Entity.getSsap_id(), "Account id and ssap_id mismatch" );
         softAssert.assertEquals(member.getPrior_subscriber_id(), ib834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match for "+member.getFirstName());
-        softAssert.assertEquals(member.getIsSubscriber(), ib834Entity.getSubscriber_indicator(), "Subscriber indicator did not match for "+member.getFirstName());
         softAssert.assertEquals(SharedData.getExchPersonId().get(member.getFirstName()), ib834Entity.getMember_id(), "Member Id did not match for "+member.getFirstName());
         validateSubscriberId(ib834Entity, member);
         validatePersonalDetails(ib834Entity, member);
@@ -253,7 +253,8 @@ public class Ib834DbValidations_grps {
         softAssert.assertEquals(member.getFirstName(), ib834Entity.getMember_first_name(), "member firstname did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getLastName(), ib834Entity.getMember_last_name(), "member firstname did not match for "+member.getFirstName());
         softAssert.assertTrue(ib834Entity.getMember_middle_name() == null || ib834Entity.getMember_middle_name().isEmpty()
-                || ib834Entity.getMember_middle_name().equals(member.getMiddleName()),"Member middle name did not match");        softAssert.assertEquals(dateFormatted, ib834Entity.getMember_dob(), "dob did not match for "+member.getFirstName());
+                || ib834Entity.getMember_middle_name().equals(member.getMiddleName()),"Member middle name did not match");
+        softAssert.assertEquals(dateFormatted, ib834Entity.getMember_dob(), "dob did not match for "+member.getFirstName());
         softAssert.assertEquals(ib834Entity.getMember_gender(), member.getGender().substring(0, 1), "gender did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getTobacco_user().equals("Yes") ? "T" : member.getTobacco_user().substring(0, 1), ib834Entity.getTobacco_use(), "Tobacco usage did not match for "+member.getFirstName());
         softAssert.assertTrue(ib834Entity.getMarital_status_code().equals("I") ||ib834Entity.getMarital_status_code().isEmpty(), "Marital Status did not match for "+member.getFirstName());
@@ -440,8 +441,8 @@ public class Ib834DbValidations_grps {
     }
 
     private void subscriberOnlyMedDenFields(Ib834Entity ib834MedEntity, MemberDetails subscriber){
-        //  Bug - POL-9149 - Plan Sponsor Name should be primary member name - it is not updated with name change - Need to revert the code after the bug is fixed.
-      //  softAssert.assertEquals(subscriber.getFullName(), ib834MedEntity.getPlan_sponsor_name(), "Plan sponsor name did not match");
+       String sponsorName = subscriber.getIsMinor()? SharedData.getPrimaryMember().getFullName() :subscriber.getFullName();
+        softAssert.assertEquals(sponsorName, ib834MedEntity.getPlan_sponsor_name(), "Plan sponsor name did not match");
         softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ib834MedEntity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ib834MedEntity.getSubscriber_id(), ib834MedEntity.getMember_id(), "Subscriber_id and Member_id in ib834 entity does not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), "Y", "Subscriber indicator did not match for "+subscriber.getFirstName());
