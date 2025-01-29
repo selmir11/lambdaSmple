@@ -157,6 +157,12 @@ public class DeductionsCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(css = ".banner-error-message")
+    WebElement bannerErrorTxt;
+
+    @FindBy(css = ".banner-error-tracking-id.ng-star-inserted")
+    WebElement bannerTransactionIdTxt;
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,30);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,30);
@@ -675,5 +681,14 @@ public class DeductionsCoCoPage {
             element1.click();
             hdr_Deductions.click();
         }
+    }
+
+    public void verifyErrorBanner() {
+        basicActions.waitForElementToBePresent(bannerErrorTxt, 15);
+        softAssert.assertEquals(bannerErrorTxt.getText(), "There was an error processing your request. Please refresh the page and try again.");
+        String transactionText = bannerTransactionIdTxt.getText();
+        String pattern = "^Transaction ID: [a-zA-Z0-9]{32}$";
+        softAssert.assertTrue(transactionText.matches(pattern), "Transaction ID format is incorrect. Found: " + transactionText);
+        softAssert.assertAll();
     }
 }

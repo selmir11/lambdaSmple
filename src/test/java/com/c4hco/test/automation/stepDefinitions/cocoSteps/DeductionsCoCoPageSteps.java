@@ -58,4 +58,7 @@ public class DeductionsCoCoPageSteps {
     public void iVerifyStateOfDeductionsCheckbox(String state){
         deductionsCoCoPage.verifyDeductionsOptionCheckboxCOCO(state);}
 
+    @Then("I verify the error banner at the top of the deductions coco page")
+    public void iVerifyErrorBanner(){deductionsCoCoPage.verifyErrorBanner();}
+
 }
