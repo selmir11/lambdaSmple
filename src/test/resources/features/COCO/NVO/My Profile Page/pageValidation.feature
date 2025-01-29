@@ -15,6 +15,7 @@ Feature: My Profile Page Coco
     And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
     And I validate Email save changes on My Profile page CoCo
+    And I wait for 5000 milliseconds
     Then I validate I am on the "My Profile" page
     And I validate phone number save changes on My Profile page CoCo
     Then I validate I am on the "My Profile" page
