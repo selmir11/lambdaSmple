@@ -534,6 +534,16 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
+            case "Employment Income Unauthorized CoCo":
+                newUrl = "income-portal/unauthorized";
+                newUrl = currentUrl.replaceAll("income-portal/member/[^/]*/employmentInfo(/summary)?[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Employment Income Unauthorized Exch":
+                newUrl = "IncomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("IncomePortal/member/[^/]*/employmentInfo(/summary)?[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + page);
         }
