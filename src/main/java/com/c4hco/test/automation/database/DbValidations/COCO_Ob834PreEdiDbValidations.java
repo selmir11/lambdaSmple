@@ -238,13 +238,7 @@ public class COCO_Ob834PreEdiDbValidations {
     }
     private void validateConstantFields(Ob834DetailsEntity ob834Entity) {
         String date = LocalDate.now().toString();
-
-        String appType = SharedData.getAppType();
-        if (appType.equals("exchange")) {
-            softAssert.assertEquals(ob834Entity.getInterchange_sender_id(), "CNCT4HLTHCO");
-        } else if (appType.equals("coco")) {
-            softAssert.assertEquals(ob834Entity.getInterchange_sender_id(), "COLOCONNECT");
-        }
+        softAssert.assertEquals(ob834Entity.getInterchange_sender_id(), "COLOCONNECT");
         softAssert.assertEquals(ob834Entity.getApplication_date(), date.replace("-", ""), "Application date does not match in ob834 entity");
         softAssert.assertEquals(ob834Entity.getUpdated_by(), "JAVA_OB834", "Ob834 updated_by does not match");
         softAssert.assertEquals(ob834Entity.getAck_requested(), "0", "Ob834 Ack_requested does not match");

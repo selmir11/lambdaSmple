@@ -76,6 +76,12 @@ public class GroupingMembersMedicalCoCoPage {
     public void noOfMedicalGroups(int totalGroups) {
         basicActions.waitForElementListToBePresent(noOfGroups, 10);
         int groupsSize = noOfGroups.size();
+        if(SharedData.getScenarioDetails()!=null){
+            SharedData.getScenarioDetails().setTotalGroups(groupsSize);
+        } else {
+            ScenarioDetails scenarioDetails = new ScenarioDetails();
+            scenarioDetails.setTotalGroups(groupsSize);
+            SharedData.setScenarioDetails(scenarioDetails);}
         softAssert.assertEquals(groupsSize, totalGroups, "There are 2 groups");
         softAssert.assertAll();
     }
