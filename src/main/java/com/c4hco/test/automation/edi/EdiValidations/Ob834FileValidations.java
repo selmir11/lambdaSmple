@@ -432,7 +432,6 @@ public class Ob834FileValidations {
                     softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
                     softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
                 }else if(!entry.getIndividual_rel_code().isEmpty() && !(entry.getResponsible_person_rel_code() == null)) {
-                    // validate 3rd and optimize code
                     softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
                     softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
                     softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size for subscriber");

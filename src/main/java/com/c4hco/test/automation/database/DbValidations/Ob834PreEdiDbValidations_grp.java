@@ -38,7 +38,7 @@ public class Ob834PreEdiDbValidations_grp {
     List<PolicyTablesEntity> medicalPolicyEnitities = new ArrayList<>();
     List<PolicyTablesEntity> dentalPolicyEnitities = new ArrayList<>();
 
-   public void groupRecordsValidations(String recordType, List<Map<String, String>> expectedValues) {
+    public void groupRecordsValidations(String recordType, List<Map<String, String>> expectedValues) {
         switch (recordType) {
             case "medical":
                 setData();
@@ -53,11 +53,11 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertAll();
     }
 
-    private void ob834MedRecordsValidations(List<Map<String, String>> expectedValues){
+    private void ob834MedRecordsValidations(List<Map<String, String>> expectedValues) {
         for (Ob834DetailsEntity ob834DetailsEntity : ob834DetailsMedEntities) {
             if (ob834DetailsEntity.getSubscriber_indicator().equals("Y")) {
-                for(MemberDetails subscriber: subscribers){
-                    if(subscriber.getFirstName().equals(ob834DetailsEntity.getMember_first_name())){
+                for (MemberDetails subscriber : subscribers) {
+                    if (subscriber.getFirstName().equals(ob834DetailsEntity.getMember_first_name())) {
                         subscriberOnlyMedValidations(ob834DetailsEntity, subscriber);
                         validateMedDenForSubscriberAndMem(ob834DetailsEntity, subscriber);
                         medDenValidationsCommonForAllMem(ob834DetailsEntity, subscriber);
@@ -72,29 +72,30 @@ public class Ob834PreEdiDbValidations_grp {
         }
         softAssert.assertAll();
     }
-    private void validateMedForMem(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues){
+
+    private void validateMedForMem(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues) {
         List<MemberDetails> members = basicActions.getAllDependents();
-        for(MemberDetails member: members){
-            if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
+        for (MemberDetails member : members) {
+            if (member.getFirstName().equals(ob834Entity.getMember_first_name())) {
                 medValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
             }
         }
     }
 
-    private void validateDenForMem(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues){
+    private void validateDenForMem(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues) {
         List<MemberDetails> members = basicActions.getAllDependents();
-        for(MemberDetails member: members){
-            if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
+        for (MemberDetails member : members) {
+            if (member.getFirstName().equals(ob834Entity.getMember_first_name())) {
                 denValidationsCommonForAllMembers(ob834Entity, expectedValues, member);
             }
         }
     }
 
-    private void ob834DenRecordsValidations(List<Map<String, String>> expectedValues){
+    private void ob834DenRecordsValidations(List<Map<String, String>> expectedValues) {
         for (Ob834DetailsEntity ob834DetailsEntity : ob834DetailsDenEntities) {
             if (ob834DetailsEntity.getSubscriber_indicator().equals("Y")) {
-                for(MemberDetails subscriber: subscribers){
-                    if(subscriber.getFirstName().equals(ob834DetailsEntity.getMember_first_name())){
+                for (MemberDetails subscriber : subscribers) {
+                    if (subscriber.getFirstName().equals(ob834DetailsEntity.getMember_first_name())) {
                         subscriberOnlyDenValidations(ob834DetailsEntity, subscriber);
                         validateMedDenForSubscriberAndMem(ob834DetailsEntity, subscriber);
                         medDenValidationsCommonForAllMem(ob834DetailsEntity, subscriber);
@@ -104,17 +105,17 @@ public class Ob834PreEdiDbValidations_grp {
                 }
             } else {
                 validateDependentMedDenDetails(ob834DetailsEntity);
-                validateDenForMem(ob834DetailsEntity,expectedValues);
+                validateDenForMem(ob834DetailsEntity, expectedValues);
             }
         }
         softAssert.assertAll();
     }
 
-    private void validateDependentMedDenDetails(Ob834DetailsEntity ob834Entity){
+    private void validateDependentMedDenDetails(Ob834DetailsEntity ob834Entity) {
         List<MemberDetails> members = basicActions.getAllDependents();
-        for(MemberDetails member: members){
-            if(member.getFirstName().equals(ob834Entity.getMember_first_name())){
-                System.out.println("VALIDATING FOR THE MEMBER - MEMBER's FIRST NAME::"+ob834Entity.getMember_first_name());
+        for (MemberDetails member : members) {
+            if (member.getFirstName().equals(ob834Entity.getMember_first_name())) {
+                System.out.println("VALIDATING FOR THE MEMBER - MEMBER's FIRST NAME::" + ob834Entity.getMember_first_name());
                 validateMemberOnlyMedDenFields(ob834Entity);
                 validateMedDenForSubscriberAndMem(ob834Entity, member);
                 medDenValidationsCommonForAllMem(ob834Entity, member);
@@ -124,7 +125,7 @@ public class Ob834PreEdiDbValidations_grp {
     }
 
 
-    private void validateMemberOnlyMedDenFields(Ob834DetailsEntity ob834Entity){
+    private void validateMemberOnlyMedDenFields(Ob834DetailsEntity ob834Entity) {
         softAssert.assertNull(ob834Entity.getPremium_reduction_amt(), "Member Medical Plan premium reduction amount does not match");
         softAssert.assertNull(ob834Entity.getCsr_amount(), "Member Medical CSR amount does not match");
         softAssert.assertNull(ob834Entity.getTotal_responsible_amount(), "MemberMedical Total Responsible amount does not match");
@@ -142,28 +143,28 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertNull(ob834Entity.getResidence_st(), "Residential address state does not match");
         softAssert.assertNull(ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
         softAssert.assertNull(ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
-        softAssert.assertNull(ob834Entity.getPremium_reduction_type(),"Plan premium reduction type does not match");
+        softAssert.assertNull(ob834Entity.getPremium_reduction_type(), "Plan premium reduction type does not match");
         softAssert.assertAll();
     }
 
-    private void validateMedDenForSubscriberAndMem(Ob834DetailsEntity ob834Entity, MemberDetails member){
-        softAssert.assertEquals(member.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match for "+member.getFirstName());
-        softAssert.assertEquals(member.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match for "+member.getFirstName());
-        softAssert.assertEquals(SharedData.getExchPersonId().get(member.getFirstName()), ob834Entity.getMember_id(), "Member Id did not match for "+member.getFirstName());
+    private void validateMedDenForSubscriberAndMem(Ob834DetailsEntity ob834Entity, MemberDetails member) {
+        softAssert.assertEquals(member.getPrior_subscriber_id(), ob834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match for " + member.getFirstName());
+        softAssert.assertEquals(member.getIsSubscriber(), ob834Entity.getSubscriber_indicator(), "Subscriber indicator did not match for " + member.getFirstName());
+        softAssert.assertEquals(SharedData.getExchPersonId().get(member.getFirstName()), ob834Entity.getMember_id(), "Member Id did not match for " + member.getFirstName());
         validateSubscriberId(ob834Entity, member);
         validatePersonalDetails(ob834Entity, member);
         validateIncorrectEntities(ob834Entity, member);
         softAssert.assertAll();
     }
 
-    private void validateSubscriberId(Ob834DetailsEntity ob834Entity, MemberDetails member){
-       String name = getName(ob834Entity, member);
-       softAssert.assertEquals(SharedData.getExchPersonId().get(name), ob834Entity.getSubscriber_id(), "subscriber id did not match "+member.getFirstName());
+    private void validateSubscriberId(Ob834DetailsEntity ob834Entity, MemberDetails member) {
+        String name = getName(ob834Entity, member);
+        softAssert.assertEquals(SharedData.getExchPersonId().get(name), ob834Entity.getSubscriber_id(), "subscriber id did not match " + member.getFirstName());
     }
 
 
     private void validateResidentialAddress(Ob834DetailsEntity ob834Entity, MemberDetails member) {
-       String name = getName(ob834Entity, member);
+        String name = getName(ob834Entity, member);
         getDbDataMap(name);
         softAssert.assertEquals(member.getResAddress().getAddressLine1(), ob834Entity.getResidence_street_line1(), "Residential address line 1 does not match");
         if (member.getResAddress().getAddressLine2() != null) {
@@ -178,14 +179,14 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertAll();
     }
 
-    private void validateMailingAddressIsNull(Ob834DetailsEntity ob834Entity, MemberDetails subscriber){
+    private void validateMailingAddressIsNull(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
         softAssert.assertNull(ob834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
         softAssert.assertNull(ob834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
         softAssert.assertNull(ob834Entity.getMail_city(), "Mailing city does not match");
         softAssert.assertNull(ob834Entity.getMail_st(), "Mailing state does not match");
         softAssert.assertNull(ob834Entity.getMail_zip_code(), "Mailing zipcode does not match");
         softAssert.assertNull(ob834Entity.getMail_fip_code(), "Mailing fipcode is not null");
-        softAssert.assertAll("Mailing Address did not match for "+subscriber.getFirstName());
+        softAssert.assertAll("Mailing Address did not match for " + subscriber.getFirstName());
     }
 
     private void validateMailingAddress(Ob834DetailsEntity ob834Entity, MemberDetails subscriber) {
@@ -199,7 +200,7 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertEquals(subscriber.getMailingAddress().getAddressState(), ob834Entity.getMail_st(), "Mailing state does not match");
         softAssert.assertEquals(subscriber.getMailingAddress().getAddressZipcode(), ob834Entity.getMail_zip_code(), "Mailing zipcode does not match");
         softAssert.assertNull(ob834Entity.getMail_fip_code(), "Mailing fipcode is not null");
-        softAssert.assertAll("Mailing Address did not match for "+subscriber.getFirstName());
+        softAssert.assertAll("Mailing Address did not match for " + subscriber.getFirstName());
     }
 
     private void validateIncorrectEntities(Ob834DetailsEntity ob834Entity, MemberDetails member) {
@@ -213,7 +214,7 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertEquals(ob834Entity.getIncorrect_gender(), member.getIncorrect_gender(), "Incorrect_gender did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_marital_status_code(), member.getIncorrect_marital_status_code(), "Incorrect_marital_status_code did not match!");
         softAssert.assertEquals(ob834Entity.getIncorrect_race(), member.getIncorrect_race(), "Incorrect_race did not match!");
-        softAssert.assertEquals(ob834Entity.getIncorrect_middle_name(), member.getIncorrect_middle_name()!=null && !member.getIncorrect_middle_name().isEmpty()? member.getIncorrect_middle_name(): null, "Incorrect_middle_name did not match!");
+        softAssert.assertEquals(ob834Entity.getIncorrect_middle_name(), member.getIncorrect_middle_name() != null && !member.getIncorrect_middle_name().isEmpty() ? member.getIncorrect_middle_name() : null, "Incorrect_middle_name did not match!");
         softAssert.assertAll();
     }
 
