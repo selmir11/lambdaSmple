@@ -26,7 +26,7 @@ Feature: Tests related to the Deductions page
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
 
-  @SLCR-740 @test
+  @SLCR-740
   Scenario: SLCR-740 Income Service Doesn't Fail Gracefully During Attempt To Delete Non-Existent Income
     And I select "School tuition" as deduction option with "1500.00" amount at "Annually" frequency
     And I select continue on the Deductions CoCo page

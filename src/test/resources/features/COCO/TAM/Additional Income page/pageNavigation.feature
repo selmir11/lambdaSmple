@@ -27,7 +27,7 @@ Feature: Tests related to the Additional Income page
     And I select "No" income changes option
     And I click continue on the Employment income page
 
-  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke @test
+  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke
   Scenario: SLCR-133 There is "None of these" option is selected on the Additional Income page in the first tab after changes are made in the second tab
     #Step1
     Then I validate I am on the "CoCo Additional Income" page
