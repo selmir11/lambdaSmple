@@ -48,7 +48,7 @@ public class MyPoliciesPage {
     @FindBy(css = "table .body-text-1 p")
     List<WebElement> enrolledMemNames;
 
-    @FindBy(id="backToCurrentPlanDetailsButton")
+    @FindBy(id="goBackButton")
     WebElement backToCurPlansBtn;
 
     @FindBy(xpath = "//span[contains(., 'Monthly Premium')]/following-sibling::span")
@@ -66,12 +66,18 @@ public class MyPoliciesPage {
     @FindBy(id="Cancel 2025 Dental Plans Button")
     WebElement cancelDentalPlanbtn;
 
+    @FindBy(id="SOL-CurrentPolicies-FuturePlans")
+    WebElement FuturePlans;
+
+    @FindBy(id="SOL-CurrentPolicies-CurrentPlans")
+    WebElement CurrentPlans;
+
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
+
     Set<String> allMemberNames = new HashSet<>();
     Set<String> namesFromUI = new HashSet<>();
 
-
-    public void validatePlanDetails(String planType){
+     public void validatePlanDetails(String planType){
         basicActions.waitForElementListToBePresent(memberNames, 10);
         basicActions.waitForElementListToBePresent(policyNumSubscriber, 10);
         allMemberNames = new HashSet<>(basicActions.getAllMemNames());
@@ -128,8 +134,9 @@ public class MyPoliciesPage {
     }
 
     private void validateEnrolledDentalPlanDetails(){
+        DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
-            DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
+
 
             //WebElements
             WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Plan Start Date:')]/following-sibling::*"));
@@ -275,6 +282,17 @@ public class MyPoliciesPage {
         basicActions.waitForElementToBePresent(backToCurPlansBtn, 10);
         backToCurPlansBtn.click();
     }
+
+    public void clickFuturePlans(){
+        basicActions.waitForElementToBePresent(FuturePlans, 10);
+        FuturePlans.click();
+    }
+
+    public void clickCurrentPlans(){
+        basicActions.waitForElementToBePresent(CurrentPlans, 10);
+        CurrentPlans.click();
+    }
+
 
     public void clickPlanCancelButton(String btnDetail){
         switch (btnDetail) {

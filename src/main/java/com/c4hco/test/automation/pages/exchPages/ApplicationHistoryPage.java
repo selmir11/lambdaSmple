@@ -6,6 +6,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -29,6 +30,8 @@ public class ApplicationHistoryPage {
     WebElement noBtnMvrPopUp;
     @FindBy(css = ".verify-myinfo-btn")
     WebElement yesBtnMvrPopUp;
+    @FindBy(xpath = "//button[text()='Back to Welcome Page']")
+    WebElement goBackToWelcomePage;
 
     private BasicActions basicActions;
 
@@ -79,6 +82,10 @@ public class ApplicationHistoryPage {
         basicActions.waitForElementToBePresent(lblAPTCValue, 15);
 
         basicActions.waitForElementToBePresent(basicActions.getDriver().findElement(By.xpath("//*[text()='"+Text+"']")), 15);
+    }
+
+    public void backToWelcomePage(){
+        goBackToWelcomePage.click();
     }
 
     public void validateTextDoesNotExistOnPage(String Text){

@@ -1,8 +1,11 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -11,6 +14,7 @@ import java.util.List;
 
 public class HeaderAndFooterPage {
     SoftAssert softAssert = new SoftAssert();
+    Actions actions = new Actions(WebDriverManager.getDriver());
 
     @FindBy(id = "logo-image")
     WebElement connectLogoLink;
@@ -252,6 +256,20 @@ public class HeaderAndFooterPage {
         }
     }
 
+    public void rightClickApplyForCoverageLink() {
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);
+        basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 70);
+        basicActions.waitForElementToBePresentWithRetries(getAssistanceLink, 70);
+        basicActions.waitForElementToBePresentWithRetries(languageDrp, 70);
+        basicActions.scrollToElement(learnMoreLink);
+        Actions actions = new Actions(basicActions.getDriver());
+        actions.keyDown(Keys.CONTROL)
+                .click(centerHeaderLink.get(0))
+                .keyUp(Keys.CONTROL)
+                .build()
+                .perform();
+    }
+
     public void clickFindAPlanLinkLink(String pageType) {
         switch (pageType){
             case "Elmo":
@@ -400,9 +418,9 @@ public class HeaderAndFooterPage {
     }
 
     public void headerLanguage(String language){
-        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink,100);
-        basicActions.waitForElementToBePresentWithRetries(languageDrp,100);
-        basicActions.waitForElementToBeClickableWithRetries(languageDrp,100);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 100);
+        basicActions.waitForElementToBePresentWithRetries(languageDrp, 100);
+        basicActions.waitForElementToBeClickableWithRetries(languageDrp, 100);
         for (WebElement headerLink : centerHeaderLink) {
             if (headerLink.getAttribute("text").contains("Apply for Coverage")) {
                 changeLanguage(language);
@@ -421,6 +439,7 @@ public class HeaderAndFooterPage {
             case "English":
                 basicActions.waitForElementToDisappear(spinner,20);
                 basicActions.waitForElementToBePresent(languageDrp, 60);
+                actions.moveToElement(connectLogoLink).perform();
                 languageDrp.click();
                 basicActions.waitForElementToBePresent(languageDrpOption.get(0), 60);
                 languageDrpOption.get(0).click();
@@ -536,8 +555,9 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Sign Out");
         softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
-        clickGetAssistanceLink("Exch");
+        actions.moveToElement(getAssistanceLink).perform();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
+        actions.moveToElement(connectLogoLink).perform();
         softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         softAssert.assertAll();
@@ -555,8 +575,9 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
         softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
-        clickGetAssistanceLink("Exch");
+        actions.moveToElement(getAssistanceLink).perform();
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
+        actions.moveToElement(connectLogoLink).perform();
         softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
         softAssert.assertAll();
@@ -570,6 +591,31 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
         softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
         softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp("Exch");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+        actions.moveToElement(getAssistanceLink).perform();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
+        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
+        actions.moveToElement(connectLogoLink).perform();
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInExchOBOHeader() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
+        } else {
+            softAssert.assertEquals(userNameLinkExch.getText(), "C4testaduser123@gmail.com");
+        }
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp("Exch");
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
@@ -610,6 +656,31 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
         softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
         softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp("Exch");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+        actions.moveToElement(getAssistanceLink).perform();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+        actions.moveToElement(connectLogoLink).perform();
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInExchOBOHeaderSpanish() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
+        } else {
+            softAssert.assertEquals(userNameLinkExch.getText(), "C4testaduser123@gmail.com");
+        }
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp("Exch");
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
@@ -691,6 +762,9 @@ public class HeaderAndFooterPage {
             case "Header":
                 verifyTextInExchHeader();
                 break;
+            case "Admin portal OBO Header":
+                verifyTextInExchOBOHeader();
+                break;
             case "Footer":
                 verifyTextInExchFooter();
                 break;
@@ -719,6 +793,9 @@ public class HeaderAndFooterPage {
         switch (HeaderOrFooter) {
             case "Header":
                 verifyTextInExchHeaderSpanish();
+                break;
+            case "Admin portal OBO Header":
+                verifyTextInExchOBOHeaderSpanish();
                 break;
             case "Footer":
                 verifyTextInExchFooterSpanish();

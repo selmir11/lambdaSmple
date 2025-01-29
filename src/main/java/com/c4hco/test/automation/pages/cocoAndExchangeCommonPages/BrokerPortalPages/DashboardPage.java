@@ -81,11 +81,11 @@ public class DashboardPage {
     WebElement speacialCharactersError;
     @FindBy(xpath = "//table[@id='mvr-table']/tr[1]//th")
     List<WebElement> mvrTableHeader;
-    @FindBy(id = "pagination-next-page-btn")
+    @FindBy(id = "pagination-mvr-next-page-btn")
     WebElement nextPage;
-    @FindBy(id = "pagination-curr-page")
+    @FindBy(id = "pagination-mvr-curr-page")
     WebElement currentPageText;
-    @FindBy(id = "pagination-prev-page-btn")
+    @FindBy(id = "pagination-mvr-prev-page-btn")
     WebElement PaginationLeft;
     @FindBy(xpath = "//table[@id='mvr-table']//tr[2]//td")
     List<WebElement> firstRowsOptions;
@@ -243,8 +243,11 @@ public class DashboardPage {
     public void clearTheMVRSearchBoxInBrokerDashboardPage() {
         basicActions.waitForElementToBePresentWithRetries(searchInput,30);
         searchInput.clear();
-        basicActions.waitForElementToBePresentWithRetries(searchBtn,30);
+        basicActions.waitForElementToBePresentWithRetries(searchBtn,60);
         searchBtn.click();
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,60);
+        softAssert.assertFalse(basicActions.waitForElementToBePresent(speacialCharactersError,30));
+        softAssert.assertAll();
     }
 
     public void clickTheRightPaginationArrowButtonTimesInMvrContainer(int numberTimes) {
@@ -289,9 +292,9 @@ public class DashboardPage {
     }
 
     public void validateTheMvrContainerIsNotDisplayed() {
-        basicActions.waitForElementToBePresentWithRetries(ViewYourClientsButton,30);
-        basicActions.scrollToElement(ViewYourClientsButton);
-        softAssert.assertFalse(basicActions.isElementDisplayed(mvrContainerTitle,30));
+        basicActions.waitForElementToBePresentWithRetries(mvrContainerTitle,30);
+        basicActions.scrollToElement(mvrContainerTitle);
+        softAssert.assertFalse(basicActions.waitForElementListToBePresent(firstRowsOptions,30));
         softAssert.assertAll();
     }
 }

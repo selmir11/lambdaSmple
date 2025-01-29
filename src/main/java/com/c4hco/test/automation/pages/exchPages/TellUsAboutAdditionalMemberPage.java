@@ -298,4 +298,28 @@ public class TellUsAboutAdditionalMemberPage {
         txtSSN.sendKeys(Keys.TAB);
         System.out.println("SSN updated successfully");
     }
+
+    public void AdditionalMemberDetailsSameasPrimary(List<String> relations) {
+
+        String frstName = SharedData.getPrimaryMember().getFirstName();
+        String mdlName = SharedData.getPrimaryMember().getMiddleName();
+        String lastName = SharedData.getPrimaryMember().getLastName();
+        basicActions.waitForElementToBePresent(txtheader, 1);
+        basicActions.waitForElementToBePresent(txtfirstName, 30);
+        txtfirstName.sendKeys(frstName);
+        txtmiddleName.sendKeys(mdlName);
+        txtlastName.sendKeys(lastName);
+        txtdateOfBirth.sendKeys(SharedData.getPrimaryMember().getDob());
+        txtSSN.sendKeys(SharedData.getPrimaryMember().getSsn());
+        selectSex(SharedData.getPrimaryMember().getGender());
+        if (IsPersonPregnentNo.isDisplayed()) {
+            selectIsPersonPregnant("No");
+        }
+        setMember(frstName, lastName, mdlName, SharedData.getPrimaryMember().getDob(), SharedData.getPrimaryMember().getGender());
+        for (String Relation : relations) {
+            selectRelationship(Relation);
+        }
+        isMemberApplyingForInsurance("Yes");
+    }
+
 }

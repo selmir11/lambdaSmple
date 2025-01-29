@@ -26,9 +26,8 @@ public class AdminPortalReportsPageSteps {
         adminPortalReportsPage.VerifyEvents(text, timeCondition, qaUsername, stagingUsername, expectedValue, expectedStatus, expectedKey);
     }
 
-    @Then("I validate the account activity record for {string}")
-    public void validateAccActivityRecord(String recordType) {
-        adminPortalReportsPage.validateRecord(recordType);
+    @Then("I validate the account activity record for {string} for {string}")
+    public void validateAccActivityRecord(String recordType, String userType) {
+        adminPortalReportsPage.validateRecord(recordType, userType);
     }
-
 }
