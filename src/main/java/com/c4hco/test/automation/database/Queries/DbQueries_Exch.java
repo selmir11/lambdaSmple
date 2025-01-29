@@ -32,6 +32,7 @@ public class DbQueries_Exch {
                 "and eh.account_id = '" + acctId + "'\n" +
                 "and eph.current_ind = '1'";
     }
+
 public String policyTablesCombinedQuery(String coverageType){
     String query = "SELECT eph.account_id, eph.application_id, epmh.exch_person_id, first_name, middle_name, last_name, birth_date::date AS birth_date, tobacco_use, \n" +
             "relation_to_subscriber, eph.plan_year, eph.coverage_type, hios_plan_id, rating_area_id, eph.policy_id,  policy_status, eph.current_ind,\n" +

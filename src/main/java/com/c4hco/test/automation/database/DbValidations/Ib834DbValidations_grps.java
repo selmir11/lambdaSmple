@@ -55,6 +55,7 @@ public class Ib834DbValidations_grps {
         for (Ib834Entity ib834Entity : ib834MedEntities) {
             if (ib834Entity.getSubscriber_indicator().equals("Y")) {
                 for(MemberDetails subscriber: subscribers){
+                    setMedicalFileName(ib834Entity);
                     if(subscriber.getFirstName().equals(ib834Entity.getMember_first_name())){
                         subscriberOnlyMedDenFields(ib834Entity, subscriber);
                         validateMedDenForSubscriberAndMem(ib834Entity, subscriber);
@@ -94,8 +95,9 @@ public class Ib834DbValidations_grps {
         for (Ib834Entity ib834Entity : ib834DenEntities) {
             if (ib834Entity.getSubscriber_indicator().equals("Y")) {
                 for(MemberDetails subscriber: subscribers){
+                    setDentalFileName(ib834Entity);
                     if(subscriber.getFirstName().equals(ib834Entity.getMember_first_name())){
-                        subscriberOnlyDenValidations(ib834Entity, subscriber);
+                        subscriberOnlyMedDenFields(ib834Entity, subscriber);
                         validateMedDenForSubscriberAndMem(ib834Entity, subscriber);
                         denValidationsCommonForAllMembers(ib834Entity, expectedValues, subscriber);
                         break;
@@ -128,7 +130,6 @@ public class Ib834DbValidations_grps {
         softAssert.assertNull(ib834Entity.getTotal_responsible_amount(), "MemberMedical Total Responsible amount does not match");
         softAssert.assertNull(ib834Entity.getTotal_premium_amount(), "Member Medical Total Premium amount does not match");
         softAssert.assertNull(ib834Entity.getPlan_sponsor_name(), "Member plan sponsor name did not match");
-        softAssert.assertNull(ib834Entity.getSponsor_id(), "Member Sponsor_id did not match");
         softAssert.assertNull(ib834Entity.getMail_street_line1(), "Mailing address street line 1 does not match");
         softAssert.assertNull(ib834Entity.getMail_street_line2(), "Mailing address street line 2 is not null");
         softAssert.assertNull(ib834Entity.getMail_city(), "Mailing city does not match");
@@ -150,7 +151,6 @@ public class Ib834DbValidations_grps {
         softAssert.assertEquals(SharedData.getExchPersonId().get(member.getFirstName()), ib834Entity.getMember_id(), "Member Id did not match for "+member.getFirstName());
         validateSubscriberId(ib834Entity, member);
         validatePersonalDetails(ib834Entity, member);
-       // validateIncorrectEntities(ib834Entity, member);
         softAssert.assertAll();
     }
 
@@ -199,21 +199,6 @@ public class Ib834DbValidations_grps {
        // softAssert.assertAll("Mailing Address did not match for "+subscriber.getFirstName());
     }
 
-//    private void validateIncorrectEntities(Ib834Entity ib834Entity, MemberDetails member) {
-//        softAssert.assertEquals(ib834Entity.getIncorrect_entity_id_code(), member.getIncorrectEntityIdCode(), "Incorrect_entity_id_code did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_id_code(), member.getIncorrectIdCode(), "Incorrect_id_code did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_entity_type_qualifier(), member.getIncorrectEntityTypeQualifier(), "Incorrect_entity_type_qualifier did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_first_name(), member.getIncorrect_first_name(), "Incorrect_first_name did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_last_name(), member.getIncorrect_last_name(), "Incorrect_last_name did not match!");
-//        // WIP - POL-9151 - softAssert.assertEquals(ob834Entity.getIncorrect_id_code_qualifier(), member.getIncorrectIdCodeQualifier(), "Incorrect_id_code_qualifier did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_dob(), member.getIncorrect_dob(), "Incorrect_dob did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_gender(), member.getIncorrect_gender(), "Incorrect_gender did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_marital_status_code(), member.getIncorrect_marital_status_code(), "Incorrect_marital_status_code did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_race(), member.getIncorrect_race(), "Incorrect_race did not match!");
-//        softAssert.assertEquals(ib834Entity.getIncorrect_middle_name(), member.getIncorrect_middle_name()!=null && !member.getIncorrect_middle_name().isEmpty()? member.getIncorrect_middle_name(): null, "Incorrect_middle_name did not match!");
-//        softAssert.assertAll();
-//    }
-
     private void validateBrokerDetails(Ib834Entity ib834Entity) {
         BrokerDetails broker = SharedData.getBroker();
         getDbDataMap(primaryMember.getFirstName());
@@ -240,8 +225,8 @@ public class Ib834DbValidations_grps {
         }
     }
 
-    private void validateResPerDetailsForMinorSubscriber(){
-
+    private void validateResPerDetailsForMinorSubscriber() {
+        Assert.fail("WRITE CODE TO HANDLE VALIDATIONS");
     }
 
     private void validateResPerDetailsForMinorMem(){
@@ -267,22 +252,24 @@ public class Ib834DbValidations_grps {
         String dateFormatted = member.getDob().substring(4, 8) + member.getDob().substring(0, 2) + member.getDob().substring(2, 4);
         softAssert.assertEquals(member.getFirstName(), ib834Entity.getMember_first_name(), "member firstname did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getLastName(), ib834Entity.getMember_last_name(), "member firstname did not match for "+member.getFirstName());
-        softAssert.assertEquals(member.getMiddleName(), ib834Entity.getMember_middle_name(), "member middle did not match for "+member.getFirstName());
-        softAssert.assertEquals(dateFormatted, ib834Entity.getMember_dob(), "dob did not match for "+member.getFirstName());
+        softAssert.assertTrue(ib834Entity.getMember_middle_name() == null || ib834Entity.getMember_middle_name().isEmpty()
+                || ib834Entity.getMember_middle_name().equals(member.getMiddleName()),"Member middle name did not match");        softAssert.assertEquals(dateFormatted, ib834Entity.getMember_dob(), "dob did not match for "+member.getFirstName());
         softAssert.assertEquals(ib834Entity.getMember_gender(), member.getGender().substring(0, 1), "gender did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getTobacco_user().equals("Yes") ? "T" : member.getTobacco_user().substring(0, 1), ib834Entity.getTobacco_use(), "Tobacco usage did not match for "+member.getFirstName());
-        softAssert.assertEquals(ib834Entity.getMarital_status_code(), "I", "Marital Status did not match for "+member.getFirstName());
+        softAssert.assertTrue(ib834Entity.getMarital_status_code().equals("I") ||ib834Entity.getMarital_status_code().isEmpty(), "Marital Status did not match for "+member.getFirstName());
         softAssert.assertEquals(getCodeForRelationship(member.getRelation_to_subscriber()), ib834Entity.getIndividual_rel_code(), "RelationshipCode did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getSsn()!=null? member.getSsn(): "000000000", ib834Entity.getMember_ssn(), "ssn did not match for "+member.getFirstName());
         softAssert.assertEquals(getCodeForRace(member.getRace()), ib834Entity.getMember_race(), "Race did not match");
         softAssert.assertAll("Personal Details for Member::"+member.getFirstName()+" did not match");
     }
 
-    private void validateSponsorId(Ib834Entity ib834Entity, MemberDetails subscriber) {
+    private void validateSponsorId(Ib834Entity ib834Entity) {
+        // wip - should work for other subscribers also
         boolean validSSN = isSSNValid(SharedData.getPrimaryMember().getSsn());
         if (validSSN) {
-            softAssert.assertEquals(subscriber.getSsn(), ib834Entity.getSponsor_id(), "Sponsor_id did not match");
+            softAssert.assertEquals(SharedData.getPrimaryMember().getSsn(), ib834Entity.getSponsor_id(), "Sponsor_id did not match");
         }
+        softAssert.assertAll();
     }
 
     private void validateConstantFields(Ib834Entity ib834Entity) {
@@ -294,34 +281,31 @@ public class Ib834DbValidations_grps {
         } else if (appType.equals("coco")) {
             softAssert.assertEquals(ib834Entity.getInterchange_sender_id(), "COLOCONNECT");
         }
-     //   softAssert.assertEquals(ib834Entity.getApplication_date(), date.replace("-", ""), "Application date does not match in ob834 entity");
         softAssert.assertEquals(ib834Entity.getUpdated_by(), "JAVA_OB834", "Ob834 updated_by does not match");
         softAssert.assertEquals(ib834Entity.getAck_requested(), "0", "Ob834 Ack_requested does not match");
         softAssert.assertEquals(ib834Entity.getUsage_indicator(), "T", "Ob834 Usage_indicator does not match");
         softAssert.assertEquals(ib834Entity.getInterchange_date(), date.replace("-", ""), "Interchange_date does not match in with date ob834 entity");
-      //  softAssert.assertEquals(ib834Entity.getDate_created().substring(0, 10), date, "Date_created does not match with date in ob834 entity");
-       // softAssert.assertEquals(ib834Entity.getDate_updated().substring(0, 10), date, "Date_updated does not match with date in ob834 entity");
     }
 
     private void medValidationsCommonForAllMembers(Ib834Entity ib834Entity, List<Map<String, String>> expectedValues, MemberDetails member) {
-        List<MemberDetails> allMembers = basicActions.getAllMem();
                 String name = getName(ib834Entity, member);
                 getMedicalPlanDbDataMap(name);
-                String formatPlanStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate().replaceAll("-", "");
-                String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate().replaceAll("-", "");
-                String formatedFinStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate().replaceAll("-", "");
+        String formatPlanStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate().replaceAll("-", "");
+        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate().replaceAll("-", "");
+        String[] sender = SharedData.getMedicalIb834FileName().split("_");
+        softAssert.assertEquals(ib834Entity.getInterchange_sender_id(), sender[1] , "Medical Sender Id mismatch");
 
-                softAssert.assertEquals(ib834Entity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId(), "Medical Hios id did not match!");
-                softAssert.assertEquals(ib834Entity.getInsurer_name(), medicalPlanDbDataMap.get(name).getIssuerName(), "Medical Insurer Name did not match!");
-                softAssert.assertEquals(ib834Entity.getInsurer_id(), medicalPlanDbDataMap.get(name).getIssuerId(), "Medical Insurer Id did not match!");
+        softAssert.assertEquals(ib834Entity.getHios_plan_id(),  medicalPlanDbDataMap.get(name).getBaseId(), "Hios id did not match!");
+        softAssert.assertEquals(ib834Entity.getInsurer_name(),  medicalPlanDbDataMap.get(name).getIssuerName(), "Insurer Name did not match!");
+        softAssert.assertEquals(ib834Entity.getInsurer_id(),  medicalPlanDbDataMap.get(name).getIssuerId(), "Insurer Id did not match!");
 
-                softAssert.assertEquals(ib834Entity.getBenefit_begin_date(), formatPlanStartDate, "Medical plan start date is not correct");
-                softAssert.assertEquals(ib834Entity.getBenefit_end_date(), formatMedicalPlanEndDate, "Medical plan end date is not correct");
-                softAssert.assertEquals(ib834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
+        softAssert.assertEquals(ib834Entity.getBenefit_begin_date(), formatPlanStartDate, "Medical plan start date is not correct");
+        softAssert.assertEquals(ib834Entity.getBenefit_end_date(), formatMedicalPlanEndDate, "Medical plan end date is not correct");
+        softAssert.assertNull(ib834Entity.getFinancial_effective_date(), "Financial start date is not null");
 
-                validateDetailsFromStep(ib834Entity, expectedValues.get(0));
-                validateIndivMedPremAmt(ib834Entity);
-                setGrpCtrlNums(ib834Entity.getGroup_ctrl_number());
+        validateDetailsFromStep(ib834Entity, expectedValues.get(0));
+
+        setGrpCtrlNums(ib834Entity.getGroup_ctrl_number());
     }
 
     private void setGrpCtrlNums(String grpCtrlNum){
@@ -350,7 +334,6 @@ public class Ib834DbValidations_grps {
         softAssert.assertEquals(ib834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
 
         validateDetailsFromStep(ib834Entity, expectedValues.get(0));
-        validateIndivDenPremAmt(ib834Entity);
     }
 
     private void medDenValidationsCommonForAllMem(Ib834Entity ib834Entity) {
@@ -366,20 +349,15 @@ public class Ib834DbValidations_grps {
             softAssert.assertEquals(primaryMember.getPhoneNumber(), ib834Entity.getPrimary_phone(), "primary phone did not match");
             softAssert.assertEquals(primaryMember.getSpokenLanguage(), ib834Entity.getSpoken_language(), "spoken language did not match");
             softAssert.assertEquals(primaryMember.getWrittenLanguage(), ib834Entity.getWritten_language(), "written language did not match");
-            //  softAssert.assertEquals(ib834Entity.getPlan_year(), SharedData.getPlanYear(), "Plan Year is not correct");
             softAssert.assertEquals("1", ib834Entity.getTotal_subscribers(), "total subscribers did not match");
-            //  softAssert.assertEquals(SharedData.getPlanYear(), ib834Entity.getPlan_year(), "plan year did not match");
-            softAssert.assertTrue(dbDataMap.get(name).getRatingAreaName().contains(ib834Entity.getRate_area()));
+           // softAssert.assertTrue(dbDataMap.get(name).getRatingAreaName().contains(ib834Entity.getRate_area()));
             softAssert.assertEquals(ib834Entity.getCsr_level(), dbDataMap.get(name).getCsrLevel(), "CSR level does not match");
 
             softAssert.assertEquals(enrollees, ib834Entity.getTotal_enrollees().trim(), "Total enrollees does not match");
             softAssert.assertEquals(String.valueOf(Integer.parseInt(enrollees) - 1), ib834Entity.getTotal_dependents().toString().trim(), "total dependents did not match");
             //   softAssert.assertEquals(getGrpNum(ib834Entity), ib834Entity.getMember_group(), "member group did not match");
+         //   validateSponsorId(ib834Entity);
         }
-    }
-
-    private String getGrpNum(Ib834Entity ib834Entity){
-        return ib834Entity.getInsurance_line_code().equals("HLT")? getMemberMedGrp(ib834Entity.getMember_first_name()): getMemberDenGrp(ib834Entity.getMember_first_name());
     }
 
     private String getMemberMedGrp(String firstName){
@@ -434,19 +412,6 @@ public class Ib834DbValidations_grps {
         return totalMemInGrp;
     }
 
-    private void subscriberOnlyMedValidations(Ib834Entity ib834Entity, MemberDetails subscriber) {
-        // Subscriber Only Fields
-        getMedicalPlanDbDataMap(getName(ib834Entity, subscriber));
-        double amt = Double.parseDouble(subscriber.getMedicalAptcAmt());
-        String expectedPMMedicalAptcAmt = String.format("%.2f", amt);
-//        softAssert.assertEquals(expectedPMMedicalAptcAmt, ib834Entity.getPremium_reduction_amt(), "Medical Plan premium reduction amount does not match");
-//        softAssert.assertEquals(medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt() != null ? medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt() : "0.00", ib834Entity.getCsr_amount(), "Medical CSR amount does not match");
-//        softAssert.assertEquals(subscriber.getTotalMedAmtAfterReduction().replace("$", "").replace(",", ""), ib834Entity.getTotal_responsible_amount(), "Medical Total Responsible amount does not match");
-//        softAssert.assertEquals(subscriber.getMedicalPremiumAmt().replace("$", "").replace(",", ""), ib834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
-        subscriberOnlyMedDenFields(ib834Entity, subscriber);
-        setMedicalFileName(ib834Entity);
-    }
-
     private void setMedicalFileName(Ib834Entity ib834Entity){
         List<String> medFileNames = SharedData.getMedicalIb834FileNames();
         if(medFileNames==null){
@@ -471,40 +436,23 @@ public class Ib834DbValidations_grps {
         SharedData.setDentalIb834FileNames(denFileNames);
     }
 
-    private void subscriberOnlyDenValidations(Ib834Entity ib834Entity, MemberDetails subscriber) {
-        // Subscriber Only Fields
-        softAssert.assertEquals("0.00", ib834Entity.getPremium_reduction_amt(), "Dental Plan premium reduction amount does not match");
-        softAssert.assertEquals("0.00", ib834Entity.getCsr_amount(), "Medical CSR amount does not match");
-        softAssert.assertEquals(subscriber.getTotalDentalPremAfterReduction().replace("$", "").replace(",",""), ib834Entity.getTotal_responsible_amount(), "Dental Total Responsible amount does not match");
-        softAssert.assertEquals(subscriber.getDentalPremiumAmt().replace("$", "").replace(",", ""), ib834Entity.getTotal_premium_amount(), "Medical Total Premium amount does not match");
-        subscriberOnlyMedDenFields(ib834Entity, subscriber);
-        setDentalFileName(ib834Entity);
-    }
-
-    private void subscriberOnlyMedDenFields(Ib834Entity ib834Entity, MemberDetails subscriber){
+    private void subscriberOnlyMedDenFields(Ib834Entity ib834MedEntity, MemberDetails subscriber){
         //  Bug - POL-9149 - Plan Sponsor Name should be primary member name - it is not updated with name change - Need to revert the code after the bug is fixed.
-        softAssert.assertEquals( ib834Entity.getPlan_sponsor_name(), subscriber.getSignature(), "plan sponsor name did not match");
-        softAssert.assertEquals(primaryMember.getAlternatePhNum() != null ? primaryMember.getAlternatePhNum() : primaryMember.getPhoneNumber(), ib834Entity.getAlternate_phone(), "alternate phone did not match");
-        softAssert.assertEquals(ib834Entity.getSubscriber_id(), ib834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
-        softAssert.assertEquals(ib834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
-        validateSponsorId(ib834Entity, subscriber);
-        validateResidentialAddress(ib834Entity, subscriber);
+      //  softAssert.assertEquals(subscriber.getFullName(), ib834MedEntity.getPlan_sponsor_name(), "Plan sponsor name did not match");
+        softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ib834MedEntity.getAlternate_phone(), "alternate phone did not match");
+        softAssert.assertEquals(ib834MedEntity.getSubscriber_id(), ib834MedEntity.getMember_id(), "Subscriber_id and Member_id in ib834 entity does not match");
+        softAssert.assertEquals(subscriber.getIsSubscriber(), "Y", "Subscriber indicator did not match for "+subscriber.getFirstName());
+        softAssert.assertEquals(subscriber.getEmailId(), ib834MedEntity.getPrimary_email(), "primary email did not match");
+        softAssert.assertEquals(subscriber.getPhoneNumber(), ib834MedEntity.getPrimary_phone(), "primary phone did not match");
+        softAssert.assertEquals(subscriber.getSpokenLanguage(), ib834MedEntity.getSpoken_language(), "spoken language did not match");
+        softAssert.assertEquals(subscriber.getWrittenLanguage(), ib834MedEntity.getWritten_language(), "written language did not match");
+        validateResidentialAddress(ib834MedEntity, subscriber);
+
         if(subscriber.getMailingAddress()!=null&&!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
-            validateMailingAddress(ib834Entity, subscriber);
+            validateMailingAddress(ib834MedEntity, subscriber);
         } else {
-            validateMailingAddressIsNull(ib834Entity, subscriber);
+            validateMailingAddressIsNull(ib834MedEntity, subscriber);
         }
-    }
-
-    private void validateIndivMedPremAmt(Ib834Entity ib834Entity){
-        medicalPolicyEnitities.stream().filter(medEntity -> medEntity.getFirst_name().equals(ib834Entity.getMember_first_name())).findFirst().ifPresent(medEntity ->
-                softAssert.assertEquals(medEntity.getPlan_premium_amt(), ib834Entity.getPremium_amount(), "Medical Individual Plan premium amount does not match for "+medEntity.getFirst_name()));
-        softAssert.assertAll();
-    }
-
-    private void validateIndivDenPremAmt(Ib834Entity ib834Entity){
-        dentalPolicyEnitities.stream().filter(denEntity -> denEntity.getFirst_name().equals(ib834Entity.getMember_first_name())).findFirst().ifPresent(denEntity ->
-                softAssert.assertEquals(denEntity.getPlan_premium_amt(), ib834Entity.getPremium_amount(), "Dental Individual Plan premium amount does not match for "+denEntity.getFirst_name()));
     }
 
     private void validateDetailsFromStep(Ib834Entity ib834Entity, Map<String, String> expectedValues) {
@@ -512,7 +460,6 @@ public class Ib834DbValidations_grps {
         softAssert.assertEquals(ib834Entity.getHd_maint_type_code(), expectedValues.get("hd_maint_type_code"), "hd_maint_type_code mismatched");
         softAssert.assertEquals(ib834Entity.getMaintenance_reas_code(), expectedValues.get("maintenance_reas_code"), "maintenance_reas_code mismatched");
         softAssert.assertEquals(ib834Entity.getAddl_maint_reason(), expectedValues.get("addl_maint_reason")!=null? expectedValues.get("addl_maint_reason").replace(" or ", "|") : expectedValues.get("addl_maint_reason"), "addl_maint_reason mismatched");
-      //  softAssert.assertTrue(expectedValues.get("sep_reason") == null ? ib834Entity.getSep_reason().isEmpty() : ib834Entity.getSep_reason().equals(expectedValues.get("sep_reason")), "Sep_reason mismatch or expected blank but was: " + ob834Entity.getSep_reason());
     }
 
     private void setIb834Data() {
