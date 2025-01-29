@@ -32,8 +32,13 @@ public class HouseholdPage {
     @FindBy(id = "submitButton_ContinueIncome")
     WebElement saveAndContinue;
 
-    @FindBy(xpath = "//*[@value = 'Save and Continue']")
+    //@FindBy(xpath = "//*[@value = 'Save and Continue']")
+    @FindBy(xpath = "//*[contains(text(),'Save and Continue')]")
+    //@FindBy(id = "submitButton_ContinueIncome")
     WebElement getSaveAndContinueText;
+
+    @FindBy(xpath = "//*[contains(text(),'Guardar y Continuar')]")
+    WebElement getGetSaveAndContinueTextSP;
 
     @FindBy(id = "submitButton_AddMember")
     WebElement addAdditionalMember;
@@ -62,7 +67,8 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow input.linkButton[type='submit']")
     List<WebElement> memberNamesLinks;
 
-    @FindBy(css = "#accountID")
+    //@FindBy(css = "#accountID")
+    @FindBy(xpath = "//*[contains(text(),'Account ID:')]")
     WebElement accountIdTxt;
 
     @FindBy(css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
@@ -115,10 +121,21 @@ public class HouseholdPage {
     @FindBy(xpath = "//*[contains(text(),'Incomplete')]")
     WebElement getInCompleteText;
 
+    @FindBy(xpath = "//*[contains(text(),'Completa')]")
+    WebElement getCompleteTextSP;
+
+    @FindBy(xpath = "//*[contains(text(),'Incompleta')]")
+    WebElement getInCompleteTextSP;
 
 
-    @FindBy(xpath = "//*[@value = '+ Add another family member']")
+
+    //@FindBy(xpath = "//*[@value = '+ Add another family member']")
+    //@FindBy(xpath = "//*[contains(text(),'+ Add another family member')]")
+    @FindBy(css = "#submitButton_AddMember")
     WebElement getAdditionalMemberText;
+
+    @FindBy(xpath = "//*[contains(text(),'+ Agregar a otro miembro de la familia')]")
+    WebElement getAdditionalMemberTextSP;
 
 
 
@@ -240,7 +257,7 @@ public class HouseholdPage {
        basicActions.waitForElementToDisappear( spinner, 100 );
         softAssert.assertEquals( getFamilyOverviewHeader.getText(), "Family Overview: Here's what you've told us so far" );
         softAssert.assertEquals( getHelpMeLink.getText(), "Help me understand this page" );
-        //softAssert.assertTrue( getAcctID.getText().contains( "ACCOUNT ID:" ));
+        softAssert.assertTrue(getAcctID.getText().contains("Account ID:"));
         softAssert.assertEquals( getTaxHouseholdID.getText(), "Tax Household #1" );
 
         softAssert.assertEquals( getTableText.getText(), "NAME APPLYING FOR\n" +
@@ -248,17 +265,22 @@ public class HouseholdPage {
                 "INFORMATION\n" +
                 "Yes\n" +
                 "Not Started\n"+
-
-
-                "HOUSEHOLD TOTAL Â¤0.00");
+                "   \n"+
+                "   \n"+
+                "HOUSEHOLD TOTAL \u00A40.00");
         softAssert.assertEquals( getHouseholdTotalText.getText(), "HOUSEHOLD TOTAL" );
 
         softAssert.assertEquals( getCompleteText.getText(), "Complete" );
         softAssert.assertEquals( getInCompleteText.getText(), "Incomplete" );
-        basicActions.waitForElementToBePresentWithRetries(getAdditionalMemberText,30);
+
+        basicActions.waitForElementToBePresentWithRetries( getAdditionalMemberText,30 );
+        basicActions.scrollToElement( getAdditionalMemberText );
         softAssert.assertEquals( getAdditionalMemberText.getText(), "+ Add another family member" );
-        basicActions.waitForElementToBePresentWithRetries(getSaveAndContinueText,30);
-        softAssert.assertEquals( getSaveAndContinueText.getText(), "Save and Continue");
+
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinue,30);
+        basicActions.scrollToElement( saveAndContinue );
+        softAssert.assertTrue(saveAndContinue.getText().contains("Save and Continue"));
+        //softAssert.assertEquals( getSaveAndContinueText.getText(), "Save and Continue");
         softAssert.assertAll();
     }
 
@@ -266,21 +288,23 @@ public class HouseholdPage {
         basicActions.waitForElementToDisappear( spinner, 20 );
         softAssert.assertEquals( getFamilyOverviewHeader.getText(), "Resumen de la familia: Esta es la informaci\u00F3n que nos ha dado hasta el momento" );
         softAssert.assertEquals( getHelpMeLink.getText(), "Ayuda para entender esta p\u00E1gina" );
-        softAssert.assertEquals( getAcctID.getText(), "Identificaci\u00F3n de la cuenta" );
+        softAssert.assertTrue(getAcctID.getText().contains("Identificaci\u00F3n de la cuenta"));
         softAssert.assertEquals( getTaxHouseholdID.getText(), "Hogar Fiscal #1" );
 
-        softAssert.assertEquals( getTableText.getText(), "Nombre" );
-        softAssert.assertEquals( getTableText.getText(), "Para solicitar" );
-        softAssert.assertEquals( getTableText.getText(), "seguro de salud" );
-        softAssert.assertEquals( getTableText.getText(), "Informaci\u00F3n b\u00E1sica" );
-        softAssert.assertEquals( getTableText.getText(), "Informaci\u00F3n" );
-        softAssert.assertEquals( getTableText.getText(), "financiera anual" );
-        softAssert.assertEquals( getTableText.getText(), "Total del hogar");
-        softAssert.assertEquals( getTableText.getText(), "Completa");
-        softAssert.assertEquals( getTableText.getText(), " Incompleta");
+        softAssert.assertEquals( getTableText.getText(), "Nombre Para solicitar\n" +
+                "seguro de salud? Informaci\u00F3n b\u00E1sica financiera anual\n" +
+                "Informaci\u00F3n\n" +
+                "Sí\n" +
+                "No iniciada\n"+
+                "   \n"+
+                "   \n"+
+                "Total del hogar \u00A40.00");
 
-        softAssert.assertEquals( getAdditionalMemberText.getText(), "+ Agregar a otro miembro de la familia" );
-        softAssert.assertEquals( getSaveAndContinueText.getText(), "Guardar y Continuar");
+        softAssert.assertEquals( getCompleteTextSP.getText(), "Completa");
+        softAssert.assertEquals( getInCompleteTextSP.getText(), " Incompleta");
+
+        softAssert.assertEquals( getAdditionalMemberTextSP.getText(), "+ Agregar a otro miembro de la familia" );
+        softAssert.assertEquals( getGetSaveAndContinueTextSP.getText(), "Guardar y Continuar");
         softAssert.assertAll();
 
     }
