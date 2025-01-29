@@ -291,3 +291,58 @@ Feature: Page Navigation-OHC ESI Page
     And I verify the header for Primary Member on the ESI page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2064
+  Scenario: SLER-2064 I want to be directed to the unauthorized page so that I know I have tried to access a page I am not authorized to access
+#    check in English and change to Spanish
+    And I validate I am on the "ESI" page
+    And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
+    Then I validate I am on the "Unauthorized" page
+    Then I verify unauthorized text in "English"
+    And I verify text on the "Exch" "Header" in "English"
+    And I verify text on the "Exch" "Footer" in "English"
+    And I set the browser resolution to 1200 x 800
+    And I change the language from header to "Spanish"
+    And I set the browser resolution to Maximized
+    Then I wait for 50 milliseconds
+    Then I verify unauthorized text in "Spanish"
+    And I verify text on the "Exch" "Header" in "Spanish"
+    And I verify text on the "Exch" "Footer" in "Spanish"
+#    check in Spanish and change to English
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    And I click save and continue on tax status page
+    Then I click continue on the ELMO health coverage page
+    Then I validate I am on the "ESI" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
+    Then I validate I am on the "Unauthorized" page
+    Then I verify unauthorized text in "Spanish"
+    And I verify text on the "Exch" "Header" in "Spanish"
+    And I verify text on the "Exch" "Footer" in "Spanish"
+    And I set the browser resolution to 1200 x 800
+    And I change the language from header to "English"
+    And I set the browser resolution to Maximized
+    Then I wait for 50 milliseconds
+    Then I verify unauthorized text in "English"
+    And I verify text on the "Exch" "Header" in "English"
+    And I verify text on the "Exch" "Footer" in "English"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
