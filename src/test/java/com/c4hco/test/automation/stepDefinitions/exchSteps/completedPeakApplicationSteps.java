@@ -44,6 +44,6 @@ public class completedPeakApplicationSteps {
 
     @Then("I verify the text on Let us guide you page in {string}")
     public void verifyEnglishAndSpanishTextInLetUsGuide(String languageOption){
-            completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
-        }
+        completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
     }
+}

@@ -195,3 +195,38 @@ Feature: Navigation-Life Change Event Page
     And I select "InsuranceLoss" life change event with event date of "Today"
     And I select continue on the LCE page
     And I validate I am on the "Login" page
+
+  @SLCR-733
+  Scenario: SLCR-733 I want to be directed to the unauthorized page so that I know I have tried to access a page I am not authorized to access
+#    check in English and change to Spanish
+    And I change the C4 url to "LCE portal Unauthorized CoCo"
+    Then I validate I am on the "Unauthorized" page
+    Then I verify unauthorized text in "English"
+    And I verify text on the "CoCo" "Header" in "English"
+    And I verify text on the "CoCo" "Footer" in "English"
+    And I change the language from header to "Spanish"
+    Then I wait for 50 milliseconds
+    Then I verify unauthorized text in "Spanish"
+    And I verify text on the "CoCo" "Header" in "Spanish"
+    And I verify text on the "CoCo" "Footer" in "Spanish"
+#    check in Spanish and change to English
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I change the C4 url to "LCE portal Unauthorized CoCo"
+    Then I validate I am on the "Unauthorized" page
+    Then I verify unauthorized text in "Spanish"
+    And I verify text on the "CoCo" "Header" in "Spanish"
+    And I verify text on the "CoCo" "Footer" in "Spanish"
+    And I change the language from header to "English"
+    Then I wait for 50 milliseconds
+    Then I verify unauthorized text in "English"
+    And I verify text on the "CoCo" "Header" in "English"
+    And I verify text on the "CoCo" "Footer" in "English"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
