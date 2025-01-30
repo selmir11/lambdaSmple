@@ -265,7 +265,7 @@ public class HouseholdPage {
         /////softAssert.assertTrue(getAdditionalMemberText.getText().contains("+ Add another family member"));
         softAssert.assertEquals( getAdditionalMemberText.getText(), "+ Add another family member" );
 
-        ////softAssert.assertTrue(saveAndContinue.getText().contains("Save"));
+        ////softAssert.assertTrue(saveAndContinue.getText().contains("Save and Continue"));
         softAssert.assertEquals( getSaveAndContinueText.getText(), "Save and Continue");
         softAssert.assertAll();
     }
