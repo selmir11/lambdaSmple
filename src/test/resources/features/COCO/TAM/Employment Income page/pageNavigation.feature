@@ -37,7 +37,7 @@ Feature: Tests related to the Employment Income page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
-    Then I validate no errors are displayed on the Additional Income CoCo page
+    Then I validate no error banner is displayed at the top of the page
     And I go to the previous browser page
     Then I validate no errors are displayed on the Employment income page
     Then I validate "No" job option is selected on the Employment income page
@@ -79,7 +79,7 @@ Feature: Tests related to the Employment Income page
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
-    Then I validate no errors are displayed on the Additional Income CoCo page
+    Then I validate no error banner is displayed at the top of the page
     And I go to the previous browser page
     Then I validate no errors are displayed on the Employment income page
     Then I validate "No" job option is selected on the Employment income page
