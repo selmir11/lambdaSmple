@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Alert;
@@ -67,6 +68,8 @@ public class HouseholdPage {
 
     @FindBy(name = "hhDeleteMember")
     WebElement removeMemberLnk;
+    @FindBy(xpath = "//td[normalize-space()='Not Applicable']")
+    WebElement nfaInfo;
 
     @FindBy(xpath = "//*[@class = 'c4PageHeader']")
     WebElement getFamilyOverviewHeader;
@@ -209,6 +212,18 @@ public class HouseholdPage {
 
     public void verifyNoErrorMessage_Household() {
         Assert.assertTrue(basicActions.waitForElementToDisappear(redIcon, 30), "Error is displayed");
+    }
+    public void verifyAnnualFinancialInformation(String financialInfo){
+
+        switch (financialInfo) {
+            case "NFA":
+                softAssert.assertEquals(nfaInfo.getText(), "Not Applicable");
+                break;
+//                ////Need to add case for FA
+            default:
+                throw new IllegalArgumentException("Invalid option: " + financialInfo);
+        }
+        softAssert.assertAll();
     }
 
 

@@ -49,6 +49,9 @@ public class HouseHoldPageSteps {
 
     @Then ("I validate the {string} text on the family overview page")
     public void iValidateTextDisplayed(String language) {houseHoldPage.iValidateTextDisplayed(language);}
+    
+    @Then("I verify {string} information on household page")
+    public void iVarifyAnnualFinancialInfo(String financialInfo) {houseHoldPage.verifyAnnualFinancialInformation(financialInfo);}
 }
 
 
