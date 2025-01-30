@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.beust.jcommander.converters.CommaParameterSplitter;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -16,6 +17,7 @@ import org.testng.asserts.SoftAssert;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -81,6 +83,10 @@ public class TellUsAboutAdditionalMemberPage {
 
     public static String getUniqueString(int length) {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
+    }
+
+    public static String getUniqueNumber(int length) {
+        return RandomStringUtils.random(length, "123456789");
     }
 
     public void enterMemberDetails(String DOB){
@@ -299,27 +305,63 @@ public class TellUsAboutAdditionalMemberPage {
         System.out.println("SSN updated successfully");
     }
 
-    public void AdditionalMemberDetailsSameasPrimary(List<String> relations) {
-
-        String frstName = SharedData.getPrimaryMember().getFirstName();
-        String mdlName = SharedData.getPrimaryMember().getMiddleName();
-        String lastName = SharedData.getPrimaryMember().getLastName();
+    public void additionalMemberDetailsSameAsPrimary(String memberCondition,List<String> relations) {
         basicActions.waitForElementToBePresent(txtheader, 1);
         basicActions.waitForElementToBePresent(txtfirstName, 30);
-        txtfirstName.sendKeys(frstName);
-        txtmiddleName.sendKeys(mdlName);
+        String[] details = getMemberDetailsBasedOnCondition(memberCondition);
+        String firstName = details[0];
+        String middleName = details[1];
+        String lastName = details[2];
+        String ssn = details[3];
+        String dob = SharedData.getPrimaryMember().getDob();
+        String gender = SharedData.getPrimaryMember().getGender();
+        txtfirstName.sendKeys(firstName);
+        txtmiddleName.sendKeys(middleName);
         txtlastName.sendKeys(lastName);
-        txtdateOfBirth.sendKeys(SharedData.getPrimaryMember().getDob());
-        txtSSN.sendKeys(SharedData.getPrimaryMember().getSsn());
-        selectSex(SharedData.getPrimaryMember().getGender());
+        txtdateOfBirth.sendKeys(dob);
+        txtSSN.sendKeys(ssn);
+        selectSex(gender);
         if (IsPersonPregnentNo.isDisplayed()) {
             selectIsPersonPregnant("No");
         }
-        setMember(frstName, lastName, mdlName, SharedData.getPrimaryMember().getDob(), SharedData.getPrimaryMember().getGender());
-        for (String Relation : relations) {
-            selectRelationship(Relation);
+        setMember(firstName, lastName, middleName, dob, gender);
+        for (String relation : relations) {
+            selectRelationship(relation);
         }
         isMemberApplyingForInsurance("Yes");
     }
+
+
+    private  String[] getMemberDetailsBasedOnCondition(String memberCondition) {
+        String firstName =null;
+        String middleName =null;
+        String lastName =null;
+        String ssn =null;
+        switch (memberCondition.toLowerCase()) {
+            case "sameasprimarymember":
+                 firstName = SharedData.getPrimaryMember().getFirstName();
+                 middleName = SharedData.getPrimaryMember().getMiddleName();
+                 lastName = SharedData.getPrimaryMember().getLastName();
+                 ssn = SharedData.getPrimaryMember().getSsn();
+                break;
+            case "uniquefirstnameandmiddle":
+                firstName = getUniqueString(10);
+                middleName = "C";
+                 lastName = SharedData.getPrimaryMember().getLastName();
+                 ssn = SharedData.getPrimaryMember().getSsn();
+                break;
+            case "uniquessn":
+                firstName = SharedData.getPrimaryMember().getFirstName();
+                 middleName = SharedData.getPrimaryMember().getMiddleName();
+                 lastName = SharedData.getPrimaryMember().getLastName();
+                ssn = getUniqueNumber(9);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid member condition: " + memberCondition);
+        }
+         String[] nameInfo = {firstName,middleName,lastName,ssn};
+        return nameInfo;
+    }
+
 
 }

@@ -889,9 +889,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Plans" link on welcome page
     Then I validate I am on the "My Policies" page
-    And Validate selected medical plan for "Primary" is "Elevate Health Plans Colorado Option Silver Off Exchange"
-    And Validate selected medical plan for "MinorTwo" is "Elevate Health Plans Colorado Option Silver Off Exchange"
-    And Validate selected medical plan for "MinorThree" is "Elevate Health Plans Colorado Option Silver Off Exchange"
+    And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-265 @EndToEndTest
