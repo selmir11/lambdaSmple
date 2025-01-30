@@ -302,7 +302,8 @@ public class DbSteps {
     public void iValidateExchPersonIds() {policyTableValidations.validateExchPersonIds();
     }
 
-
+    @Then("I validate ARP Indicator is set correctly in DB")
+    public void iValidateArpIndicator() {policyTableValidations.validateArpIndicator();}
 
 }
 
