@@ -293,18 +293,7 @@ public class QlceConfirmationPage {
         saveAndContinue.click();
     }
 
-    public void validateTheVerbiageOnTellUsAboutLifeChangesPage(String Language, List<String> data) {
-        switch (Language) {
-            case "English","Spanish":
-                validateTheVerbiageEnSp(data);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + Language);
-        }
-    }
-
-     void validateTheVerbiageEnSp(List<String> data) {
-
+    public void validateTheVerbiageOnTellUsAboutLifeChangesPage(List<String> data) {
         softAssert.assertEquals(textReportLifeChangeHeader.getText(), data.get(0), "Qlce header text mismatch");
         softAssert.assertEquals(textLifeChangeSubTitle.getText(), data.get(1), "Life change subtitle text mismatch");
         softAssert.assertEquals(lnkHelpLink.getText(), data.get(2), "Help me understand this page link text mismatch");
@@ -313,10 +302,11 @@ public class QlceConfirmationPage {
             WebElement CheckBox = AllcheckboxQLCE.get(Clickcheckbox);
             CheckBox.click();
         }
-         validateEachQLCEVerbiage(data);
+        validateEachQLCEVerbiage(data); //Calling each LCE Types
     }
+
     void validateEachQLCEVerbiage(List<String> data) {
-        BirthTextValidate(data); //Calling each LCE Types
+        BirthTextValidate(data);
         PregnancyTextValidate(data);
         MarriageTextValidate(data);
         DivorceTextValidate(data);

@@ -25,8 +25,8 @@ public class QlceConfirmationPageSteps {
         qlceConfirmationPage.saveAndContinue();
     }
 
-    @And("I validate the verbiage on the Tell us about life changes page {string}")
-    public void iValidateTheVerbiageOnTheTellUsAboutLifeChangesPage(String Language, List<String> data) {
-        qlceConfirmationPage.validateTheVerbiageOnTellUsAboutLifeChangesPage(Language,data);
+    @And("I validate the verbiage on the Tell us about life changes page")
+    public void iValidateTheVerbiageOnTheTellUsAboutLifeChangesPage(List<String> data) {
+        qlceConfirmationPage.validateTheVerbiageOnTellUsAboutLifeChangesPage(data);
     }
 }

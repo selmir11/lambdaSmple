@@ -1104,7 +1104,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I validate I am on the "Financial Help" page
     And I Apply for no financial help
     Then I validate I am on the "Tell us about life changes" page
-    And I validate the verbiage on the Tell us about life changes page "English"
+    And I validate the verbiage on the Tell us about life changes page
       | Tell us about life changes |
       | Select any life change event you or someone in your household has experienced within the past 60 days. The loss of other health insurance, including Health First Colorado or Child Health Plans Plus, can be reported up to 60 days before you lose coverage. Members of federally recognized tribes and Alaska natives can enroll in coverage through Connect for Health Colorado anytime of the year. |
       | Help me understand this page |
@@ -1135,7 +1135,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
       |When you become pregnant, you can enroll in a health insurance plan. Your coverage can start as early as the month in which a health care provider certified your pregnancy, or it can start on the first day of the month after you choose a plan.|
       |To enroll and choose the start date for your plan, call our Customer Service Center at 855-752-6749. You cannot enroll through your online account.                                                                                                |
     And I change the language from header to "Spanish NonElmo"
-    And I validate the verbiage on the Tell us about life changes page "Spanish"
+    And I validate the verbiage on the Tell us about life changes page
       | Infórmenos sobre los cambios importantes en la vida |
       | Seleccione los eventos de vida calificados que usted o alguien de su familia haya tenido en los últimos 60 días. Se puede reportar la pérdida de seguro de salud, incluyendo Health First Colorado o Child Health Plan Plus, hasta 60 días antes de que pierda la cobertura. Los miembros de las tribus reconocidas a nivel federal o los nativos de Alaska pueden inscribirse en la cobertura a través de Connect for Health Colorado en cualquier momento del año. |
       | Ayuda para entender esta página |
