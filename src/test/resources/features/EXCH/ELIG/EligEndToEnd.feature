@@ -4,8 +4,9 @@ Feature: Verify End to End ELIG Pages
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2040
+  @SLER-2040 @WIP
   Scenario: ELIG-Existing Dental plan NFA path-Dental
+    # waiting on ELIG Team to give accurate steps as test complete steps are not accurate!
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
