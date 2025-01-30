@@ -262,11 +262,8 @@ public class HouseholdPage {
         softAssert.assertEquals( getCompleteText.getText(), "Complete" );
         softAssert.assertEquals( getInCompleteText.getText(), "Incomplete" );
 
-        /////softAssert.assertTrue(getAdditionalMemberText.getText().contains("+ Add another family member"));
-        softAssert.assertEquals( getAdditionalMemberText.getText(), "+ Add another family member" );
-
-        ////softAssert.assertTrue(saveAndContinue.getText().contains("Save and Continue"));
-        softAssert.assertEquals( getSaveAndContinueText.getText(), "Save and Continue");
+        softAssert.assertEquals( getAdditionalMemberText.getAttribute("value"), "+ Add another family member" );
+        softAssert.assertEquals( getSaveAndContinueText.getAttribute("value"), "Save and Continue" );
         softAssert.assertAll();
     }
 
@@ -289,8 +286,8 @@ public class HouseholdPage {
         softAssert.assertEquals( getCompleteTextSP.getText(), "Completa");
         softAssert.assertEquals( getInCompleteTextSP.getText(), "Incompleta");
 
-        //softAssert.assertEquals( getAdditionalMemberTextSP.getText(), "+ Agregar a otro miembro de la familia" );
-        //softAssert.assertEquals( getGetSaveAndContinueTextSP.getText(), "Guardar y Continuar");
+        softAssert.assertEquals( getAdditionalMemberTextSP.getAttribute("value"), "+ Agregar a otro miembro de la familia" );
+        softAssert.assertEquals( getGetSaveAndContinueTextSP.getAttribute("value"), "Guardar y Continuar" );
         softAssert.assertAll();
 
     }
