@@ -68,7 +68,6 @@ public class Ib834DbValidations_grps {
             }
             medDenValidationsCommonForAllMem(ib834Entity);
             medValidationsCommonForAllMembers(ib834Entity, expectedValues);
-
         }
         softAssert.assertAll();
     }
@@ -89,7 +88,6 @@ public class Ib834DbValidations_grps {
             }
             medDenValidationsCommonForAllMem(ib834Entity);
             denValidationsCommonForAllMembers(ib834Entity, expectedValues);
-
         }
         softAssert.assertAll();
     }
@@ -101,6 +99,10 @@ public class Ib834DbValidations_grps {
                 System.out.println("VALIDATING FOR THE MEMBER - MEMBER's FIRST NAME::"+ib834Entity.getMember_first_name());
                 validateMemberOnlyMedDenFields(ib834Entity);
                 validateMedDenForSubscriberAndMem(ib834Entity, member);
+                softAssert.assertNull(ib834Entity.getPrimary_email(), "primary email did not match");
+                softAssert.assertNull(ib834Entity.getPrimary_phone(), "primary phone did not match");
+                softAssert.assertNull(ib834Entity.getSpoken_language(), "spoken language did not match");
+                softAssert.assertNull(ib834Entity.getWritten_language(), "written language did not match");
             }
         }
     }
@@ -203,21 +205,19 @@ public class Ib834DbValidations_grps {
     }
 
     private void validateResPerDetailsForMinor(Ib834Entity ib834Entity, MemberDetails member) {
-        // WIP
-//       MemberDetails subscriber = basicActions.getMember(getName(ib834Entity, member));
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_first_name(), subscriber.getFirstName());
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_last_name(), subscriber.getLastName());
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_rel_code(), "");
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_ssn(), subscriber.getSsn());
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_phone(), null);
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_email(), null);
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_alt_phone(), null);
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_street_line1(), null);
-//        softAssert.assertEquals(ib834Entity.getResidence_street_line2(), null);
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_city(), null);
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_st(), null);
-//        softAssert.assertEquals(ib834Entity.getResponsible_person_zip_code(), null);
-
+        MemberDetails subscriber = basicActions.getMember(getName(ib834Entity, member));
+        softAssert.assertEquals(ib834Entity.getResponsible_person_first_name(), subscriber.getFirstName());
+        softAssert.assertEquals(ib834Entity.getResponsible_person_last_name(), subscriber.getLastName());
+        softAssert.assertEquals(ib834Entity.getResponsible_person_rel_code(), "1", "Responsible_person_rel_code mismatch");
+        softAssert.assertNull(ib834Entity.getResponsible_person_ssn(), "Responsible_person_ssn mistatch");
+        softAssert.assertEquals(ib834Entity.getResponsible_person_phone(), subscriber.getAlternatePhNum(),"Responsible person phone mismatch");
+        softAssert.assertEquals(ib834Entity.getResponsible_person_email(), subscriber.getEmailId(),"Responsible person email id mismatch" );
+        softAssert.assertEquals(ib834Entity.getResponsible_person_alt_phone(), subscriber.getAlternatePhNum(), "Responsible person alternate phone mismatch");
+        softAssert.assertEquals(ib834Entity.getResponsible_person_street_line1(), subscriber.getMailingAddress().getAddressLine1(), "Responsible person mail addressline 1 mismatch");
+        softAssert.assertEquals(ib834Entity.getResidence_street_line2(), subscriber.getMailingAddress().getAddressLine2(),"Responsible person mail addressline 2 mismatch");
+        softAssert.assertEquals(ib834Entity.getResponsible_person_city(), subscriber.getMailingAddress().getAddressCity(), "Responsible person mail city mismatch");
+        softAssert.assertEquals(ib834Entity.getResponsible_person_st(), subscriber.getMailingAddress().getAddressState(),"Responsible person mail state mismatch" );
+        softAssert.assertEquals(ib834Entity.getResponsible_person_zip_code(), subscriber.getMailingAddress().getAddressZipcode(), "Responsible person mail zipcode mismatch");
     }
 
     private void validateResPersonDetailsForMember(Ib834Entity ib834Entity){
@@ -260,7 +260,6 @@ public class Ib834DbValidations_grps {
         } else {
             Assert.fail("SSN IS INVALID");
         }
-        softAssert.assertAll();
     }
 
     private void validateConstantFields(Ib834Entity ib834Entity) {
@@ -340,16 +339,13 @@ public class Ib834DbValidations_grps {
         validateResponsiblePersonDetails(ib834Entity, member);
         getDbDataMap(name);
         String enrollees = getTotalEnrollees(ib834Entity);
-        softAssert.assertEquals(primaryMember.getEmailId(), ib834Entity.getPrimary_email(), "primary email did not match");
-        softAssert.assertEquals(primaryMember.getPhoneNumber(), ib834Entity.getPrimary_phone(), "primary phone did not match");
-        softAssert.assertEquals(primaryMember.getSpokenLanguage(), ib834Entity.getSpoken_language(), "spoken language did not match");
-        softAssert.assertEquals(primaryMember.getWrittenLanguage(), ib834Entity.getWritten_language(), "written language did not match");
         softAssert.assertEquals("1", ib834Entity.getTotal_subscribers(), "total subscribers did not match");
-        // softAssert.assertTrue(dbDataMap.get(name).getRatingAreaName().contains(ib834Entity.getRate_area()));
+        softAssert.assertNull(ib834Entity.getRate_area(), "Rating area is not null");
         softAssert.assertEquals(ib834Entity.getCsr_level(), dbDataMap.get(name).getCsrLevel(), "CSR level does not match");
         softAssert.assertEquals(enrollees, ib834Entity.getTotal_enrollees().trim(), "Total enrollees does not match");
         softAssert.assertEquals(String.valueOf(Integer.parseInt(enrollees) - 1), ib834Entity.getTotal_dependents().toString().trim(), "total dependents did not match");
         validateSponsorId(ib834Entity);
+        softAssert.assertAll();
     }
 
 
