@@ -242,10 +242,10 @@ Feature: Coco user on the Application results page
       Then I validate I am on the "CoCo Family Overview" page
       Then I click EditUpdate on Family Overview page for "Primary"
       Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
-      And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
+      And I enter my residential address "1234 Road", "Los Angeles", "CA", "90005", "LOS ANGELES"
       And I select "No" for mailing address option
       And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
-      And I select "Yes" for live in Colorado option
+      And I select "No" for live in Colorado option
       And I click continue on the Add info for yourself page
       Then I validate I am on the "Elmo Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity option for "Primary"
