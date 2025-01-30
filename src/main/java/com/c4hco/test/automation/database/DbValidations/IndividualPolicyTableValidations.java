@@ -137,9 +137,9 @@ public class IndividualPolicyTableValidations {
     }
 
     public void validateExchPersonIds() {
-        int exchPersonIdsSize = basicActions.getAllMem().size();
+        int memberSize = basicActions.getAllMem().size();
         List<String> PersonIds = exchDbDataProvider.getExchPersonIds();
-        softAssert.assertTrue(exchPersonIdsSize == PersonIds.size() && PersonIds.get(0).equals(PersonIds.get(1)), "EXCH_PERSON_IDs are not the same or the member count is not Same");
+        softAssert.assertTrue(memberSize == PersonIds.size() && PersonIds.get(0).equals(PersonIds.get(1)), "EXCH_PERSON_IDs are not the same or the member count is not Same");
         softAssert.assertAll();
     }
 
