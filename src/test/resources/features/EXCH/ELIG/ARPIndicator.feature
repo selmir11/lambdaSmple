@@ -1,6 +1,5 @@
 Feature: ARPIndicator
-@SLER-2074
-
+  @SLER-2074
 Scenario: A Application Normal Path ARP Indicator set to 0 - DB
 
   Given I open the login page on the "login" portal
@@ -71,7 +70,6 @@ Scenario: A Application Normal Path ARP Indicator set to 0 - DB
   And I wait for hold on content to disappear
   Then I click on "No Thanks" on good news page
   Then I validate I am on the "Application History" page
-  #  Then I validate that my APTC value is "$375.57/mo"
   Then I click on view results and shop
   Then I validate I am on the "Application Results" page
   Then I validate ARP Indicator is set correctly in DB
