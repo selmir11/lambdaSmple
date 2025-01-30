@@ -6,7 +6,7 @@ Feature: Testing will verify text and navigation for Family Overview page
     And I validate I am on the "Login" page
 
   @SLER-2050 @PageText
-  Scenario: SLER-2050 Verify the Family Overview page text in English and Spanish (RT-992)
+  Scenario: SLER-2050 Verify the Family Overview page text in English and Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -45,5 +45,7 @@ Feature: Testing will verify text and navigation for Family Overview page
 
     Then I validate I am on the "Family Overview" page
     Then I validate the "English" text on the family overview page
+    #And I change the language from header to "Spanish NonElmo"
     #Then I validate the "Spanish" text on the family overview page
-    Then I click on Sign Out in the Header for "CaseId Page"
+    #And I change the language from header to "English NonElmo"
+    Then I click on Sign Out in the Header for "Household Page"
