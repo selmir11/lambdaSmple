@@ -363,7 +363,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-2072 @PageTextEmploymentIncome @wip
+  @SLER-2072 @PageTextEmploymentIncome
   Scenario: SLER-2072-ELIG-Income-Page Text(RT-995)
     Then I Verify the page text on Employment Income page, which is in initial state with the language "English"
       |Income:|
@@ -387,31 +387,133 @@ Feature: Page Text-Income Opt Out Page
       |Is this job self-employment?                    |
       |Yes                                             |
       |No                                              |
-    And I refresh the page
-   # And I select the option "Yes" to self employment
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I Verify the page text on Employment Income page, which is in initial state with the language "Spanish"
-      |Ingresos:|
-      |Ingresos por empleo|
-      |¿Tiene un trabajo o empleo actualmente?|
-      |Sí                                     |
-      |No                                     |
-      |Volver                                 |
-      |Guardar y continuar                    |
-      |Ayuda                                  |
-    Then I select the option "Yes" to employment
-    Then I Verify the page text on Employment Income page after clicking yes to employment in "Spanish" language
-      |Ingresos:|
-      |Ingresos por empleo|
-      |¿Tiene un trabajo o empleo actualmente?|
-      |Sí                                     |
-      |No                                     |
-      |Volver                                 |
-      |Guardar y continuar                    |
-      |Ayuda                                  |
-      |¿Este trabajo es por cuenta propia?    |
-      |Sí                                     |
-      |No                                     |
+    And I select the option "Yes" to self employment
+    Then I Verify the page text in "English" on Employment Income page after clicking yes to self employment question
+      |Income:|
+      |Employment Income|
+      |Do you have a job or are you currently employed?|
+      |Yes                                             |
+      |No                                              |
+      |Go back                                         |
+      |Save and continue                               |
+      |Help                                            |
+      |Is this job self-employment?                    |
+      |Yes                                             |
+      |No                                              |
+      |Company Name (Company or job name can be informal. They are for reference only.)|
+      |What is your current net income from this company or job?                       |
+      |Enter profit once expenses are paid.                                            |
+      |amount                                                                          |
+      |Select Option                                                                   |
+      |Will this income be the same or lower next year?                                |
+      |Yes                                                                             |
+      |No                                                                              |
+     And I select the option "No" to self employment
+     Then I Verify the page text in "English" on Employment Income page after clicking No to self employment question
+       |Income:|
+       |Employment Income|
+       |Do you have a job or are you currently employed?|
+       |Yes                                             |
+       |No                                              |
+       |Go back                                         |
+       |Save and continue                               |
+       |Help                                            |
+       |Is this job self-employment?                    |
+       |Yes                                             |
+       |No                                              |
+       |Company Name (Company or job name can be informal. They are for reference only.)|
+       |amount                                                                          |
+       |Select Option                                                                   |
+       |Will this income be the same or lower next year?                                |
+       |Yes                                                                             |
+       |No                                                                              |
+       |Address Line 1                                                                  |
+       |Address Line 2 (optional)                                                       |
+       |City                                                                            |
+       |State                                                                           |
+       |Select Option                                                                   |
+       |Zip Code                                                                        |
+       |What is your current gross income from this company or job?                     |
+       |Include commission or tips earned.                                              |
+       |Is this income part of seasonal, commission, or tip based employment?           |
+       |Yes                                                                             |
+       |No                                                                              |
+     And I refresh the page
+     And I change the language from Elmo header to "Spanish" if it isn't already in that language
+     Then I Verify the page text on Employment Income page, which is in initial state with the language "Spanish"
+        |Ingresos:|
+        |Ingresos por empleo|
+        |¿Tiene un trabajo o empleo actualmente?|
+        |Sí                                     |
+        |No                                     |
+        |Volver                                 |
+        |Guardar y continuar                    |
+        |Ayuda                                  |
+     Then I select the option "Yes" to employment
+     Then I Verify the page text on Employment Income page after clicking yes to employment in "Spanish" language
+        |Ingresos:|
+        |Ingresos por empleo|
+        |¿Tiene un trabajo o empleo actualmente?|
+        |Sí                                     |
+        |No                                     |
+        |Volver                                 |
+        |Guardar y continuar                    |
+        |Ayuda                                  |
+        |¿Este trabajo es por cuenta propia?    |
+        |Sí                                     |
+        |No                                     |
+     Then I select the option "Yes" to self employment
+     Then I Verify the page text in "Spanish" on Employment Income page after clicking yes to self employment question
+        |Ingresos:|
+        |Ingresos por empleo|
+        |¿Tiene un trabajo o empleo actualmente?|
+        |Sí                                     |
+        |No                                     |
+        |Volver                                 |
+        |Guardar y continuar                    |
+        |Ayuda                                  |
+        |¿Este trabajo es por cuenta propia?    |
+        |Sí                                     |
+        |No                                     |
+        |Nombre de la empresa (El nombre de la empresa o del trabajo puede ser informal. Son solo para referencia.)|
+        |¿Cuál es su ingreso neto actual de esta empresa o trabajo?|
+        |Ingresar ganancias una vez que se pagan los gastos.|
+        |cantidad|
+        |Seleccionar opción|
+        |¿Espera que ese ingreso se mantenga igual o que baje el próximo año?|
+        |Sí                                     |
+        |No                                     |
+    And I select the option "No" to self employment
+    Then I Verify the page text in "Spanish" on Employment Income page after clicking No to self employment question
+        |Ingresos:|
+        |Ingresos por empleo|
+        |¿Tiene un trabajo o empleo actualmente?|
+        |Sí                                     |
+        |No                                     |
+        |Volver                                 |
+        |Guardar y continuar                    |
+        |Ayuda                                  |
+        |¿Este trabajo es por cuenta propia?    |
+        |Sí                                     |
+        |No                                     |
+        |Nombre de la empresa (El nombre de la empresa o del trabajo puede ser informal. Son solo para referencia.)|
+        |cantidad|
+        |Seleccionar opción|
+        |¿Espera que ese ingreso se mantenga igual o que baje el próximo año?|
+        |Sí|
+        |No|
+        |Domicilio 1|
+        |Domicilio 2|
+        |Ciudad|
+        |Estado|
+        |Seleccionar opción|
+        |Código postal|
+        |¿Cuál es su ingreso bruto actual de esta empresa o trabajo?|
+        |Incluir la comisión o las propinas ganadas.|
+        |¿Este ingreso es parte de un trabajo temporal, por comisiones o por propinas?|
+        |Sí                                     |
+        |No                                     |
+    And I click on Sign Out in the Header for "Elmo"
 
 
     

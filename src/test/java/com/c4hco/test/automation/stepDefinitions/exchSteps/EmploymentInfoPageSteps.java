@@ -97,4 +97,16 @@ public class EmploymentInfoPageSteps {
         employmentInfoPage.verifyTextOnIncomePageAfterClickingYesToEmploymentQuestion(language,dataText);
     }
 
+    @Then("I Verify the page text in {string} on Employment Income page after clicking yes to self employment question")
+    public void iVerifyTextOnIncomePageAfterSelectingYesToSelfEmployment(String language,List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnIncomePageAfterClickingYesToSelfEmploymentQuestion(language,dataText);
+    }
+
+    @Then("I Verify the page text in {string} on Employment Income page after clicking No to self employment question")
+    public void iVerifyTextOnIncomePageAfterSelectingNoToSelfEmployment(String language,List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnIncomePageAfterClickingNoToSelfEmploymentQuestion(language,dataText);
+    }
+
 }
