@@ -89,6 +89,9 @@ public class ImmigrationStatusPage {
     @FindBy(css = "*[role='presentation']")
     List<WebElement> helpDrawerHelpText;
 
+    @FindBy(id = "livedSince1996-error")
+    WebElement errorLivedSince1996;
+
 
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
         switch(YNLawfulPermanentResident){
@@ -288,6 +291,30 @@ public class ImmigrationStatusPage {
     public void validateLivedInUSSince1996HelpTextVerbiageSp() {
         basicActions.waitForElementToBePresent(helpDrawerHelpText.get(2),20);
         softAssert.assertEquals(helpDrawerHelpText.get(2).getText(), "Vivido en Estados Unidos desde 1996\nLas personas con ciertos estatus migratorios est\u00E1n sujetas a un per\u00EDodo de espera de 5 a\u00F1os antes de que puedan calificar a Medicaid. Las personas que ingresaron a los EE. UU. de manera legal antes de 1996 no est\u00E1n sujetas a este per\u00EDodo de espera de 5 a\u00F1os. Personas con un estatus que no est\u00E1 sujeto a este per\u00EDodo de espera de 5 a\u00F1os deben responder \u201Cno\u201D a esta pregunta. Esto incluye a personas con el estatus de Acci\u00F3n Diferida para los Llegados en la Infancia (DACA).");
+        softAssert.assertAll();
+    }
+
+    public void verifyErrorMessageLivedSince1996(String language) {
+        basicActions.waitForElementToBePresent(errorLivedSince1996, 10);
+        switch (language) {
+            case "English":
+                verifyErrorMessageLivedSince1996English();
+                break;
+            case "Spanish":
+                verifyErrorMessageLivedSince1996Spanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+    }
+
+    public void verifyErrorMessageLivedSince1996English() {
+        softAssert.assertEquals(errorLivedSince1996.getText(), "Please select one of the options below");
+        softAssert.assertAll();
+    }
+
+    public void verifyErrorMessageLivedSince1996Spanish() {
+        softAssert.assertEquals(errorLivedSince1996.getText(), "Seleccione una de las opciones siguientes");
         softAssert.assertAll();
     }
 }
