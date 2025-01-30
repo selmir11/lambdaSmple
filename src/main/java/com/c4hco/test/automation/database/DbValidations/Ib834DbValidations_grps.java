@@ -136,7 +136,7 @@ public class Ib834DbValidations_grps {
     }
 
     private void validateMedDenForSubscriberAndMem(Ib834Entity ib834Entity, MemberDetails member){
-        softAssert.assertEquals(String.valueOf(member.getAccount_id()),ib834Entity.getSsap_id(), "Account id and ssap_id mismatch" );
+        softAssert.assertEquals(String.valueOf(SharedData.getPrimaryMember().getAccount_id()),ib834Entity.getSsap_id(), "Account id and ssap_id mismatch" );
         softAssert.assertEquals(member.getPrior_subscriber_id(), ib834Entity.getPrior_subscriber_id(), "Prior subscriber id did not match for "+member.getFirstName());
         softAssert.assertEquals(SharedData.getExchPersonId().get(member.getFirstName()), ib834Entity.getMember_id(), "Member Id did not match for "+member.getFirstName());
         validateSubscriberId(ib834Entity, member);
