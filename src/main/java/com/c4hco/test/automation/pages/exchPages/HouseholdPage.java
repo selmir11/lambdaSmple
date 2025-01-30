@@ -105,8 +105,7 @@ public class HouseholdPage {
     @FindBy(xpath = "//*[contains(text(),'Incompleta')]")
     WebElement getInCompleteTextSP;
 
-    //@FindBy(xpath="//input[@id='submitButton_AddMember']")
-    @FindBy(xpath = "//html[1]/body[1]/div[2]/div[3]/form[1]/div[1]/p[1]/input[1]")
+    @FindBy(xpath="//input[@id='submitButton_AddMember']")
     WebElement getAdditionalMemberText;
 
     @FindBy(xpath="//input[@id='submitButton_AddMember']")
