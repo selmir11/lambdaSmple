@@ -53,6 +53,7 @@ public class Ib834DbValidations_grps {
 
     private void ib834MedRecordsValidations(List<Map<String, String>> expectedValues){
         for (Ib834Entity ib834Entity : ib834MedEntities) {
+            System.out.println("Validating the entity for ::::"+ib834Entity.getMember_first_name());
             if (ib834Entity.getSubscriber_indicator().equals("Y")) {
                 for(MemberDetails subscriber: subscribers){
                     setMedicalFileName(ib834Entity);
@@ -72,16 +73,6 @@ public class Ib834DbValidations_grps {
         softAssert.assertAll();
     }
 
-
-    private void validateDenForMem(Ib834Entity ib834Entity, List<Map<String, String>> expectedValues){
-        List<MemberDetails> members = basicActions.getAllDependents();
-        for(MemberDetails member: members){
-            if(member.getFirstName().equals(ib834Entity.getMember_first_name())){
-                denValidationsCommonForAllMembers(ib834Entity, expectedValues, member);
-            }
-        }
-    }
-
     private void ib834DenRecordsValidations(List<Map<String, String>> expectedValues){
         for (Ib834Entity ib834Entity : ib834DenEntities) {
             if (ib834Entity.getSubscriber_indicator().equals("Y")) {
@@ -90,15 +81,15 @@ public class Ib834DbValidations_grps {
                     if(subscriber.getFirstName().equals(ib834Entity.getMember_first_name())){
                         subscriberOnlyMedDenFields(ib834Entity, subscriber);
                         validateMedDenForSubscriberAndMem(ib834Entity, subscriber);
-                        denValidationsCommonForAllMembers(ib834Entity, expectedValues, subscriber);
                         break;
                     }
                 }
             } else {
                 validateDependentMedDenDetails(ib834Entity);
-                validateDenForMem(ib834Entity,expectedValues);
             }
             medDenValidationsCommonForAllMem(ib834Entity);
+            denValidationsCommonForAllMembers(ib834Entity, expectedValues);
+
         }
         softAssert.assertAll();
     }
@@ -321,14 +312,14 @@ public class Ib834DbValidations_grps {
         SharedData.setMedGroupCtlNumbers(medGrpCtrlNums);
     }
 
-    private void denValidationsCommonForAllMembers(Ib834Entity ib834Entity, List<Map<String, String>> expectedValues, MemberDetails member) {
+    private void denValidationsCommonForAllMembers(Ib834Entity ib834Entity, List<Map<String, String>> expectedValues) {
+        MemberDetails member = basicActions.getMember(ib834Entity.getMember_first_name());
         String name = getName(ib834Entity, member);
         getDentalPlanDbDataMap(name);
         String formatPlanStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyStartDate().replaceAll("-", "");
         String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyEndDate().replaceAll("-", "");
         String formatedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
 
-        SharedData.setDenGroupCtlNumber(ib834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ib834Entity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId(), "Dental Hios id did not match!");
         softAssert.assertEquals(ib834Entity.getInsurer_name(), dentalPlanDbDataMap.get(name).getIssuerName(), "Dental Insurer Name did not match!");
         softAssert.assertEquals(ib834Entity.getInsurer_id(), dentalPlanDbDataMap.get(name).getIssuerId(), "Dental Insurer Id did not match!");
@@ -338,6 +329,7 @@ public class Ib834DbValidations_grps {
         softAssert.assertEquals(ib834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
 
         validateDetailsFromStep(ib834Entity, expectedValues.get(0));
+        setGrpCtrlNums(ib834Entity.getGroup_ctrl_number());
     }
 
     private void medDenValidationsCommonForAllMem(Ib834Entity ib834Entity) {
