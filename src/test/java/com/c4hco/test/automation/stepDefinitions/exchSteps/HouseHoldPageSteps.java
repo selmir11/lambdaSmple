@@ -42,6 +42,9 @@ public class HouseHoldPageSteps {
 
     @Then("I validate no errors are displayed on family overview page")
     public void iValidateNoErrosDisplayed() {houseHoldPage.verifyNoErrorMessage_Household();}
+
+    @Then("I verify {string} information on household page")
+    public void iVarifyAnnualFinancialInfo(String financialInfo) {houseHoldPage.verifyAnnualFinancialInformation(financialInfo);}
 }
 
 

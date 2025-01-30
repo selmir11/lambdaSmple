@@ -699,7 +699,15 @@ public String policyTablesCombinedQuery(String coverageType){
                 "Where esh.account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'";
     }
 
-
+    public String getArpIndicator() {
+        return "Select ES.arp_quick_submit_ind\n" +
+                "FROM " +dbName + ".ES_HOUSEHOLD ESH, "+dbName+".ES_MEMBER ESM, "+dbName+".es_submission es \n" +
+                "WHERE ESH.HOUSEHOLD_ID = ESM.HOUSEHOLD_ID\n" +
+                "and ESH.household_id = es.household_id \n" +
+                "AND ESH.ACCOUNT_ID = '"+acctId+"'\n" +
+                "order by es.updated_ts desc \n" +
+                "limit 1";
+    }
 
 
 }
