@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class IndividualPolicyTableValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
     //en policy table validations
+    BasicActions basicActions = new BasicActions();
     public void validateEnPolicyTableDetails() {
         List<EnPolicyAhEntity> EnPolicyEntities = exchDbDataProvider.getEnPolicyAh_details();
         DbData dbData = SharedData.getDbData();
@@ -133,5 +135,19 @@ public class IndividualPolicyTableValidations {
         softAssert.assertEquals(esMemberHouseholdEntities.get(0).getExch_person_id_review_status(), "MANUAL_REVIEW_REQUIRED", "Status is not Manual Review Required");
         softAssert.assertAll();
     }
+
+    public void validateExchPersonIds() {
+        int exchPersonIdsSize = basicActions.getAllMem().size();
+        List<String> PersonIds = exchDbDataProvider.getExchPersonIds();
+        softAssert.assertTrue(exchPersonIdsSize == PersonIds.size() && PersonIds.get(0).equals(PersonIds.get(1)), "EXCH_PERSON_IDs are not the same or the member count is not Same");
+        softAssert.assertAll();
+    }
+
+    public void validateArpIndicator() {
+        String arpIndicatorDB = exchDbDataProvider.getArpIndicator();
+        softAssert.assertEquals(arpIndicatorDB, "0");
+        softAssert.assertAll();
+    }
+
 
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,6 +16,7 @@ import java.util.List;
 public class QlceConfirmationPage {
 
     private BasicActions basicActions;
+    SoftAssert softAssert = new SoftAssert();
 
     public QlceConfirmationPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -98,6 +100,85 @@ public class QlceConfirmationPage {
     WebElement noneOfTheseLCE;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
+
+    @FindBy(css = "h1.c4PageHeader")
+    WebElement textReportLifeChangeHeader;
+
+    @FindBy(css = "h1.c4PageSubTitle")
+    WebElement textLifeChangeSubTitle;
+
+    @FindBy(css = "#overviewButton")
+    WebElement lnkHelpLink;
+
+    @FindBy(css = ".drawer-heading h4")
+    WebElement textHelpDrawerHeader;
+
+    @FindBy(id = "pregnancyStatus")
+    WebElement pregnancyLCE;
+
+    @FindBy(id = "changeOfIncomeOrJob")
+    WebElement changeOfIncomeOrJobLCE;
+
+    @FindBy(xpath = "//span[contains(@class,'c4BodyText1')]")
+    List<WebElement> textLceLable;
+
+    @FindBy(xpath = "//*[@class='pregnancyStatus row form-group']//span[1]")
+    List<WebElement> PregancyText;
+
+    @FindBy(xpath = "//*[@class='death row form-group']//span")
+    List<WebElement> DeathText;
+
+    @FindBy(xpath = "//*[@class='divorce row form-group']//span")
+    List<WebElement> DivorceText;
+
+    @FindBy(xpath = "//*[@class='changeOfAddress row form-group']//span")
+    List<WebElement> changeOfAddressText;
+
+    @FindBy(xpath = "//*[@class='changeOfIncomeOrJob row form-group']//span")
+    List<WebElement> changeOfIncomeOrJobText;
+
+    @FindBy(xpath = "//*[@class='enrollmentUpdate row form-group']//span")
+    List<WebElement> GainofCoverage;
+
+    @FindBy(xpath = "//*[@class='loseOrLostHealthInsurance row form-group']//span")
+    List<WebElement> loseOrLostHealthInsuranceText;
+
+    @FindBy(xpath = "//*[@class='gainedLawfulPresence row form-group']//span")
+    List<WebElement> gainedLawfulPresenceText;
+
+    @FindBy(xpath = "//*[@class='changeOnIncarcerationStatus row form-group']//span")
+    List<WebElement> changeOnIncarcerationStatus;
+
+    @FindBy(xpath = "//*[@class='gainOfAIANStatus row form-group']//span")
+    List<WebElement> gainOfAIANStatusText;
+
+    @FindBy(xpath = "//*[@class='taxTimeEnrollmentPeriod row form-group']//span")
+    List<WebElement> taxTimeEnrollmentPeriodText;
+
+    @FindBy(xpath = "//*[@class='noneOfThese row form-group']//span")
+    List<WebElement> noneOfTheseText;
+
+    @FindBy(xpath = "//*[@class='marriage row form-group']//span")
+    List<WebElement> MarriageText;
+
+    @FindBy(xpath = "//*[@class='birth row form-group']//span")
+    List<WebElement> BirthText;
+
+    @FindBy(xpath = " //input[contains(@class,'input-checkbox')]")
+    List<WebElement> AllcheckboxQLCE;
+
+    @FindBy(xpath = " //*[@class='form-control eventDate']")
+    List<WebElement> EventDateQLCE;
+
+    @FindBy(xpath = " //*[@class='form-control day60Date']")
+    List<WebElement> EventDateQLCELossorChangeIncar;
+
+   @FindBy(xpath = " //p[@class='c4BodyText2']")
+    List<WebElement> PregancyImportantTitle;
+
+    @FindBy(xpath = "//p[@class='c4BodyText1']")
+    List<WebElement> PregancyAddtionalText;
+
 
     public String getCurrentDate() {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -194,11 +275,12 @@ public class QlceConfirmationPage {
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
-    public void selectBirthLCE(){
+
+    public void selectBirthLCE() {
         basicActions.waitForElementToBeClickable(birthQLCE, 10);
-        String newbornFullName =basicActions.getFullNameWithPrefix(SharedData.getBirthLceIndividual());
+        String newbornFullName = basicActions.getFullNameWithPrefix(SharedData.getBirthLceIndividual());
         birthQLCE.click();
-        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//span[contains(text(),'"+newbornFullName+"')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
+        WebElement birthLceMemCheckbox = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + newbornFullName + "')]/parent::label/preceding-sibling::input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]"));
         birthLceMemCheckbox.click();
         birthEventDate.stream()
                 .filter(WebElement::isDisplayed)
@@ -207,9 +289,124 @@ public class QlceConfirmationPage {
     }
 
 
-
     public void saveAndContinue() {
         saveAndContinue.click();
     }
+
+    public void validateTheVerbiageOnTellUsAboutLifeChangesPage(List<String> data) {
+        softAssert.assertEquals(textReportLifeChangeHeader.getText(), data.get(0), "Qlce header text mismatch");
+        softAssert.assertEquals(textLifeChangeSubTitle.getText(), data.get(1), "Life change subtitle text mismatch");
+        softAssert.assertEquals(lnkHelpLink.getText(), data.get(2), "Help me understand this page link text mismatch");
+        //Selecting all checkboxes on the page
+        for (int Clickcheckbox = 0; Clickcheckbox < AllcheckboxQLCE.size() - 1; Clickcheckbox++) {
+            WebElement CheckBox = AllcheckboxQLCE.get(Clickcheckbox);
+            CheckBox.click();
+        }
+        validateEachQLCEVerbiage(data); //Calling each LCE Types
+    }
+
+    void validateEachQLCEVerbiage(List<String> data) {
+        BirthTextValidate(data);
+        PregnancyTextValidate(data);
+        MarriageTextValidate(data);
+        DivorceTextValidate(data);
+        DeathTextValidate(data);
+        ChangeofprimaryresidenceTextValidate(data);
+        ChangeofincomeorjobTextValidate(data);
+        EnrollmentfutureExistingHealthInsuranceTextValidate(data);
+        LossOfCoverageTextValidate(data);
+        GainedEligibleImmigrationstatusTextValidate(data);
+        ChangeIncarcerationStatusTextValidate(data);
+        GainofAmericanIndianAlaskanNativeTextValidate(data);
+        TaxTimeEnrollmentPeriodTextValidate(data);
+        softAssert.assertEquals(noneOfTheseText.get(0).getText(),data.get(16), "None of these text not match");
+        softAssert.assertAll();
+    }
+    void subcontentTextValidate(List<WebElement> Name,List<String>data) {
+        softAssert.assertEquals(Name.get(1).getText(), data.get(17),"Who does this change apply to? Text not match");
+        softAssert.assertEquals(Name.get(2).getText(), "" + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(Name.get(3).getText(), data.get(18),"Event Date text not match");
+    }
+
+    void BirthTextValidate(List<String>data) {
+        softAssert.assertEquals(BirthText.get(0).getText(), data.get(3),"BirthText not match");
+        subcontentTextValidate(BirthText,data);
+        softAssert.assertEquals(EventDateQLCE.get(0).getAttribute("placeholder"), "mm/dd/yyyy","Placeholer Text not match");
+    }
+
+    void PregnancyTextValidate(List<String>data) {
+        softAssert.assertEquals(PregancyText.get(0).getText(),  data.get(4),"Pregnancy Text not match");
+        softAssert.assertEquals(PregancyText.get(1).getText(), data.get(17),"who does this change text not match");
+        softAssert.assertEquals(PregancyImportantTitle.get(0).getText(),data.get(21),"IMPORTANT Text not match");
+        softAssert.assertEquals(PregancyAddtionalText.get(0).getText(),data.get(22),"Text not macth");
+        softAssert.assertEquals(PregancyAddtionalText.get(1).getText(), data.get(23),"Text not macth");
+     }
+
+    void MarriageTextValidate(List<String> data) {
+        softAssert.assertEquals(MarriageText.get(0).getText(),data.get(5),"Marriage Text not match");
+        subcontentTextValidate(MarriageText,data);
+        softAssert.assertEquals(EventDateQLCE.get(1).getAttribute("placeholder"), "mm/dd/yyyy","Placeholer Text not match");
+     }
+
+    void DivorceTextValidate(List<String> data) {
+        softAssert.assertEquals(DivorceText.get(0).getText(), data.get(6),"Divorce Text not match");
+        subcontentTextValidate(DivorceText,data);
+        softAssert.assertEquals(EventDateQLCE.get(2).getAttribute("placeholder"), "mm/dd/yyyy","Placeholer Text not match");
+      }
+
+    void DeathTextValidate(List<String> data) {
+        softAssert.assertEquals(DeathText.get(0).getText(),data.get(7),"Death Text not match");
+        softAssert.assertEquals(DeathText.get(1).getText(), data.get(17),"who does this change text not match");
+      }
+    void ChangeofprimaryresidenceTextValidate(List<String>data) {
+         softAssert.assertEquals(changeOfAddressText.get(0).getText(),data.get(8),"Change of primary residence Text not match");
+        subcontentTextValidate(changeOfAddressText,data);
+        softAssert.assertEquals(changeOfAddressText.get(5).getText(), data.get(20),"Move to Colorado Text not match");
+        softAssert.assertEquals(EventDateQLCE.get(3).getAttribute("placeholder"), "mm/dd/yyyy","Placeholer Text not match");
+      }
+
+    void ChangeofincomeorjobTextValidate(List<String>data) {
+
+        softAssert.assertEquals(changeOfIncomeOrJobText.get(0).getText(),data.get(9), "Change of income or job Text not match");
+        subcontentTextValidate(changeOfIncomeOrJobText,data);
+        softAssert.assertEquals(EventDateQLCE.get(4).getAttribute("placeholder"), "mm/dd/yyyy","Placeholer Text not match");
+       }
+
+    void EnrollmentfutureExistingHealthInsuranceTextValidate(List<String>data) {
+
+        softAssert.assertEquals(GainofCoverage.get(0).getText(),data.get(10), "Enrollment in future or existing health insurance Text not match");
+        subcontentTextValidate(GainofCoverage,data);
+        softAssert.assertEquals(EventDateQLCE.get(5).getAttribute("placeholder"), "mm/dd/yyyy","Placeholder Text not match");
+      }
+    void LossOfCoverageTextValidate(List<String>data) {
+
+        softAssert.assertEquals(loseOrLostHealthInsuranceText.get(0).getText(),data.get(11), "Lost Health insurance Text not match");
+        softAssert.assertEquals(loseOrLostHealthInsuranceText.get(1).getText(),data.get(17));
+        softAssert.assertEquals(loseOrLostHealthInsuranceText.get(2).getText(), "" + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(loseOrLostHealthInsuranceText.get(3).getText(),data.get(19),"Event Date Text not match");
+        softAssert.assertEquals(EventDateQLCELossorChangeIncar.get(0).getAttribute("placeholder"), "mm/dd/yyyy","Placeholder Text not match");
+      }
+    void GainedEligibleImmigrationstatusTextValidate(List<String>data) {
+
+        softAssert.assertEquals(gainedLawfulPresenceText.get(0).getText(),data.get(12), "Gained Eligible Immigration status Text not match");
+        subcontentTextValidate(gainedLawfulPresenceText,data);
+        softAssert.assertEquals(EventDateQLCE.get(6).getAttribute("placeholder"), "mm/dd/yyyy","Placeholder Text not match");
+       }
+    void ChangeIncarcerationStatusTextValidate(List<String>data) {
+
+        softAssert.assertEquals(changeOnIncarcerationStatus.get(0).getText(),data.get(13), "Incarceration text  not match");
+        subcontentTextValidate(changeOnIncarcerationStatus,data);
+        softAssert.assertEquals(EventDateQLCELossorChangeIncar.get(1).getAttribute("placeholder"), "mm/dd/yyyy","Placeholder Text not match");
+     }
+    void GainofAmericanIndianAlaskanNativeTextValidate(List<String>data) {
+
+        softAssert.assertEquals(gainOfAIANStatusText.get(0).getText(),data.get(14), "American Indian/Alaskan Native Text  not match");
+        subcontentTextValidate(gainOfAIANStatusText,data);
+        softAssert.assertEquals(EventDateQLCE.get(7).getAttribute("placeholder"), "mm/dd/yyyy","Placeholder Text not match");
+     }
+    void TaxTimeEnrollmentPeriodTextValidate(List<String>data) {
+        softAssert.assertEquals(taxTimeEnrollmentPeriodText.get(0).getText(),data.get(15), "American Indian/Alaskan Native Text not match");
+     }
+
 
 }

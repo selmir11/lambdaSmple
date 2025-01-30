@@ -237,6 +237,7 @@ Feature: Page Text-Welcome Page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I change the language from header to "Spanish"
+    Then I wait for 50 milliseconds
     Then I validate CAC Screener banner text on welcome page in "Spanish"
     And I select take a short quiz on welcome page
     Then I validate I am on the "CAC Screener" page

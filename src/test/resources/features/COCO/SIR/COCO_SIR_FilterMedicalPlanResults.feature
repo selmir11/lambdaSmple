@@ -83,10 +83,10 @@ Feature: Verify COCO Medical Plan results
       | Select Health                       | Select Health Value Colorado Option Silver Enhanced 94% Off Exchange |
 
   @SLCR-272
-  Scenario: SLCR-272  Verify top sorting tool for premium and deductible
+  Scenario: SLCR-272  Adult - Verify top sorting tool for premium and deductible
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation
+    And I enter general mandatory data for "coco" account creation
 
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
@@ -101,7 +101,7 @@ Feature: Verify COCO Medical Plan results
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
 
-    Then I enter details on tell us about yourself page and continue with "01162005", "Female", and applying "Yes"
+    Then I enter details on tell us about yourself page and continue with "01161995", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
@@ -543,7 +543,7 @@ Feature: Verify COCO Medical Plan results
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife,UnrelatedOne,UnrelatedTwo" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife,UnrelatedOne,UnrelatedTwo,UnrelatedThree" coco
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
