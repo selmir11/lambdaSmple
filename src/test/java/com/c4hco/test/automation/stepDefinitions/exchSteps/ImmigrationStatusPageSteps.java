@@ -52,5 +52,7 @@ public class ImmigrationStatusPageSteps {
     @Then("I validate Lawful Presence help drawer Five-Year Bar page {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language){ImmigrationStatusPage.validateHelpVerbiage(helpText, language);}
 
+    @Then("I validate lived since 1996 error message on the Five-Year Bar page in {string}")
+    public void verifyErrorMessageLivedInUSSince1996(String Language) { ImmigrationStatusPage.verifyErrorMessageLivedSince1996(Language); }
 
 }
