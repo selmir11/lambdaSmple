@@ -79,6 +79,7 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
@@ -111,7 +112,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -122,7 +123,8 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
-    Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
+    And I get the memberId of primary member from url
+    Then I enter details on tell us about yourself page and continue with "11282000", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
@@ -155,6 +157,27 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on start shopping page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "Application Results" link on welcome page
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate open enrollment ended pop up in "English"
+    And I click close on open enrollment ended pop up modal
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -165,10 +188,11 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Los ANgeles", "CA", "90005", "LOS ANGELES"
     And I select "No" for mailing address option
-    And I enter my mailing address "101 Coco Drive", "Los ANgeles", "CA", "90005", "LOS ANGELES"
+    And I enter my mailing address "101 Coco Drive", "Los Angeles", "CA", "90005", "LOS ANGELES"
     And I select "No" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
@@ -197,7 +221,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    And I verify the application result details in DB as "OFF_EXCHANGE_NOT_ELIGIBLE" for "Primary"
+    And I verify the application result details in DB as "OFF_EXCHANGE_NOT_ELIGIBLE" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -260,6 +284,7 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
@@ -293,8 +318,8 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
 
-    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
-    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
+    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "getFromSharedData"
+    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -344,6 +369,7 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -373,7 +399,7 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
-    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
+    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "getFromSharedData"
     Then I validate I am on the "Application Results CoCo" page
     Then I verify text that the member qualifies for SES and no spots are available in "English" on the App Results Page CoCo
     And I click Continue on the Application Results Page CoCo
@@ -388,6 +414,7 @@ Feature: Coco user on the Application results page
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
@@ -427,7 +454,7 @@ Feature: Coco user on the Application results page
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
+    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "getFromSharedData"
 
 @SLCR-684
 Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results page (eligible Spanish text)
@@ -542,6 +569,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       Then I validate I am on the "Find Expert Help" page
       And I click Continue on my own button from Manage who helps you page
       Then I click EditUpdate on Family Overview page for "Primary"
+      And I get the memberId of primary member from url
       And I enter details on tell us about yourself page and continue with "01011991", "Male", and applying "Yes"
       And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
       And I select "Yes" for mailing address option
@@ -576,6 +604,6 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       Then I validate I am on the "Application Results CoCo" page
       Then I validate the text on the application results page coco
       And I click Continue on the Application Results Page CoCo
-      And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+      And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "getFromSharedData"
       And I click on Sign Out in the Header for "Elmo"
       Then I validate I am on the "Login" page

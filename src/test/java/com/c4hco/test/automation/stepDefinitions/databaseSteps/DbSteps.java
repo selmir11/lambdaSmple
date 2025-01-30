@@ -302,7 +302,13 @@ public class DbSteps {
     public void iValidateExchPersonIds() {policyTableValidations.validateExchPersonIds();
     }
 
+    @Then("I validate ARP Indicator is set correctly in DB")
+    public void iValidateArpIndicator() {policyTableValidations.validateArpIndicator();}
 
+    @And("I Validate enrollment period end date is set to {int} days from current date of the admin LCE being processed")
+    public void validateEnrolmentEndDate(int enrollmentEndDate) {
+        dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate);
+    }
 
 }
 

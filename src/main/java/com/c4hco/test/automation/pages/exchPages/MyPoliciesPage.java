@@ -139,40 +139,28 @@ public class MyPoliciesPage {
 
 
             //WebElements
-            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Plan Start Date:')]/following-sibling::*"));
+            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
+            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
+            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
+            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
+            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
+            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
-            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Plan End Date:')]/following-sibling::*"));
-
-            WebElement monthlyPremium = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Monthly Premium')]/following-sibling::*"));
-
-            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),' After ')]/following-sibling::*"));
-
-            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Financial Help')]"));
-
-            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Exchange Policy Number:')]/parent::*/following-sibling::*/*"));
-
-            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Last Updated On:')]/../following-sibling::*/*"));
-
-            WebElement applicableFrom = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Applicable From:')][last()]"));
+            //DateConversion
+            String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecEndDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanEndDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecLastUpdatedDate = basicActions.changeDateFormat(lastUpdated,"MM/dd/yyyy","MM/dd/yy");
 
             //validation
-            softAssert.assertEquals(planStartDate.getText(),(SharedData.getPrimaryMember().getDentalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(planEndDate.getText(),(SharedData.getPrimaryMember().getDentalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(monthlyPremium.getText().replace("$","").replace(",", ""),(member.getDentalPremiumAmt()), "Dental Premium mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo","").replace(",", ""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(aptc.getText().replace(" Financial Help","").replace(",", ""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planStartDate.getText().replace(" -",""),expecStartDate, "Start Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planEndDate.getText(),expecEndDate, "End Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace(" /month","").replace(",", ""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(aptc.getText().replace(".00 financial help","").replace(",", ""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
 
             Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
             member.setMedicalEapid_db(denEapidDb.get(member.getDenGroupInd()));
-            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
-
-            if(member.getIsSubscriber().equals("Y")){
-                WebElement subscriber = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Subscriber:')]/../following-sibling::*/*[contains(text(),'"+member.getFirstName()+"')]"));
-                softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
-            }
-
-            softAssert.assertEquals(lastUpdatedOn.getText(),(lastUpdated), "Last Updated On mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(SharedData.getPrimaryMember().getDentalPlanStartDate()), "Dental APTC amount mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
     }
@@ -182,42 +170,38 @@ public class MyPoliciesPage {
         for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
 
             //WebElements
-            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Plan Start Date:')]/following-sibling::*"));
+            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
+            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
+            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
+            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
+            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
+            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
-            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Plan End Date:')]/following-sibling::*"));
+            //DateConversion
+            String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecEndDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanEndDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecLastUpdatedDate = basicActions.changeDateFormat(lastUpdated,"MM/dd/yyyy","MM/dd/yy");
 
-            WebElement monthlyPremium = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Monthly Premium')]/following-sibling::*"));
-
-            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),' After ')]/following-sibling::*"));
-
-            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Financial Help')]"));
-
-            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Exchange Policy Number:')]/parent::*/following-sibling::*/*"));
-
-
-
-            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Last Updated On:')]/../following-sibling::*/*"));
-
-            WebElement applicableFrom = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[contains(text(),'Applicable From:')][last()]"));
 
             //validation
-            softAssert.assertEquals(planStartDate.getText(),(SharedData.getPrimaryMember().getMedicalPlanStartDate()), "Start Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(planEndDate.getText(),(SharedData.getPrimaryMember().getMedicalPlanEndDate()), "End Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(monthlyPremium.getText().replace("$","").replace(",",""),(member.getMedicalPremiumAmt()), "Medical Premium mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace("/mo","").replace(",", ""), member.getTotalMedAmtAfterReduction(), "Medical Premium after reduction mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(aptc.getText().replace(" Financial Help","").replace("$","").replace(",",""),(member.getMedicalAptcAmt()), "Medical APTC amount mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planStartDate.getText().replace(" -",""),expecStartDate, "Start Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planEndDate.getText(),expecEndDate, "End Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace(" /month","").replace(",", ""), member.getTotalMedAmtAfterReduction(), "Medical Premium after reduction mismatch for member: " + member.getFirstName());
+
+            String aptcValueNumeric = aptc.getText().replace(" financial help", "").replace("$", "").replace(",", "");
+
+            if(aptcValueNumeric.equalsIgnoreCase("0.00")){
+                aptcValueNumeric = "0";
+                softAssert.assertEquals(aptcValueNumeric,(member.getMedicalAptcAmt()), "Medical APTC amount mismatch for member: " + member.getFirstName());
+            }
+            else {
+                softAssert.assertEquals(aptcValueNumeric, (member.getMedicalAptcAmt()), "Medical APTC amount mismatch for member: " + member.getFirstName());
+            }
 
             Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
             member.setMedicalEapid_db(medEapidDb.get(member.getMedGroupInd()));
-            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText(), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
-
-            if(member.getIsSubscriber().equals("Y")){
-                WebElement subscriber = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4]//span[contains(text(),'Subscriber:')]/../following-sibling::*/*[contains(text(),'"+member.getFirstName()+"')]"));
-                softAssert.assertEquals(subscriber.getText(),(member.getSignature()), "Subscriber name mismatch for member: " + member.getFirstName());
-            }
-
-            softAssert.assertEquals(lastUpdatedOn.getText(),(lastUpdated), "Last Updated On mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(applicableFrom.getText().replace("Applicable From: ",""),(SharedData.getPrimaryMember().getMedicalPlanStartDate()), "Applicable From date is not-matched for member: " + member.getFirstName());
+            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
     }
