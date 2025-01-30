@@ -218,9 +218,6 @@ public class LifeChangeEventsCoCoPage {
 
     private void clickOneMemberLCE(String type, String member) {
         String element = LCE_TYPE_MAP.get(type);
-        if (element == null) {
-            throw new IllegalArgumentException("Invalid option: " + type);
-        }
         clickOneMember(member, element);
     }
 
