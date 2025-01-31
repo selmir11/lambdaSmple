@@ -32,15 +32,15 @@ public class COCO_Ob834PreEdiDbValidations {
     PlanDbData medicalDbData = new PlanDbData();
     List<PolicyTablesEntity> medicalPolicyEnitities = new ArrayList<>();
 
-    public void recordsValidations(String existedPolicy,List<Map<String, String>> expectedValues) {
-        setData(existedPolicy);
+    public void recordsValidations(List<Map<String, String>> expectedValues) {
+        setData(expectedValues);
         ob834MedRecordsValidations(expectedValues);
         softAssert.assertAll();
     }
 
-    private void setData(String existedPolicy) {
+    private void setData(List<Map<String, String>> expectedValues) {
         List<Ob834DetailsEntity> medicalOb834RecordsList = exchDbDataProvider.getOb834Details("HLT");
-        List<Ob834DetailsEntity> medicalOb834Records = medicalOb834RecordsList.stream().filter(record -> record.getMaintenance_type_code().equals(existedPolicy)).collect(Collectors.toList());
+        List<Ob834DetailsEntity> medicalOb834Records = medicalOb834RecordsList.stream().filter(record -> record.getMaintenance_type_code().equals(expectedValues.get(0).get("maintenance_type_code"))).collect(Collectors.toList());
         SharedData.setOb834DetailsMedEntities(medicalOb834Records);
 
         ob834DetailsMedEntities = SharedData.getOb834DetailsMedEntities();

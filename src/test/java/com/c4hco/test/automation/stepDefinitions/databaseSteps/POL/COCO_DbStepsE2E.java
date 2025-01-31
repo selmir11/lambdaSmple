@@ -13,9 +13,9 @@ public class COCO_DbStepsE2E {
     public void validateCOCOMedicalRecords(String policyStatus){
         policyTableDBValidations_coco.recordsValidations(policyStatus);
     }
-    @And("I validate Current {string} Medical entities from COCO pre edi db tables")
-    public void validateOb834MedicalRecords(String existedPolicy, List<Map<String, String>> expectedValues){
-        ob834PreEdiDbValidations_coco.recordsValidations(existedPolicy, expectedValues);
+    @And("I validate Current Medical entities from COCO pre edi db tables")
+    public void validateOb834MedicalRecords(List<Map<String, String>> expectedValues){
+        ob834PreEdiDbValidations_coco.recordsValidations(expectedValues);
     }
 
 }
