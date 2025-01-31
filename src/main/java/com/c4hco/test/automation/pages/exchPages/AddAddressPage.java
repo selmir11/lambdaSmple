@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,9 +18,12 @@ import java.util.Map;
 
 public class AddAddressPage {
     private BasicActions basicActions;
+
+    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     public AddAddressPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
+
     }
     @FindBy(css = ".container > div:nth-child(1)")
     WebElement headerAdditionalInfo;
@@ -402,16 +406,18 @@ public class AddAddressPage {
                 WebElement addressElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]"));
                MemberDetails member = basicActions.getMember(getMemberName());
                 Address residentialAddress = new Address();
-                residentialAddress.setAddressLine1(addressElement.getText().split(",")[0]);
-                residentialAddress.setAddressCity(addressElement.getText().split(",")[1]);
-                residentialAddress.setAddressState(addressElement.getText().split(",")[2]);
-                residentialAddress.setAddressZipcode(addressElement.getText().split(",")[4]);
-                residentialAddress.setAddressCounty(addressElement.getText().split(",")[3]);
+                residentialAddress.setAddressLine1(addressElement.getText().split(",")[0].trim());
+                residentialAddress.setAddressCity(addressElement.getText().split(",")[1].trim());
+                residentialAddress.setAddressState(addressElement.getText().split(",")[2].trim());
+                residentialAddress.setAddressZipcode(addressElement.getText().split(",")[4].trim());
+                residentialAddress.setAddressCounty(addressElement.getText().split(",")[3].trim());
                 member.setResAddress(residentialAddress);
                 radioElement.click();
                 break;
             }
         }
+        exchDbDataProvider.setDataFromDb_New(getMemberName());
+        SharedData.getDbDataNew();
     }
 
 
