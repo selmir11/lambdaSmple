@@ -289,5 +289,4 @@ Feature: Page Navigation-OHC ESI Page
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-
     And I click on Sign Out in the Header for "Elmo"

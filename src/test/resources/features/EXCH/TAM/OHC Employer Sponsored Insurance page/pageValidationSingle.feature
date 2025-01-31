@@ -881,3 +881,4 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Family Overview" page
 
     And I click on Sign Out in the Header for "NonElmo"
+
