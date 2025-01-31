@@ -406,11 +406,11 @@ public class AddAddressPage {
                 WebElement addressElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]"));
                MemberDetails member = basicActions.getMember(getMemberName());
                 Address residentialAddress = new Address();
-                residentialAddress.setAddressLine1(addressElement.getText().split(",")[0].trim());
-                residentialAddress.setAddressCity(addressElement.getText().split(",")[1].trim());
-                residentialAddress.setAddressState(addressElement.getText().split(",")[2].trim());
-                residentialAddress.setAddressZipcode(addressElement.getText().split(",")[4].trim());
-                residentialAddress.setAddressCounty(addressElement.getText().split(",")[3].trim());
+                residentialAddress.setAddressLine1(addressElement.getText().split(",")[0].trim().stripLeading());
+                residentialAddress.setAddressCity(addressElement.getText().split(",")[1].trim().stripLeading());
+                residentialAddress.setAddressState(addressElement.getText().split(",")[2].trim().stripLeading());
+                residentialAddress.setAddressZipcode(addressElement.getText().split(",")[4].trim().stripLeading());
+                residentialAddress.setAddressCounty(addressElement.getText().split(",")[3].trim().stripLeading());
                 member.setResAddress(residentialAddress);
                 radioElement.click();
                 break;
