@@ -38,6 +38,9 @@ public class MyProfilePage {
     @FindBy(id = "preferredLanguage")
     WebElement PreferredLanguageDrpCoCo;
 
+    @FindBy(id = "myProfile_preferredLanguage")
+    WebElement PreferredLanguageAPCoCo;
+
     @FindBy(css = "#preferredLanguage option")
     List<WebElement> LanguageDrpOptionsCoCo; //// Select option, English, Spanish
 
@@ -151,6 +154,8 @@ public class MyProfilePage {
     @FindBy(css=".myProfile_fullName span")
     List<WebElement> primaryName;
 
+    @FindBy(xpath = "//button[normalize-space()='Save changes']")
+    WebElement saveChangesButtonAdminPortal;
 
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
@@ -224,6 +229,12 @@ public class MyProfilePage {
                 LanguageDrpOptionsCoCo.get(2).click();
                 primaryMem.setPrefLang("Spanish");
                 primaryMem.setIncorrectLanguage("English");
+                break;
+            case "AdminPortalSpanish":
+                LanguageDrpOptionsCoCo.get(2).click();
+                break;
+            case "AdminPortalEnglish":
+                LanguageDrpOptionsCoCo.get(1).click();
                 break;
             default:
                 Assert.fail("Invalid argument passed");
@@ -1051,6 +1062,17 @@ public class MyProfilePage {
           signature = primaryName.get(0).getText() + " " +primaryName.get(1).getText()+" "+ primaryName.get(2).getText();
       }
         primaryMem.setSignature(signature);
+    }
+
+    public void verifyPreferredLanguage(String expectedLanguage) {
+        basicActions.waitForElementToBePresent(PreferredLanguageAPCoCo, 60);
+        softAssert.assertEquals(PreferredLanguageAPCoCo.getText(), expectedLanguage, "Default language is not " + expectedLanguage);
+        softAssert.assertAll();
+    }
+
+    public void clicksaveChangesButtonAdminPortal(){
+        basicActions.waitForElementToBePresent(saveChangesButtonAdminPortal,30);
+        saveChangesButtonAdminPortal.click();
     }
 }
 
