@@ -143,7 +143,7 @@ public class AddAddressPage {
     private String getMemberName(){
         String getHeader = getNameFromHeader.getText();
         String[] memNameSubstring = getHeader.split(" ");
-        String memFName = memNameSubstring[memNameSubstring.length-1];
+        String memFName = memNameSubstring[3];
         return memFName;
     }
 
