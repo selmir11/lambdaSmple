@@ -24,6 +24,7 @@ import java.util.NoSuchElementException;
 public class TellUsAboutAdditionalMemberPage {
 
     private BasicActions basicActions;
+
     public TellUsAboutAdditionalMemberPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -85,9 +86,6 @@ public class TellUsAboutAdditionalMemberPage {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
-    public static String getUniqueNumber(int length) {
-        return RandomStringUtils.random(length, "123456789");
-    }
 
     public void enterMemberDetails(String DOB){
         String frstName = basicActions.capitalizeFirstLetter(getUniqueString(20));
@@ -346,7 +344,7 @@ public class TellUsAboutAdditionalMemberPage {
                 break;
             case "uniquefirstnameandmiddle":
                 firstName = getUniqueString(10);
-                middleName = "C";
+                middleName = getUniqueString(10);
                  lastName = SharedData.getPrimaryMember().getLastName();
                  ssn = SharedData.getPrimaryMember().getSsn();
                 break;
@@ -354,7 +352,7 @@ public class TellUsAboutAdditionalMemberPage {
                 firstName = SharedData.getPrimaryMember().getFirstName();
                  middleName = SharedData.getPrimaryMember().getMiddleName();
                  lastName = SharedData.getPrimaryMember().getLastName();
-                ssn = getUniqueNumber(9);
+                ssn = basicActions.getUniqueNumber(9);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid member condition: " + memberCondition);

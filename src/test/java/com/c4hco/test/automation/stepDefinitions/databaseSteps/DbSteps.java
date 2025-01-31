@@ -298,8 +298,9 @@ public class DbSteps {
     public void iValidateTheFplPercent(int expectedFplPercent) {dbValidations.validateFplPercent(String.valueOf(expectedFplPercent));
     }
 
-    @And("I verify Persons ID are validated in the DB")
-    public void iValidateExchPersonIds() {policyTableValidations.validateExchPersonIds();
+    @And("I verify Persons ID are validated in the DB with count only {string}")
+    public void iValidateExchPersonIds(String validateCountOnly) {
+        policyTableValidations.validateExchPersonIds(validateCountOnly);
     }
 
     @Then("I validate ARP Indicator is set correctly in DB")
