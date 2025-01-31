@@ -170,6 +170,7 @@ public class AddAddressPage {
         basicActions.waitForElementToBePresent(tribestate,20);
         basicActions.waitForElementToBePresentWithRetries(tribeName, 20);
         tribestate.sendKeys(tState);
+        basicActions.clickElementWithRetries(tribeName, 10);
         tribeName.sendKeys(tName);
 
     }
