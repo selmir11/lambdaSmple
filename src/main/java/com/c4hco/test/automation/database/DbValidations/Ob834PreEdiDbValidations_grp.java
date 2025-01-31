@@ -41,10 +41,11 @@ public class Ob834PreEdiDbValidations_grp {
     public void groupRecordsValidations(String recordType, List<Map<String, String>> expectedValues) {
         switch (recordType) {
             case "medical":
-                setData();
+                setMedicalData();
                 ob834MedRecordsValidations(expectedValues);
                 break;
             case "dental":
+                setDentalData();
                 ob834DenRecordsValidations(expectedValues);
                 break;
             default:

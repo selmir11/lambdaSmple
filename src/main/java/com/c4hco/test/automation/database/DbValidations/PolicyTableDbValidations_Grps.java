@@ -237,8 +237,8 @@ public class PolicyTableDbValidations_Grps {
                 }
             }
 
-            List<MemberDetails> allSubscribers = basicActions.getAllSubscribers();
-            for (MemberDetails subscriber : allSubscribers) {
+            subscribers = basicActions.getAllSubscribers();
+            for (MemberDetails subscriber : subscribers) {
                 exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
                 exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
             }
