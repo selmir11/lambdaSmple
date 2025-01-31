@@ -847,6 +847,7 @@ public class BasicActions {
         return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
     }
     public List<MemberDetails> getAllSubscribers(){
+        // Medical Subscribers
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allSubscribers = new ArrayList<>();
         for(MemberDetails member: allMembers){
@@ -856,6 +857,18 @@ public class BasicActions {
         }
         return allSubscribers;
     }
+
+    public List<MemberDetails> getAllDenSubscribers(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allSubscribers = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            if(member.getIsDentalSubscriber().equals("Y")){
+                allSubscribers.add(member);
+            }
+        }
+        return allSubscribers;
+    }
+
     public List<MemberDetails> getAllDependents(){
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allDependents = new ArrayList<>();
