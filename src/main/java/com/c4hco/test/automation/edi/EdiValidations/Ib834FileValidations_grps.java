@@ -88,11 +88,13 @@ public class Ib834FileValidations_grps {
         validateIb834InsSegment(member, entry);
         validateIb834NM1Seg(member, entry);
         validateIb834HierarchyLevelSeg(member, entry);
-        validateIb834LSLESegment(member);
+
         validateIb834AddlMaintReason(member, entry);
         validateIb834DtpSegment(member, entry);
-        validateIb834LxRefN1Segment(member, entry);
         validateIb834MemberRefSeg(member, entry);
+        validateIb834LSLESegment(member);
+        validateIb834LxRefN1Segment(member, entry);
+
         softAssert.assertAll();
     }
 
@@ -130,17 +132,39 @@ public class Ib834FileValidations_grps {
     private void validateIb834NM1Seg(Member member, Ib834Entity entry) {
         List<List<String>> nm1Seg1 = member.getNM1();
         segCount = segCount + nm1Seg1.size();
-        softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
-        if (nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
-            softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
-            softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
-            softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
-        } else {
+
+        if (SharedData.getPrimaryMember().getHasIncorrectEntities()) {
+            softAssert.assertEquals(nm1Seg1.get(0).get(0), "74", "Entity Identifier Code does not match");
+            softAssert.assertEquals(nm1Seg1.get(2).get(0), "31", "NM1 segment with value 31");
+            softAssert.assertEquals(nm1Seg1.get(2).get(1), "1", "NM1 segment with value 1");
+            softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size is not equal to 3");
+        }
+        if (!SharedData.getPrimaryMember().getResAddress().equals(SharedData.getPrimaryMember().getMailingAddress())) {
+            if (entry.getSubscriber_indicator().equals("Y")) {
+                if (nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
+                    softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
+                    softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
+                    softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
+                }else if(!entry.getIndividual_rel_code().isEmpty() && !(entry.getResponsible_person_rel_code() == null)) {
+                    softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
+                    softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
+                    softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size for subscriber");
+                    softAssert.assertEquals(nm1Seg1.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
+                    softAssert.assertEquals(nm1Seg1.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
+                    softAssert.assertEquals(nm1Seg1.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
+                }else if(entry.getResponsible_person_rel_code() == null) {
+                    softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
+                    softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
+                    softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for member is not equal to 1");
+                }
+            }
+        }
+        if(entry.getSubscriber_indicator().equals("N")){
             softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "1", "NM1 segment size for member is not equal to 1");
         }
+        softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(), "Member Last name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
-        softAssert.assertEquals(nm1Seg1.get(0).get(7), "34", "");
         softAssert.assertEquals(nm1Seg1.get(0).get(8), entry.getMember_ssn(), "Member SSN does not match");
         softAssert.assertAll();
     }
@@ -279,14 +303,14 @@ public class Ib834FileValidations_grps {
                     if (mem.getNM1().get(0).get(3).equals(dbSubscriberEntity.getMember_first_name())) {
                         validateSponsorPayerDetails(dbSubscriberEntity, transaction);
                         validateDtpSegment(dbSubscriberEntity, transaction);
-                        validatePerSeg(dbSubscriberEntity, transaction);
-
                         validateBgnSeg(dbSubscriberEntity, transaction);
+
                         validateQtySeg(dbSubscriberEntity, transaction);
-                        validateLUISeg(dbSubscriberEntity, transaction);
-                        validateN3N4Segments(dbSubscriberEntity, transaction);
                         validateTrnSeg(dbSubscriberEntity, transaction);
                         validateSubscriberRefSeg(transaction);
+                        validatePerSeg(dbSubscriberEntity, transaction);
+                        validateLUISeg(dbSubscriberEntity, transaction);
+                        validateN3N4Segments(dbSubscriberEntity, mem);
                         softAssert.assertAll();
                     }
                 }
@@ -363,23 +387,26 @@ public class Ib834FileValidations_grps {
         softAssert.assertEquals(luiSeg.get(1).get(2), entry.getSpoken_language(), "Spoken Language does not match.");
         softAssert.assertEquals(luiSeg.get(1).get(3), String.valueOf(7), "Spoken Language Use Indicator does not match");
     }
-    private void validateN3N4Segments(Ib834Entity entry, Transaction transaction) {
+    private void validateN3N4Segments(Ib834Entity entry, Member member) {
         //N3 Segment
-        List<List<String>> n3Seg = transaction.getMembersList().get(0).getN3();
-        softAssert.assertEquals(n3Seg.get(0).get(0), entry.getResidence_street_line1(), "Residence street address line1 does not match");
-        softAssert.assertEquals(n3Seg.get(1).get(0), entry.getMail_street_line1(), "Mailing address street line 1 does not match");
+        List<List<String>> n3Seg = member.getN3();
         //N4 Segment
-        List<List<String>> n4Seg = transaction.getMembersList().get(0).getN4();
+        List<List<String>> n4Seg = member.getN4();
+
+        if (entry.getMail_street_line1() != null) {
+            softAssert.assertEquals(n3Seg.get(1).get(0), entry.getMail_street_line1(), "Mailing address street line 1 does not match");
+            softAssert.assertEquals(n4Seg.get(1).get(0), entry.getMail_city(), "Mailing city does not match");
+            softAssert.assertEquals(n4Seg.get(1).get(1), entry.getMail_st(), "Mailing State does not match");
+            softAssert.assertEquals(n4Seg.get(1).get(2), entry.getMail_zip_code(), "Mailing zipcode does not match");
+        }
+
         segCount = segCount + n3Seg.size() + n4Seg.size();
+        softAssert.assertEquals(n3Seg.get(0).get(0), entry.getResidence_street_line1(), "Residence street address line1 does not match");
         softAssert.assertEquals(n4Seg.get(0).get(0), entry.getResidence_city(), "Residence city does not match");
         softAssert.assertEquals(n4Seg.get(0).get(1), entry.getResidence_st(), "Residence state does not match");
         softAssert.assertEquals(n4Seg.get(0).get(2), entry.getResidence_zip_code(), "Residence zipcode does not match");
         softAssert.assertEquals(n4Seg.get(0).get(4), "CY", "Country Code");
         softAssert.assertEquals(n4Seg.get(0).get(5), entry.getResidence_fip_code(), "Residence fipcode does not match");
-
-        softAssert.assertEquals(n4Seg.get(1).get(0), entry.getMail_city(), "Mailing city does not match");
-        softAssert.assertEquals(n4Seg.get(1).get(1), entry.getMail_st(), "Mailing State does not match");
-        softAssert.assertEquals(n4Seg.get(1).get(2), entry.getMail_zip_code(), "Mailing zipcode does not match");
     }
     private void validateTrnSeg(Ib834Entity entry, Transaction transaction) {
         // ST Segment

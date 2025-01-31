@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
+import com.c4hco.test.automation.utils.BasicActions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +36,7 @@ public class DbDataProvider_Exch {
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
     EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
     EsSelfAttestationDbHandler esSelfAttestationDbHandler = new EsSelfAttestationDbHandler();
+    BasicActions basicActions = new BasicActions();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -81,6 +83,12 @@ public class DbDataProvider_Exch {
     public String getFipcode(){
         String zipcode = primaryMember.getResAddress().getAddressZipcode();
         return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode));
+    }
+
+    public String getFipCodeForMem(String name){
+        String zipcode =   basicActions.getMember(name).getZipcode();
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode));
+
     }
     public String getRatingAreaName(String fipcode){
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
@@ -138,7 +146,7 @@ public class DbDataProvider_Exch {
         SharedData.setDbData(dbData);
     }
     public void setDataFromDb_New(String name){
-        String fipcode = getFipcode();
+        String fipcode = getFipCodeForMem(name);
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
         String brokerTinNum = null;

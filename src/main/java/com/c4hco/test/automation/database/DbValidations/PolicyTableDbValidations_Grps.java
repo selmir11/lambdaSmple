@@ -152,8 +152,8 @@ public class PolicyTableDbValidations_Grps {
         private void validateDependentMedDetails(PolicyTablesEntity policyTablesEntity) {
             List<MemberDetails> members = basicActions.getAllDependents();
             for (MemberDetails member : members) {
-                getDbDataMap(member.getMedSubscriberName());
                 if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
+                    getDbDataMap(member.getMedSubscriberName());
                     medValidationsCommonForAllMembers(member.getMedSubscriberName(),policyTablesEntity);
                     validateMedDenForDependents(policyTablesEntity, dbDataMap.get(member.getMedSubscriberName()), member);
                     softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
