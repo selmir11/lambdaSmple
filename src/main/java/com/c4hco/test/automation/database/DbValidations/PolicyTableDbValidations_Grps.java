@@ -30,12 +30,13 @@ public class PolicyTableDbValidations_Grps {
     Map<String, DbData> dbDataMap = new HashMap<>();
     List<MemberDetails> subscribers;
     public void groupRecordsValidations(String recordType) {
-        setData();
             switch (recordType) {
                 case "medical":
+                    setMedicalData();
                     medicalRecordsValidations();
                     break;
                 case "dental":
+                    setDentalData();
                     dentalRecordsValidations();
                     break;
                 default:
@@ -221,33 +222,41 @@ public class PolicyTableDbValidations_Grps {
             softAssert.assertAll();
         }
 
-    private void setData() {
-        subscribers = basicActions.getAllSubscribers();
-        List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
-        List<PolicyTablesEntity> dentalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("2");
-
-        SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
-        SharedData.setDentalPolicyTablesEntities(dentalPolicyEntitiesList);
-
-        List<MemberDetails> allSubscribers = basicActions.getAllSubscribers();
-        for (MemberDetails subscriber : allSubscribers) {
-            exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
-            exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
-            exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
-        }
+        private void setMedicalData(){
+            List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
+            SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
+            List<MemberDetails> allSubscribers = basicActions.getAllSubscribers();
+            for (MemberDetails subscriber : allSubscribers) {
+                exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
+                exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
+            }
             setExchPersonId();
 
             medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
+            dbDataMapList = SharedData.getDbDataNew();
+
+            medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
+            setMedicalSubscriber();
+        }
+
+        private void setDentalData(){
+            subscribers = basicActions.getAllSubscribers();
+            List<PolicyTablesEntity> dentalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("2");
+            SharedData.setDentalPolicyTablesEntities(dentalPolicyEntitiesList);
+
+            for (MemberDetails subscriber : subscribers) {
+                exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
+                exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
+            }
+            setExchPersonId();
+
             dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
             dbDataMapList = SharedData.getDbDataNew();
 
-
-
-        medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
-        dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
-        setMedicalSubscriber();
-        setDentalSubscriber();
+            dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
+            setDentalSubscriber();
         }
+
     private void getMedicalPlanDbDataMap(String name){
         for(Map<String, PlanDbData> map: medicalPlanDbDataMapList){
             if(map.containsKey(name)){
