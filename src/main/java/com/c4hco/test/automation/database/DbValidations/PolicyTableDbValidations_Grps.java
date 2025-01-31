@@ -45,6 +45,7 @@ public class PolicyTableDbValidations_Grps {
             softAssert.assertAll();
     }
 
+
         private void dentalRecordsValidations() {
             for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
                 if (dentalEntity.getSubscriber_ind().equals("1")) {
@@ -221,31 +222,29 @@ public class PolicyTableDbValidations_Grps {
             softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
             softAssert.assertAll();
         }
-    public List<MemberDetails> getAllMedSubscribers(){
-        List<MemberDetails> allMembers = basicActions.getAllMem();
-        List<MemberDetails> allSubscribers = new ArrayList<>();
-        for(MemberDetails member: allMembers){
-            List<String> subscriberInd = exchDbDataProvider.getSubscribers(member.getMemberId());
-            if(subscriberInd.equals("1")){
-                member.setIsSubscriber("Y");
-                allSubscribers.add(member);
-            }else{
-                member.setIsSubscriber("N");
-            }
-        }
-        return allSubscribers;
-    }
-
         private void setMedicalData(){
-            List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
-            SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
+
+            medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
+            SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntities);
+
+
+            for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
+                if (policyTablesEntity.getSubscriber_ind().equals("1")) {
+                    for (MemberDetails member : basicActions.getAllMem()) {
+                        if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
+                            member.setIsSubscriber("Y");
+                            break;
+                        }
+                    }
+                }
+            }
+
             List<MemberDetails> allSubscribers = basicActions.getAllSubscribers();
             for (MemberDetails subscriber : allSubscribers) {
                 exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
                 exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
             }
             setExchPersonId();
-            medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
             dbDataMapList = SharedData.getDbDataNew();
 
             medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
@@ -253,19 +252,27 @@ public class PolicyTableDbValidations_Grps {
         }
 
         private void setDentalData(){
-            subscribers = basicActions.getAllSubscribers();
-            List<PolicyTablesEntity> dentalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("2");
-            SharedData.setDentalPolicyTablesEntities(dentalPolicyEntitiesList);
+        dentalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("2");
+            SharedData.setDentalPolicyTablesEntities(dentalPolicyEntities);
 
+            for (PolicyTablesEntity policyTablesEntity : dentalPolicyEntities) {
+                if (policyTablesEntity.getSubscriber_ind().equals("1")) {
+                    for (MemberDetails member : basicActions.getAllMem()) {
+                        if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
+                            member.setIsDentalSubscriber("Y");
+                            break;
+                        }
+                    }
+                }
+            }
+
+            subscribers = basicActions.getAllSubscribers();
             for (MemberDetails subscriber : subscribers) {
                 exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
                 exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
             }
             setExchPersonId();
-
-            dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
             dbDataMapList = SharedData.getDbDataNew();
-
             dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
             setDentalSubscriber();
         }
@@ -328,6 +335,7 @@ public class PolicyTableDbValidations_Grps {
                     "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
             );
         }
+
     private void setExchPersonId(){
         List<MemberDetails> memberDetailsList = basicActions.getAllMem();
         Map<String, String> exchPersonId = new HashMap<>();
