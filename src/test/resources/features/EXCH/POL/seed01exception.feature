@@ -62,6 +62,9 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click continue on start shopping page
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page

@@ -31,4 +31,9 @@ public class MemberIdProofingPageSteps {
     public void iValidateTheIdProofingErrorMessageIsDisplayed() {
         memberIdProofingPage.validateTheIdProofingErrorMessageIsDisplayed();
     }
+
+    @Then("Validate congratulations message got displayed with expected text in both English and Spanish launguages with {string}, {string} and {string} in {string}")
+    public void ivalidateCongrtulationsMessage(String messageOne, String messageTwo, String messageThree, String langauge){
+        memberIdProofingPage.validateCongrdulationsMessage(messageOne,messageTwo,messageThree, langauge);
+    }
 }

@@ -3,7 +3,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
   @SLER-979
   Scenario: Verify Manage Plans page when 2024 have No Past medical and dental periods
     Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
+    And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "4007126206" "1306056801 " to search user
@@ -21,7 +21,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     Then I verify both buttons Medical and Dental is checked
     And I check for Previous Medical container message display
     And I check for Previous Dental container message display
-    Then I verify Years in dropdown starting from "2019" as expected
+    Then I verify Years in dropdown starting from "2021" as expected
     And I select the "2022" plan year on manage plan
     And I click on Privacy Policy in the "Admin Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -33,7 +33,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
   @SLER-979
   Scenario: Verify Manage Plans page when 2022  have No Past medical and dental periods
     Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
+    And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "9093569055" "2865006566" to search user
@@ -48,8 +48,9 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     Then I verify Primary account holder and account number displays
     And I validate title and labels on Manage page
     Then I check default year displays
-    Then I verify Years in dropdown starting from "2019" as expected
+    Then I verify Years in dropdown starting from "2021" as expected
     And I select the "2022" plan year on manage plan
+    And I wait for 300 milliseconds
     Then I verify both buttons Medical and Dental is checked
     And I check for Previous Medical container message display
     And I check for Previous Dental container message display
@@ -63,7 +64,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
   @SLER-979
   Scenario: Verify Manage Plans page when 2023 have No Past medical and dental periods
     Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
+    And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "5550180800" "2865006566" to search user
@@ -81,7 +82,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     Then I verify both buttons Medical and Dental is checked
     And I check for Previous Medical container message display
     And I check for Previous Dental container message display
-    Then I verify Years in dropdown starting from "2019" as expected
+    Then I verify Years in dropdown starting from "2021" as expected
     And I select the "2023" plan year on manage plan
     And I click on Privacy Policy in the "Admin Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
