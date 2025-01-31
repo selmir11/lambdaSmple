@@ -143,7 +143,11 @@ public class IndividualPolicyTableValidations {
         softAssert.assertAll();
     }
 
-
+    public void validateArpIndicator() {
+        String arpIndicatorDB = exchDbDataProvider.getArpIndicator();
+        softAssert.assertEquals(arpIndicatorDB, "0");
+        softAssert.assertAll();
+    }
 
 
 }
