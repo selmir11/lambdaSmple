@@ -1,5 +1,5 @@
 @NVOCoCoRegression
-Feature: Coco user on the Application results page
+Feature: Coco user on the Application results page - navigate to a specific shopping page based on age.
 
   Background: I go the login portal
     Given I open the login page on the "login" portal

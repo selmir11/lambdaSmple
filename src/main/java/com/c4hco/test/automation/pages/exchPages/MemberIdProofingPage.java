@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.exchPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,10 +15,15 @@ public class MemberIdProofingPage {
 
     private BasicActions basicActions;
     private WhoAreYouPage whoAreYouPage;
+    private HeaderAndFooterPage headerandFooterpage;
+
+    SoftAssert softAssert = new SoftAssert();
+
 
     public MemberIdProofingPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         whoAreYouPage = new WhoAreYouPage(webDriver);
+        headerandFooterpage = new HeaderAndFooterPage(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
@@ -49,6 +56,15 @@ public class MemberIdProofingPage {
     WebElement saveContinue;
     @FindBy(xpath = "//div[@id='ridpErrorContainer']")
     WebElement idProofingError;
+
+    @FindBy(xpath = "//div[@class='successContainer']")
+    WebElement congradulationMessage;
+
+    @FindBy(xpath = "//input[contains(@class,'inputAsText')]")
+    WebElement lookforExpertLink;
+
+    @FindBy(xpath = "//h1[contains(@class,'c4PageHeader1')]")
+    WebElement lookforHeaderInfo;
 
     public void selectFirstOptionToAll(){
         basicActions.waitForElementToDisappear( spinner, 30  );
@@ -143,5 +159,14 @@ public class MemberIdProofingPage {
     public void validateTheIdProofingErrorMessageIsDisplayed() {
         basicActions.waitForElementToBePresentWithRetries(idProofingError,30);
         basicActions.isElementDisplayed(idProofingError,30);
+    }
+
+    public void validateCongrdulationsMessage(String messageOne, String messageTwo, String messageThree, String language){
+        basicActions.waitForElementToDisappear(spinner,20);
+        headerandFooterpage.changeLanguage(language+" NonElmo");
+        basicActions.waitForElementToBePresent(congradulationMessage,10);
+        String[] messageDetails = congradulationMessage.getText().split(SharedData.getPrimaryMember().getFirstName());
+        softAssert.assertEquals(messageDetails[0]+SharedData.getPrimaryMember().getFirstName()+messageDetails[1]+" "+lookforExpertLink.getAttribute("value").trim(),messageOne+" "+SharedData.getPrimaryMember().getFirstName()+". "+messageTwo+".");
+        softAssert.assertAll();
     }
 }
