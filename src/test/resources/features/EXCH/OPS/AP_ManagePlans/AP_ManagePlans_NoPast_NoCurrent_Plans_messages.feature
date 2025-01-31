@@ -21,7 +21,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     Then I verify both buttons Medical and Dental is checked
     And I check for Previous Medical container message display
     And I check for Previous Dental container message display
-   # Then I verify Years in dropdown starting from "2022" as expected
+    Then I verify Years in dropdown starting from "2021" as expected
     And I select the "2022" plan year on manage plan
     And I click on Privacy Policy in the "Admin Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -48,7 +48,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     Then I verify Primary account holder and account number displays
     And I validate title and labels on Manage page
     Then I check default year displays
-    #Then I verify Years in dropdown starting from "2022" as expected
+    Then I verify Years in dropdown starting from "2021" as expected
     And I select the "2022" plan year on manage plan
     And I wait for 300 milliseconds
     Then I verify both buttons Medical and Dental is checked
@@ -82,7 +82,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     Then I verify both buttons Medical and Dental is checked
     And I check for Previous Medical container message display
     And I check for Previous Dental container message display
-   # Then I verify Years in dropdown starting from "2022" as expected
+    Then I verify Years in dropdown starting from "2021" as expected
     And I select the "2023" plan year on manage plan
     And I click on Privacy Policy in the "Admin Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
