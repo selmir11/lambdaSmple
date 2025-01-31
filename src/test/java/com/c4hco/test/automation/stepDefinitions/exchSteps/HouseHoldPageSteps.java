@@ -16,8 +16,6 @@ public class HouseHoldPageSteps {
         houseHoldPage.clickAddMember();
     }
 
-    @Then("I verify the family overview table is present")
-    public void IVerifyTablePresent() {houseHoldPage.iVerifyFamilyOverviewTablePresent();}
 
     @And("I click on {string} to edit information from household page")
     public void clickMemberToEdit(String memName){houseHoldPage.clickMember(memName);}
@@ -40,9 +38,18 @@ public class HouseHoldPageSteps {
     @Then("I click on {string} in the Remove Member frame")
     public void iClickOptionOnRemoveWindow(String option) {houseHoldPage.clickOptionOnRemoveWindow(option);}
 
+    // ############################## VALIDATION STEPS #########################
+    // Add only validation methods below this line
+
+    @Then("I verify the family overview table is present")
+    public void IVerifyTablePresent() {houseHoldPage.iVerifyFamilyOverviewTablePresent();}
+
     @Then("I validate no errors are displayed on family overview page")
     public void iValidateNoErrosDisplayed() {houseHoldPage.verifyNoErrorMessage_Household();}
 
+    @Then ("I validate the {string} text on the family overview page")
+    public void iValidateTextDisplayed(String language) {houseHoldPage.iValidateTextDisplayed(language);}
+    
     @Then("I verify {string} information on household page")
     public void iVarifyAnnualFinancialInfo(String financialInfo) {houseHoldPage.verifyAnnualFinancialInformation(financialInfo);}
 }

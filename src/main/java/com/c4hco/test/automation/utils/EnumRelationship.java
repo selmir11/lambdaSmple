@@ -10,6 +10,7 @@ public enum EnumRelationship {
     Self("18"),
     Husband("01"),
     Wife("01"),
+    Spouse ("01"),
     GrandChild("05"),
     Brother("14"),
     Sister("14"),
