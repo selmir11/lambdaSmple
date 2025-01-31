@@ -365,7 +365,7 @@ Feature: Page Text-Income Opt Out Page
 
   @SLER-2072 @PageTextEmploymentIncome
   Scenario: SLER-2072-ELIG-Income-Page Text(RT-995)
-    Then I Verify the page text on Employment Income page, which is in initial state with the language "English"
+    Then I Verify the page text on Employment Income page, which is in initial state
       |Income:|
       |Employment Income|
       |Do you have a job or are you currently employed?|
@@ -375,7 +375,7 @@ Feature: Page Text-Income Opt Out Page
       |Save and continue                               |
       |Help                                            |
     Then I select the option "Yes" to employment
-    Then I Verify the page text on Employment Income page after clicking yes to employment in "English" language
+    Then I Verify the page text on Employment Income page after clicking yes to employment
       |Income:|
       |Employment Income|
       |Do you have a job or are you currently employed?|
@@ -388,7 +388,7 @@ Feature: Page Text-Income Opt Out Page
       |Yes                                             |
       |No                                              |
     And I select the option "Yes" to self employment
-    Then I Verify the page text in "English" on Employment Income page after clicking yes to self employment question
+    Then I Verify the page text on Employment Income page after clicking yes to self employment question
       |Income:|
       |Employment Income|
       |Do you have a job or are you currently employed?|
@@ -409,7 +409,7 @@ Feature: Page Text-Income Opt Out Page
       |Yes                                                                             |
       |No                                                                              |
      And I select the option "No" to self employment
-     Then I Verify the page text in "English" on Employment Income page after clicking No to self employment question
+     Then I Verify the page text on Employment Income page after clicking No to self employment question
        |Income:|
        |Employment Income|
        |Do you have a job or are you currently employed?|
@@ -440,7 +440,7 @@ Feature: Page Text-Income Opt Out Page
        |No                                                                              |
      And I refresh the page
      And I change the language from Elmo header to "Spanish" if it isn't already in that language
-     Then I Verify the page text on Employment Income page, which is in initial state with the language "Spanish"
+     Then I Verify the page text on Employment Income page, which is in initial state
         |Ingresos:|
         |Ingresos por empleo|
         |¿Tiene un trabajo o empleo actualmente?|
@@ -450,7 +450,7 @@ Feature: Page Text-Income Opt Out Page
         |Guardar y continuar                    |
         |Ayuda                                  |
      Then I select the option "Yes" to employment
-     Then I Verify the page text on Employment Income page after clicking yes to employment in "Spanish" language
+     Then I Verify the page text on Employment Income page after clicking yes to employment
         |Ingresos:|
         |Ingresos por empleo|
         |¿Tiene un trabajo o empleo actualmente?|
@@ -463,7 +463,7 @@ Feature: Page Text-Income Opt Out Page
         |Sí                                     |
         |No                                     |
      Then I select the option "Yes" to self employment
-     Then I Verify the page text in "Spanish" on Employment Income page after clicking yes to self employment question
+     Then I Verify the page text on Employment Income page after clicking yes to self employment question
         |Ingresos:|
         |Ingresos por empleo|
         |¿Tiene un trabajo o empleo actualmente?|
@@ -484,7 +484,7 @@ Feature: Page Text-Income Opt Out Page
         |Sí                                     |
         |No                                     |
     And I select the option "No" to self employment
-    Then I Verify the page text in "Spanish" on Employment Income page after clicking No to self employment question
+    Then I Verify the page text on Employment Income page after clicking No to self employment question
         |Ingresos:|
         |Ingresos por empleo|
         |¿Tiene un trabajo o empleo actualmente?|
