@@ -570,6 +570,7 @@ public class Ob834PreEdiDbValidations_grp {
     }
 
     private void getMedicalPlanDbDataMap(String name){
+        medicalPlanDbDataMap = new HashMap<>();
         for(Map<String, PlanDbData> map: medicalPlanDbDataMapList){
             if(map.containsKey(name)){
                 medicalPlanDbDataMap = map;
@@ -578,6 +579,7 @@ public class Ob834PreEdiDbValidations_grp {
         }
     }
     private void getDentalPlanDbDataMap(String name){
+        dentalPlanDbDataMap = new HashMap<>();
         for(Map<String, PlanDbData> map: dentalPlanDbDataMapList){
             if(map.containsKey(name)){
                 dentalPlanDbDataMap = map;
@@ -586,6 +588,7 @@ public class Ob834PreEdiDbValidations_grp {
         }
     }
     private void getDbDataMap(String name){
+        dbDataMap = new HashMap<>();
         for(Map<String, DbData> map: dbDataMapList){
             if(map.containsKey(name)){
                 dbDataMap = map;
