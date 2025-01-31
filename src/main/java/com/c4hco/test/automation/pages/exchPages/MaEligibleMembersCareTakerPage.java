@@ -100,7 +100,7 @@ public class MaEligibleMembersCareTakerPage {
         softAssert.assertEquals( noText.getText(), "No" );
         softAssert.assertEquals( valueText.getText(), "< Back" );
         softAssert.assertEquals( btnSaveAndContinue.getText(), "Save and Continue" );
-
+        softAssert.assertAll();
     }
 
 
@@ -116,6 +116,6 @@ public class MaEligibleMembersCareTakerPage {
         softAssert.assertEquals( noText.getText(), "No" );
         softAssert.assertEquals( valueText.getText(), "< Atr\u00E1s" );
         softAssert.assertEquals( btnSaveAndContinue.getText(), "Guardar y Continuar" );
-
+        softAssert.assertAll();
     }
     }
