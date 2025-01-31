@@ -416,10 +416,7 @@ public class AddAddressPage {
                 break;
             }
         }
-        exchDbDataProvider.setDataFromDb_New(getMemberName());
-        SharedData.getDbDataNew();
     }
-
 
 }
 
