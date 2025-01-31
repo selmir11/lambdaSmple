@@ -399,6 +399,15 @@ public class AddAddressPage {
             String address = selectspecificaddress.get(i).getText();
             if (address.contains(SpecificAddress)) {
                 WebElement radioElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]/parent::label/parent::div /input"));
+                WebElement addressElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]"));
+               MemberDetails member = basicActions.getMember(getMemberName());
+                Address residentialAddress = new Address();
+                residentialAddress.setAddressLine1(addressElement.getText().split(",")[0]);
+                residentialAddress.setAddressCity(addressElement.getText().split(",")[1]);
+                residentialAddress.setAddressState(addressElement.getText().split(",")[2]);
+                residentialAddress.setAddressZipcode(addressElement.getText().split(",")[4]);
+                residentialAddress.setAddressCounty(addressElement.getText().split(",")[3]);
+                member.setResAddress(residentialAddress);
                 radioElement.click();
                 break;
             }
