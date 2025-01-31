@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AdminPortalIndividualDashboardPage {
 
@@ -280,6 +281,10 @@ public class AdminPortalIndividualDashboardPage {
     WebElement tax;
     @FindBy(xpath = "//td[normalize-space()='Application ID:']")
     WebElement applicationId;
+    @FindBy(css = "#app-individual-selected-member-80 > label")
+    WebElement selectedMemberLabel;
+    @FindBy(css = "#app-individual-selected-member-80 > div")
+    WebElement selectedMemberData;
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -920,6 +925,30 @@ public class AdminPortalIndividualDashboardPage {
             softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
         }
         softAssert.assertAll();
+    }
+    public void validateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData, String fullNameData, String userNameData, String memberEmailData, String memberPhoneData){
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+
+        basicActions.waitForElementToBePresent(selectedMember, 300);
+        softAssert.assertTrue(selectedMemberLabel.isDisplayed());
+
+        softAssert.assertTrue(memberDob.isDisplayed());
+        softAssert.assertTrue(memberAddress.isDisplayed());
+        softAssert.assertAll();
+        String fullNameData = null;
+        String userNameData = null;
+        String memberEmailData = null;
+        String memberPhoneData = null;
+
+            String fullNameData = selectedMemberData.get(0).get("staging full name");
+            String userNameData = selectedMemberData.get(0).get("staging user name");
+            String memberEmailData = selectedMemberData.get(0).get("staging member email");
+            String memberPhoneData = selectedMemberData.get(0).get("staging member phone");
+
+        softAssert.assertEquals(memberFullName.getText(), fullNameData);
+        softAssert.assertEquals(userName.getText(), userNameData);
+        softAssert.assertEquals(memberEmail.getText(), memberEmailData);
+        softAssert.assertEquals(memberPhone.getText(), memberPhoneData);
     }
 }
 
