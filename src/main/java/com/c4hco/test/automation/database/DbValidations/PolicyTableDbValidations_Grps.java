@@ -223,10 +223,8 @@ public class PolicyTableDbValidations_Grps {
             softAssert.assertAll();
         }
         private void setMedicalData(){
-
             medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
             SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntities);
-
 
             for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
                 if (policyTablesEntity.getSubscriber_ind().equals("1")) {

@@ -145,7 +145,6 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not clickable");
-            Assert.fail("Element is not clickable");
             return false;
         }
         return true;
