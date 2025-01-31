@@ -120,6 +120,8 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//a[.='Sign Out']")
     WebElement signOutOverview;
 
+    @FindBy(xpath = "//strong[normalize-space()='Sign Out']")
+    WebElement signOutHousholdPage;
     @FindBy(linkText = "Sign Out")
     WebElement signOutinCaseIdPage;
 
@@ -537,6 +539,11 @@ public class HeaderAndFooterPage {
                 basicActions.wait(2000);
                 basicActions.waitForElementToBeClickable(signOutinCaseIdPage,10);
                 basicActions.click(signOutinCaseIdPage);
+                break;
+            case "Household Page":
+                basicActions.wait(2000);
+                basicActions.waitForElementToBePresentWithRetries(signOutHousholdPage,30);
+                basicActions.click(signOutHousholdPage);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

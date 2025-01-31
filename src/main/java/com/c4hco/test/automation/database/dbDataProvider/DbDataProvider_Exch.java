@@ -580,5 +580,7 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultListFor("exch_person_id", exchDbQueries.compareExchPersonIds());
     }
 
-
+    public String getArpIndicator() {
+        return postgresHandler.getResultFor("arp_quick_submit_ind", exchDbQueries.getArpIndicator());
+    }
 }
