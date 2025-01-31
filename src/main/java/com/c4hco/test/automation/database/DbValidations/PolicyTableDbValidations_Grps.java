@@ -220,6 +220,20 @@ public class PolicyTableDbValidations_Grps {
             softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
             softAssert.assertAll();
         }
+    public List<MemberDetails> getAllMedSubscribers(){
+        List<MemberDetails> allMembers = basicActions.getAllMem();
+        List<MemberDetails> allSubscribers = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            List<String> subscriberInd = exchDbDataProvider.getSubscribers(member.getMemberId());
+            if(subscriberInd.equals("1")){
+                member.setIsSubscriber("Y");
+                allSubscribers.add(member);
+            }else{
+                member.setIsSubscriber("N");
+            }
+        }
+        return allSubscribers;
+    }
 
     private void setData() {
         subscribers = basicActions.getAllSubscribers();
@@ -229,19 +243,16 @@ public class PolicyTableDbValidations_Grps {
         SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntitiesList);
         SharedData.setDentalPolicyTablesEntities(dentalPolicyEntitiesList);
 
-        List<MemberDetails> allSubscribers = basicActions.getAllSubscribers();
+        List<MemberDetails> allSubscribers = getAllMedSubscribers();
         for (MemberDetails subscriber : allSubscribers) {
             exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
             exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
             exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
         }
             setExchPersonId();
-
             medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
             dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
             dbDataMapList = SharedData.getDbDataNew();
-
-
 
         medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
         dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
