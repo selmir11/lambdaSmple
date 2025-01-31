@@ -300,11 +300,11 @@ public class PolicyTableDbValidations_Grps {
         }
     }
     private void setMedicalSubscriber(){
-        List<MemberDetails> dependents = basicActions.getAllDependents();
-        for(MemberDetails dependent: dependents){
+        List<MemberDetails> allMem = basicActions.getAllMem();
+        for(MemberDetails member: allMem){
             for (MemberDetails subscriber: subscribers){
-                if(subscriber.getMedGroupInd().equals(dependent.getMedGroupInd())){
-                    dependent.setMedSubscriberName(subscriber.getFirstName());
+                if(subscriber.getMedGroupInd().equals(member.getMedGroupInd())){
+                    member.setMedSubscriberName(subscriber.getFirstName());
                     break;
                 }
             }
@@ -313,15 +313,14 @@ public class PolicyTableDbValidations_Grps {
     }
 
     private void setDentalSubscriber(){
-        List<MemberDetails> dependents = basicActions.getAllDependents();
-        for(MemberDetails dependent: dependents){
+        List<MemberDetails> allMem = basicActions.getAllMem();
+        for(MemberDetails member: allMem){
             for (MemberDetails subscriber: subscribers){
-                if(subscriber.getDenGroupInd().equals(dependent.getDenGroupInd())){
-                    dependent.setDenSubscriberName(subscriber.getFirstName());
+                if(subscriber.getDenGroupInd().equals(member.getDenGroupInd())){
+                    member.setDenSubscriberName(subscriber.getFirstName());
                     break;
                 }
             }
-
         }
     }
 
