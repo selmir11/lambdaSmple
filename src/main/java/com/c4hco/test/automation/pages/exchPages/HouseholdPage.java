@@ -60,7 +60,7 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow input.linkButton[type='submit']")
     List<WebElement> memberNamesLinks;
 
-    @FindBy(css = "#accountID")
+    @FindBy(xpath = "//*[contains(text(),'Account ID:')]")
     WebElement accountIdTxt;
 
     @FindBy(css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
@@ -70,6 +70,56 @@ public class HouseholdPage {
     WebElement removeMemberLnk;
     @FindBy(xpath = "//td[normalize-space()='Not Applicable']")
     WebElement nfaInfo;
+
+    @FindBy(xpath = "//*[@class = 'c4PageHeader']")
+    WebElement getFamilyOverviewHeader;
+
+    @FindBy(id = "overviewButton")
+    WebElement getHelpMeLink;
+
+    @FindBy(xpath = "//*[contains(text(),'Account ID:')]")
+    WebElement getAcctID;
+
+    @FindBy(xpath = "//*[contains(text(),'Identificaci\u00F3n de la cuenta')]")
+    WebElement getAcctIDSP;
+
+    @FindBy(xpath = "//span[contains(text(),'Tax Household #1')]")
+    WebElement getTaxHouseholdID;
+
+    @FindBy(xpath = "//span[contains(text(),'Hogar Fiscal #1')]")
+    WebElement getTaxHouseholdIDSP;
+
+    @FindBy(xpath = "//*[@class = 'table table-striped']")
+    WebElement getTableText;
+
+
+    @FindBy(xpath = "//*[contains(text(),'Complete')]")
+    WebElement getCompleteText;
+
+    @FindBy(xpath = "//*[contains(text(),'Incomplete')]")
+    WebElement getInCompleteText;
+
+    @FindBy(xpath = "//*[contains(text(),'Completa')]")
+    WebElement getCompleteTextSP;
+
+    @FindBy(xpath = "//*[contains(text(),'Incompleta')]")
+    WebElement getInCompleteTextSP;
+
+    @FindBy(xpath="//input[@id='submitButton_AddMember']")
+    WebElement getAdditionalMemberText;
+
+    @FindBy(xpath="//input[@id='submitButton_AddMember']")
+    WebElement getAdditionalMemberTextSP;
+
+    @FindBy(xpath="//input[@id='submitButton_ContinueIncome']")
+    WebElement getSaveAndContinueText;
+    @FindBy(xpath="//input[@id='submitButton_ContinueIncome']")
+    WebElement getGetSaveAndContinueTextSP;
+
+
+
+
+
 
     public void clickAddMember() {
         basicActions.waitForElementToBeClickable(addAdditionalMember, 15);
@@ -175,4 +225,69 @@ public class HouseholdPage {
         softAssert.assertAll();
     }
 
+
+    public void iValidateTextDisplayed(String language){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (language) {
+            case "English":
+                validateEnglishHousehold();
+                break;
+            case "Spanish":
+                validateSpanishHousehold();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+
+    }
+
+    public void validateEnglishHousehold(){
+       basicActions.waitForElementToDisappear( spinner, 100 );
+        softAssert.assertEquals( getFamilyOverviewHeader.getText(), "Family Overview: Here's what you've told us so far" );
+        softAssert.assertEquals( getHelpMeLink.getText(), "Help me understand this page" );
+        softAssert.assertTrue(getAcctID.getText().contains("Account ID:"));
+        softAssert.assertEquals( getTaxHouseholdID.getText(), "Tax Household #1" );
+
+        softAssert.assertEquals( getTableText.getText(), "NAME APPLYING FOR\n"+
+                "HEALTH INSURANCE? BASIC INFORMATION ANNUAL FINANCIAL\n"+
+                "INFORMATION\n"+
+                "Yes\n"+
+                "Not Started\n"+
+                "\n"+
+                "\n"+
+                "HOUSEHOLD TOTAL \u00A40.00");
+
+        softAssert.assertEquals( getCompleteText.getText(), "Complete" );
+        softAssert.assertEquals( getInCompleteText.getText(), "Incomplete" );
+
+        softAssert.assertEquals( getAdditionalMemberText.getAttribute("value"), "+ Add another family member" );
+        softAssert.assertEquals( getSaveAndContinueText.getAttribute("value"), "Save and Continue" );
+        softAssert.assertAll();
+    }
+
+    public void validateSpanishHousehold(){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        softAssert.assertEquals( getFamilyOverviewHeader.getText(), "Resumen de la familia: Esta es la informaci\u00F3n que nos ha dado hasta el momento" );
+        softAssert.assertEquals( getHelpMeLink.getText(), "Ayuda para entender esta p\u00E1gina" );
+        softAssert.assertTrue(getAcctIDSP.getText().contains("Identificaci\u00F3n de la cuenta"));
+        softAssert.assertEquals( getTaxHouseholdIDSP.getText(), "Hogar Fiscal #1" );
+
+        softAssert.assertEquals( getTableText.getText(), "NOMBRE PARA SOLICITAR\n" +
+                "SEGURO DE SALUD INFORMACI\u00D3N B\u00C1SICA INFORMACI\u00D3N\n" +
+                "FINANCIERA ANUAL\n" +
+                "S\u00ED\n" +
+                "No iniciada\n"+
+                "\n"+
+                "\n"+
+                "TOTAL DEL HOGAR \u00A40.00");
+
+        softAssert.assertEquals( getCompleteTextSP.getText(), "Completa");
+        softAssert.assertEquals( getInCompleteTextSP.getText(), "Incompleta");
+
+        softAssert.assertEquals( getAdditionalMemberTextSP.getAttribute("value"), "+ Agregar a otro miembro de la familia" );
+        softAssert.assertEquals( getGetSaveAndContinueTextSP.getAttribute("value"), "Guardar y Continuar" );
+        softAssert.assertAll();
+
+    }
 }
