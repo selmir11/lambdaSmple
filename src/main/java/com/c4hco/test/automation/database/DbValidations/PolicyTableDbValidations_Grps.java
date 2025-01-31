@@ -221,6 +221,20 @@ public class PolicyTableDbValidations_Grps {
             softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
             softAssert.assertAll();
         }
+    public List<MemberDetails> getAllMedSubscribers(){
+        List<MemberDetails> allMembers = basicActions.getAllMem();
+        List<MemberDetails> allSubscribers = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            List<String> subscriberInd = exchDbDataProvider.getSubscribers(member.getMemberId());
+            if(subscriberInd.equals("1")){
+                member.setIsSubscriber("Y");
+                allSubscribers.add(member);
+            }else{
+                member.setIsSubscriber("N");
+            }
+        }
+        return allSubscribers;
+    }
 
         private void setMedicalData(){
             List<PolicyTablesEntity> medicalPolicyEntitiesList = exchDbDataProvider.getDataFrmPolicyTables("1");
@@ -231,7 +245,6 @@ public class PolicyTableDbValidations_Grps {
                 exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
             }
             setExchPersonId();
-
             medicalPolicyEntities = SharedData.getMedicalPolicyTablesEntities();
             dbDataMapList = SharedData.getDbDataNew();
 

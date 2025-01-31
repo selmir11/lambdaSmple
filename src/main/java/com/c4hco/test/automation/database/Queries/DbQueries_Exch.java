@@ -708,6 +708,10 @@ public String policyTablesCombinedQuery(String coverageType){
                 "order by es.updated_ts desc \n" +
                 "limit 1";
     }
-
-
+    public String getMedSubscribers(String memId){
+         return "select subscriber_ind  from "+dbName+".en_shop_group_member esgm \n" +
+                 "where application_id = '"+applicationId+"'\n" +
+                 "and coverage_type = '1'\n" +
+                 "and member_ah_id = '"+memId+"'" ;
+    }
 }
