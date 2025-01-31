@@ -10,7 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -170,9 +169,6 @@ public class AdditionalIncomeCoCoPage {
 
     @FindBy(id = "AdditionalIncome-GoBack")
     WebElement goBackButton;
-
-    @FindBy(css = ".banner-error-message")
-    WebElement errorMessage;
 
     @FindBy(css = ".header-1")
     WebElement hdrAddInfoForYourself;
@@ -582,14 +578,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertEquals(BaseText.getCssValue("line-height"), "28px");
         softAssert.assertEquals(BaseText.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertAll();
-    }
-
-    public void verifyNoErrorMessage_AdditionalIncome() {
-        Assert.assertTrue(basicActions.waitForElementToDisappear(errorMessage, 30), "Error is displayed");
-    }
-
-    public void verifyErrorMessage_AdditionalIncome() {
-        Assert.assertTrue(basicActions.waitForElementToBePresent(errorMessage, 30), "Error is NOT displayed");
     }
 
     public void verifyOptionSelected_AdditionalIncome(String optionName){
