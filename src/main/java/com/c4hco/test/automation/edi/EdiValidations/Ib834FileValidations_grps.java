@@ -186,6 +186,7 @@ public class Ib834FileValidations_grps {
     }
 
     private void validateIb834AddlMaintReason(Member member, Ib834Entity entry) {
+        // WIP
         List<List<String>> refSegList = member.getREF();
         segCount = segCount + refSegList.size();
         for (List<String> refSeg : refSegList) {
@@ -204,6 +205,7 @@ public class Ib834FileValidations_grps {
             } else if (dtpSeg.get(0).contains("349")) {
                 softAssert.assertEquals(dtpSeg.get(2), entry.getBenefit_end_date(), "DTP 349 does not match with benefit end date.");
             } else if (dtpSeg.get(0).contains("303")) {
+                // WIP
                 //Financial_effective_date() is null in DB but had a value in file
                 //  softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
             }
@@ -211,6 +213,7 @@ public class Ib834FileValidations_grps {
     }
 
     private void validateIb834LxRefN1Segment(Member member, Ib834Entity entry) {
+        // WIP
         List<List<String>> lxSegment = member.getLX();
         List<List<String>> n1SegListOfList = member.getN1();
         List<List<String>> refSegListOfList = member.getREF();
