@@ -278,14 +278,15 @@ public class Ib834FileValidations_grps {
                 for (Member mem : membersList) {
                     if (mem.getNM1().get(0).get(3).equals(dbSubscriberEntity.getMember_first_name())) {
                         validateSponsorPayerDetails(dbSubscriberEntity, transaction);
+                        validateDtpSegment(dbSubscriberEntity, transaction);
                         validatePerSeg(dbSubscriberEntity, transaction);
+
                         validateBgnSeg(dbSubscriberEntity, transaction);
                         validateQtySeg(dbSubscriberEntity, transaction);
                         validateLUISeg(dbSubscriberEntity, transaction);
                         validateN3N4Segments(dbSubscriberEntity, transaction);
                         validateTrnSeg(dbSubscriberEntity, transaction);
                         validateSubscriberRefSeg(transaction);
-                        validateDtpSegment(dbSubscriberEntity, transaction);
                         softAssert.assertAll();
                     }
                 }
@@ -293,11 +294,13 @@ public class Ib834FileValidations_grps {
         }
     }
 
-    private void validateDtpSegment(Ib834Entity entry, Transaction transaction){
-        // WIP - Add assertions
-        List<List<String>> dtpSegment = transaction.getCommonSegments().getDTP();
-        segCount = segCount +dtpSegment.size();
-    }
+        private void validateDtpSegment(Ib834Entity entry, Transaction transaction) {
+            List<List<String>> dtpSegment = transaction.getCommonSegments().getDTP();
+            segCount = segCount + dtpSegment.size();
+            softAssert.assertEquals(dtpSegment.get(0).get(0), "303", "DTP01 segment, Date Time Qualifier, mismatch");
+            softAssert.assertEquals(dtpSegment.get(0).get(1), "D8", "DTP02 segment, Date Time Period Format Qualifier D8 mismatch");
+            softAssert.assertAll();
+        }
 
     private void validateSponsorPayerDetails(Ib834Entity entry, Transaction transaction) {
         List<List<String>> n1Segment = transaction.getCommonSegments().getN1();
@@ -312,6 +315,16 @@ public class Ib834FileValidations_grps {
         softAssert.assertEquals(n1Segment.get(1).get(1), entry.getInsurer_name(), "Insurer Name does not match");
         softAssert.assertEquals(n1Segment.get(1).get(2), "94", "Code assigned by the organization that is the ultimate destination of the transaction set");
         softAssert.assertEquals(n1Segment.get(1).get(3), entry.getInsurer_id(), "Insurer Identification Code");
+
+        if (SharedData.getHasBroker()) {
+            softAssert.assertEquals(n1Segment.get(2).get(0), "BO", "Broker");
+            softAssert.assertEquals(n1Segment.get(2).get(1), entry.getTpa_or_broker_name(), "Broker name mismatch");
+            softAssert.assertEquals(n1Segment.get(2).get(2), "FI", "Broker Code assigned by the organization that is the ultimate destination of the transaction set");
+            softAssert.assertEquals(n1Segment.get(2).get(3), entry.getTpa_or_broker_id(), "Broker Id mismatch");
+            List<String> actSegment = transaction.getCommonSegments().getACT().get(0);
+            softAssert.assertEquals(actSegment.get(0), entry.getTpa_or_broker_lic_num(), "Broker License Number did not match");
+            segCount = segCount + 1;
+        }
     }
     private void validatePerSeg(Ib834Entity entry, Transaction transaction) {
         List<String> perSeg = transaction.getMembersList().get(0).getPER().get(0);
