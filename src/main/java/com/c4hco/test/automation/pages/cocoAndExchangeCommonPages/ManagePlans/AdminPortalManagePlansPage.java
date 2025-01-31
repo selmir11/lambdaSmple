@@ -530,7 +530,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertTrue(planYearDownArrow.isDisplayed());
         basicActions.click(dpdCurrentYearMP);
         basicActions.waitForElementListToBePresent(planYearList, 20);
-        List<String> expectedList = new ArrayList<>(Arrays.asList("2022", "2023", "2024", "2025"));
+        List<String> expectedList = new ArrayList<>(Arrays.asList("2021", "2022", "2023", "2024", "2025"));
         List<String> existingList = new ArrayList<>();
         for (WebElement each : planYearList) {
             existingList.add(each.getText().trim());
@@ -538,6 +538,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(planYearList.get(0).getText(), lowerYear);
         softAssert.assertEquals(expectedList, existingList);
         softAssert.assertAll();
+        basicActions.click(dpdCurrentYearMP);
     }
 
     public void clickSaveButton() {

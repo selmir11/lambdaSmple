@@ -918,6 +918,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I change the language from header to "English NonElmo"
     Then  I click on Sign Out in the Header for "NonElmo"
 
+
   @SLER-2029 @PageText
   Scenario: Verify English and Spanish Text for Applicant for asylum status on the Citizenship and immigration status page [RT-989]
     When I click create a new account on login page

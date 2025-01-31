@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.Dto.AssisterDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
@@ -24,7 +23,7 @@ public class NoticesPage {
 
     @FindBy(css = "#i0116")
     WebElement email;
-    @FindBy(xpath = "//a[@aria-label='Sign in to Microsoft Outlook']")
+    @FindBy(xpath = "//div[contains(@class,'layout section-master__layout section-master--layout-cols-2')]//span[@class='btn__text'][normalize-space()='Sign in']")
     WebElement loginMail;
     @FindBy(xpath = "//input[@type='password']")
     WebElement passwordEmail;
@@ -209,6 +208,7 @@ public class NoticesPage {
     }
 
     public void signInEmail(String Gmail, String password) {
+        basicActions.waitForElementToBePresentWithRetries(loginMail, 20);
         loginMail.click();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);

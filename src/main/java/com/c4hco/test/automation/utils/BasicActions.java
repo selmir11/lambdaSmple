@@ -1179,6 +1179,10 @@ public class BasicActions {
             return changeDateFormat(firstDateOfTheMonthAfterNext(),"yyyy-MM-dd","MM/dd/yyyy");
         }
     }
+
+    public  String getUniqueNumber(int length) {
+        return RandomStringUtils.random(length, "123456789");
+    }
 }
 
 
