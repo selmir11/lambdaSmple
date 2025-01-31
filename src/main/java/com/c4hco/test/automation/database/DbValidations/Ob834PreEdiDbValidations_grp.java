@@ -551,21 +551,22 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertTrue(expectedValues.get("sep_reason") == null ? ob834Entity.getSep_reason().isEmpty() : ob834Entity.getSep_reason().equals(expectedValues.get("sep_reason")), "Sep_reason mismatch or expected blank but was: " + ob834Entity.getSep_reason());
     }
 
-    private void setData() {
-        List<Ob834DetailsEntity> medicalOb834Records = exchDbDataProvider.getOb834Details("HLT");
-        List<Ob834DetailsEntity> dentalOb834Records = exchDbDataProvider.getOb834Details("DEN");
-        SharedData.setOb834DetailsMedEntities(medicalOb834Records);
-        SharedData.setOb834DetailsDenEntities(dentalOb834Records);
-
-        ob834DetailsMedEntities = SharedData.getOb834DetailsMedEntities();
-        ob834DetailsDenEntities = SharedData.getOb834DetailsDenEntities();
+    private void setMedicalData(){
+        ob834DetailsMedEntities = exchDbDataProvider.getOb834Details("HLT");
+        SharedData.setOb834DetailsMedEntities(ob834DetailsMedEntities);
         subscribers = basicActions.getAllSubscribers();
-
         dbDataMapList = SharedData.getDbDataNew();
         medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
-        dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
-
         medicalPolicyEnitities = SharedData.getMedicalPolicyTablesEntities();
+    }
+
+    private void setDentalData() {
+        ob834DetailsDenEntities = exchDbDataProvider.getOb834Details("DEN");
+        SharedData.setOb834DetailsDenEntities(ob834DetailsDenEntities);
+        ob834DetailsDenEntities = SharedData.getOb834DetailsDenEntities();
+        subscribers = basicActions.getAllDenSubscribers();
+        dbDataMapList = SharedData.getDbDataNew();
+        dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
         dentalPolicyEnitities = SharedData.getDentalPolicyTablesEntities();
     }
 
