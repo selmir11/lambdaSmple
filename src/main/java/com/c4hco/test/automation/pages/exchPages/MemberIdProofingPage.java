@@ -161,7 +161,7 @@ public class MemberIdProofingPage {
         basicActions.isElementDisplayed(idProofingError,30);
     }
 
-    public void validateCongrdulationsMessage(String messageOne, String messageTwo, String messageThree, String language){
+    public void validateCongratulationsMessage(String messageOne, String messageTwo, String language){
         basicActions.waitForElementToDisappear(spinner,20);
         headerandFooterpage.changeLanguage(language+" NonElmo");
         basicActions.waitForElementToBePresent(congradulationMessage,10);
