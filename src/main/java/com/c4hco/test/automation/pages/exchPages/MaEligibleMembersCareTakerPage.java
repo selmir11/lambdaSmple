@@ -40,13 +40,13 @@ public class MaEligibleMembersCareTakerPage {
     @FindBy(xpath = "//span[contains(text(),'Who is the main person taking care of this child?')]")
     WebElement whoText;
 
-    @FindBy(xpath = "//span[contains(text(),'¿Qui\u00E9n es la persona responsable por este ni\u00F1o?')]")
+    @FindBy(xpath = "//span[contains(text(),'\u00BFQui\u00E9n es la persona responsable por este ni\u00F1o?')]")
     WebElement whoTextSP;
 
     @FindBy(xpath = "//span[contains(text(),'Yes')]")
     WebElement yesText;
 
-    @FindBy(xpath = "//span[contains(text(),'S\\u00ED')]")
+    @FindBy(xpath = "//span[contains(text(),'S\u00ED')]")
     WebElement yesTextSP;
     @FindBy(xpath = "//span[contains(text(),'No')]")
     WebElement noText;
@@ -122,9 +122,9 @@ public class MaEligibleMembersCareTakerPage {
         softAssert.assertEquals( helpMeTextSP.getText(), "Ayuda para entender esta p\u00E1gina" );
         softAssert.assertEquals( anyoneText.getText(), "\u00BFAlg\u00FAn miembro de su familia tiene 19 a\u00F1os o menos?" );
 
-        softAssert.assertEquals( yesTextSP.getText(),"S\\u00ED" );
+        softAssert.assertEquals( yesTextSP.getText(),"S\u00ED" );
         basicActions.click(rdoYes);
-        softAssert.assertEquals( whoTextSP.getText(), "¿Qui\u00E9n es la persona responsable por este ni\u00F1o?" );
+        softAssert.assertEquals( whoTextSP.getText(), "\u00BFQui\u00E9n es la persona responsable por este ni\u00F1o?" );
 
         softAssert.assertEquals( noText.getText(),"No" );
 
