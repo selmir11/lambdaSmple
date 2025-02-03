@@ -26,7 +26,7 @@ public class ApplicationSummaryPage {
     @FindBy(xpath = "//td[normalize-space()='Projected Income']//following::td[1]")
     WebElement txtProjectedIncome;
 
-    @FindBy(xpath = "//td[normalize-space()='Projected Income']//following::td[8]")
+    @FindBy(xpath = "//td[normalize-space()='Projected Income']//following::td[6]")
     WebElement txtProjectedIncome2;
 
     @FindBy(xpath = "//*[@id='doubleAccord-fin0']")
@@ -77,12 +77,14 @@ public class ApplicationSummaryPage {
             case "primary":
                 basicActions.waitForElementToBePresent(txtProjectedIncome, 30);
                 softAssert.assertEquals(txtProjectedIncome.getText(),income);
+                softAssert.assertAll();
                 break;
             case "primaryandspouse":
                 basicActions.waitForElementToBePresent(txtProjectedIncome, 30);
                 softAssert.assertEquals(txtProjectedIncome.getText(),income);
                 basicActions.waitForElementToBePresent(txtProjectedIncome2, 30);
                 softAssert.assertEquals(txtProjectedIncome2.getText(),income);
+                softAssert.assertAll();
                 break;
             default:
                 Assert.fail("Invalid argument passed!!");

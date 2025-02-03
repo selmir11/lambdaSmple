@@ -97,4 +97,4 @@ Feature: IndDash: Projected Income one member
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click View Application Summary link
-    Then I verify the Projected Income for "primaryandspouse" is "29000"
+    Then I verify the Projected Income for "primary" is "29000.00"
