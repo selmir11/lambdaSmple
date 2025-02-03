@@ -17,4 +17,19 @@ public class MyClientAssistNetPortalSteps {
         myClientAssistNetPortal.validateTotalSelectedClientCount(expectedCount);
     }
 
+    @Then("I verify existing assister client details {string}, {string}, {string}, {string} or {string}")
+    public void iVerifyExistingClientDetails(String clientName, String clientZip, String phoneNumber, String clientAccountStg, String clientAccountQA) {
+        myClientAssistNetPortal.verifyExistingClientDetails(clientName, clientZip, phoneNumber, clientAccountStg, clientAccountQA);
+    }
+
+    @Then("I verify existing assister client plan details {string}, {string}, {string}")
+    public void iVerifyExistingClientPlanDetails(String planYear, String eligResults, String issuerName) {
+        myClientAssistNetPortal.verifyExistingClientPlanDetails(planYear, eligResults, issuerName);
+    }
+
+    @Then("I verify the existing assister secondary client details {string}, {string}, {string}, {string}, {string}")
+    public void iVerifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults, String issuerName) {
+        myClientAssistNetPortal.verifyExistingSecondaryClientDetails(clientName, clientZip, planYear, eligResults, issuerName);
+    }
+
 }
