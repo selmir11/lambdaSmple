@@ -168,8 +168,12 @@ public String policyTablesCombinedQuery(String coverageType){
                 "and current_ind = 1 limit 1";
     }
 
-    public String brokerId() {
-        return "SELECT agency_tin_ein FROM " + dbName + ".bp_agency where agency_name = '" + SharedData.getBroker().getAgencyName() + "'";
+    public String commissionTin() {
+        return "SELECT bpa.commission_tin\n" +
+                "FROM " + dbName + ".bp_client_authorization bpa\n" +
+                "JOIN " + dbName + ".es_household eh\n" +
+                " ON bpa.household_id = eh.household_id\n" +
+                "WHERE eh.account_id = '" + acctId + "'";
     }
 
     public String getCSRRecords() {
@@ -690,7 +694,15 @@ public String policyTablesCombinedQuery(String coverageType){
                 "Where esh.account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'";
     }
 
-
+    public String getArpIndicator() {
+        return "Select ES.arp_quick_submit_ind\n" +
+                "FROM " +dbName + ".ES_HOUSEHOLD ESH, "+dbName+".ES_MEMBER ESM, "+dbName+".es_submission es \n" +
+                "WHERE ESH.HOUSEHOLD_ID = ESM.HOUSEHOLD_ID\n" +
+                "and ESH.household_id = es.household_id \n" +
+                "AND ESH.ACCOUNT_ID = '"+acctId+"'\n" +
+                "order by es.updated_ts desc \n" +
+                "limit 1";
+    }
 
 
 }

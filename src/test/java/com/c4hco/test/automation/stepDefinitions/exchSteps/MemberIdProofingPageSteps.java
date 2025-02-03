@@ -4,6 +4,8 @@ import com.c4hco.test.automation.pages.exchPages.MemberIdProofingPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
 
+import java.util.List;
+
 public class MemberIdProofingPageSteps {
     MemberIdProofingPage memberIdProofingPage = new MemberIdProofingPage(WebDriverManager.getDriver());
 
@@ -30,5 +32,15 @@ public class MemberIdProofingPageSteps {
     @And("I validate the id proofing error message is displayed")
     public void iValidateTheIdProofingErrorMessageIsDisplayed() {
         memberIdProofingPage.validateTheIdProofingErrorMessageIsDisplayed();
+    }
+
+    @Then("Validate congratulations message got displayed with expected text in both English and Spanish languages with {string}, {string} in {string}")
+    public void ivalidateCongratulationsMessage(String messageOne, String messageTwo, String language){
+        memberIdProofingPage.validateCongratulationsMessage(messageOne,messageTwo, language);
+    }
+
+    @Then("I select specific answers for Id proofing questions and click continue")
+    public void iSelectSpecifiedAnswers(List<String> specifiedAnswers){
+        memberIdProofingPage.selectSpecificAnswers(specifiedAnswers);
     }
 }
