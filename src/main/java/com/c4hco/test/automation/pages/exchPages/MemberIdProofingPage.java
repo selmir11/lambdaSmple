@@ -58,7 +58,7 @@ public class MemberIdProofingPage {
     WebElement idProofingError;
 
     @FindBy(xpath = "//div[@class='successContainer']")
-    WebElement congradulationMessage;
+    WebElement congratulationsMessage;
 
     @FindBy(xpath = "//input[contains(@class,'inputAsText')]")
     WebElement lookforExpertLink;
@@ -161,11 +161,11 @@ public class MemberIdProofingPage {
         basicActions.isElementDisplayed(idProofingError,30);
     }
 
-    public void validateCongrdulationsMessage(String messageOne, String messageTwo, String messageThree, String language){
+    public void validateCongratulationsMessage(String messageOne, String messageTwo, String language){
         basicActions.waitForElementToDisappear(spinner,20);
         headerandFooterpage.changeLanguage(language+" NonElmo");
-        basicActions.waitForElementToBePresent(congradulationMessage,10);
-        String[] messageDetails = congradulationMessage.getText().split(SharedData.getPrimaryMember().getFirstName());
+        basicActions.waitForElementToBePresent(congratulationsMessage,10);
+        String[] messageDetails = congratulationsMessage.getText().split(SharedData.getPrimaryMember().getFirstName());
         softAssert.assertEquals(messageDetails[0]+SharedData.getPrimaryMember().getFirstName()+messageDetails[1]+" "+lookforExpertLink.getAttribute("value").trim(),messageOne+" "+SharedData.getPrimaryMember().getFirstName()+". "+messageTwo+".");
         softAssert.assertAll();
     }
