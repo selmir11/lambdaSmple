@@ -248,5 +248,76 @@ public class YourClientsPageSteps {
     public void iVerifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults, String issuerName) {
         yourClientsPage.verifyExistingSecondaryClientDetails(clientName, clientZip, planYear, eligResults, issuerName);
     }
+
+
+    @And("I validate the MVR container text in the dashboard Page")
+    public void iValidateTheMVRContainerTextInTheDashboardPage() {
+        yourClientsPage.validateTheMVRContainerTextInTheDashboardPage();
+    }
+
+    @Then("I validate the I can't search for special characters on Search Bar")
+    public void iValidateTheICanTSearchForSpecialCharactersOnSearchBar() {
+        yourClientsPage.validateTheICanTSearchForSpecialCharactersOnSearchBar();
+    }
+
+    @Then("I search for STG {string} QA {string} in search mvr container")
+    public void iSearchForSTGQAInSearchMvrContainer(String STGClient, String QAClient) {
+        yourClientsPage.searchForInSearchMvrContainer(STGClient, QAClient);
+    }
+
+    @And("I clear the MVR search box in broker dashboard page")
+    public void iClearTheMVRSearchBoxInBrokerDashboardPage() {
+        yourClientsPage.clearTheMVRSearchBoxInBrokerDashboardPage();
+    }
+
+    @And("I click the right pagination arrow button {int} times in mvr container")
+    public void iClickTheRightPaginationArrowButtonTimesInMvrContainer(int numberTime) {
+        yourClientsPage.clickTheRightPaginationArrowButtonTimesInMvrContainer(numberTime);
+    }
+
+    @Then("I verify the current result page is {string} in mvr container")
+    public void iVerifyTheCurrentResultPageIsInMvrContainer(String currentPage) {
+        yourClientsPage.verifyTheCurrentResultPageIsInMvrContainer(currentPage);
+    }
+
+    @And("I click the left pagination arrow button {int} times in mvr container")
+    public void iClickTheLeftPaginationArrowButtonTimesInMvrContainer(int numberTime) {
+        yourClientsPage.clickTheLeftPaginationArrowButtonTimesInMvrContainer(numberTime);
+    }
+
+    @And("I validate the result contains {string}")
+    public void iValidateTheResultContains(String search) {
+        yourClientsPage.validateTheResultContains(search);
+    }
+
+    @Then("I validate the mvr container is not displayed")
+    public void iValidateTheMvrContainerIsNotDisplayed() {
+        yourClientsPage.validateTheMvrContainerIsNotDisplayed();
+    }
+
+    @And("I validate the first name {string} last Name {string} Type {string} Due Date {string} and action Type {string}")
+    public void iValidateTheFirstNameLastNameTypeDueDateAndActionType(String firstName, String lastName, String Type,String DueDate, String actionType) {
+        yourClientsPage.validateTheFirstNameLastNameTypeDueDateAndActionType(firstName,lastName,Type, DueDate, actionType);
+    }
+
+    @Then("I click verify info button on MVR container")
+    public void iClickVerifyInfoButtonOnMVRContainer() {
+        yourClientsPage.clickVerifyInfoButtonOnMVRContainer();
+    }
+
+    @Then("I search for the client created in search mvr container")
+    public void iSearchForTheClientCreatedInSearchMvrContainer() {
+        yourClientsPage.searchForTheClientCreatedInSearchMvrContainer();
+    }
+
+    @And("I validate the MVR Type {string} and action Type {string}")
+    public void iValidateTheMVRTypeAndActionType(String mvrType,  String actionButton) {
+        yourClientsPage.validateTheMVRTypeAndActionType(mvrType, actionButton);
+    }
+
+    @And("I validate the client data on the MVR container {string}")
+    public void iValidateTheClientDataOnTheMVRContainer(String  actionBtn) {
+        yourClientsPage.validateTheClientDataOnTheMVRContainer(actionBtn);
+    }
 }
 
