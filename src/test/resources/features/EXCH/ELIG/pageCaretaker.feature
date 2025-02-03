@@ -102,7 +102,8 @@ Feature: Testing will verify text and navigation for Caretaker page (Medicaid el
 
     Then I validate I am on the "Parent/Caretaker" page
     And I validate the "English" text on the Caretaker page
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I change the language from header to "Spanish NonElmo"
+    #And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate the "Spanish" text on the Caretaker page
     And I change the language from Elmo header to "English" if it isn't already in that language
     And I click on Sign Out in the Header for "NonElmo"

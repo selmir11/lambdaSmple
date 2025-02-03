@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class MaEligibleMembersCareTakerPage {
 
     private BasicActions basicActions;
@@ -29,7 +31,7 @@ public class MaEligibleMembersCareTakerPage {
     @FindBy(xpath = "//*[contains(text(),'Help me understand this page')]")
     WebElement helpMeText;
 
-    @FindBy(xpath = "//*[contains(text(),'Help me understand this page')]")
+    @FindBy(xpath = "//*[contains(text(),'Ayuda para entender esta p\u00E1gina')]")
     WebElement helpMeTextSP;
 
     @FindBy(xpath = "//*[@id = 'criteriaApplicableLabel']")
@@ -38,17 +40,22 @@ public class MaEligibleMembersCareTakerPage {
     @FindBy(xpath = "//span[contains(text(),'Who is the main person taking care of this child?')]")
     WebElement whoText;
 
-    @FindBy(xpath = "//span[contains(text(),'Who is the main person taking care of this child?')]")
+    @FindBy(xpath = "//span[contains(text(),'¿Qui\u00E9n es la persona responsable por este ni\u00F1o?')]")
     WebElement whoTextSP;
 
-    @FindBy(xpath = "//*[@value = '1']")
+    @FindBy(xpath = "//span[contains(text(),'Yes')]")
     WebElement yesText;
 
-    @FindBy(xpath = "//*[@value = '0']")
+    @FindBy(xpath = "//span[contains(text(),'S\\u00ED')]")
+    WebElement yesTextSP;
+    @FindBy(xpath = "//span[contains(text(),'No')]")
     WebElement noText;
 
     @FindBy(xpath = "//*[@value = '< Back']")
     WebElement valueText;
+
+    @FindBy(xpath = "//*[@value = '< Atr\u00E1s']")
+    WebElement valueTextSP;
 
     @FindBy(id = "isAnyoneMACriteriaYes")
     WebElement rdoYes;
@@ -94,11 +101,15 @@ public class MaEligibleMembersCareTakerPage {
         softAssert.assertEquals( headerCaretaker.getText(), "Parent/Caretaker" );
         softAssert.assertEquals( helpMeText.getText(), "Help me understand this page" );
         softAssert.assertEquals( anyoneText.getText(), "Is anyone in the household under the age of 19?" );
-        softAssert.assertEquals( yesText.getText(), "Yes" );
-        basicActions.click(yesText);
+
+        softAssert.assertEquals( yesText.getText(),"Yes" );
+
+        basicActions.click( rdoYes );
         softAssert.assertEquals( whoText.getText(), "Who is the main person taking care of this child?" );
-        softAssert.assertEquals( noText.getText(), "No" );
-        softAssert.assertEquals( valueText.getText(), "< Back" );
+
+        softAssert.assertEquals( noText.getText(),"No" );
+
+        softAssert.assertEquals( valueText.getAttribute( "value" ), "< Back");
         softAssert.assertEquals( btnSaveAndContinue.getText(), "Save and Continue" );
         softAssert.assertAll();
     }
@@ -108,13 +119,16 @@ public class MaEligibleMembersCareTakerPage {
         basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
         basicActions.waitForElementToBePresent(headerCaretaker,20  );
         softAssert.assertEquals( headerCaretaker.getText(), "Cuidador principal" );
-        softAssert.assertEquals( helpMeText.getText(), "Ayuda para entender esta p\u00E1gina" );
+        softAssert.assertEquals( helpMeTextSP.getText(), "Ayuda para entender esta p\u00E1gina" );
         softAssert.assertEquals( anyoneText.getText(), "\u00BFAlg\u00FAn miembro de su familia tiene 19 a\u00F1os o menos?" );
-        softAssert.assertEquals( yesText.getText(), "S\u00ED" );
-        basicActions.click(yesText);
-        softAssert.assertEquals( whoText.getText(), "¿Qui\u00E9n es la persona responsable por este ni\u00F1o?" );
-        softAssert.assertEquals( noText.getText(), "No" );
-        softAssert.assertEquals( valueText.getText(), "< Atr\u00E1s" );
+
+        softAssert.assertEquals( yesTextSP.getText(),"S\\u00ED" );
+        basicActions.click(rdoYes);
+        softAssert.assertEquals( whoTextSP.getText(), "¿Qui\u00E9n es la persona responsable por este ni\u00F1o?" );
+
+        softAssert.assertEquals( noText.getText(),"No" );
+
+        softAssert.assertEquals( valueTextSP.getAttribute("value"), "< Atr\u00E1s" );
         softAssert.assertEquals( btnSaveAndContinue.getText(), "Guardar y Continuar" );
         softAssert.assertAll();
     }
