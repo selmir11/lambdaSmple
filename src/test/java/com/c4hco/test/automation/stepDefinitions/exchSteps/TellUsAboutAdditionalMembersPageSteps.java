@@ -30,10 +30,11 @@ public class TellUsAboutAdditionalMembersPageSteps {
         tellUsAboutAdditionalMemberPage.specificAdditionalMemberDetailsExch(Name, DOB, gender, Relations, applying);
     }
 
-    @Then("I enter details on tell us about additional members same as primary")
-    public void AdditionalMemberDetailsSameasPrimary(List<String> Relations) {
-        tellUsAboutAdditionalMemberPage.AdditionalMemberDetailsSameasPrimary( Relations);
+    @Then("I create an additional member with the following relations and condition {string}")
+    public void createAdditionalMemberWithRelationsAndCondition(String memberCondition ,List<String> relations ) {
+        tellUsAboutAdditionalMemberPage.additionalMemberDetailsSameAsPrimary(memberCondition, relations);
     }
+
 
     @Then("I update member SSN number to new SSN number {string}")
     public void iUpdateMemSSN(String updatedSSN) {tellUsAboutAdditionalMemberPage.updateMemSSN(updatedSSN);
