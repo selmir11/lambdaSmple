@@ -234,19 +234,24 @@ public class YourClientsPageSteps {
         yourClientsPage.clickTransferAllClients();
     }
 
+    @And("I validate the Transfer All Clients button is displayed")
+    public void iValidateTransferAllClientsButton() {
+        yourClientsPage.validateTransferAllClients();
+    }
+
     @Then("I verify existing client details {string}, {string}, {string}, {string} or {string}")
     public void iVerifyExistingClientDetails(String clientName, String clientZip, String phoneNumber, String clientAccountStg, String clientAccountQA) {
         yourClientsPage.verifyExistingClientDetails(clientName, clientZip, phoneNumber, clientAccountStg, clientAccountQA);
     }
 
-    @Then("I verify existing client plan details {string}, {string}, {string}")
-    public void iVerifyExistingClientPlanDetails(String planYear, String eligResults, String issuerName) {
-        yourClientsPage.verifyExistingClientPlanDetails(planYear, eligResults, issuerName);
+    @Then("I verify existing client plan details {string}, {string}, {string}, {string}, {string}")
+    public void iVerifyExistingClientPlanDetails(String planYear, String eligResults1, String eligResults2, String eligResults3, String issuerName) {
+        yourClientsPage.verifyExistingClientPlanDetails(planYear, eligResults1, eligResults2, eligResults3, issuerName);
     }
 
-    @Then("I verify the existing secondary client details {string}, {string}, {string}, {string}, {string}")
-    public void iVerifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults, String issuerName) {
-        yourClientsPage.verifyExistingSecondaryClientDetails(clientName, clientZip, planYear, eligResults, issuerName);
+    @Then("I verify the existing secondary client details {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+    public void iVerifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults1, String eligResults2, String eligResults3, String issuerName) {
+        yourClientsPage.verifyExistingSecondaryClientDetails(clientName, clientZip, planYear, eligResults1, eligResults2, eligResults3, issuerName);
     }
 
 

@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
-import com.c4hco.test.automation.Dto.AssisterDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
@@ -212,6 +211,7 @@ public class NoticesPage {
     }
 
     public void signInEmail(String Gmail, String password) {
+        basicActions.waitForElementToBePresentWithRetries(loginMail, 20);
         loginMail.click();
         for (String handle : basicActions.getDriver().getWindowHandles()) {
             basicActions.getDriver().switchTo().window(handle);
