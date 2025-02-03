@@ -408,7 +408,7 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void addSpecificDetails(String fName, String mName, String lName){
+    public void addSpecificDetails( String fName,String mName, String lName){
         initializeSpecificData(fName, mName, lName);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
@@ -1018,38 +1018,10 @@ public class CreateAccountPage {
     }
 
 
-    public void enterFirstNameContainsMiddleNameLastNameAndGeneralMandatoryDataForAccountCreation(String fName, String mName, String lName, String appType) {
-        addSpecificDetailsContains(fName, mName, lName);
+    public void createAccountWithSpecificData(String fName, String mName, String lName, String appType) {
+        fName = fName+basicActions.getUniqueString(6);
+        addSpecificDetails(fName, mName, lName);
         selectBasedOnApp(appType);
     }
 
-    public void addSpecificDetailsContains(String fName, String mName, String lName){
-        MemberDetails subscriber = new MemberDetails();
-        List<MemberDetails> allMembersList = new ArrayList<>();
-        subscriber.setFirstName(fName+basicActions.getUniqueString(6));
-        subscriber.setMiddleName(mName);
-        subscriber.setLastName(lName);
-        subscriber.setEmailId("AutomationUser."+subscriber.getLastName()+"."+basicActions.getUniqueString(6)+"@test.com");
-        subscriber.setPhoneNumber((String) basicActions.generatePhoneNumber());
-        subscriber.setIsSubscriber("Y");
-        SharedData.setPrimaryMember(subscriber);
-        allMembersList.add(subscriber);
-        SharedData.setAllMembers(allMembersList);
-        basicActions.waitForElementToBePresent(firstName, 60);
-        firstName.sendKeys(subscriber.getFirstName());
-        middleName.sendKeys(subscriber.getMiddleName());
-        lastName.sendKeys(subscriber.getLastName());
-        email.sendKeys(subscriber.getEmailId());
-        phoneNumber.sendKeys(subscriber.getPhoneNumber());
-        password.sendKeys(subscriber.getPassword());
-        confirmPassword.sendKeys(subscriber.getPassword());
-        subscriber.setSignature(subscriber.getFirstName()+" "+subscriber.getLastName());
-        subscriber.setFullName(subscriber.getFirstName()+" "+subscriber.getLastName());
-        subscriber.setCompleteFullName(subscriber.getFirstName()+" "+subscriber.getLastName()); // WIP
-        preferredLanguageButtonEnglish.click();
-
-        primaryUserCheckbox.click();
-        subscriber.setRelation_to_subscriber("SELF");
-        SharedData.setPrimaryMember(subscriber);
-    }
 }
