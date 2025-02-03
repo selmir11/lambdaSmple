@@ -19,7 +19,7 @@ Feature: RIDP related test
     And I am a member with City "Denver" in State "CO" with dob "09051959" in county "DENVER" with zipcode "80205"
     Then I validate I am on the "Identity Proofing - Initial Questions" page
     Then I answer all Id proofing questions and click continue
-    Then Validate congratulations message got displayed with expected text in both English and Spanish launguages with "<messageOne>", "<messageTwo>" and "<messageThree>" in "<Language>"
+    Then Validate congratulations message got displayed with expected text in both English and Spanish languages with "<messageOne>", "<messageTwo>" in "<Language>"
     Then I click on Sign Out in the Header for "NonElmo"
     Examples:
       | messageOne                                                              | messageTwo                                                                   | Language |
