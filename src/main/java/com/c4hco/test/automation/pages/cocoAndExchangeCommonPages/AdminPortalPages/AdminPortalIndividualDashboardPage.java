@@ -926,29 +926,41 @@ public class AdminPortalIndividualDashboardPage {
         }
         softAssert.assertAll();
     }
-    public void validateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData, String fullNameData, String userNameData, String memberEmailData, String memberPhoneData){
+    public void validateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData){
         basicActions.switchToParentPage("C4HCO Admin Portal");
 
-        basicActions.waitForElementToBePresent(selectedMember, 300);
+        basicActions.waitForElementToBePresent(selectedMemberLabel, 300);
         softAssert.assertTrue(selectedMemberLabel.isDisplayed());
 
-        softAssert.assertTrue(memberDob.isDisplayed());
-        softAssert.assertTrue(memberAddress.isDisplayed());
-        softAssert.assertAll();
         String fullNameData = null;
         String userNameData = null;
-        String memberEmailData = null;
         String memberPhoneData = null;
+        String memberEmailData = null;
+        String memberDobData = null;
+        String memberAddressData = null;
 
-            String fullNameData = selectedMemberData.get(0).get("staging full name");
-            String userNameData = selectedMemberData.get(0).get("staging user name");
-            String memberEmailData = selectedMemberData.get(0).get("staging member email");
-            String memberPhoneData = selectedMemberData.get(0).get("staging member phone");
-
+        if (SharedData.getEnv().equals("staging")) {
+            fullNameData = selectedMemberData.get(0).get("staging full name");
+            userNameData = selectedMemberData.get(0).get("staging user name");
+            memberPhoneData = selectedMemberData.get(0).get("staging member phone");
+            memberEmailData = selectedMemberData.get(0).get("staging member email");
+            memberDobData = selectedMemberData.get(0).get("staging member dob");
+            memberAddressData = selectedMemberData.get(0).get("staging member address");
+        }else {
+            fullNameData = selectedMemberData.get(0).get("qa full name");
+            userNameData = selectedMemberData.get(0).get("qa user name");
+            memberPhoneData = selectedMemberData.get(0).get("qa member phone");
+            memberEmailData = selectedMemberData.get(0).get("qa member email");
+            memberDobData = selectedMemberData.get(0).get("qa member dob");
+            memberAddressData = selectedMemberData.get(0).get("qa member address");
+            }
         softAssert.assertEquals(memberFullName.getText(), fullNameData);
         softAssert.assertEquals(userName.getText(), userNameData);
-        softAssert.assertEquals(memberEmail.getText(), memberEmailData);
         softAssert.assertEquals(memberPhone.getText(), memberPhoneData);
+        softAssert.assertEquals(memberEmail.getText(), memberEmailData);
+        softAssert.assertEquals(memberDob.getText(), memberDobData);
+        softAssert.assertEquals(memberAddress.getText(), memberAddressData);
+        softAssert.assertAll();
     }
 }
 

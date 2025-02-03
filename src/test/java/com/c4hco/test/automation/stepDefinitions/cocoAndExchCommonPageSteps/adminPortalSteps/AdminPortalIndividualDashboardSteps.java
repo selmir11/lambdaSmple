@@ -271,12 +271,9 @@ public class AdminPortalIndividualDashboardSteps {
     public void iVerifyCocoIndividualAccountSummaryDetails() {
         adminPortalIndividualDashboardPage.VerifyCocoIndividualAccountSummary();
     }
-    @And("I validate CoCo Selected Member data on the far left side {string}, {string}, {string}, {string}")
-    public void iValidateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData, String fullNameData, String userNameData, String memberEmailData, String memberPhoneData) {
-        adminPortalIndividualDashboardPage.validateCoCoSelectedMemberData(selectedMemberData, fullNameData, userNameData, memberEmailData, memberPhoneData);
+    @And("I validate CoCo Selected Member data on the far left side")
+    public void iValidateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData) {
+        adminPortalIndividualDashboardPage.validateCoCoSelectedMemberData(selectedMemberData);
     }
 }
-//    @And("I validate CoCo coverage table data on Simplified View {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}, {string}")
-//    public void iValidateCoverageTableDataOnSimplifiedView(String type, String rowSTG, String coverageStartSTG, String coverageEndSTG, String statusSTG, String effectuatedSTG, String reasonSTG, String rowQA, String coverageStartQA, String coverageEndQA, String statusQA, String effectuatedQA, String reasonQA) {
-//        adminPortalManagePlansPage.iValidateCoverageTableDataRowOne(type, rowSTG, coverageStartSTG, coverageEndSTG, statusSTG, effectuatedSTG, reasonSTG, rowQA, coverageStartQA, coverageEndQA, statusQA, effectuatedQA, reasonQA);
-//    }
+
