@@ -1,4 +1,4 @@
-@OPS
+@OPS @dataVerifyinUI
 Feature: CoCo dashboard: Member details
   @SLCR-710
   Scenario: CoCo dashboard: Member details
