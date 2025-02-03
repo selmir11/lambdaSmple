@@ -8,15 +8,20 @@ import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java8.El;
+import io.cucumber.java8.Ne;
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -26,7 +31,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.List;
+import java.time.Year;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class MyDocumentsPage {
 
@@ -148,6 +157,31 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".btn-upload.btn-primary-action-button")
     WebElement btnUploadDoc;
+
+   @FindBy(xpath = "//*[@class='drop-down-option drop-down-option-selected']")
+   List<WebElement> PlanYearDropDown;
+
+   @FindBy(xpath ="//*[@class='drop-down-options']//span")
+   List<WebElement> PlanYearValues;
+
+    @FindBy(xpath ="//*[@class='documents-notices-content-container']")
+            WebElement DocumentsNoticesList;
+
+    @FindBy(xpath ="//*[@class='document-notice-name-left body-text-1']")
+    List<WebElement> DocumentsNoticesLists;
+
+    @FindBy(xpath="//div[@class='document-notice-select-double-chevrons-container']/span")
+    WebElement doubleChevrons;
+
+    @FindBy(xpath = "//div[contains(text(), 'Date Received')]")
+    List<WebElement> dateReceived;
+
+    @FindBy(xpath = "//div[contains(text(), 'Time Received')]")
+    List<WebElement> timeReceived;
+
+    @FindBy(xpath = "//a[contains(text(), 'Download')]")
+    List<WebElement> download;
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -497,4 +531,89 @@ public class MyDocumentsPage {
       basicActions.waitForElementToBePresent(verifyFinancialHelpEligbilityButton,30);
         verifyFinancialHelpEligbilityButton.click();
     }
+
+    public void ValidateIAmOnContainer(String container) {
+        basicActions.waitForElementToBePresent(myDocumentsSubTitle,30);
+        softAssert.assertEquals(myDocumentsSubTitle.getText(),container, "Past Documents and Letters container not found");
+    }
+
+    public void ValidateDefaultPlanYear() {
+        String expectedYr = "";
+        String actualYr = "";
+        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0),30);
+        expectedYr = String.valueOf(Year.now().getValue());
+        basicActions.wait(2000);
+        softAssert.assertTrue(basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 10));
+        actualYr = PlanYearDropDown.get(0).getText();
+        softAssert.assertEquals(PlanYearDropDown.get(0).getText(),expectedYr);
+        System.out.println(actualYr);
+        softAssert.assertAll();
+    }
+
+    public void SelectPlanYeardropdown(String selectYear) {
+        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0),30);
+        PlanYearDropDown.get(0).click();
+            PlanYearValues.get(4).click();
+        if(selectYear.equals("2025")) {
+            PlanYearDropDown.get(0).click();
+            PlanYearValues.get(0).click();
+        }
+
+    }
+
+       public void iVerifyAllNoticesPresentandStartWith(String prefix, List<String > data) {
+
+           List<String> webElement  = new ArrayList<>();
+           basicActions.waitForElementListToBePresent(DocumentsNoticesLists, 50);
+          //Fetching all list from container
+           for (WebElement element : DocumentsNoticesLists) {
+               webElement.add(element.getText().trim());
+           }
+            //Comparing between actual and expected
+           for (String Notices : data) {
+               boolean isPresent = webElement.contains(Notices);
+               softAssert.assertTrue(isPresent, "notices  missing in the container ->" + Notices);
+           }
+           Set<String> dataFileSet = new HashSet<>(data);
+           Set<String> webNoticesSet = new HashSet<>(webElement);
+
+            //To verify additional list from container
+           webNoticesSet.removeAll(dataFileSet);
+           for(String addtionalNotices : webNoticesSet){
+               softAssert.fail("Additonal Notices in container -> "+ addtionalNotices);
+           }
+
+           //Verify start with IND
+           for(String weblist :webNoticesSet ){
+               if(!weblist.startsWith(prefix)){
+                   softAssert.fail("Notices does not start with IND -> "+weblist);
+               }
+           }
+           softAssert.assertAll();
+       }
+
+
+    public void clickDoubleChevron() {
+        basicActions.waitForElementToBeClickable(doubleChevrons, 100);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", doubleChevrons);
+   }
+
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
+        basicActions.waitForElementListToBePresent(dateReceived,30);
+        int i=0;
+      if( i < DocumentsNoticesLists.size()){
+          softAssert.assertTrue( dateReceived.get(i).isDisplayed(),"Displayed");
+          softAssert.assertTrue( timeReceived.get(i).isDisplayed(),"Dispalyed");
+          softAssert.assertTrue(  download.get(i).isDisplayed(),"Displayed");
+          softAssert.assertAll();
+        }
+    }
+
+    public void validateNoDocumentMessage(String data) {
+        basicActions.waitForElementToBePresent(DocumentsNoticesList,100);
+        softAssert.assertEquals(DocumentsNoticesList.getText(),data);
+        softAssert.assertAll();
+
+    }
 }
+
