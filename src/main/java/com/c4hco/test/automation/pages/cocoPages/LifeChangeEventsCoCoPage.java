@@ -326,7 +326,7 @@ public class LifeChangeEventsCoCoPage {
                     .ifPresent(eventDateElement -> eventDateElement.sendKeys(dateValue));
         } else {
             List<WebElement> clickableEventDates = eventDates.stream()
-                    .filter(eventDate -> basicActions.isElementClickable(eventDate, 10))
+                    .filter(eventDate -> basicActions.waitForElementToBeClickable(eventDate, 10))
                     .toList();
             for (WebElement eventDate : clickableEventDates) {
                 eventDate.sendKeys(dateValue);
@@ -349,7 +349,7 @@ public class LifeChangeEventsCoCoPage {
             dateValue = basicActions.changeDateFormat(dateValue, "MM/dd/yyyy", "MM/dd");
         }
         List<WebElement> clickableEventDates = eventDates.stream()
-                .filter(eventDate -> basicActions.isElementClickable(eventDate, 10))
+                .filter(eventDate -> basicActions.waitForElementToBeClickable(eventDate, 10))
                 .toList();
         for (WebElement eventDate : clickableEventDates) {
             eventDate.sendKeys(dateValue);

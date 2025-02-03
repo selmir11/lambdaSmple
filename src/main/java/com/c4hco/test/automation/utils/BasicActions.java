@@ -145,7 +145,6 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not clickable");
-            Assert.fail("Element is not clickable");
             return false;
         }
         return true;
@@ -169,17 +168,6 @@ public class BasicActions {
         }
         return false;
     }
-
-    public boolean isElementClickable(WebElement element, int timeout) {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
-
     public Boolean waitForElementToDisappear(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
