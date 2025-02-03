@@ -3,12 +3,13 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
+import org.openqa.selenium.support.locators.RelativeLocator;
 import java.util.List;
 
 public class MemberIdProofingPage {
@@ -168,5 +169,16 @@ public class MemberIdProofingPage {
         String[] messageDetails = congratulationsMessage.getText().split(SharedData.getPrimaryMember().getFirstName());
         softAssert.assertEquals(messageDetails[0]+SharedData.getPrimaryMember().getFirstName()+messageDetails[1]+" "+lookforExpertLink.getAttribute("value").trim(),messageOne+" "+SharedData.getPrimaryMember().getFirstName()+". "+messageTwo+".");
         softAssert.assertAll();
+    }
+
+    public void selectSpecificAnswers(List<String> answerInfo){
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(firstOptionInEmployerName,10);
+        for(String answerDetail : answerInfo){
+            WebElement selectAnswer = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+answerDetail+"')]"));
+            WebElement answer =basicActions.getDriver().findElement(RelativeLocator.with(By.tagName("input")).toLeftOf(selectAnswer));
+            answer.click();
+        }
+        saveContinue.click();
     }
 }
