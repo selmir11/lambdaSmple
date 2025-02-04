@@ -25,6 +25,12 @@ public class DashboardPage {
     @FindBy(xpath = "//strong[normalize-space()='Broker Dashboard']")
     WebElement brokerDashboard;
 
+    @FindBy(xpath = "//*[@id='elem']/app-broker-dashboard/div/div[1]")
+    WebElement dashboardPageTitle;
+
+    @FindBy(xpath = "//app-broker-certification/div/div[2]/div[3]/div[4]/div")
+    WebElement brokerCertifcationStatus;
+
     @FindBy(id = "manage-account-button")
     WebElement completeProfile;
 
@@ -88,6 +94,39 @@ public class DashboardPage {
     public void clickBrokerDashboard(){
         basicActions.waitForElementToBePresent(brokerDashboard,10);
         brokerDashboard.click();
+    }
+
+    public void verifyBrokerDashboard(){
+        basicActions.waitForElementToBePresent(brokerDashboard,10);
+        softAssert.assertEquals(brokerDashboard.getText(),"Broker Dashboard");
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerDashboardTitle(String portalUserType){
+        basicActions.waitForElementToBePresentWithRetries(dashboardPageTitle,10);
+        switch (portalUserType){
+            case "Agency Owner":
+                softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getAgencyOwner().getFirstName() + " " + SharedData.getAgencyOwner().getLastName());
+                break;
+            case "Broker":
+                softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getBroker().getFirstName() + " " + SharedData.getBroker().getLastName());
+                break;
+            case "Admin Staff":
+                softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getAdminStaff().getFirstName() + " " + SharedData.getAdminStaff().getLastName());
+                break;
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerCertStatus(String certificationStatus){
+        basicActions.waitForElementToBePresentWithRetries(brokerCertifcationStatus,10);
+        softAssert.assertEquals(brokerCertifcationStatus.getText(), certificationStatus);
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerCertStatusNotDisplayed(){
+        softAssert.assertFalse(basicActions.waitForElementPresence(brokerCertifcationStatus,30));
+        softAssert.assertAll();
     }
 
     public void clickCompleteProfile(){
