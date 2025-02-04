@@ -303,14 +303,26 @@ public String policyTablesCombinedQuery(String coverageType){
     public String esMVR(String manualVerificationType) {
         return "select *\n" +
                 "from " + dbName + ".es_manual_verif_request\n" +
-                "where account_id = '" + acctId + "'\n" +
+                "where account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'\n" +
                 "and manual_verification_type = '" + manualVerificationType + "'";
+    }
+
+    public String esMVRFullAccount(){
+        return "select *\n" +
+                "from " + dbName + ".es_manual_verif_request\n" +
+                "where account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'\n";
     }
 
     public String esSsaVerification(String memberId) {
         return "select *\n" +
                 "from " + dbName + ".es_ssa_verification_req_resp\n" +
                 "where member_id = '" + memberId + "'";
+    }
+
+    public String esSsaVerificationCreatedby() {
+        return "select *\n" +
+                "from " + dbName + ".es_ssa_verification_req_resp\n" +
+                "where created_by = '" + SharedData.getPrimaryMember().getEmailId() + "'";
     }
 
     public String enMemberEffectiveDates() {

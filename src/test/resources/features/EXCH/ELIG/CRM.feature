@@ -26,9 +26,9 @@ Feature: Testing Manual Verification Requests (MVRs) and CRM (MD365)
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
-    And I validate SSA Error on Tell us about yourself page
+    And I validate SSA Error for SSN "012123456" on Tell us about yourself page
     And I click continue on Tell us about yourself page
-    And I validate SSA Error on Tell us about yourself page
+    And I validate SSA Error for SSN "012123456" on Tell us about yourself page
     And I click continue on Tell us about yourself page
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option

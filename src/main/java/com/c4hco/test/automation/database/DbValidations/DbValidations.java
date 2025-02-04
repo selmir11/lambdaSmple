@@ -394,11 +394,20 @@ public class DbValidations {
                     case "manual_verif_date_closed":
                         softAssert.assertEquals(actualResult.getManual_verif_date_closed(), value,"Validation failed for manual_verif_date_closed at row " + (i + 1));
                         break;
+                    case "last_action_description":
+                        softAssert.assertEquals(actualResult.getLast_action_description(), value, "Validation failed for last_action_description at row " + (i + 1));
+                        break;
                     default:
                         throw new IllegalArgumentException("Invalid option: " + key);
                 }
             }
         }
+        softAssert.assertAll();
+    }
+
+    public void validateMVRDoesNotExist(){
+        Boolean hasRecords = exchDbDataProvider.getMVRDetails();
+        Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
@@ -411,6 +420,13 @@ public class DbValidations {
 
     public void verifySsaResponseCodeDb(String code, String memPrefix){
         EsSsaVerificationReqEntity actualResult = exchDbDataProvider.getSsaResponseCode(basicActions.getMemberId(memPrefix));
+        System.out.println(actualResult);
+        softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
+        softAssert.assertAll();
+    }
+
+    public void verifySsaResponseCodeDbByCreatedBy(String code){
+        EsSsaVerificationReqEntity actualResult = exchDbDataProvider.getSsaResponseCodeByCreatedBy();
         System.out.println(actualResult);
         softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
         softAssert.assertAll();
