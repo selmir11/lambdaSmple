@@ -311,6 +311,10 @@ public class DbSteps {
         dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate);
     }
 
+    @Then("I validate system functionality for member being eligible for CYA")
+    public void validateCyaEligibility() {
+        dbValidations.validateCyaEligibility();
+    }
 }
 
 

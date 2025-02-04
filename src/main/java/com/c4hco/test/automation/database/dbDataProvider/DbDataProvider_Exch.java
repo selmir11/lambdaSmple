@@ -583,4 +583,7 @@ public class DbDataProvider_Exch {
     public String getArpIndicator() {
         return postgresHandler.getResultFor("arp_quick_submit_ind", exchDbQueries.getArpIndicator());
     }
+    public String getCyaEligibility() {
+        return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getCyaEligibility());
+    }
 }

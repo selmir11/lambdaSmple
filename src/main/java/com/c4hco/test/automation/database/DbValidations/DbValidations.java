@@ -776,6 +776,10 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-
+    public void validateCyaEligibility() {
+        String cyaEligibilityOutcomeDb = exchDbDataProvider.getCyaEligibility();
+        softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        softAssert.assertAll();
+    }
 }
 
