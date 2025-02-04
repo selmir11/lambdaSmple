@@ -311,6 +311,14 @@ public class DbSteps {
         dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate);
     }
 
+    @And("I verify the Member reason code as {string}")
+    public void iVerifyTheMemberReasonCode(String expectedReasonCode) {
+        dbValidations.validateReasonCode(expectedReasonCode);
+    }
+
+
+
+
 }
 
 
