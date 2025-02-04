@@ -272,7 +272,7 @@ Feature: Testing CRM (MD365) updates
 
     Then I validate I am on the "My Profile" page
     And I click on Make Changes Button
-    And I update the contact email address
+    And I update the contact email address on profile page
     And I update the contact home phone number on profile page
     And I click on Save Button
     And I wait for hold on content to disappear

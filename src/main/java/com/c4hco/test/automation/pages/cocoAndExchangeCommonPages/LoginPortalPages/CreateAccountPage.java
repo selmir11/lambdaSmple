@@ -42,7 +42,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//input[@id='fn']")
      WebElement firstName;
 
-    @FindBy(id = "fn-label")
+    @FindBy(xpath = "//label[@for='fn']")
      WebElement firstNameText;
 
     @FindBy(id = "fn-mf-error")
@@ -51,7 +51,7 @@ public class CreateAccountPage {
     @FindBy(id = "fn-error")
     WebElement firstNameSpecialCharErrorMessage;
 
-    @FindBy(id = "mn-label")
+    @FindBy(xpath = "//label[@for='mn']")
      WebElement middleNameText;
 
     @FindBy(xpath = "//input[@id='mn']")
@@ -66,7 +66,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//input[@id='ln']")
      WebElement lastName;
 
-    @FindBy(css = "div:nth-child(4) > label:nth-child(1)")
+    @FindBy(xpath = "//label[@for='ln']")
      WebElement lastNameText;
 
     @FindBy(id = "ln-mf-error")
@@ -105,22 +105,22 @@ public class CreateAccountPage {
     @FindBy(id = "pw-mf-error")
     WebElement passwordErrorMessage;
 
-    @FindBy(id = "pw-error-passwordHasMinlength")
+    @FindBy(xpath = "//span[@id='realtime-pw-error3']")
     WebElement passwordMinCharErrorMessage;
 
-    @FindBy(id = "pw-error-passwordHasCapitalCase")
+    @FindBy(xpath = "//span[@id='realtime-pw-error2']")
     WebElement passwordUpperCaseErrorMessage;
 
     @FindBy(id = "pw-error-passwordHasSmallCase")
     WebElement passwordLowerCaseErrorMessage;
 
-    @FindBy(id = "pw-error-passwordHasNumber")
+    @FindBy(xpath = "//span[@id='realtime-pw-error1']")
     WebElement passwordNumberErrorMessage;
 
-    @FindBy(id = "pw-error-passwordHasEmail")
+    @FindBy(xpath = "//span[@id='realtime-pw-error6']")
     WebElement passwordUsernameErrorMessage;
 
-    @FindBy(id = "fn-pw-error")
+    @FindBy(id = "realtime-pw-error4")
     WebElement passwordFirstNameErrorMessage;
 
     @FindBy(id = "confirm-password")
@@ -182,7 +182,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//span[@class='banner-error-message']")
     WebElement bannerErrorMessage;
 
-    @FindBy(xpath = "//select[@id='role']")
+    @FindBy(xpath = "//select[@id='role-dropdown']")
     WebElement roleDropdown;
 
     @FindBy(xpath = "//select[@id='role']/option[2]")
@@ -197,7 +197,7 @@ public class CreateAccountPage {
     @FindBy(id = "mat-mdc-checkbox-2-input")
     WebElement termsOfUseCheckbox;
 
-    @FindBy(id = "loginPortal-createAccount-termsRead")
+    @FindBy(id = "pp-mf-error")
     WebElement termsOfUseErrorMessage;
 
     @FindBy(id = "fn-error")
@@ -210,9 +210,9 @@ public class CreateAccountPage {
     WebElement emailErrorMessageAssistNet;
     @FindBy(id = "ph-error")
     WebElement phoneNumberErrorMessageAssistNet;
-    @FindBy(id = "cp-error")
+    @FindBy(xpath = "//span[@id='realtime-pw-error7']")
     WebElement confirmPasswordErrorMessageAssistNet;
-    @FindBy(xpath = "//select[@id='role']/option[2]")
+    @FindBy(xpath = "//select[@id='role-dropdown']/option[2]")
     WebElement assistNetOption;
     @FindBy(xpath = "//lib-input[@id='invitation']//span")
     WebElement invitationErrorMsg;
@@ -408,7 +408,7 @@ public class CreateAccountPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void addSpecificDetails(String fName, String mName, String lName){
+    public void addSpecificDetails( String fName,String mName, String lName){
         initializeSpecificData(fName, mName, lName);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         basicActions.waitForElementToBePresent(firstName, 60);
@@ -1018,5 +1018,10 @@ public class CreateAccountPage {
     }
 
 
+    public void createAccountWithSpecificData(String fName, String mName, String lName, String appType) {
+        fName = fName+basicActions.getUniqueString(6);
+        addSpecificDetails(fName, mName, lName);
+        selectBasedOnApp(appType);
+    }
 
 }
