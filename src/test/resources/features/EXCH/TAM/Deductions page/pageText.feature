@@ -387,6 +387,46 @@ Feature: Page Text-Deductions Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
-    
-    
-    
+
+  @SLER-2082 @PageTextDeductions
+  Scenario: ELIG-Deductions-Page Text(RT-999)
+    Then I verify the text on ELIG Deductions page
+      |Income:|
+      |Deductions|
+      |Do you have any of the following expenses?|
+      |Select all that apply, and enter the amount of each expense.|
+      |Alimony or spousal support paid out                         |
+      |Domestic production activities                              |
+      |Health Savings Account contribution                         |
+      |Pre-tax retirement account contribution                     |
+      |School tuition and fees                                     |
+      |Self-employment tax                                         |
+      |Student loan interest                                       |
+      |Self-employment health insurance                            |
+      |Self-employment retirement plan                             |
+      |Moving expenses                                             |
+      |None of these                                               |
+      |Go back                                                     |
+      |Save and continue                                           |
+      |Help                                                        |
+    And I refresh the page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify the text on ELIG Deductions page
+      |Ingresos:|
+      |Deducciones|
+      |¿Tiene alguno de los siguientes gastos?|
+      |Seleccione todos los que correspondan, e ingrese la cantidad de cada gasto.|
+      |Pensión alimenticia o apoyo conyugal que paga                              |
+      |Actividades de producción para el mercado interno                          |
+      |Aporte a cuenta de ahorros de salud                                        |
+      |Aporte a la cuenta de retiro antes de impuestos                            |
+      |Colegiatura y cuotas escolares                                             |
+      |Impuesto al trabajo independiente                                          |
+      |Interés por préstamo de estudiante                                         |
+      |Seguro de salud de trabajador independiente                                |
+      |Plan de retiro como trabajador independiente                               |
+      |Gastos de mudanza                                                          |
+      |Ninguna de las anteriores                                                  |
+      |Volver                                                                     |
+      |Guardar y continuar                                                        |
+      |Ayuda                                                                      |
