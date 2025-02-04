@@ -90,7 +90,7 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I click on upload another document
     And I verify user can select each type from type dropdown
 
-    @SLER-2073 @WIP
+    @SLER-2073
     Scenario: Verify user can see their Documents and Notices in the Documents and Notices container [RT-1818]
       Given I open the login page on the "admin" portal
       And I refresh the page

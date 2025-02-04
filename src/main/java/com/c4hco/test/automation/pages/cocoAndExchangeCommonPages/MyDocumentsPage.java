@@ -158,16 +158,16 @@ public class MyDocumentsPage {
     @FindBy(css = ".btn-upload.btn-primary-action-button")
     WebElement btnUploadDoc;
 
-   @FindBy(xpath = "//*[@class='drop-down-option drop-down-option-selected']")
-   List<WebElement> PlanYearDropDown;
+    @FindBy(xpath = "//*[@class='drop-down-option drop-down-option-selected']")
+    List<WebElement> PlanYearDropDown;
 
-   @FindBy(xpath ="//*[@class='drop-down-options']//span")
-   List<WebElement> PlanYearValues;
+    @FindBy(xpath = "//*[@class='drop-down-options']//span")
+    List<WebElement> PlanYearValues;
 
-    @FindBy(xpath ="//*[@class='documents-notices-content-container']")
-            WebElement DocumentsNoticesList;
+    @FindBy(xpath = "//*[@class='documents-notices-content-container']")
+    WebElement DocumentsNoticesList;
 
-    @FindBy(xpath ="//*[@class='document-notice-name-left body-text-1']")
+    @FindBy(xpath="//*[@class='document-notice-name-left body-text-1']")
     List<WebElement> DocumentsNoticesLists;
 
     @FindBy(xpath="//div[@class='document-notice-select-double-chevrons-container']/span")
@@ -553,45 +553,57 @@ public class MyDocumentsPage {
     public void SelectPlanYeardropdown(String selectYear) {
         basicActions.waitForElementToBePresent(PlanYearDropDown.get(0),30);
         PlanYearDropDown.get(0).click();
-            PlanYearValues.get(4).click();
+        PlanYearValues.get(4).click();
         if(selectYear.equals("2025")) {
             PlanYearDropDown.get(0).click();
             PlanYearValues.get(0).click();
         }
-
     }
 
-       public void iVerifyAllNoticesPresentandStartWith(String prefix, List<String > data) {
+    public void iVerifyAllNoticesPresentandStartWith(String prefix, List<String> data) {
 
-           List<String> webElement  = new ArrayList<>();
-           basicActions.waitForElementListToBePresent(DocumentsNoticesLists, 50);
-          //Fetching all list from container
-           for (WebElement element : DocumentsNoticesLists) {
-               webElement.add(element.getText().trim());
-           }
-            //Comparing between actual and expected
-           for (String Notices : data) {
-               boolean isPresent = webElement.contains(Notices);
-               softAssert.assertTrue(isPresent, "notices  missing in the container ->" + Notices);
-           }
-           Set<String> dataFileSet = new HashSet<>(data);
-           Set<String> webNoticesSet = new HashSet<>(webElement);
+        List<String> webElement = new ArrayList<>();
+        basicActions.waitForElementListToBePresent(DocumentsNoticesLists, 50);
 
-            //To verify additional list from container
-           webNoticesSet.removeAll(dataFileSet);
-           for(String addtionalNotices : webNoticesSet){
-               softAssert.fail("Additonal Notices in container -> "+ addtionalNotices);
-           }
+        //Fetching all list from container
+        for (WebElement element : DocumentsNoticesLists) {
+            webElement.add(element.getText().trim());
+        }
+        validateNoticesPresent(data, webElement);
+        validateAdditionalNoticesPresent(data, webElement);
+        validateNoticesStartwithIND(prefix, webElement);
 
-           //Verify start with IND
-           for(String weblist :webNoticesSet ){
-               if(!weblist.startsWith(prefix)){
-                   softAssert.fail("Notices does not start with IND -> "+weblist);
-               }
-           }
-           softAssert.assertAll();
-       }
+        softAssert.assertAll();
+    }
 
+    void validateNoticesPresent(List<String> data, List<String> webElement) {
+        //Comparing between actual and expected
+        for (String Notices : data) {
+            boolean isPresent = webElement.contains(Notices);
+            softAssert.assertTrue(isPresent, "notices  missing in the container ->" + Notices);
+        }
+    }
+
+    void validateAdditionalNoticesPresent(List<String> data, List<String> webElement) {
+        Set<String> dataFileSet = new HashSet<>(data);
+        Set<String> webNoticesSet = new HashSet<>(webElement);
+
+        //To verify additional list from container
+        webNoticesSet.removeAll(dataFileSet);
+        for (String addtionalNotices : webNoticesSet) {
+            softAssert.fail("Additonal Notices in container -> " + addtionalNotices);
+        }
+    }
+
+    void validateNoticesStartwithIND(String prefix, List<String> webElement) {
+        Set<String> webNoticesSet = new HashSet<>(webElement);
+        //Verify start with IND
+        for (String weblist : webNoticesSet) {
+            if (!weblist.startsWith(prefix)) {
+                softAssert.fail("Notices does not start with IND -> " + weblist);
+            }
+        }
+    }
 
     public void clickDoubleChevron() {
         basicActions.waitForElementToBeClickable(doubleChevrons, 100);
@@ -607,6 +619,7 @@ public class MyDocumentsPage {
           softAssert.assertTrue(  download.get(i).isDisplayed(),"Displayed");
           softAssert.assertAll();
         }
+        softAssert.assertAll();
     }
 
     public void validateNoDocumentMessage(String data) {
