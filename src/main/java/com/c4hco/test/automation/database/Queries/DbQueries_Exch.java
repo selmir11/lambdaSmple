@@ -704,5 +704,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "limit 1";
     }
 
+    public String getCyaEligibility() {
+        return "Select err.outcome_ind \n" +
+                "From "+dbName+".ES_MEMBER esm, "+dbName+".ES_MEMBER_RULES_RESULT err, "+dbName+".es_household esh \n" +
+                "Where esm.member_id = err.member_id And esm.household_id = esh.household_id \n" +
+                "And esh.account_id ='"+acctId+"' and err.determination = 'CYA'";
+    }
 
 }
