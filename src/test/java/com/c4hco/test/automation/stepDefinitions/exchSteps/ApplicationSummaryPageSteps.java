@@ -32,6 +32,8 @@ public class ApplicationSummaryPageSteps {
     public void iVerifyExistingHealthInsurance(String OhcData, String language) {applicationSummaryPage.verifyExistingHealthInsurance(OhcData, language);}
 
 
-
-
+    @Then("I verify the Projected Income for {string} is {string}")
+    public void iVerifyTheProjectedIncomeForIs(String members, String income) {
+        applicationSummaryPage.verifyProjectedIncome(members,income);
+    }
 }
