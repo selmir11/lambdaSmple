@@ -58,7 +58,7 @@ public class QCPFSteps {
 
     @And("I validate the total number {string} of plans displayed and for Plan Anthem Blue Cross & Blue Shield {string}, Kaiser Permanente {string}, Denver Health Medical Plan {string}, Cigna {string}, Rocky Mountain Health Plans {string}, Select Health {string}")
     public void iValidateTheTotalNumberOfPlansDisplayedAndForPlanAnthemBlueCrossBlueShieldKaiserPermanenteDenverHealthMedicalPlanCignaRockyMountainHealthPlansSelectHealth(String plansNumber, String Anthem, String Kaiser, String DenverHealth, String Cigna, String RockyMountain, String Select) {
-        qcpfPage.validateTheTotalNumberOfPlansDisplayedAndForPlanKaiserPermanenteSelectHealthRockyMountainHealthPlansCignaAnthemBlueCrossBlueShieldAndDenverHealthMedicalPlan(plansNumber,Anthem,Kaiser, DenverHealth,Cigna,RockyMountain, Select);
+        qcpfPage.validateTheTotalNumberOfPlansDisplayedAndPlanDetails(plansNumber,Anthem,Kaiser, DenverHealth,Cigna,RockyMountain, Select);
     }
 
     @And("I validate the total number {string} of plans displayed by county")

@@ -140,7 +140,7 @@ public class QCPFPage {
         startOver.click();
     }
 
-    public void validateTheTotalNumberOfPlansDisplayedAndForPlanKaiserPermanenteSelectHealthRockyMountainHealthPlansCignaAnthemBlueCrossBlueShieldAndDenverHealthMedicalPlan(String plansNumber, String Anthem, String Kaiser, String DenverHealth, String Cigna, String RockyMountain, String Select) {
+    public void validateTheTotalNumberOfPlansDisplayedAndPlanDetails(String plansNumber, String Anthem, String Kaiser, String DenverHealth, String Cigna, String RockyMountain, String Select) {
         basicActions.waitForElementToBePresentWithRetries(planNumber,30);
         softAssert.assertEquals(planNumber.getText(),plansNumber);
         softAssert.assertAll();
