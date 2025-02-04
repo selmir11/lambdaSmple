@@ -77,9 +77,17 @@ public class DbSteps {
         dbValidations.validateMVR(expectedValues);
     }
 
+    @And("I verify that the account has no MVRs")
+    public void iValidateMVRDNE(){dbValidations.validateMVRDoesNotExist();}
+
     @And("I validate the SSA response code is {string} in the DB for {string}")
     public void iVerifySsaResponseCodeDb(String code, String memPrefix) {
         dbValidations.verifySsaResponseCodeDb(code, memPrefix);
+    }
+
+    @And("I validate the SSA response code is {string} in the DB")
+    public void iVerifySsaResponseCodeDbCreatedByPrimary(String code) {
+        dbValidations.verifySsaResponseCodeDbByCreatedBy(code);
     }
 
     @And("I verify the client application submission in BoB DB")
