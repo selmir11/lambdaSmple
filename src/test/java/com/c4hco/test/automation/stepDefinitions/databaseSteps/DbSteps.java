@@ -315,6 +315,16 @@ public class DbSteps {
     public void validateCyaEligibility() {
         dbValidations.validateCyaEligibility();
     }
+
+    @And("I Validate VLP response code as {string}")
+    public void validateEnrolmentEndDate(String responseCode) {
+        dbValidations.validateVLPResponseCode(responseCode);
+    }
+
+    @And("I Validate VLP retry type as {string} and VLP retry status as {string}")
+    public void validateVLPRetryTypeAndStatus(String retryType, String retryStatus) {
+        dbValidations.validateVLPRetryTypeandStatus(retryType,retryStatus);
+    }
 }
 
 

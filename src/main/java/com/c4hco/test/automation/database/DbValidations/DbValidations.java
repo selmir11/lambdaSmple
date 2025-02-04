@@ -781,5 +781,19 @@ public class DbValidations {
         softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
         softAssert.assertAll();
     }
+
+    public void validateVLPResponseCode(String expectedResponseCode) {
+        String actualResponseCode = exchDbDataProvider.getVLPResponseCode();
+        softAssert.assertEquals(actualResponseCode.trim(), expectedResponseCode);
+        softAssert.assertAll();
+    }
+
+    public void validateVLPRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
+        String actualRetryType = exchDbDataProvider.getVLPRetryType();
+        String actualRetryStatus = exchDbDataProvider.getVLPRetryStatus();
+        softAssert.assertEquals(actualRetryType.trim(), expectedRetryType);
+        softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
+        softAssert.assertAll();
+    }
 }
 
