@@ -44,12 +44,8 @@ public class MaEligibleMembersOutOfStatePage {
     @FindBy(xpath = "//span[contains(text(),'No')]")
     WebElement noText;
 
-    @FindBy(xpath = "//span[contains(text(),'Which household members are temporarily absent? (Select all that apply)')]")
+    @FindBy(xpath = "//*[@class = 'col-sm-6 custom-lg-col custom-xs-col']")
     WebElement whichText1;
-
-    @FindBy(xpath = "//span[@class = 'col-sm-6 custom-lg-col custom-xs-col']")
-    List<WebElement>whichText2;
-
 
     @FindBy(xpath = "//span[contains(text(),'\u00BFQu\u00E9 miembros del hogar est\u00E1n temporalmente ausentes? (seleccione todos los que apliquen)')]")
     WebElement whichText1SP;
@@ -112,14 +108,16 @@ public class MaEligibleMembersOutOfStatePage {
             softAssert.assertEquals( helpMeText.getText(), "Help me understand this page" );
             softAssert.assertEquals( anyoneText.getText(), "Is anyone in the household temporarily absent from Colorado?" );
 
+            basicActions.waitForElementToBePresentWithRetries( yesText,20 );
             softAssert.assertEquals( yesText.getText(), "Yes" );
 
+            basicActions.waitForElementToBePresentWithRetries( rdoYes,20 );
             basicActions.click( rdoYes );
-            //softAssert.assertEquals( whichText1.getText(), "Which household members are temporarily absent? (Select all that apply)" );
-            //softAssert.assertEquals( whichText2.get(4).getText(), "Which household members are temporarily absent? (Select all that apply)" );
-            //softAssert.assertTrue(whichText2.getText().contains("Which household members are temporarily absent? (Select all that apply)"));
+
+            softAssert.assertTrue(whichText1.getText().contains("Which household members are temporarily absent? (Select all that apply)"));
 
             softAssert.assertEquals( noText.getText(), "No" );
+            basicActions.waitForElementToBePresentWithRetries(rdoNo, 50 );
             basicActions.click( rdoNo );
 
             softAssert.assertEquals( valueText.getAttribute( "value" ), "< Back" );
@@ -139,6 +137,7 @@ public class MaEligibleMembersOutOfStatePage {
             softAssert.assertEquals( whichText1SP.getText(), "\u00BFQu\u00E9 miembros del hogar est\u00E1n temporalmente ausentes? (seleccione todos los que apliquen)" );
 
             softAssert.assertEquals( noText.getText(), "No" );
+            basicActions.waitForElementToBePresentWithRetries( rdoNo, 50 );
             basicActions.click( rdoNo );
 
             softAssert.assertEquals( valueTextSP.getAttribute( "value" ), "< Atr\u00E1s" );

@@ -25,7 +25,7 @@ public class EmploymentSummaryPage {
     @FindBy(css = ".header-2")
     WebElement hdr_Employment;
 
-    @FindBy(id = "pageId-SaveAndContinue")
+    @FindBy(id = "EmploymentSummary-SaveAndContinue")
     WebElement btnContinue;
 
     @FindBy(xpath = "//*[starts-with(@id,'edit')]")
@@ -150,9 +150,10 @@ public class EmploymentSummaryPage {
 
 
     public void clickContinue(){
-        basicActions.waitForElementToBePresent(btnContinue,30);
-        basicActions.waitForElementToBePresent(lnkEditIncome,30);
-        basicActions.waitForElementToBeClickable(btnContinue, 30);
+        basicActions.waitForElementToDisappear( spinner,100 );
+        basicActions.waitForElementToBePresentWithRetries(btnContinue,30);
+        //basicActions.waitForElementToBePresent(lnkEditIncome,30);
+        //basicActions.waitForElementToBeClickable(btnContinue, 30);
         basicActions.scrollToElement(btnContinue);
         btnContinue.click();
     }
