@@ -73,7 +73,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSeasonal-NoButton")
     WebElement btnIsSeasonalNo;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-YesButton")
+    @FindBy(id = "ELIG-summaryDetails-YesButton")
     WebElement btnIncomeSameYes;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-NoButton")
@@ -178,6 +178,8 @@ public class EmploymentInfoPage {
     @FindBy(xpath = "(//label[@class='input-label form-label']//span)[4]")
     WebElement incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion;
 
+    @FindBy(id = "ELIG-summaryDetails-incomeAmountInput")
+    WebElement projectedIncomeInput;
 
     public void clickEditUpdateLink(int employer){
     basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
@@ -880,6 +882,14 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnIsSeasonalNo.getText(), dataText.get(27), "No button label for Income seasonal question not matching");
         softAssert.assertAll();
     }
+
+    public void enterProjectedIncome(String projectedIncome){
+        basicActions.waitForElementToBePresent(projectedIncomeInput,75);
+        projectedIncomeInput.clear();
+        projectedIncomeInput.click();
+        projectedIncomeInput.sendKeys(projectedIncome);
+    }
+
 }
 
 

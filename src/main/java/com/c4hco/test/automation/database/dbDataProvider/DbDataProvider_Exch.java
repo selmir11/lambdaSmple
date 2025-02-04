@@ -103,7 +103,7 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("csr_level", exchDbQueries.csrLevel());
     }
     public String getTinNumForBroker() {
-        return postgresHandler.getResultFor("agency_tin_ein", exchDbQueries.brokerId());
+        return postgresHandler.getResultFor("commission_tin", exchDbQueries.commissionTin());
     }
 
     public Map<String,String> getSubscriberCSRDataFromDb(){
@@ -117,10 +117,10 @@ public class DbDataProvider_Exch {
         String ratingAreaId = getRatingAreaId(fipcode);
         String brokerTinNum = null;
         String csrLevel = null;
-        if (!SharedData.getAppType().equals("coco")) {
-            if(SharedData.getHasBroker()){
+        if(SharedData.getHasBroker()){
                 brokerTinNum = getTinNumForBroker();
             }
+        if (!SharedData.getAppType().equals("coco")) {
             csrLevel = getCSRLevel();
         }
         DbData dbData = new DbData();
@@ -582,5 +582,20 @@ public class DbDataProvider_Exch {
 
     public String getArpIndicator() {
         return postgresHandler.getResultFor("arp_quick_submit_ind", exchDbQueries.getArpIndicator());
+    }
+    public String getCyaEligibility() {
+        return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getCyaEligibility());
+    }
+
+    public String getVLPResponseCode() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo());
+    }
+
+    public String getVLPRetryType() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryType());
+    }
+
+    public String getVLPRetryStatus() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
     }
 }
