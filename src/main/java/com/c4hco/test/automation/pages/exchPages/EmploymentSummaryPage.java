@@ -152,8 +152,6 @@ public class EmploymentSummaryPage {
     public void clickContinue(){
         basicActions.waitForElementToDisappear( spinner,100 );
         basicActions.waitForElementToBePresentWithRetries(btnContinue,30);
-        //basicActions.waitForElementToBePresent(lnkEditIncome,30);
-        //basicActions.waitForElementToBeClickable(btnContinue, 30);
         basicActions.scrollToElement(btnContinue);
         btnContinue.click();
     }
