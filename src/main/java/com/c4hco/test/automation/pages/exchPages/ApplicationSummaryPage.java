@@ -1,10 +1,12 @@
 package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class ApplicationSummaryPage {
@@ -20,6 +22,15 @@ public class ApplicationSummaryPage {
     WebElement existingHealthInsuranceData;
     @FindBy(css = "#submitButton")
     WebElement backButton;
+
+    @FindBy(xpath = "//td[normalize-space()='Projected Income']//following::td[1]")
+    WebElement txtProjectedIncome;
+
+    @FindBy(xpath = "//td[normalize-space()='Projected Income']//following::td[6]")
+    WebElement txtProjectedIncome2;
+
+    @FindBy(xpath = "//*[@id='doubleAccord-fin0']")
+    WebElement finacnceDropdown;
 
     private BasicActions basicActions;
 
@@ -59,4 +70,22 @@ public class ApplicationSummaryPage {
         softAssert.assertAll();
     }
 
-}
+    public void verifyProjectedIncome(String member, String income){
+        basicActions.waitForElementToBePresent(finacnceDropdown, 50);
+        finacnceDropdown.click();
+        switch (member) {
+            case "primary":
+                basicActions.waitForElementToBePresent(txtProjectedIncome, 30);
+                softAssert.assertEquals(txtProjectedIncome.getText(),income);
+                softAssert.assertAll();
+                break;
+            case "primaryandspouse":
+                basicActions.waitForElementToBePresent(txtProjectedIncome, 30);
+                softAssert.assertEquals(txtProjectedIncome.getText(),income);
+                basicActions.waitForElementToBePresent(txtProjectedIncome2, 30);
+                softAssert.assertEquals(txtProjectedIncome2.getText(),income);
+                softAssert.assertAll();
+                break;
+            default:
+                Assert.fail("Invalid argument passed!!");
+        } }  }

@@ -704,19 +704,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "limit 1";
     }
 
-    public String getVLPResponseCodeInfo() {
-        return "select evr.response_code from "+dbName +".es_member em, "+dbName +".es_household eh, "+dbName +".es_vlp_resp\n" +
-                " evr where eh.household_id = em.household_id and em.member_id = evr.member_id and evr.request_type = '2'\n" +
-                " and eh.account_id = '"+acctId+"'";
+    public String getCyaEligibility() {
+        return "Select err.outcome_ind \n" +
+                "From "+dbName+".ES_MEMBER esm, "+dbName+".ES_MEMBER_RULES_RESULT err, "+dbName+".es_household esh \n" +
+                "Where esm.member_id = err.member_id And esm.household_id = esh.household_id \n" +
+                "And esh.account_id ='"+acctId+"' and err.determination = 'CYA'";
     }
 
-    public String getVLPRetryType() {
-        return "select service_type from "+dbName +".es_fdsh_retry_control\n" +
-                " where account_id = '"+acctId+"'";
-    }
-
-    public String getVLPRetryStatus() {
-        return "select status from "+dbName +".es_fdsh_retry_control\n" +
-                " where account_id = '"+acctId+"'";
-    }
 }
