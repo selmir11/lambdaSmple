@@ -4,7 +4,7 @@ Feature: Navigation - Family Overview page
     Given I open the login page on the "login" portal
 
   @SLCR-47 @PageNavigationFamilyOverview @NVOCoCoRegression
-  Scenario: Navigation on the Tell us about yourself page
+  Scenario: Navigation on the Family Overview page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation

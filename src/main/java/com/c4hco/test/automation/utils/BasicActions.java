@@ -456,6 +456,8 @@ public class BasicActions {
                 newUrl = "WelcomePortal/unauthorized";
                 newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
                 getDriver().navigate().to(newUrl);
+                System.out.println("Current URL "+currentUrl);
+                System.out.println("New URL     "+newUrl);
                 break;
             case "Family Overview portal Error CoCo":
                 newUrl = "WelcomePortal/error";
@@ -473,7 +475,7 @@ public class BasicActions {
                 getDriver().navigate().to(newUrl);
                 break;
             case "LCE portal Unauthorized CoCo":
-                newUrl = "lce-portal/unauthorized";
+                    newUrl = "lce-portal/unauthorized";
                 newUrl = currentUrl.replaceAll("lce-portal/lces[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
@@ -522,6 +524,16 @@ public class BasicActions {
             case "Tax Return portal Unauthorized Exch":
                 newUrl = "TaxReturnPortal/unauthorized";
                 newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Employment Income Unauthorized CoCo":
+                newUrl = "income-portal/unauthorized";
+                newUrl = currentUrl.replaceAll("income-portal/member/[^/]*/employmentInfo(/summary)?[^/]*", newUrl);
+                getDriver().navigate().to(newUrl);
+                break;
+            case "Employment Income Unauthorized Exch":
+                newUrl = "IncomePortal/unauthorized";
+                newUrl = currentUrl.replaceAll("IncomePortal/member/[^/]*/employmentInfo(/summary)?[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
             default:
@@ -1158,6 +1170,10 @@ public class BasicActions {
             //if plan purchase date is from 16 to 31 - Month after Next 1st will be plan start date
             return changeDateFormat(firstDateOfTheMonthAfterNext(),"yyyy-MM-dd","MM/dd/yyyy");
         }
+    }
+
+    public  String getUniqueNumber(int length) {
+        return RandomStringUtils.random(length, "123456789");
     }
 }
 

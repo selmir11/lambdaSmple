@@ -530,7 +530,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertTrue(planYearDownArrow.isDisplayed());
         basicActions.click(dpdCurrentYearMP);
         basicActions.waitForElementListToBePresent(planYearList, 20);
-        List<String> expectedList = new ArrayList<>(Arrays.asList("2022", "2023", "2024", "2025"));
+        List<String> expectedList = new ArrayList<>(Arrays.asList("2021", "2022", "2023", "2024", "2025"));
         List<String> existingList = new ArrayList<>();
         for (WebElement each : planYearList) {
             existingList.add(each.getText().trim());
@@ -538,6 +538,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(planYearList.get(0).getText(), lowerYear);
         softAssert.assertEquals(expectedList, existingList);
         softAssert.assertAll();
+        basicActions.click(dpdCurrentYearMP);
     }
 
     public void clickSaveButton() {
@@ -1321,6 +1322,31 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         basicActions.closeBrowserTab();
         basicActions.switchToParentPage("C4HCO Admin Portal");
     }
+    public void uncheckMedicalPlanCoCo(){
+    basicActions.waitForElementToBePresent(btnMedicalChecked, 20);
+    basicActions.scrollToElement(btnMedicalChecked);
+    btnMedicalChecked.click();
+    softAssert.assertEquals(currentMedicalDentalPlan.size(), 1);
+    softAssert.assertAll(); }
+
+    public void verifyLabelsSimplifiedMedicalCoCo() {
+        basicActions.waitForElementToBePresent(currentMedicalPlanName, 5000);
+        softAssert.assertTrue(currentMedicalPlanName.isDisplayed());
+        softAssert.assertEquals(medLatestApplicationUI.getText(), "Latest Application Date:");
+        softAssert.assertEquals(medFinancialStartDateUI.getText(), "Financial Start Date:");
+        softAssert.assertEquals(medEhbPremiumUI.getText(), "EHB Premium:");
+        softAssert.assertEquals(medFinancialEndDateUI.getText(), "Financial End Date:");
+        softAssert.assertEquals(medCsrAmountUI.getText(), "CSR Amount:");
+        softAssert.assertEquals(medPlanPremiumUI.getText(), "Plan Premium:");
+        softAssert.assertEquals(medLatestLCEtUI.getText(), "Latest LCE and Date:");
+        softAssert.assertEquals(medPlanAPTCUI.getText(), "Plan SES:");
+        softAssert.assertEquals(medRateAreaUI.getText(), "Rating Area:");
+        softAssert.assertEquals(medPremiumAfterSubsidyUI.getText(), "Premium after Subsidy:");
+        softAssert.assertEquals(medServiceAreaUI.getText(), "Service Area:");
+        softAssert.assertEquals(medPlanAVUI.getText(), "Plan AV:");
+        softAssert.assertEquals(medPolicyIdUI.getText(), "Policy ID:");
+        softAssert.assertEquals(medHiosIdUI.getText(), "HIOS ID:");
+        softAssert.assertAll(); }
 }
 
 

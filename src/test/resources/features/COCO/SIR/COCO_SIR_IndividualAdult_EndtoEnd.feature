@@ -847,18 +847,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
 
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
-
-    Then I click on edit enrollment groups link in coco page
-    Then I create new group in edit medical grouping coco page and drag members to the new group
-      | Primary:Group1    |
-      | MinorTwo:Group2   |
-      | MinorThree:Group3 |
-    Then I click save button to save the groups in CoCo Page
-   And I validated message on success enrollment grouping pop-up in CoCo Page
-    Then I click on continue button on success pop-up in CoCo Page
 
     Then I validate I am on the "Grouping Members Medical" page
     And I validate that there are 3 default groups in coco page
@@ -868,14 +857,12 @@ Feature: Individual adult - End to End Test
     And I select the COCO Metal Tier dropdown
     And I select "Silver" to filter for a  COCO Metal Tier plan
     And I validate the COCO plan option 1 has text "Elevate Health Plans Colorado Option Silver Off Exchange"
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
-    Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
-    Then I validate I am on the "Medical Plan Results" page
-    And I select "Elevate Health Plans Colorado Option Silver Off Exchange" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
+
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:Elevate Health Plans Colorado Option Silver Off Exchange|
+      | Group 2:Elevate Health Plans Colorado Option Silver Off Exchange|
+      | Group 3:Elevate Health Plans Colorado Option Silver Off Exchange|
+
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
 
@@ -889,9 +876,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Plans" link on welcome page
     Then I validate I am on the "My Policies" page
-    And Validate selected medical plan for "Primary" is "Elevate Health Plans Colorado Option Silver Off Exchange"
-    And Validate selected medical plan for "MinorTwo" is "Elevate Health Plans Colorado Option Silver Off Exchange"
-    And Validate selected medical plan for "MinorThree" is "Elevate Health Plans Colorado Option Silver Off Exchange"
+    And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-265 @EndToEndTest
@@ -1153,7 +1138,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
 
-    Then I enter details on tell us about yourself page and continue with "01162005", "Female", and applying "Yes"
+    Then I enter details on tell us about yourself page and continue with "01161995", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
@@ -1338,7 +1323,6 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

@@ -49,6 +49,6 @@ Feature: My Clients list client functionality and existing client data validatio
     And I wait for 1000 milliseconds
     Then I click on the first client in my list
     Then I verify that my client's current status is "POLICY SUBMITTED"
-    Then I verify existing client details "Ollie Forbes", "80123", "3035556987", "9024183011" or "8728658600"
-    Then I verify existing client plan details "2025", "QHP", "Denver Health"
-    Then I verify the existing secondary client details "Graciela Nielsen", "80123", "2025", "QHP", "Anthem"
+    Then I verify existing assister client details "Ollie Forbes", "80123", "3035556987", "9024183011" or "8728658600"
+    Then I verify existing assister client plan details "2025", "QHP", "Denver Health"
+    Then I verify the existing assister secondary client details "Graciela Nielsen", "80123", "2025", "QHP", "Anthem"

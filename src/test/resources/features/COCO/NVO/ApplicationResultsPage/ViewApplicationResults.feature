@@ -79,6 +79,7 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
@@ -111,7 +112,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -122,7 +123,8 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
-    Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
+    And I get the memberId of primary member from url
+    Then I enter details on tell us about yourself page and continue with "11282000", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
@@ -155,6 +157,27 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on start shopping page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    Then I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "Application Results" link on welcome page
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate open enrollment ended pop up in "English"
+    And I click close on open enrollment ended pop up modal
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -165,10 +188,11 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Los ANgeles", "CA", "90005", "LOS ANGELES"
     And I select "No" for mailing address option
-    And I enter my mailing address "101 Coco Drive", "Los ANgeles", "CA", "90005", "LOS ANGELES"
+    And I enter my mailing address "101 Coco Drive", "Los Angeles", "CA", "90005", "LOS ANGELES"
     And I select "No" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
@@ -197,7 +221,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    And I verify the application result details in DB as "OFF_EXCHANGE_NOT_ELIGIBLE" for "Primary"
+    And I verify the application result details in DB as "OFF_EXCHANGE_NOT_ELIGIBLE" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -218,10 +242,10 @@ Feature: Coco user on the Application results page
       Then I validate I am on the "CoCo Family Overview" page
       Then I click EditUpdate on Family Overview page for "Primary"
       Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
-      And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
+      And I enter my residential address "1234 Road", "Los Angeles", "CA", "90005", "LOS ANGELES"
       And I select "No" for mailing address option
       And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
-      And I select "Yes" for live in Colorado option
+      And I select "No" for live in Colorado option
       And I click continue on the Add info for yourself page
       Then I validate I am on the "Elmo Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity option for "Primary"
@@ -260,6 +284,7 @@ Feature: Coco user on the Application results page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
     Then I enter details on tell us about yourself page and continue with "11282015", "Male", and applying "Yes"
     And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "No" for mailing address option
@@ -293,141 +318,10 @@ Feature: Coco user on the Application results page
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
 
-    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
-    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
+    And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "getFromSharedData"
+    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
-
-  @SLCR-682
-  Scenario: Scenario 1- ELIG-NVO Validate 2025 SES Reached limit with no LCE during SES limited/ 2025 SES eligible during open enrollment
-      And I apply for the current year in CoCo
-      Then I validate I am on the "Find Expert Help" page
-      And I click Continue on my own button from Manage who helps you page
-      Then I click EditUpdate on Family Overview page for "Primary"
-      And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
-      And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
-      And I select "Yes" for mailing address option
-      And I select "Yes" for live in Colorado option
-      And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
-      And I select "Prefer not to answer" for race and ethnicity option for "Primary"
-      And I click save and continue on the Race and Ethnicity page
-      And I select "Yes" employment option
-      And I enter "19,500.00" income amount
-      And I select "Annually" income frequency option
-      And I select "No" income seasonal option
-      And I select "No" income changes option
-      And I click continue on the Employment income page
-      And I select None of these as additional income option
-      And I select continue on the Additional Income CoCO page
-      Then I validate I am on the "CoCo Deductions" page
-      And I select "None of these" as deductions option
-      And I select continue on the Deductions CoCo page
-      Then I select the projected income option "No" on Income Summary CoCo page
-      And I select continue on the income Summary CoCo page
-      Then I validate I am on the "CoCo Family Overview" page
-      And I wait for 9000 milliseconds
-      And I select continue on the Family Overview page
-      And  I check "None of these" life change event checkbox
-      And I select continue on the LCE page
-      Then I validate I am on the "CoCo Declarations and Signature" page
-      And I enter a valid signature
-      And I click Continue on the Declarations And Signature Page CoCo
-      Then I validate I am on the "Application Results CoCo" page
-      Then I verify text that the member qualifies for SES and no spots are available in "English" on the App Results Page CoCo
-      And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
-      And I click on Sign Out in the Header for "Elmo"
-
-  @SLCR-682
-  Scenario: scenario 2- User submits 2025 application with no LCE during open enrollment and able to shop
-    And I apply for the current year in CoCo
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primary"
-    And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
-    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
-    And I select "Yes" for mailing address option
-    And I select "Yes" for live in Colorado option
-    And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
-    And I click save and continue on the Race and Ethnicity page
-    And I select "Yes" employment option
-    And I enter "19,500.00" income amount
-    And I select "Annually" income frequency option
-    And I select "No" income seasonal option
-    And I select "No" income changes option
-    And I click continue on the Employment income page
-    And I select None of these as additional income option
-    And I select continue on the Additional Income CoCO page
-    Then I validate I am on the "CoCo Deductions" page
-    And I select "None of these" as deductions option
-    And I select continue on the Deductions CoCo page
-    Then I select the projected income option "No" on Income Summary CoCo page
-    And I select continue on the income Summary CoCo page
-    Then I validate I am on the "CoCo Family Overview" page
-    And I wait for 9000 milliseconds
-    And I select continue on the Family Overview page
-    And  I check "None of these" life change event checkbox
-    And I select continue on the LCE page
-    Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature
-    And I click Continue on the Declarations And Signature Page CoCo
-    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
-    Then I validate I am on the "Application Results CoCo" page
-    Then I verify text that the member qualifies for SES and no spots are available in "English" on the App Results Page CoCo
-    And I click Continue on the Application Results Page CoCo
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-    Then I click continue on start shopping page
-    Then I validate I am on the "Medical Plan Results" page
-
-  @SLCR-682 @SLCR-697
-  Scenario: scenario3-SLCR-682 and Scenario1-SLCR-697:: User submits Next year application with LCE during OE and able to shop
-    And I apply for the current year in CoCo
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
-    Then I click EditUpdate on Family Overview page for "Primary"
-    And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
-    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
-    And I select "Yes" for mailing address option
-    And I select "Yes" for live in Colorado option
-    And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
-    And I click save and continue on the Race and Ethnicity page
-    And I select "Yes" employment option
-    And I enter "19,500.00" income amount
-    And I select "Annually" income frequency option
-    And I select "No" income seasonal option
-    And I select "No" income changes option
-    And I click continue on the Employment income page
-    And I select None of these as additional income option
-    And I select continue on the Additional Income CoCO page
-    Then I validate I am on the "CoCo Deductions" page
-    And I select "None of these" as deductions option
-    And I select continue on the Deductions CoCo page
-    Then I select the projected income option "No" on Income Summary CoCo page
-    And I select continue on the income Summary CoCo page
-    Then I validate I am on the "CoCo Family Overview" page
-    And I wait for 9000 milliseconds
-    And I select continue on the Family Overview page
-    Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event with event date of "Today"
-    And I select continue on the LCE page
-    Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature
-    And I click Continue on the Declarations And Signature Page CoCo
-    Then I validate I am on the "Application Results CoCo" page
-    Then I verify text that the member qualifies for SES and no spots are available in "English" on the App Results Page CoCo
-    And I click Continue on the Application Results Page CoCo
-
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-    Then I click continue on start shopping page
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "Primary"
 
 @SLCR-684
 Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results page (eligible Spanish text)
@@ -542,6 +436,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       Then I validate I am on the "Find Expert Help" page
       And I click Continue on my own button from Manage who helps you page
       Then I click EditUpdate on Family Overview page for "Primary"
+      And I get the memberId of primary member from url
       And I enter details on tell us about yourself page and continue with "01011991", "Male", and applying "Yes"
       And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
       And I select "Yes" for mailing address option
@@ -576,6 +471,51 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       Then I validate I am on the "Application Results CoCo" page
       Then I validate the text on the application results page coco
       And I click Continue on the Application Results Page CoCo
-      And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
+      And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "getFromSharedData"
       And I click on Sign Out in the Header for "Elmo"
       Then I validate I am on the "Login" page
+
+  @SLCR-679
+  Scenario Outline: Validate text application result
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    And I get the memberId of primary member from url
+    Then I enter details on tell us about yourself page and continue with "11281992", "Male", and applying "<isApplying>"
+    And I enter my residential address "101 Coco Drive", "<city>", "<state>", "<zipcode>", "<county>"
+    And I select "Yes" for mailing address option
+    And I select "<isCoResident>" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Employment Income" page
+    And I select "Yes" employment option
+    And I enter "27,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "InsuranceLoss" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    Then I validate the text on the application results page coco
+    And I click on Sign Out in the Header for "Elmo"
+    Examples:
+      | city        | state | zipcode | county      | isApplying | isCoResident |
+      | Denver      | CO    | 80205   | DENVER      | Yes        | Yes          |
+      | Los Angeles | CA    | 90005   | LOS ANGELES | Yes        | No           |

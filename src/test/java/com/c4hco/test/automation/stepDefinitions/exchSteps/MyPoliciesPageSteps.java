@@ -20,7 +20,7 @@ public class MyPoliciesPageSteps {
 
     @And("I validate {string} plan details from plan history")
     public void medPlanDetailsPlanHistory(String planType){
-            myPoliciesPage.validatePlanDetailsPlanHistory(planType);
+        myPoliciesPage.validatePlanDetailsPlanHistory(planType);
     }
 
     @And("I click on to Back to Current Plan Details button")

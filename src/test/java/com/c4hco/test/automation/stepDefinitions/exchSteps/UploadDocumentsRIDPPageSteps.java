@@ -18,4 +18,14 @@ public class UploadDocumentsRIDPPageSteps {
         uploadDocumentsRIDPPage.clickUploadDocumentsButton();
     }
 
+    @Then("I click on Check Status button in Id proofing secondary request Page")
+    public void clickOnCheckStatusButton(){
+        uploadDocumentsRIDPPage.clickStatusButton();
+    }
+
+    @Then("I validate error {string} text in Id proofing secondary request Page in {string}")
+    public void iValidateErrorMessage(String errorMessage,String language){
+        uploadDocumentsRIDPPage.validateErrorMessage(errorMessage,language);
+    }
+
 }

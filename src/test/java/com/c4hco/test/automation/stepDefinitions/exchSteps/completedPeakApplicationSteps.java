@@ -6,10 +6,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+
 public class completedPeakApplicationSteps {
     CompletedPeakApplicationPage completedApplicationPage = new CompletedPeakApplicationPage(WebDriverManager.getDriver());
+
     @And("I click on save and continue button")
-    public void selectSaveAndContinue(){
+    public void selectSaveAndContinue() {
         completedApplicationPage.clickSaveAndContinueButton();
     }
 
@@ -23,6 +25,18 @@ public class completedPeakApplicationSteps {
         completedApplicationPage.iSelectOption(option);
     }
 
+    @Then("I click on back button in Completed Peak Application page")
+    public void iClickOnBackButton() {
+        completedApplicationPage.backButton();
+    }
+
+    /// ////////////////////////VALIDATION STEPS///////////////////////////////////
+
+    @And("I validate that error {string} is thrown while clicking on Continue button")
+    public void iValidateErrorThrown(String errMsg) {
+        completedApplicationPage.errMsgValidation(errMsg);
+    }
+
     @When("I click on back button on the Let us guide you page")
     public void clickOnBackBtn(){
         completedApplicationPage.clickOnBackBtn();
@@ -32,5 +46,4 @@ public class completedPeakApplicationSteps {
     public void verifyEnglishAndSpanishTextInLetUsGuide(String languageOption){
         completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
     }
-
 }

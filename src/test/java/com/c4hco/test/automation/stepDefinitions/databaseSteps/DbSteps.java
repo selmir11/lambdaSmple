@@ -298,6 +298,18 @@ public class DbSteps {
     public void iValidateTheFplPercent(int expectedFplPercent) {dbValidations.validateFplPercent(String.valueOf(expectedFplPercent));
     }
 
+    @And("I verify Persons ID are validated in the DB with count only {string}")
+    public void iValidateExchPersonIds(String validateCountOnly) {
+        policyTableValidations.validateExchPersonIds(validateCountOnly);
+    }
+
+    @Then("I validate ARP Indicator is set correctly in DB")
+    public void iValidateArpIndicator() {policyTableValidations.validateArpIndicator();}
+
+    @And("I Validate enrollment period end date is set to {int} days from current date of the admin LCE being processed")
+    public void validateEnrolmentEndDate(int enrollmentEndDate) {
+        dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate);
+    }
 
 }
 

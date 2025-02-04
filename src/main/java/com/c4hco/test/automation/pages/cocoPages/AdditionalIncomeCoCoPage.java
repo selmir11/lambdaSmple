@@ -1,11 +1,8 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.Constants;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -173,9 +169,6 @@ public class AdditionalIncomeCoCoPage {
 
     @FindBy(id = "AdditionalIncome-GoBack")
     WebElement goBackButton;
-
-    @FindBy(css = ".banner-error-message")
-    WebElement errorMessage;
 
     @FindBy(css = ".header-1")
     WebElement hdrAddInfoForYourself;
@@ -433,7 +426,7 @@ public void verifyHeadersAdditionalIncomePage(String language){
         switch (language){
             case "English":
                 basicActions.waitForElementToBePresent(hdrAddInfoForYourself,15);
-                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -448,7 +441,7 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
                 basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
                 basicActions.waitForElementListToBePresent(addIncomeButton, 90);
-                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getLastName()));
+                softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -585,14 +578,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertEquals(BaseText.getCssValue("line-height"), "28px");
         softAssert.assertEquals(BaseText.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertAll();
-    }
-
-    public void verifyNoErrorMessage_AdditionalIncome() {
-        Assert.assertTrue(basicActions.waitForElementToDisappear(errorMessage, 30), "Error is displayed");
-    }
-
-    public void verifyErrorMessage_AdditionalIncome() {
-        Assert.assertTrue(basicActions.waitForElementToBePresent(errorMessage, 30), "Error is NOT displayed");
     }
 
     public void verifyOptionSelected_AdditionalIncome(String optionName){
