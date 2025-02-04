@@ -704,5 +704,19 @@ public String policyTablesCombinedQuery(String coverageType){
                 "limit 1";
     }
 
+    public String getVLPResponseCodeInfo() {
+        return "select evr.response_code from "+dbName +".es_member em, "+dbName +".es_household eh, "+dbName +".es_vlp_resp\n" +
+                " evr where eh.household_id = em.household_id and em.member_id = evr.member_id and evr.request_type = '2'\n" +
+                " and eh.account_id = '"+acctId+"'";
+    }
 
+    public String getVLPRetryType() {
+        return "select service_type from "+dbName +".es_fdsh_retry_control\n" +
+                " where account_id = '"+acctId+"'";
+    }
+
+    public String getVLPRetryStatus() {
+        return "select status from "+dbName +".es_fdsh_retry_control\n" +
+                " where account_id = '"+acctId+"'";
+    }
 }
