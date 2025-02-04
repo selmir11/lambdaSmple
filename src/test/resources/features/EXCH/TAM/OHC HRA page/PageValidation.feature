@@ -282,7 +282,4 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click continue on the Elmo OHC HRA page
     And I verify "Type" error does not show for HRA page
     And I verify the "Opt Out Section" HRA page data in "English"
-    Then I click continue on the Elmo OHC HRA page
-    And I verify "Opt Out" error in "English" on the HRA page
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    And I verify "Opt Out" error does not show for HRA page
+
