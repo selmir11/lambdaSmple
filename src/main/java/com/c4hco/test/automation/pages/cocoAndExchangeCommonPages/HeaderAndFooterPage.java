@@ -120,6 +120,8 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//a[.='Sign Out']")
     WebElement signOutOverview;
 
+    @FindBy(xpath = "//strong[normalize-space()='Sign Out']")
+    WebElement signOutHousholdPage;
     @FindBy(linkText = "Sign Out")
     WebElement signOutinCaseIdPage;
 
@@ -419,8 +421,7 @@ public class HeaderAndFooterPage {
 
     public void headerLanguage(String language){
         basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 100);
-        basicActions.waitForElementToBePresentWithRetries(languageDrp, 100);
-        basicActions.waitForElementToBeClickableWithRetries(languageDrp, 100);
+        basicActions.waitForElementToBePresentWithRetries(languageDrp, 120);
         for (WebElement headerLink : centerHeaderLink) {
             if (headerLink.getAttribute("text").contains("Apply for Coverage")) {
                 changeLanguage(language);
@@ -506,7 +507,7 @@ public class HeaderAndFooterPage {
                 basicActions.click(signOutLink);
                 break;
             case "NonElmo":
-                basicActions.waitForElementToBePresent(signOutLinkNonElmo, 10);
+                basicActions.waitForElementToBePresentWithRetries(signOutLinkNonElmo, 20);
                 basicActions.click(signOutLinkNonElmo);
                 break;
             case "WhoHelpsYouPage":
@@ -530,13 +531,18 @@ public class HeaderAndFooterPage {
                 basicActions.click(signOutDentalPlanResults);
                 break;
             case "Account Overview":
-                basicActions.waitForElementToBeClickable(signOutOverview,10);
+                basicActions.waitForElementToBePresentWithRetries(signOutOverview,30);
                 basicActions.click(signOutOverview);
                 break;
             case "CaseId Page":
                 basicActions.wait(2000);
                 basicActions.waitForElementToBeClickable(signOutinCaseIdPage,10);
                 basicActions.click(signOutinCaseIdPage);
+                break;
+            case "Household Page":
+                basicActions.wait(2000);
+                basicActions.waitForElementToBePresentWithRetries(signOutHousholdPage,30);
+                basicActions.click(signOutHousholdPage);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + pageType);

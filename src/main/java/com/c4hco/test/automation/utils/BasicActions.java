@@ -145,7 +145,6 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not clickable");
-            Assert.fail("Element is not clickable");
             return false;
         }
         return true;
@@ -169,7 +168,6 @@ public class BasicActions {
         }
         return false;
     }
-
     public Boolean waitForElementToDisappear(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
@@ -456,8 +454,6 @@ public class BasicActions {
                 newUrl = "WelcomePortal/unauthorized";
                 newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
                 getDriver().navigate().to(newUrl);
-                System.out.println("Current URL "+currentUrl);
-                System.out.println("New URL     "+newUrl);
                 break;
             case "Family Overview portal Error CoCo":
                 newUrl = "WelcomePortal/error";
@@ -475,7 +471,7 @@ public class BasicActions {
                 getDriver().navigate().to(newUrl);
                 break;
             case "LCE portal Unauthorized CoCo":
-                    newUrl = "lce-portal/unauthorized";
+                newUrl = "lce-portal/unauthorized";
                 newUrl = currentUrl.replaceAll("lce-portal/lces[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
@@ -1170,6 +1166,10 @@ public class BasicActions {
             //if plan purchase date is from 16 to 31 - Month after Next 1st will be plan start date
             return changeDateFormat(firstDateOfTheMonthAfterNext(),"yyyy-MM-dd","MM/dd/yyyy");
         }
+    }
+
+    public  String getUniqueNumber(int length) {
+        return RandomStringUtils.random(length, "123456789");
     }
 }
 

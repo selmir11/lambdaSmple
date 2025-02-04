@@ -298,12 +298,33 @@ public class DbSteps {
     public void iValidateTheFplPercent(int expectedFplPercent) {dbValidations.validateFplPercent(String.valueOf(expectedFplPercent));
     }
 
-    @And("I verify Persons ID are validated in the DB")
-    public void iValidateExchPersonIds() {policyTableValidations.validateExchPersonIds();
+    @And("I verify Persons ID are validated in the DB with count only {string}")
+    public void iValidateExchPersonIds(String validateCountOnly) {
+        policyTableValidations.validateExchPersonIds(validateCountOnly);
     }
 
+    @Then("I validate ARP Indicator is set correctly in DB")
+    public void iValidateArpIndicator() {policyTableValidations.validateArpIndicator();}
 
+    @And("I Validate enrollment period end date is set to {int} days from current date of the admin LCE being processed")
+    public void validateEnrolmentEndDate(int enrollmentEndDate) {
+        dbValidations.validateEnrollmentEndDateDB(enrollmentEndDate);
+    }
 
+    @Then("I validate system functionality for member being eligible for CYA")
+    public void validateCyaEligibility() {
+        dbValidations.validateCyaEligibility();
+    }
+
+    @And("I Validate VLP response code as {string}")
+    public void validateEnrolmentEndDate(String responseCode) {
+        dbValidations.validateVLPResponseCode(responseCode);
+    }
+
+    @And("I Validate VLP retry type as {string} and VLP retry status as {string}")
+    public void validateVLPRetryTypeAndStatus(String retryType, String retryStatus) {
+        dbValidations.validateVLPRetryTypeandStatus(retryType,retryStatus);
+    }
 }
 
 

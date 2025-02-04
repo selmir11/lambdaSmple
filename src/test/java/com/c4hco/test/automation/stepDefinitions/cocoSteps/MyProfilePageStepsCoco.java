@@ -127,4 +127,15 @@ public class MyProfilePageStepsCoco {
 
     @And("I get the name of the primary person from my profile page coco")
     public void getName(){myProfilePage.getNameOfPrimary();}
+
+    @Then("I click on save changes button on my profile page in Coco for admin portal")
+    public void iClickOnSaveChangesButtonOnMyProfilePageInCoco() {
+        myProfilePage.clicksaveChangesButtonAdminPortal();
+    }
+
+    @Then("I validate default language is displaying as {string} for admin portal")
+    public void iValidateDefaultLanguageIsDisplayingAs(String expectedLanguage) {
+        myProfilePage.verifyPreferredLanguage(expectedLanguage);
+    }
+
 }

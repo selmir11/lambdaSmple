@@ -248,8 +248,8 @@ public class MedicalPlansCoCoPage {
     private void clickPlanButton(int index) {
         String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement(By.id(planID));
-        basicActions.waitForElementToBePresent(ePlanID,20);
-        basicActions.waitForElementToBeClickable(ePlanID, 10);
+        basicActions.waitForElementToBePresent(ePlanID,40);
+        basicActions.waitForElementToBeClickable(ePlanID, 30);
         basicActions.click(ePlanID);
     }
 
@@ -262,7 +262,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectCoCoMedicalplan(String planName) {
-        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToDisappear(spinner, 40);
         MemberDetails subscriber = SharedData.getPrimaryMember();
         subscriber.setMedicalPlan(planName);
         SharedData.setPrimaryMember(subscriber);

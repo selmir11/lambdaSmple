@@ -12,10 +12,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 
 public class YourClientsPage {
@@ -87,12 +86,6 @@ public class YourClientsPage {
     @FindBy(id = "fullName0")
     WebElement secondClientFullName;
 
-    @FindBy(id = "county")
-    WebElement secondClientZipCode;
-
-    @FindBy(id = "program-name")
-    WebElement secondClientEligResults;
-
     @FindBy(xpath = "(//span[@id='fullName0'])[2]")
     WebElement thirdClientFullName;
 
@@ -106,22 +99,22 @@ public class YourClientsPage {
     WebElement clientFullName;
 
     @FindBy(id = "home-address-zip")
-    WebElement clientZipCode;
+    List<WebElement> clientZipCode;
 
-    @FindBy(id = "phone-data")
+    @FindBy(xpath = "//*[@id='phone-number']/div[2]")
     WebElement clientPhoneNumber;
 
-    @FindBy(id = "account-number-data")
+    @FindBy(xpath = "//*[@id='account-number']/div[2]")
     WebElement clientAccountNumber;
 
     @FindBy(id = "plan-year")
     List<WebElement> clientPlanYear;
 
     @FindBy(id = "program-eligibility")
-    WebElement clientEligResults;
+    List<WebElement> clientEligResults;
 
-    @FindBy(id = "issuer-name-data")
-    List<WebElement> clientIssuerName;
+    @FindBy(xpath = "//*[@id='plan-name']/div[2]/span")
+    List<WebElement> clientPlanName;
 
     @FindBy(xpath = "//*[@id='elem']/app-view-clients/div/div[1]")
     WebElement yourClientsTitle;
@@ -144,6 +137,35 @@ public class YourClientsPage {
     @FindBy(id = "transferAllBTN")
     WebElement transferAllClientsButton;
 
+
+
+    @FindBy(id = "openVerificationRequests")
+    WebElement mvrContainerTitle;
+    @FindBy(id = "searchParam-label")
+    WebElement searchLabel;
+
+    @FindBy(xpath = "//button[@type='searchParam-btn']")
+    WebElement searchBtn;
+    @FindBy(id = "searchParam-input")
+    WebElement searchInput;
+    @FindBy(id = "searchParam-errorMsg")
+    WebElement speacialCharactersError;
+    @FindBy(xpath = "//table[@id='mvr-table']/tr[1]//th")
+    List<WebElement> mvrTableHeader;
+    @FindBy(id = "pagination-mvr-next-page-btn")
+    WebElement nextPage;
+    @FindBy(id = "pagination-mvr-curr-page")
+    WebElement currentPageText;
+    @FindBy(id = "pagination-mvr-prev-page-btn")
+    WebElement PaginationLeft;
+    @FindBy(xpath = "//table[@id='mvr-table']//tr[2]//td")
+    List<WebElement> firstRowsOptions;
+    @FindBy(xpath = "//table[@id='mvr-table']//tr//td[3]")
+    List<WebElement> mvrTypesOptions;
+
+
+
+
     public void validateYourClientsPageTitle(){
         basicActions.waitForElementToBePresent(yourClientsTitle, 10);
         softAssert.assertEquals(yourClientsTitle.getText(),"Your Clients");
@@ -151,13 +173,13 @@ public class YourClientsPage {
     }
 
     public void clickUserTab(String userTab) {
+        Actions actions = new Actions(basicActions.getDriver());
         switch (userTab){
             case "connect For Health Colorado" :
                 connectForHealthColoradoTab.click();
                 break;
             case "colorado Connect" :
                 basicActions.wait(3000);
-                Actions actions = new Actions(basicActions.getDriver());
                 actions.click(coloradoConnectTab).perform();
                 break;
             default:
@@ -570,10 +592,16 @@ public class YourClientsPage {
         transferAllClientsButton.click();
     }
 
+    public void validateTransferAllClients(){
+        basicActions.waitForElementToBePresent(transferAllClientsButton,30);
+        softAssert.assertEquals(transferAllClientsButton.getText(),"Transfer All Clients");
+        softAssert.assertAll();
+    }
+
     public void verifyExistingClientDetails(String clientName, String clientZip, String phoneNumber, String clientAccountStg, String clientAccountQA){
         basicActions.waitForElementToBePresent(clientFullName,30);
         softAssert.assertEquals(clientFullName.getText(), clientName);
-        softAssert.assertEquals(clientZipCode.getText(), clientZip);
+        softAssert.assertEquals(clientZipCode.get(0).getText(), clientZip);
         softAssert.assertEquals(clientPhoneNumber.getText(), phoneNumber);
 
         if(SharedData.getEnv().equals("staging")){
@@ -584,21 +612,189 @@ public class YourClientsPage {
         softAssert.assertAll();
     }
 
-    public void verifyExistingClientPlanDetails(String planYear, String eligResults, String issuerName){
+    public void verifyExistingClientPlanDetails(String planYear, String eligResults1, String eligResults2, String eligResults3, String issuerName){
         basicActions.waitForElementListToBePresentWithRetries(clientPlanYear,30);
         softAssert.assertEquals(clientPlanYear.get(0).getText(), planYear);
-        softAssert.assertEquals(clientEligResults.getText(), eligResults);
-        softAssert.assertEquals(clientIssuerName.get(0).getText(), issuerName);
+        softAssert.assertTrue(clientEligResults.get(0).getText().contains(eligResults1));
+        softAssert.assertTrue(clientEligResults.get(0).getText().contains(eligResults2));
+        softAssert.assertTrue(clientEligResults.get(0).getText().contains(eligResults3));
+        softAssert.assertEquals(clientPlanName.get(0).getText(), issuerName);
         softAssert.assertAll();
     }
 
-    public void verifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults, String issuerName){
+    public void verifyExistingSecondaryClientDetails(String clientName, String clientZip, String planYear, String eligResults1, String eligResults2, String eligResults3, String issuerName){
         basicActions.waitForElementListToBePresentWithRetries(clientPlanYear,30);
         softAssert.assertEquals(secondClientFullName.getText(), clientName);
-        softAssert.assertEquals(secondClientZipCode.getText(), clientZip);
+        softAssert.assertEquals(clientZipCode.get(1).getText(), clientZip);
         softAssert.assertEquals(clientPlanYear.get(1).getText(), planYear);
-        softAssert.assertEquals(secondClientEligResults.getText(), eligResults);
-        softAssert.assertEquals(clientIssuerName.get(1).getText(), issuerName);
+        softAssert.assertTrue(clientEligResults.get(1).getText().contains(eligResults1));
+        softAssert.assertTrue(clientEligResults.get(1).getText().contains(eligResults2));
+        softAssert.assertTrue(clientEligResults.get(1).getText().contains(eligResults3));
+        softAssert.assertEquals(clientPlanName.get(1).getText(), issuerName);
         softAssert.assertAll();
+    }
+
+
+
+    public void validateTheMVRContainerTextInTheDashboardPage() {
+        basicActions.waitForElementToBePresentWithRetries(mvrContainerTitle,50);
+        basicActions.scrollToElement(mvrContainerTitle);
+        softAssert.assertEquals(mvrContainerTitle.getText(),"Open Verification Requests");
+        softAssert.assertEquals(searchLabel.getText(),"Search By First Name or Last Name:");
+        softAssert.assertEquals(searchBtn.getText(),"Search");
+        List<String> actualTitleHeader = new ArrayList<>();
+        List<String> expectedTitleHeader = new ArrayList<>(Arrays.asList("First Name","Last Name","Type","Due Date",""));
+
+        for (WebElement each : mvrTableHeader) {
+            actualTitleHeader.add(each.getText());
+            System.out.println(each.getText());
+        }
+        softAssert.assertEquals(expectedTitleHeader,actualTitleHeader);
+        softAssert.assertAll();
+    }
+
+    public void validateTheICanTSearchForSpecialCharactersOnSearchBar() {
+        basicActions.waitForElementToBePresentWithRetries(speacialCharactersError,100);
+        basicActions.isElementDisplayed(speacialCharactersError,100);
+        softAssert.assertEquals(speacialCharactersError.getText(),"No special characters allowed");
+        softAssert.assertAll();
+    }
+
+    public void searchForInSearchMvrContainer(String STGClient, String QAClient) {
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,50);
+        basicActions.waitForElementToBePresentWithRetries(searchInput,30);
+        if (SharedData.getEnv().equals("staging")){
+            searchInput.sendKeys(STGClient);
+        }else{
+            searchInput.sendKeys(QAClient);
+        }
+
+        basicActions.waitForElementToBePresentWithRetries(searchBtn,30);
+        searchBtn.click();
+    }
+
+    public void clearTheMVRSearchBoxInBrokerDashboardPage() {
+        Actions actions = new Actions(basicActions.getDriver());
+        basicActions.waitForElementToBePresentWithRetries(searchInput,30);
+        searchInput.click();
+        actions.keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).perform();
+        searchInput.sendKeys(Keys.BACK_SPACE);
+        basicActions.wait(500);
+        searchInput.sendKeys(Keys.ENTER);
+        basicActions.waitForElementToBePresentWithRetries(searchBtn,60);
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,60);
+    }
+
+    public void clickTheRightPaginationArrowButtonTimesInMvrContainer(int numberTimes) {
+        basicActions.waitForElementToBePresent(nextPage,30);
+        for(int i=0; i<=numberTimes; i++){
+            basicActions.waitForElementToBeClickable(nextPage,10);
+            basicActions.waitForElementToBeClickable(searchBtn,30);
+            nextPage.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void verifyTheCurrentResultPageIsInMvrContainer(String currentPage) {
+        basicActions.waitForElementToBePresent(currentPageText,30);
+        basicActions.waitForElementToBeClickable(currentPageText,10);
+        softAssert.assertEquals(currentPageText.getText(), currentPage);
+        softAssert.assertAll();
+    }
+
+    public void clickTheLeftPaginationArrowButtonTimesInMvrContainer(int numberTimes) {
+        basicActions.waitForElementToBePresent(PaginationLeft,30);
+        for(int i=0; i<numberTimes; i++){
+            basicActions.waitForElementToBeClickable(PaginationLeft,10);
+            PaginationLeft.click();
+            basicActions.wait(10);
+        }
+    }
+
+    public void validateTheResultContains(String search) {
+        basicActions.waitForElementListToBePresentWithRetries(firstRowsOptions,300);
+        basicActions.wait(500);
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,500);
+        boolean found = false;
+        for (WebElement each : firstRowsOptions) {
+            if (each.getText().contains(search)){
+                found = true;
+                break;
+            }
+        }
+        softAssert.assertTrue(found, "element is not found");
+        softAssert.assertAll();
+    }
+
+    public void validateTheMvrContainerIsNotDisplayed() {
+        basicActions.waitForElementToBePresentWithRetries(mvrContainerTitle,30);
+        basicActions.scrollToElement(mvrContainerTitle);
+        softAssert.assertFalse(basicActions.waitForElementListToBePresent(firstRowsOptions,30));
+        softAssert.assertAll();
+    }
+
+    public void validateTheFirstNameLastNameTypeDueDateAndActionType(String firstName, String lastName, String Type,String dueDate, String actionType) {
+        basicActions.waitForElementToBeClickable(searchBtn,30);
+        basicActions.waitForElementListToBePresent(firstRowsOptions,60);
+        softAssert.assertEquals(firstRowsOptions.get(0).getText(),firstName);
+        softAssert.assertEquals(firstRowsOptions.get(1).getText(),lastName);
+        softAssert.assertEquals(firstRowsOptions.get(2).getText(),Type);
+        softAssert.assertEquals(firstRowsOptions.get(3).getText(),dueDate);
+        softAssert.assertEquals(firstRowsOptions.get(4).getText(),actionType);
+        softAssert.assertAll();
+
+    }
+
+    public void clickVerifyInfoButtonOnMVRContainer() {
+        basicActions.waitForElementListToBePresent(firstRowsOptions,30);
+        firstRowsOptions.get(4).click();
+    }
+
+    public void searchForTheClientCreatedInSearchMvrContainer() {
+        basicActions.waitForElementToBeClickableWithRetries(searchBtn,50);
+        basicActions.waitForElementToBePresentWithRetries(searchInput,30);
+        searchInput.sendKeys(SharedData.getPrimaryMember().getFirstName());
+        basicActions.waitForElementToBePresentWithRetries(searchBtn,30);
+        searchBtn.click();
+    }
+
+    public void validateTheClientDataOnTheMVRContainer(String actionBtn) {
+        LocalDate date = LocalDate.now().plusDays(90);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        String formattedDate = date.format(formatter);
+        System.out.println("The date 90 days from today is: " + formattedDate);
+
+        basicActions.waitForElementToBeClickable(searchBtn,30);
+        basicActions.waitForElementListToBePresent(firstRowsOptions,60);
+        softAssert.assertEquals(firstRowsOptions.get(0).getText(),SharedData.getPrimaryMember().getFirstName());
+        softAssert.assertEquals(firstRowsOptions.get(1).getText(),SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(firstRowsOptions.get(2).getText(),"Income");
+        softAssert.assertEquals(firstRowsOptions.get(3).getText(), formattedDate);
+        softAssert.assertEquals(firstRowsOptions.get(4).getText(),actionBtn);
+        softAssert.assertAll();
+    }
+
+    public void validateTheMVRTypeAndActionType(String mvrType, String actionButton) {
+        basicActions.waitForElementToBeClickable(searchBtn,30);
+        basicActions.waitForElementListToBePresent(firstRowsOptions,60);
+
+        boolean isMvrTypeFound = false;
+
+
+        for (int i = 0; i < mvrTypesOptions.size(); i++) {
+            if (mvrTypesOptions.get(i).getText().equals(mvrType)) {
+                isMvrTypeFound = true;
+                i=i+2;
+                String actionButtonText = basicActions.getDriver().findElement(By.xpath("//table[@id='mvr-table']//tr["+i+"]//td[5]")).getText();
+                softAssert.assertEquals(actionButtonText, actionButton);
+                softAssert.assertAll();
+                i=0;
+                break;
+
+            }
+        }
+        softAssert.assertTrue(isMvrTypeFound, "The specified MVR type was not found.");
+        softAssert.assertAll();
+
     }
 }

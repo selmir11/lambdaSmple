@@ -182,4 +182,9 @@ public class CreateAccountPageSteps {
     public void iEnterDuplicateDataForProgramManagerAccountCreation() {
         createAccountPage.enterDuplicateDataForProgramManagerAccountCreation();
     }
+
+    @And("I enter first name contains {string}, middle name {string}, last name {string} and general mandatory data for {string} account creation")
+    public void iEnterFirstNameContainsMiddleNameLastNameAndGeneralMandatoryDataForAccountCreation(String fname, String mName, String lName, String appType) {
+        createAccountPage.createAccountWithSpecificData(fname,mName, lName,appType);
+    }
 }

@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class EmploymentInfoPageSteps {
 
     EmploymentInfoPage employmentInfoPage = new EmploymentInfoPage(WebDriverManager.getDriver());
@@ -83,4 +85,32 @@ public class EmploymentInfoPageSteps {
     @Then("I validate Seasonal verbiage in {string}")
     public void iValidateSeasonalQsHelpVerbiage(String languageSelection){employmentInfoPage.validateSeasonalHelpVerbiage(languageSelection);};
 
+    @Then("I Verify the page text on Employment Income page, which is in initial state")
+    public void iVerifyTextOnInitialIncomePage(List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnInitialIncomePage(dataText);
+    }
+
+    @Then("I Verify the page text on Employment Income page after clicking yes to employment")
+    public void iVerifyTextOnIncomePageAfterSelectingYesToEmployment(List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnIncomePageAfterClickingYesToEmploymentQuestion(dataText);
+    }
+
+    @Then("I Verify the page text on Employment Income page after clicking yes to self employment question")
+    public void iVerifyTextOnIncomePageAfterSelectingYesToSelfEmployment(List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnIncomePageAfterClickingYesToSelfEmploymentQuestion(dataText);
+    }
+
+    @Then("I Verify the page text on Employment Income page after clicking No to self employment question")
+    public void iVerifyTextOnIncomePageAfterSelectingNoToSelfEmployment(List<String> dataText)
+    {
+        employmentInfoPage.verifyTextOnIncomePageAfterClickingNoToSelfEmploymentQuestion(dataText);
+    }
+
+    @And("I enter the projected income {string} on summary details page")
+    public void iEnterTheProjectedIncomeOnSummaryDetailsPage(String projectedIncome) {
+        employmentInfoPage.enterProjectedIncome(projectedIncome);
+    }
 }
