@@ -4,6 +4,7 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPag
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.io.IOException;
 
@@ -82,4 +83,19 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickOnVerifyFinancialHelpForEligibilityButtonIsDisplayingForUser() {
         myDocumentsPage.clickFinancialHelpEligibilltybutton();
     }
+
+    @When("I select document {string} and upload")
+    public void selectAnyDocumentAndUpload(String documentName) {myDocumentsPage.selectDocumentAndUpload(documentName);}
+
+    @Then("I see the document {string} that I choose in the Upload modal")
+    public void I_see_the_document_I_choose_in_the_Upload_modal(String uploadedDocName) {myDocumentsPage.verifyUploadedDocument(uploadedDocName);}
+
+    @When("I click on close to remove the uploaded document")
+    public void I_click_on_close_to_remove_the_uploaded_document() {myDocumentsPage.clickOnCloseToRemoveDoc();}
+
+    @Then("I verify document removed successfully")
+    public void I_verify_document_removed_successfully() {myDocumentsPage.verifyDocRemoved();}
+
+    @Then("I see the username that I am currently logged into")
+    public void I_see_the_username_that_I_am_currently_logged_into() {myDocumentsPage.verifyUserNamePostUploadModalClose();}
 }

@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
 
@@ -22,7 +21,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
@@ -33,6 +31,7 @@ public class MyDocumentsPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
+    HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage(WebDriverManager.getDriver());
     PDF pdf = new PDF(WebDriverManager.getDriver());
     public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -148,6 +147,9 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".btn-upload.btn-primary-action-button")
     WebElement btnUploadDoc;
+
+    @FindBy(xpath="//*[text()='Select a file from your device']/following::*[@aria-label='Close']")
+    WebElement btn_documentClose;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -496,5 +498,25 @@ public class MyDocumentsPage {
     public void clickFinancialHelpEligibilltybutton(){
       basicActions.waitForElementToBePresent(verifyFinancialHelpEligbilityButton,30);
         verifyFinancialHelpEligbilityButton.click();
+    }
+    public void selectDocumentAndUpload(String documentName){
+        uploadDoc(documentName);
+    }
+    public void verifyUploadedDocument(String uploadedDocName){
+        basicActions.waitForElementToBePresent((WebDriverManager.getDriver().findElement(By.xpath("//p[text()='"+uploadedDocName+"']"))),10);
+    }
+    public void clickOnCloseToRemoveDoc(){
+        btn_documentClose.click();
+    }
+    public void verifyDocRemoved(){
+        basicActions.waitForElementToDisappear(btn_documentClose,10);
+    }
+
+    public void verifyUserNamePostUploadModalClose(){
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(headerAndFooterPage.userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
+        } else {
+            softAssert.assertEquals(headerAndFooterPage.userNameLinkExch.getText(), "C4testaduser123@gmail.com");
+        }
     }
 }
