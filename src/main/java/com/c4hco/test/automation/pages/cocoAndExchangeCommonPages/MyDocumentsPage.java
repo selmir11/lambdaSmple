@@ -180,6 +180,12 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[contains(text(), 'Download')]")
     List<WebElement> download;
 
+    @FindBy(xpath="//*[text()='Select a file from your device']/following::*[@aria-label='Close']")
+    WebElement btn_documentClose;
+
+    @FindBy(xpath = "//a[contains(@href,'UserProfile')]")
+    WebElement textUserName;
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -649,5 +655,20 @@ public class MyDocumentsPage {
         basicActions.wait(2000);
         softAssert.assertEquals(DocumentsNoticesList.getText(),data);
         softAssert.assertAll();
+    }
+    public void selectDocumentAndUpload(String documentName){
+        uploadDoc(documentName);
+    }
+    public void verifyUploadedDocument(String uploadedDocName){
+        basicActions.waitForElementToBePresent((WebDriverManager.getDriver().findElement(By.xpath("//p[text()='"+uploadedDocName+"']"))),10);
+    }
+    public void clickOnCloseToRemoveDoc(){
+        btn_documentClose.click();
+    }
+    public void verifyDocRemoved(){
+        basicActions.waitForElementToDisappear(btn_documentClose,10);
+    }
+    public void verifyUserNamePostUploadModalClose(){
+        Assert.assertEquals(textUserName.getText(), SharedData.getAdminDetails().getEmail(), "Admin email did not match");
     }
 }
