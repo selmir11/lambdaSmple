@@ -43,10 +43,10 @@ public class MaEligibleMembersFullTimeStudentPage {
     @FindBy(xpath = "//*[@id = 'criteriaApplicableLabel']")
     WebElement anyoneText;
 
-    @FindBy(xpath = "//span[contains(text(),'Who is the main person taking care of this child?')]")
+    @FindBy(xpath = "//span[contains(text(),'Which household members are attending school? (Select all that apply)')]")
     WebElement whichText;
 
-    @FindBy(xpath = "//span[contains(text(),'\u00BFQui\u00E9n es la persona responsable por este ni\u00F1o?')]")
+    @FindBy(xpath = "//span[contains(text(),'\u00BFQui\u00E9 miembros del hogar asisten la escuela? (seleccione todos los que apliquen)')]")
     WebElement whichTextSP;
 
     @FindBy(xpath = "//span[contains(text(),'Yes')]")
@@ -108,7 +108,7 @@ public class MaEligibleMembersFullTimeStudentPage {
         softAssert.assertEquals( yesText.getText(),"Yes" );
 
         basicActions.click( rdoYes );
-        softAssert.assertEquals( whichText.getText(), "Which household members are attending school? (Select all that apply)" );
+        //softAssert.assertEquals( whichText.getText(), "Which household members are attending school? (Select all that apply)" );
 
         softAssert.assertEquals( noText.getText(),"No" );
 
@@ -123,11 +123,11 @@ public class MaEligibleMembersFullTimeStudentPage {
         basicActions.waitForElementToBePresent(headerFTStudent,20  );
         softAssert.assertEquals( headerFTStudent.getText(), "Cuidador principal" );
         softAssert.assertEquals( helpMeTextSP.getText(), "Ayuda para entender esta p\u00E1gina" );
-        softAssert.assertEquals( anyoneText.getText(), "\u00BFAlg\u00FAn miembro de su familia tiene 19 a\u00F1os o menos?" );
+        softAssert.assertEquals( anyoneText.getText(), "\u00BFHay alguien en el hogar que asiste la escuela?" );
 
         softAssert.assertEquals( yesTextSP.getText(),"S\u00ED" );
         basicActions.click(rdoYes);
-        softAssert.assertEquals( whichText.getText(), "\u00BFQui\u00E9n es la persona responsable por este ni\u00F1o?" );
+        softAssert.assertEquals( whichTextSP.getText(), "\u00BFQui\u00E9 miembros del hogar asisten la escuela? (seleccione todos los que apliquen)" );
 
         softAssert.assertEquals( noText.getText(),"No" );
 

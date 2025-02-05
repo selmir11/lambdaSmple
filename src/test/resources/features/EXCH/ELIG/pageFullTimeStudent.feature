@@ -106,5 +106,13 @@ Feature: Testing will verify text and navigation for Caretaker page (Medicaid el
     Then I select "No" temporarily absent from Colorado question and Continue on Out Of State MA page
 
     Then I validate I am on the "FullTimeStudent" page
+    And I validate the "English" text on the FullTime Student page
+
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the "Spanish" text on the FullTime Student page
+
+    And I change the language from header to "English NonElmo"
+    And I click continue on the FullTime Student page
+    And I click on Sign Out in the Header for "NonElmo"
 
 
