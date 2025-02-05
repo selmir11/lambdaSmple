@@ -90,6 +90,9 @@ Then I click on view results and shop
 Then I validate I am on the "Application Results" page
 Then I click continue on application results page
 Then I click continue on start shopping page
+
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
+  Then I click continue on start shopping page
 And I validate I am on the "Medical Plan Results" page
 And I select "Elevate Health Plans Colorado Option Bronze" medical plan
 Then I click continue on medical plan results page
@@ -152,3 +155,51 @@ And I close current tab and switch back to previous tab
     Then I click on view button for "Account Activity" report
     And I validate Account Activity title row
     Then I verify "UI_INCOME_APTC_ATTES.." and following events are displaying as "todays date within last 10 min timestamp" "C4test.aduser12.." "C4testaduser123.." "User attested to Income" "AttestedToIncom.." "Attestation submitted: IN.."
+
+  @SLER-2100
+  Scenario: SLER-2100 Verify MVR status is open in CRM when user submit financial eligibilty
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I click on verify Financial Help for Eligibility button is displaying for user
+    Then I validate I am on the "Self Attestation" page
+    And I select "Yes" for Household Income
+    And I select "Yes" for Federal Income
+    And I select "No" for Tax Info
+    Then I click on Submit Self Attestation button
+    Then I click on Finish
+    And I close current tab and switch back to previous tab
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I verify "Financial Help Eligibility" MRV needed on the My Documents page
+#    CRM status verification
+    Then I log into the CRM system
+    Then I search for user's Email
+    Then I handle the search results page
+    Then I open the "MVRDVR" Tab on contact page
+     Then I open the "Income" MVR
+    Then I check the "Income" MVR title for "Primary"
+    Then I check that the MVR has a status of "Open"
+
+  @SLER-2111
+  Scenario: SLER-2111 Verify MVR status is "Cancelled" in CRM when user submit financial eligibilty
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I click on verify Financial Help for Eligibility button is displaying for user
+    Then I validate I am on the "Self Attestation" page
+    And I select "Yes" for Household Income
+    And I select "No" for Federal Income
+    Then I click on Submit Self Attestation button
+    Then I click on Finish
+    And I close current tab and switch back to previous tab
+#    CRM status verification
+    Then I log into the CRM system
+    Then I search for user's Email
+    Then I handle the search results page
+    Then I open the "MVRDVR" Tab on contact page
+    Then I open the "Income" MVR
+    Then I check the "Income" MVR title for "Primary"
+    Then I check that the MVR has a status of "Canceled"
