@@ -31,7 +31,6 @@ public class MyDocumentsPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
-    HeaderAndFooterPage headerAndFooterPage = new HeaderAndFooterPage(WebDriverManager.getDriver());
     PDF pdf = new PDF(WebDriverManager.getDriver());
     public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -150,6 +149,9 @@ public class MyDocumentsPage {
 
     @FindBy(xpath="//*[text()='Select a file from your device']/following::*[@aria-label='Close']")
     WebElement btn_documentClose;
+
+    @FindBy(xpath = "//a[contains(@href,'UserProfile')]")
+    WebElement textUserName;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -511,12 +513,11 @@ public class MyDocumentsPage {
     public void verifyDocRemoved(){
         basicActions.waitForElementToDisappear(btn_documentClose,10);
     }
-
     public void verifyUserNamePostUploadModalClose(){
         if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(headerAndFooterPage.userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
+            softAssert.assertEquals(textUserName.getText(), "C4test.aduser123@gmail.com");
         } else {
-            softAssert.assertEquals(headerAndFooterPage.userNameLinkExch.getText(), "C4testaduser123@gmail.com");
+            softAssert.assertEquals(textUserName.getText(), "C4testaduser123@gmail.com");
         }
     }
 }
