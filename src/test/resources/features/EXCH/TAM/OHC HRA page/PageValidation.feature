@@ -273,4 +273,13 @@ Feature: Page Validation-OHC HRA Elmo Page
 
     And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-1311 @PageVerificationHraPage
+  Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user - English
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "5.00" amount on the Elmo OHC HRA page
+    Then I select "ICHRA" for HRA type
+    Then I select "Yes" for opt out on the Elmo OHC HRA page
+    Then I click continue on the Elmo OHC HRA page
+    And I verify "Type" error does not show for HRA page
+    And I verify the "Opt Out Section" HRA page data in "English"
 
