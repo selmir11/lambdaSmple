@@ -75,9 +75,6 @@
     And I validate I am on the "Manage Plans" page
     Then I validate buttons displayed on CoCo Manage page
     And I select the "2024" plan year on manage plan
-    And I wait for 500 milliseconds
-    And I validate I am on the "Manage Plans" page
-    Then I unchecked Medical from CoCo Manage Plan page
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     Then I validate Go Back button on Manage Plan page
@@ -114,9 +111,6 @@
     And I validate I am on the "Manage Plans" page
     And I select the "2023" plan year on manage plan
     And I wait for 500 milliseconds
-    And I validate I am on the "Manage Plans" page
-    And I wait for 300 milliseconds
-    Then I unchecked Medical from CoCo Manage Plan page
     And I validate I am on the "Manage Plans" page
     Then I click Go Back button on Simplified View
     And I validate I am on the "Individual CoCo" page

@@ -62,7 +62,7 @@ public class BasicSteps {
                 pageUrl = "login-portal/login/brokers";
                 break;
             case "Admin Program manager account creation":
-            pageUrl = "AdminPortal/program-manager/account-creation";
+                pageUrl = "AdminPortal/program-manager/account-creation";
             break;
             case "Prescreen":
                 pageUrl = "/prescreen";
@@ -127,13 +127,13 @@ public class BasicSteps {
                 break;
             case "Associated Brokers":
             pageUrl = "associated-brokers";
-            break;
+                break;
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
                 break;
             case "my agency":
-            pageUrl = "broker-agency-info";
-            break;
+                pageUrl = "broker-agency-info";
+                break;
             case "Admin search":
                 pageUrl = "/AdminPortal/search";
                 break;
@@ -462,17 +462,17 @@ public class BasicSteps {
                 pageUrl = "broker-portal/find-expert-help";
                 break;
             case "LUGY Family Details":
-            pageUrl = "nes/letUsGuideYou/familyDetails";
-            break;
+                pageUrl = "nes/letUsGuideYou/familyDetails";
+                break;
             case "LUGY Family Income":
-            pageUrl = "nes/letUsGuideYou/familyIncome";
-            break;
+                pageUrl = "nes/letUsGuideYou/familyIncome";
+                break;
             case "LUGY Prescreener Result":
-            pageUrl = "nes/letUsGuideYou/prescreenerResult";
-            break;
+                pageUrl = "nes/letUsGuideYou/prescreenerResult";
+                break;
             case "LUGY":
-            pageUrl = "nes/letUsGuideYou/household";
-            break;
+                pageUrl = "nes/letUsGuideYou/household";
+                break;
             case "PEAK skeleton error message":
                 pageUrl = "login-portal/peak-login-failed";
                 break;
@@ -541,6 +541,12 @@ public class BasicSteps {
                 break;
             case "We Can Help":
                 pageUrl = "/we-can-help/";
+                break;
+            case "Parent/Caretaker":
+                pageUrl = "/eligibleMembersCareTakerForMA";
+                break;
+            case "Temporarily Absent" :
+                pageUrl = "/eligibleMembersOutOfStateForMA";
                 break;
             default:
                 System.out.println("undefined page ");

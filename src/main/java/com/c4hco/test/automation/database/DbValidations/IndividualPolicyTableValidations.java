@@ -136,14 +136,22 @@ public class IndividualPolicyTableValidations {
         softAssert.assertAll();
     }
 
-    public void validateExchPersonIds() {
-        int exchPersonIdsSize = basicActions.getAllMem().size();
+    public void validateExchPersonIds(String validateCountOnly) {
+        int memberSize = basicActions.getAllMem().size();
         List<String> PersonIds = exchDbDataProvider.getExchPersonIds();
-        softAssert.assertTrue(exchPersonIdsSize == PersonIds.size() && PersonIds.get(0).equals(PersonIds.get(1)), "EXCH_PERSON_IDs are not the same or the member count is not Same");
+        softAssert.assertEquals(memberSize, PersonIds.size(), "Member count does not match EXCH_PERSON_ID count");
+        if ("No".equalsIgnoreCase(validateCountOnly)) {
+            softAssert.assertTrue(PersonIds.get(0).equals(PersonIds.get(1)), "EXCH_PERSON_IDs are not the same");
+        }
         softAssert.assertAll();
     }
 
 
+    public void validateArpIndicator() {
+        String arpIndicatorDB = exchDbDataProvider.getArpIndicator();
+        softAssert.assertEquals(arpIndicatorDB, "0");
+        softAssert.assertAll();
+    }
 
 
 }

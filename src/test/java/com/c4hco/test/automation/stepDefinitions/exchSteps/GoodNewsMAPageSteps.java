@@ -10,4 +10,9 @@ public class GoodNewsMAPageSteps {
 
     @Then("I click on {string} on good news page")
     public void iClickNextOption(String nextOption) {goodNewsMAPage.clickNextOption(nextOption);}
+
+    @Then("I verify text that the member eligible for MA on the Good News page")
+    public void iVerifyTextThatTheMemberEligibleForMAOnTheGoodNewsPage() {
+        goodNewsMAPage.verifyTextMAEligibility();
+    }
 }

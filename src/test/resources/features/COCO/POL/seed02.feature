@@ -128,3 +128,8 @@ Feature: Seed02 - Coco
     And I click on Sign Out in the Header for "Elmo"
     # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Current Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason       |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data

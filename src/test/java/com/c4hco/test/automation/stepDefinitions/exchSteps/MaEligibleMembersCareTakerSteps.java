@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.MaEligibleMembersCareTakerPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class MaEligibleMembersCareTakerSteps {
@@ -10,5 +11,12 @@ public class MaEligibleMembersCareTakerSteps {
 
     @Then("I select {string} for under the age of 19 question and Continue on ParentCaretaker MA page")
     public void iAnswerUnder19(String yesNo) {maEligibleMembersCareTakerForMAPage.answerUnder19(yesNo);}
+
+    @And( "I validate the {string} text on the Caretaker page" )
+    public void textCaretaker(String language) {maEligibleMembersCareTakerForMAPage.textCaretaker(language);}
+
+    @And ("I click continue on the Caretaker page")
+    public void iContinue() {maEligibleMembersCareTakerForMAPage.iContinue();}
+
 
 }

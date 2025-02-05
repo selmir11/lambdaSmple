@@ -918,6 +918,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I change the language from header to "English NonElmo"
     Then  I click on Sign Out in the Header for "NonElmo"
 
+
   @SLER-2029 @PageText
   Scenario: Verify English and Spanish Text for Applicant for asylum status on the Citizenship and immigration status page [RT-989]
     When I click create a new account on login page
@@ -1060,71 +1061,110 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I change the language from header to "Spanish NonElmo"
     Then I verify the text on Let us guide you page in "Spanish"
 
-  @SLER-2054 @PageText
-  Scenario: ELIG-Declarations and Signature-Page Text (RT-1013)
+  @SLER-2059 @PageText
+  Scenario: Verify English and Spanish Text for Tell us about life changes page [RT-1012]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
+    And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
-    Then I apply for the current year
-    Then I validate I am on the "Let us guide you" page
+    And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
-    Then I validate I am on the "Before you begin" page
     Then I click on continue with  application button on Before you begin page
-    Then I validate I am on the "Report a life change" page
     And I report "MovedToColorado" and click continue
-    Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
-    And I am a member with SSN "234345678" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
-    Then I validate I am on the "Identity Proofing - Initial Questions" page
+    And I am a member with City "Denver" in State "CO" with dob "01011985" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
-    Then I validate I am on the "Identify Proofing - Congratulations" page
     And I click continue button on Congratulations page
-    Then I validate I am on the "Find Expert Help Exch" page
+    Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-    Then I validate I am on the "Tell us about yourself" page
     Then I select "Male" as sex option
-    Then I select "Yes" to Are You Applying
-    Then I click continue on Tell us about yourself page
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
-    And I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    Then I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
-    Then I click continue on the Add Address page
+    And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
-    Then I click continue on the Citizenship page
-    Then I validate I am on the "Family Overview" page
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-    Then I click None of these as additional income option and continue
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click continue on family overview page
-    Then I select "NoneOfThese" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    Then I verify the text on Declarations and Signature page in "English"
+    And I Apply for no financial help
+    Then I validate I am on the "Tell us about life changes" page
+    And I validate the verbiage on the Tell us about life changes page
+      | Tell us about life changes |
+      | Select any life change event you or someone in your household has experienced within the past 60 days. The loss of other health insurance, including Health First Colorado or Child Health Plans Plus, can be reported up to 60 days before you lose coverage. Members of federally recognized tribes and Alaska natives can enroll in coverage through Connect for Health Colorado anytime of the year. |
+      | Help me understand this page |
+      #LCE Types
+      | Birth/Adoption/Foster Care/Court Order |
+      | Pregnancy |
+      | Marriage |
+      | Divorce |
+      | Death |
+      | Change of primary residence |
+      | Change of income or job |
+      | Enrollment in future or existing health insurance |
+      | Will lose/lost health insurance or my household's annual income meets special requirements |
+      | Gained eligible immigration status |
+      | Change of incarceration status |
+      | Gain of American Indian/Alaskan Native tribal status |
+      | Tax Time Enrollment Period  |
+      | None of these apply to my household |
+      #SubContent details for QLCEtpes
+      |Who does this change apply to?       |
+      |Event Date                           |
+       #EventDate text for Loss of Coverage
+      |Event Date: If you are losing Health First Colorado or CHP+ coverage, enter the date coverage ends. If it has already ended, enter today's date. If you are losing other coverage, please enter the last day of the month that you are covered.    |
+     #Change of address addtional checkbox
+      |Moved to Colorado                                                                                                                                                                                                                                  |
+      #Additonal content for Pregancy
+      |IMPORTANT                            |
+      |When you become pregnant, you can enroll in a health insurance plan. Your coverage can start as early as the month in which a health care provider certified your pregnancy, or it can start on the first day of the month after you choose a plan.|
+      |To enroll and choose the start date for your plan, call our Customer Service Center at 855-752-6749. You cannot enroll through your online account.                                                                                                |
     And I change the language from header to "Spanish NonElmo"
-    Then I verify the text on Declarations and Signature page in "Spanish"
+    And I validate the verbiage on the Tell us about life changes page
+      | Infórmenos sobre los cambios importantes en la vida |
+      | Seleccione los eventos de vida calificados que usted o alguien de su familia haya tenido en los últimos 60 días. Se puede reportar la pérdida de seguro de salud, incluyendo Health First Colorado o Child Health Plan Plus, hasta 60 días antes de que pierda la cobertura. Los miembros de las tribus reconocidas a nivel federal o los nativos de Alaska pueden inscribirse en la cobertura a través de Connect for Health Colorado en cualquier momento del año. |
+      | Ayuda para entender esta página |
+            #LCE Types
+      | Nacimiento/Adopción/Colocación en hogar sustituto/Mandato judicial |
+      | Embarazo |
+      | Matrimonio |
+      | Divorcio |
+      | Muerte |
+      | Cambio de residencia primaria |
+      | Cambio de ingreso o trabajo |
+      | Inscripción en seguro de salud futuro o actual |
+      | Perderé o perdí el seguro de salud o mi ingreso familiar anual cumple con los requisitos especiales |
+      | Obtención de estatus migratorio elegible |
+      | Cambio en el estado de encarcelamiento |
+      | Obtención de estatus de indígena norteamericano o nativo de Alaska |
+      | Programa de Inscripción para la declaración de impuestos  |
+      |Ninguno de estos se aplica a mi hogar |
+      #SubContent details for QLCEtpes
+      |¿A quién aplica este cambio?      |
+      |Fecha del evento                           |
+       #EventDate text for Loss of Coverage
+      |Fecha del evento: (Si usted va a perder la cobertura de Health First Colorado o CHP+, ingrese la fecha en que terminará. Si ya terminó, ingrese la fecha de hoy). Si va a perder otra cobertura, ingrese el último día del mes en que estará cubierto.|
+      #Change of address addtional checkbox
+      |Mudanza a Colorado                                                                                                                                                                                                                                  |
+      #Additonal content for Pregancy
+      |IMPORTANTE                            |
+      |Cuando se embaraza, usted puede inscribirse en un plan de seguro de salud. La cobertura puede comenzar el mes en que un proveedor de atención médica dé constancia del embarazo; o bien, puede comenzar el primer día del mes luego de que usted elija un plan.|
+      |Para inscribirse y elegir la fecha de inicio de su plan, llame a nuestro Centro de atención al cliente al 855-752-6749. No puede inscribirse a través de su cuenta en línea.                                                                                   |
+    And I change the language from header to "English NonElmo"
+    Then  I click on Sign Out in the Header for "NonElmo"
