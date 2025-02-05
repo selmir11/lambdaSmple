@@ -13,4 +13,5 @@ public class EsManualVerifRequestEntity {
     String manual_verif_due_date;
     String manual_verif_date_expired;
     String manual_verif_date_closed;
+    String last_action_description;
 }

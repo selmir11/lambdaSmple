@@ -381,8 +381,16 @@ public class DbDataProvider_Exch {
         return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR(manualVerificationType));
     }
 
+    public Boolean getMVRDetails(){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.esMVRFullAccount());
+    }
+
     public EsSsaVerificationReqEntity getSsaResponseCode(String memberId){
         return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerification(memberId));
+    }
+
+    public EsSsaVerificationReqEntity getSsaResponseCodeByCreatedBy(){
+        return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerificationCreatedby());
     }
 
     public List<EnMemberEffectiveDatesEntity> getEnMember_eff_dates(){
@@ -425,6 +433,10 @@ public class DbDataProvider_Exch {
 
     public String getFplPercentDetails() {
         return postgresHandler.getResultFor("fpl_percent",exchDbQueries.fplPercentDetails());
+    }
+
+    public String getMemberReasonCodeByAccountId() {
+        return postgresHandler.getResultFor("reason_code",exchDbQueries.getMemberReasonCodeByAccountId());
     }
 
 

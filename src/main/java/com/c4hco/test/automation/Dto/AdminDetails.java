@@ -7,4 +7,5 @@ public class AdminDetails {
     String firstName;
     String lastName;
     String email;
+    String password;
 }

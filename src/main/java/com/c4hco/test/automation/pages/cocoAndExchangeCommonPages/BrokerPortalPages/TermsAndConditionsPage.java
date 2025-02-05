@@ -13,6 +13,9 @@ public class TermsAndConditionsPage {
     @FindBy(id = "terms-submit")
     WebElement submitTermsAndConditionsPage;
 
+    @FindBy(xpath = "//*[@id='terms-checkbox']//em[@class='fa fa-check']")
+    WebElement checkboxAgreeToTermsAndConditionsPage;
+
     @FindBy(xpath = "//*[@id='elem']/app-profile-complete/div/div[3]/button")
     WebElement goToMyDashboardButton;
 
@@ -26,6 +29,11 @@ public class TermsAndConditionsPage {
     public void clickSubmitBrokerPortalTermsPage(){
         basicActions.waitForElementToBeClickable(submitTermsAndConditionsPage,10);
         submitTermsAndConditionsPage.click();
+    }
+
+    public void agreeBrokerPortalTermsPage(){
+        basicActions.waitForElementToBePresentWithRetries(checkboxAgreeToTermsAndConditionsPage,10);
+        checkboxAgreeToTermsAndConditionsPage.click();
     }
 
     public void clickGoToMyDashboard(){
