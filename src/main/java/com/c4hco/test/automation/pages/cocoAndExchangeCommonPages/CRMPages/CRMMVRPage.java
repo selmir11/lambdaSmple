@@ -38,7 +38,7 @@ public class CRMMVRPage {
 
     public void checkMVRStatus(String status){
         basicActions.waitForElementToBePresent(MVRLabel, 30);
-        WebElement MVRStatusCheck = basicActions.getDriver().findElement(By.xpath("//button[@aria-label='MVR Status' and @value='"+status+"']"));
+        WebElement MVRStatusCheck = basicActions.getDriver().findElement(By.xpath("//*[@aria-label='MVR Status' and @value='"+status+"']"));
     }
 
     public void checkMVRTitle(String mvrType, String memPrefix){
