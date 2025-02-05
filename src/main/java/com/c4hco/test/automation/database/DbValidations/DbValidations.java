@@ -811,5 +811,11 @@ public class DbValidations {
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
     }
+    public void validateReasonCode(String expectedReasonCode) {
+        String reasonCode = exchDbDataProvider.getMemberReasonCodeByAccountId();
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason code mismatch!");
+        softAssert.assertAll();
+    }
+
 }
 
