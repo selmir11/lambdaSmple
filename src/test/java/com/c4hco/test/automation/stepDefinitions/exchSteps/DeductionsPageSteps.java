@@ -68,5 +68,11 @@ public class DeductionsPageSteps {
     public void iVerifyTextOnDeductionsPage(List<String> dataText){
         deductionsPage.verifyTextOnDeductionsPage(dataText);}
 
+    @Then("I click on all the expense checkboxes and verify the input field text {string} along with the dollar sign for each checkbox")
+    public void iClickOnAllExpenseCheckboxesAndVerifyInputFieldText(String dataText){
+        deductionsPage.clickOnAllExpenseCheckboxesAndVerifyInputFieldText(dataText);}
 
+    @Then("I verify the Dropdown values for all the expenses after clicking it")
+    public void iVerifyDropdownValuesForAllTheExpenses(List<String> dataText){
+        deductionsPage.verifyDropdownValuesForAllTheExpenses(dataText);}
 }

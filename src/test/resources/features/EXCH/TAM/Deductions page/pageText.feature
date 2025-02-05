@@ -409,6 +409,14 @@ Feature: Page Text-Deductions Page
       |Go back                                                     |
       |Save and continue                                           |
       |Help                                                        |
+    Then I click on all the expense checkboxes and verify the input field text "amount" along with the dollar sign for each checkbox
+    And I verify the Dropdown values for all the expenses after clicking it
+      |Select Option|
+      |Annually     |
+      |Every 2 weeks|
+      |Monthly      |
+      |Twice a month|
+      |Weekly       |
     And I refresh the page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify the text on ELIG Deductions page
@@ -430,3 +438,11 @@ Feature: Page Text-Deductions Page
       |Volver                                                                     |
       |Guardar y continuar                                                        |
       |Ayuda                                                                      |
+    Then I click on all the expense checkboxes and verify the input field text "cantidad" along with the dollar sign for each checkbox
+    And I verify the Dropdown values for all the expenses after clicking it
+      |Seleccionar opción|
+      |Anualmente        |
+      |Cada dos semanas  |
+      |Mensualmente      |
+      |Dos veces por mes |
+      |Semanalmente      |

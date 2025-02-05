@@ -208,6 +208,15 @@ public class DeductionsPage {
     @FindBy(css="span .btn-second-action-button")
     WebElement goBackButton;
 
+    @FindBy(xpath = "(//button[@role='checkbox'])[position()<11]")
+    List<WebElement> ExpenseCheckBoxes;
+
+    @FindBy(xpath = "//div//div//lib-fi[@name='dollar-sign']//*[position()=2]")
+    List<WebElement> DollarSignForExpenseCheckboxes;
+
+    @FindBy(css = ".col .form-select option")
+    List<WebElement> frequencyDropdownValues;
+
     public void selectAddtlDeductionOption(String addtlDeductionOption, String Amount, String Frequency){
         switch(addtlDeductionOption){
             case "Alimony or spousal support paid out":
@@ -1068,6 +1077,29 @@ public class DeductionsPage {
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(15), "Go back button text Not matching");
         softAssert.assertEquals(saveAndContinueBtn.getText(), dataText.get(16), "Save and continue button text Not matching");
         softAssert.assertEquals(helpSide.getText(), dataText.get(17), "Help button text Not matching");
+        softAssert.assertAll();
+    }
+
+    public void clickOnAllExpenseCheckboxesAndVerifyInputFieldText(String dataText) {
+        for(int i=0;i<ExpenseCheckBoxes.size();i++){
+            ExpenseCheckBoxes.get(i).click();
+            basicActions.waitForElementToBePresent(deductionsAmount.get(i),20);
+            softAssert.assertTrue(DollarSignForExpenseCheckboxes.get(i).isDisplayed(),"Dollar sign not visible for" + " " + checkBoxLabels.get(i).getText() + " Expense."); // Verifying dollar sign is present
+            softAssert.assertEquals(deductionsAmount.get(i).getAttribute("Placeholder"), dataText, "Amount label in input text field not matching for the expense" + " " + checkBoxLabels.get(i).getText());
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyDropdownValuesForAllTheExpenses(List<String> dataText) {
+        for(int i=0;i<ExpenseCheckBoxes.size();i++) {
+            deductionsFrequency.get(i).click();
+            softAssert.assertEquals(frequencyDropdownValues.get(0).getText(), dataText.get(0), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(1).getText(), dataText.get(1), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(2).getText(), dataText.get(2), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(3).getText(), dataText.get(3), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(4).getText(), dataText.get(4), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(5).getText(), dataText.get(5), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+        }
         softAssert.assertAll();
     }
     
