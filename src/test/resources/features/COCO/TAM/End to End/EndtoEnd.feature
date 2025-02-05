@@ -650,3 +650,329 @@ Feature: End to End Testing
     Then I verify text for disabled issuers on Payment Portal Page CoCo
     Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-746 @EndToEndLCEType
+  Scenario: SLCR-746 LCE Type "Birth/Adoption/Foster Care/Court Order" - Primary
+    Then I enter details on tell us about yourself page and continue with "12021990", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "95000000" income amount
+    And I select "Annually" income frequency option
+    And I select "Yes" income seasonal option
+    And I select "Yes" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "12261991", "Female", and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Birth:Primary" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    Then I click continue on coco start shopping page
+    Then I click continue on grouping Members Medical coco page
+    And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
+    Then I click all done from payment portal page coco
+    And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-747 @EndToEndLCEType
+  Scenario: SLCR-747 LCE Type "Birth/Adoption/Foster Care/Court Order" - Secondary
+    Then I enter details on tell us about yourself page and continue with "12021990", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "95000000" income amount
+    And I select "Annually" income frequency option
+    And I select "Yes" income seasonal option
+    And I select "Yes" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Birth" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on coco start shopping page
+    And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
+    Then I click all done from payment portal page coco
+
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "12261991", "Female", and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Birth:Spouse" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    Then I click continue on coco start shopping page
+    Then I click continue on grouping Members Medical coco page
+    And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
+    Then I click all done from payment portal page coco
+    And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-749 @EndToEndLCEType
+  Scenario: SLCR-749 LCE Type "Marriage" - Primary
+    Then I enter details on tell us about yourself page and continue with "12021990", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "95000000" income amount
+    And I select "Annually" income frequency option
+    And I select "Yes" income seasonal option
+    And I select "Yes" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "12261991", "Female", and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Marriage:Primary" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    Then I click continue on coco start shopping page
+    Then I click continue on grouping Members Medical coco page
+    And I select "KP Colorado Option Bronze" coco medical plan
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
+    Then I click all done from payment portal page coco
+    And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-750 @EndToEndLCEType
+  Scenario: SLCR-750 LCE Type "Marriage" - Secondary
+    Then I enter details on tell us about yourself page and continue with "12021990", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "95000000" income amount
+    And I select "Annually" income frequency option
+    And I select "Yes" income seasonal option
+    And I select "Yes" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Birth" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on coco start shopping page
+    And I select "KP Colorado Option Bronze" coco medical plan
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
+    Then I click all done from payment portal page coco
+
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "12261991", "Female", and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Marriage:Spouse" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    Then I click continue on coco start shopping page
+    Then I click continue on grouping Members Medical coco page
+    And I select "KP Colorado Option Bronze" coco medical plan
+    And I click Continue on the Medical Plans Page CoCo
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I verify text for disabled issuers on Payment Portal Page CoCo
+    Then I click all done from payment portal page coco
+    And I click on Sign Out in the Header for "Elmo"
