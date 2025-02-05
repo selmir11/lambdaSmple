@@ -122,4 +122,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateNoDocumentMessage(String data) {
         myDocumentsPage.validateNoDocumentMessage(data);
     }
+
+    @Then("I validate document date shows for selected year")
+    public void iValidateDocumentDateShowsForSelectedYear() {
+        myDocumentsPage.validateYearForPresentNotice();
+    }
 }

@@ -115,7 +115,10 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
         | IND_Welcome Message (AM-001-01)                            |
       And  I Click on double chevron in Past Documents and Letters Container
       Then I validate Date Received, Time Received and Download button available
-      And I select year "2025" in plan year
+      And I select year "Previous Year" in plan year
+      And  I Click on double chevron in Past Documents and Letters Container
+      Then I validate document date shows for selected year
+      And I select year "Current Year" in plan year
      Then I validate no document message
       |You do not have any Documents or Letters at this time |
       And I change the language from header to "Spanish"
