@@ -394,11 +394,20 @@ public class DbValidations {
                     case "manual_verif_date_closed":
                         softAssert.assertEquals(actualResult.getManual_verif_date_closed(), value,"Validation failed for manual_verif_date_closed at row " + (i + 1));
                         break;
+                    case "last_action_description":
+                        softAssert.assertEquals(actualResult.getLast_action_description(), value, "Validation failed for last_action_description at row " + (i + 1));
+                        break;
                     default:
                         throw new IllegalArgumentException("Invalid option: " + key);
                 }
             }
         }
+        softAssert.assertAll();
+    }
+
+    public void validateMVRDoesNotExist(){
+        Boolean hasRecords = exchDbDataProvider.getMVRDetails();
+        Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
@@ -411,6 +420,13 @@ public class DbValidations {
 
     public void verifySsaResponseCodeDb(String code, String memPrefix){
         EsSsaVerificationReqEntity actualResult = exchDbDataProvider.getSsaResponseCode(basicActions.getMemberId(memPrefix));
+        System.out.println(actualResult);
+        softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
+        softAssert.assertAll();
+    }
+
+    public void verifySsaResponseCodeDbByCreatedBy(String code){
+        EsSsaVerificationReqEntity actualResult = exchDbDataProvider.getSsaResponseCodeByCreatedBy();
         System.out.println(actualResult);
         softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
         softAssert.assertAll();
@@ -776,6 +792,36 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateCyaEligibility() {
+        String applyingForCoverage = SharedData.getPrimaryMember().getApplyingforCov();
+        String cyaEligibilityOutcomeDb = exchDbDataProvider.getCyaEligibility();
+        String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
+        if(applyingForCoverage.equals("Yes") && residentialState.equals("CO")) {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        } else {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "0");
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateVLPResponseCode(String expectedResponseCode) {
+        String actualResponseCode = exchDbDataProvider.getVLPResponseCode();
+        softAssert.assertEquals(actualResponseCode.trim(), expectedResponseCode);
+        softAssert.assertAll();
+    }
+
+    public void validateVLPRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
+        String actualRetryType = exchDbDataProvider.getVLPRetryType();
+        String actualRetryStatus = exchDbDataProvider.getVLPRetryStatus();
+        softAssert.assertEquals(actualRetryType.trim(), expectedRetryType);
+        softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
+        softAssert.assertAll();
+    }
+    public void validateReasonCode(String expectedReasonCode) {
+        String reasonCode = exchDbDataProvider.getMemberReasonCodeByAccountId();
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason code mismatch!");
+        softAssert.assertAll();
+    }
 
 }
 

@@ -19,5 +19,9 @@ public class DeclarationsAndSignaturePageSteps {
         declarationsAndSignaturePage.waitForHoldOnContentToDisappear();
     }
 
+    @Then("I verify the text on Declarations and Signature page in {string}")
+    public void verifyTextEnglishAndSpanish(String languageOption){
+        declarationsAndSignaturePage.verifyTextEnglishAndSpanishInDASPage(languageOption);
+    }
 
 }
