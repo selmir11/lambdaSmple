@@ -548,7 +548,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
 
 
   @SLER-2090 @SOLRegression
-  Scenario: OPS: MyDocs: Navigating to file explorer[RT-1819]
+  Scenario: OPS MyDocs Navigating to file explorer[RT-1819]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
