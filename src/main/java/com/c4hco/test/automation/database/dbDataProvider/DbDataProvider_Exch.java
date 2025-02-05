@@ -381,8 +381,16 @@ public class DbDataProvider_Exch {
         return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR(manualVerificationType));
     }
 
+    public Boolean getMVRDetails(){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.esMVRFullAccount());
+    }
+
     public EsSsaVerificationReqEntity getSsaResponseCode(String memberId){
         return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerification(memberId));
+    }
+
+    public EsSsaVerificationReqEntity getSsaResponseCodeByCreatedBy(){
+        return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerificationCreatedby());
     }
 
     public List<EnMemberEffectiveDatesEntity> getEnMember_eff_dates(){
@@ -586,5 +594,20 @@ public class DbDataProvider_Exch {
 
     public String getArpIndicator() {
         return postgresHandler.getResultFor("arp_quick_submit_ind", exchDbQueries.getArpIndicator());
+    }
+    public String getCyaEligibility() {
+        return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getCyaEligibility());
+    }
+
+    public String getVLPResponseCode() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo());
+    }
+
+    public String getVLPRetryType() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryType());
+    }
+
+    public String getVLPRetryStatus() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
     }
 }

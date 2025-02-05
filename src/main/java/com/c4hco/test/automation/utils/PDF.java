@@ -50,9 +50,8 @@ public class PDF {
     // Static PDF Validation
     public boolean validateStaticPDF(String pdfExpected) throws IOException {
 
-
         return new PdfComparator(PDFExpected(pdfExpected), String.valueOf(PDFDownloaded()))
-                    .withIgnore(PDFIgnore())
+                    .withIgnore(PDFIgnore(pdfExpected))
                     .compare()
                     .writeTo(PDFOutput(pdfExpected));
     }
@@ -76,12 +75,18 @@ public class PDF {
     }
 
     // Gathering PDF ignore configuration (might be expanded in future)
-    private String PDFIgnore() {
+    private String PDFIgnore(String pdfExpected) {
+
+        nameExtract(pdfExpected);
+        String[] extractedValues = nameExtract(pdfExpected);
+
+        String language = extractedValues[0];  // "English" or "Spanish"
+        String noticeType = extractedValues[1]; // "Elig"
 
         if (SharedData.getIsOpenEnrollment().equals("no")) {
-            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Closed Enrollment/ignore.conf");
+            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Closed Enrollment/"+ noticeType +"/ignore"+ language +".conf");
         } else {
-            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Open Enrollment/ignore.conf");
+            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Open Enrollment/"+ noticeType +"/ignore"+ language +".conf");
         }
 
 
@@ -121,7 +126,7 @@ public class PDF {
             }
         }
 
-        return String.format("target/PDF-Output/" + pdfOutput + "_" + BasicActions.getInstance().getDateAndTime());
+        return String.format("target/PDF-Output/" + BasicActions.getInstance().getDateAndTime() + "_" + pdfOutput);
     }
 
     // Extracting text from PDF
@@ -157,6 +162,14 @@ public class PDF {
             System.out.println(memName);
             softAssert.assertTrue(pdfText.contains(memName), memName + " text does not exist in downloaded PDF file.");
         }
+    }
+
+    public String[] nameExtract(String pdfExpected) {
+
+        String language = pdfExpected.contains("English") ? "English" : "Spanish";
+        String noticeType = pdfExpected.contains("ELIG") ? "Elig" : "AM";
+
+        return new String[] { language, noticeType };
     }
 }
 
