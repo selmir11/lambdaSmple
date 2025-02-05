@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 public class MaEligibleMembersFullTimeStudentPage {
 
@@ -17,6 +18,10 @@ public class MaEligibleMembersFullTimeStudentPage {
         return BasicActions.getInstance();
     }
 
+    SoftAssert softAssert = new SoftAssert();
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
     @FindBy(id = "isAnyoneMACriteriaYes")
     WebElement rdoYes;
 
@@ -25,6 +30,39 @@ public class MaEligibleMembersFullTimeStudentPage {
 
     @FindBy(id = "continueButton")
     WebElement btnSaveAndContinue;
+
+    @FindBy(className = "c4PageHeader")
+    WebElement headerFTStudent;
+
+    @FindBy(xpath = "//*[contains(text(),'Help me understand this page')]")
+    WebElement helpMeText;
+
+    @FindBy(xpath = "//*[contains(text(),'Ayuda para entender esta p\u00E1gina')]")
+    WebElement helpMeTextSP;
+
+    @FindBy(xpath = "//*[@id = 'criteriaApplicableLabel']")
+    WebElement anyoneText;
+
+    @FindBy(xpath = "//span[contains(text(),'Who is the main person taking care of this child?')]")
+    WebElement whichText;
+
+    @FindBy(xpath = "//span[contains(text(),'\u00BFQui\u00E9n es la persona responsable por este ni\u00F1o?')]")
+    WebElement whichTextSP;
+
+    @FindBy(xpath = "//span[contains(text(),'Yes')]")
+    WebElement yesText;
+
+    @FindBy(xpath = "//span[contains(text(),'S\u00ED')]")
+    WebElement yesTextSP;
+    @FindBy(xpath = "//span[contains(text(),'No')]")
+    WebElement noText;
+
+    @FindBy(xpath = "//*[@value = '< Back']")
+    WebElement valueText;
+
+    @FindBy(xpath = "//*[@value = '< Atr\u00E1s']")
+    WebElement valueTextSP;
+
 
     public void answerStudent(String nextOption){
         basicActions.waitForElementToBePresent(rdoYes, 20);
@@ -39,5 +77,62 @@ public class MaEligibleMembersFullTimeStudentPage {
                 throw new IllegalArgumentException("Invalid option: " + nextOption);
         }
         btnSaveAndContinue.click();
+    }
+
+    public void iValidateStudentText(String language) {
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        switch (language) {
+            case "English":
+                validateFTStudentPageEnglish();
+                break;
+            case "Spanish":
+                validateFTStudentPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+        }
+
+    }
+    public void iContinue(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.click( btnSaveAndContinue );
+    }
+
+    public void validateFTStudentPageEnglish(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerFTStudent,20  );
+        softAssert.assertEquals( headerFTStudent.getText(), "Full-time student" );
+        softAssert.assertEquals( helpMeText.getText(), "Help me understand this page" );
+        softAssert.assertEquals( anyoneText.getText(), "Is anyone in the household attending school full-time?" );
+
+        softAssert.assertEquals( yesText.getText(),"Yes" );
+
+        basicActions.click( rdoYes );
+        softAssert.assertEquals( whichText.getText(), "Which household members are attending school? (Select all that apply)" );
+
+        softAssert.assertEquals( noText.getText(),"No" );
+
+        softAssert.assertEquals( valueText.getAttribute( "value" ), "< Back");
+        softAssert.assertEquals( btnSaveAndContinue.getText(), "Save and Continue" );
+        softAssert.assertAll();
+    }
+
+
+    public void validateFTStudentPageSpanish(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerFTStudent,20  );
+        softAssert.assertEquals( headerFTStudent.getText(), "Cuidador principal" );
+        softAssert.assertEquals( helpMeTextSP.getText(), "Ayuda para entender esta p\u00E1gina" );
+        softAssert.assertEquals( anyoneText.getText(), "\u00BFAlg\u00FAn miembro de su familia tiene 19 a\u00F1os o menos?" );
+
+        softAssert.assertEquals( yesTextSP.getText(),"S\u00ED" );
+        basicActions.click(rdoYes);
+        softAssert.assertEquals( whichText.getText(), "\u00BFQui\u00E9n es la persona responsable por este ni\u00F1o?" );
+
+        softAssert.assertEquals( noText.getText(),"No" );
+
+        softAssert.assertEquals( valueTextSP.getAttribute("value"), "< Atr\u00E1s" );
+        softAssert.assertEquals( btnSaveAndContinue.getText(), "Guardar y Continuar" );
+        softAssert.assertAll();
     }
 }

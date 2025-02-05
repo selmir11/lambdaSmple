@@ -25,7 +25,7 @@ public class EmploymentSummaryPage {
     @FindBy(css = ".header-2")
     WebElement hdr_Employment;
 
-    @FindBy(id = "pageId-SaveAndContinue")
+    @FindBy(id = "EmploymentSummary-SaveAndContinue")
     WebElement btnContinue;
 
     @FindBy(xpath = "//*[starts-with(@id,'edit')]")
