@@ -134,7 +134,7 @@ Feature: Broker Portal BOB - Single Subscriber Household details change
     And I click on the Username Link Exch
     Then I validate I am on the "My Profile" page
     And I click on Make Changes Button
-    And I update the contact email address
+    And I update the contact email address on profile page
     And I click on the My Profile Save Button while OBO
 
     Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header
