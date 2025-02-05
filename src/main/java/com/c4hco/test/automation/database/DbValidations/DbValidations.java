@@ -793,8 +793,14 @@ public class DbValidations {
     }
 
     public void validateCyaEligibility() {
+        String applyingForCoverage = SharedData.getPrimaryMember().getApplyingforCov();
         String cyaEligibilityOutcomeDb = exchDbDataProvider.getCyaEligibility();
-        softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
+        if(applyingForCoverage.equals("Yes") && residentialState.equals("CO")) {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        } else {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "0");
+        }
         softAssert.assertAll();
     }
 
