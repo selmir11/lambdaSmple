@@ -12,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -294,6 +295,7 @@ public class AddAddressPage {
                  residentialAddress.setAddressZipcode(zipcode);
                  residentialAddress.setAddressCounty(county);
                  mem.setResAddress(residentialAddress);
+                 mem.setMailingAddress(SharedData.getPrimaryMember().getMailingAddress());
             });
              SharedData.setMembers(membersList);
         }
@@ -424,12 +426,12 @@ public class AddAddressPage {
                 residentialAddress.setAddressZipcode(addressElement.getText().split(",")[4].trim().stripLeading());
                 residentialAddress.setAddressCounty(addressElement.getText().split(",")[3].trim().stripLeading());
                 member.setResAddress(residentialAddress);
+                member.setMailingAddress(SharedData.getPrimaryMember().getMailingAddress());
                 radioElement.click();
                 break;
             }
         }
     }
-
 }
 
 
