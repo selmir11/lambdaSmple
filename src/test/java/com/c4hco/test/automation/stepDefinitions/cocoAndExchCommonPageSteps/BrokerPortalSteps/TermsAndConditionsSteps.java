@@ -13,6 +13,11 @@ public class TermsAndConditionsSteps {
         termsAndConditionsPage.clickSubmitBrokerPortalTermsPage();
     }
 
+    @Then("I click the checkbox to agree to the Broker Portal Terms and Conditions")
+    public void iAgreeBrokerPortalTermsPage(){
+        termsAndConditionsPage.agreeBrokerPortalTermsPage();
+    }
+
     @Then("I click Go to my Dashboard")
     public void iClickGoToMyDashboard(){
         termsAndConditionsPage.clickGoToMyDashboard();

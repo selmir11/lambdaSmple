@@ -109,4 +109,8 @@ public class EmploymentInfoPageSteps {
         employmentInfoPage.verifyTextOnIncomePageAfterClickingNoToSelfEmploymentQuestion(dataText);
     }
 
+    @And("I enter the projected income {string} on summary details page")
+    public void iEnterTheProjectedIncomeOnSummaryDetailsPage(String projectedIncome) {
+        employmentInfoPage.enterProjectedIncome(projectedIncome);
+    }
 }

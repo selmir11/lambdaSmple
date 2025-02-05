@@ -303,14 +303,26 @@ public String policyTablesCombinedQuery(String coverageType){
     public String esMVR(String manualVerificationType) {
         return "select *\n" +
                 "from " + dbName + ".es_manual_verif_request\n" +
-                "where account_id = '" + acctId + "'\n" +
+                "where account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'\n" +
                 "and manual_verification_type = '" + manualVerificationType + "'";
+    }
+
+    public String esMVRFullAccount(){
+        return "select *\n" +
+                "from " + dbName + ".es_manual_verif_request\n" +
+                "where account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'\n";
     }
 
     public String esSsaVerification(String memberId) {
         return "select *\n" +
                 "from " + dbName + ".es_ssa_verification_req_resp\n" +
                 "where member_id = '" + memberId + "'";
+    }
+
+    public String esSsaVerificationCreatedby() {
+        return "select *\n" +
+                "from " + dbName + ".es_ssa_verification_req_resp\n" +
+                "where created_by = '" + SharedData.getPrimaryMember().getEmailId() + "'";
     }
 
     public String enMemberEffectiveDates() {
@@ -703,6 +715,37 @@ public String policyTablesCombinedQuery(String coverageType){
                 "order by es.updated_ts desc \n" +
                 "limit 1";
     }
+    public String getMemberReasonCodeByAccountId() {
+        return "SELECT err.reason_code " +
+                "FROM EXCH.ES_MEMBER esm " +
+                "JOIN EXCH.ES_MEMBER_RULES_RESULT err ON esm.member_id = err.member_id " +
+                "JOIN EXCH.ES_HOUSEHOLD esh ON esm.household_id = esh.household_id " +
+                "WHERE err.determination = 'CSR' " +
+                "AND err.eligibility_type = 'CSR' " +
+                "AND esh.account_id = '" + acctId + "'";
+    }
 
 
+    public String getCyaEligibility() {
+        return "Select err.outcome_ind \n" +
+                "From "+dbName+".ES_MEMBER esm, "+dbName+".ES_MEMBER_RULES_RESULT err, "+dbName+".es_household esh \n" +
+                "Where esm.member_id = err.member_id And esm.household_id = esh.household_id \n" +
+                "And esh.account_id ='"+acctId+"' and err.determination = 'CYA'";
+    }
+
+    public String getVLPResponseCodeInfo() {
+        return "select evr.response_code from "+dbName +".es_member em, "+dbName +".es_household eh, "+dbName +".es_vlp_resp\n" +
+                " evr where eh.household_id = em.household_id and em.member_id = evr.member_id and evr.request_type = '2'\n" +
+                " and eh.account_id = '"+acctId+"'";
+    }
+
+    public String getVLPRetryType() {
+        return "select service_type from "+dbName +".es_fdsh_retry_control\n" +
+                " where account_id = '"+acctId+"'";
+    }
+
+    public String getVLPRetryStatus() {
+        return "select status from "+dbName +".es_fdsh_retry_control\n" +
+                " where account_id = '"+acctId+"'";
+    }
 }

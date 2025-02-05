@@ -20,7 +20,7 @@ Feature:  As a program manager, I do not want to receive any notices when my cli
     And I click on the Username Link Exch
     Then I validate I am on the "My Profile" page
     And I click on Make Changes Button
-    And I update the contact email address
+    And I update the contact email address on profile page
     And I click on Save Button
     And I click on Sign Out in the Header for "Elmo"
 

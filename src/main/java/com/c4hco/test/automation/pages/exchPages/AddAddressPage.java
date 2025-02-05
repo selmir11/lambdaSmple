@@ -107,6 +107,11 @@ public class AddAddressPage {
 
     @FindBy(id = "tribeState")
     WebElement tribestate;
+
+    @FindBy(id = "dateOfMedicaidOrCHPDenied")
+    WebElement dateOfMedicaidOrCHPDenied;
+
+
     @FindBy(id = "tribeName")
     WebElement tribeName;
     @FindBy(css= ".addressradioGrp.radioGrp")
@@ -173,6 +178,13 @@ public class AddAddressPage {
         tribeName.sendKeys(tName);
 
     }
+
+    public void setDateOfMedicaidOrCHPDenied() {
+        String formattedDate = basicActions.changeDateFormat(basicActions.firstDateOfCurrMonth(), "yyyy-MM-dd", "MM/dd/yyyy");
+        dateOfMedicaidOrCHPDenied.clear();
+        dateOfMedicaidOrCHPDenied.sendKeys(formattedDate);
+    }
+
 
     public void newMailingAddress(String city, String state, String zipcode, String county){
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
