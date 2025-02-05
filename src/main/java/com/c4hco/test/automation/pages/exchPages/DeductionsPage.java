@@ -196,6 +196,27 @@ public class DeductionsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(css=".parent-position .body-text-1:nth-child(1)")
+    WebElement expenseQuestion;
+
+    @FindBy(css=".parent-position .body-text-1:nth-child(2)")
+    WebElement selectAllThatApplyLabel;
+
+    @FindBy(css = ".checkbox-container span")
+    List<WebElement> checkBoxLabels;
+
+    @FindBy(css="span .btn-second-action-button")
+    WebElement goBackButton;
+
+    @FindBy(xpath = "(//button[@role='checkbox'])[position()<11]")
+    List<WebElement> ExpenseCheckBoxes;
+
+    @FindBy(xpath = "//div//div//lib-fi[@name='dollar-sign']//*[position()=2]")
+    List<WebElement> DollarSignForExpenseCheckboxes;
+
+    @FindBy(css = ".col .form-select option")
+    List<WebElement> frequencyDropdownValues;
+
     public void selectAddtlDeductionOption(String addtlDeductionOption, String Amount, String Frequency){
         switch(addtlDeductionOption){
             case "Alimony or spousal support paid out":
@@ -1028,6 +1049,58 @@ public class DeductionsPage {
             element1.click();
             DeductionSummaryHeader.click();
         }
+    }
+
+    public void verifyTextOnDeductionsPage(List<String> dataText) {
+        basicActions.waitForElementToBePresent(IncomeSummaryHeader,20);
+        basicActions.waitForElementToBePresent(DeductionSummaryHeader,20);
+        basicActions.waitForElementToBePresent(expenseQuestion,20);
+        basicActions.waitForElementToBePresent(selectAllThatApplyLabel,20);
+        basicActions.waitForElementToBePresent(goBackButton,20);
+        basicActions.waitForElementToBePresent(saveAndContinueBtn,20);
+        basicActions.waitForElementToBePresent(helpSide,20);
+        softAssert.assertEquals(IncomeSummaryHeader.getText(), dataText.get(0) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(DeductionSummaryHeader.getText(), dataText.get(1), "Title Not matching");
+        softAssert.assertEquals(expenseQuestion.getText(), dataText.get(2), "Expense Question Not matching");
+        softAssert.assertEquals(selectAllThatApplyLabel.getText(), dataText.get(3), "Select All that Apply label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(0).getText(), dataText.get(4), "Alimony or Spousal support label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(1).getText(), dataText.get(5), "Domestic production label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(2).getText(), dataText.get(6), "Health savings account label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(3).getText(), dataText.get(7), "Pre-tax retirement label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(4).getText(), dataText.get(8), "School tuition and fees label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(5).getText(), dataText.get(9), "Self-employment tax label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(6).getText(), dataText.get(10), "Student loan interest label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(7).getText(), dataText.get(11), "Self-employment health insurance label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(8).getText(), dataText.get(12), "Self-employment retirement plan label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(9).getText(), dataText.get(13), "Moving expenses label Not matching");
+        softAssert.assertEquals(checkBoxLabels.get(10).getText(), dataText.get(14), "None of these label Not matching");
+        softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(15), "Go back button text Not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), dataText.get(16), "Save and continue button text Not matching");
+        softAssert.assertEquals(helpSide.getText(), dataText.get(17), "Help button text Not matching");
+        softAssert.assertAll();
+    }
+
+    public void clickOnAllExpenseCheckboxesAndVerifyInputFieldText(String dataText) {
+        for(int i=0;i<ExpenseCheckBoxes.size();i++){
+            ExpenseCheckBoxes.get(i).click();
+            basicActions.waitForElementToBePresent(deductionsAmount.get(i),20);
+            softAssert.assertTrue(DollarSignForExpenseCheckboxes.get(i).isDisplayed(),"Dollar sign not visible for" + " " + checkBoxLabels.get(i).getText() + " Expense."); // Verifying dollar sign is present
+            softAssert.assertEquals(deductionsAmount.get(i).getAttribute("Placeholder"), dataText, "Amount label in input text field not matching for the expense" + " " + checkBoxLabels.get(i).getText());
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyDropdownValuesForAllTheExpenses(List<String> dataText) {
+        for(int i=0;i<ExpenseCheckBoxes.size();i++) {
+            deductionsFrequency.get(i).click();
+            softAssert.assertEquals(frequencyDropdownValues.get(0).getText(), dataText.get(0), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(1).getText(), dataText.get(1), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(2).getText(), dataText.get(2), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(3).getText(), dataText.get(3), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(4).getText(), dataText.get(4), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+            softAssert.assertEquals(frequencyDropdownValues.get(5).getText(), dataText.get(5), "Frequency dropdown value not matching for the expense " + checkBoxLabels.get(i).getText());
+        }
+        softAssert.assertAll();
     }
     
     

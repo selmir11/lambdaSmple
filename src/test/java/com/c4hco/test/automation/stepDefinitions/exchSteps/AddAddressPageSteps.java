@@ -70,6 +70,9 @@ public class AddAddressPageSteps {
     @Then("I add the tribe details state as {string} and tribe name as {string}")
     public void Addtribedetails(String tState, String tName){addAddressPage.Addtribedetails(tState,tName);}
 
+    @Then("I set the Date of Medicaid or CHP Denied field to the first date of the current month")
+    public void setDateOfMedicaidOrCHPDenied(){addAddressPage.setDateOfMedicaidOrCHPDenied();}
+
     @Then("I select {string} specific Address")
     public  void selectspecificaddress(String SpecificAddress){addAddressPage.specificaddress(SpecificAddress); }
 

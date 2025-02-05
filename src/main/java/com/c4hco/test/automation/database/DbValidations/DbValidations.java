@@ -793,8 +793,14 @@ public class DbValidations {
     }
 
     public void validateCyaEligibility() {
+        String applyingForCoverage = SharedData.getPrimaryMember().getApplyingforCov();
         String cyaEligibilityOutcomeDb = exchDbDataProvider.getCyaEligibility();
-        softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
+        if(applyingForCoverage.equals("Yes") && residentialState.equals("CO")) {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        } else {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "0");
+        }
         softAssert.assertAll();
     }
 
@@ -811,5 +817,11 @@ public class DbValidations {
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
     }
+    public void validateReasonCode(String expectedReasonCode) {
+        String reasonCode = exchDbDataProvider.getMemberReasonCodeByAccountId();
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason code mismatch!");
+        softAssert.assertAll();
+    }
+
 }
 
