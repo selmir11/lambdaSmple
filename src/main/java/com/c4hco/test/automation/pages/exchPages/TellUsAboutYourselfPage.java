@@ -248,9 +248,15 @@ public class TellUsAboutYourselfPage {
         System.out.println("dob updated");
     }
 
-    public void validateSsaError(){
+    public void validateSsaError(String SSN){
         basicActions.waitForElementToBePresent(hdrSsaError, 20);
-        softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name and the Social Security number you entered match your Social Security card and try again.");
+
+        switch(SSN){
+            case "012123456":
+                softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name and the Social Security number you entered match your Social Security card and try again.");
+                break;
+        }
+
         softAssert.assertAll();
     }
 
