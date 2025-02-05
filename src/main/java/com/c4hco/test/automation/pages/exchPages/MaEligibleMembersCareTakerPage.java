@@ -132,4 +132,11 @@ public class MaEligibleMembersCareTakerPage {
         softAssert.assertEquals( btnSaveAndContinue.getText(), "Guardar y Continuar" );
         softAssert.assertAll();
     }
+
+    public void  iContinue(){
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresentWithRetries(btnSaveAndContinue,20  );
+
+    }
+
     }

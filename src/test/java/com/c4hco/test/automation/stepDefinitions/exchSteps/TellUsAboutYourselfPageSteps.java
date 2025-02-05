@@ -49,8 +49,8 @@ public class TellUsAboutYourselfPageSteps {
         tellUsAboutYourselfPage.updateDOB(newDob);
     }
 
-    @And("I validate SSA Error on Tell us about yourself page")
-    public void iValidateSsaError() {tellUsAboutYourselfPage.validateSsaError();}
+    @And("I validate SSA Error for SSN {string} on Tell us about yourself page")
+    public void iValidateSsaError(String SSN) {tellUsAboutYourselfPage.validateSsaError(SSN);}
 
     @Then("I click I don't have a Social Security Number box and {string} on Tell us about yourself page")
     public void iClickNoSsnBox(String applied) {tellUsAboutYourselfPage.clickNoSsnBox(applied);}

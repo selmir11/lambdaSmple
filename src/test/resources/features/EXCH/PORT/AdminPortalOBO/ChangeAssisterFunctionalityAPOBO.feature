@@ -1,4 +1,4 @@
-@port @FindExpertHelp @AssistNet
+@port @FindExpertHelp @AssistNet @AdminPortalOBO
 Feature: Change authorized assister functionality on the Manage who helps you page via Admin Portal OBO
 
   @SLER-1163

@@ -2,10 +2,16 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class MyDocumentsPageSteps {
 
@@ -82,4 +88,58 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickOnVerifyFinancialHelpForEligibilityButtonIsDisplayingForUser() {
         myDocumentsPage.clickFinancialHelpEligibilltybutton();
     }
+
+    @Then("I validate I am on {string} container")
+    public void iValidateIAmOnContainer(String Container) {
+        myDocumentsPage.ValidateIAmOnContainer(Container);
+    }
+
+    @And("I validate current year defaulted in plan Year")
+    public void iValidateCurrentYearDefaultedInPlanYear() {
+        myDocumentsPage.ValidateDefaultPlanYear();
+    }
+
+    @And("I select year {string} in plan year")
+    public void iSelectYearInPlanYear(String selectYear) {
+        myDocumentsPage.SelectPlanYeardropdown(selectYear);
+    }
+
+    @Then("I validate all uploaded documents or notices loaded for my account start with {string}")
+    public void iValidateAllUploadedDocumentsOrNoticesLoadedForMyAccountStartWith(String prefix,List<String> data) {
+        myDocumentsPage.iVerifyAllNoticesPresentandStartWith( prefix,data);
+    }
+
+    @And("I Click on double chevron in Past Documents and Letters Container")
+    public void iClickOnDoubleChevronInPastDocumentsAndLettersContainer() {
+        myDocumentsPage.clickDoubleChevron();
+    }
+
+    @Then("I validate Date Received, Time Received and Download button available")
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
+        myDocumentsPage.iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable();
+    }
+
+    @Then("I validate no document message")
+    public void iValidateNoDocumentMessage(String data) {
+        myDocumentsPage.validateNoDocumentMessage(data);
+    }
+
+    @Then("I validate document date shows for selected year")
+    public void iValidateDocumentDateShowsForSelectedYear() {
+        myDocumentsPage.validateYearForPresentNotice();
+    }
+    @When("I select document {string} and upload")
+    public void selectAnyDocumentAndUpload(String documentName) {myDocumentsPage.selectDocumentAndUpload(documentName);}
+
+    @Then("I see the document {string} that I choose in the Upload modal")
+    public void I_see_the_document_I_choose_in_the_Upload_modal(String uploadedDocName) {myDocumentsPage.verifyUploadedDocument(uploadedDocName);}
+
+    @When("I click on close to remove the uploaded document")
+    public void I_click_on_close_to_remove_the_uploaded_document() {myDocumentsPage.clickOnCloseToRemoveDoc();}
+
+    @Then("I verify document removed successfully")
+    public void I_verify_document_removed_successfully() {myDocumentsPage.verifyDocRemoved();}
+
+    @Then("I see the username that I am currently logged into")
+    public void I_see_the_username_that_I_am_currently_logged_into() {myDocumentsPage.verifyUserNamePostUploadModalClose();}
 }
