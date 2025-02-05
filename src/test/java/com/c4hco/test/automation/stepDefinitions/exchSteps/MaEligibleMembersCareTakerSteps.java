@@ -15,5 +15,8 @@ public class MaEligibleMembersCareTakerSteps {
     @And( "I validate the {string} text on the Caretaker page" )
     public void textCaretaker(String language) {maEligibleMembersCareTakerForMAPage.textCaretaker(language);}
 
+    @And ("I click continue on the Caretaker page")
+    public void iContinue() {maEligibleMembersCareTakerForMAPage.iContinue();}
+
 
 }
