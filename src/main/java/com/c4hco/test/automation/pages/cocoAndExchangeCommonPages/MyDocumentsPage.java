@@ -514,10 +514,6 @@ public class MyDocumentsPage {
         basicActions.waitForElementToDisappear(btn_documentClose,10);
     }
     public void verifyUserNamePostUploadModalClose(){
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(textUserName.getText(), "C4test.aduser123@gmail.com");
-        } else {
-            softAssert.assertEquals(textUserName.getText(), "C4testaduser123@gmail.com");
-        }
+     Assert.assertEquals(textUserName.getText(), SharedData.getAdminDetails().getEmail(), "Admin email did not match");
     }
 }
