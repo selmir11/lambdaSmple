@@ -129,6 +129,7 @@ public class TellUsAboutYourselfPage {
     }
 
     public void isUserApplyingForHealthInsurance(String YNApplying){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         switch(YNApplying){
             case "Yes":
                 rdobtnApplyingYes.click();
@@ -139,6 +140,7 @@ public class TellUsAboutYourselfPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + YNApplying);
         }
+        subscriber.setApplyingforCov(YNApplying);
     }
 
     public void saveAndContinue(){
