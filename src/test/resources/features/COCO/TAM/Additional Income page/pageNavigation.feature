@@ -49,14 +49,14 @@ Feature: Tests related to the Additional Income page
     And I switch to the tab number 1
     Then I validate I am on the "CoCo Additional Income" page
     And I select continue on the Additional Income CoCO page
-    Then I verify the error banner at the top of the page
+    Then I validate the error banner is displayed on the Additional Income CoCo page
     #Step4
     And I switch to the tab number 0
     Then I validate I am on the "CoCo Deductions" page
     And I refresh the page
     And I select Back on the Deductions CoCo page
     #And I unselect "None of these" option on the Additional Income CoCo page
-    Then I validate no error banner is displayed at the top of the page
+    Then I validate no errors are displayed on the Additional Income CoCo page
     Then I validate "None of these" option is selected on the Additional Income CoCo page
 
     And I click on Sign Out in the Header for "Elmo"
@@ -135,3 +135,107 @@ Feature: Tests related to the Additional Income page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     And I validate I am on the "Login" page
+
+  @SLCR-726
+  Scenario: SLCR-726 Page Navigation - Additional Member Additional Income CoCo page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "08111990", "Male", and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select Back on the Deductions CoCo page
+    Then I validate I am on the "CoCo Additional Income" page
+    Then I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Spouse"
+    And I click continue on Tell us about additional members of your household page
+    And I click continue on the Additional information for additional member page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+
+    And I click on Find a Plan in the "Elmo" Header
+    Then I validate I am on the "Application Results CoCo" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Spouse"
+    And I click continue on Tell us about additional members of your household page
+    And I click continue on the Additional information for additional member page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+
+    And I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Profile" page
+    Then I click on Go back to Welcome page Button on My Profile CoCo
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Spouse"
+    And I click continue on Tell us about additional members of your household page
+    And I click continue on the Additional information for additional member page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+
+    And I click on Learn More in the Header
+    And I validate I am on the "Contact Us" page and close tab
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Spouse"
+    And I click continue on Tell us about additional members of your household page
+    And I click continue on the Additional information for additional member page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+
+    And I click on the Username in the "CoCo" Header
+    Then I validate I am on the "My Profile" page
+    Then I click on Go back to Welcome page Button on My Profile CoCo
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Spouse"
+    And I click continue on Tell us about additional members of your household page
+    And I click continue on the Additional information for additional member page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+
+    And I click on Privacy Policy in the "Individual Portal" Footer
+    And I validate I am on the "Privacy Policy" page and close tab
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Terms Of Use in the "Individual Portal" Footer
+    And I validate I am on the "Terms Of Use" page and close tab
+    Then I validate I am on the "CoCo Additional Income" page
+    And I click on Contact Us in the "CoCo" Footer
+    And I validate I am on the "Contact Us" page and close tab
+    Then I validate I am on the "CoCo Additional Income" page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
