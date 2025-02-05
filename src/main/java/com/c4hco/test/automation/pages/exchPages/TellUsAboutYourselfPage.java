@@ -257,6 +257,11 @@ public class TellUsAboutYourselfPage {
             case "012123456":
                 softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name and the Social Security number you entered match your Social Security card and try again.");
                 break;
+            case "890901235":
+                softAssert.assertEquals(hdrSsaError.getText(), "Make sure the date of birth and the Social Security number you entered are correct and try again.");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + SSN);
         }
 
         softAssert.assertAll();
