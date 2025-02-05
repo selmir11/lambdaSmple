@@ -1,4 +1,4 @@
-@NVO @NVOPDF @AM @Notices
+@NVO @NVOPDF @AMNotices
 Feature: AM 011-02 Notices
 
   Background:
@@ -106,7 +106,7 @@ Feature: AM 011-02 Notices
     # Check My Documents notice
     Then I validate I am on the "My Account Overview" page
 
-  @needTag
+  @SLER-1094 @SLER-1095 @SLER-1096
   Scenario Outline: AM Profile Changes- English
     And I click on ClickHere link for "My Profile"
     And I click on Make Changes Button
@@ -122,7 +122,24 @@ Feature: AM 011-02 Notices
 
     Examples:
       | update_action               |
-      | contact mobile phone number |
       | contact email address       |
-#      | contact preferred language  |
-#      | contact preferred method    |
+      | contact mobile phone number |
+      | contact home phone number   |
+
+  @SLER-1097
+  Scenario: AM Profile Changes- Spanish
+    And I click on ClickHere link for "My Profile"
+    And I click on Make Changes Button
+    And I change Preferred Language Contact Method to "Spanish"
+    And I click on Save Button
+    And I wait for 3000 milliseconds
+    And I click on Make Changes Button
+    And I change the Preferred Contact Method to "Mail"
+    And I click on Save Button
+    And I wait for 3000 milliseconds
+    And I click on My Account in the "Elmo" Header
+    Then I click on ClickHere link for "My Documents"
+    Then I validate I am on the "My Documents" page
+    And I click on download "IND_Profile Change (AM-011-02)" document
+    Then I validate "AM-011-02 Spanish Mail" notice content
+    And I click on Sign Out in the Header for "Elmo"

@@ -5,8 +5,8 @@ Feature: Testing will verify text and navigation for Caretaker page (Medicaid el
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2060 @PageText
-  Scenario: SLER-2060 - ELIG - verify text on Caretaker Page
+  @SLER-2083 @PageText
+  Scenario: SLER-2083 - ELIG - verify text on Out of State Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -101,10 +101,15 @@ Feature: Testing will verify text and navigation for Caretaker page (Medicaid el
     Then I click on "Continue" on good news page
 
     Then I validate I am on the "Parent/Caretaker" page
-    And I validate the "English" text on the Caretaker page
+    Then I select "No" for under the age of 19 question and Continue on ParentCaretaker MA page
+    And I click continue on the Caretaker page
+
+    Then I validate I am on the "Temporarily Absent" page
+    And I validate the "English" text on the Out of State MA page
     And I change the language from header to "Spanish NonElmo"
-    And I validate the "Spanish" text on the Caretaker page
+    And I validate the "Spanish" text on the Out of State MA page
     And I change the language from header to "English NonElmo"
+    And I click continue on the Out of State MA page
     And I click on Sign Out in the Header for "NonElmo"
 
 

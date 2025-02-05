@@ -1098,7 +1098,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I sign out of CRM
 
 
-  @SLER-WIP4
+  @SLER-2041
   Scenario: NON_ESI_MEC_VETERANS_AFFAIRS MVR
     And I enter first name "MVRAutomationTest", middle name "NONESIMECVETERANSAFFAIRS", last name "Vhpcy" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
