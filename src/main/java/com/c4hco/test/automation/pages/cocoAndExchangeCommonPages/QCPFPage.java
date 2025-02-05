@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
 
@@ -143,45 +144,37 @@ public class QCPFPage {
     public void validateTheTotalNumberOfPlansDisplayedAndPlanDetails(String plansNumber, String Anthem, String Kaiser, String DenverHealth, String Cigna, String RockyMountain, String Select) {
         basicActions.waitForElementToBePresentWithRetries(planNumber,30);
         softAssert.assertEquals(planNumber.getText(),plansNumber);
-        softAssert.assertAll();
         expandInsuranceBtn.click();
         basicActions.wait(100);
         basicActions.waitForElementToBePresentWithRetries(FirstCompanyName,30);
         chkbxFirstCompany.click();
         softAssert.assertEquals(planNumber.getText(),Anthem);
         chkbxFirstCompany.click();
-        softAssert.assertAll();
-
-
         basicActions.waitForElementToBePresentWithRetries(chkbxSecondCompany,40);
         if (chkbxFirstCompany.isSelected()){
-
             chkbxFirstCompany.click();
         }
         chkbxSecondCompany.click();
         basicActions.wait(50);
         softAssert.assertEquals(planNumber.getText(),Kaiser);
         chkbxSecondCompany.click();
-
         basicActions.waitForElementToBePresentWithRetries(chkbxThirdCompany,40);
         chkbxThirdCompany.click();
         basicActions.wait(50);
         softAssert.assertEquals(planNumber.getText(),DenverHealth);
         chkbxThirdCompany.click();
-
         basicActions.waitForElementToBePresentWithRetries(chkbxFourthCompany,40);
         chkbxFourthCompany.click();
         basicActions.wait(50);
         softAssert.assertEquals(planNumber.getText(),Cigna);
         chkbxFourthCompany.click();
-
         basicActions.waitForElementToBePresentWithRetries(chkbxFifthCompany,40);
         chkbxFifthCompany.click();
         basicActions.wait(50);
         softAssert.assertEquals(planNumber.getText(), RockyMountain);
         chkbxFifthCompany.click();
 
-       if (basicActions.waitForElementToBePresentWithRetries(chkbxSixthCompany,40)) {
+       if (basicActions.waitForElementToBePresent(chkbxSixthCompany,40)){
            chkbxSixthCompany.click();
            basicActions.wait(50);
            softAssert.assertEquals(planNumber.getText(), Select);
@@ -190,6 +183,7 @@ public class QCPFPage {
        }else{
            System.out.println("plan not available in this county");
        }
+        softAssert.assertAll();
 
     }
 
