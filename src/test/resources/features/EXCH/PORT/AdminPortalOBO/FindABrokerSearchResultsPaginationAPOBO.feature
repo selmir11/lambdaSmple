@@ -1,4 +1,4 @@
-@FindACertifiedBroker @port
+@FindACertifiedBroker @port @AdminPortalOBO
 Feature: Tests broker search results pagination on the Find a Certified Broker page via Admin Portal OBO
 
   @SLER-399
