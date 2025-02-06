@@ -102,4 +102,8 @@ public class ForgetPasswordPageSteps {
         forgetPasswordPage.validateCreateNewPasswordCannotContainTheFirstNameErrorMessageIn(language);
     }
 
+    @And("I validate the assistance information is displayed in {string}")
+    public void iValidateTheAssistanceInformationIsDisplayedIn(String language) {
+        forgetPasswordPage.validateTheAssistanceInformationIsDisplayedIn(language);
+    }
 }

@@ -39,12 +39,16 @@ public class ForgetPasswordPage {
 
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 m-3 ng-star-inserted']")
     WebElement textNoticeIsSent;
-    @FindBy(xpath ="//input[@type='password']")
-    List<WebElement> resetPassword;
+    @FindBy(id ="password")
+    WebElement resetPasswordInput;
+    @FindBy(xpath ="//input[@id='confirm-password']")
+    WebElement confirmResetPasswordInput;
     @FindBy(xpath ="//div[@class='help-block text-danger mb-3 m-3 text-center ng-star-inserted']")
     WebElement usedPWErrorMsg;
-    @FindBy(xpath ="//div[@class='ng-star-inserted']")
+    @FindBy(xpath ="//span[@class='error-message ng-star-inserted']")
     WebElement PWErrorMsg;
+    @FindBy(xpath ="//div[@class='col-10 p-0 text-center']")
+    WebElement assistanceText;
 
 
 
@@ -135,10 +139,10 @@ public class ForgetPasswordPage {
     }
 
     public void enterTheNewPasswordInCreateNewPasswordPage() {
-                resetPassword.get(0).clear();
-                resetPassword.get(1).clear();
-                resetPassword.get(0).sendKeys(resetPW);
-                resetPassword.get(1).sendKeys(resetPW);
+        resetPasswordInput.clear();
+        confirmResetPasswordInput.clear();
+        resetPasswordInput.sendKeys(resetPW);
+        confirmResetPasswordInput.sendKeys(resetPW);
                 submitBtn.click();
                 System.out.println(resetPW);
     }
@@ -170,8 +174,8 @@ public class ForgetPasswordPage {
 
     public void enterThePreviousPassword() {
         basicActions.waitForElementToBePresent(loginPage.password, 40);
-        resetPassword.get(0).sendKeys(SharedData.getPrimaryMember().getPassword());
-        resetPassword.get(1).sendKeys(SharedData.getPrimaryMember().getPassword());
+        resetPasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
+        confirmResetPasswordInput.sendKeys(SharedData.getPrimaryMember().getPassword());
         basicActions.waitForElementToBePresent(submitBtn, 40);
         submitBtn.click();
     }
@@ -190,11 +194,11 @@ public class ForgetPasswordPage {
     }
 
     public void validateCreateNewPasswordMustContainAtLeastCharactersErrorMessageIn(String language) {
-        basicActions.waitForElementToBePresent(resetPassword.get(0), 10);
-        resetPassword.get(0).clear();
-        resetPassword.get(1).clear();
-        resetPassword.get(0).sendKeys("Aa1");
-        resetPassword.get(1).sendKeys("Aa1");
+        basicActions.waitForElementToBePresent(confirmResetPasswordInput, 10);
+        resetPasswordInput.clear();
+        confirmResetPasswordInput.clear();
+        resetPasswordInput.sendKeys("Aa1");
+        confirmResetPasswordInput.sendKeys("Aa1");
 
         switch(language){
             case "English":
@@ -210,11 +214,11 @@ public class ForgetPasswordPage {
     }
 
     public void validateCreateNewPasswordMustContainUppercaseCharacterErrorMessageIn(String language) {
-        basicActions.waitForElementToBePresent(resetPassword.get(0), 10);
-        resetPassword.get(0).clear();
-        resetPassword.get(1).clear();
-        resetPassword.get(0).sendKeys("12345678");
-        resetPassword.get(1).sendKeys("12345678");
+        basicActions.waitForElementToBePresent(resetPasswordInput, 10);
+        resetPasswordInput.clear();
+        confirmResetPasswordInput.clear();
+        resetPasswordInput.sendKeys("12345678");
+        confirmResetPasswordInput.sendKeys("12345678");
 
         switch(language){
             case "English":
@@ -230,11 +234,11 @@ public class ForgetPasswordPage {
     }
 
     public void validateCreateNewPasswordMustContainLowercaseCharacterErrorMessageIn(String language) {
-        basicActions.waitForElementToBePresent(resetPassword.get(0), 10);
-        resetPassword.get(0).clear();
-        resetPassword.get(1).clear();
-        resetPassword.get(0).sendKeys("ABCDEFGH1");
-        resetPassword.get(1).sendKeys("ABCDEFGH1");
+        basicActions.waitForElementToBePresent(confirmResetPasswordInput, 10);
+        resetPasswordInput.clear();
+        confirmResetPasswordInput.clear();
+        resetPasswordInput.sendKeys("ABCDEFGH1");
+        confirmResetPasswordInput.sendKeys("ABCDEFGH1");
 
         switch(language){
             case "English":
@@ -250,11 +254,11 @@ public class ForgetPasswordPage {
     }
 
     public void validateCreateNewPasswordMustContainNumberErrorMessageIn(String language) {
-        basicActions.waitForElementToBePresent(resetPassword.get(0), 10);
-        resetPassword.get(0).clear();
-        resetPassword.get(1).clear();
-        resetPassword.get(0).sendKeys("abcdefgh");
-        resetPassword.get(1).sendKeys("abcdefgh");
+        basicActions.waitForElementToBePresent(resetPasswordInput, 10);
+        resetPasswordInput.clear();
+        confirmResetPasswordInput.clear();
+        resetPasswordInput.sendKeys("abcdefgh");
+        confirmResetPasswordInput.sendKeys("abcdefgh");
         switch(language){
             case "English":
                 softAssert.assertEquals(PWErrorMsg.getText(),"Password must have at least 1 number");
@@ -270,22 +274,22 @@ public class ForgetPasswordPage {
 
 
     public void validateCreateNewPasswordCannotContainPartOfTheUsernameErrorMessageIn(String typePW,String language) {
-        basicActions.waitForElementToBePresent(resetPassword.get(0), 10);
-        resetPassword.get(0).clear();
-        resetPassword.get(1).clear();
+        basicActions.waitForElementToBePresent(resetPasswordInput, 10);
+        resetPasswordInput.clear();
+        confirmResetPasswordInput.clear();
         switch (typePW){
             case "username":
-                resetPassword.get(0).sendKeys("1Soukaina@outlook");
-                resetPassword.get(1).sendKeys("1Soukaina@outlook");
+                resetPasswordInput.sendKeys("1Soukaina@outlook");
+                confirmResetPasswordInput.sendKeys("1Soukaina@outlook");
             break;
             case "previous password":
-                resetPassword.get(0).sendKeys("ALaska12!");
-                resetPassword.get(1).sendKeys("ALaska12!");
+                resetPasswordInput.sendKeys("ALaska12!");
+                confirmResetPasswordInput.sendKeys("ALaska12!");
 
             break;
             case "first name":
-                resetPassword.get(0).sendKeys(SharedData.getPrimaryMember().getFirstName());
-                resetPassword.get(1).sendKeys(SharedData.getPrimaryMember().getFirstName());
+                resetPasswordInput.sendKeys(SharedData.getPrimaryMember().getFirstName());
+                confirmResetPasswordInput.sendKeys(SharedData.getPrimaryMember().getFirstName());
             break;
 
         }
@@ -310,17 +314,32 @@ public class ForgetPasswordPage {
     }
 
     public void validateCreateNewPasswordCannotContainTheFirstNameErrorMessageIn(String language) {
-        basicActions.waitForElementToBePresent(resetPassword.get(0), 10);
-        resetPassword.get(0).clear();
-        resetPassword.get(1).clear();
-        resetPassword.get(0).sendKeys(SharedData.getPrimaryMember().getFirstName());
-        resetPassword.get(1).sendKeys(SharedData.getPrimaryMember().getFirstName());
+        basicActions.waitForElementToBePresent(resetPasswordInput, 10);
+        resetPasswordInput.clear();
+        confirmResetPasswordInput.clear();
+        resetPasswordInput.sendKeys(SharedData.getPrimaryMember().getFirstName());
+        confirmResetPasswordInput.sendKeys(SharedData.getPrimaryMember().getFirstName());
         switch(language){
             case "English":
                 softAssert.assertEquals(PWErrorMsg.getText(),"Password cannot contain first name");
                 break;
             case "Spanish":
                 softAssert.assertEquals(PWErrorMsg.getText(),"La contrase\u00F1a no puede incluir el nombre");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateTheAssistanceInformationIsDisplayedIn(String language) {
+        basicActions.waitForElementToBePresentWithRetries(assistanceText,10);
+        switch(language){
+            case "English":
+                softAssert.assertEquals(assistanceText.getText(),"Call us at 1-855-752-6749 for assistance. You may also chat with our representatives by navigating to the help section.");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(assistanceText.getText(),"Llame al 1-855-752-6749 para recibir ayuda. Tambi\u00E9n puede conversar en l\u00EDnea con uno de nuestros representantes, navegando en la secci\u00F3n de ayuda.");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
