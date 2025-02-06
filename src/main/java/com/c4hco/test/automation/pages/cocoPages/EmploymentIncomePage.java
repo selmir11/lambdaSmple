@@ -2,13 +2,14 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.datatable.DataTable;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-
 import java.util.List;
+import java.util.Map;
 
 public class EmploymentIncomePage {
     private BasicActions basicActions;
@@ -71,25 +72,31 @@ public class EmploymentIncomePage {
     @FindBy(css = ".input-error-message")
     WebElement errorMessage;
 
-    @FindBy(css=".fas.fa-spinner.fa-spin")
+    @FindBy(css = ".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
     @FindBy(css = "#EmploymentIncomeJob-GoBack")
     WebElement goBackButton;
 
+    @FindBy(id = "logo-image")
+    WebElement connectLogoLink;
+
+    @FindBy(css = ".toolbar-content .username")
+    WebElement userNameLink;
+
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBePresent(saveAndContinueButton,30);
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 30);
         basicActions.click(saveAndContinueButton);
     }
 
     public void clickGoBackButton() {
-        basicActions.waitForElementToBePresent(goBackButton,30);
+        basicActions.waitForElementToBePresent(goBackButton, 30);
         basicActions.click(goBackButton);
     }
 
-    public void answerEmploymentQs(String employment){
-        basicActions.waitForElementToDisappear( spinner, 40 );
-        switch(employment) {
+    public void answerEmploymentQs(String employment) {
+        basicActions.waitForElementToDisappear(spinner, 40);
+        switch (employment) {
             case "Yes":
                 basicActions.waitForElementToBePresent(employmentYesButton, 100);
                 employmentYesButton.click();
@@ -103,17 +110,17 @@ public class EmploymentIncomePage {
         }
     }
 
-    public void enterIncomeAmount(String amountOfIncome){
+    public void enterIncomeAmount(String amountOfIncome) {
         basicActions.waitForElementToBePresent(incomeInput, 10);
         incomeInput.sendKeys(amountOfIncome);
     }
 
-    public void selectIncomeFrequency(String frequencyOfIncome){
+    public void selectIncomeFrequency(String frequencyOfIncome) {
         basicActions.waitForElementToBePresent(incomeFrequencyDropdown, 10);
         incomeFrequencyDropdown.click();
 
         basicActions.waitForElementListToBePresent(incomeFrequencyOptions, 10);
-        switch(frequencyOfIncome) {
+        switch (frequencyOfIncome) {
             case "Select Option":
                 incomeFrequencyOptions.get(0).click();
                 break;
@@ -137,8 +144,8 @@ public class EmploymentIncomePage {
         }
     }
 
-    public void answerIsIncomeSeasonalQs(String seasonal){
-        switch(seasonal) {
+    public void answerIsIncomeSeasonalQs(String seasonal) {
+        switch (seasonal) {
             case "Yes":
                 basicActions.waitForElementToBePresent(incomeSeasonalYesButton, 10);
                 incomeSeasonalYesButton.click();
@@ -152,8 +159,8 @@ public class EmploymentIncomePage {
         }
     }
 
-    public void answerIncomeChangesQs(String changes){
-        switch(changes) {
+    public void answerIncomeChangesQs(String changes) {
+        switch (changes) {
             case "Yes":
                 basicActions.waitForElementToBePresent(incomeChangesYesButton, 10);
                 incomeChangesYesButton.click();
@@ -167,23 +174,23 @@ public class EmploymentIncomePage {
         }
     }
 
-//////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
-public void verifyHeadersEmploymentIncomePage(String language){
-    switch (language){
-        case "English":
-            verifyHeadersEmploymentIncomePageEnglish();
-            break;
-        case "Spanish":
-            verifyHeadersEmploymentIncomePageSpanish();
-            break;
-        default:
-            throw new IllegalArgumentException("Invalid option: " + language);
+    //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
+    public void verifyHeadersEmploymentIncomePage(String language) {
+        switch (language) {
+            case "English":
+                verifyHeadersEmploymentIncomePageEnglish();
+                break;
+            case "Spanish":
+                verifyHeadersEmploymentIncomePageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
     }
-}
 
-    public void verifyHeadersEmploymentIncomePageEnglish(){
-        basicActions.waitForElementToBePresent(hdr_Income,15);
-        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+    public void verifyHeadersEmploymentIncomePageEnglish() {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
         softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -194,9 +201,9 @@ public void verifyHeadersEmploymentIncomePage(String language){
         softAssert.assertAll();
     }
 
-    public void verifyHeadersEmploymentIncomePageSpanish(){
-        basicActions.waitForElementToBePresent(hdr_Income,50);
-        basicActions.waitForElementToBePresent(hdr_EmploymentIncome,50);
+    public void verifyHeadersEmploymentIncomePageSpanish() {
+        basicActions.waitForElementToBePresent(hdr_Income, 50);
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 50);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
@@ -209,8 +216,8 @@ public void verifyHeadersEmploymentIncomePage(String language){
     }
 
     public void verifyAdditionalMemberHeadersOnEmploymentIncomeCoCoPage(String language) {
-        basicActions.waitForElementToBePresent(hdr_Income,50);
-        switch (language){
+        basicActions.waitForElementToBePresent(hdr_Income, 50);
+        switch (language) {
             case "English":
                 softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + basicActions.getFullNameWithPrefix("Spouse")));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
@@ -223,7 +230,7 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(hdr_EmploymentIncome,50);
+                basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 50);
                 softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + basicActions.getFullNameWithPrefix("Spouse")));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
@@ -235,7 +242,7 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 softAssert.assertAll();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " +  language);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
@@ -245,26 +252,26 @@ public void verifyHeadersEmploymentIncomePage(String language){
     }
 
     public void verifyJobOption_EmploymentInfo(String isEmployed) {
-            switch (isEmployed){
-                case "Yes":
-                    basicActions.waitForElementToBePresent(employmentYesButton,15);
-                    softAssert.assertTrue(employmentYesButton.getAttribute("class").contains("selected"));
-                    softAssert.assertAll();
-                    break;
-                case "No":
-                    basicActions.waitForElementToBePresent(employmentNoButton,15);
-                    softAssert.assertTrue(employmentNoButton.getAttribute("class").contains("selected"));
-                    softAssert.assertAll();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid option: " +  isEmployed);
+        switch (isEmployed) {
+            case "Yes":
+                basicActions.waitForElementToBePresent(employmentYesButton, 15);
+                softAssert.assertTrue(employmentYesButton.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(employmentNoButton, 15);
+                softAssert.assertTrue(employmentNoButton.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + isEmployed);
         }
     }
 
-    public void validateCoCoEmploymentIncomeText(String language){
-        switch (language){
+    public void validateCoCoEmploymentIncomeText(String language) {
+        switch (language) {
             case "English":
-                basicActions.waitForElementToBePresent(employmentText,15);
+                basicActions.waitForElementToBePresent(employmentText, 15);
                 softAssert.assertEquals(employmentText.getText(), "Do you have a job or are you currently employed?");
                 softAssert.assertEquals(incomeText.getText(), "What is your total income? Include commission or tips earned.");
                 softAssert.assertEquals(incomeSeasonalText.getText(), "Is this income self-employment income or part of seasonal, commission or tip-based work?");
@@ -276,7 +283,7 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 verifyBaseTextFormatting(incomeChangesText);
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(employmentText,15);
+                basicActions.waitForElementToBePresent(employmentText, 15);
                 softAssert.assertEquals(employmentText.getText(), "\u00bfTiene un trabajo o empleo actualmente?");
                 softAssert.assertEquals(incomeText.getText(), "\u00bfCu\u00e1l es su ingreso total? Incluya comisiones o propinas ganadas.");
                 softAssert.assertEquals(incomeSeasonalText.getText(), "\u00bfEstos ingresos son por trabajo independiente o forman parte de un empleo temporal, por comisi\u00f3n o por propinas?");
@@ -288,14 +295,14 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 verifyBaseTextFormatting(incomeChangesText);
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " +  language);
+                throw new IllegalArgumentException("Invalid option: " + language);
 
         }
     }
 
-    public void verifyIncomeFrequencyOptionsCoCo(String language){
+    public void verifyIncomeFrequencyOptionsCoCo(String language) {
         basicActions.waitForElementToBePresent(hdr_Income, 15);
-        switch(language){
+        switch (language) {
             case "English":
                 softAssert.assertEquals(incomeFrequencyOptions.get(0).getText(), "Select Option");
                 softAssert.assertEquals(incomeFrequencyOptions.get(1).getText(), "Annually");
@@ -315,13 +322,13 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 softAssert.assertAll();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " +  language);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyEmploymentIncomeNavigationButtonsCoCo(String language){
-        basicActions.waitForElementToBePresent(hdr_Income,15);
-        switch(language){
+    public void verifyEmploymentIncomeNavigationButtonsCoCo(String language) {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+        switch (language) {
             case "English":
                 softAssert.assertEquals(goBackButton.getText(), "  Go back");
                 softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
@@ -353,15 +360,55 @@ public void verifyHeadersEmploymentIncomePage(String language){
                 softAssert.assertAll();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " +  language);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyBaseTextFormatting(WebElement BaseText){
+    public void verifyBaseTextFormatting(WebElement BaseText) {
         softAssert.assertEquals(BaseText.getCssValue("font-weight"), "400");
         softAssert.assertEquals(BaseText.getCssValue("font-size"), "16px");
         softAssert.assertEquals(BaseText.getCssValue("line-height"), "28px");
         softAssert.assertEquals(BaseText.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertAll();
+    }
+
+    public void verifyPageNavigation(DataTable dataTable) {
+        basicActions.waitForElementToDisappear(spinner, 10);
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
+
+        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
+
+        // Iterate over each row in the DataTable
+        for (Map<String, String> row : data) {
+            String hyperlinkText = row.get("HyperLinkText");
+            String expectedPageTitle = row.get("ExpectedPageTitle");
+            String containsUrl = row.get("ContainsUrl");
+            WebElement hyperlink;
+
+            if (hyperlinkText.equalsIgnoreCase("CoCo Logo")) {
+                hyperlink =connectLogoLink;
+            } else if (hyperlinkText.equalsIgnoreCase("UserName")) {
+                hyperlink = userNameLink;
+            }else {
+                hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
+            }
+
+            //Creating new tab with [Ctrl+Click] and change focus to the new tab
+            Actions actionKey = new Actions(basicActions.getDriver());
+            actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
+            basicActions.switchtoactiveTab();
+            basicActions.waitForElementToDisappear(spinner, 20);
+
+            //Assertion
+            String actualTitle = basicActions.getDriver().getTitle();
+            String currentUrl = basicActions.getDriver().getCurrentUrl();
+            softAssert.assertEquals(actualTitle, expectedPageTitle);
+            softAssert.assertTrue(currentUrl.contains(containsUrl));
+            softAssert.assertAll();
+
+            //Close the new tab and change focus to the existing tab
+            basicActions.getDriver().close();
+            basicActions.switchtoPreviousTab();
+        }
     }
 }

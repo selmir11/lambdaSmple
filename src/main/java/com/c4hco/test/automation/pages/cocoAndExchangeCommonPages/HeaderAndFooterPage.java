@@ -195,6 +195,9 @@ public class HeaderAndFooterPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(xpath = "//button[contains(text(),'Get Assistance')]")
+    WebElement getAssistance;
+
     private BasicActions basicActions;
 
     public HeaderAndFooterPage(WebDriver webDriver) {
@@ -346,6 +349,7 @@ public class HeaderAndFooterPage {
         switch (pageType) {
             case "CoCo":
                 basicActions.waitForElementToBeClickable(getAssistanceLinkOption.get(0), 20);
+                getAssistance.click();
                 getAssistanceLinkOption.get(0).click();
                 break;
             case "Exch":
