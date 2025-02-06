@@ -271,4 +271,20 @@ public class SftpUtil {
             e.printStackTrace();
         }
     }
+
+    public void readIb834FromLocal(){
+        try{
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("ib834FaComplex");
+
+            if (inputStream != null) {
+                System.out.println("File found");
+                ib834Util.parseIb834File(inputStream);
+            } else {
+                System.err.println("File 'edi_384' not found in the resource folder.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
