@@ -187,6 +187,25 @@ public class MyDocumentsPage {
     WebElement textUserName;
 
 
+    @FindBy(xpath = "//*[@class='btn-cancel btn-second-action-button']")
+    WebElement btncancel;
+
+    @FindBy(xpath = "//span[@class='center header-3']")
+    List<WebElement> txtHeaderTellUs;
+
+    @FindBy(xpath = "//*[@class='doc-type-label body-text-1']/span")
+    List<WebElement> txtWhatTypequestion;
+
+    @FindBy(xpath = "//*[@class='label-browse-my-files btn-second-action-button']")
+    WebElement browseFilesbtn;
+
+    @FindBy(xpath = "//*[@class='uploadonlyonefile-guide body-text-1']/span")
+    WebElement onlyOneDocumentTxt;
+
+    @FindBy(xpath = "//*[@class='btns-container']/button")
+    List<WebElement> btnContainertxt;
+
+
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
@@ -670,5 +689,23 @@ public class MyDocumentsPage {
     }
     public void verifyUserNamePostUploadModalClose(){
         Assert.assertEquals(textUserName.getText(), SharedData.getAdminDetails().getEmail(), "Admin email did not match");
+    }
+
+    public void clickCancelButton() {
+        basicActions.waitForElementToBePresent(btncancel,30);
+        btncancel.click();
+    }
+    public void textValidateOnUploadDocumentPopUp(List<String> data){
+        basicActions.waitForElementToBePresent(txtUploadADocument,30);
+        softAssert.assertEquals(txtUploadADocument.getText(),data.get(0),"Upload document Text Not Match");
+        softAssert.assertEquals(txtHeaderTellUs.get(0).getText(),data.get(1),"Tell us header Text Not Match");
+        softAssert.assertEquals(txtWhatTypequestion.get(0).getText(),data.get(2),"what type of Document text Not Match");
+        softAssert.assertEquals(txtWhatTypequestion.get(1).getText(),data.get(3),"which Document text Not Match");
+        softAssert.assertEquals(txtHeaderTellUs.get(1).getText(),data.get(4),"which Document text Not Match");
+        softAssert.assertEquals(browseFilesbtn.getText(),data.get(5),"Browse My File text Not Match");
+        softAssert.assertEquals(onlyOneDocumentTxt.getText(),data.get(6),"Only one Document text Not Match");
+        softAssert.assertEquals(btnContainertxt.get(0).getText(),data.get(7),"Only one Document text Not Match");
+        softAssert.assertEquals(btnContainertxt.get(1).getText(),data.get(8),"Only one Document text Not Match");
+        softAssert.assertAll();
     }
 }

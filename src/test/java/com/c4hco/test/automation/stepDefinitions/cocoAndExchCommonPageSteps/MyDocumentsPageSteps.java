@@ -2,16 +2,12 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
+
 
 public class MyDocumentsPageSteps {
 
@@ -142,4 +138,14 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
 
     @Then("I see the username that I am currently logged into")
     public void I_see_the_username_that_I_am_currently_logged_into() {myDocumentsPage.verifyUserNamePostUploadModalClose();}
+
+    @And("I click on cancel button on upload document pop up")
+    public void iClickOnCancelButtonOnUploadDocumentPopUp() {
+        myDocumentsPage.clickCancelButton();
+    }
+
+    @And("I validate Modal texts on upload a document pop up")
+    public void iValidateModalTextsOnUploadADocumentPopUp(List<String> data) {
+        myDocumentsPage.textValidateOnUploadDocumentPopUp(data);
+    }
 }
