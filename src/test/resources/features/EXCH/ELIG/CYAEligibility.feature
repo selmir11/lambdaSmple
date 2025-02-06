@@ -1,5 +1,5 @@
 Feature: ELIG-CYA Eligible
-  @SLER-2105 @SLER-2117
+  @SLER-2105 @SLER-2117 @SLER-2127
   Scenario Outline: Testing will verify system functionality for for member being eligible for CYA
 
     Given I open the login page on the "login" portal
@@ -15,7 +15,7 @@ Feature: ELIG-CYA Eligible
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01012010" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "<dob>" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -53,10 +53,10 @@ Feature: ELIG-CYA Eligible
     Then I click on Sign Out in the Header for "NonElmo"
     Then I validate system functionality for member being eligible for CYA
     Examples:
-    |coresident|
-    |Yes       |
-    |No        |
-    |Yes       |
+    |coresident| dob        |
+    |Yes       | 01012010   |
+    |No        | 01012010   |
+    |Yes       | 01011980   |
 
     @SLER-2119
   Scenario: Testing will verify system functionality for member being ineligible for CYA as they are not applying for coverage
