@@ -305,6 +305,6 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     Then I click on view results and shop
     And I click on Sign Out in the Header for "NonElmo"
     #DB STEP
-    And  I verify the Member reason code as "NON_AIAN_LEVEL_1"
+    And  I verify the Member reason code as "AIAN_LEVEL_1"
 
 
