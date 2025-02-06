@@ -451,13 +451,15 @@ public class Ib834DbValidations_grps {
         subscribers = basicActions.getAllSubscribers();
 
         List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
-        for(String medGrpCtrlNum: medGrpCtrlNums){
+        Set<String> uniqueMedGrpCtrlNum = new HashSet<>(medGrpCtrlNums);
+        for(String medGrpCtrlNum: uniqueMedGrpCtrlNum){
             ib834MedEntities.addAll(exchDbDataProvider.getIb834Details(medGrpCtrlNum));
         }
         SharedData.setIb834MedDetailsEntities(ib834MedEntities);
 
         List<String> denGrpCtrlNums = SharedData.getDenGroupCtlNumbers();
-        for(String denGrpCtrlNum: denGrpCtrlNums){
+        Set<String> uniqueDenGrpCtrlNum = new HashSet<>(denGrpCtrlNums);
+        for(String denGrpCtrlNum: uniqueDenGrpCtrlNum){
             ib834DenEntities.addAll(exchDbDataProvider.getIb834Details(denGrpCtrlNum));
         }
         SharedData.setIb834DenDetailsEntities(ib834DenEntities);
