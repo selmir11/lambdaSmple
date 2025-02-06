@@ -1,5 +1,5 @@
 Feature: Validate Page Navigation
-
+  @SLCR-751
   Scenario: Page Navigation-Employment Income
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
