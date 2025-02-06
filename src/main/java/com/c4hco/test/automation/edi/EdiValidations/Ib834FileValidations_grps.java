@@ -334,7 +334,7 @@ public class Ib834FileValidations_grps {
         segCount = segCount + n1Segment.size();
         //Sponsor Details
         softAssert.assertEquals(n1Segment.get(0).get(0), "P5", "P5 does not match");
-        softAssert.assertEquals(n1Segment.get(0).get(1), entry.getMember_first_name() + " " + entry.getMember_last_name(), "Sponsor full name does not match.");
+        softAssert.assertEquals(n1Segment.get(0).get(1), entry.getPlan_sponsor_name(), "Sponsor full name does not match.");
         softAssert.assertEquals(n1Segment.get(0).get(2), "FI", "FI, Federal Taxpayer's Identification Number");
         softAssert.assertEquals(n1Segment.get(0).get(3), entry.getSponsor_id(), "Sponsor Id does not match");
         //Payer Details
