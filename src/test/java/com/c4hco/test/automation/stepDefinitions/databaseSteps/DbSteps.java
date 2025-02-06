@@ -77,9 +77,17 @@ public class DbSteps {
         dbValidations.validateMVR(expectedValues);
     }
 
+    @And("I verify that the account has no MVRs")
+    public void iValidateMVRDNE(){dbValidations.validateMVRDoesNotExist();}
+
     @And("I validate the SSA response code is {string} in the DB for {string}")
     public void iVerifySsaResponseCodeDb(String code, String memPrefix) {
         dbValidations.verifySsaResponseCodeDb(code, memPrefix);
+    }
+
+    @And("I validate the SSA response code is {string} in the DB")
+    public void iVerifySsaResponseCodeDbCreatedByPrimary(String code) {
+        dbValidations.verifySsaResponseCodeDbByCreatedBy(code);
     }
 
     @And("I verify the client application submission in BoB DB")
@@ -314,6 +322,21 @@ public class DbSteps {
     @Then("I validate system functionality for member being eligible for CYA")
     public void validateCyaEligibility() {
         dbValidations.validateCyaEligibility();
+    }
+
+    @And("I Validate VLP response code as {string}")
+    public void validateEnrolmentEndDate(String responseCode) {
+        dbValidations.validateVLPResponseCode(responseCode);
+    }
+
+    @And("I Validate VLP retry type as {string} and VLP retry status as {string}")
+    public void validateVLPRetryTypeAndStatus(String retryType, String retryStatus) {
+        dbValidations.validateVLPRetryTypeandStatus(retryType,retryStatus);
+    }
+
+    @And("I verify the Member reason code as {string}")
+    public void iVerifyTheMemberReasonCode(String expectedReasonCode) {
+        dbValidations.validateReasonCode(expectedReasonCode);
     }
 }
 

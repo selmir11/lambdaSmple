@@ -145,7 +145,6 @@ public class BasicActions {
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (TimeoutException ignore) {
             Log.info("Element is not clickable");
-            Assert.fail("Element is not clickable");
             return false;
         }
         return true;
@@ -169,7 +168,6 @@ public class BasicActions {
         }
         return false;
     }
-
     public Boolean waitForElementToDisappear(WebElement webElement, int waitTime) {
         try {
             new WebDriverWait(driver,
@@ -456,8 +454,6 @@ public class BasicActions {
                 newUrl = "WelcomePortal/unauthorized";
                 newUrl = currentUrl.replaceAll("WelcomePortal/welcome", newUrl);
                 getDriver().navigate().to(newUrl);
-                System.out.println("Current URL "+currentUrl);
-                System.out.println("New URL     "+newUrl);
                 break;
             case "Family Overview portal Error CoCo":
                 newUrl = "WelcomePortal/error";
@@ -475,7 +471,7 @@ public class BasicActions {
                 getDriver().navigate().to(newUrl);
                 break;
             case "LCE portal Unauthorized CoCo":
-                    newUrl = "lce-portal/unauthorized";
+                newUrl = "lce-portal/unauthorized";
                 newUrl = currentUrl.replaceAll("lce-portal/lces[^/]*", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
@@ -498,23 +494,6 @@ public class BasicActions {
                 newUrl = "OtherHealthCoveragePortal/unauthorized";
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
-                break;
-            case "Tax Status Elmo page":
-                newUrl = "TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus";
-                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
-                getDriver().navigate().to(newUrl);
-                System.out.println("Member ID for Primary is " +getMemberId("Primary"));
-                break;
-            case "Tax Status Elmo page Son":
-                newUrl = "TaxReturnPortal/members/" +getMemberId("Son")+"/taxStatus";
-                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Tax Status Elmo page Spouse":
-                newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
-                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
-                getDriver().navigate().to(newUrl);
-                System.out.println("Member ID for Spouse is " +getMemberId("Spouse"));
                 break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";

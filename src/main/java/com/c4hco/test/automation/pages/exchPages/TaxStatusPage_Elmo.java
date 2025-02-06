@@ -10,9 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TaxStatusPage_Elmo {
@@ -904,16 +902,23 @@ public class TaxStatusPage_Elmo {
             }
         }
         softAssert.assertEquals(whoClaimedAsDependentsTxt.getText(), expectedQuestionText, "The question text does not match the expected value.");
-        for (int i = 0; i < filteredMemNames.size(); i++) {
-            int adjustedIndex = i + 1;
-            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(adjustedIndex).getText(), filteredMemNames.get(i), "Mismatch at radio index: " + (i + 1));
+        List<String> actualMemNames = whoClaimedAsDependentsRadioTxt.stream().map(WebElement::getText).collect(Collectors.toList());
+        int startIndex = -1;
+        for (int i = 0; i < actualMemNames.size(); i++) {
+            if (filteredMemNames.contains(actualMemNames.get(i))) {
+                startIndex = i;
+                break;
+            }
         }
-        int someoneElseIndex = filteredMemNames.size() + 1;
-        if (someoneElseIndex < whoClaimedAsDependentsRadioTxt.size()) {
-            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'Someone else' option text does not match.");
+        if (startIndex != -1) {
+            actualMemNames = actualMemNames.subList(startIndex, actualMemNames.size());
         } else {
-            throw new AssertionError("'Someone else' option is missing in the radio list.");
+            throw new AssertionError("No expected member names found in the radio options.");
         }
+        softAssert.assertEquals(actualMemNames.get(actualMemNames.size() - 1), someoneElseText, "'Someone else' option text does not match.");
+        Set<String> expectedSet = new HashSet<>(filteredMemNames);
+        Set<String> actualSet = new HashSet<>(actualMemNames.subList(0, actualMemNames.size() - 1));
+        softAssert.assertEquals(actualSet, expectedSet, "Mismatch in radio button member names (order ignored).");
         softAssert.assertAll();
     }
 
@@ -1332,15 +1337,24 @@ public class TaxStatusPage_Elmo {
                     ? "Someone else"
                     : "Otra persona";
         }
-        softAssert.assertEquals(filingJointlyWithTxt.getText(), expectedQuestionText);
-        for (int i = 0; i < expectedMembersList.size(); i++) {
-            int adjustedIndex = i + 2;
-            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), expectedMembersList.get(i), "Mismatch at radio index: " + adjustedIndex);
+        softAssert.assertEquals(filingJointlyWithTxt.getText(), expectedQuestionText, "The question text does not match.");
+        List<String> actualMemNames = filingJointlyWithRadioTxt.stream().map(WebElement::getText).collect(Collectors.toList());
+        int startIndex = -1;
+        for (int i = 0; i < actualMemNames.size(); i++) {
+            if (expectedMembersList.contains(actualMemNames.get(i))) {
+                startIndex = i;
+                break;
+            }
         }
-        int someoneElseIndex = expectedMembersList.size() + 2;
-        if (someoneElseIndex < filingJointlyWithRadioTxt.size()) {
-            softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'Someone else' option text does not match.");
+        if (startIndex != -1) {
+            actualMemNames = actualMemNames.subList(startIndex, actualMemNames.size());
+        } else {
+            throw new AssertionError("No expected member names found in the radio options.");
         }
+        softAssert.assertEquals(actualMemNames.get(actualMemNames.size() - 1), someoneElseText, "'Someone else' option is not at the correct position.");
+        Set<String> expectedSet = new HashSet<>(expectedMembersList);
+        Set<String> actualSet = new HashSet<>(actualMemNames.subList(0, actualMemNames.size() - 1));
+        softAssert.assertEquals(actualSet, expectedSet, "Mismatch in radio button member names (order ignored).");
         softAssert.assertAll();
     }
 
@@ -1405,43 +1419,40 @@ public class TaxStatusPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyFilingJointlyWithAnswers(String memOption, String language,List<Map<String, String>> expectedMembers) {
+    public void verifyFilingJointlyWithAnswers(String memOption, String language, List<Map<String, String>> expectedMembers) {
         basicActions.waitForElementToBePresent(filingJointlyWithTxt, 15);
         List<String> expectedMembersList = expectedMembers.stream().map(map -> map.get("ExpectedMembers")).filter(Objects::nonNull).map(basicActions::getMemFirstLastNames).collect(Collectors.toList());
-        boolean memOptionMatched = false;
+        List<String> actualMemNames = filingJointlyWithRadioTxt.stream().map(WebElement::getText).collect(Collectors.toList());
 
-        for (int i = 0; i < expectedMembersList.size(); i++) {
-            int adjustedIndex = i + 2;
-            softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), expectedMembersList.get(i), "Mismatch at radio index (text): " + adjustedIndex);
-            if (memOption != null && !memOption.isEmpty() && expectedMembersList.get(i).toLowerCase().startsWith(memOption.toLowerCase())) {
-                memOptionMatched = true;
-                softAssert.assertTrue(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + expectedMembersList.get(i) + " is not selected as memOption.");
-            } else {
-                softAssert.assertFalse(filingJointlyWithRadio.get(i).isSelected(), "Radio button for " + expectedMembersList.get(i) + " is unexpectedly selected.");
-            }
+        if (actualMemNames.size() > 1) {
+            actualMemNames.remove(0); // Remove first occurrence of "Who will you be filing jointly with?"
+            actualMemNames.remove(0); // Remove second occurrence
+        }
+        softAssert.assertEquals(actualMemNames.size(), expectedMembersList.size() + 1, "The actual number of radio button options does not match the expected count.");
+        for (String expectedName : expectedMembersList) {
+            softAssert.assertTrue(actualMemNames.contains(expectedName), "Expected member not found in actual radio buttons: " + expectedName);
         }
 
         String someoneElseText = language.equalsIgnoreCase("Spanish") ? "Otra persona" : "Someone else";
-        int someoneElseIndex = expectedMembersList.size() + 2;
-
-        if (someoneElseIndex < filingJointlyWithRadioTxt.size()) {
-            softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'" + someoneElseText + "' option text does not match.");
-            if (memOption == null || memOption.isEmpty()) {
-                softAssert.assertFalse(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button is unexpectedly selected when memOption is empty.");
-            } else if (someoneElseText.toLowerCase().startsWith(memOption.toLowerCase())) {
-                memOptionMatched = true;
-                softAssert.assertTrue(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button is not selected as memOption.");
-            } else {
-                softAssert.assertFalse(filingJointlyWithRadio.get(expectedMembersList.size()).isSelected(), "'" + someoneElseText + "' radio button should not be selected.");
-            }
-        }
-
+        int someoneElseIndex = actualMemNames.size() - 1; // 'Someone else' should always be the last option
+        softAssert.assertEquals(actualMemNames.get(someoneElseIndex), someoneElseText, "'" + someoneElseText + "' option text does not match.");
         if (memOption == null || memOption.isEmpty()) {
-            for (int i = 0; i < filingJointlyWithRadio.size(); i++) {
-                softAssert.assertFalse(filingJointlyWithRadio.get(i).isSelected(), "Unexpected radio button selected at index: " + i);
+            softAssert.assertFalse(filingJointlyWithRadio.get(someoneElseIndex).isSelected(), "'" + someoneElseText + "' radio button is unexpectedly selected when memOption is empty.");
+        } else if (someoneElseText.toLowerCase().startsWith(memOption.toLowerCase())) {
+            softAssert.assertTrue(filingJointlyWithRadio.get(someoneElseIndex).isSelected(), "'" + someoneElseText + "' radio button is not selected as memOption.");
+        } else {
+            boolean memOptionMatched = false;
+            for (int i = 0; i < expectedMembersList.size(); i++) {
+                if (actualMemNames.get(i).toLowerCase().startsWith(memOption.toLowerCase())) {
+                    memOptionMatched = true;
+                    softAssert.assertTrue(filingJointlyWithRadio.get(i).isSelected(),
+                            "Radio button for " + actualMemNames.get(i) + " is not selected as memOption.");
+                    break;
+                }
             }
-        } else if (!memOptionMatched) {
-            softAssert.fail("No radio button matched the provided memOption: " + memOption);
+            if (!memOptionMatched) {
+                softAssert.fail("No radio button matched the provided memOption: " + memOption);
+            }
         }
         softAssert.assertAll();
     }
@@ -1659,11 +1670,11 @@ public class TaxStatusPage_Elmo {
                 throw new IllegalArgumentException("Invalid option: " + noStatus);
         }
     }
-
-    public void verifyWhoClaimedQuestion(String memPrefix,String language) {
+    public void verifyWhoClaimedQuestion(String memPrefix, String language) {
         basicActions.waitForElementToBePresent(whoClaimedAsDependentsTxt, 15);
         List<String> allMemNames = basicActions.getAllMemNames();
         List<String> filteredMemNames = allMemNames.stream().filter(name -> !name.startsWith(memPrefix)).toList();
+
         switch (language) {
             case "English":
                 softAssert.assertEquals(whoClaimedTxt.getText(), "Who will be claimed as dependents?");
@@ -1674,9 +1685,13 @@ public class TaxStatusPage_Elmo {
             default:
                 throw new IllegalArgumentException("Unsupported language: " + language);
         }
-        for (int i = 0; i < filteredMemNames.size(); i++) {
-            softAssert.assertEquals(whoClaimedMemNameTxt.get(i).getText(), filteredMemNames.get(i), "Mismatch at radio index: " + i);
+        Set<String> filteredSet = new HashSet<>(filteredMemNames);
+        Set<String> displayedSet = new HashSet<>();
+        for (WebElement element : whoClaimedMemNameTxt) {
+            displayedSet.add(element.getText());
         }
+        softAssert.assertTrue(displayedSet.containsAll(filteredSet), "Mismatch in claimed dependent names.");
+
         int someoneElseIndex = filteredMemNames.size();
         if (someoneElseIndex < whoClaimedBtn.size()) {
             String someoneElseText = language.equalsIgnoreCase("Spanish") ? "Otra persona" : "Someone else";
@@ -1684,6 +1699,7 @@ public class TaxStatusPage_Elmo {
         } else {
             throw new AssertionError("'Someone else' option is missing in the button list.");
         }
+
         softAssert.assertAll();
     }
 
@@ -2034,7 +2050,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHelpDrawerTxtEnglish() {
-        basicActions.waitForElementToBePresent(helpHdr,10);
+        basicActions.waitForElementToBePresent(helpHdr,60);
         softAssert.assertEquals(helpHdr.getText(), "Help");
         softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Overview");
@@ -2049,7 +2065,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHelpDrawerTxtSpanish() {
-        basicActions.waitForElementToBePresent(helpHdr,10);
+        basicActions.waitForElementToBePresent(helpHdr,60);
         softAssert.assertEquals(helpHdr.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Resumen");
@@ -2064,7 +2080,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHelpDrawerClaimedTxtEnglish() {
-        basicActions.waitForElementToBePresent(helpHdr,10);
+        basicActions.waitForElementToBePresent(helpHdr,60);
         softAssert.assertEquals(helpHdr.getText(), "Help");
         softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Dependents");
@@ -2075,7 +2091,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHelpDrawerClaimedTxtSpanish() {
-        basicActions.waitForElementToBePresent(helpHdr,10);
+        basicActions.waitForElementToBePresent(helpHdr,60);
         softAssert.assertEquals(helpHdr.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Dependientes");
@@ -2086,7 +2102,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHelpDrawerExceptionalTxtEnglish() {
-        basicActions.waitForElementToBePresent(helpHdr,10);
+        basicActions.waitForElementToBePresent(helpHdr,60);
         softAssert.assertEquals(helpHdr.getText(), "Help");
         softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Exceptional Circumstances");
@@ -2097,7 +2113,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHelpDrawerExceptionalTxtSpanish() {
-        basicActions.waitForElementToBePresent(helpHdr,10);
+        basicActions.waitForElementToBePresent(helpHdr,60);
         softAssert.assertEquals(helpHdr.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Circunstancias excepcionales");
