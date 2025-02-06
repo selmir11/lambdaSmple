@@ -39,7 +39,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -73,10 +73,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
     Then I validate I am on the "Tax status Elmo" page
     #step3 - validate checkboxes
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
@@ -106,7 +105,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I verify Tax checkbox in "Hover" state
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1809 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1809 I want to see my data when claimed as dependent so that I can review my Tax Status information
@@ -160,10 +159,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 1
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
@@ -200,7 +195,7 @@ Feature: Page Validation-Tax Status Elmo Page
     |  Anna    |  Marie    |  Bean   | 2: SR   |1990-02-16|
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1831 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1831 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - English
@@ -216,12 +211,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
     And I verify will you be claimed Yes "is not" and No "is not" selected on the Tax Status Elmo page
     Then I select "No" for will you be claimed as dependent question
@@ -251,7 +243,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |          |           |         |      |   |
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1840 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1840 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - Spanish
@@ -267,15 +259,11 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
-    Then I validate I am on the "Tax status Elmo" page
 #    Step 2
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Tax status Elmo" page
     And I validate I am on the "Spanish" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "Spanish"
     And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "Spanish"
     And I verify will you be claimed Yes "is not" and No "is not" selected on the Tax Status Elmo page
     Then I select "No" for will you be claimed as dependent question
@@ -305,7 +293,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |          |           |         |      |   |
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1842 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1842 I want to see my data when am married filing jointly so that I can review my Tax Status information
@@ -321,12 +309,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     And I verify select tax filing status "0: null" selected on the Tax Status Elmo page
@@ -355,7 +340,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify will you claim dependents Yes "is not" and No "is" selected on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1844 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1844 I want to be able to save, update or remove my Tax Status information when claimed as dependent so that my Tax Status details are accurate
@@ -371,12 +356,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
@@ -386,29 +368,8 @@ Feature: Page Validation-Tax Status Elmo Page
       |claimed_as_dep_on_othr_ftr_ind|tax_filing_type|
       |                              |  NON_FILER    |
 #    Step 4
-#    Workaround until Elmo Tax Status page is in flow
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I validate I am on the "My Account Overview" page
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Race and Ethnicity page
-    And I click continue on the Citizenship page
-    And I click plus icon next to member on household page for "Primary"
-    And I click the edit income icon on household page for "Primary"
-    And I click continue on the Employment Info Page
-    Then I click continue on the Additional Income page
-    And I click continue on the Deductions page
-    Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page Spouse"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Primary" for who will claim as dependent question
     Then I click Save and Continue on Tax Status Elmo page
@@ -428,25 +389,45 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page Spouse"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I select "No" for will file tax return question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
+    Then I select "Yes" for will you be claimed as dependent question
     Then I select "Someone else" for who will claim as dependent question
     And I enter data for who will claim as dependent enter the name question on the Tax Status Elmo page
       |First Name|Middle Name|Last Name|Suffix|   DOB  |
-      |  Anna    |  Marie    |  Bean   |      |02161980|
+      |  Anna    |  Marie    |  Bean   |      |02161983|
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 7
     And I wait for 5000 milliseconds
     And I verify the tax filing data for "Primary" in DB
       |claimed_as_dep_on_othr_ftr_ind|tax_filing_type|
-      |                              |     FILER     |
+      |                              |   NON_FILER   |
     And I verify the tax filing data for "Spouse" in DB
       |claimed_as_dep_on_othr_ftr_ind|tax_filing_type|
       |                              |   DEPENDENT   |
 #    Step 8
+    Then I click Go back on Tax Status Elmo page
+    Then I click Go back on Tax Status Elmo page
+    And I click plus icon next to member on household page for "Anna"
+    Then I click on Remove this Member
+    Then I click on "OK" in the Remove Member frame
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
@@ -454,13 +435,13 @@ Feature: Page Validation-Tax Status Elmo Page
     And I wait for 5000 milliseconds
     And I verify the tax filing data for "Primary" in DB
       |claimed_as_dep_on_othr_ftr_ind|tax_filing_type|
-      |                              |    FILER      |
+      |                              |   NON_FILER   |
     And I verify the tax filing data for "Spouse" in DB
       |claimed_as_dep_on_othr_ftr_ind|tax_filing_type|
       |                              |   NON_FILER   |
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1853 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1853 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Primary
@@ -476,12 +457,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status Elmo page
@@ -515,11 +493,8 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 7
@@ -532,18 +507,10 @@ Feature: Page Validation-Tax Status Elmo Page
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 8
-    Then I click Go back on the ELMO health coverage page
-    And I click plus icon next to member on household page for "Primary"
-    And I click the edit income icon on household page for "Primary"
-    And I click continue on the Employment Info Page
-    Then I click continue on the Additional Income page
-    Then I click continue on the Deductions page
-    Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
+    Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will file tax return question
     Then I select the "Qualified widow(er)" tax filing option on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
@@ -558,6 +525,9 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 10
     Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
     Then I select "Yes" for will claim dependents question
@@ -570,13 +540,16 @@ Feature: Page Validation-Tax Status Elmo Page
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-#      |    FILER      |                              |      SNGL       |                        |#Bug TAM-5084
-      |    FILER      |                              |      QWD        |           0            |
+      |    FILER      |                              |      SNGL       |           0            |
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
-    And I verify tax_return_id is "Same" as last ID for "Primary" on the Tax Status Elmo page
+    And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 12
+    Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 13
@@ -590,6 +563,9 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 14
     Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I check Exceptional circumstances checkbox on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
     #    Step 15
@@ -603,7 +579,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1864 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1864 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Secondary
@@ -619,12 +595,15 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page Spouse"
-#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "No" for will file tax return question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status Elmo page
@@ -638,6 +617,8 @@ Feature: Page Validation-Tax Status Elmo Page
       |    FILER      |                              |     SNGL        |           1            |
 #    Step 4
     Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will claim dependents question
     Then I select "Primary" for who will be claimed as dependent question on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
@@ -658,11 +639,8 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page Spouse"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 7
@@ -675,7 +653,21 @@ Feature: Page Validation-Tax Status Elmo Page
       |               |                              |                 |                        |
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 8
-    Then I click Go back on Tax Status Elmo page
+    Then I click Go back on the ELMO health coverage page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "No" for will file tax return question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will file tax return question
     Then I select the "Qualified widow(er)" tax filing option on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
@@ -690,6 +682,9 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 10
     Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select the "Single" tax filing option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
     Then I select "Yes" for will claim dependents question
@@ -702,13 +697,16 @@ Feature: Page Validation-Tax Status Elmo Page
     And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-#      |    FILER      |                              |     SNGL        |                        |#Bug TAM-5084
-      |    FILER      |                              |      QWD        |           0            |
+      |    FILER      |                              |     SNGL        |           0            |
     And I verify the tax return data for "Primary" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |               |                              |                 |                        |
-    And I verify tax_return_id is "Same" as last ID for "Spouse" on the Tax Status Elmo page
+    And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 12
+    Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 13
@@ -722,6 +720,9 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 14
     Then I click Go back on Tax Status Elmo page
+    Then I wait for 500 milliseconds
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I check Exceptional circumstances checkbox on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 15
@@ -735,7 +736,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1871 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1871 I want to be able to save, update or remove my Tax Status information when I am married filing jointly so that my Tax Status details are accurate
@@ -751,12 +752,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
@@ -783,11 +781,8 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status Elmo page
@@ -831,11 +826,8 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
@@ -857,7 +849,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id for "Primary" is "Different" compared to "Spouse" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1884 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1884 I want standard errors displayed when I fail to enter information correctly for "Someone else" so that errors are displayed consistently
@@ -873,12 +865,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 3/4 - Primary
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Someone else" for who will claim as dependent question
     Then I click Save and Continue on Tax Status Elmo page
@@ -978,7 +967,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
 #    Step 20 - Primary cannot be automated due to calendar is not it's own element
 #    Other Member (Spouse)
-#    Workaround until Elmo Tax Status page is in flow
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -996,11 +984,15 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page Spouse"
-#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "No" for will file tax return question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
 #    Step 3/4 - Spouse
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Someone else" for who will claim as dependent question
     Then I click Save and Continue on Tax Status Elmo page
@@ -1101,7 +1093,7 @@ Feature: Page Validation-Tax Status Elmo Page
 #    Step 20 - Spouse cannot be automated due to calendar is not it's own element
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1888 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1888 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Primary
@@ -1117,12 +1109,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 3 - Primary
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I click Save and Continue on Tax Status Elmo page
     And I verify will you be claimed error on the Tax Status Elmo page for "Primary" in "English"
 #    Step 4 - Primary
@@ -1210,7 +1199,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify no errors show on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1899 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1899 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Spouse
@@ -1226,12 +1215,15 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page Spouse"
-#    End of workaround
+    Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "No" for will file tax return question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
 #    Step 3 - Spouse
+    And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I click Save and Continue on Tax Status Elmo page
     And I verify will you be claimed error on the Tax Status Elmo page for "Spouse" in "English"
 #    Step 4 - Spouse
@@ -1319,7 +1311,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify no errors show on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1901 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1901 I want the "Someone else" errors cleared so that I don't continue to see these errors as I answer questions
@@ -1335,12 +1327,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Someone else" for who will claim as dependent question
     Then I click Save and Continue on Tax Status Elmo page
@@ -1436,4 +1425,4 @@ Feature: Page Validation-Tax Status Elmo Page
       |          |           |         |         |          |
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page

@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.EmploymentIncomePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -55,4 +56,9 @@ public class EmploymentIncomePageSteps {
 
     @Then("I verify the navigation buttons on the CoCo Employment Income page in {string}")
     public void iVerifyEmploymentIncomeNavigationButtonsCoCo(String language) {employmentIncomePage.verifyEmploymentIncomeNavigationButtonsCoCo(language);}
+
+    @Then("I validate page Navigation works for Header and Footer hyperlink text")
+    public void iverifyPageNavigation(DataTable dataTable){
+        employmentIncomePage.verifyPageNavigation(dataTable);
+    }
 }
