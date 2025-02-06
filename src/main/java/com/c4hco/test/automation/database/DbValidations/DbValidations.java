@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Period;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -793,10 +794,17 @@ public class DbValidations {
     }
 
     public void validateCyaEligibility() {
+        String age = SharedData.getPrimaryMember().getDob();
         String applyingForCoverage = SharedData.getPrimaryMember().getApplyingforCov();
         String cyaEligibilityOutcomeDb = exchDbDataProvider.getCyaEligibility();
         String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
-        if(applyingForCoverage.equals("Yes") && residentialState.equals("CO")) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddyyyy");
+        LocalDate birthDate = LocalDate.parse(age, formatter);
+        LocalDate currentDate = LocalDate.now();
+        int ageInYears = Period.between(birthDate, currentDate).getYears();
+
+        if(applyingForCoverage.equals("Yes") && residentialState.equals("CO") && ageInYears < 30) {
             softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
         } else {
             softAssert.assertEquals(cyaEligibilityOutcomeDb, "0");

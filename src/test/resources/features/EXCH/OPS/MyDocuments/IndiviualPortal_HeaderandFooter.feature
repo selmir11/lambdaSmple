@@ -129,3 +129,58 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
 
 
 
+
+
+    @SLER-2102
+    Scenario:  Verify Text on upload doc modal in My documents from manage client via broker portal [RT-1906]
+      Given I open the login page on the "broker" portal
+      And I validate I am on the "Login" page
+      And I login as Broker User any environment "C4PortTesting+PrestonSaunders@outlook.com" password "ALaska12!" and "C4PortTesting+PSaundersQA@outlook.com" password "ALaska12!"
+      Then I open outlook Tab
+      And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
+      Then I open the MFA notice
+      And I get the MFA code
+      And I delete the open notice
+      Then I sign out of Outlook
+      Then I enter the MFA code and click Verify
+
+      And I validate I am on the "Broker Portal Your Clients" page
+      And I validate I am on the "Broker Dashboard" page
+      Then I validate the Your Clients page title
+      And I click on the first client in my list
+      And I click "manage" the client
+      Then I validate I am on the "Account Overview" page
+      Then I click link my docs on accountOverview page
+      Then I validate I am on the "My Documents" page
+      And I click on upload another document
+      And I validate Modal texts on upload a document pop up
+        |Upload a document|
+        |Tell us more about this document|
+        |What type of document is this?  |
+        |Which document are you submitting?|
+        |Select a file from your device    |
+        |Browse My Files                   |
+        |Only one document can be uploaded at a time using this window|
+        |Cancel                                                       |
+        | Upload My Document |
+      And I close button to close modal
+      And I click on upload another document
+      And I click on cancel button on upload document pop up
+      And I change the language from header to "Spanish"
+      And I click on upload another document in spanish
+      And I validate Modal texts on upload a document pop up
+        |Cargar un documento|
+        |Díganos más sobre este documento|
+        |¿Qué tipo de documento es este?|
+        |¿Qué documento está enviando?|
+        |Seleccione un archivo de su dispositivo|
+        |Explorar Mis Archivos|
+        |Solo se puede cargar un documento a la vez usando esta ventana|
+        |Cancelar|
+        |Cargar Mi Documento                                       |
+      And I close button to close modal
+      And I click on upload another document in spanish
+      And I click on cancel button on upload document pop up
+      And I change the language from header to "English"
+      Then  I click on Sign Out in the Header for "Elmo"
+
