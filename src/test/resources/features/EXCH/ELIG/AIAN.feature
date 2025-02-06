@@ -77,7 +77,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     And  I verify the Member reason code as "NON_AIAN_LEVEL_3"
 
 
-  @SLER-2106 #WIP
+  @SLER-2106
   Scenario: ELIG-CSR Eligible FA NON_AIAN_LEVEL_2-CSRRules [RT-1111]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -124,7 +124,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "1000000" income at "Annually" frequency
+    And I enter employment details with "2500000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -151,7 +151,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     Then I click on view results and shop
     And I click on Sign Out in the Header for "NonElmo"
     #DB STEP
-    And  I verify the Member reason code as "NON_AIAN_LEVEL_2"
+    And  I verify the Member reason code as "NON_AIAN_LEVEL_3"
 
   @SLER-2118
   Scenario: ELIG-CSR Eligible FA NON_AIAN_LEVEL_1-CSRRules [RT-1112]
