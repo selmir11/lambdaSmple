@@ -65,4 +65,9 @@ public class QCPFSteps {
     public void iValidateTheTotalNumberOfPlansDisplayedByCounty(String totalPlanNumber) {
         qcpfPage.validateTheTotalNumberOfPlansDisplayedByCounty(totalPlanNumber);
     }
+
+    @And("I validate the total number {string} of plans displayed and for Plan Anthem Blue Cross & Blue Shield {string}, Kaiser Permanente {string}, Denver Health Medical Plan {string}, Cigna {string}, Rocky Mountain Health Plans {string}")
+    public void iValidateTheTotalNumberOfPlansDisplayedAndForPlanAnthemBlueCrossBlueShieldKaiserPermanenteDenverHealthMedicalPlanCignaRockyMountainHealthPlans(String plansNumber, String Anthem, String Kaiser, String DenverHealth, String Cigna, String RockyMountain) {
+        qcpfPage.validateTheTotalNrOfPlansDisplayedForCountiesWith5Plans(plansNumber,Anthem,Kaiser, DenverHealth,Cigna,RockyMountain);
+    }
 }

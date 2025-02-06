@@ -29,8 +29,34 @@ Feature:QCPF: plan load testing
       | joe  | Male | 01/2000 | 80207   | Denver    | 89          | 27     | 10     | 11            | 12    | 25             | 4      |
       | joe  | Male | 01/2000 | 80123   | Jefferson | 89          | 27     | 10     | 11            | 12    | 25             | 4      |
       | joe  | Male | 01/2000 | 80022   | Adams     | 89          | 27     | 10     | 11            | 12    | 25             | 4      |
-      | joe  | Male | 01/2000 | 80109   | Douglas   | 85          | 27     | 10     | 11            | 12    | 25             |        |
-      | joe  | Male | 01/2000 | 80301   | Boulder   | 85          | 27     | 10     | 11            | 12    | 25             |        |
+
+
+  @SLER-2110
+  Scenario Outline: Verifying total plan number by county and carrier for 5 plan breakdown
+    Given I open the login page on the "QCPF" portal
+    And I validate I am on the "QCPF" page
+    Then I click get started on QCPF Page
+    And I validate I am on the "QCPF Input Information" page
+    Then I enter basic information Name "<name>" sex "<sex>" DOB "<DOB>" in QCPF page
+    And I enter location and coverage zipCode "<zipCode>" county "<county>" in QCPF page
+    Then I click "No" for financial help question in QCPF page
+    And I click continue button in QCPF page
+    Then I validate I am on the "QCPF Preferences" page
+    And I click this looks right button in QCPF page
+    Then I validate I am on the "QCPF Preferences Doctor" page
+    And I click continue button in QCPF page
+    Then I validate I am on the "QCPF Preferences Medication" page
+    And I click continue button in QCPF page
+    Then I validate I am on the "QCPF List of Plans" page
+    Then I click ok got it button in QCPF page
+    Then I validate I am on the "QCPF Plan results" page
+    And I validate the total number "<plansNumber>" of plans displayed and for Plan Anthem Blue Cross & Blue Shield "<Anthem>", Kaiser Permanente "<Kaiser>", Denver Health Medical Plan "<Denver Health>", Cigna "<Cigna>", Rocky Mountain Health Plans "<Rocky Mountain>"
+    Then I click start over button in QCPF page
+
+    Examples:
+      | name | sex  | DOB     | zipCode | county    | plansNumber | Anthem | Kaiser | Denver Health | Cigna | Rocky Mountain |
+      | joe  | Male | 01/2000 | 80109   | Douglas   | 85          | 27     | 10     | 11            | 12    | 25             |
+      | joe  | Male | 01/2000 | 80301   | Boulder   | 85          | 27     | 10     | 11            | 12    | 25             |
 
   @SLER-2110
 Scenario Outline: Verifying total plan count by county

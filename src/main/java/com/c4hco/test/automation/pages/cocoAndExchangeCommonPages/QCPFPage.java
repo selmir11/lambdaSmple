@@ -141,7 +141,25 @@ public class QCPFPage {
         startOver.click();
     }
 
+
     public void validateTheTotalNumberOfPlansDisplayedAndPlanDetails(String plansNumber, String Anthem, String Kaiser, String DenverHealth, String Cigna, String RockyMountain, String Select) {
+        validateTheTotalNrOfPlansDisplayedForCountiesWith5Plans(plansNumber, Anthem, Kaiser, DenverHealth, Cigna, RockyMountain);
+        basicActions.waitForElementToBePresent(chkbxSixthCompany, 40);
+        chkbxSixthCompany.click();
+        basicActions.wait(50);
+        softAssert.assertEquals(planNumber.getText(), Select);
+        chkbxSixthCompany.click();
+        softAssert.assertAll();
+
+    }
+
+    public void validateTheTotalNumberOfPlansDisplayedByCounty(String totalPlanNumber) {
+        basicActions.waitForElementToBePresentWithRetries(planNumber,30);
+        softAssert.assertEquals(planNumber.getText(),totalPlanNumber);
+        softAssert.assertAll();
+    }
+
+    public void validateTheTotalNrOfPlansDisplayedForCountiesWith5Plans(String plansNumber, String Anthem, String Kaiser, String DenverHealth, String Cigna, String RockyMountain) {
         basicActions.waitForElementToBePresentWithRetries(planNumber,30);
         softAssert.assertEquals(planNumber.getText(),plansNumber);
         expandInsuranceBtn.click();
@@ -173,23 +191,6 @@ public class QCPFPage {
         basicActions.wait(50);
         softAssert.assertEquals(planNumber.getText(), RockyMountain);
         chkbxFifthCompany.click();
-
-       if (basicActions.waitForElementToBePresent(chkbxSixthCompany,40)){
-           chkbxSixthCompany.click();
-           basicActions.wait(50);
-           softAssert.assertEquals(planNumber.getText(), Select);
-           chkbxSixthCompany.click();
-           softAssert.assertAll();
-       }else{
-           System.out.println("plan not available in this county");
-       }
-        softAssert.assertAll();
-
-    }
-
-    public void validateTheTotalNumberOfPlansDisplayedByCounty(String totalPlanNumber) {
-        basicActions.waitForElementToBePresentWithRetries(planNumber,30);
-        softAssert.assertEquals(planNumber.getText(),totalPlanNumber);
         softAssert.assertAll();
     }
 }
