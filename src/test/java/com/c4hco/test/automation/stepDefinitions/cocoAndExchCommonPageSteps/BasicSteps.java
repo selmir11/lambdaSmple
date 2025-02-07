@@ -548,8 +548,11 @@ public class BasicSteps {
             case "FullTimeStudent":
                 pageUrl = "/eligibleMembersFullTimeStudentForMA";
                 break;
-            case "Temporarily Absent" :
+            case "Temporarily OutOfState" :
                 pageUrl = "/eligibleMembersOutOfStateForMA";
+                break;
+            case "Medical Condtion":
+                pageUrl = "/eligibleMembersMedicalConditionForMA";
                 break;
             default:
                 System.out.println("undefined page ");
