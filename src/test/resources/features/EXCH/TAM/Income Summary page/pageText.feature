@@ -39,15 +39,15 @@ Feature: Page Text-Income Summary Page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
+
+  @SLER-249 @PageTextIncomeSummaryPage @TAMSmoke
+  Scenario: SLER-249 I can see Income Summary's Header and footer - English
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
 
     Then I validate I am on the "Income Summary" page
-
-  @SLER-249 @PageTextIncomeSummaryPage @TAMSmoke
-  Scenario: SLER-249 I can see Income Summary's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
@@ -213,6 +213,12 @@ Feature: Page Text-Income Summary Page
 
   @SLER-250 @PageTextIncomeSummaryPage
   Scenario: SLER-250 I can see Income Summary's Header and footer - Spanish
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+
+    Then I validate I am on the "Income Summary" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the Income Summary page in "Spanish"
     And I verify text on the "Exch" "Header" in "Spanish"
@@ -401,4 +407,44 @@ Feature: Page Text-Income Summary Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-
+  @SLER-2128 @PageTextIncomeSummaryPage
+  Scenario: SLER-2128 ELIG-Income Summary-Page Text[RT-1000]
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "45000.00" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
+    Then I validate I am on the "Additional income" page
+    Then I click "Income from rental property" as additional income option with "20000.00" amount at "Annually" frequency
+    Then I click continue on the Additional Income page
+    And I validate I am on the "Deductions" page
+    Then I click "Pre-tax retirement account contribution" as deduction option with "15000.00" amount at "Annually" frequency
+    Then I click continue on the Deductions page
+    Then I validate I am on the "Income Summary" page
+    Then I Verify the following text in Income Summary page and verify whether the Company name is present or not
+      |Income:|
+      |Summary|
+      |Income |
+      |$65,000.00|
+      |$45,000.00|
+      |Income from rental property|
+      |$20,000.00                 |
+      |Deductions                 |
+      |$15,000.00                 |
+      |Pre-tax retirement account contribution|
+      |$15,000.00                             |
+      |Total annual income $50,000.00         |
+      |Income minus Deductions = Total annual income|
+      |Projected Income                             |
+      |Based on the income information you've provided so far, we've calculated your annual income as listed above. Do you expect your income to be different than the amount we calculated above for 2025?|
+      |Yes                                                                                                                                                                                                 |
+      |No                                                                                                                                                                                                  |
+      |Go back                                                                                                                                                                                             |
+      |Save and continue                                                                                                                                                                                   |
+      |Help                                                                                                                                                                                                |
+    Then I verify the following text along with the dollar sign after clicking yes button to the Income different than the amount Question
+      |Enter your projected income in 2025.|
+      |annual amount                       |

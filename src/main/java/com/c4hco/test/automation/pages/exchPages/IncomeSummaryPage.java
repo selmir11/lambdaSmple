@@ -69,6 +69,60 @@ public class IncomeSummaryPage {
     @FindBy(id = "loader-icon")
     WebElement loaderIcon;
 
+    @FindBy(id = "pageId-GoBack")
+    WebElement goBackBtn;
+
+    @FindBy(xpath = "(//div[@class='header-3 income-details-left indent-left'])[1]")
+    WebElement incomeSubHeadingLabel;
+
+    @FindBy(xpath = "(//div[@class='header-3 income-details-right'])[1]")
+    WebElement incomeTotalAmount;
+
+    @FindBy(xpath = "(//div[@class='income-details-left margin-left-32'])[1]")
+    WebElement companyOrJobName;
+
+    @FindBy(xpath = "(//div[@class='body-text-1 income-details-row margin-top-sm ng-star-inserted']//div)[2]")
+    WebElement companyOrJobAmount;
+
+    @FindBy(xpath = "(//div[@class='income-details-left margin-left-32'])[2]")
+    WebElement additionalIncomeName;
+
+    @FindBy(xpath = "(//div[@class='body-text-1 income-details-row margin-top-sm ng-star-inserted']//div)[4]")
+    WebElement additionalIncomeAmount;
+
+    @FindBy(xpath = "(//div[@class='header-3 income-details-left indent-left'])[2]")
+    WebElement deductionsSubHeadingLabel;
+
+    @FindBy(xpath = "(//div[@class='header-3 income-details-right'])[2]")
+    WebElement deductionsTotalAmount;
+
+    @FindBy(xpath = "(//div[@class='income-details-left margin-left-32'])[3]")
+    WebElement deductionName;
+
+    @FindBy(xpath = "(//div[@class='body-text-1 income-details-row margin-top-sm ng-star-inserted']//div)[6]")
+    WebElement deductionAmount;
+
+    @FindBy(xpath = "//div[@class='total-income-width']//div//span")
+    WebElement totalAnnualIncome;
+
+    @FindBy(xpath = "//div[@class='total-income-width']//div//em")
+    WebElement IncomeMinusDeductions;
+
+    @FindBy(xpath = "//div[@class='margin-top-lg']//div[@class='header-3']")
+    WebElement ProjectedIncomeLabel;
+
+    @FindBy(xpath = "//div//label//span[@class='ng-star-inserted']")
+    WebElement IncomeDifferentThanTheAmountQuestion;
+
+    @FindBy(xpath = "//div[@class='col']//label[@for='ELIG-summaryDetails-incomeAmountInput']")
+    WebElement enterProjectedIncomeInCurrentYearLabel;
+
+    @FindBy(xpath = "//div//input[@id='ELIG-summaryDetails-incomeAmountInput']")
+    WebElement ProjectedIncomeInputTextField;
+
+    @FindBy(xpath = "(//div//lib-fi[@name='dollar-sign']//*)[1]")
+    WebElement DollarSymbolForProjectedIncomeInputField;
+
     public void selectProjectedIncome(String projectedIncomeOption){
         basicActions.waitForElementToDisappear(loaderIcon, 120);
         basicActions.waitForElementToBePresentWithRetries(hdr_Income,10);
