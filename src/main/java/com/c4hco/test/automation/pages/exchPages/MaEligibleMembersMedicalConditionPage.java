@@ -26,6 +26,9 @@ public class MaEligibleMembersMedicalConditionPage {
     @FindBy(id = "continueButton")
     WebElement btnSaveAndContinue;
 
+    @FindBy(id = "criteriaApplicableMemberList0.applicableMember1")
+    WebElement checkBoxMember1;
+
     public void answerDisability(String nextOption){
         basicActions.waitForElementToBePresent(rdoYes, 20);
         switch(nextOption) {
@@ -39,5 +42,31 @@ public class MaEligibleMembersMedicalConditionPage {
                 throw new IllegalArgumentException("Invalid option: " + nextOption);
         }
         btnSaveAndContinue.click();
+    }
+    public void answerDisabilityOnly(String nextOption){
+        basicActions.waitForElementToBePresent(rdoYes, 20);
+        switch(nextOption) {
+            case "Yes":
+                rdoYes.click();
+                break;
+            case "No":
+                rdoNo.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + nextOption);
+        }
+
+    }
+
+    public void iContinue(){
+        basicActions.waitForElementToBePresentWithRetries( btnSaveAndContinue,20 );
+        basicActions.click( btnSaveAndContinue );
+
+    }
+
+    public void iClickMember(){
+        basicActions.waitForElementToBePresentWithRetries( checkBoxMember1,20 );
+        basicActions.click( checkBoxMember1 );
+
     }
 }
