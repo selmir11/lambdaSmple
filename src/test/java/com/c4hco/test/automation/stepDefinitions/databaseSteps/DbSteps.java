@@ -338,6 +338,11 @@ public class DbSteps {
     public void iVerifyTheMemberReasonCode(String expectedReasonCode) {
         dbValidations.validateReasonCode(expectedReasonCode);
     }
+
+    @And("I validate the FDSH Retry Details")
+    public void validateFDSHRetry(List<Map<String, String>> expectedValues){
+        dbValidations.validateFDSHRetry(expectedValues);
+    }
 }
 
 

@@ -748,4 +748,10 @@ public String policyTablesCombinedQuery(String coverageType){
         return "select status from "+dbName +".es_fdsh_retry_control\n" +
                 " where account_id = '"+acctId+"'";
     }
+
+    public String getFDSHRetryDetails(){
+        return "SELECT *\n" +
+                "FROM "+dbName+".es_fdsh_retry_control\n" +
+                "WHERE account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
+    }
 }
