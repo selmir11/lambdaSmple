@@ -88,7 +88,7 @@ Feature: Tests related to the Income Summary page
       And I click on Sign Out in the Header for "Elmo"
       And I validate I am on the "Login" page
 
-  @SLCR-761 @PageNavigationIncomeSummary
+  @SLCR-761 @PageNavigationIncomeSummary 
   Scenario: SLCR-761 Page Navigation - Additional Member Income Summary CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
