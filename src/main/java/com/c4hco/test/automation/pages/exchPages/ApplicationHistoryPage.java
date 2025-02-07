@@ -32,7 +32,8 @@ public class ApplicationHistoryPage {
     WebElement yesBtnMvrPopUp;
     @FindBy(xpath = "//button[text()='Back to Welcome Page']")
     WebElement goBackToWelcomePage;
-
+    @FindBy(css = "div.not-qualified-div")
+    WebElement taxHouseholdNotQualify;
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -111,5 +112,8 @@ public class ApplicationHistoryPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + popUpOption);
         }
+    }
+    public void validateMemberEligibilityForMA() {
+    Assert.assertEquals(taxHouseholdNotQualify.getText(), "Based on the information listed in your application, you do not qualify for a health plan at this time.");
     }
 }
