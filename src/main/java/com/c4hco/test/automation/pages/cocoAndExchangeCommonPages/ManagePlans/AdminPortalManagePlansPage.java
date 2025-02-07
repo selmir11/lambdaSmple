@@ -459,8 +459,8 @@ public class AdminPortalManagePlansPage {
 
     public void clickMakeChangesDental() {
         basicActions.waitForElementToBePresent(btnMakeChangeDental, 10);
+        basicActions.waitForElementToBeClickable(btnMakeChangeDental, 10);
         btnMakeChangeDental.click();
-        basicActions.wait(10000);
     }
 
     public void verifySaveDentalButtonDisplayed(String saveDental) {
@@ -637,42 +637,47 @@ public class AdminPortalManagePlansPage {
     }
 
     public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
+        basicActions.waitForElementToBePresent(coverageStartdate,60);
         for (String memberCoverageEndDate : memberCoverageEndDTList) {
             String[] parts = memberCoverageEndDate.split(":");
             String memberNo = parts[0];
+            String endDate = parts[1];
             String coverageEndDateValue = "";
-            if (parts[1].equals("end of month")){
-                coverageEndDateValue = basicActions.endOfMonthDate();
-            } else if (parts[1].equals("Cancel")){
-                String startDate = basicActions.changeDateFormat(coverageStartdate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
-                coverageEndDateValue = startDate;
-            } else if (parts[1].equals("Term")){
-                coverageEndDateValue = basicActions.endOfMonthDate();
-            } else {
-                coverageEndDateValue = parts[1];
+            switch (endDate) {
+                case "end of month":
+                    coverageEndDateValue = basicActions.endOfMonthDate();
+                    break;
+                case "Cancel":
+                    String startDate = basicActions.changeDateFormat(coverageStartdate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
+                    coverageEndDateValue = startDate;
+                    break;
+                default:
+                    coverageEndDateValue = parts[1];
             }
             basicActions.waitForElementToBePresent(coverageEndDate, 30);
             basicActions.scrollToElement(coverageEndDate);
 
             WebElement coverageEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + memberNo + "']//input[1]"));
             coverageEndDateMem.sendKeys(coverageEndDateValue);
-            }
         }
+    }
 
     public void updateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
         for (String memberFinancialEndDate : memberFinancialEndDTList) {
             String[] parts = memberFinancialEndDate.split(":");
             String memberNo = parts[0];
+            String endDate = parts[1];
             String financialEndDateValue = "";
-            if (parts[1].equals("end of month")){
-                financialEndDateValue = basicActions.endOfMonthDate();
-            } else if (parts[1].equals("Cancel")){
-                String startDate = basicActions.changeDateFormat(financialStartDate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
-                financialEndDateValue = startDate;
-            } else if (parts[1].equals("Term")){
-                financialEndDateValue = basicActions.endOfMonthDate();
-            } else {
-                financialEndDateValue = parts[1];
+            switch (endDate) {
+                case "end of month":
+                    financialEndDateValue = basicActions.endOfMonthDate();
+                    break;
+                case "Cancel":
+                    String startDate = basicActions.changeDateFormat(financialStartDate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
+                    financialEndDateValue = startDate;
+                    break;
+                default:
+                    financialEndDateValue = parts[1];
             }
             basicActions.waitForElementToBePresent(financialEndDate, 30);
             basicActions.scrollToElement(financialEndDate);
@@ -681,6 +686,7 @@ public class AdminPortalManagePlansPage {
             financialEndDateMem.sendKeys(financialEndDateValue);
         }
     }
+
 public void selectThePlanYearOnManagePlan(String planYear) {
     basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
     dpdCurrentYearMP.click();
