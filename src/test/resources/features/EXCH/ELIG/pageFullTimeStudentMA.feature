@@ -1,5 +1,5 @@
 @ELIG
-Feature: Testing will verify text and navigation for Caretaker page (Medicaid eligibilty required)
+Feature: Testing will verify text and navigation for Full Time Student page (Medicaid eligibilty required)
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
