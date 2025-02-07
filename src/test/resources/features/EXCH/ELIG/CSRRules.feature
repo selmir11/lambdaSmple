@@ -1,3 +1,4 @@
+@CSRRules
 Feature:   FA NON_AIAN_LEVEL_3-CSRRules
 
   @SLER-2103
