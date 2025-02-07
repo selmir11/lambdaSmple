@@ -76,6 +76,9 @@ public class ApplicationResultsPage {
     @FindBy(css = ".linkButton")
     WebElement lnkProvideDocs;
 
+    @FindBy(css = "button.back-button-link")
+    WebElement backButton;
+
     private BasicActions basicActions;
 
     public ApplicationResultsPage(WebDriver webDriver) {
@@ -227,4 +230,8 @@ public class ApplicationResultsPage {
         }
     }
 
+    public void iClickOnBackButton() {
+        basicActions.waitForElementToBeClickable(backButton, 20);
+        backButton.click();
+    }
 }

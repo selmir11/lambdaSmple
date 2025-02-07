@@ -831,5 +831,31 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateFDSHRetry(List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+
+            EsFDSHRetryControlEntity actualResult = exchDbDataProvider.getEsFDSH_details();
+            System.out.println(actualResult);
+
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "service_type":
+                        softAssert.assertEquals(actualResult.getService_type(), value,"Validation failed for service_type at row " + (i + 1));
+                        break;
+                    case "status":
+                        softAssert.assertEquals(actualResult.getStatus(), value,"Validation failed for status at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
+            }
+        }
+        softAssert.assertAll();
+    }
+
 }
 
