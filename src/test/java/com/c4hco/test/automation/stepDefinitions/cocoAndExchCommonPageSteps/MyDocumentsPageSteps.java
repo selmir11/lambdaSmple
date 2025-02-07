@@ -148,4 +148,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateModalTextsOnUploadADocumentPopUp(List<String> data) {
         myDocumentsPage.textValidateOnUploadDocumentPopUp(data);
     }
+
+    @Then("I validate font and Background color of Document popup")
+    public void iValidateFontAndBackgroundColorOfDocumentPopup() {
+        myDocumentsPage.validateFontAndColor();
+    }
 }
