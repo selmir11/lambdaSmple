@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class MaEligibleMembersFullTimeStudentPage {
 
     private BasicActions basicActions;
@@ -43,10 +45,10 @@ public class MaEligibleMembersFullTimeStudentPage {
     @FindBy(xpath = "//*[@id = 'criteriaApplicableLabel']")
     WebElement anyoneText;
 
-    @FindBy(xpath = "//span[contains(text(),'Which household members are attending school? (Select all that apply)')]")
+    @FindBy (xpath= "//*[@id = 'membersForMACriteriaChoosingId']")
     WebElement whichText;
 
-    @FindBy(xpath = "//span[contains(text(),'\u00BFQui\u00E9 miembros del hogar asisten la escuela? (seleccione todos los que apliquen)')]")
+    @FindBy (xpath= "//*[@id = 'membersForMACriteriaChoosingId']")
     WebElement whichTextSP;
 
     @FindBy(xpath = "//span[contains(text(),'Yes')]")
@@ -106,11 +108,14 @@ public class MaEligibleMembersFullTimeStudentPage {
         softAssert.assertEquals( anyoneText.getText(), "Is anyone in the household attending school full-time?" );
 
         softAssert.assertEquals( yesText.getText(),"Yes" );
-
+        basicActions.waitForElementToBePresentWithRetries( rdoYes,20 );
         basicActions.click( rdoYes );
-        //softAssert.assertEquals( whichText.getText(), "Which household members are attending school? (Select all that apply)" );
+
+        softAssert.assertTrue(whichText.getText().contains( "Which household members are attending school? (Select all that apply)" ));
 
         softAssert.assertEquals( noText.getText(),"No" );
+        basicActions.waitForElementToBePresentWithRetries( rdoNo,20 );
+        basicActions.click( rdoNo );
 
         softAssert.assertEquals( valueText.getAttribute( "value" ), "< Back");
         softAssert.assertEquals( btnSaveAndContinue.getText(), "Save and Continue" );
@@ -121,15 +126,19 @@ public class MaEligibleMembersFullTimeStudentPage {
     public void validateFTStudentPageSpanish(){
         basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
         basicActions.waitForElementToBePresent(headerFTStudent,20  );
-        softAssert.assertEquals( headerFTStudent.getText(), "Cuidador principal" );
+        softAssert.assertEquals( headerFTStudent.getText(), "Cu\u00E9ntanos sobre la escuela" );
         softAssert.assertEquals( helpMeTextSP.getText(), "Ayuda para entender esta p\u00E1gina" );
         softAssert.assertEquals( anyoneText.getText(), "\u00BFHay alguien en el hogar que asiste la escuela?" );
 
         softAssert.assertEquals( yesTextSP.getText(),"S\u00ED" );
+        basicActions.waitForElementToBePresentWithRetries( rdoYes,20 );
         basicActions.click(rdoYes);
-        softAssert.assertEquals( whichTextSP.getText(), "\u00BFQui\u00E9 miembros del hogar asisten la escuela? (seleccione todos los que apliquen)" );
+
+        softAssert.assertTrue(whichText.getText().contains( "\u00BFQu\u00E9 miembros del hogar asisten la escuela? (seleccione todos los que apliquen)" ));
 
         softAssert.assertEquals( noText.getText(),"No" );
+        basicActions.waitForElementToBePresentWithRetries( rdoNo,20 );
+        basicActions.click( rdoNo );
 
         softAssert.assertEquals( valueTextSP.getAttribute("value"), "< Atr\u00E1s" );
         softAssert.assertEquals( btnSaveAndContinue.getText(), "Guardar y Continuar" );
