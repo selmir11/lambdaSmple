@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class DeductionsPageSteps {
     DeductionsPage deductionsPage = new DeductionsPage(WebDriverManager.getDriver());
 
@@ -62,7 +64,15 @@ public class DeductionsPageSteps {
     public void iVerifyStateOfDeductionsCheckbox(String state){
         deductionsPage.verifyDeductionsOptionCheckbox(state);}
 
+    @Then("I verify the text on ELIG Deductions page")
+    public void iVerifyTextOnDeductionsPage(List<String> dataText){
+        deductionsPage.verifyTextOnDeductionsPage(dataText);}
 
+    @Then("I click on all the expense checkboxes and verify the input field text {string} along with the dollar sign for each checkbox")
+    public void iClickOnAllExpenseCheckboxesAndVerifyInputFieldText(String dataText){
+        deductionsPage.clickOnAllExpenseCheckboxesAndVerifyInputFieldText(dataText);}
 
-
+    @Then("I verify the Dropdown values for all the expenses after clicking it")
+    public void iVerifyDropdownValuesForAllTheExpenses(List<String> dataText){
+        deductionsPage.verifyDropdownValuesForAllTheExpenses(dataText);}
 }

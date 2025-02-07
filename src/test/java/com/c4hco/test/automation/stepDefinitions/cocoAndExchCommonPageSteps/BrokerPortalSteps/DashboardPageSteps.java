@@ -18,6 +18,26 @@ public class DashboardPageSteps {
         dashboardPage.clickBrokerDashboard();
     }
 
+    @Then("I verify the Broker Dashboard button is displayed")
+    public void iVerifyBrokerDashboard(){
+        dashboardPage.verifyBrokerDashboard();
+    }
+
+    @Then("I validate the dashboard displays my {string} name")
+    public void iVerifyBrokerDashboardTitle(String portalUserType){
+        dashboardPage.verifyBrokerDashboardTitle(portalUserType);
+    }
+
+    @Then("I validate the current broker certification status is {string}")
+    public void iVerifyBrokerCertStatus(String certificationStatus){
+        dashboardPage.verifyBrokerCertStatus(certificationStatus);
+    }
+
+    @And("I validate that the broker certification is not displayed")
+    public void iVerifyBrokerCertStatusNotDisplayed(){
+        dashboardPage.verifyBrokerCertStatusNotDisplayed();
+    }
+
     @And("I click the C4U Link")
     public void iClickC4ULink(){
         dashboardPage.clickC4ULink();

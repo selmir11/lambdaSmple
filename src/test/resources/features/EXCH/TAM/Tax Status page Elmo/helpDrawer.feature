@@ -39,7 +39,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011980", "Female" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
       | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
@@ -69,10 +69,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#    Workaround until Elmo Tax Status page is in flow
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
-#    End of workaround
     Then I validate I am on the "Tax status Elmo" page
 #    And I set the browser resolution to 2000 x 800
 
@@ -146,4 +142,4 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page

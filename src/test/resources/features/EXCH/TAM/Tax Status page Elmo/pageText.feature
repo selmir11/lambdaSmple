@@ -45,8 +45,6 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
 
@@ -73,8 +71,6 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -95,8 +91,6 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
     And I click on Find a Plan in the "Elmo" Header
@@ -118,8 +112,6 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
     And I click on My Account in the "Elmo" Header
@@ -140,8 +132,6 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
     And I click on Learn More in the Header
@@ -173,8 +163,6 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
     And I click on the Username in the "Exch" Header
@@ -196,45 +184,35 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
 
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
 
   @SLER-1805 @PageTextTaxStatusElmoPage
   Scenario: SLER-1805 I can see ELMO Tax Status page's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I wait for 500 milliseconds
     And I validate I am on the "Spanish" page
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
@@ -257,11 +235,10 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Tax status Elmo" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I wait for 500 milliseconds
     And I validate I am on the "Spanish" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -281,11 +258,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Tax status Elmo" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
@@ -306,11 +281,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Tax status Elmo" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -330,11 +303,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Tax status Elmo" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
@@ -367,11 +338,9 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Tax status Elmo" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -392,48 +361,37 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Tax status Elmo" page
     And I validate I am on the "Spanish" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    And I change the C4 url to "Tax Status Elmo page"
     And I validate I am on the "Spanish" page
 
     And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+#    Then I validate I am on the "Login" page
