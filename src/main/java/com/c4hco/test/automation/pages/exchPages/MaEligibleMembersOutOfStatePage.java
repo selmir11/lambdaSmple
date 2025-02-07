@@ -113,7 +113,6 @@ public class MaEligibleMembersOutOfStatePage {
 
             basicActions.waitForElementToBePresentWithRetries( rdoYes,20 );
             basicActions.click( rdoYes );
-
             softAssert.assertTrue(whichText1.getText().contains("Which household members are temporarily absent? (Select all that apply)"));
 
             softAssert.assertEquals( noText.getText(), "No" );
