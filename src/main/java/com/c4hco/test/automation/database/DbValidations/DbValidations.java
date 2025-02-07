@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Period;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -394,11 +395,20 @@ public class DbValidations {
                     case "manual_verif_date_closed":
                         softAssert.assertEquals(actualResult.getManual_verif_date_closed(), value,"Validation failed for manual_verif_date_closed at row " + (i + 1));
                         break;
+                    case "last_action_description":
+                        softAssert.assertEquals(actualResult.getLast_action_description(), value, "Validation failed for last_action_description at row " + (i + 1));
+                        break;
                     default:
                         throw new IllegalArgumentException("Invalid option: " + key);
                 }
             }
         }
+        softAssert.assertAll();
+    }
+
+    public void validateMVRDoesNotExist(){
+        Boolean hasRecords = exchDbDataProvider.getMVRDetails();
+        Assert.assertFalse(hasRecords, "Query returned records");
         softAssert.assertAll();
     }
 
@@ -411,6 +421,13 @@ public class DbValidations {
 
     public void verifySsaResponseCodeDb(String code, String memPrefix){
         EsSsaVerificationReqEntity actualResult = exchDbDataProvider.getSsaResponseCode(basicActions.getMemberId(memPrefix));
+        System.out.println(actualResult);
+        softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
+        softAssert.assertAll();
+    }
+
+    public void verifySsaResponseCodeDbByCreatedBy(String code){
+        EsSsaVerificationReqEntity actualResult = exchDbDataProvider.getSsaResponseCodeByCreatedBy();
         System.out.println(actualResult);
         softAssert.assertEquals(actualResult.getRsp_tx_return_code(),code);
         softAssert.assertAll();
@@ -777,8 +794,21 @@ public class DbValidations {
     }
 
     public void validateCyaEligibility() {
+        String age = SharedData.getPrimaryMember().getDob();
+        String applyingForCoverage = SharedData.getPrimaryMember().getApplyingforCov();
         String cyaEligibilityOutcomeDb = exchDbDataProvider.getCyaEligibility();
-        softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddyyyy");
+        LocalDate birthDate = LocalDate.parse(age, formatter);
+        LocalDate currentDate = LocalDate.now();
+        int ageInYears = Period.between(birthDate, currentDate).getYears();
+
+        if(applyingForCoverage.equals("Yes") && residentialState.equals("CO") && ageInYears < 30) {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        } else {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "0");
+        }
         softAssert.assertAll();
     }
 
@@ -795,5 +825,37 @@ public class DbValidations {
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
     }
+    public void validateReasonCode(String expectedReasonCode) {
+        String reasonCode = exchDbDataProvider.getMemberReasonCodeByAccountId();
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason code mismatch!");
+        softAssert.assertAll();
+    }
+
+    public void validateFDSHRetry(List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+
+            EsFDSHRetryControlEntity actualResult = exchDbDataProvider.getEsFDSH_details();
+            System.out.println(actualResult);
+
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                switch (key) {
+                    case "service_type":
+                        softAssert.assertEquals(actualResult.getService_type(), value,"Validation failed for service_type at row " + (i + 1));
+                        break;
+                    case "status":
+                        softAssert.assertEquals(actualResult.getStatus(), value,"Validation failed for status at row " + (i + 1));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + key);
+                }
+            }
+        }
+        softAssert.assertAll();
+    }
+
 }
 

@@ -45,8 +45,6 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
     Then I validate I am on the "Tax status Elmo" page
 
   @SLER-1775 @PageNavigationTaxStatusElmoPage @TAMSmoke
@@ -84,8 +82,6 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
 
     Then I validate I am on the "Tax status Elmo" page
     Then I open current page in new tab
@@ -133,8 +129,6 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
 
-    Then I validate I am on the "Tax status" page
-    And I change the C4 url to "Tax Status Elmo page"
     And I change the C4 url to "Tax Return portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I click Go Back button from chrome browser

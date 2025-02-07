@@ -35,6 +35,7 @@ public class DbDataProvider_Exch {
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
     EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
     EsSelfAttestationDbHandler esSelfAttestationDbHandler = new EsSelfAttestationDbHandler();
+    EsFDSHRetryControlDbHandler esFDSHRetryControlDbHandler = new EsFDSHRetryControlDbHandler();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -381,8 +382,16 @@ public class DbDataProvider_Exch {
         return manualVerifRequestDbHandler.getOptionsFromMVRTables(exchDbQueries.esMVR(manualVerificationType));
     }
 
+    public Boolean getMVRDetails(){
+        return postgresHandler.dbRecordsExisting(exchDbQueries.esMVRFullAccount());
+    }
+
     public EsSsaVerificationReqEntity getSsaResponseCode(String memberId){
         return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerification(memberId));
+    }
+
+    public EsSsaVerificationReqEntity getSsaResponseCodeByCreatedBy(){
+        return manualVerifRequestDbHandler.getSsaResponseCode(exchDbQueries.esSsaVerificationCreatedby());
     }
 
     public List<EnMemberEffectiveDatesEntity> getEnMember_eff_dates(){
@@ -425,6 +434,10 @@ public class DbDataProvider_Exch {
 
     public String getFplPercentDetails() {
         return postgresHandler.getResultFor("fpl_percent",exchDbQueries.fplPercentDetails());
+    }
+
+    public String getMemberReasonCodeByAccountId() {
+        return postgresHandler.getResultFor("reason_code",exchDbQueries.getMemberReasonCodeByAccountId());
     }
 
 
@@ -597,5 +610,9 @@ public class DbDataProvider_Exch {
 
     public String getVLPRetryStatus() {
         return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
+    }
+
+    public EsFDSHRetryControlEntity getEsFDSH_details() {
+        return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
 }

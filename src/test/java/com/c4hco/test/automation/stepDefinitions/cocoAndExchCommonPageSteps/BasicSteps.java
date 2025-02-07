@@ -545,6 +545,12 @@ public class BasicSteps {
             case "Parent/Caretaker":
                 pageUrl = "/eligibleMembersCareTakerForMA";
                 break;
+            case "FullTimeStudent":
+                pageUrl = "/eligibleMembersFullTimeStudentForMA";
+                break;
+            case "Temporarily Absent" :
+                pageUrl = "/eligibleMembersOutOfStateForMA";
+                break;
             default:
                 System.out.println("undefined page ");
                 break;

@@ -124,5 +124,6 @@ Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user -
     Then I enter "1.00" amount on the Elmo OHC HRA page
     Then I select "ICHRA" for HRA type
     And I verify the "Opt Out Secondary" amount "1.00" HRA page data in "Spanish"
-
     And I click on Sign Out in the Header for "Elmo"
+
+

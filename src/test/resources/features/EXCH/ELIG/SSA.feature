@@ -1,5 +1,5 @@
-@MVR
-Feature: Testing Manual Verification Requests (MVRs)
+@SSA
+Feature: Testing SSA Mock Service
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
@@ -7,9 +7,9 @@ Feature: Testing Manual Verification Requests (MVRs)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
 
-  @SLER-1217
-  Scenario: Income MVR
-    And I enter first name "MVRAutomationTest", middle name "", last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
+  @SLER-2112
+  Scenario: Correctable Error Count SSA - FAILURE_RESPONSE_CODE_NO_MATCHING_DOB 3 fails Generate SSN and Citizenship MVR
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -18,19 +18,18 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "012123456" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030004" in the DB
+    And I validate SSA Error for SSN "012123456" on Tell us about yourself page
+    And I click continue on Tell us about yourself page
+    And I validate SSA Error for SSN "012123456" on Tell us about yourself page
     And I click continue on Tell us about yourself page
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
@@ -40,325 +39,7 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
-    Then I click continue on the Race and Ethnicity page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-    Then I click continue on family overview page
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    And I enter employment details with "9000000" income at "Annually" frequency
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
-    Then I click continue on the Employment Summary Page
-    Then I click None of these as additional income option and continue
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click continue on family overview page
-    Then I select "Birth" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$0.00/mo"
-    And I validate MVR details for account
-      |manual_verification_type|manual_verif_status|
-      |Income                  |Open               |
-
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "Income" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-1218
-  Scenario: SSN MVR
-    And I enter first name "MVRAutomationTest", middle name "", last name "OPENSSNMVR" and general mandatory data for "exchange" account creation
-    Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I select "member" from the who are you question
-    And I am a member with SSN "234345678" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
-    Then I answer all Id proofing questions and click continue
-    And I click continue button on Congratulations page
-    Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
-    Then I click Continue on my own button from Manage who helps you page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
-    And I click continue on Tell us about yourself page
-    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
-    Then I click continue on the Race and Ethnicity page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-    Then I click continue on family overview page
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    And I enter employment details with "9000000" income at "Annually" frequency
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
-    Then I click continue on the Employment Summary Page
-    Then I click None of these as additional income option and continue
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click continue on family overview page
-    Then I select "Birth" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$0.00/mo"
-    And I validate MVR details for account
-      |manual_verification_type|manual_verif_status|
-      |SSN                     |Open               |
-
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "SSN" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-1219
-  Scenario: Death MVR
-    And I enter first name "MVRAutomationTest", middle name "", last name "OPENDEATHMVR" and general mandatory data for "exchange" account creation
-    Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I select "member" from the who are you question
-    And I am a member with SSN "345456789" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
-    Then I answer all Id proofing questions and click continue
-    And I click continue button on Congratulations page
-    Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
-    Then I click Continue on my own button from Manage who helps you page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
-    And I click continue on Tell us about yourself page
-    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
-    Then I click continue on the Race and Ethnicity page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-    Then I click continue on family overview page
-    Then I validate I am on the "Financial Help" page
-    And I Apply for financial help
-    Then I select the option "Yes" to employment
-    And I select the option "No" to self employment
-    And I enter employment details with "9000000" income at "Annually" frequency
-    And I select the option "No" to seasonal employment
-    And I select the option "No" to projected income
-    And I click continue on the Employment Info Page
-    Then I click continue on the Employment Summary Page
-    Then I click None of these as additional income option and continue
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click continue on family overview page
-    Then I select "Birth" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    Then I validate that my APTC value is "$0.00/mo"
-    And I validate MVR details for account
-      |manual_verification_type|manual_verif_status|
-      |Death                   |Open               |
-
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "Death" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-1223
-  Scenario: Citizenship MVR
-    And I enter first name "MVRAutomationTest", middle name "", last name "OPENCTZNMVR" and general mandatory data for "exchange" account creation
-    Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I select "member" from the who are you question
-    And I am a member with SSN "567678901" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
-    Then I answer all Id proofing questions and click continue
-    And I click continue button on Congratulations page
-    Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
-    Then I click Continue on my own button from Manage who helps you page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
-    And I click continue on Tell us about yourself page
-    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -395,45 +76,11 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
       |Citizenship             |Open               |
+      |SSN                     |Open               |
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "Citizenship" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-1224
-  Scenario: Incarceration MVR
-    And I enter first name "MVRAutomationTest", middle name "", last name "OPENINCARMVR" and general mandatory data for "exchange" account creation
+  @SLER-2113
+  Scenario: Correctable Error Count SSA - FAILURE_RESPONSE_CODE_NO_MATCHING_DOB corrected
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -442,19 +89,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with SSN "456567890" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "012123456" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030004" in the DB
+    And I validate SSA Error for SSN "012123456" on Tell us about yourself page
+    And I update SSN number to new SSN number "674347684"
     And I click continue on Tell us about yourself page
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
@@ -464,7 +109,77 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    Then I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "9000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate that my APTC value is "$0.00/mo"
+    And I validate MVR details for account
+      |manual_verification_type|manual_verif_status    |last_action_description|
+      |SSN                     |Canceled               |Cancelled after successful SSA call. MemberSSAService.cancelOpenSsaMvrs(...)|
+
+  @SLER-2114
+  Scenario: Correctable Error Count SSA -  FAILURE_RESPONSE_CODE_NO_MATCHING_NAME 3 fails Generate SSN and Citizenship MVR
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with SSN "890901235" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030003" in the DB
+    And I validate SSA Error for SSN "890901235" on Tell us about yourself page
+    And I click continue on Tell us about yourself page
+    And I validate SSA Error for SSN "890901235" on Tell us about yourself page
+    And I click continue on Tell us about yourself page
+    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -500,46 +215,12 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate that my APTC value is "$0.00/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
-      |Incarceration           |Open               |
+      |Citizenship             |Open               |
+      |SSN                     |Open               |
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "Incarceration" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-1225
-  Scenario: American Indian / Alaska Native (AI/AN) MVR
-    And I enter first name "MVRAutomationTest", middle name "", last name "OPENAIANMVR" and general mandatory data for "exchange" account creation
+  @SLER-2115
+  Scenario: Correctable Error Count SSA - FAILURE_RESPONSE_CODE_NO_MATCHING_NAME corrected
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -548,30 +229,27 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "890901235" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030003" in the DB
+    And I validate SSA Error for SSN "890901235" on Tell us about yourself page
+    And I update SSN number to new SSN number "487456578"
+    And I click continue on Tell us about yourself page
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
-    And I select "Yes" for Federally Recognized Tribe option
-    Then I add the tribe details state as "Colorado" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
+    And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -606,47 +284,12 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I wait for hold on content to disappear
     Then I validate that my APTC value is "$0.00/mo"
     And I validate MVR details for account
-      |manual_verification_type     |manual_verif_status|
-      |American Indian/Alaska Native|Open               |
+      |manual_verification_type|manual_verif_status    |last_action_description|
+      |SSN                     |Canceled               |Cancelled after successful SSA call. MemberSSAService.cancelOpenSsaMvrs(...)|
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "American Indian/Alaska Native" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-1228
-  Scenario: Lawful Presence MVR
-    And I enter first name "MVRAutomationTest", middle name "", last name "VLPunex" and general mandatory data for "exchange" account creation
+  @SLER-2123
+  Scenario: Correctable Error Count SSA -  FAILURE_RESPONSE_CODE_NO_MATCHING_NAME_AND_DOB 3 fails Generate SSN and Citizenship MVR
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -655,19 +298,18 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "890901234" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030002" in the DB
+    And I validate SSA Error for SSN "890901234" on Tell us about yourself page
+    And I click continue on Tell us about yourself page
+    And I validate SSA Error for SSN "890901234" on Tell us about yourself page
     And I click continue on Tell us about yourself page
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
@@ -677,18 +319,11 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
-    Then I select "No" for Citizen option
-    Then I select "Yes" for Eligible Immigration Status option
-    Then I select "I-327 Reentry Permit" as Document type
-    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
-    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
-    Then I select "Yes" for name matching the document
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I select "No" for Lawful Permanent Resident
-    Then I select "Administrative order staying removal" for immigration status
-    Then I click continue on the Immigration Status page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -720,46 +355,12 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate that my APTC value is "$0.00/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
-      |Lawful Presence         |Open               |
+      |Citizenship             |Open               |
+      |SSN                     |Open               |
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "Lawful Presence" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-2068
-  Scenario: NON_ESI_MEC_TRICARE MVR
-    And I enter first name "MVRAutomationTest", middle name "NONESIMECTRICARE", last name "Triy" and general mandatory data for "exchange" account creation
+  @SLER-2124
+  Scenario: Correctable Error Count SSA - FAILURE_RESPONSE_CODE_NO_MATCHING_NAME_AND_DOB corrected
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -768,19 +369,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "890901234" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030002" in the DB
+    And I validate SSA Error for SSN "890901234" on Tell us about yourself page
+    And I update SSN number to new SSN number "527389465"
     And I click continue on Tell us about yourself page
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
@@ -790,18 +389,81 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
-    Then I select "No" for Citizen option
-    Then I select "Yes" for Eligible Immigration Status option
-    Then I select "I-327 Reentry Permit" as Document type
-    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
-    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
-    Then I select "Yes" for name matching the document
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I select "No" for Lawful Permanent Resident
-    Then I select "Administrative order staying removal" for immigration status
-    Then I click continue on the Immigration Status page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "9000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate that my APTC value is "$0.00/mo"
+    And I validate MVR details for account
+      |manual_verification_type|manual_verif_status    |last_action_description|
+      |SSN                     |Canceled               |Cancelled after successful SSA call. MemberSSAService.cancelOpenSsaMvrs(...)|
+
+  @SLER-2125
+  Scenario: Correctable Error Count SSA -  FAILURE_RESPONSE_CODE_DOES_NOT_EXIST 3 fails Generate SSN and Citizenship MVR
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with SSN "789890123" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030001" in the DB
+    And I validate SSA Error for SSN "789890123" on Tell us about yourself page
+    And I click continue on Tell us about yourself page
+    And I validate SSA Error for SSN "789890123" on Tell us about yourself page
+    And I click continue on Tell us about yourself page
+    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    Then I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -833,46 +495,12 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate that my APTC value is "$0.00/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
-      |NON_ESI_MEC_TRICARE     |Open               |
+      |Citizenship             |Open               |
+      |SSN                     |Open               |
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "NON_ESI_MEC_TRICARE" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-  @SLER-2069
-  Scenario: NON_ESI_MEC_PEACE_CORPS MVR
-    And I enter first name "MVRAutomationTest", middle name "NONESIMECPEACECORPS", last name "Pecoy" and general mandatory data for "exchange" account creation
+  @SLER-2126
+  Scenario: Correctable Error Count SSA - FAILURE_RESPONSE_CODE_DOES_NOT_EXIST corrected
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -881,19 +509,17 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "789890123" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HE030001" in the DB
+    And I validate SSA Error for SSN "789890123" on Tell us about yourself page
+    And I update SSN number to new SSN number "527389465"
     And I click continue on Tell us about yourself page
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
@@ -903,18 +529,141 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
-    Then I select "No" for Citizen option
-    Then I select "Yes" for Eligible Immigration Status option
-    Then I select "I-327 Reentry Permit" as Document type
-    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
-    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
-    Then I select "Yes" for name matching the document
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I select "No" for Lawful Permanent Resident
-    Then I select "Administrative order staying removal" for immigration status
-    Then I click continue on the Immigration Status page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "9000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate that my APTC value is "$0.00/mo"
+    And I validate MVR details for account
+      |manual_verification_type|manual_verif_status    |last_action_description|
+      |SSN                     |Canceled               |Cancelled after successful SSA call. MemberSSAService.cancelOpenSsaMvrs(...)|
+
+  @SLER-2095
+  Scenario: SSA - Successful SSA response
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with SSN "3343353322" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HS000000" in the DB
+    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    Then I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "9000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate that my APTC value is "$0.00/mo"
+    And I verify that the account has no MVRs
+
+  @SLER-2131
+  Scenario: SSA - Retry SSA Response
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with SSN "222337777" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HX009000" in the DB
+    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    Then I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -946,47 +695,15 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate that my APTC value is "$0.00/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
-      |NON_ESI_MEC_PEACE_CORPS |Open               |
+      |Citizenship             |Open               |
+      |SSN                     |Open               |
+    And I validate the FDSH Retry Details
+      |service_type|status|
+      |SSA         |NEW   |
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "NON_ESI_MEC_PEACE_CORPS" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-
-  @SLER-2070
-  Scenario: NON_ESI_MEC_MEDICARE MVR
-    And I enter first name "MVRAutomationTest", middle name "NONESIMECMEDICARE", last name "Mediy" and general mandatory data for "exchange" account creation
+  @SLER-2141
+  Scenario: SSA - SSA fails at SOAP fault error
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -995,20 +712,15 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "222336666" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HX005001" in the DB
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -1017,18 +729,11 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
-    Then I select "No" for Citizen option
-    Then I select "Yes" for Eligible Immigration Status option
-    Then I select "I-327 Reentry Permit" as Document type
-    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
-    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
-    Then I select "Yes" for name matching the document
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I select "No" for Lawful Permanent Resident
-    Then I select "Administrative order staying removal" for immigration status
-    Then I click continue on the Immigration Status page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -1060,47 +765,12 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I validate that my APTC value is "$0.00/mo"
     And I validate MVR details for account
       |manual_verification_type|manual_verif_status|
-      |NON_ESI_MEC_MEDICARE    |Open               |
+      |Citizenship             |Open               |
+      |SSN                     |Open               |
 
-    Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "NON_ESI_MEC_MEDICARE" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
-
-
-  @SLER-2041
-  Scenario: NON_ESI_MEC_VETERANS_AFFAIRS MVR
-    And I enter first name "MVRAutomationTest", middle name "NONESIMECVETERANSAFFAIRS", last name "Vhpcy" and general mandatory data for "exchange" account creation
+  @SLER-2142
+  Scenario: SSA - TDS (Trsuted Data Source) unavailable
+    And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     Then I apply for the current year
@@ -1109,20 +779,15 @@ Feature: Testing Manual Verification Requests (MVRs)
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    And I am a member with SSN "222335555" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help Exch" page
-    And I click on Find a Broker
-    Then I Search authorized Broker "Maggie Walker"
-    And I click on Search button in find certified broker page
-    And I click more details from the first broker result container
-    And I click Authorized broker
-    And I validate current Broker text exists
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HX005000" in the DB
     Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
@@ -1131,18 +796,11 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    And I select "Prefer not to answer" for race and ethnicity for "MVRAutomationTest"
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     Then I click continue on the Race and Ethnicity page
-    Then I select "No" for Citizen option
-    Then I select "Yes" for Eligible Immigration Status option
-    Then I select "I-327 Reentry Permit" as Document type
-    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
-    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
-    Then I select "Yes" for name matching the document
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-    Then I select "No" for Lawful Permanent Resident
-    Then I select "Administrative order staying removal" for immigration status
-    Then I click continue on the Immigration Status page
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
@@ -1173,40 +831,73 @@ Feature: Testing Manual Verification Requests (MVRs)
     And I wait for hold on content to disappear
     Then I validate that my APTC value is "$0.00/mo"
     And I validate MVR details for account
-      |manual_verification_type    |manual_verif_status|
-      |NON_ESI_MEC_VETERANS_AFFAIRS|Open               |
+      |manual_verification_type|manual_verif_status|
+      |Citizenship             |Open               |
+      |SSN                     |Open               |
 
-    Then I click on view results and shop
-    And I click continue on application results page
+  @SLER-2143
+  Scenario: SSA - Transaction Failed at SSA
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with SSN "222334444" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    And I validate the SSA response code is "HX000000" in the DB
+    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    Then I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "9000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "MVRAutomationTest"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
-
-    And I wait for 7000 milliseconds
-    Then I log into the CRM system
-    Then I search for user's Email
-    Then I handle the search results page
-    Then I open the "MVRDVR" Tab on contact page
-    Then I open the "NON_ESI_MEC_VETERANS_AFFAIRS" MVR
-    Then I check that the MVR has a status of "Open"
-    Then I sign out of CRM
+    Then I validate that my APTC value is "$0.00/mo"
+    And I validate MVR details for account
+      |manual_verification_type|manual_verif_status|
+      |Citizenship             |Open               |
+      |SSN                     |Open               |
