@@ -12,7 +12,7 @@ Feature:Password reset error validation English/Spanish
     And I validate I am on the "Account Overview" page
     Then I click on Get Assistance in the "Exch NonElmo" Header
     And I click on Find Expert Assistance in the "individual dashboard" Header
-    Then I click on Sign Out in the Header for "WhoHelpsYouPage"
+    Then I click on Sign Out in the Header for "Portal"
     Then I wait for 1000 milliseconds
     And I validate I am on the "Login" page
     Then I click create forgot "password"

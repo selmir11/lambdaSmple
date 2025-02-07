@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages;
 
+import com.c4hco.test.automation.Dto.AdminDetails;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.*;
@@ -175,13 +176,25 @@ public class LoginPage {
     public void loginAsAdminUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
         basicActions.refreshPage();
         basicActions.waitForElementToBePresent(usernameAdmin, 40);
+        String adminEmail = "";
+        String adminPwd = "";
         if (SharedData.getEnv().equals("staging")) {
-            usernameAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(stgUser));
-            passwordAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(stgPW));
+            adminEmail = ApplicationProperties.getInstance().getProperty(stgUser);
+            adminPwd = ApplicationProperties.getInstance().getProperty(stgPW);
+
         } else {
-            usernameAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(qaUser));
-            passwordAdmin.sendKeys(ApplicationProperties.getInstance().getProperty(qaPW));
+            adminEmail = ApplicationProperties.getInstance().getProperty(qaUser);
+            adminPwd = ApplicationProperties.getInstance().getProperty(qaPW);
         }
+        usernameAdmin.sendKeys(adminEmail);
+        passwordAdmin.sendKeys(adminPwd);
+        AdminDetails adminDetails = SharedData.getAdminDetails();
+        if(adminDetails==null){
+            adminDetails = new AdminDetails();
+        }
+        adminDetails.setEmail(adminEmail);
+        adminDetails.setPassword(adminPwd);
+      SharedData.setAdminDetails(adminDetails);
         signAdmin.click();
     }
 

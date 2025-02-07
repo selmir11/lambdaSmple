@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Period;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -793,8 +794,21 @@ public class DbValidations {
     }
 
     public void validateCyaEligibility() {
+        String age = SharedData.getPrimaryMember().getDob();
+        String applyingForCoverage = SharedData.getPrimaryMember().getApplyingforCov();
         String cyaEligibilityOutcomeDb = exchDbDataProvider.getCyaEligibility();
-        softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        String residentialState = SharedData.getPrimaryMember().getResAddress().getAddressState();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddyyyy");
+        LocalDate birthDate = LocalDate.parse(age, formatter);
+        LocalDate currentDate = LocalDate.now();
+        int ageInYears = Period.between(birthDate, currentDate).getYears();
+
+        if(applyingForCoverage.equals("Yes") && residentialState.equals("CO") && ageInYears < 30) {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "1");
+        } else {
+            softAssert.assertEquals(cyaEligibilityOutcomeDb, "0");
+        }
         softAssert.assertAll();
     }
 
@@ -811,5 +825,11 @@ public class DbValidations {
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
     }
+    public void validateReasonCode(String expectedReasonCode) {
+        String reasonCode = exchDbDataProvider.getMemberReasonCodeByAccountId();
+        softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason code mismatch!");
+        softAssert.assertAll();
+    }
+
 }
 
