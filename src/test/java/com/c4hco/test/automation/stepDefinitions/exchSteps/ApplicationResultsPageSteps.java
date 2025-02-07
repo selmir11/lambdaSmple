@@ -67,4 +67,7 @@ public class ApplicationResultsPageSteps {
 
     @Then("I click the Verify My Information button")
     public void iClickVerifyMyInfoYes(){applicationResultsPage.clickVerifyMyInfo();}
+
+    @And("I click back button on Application result page")
+    public void iClickBackButton() {applicationResultsPage.iClickOnBackButton();}
 }

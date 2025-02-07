@@ -37,6 +37,7 @@ public class DbDataProvider_Exch {
     EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
     EsSelfAttestationDbHandler esSelfAttestationDbHandler = new EsSelfAttestationDbHandler();
     BasicActions basicActions = new BasicActions();
+    EsFDSHRetryControlDbHandler esFDSHRetryControlDbHandler = new EsFDSHRetryControlDbHandler();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesQuery());
@@ -626,7 +627,11 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
     }
 
+
     public List<String> getSubscribers(String memId) {
         return postgresHandler.getResultListFor("SubscriberInd", exchDbQueries.getMedSubscribers(memId));
+	}
+    public EsFDSHRetryControlEntity getEsFDSH_details() {
+        return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
 }
