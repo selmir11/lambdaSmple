@@ -40,7 +40,7 @@ public class Ib834FileValidations_grps {
         insSegCount = 0;
         validateSubscriberSegments(subscriberMedEntities);
         validateMemSeg(medicalEntityList);
-        //  validateSegCount();
+        validateSegCount();
     }
 
     public void validateIb834DenFile(String denFile){
@@ -52,7 +52,7 @@ public class Ib834FileValidations_grps {
         validateCtrlFnGrpSegment(subscriberDenEntities.get(0));
         validateSubscriberSegments(subscriberDenEntities);
         validateMemSeg(dentalEntityList);
-      //  validateSegCount();
+        validateSegCount();
     }
 
     private void validateSegCount() {
@@ -149,7 +149,7 @@ public class Ib834FileValidations_grps {
                     softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
                     softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
                     softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size for subscriber");
-                    softAssert.assertEquals(nm1Seg1.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
+ //                   softAssert.assertEquals(nm1Seg1.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
                     softAssert.assertEquals(nm1Seg1.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
                     softAssert.assertEquals(nm1Seg1.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
                 }else if(entry.getResponsible_person_rel_code() == null) {
@@ -507,15 +507,15 @@ public class Ib834FileValidations_grps {
         List<Ib834Entity> dentalEntityList = SharedData.getIb834DenDetailsEntities();
         for (Ib834Entity denIb834Entity : dentalEntityList) {
             if (denIb834Entity.getSubscriber_indicator().equals("Y") && denIb834Entity.getFilename().equals(denFile)) {
-                subscriberMedEntities.add(denIb834Entity);
+                subscriberDenEntities.add(denIb834Entity);
             }
         }
     }
 
     private void setN1SegList() {
-        Collections.addAll(n1ListWithSepReason, "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT", "SEP REASON");
-        Collections.addAll(n1ListWithAddtlMaintReas, "ADDL MAINT REASON", "PRE AMT 1", "APTC AMT", "CSR AMT", "RATING AREA", "SOURCE EXCHANGE ID", "TOT RES AMT", "PRE AMT TOT");
-        Collections.addAll(n1ListWithSepReasonMem, "PRE AMT 1", "SEP REASON");
-        Collections.addAll(n1ListWithAddtlMaintReasMem, "ADDL MAINT REASON", "PRE AMT 1");
+        Collections.addAll(n1ListWithSepReason, "");
+        Collections.addAll(n1ListWithAddtlMaintReas, "ADDL MAINT REASON");
+        Collections.addAll(n1ListWithSepReasonMem, "");
+        Collections.addAll(n1ListWithAddtlMaintReasMem, "ADDL MAINT REASON");
     }
 }

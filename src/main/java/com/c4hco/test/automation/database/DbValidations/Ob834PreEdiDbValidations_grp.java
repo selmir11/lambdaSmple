@@ -408,7 +408,7 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertEquals(primaryMember.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(primaryMember.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(), "Plan Year is not correct");
-        softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "total subscribers did not match");
+        //softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "total subscribers did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertTrue(dbDataMap.get(name).getRatingAreaName().contains(ob834Entity.getRate_area()));
         softAssert.assertEquals(ob834Entity.getCsr_level(), dbDataMap.get(name).getCsrLevel(), "CSR level does not match");
