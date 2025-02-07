@@ -632,7 +632,7 @@ public class COCO_Ob834FileValidations {
         edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
 
         transactionList = edi834TransactionDetails.getTransactionList();
-        transaction = transactionList.get(2); // verifying backdated policy data - 1 file will have 3 transaction - initial 021 , cancelled 024 and backdated 021
+        transaction = transactionList.get(0);
     }
 
     private void setN1SegList() {
