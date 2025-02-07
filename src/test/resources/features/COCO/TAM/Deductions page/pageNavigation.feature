@@ -157,3 +157,50 @@ Feature: Tests related to the Deductions page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+    @SLCR-759
+    Scenario: SLCR-759 Page Navigation - Member Deductions CoCo page
+      Then I validate I am on the "CoCo Deductions" page
+      And I select "None of these" as deductions option
+      And I select continue on the Deductions CoCo page
+      And I validate I am on the "CoCo Income Summary" page
+      And I select go back on the income summary CoCo page
+      Then I validate I am on the "CoCo Deductions" page
+      And I select Back on the Deductions CoCo page
+      And I select continue on the Additional Income CoCO page
+      And I validate I am on the "CoCo Deductions" page
+      And I validate page Navigation works for Header and Footer hyperlink text
+        | HyperLinkText      | ExpectedPageTitle        | ContainsUrl                                      |
+        | Privacy Policy     | Privacy Policy           | coco/InformationPortal/privacyPolicy             |
+        | Terms Of Use       | Terms of Use             | coco/InformationPortal/termsOfUse                |
+        | Contact Us         | Contact Us               | coco/InformationPortal/contactUs                 |
+        | Learn More         | Contact Us               | coco/InformationPortal/contactUs                 |
+        | Apply for Coverage | Welcome Portal           | coco/WelcomePortal/welcome                       |
+        | Find a Plan        | ApplicationResultsPortal | coco/ApplicationResultsPortal/applicationResults |
+        | My Account         | User Profile             | coco/UserProfileAdmin/profile                    |
+        | CoCo Logo          | Welcome Portal           | coco/WelcomePortal/welcome                       |
+        | UserName           | User Profile             | coco/UserProfileAdmin/profile                    |
+
+    #Navigate to Find Expert Assistance page
+      And I validate I am on the "CoCo Deductions" page
+      And I click on Find Expert Assistance in the "CoCo" Header
+      Then I validate I am on the "Find Expert Help" page
+      And I click the back button from Find Expert Help page
+      And I apply for the current year in CoCo
+      Then I validate I am on the "Find Expert Help" page
+      And I click Continue on my own button from Manage who helps you page
+      Then I validate I am on the "CoCo Family Overview" page
+      Then I click EditUpdate on Family Overview page for "Primary"
+      Then I click Save and Continue only on the tell us about yourself page
+      And I click continue on the Add info for yourself page
+      Then I validate I am on the "Elmo Race and Ethnicity" page
+      And I click save and continue on the Race and Ethnicity page
+      And I validate I am on the "Employment Income" page
+      And I click continue on the Employment income page
+      Then I validate I am on the "CoCo Additional Income" page
+      And I select continue on the Additional Income CoCO page
+
+    #Navigate to Sign In Page
+      And I validate I am on the "CoCo Deductions" page
+      And I click on Sign Out in the Header for "Elmo"
+      And I validate I am on the "Login" page
