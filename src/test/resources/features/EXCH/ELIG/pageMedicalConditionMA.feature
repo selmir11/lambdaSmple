@@ -5,7 +5,7 @@ Feature: Testing will verify text and navigation for Medical Condition and Disab
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2149-WIP @PageText
+  @SLER-2149 @PageText
   Scenario: SLER-2149 - ELIG - verify text on Medical Condition and Disability Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -103,22 +103,20 @@ Feature: Testing will verify text and navigation for Medical Condition and Disab
     Then I validate I am on the "Parent/Caretaker" page
     Then I select "No" for under the age of 19 question and Continue on ParentCaretaker MA page
 
+    Then I validate I am on the "Temporarily OutOfState" page
     Then I select "No" temporarily absent from Colorado question and Continue on Out Of State MA page
 
     Then I validate I am on the "FullTimeStudent" page
     Then I select "No" for attending school full-time question and Continue on Full-Time Student MA page
 
-    Then I validate I am on the "MedicalCondtion" page
-
-
-
-    #And I validate the "English" text on the FullTime Student page
+    Then I validate I am on the "Medical Condtion" page
+    And I validate the "English" text on the Medical Condition MA page
 
     And I change the language from header to "Spanish NonElmo"
-    #And I validate the "Spanish" text on the FullTime Student page
+    And I validate the "Spanish" text on the Medical Condition MA page
 
     And I change the language from header to "English NonElmo"
-    #And I click continue on the FullTime Student page
+    And I click continue on the Medical Condition MA page
     And I click on Sign Out in the Header for "NonElmo"
 
 
