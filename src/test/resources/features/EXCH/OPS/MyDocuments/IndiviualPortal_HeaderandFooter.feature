@@ -184,3 +184,52 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
       And I change the language from header to "English"
       Then  I click on Sign Out in the Header for "Elmo"
 
+
+
+  @SLER-2129
+  Scenario:  Verify Text on upload doc modal in My documents from manage client via Admin Portal [ RT-1907]]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I click on upload another document
+    And I validate Modal texts on upload a document pop up
+      |Upload a document|
+      |Tell us more about this document|
+      |What type of document is this?  |
+      |Which document are you submitting?|
+      |Select a file from your device    |
+      |Browse My Files                   |
+      |Only one document can be uploaded at a time using this window|
+      |Cancel                                                       |
+      | Upload My Document |
+    Then I validate font and Background color of Document popup
+    And I close button to close modal
+    And I click on upload another document
+    And I click on cancel button on upload document pop up
+    And I change the language from header to "Spanish"
+    And I click on upload another document in spanish
+    And I validate Modal texts on upload a document pop up
+      |Cargar un documento|
+      |Díganos más sobre este documento|
+      |¿Qué tipo de documento es este?|
+      |¿Qué documento está enviando?|
+      |Seleccione un archivo de su dispositivo|
+      |Explorar Mis Archivos|
+      |Solo se puede cargar un documento a la vez usando esta ventana|
+      |Cancelar|
+      |Cargar Mi Documento                                       |
+    And I close button to close modal
+    And I click on upload another document in spanish
+    And I click on cancel button on upload document pop up
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+

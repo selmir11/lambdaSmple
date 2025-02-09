@@ -230,6 +230,12 @@ public class BasicSteps {
             case "Find Expert Help Exch Spanish":
                 pageUrl = "broker-portal/individual/find-expert-help?lang=es";
                 break;
+            case "Find a Broker":
+                pageUrl = "broker-portal/individual/find-broker";
+                break;
+            case "Find a Broker OBO":
+                pageUrl = "broker-portal/csr/find-broker";
+                break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;
@@ -545,8 +551,14 @@ public class BasicSteps {
             case "Parent/Caretaker":
                 pageUrl = "/eligibleMembersCareTakerForMA";
                 break;
-            case "Temporarily Absent" :
+            case "FullTimeStudent":
+                pageUrl = "/eligibleMembersFullTimeStudentForMA";
+                break;
+            case "Temporarily OutOfState" :
                 pageUrl = "/eligibleMembersOutOfStateForMA";
+                break;
+            case "Medical Condtion":
+                pageUrl = "/eligibleMembersMedicalConditionForMA";
                 break;
             default:
                 System.out.println("undefined page ");

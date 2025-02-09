@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class COCO_PolicyTableDbValidations {
@@ -22,23 +23,23 @@ public class COCO_PolicyTableDbValidations {
     PlanDbData medicalPlanDbData = new PlanDbData();
     MemberDetails subscriber = new MemberDetails();
 
-    public void recordsValidations(String policyStatus) {
+    public void recordsValidationsPolicyTable(String policyStatus, List<Map<String, String>> expectedValues) {
         setData(policyStatus);
-        medicalRecordsValidations();
+        medicalRecordsValidations(policyStatus,expectedValues);
         softAssert.assertAll();
     }
 
-   private void medicalRecordsValidations() {
+   private void medicalRecordsValidations(String policyStatus, List<Map<String, String>> expectedValues) {
         for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
-                validateSubscriberMedDetails(policyTablesEntity);
+                validateSubscriberMedDetails(policyTablesEntity,policyStatus,expectedValues.get(0));
             } else {
-                validateDependentMedDetails(policyTablesEntity);
+                validateDependentMedDetails(policyTablesEntity,policyStatus,expectedValues.get(0));
             }
-            medValidationsCommonForAllMembers(policyTablesEntity);
+            medValidationsCommonForAllMembers(policyTablesEntity,expectedValues.get(0));
         }
     }
-    private void validateMedForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member) {
+    private void validateMedForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member,String policyStatus) {
         validateSubmittedBy(policyTablesEntity);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), member.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), member.getLastName(), "Subscriber last name matches");
@@ -49,7 +50,7 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getPlan_year(), SharedData.getPlanYear(), " Plan year does not match");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "effectuated indicator does not match in en policy ah");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
+        softAssert.assertEquals(policyTablesEntity.getPolicy_status(), policyStatus, "Policy status does not match");
         softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
         softAssert.assertNull(policyTablesEntity.getCsr_level_epfh(), "epfh CSR level does not match");
         softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),"00", "emcfh CSR level does not match");
@@ -58,11 +59,11 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertAll();
     }
 
-    private void validateDependentMedDetails(PolicyTablesEntity policyTablesEntity) {
+    private void validateDependentMedDetails(PolicyTablesEntity policyTablesEntity,String policyStatus,Map<String, String> expectedValues) {
         List<MemberDetails> members = SharedData.getMembers();
         for (MemberDetails member : members) {
             if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
-                validateMedForDependents(policyTablesEntity, dbData, member);
+                validateMedForDependents(policyTablesEntity, dbData, member, policyStatus);
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Medical Policy total plan premium amount for member does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_premium_reduction_amt(), "Medical APTC amount from policy table does not match");
@@ -77,7 +78,7 @@ public class COCO_PolicyTableDbValidations {
         }
     }
 
-    private void validateSubscriberMedDetails(PolicyTablesEntity policyTablesEntity) {
+    private void validateSubscriberMedDetails(PolicyTablesEntity policyTablesEntity,String policyStatus,Map<String, String> expectedValues) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), subscriber.getMedicalPremiumAmt().replace(",", ""), "Medical Policy total plan premium amount does not match");
@@ -86,8 +87,8 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getMedicalPremiumAmt().replace(",", ""), "Medical Policy total responsible amount does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), medicalPlanDbData.getCsrAmt(), "Medical Policy total CSR amount does not match");
-        softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical financial start date does not match");
-        softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical financial end date does not match");
+        softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("FinancialStartDate")), "Medical financial start date does not match");
+        softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("FinancialEndDate")), "Medical financial end date does not match");
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
         softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(subscriber.getAccount_id()), "Subscriber account id does not match");
@@ -97,7 +98,7 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertEquals(policyTablesEntity.getPlan_year(), SharedData.getPlanYear(), " Plan year does not match");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_eph(), "0", "Coverage type 1, effectuated indicator does not match in en policy ah");
         softAssert.assertEquals(policyTablesEntity.getEffectuated_ind_epmh(), "0", "En effectuated indicator does not match in en policy member ah");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_status(), "SUBMITTED", "Policy status does not match");
+        softAssert.assertEquals(policyTablesEntity.getPolicy_status(), policyStatus, "Policy status does not match");
         softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbData.getRatingAreaId(), "Rating area id does not match");
         softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), "00", "epfh CSR level does not match");
         softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),"00", "emcfh CSR level does not match");
@@ -107,16 +108,19 @@ public class COCO_PolicyTableDbValidations {
         softAssert.assertAll();
     }
 
-    private void medValidationsCommonForAllMembers(PolicyTablesEntity policyTablesEntity) {
+    private void medValidationsCommonForAllMembers(PolicyTablesEntity policyTablesEntity,Map<String, String> expectedValues) {
         softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbData.getBaseId() + "-00", "Hios id does not match");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
-        softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
+        softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("PolicyStartDate")), "Medical policy start date does not match");
+        softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("PolicyEndDate")), "Medical policy end date does not match");
 
-        softAssert.assertEquals(policyTablesEntity.getCoverage_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate(), "policy member coverage start date does not match");
-        softAssert.assertEquals(policyTablesEntity.getCoverage_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageEndDate(), "policy member coverage end date does not match");
+        softAssert.assertEquals(policyTablesEntity.getCoverage_start_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("CoverageStartDate")), "policy member coverage start date does not match");
+        softAssert.assertEquals(policyTablesEntity.getCoverage_end_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("CoverageEndDate")), "policy member coverage end date does not match");
 
-        softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical member financial start date does not match");
-        softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
+        softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("FinancialStartDate")), "Medical member financial start date does not match");
+        softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), basicActions.getDateBasedOnRequirement(expectedValues.get("FinancialEndDate")), "Medical member financial end date does not match");
+
+        softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), expectedValues.get("PolicyMemberCoverageStatus"), "Policy member coverage status does not match");
+
         softAssert.assertAll();
     }
     private void setData(String policyStatus) {
