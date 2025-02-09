@@ -627,11 +627,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
     }
 
-    public EsFDSHRetryControlEntity getEsFDSH_details() {
-        return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
-    }
-
     public List<String> getSubscribers(String memId) {
         return postgresHandler.getResultListFor("SubscriberInd", exchDbQueries.getMedSubscribers(memId));
+	}
+    public EsFDSHRetryControlEntity getEsFDSH_details() {
+        return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
 }
