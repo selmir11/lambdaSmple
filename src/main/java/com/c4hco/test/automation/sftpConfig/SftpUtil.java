@@ -171,6 +171,25 @@ public class SftpUtil {
             e.printStackTrace();
         }
     }
+    public void checkEdiFileLocalOrSftp(String filename,String remoteFilePath){
+        String sftpFolderPath = SharedData.getLocalPathToDownloadFile();
+
+        try {
+            File file = new File(sftpFolderPath + "\\" + filename);
+        if (file.exists()) {
+            System.out.println("File found in the local folder");
+        }
+        else {
+            String sftpDownloadPath = getLocalSftpDownloadPath();
+            SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
+            downloadFileWithSftp(remoteFilePath, filename);
+            System.out.println("File found in the SFTP folder");
+        }
+    }catch (Exception e){
+        e.printStackTrace();
+        Assert.fail("!!EDI File looking for is not found!!");
+    }
+    }
 
     public void readIb999File(String filename){
         String sftpFolderPath = SharedData.getLocalPathToDownloadFile();

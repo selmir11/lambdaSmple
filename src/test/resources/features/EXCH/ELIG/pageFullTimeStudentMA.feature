@@ -1,12 +1,12 @@
 @ELIG
-Feature: Testing will verify text and navigation for Caretaker page (Medicaid eligibilty required)
+Feature: Testing will verify text and navigation for Full Time Student page (Medicaid eligibilty required)
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2083 @PageText
-  Scenario: SLER-2083 - ELIG - verify text on Out of State Page
+  @SLER-2116 @PageText
+  Scenario: SLER-2116 - ELIG - verify text on Full Time Student Page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -102,14 +102,17 @@ Feature: Testing will verify text and navigation for Caretaker page (Medicaid el
 
     Then I validate I am on the "Parent/Caretaker" page
     Then I select "No" for under the age of 19 question and Continue on ParentCaretaker MA page
-    And I click continue on the Caretaker page
 
-    Then I validate I am on the "Temporarily OutOfState" page
-    And I validate the "English" text on the Out of State MA page
+    Then I select "No" temporarily absent from Colorado question and Continue on Out Of State MA page
+
+    Then I validate I am on the "FullTimeStudent" page
+    And I validate the "English" text on the FullTime Student page
+
     And I change the language from header to "Spanish NonElmo"
-    And I validate the "Spanish" text on the Out of State MA page
+    And I validate the "Spanish" text on the FullTime Student page
+
     And I change the language from header to "English NonElmo"
-    And I click continue on the Out of State MA page
+    And I click continue on the FullTime Student page
     And I click on Sign Out in the Header for "NonElmo"
 
 
