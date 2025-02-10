@@ -12,5 +12,5 @@ Feature: OPS: COCO: Search buttons Create account button - CCRT-138
     And I wait for 300 milliseconds
     And I enter duplicate email data for account creation for "coco"
     Then I validate the error messages in "coco" for email already exists
-    And I click on Submit button to see the error stays
+    And I click on Submit button to see the error as A valid Email is required
     And I validate I am on the "Create Account" page
