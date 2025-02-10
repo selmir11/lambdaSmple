@@ -195,7 +195,7 @@ public class CreateAccountPageSteps {
     public void iVerifyErrorMessagesForEamilAlreadyExisting(String appType) {
         createAccountPage.verifyErrorMessagesForEamilAlreadyExisting(appType);
     }
-    @And("I click on Submit button to see the error stays")
+    @And("I click on Submit button to see the error as A valid Email is required")
     public void iClickOnSubmitButtonToSeeTheError() {
         createAccountPage.clickOnSubmitButtonToSeeTheErrorStays();
     }
