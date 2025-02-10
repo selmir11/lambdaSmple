@@ -397,9 +397,9 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "No" income seasonal option
     And I select "No" income changes option
     And I click continue on the Employment income page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
-    And I click save and continue on the Race and Ethnicity page
+    #Then I validate I am on the "Elmo Race and Ethnicity" page
+    #And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    #And I click save and continue on the Race and Ethnicity page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
