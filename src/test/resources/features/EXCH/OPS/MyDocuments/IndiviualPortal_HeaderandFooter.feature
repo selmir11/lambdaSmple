@@ -233,3 +233,36 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
 
+
+  @SLER-2140
+  Scenario: Verify English and Spanish Text for Document and upload page [RT-1975]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I verify the page text on the My Documents Page
+      | My Documents and Letters |
+      | We need more information to confirm or verify what you told us in your application. |
+      | Help me understand this page                                                        |
+      | Information We Need                                                                 |
+      | Upload another document |
+      | Past Documents and Letters |
+    And I click on upload another document
+    And I click on cancel button on upload document pop up
+    And I change the language from header to "Spanish"
+    And I verify the page text on the My Documents Page
+      | Mis Documentos y Cartas |
+      | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
+      | Ayuda para entender esta página                                                        |
+      | Información que Necesitamos                                                                 |
+      | Cargar otro documento |
+      | Documentos y Cartas Anteriores |
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+
