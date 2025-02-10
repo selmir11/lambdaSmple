@@ -238,6 +238,18 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//div[@class='doc-subtype-select drop-down-error']")
     WebElement redBorder_categoryDrpDwnError;
 
+    @FindBy(xpath = "//h3[@class='we-need-doc body-text-1']")
+    WebElement weNeedDocText;
+
+    @FindBy(xpath = "//a[@class='link-text-1 clickable']")
+    List<WebElement> helpMeToUnderstandText;
+
+    @FindBy(id= "documentsUploadTitle")
+    WebElement informationText;
+
+    @FindBy(id= "uploadAnother")
+    WebElement UploadDocumentText;
+
 
 
     public void ClickLinkMyDocsWelcomePage() {
@@ -849,5 +861,14 @@ public class MyDocumentsPage {
         softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
         softAssert.assertAll();
     }
-
+    public void verifyTextonDocumentPage(List<String > data) {
+        basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
+        softAssert.assertEquals(myDocumentsTitle.getText(),data.get(0), "Header Text Not Match");
+        softAssert.assertEquals(weNeedDocText.getText(),data.get(1), "We need more text not match");
+        softAssert.assertEquals(helpMeToUnderstandText.get(0).getText(),data.get(2), "Help me to understand text not match");
+        softAssert.assertEquals(informationText.getText(),data.get(3), "Information text not match");
+        softAssert.assertEquals(UploadDocumentText.getText(),data.get(4), "Upload another link text not match");
+        softAssert.assertEquals(myDocumentsSubTitle.getText(),data.get(5), "Past Documents and Letters Text not match");
+        softAssert.assertAll();
+    }
 }
