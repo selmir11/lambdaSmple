@@ -1,7 +1,7 @@
 @OPS
 Feature: My Document Home Page validations
 
-  @SLER-2090 @SOLRegression
+  @SLER-2090 @OPSRegression
   Scenario: OPS MyDocs Navigating to file explorer[RT-1819]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -23,7 +23,7 @@ Feature: My Document Home Page validations
     And I close button to close modal
     Then I see the username that I am currently logged into
 
-  @SLER-2109 @SOLRegression
+  @SLER-2109 @OPSRegression
   Scenario: OPS MyDocs Select Type and checks errors[RT-1938]
     Given I open the login page on the "admin" portal
     And I refresh the page
