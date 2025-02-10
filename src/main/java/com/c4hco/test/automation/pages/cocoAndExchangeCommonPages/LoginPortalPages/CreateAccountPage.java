@@ -1040,7 +1040,7 @@ public class CreateAccountPage {
         submitButton.click();
         basicActions.waitForElementToBePresent(createAccountEmailMsg, 10);
         softAssert.assertEquals(createAccountEmailMsg.getText(),  "Email (This will be your Username)");
-        // softAssert.assertEquals(emailValidErrorMessage.getText(),  "A valid Email is required");
+        softAssert.assertEquals(emailValidErrorMessage.getText(),  "A valid Email is required");
         softAssert.assertAll();
 
     }
