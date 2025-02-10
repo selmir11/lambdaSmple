@@ -408,7 +408,7 @@ Feature: Page Text-Income Summary Page
     Then I validate I am on the "Login" page
 
   @SLER-2128 @PageTextIncomeSummaryPage
-  Scenario: SLER-2128 ELIG-Income Summary-Page Text[RT-1000]
+  Scenario: ELIG-Income Summary-Page Text - English[RT-1000]
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "45000.00" at frequency "Annually"
@@ -448,3 +448,46 @@ Feature: Page Text-Income Summary Page
     Then I verify the following text along with the dollar sign after clicking yes button to the Income different than the amount Question
       |Enter your projected income in 2025.|
       |annual amount                       |
+
+  @SLER-2139 @PageTextIncomeSummaryPage
+  Scenario: ELIG-Income Summary-Page Text - Spanish[RT-1000]
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "45000.00" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
+    Then I validate I am on the "Additional income" page
+    Then I click "Income from rental property" as additional income option with "20000.00" amount at "Annually" frequency
+    Then I click continue on the Additional Income page
+    And I validate I am on the "Deductions" page
+    Then I click "Pre-tax retirement account contribution" as deduction option with "15000.00" amount at "Annually" frequency
+    Then I click continue on the Deductions page
+    Then I validate I am on the "Income Summary" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I Verify the following text in Income Summary page and verify whether the Company name is present or not
+      |Ingresos:|
+      |Resumen|
+      |Ingresos|
+      |$65,000.00|
+      |$45,000.00|
+      |Ingresos por renta de propiedades|
+      |$20,000.00                 |
+      |Deducciones|
+      |$15,000.00                 |
+      |Aporte a la cuenta de retiro antes de impuestos|
+      |$15,000.00                             |
+      |Ingreso anual total $50,000.00         |
+      |Ingreso menos deducciones = Ingreso anual total|
+      |Ingresos que proyecta                             |
+      |¿Conforme a la información que ha proporcionado, hemos calculado su ingreso anual como se menciona anteriormente. ¿Espera que sus ingresos sean diferentes a la cantidad que calculamos anteriormente para 2025?|
+      |Sí                                                                                                                                                                                                 |
+      |No                                                                                                                                                                                                  |
+      |Volver                                                                                                                                                                                             |
+      |Guardar y continuar                                                                                                                                                                                  |
+      |Ayuda                                                                                                                                                                                                |
+    Then I verify the following text along with the dollar sign after clicking yes button to the Income different than the amount Question
+      |Indique los ingresos que proyecta tener en 2025.|
+      |Cantidad anual                       |

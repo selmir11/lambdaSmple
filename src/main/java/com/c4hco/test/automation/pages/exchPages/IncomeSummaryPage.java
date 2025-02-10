@@ -275,6 +275,41 @@ public class IncomeSummaryPage {
         softAssert.assertAll();
     }
 
+    public void verifyTextInIncomeSummaryPage(List<String> dataText){
+        basicActions.waitForElementToBePresent(hdr_Income,15);
+        softAssert.assertEquals(hdr_Income.getText(), dataText.get(0) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(hdr_IncomeSummary.getText(), dataText.get(1), "Summary Title Not matching");
+        softAssert.assertEquals(incomeSubHeadingLabel.getText(), dataText.get(2), "Income subheading label not matching");
+        softAssert.assertEquals(incomeTotalAmount.getText(), dataText.get(3), "Total Income amount Not matching");
+        softAssert.assertTrue(companyOrJobName.isDisplayed(), "Company or Job name is not getting displayed"); // Verifying whether job name or company name exists
+        softAssert.assertEquals(companyOrJobAmount.getText(), dataText.get(4), "Company or Job amount Not matching");
+        softAssert.assertEquals(additionalIncomeName.getText(), dataText.get(5), "Additional Income name not matching");
+        softAssert.assertEquals(additionalIncomeAmount.getText(), dataText.get(6), "Additional Income amount not matching");
+        softAssert.assertEquals(deductionsSubHeadingLabel.getText(), dataText.get(7), "Deductions subheading label not matching");
+        softAssert.assertEquals(deductionsTotalAmount.getText(), dataText.get(8), "Total Deduction amount not matching");
+        softAssert.assertEquals(deductionName.getText(), dataText.get(9), "Deduction name not matching");
+        softAssert.assertEquals(deductionAmount.getText(), dataText.get(10), deductionName + " Amount not matching.");
+        softAssert.assertEquals(totalAnnualIncome.getText(), dataText.get(11), "Total Annual Income amount or label not matching");
+        softAssert.assertEquals(IncomeMinusDeductions.getText(), dataText.get(12), "IncomeMinusDeductions label not matching");
+        softAssert.assertEquals(ProjectedIncomeLabel.getText(), dataText.get(13), "Projected Income label not matching");
+        softAssert.assertEquals(IncomeDifferentThanTheAmountQuestion.getText(), dataText.get(14), "Income Different than the amount question not matching");
+        softAssert.assertEquals(projectedIncomeYes.getText(), dataText.get(15), "Projected Income Yes button label not matching");
+        softAssert.assertEquals(projectedIncomeNo.getText(), dataText.get(16), "Projected Income No button label not matching");
+        softAssert.assertEquals(goBackBtn.getText().trim(), dataText.get(17), "Go Back button label not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getText(), dataText.get(18), "Save and continue button label not matching");
+        softAssert.assertEquals(helpSide.getText(), dataText.get(19), "Help button label not matching");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextAfterClickingYesToDifferentIncomeQuestion(List<String> dataText){
+        basicActions.waitForElementToBePresent(projectedIncomeYes,15);
+        projectedIncomeYes.click();
+        softAssert.assertEquals(enterProjectedIncomeInCurrentYearLabel.getText(), dataText.get(0), "Enter Projected Income In Current Year label not matching");
+        softAssert.assertEquals(ProjectedIncomeInputTextField.getAttribute("Placeholder"), dataText.get(1), "annual amount label for Projected Income input text field not matching");
+        softAssert.assertTrue(DollarSymbolForProjectedIncomeInputField.isDisplayed(),"Dollar sign for Projected Income Input field is not visible"); // Verifying dollar sign is present
+        softAssert.assertAll();
+    }
+
 
 
 }
