@@ -5,8 +5,8 @@ Feature: Testing will verify text and navigation for Medical Condition Additiona
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2150 @PageText
-  Scenario: SLER-2150 - ELIG - verify text on Medical Condition Additional Page
+  @SLER-2150-BUG-3160 @PageText
+  Scenario: SLER-2150 - ELIG - verify text on Medical Condition Additional Page  - stopped by bug SIR-3160
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -108,9 +108,22 @@ Feature: Testing will verify text and navigation for Medical Condition Additiona
     Then I validate I am on the "FullTimeStudent" page
     Then I select "No" for attending school full-time question and Continue on Full-Time Student MA page
 
+    Then I validate I am on the "Medical Condition" page
     Then I select "Yes" for medical condition or disability question on Medical Condition MA page
     And I click member on the Medical Condition MA page
     And I click continue on the Medical Condition MA page
+
+    Then I validate I am on the "Medical Condition Additional" page
+    And I validate the "English" text on the Medical Condition Additional MA page
+
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the "Spanish" text on the Medical Condition Additional MA page
+
+    And I change the language from header to "English NonElmo"
+    And I click continue on the Medical Condition Additional MA page
+    And I click on Sign Out in the Header for "NonElmo"
+
+
 
 
 
