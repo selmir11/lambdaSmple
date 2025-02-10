@@ -800,15 +800,18 @@ public class MyDocumentsPage {
     }
 
     public void select1stOptionFromDocType(){
+        basicActions.waitForElementToBePresent(docTypeDrpDwn,20);
         docTypeDrpDwn.click();
         typeDrpDwn1stOption.click();
     }
 
     public void select1stOptionFromDocCategory(){
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn,20);
         docCategoryDrpDwn.click();
         categoryDrpDwn1stOption.click();
     }
     public void clickOnUploadMyDoc(){
+        basicActions.waitForElementToBePresent(uploadMyDocument,20);
         uploadMyDocument.click();
     }
     public void validateFileRequiredErrMsg(){
