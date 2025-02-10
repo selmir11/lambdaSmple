@@ -480,6 +480,7 @@ public class DocumentLookupPage {
             public void verifyDeleteButtondisplays(){
         basicActions.waitForElementToBePresent(deleteButton,50);
         softAssert.assertEquals(deleteButton.getText(),"Delete");
+        softAssert.assertAll();
             }
 
             public void clickDeleteButton(){
