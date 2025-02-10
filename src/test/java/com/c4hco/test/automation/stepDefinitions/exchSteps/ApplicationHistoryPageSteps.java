@@ -43,4 +43,7 @@ public class ApplicationHistoryPageSteps {
 
     @Then("I click {string} on Before you continue popup on the application history page")
     public void clickVerifyMyInfo(String popUpOption){applicationHistoryPage.clickVerifyMyInfoText(popUpOption);}
+
+    @Then("I validate member is not eligible for MA")
+    public void iValidateMemberEligibilityForMA() {applicationHistoryPage.validateMemberEligibilityForMA();}
 }

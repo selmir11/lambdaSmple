@@ -220,6 +220,7 @@ public class DeductionsPage {
     public void selectAddtlDeductionOption(String addtlDeductionOption, String Amount, String Frequency){
         switch(addtlDeductionOption){
             case "Alimony or spousal support paid out":
+                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 20);
                 addtlDeductionOptionsCheckbox.get(0).click();
                 basicActions.waitForElementToBeClickable(txtAOSSAmount, 10);
                 txtAOSSAmount.sendKeys(Amount);
