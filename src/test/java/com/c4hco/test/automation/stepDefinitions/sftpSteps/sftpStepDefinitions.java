@@ -1,9 +1,11 @@
 package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.EdiValidations.*;
+import com.c4hco.test.automation.edi.EdiValidations.Ib834FileValidations_grps;
+import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
+import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
+import com.c4hco.test.automation.edi.EdiValidations.Ob999FileValidations;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
-import com.jcraft.jsch.JSchException;
 import io.cucumber.java.en.And;
 import org.testng.Assert;
 
@@ -160,22 +162,23 @@ public class sftpStepDefinitions {
     }
 
     @And("I download the {string} ob999 file from sftp server with location {string}")
+
+
+
     public void downloadOb999Files(String fileType, String remotePath) {
-        String fileName;
-        try {
+        List<String> fileNames = null;
             switch (fileType) {
                 case "medical":
-                    fileName = SharedData.getMedicalOb999FileName();
+                    fileNames = SharedData.getMedicalOb999FileNames();
                     break;
                 case "dental":
-                    fileName = SharedData.getDentalOb999FileName();
+                    fileNames = SharedData.getDentalOb999FileNames();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid argument: " + fileType);
             }
+        for(String fileName: fileNames){
             sftpUtil.downloadFileWithSftp(remotePath, fileName);
-        } catch (Exception e) {
-            Assert.fail("Failed to download IB999 file for fileType: " + fileType + ", error: " + e.getMessage());
         }
     }
 
@@ -185,7 +188,7 @@ public class sftpStepDefinitions {
     }
 
     @And("I download the {string} ib834 file from sftp server location {string}")
-    public void downloadIb834MedFileToTarget(String recordType, String remoteLocation) throws JSchException {
+    public void downloadIb834MedFileToTarget(String recordType, String remoteLocation)  {
         switch (recordType) {
             case "medical":
                 sftpUtil.downloadFileWithSftp(remoteLocation, SharedData.getMedicalIb834FileName());

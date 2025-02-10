@@ -33,7 +33,7 @@ public class Ob999DbValidations {
         }
         SharedData.setOb999DenDetailsEntities(ob999DenEntities);
         List<String> denFileNames = setOb999FileNames(ob999DenEntities);
-        SharedData.setMedicalOb999FileNames(denFileNames);
+        SharedData.setDentalOb999FileNames(denFileNames);
     }
 
     private List<String> setOb999FileNames(List<Ob999Entity> ob999Entities){
