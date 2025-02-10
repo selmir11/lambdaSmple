@@ -65,8 +65,11 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//div[@class='drop-down-options']//div")
     List<WebElement> categoryList;
 
-    @FindBy(xpath = "//div[@class='doc-type-select']")
+    @FindBy(xpath = "(//div[@class='drop-down-option drop-down-option-selected'])[3]")
     WebElement docTypeDrpDwn;
+
+    @FindBy(xpath = "(//div[@class='drop-down-option drop-down-option-selected'])[4]")
+    WebElement docCategoryDrpDwn;
 
     @FindBy(xpath = "//span[@id='mvrActionButtonTitle_0']")
     WebElement verifyFinancialHelpEligbilityButton;
@@ -216,6 +219,24 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//div[@class='btns-container']")
     WebElement PopupFooterBackGroundColor;
+
+    @FindBy(xpath = "(//*[@class='drop-down-options']/div/span)[1]")
+    WebElement typeDrpDwn1stOption;
+
+    @FindBy(xpath = "//*[text()='Correction Proof']")
+    WebElement categoryDrpDwn1stOption;
+
+    @FindBy(xpath = "//*[@class='error ng-star-inserted']")
+    WebElement textErrorMsg_Filerequired;
+
+    @FindBy(xpath = "//*[@class='error']")
+    List<WebElement> textErrorMsg_selectionRequired;
+
+    @FindBy(xpath = "//div[@class='doc-type-select drop-down-error']")
+    WebElement redBorder_typeDrpDwnError;
+
+    @FindBy(xpath = "//div[@class='doc-subtype-select drop-down-error']")
+    WebElement redBorder_categoryDrpDwnError;
 
 
 
@@ -777,4 +798,53 @@ public class MyDocumentsPage {
         softAssert.assertEquals( uploadMyDocument .getCssValue("font-size"), "20px","font size error");
         softAssert.assertEquals(uploadMyDocument.getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
     }
+
+    public void select1stOptionFromDocType(){
+        docTypeDrpDwn.click();
+        typeDrpDwn1stOption.click();
+    }
+
+    public void select1stOptionFromDocCategory(){
+        docCategoryDrpDwn.click();
+        categoryDrpDwn1stOption.click();
+    }
+    public void clickOnUploadMyDoc(){
+        uploadMyDocument.click();
+    }
+    public void validateFileRequiredErrMsg(){
+        Assert.assertTrue(textErrorMsg_Filerequired.getText().contains("File required for upload, please attach a file and try again."),"Error message is incorrect");
+    }
+    public void validateSelectionRequiredErrMsg(){
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),"Selection Required");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(),"Selection Required");
+        softAssert.assertAll();
+    }
+    public void validateSelectionRequiredErrMsgDisappear(){
+        Assert.assertTrue(textErrorMsg_selectionRequired.isEmpty(),"Selection Error message did not disappear");
+    }
+
+    public void validateFontSizeAndColour_errorMsgSR(){
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertEquals( textErrorMsg_selectionRequired.get(0).getCssValue("font-size"), "14px","font size error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getCssValue("line-height"), "24px","line height error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertEquals( textErrorMsg_selectionRequired.get(1).getCssValue("font-size"), "14px","font size error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("line-height"), "24px","line height error");
+        softAssert.assertAll();
+    }
+
+    public void validateBorderColourOfTypeAndCategoryDropdown_errorMsg(){
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertAll();
+    }
+
 }
