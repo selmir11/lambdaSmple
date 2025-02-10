@@ -9,6 +9,7 @@ import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -26,6 +27,7 @@ import static com.c4hco.test.automation.utils.Race.getCodeForRace;
 public class COCO_Ob834PreEdiDbValidations {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     SoftAssert softAssert = new SoftAssert();
+    BasicActions basicActions = new BasicActions();
     List<Ob834DetailsEntity> ob834DetailsMedEntities = new ArrayList<>();
     MemberDetails subscriber = new MemberDetails();
     DbData dbData = new DbData();
@@ -59,7 +61,7 @@ public class COCO_Ob834PreEdiDbValidations {
                 validateDependentMedDetails(ob834DetailsEntity);
             }
                medValidationsCommonForAllMem(ob834DetailsEntity);
-               medValidationsCommonForAllMembers(ob834DetailsEntity, expectedValues);
+               medValidationsCommonForAllMembers(ob834DetailsEntity, expectedValues.get(0));
         }
         softAssert.assertAll();
     }
@@ -190,10 +192,10 @@ public class COCO_Ob834PreEdiDbValidations {
         softAssert.assertNull(ob834Entity.getPremium_reduction_type(),"Plan premium reduction type does not match");
         softAssert.assertAll();
     }
-    private void medValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, List<Map<String, String>> expectedValues) {
-        String formatPlanStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate().replaceAll("-", "");
-        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate().replaceAll("-", "");
-        String formatedFinStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate().replaceAll("-", "");
+    private void medValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues) {
+        String formatPlanStartDate =  basicActions.getDateBasedOnRequirement(expectedValues.get("PolicyStartDate")).replaceAll("-", "");
+        String formatMedicalPlanEndDate = basicActions.getDateBasedOnRequirement(expectedValues.get("PolicyEndDate")).replaceAll("-", "");
+        String formatedFinStartDate = basicActions.getDateBasedOnRequirement(expectedValues.get("FinancialStartDate")).replaceAll("-", "");
 
         SharedData.setMedGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalDbData.getBaseId(), "Hios id did not match!");
@@ -204,7 +206,7 @@ public class COCO_Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate, "Medical plan end date is not correct");
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
 
-        validateDetailsFromStep(ob834Entity, expectedValues.get(0));
+        validateDetailsFromStep(ob834Entity, expectedValues);
         validateIndivMedPremAmt(ob834Entity);
     }
     private void validateDetailsFromStep(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues) {

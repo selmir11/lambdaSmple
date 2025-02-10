@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class IncomeSummaryPageSteps {
     IncomeSummaryPage incomeSummaryPage = new IncomeSummaryPage(WebDriverManager.getDriver());
 
@@ -37,5 +39,10 @@ public class IncomeSummaryPageSteps {
     @Then("I validate Income Summary help drawer {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language) {incomeSummaryPage.validateHelpVerbiage(helpText, language);}
 
+    @Then("I Verify the following text in Income Summary page and verify whether the Company name is present or not")
+    public void iVerifyTextInIncomeSummaryPage(List<String> dataText) {incomeSummaryPage.verifyTextInIncomeSummaryPage(dataText);}
+
+    @Then("I verify the following text along with the dollar sign after clicking yes button to the Income different than the amount Question")
+    public void iVerifyTextAfterClickingYesToDifferentIncomeQuestion(List<String> dataText) {incomeSummaryPage.verifyTextAfterClickingYesToDifferentIncomeQuestion(dataText);}
 
 }
