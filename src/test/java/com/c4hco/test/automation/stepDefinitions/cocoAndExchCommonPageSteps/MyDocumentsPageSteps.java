@@ -178,4 +178,8 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate border colour of type and category dropdown")
     public void I_validate_border_colour_of_type_and_category_dropdown() {myDocumentsPage.validateBorderColourOfTypeAndCategoryDropdown_errorMsg();}
 
+    @And("I verify the page text on the My Documents Page")
+    public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
+        myDocumentsPage.verifyTextonDocumentPage(data);
+    }
 }

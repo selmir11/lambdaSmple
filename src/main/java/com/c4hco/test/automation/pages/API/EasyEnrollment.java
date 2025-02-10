@@ -78,6 +78,15 @@ public class EasyEnrollment {
         System.out.println("Request Body: " + requestBody.toString());
     }
     public void dorForTaxHousehold(String adjustedGrossIncome, String emailAddress, String filedByDeadline, String filingType, String firstName, String householdSize, String lastName,String mailingAddressLine1, String mailingAddressLine2, String city,String zipCode, String middleInitial, String phoneNumber,  String dateOfBirth, String ssn, String year){
+
+        if (emailAddress.equals("random_email")) {
+            emailAddress = "AutomationUser" + System.currentTimeMillis() + "@test.com";
+        }
+
+        if (ssn.equals("random")) {
+            ssn = String.valueOf(100000000 + (long) (Math.random() * 900000000));
+        }
+
         requestBody.put("adjustedGrossIncome", adjustedGrossIncome);
         requestBody.put("emailAddress", emailAddress);
         requestBody.put("filedByDeadline", filedByDeadline);
@@ -227,6 +236,7 @@ public class EasyEnrollment {
             softAssert.fail("Response is null");
         }
         softAssert.assertAll();
+        System.out.println(response);
     }
 
     public void validateValidationMessage(String expectedMessage) {
