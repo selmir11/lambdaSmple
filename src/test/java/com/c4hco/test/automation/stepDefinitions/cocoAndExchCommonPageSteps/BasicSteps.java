@@ -230,6 +230,12 @@ public class BasicSteps {
             case "Find Expert Help Exch Spanish":
                 pageUrl = "broker-portal/individual/find-expert-help?lang=es";
                 break;
+            case "Find a Broker":
+                pageUrl = "broker-portal/individual/find-broker";
+                break;
+            case "Find a Broker OBO":
+                pageUrl = "broker-portal/csr/find-broker";
+                break;
             case "CoCo Deductions":
                 pageUrl = "coco/income-portal/deductions";
                 break;

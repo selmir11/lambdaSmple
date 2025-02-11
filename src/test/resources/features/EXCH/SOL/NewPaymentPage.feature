@@ -377,7 +377,7 @@ Feature: New payment portal - currently in QA only
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
-    And I select "Select Health Value Silver $6000 Medical Deductible Rx Copay" medical plan
+    And I select "Select Health Value Bronze $6900 Medical Deductible" medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Value Plan" plan
