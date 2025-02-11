@@ -18,11 +18,17 @@ Feature: Header and Footer validation on Coco application pages
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I click on Privacy Policy in the "Individual Portal" Footer
-    And I validate I am on the "Privacy Policy" page and close tab
+    And I validate I am on the "CoCo Privacy Policy" page
+    And I verify the text on the CoCo Privacy Policy Page
+    And I close current tab and switch back to previous tab
     And I click on Terms Of Use in the "Individual Portal" Footer
-    And I validate I am on the "Terms Of Use" page and close tab
+    Then I validate I am on the "CoCo Terms of Use" page
+    And I verify the text on the CoCo Terms of Use Page
+    And I close current tab and switch back to previous tab
     And I click on Contact Us in the "CoCo" Footer
-    And I validate I am on the "Contact Us" page and close tab
+    And I validate I am on the "CoCo Contact Us" page
+    And I verify the text on the CoCo Contact Us Page
+    And I close current tab and switch back to previous tab
     And I verify text on the "CoCo" "Footer" in "English"
     And I enter details on tell us about yourself page and continue with "01011975", "Female", and applying "Yes"
     Then I validate I am on the "CoCo Additional information for yourself" page
@@ -119,6 +125,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 3000 milliseconds
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
