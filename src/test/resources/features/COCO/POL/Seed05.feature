@@ -1,6 +1,5 @@
 Feature: Seed05 - COCO
 # verification WIP
-
   Scenario: Seed 05 For COCO- MULTI-GROUP (DIFFERENT RATING AREAS)
 
     Given I open the login page on the "login" portal
@@ -165,11 +164,11 @@ Feature: Seed05 - COCO
     And I select "DIL" from the SelectPolicy Dropdown to update the dates
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
-      |1:01012024|
-      |2:01012024|
+      |1:01012025|
+      |2:01012025|
     And I update the Financial Start date of member
-      |1:01012024|
-      |2:01012024|
+      |1:01012025|
+      |2:01012025|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
@@ -178,11 +177,11 @@ Feature: Seed05 - COCO
     And I select "Primary" from the SelectPolicy Dropdown to update the dates
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
-      |1:01012024|
-      |2:01012024|
+      |1:01012025|
+      |2:01012025|
     And I update the Financial Start date of member
-      |1:01012024|
-      |2:01012024|
+      |1:01012025|
+      |2:01012025|
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

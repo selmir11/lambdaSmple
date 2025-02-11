@@ -9,6 +9,7 @@ Feature: Seed05 W Exception - COCO
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
