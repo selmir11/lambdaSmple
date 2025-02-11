@@ -162,9 +162,6 @@ public class sftpStepDefinitions {
     }
 
     @And("I download the {string} ob999 file from sftp server with location {string}")
-
-
-
     public void downloadOb999Files(String fileType, String remotePath) {
         List<String> fileNames = null;
             switch (fileType) {

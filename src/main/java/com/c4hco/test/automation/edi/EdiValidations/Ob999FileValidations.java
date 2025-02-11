@@ -4,25 +4,46 @@ import com.c4hco.test.automation.Dto.Edi.Edi999.Edi999Segments;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob999Entity;
 import org.json.JSONArray;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Ob999FileValidations {
     Edi999Segments ob999Segments= new Edi999Segments();
     SoftAssert softAssert = new SoftAssert();
 
+    List<Ob999Entity> o999MedEntityList = new ArrayList<>();
+    List<Ob999Entity> ob999DenEntityList = new ArrayList<>();
+    List<String> ak2GrpCtrlNum_file = new ArrayList<>();
+    List<String> ak2GrpCtrlNum_db = new ArrayList<>();
+
+
     public void validateOb999MedFileData(){
-        for (Ob999Entity ob999MedEntity : SharedData.getOb999MedDetailsEntities()) {
+        o999MedEntityList = SharedData.getOb999MedDetailsEntities();
+        for (Ob999Entity ob999MedEntity : o999MedEntityList) {
             validateOb999File(ob999MedEntity);
         }
+        validateAk2GrpCtrlNum();
     }
 
     public void validateOb999DenFileData() {
-        for (Ob999Entity ob999DenEntity : SharedData.getOb999DenDetailsEntities()) {
+        ob999DenEntityList = SharedData.getOb999DenDetailsEntities();
+        for (Ob999Entity ob999DenEntity : ob999DenEntityList) {
             validateOb999File(ob999DenEntity);
         }
+        validateAk2GrpCtrlNum();
     }
 
+    private void validateAk2GrpCtrlNum(){
+        Assert.assertEquals( new HashSet<>(ak2GrpCtrlNum_file), new HashSet<>(ak2GrpCtrlNum_db), "AK2 group control numbers doesn't match");
+    }
+
+
     private void validateOb999File(Ob999Entity entry){
+        ob999Segments = SharedData.getIb999Segments();
         validateISASegment(entry);
         validateIEASegment(entry);
         validateGSSegment(entry);
