@@ -321,13 +321,13 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on "No Thanks" on good news page
-    Then I validate that my APTC value is "869.54/mo"
+    Then I validate that my APTC value is "879.92/mo"
 
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,Daughter,Niece"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,Daughter,Niece,Nephew"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
