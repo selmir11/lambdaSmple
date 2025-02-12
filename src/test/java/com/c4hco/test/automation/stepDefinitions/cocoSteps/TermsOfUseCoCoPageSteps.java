@@ -8,7 +8,7 @@ public class TermsOfUseCoCoPageSteps {
 
     TermsOfUseCoCoPage termsOfUseCoCoPage = new TermsOfUseCoCoPage(WebDriverManager.getDriver());
 
-    @And("I verify the text on the CoCo Terms of Use Page")
-    public void iVerifyPageText() {termsOfUseCoCoPage.verifyPageText();}
+    @And("I verify the text on the CoCo Terms of Use Page in {string}")
+    public void iVerifyPageText(String language) {termsOfUseCoCoPage.verifyPageText(language);}
 
 }

@@ -36,7 +36,34 @@ public class ContactUsCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    public void verifyPageText() {
+    public void verifyPageText(String language) {
+
+        switch (language) {
+            case "English":
+                verifyEnglish();
+                break;
+            case "Spanish":
+                verifySpanish();
+                break;
+            default: throw new IllegalArgumentException("Unsupported language: " + language);
+        }
+
+    }
+
+    private void verifySpanish() {
+
+        softAssert.assertEquals(title.getText(), "P\u00F3ngase en contacto");
+        softAssert.assertEquals(p1.getText(), "Si tiene preguntas sobre su plan de seguro de salud y beneficios,\n" +
+                "comun\u00EDquese directamente con su compa\u00F1\u00EDa de seguros.");
+        softAssert.assertEquals(h1.getText(), "Llame a nuestro centro de atenci\u00F3n al cliente al");
+        softAssert.assertEquals(p2.getText(), "855-675-2626");
+        softAssert.assertEquals(p3.getText(), "Nuestro personal capacitado est\u00E1 disponible para ayudarle por tel\u00E9fono: de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+        softAssert.assertEquals(p4.getText(), "Tal vez se ofrezca un horario extendido cerca de las fechas l\u00EDmites.");
+        softAssert.assertAll();
+
+    }
+
+    private void verifyEnglish() {
 
         softAssert.assertEquals(title.getText(), "Contact Us");
         softAssert.assertEquals(p1.getText(), "For questions about your health insurance plan and benefits,\n" +
