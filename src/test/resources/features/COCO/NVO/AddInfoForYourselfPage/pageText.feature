@@ -51,12 +51,13 @@ Feature: Page Text-Additional information for yourself page
     Then I validate mailing address details for "Primary" member in DB addressLine1 "P. O. Box 1454",city "Denver",state "CO",zipcode "80205",county "DENVER"
     Then I validate state details for "Primary" member in DB 1
     And I click Go Back on the Race and Ethnicity page
-    And I enter complete residential address details for additional member addressLine1 "12345 Road",addressLine2 "12345 Road",city "Denver",state "CO",zipcode "80205",county "DENVER"
+    And I update the AddressLine1 and AddressLine2 to "12345 testRoad" and "12345 testarea" for additional member
     And I select "No" for mailing address option
-    And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
+    And I enter my mailing address "11", "City", "CO", "80205", "DENVER"
     And I select "No" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate complete residential address details for "Primary" member in DB addressLine1 "12345 Road",addressLine2 "12345 Road",city "Denver",state "CO",zipcode "80205",county "DENVER"
-    Then I validate mailing address details for "Primary" member in DB addressLine1 "P. O. Box 1454",city "Denver",state "CO",zipcode "80205",county "DENVER"
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate complete residential address details for "Primary" member in DB addressLine1 "12345 testRoad",addressLine2 "12345 testarea",city "Denver",state "CO",zipcode "80205",county "DENVER"
+    Then I validate mailing address details for "Primary" member in DB addressLine1 "P. O. Box 145411",city "DenverCity",state "CO",zipcode "80205",county "DENVER"
     Then I validate state details for "Primary" member in DB 0
     And I click on Sign Out in the Header for "Elmo"

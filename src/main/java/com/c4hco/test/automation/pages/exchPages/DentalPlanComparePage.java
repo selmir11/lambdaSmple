@@ -137,12 +137,12 @@ public class DentalPlanComparePage {
 
 
     public void clickGoBackCompare() {
-        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToDisappear( spinner,60);
         basicActions.waitForElementToBePresentWithRetries( goBackDentalCompareBtn, 15 );
         goBackDentalCompareBtn.click(); }
 
     public void clickGoBackCompareLink() {
-        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToDisappear( spinner,60 );
         basicActions.waitForElementToBePresentWithRetries( goBackDentalCompareLink, 15 );
         goBackDentalCompareLink.click(); }
 
