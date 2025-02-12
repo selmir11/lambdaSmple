@@ -31,7 +31,7 @@ Feature: Admin Portal user authorizing and deauthorizing a customer's broker whi
     And I click Authorized broker
     And I validate current Broker text exists
     And I validate my broker details in the current broker table are "Preston Saunders", "Bright Sky Agency", "88564585", "80205", "303-898-6427", "BROKER", "Active"
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     And I close current tab and switch back to previous tab
 
@@ -77,7 +77,7 @@ Feature: Admin Portal user authorizing and deauthorizing a customer's broker whi
     Then I verify Find Expert Help header Text in "English"
     And I validate the Previous Broker Assister text
     Then I validate the details in the Previous Broker Assister table are "Maggie Walker", "8895237", "80205", "303-898-6426", "Broker"
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     And I close current tab and switch back to previous tab
 

@@ -25,7 +25,7 @@ Feature: Trigger the exchange individual's notice for broker authorization in Sp
     And I validate current Broker text exists
     And I save the broker's details
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"

@@ -24,7 +24,7 @@ Feature: Verifying the current broker assignment in Client Information
 
     And I validate my broker details in the current broker table are "Harrison Andersen", "Harrison Andersen Agency", "28548247", "80205", "303-931-7516", "BROKER", "Active"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   #Agency owner verifies the current broker assignment for the client
     Given I open the login page on the "broker" portal
