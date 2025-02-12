@@ -22,10 +22,6 @@ public class DbStepsE2E {
         policyTableDbValidations_Grps.groupRecordsValidations(recordType);
     }
 
-    @And("I validate {string} entities from pre edi db tables")
-    public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
-        ob834PreEdiDbValidations.recordsValidations(recordType, expectedValues);
-    }
     @And("I validate {string} entities from pre edi db tables for groups")
     public void validateOb834MedicalRecordsForGroups(String recordType, List<Map<String, String>> expectedValues){
         ob834PreEdiDbValidationsGrp.groupRecordsValidations(recordType, expectedValues);
@@ -33,10 +29,6 @@ public class DbStepsE2E {
     @And("I validate {string} entities from ib999_details db table")
     public void validateIb999DetailsDB(String recordType){
         ib999DbValidations.ib999RecordsValidations(recordType);
-    }
-    @And("I validate ib834 {string} details in database")
-    public void validateIb834DetailsDb(String recordType, List<Map<String, String>> expectedValues){
-        ib834DbValidations.ib834DbRecordsValidations(recordType, expectedValues);
     }
 
     @And("I validate ib834 {string} details in database for groups")
