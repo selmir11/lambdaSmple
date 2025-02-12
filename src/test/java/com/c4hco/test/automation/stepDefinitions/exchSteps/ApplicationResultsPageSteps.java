@@ -70,4 +70,8 @@ public class ApplicationResultsPageSteps {
 
     @And("I click back button on Application result page")
     public void iClickBackButton() {applicationResultsPage.iClickOnBackButton();}
+
+    @Then("I verify that {string} is not present in the list")
+    public void iVerifyThatValueIsNotPresentInTheList(String valueToCheck) {applicationResultsPage.verifyCostSharingReductions(valueToCheck);
+    }
 }
