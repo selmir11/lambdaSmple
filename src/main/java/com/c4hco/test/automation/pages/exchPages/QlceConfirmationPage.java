@@ -100,6 +100,8 @@ public class QlceConfirmationPage {
     WebElement noneOfTheseLCE;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
+    @FindBy(xpath = "//*[@id='submitButton']")
+    WebElement btnBack;
 
     @FindBy(css = "h1.c4PageHeader")
     WebElement textReportLifeChangeHeader;
@@ -291,6 +293,9 @@ public class QlceConfirmationPage {
 
     public void saveAndContinue() {
         saveAndContinue.click();
+    }
+    public void clickBackButton() {
+        btnBack.click();
     }
 
     public void validateTheVerbiageOnTellUsAboutLifeChangesPage(List<String> data) {

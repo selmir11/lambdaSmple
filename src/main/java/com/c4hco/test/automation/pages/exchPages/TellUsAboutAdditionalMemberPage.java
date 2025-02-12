@@ -79,6 +79,8 @@ public class TellUsAboutAdditionalMemberPage {
 
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement btnsaveAndContinue;
+    @FindBy(xpath = "//*[@id='backButton']")
+    WebElement btnBack;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -197,6 +199,11 @@ public class TellUsAboutAdditionalMemberPage {
         btnsaveAndContinue.click();
     }
 
+    public void clickBackButton()    {
+        basicActions.waitForElementToBePresent(btnBack,20);
+        basicActions.scrollToElement(btnBack);
+        btnBack.click();
+    }
     public void memberDetailswithAge(int Age) {
         LocalDate currentDate = LocalDate.now();
         LocalDate DOBCalculate = currentDate.minusYears(Age);

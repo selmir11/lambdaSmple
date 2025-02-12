@@ -86,3 +86,53 @@ Feature: Navigation-Declarations and Signature Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-770
+  Scenario: Page Navigation-Declarations and Signature
+    And I validate page Navigation works for Header and Footer hyperlink text
+      | HyperLinkText      | ExpectedPageTitle        | ContainsUrl                                      |
+      | Privacy Policy     | Privacy Policy           | coco/InformationPortal/privacyPolicy             |
+      | Terms Of Use       | Terms of Use             | coco/InformationPortal/termsOfUse                |
+      | Contact Us         | Contact Us               | coco/InformationPortal/contactUs                 |
+      | Learn More         | Contact Us               | coco/InformationPortal/contactUs                 |
+      | Apply for Coverage | Welcome                  | coco/WelcomePortal/welcome                       |
+      | Find a Plan        | ApplicationResultsPortal | coco/ApplicationResultsPortal/applicationResults |
+      | My Account         | User Profile             | coco/UserProfileAdmin/profile                    |
+      | CoCo Logo          | Welcome                  | coco/WelcomePortal/welcome                       |
+      | UserName           | User Profile             | coco/UserProfileAdmin/profile                    |
+
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click the back button from Find Expert Help page
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I select Go Back on the Declarations and Signature page
+    And I validate I am on the "CoCo life change event" page
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I validate I am on the "Application Results CoCo" page
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    And I check "None of these" life change event checkbox
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I select Go Back on the Declarations and Signature page
+    And I validate I am on the "CoCo life change event" page
+    And I select continue on the LCE page
+
+    #Navigate to Sign In Page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page
