@@ -648,8 +648,7 @@ public class AdminPortalManagePlansPage {
                     coverageEndDateValue = basicActions.endOfMonthDate();
                     break;
                 case "Cancel":
-                    String startDate = basicActions.changeDateFormat(coverageStartdate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
-                    coverageEndDateValue = startDate;
+                    coverageEndDateValue = basicActions.changeDateFormat(coverageStartdate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
                     break;
                 default:
                     coverageEndDateValue = parts[1];
@@ -673,8 +672,7 @@ public class AdminPortalManagePlansPage {
                     financialEndDateValue = basicActions.endOfMonthDate();
                     break;
                 case "Cancel":
-                    String startDate = basicActions.changeDateFormat(financialStartDate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
-                    financialEndDateValue = startDate;
+                    financialEndDateValue = basicActions.changeDateFormat(financialStartDate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
                     break;
                 default:
                     financialEndDateValue = parts[1];
