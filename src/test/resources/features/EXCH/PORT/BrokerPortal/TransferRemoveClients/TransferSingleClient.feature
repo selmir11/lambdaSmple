@@ -20,7 +20,7 @@ Feature: Transfer a single client from one agency to another
     And I click Authorized broker
     And I validate current Broker text exists
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Agency owner transferring a single client
     Then I validate I am on the "Login" page
@@ -93,4 +93,4 @@ Feature: Transfer a single client from one agency to another
 
     Then I validate the details in the Previous Broker Assister table are "TransferRemove One", "897531650", "80205", "303-145-9875", "Broker"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
