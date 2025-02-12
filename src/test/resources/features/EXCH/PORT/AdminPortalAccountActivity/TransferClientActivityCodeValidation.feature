@@ -20,7 +20,7 @@ Feature: Client transfer account activity code validation in Admin Portal
     And I click Authorized broker
     And I validate current Broker text exists
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Agency owner transferring a single client
     Then I validate I am on the "Login" page
