@@ -8,7 +8,7 @@ public class PrivacyPolicyCoCoPageSteps {
 
     PrivacyPolicyCoCoPage privacyPolicyCoCoPage = new PrivacyPolicyCoCoPage(WebDriverManager.getDriver());
 
-    @And("I verify the text on the CoCo Privacy Policy Page")
-    public void iVerifyPageText() {privacyPolicyCoCoPage.verifyPageText();}
+    @And("I verify the text on the CoCo Privacy Policy Page in {string}")
+    public void iVerifyPageText(String language) {privacyPolicyCoCoPage.verifyPageText(language);}
 
 }

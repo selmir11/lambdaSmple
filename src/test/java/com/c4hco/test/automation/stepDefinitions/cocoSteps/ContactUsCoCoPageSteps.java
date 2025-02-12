@@ -8,7 +8,7 @@ public class ContactUsCoCoPageSteps {
 
     ContactUsCoCoPage conactUsCoCoPage = new ContactUsCoCoPage(WebDriverManager.getDriver());
 
-    @And("I verify the text on the CoCo Contact Us Page")
-    public void iVerifyPageText() {conactUsCoCoPage.verifyPageText();}
+    @And("I verify the text on the CoCo Contact Us Page in {string}")
+    public void iVerifyPageText(String language) {conactUsCoCoPage.verifyPageText(language);}
 
 }
