@@ -21,7 +21,7 @@ Feature: Transfer all clients validation
     And I click Authorized broker
     And I validate current Broker text exists
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Agency owner transferring all clients
     Then I validate I am on the "Login" page
@@ -103,4 +103,4 @@ Feature: Transfer all clients validation
     Then I click the Authorize broker button
     Then I click on "Authorize New Broker" in the warning container to authorize new or keep the same broker
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"

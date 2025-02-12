@@ -133,9 +133,12 @@ Feature: Seed02 - Coco
     And I validate "SUBMITTED" Medical entities from COCO policy tables
       | PolicyStartDate           | PolicyEndDate           | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | PolicyMemberCoverageStatus |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | SUBMITTED                  |
-  # WIP
-#    And I validate Current Medical entities from COCO pre edi db tables
-#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason       |
-#      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
-#    And I download the medical files from coco sftp server with location "/outboundedi/"
-#    And I validate the coco ob834 medical file data
+    And I validate Current Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | PolicyStartDate     | PolicyEndDate       | FinancialStartDate  |addl_maint_reason  | sep_reason  |
+      | 024                   | 024                | AI                    | First Of Next Month | First Of Next Month | First Of Next Month | CANCEL            |             |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+    And I validate Current Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | PolicyStartDate           | PolicyEndDate            | FinancialStartDate        |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year |                   | NEW_CO_RESIDENT |
+    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"

@@ -197,7 +197,7 @@ public class GroupingMembersMedicalPage {
 
         softAssert.assertEquals(editMyEnrollmentGroupsButton.getText(), "Edit my suggested groups");
         softAssert.assertEquals(goBackButton.getText(), "Go back");
-        softAssert.assertEquals(saveAndExitBtn.getText(), "Save and Exit");
+        softAssert.assertEquals(saveAndExitBtn.getText(), "Save and exit");
         softAssert.assertEquals(continueButton.getText(), "Continue");
         softAssert.assertTrue(globeImageDropdown.isEnabled());
         softAssert.assertAll();

@@ -448,7 +448,7 @@ public class NoticesPage {
                     softAssert.assertTrue(adminNoticeParag1.getText().contains( "Please click this link to setup your password https://staging-aws.connectforhealthco.com/login-portal/createPassword?recoveryToken="));
                     softAssert.assertTrue(adminNoticeParag2.getText().contains( "After your password has been created, you will be automatically directed to the \"Sign in to your account\" page https://staging-aws.connectforhealthco.com/AdminPortal. To log in, please use your Login ID and your Password."));
         }
-                softAssert.assertEquals(adminNoticeParag3.getText(),"If you have questions concerning your account or feel it was created in error, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. .");
+                softAssert.assertEquals(adminNoticeParag3.getText(),"If you have questions concerning your account or feel it was created in error, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m. .");
                 softAssert.assertAll();
 
     }
@@ -493,7 +493,7 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextAM00301Parag2.getText(), "Login ID: "+ SharedData.getAgencyOwner().getEmail());
         softAssert.assertEquals(bodyTextAM00301Parag3.getText(), "To get started, visit us online at https://connectforhealthco.com/for-certified-brokers/.");
         softAssert.assertEquals(bodyTextAM00301Parag4.getText(), "Log in to your account to complete your profile. You must complete training before you can be certified to place business through Connect for Health Colorado\u00AE. Visit https://c4hco.csod.com/ for more training information and resources..");
-        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.");
         softAssert.assertAll();
     }
 
@@ -505,7 +505,7 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextAM00301Parag2.getText(), "Login ID: "+ SharedData.getBroker().getEmail());
         softAssert.assertEquals(bodyTextAM00301Parag3.getText(), "To get started, visit us online at https://connectforhealthco.com/for-certified-brokers/.");
         softAssert.assertEquals(bodyTextAM00301Parag4.getText(), "Log in to your account to complete your profile. You must complete training before you can be certified to place business through Connect for Health Colorado\u00AE. Visit https://c4hco.csod.com/ for more training information and resources..");
-        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertEquals(bodyTextAM00301Parag5.getText(), "If you believe that your account has been created in error or if you have additional questions, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.");
         softAssert.assertAll();
 
     }
@@ -622,11 +622,11 @@ public class NoticesPage {
         switch (language) {
             case "English":
                 softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
-                softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains( "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+                softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains( "If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
                 break;
             case "Spanish":
                 softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "La contrase\u00F1a de su cuenta de Connect for Health Colorado\u00AE fue cambiada recientemente.");
-                softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("Si usted no hizo este cambio, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("Si usted no hizo este cambio, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
                 break;
 
             default:
@@ -645,7 +645,7 @@ public class NoticesPage {
                     softAssert.assertTrue(bodyText1607.getText().contains("Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
                 }
                 softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
-                softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+                softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
 
                 break;
             case "Spanish":
@@ -656,7 +656,7 @@ public class NoticesPage {
                     softAssert.assertTrue(bodyText1607.getText().contains("Ha solicitado restablecer la contrase\u00F1a de su cuenta de Connect for Health Colorado\u00AE. Para restablecerla, haga clic en este enlace: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
                 }
                 softAssert.assertTrue(bodyText1607.getText().contains("Este enlace vencer\u00E1 despu\u00E9s de 60 minutos. Si no sigue el enlace durante el tiempo permitido, tendr\u00E1 que solicitar uno nuevo."));
-                softAssert.assertTrue(bodyText1607part2.getText().contains("Si no solicit\u00F3 el restablecimiento de su contrase\u00F1a o si necesita m\u00E1s ayuda para hacerlo, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                softAssert.assertTrue(bodyText1607part2.getText().contains("Si no solicit\u00F3 el restablecimiento de su contrase\u00F1a o si necesita m\u00E1s ayuda para hacerlo, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
@@ -836,7 +836,7 @@ public class NoticesPage {
                 softAssert.assertTrue(bodyTextBN002A03.get(4).getText().contains("Agency Name: "+ SharedData.getAgencyOwner().getAgencyName()));
                 softAssert.assertTrue(bodyTextBN002A03.get(4).getText().contains("Agency Phone Number: "+ agencyPhoneNumber));
                 softAssert.assertTrue(bodyTextBN002A03.get(4).getText().contains("License Number: "+ SharedData.getAgencyOwner().getLicense()));
-                softAssert.assertEquals(bodyTextBN002A03.get(5).getText(), "If you believe that this relationship has been authorized in error or if you have additional questions, please call us at 1-855-752-6749, TTY at 1-855-346-3432. please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.");
+                softAssert.assertEquals(bodyTextBN002A03.get(5).getText(), "If you believe that this relationship has been authorized in error or if you have additional questions, please call us at 1-855-752-6749, TTY at 1-855-695-5935. please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.");
                 break;
             case "Spanish":
                 softAssert.assertEquals(individualEmailBN002A0304.getText(), SharedData.getPrimaryMember().getEmailId());
@@ -848,7 +848,7 @@ public class NoticesPage {
                 softAssert.assertTrue(bodyTextBN002A03.get(4).getText().contains("ombre de la agencia: "+ SharedData.getAgencyOwner().getAgencyName()));
                 softAssert.assertTrue(bodyTextBN002A03.get(4).getText().contains("Tel\u00E9fono de la agencia: "+ agencyPhoneNumber));
                 softAssert.assertTrue(bodyTextBN002A03.get(4).getText().contains("N\u00FAmero de licencia: "+ SharedData.getAgencyOwner().getLicense()));
-                softAssert.assertEquals(bodyTextBN002A03.get(5).getText(), "Si piensa que esta autorizaci\u00F3n es un error o si tiene preguntas adicionales, por favor ll\u00E1menos al 1-855-752-6749, TTY at 1-855-346-3432. llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+                softAssert.assertEquals(bodyTextBN002A03.get(5).getText(), "Si piensa que esta autorizaci\u00F3n es un error o si tiene preguntas adicionales, por favor ll\u00E1menos al 1-855-752-6749, TTY at 1-855-695-5935. llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
                 break;
         }
         softAssert.assertAll();
@@ -918,8 +918,8 @@ public class NoticesPage {
     public void VerifyTheNoticeTextAM01601Exch() {
         softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Connect for Health Colorado\u00AE is:"));
         softAssert.assertEquals(bodyText.get(2).getText(), "Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
-        softAssert.assertTrue(bodyText.get(3).getText().contains( "If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
-        softAssert.assertTrue(bodyText2.getText().contains("please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+        softAssert.assertTrue(bodyText.get(3).getText().contains( "If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+        softAssert.assertTrue(bodyText2.getText().contains("please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
         softAssert.assertAll();
     }
 

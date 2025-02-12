@@ -220,6 +220,8 @@ public class CreateAccountPage {
     WebElement invitationPMCode;
     @FindBy(xpath = "//input[@id='invitation']")
     WebElement invitationCodeInput;
+    @FindBy(css = "#email-label")
+    WebElement createAccountEmailMsg;
     private BasicActions basicActions;
     public CreateAccountPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
@@ -1023,5 +1025,23 @@ public class CreateAccountPage {
         addSpecificDetails(fName, mName, lName);
         selectBasedOnApp(appType);
     }
+    public void duplicateExistingAlreadyEmil(String appType) {
+        basicActions.waitForElementToBePresent(firstName, 10);
+        firstName.sendKeys("Duplicate");
+        lastName.sendKeys("Testduplicateemailmessage");
+        email.sendKeys("duplicatecocoemail");
+    }
+    public void verifyErrorMessagesForEamilAlreadyExisting(String appType){
+        basicActions.waitForElementToBePresent(createAccountEmailMsg, 10);
+        softAssert.assertEquals(createAccountEmailMsg.getText(),  "Email (This will be your Username)");
+        softAssert.assertAll();
+    }
+    public void clickOnSubmitButtonToSeeTheErrorStays(){
+        submitButton.click();
+        basicActions.waitForElementToBePresent(createAccountEmailMsg, 10);
+        softAssert.assertEquals(createAccountEmailMsg.getText(),  "Email (This will be your Username)");
+        softAssert.assertEquals(emailValidErrorMessage.getText(),  "A valid Email is required");
+        softAssert.assertAll();
 
+    }
 }

@@ -74,3 +74,60 @@ Feature: Tests related to the Family Overview page
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
     And I validate I am on the "Login" page
+
+  @SLCR-767
+  Scenario: SLCR-767 Page Navigation-Family Overview Page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    And I validate I am on the "CoCo Income Summary" page
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select Go Back on the LCE page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click Manage who helps you on the Family Overview page
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+
+    And I validate page Navigation works for Header and Footer hyperlink text
+      | HyperLinkText      | ExpectedPageTitle        | ContainsUrl                                      |
+      | Privacy Policy     | Privacy Policy           | coco/InformationPortal/privacyPolicy             |
+      | Terms Of Use       | Terms of Use             | coco/InformationPortal/termsOfUse                |
+      | Contact Us         | Contact Us               | coco/InformationPortal/contactUs                 |
+      | Learn More         | Contact Us               | coco/InformationPortal/contactUs                 |
+      | Apply for Coverage | Welcome                  | coco/WelcomePortal/welcome                       |
+      | Find a Plan        | ApplicationResultsPortal | coco/ApplicationResultsPortal/applicationResults |
+      | My Account         | User Profile             | coco/UserProfileAdmin/profile                    |
+      | CoCo Logo          | Welcome                  | coco/WelcomePortal/welcome                       |
+      | UserName           | User Profile             | coco/UserProfileAdmin/profile                    |
+
+    #Navigate to Find Expert Assistance page
+    And I validate I am on the "CoCo Family Overview" page
+    And I click on Find Expert Assistance in the "CoCo" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click the back button from Find Expert Help page
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+
+    #Navigate to Sign In Page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click on Sign Out in the Header for "Elmo"
+    And I validate I am on the "Login" page

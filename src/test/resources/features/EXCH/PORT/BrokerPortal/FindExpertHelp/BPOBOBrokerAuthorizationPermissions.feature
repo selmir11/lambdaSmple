@@ -29,7 +29,7 @@ Feature:  Broker Portal user going OBO should not be able to change their client
     And I validate the authorization success message
     Then I click Go Back on the Authorize Assister Organization page
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Agency owner working OBO for the client verifying that they cannot change the current broker or assister authorizations
     Then I validate I am on the "Login" page
