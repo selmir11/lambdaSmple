@@ -949,7 +949,6 @@ public class NoticesPage {
 
     public void validateDetailsFromEmailPolicy(String planType, List<String> membersOnPolicy) {
         // Validating plan name, member names and coverage start date from email notice
-
         switch (planType) {
             case "medical":
                 String coverageStartDate_medical = SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate();

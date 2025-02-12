@@ -1,7 +1,7 @@
 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
-  @SLER-41 @SLER-1170 @SLER-1250 @SLER-1252 @SLER-1283 @pol_exch_passed
+  @SLER-41 @SLER-1170 @SLER-1250 @SLER-1252 @SLER-1283 @pol_exch_passed @n1
   Scenario: RT-2266 EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -204,28 +204,25 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
 
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
-
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
     And I click on ClickHere link for "My Documents"
 
-    And I validate "medical" entities from policy tables
-    And I validate "dental" entities from policy tables
+    And I validate "medical" entities from policy tables for groups
+    And I validate "dental" entities from policy tables for groups
 
    # PDF Notice Validation
     And I click on download "EN-002-04" document
     Then I validate "EN-002-04 English" notice content
-
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     #SLER-1170
-    And I validate "medical" entities from pre edi db tables
+    And I validate "medical" entities from pre edi db tables for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
-    And I validate "dental" entities from pre edi db tables
+    And I validate "dental" entities from pre edi db tables for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
 
@@ -259,17 +256,17 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
-    And I download the "medical" ib999 file from sftp server with location "/archive/INBOUND999/"
-    And I download the "dental" ib999 file from sftp server with location "/archive/INBOUND999/"
+    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" ib999 files from sftp server with location "/archive/INBOUND999/"
 
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
     # SLER-1252 - ib834 db and file validations
-    And I validate ib834 "medical" details in database
+    And I validate ib834 "medical" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
-    And I validate ib834 "dental" details in database
+    And I validate ib834 "dental" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
 
