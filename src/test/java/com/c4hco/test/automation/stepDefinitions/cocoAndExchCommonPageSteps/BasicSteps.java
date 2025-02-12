@@ -26,32 +26,32 @@ public class BasicSteps {
                 pageUrl = "/login-portal/login";
                 break;
             case "tax Silver":
-            pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
-            break;
+                pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
+                break;
             case "QCPF":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
+                break;
             case "QCPF Input Information":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/input-your-information";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/input-your-information";
+                break;
             case "QCPF Preferences":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences";
+                break;
             case "QCPF Preferences Doctor":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-doctor";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-doctor";
+                break;
             case "QCPF Preferences Medication":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-medication";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/preferences-medication";
+                break;
             case "QCPF List of Plans":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/list-of-plans";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/list-of-plans";
+                break;
             case "QCPF Plan results":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-results";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-results";
+                break;
             case "QCPF Plan Next steps":
-            pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-next-steps";
-            break;
+                pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/plan-next-steps";
+                break;
             case "Admin Login":
                 pageUrl = "login-portal/login/adminUsers";
                 break;
@@ -63,7 +63,7 @@ public class BasicSteps {
                 break;
             case "Admin Program manager account creation":
                 pageUrl = "AdminPortal/program-manager/account-creation";
-            break;
+                break;
             case "Prescreen":
                 pageUrl = "/prescreen";
                 break;
@@ -82,7 +82,7 @@ public class BasicSteps {
                 break;
             case "My Account Overview":
                 basicActions.wait(2000);
-                pageUrl = "nes/myAccountOverview" ;
+                pageUrl = "nes/myAccountOverview";
                 break;
             case "CAC Screener":
                 pageUrl = "/coco/WelcomePortal/cacScreener";
@@ -126,7 +126,7 @@ public class BasicSteps {
                 pageUrl = "createAccount";
                 break;
             case "Associated Brokers":
-            pageUrl = "associated-brokers";
+                pageUrl = "associated-brokers";
                 break;
             case "Admin dashboard":
                 pageUrl = "AdminPortal"; // update this url - url will have AdminPortal even if we fail to login
@@ -289,6 +289,9 @@ public class BasicSteps {
                 break;
             case "Citizenship":
                 pageUrl = "nes/lawfulPresence";
+                break;
+            case "Immigration Status":
+                pageUrl = "nes/fiveYearBar";
                 break;
             case "forgotPassword":
                 pageUrl = "login-portal/forgotPassword";
@@ -554,7 +557,7 @@ public class BasicSteps {
             case "FullTimeStudent":
                 pageUrl = "/eligibleMembersFullTimeStudentForMA";
                 break;
-            case "Temporarily OutOfState" :
+            case "Temporarily OutOfState":
                 pageUrl = "/eligibleMembersOutOfStateForMA";
                 break;
             case "Medical Condition":
@@ -562,12 +565,20 @@ public class BasicSteps {
                 break;
             case "Medical Condition Additional":
                 pageUrl = "/choosedMembersForMEDICAL_CONDITION";
+            case "CoCo Privacy Policy":
+                pageUrl = "coco/InformationPortal/privacyPolicy";
+                break;
+            case "CoCo Terms of Use":
+                pageUrl = "coco/InformationPortal/termsOfUse";
+                break;
+            case "CoCo Contact Us":
+                pageUrl = "coco/InformationPortal/termsOfUse";
                 break;
             default:
                 System.out.println("undefined page ");
                 break;
         }
-        Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 45).contains(pageUrl), "expected page::" + pageUrl + "::did not load");
+        basicActions.switchToPageAndValidate(page, pageUrl, 45);
     }
 
     @And("I validate I am on the {string} page and close tab")
@@ -730,14 +741,9 @@ public class BasicSteps {
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
-        // TO DO :: Move this code to be re-usable - move to basicActions.
+
         String origin = basicActions.getDriver().getWindowHandle();
-        for (String handle : basicActions.getDriver().getWindowHandles()) {
-            basicActions.getDriver().switchTo().window(handle);
-            if (basicActions.getDriver().getTitle().equals(page)) {
-                Assert.assertTrue(basicActions.getUrlWithWait(pageUrl, 50).contains(pageUrl), "expected page::" + pageUrl + "::did not load");
-            }
-        }
+        basicActions.switchToPageAndValidate(page, pageUrl, 45);
         basicActions.closeBrowserTab();
         basicActions.getDriver().switchTo().window(origin);
     }

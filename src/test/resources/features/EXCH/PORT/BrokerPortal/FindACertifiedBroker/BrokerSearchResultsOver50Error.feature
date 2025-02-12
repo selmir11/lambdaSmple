@@ -45,7 +45,7 @@ Feature: Tests the over 50 search results error on the anonymous Find a Certifie
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I enter "denver" into the broker location search box
     And I click on Search button in find certified broker page
     Then I verify the over 50 search results error is displayed in "Spanish"

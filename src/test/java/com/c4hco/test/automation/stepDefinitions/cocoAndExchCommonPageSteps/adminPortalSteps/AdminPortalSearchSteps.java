@@ -183,6 +183,10 @@ public class AdminPortalSearchSteps {
     public void iSelectTheFirstBrokerRecordFromTheSearchResults() {
         adminPortalSearchPage.selectTheFirstBrokerRecordFromTheSearchResults();
     }
+    @And("I validate the buttons on the Individual Search page")
+    public void iValidateOrganizationDetailsButtons() {
+        adminPortalSearchPage.validateCoCoDashboardButtons();
+    }
 }
 
 

@@ -148,6 +148,22 @@ public class DocumentLookupPage {
     @FindBy(xpath = "//p[normalize-space()='Document type group is required']")
     WebElement docTypeGroupError;
 
+    @FindBy(xpath = "//button[normalize-space()='Delete']")
+    WebElement deleteButton;
+
+    @FindBy(xpath = "//input[@id='accountId']")
+    WebElement inputAccountID;
+
+    @FindBy(xpath = "//button[@id='confirm-btn']")
+    WebElement yesDeleteButton;
+
+    @FindBy(id = "go-back-btn")
+    WebElement goBackButton;
+
+    @FindBy(xpath = "//button[normalize-space()='Delete']")
+    List<WebElement> deleteButtons;
+
+
     public void validateTitle() {
         basicActions.switchtoactiveTab();
         softAssert.assertTrue(basicActions.waitForElementToBePresent(title, 10));
@@ -240,7 +256,7 @@ public class DocumentLookupPage {
     }
 
     public void clickSubmit() {
-        softAssert.assertTrue(basicActions.waitForElementToBeClickable(submitButton, 20));
+        softAssert.assertTrue(basicActions.waitForElementToBeClickable(submitButton, 60));
         submitButton.click();
         softAssert.assertAll();
     }
@@ -459,6 +475,41 @@ public class DocumentLookupPage {
                             throw new IllegalArgumentException("Invalid option: " + selectedOptionText);
                     }
                 }
-            } }
+            }
+
+            public void verifyDeleteButtondisplays(){
+        basicActions.waitForElementToBePresent(deleteButton,50);
+        softAssert.assertEquals(deleteButton.getText(),"Delete");
+        softAssert.assertAll();
+            }
+
+            public void clickDeleteButton(){
+          basicActions.waitForElementToBePresent(deleteButton,50);
+           deleteButton.click();
+            }
+
+            public void enterAccountNumber(){
+                basicActions.waitForElementToBePresent(inputAccountID,50);
+                inputAccountID.click();
+                inputAccountID.sendKeys(String.valueOf(SharedData.getPrimaryMember().getAccount_id()));
+            }
+
+
+            public void clickNoGoBackButton(){
+             basicActions.waitForElementToBePresent(goBackButton,50);
+             goBackButton.click();
+            }
+
+            public void clickYesDeleteButton(){
+             basicActions.waitForElementToBePresent(yesDeleteButton,60);
+             yesDeleteButton.click();
+            }
+
+            public void verifyDeleteButtonNotDisplay(){
+            softAssert.assertTrue(deleteButtons.isEmpty());
+            softAssert.assertAll();
+            }
+
+}
 
 

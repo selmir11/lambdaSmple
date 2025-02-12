@@ -21,7 +21,7 @@ Feature: CRM validation following a selected client's deauthorization via Broker
     And I click Authorized broker
     And I validate current Broker text exists
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Agency owner removing a client from their list
     Then I validate I am on the "Login" page

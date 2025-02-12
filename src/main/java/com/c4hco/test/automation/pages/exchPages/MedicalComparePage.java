@@ -320,23 +320,23 @@ public class MedicalComparePage {
         softAssert.assertEquals( txtMedicalEnglishPlanDocuments11.getText(), "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
         softAssert.assertEquals( txtMedicalEnglishPlanDocuments12.getText(), "Evidence of Coverage Denver Health English 0030008-01" );
         softAssert.assertEquals( txtMedicalEnglishPlanDocuments13.getText(), "Summary of Benefits and Coverage Denver Health English 0030008-01" );
-        softAssert.assertEquals( txtMedicalEnglishPlanDocuments14.getText(), "Quality Overview Denver Health English" );
-        softAssert.assertEquals( txtMedicalEnglishPlanDocuments15.getText(), "Brochure Denver Health English" );
-        softAssert.assertEquals( txtMedicalEnglishPlanDocuments16.getText(), "Provider Network Denver Health" );
+        softAssert.assertEquals( txtMedicalEnglishPlanDocuments14.getText(), "Brochure Denver Health English" );
+        softAssert.assertEquals( txtMedicalEnglishPlanDocuments15.getText(), "Provider Network Denver Health" );
+        softAssert.assertEquals( txtMedicalEnglishPlanDocuments16.getText(), "Quality Overview Denver Health English" );
 
         softAssert.assertEquals( txtMedicalSpanPlanDocuments11.getText(), "Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01" );
         softAssert.assertEquals( txtMedicalSpanPlanDocuments12.getText(), "Evidence of Coverage Denver Health Spanish 0030008-01" );
         softAssert.assertEquals( txtMedicalSpanPlanDocuments13.getText(), "Summary of Benefits and Coverage Denver Health Spanish 0030008-01" );
-        softAssert.assertEquals( txtMedicalSpanPlanDocuments14.getText(), "Quality Overview Denver Health Spanish" );
-        softAssert.assertEquals( txtMedicalSpanPlanDocuments15.getText(), "Brochure Denver Health Spanish" );
+        softAssert.assertEquals( txtMedicalSpanPlanDocuments14.getText(), "Brochure Denver Health Spanish" );
+        softAssert.assertEquals( txtMedicalSpanPlanDocuments15.getText(), "Quality Overview Denver Health Spanish" );
 
         //column 2
         softAssert.assertEquals( txtMedicalEnglishPlanDocuments21.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente English 0410052-01" );
         softAssert.assertEquals( txtMedicalEnglishPlanDocuments22.getText(), "Evidence of Coverage Kaiser Permanente English 0410052-01" );
         softAssert.assertEquals( txtMedicalEnglishPlanDocuments23.getText(), "Summary of Benefits and Coverage Kaiser Permanente English 0410052-01" );
-        softAssert.assertEquals( txtMedicalEnglishPlanDocuments24.getText(), "Quality Overview Kaiser Permanente English" );
-        softAssert.assertEquals( txtMedicalEnglishPlanDocuments25.getText(), "Brochure Kaiser Permanente English" );
-        softAssert.assertEquals( txtMedicalEnglishPlanDocuments26.getText(), "Provider Network Kaiser Permanente Select" );
+        softAssert.assertEquals( txtMedicalEnglishPlanDocuments24.getText(), "Brochure Kaiser Permanente English" );
+        softAssert.assertEquals( txtMedicalEnglishPlanDocuments25.getText(), "Provider Network Kaiser Permanente Select" );
+        softAssert.assertEquals( txtMedicalEnglishPlanDocuments26.getText(), "Quality Overview Kaiser Permanente English" );
 
         softAssert.assertEquals( txtMedicalSpanPlanDocuments21.getText(), "Summary of Benefits and Coverage CO Supplement Kaiser Permanente Spanish 0410052-01" );
         softAssert.assertEquals( txtMedicalSpanPlanDocuments22.getText(), "Summary of Benefits and Coverage Kaiser Permanente Spanish 0410052-01" );

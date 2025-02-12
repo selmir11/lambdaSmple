@@ -26,15 +26,15 @@ Feature: Verifying the remove broker confirmation text in English and Spanish
     And I verify the remove broker text in "English"
     And I "Cancel" my decision to remove my current broker
 
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I Remove my current Broker
     And I verify the remove broker text in "Spanish"
     And I "Cancel" my decision to remove my current broker
 
-    And I change the language from header to "English ExpertHelp"
+    And I change the language from header to "English"
     Then I Remove my current Broker
     And I "Ok" my decision to remove my current broker
 
     Then I verify Find Expert Help header Text in "English"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"

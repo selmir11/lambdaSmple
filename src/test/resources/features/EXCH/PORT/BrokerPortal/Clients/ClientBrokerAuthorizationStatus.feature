@@ -20,7 +20,7 @@ Feature: Client Broker authorization and deauthorization status
     And I click Authorized broker
     And I validate current Broker text exists
     And I validate my broker details in the current broker table are "Preston Saunders", "Bright Sky Agency", "88564585", "80205", "303-898-6427", "BROKER", "Active"
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   #Associated broker verifying client authorization
     Given I open the login page on the "broker" portal
@@ -56,7 +56,7 @@ Feature: Client Broker authorization and deauthorization status
     Then I verify Find Expert Help header Text in "English"
     And I validate the Previous Broker Assister text
     Then I validate the details in the Previous Broker Assister table are "Preston Saunders", "88564585", "80205", "303-898-6427", "Broker"
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   #Associated broker verifying the client no longer displays in the client list
     Given I open the login page on the "broker" portal
