@@ -131,7 +131,7 @@ public class CreateAccountPage {
     @FindBy(id = "cp-mf-error")
     WebElement confirmPasswordErrorMessage;
 
-    @FindBy(id = "cp-error")
+    @FindBy(id = "realtime-pw-error7")
     WebElement confirmPasswordMatchErrorMessage;
 
     @FindBy(xpath = "//span[@id='ls-mf-error']")
@@ -185,7 +185,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//select[@id='role-dropdown']")
     WebElement roleDropdown;
 
-    @FindBy(xpath = "//select[@id='role']/option[2]")
+    @FindBy(xpath = "//select[@id='role-dropdown']/option[2]")
     WebElement certifiedBrokerRole;
 
     @FindBy(xpath = "//span[@id='role-dropdown-mf-error']")

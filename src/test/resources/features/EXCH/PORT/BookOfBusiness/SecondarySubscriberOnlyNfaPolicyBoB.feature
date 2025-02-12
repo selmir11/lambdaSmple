@@ -26,7 +26,7 @@ Feature: Broker Portal BOB - Secondary Subscriber Only NFA policy submission
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     And I verify the broker authorization in BoB DB is "PORT BoB-Testing"
 
