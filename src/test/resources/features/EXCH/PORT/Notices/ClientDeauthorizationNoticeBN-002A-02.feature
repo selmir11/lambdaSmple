@@ -29,7 +29,7 @@ Feature: Trigger the broker notice for client deauthorization - BN-002A-02
     And I "Ok" my decision to remove my current broker
     And I validate no broker is authorized
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"

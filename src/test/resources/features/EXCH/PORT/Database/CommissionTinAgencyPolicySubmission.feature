@@ -26,7 +26,7 @@ Feature: Agency commission TIN update for agency owner policy submission
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
 
   #Agency owner updating TIN then submitting an NFA application and enrollment

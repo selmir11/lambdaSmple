@@ -28,7 +28,7 @@ public class ForgotUsernamePage {
     @FindBy(xpath ="//select[@id='at-mf-error']/option")
     List<WebElement> accountTypeOptions;
 
-    @FindBy(xpath ="//button[@id='submit-button']")
+    @FindBy(id ="submit-button")
     WebElement submitBTN;
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 mt-3 ng-star-inserted']")
     WebElement noticeIsSentMsg;
