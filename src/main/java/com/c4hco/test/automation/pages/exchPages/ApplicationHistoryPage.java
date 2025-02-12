@@ -116,4 +116,6 @@ public class ApplicationHistoryPage {
     public void validateMemberEligibilityForMA() {
     Assert.assertEquals(taxHouseholdNotQualify.getText(), "Based on the information listed in your application, you do not qualify for a health plan at this time.");
     }
+
+
 }
