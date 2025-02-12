@@ -195,7 +195,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(xpath = "//button[contains(text(),'Get Assistance')]")
+    @FindBy(xpath = "//button[@class='dropbtn header-link-text']")
     WebElement getAssistance;
 
     private BasicActions basicActions;

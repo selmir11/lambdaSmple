@@ -131,7 +131,7 @@ public class CreateAccountPage {
     @FindBy(id = "cp-mf-error")
     WebElement confirmPasswordErrorMessage;
 
-    @FindBy(id = "cp-error")
+    @FindBy(id = "realtime-pw-error7")
     WebElement confirmPasswordMatchErrorMessage;
 
     @FindBy(xpath = "//span[@id='ls-mf-error']")
@@ -185,7 +185,7 @@ public class CreateAccountPage {
     @FindBy(xpath = "//select[@id='role-dropdown']")
     WebElement roleDropdown;
 
-    @FindBy(xpath = "//select[@id='role']/option[2]")
+    @FindBy(xpath = "//select[@id='role-dropdown']/option[2]")
     WebElement certifiedBrokerRole;
 
     @FindBy(xpath = "//span[@id='role-dropdown-mf-error']")
@@ -220,6 +220,8 @@ public class CreateAccountPage {
     WebElement invitationPMCode;
     @FindBy(xpath = "//input[@id='invitation']")
     WebElement invitationCodeInput;
+    @FindBy(css = "#email-label")
+    WebElement createAccountEmailMsg;
     private BasicActions basicActions;
     public CreateAccountPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
@@ -1023,5 +1025,23 @@ public class CreateAccountPage {
         addSpecificDetails(fName, mName, lName);
         selectBasedOnApp(appType);
     }
+    public void duplicateExistingAlreadyEmil(String appType) {
+        basicActions.waitForElementToBePresent(firstName, 10);
+        firstName.sendKeys("Duplicate");
+        lastName.sendKeys("Testduplicateemailmessage");
+        email.sendKeys("duplicatecocoemail");
+    }
+    public void verifyErrorMessagesForEamilAlreadyExisting(String appType){
+        basicActions.waitForElementToBePresent(createAccountEmailMsg, 10);
+        softAssert.assertEquals(createAccountEmailMsg.getText(),  "Email (This will be your Username)");
+        softAssert.assertAll();
+    }
+    public void clickOnSubmitButtonToSeeTheErrorStays(){
+        submitButton.click();
+        basicActions.waitForElementToBePresent(createAccountEmailMsg, 10);
+        softAssert.assertEquals(createAccountEmailMsg.getText(),  "Email (This will be your Username)");
+        softAssert.assertEquals(emailValidErrorMessage.getText(),  "A valid Email is required");
+        softAssert.assertAll();
 
+    }
 }

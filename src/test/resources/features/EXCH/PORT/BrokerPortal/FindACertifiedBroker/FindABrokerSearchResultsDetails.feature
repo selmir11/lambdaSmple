@@ -60,7 +60,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I validate the agency details "soukainatesting+agencystg@gmail.com", "371-195-9846", "Monday", "08:00 AM to 05:00 PM", "376946", "English"
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   @SLER-380
   Scenario: Search by Broker's Full Name for Admin User
