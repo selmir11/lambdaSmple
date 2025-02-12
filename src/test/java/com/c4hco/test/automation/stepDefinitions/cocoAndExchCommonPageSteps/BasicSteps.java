@@ -290,6 +290,9 @@ public class BasicSteps {
             case "Citizenship":
                 pageUrl = "nes/lawfulPresence";
                 break;
+            case "Immigration Status":
+                pageUrl = "nes/fiveYearBar";
+                break;
             case "forgotPassword":
                 pageUrl = "login-portal/forgotPassword";
                 break;
