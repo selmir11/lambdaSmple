@@ -1,7 +1,9 @@
+@FPL
 Feature: ELIG-MA FPL values-FPL
     Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
+
 @SLER-2028
 Scenario:  ELIG-MA FPL values-FPL[RT-1790]
 When I click create a new account on login page

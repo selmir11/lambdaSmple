@@ -317,4 +317,9 @@ public class ImmigrationStatusPage {
         softAssert.assertEquals(errorLivedSince1996.getText(), "Seleccione una de las opciones siguientes");
         softAssert.assertAll();
     }
+
+    public void clickBack(){
+        basicActions.waitForElementToBePresent(backButton, 10);
+        backButton.click();
+    }
 }
