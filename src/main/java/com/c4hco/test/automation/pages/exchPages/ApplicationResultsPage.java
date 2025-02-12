@@ -234,4 +234,12 @@ public class ApplicationResultsPage {
         basicActions.waitForElementToBeClickable(backButton, 20);
         backButton.click();
     }
+
+    public void verifyCostSharingReductions(String valueToCheck) {
+        basicActions.waitForElementListToBePresent(textMAEligibility, 10);
+        softAssert.assertFalse(textMAEligibility.stream().anyMatch(e -> e.getText().trim().equalsIgnoreCase(valueToCheck)), valueToCheck + " should not be present, but it was found.");
+        softAssert.assertAll();
+    }
+
+
 }

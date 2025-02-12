@@ -1198,6 +1198,18 @@ public class BasicActions {
     public  String getUniqueNumber(int length) {
         return RandomStringUtils.random(length, "123456789");
     }
+
+    public void switchToPageAndValidate(String page, String pageUrl, int timeout) {
+        for (String handle : driver.getWindowHandles()) {
+            driver.switchTo().window(handle);
+
+            if (driver.getTitle().equals(page)) {
+                Assert.assertTrue(getUrlWithWait(pageUrl, timeout).contains(pageUrl),
+                        "Expected page: " + pageUrl + " did not load.");
+                break;
+            }
+        }
+    }
 }
 
 
