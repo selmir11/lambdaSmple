@@ -280,6 +280,8 @@ public class AdminPortalIndividualDashboardPage {
     WebElement tax;
     @FindBy(xpath = "//td[normalize-space()='Application ID:']")
     WebElement applicationId;
+    @FindBy(css = "#account-status")
+    WebElement suspended;
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -287,6 +289,9 @@ public class AdminPortalIndividualDashboardPage {
             case "Manage Account Details":
                 accSummaryBtns.get(1).click();
                 break;
+            case "Manage Account Access":
+            accSummaryBtns.get(0).click();
+            break;
             default:
                 Assert.fail("Invalid argument passed");
         }
@@ -919,6 +924,11 @@ public class AdminPortalIndividualDashboardPage {
             softAssert.assertTrue(txtMember3QA.isEmpty(),"Third member is displayed when it should not be.");
             softAssert.assertTrue(txtThirdRelationAgeQA.isEmpty(),"Third member age is displayed when it should not be.");
         }
+        softAssert.assertAll();
+    }
+    public void validateAccountSuspended() {
+        basicActions.waitForElementToBePresent(accountStatus, 30);
+        softAssert.assertEquals(suspended.getText(), "Account Status: Suspended");
         softAssert.assertAll();
     }
 }

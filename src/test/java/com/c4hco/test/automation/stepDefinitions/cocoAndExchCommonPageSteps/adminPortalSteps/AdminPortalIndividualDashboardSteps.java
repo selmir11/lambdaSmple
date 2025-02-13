@@ -270,5 +270,9 @@ public class AdminPortalIndividualDashboardSteps {
     public void iVerifyCocoIndividualAccountSummaryDetails() {
         adminPortalIndividualDashboardPage.VerifyCocoIndividualAccountSummary();
     }
+    @Then("I verify Account status is suspended")
+    public void iValidateAccountSuspended() {
+        adminPortalIndividualDashboardPage.validateAccountSuspended();
+    }
 }
 
