@@ -147,7 +147,7 @@ public class ForgetPasswordPage {
                 System.out.println(resetPW);
     }
     public void loginAsIndividualWithPasswordResetCode(String qaEmail, String stgEmail) {
-        basicActions.waitForElementToBePresent(loginPage.password, 40);
+        basicActions.waitForElementToBePresentWithRetries(loginPage.password, 40);
         basicActions.wait(60);
         if (SharedData.getEnv().equals("qa")) {
             loginPage.username.sendKeys(qaEmail);

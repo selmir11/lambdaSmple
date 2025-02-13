@@ -187,4 +187,16 @@ public class CreateAccountPageSteps {
     public void iEnterFirstNameContainsMiddleNameLastNameAndGeneralMandatoryDataForAccountCreation(String fname, String mName, String lName, String appType) {
         createAccountPage.createAccountWithSpecificData(fname,mName, lName,appType);
     }
+    @Then("I enter duplicate email data for account creation for {string}")
+    public void iEnterDuplicateEmailDataForAccountCreationFor(String appType) {
+        createAccountPage.duplicateExistingAlreadyEmil(appType);
+    }
+    @Then("I validate the error messages in {string} for email already exists")
+    public void iVerifyErrorMessagesForEamilAlreadyExisting(String appType) {
+        createAccountPage.verifyErrorMessagesForEamilAlreadyExisting(appType);
+    }
+    @And("I click on Submit button to see the error as A valid Email is required")
+    public void iClickOnSubmitButtonToSeeTheError() {
+        createAccountPage.clickOnSubmitButtonToSeeTheErrorStays();
+    }
 }

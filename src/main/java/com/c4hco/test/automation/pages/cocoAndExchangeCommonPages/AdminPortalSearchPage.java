@@ -689,6 +689,13 @@ public class AdminPortalSearchPage {
         basicActions.waitForElementToBeClickableWithRetries(firstBrokerResult,30);
         firstBrokerResult.click();
     }
+    public void validateCoCoDashboardButtons() {
+        basicActions.waitForElementToBePresent(coco, 20);
+        softAssert.assertEquals(buttonsList.get(0).getText(), "Search", "Search button as expected");
+        softAssert.assertEquals(buttonsList.get(1).getText(), "Reset", "Reset button as expected");
+        softAssert.assertEquals(buttonsList.get(2).getText(), "Create Account", "Create Account button as expected");
+        softAssert.assertAll();
+    }
 }
 
 

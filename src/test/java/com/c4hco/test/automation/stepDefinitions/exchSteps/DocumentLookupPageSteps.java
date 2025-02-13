@@ -84,6 +84,40 @@ public class DocumentLookupPageSteps {
         documentLookupPage.entriesdropdown(rowsUI);
     }
 
+    @Then("I verify Delete button is displaying on document lookup page")
+    public void iVerifyDeleteButtonIsDisplayingOnDocumentLookupPage() {
+        documentLookupPage.verifyDeleteButtondisplays();
+    }
+
+    @Then("I click on Delete button on document lookup page")
+    public void iClickOnDeleteButtonOnDocumentLookupPage() {
+        documentLookupPage.clickDeleteButton();
+    }
+
+    @Then("I click on No Go Back button on document lookup page")
+    public void iClickOnNoGoBackButtonOnDocumentLookupPage() {
+        documentLookupPage.clickNoGoBackButton();
+    }
+
+    @And("I verify document is not deleted")
+    public void iVerifyDocumentIsNotDeleted() {
+     documentLookupPage.verifyDeleteButtonNotDisplay();
+    }
+
+    @And("I verify Document is deleted from document loopup page")
+    public void iVerifyDocumentIsDeletedFromDocumentLoopupPage() {
+        documentLookupPage.verifyDeleteButtonNotDisplay();
+    }
+
+    @And("I enter the account number")
+    public void iEnterTheAccountNumber() {
+        documentLookupPage.enterAccountNumber();
+    }
+
+    @And("I click on yes delete button from confirmation modal")
+    public void iClickOnYesDeleteButtonFromConfirmationModal() {
+        documentLookupPage.clickYesDeleteButton();
+    }
 }
 
 

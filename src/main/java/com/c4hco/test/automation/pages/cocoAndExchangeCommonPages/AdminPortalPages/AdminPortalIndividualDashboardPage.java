@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AdminPortalIndividualDashboardPage {
 
@@ -282,6 +283,11 @@ public class AdminPortalIndividualDashboardPage {
     WebElement applicationId;
     @FindBy(css = "#account-status")
     WebElement suspended;
+    @FindBy(css = "#app-individual-selected-member-80 > label")
+    WebElement selectedMemberLabel;
+    @FindBy(css = "#app-individual-selected-member-80 > div")
+    WebElement selectedMemberData;
+
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -929,6 +935,42 @@ public class AdminPortalIndividualDashboardPage {
     public void validateAccountSuspended() {
         basicActions.waitForElementToBePresent(accountStatus, 30);
         softAssert.assertEquals(suspended.getText(), "Account Status: Suspended");
+
+      public void validateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData){
+        basicActions.switchToParentPage("C4HCO Admin Portal");
+
+        basicActions.waitForElementToBePresent(selectedMemberLabel, 300);
+        softAssert.assertTrue(selectedMemberLabel.isDisplayed());
+
+        String fullNameData = null;
+        String userNameData = null;
+        String memberPhoneData = null;
+        String memberEmailData = null;
+        String memberDobData = null;
+        String memberAddressData = null;
+
+        if (SharedData.getEnv().equals("staging")) {
+            fullNameData = selectedMemberData.get(0).get("staging full name");
+            userNameData = selectedMemberData.get(0).get("staging user name");
+            memberPhoneData = selectedMemberData.get(0).get("staging member phone");
+            memberEmailData = selectedMemberData.get(0).get("staging member email");
+            memberDobData = selectedMemberData.get(0).get("staging member dob");
+            memberAddressData = selectedMemberData.get(0).get("staging member address");
+        }else {
+            fullNameData = selectedMemberData.get(0).get("qa full name");
+            userNameData = selectedMemberData.get(0).get("qa user name");
+            memberPhoneData = selectedMemberData.get(0).get("qa member phone");
+            memberEmailData = selectedMemberData.get(0).get("qa member email");
+            memberDobData = selectedMemberData.get(0).get("qa member dob");
+            memberAddressData = selectedMemberData.get(0).get("qa member address");
+            }
+        softAssert.assertEquals(memberFullName.getText(), fullNameData);
+        softAssert.assertEquals(userName.getText(), userNameData);
+        softAssert.assertEquals(memberPhone.getText(), memberPhoneData);
+        softAssert.assertEquals(memberEmail.getText(), memberEmailData);
+        softAssert.assertEquals(memberDob.getText(), memberDobData);
+        softAssert.assertEquals(memberAddress.getText(), memberAddressData);
+
         softAssert.assertAll();
     }
 }
