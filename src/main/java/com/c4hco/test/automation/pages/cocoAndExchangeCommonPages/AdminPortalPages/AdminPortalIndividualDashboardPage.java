@@ -285,12 +285,17 @@ public class AdminPortalIndividualDashboardPage {
     WebElement selectedMemberLabel;
     @FindBy(css = "#app-individual-selected-member-80 > div")
     WebElement selectedMemberData;
+    @FindBy(css = "#account-status")
+    WebElement suspended;
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
         switch (btnName) {
             case "Manage Account Details":
                 accSummaryBtns.get(1).click();
+                break;
+            case "Manage Account Access":
+                accSummaryBtns.get(0).click();
                 break;
             default:
                 Assert.fail("Invalid argument passed");
@@ -961,6 +966,10 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(memberDob.getText(), memberDobData);
         softAssert.assertEquals(memberAddress.getText(), memberAddressData);
         softAssert.assertAll();
+    }
+    public void validateAccountSuspended() {
+        basicActions.waitForElementToBePresent(accountStatus, 30);
+        softAssert.assertEquals(suspended.getText(), "Account Status: Suspended");
     }
 }
 
