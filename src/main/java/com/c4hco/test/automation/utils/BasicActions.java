@@ -1085,7 +1085,7 @@ public class BasicActions {
     }
 
     public void pageAtTop() {
-        wait(50);
+        wait(500);
         assertTrue("The page is not at the top.", isPageAtTop(driver));
         System.out.println("The page is at the top.");
     }
