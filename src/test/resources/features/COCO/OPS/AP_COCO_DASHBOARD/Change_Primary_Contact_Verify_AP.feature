@@ -1,7 +1,7 @@
 @OPS @COCO
 Feature: OPS: CoCo: IndDash: Change Primary Contact and Verify AP
   @SLCR-730
-  Scenario:OPS: CoCo: IndDash: Change Primary Contact and Verify AP
+  Scenario:SLCR-730 : OPS: CoCo: IndDash: Change Primary Contact and Verify AP
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

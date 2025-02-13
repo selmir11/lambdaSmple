@@ -1,4 +1,4 @@
-@OPS @SLER-1858
+@OPS
 Feature: IndDash: Verify Financial Help Eligibility button is displaying
   Background:
   Given I open the login page on the "admin" portal
@@ -115,6 +115,7 @@ And I validate I am on the "Pay now" page
 Then I click all done from payment portal page OBO
 And I close current tab and switch back to previous tab
 
+  @SLER-1858
   Scenario: SLER-1858 Verify Financial Help Eligibility button and upload button is displaying for user(access from admin portal)
   And I click "On Behalf Of (OBO)" from application links dropdown
   Then I click link my docs on accountOverview page
@@ -145,6 +146,7 @@ And I close current tab and switch back to previous tab
     And I select "Yes" for Federal Income
     And I select "No" for Tax Info
     Then I click on Submit Self Attestation button
+      And I change the language from header to "English"
     Then I verify the "Action Required" text on the Post Attestation page
     Then I click on Finish
     And I close current tab and switch back to previous tab

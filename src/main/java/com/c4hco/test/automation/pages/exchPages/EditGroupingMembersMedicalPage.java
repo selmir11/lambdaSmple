@@ -56,7 +56,7 @@ public class EditGroupingMembersMedicalPage {
     WebElement goBackButton;
 
 
-    @FindBy(css = ".row .redTxt")
+    @FindBy(id = "SOL-ManageGroupingMembers-EditEnrollmentGroupNotValid")
     WebElement errorText;
     @FindBy(css = ".container .groupHeading")
     List<WebElement> noOfmedicalGroups;
@@ -119,7 +119,7 @@ public class EditGroupingMembersMedicalPage {
 
     public void groupParentWith26YearOldChild() {
         basicActions.waitForElementListToBePresent(groupingMembers, 10);
-        builder.clickAndHold(groupingMembers.get(1))
+        builder.clickAndHold(groupingMembers.get(0))
                 .moveToElement(dragAMemberHere.get(1))
                 .release(dragAMemberHere.get(1)).build().perform();
         basicActions.wait(3000);
@@ -139,7 +139,7 @@ public class EditGroupingMembersMedicalPage {
 
     public void errorMessageOnGrouping() {
         basicActions.waitForElementToBePresent(errorText, 10);
-        softAssert.assertEquals(errorText.getText(), "The group(s) highlighted below in red are not valid groupings. Please move around your members to create valid groups.");
+        softAssert.assertEquals(errorText.getText(), "This group is not valid. Make sure all members meet the grouping criteria listed above.");
         softAssert.assertAll();
     }
 
