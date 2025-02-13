@@ -1358,6 +1358,11 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertEquals(medPolicyIdUI.getText(), "Policy ID:");
         softAssert.assertEquals(medHiosIdUI.getText(), "HIOS ID:");
         softAssert.assertAll(); }
+    public void validateMakeChangesMedicalButtonNotDisplay(){
+        basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
+        Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));
+        softAssert.assertAll();
+    }
 }
 
 
