@@ -91,6 +91,8 @@ public class ImmigrationStatusPage {
 
     @FindBy(id = "livedSince1996-error")
     WebElement errorLivedSince1996;
+    @FindBy(id = "imgrStatusGrantDate-error")
+    WebElement errorMsgImmigrationStatus;
 
 
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
@@ -317,4 +319,50 @@ public class ImmigrationStatusPage {
         softAssert.assertEquals(errorLivedSince1996.getText(), "Seleccione una de las opciones siguientes");
         softAssert.assertAll();
     }
+    public void verifyFutureDateErrorMessageForImmigrationStatus(String language, List<String> data) {
+        saveContinue.click();
+        basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), "Grant date cannot be in the future");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+        softAssert.assertAll();
+    }
+    public void verifyIncorrectDateErrorMessageForImmigrationStatus(String language, List<String> data) {
+        saveContinue.click();
+        basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                break;
+            case "Spanish":
+                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+        softAssert.assertAll();
+    }
+    public void verifyWithoutDateValueErrorForImmigrationStatus(String language, List<String> data) {
+        basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                break;
+            case "Spanish":
+                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
+        softAssert.assertAll();
+    }
+
 }

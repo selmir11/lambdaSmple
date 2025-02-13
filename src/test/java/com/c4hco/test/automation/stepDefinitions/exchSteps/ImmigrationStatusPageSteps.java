@@ -54,5 +54,13 @@ public class ImmigrationStatusPageSteps {
 
     @Then("I validate lived since 1996 error message on the Five-Year Bar page in {string}")
     public void verifyErrorMessageLivedInUSSince1996(String Language) { ImmigrationStatusPage.verifyErrorMessageLivedSince1996(Language); }
-
+    @Then("I validate Grant date cannot be in the future error message {string}")
+    public void verifyFutureDateErrorMessageForImmigrationStatus(String language, List<String> data){
+        ImmigrationStatusPage.verifyFutureDateErrorMessageForImmigrationStatus(language,data);}
+    @Then("I validate Invalid date error message {string}")
+    public void verifyInvalidDateErrorMessageForImmigrationStatus(String language, List<String> data){
+        ImmigrationStatusPage.verifyIncorrectDateErrorMessageForImmigrationStatus(language,data);}
+    @Then("I validate without date error message {string}")
+    public void verifyWithoutDateErrorMessageForImmigrationStatus(String language, List<String> data){
+        ImmigrationStatusPage.verifyWithoutDateValueErrorForImmigrationStatus(language,data);}
 }
