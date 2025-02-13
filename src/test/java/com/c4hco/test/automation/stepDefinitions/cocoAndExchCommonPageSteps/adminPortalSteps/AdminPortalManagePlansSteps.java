@@ -334,6 +334,9 @@ public class AdminPortalManagePlansSteps {
     @Then("I check current Simplified Medical container labels CoCo")
     public void iVerifyLabelsSimplifiedMedicalCoCo() {
         adminPortalManagePlansPage.verifyLabelsSimplifiedMedicalCoCo();       }
+    @Then("I validate Make Changes Medical button does not display on Manage Plans page")
+    public void validateMakeChangesMedicalNotDisplay() {
+        adminPortalManagePlansPage.validateMakeChangesMedicalButtonNotDisplay();       }
 }
 
 

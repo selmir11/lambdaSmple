@@ -1,6 +1,6 @@
 @OPS @SLER-2087
 Feature: IndDash: Projected Income one member
-  Scenario: IndDash: Projected Income One member
+  Scenario: SLER-2087 : IndDash: Projected Income One member
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

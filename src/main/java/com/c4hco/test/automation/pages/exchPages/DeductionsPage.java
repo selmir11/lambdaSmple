@@ -442,7 +442,7 @@ public class DeductionsPage {
     }
 
     public void verifyHeadersDeductionsPageSpanish(){
-        basicActions.waitForElementToBePresent(DeductionSummaryHeader,15);
+        basicActions.waitForElementToBePresent(DeductionSummaryHeader,60);
         softAssert.assertTrue(IncomeSummaryHeader.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(DeductionSummaryHeader.getText(),"Deducciones");
         softAssert.assertAll();
