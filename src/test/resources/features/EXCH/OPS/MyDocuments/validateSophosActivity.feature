@@ -134,4 +134,4 @@ Feature: IndDash: Verify Financial Help Eligibility button is displaying
     And I close current tab and switch back to previous tab
     Then I click on view button for "Account Activity" report
     And I validate Account Activity title row
-    Then I verify "SOPHOS_INTELLIX_SCAN" and following events are displaying as "todays date within last 10 min timestamp" "C4test.aduser12.." "C4test.aduser12.." "" "SOPHOS_INTELLIX.." "Document security scan co.."
+    Then I verify "SOPHOS_INTELLIX_SCAN" and following events are displaying as "todays date within last 10 min timestamp" "C4test.aduser12.." "C4testaduser123.." "" "SOPHOS_INTELLIX.." "Document security scan co.."

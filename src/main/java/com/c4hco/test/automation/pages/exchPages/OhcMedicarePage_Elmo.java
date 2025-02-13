@@ -303,6 +303,7 @@ public class OhcMedicarePage_Elmo {
 
     public void verifyHeadersMedicareOhcPageEnglish(String member){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
         switch (member){
             case "Primary":
                 softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
@@ -951,7 +952,7 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void verifyNotSelectedStateOfCheckboxes() {
-        basicActions.waitForElementListToBePresent(medicareCheckboxes, 15);
+        basicActions.waitForElementListToBePresentWithRetries(medicareCheckboxes, 15);
         for (int i = 0; i < medicareCheckboxes.size(); i++) {
             WebElement element1 = medicareCheckboxes.get(i);
             WebElement element2 = medicareCheckboxDetails.get(i);
@@ -995,7 +996,7 @@ public class OhcMedicarePage_Elmo {
         for (int i = 0; i < medicareCheckboxes.size(); i++) {
             WebElement element = medicareCheckboxes.get(i);
             actions.moveToElement(element).perform();
-            basicActions.wait(300);
+            basicActions.wait(500);
             softAssert.assertEquals(element.getCssValue("width"), "32px");
             softAssert.assertEquals(element.getCssValue("height"), "32px");
             softAssert.assertEquals(element.getCssValue("font-size"), "20px");
