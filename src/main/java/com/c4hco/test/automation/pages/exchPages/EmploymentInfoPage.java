@@ -73,7 +73,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSeasonal-NoButton")
     WebElement btnIsSeasonalNo;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-YesButton")
+    @FindBy(id = "ELIG-summaryDetails-YesButton")
     WebElement btnIncomeSameYes;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-NoButton")

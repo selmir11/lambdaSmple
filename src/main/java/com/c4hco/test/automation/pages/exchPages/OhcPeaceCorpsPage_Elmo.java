@@ -234,13 +234,15 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void verifyHeadersPeaceCorpsOhcPageEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Peace Corps");
         softAssert.assertAll();
     }
 
     public void verifyHeadersPeaceCorpsOhcPageSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Cuerpos de paz (Peace Corps)");
         softAssert.assertAll();
@@ -324,7 +326,7 @@ public class OhcPeaceCorpsPage_Elmo {
     }
 
     public void verifyPeaceCorpsPageDataDataEnglish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         switch (dataToVerify){
             case "First Section":
                 verifyPeaceCorpsPageDataFirstSectionDataEnglish();
@@ -359,7 +361,8 @@ public class OhcPeaceCorpsPage_Elmo {
     }
 
     public void verifyPeaceCorpsPageDataFirstSectionDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Peace Corps");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -372,6 +375,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageFirstSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Peace Corps");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -459,6 +463,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void verifyPeaceCorpsPageDataFirstSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Cuerpos de paz (Peace Corps)");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
