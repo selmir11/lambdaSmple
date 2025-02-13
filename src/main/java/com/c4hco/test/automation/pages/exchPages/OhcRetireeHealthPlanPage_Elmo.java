@@ -102,6 +102,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
 
     public void clickGoBack() {
+        basicActions.waitForElementToBePresent(goBackBtn,50);
         basicActions.click(goBackBtn);
     }
 
@@ -236,7 +237,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
     }
 
     public void verifyHeadersRetireeOhcPageSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
         softAssert.assertAll();
@@ -355,7 +356,8 @@ public class OhcRetireeHealthPlanPage_Elmo {
     }
 
     public void verifyRetireePageFirstSectionDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -385,7 +387,8 @@ public class OhcRetireeHealthPlanPage_Elmo {
     }
 
     public void verifyRetireePageFirstSectionSecondaryDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -473,6 +476,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void verifyRetireePageFirstSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
