@@ -35,11 +35,11 @@ Feature: Continue with my application/Continue on my own button on the Find expe
     Then I verify Manage who helps you header text in "English"
     Then I validate the Continue on my own button "is displayed"
 
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I verify Manage who helps you header text in "Spanish"
     Then I verify the Enroll on my own section text in "Spanish"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
   @SLER-474
   Scenario: Verifies the Continue with my application button on the Manage who helps you page
@@ -82,9 +82,9 @@ Feature: Continue with my application/Continue on my own button on the Find expe
     Then I verify the Enroll on my own section text is not displayed
     Then I validate the Continue with my application button is displayed in "English"
 
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I verify the Enroll on my own section text is not displayed
     Then I verify Manage who helps you header text in "Spanish"
     Then I validate the Continue with my application button is displayed in "Spanish"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"

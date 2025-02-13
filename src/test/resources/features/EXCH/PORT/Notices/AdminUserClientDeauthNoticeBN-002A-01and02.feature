@@ -25,7 +25,7 @@ Feature: Admin portal user triggering the broker notice for client deauthorizati
     And I validate current Broker text exists
     And I save the broker's details
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     #Admin portal user deauthorizing the customer's broker
     Given I open the login page on the "admin" portal

@@ -86,7 +86,7 @@ public class AdminPortalManagePlansPage {
     WebElement secondYearInList;
     @FindBy(xpath = "//div[@id='coverageStartDate_1']//input[1]")
     WebElement coverageStartdate;
-    @FindBy(xpath = "//div[@id='coverageEndDate_2']//input[1]")
+    @FindBy(xpath = "//div[@id='coverageEndDate_1']//input[1]")
     WebElement coverageEndDate;
     @FindBy(xpath = "//div[@id='financialStartDate_1']//input[@type='date']")
     WebElement financialStartDate;
@@ -459,6 +459,7 @@ public class AdminPortalManagePlansPage {
 
     public void clickMakeChangesDental() {
         basicActions.waitForElementToBePresent(btnMakeChangeDental, 10);
+        basicActions.waitForElementToBeClickable(btnMakeChangeDental, 10);
         btnMakeChangeDental.click();
     }
 
@@ -563,8 +564,6 @@ public class AdminPortalManagePlansPage {
             basicActions.updateElementWithRetries(coverageStartDatemem, coverageStartDateValue);
         }
     }
-
-
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
         for (String memberFinancialStrtDate : memberFinancialStrtDtList) {
             String[] parts = memberFinancialStrtDate.split(":");
@@ -638,42 +637,54 @@ public class AdminPortalManagePlansPage {
     }
 
     public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
-        for (String memberFinancialEndDate : memberCoverageEndDTList) {
-            String[] parts = memberFinancialEndDate.split(":");
+        basicActions.waitForElementToBePresent(coverageStartdate,60);
+        for (String memberCoverageEndDate : memberCoverageEndDTList) {
+            String[] parts = memberCoverageEndDate.split(":");
             String memberNo = parts[0];
+            String endDate = parts[1];
             String coverageEndDateValue = "";
-            if (parts[1].equals("end of month")) {
-                coverageEndDateValue = basicActions.endOfMonthDate();
-            } else {
-                coverageEndDateValue = parts[1];
+            switch (endDate) {
+                case "end of month":
+                    coverageEndDateValue = basicActions.endOfMonthDate();
+                    break;
+                case "Cancel":
+                    coverageEndDateValue = basicActions.changeDateFormat(coverageStartdate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
+                    break;
+                default:
+                    coverageEndDateValue = parts[1];
             }
-            basicActions.scrollToElement(coverageEndDate);
             basicActions.waitForElementToBePresent(coverageEndDate, 30);
+            basicActions.scrollToElement(coverageEndDate);
 
-            WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + memberNo + "']//input[1]"));
-            financialEndDateMem.sendKeys(coverageEndDateValue);
+            WebElement coverageEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + memberNo + "']//input[1]"));
+            coverageEndDateMem.sendKeys(coverageEndDateValue);
         }
     }
-
 
     public void updateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
         for (String memberFinancialEndDate : memberFinancialEndDTList) {
             String[] parts = memberFinancialEndDate.split(":");
             String memberNo = parts[0];
-            String financialStartDateValue = "";
-            if (parts[1].equals("end of month")) {
-                financialStartDateValue = basicActions.endOfMonthDate();
-            } else {
-                financialStartDateValue = parts[1];
+            String endDate = parts[1];
+            String financialEndDateValue = "";
+            switch (endDate) {
+                case "end of month":
+                    financialEndDateValue = basicActions.endOfMonthDate();
+                    break;
+                case "Cancel":
+                    financialEndDateValue = basicActions.changeDateFormat(financialStartDate.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
+                    break;
+                default:
+                    financialEndDateValue = parts[1];
             }
-            basicActions.scrollToElement(financialEndDate);
             basicActions.waitForElementToBePresent(financialEndDate, 30);
-            basicActions.waitForElementToBeClickable(financialEndDate, 30);
+            basicActions.scrollToElement(financialEndDate);
 
             WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + memberNo + "']//input[1]"));
-            financialEndDateMem.sendKeys(financialStartDateValue);
+            financialEndDateMem.sendKeys(financialEndDateValue);
         }
     }
+
 public void selectThePlanYearOnManagePlan(String planYear) {
     basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
     dpdCurrentYearMP.click();

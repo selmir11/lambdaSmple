@@ -26,7 +26,7 @@ Feature: Manage Authorized Users page validation and search functionality
     Then I verify the expected number of rows displayed in the search results is 2
 
     And I clear the search box on the Manage Authorized Users page
-    And I search for an authorized user "5"
+    And I search for an authorized user "Winterhouse"
     Then I verify the expected number of rows displayed in the search results is 1
 
     And I clear the search box on the Manage Authorized Users page

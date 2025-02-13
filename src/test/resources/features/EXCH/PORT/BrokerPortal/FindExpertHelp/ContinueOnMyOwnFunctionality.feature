@@ -64,7 +64,7 @@ Feature: Continue on my own button functionality
     Then I click Back on Tell us about yourself page
     Then I validate I am on the "Find Expert Help Exch" page
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Agency owner working OBO for the client
     Then I validate I am on the "Login" page
@@ -107,4 +107,4 @@ Feature: Continue on my own button functionality
     Then I click Back on Tell us about yourself page
     Then I validate I am on the "Find Expert Help Exch OBO" page
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"

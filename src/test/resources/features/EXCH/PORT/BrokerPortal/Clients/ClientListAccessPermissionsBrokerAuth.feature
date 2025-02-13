@@ -21,7 +21,7 @@ Feature: Agency client list access permissions following broker authorization
     And I click Authorized broker
     And I validate current Broker text exists
     And I validate my broker details in the current broker table are "Preston Saunders", "Bright Sky Agency", "88564585", "80205", "303-898-6427", "BROKER", "Active"
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   Scenario: : Agency owner verifying access to the client list
     Given I open the login page on the "broker" portal
