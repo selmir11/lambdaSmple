@@ -74,4 +74,9 @@ public class ApplicationResultsPageSteps {
     @Then("I verify that {string} is not present in the list")
     public void iVerifyThatValueIsNotPresentInTheList(String valueToCheck) {applicationResultsPage.verifyCostSharingReductions(valueToCheck);
     }
+
+    @Then("I validate the health plan disqualification message")
+    public void iValidateTheHealthPlanDisqualificationMessage() {
+        applicationResultsPage.validateHealthPlanMessage();}
+
 }
