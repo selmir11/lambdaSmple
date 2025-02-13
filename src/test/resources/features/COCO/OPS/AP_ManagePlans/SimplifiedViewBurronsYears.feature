@@ -29,7 +29,7 @@ Feature: Manage Plans:CoCo: Simplified View Buttons (positive and negative testi
     Then I login as Admin User any environment "adminPortalDLT_UN_STG" password "adminPortalDLT_PW_STG" and "adminPortalDLT_UN_QA" password "adminPortalDLT_PW_QA"
     And I validate I am on the "Admin Portal search" page
     And I select "coco" checkbox on Admin Portal Dashboard
-    Then I enter an accountId in any Env "8313683700" "" to search user
+    Then I enter an accountId in any Env "8313683700" "6503350186" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
