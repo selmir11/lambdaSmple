@@ -907,7 +907,8 @@ public class MyDocumentsPage {
     }
 
     public void validateDocUnsupportedErrMsgAndTextColour(){
-        softAssert.assertTrue(textErrorMsg_docFileSizeLarge.getText().contains("Document file type is unsupported. Files must be pdf, doc, docx, gif, jpeg, jpg, png."),"Error message is incorrect");
+        String docFileTypeUnsupportedErrMsg="Document file type is unsupported. Files must be pdf, doc, docx, gif, jpeg, jpg, png.";
+        softAssert.assertTrue(textErrorMsg_docFileSizeLarge.getText().contains(docFileTypeUnsupportedErrMsg),"Error message is incorrect");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
         softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
         softAssert.assertAll();
