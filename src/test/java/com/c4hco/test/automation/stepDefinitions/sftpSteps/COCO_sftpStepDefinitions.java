@@ -22,4 +22,12 @@ public class COCO_sftpStepDefinitions {
          sftpUtil.readEdiFile(medFileName);
          ob834Validations_coco.validateOb834MedFile();
     }
+    @And("I validate the coco ob834 medical file data that present in localPath or coco sftp server {string}")
+    public void validateOB834FileDownloadedAndValidateOb834FileDetails(String remoteLocation){
+        String medFileName = SharedData.getMedicalFileName();
+        sftpUtil.checkEdiFileLocalOrSftp(medFileName,remoteLocation);
+        System.out.println("***********Validating Medical EDI File::"+medFileName+"***********");
+        sftpUtil.readEdiFile(medFileName);
+        ob834Validations_coco.validateOb834MedFile();
+    }
 }

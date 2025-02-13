@@ -81,9 +81,9 @@ And I search for user and click email from search results
 Then I click on "Manage Plans" user dashboard button
 Then I click Make Changes Medical button
 And I update the Coverage Start date of member
-| 1:01012024 |
+| 1:01012025 |
 And I update the Financial Start date of member
-| 1:01012024 |
+| 1:01012025 |
 And I click Save Button Medical
 And I select the reason to confirm the changes
 Then I close current tab and switch back to previous tab
@@ -95,7 +95,7 @@ And I enter valid credentials to login
 Then I validate I am on the "CoCo Welcome" page
 Then I click continue signing in on the CAC Screener page
 Then I validate I am on the "CoCo Welcome" page
-And I select year "2024" from My Current Plan container
+And I select year "2025" from My Current Plan container
 And I Validate the correct enrolled plans are displayed on coco welcome page
 And I click on "My Plans" link on welcome page
 And I validate enrolled medical plans details on my policies page coco

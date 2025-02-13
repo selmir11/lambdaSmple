@@ -1,6 +1,6 @@
 Feature: Regression Tests that require Seed 1 w/exception
 
-  Scenario: Seed 01 w/exception For Exchange- Single Applicant NFA
+  Background: Seed 01 w/exception For Exchange- Single Applicant NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                | 1               |
@@ -56,6 +56,8 @@ Feature: Regression Tests that require Seed 1 w/exception
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     And I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
@@ -86,8 +88,8 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I click on to Back to Current Plan Details button
     And I click View Plan History link from dental plan card
     And I validate dental plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
-#    Validations are WIP
+    And I click on Sign Out in the Header for "NonElmo"
+     #    Validations are WIP
     And I validate the member details from policy tables with coverage start date "First Of Next Month" and end date "Last Day Of Current Year"
     And I validate member details from ob834_details table
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
@@ -106,3 +108,27 @@ Feature: Regression Tests that require Seed 1 w/exception
       | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+  @SLER-1993-WIP
+  Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    Then I click Make Changes Medical button
+    Then I update the coverage end date
+      | 1:Cancel |
+    And I update the financial end date
+      | 1:Cancel |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I click Make Changes Dental button
+    Then I update the coverage end date
+      | 1:Cancel |
+    And I update the financial end date
+      | 1:Cancel|
+    And I click Save Button Dental
+    And I select the reason to confirm the changes
+    Then logout from Admin Portal

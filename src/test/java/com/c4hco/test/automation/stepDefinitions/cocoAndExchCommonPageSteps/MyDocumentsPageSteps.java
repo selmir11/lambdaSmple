@@ -153,4 +153,33 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateFontAndBackgroundColorOfDocumentPopup() {
         myDocumentsPage.validateFontAndColor();
     }
+
+    @When("I select any type of document from dropdown")
+    public void I_select_any_type_of_document_from_dropdown() {myDocumentsPage.select1stOptionFromDocType();}
+
+    @When("I select any category of document from dropdown")
+    public void I_select_any_category_of_document_from_dropdown() {myDocumentsPage.select1stOptionFromDocCategory();}
+
+    @When("I click on upload my document button")
+    public void I_click_on_upload_my_document_button() {myDocumentsPage.clickOnUploadMyDoc();}
+
+    @Then("I validate file required error message")
+    public void I_validate_file_required_error_message() {myDocumentsPage.validateFileRequiredErrMsg();}
+
+    @Then("I validate selection required error message")
+    public void I_validate_selection_required_error_message() {myDocumentsPage.validateSelectionRequiredErrMsg();}
+
+    @Then("I validate selection required error message disappear")
+    public void I_validate_selection_required_error_message_disappear() {myDocumentsPage.validateSelectionRequiredErrMsgDisappear();}
+
+    @Then("I validate font colour height and size of selection required error")
+    public void I_validate_font_colour_height_and_size_of_selection_required_error() {myDocumentsPage.validateFontSizeAndColour_errorMsgSR();}
+
+    @Then("I validate border colour of type and category dropdown")
+    public void I_validate_border_colour_of_type_and_category_dropdown() {myDocumentsPage.validateBorderColourOfTypeAndCategoryDropdown_errorMsg();}
+
+    @And("I verify the page text on the My Documents Page")
+    public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
+        myDocumentsPage.verifyTextonDocumentPage(data);
+    }
 }

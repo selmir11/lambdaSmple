@@ -18,7 +18,7 @@ Feature: Assister authorization and deauthorization functionality
     Then I authorize my assister's site ID "Ucr14" or "8Gvzo"
     And I validate the authorization success message
     Then I click Go Back on the Authorize Assister Organization page
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   #Assister verifying client authorization
     Given I open the login page on the "assistNet" portal
@@ -58,7 +58,7 @@ Feature: Assister authorization and deauthorization functionality
     And I validate the Previous Broker Assister table header labels
     Then I validate the Assister details in the Previous Broker Assister table are "Blue River Assisters", "Ucr14", or "8Gvzo", "80205", "720-894-1592", Assister
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   #Assister verifying the client no longer displays in their client list
     Given I open the login page on the "assistNet" portal

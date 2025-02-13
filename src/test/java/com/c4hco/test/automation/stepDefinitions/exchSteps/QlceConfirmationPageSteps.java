@@ -29,4 +29,8 @@ public class QlceConfirmationPageSteps {
     public void iValidateTheVerbiageOnTheTellUsAboutLifeChangesPage(List<String> data) {
         qlceConfirmationPage.validateTheVerbiageOnTellUsAboutLifeChangesPage(data);
     }
+    @Then("I click on back button on Tell us about life changes page")
+    public void iClickBackButton(){
+        qlceConfirmationPage.saveAndContinue();
+    }
 }

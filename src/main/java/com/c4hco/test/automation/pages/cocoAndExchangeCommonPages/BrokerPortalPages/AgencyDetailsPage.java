@@ -324,7 +324,7 @@ public class AgencyDetailsPage {
         phoneNumberField.clear();
         phoneNumberField.sendKeys("1234567890123456");
 
-        softAssert.assertEquals(phoneNumberField.getAttribute("value"), "123-456-7890 ext.");
+        softAssert.assertEquals(phoneNumberField.getAttribute("value"), "123-456-7890 ext.12345");
         softAssert.assertAll();
     }
 

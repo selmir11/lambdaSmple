@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages.AdminPortalIndividualDashboardPage;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdminPortalIndividualDashboardSteps {
 
@@ -269,6 +270,10 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I verify coco individual Account Summary details")
     public void iVerifyCocoIndividualAccountSummaryDetails() {
         adminPortalIndividualDashboardPage.VerifyCocoIndividualAccountSummary();
+    }
+    @And("I validate CoCo Selected Member data on the far left side")
+    public void iValidateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData) {
+        adminPortalIndividualDashboardPage.validateCoCoSelectedMemberData(selectedMemberData);
     }
 }
 

@@ -28,7 +28,7 @@ Feature: Broker authorization modal Spanish validation on the Find a certified b
     Then I click the "Cancel" button on the Authorize a broker modal
     Then I validate the Find a Certified Broker near you page title in "English"
 
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
 
     Then I validate the Find a Certified Broker near you page title in "Spanish"
     And I validate the have a "Exch" broker call you text in "Spanish"
@@ -48,7 +48,7 @@ Feature: Broker authorization modal Spanish validation on the Find a certified b
     Then I click on "Keep Current Broker" in the warning container to authorize new or keep the same broker
     Then I validate the Find a Certified Broker near you page title in "Spanish"
 
-    And I change the language from header to "English ExpertHelp"
+    And I change the language from header to "English"
     Then I click the Authorize broker button
 
     And I validate the text to authorize a new broker "Del Mercer" with "Brandt Agency" or keep the same broker "Solomon Brandt" with "Brandt Agency" in "English" for "Exch"

@@ -26,7 +26,7 @@ Feature: Broker Portal OBO - Submit FA Application and enroll in a plan
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
   Scenario: : Agency owner working OBO to submit an NFA application and enroll in a plan
     Given I open the login page on the "broker" portal

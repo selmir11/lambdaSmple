@@ -55,4 +55,9 @@ public class ImmigrationStatusPageSteps {
     @Then("I validate lived since 1996 error message on the Five-Year Bar page in {string}")
     public void verifyErrorMessageLivedInUSSince1996(String Language) { ImmigrationStatusPage.verifyErrorMessageLivedSince1996(Language); }
 
+    @Then("I click Back button on the Immigration Status page")
+    public void clickBack() {
+        ImmigrationStatusPage.clickBack();
+    }
+
 }

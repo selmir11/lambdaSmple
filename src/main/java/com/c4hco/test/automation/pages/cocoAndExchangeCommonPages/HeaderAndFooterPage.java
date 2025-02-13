@@ -78,7 +78,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = "span > li.stacked.dropdown > div.dropdown-content > a:nth-child(2)")
     WebElement findExpertAssistanceLugy;
 
-    @FindBy(xpath = "//a[normalize-space()='Find Expert Assistance in Your Community']")
+    @FindBy(id = "expert-ga")
     WebElement findExpertAssistanceExpertInCoomunity;
 
     @FindBy(css = ".toolbar-content .username")
@@ -195,7 +195,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(xpath = "//button[contains(text(),'Get Assistance')]")
+    @FindBy(xpath = "//button[@class='dropbtn header-link-text']")
     WebElement getAssistance;
 
     private BasicActions basicActions;
@@ -573,6 +573,30 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
+    public void verifyTextInCoCoOBOHeader() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+        clickLanguageDrp("Exch");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+        actions.moveToElement(getAssistanceLink).perform();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
+        actions.moveToElement(connectLogoLink).perform();
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(userNameLink.getText(), "C4test.aduser123@gmail.com");
+        } else {
+            softAssert.assertEquals(userNameLink.getText(), "C4testaduser123@gmail.com");
+        }
+        softAssert.assertEquals(languageDrp.getText(), "");
+        softAssert.assertAll();
+    }
+
     public void verifyTextInCoCoHeaderSpanish() {
         basicActions.waitForElementToBePresent(connectLogoLink, 10);
         softAssert.assertEquals(connectLogoLink.getText(), "");
@@ -589,6 +613,30 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
         actions.moveToElement(connectLogoLink).perform();
         softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
+        softAssert.assertEquals(languageDrp.getText(), "");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInCoCoOBOHeaderSpanish() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+        clickLanguageDrp("Exch");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+        actions.moveToElement(getAssistanceLink).perform();
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
+        actions.moveToElement(connectLogoLink).perform();
+        if (SharedData.getEnv().equals("qa")) {
+            softAssert.assertEquals(userNameLink.getText(), "C4test.aduser123@gmail.com");
+        } else {
+            softAssert.assertEquals(userNameLink.getText(), "C4testaduser123@gmail.com");
+        }
         softAssert.assertEquals(languageDrp.getText(), "");
         softAssert.assertAll();
     }
@@ -626,6 +674,26 @@ public class HeaderAndFooterPage {
         } else {
             softAssert.assertEquals(userNameLinkExch.getText(), "C4testaduser123@gmail.com");
         }
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp("Exch");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+        clickGetAssistanceLink("Exch");
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
+        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextInExchAnonymousHeader() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+        softAssert.assertFalse(basicActions.waitForElementPresence(userNameLinkExch, 10));
         softAssert.assertEquals(languageDrp.getText(), "");
         clickLanguageDrp("Exch");
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
@@ -703,6 +771,26 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
+    public void verifyTextInExchAnonymousHeaderSpanish() {
+        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        softAssert.assertEquals(connectLogoLink.getText(), "");
+        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+        softAssert.assertFalse(basicActions.waitForElementPresence(userNameLinkExch, 10));
+        softAssert.assertEquals(languageDrp.getText(), "");
+        clickLanguageDrp("Exch");
+        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+        clickGetAssistanceLink("Exch");
+        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+        softAssert.assertAll();
+    }
+
     public void verifyTextInExchNonElmoHeaderSpanish() {
         basicActions.waitForElementToBePresent(connectLogoLinkNonElmo, 10);
         softAssert.assertEquals(connectLogoLinkNonElmo.getText(), "Connect for Health Colorado");
@@ -746,6 +834,9 @@ public class HeaderAndFooterPage {
             case "Header":
                 verifyTextInCoCoHeader();
                 break;
+            case "Admin portal OBO Header":
+                verifyTextInCoCoOBOHeader();
+                break;
             case "Footer":
                 verifyTextInCoCoFooter();
                 break;
@@ -758,6 +849,9 @@ public class HeaderAndFooterPage {
         switch (HeaderOrFooter) {
             case "Header":
                 verifyTextInCoCoHeaderSpanish();
+                break;
+            case "Admin portal OBO Header":
+                verifyTextInCoCoOBOHeaderSpanish();
                 break;
             case "Footer":
                 verifyTextInCoCoFooterSpanish();
@@ -780,6 +874,9 @@ public class HeaderAndFooterPage {
                 break;
             case "Admin portal Footer": //This is Admin portal Footer - displaying for all admin portal pages except admin login page - Admin login page use standard one so didnt add specific one for that.
                 verifyTextAPFooter(); /// this method name used as we are using it specific to admin portal text validation.
+                break;
+            case "Anonymous Find Expert Help":
+                verifyTextInExchAnonymousHeader();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
@@ -812,6 +909,9 @@ public class HeaderAndFooterPage {
                 break;
             case "Login Footer":
                 verifyTextInLoginPortalFooterSpanish();
+                break;
+            case "Anonymous Find Expert Help":
+                verifyTextInExchAnonymousHeaderSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);

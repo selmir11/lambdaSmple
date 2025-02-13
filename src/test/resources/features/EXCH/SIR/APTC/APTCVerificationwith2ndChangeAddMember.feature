@@ -782,7 +782,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click continue on family overview page
 
     Then I validate I am on the "Tell us about life changes" page
-    And  I select "Marriage" QLCE on tell us about life changes page
+    And  I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -1806,7 +1806,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-802 @SLER-803 @SLER-805 @SLER-806 @SLER-808 @SLER-809
-    Scenario Outline: ELIG - APTCRules - SLER-802/RT-2398, SLER-803/RT-2399, SLER-805/RT-2401, SLER-806/RT-2405, SLER-808/RT-2412, SLER-809/RT-2413
+    Scenario Outline: ELIG - APTCRules - SLER-802, SLER-803 SLER-805, SLER-806, SLER-808, SLER-809
     # Add a spouse with income in 2nd enrollment - different zip code locations
       When I click create a new account on login page
       Then I click create my account from pre-screen page
@@ -2064,7 +2064,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click continue on family overview page
 
       Then I validate I am on the "Tell us about life changes" page
-      And  I select "Marriage" QLCE on tell us about life changes page
+      And  I select "MoveToCO" QLCE on tell us about life changes page
       Then I click on Save and Continue
 
       Then I validate I am on the "EXCH Declarations and Signature" page

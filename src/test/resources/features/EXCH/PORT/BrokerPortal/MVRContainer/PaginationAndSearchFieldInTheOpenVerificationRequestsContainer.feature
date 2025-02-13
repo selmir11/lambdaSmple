@@ -1,5 +1,6 @@
 @port @MVRContainer
 Feature:Pagination and Search Field in the Open Verification Requests container
+
 @SLER-1990
   Scenario:validate error msg for MVR search
   Given I open the login page on the "broker" portal
@@ -14,11 +15,11 @@ Feature:Pagination and Search Field in the Open Verification Requests container
   And I click the left pagination arrow button 3 times in mvr container
   Then I verify the current result page is "1" in mvr container
   And I wait for 2000 milliseconds
-  Then I search for "Triy" in search mvr container
-  And I wait for 1000 milliseconds
-  And I validate the result contains "Triy"
+  Then I search for STG "MVRPortTestluoqcl" QA "mvr" in search mvr container
+  And I wait for 5000 milliseconds
+  And I validate the result contains "MVRPortTestluoqcl"
   And I wait for 2000 milliseconds
-  Then I search for "!" in search mvr container
+  Then I search for STG "!" QA "!m" in search mvr container
   Then I validate the I can't search for special characters on Search Bar
   And I clear the MVR search box in broker dashboard page
 
@@ -29,7 +30,7 @@ Feature:Pagination and Search Field in the Open Verification Requests container
     Given I open the login page on the "broker" portal
     Then I validate I am on the "Login" page
     When I open the login page on the "broker" portal
-    And I login as Broker User any environment "carrimautomation+HaroldPottermore@gmail.com" password "ALaska12!" and "carrimautomation+HaroldPottermore@gmail.com" password "ALaska13!"
+    And I login as Broker User any environment "carrimautomation+HaroldPottermore@gmail.com" password "ALaska13!" and "carrimautomation+HaroldPottermore@gmail.com" password "ALaska13!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
