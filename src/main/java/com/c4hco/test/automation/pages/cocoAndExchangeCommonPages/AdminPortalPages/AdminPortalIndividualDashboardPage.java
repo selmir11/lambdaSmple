@@ -281,13 +281,10 @@ public class AdminPortalIndividualDashboardPage {
     WebElement tax;
     @FindBy(xpath = "//td[normalize-space()='Application ID:']")
     WebElement applicationId;
-    @FindBy(css = "#account-status")
-    WebElement suspended;
     @FindBy(css = "#app-individual-selected-member-80 > label")
     WebElement selectedMemberLabel;
     @FindBy(css = "#app-individual-selected-member-80 > div")
     WebElement selectedMemberData;
-
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -295,9 +292,6 @@ public class AdminPortalIndividualDashboardPage {
             case "Manage Account Details":
                 accSummaryBtns.get(1).click();
                 break;
-            case "Manage Account Access":
-            accSummaryBtns.get(0).click();
-            break;
             default:
                 Assert.fail("Invalid argument passed");
         }
@@ -932,11 +926,7 @@ public class AdminPortalIndividualDashboardPage {
         }
         softAssert.assertAll();
     }
-    public void validateAccountSuspended() {
-        basicActions.waitForElementToBePresent(accountStatus, 30);
-        softAssert.assertEquals(suspended.getText(), "Account Status: Suspended");
-
-      public void validateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData){
+    public void validateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData){
         basicActions.switchToParentPage("C4HCO Admin Portal");
 
         basicActions.waitForElementToBePresent(selectedMemberLabel, 300);
@@ -970,7 +960,6 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(memberEmail.getText(), memberEmailData);
         softAssert.assertEquals(memberDob.getText(), memberDobData);
         softAssert.assertEquals(memberAddress.getText(), memberAddressData);
-
         softAssert.assertAll();
     }
 }
