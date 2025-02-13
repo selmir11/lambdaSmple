@@ -20,7 +20,7 @@ public class ApplicationSummaryPage {
     WebElement existingHealthInsuranceLabel;
     @FindBy(css = ":nth-child(21) div div")
     WebElement existingHealthInsuranceData;
-    @FindBy(css = "button.back-button-link")
+    @FindBy(css = "#submitButton")
     WebElement backButton;
 
     @FindBy(xpath = "//td[normalize-space()='Projected Income']//following::td[1]")
