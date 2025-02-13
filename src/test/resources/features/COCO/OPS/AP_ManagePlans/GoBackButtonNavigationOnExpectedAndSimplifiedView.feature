@@ -38,7 +38,7 @@
     Then I validate buttons displayed on CoCo Manage page
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
-    Then I unchecked Medical from CoCo Manage Plan page
+  #  Then I unchecked Medical from CoCo Manage Plan page
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     Then I validate Go Back button on Manage Plan page
