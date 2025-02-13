@@ -1360,9 +1360,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertAll(); }
     public void validateMakeChangesMedicalButtonNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
-        Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));
-        softAssert.assertAll();
-    }
+        Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));   }
 }
 
 
