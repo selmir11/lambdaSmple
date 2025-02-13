@@ -389,7 +389,7 @@ Feature: Page Text-Deductions Page
     Then I validate I am on the "Login" page
 
   @SLER-2082 @PageTextDeductions
-  Scenario: ELIG-Deductions-Page Text(RT-999)
+  Scenario: SLER-2082 ELIG-Deductions-Page Text(RT-999)
     Then I verify the text on ELIG Deductions page
       |Income:|
       |Deductions|
