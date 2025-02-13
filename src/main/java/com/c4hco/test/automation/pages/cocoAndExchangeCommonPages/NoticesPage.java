@@ -513,7 +513,7 @@ public class NoticesPage {
 
     private void VerifyTheNoticeTextAM01608broker() {
         softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Connect for Health Colorado\u00AE account password was recently reset.");
-        softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+        softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("If you did not make this change, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
         softAssert.assertAll();
     }
 
@@ -565,7 +565,7 @@ public class NoticesPage {
             softAssert.assertTrue(bodyText1607.getText().contains("Your have requested to reset your Connect for Health Colorado\u00AE account password. To reset your password, please follow the link: https://staging-aws.connectforhealthco.com/login-portal/createPassword"));
         }
         softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
-        softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+        softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
 
         softAssert.assertAll();
     }
@@ -613,7 +613,7 @@ public class NoticesPage {
                 softAssert.assertEquals(individualEmailBN002A0304.getText(), SharedData.getPrimaryMember().getEmailId());
                 softAssert.assertEquals(individualNameBN002A0304.getText(), SharedData.getPrimaryMember().getFullName());
                 softAssert.assertEquals(bodyTextBN002A04.get(0).getText(), "Nuestros registros muestran que ha eliminado a Arrow Head Agency como Agente autorizado para trabajar en su nombre en el Mercado de Connect for Health Colorado\u00AE.");
-                softAssert.assertEquals(bodyTextBN002A04.get(1).getText(), "Si considera que esta desautorizaci\u00F3n fue creada por error o si tiene otras preguntas, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+                softAssert.assertEquals(bodyTextBN002A04.get(1).getText(), "Si considera que esta desautorizaci\u00F3n fue creada por error o si tiene otras preguntas, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
                 softAssert.assertAll();
         }
     }
@@ -698,11 +698,11 @@ public class NoticesPage {
             switch (language) {
                 case "English":
                     softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "Your Colorado Connect\u00AE account password was recently reset.");
-                    softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains( "If you did not make this change, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+                    softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains( "If you did not make this change, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
                     break;
                 case "Spanish":
                     softAssert.assertEquals(bodyConfirmationPW.get(0).getText(), "La contrase\u00F1a de su cuenta de Colorado Connect\u00AE fue cambiada recientemente.");
-                    softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("Si usted no hizo este cambio, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                    softAssert.assertTrue(bodyConfirmationPW.get(1).getText().contains("Si usted no hizo este cambio, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
                     break;
 
                 default:
@@ -729,7 +729,7 @@ public class NoticesPage {
                 }
                 softAssert.assertTrue(bodyText1607.getText().contains("This link will expire after 60 minutes. If you do not follow the link within the time allowed, you will need to request a new link."));
                 softAssert.assertAll();
-                softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
+                softAssert.assertTrue(bodyText1607part2.getText().contains("If you did not request a password reset, or if you need additional support to reset your password, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -742,7 +742,7 @@ public class NoticesPage {
                 }
                 softAssert.assertTrue(bodyText1607.getText().contains("Este enlace vencer\u00E1 despu\u00E9s de 60 minutos. Si no sigue el enlace durante el tiempo permitido, tendr\u00E1 que solicitar uno nuevo."));
                 softAssert.assertAll();
-                softAssert.assertTrue(bodyText1607part2.getText().contains("Si no solicit\u00F3 el restablecimiento de su contrase\u00F1a o si necesita m\u00E1s ayuda para hacerlo, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                softAssert.assertTrue(bodyText1607part2.getText().contains("Si no solicit\u00F3 el restablecimiento de su contrase\u00F1a o si necesita m\u00E1s ayuda para hacerlo, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
                 softAssert.assertAll();
                 break;
             default:
@@ -894,15 +894,20 @@ public class NoticesPage {
         switch (language) {
             case "English":
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Colorado Connect\u00AE is:"));
+                softAssert.assertAll();
                 softAssert.assertEquals(bodyText.get(2).getText(),"Return to the Colorado Connect\u00AE website and enter this username plus your password to log in to your account.");//®
-                softAssert.assertTrue((bodyText.get(3).getText().contains("If you did not request to have your Username emailed to you, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.")));
-                softAssert.assertTrue(bodyText2.getText().contains("please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m."));
-            break;
+                softAssert.assertTrue((bodyText.get(3).getText().contains("If you did not request to have your Username emailed to you, please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.")));
+                softAssert.assertAll();
+                softAssert.assertTrue(bodyText2.getText().contains("please call the Colorado Connect\u00AE Customer Service Center at 855-675-2626 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+                softAssert.assertAll();
+                break;
             case "Spanish" :
                 softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Colorado Connect\u00AE es:"));
+                softAssert.assertAll();
                 softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Colorado Connect\u00AE y introduzca este nombre de usuario y su contrase\u00F1a para ingresar en su cuenta.");
-                softAssert.assertTrue(bodyText.get(3).getText().contains("Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
-                softAssert.assertTrue(bodyText2.getText().contains("llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                softAssert.assertTrue(bodyText.get(3).getText().contains("Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
+                softAssert.assertAll();
+                softAssert.assertTrue(bodyText2.getText().contains("llame al Centro de atenci\u00F3n al cliente de Colorado Connect\u00AE al 855-675-2626 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m."));
             break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);

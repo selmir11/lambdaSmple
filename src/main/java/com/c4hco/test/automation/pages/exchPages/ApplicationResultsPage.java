@@ -241,5 +241,12 @@ public class ApplicationResultsPage {
         softAssert.assertAll();
     }
 
+    public void validateHealthPlanMessage() {
+        basicActions.waitForElementToBePresent(youDoNotQualify, 10);
+        softAssert.assertEquals(youDoNotQualify.getText(), "Based on the information listed in your application, you do not qualify for a health plan at this time.");
+        softAssert.assertAll();
+    }
+
+
 
 }

@@ -22,7 +22,7 @@ Feature: Verifying broker reassignment in the database
     Then I click Authorized broker
     Then I verify Manage who helps you header text in "English"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     And I verify the broker authorization type in the database is "OWNER"
     And I verify the broker authorization in BoB DB is "Harrison Andersen"

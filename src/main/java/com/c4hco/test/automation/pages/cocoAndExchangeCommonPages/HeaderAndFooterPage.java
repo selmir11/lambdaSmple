@@ -36,7 +36,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = "div.top-navigation > div > nav > ul > li > a")
     List<WebElement> centerHeaderLinkNonElmo;
 
-    @FindBy(css = "#navMenu > div > a")
+    @FindBy(css = ".center-links a")
     List<WebElement> centerHeaderLinkExpertHelp;
 
     @FindBy(css = ".learnmore-getassistance-flex-item .learn-more")
@@ -138,7 +138,7 @@ public class HeaderAndFooterPage {
     @FindBy(xpath = "//*[@id ='sign-out']")
     WebElement  signOutDentalPlanResults;
 
-    @FindBy(id = "nesHeader-signOut-link") // this is for "Who helps you Page" Sign out only.
+    @FindBy(css = "#sign-out") // this is for "Who helps you Page" Sign out only.
     WebElement signOutLinkWhoHelpsPage;
 
     // =========FOOTER============== //
@@ -195,7 +195,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(xpath = "//button[contains(text(),'Get Assistance')]")
+    @FindBy(xpath = "//button[@class='dropbtn header-link-text']")
     WebElement getAssistance;
 
     private BasicActions basicActions;
@@ -238,6 +238,7 @@ public class HeaderAndFooterPage {
 ////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
 //        "NonElmo" non Elmo pages (not listed above)
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
+        basicActions.waitForElementToDisappear(spinner,50);
         switch (pageType) {
             case "Elmo":
                 basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);
@@ -252,7 +253,7 @@ public class HeaderAndFooterPage {
                 centerHeaderLinkNonElmo.get(0).click();
                 break;
             case "ExpertHelp":
-                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 15);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLinkExpertHelp, 70);
                 centerHeaderLinkExpertHelp.get(0).click();
                 break;
 
@@ -322,7 +323,7 @@ public class HeaderAndFooterPage {
     public void clickGetAssistanceLink(String pageType) {
         switch (pageType){
             case "Exch":
-                basicActions.waitForElementToBeClickable(getAssistanceLink, 15);
+                basicActions.waitForElementToBeClickableWithRetries(getAssistanceLink, 15);
                 getAssistanceLink.click();
                 break;
             case "Exch NonElmo":
@@ -397,6 +398,7 @@ public class HeaderAndFooterPage {
             case "Exch":
                 basicActions.waitForElementToBeClickable(languageDrp, 90);
                 basicActions.waitForElementToBeClickable(userNameLinkExch, 90);
+                basicActions.scrollToElement(userNameLinkExch);
                 userNameLinkExch.click();
                 break;
             case "Exch NonElmo":

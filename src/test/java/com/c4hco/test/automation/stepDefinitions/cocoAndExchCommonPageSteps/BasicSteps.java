@@ -741,7 +741,8 @@ public class BasicSteps {
         }
 
         String origin = basicActions.getDriver().getWindowHandle();
-        basicActions.switchToPageAndValidate(page, pageUrl, 45);
+        basicActions.switchToPageAndValidate(page, pageUrl, 90);
+        basicActions.wait(3000);
         basicActions.closeBrowserTab();
         basicActions.getDriver().switchTo().window(origin);
     }

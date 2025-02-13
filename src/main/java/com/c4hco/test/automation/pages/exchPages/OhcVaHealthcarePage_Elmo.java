@@ -229,13 +229,15 @@ public class OhcVaHealthcarePage_Elmo {
 
     public void verifyHeadersVaHealthcareOhcPageEnglish() {
         basicActions.waitForElementToBePresent(OhcHeader, 15);
+        basicActions.waitForElementToBePresent(OhcVaHealthcareHeader, 15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcVaHealthcareHeader.getText(), "VA Healthcare");
         softAssert.assertAll();
     }
 
     public void verifyHeadersVaHealthcareOhcPageSpanish() {
-        basicActions.waitForElementToBePresent(OhcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader, 15);
+        basicActions.waitForElementToBePresent(OhcVaHealthcareHeader, 15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcVaHealthcareHeader.getText(), "Servicios de Salud para Veteranos (VA)");
         softAssert.assertAll();
@@ -319,7 +321,7 @@ public class OhcVaHealthcarePage_Elmo {
     }
 
     public void verifyVaHealthcarePageDataEnglish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         switch (dataToVerify){
             case "First Section":
                 verifyVaHealthcarePageFirstSectionDataEnglish();
@@ -355,6 +357,7 @@ public class OhcVaHealthcarePage_Elmo {
 
     public void verifyVaHealthcarePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcVaHealthcareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcVaHealthcareHeader.getText(),"VA Healthcare");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -385,6 +388,7 @@ public class OhcVaHealthcarePage_Elmo {
 
     public void verifyVaHealthcarePageFirstSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcVaHealthcareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcVaHealthcareHeader.getText(),"VA Healthcare");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -472,6 +476,7 @@ public class OhcVaHealthcarePage_Elmo {
 
     public void verifyVaHealthcarePageFirstSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcVaHealthcareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcVaHealthcareHeader.getText(),"Servicios de Salud para Veteranos (VA)");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");

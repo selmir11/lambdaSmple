@@ -455,8 +455,10 @@ Feature: Initial Payment Page test
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
+    Then I select "No" for Fulltime Student option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+    And I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page

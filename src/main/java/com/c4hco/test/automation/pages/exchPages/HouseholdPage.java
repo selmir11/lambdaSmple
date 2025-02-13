@@ -59,7 +59,7 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow input.linkButton[type='submit']")
     List<WebElement> memberNamesLinks;
 
-    @FindBy(xpath = "//*[contains(text(),'Account ID:')]")
+    @FindBy(xpath = "//*[contains(text(),'Account ID:') or contains(text(),'Identificaci\u00F3n de la cuenta')]")
     WebElement accountIdTxt;
 
     @FindBy(css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
