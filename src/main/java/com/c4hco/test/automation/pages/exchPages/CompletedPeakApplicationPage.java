@@ -125,10 +125,9 @@ public class CompletedPeakApplicationPage {
 
     public void verifyEnglishAndSpanishTextInLetUsGuidePage(String languageOption) {
         SoftAssert softAssert = new SoftAssert();
-        List<String> englishTexts = getEnglishTexts();
-        List<String> spanishTexts = getSpanishTexts();
         switch (languageOption) {
             case "English":
+                List<String> englishTexts = getEnglishTexts();
                 softAssert.assertEquals(bodyText.get(0).getText(), englishTexts.get(0));
                 softAssert.assertEquals(bodyText.get(1).getText(), englishTexts.get(1));
                 softAssert.assertEquals(bodyText.get(2).getText(), englishTexts.get(2));
@@ -136,6 +135,7 @@ public class CompletedPeakApplicationPage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
+                List<String> spanishTexts = getSpanishTexts();
                 softAssert.assertEquals(bodyText.get(0).getText(), spanishTexts.get(0));
                 softAssert.assertEquals(bodyText.get(1).getText(), spanishTexts.get(1));
                 softAssert.assertEquals(bodyText.get(2).getText(), spanishTexts.get(2));
