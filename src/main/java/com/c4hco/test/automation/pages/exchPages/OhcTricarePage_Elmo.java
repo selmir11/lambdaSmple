@@ -229,6 +229,7 @@ public class OhcTricarePage_Elmo {
 
     public void verifyHeadersTricareOhcPageEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcTricareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcTricareHeader.getText(),"TRICARE");
         softAssert.assertAll();
@@ -236,6 +237,7 @@ public class OhcTricarePage_Elmo {
 
     public void verifyHeadersTricareOhcPageSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcTricareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcTricareHeader.getText(),"TRICARE");
         softAssert.assertAll();
@@ -319,7 +321,7 @@ public class OhcTricarePage_Elmo {
     }
 
     public void verifyTricarePageDataDataEnglish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         switch (dataToVerify){
             case "First Section":
                 verifyTricarePageDataFirstSectionDataEnglish();
@@ -354,7 +356,8 @@ public class OhcTricarePage_Elmo {
     }
 
     public void verifyTricarePageDataFirstSectionDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcTricareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcTricareHeader.getText(),"TRICARE");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -367,6 +370,7 @@ public class OhcTricarePage_Elmo {
 
     public void verifyTricarePageFirstSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcTricareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcTricareHeader.getText(),"TRICARE");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -454,6 +458,7 @@ public class OhcTricarePage_Elmo {
 
     public void verifyTricarePageFirstSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcTricareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcTricareHeader.getText(),"TRICARE");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");

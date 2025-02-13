@@ -239,7 +239,7 @@ public class OhcIndividualInsurancePage_Elmo {
     }
 
     public void verifyHeadersIndividualInsuranceOhcPageSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Seguro individual");
         softAssert.assertAll();

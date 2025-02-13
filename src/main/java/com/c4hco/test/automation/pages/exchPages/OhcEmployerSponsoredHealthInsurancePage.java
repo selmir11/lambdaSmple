@@ -441,7 +441,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyHeadersEsiOhcPageSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertAll();
