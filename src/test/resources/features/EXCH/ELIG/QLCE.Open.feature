@@ -5,7 +5,7 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-OPEN-WIP
+  @SLER-OPEN-WIP @SLER-2171 @SLER-2172 @SLER-2173 @SLER-2174
   Scenario Outline: ELIG-QLCE vaildations allows user to shop under Open Enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -81,9 +81,9 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
       | GainedLawfulPresence            | GainedLawfulPresence   |
       | GainedAmericanIndianAlaskaNative| GainOfTribalStatus     |
       | MovedToColorado                 | MoveToCO               |
-      | Pregnancy                       | NoneOfThese            |
       | Change of Incarceration Status  | Incarceration          |
       | Other                           | ChangePrimaryResidence |
       | Other                           | Death                  |
       | NoneOfThese                     | TaxTimeEnrollmentPeriod|
       | NoneOfThese                     | NoneOfThese            |
+      | Pregnancy                       | NoneOfThese            |
