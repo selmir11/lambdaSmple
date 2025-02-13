@@ -224,7 +224,7 @@ Feature: Initial Payment Page test
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
-    Then I click continue on grouping Members Medical page
+    #Then I click continue on grouping Members Medical page
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I click continue on grouping Members Dental page
@@ -455,8 +455,10 @@ Feature: Initial Payment Page test
     Then I select "Household" for Residential Address
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
+    Then I select "No" for Fulltime Student option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
+    And I select "No" for Foster care in state of Colorado
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
