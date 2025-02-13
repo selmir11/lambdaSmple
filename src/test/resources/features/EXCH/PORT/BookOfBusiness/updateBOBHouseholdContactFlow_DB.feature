@@ -28,7 +28,7 @@ Feature: Update book of business householdContactUpdate flow to also change hous
     And I click more details from the first broker result container
     Then I click Authorized broker
     And I validate current Broker text exists
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
 #Agency owner working OBO to submit an FA application and enroll in a plan
     Given I open the login page on the "broker" portal

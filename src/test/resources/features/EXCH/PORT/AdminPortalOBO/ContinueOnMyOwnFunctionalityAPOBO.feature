@@ -22,7 +22,7 @@ Feature: Continue on my own button functionality via Admin Portal
     And I validate current Broker text exists
     And I validate my broker details in the current broker table are "Maggie Walker", "Bright Sky Agency", "8895237", "80205", "303-898-6426", "BROKER", "Active"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Admin Portal user working OBO for the customer
     And I open the login page on the "admin" portal
@@ -81,4 +81,4 @@ Feature: Continue on my own button functionality via Admin Portal
     Then I click Back on Tell us about yourself page
     Then I validate I am on the "Find Expert Help Exch OBO" page
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"

@@ -12,7 +12,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     And I click on Find Expert Assistance in the "Exch" Header
     And I click on Find a Broker
     And I validate the have a "Exch" broker call you text in "English"
-    And I change the language from header to "Spanish ExpertHelp"
+    And I change the language from header to "Spanish"
     Then I validate the Find a Certified Broker near you page title in "Spanish"
     And I validate the have a "Exch" broker call you text in "Spanish"
     Then I Search authorized Broker "Noah Trujillo"
