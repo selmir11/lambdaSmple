@@ -337,6 +337,18 @@ public class AdminPortalManagePlansSteps {
     @Then("I validate Make Changes Medical button does not display on Manage Plans page")
     public void validateMakeChangesMedicalNotDisplay() {
         adminPortalManagePlansPage.validateMakeChangesMedicalButtonNotDisplay();       }
+    @Then("I update the SES value for")
+    public void iUpdateSESValueFor(List<String> memberSESDtList) {
+        adminPortalManagePlansPage.addSESValue(memberSESDtList);
+    }
+    @Then("I should see the Invalid monetary amount for SES error for")
+    public void iShouldSeeTheInvalidMonetaryAmountForSESErrorFor(DataTable table) {
+        adminPortalManagePlansPage.validateSESErrorMessages(table);
+    }
+    @And("I validate SES entered exceeds EHB amount error is displaying")
+    public void iValidateSESEnteredExceedsEHBAmountErrorIsDisplayingFor() {
+        adminPortalManagePlansPage.validateSesEHBErrors();
+    }
 }
 
 

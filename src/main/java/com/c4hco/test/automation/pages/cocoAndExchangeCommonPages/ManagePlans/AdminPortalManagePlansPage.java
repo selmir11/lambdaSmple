@@ -396,7 +396,14 @@ public class AdminPortalManagePlansPage {
     WebElement aptcRowTwo;
     @FindBy(xpath = "//div/app-plan-container/div[3]/button")
     WebElement btnGoBack;
-
+    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for SES')]")
+    WebElement SESInvalidError;
+    @FindBy(xpath = "(//input[@type='text'])[6]")
+    WebElement sesmember1;
+    @FindBy(xpath = "//div[1]/div[6]/div[15]/input[1]")
+    WebElement sesmember2;
+    @FindBy(xpath = "//div[contains(text(),'SES entered exceeds SES amount: ')]")
+    WebElement SESEHBError;
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -1361,6 +1368,60 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     public void validateMakeChangesMedicalButtonNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));   }
+    public void addSESValue(List<String> memberSESDtList) {
+        for (String memberSESamt : memberSESDtList) {
+            String[] parts = memberSESamt.split(":");
+            String memberNo = parts[0];
+            String sesValue = parts[1];
+            WebElement SESMem = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_1']//input[@type='text']"));
+            SESMem.click();
+            SESMem.clear();
+            SESMem.sendKeys(sesValue);
+            if(SharedData.getPrimaryMember()!= null){
+                SharedData.getPrimaryMember().setMedicalAptcAmt(sesValue);
+                String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalSesAmt()));
+                SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);}
+        }
+    }
+    public void validateSESErrorMessages(DataTable table) {
+        List<Map<String, String>> memberData = table.asMaps(String.class, String.class);
+
+        for (Map<String, String> data : memberData) {
+            String memberNo = data.get("member");
+            String sesValue = data.get("ses");
+
+            String expectedErrorMessage = "";
+
+            if (sesValue == null || sesValue.trim().isEmpty()) {
+                expectedErrorMessage = "Invalid monetary amount for SES";
+            } else {
+                expectedErrorMessage = "Invalid monetary amount for SES: $" + sesValue;
+            }
+            throw new AssertionError("Error message: '" + expectedErrorMessage + "' not displayed for member " + memberNo);
+       }
+    }
+    public void validateSesEHBErrors() {
+        String value1Text = sesmember2.getAttribute("value");
+        String numericValue1 = value1Text.replaceAll("[^0-9.]", "");
+        String value2Text = sesmember1.getAttribute("value");
+        String numericValue2 = value2Text.replaceAll("[^0-9.]", "");
+
+
+        String numericValue3;
+        String value3Text = EHBPremiumamtmedical.getText();
+
+        numericValue3 = value3Text.replaceAll("[^0-9.]", "");
+
+        double value1 = Double.parseDouble(numericValue1);
+        double value2 = Double.parseDouble(numericValue2);
+        double value3 = Double.parseDouble(numericValue3);
+
+        if (value1 + value2 > value3) {
+            Assert.assertTrue(SESEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
+        } else {
+            System.out.println("Condition not met, no error expected.");
+        }
+    }
 }
 
 

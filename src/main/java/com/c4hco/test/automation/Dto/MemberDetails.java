@@ -93,6 +93,7 @@ public class MemberDetails {
     List<String> taxReturnId;
     String contactPref;
     String applyingforCov;
+    String medicalSesAmt;
 }
 
 
