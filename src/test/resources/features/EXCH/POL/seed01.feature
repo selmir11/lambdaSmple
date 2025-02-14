@@ -106,7 +106,7 @@ Feature: Regression Tests that require Seed 1
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
 
-    And I click on Sign Out in the Header for "NonElmo"
+   # And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables

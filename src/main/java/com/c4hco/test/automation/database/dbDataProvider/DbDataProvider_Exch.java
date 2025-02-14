@@ -105,9 +105,9 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_plan(planName));
     }
 
-    public String[] getBaseIdAndHiosIssuerForDentalPlan(String planName){
-        return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_Dentalplan(planName));
-    }
+//    public String[] getBaseIdAndHiosIssuerForDentalPlan(String planName){
+//        return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_Dentalplan(planName));
+//    }
 
     public String getExchPersonId(String memId){
         return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId(memId));
@@ -262,7 +262,7 @@ public class DbDataProvider_Exch {
         SharedData.setDentalPlanDbData(dentalPlanDetailsFromDb);
     }
     public void setDentalPlanDataFromDb_New(String name, String planName){
-        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForDentalPlan(planName);
+        String[] baseIdAndHiosIssuerId = getBaseIdAndHiosIssuerForPlan(planName);
         String baseId = baseIdAndHiosIssuerId[0];
         String hiosIssuerId = baseIdAndHiosIssuerId[1];
         String[] issuerNameId = getIssuerNameId(hiosIssuerId);

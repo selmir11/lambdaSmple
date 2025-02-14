@@ -17,7 +17,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
-import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
 
 public class Ob834PreEdiDbValidations_grp {
