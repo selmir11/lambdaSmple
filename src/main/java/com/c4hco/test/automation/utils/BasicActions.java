@@ -495,23 +495,6 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
-            case "Tax Status Elmo page":
-                newUrl = "TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus";
-                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
-                getDriver().navigate().to(newUrl);
-                System.out.println("Member ID for Primary is " +getMemberId("Primary"));
-                break;
-            case "Tax Status Elmo page Son":
-                newUrl = "TaxReturnPortal/members/" +getMemberId("Son")+"/taxStatus";
-                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Tax Status Elmo page Spouse":
-                newUrl = "TaxReturnPortal/members/" +getMemberId("Spouse")+"/taxStatus";
-                newUrl = currentUrl.replaceAll("nes/taxReturns[^/]*", newUrl);
-                getDriver().navigate().to(newUrl);
-                System.out.println("Member ID for Spouse is " +getMemberId("Spouse"));
-                break;
             case "Tax Return portal Error Exch":
                 newUrl = "TaxReturnPortal/error";
                 newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
@@ -1102,7 +1085,7 @@ public class BasicActions {
     }
 
     public void pageAtTop() {
-        wait(50);
+        wait(500);
         assertTrue("The page is not at the top.", isPageAtTop(driver));
         System.out.println("The page is at the top.");
     }
@@ -1170,6 +1153,18 @@ public class BasicActions {
 
     public  String getUniqueNumber(int length) {
         return RandomStringUtils.random(length, "123456789");
+    }
+
+    public void switchToPageAndValidate(String page, String pageUrl, int timeout) {
+        for (String handle : driver.getWindowHandles()) {
+            driver.switchTo().window(handle);
+
+            if (driver.getTitle().equals(page)) {
+                Assert.assertTrue(getUrlWithWait(pageUrl, timeout).contains(pageUrl),
+                        "Expected page: " + pageUrl + " did not load.");
+                break;
+            }
+        }
     }
 }
 

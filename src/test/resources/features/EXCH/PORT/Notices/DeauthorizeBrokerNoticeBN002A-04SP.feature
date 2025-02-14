@@ -24,7 +24,7 @@ Feature:verify deauthorize broker notice Spanish BN-002-04
     And I "Ok" my decision to remove my current broker
     Then I verify Find Expert Help header Text in "English"
     And I validate the Previous Broker Assister text
-    Then I click on Sign Out in the Header for "WhoHelpsYouPage"
+    Then I click on Sign Out in the Header for "Portal"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "BN-002A-04" in "Spanish"

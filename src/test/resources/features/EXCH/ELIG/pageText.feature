@@ -1168,3 +1168,550 @@ Feature: Verify all English and Spanish Text on ELIG pages
       |Para inscribirse y elegir la fecha de inicio de su plan, llame a nuestro Centro de atención al cliente al 855-752-6749. No puede inscribirse a través de su cuenta en línea.                                                                                   |
     And I change the language from header to "English NonElmo"
     Then  I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2054 @PageText
+  Scenario: ELIG-Declarations and Signature-Page Text (RT-1013)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+    And I am a member with SSN "234345678" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I validate I am on the "Identity Proofing - Initial Questions" page
+    Then I answer all Id proofing questions and click continue
+    Then I validate I am on the "Identify Proofing - Congratulations" page
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "Male" as sex option
+    Then I select "Yes" to Are You Applying
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    And I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I verify the text on Declarations and Signature page in "English"
+    And I change the language from header to "Spanish NonElmo"
+    Then I verify the text on Declarations and Signature page in "Spanish"
+
+  @SLER-2050 @PageText
+  Scenario: SLER-2050 Verify the Family Overview page text in English and Spanish
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I validate the "English" text on the family overview page
+    And I change the language from header to "Spanish NonElmo"
+    Then I validate the "Spanish" text on the family overview page
+    And I change the language from header to "English NonElmo"
+    Then I click on Sign Out in the Header for "Household Page"
+
+  @SLER-2060 @PageText
+  Scenario: SLER-2060 - ELIG - verify text on Caretaker Page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+
+     # Question not asked during Open Enrollment
+    And I report "Birth" and click continue
+
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+  # location change
+    And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+  #income variance
+    And I enter employment details with "1000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+
+    Then I select the projected income option "No" and continue
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+
+    Then I validate I am on the "Good News" page
+    Then I click on "Continue" on good news page
+
+    Then I validate I am on the "Parent/Caretaker" page
+    And I validate the "English" text on the Caretaker page
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the "Spanish" text on the Caretaker page
+    And I change the language from header to "English NonElmo"
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2116 @PageText
+  Scenario: SLER-2116 - ELIG - verify text on Full Time Student Page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+
+     # Question not asked during Open Enrollment
+    And I report "Birth" and click continue
+
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+  # location change
+    And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+  #income variance
+    And I enter employment details with "1000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+
+    Then I select the projected income option "No" and continue
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+
+    Then I validate I am on the "Good News" page
+    Then I click on "Continue" on good news page
+
+    Then I validate I am on the "Parent/Caretaker" page
+    Then I select "No" for under the age of 19 question and Continue on ParentCaretaker MA page
+
+    Then I select "No" temporarily absent from Colorado question and Continue on Out Of State MA page
+
+    Then I validate I am on the "FullTimeStudent" page
+    And I validate the "English" text on the FullTime Student page
+
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the "Spanish" text on the FullTime Student page
+
+    And I change the language from header to "English NonElmo"
+    And I click continue on the FullTime Student page
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2149 @PageText
+  Scenario: SLER-2149 - ELIG - verify text on Medical Condition and Disability Page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+
+     # Question not asked during Open Enrollment
+    And I report "Birth" and click continue
+
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+  # location change
+    And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+  #income variance
+    And I enter employment details with "1000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+
+    Then I select the projected income option "No" and continue
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+
+    Then I validate I am on the "Good News" page
+    Then I click on "Continue" on good news page
+
+    Then I validate I am on the "Parent/Caretaker" page
+    Then I select "No" for under the age of 19 question and Continue on ParentCaretaker MA page
+
+    Then I validate I am on the "Temporarily OutOfState" page
+    Then I select "No" temporarily absent from Colorado question and Continue on Out Of State MA page
+
+    Then I validate I am on the "FullTimeStudent" page
+    Then I select "No" for attending school full-time question and Continue on Full-Time Student MA page
+
+    Then I validate I am on the "Medical Condtion" page
+    And I validate the "English" text on the Medical Condition MA page
+
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the "Spanish" text on the Medical Condition MA page
+
+    And I change the language from header to "English NonElmo"
+    And I click continue on the Medical Condition MA page
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2083 @PageText
+  Scenario: SLER-2083 - ELIG - verify text on Out of State Page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+
+     # Question not asked during Open Enrollment
+    And I report "Birth" and click continue
+
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+  # location change
+    And I am a member with City "Denver" in State "CO" with dob "01011971" in county "DENVER" with zipcode "80220"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+  #income variance
+    And I enter employment details with "1000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+
+
+    Then I select the projected income option "No" and continue
+
+    Then I validate I am on the "Tax status" page
+    And I select the option "No" to claim as dependent
+    And I select the option "Yes" to file federal income tax return next year
+    And I select "Single" tax filing status
+    And I select "No" to claim dependents
+    And I click save and continue on tax status page
+
+    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+
+    Then I validate I am on the "Good News" page
+    Then I click on "Continue" on good news page
+
+    Then I validate I am on the "Parent/Caretaker" page
+    Then I select "No" for under the age of 19 question and Continue on ParentCaretaker MA page
+    And I click continue on the Caretaker page
+
+    Then I validate I am on the "Temporarily OutOfState" page
+    And I validate the "English" text on the Out of State MA page
+    And I change the language from header to "Spanish NonElmo"
+    And I validate the "Spanish" text on the Out of State MA page
+    And I change the language from header to "English NonElmo"
+    And I click continue on the Out of State MA page
+    And I click on Sign Out in the Header for "NonElmo"

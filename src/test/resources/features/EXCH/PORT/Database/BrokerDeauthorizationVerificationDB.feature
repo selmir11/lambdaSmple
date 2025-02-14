@@ -27,6 +27,6 @@ Feature: Verifying broker deauthorization in the database
 
     Then I verify Find Expert Help header Text in "English"
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     And I verify broker deauthorization in the database

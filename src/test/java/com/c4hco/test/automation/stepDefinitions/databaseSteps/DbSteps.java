@@ -333,6 +333,16 @@ public class DbSteps {
     public void validateVLPRetryTypeAndStatus(String retryType, String retryStatus) {
         dbValidations.validateVLPRetryTypeandStatus(retryType,retryStatus);
     }
+
+    @And("I verify the Member reason code as {string}")
+    public void iVerifyTheMemberReasonCode(String expectedReasonCode) {
+        dbValidations.validateReasonCode(expectedReasonCode);
+    }
+
+    @And("I validate the FDSH Retry Details")
+    public void validateFDSHRetry(List<Map<String, String>> expectedValues){
+        dbValidations.validateFDSHRetry(expectedValues);
+    }
 }
 
 

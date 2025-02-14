@@ -123,7 +123,7 @@ public class EligNotices {
             "resolution, a formal hearing or both. You may log into your Connect for Health Colorado\u00AE account to see a summary \n" +
             "of the information we used for your eligibility determination.\n" +
             "You can request an appeal in one of these four ways\n" +
-            "1. Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-346-3432) \n" +
+            "1. Please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) \n" +
             "Monday - Friday 8:00a.m. - 6:00p.m.\n" +
             "2. Visit  and go to \"Resources\" to download an Appeal Request form. You can upload the ConnectforHealthCO.com\n" +
             "completed Appeal Request form to your Connect for Health Colorado\u00AE account in \"My Documents.\"\n" +
@@ -153,7 +153,7 @@ public class EligNotices {
             "interpreters, and information translated into other languages. Aids and services can be provided in a timely \n" +
             "manner and free of charge.\n" +
             "To request free aids or services, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-\n" +
-            "752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n" +
+            "752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.\n" +
             "To file a discrimination complaint or learn more about this policy, please call 303-590-9640, fax us at 303-322-4217, or \n" +
             "contact us by mail at:\n" +
             "Connect for Health Colorado\n" +
@@ -174,8 +174,8 @@ public class EligNotices {
             "Sincerely,\n" +
             "Connect for Health Colorado\u00AE\n" +
             "You can get this letter in Spanish or in a large print copy or another way that's best for you. Call 855-752-6749 (TTY: \n" +
-            "855-346-3432). Puede recibir esta carta en espa\u00F1ol o en copia impresa con letra grande o de cualquier otra manera que \n" +
-            "le resulte conveniente. Llame al 855-752-6749 (TTY: 855-346-3432).\n" +
+            "855-695-5935). Puede recibir esta carta en espa\u00F1ol o en copia impresa con letra grande o de cualquier otra manera que \n" +
+            "le resulte conveniente. Llame al 855-752-6749 (TTY: 855-695-5935).\n" +
             "is Colorado\u2019s official health insurance marketplace. Our mission is to increase access, Connect for Health Colorado\u00AE \n" +
             "affordability and choice for individuals, families and small employers. Learn more at www.ConnectforHealthCO.com.\n" +
             " CONFIDENTIALITY NOTICE: This message and its contents are confidential and are intended only for the recipient(s). \n" +
@@ -238,8 +238,8 @@ public class EligNotices {
                             "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n");
                 }
                 case "Spanish" -> {
-                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de su\n" +
-                    "familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de\n" +
+                    "su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
                     "seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
                     "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n");
                 }
@@ -400,7 +400,7 @@ public class EligNotices {
                                "Denver CO 80237\n" +
                                "We will notify you once we review your document(s). If you have questions, believe you already provided the information\n" +
                                "listed above, or need more time to provide the requested information, please call the Connect for Health Colorado\u00AE\n" +
-                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m.\n");
+                               "Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.\n");
                    }
                    case "Spanish" -> {
                        return String.format("Se requiere m\u00E1s informaci\u00F3n\n" +
@@ -481,7 +481,7 @@ public class EligNotices {
                                "Denver CO 80237\n" +
                                "Le notificaremos una vez que hayamos revisado su(s) documento(s). Si tiene alguna pregunta, si cree que ya\n" +
                                "proporcion\u00F3 la informaci\u00F3n anteriormente mencionada, o si necesita m\u00E1s tiempo para proporcionar la informaci\u00F3n\n" +
-                               "requerida, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432)\n" +
+                               "requerida, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935)\n" +
                                "de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n"
                                ;
                    }
@@ -564,7 +564,7 @@ public class EligNotices {
                                "Denver CO 80237\n" +
                                "We will notify you once we review your document(s). If you have questions, believe you already provided the information\n" +
                                "listed above, or need more time to provide the requested information, please call the Connect for Health Colorado\u00AE\n" +
-                               "Customer Service Center at 855-752-6749 (TTY:855-346-3432) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.\n");
+                               "Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m. and Dec 2nd - Dec 17th from 8:00a.m. to 8:00p.m.\n");
                    }
                    case "Spanish" -> {
                        return String.format("");
@@ -1588,10 +1588,10 @@ public class EligNotices {
         if(docType.equals("CHP") || docType.equals("Health First Colorado")) {
             return switch (language) {
                 case "English" ->
-                        "To report changes, log into your PEAK account or call 855-752-6749 or TTY: 855-346-3432. If you do not have a PEAK \n" +
+                        "To report changes, log into your PEAK account or call 855-752-6749 or TTY: 855-695-5935. If you do not have a PEAK \n" +
                         "account, you can create one at .Colorado.gov/PEAK\n";
                 case "Spanish" ->
-                        "Para informar de cambios, ingrese en su cuenta PEAK o llame al 855-752-6749 o TTY: 855-346-3432. Si no tiene\n" +
+                        "Para informar de cambios, ingrese en su cuenta PEAK o llame al 855-752-6749 o TTY: 855-695-5935. Si no tiene\n" +
                         "cuenta PEAK, puede crear una en .Colorado.gov/PEAK\n";
                 default -> throw new IllegalArgumentException("Invalid option: " + language);
             };
@@ -1608,7 +1608,7 @@ public class EligNotices {
                         "household could qualify for Health First Colorado (Colorado\u2019s Medicaid Program) or the Child Health Plan Plus (CHP+) \n" +
                         "program. This letter informs you which members of your household may qualify for these programs based on our \n" +
                         "assessment. However, you or members of your household can request a full determination from the State of Colorado \n" +
-                        "on whether they qualify for Health First Colorado or CHP+. Call 855-752-6749 or TTY: 855-346-3432 for questions \n" +
+                        "on whether they qualify for Health First Colorado or CHP+. Call 855-752-6749 or TTY: 855-695-5935 for questions \n" +
                         "about financial help available through Connect for Health Colorado.\n" +
                         "If members of your household qualify for Health First Colorado or CHP+, but you do not want that coverage, you may \n" +
                         "choose to enroll in a health insurance plan through Connect for Health Colorado.\n" +
@@ -1620,8 +1620,8 @@ public class EligNotices {
                         "podr\u00EDan calificar para Health First Colorado (Programa Medicaid de Colorado) o el programa de Child Health Plan Plus\n" +
                         "(CHP+). Esta carta le informa cu\u00E1les miembros de su familia pueden calificar para estos programas seg\u00FAn nuestra\n" +
                         "evaluaci\u00F3n. Sin embargo, usted o los miembros de su familia pueden solicitar una determinaci\u00F3n completa al Gobierno\n" +
-                        "del estado de Colorado para ver si califican para Health First Colorado o CHP+. Llame al 855-752-6749 o TTY: 855-346-\n" +
-                        "3432 para obtener respuestas a sus preguntas sobre ayuda financiera disponible a trav\u00E9s Connect for Health Colorado.\n" +
+                        "del estado de Colorado para ver si califican para Health First Colorado o CHP+. Llame al 855-752-6749 o TTY: 855-695-\n" +
+                        "5935 para obtener respuestas a sus preguntas sobre ayuda financiera disponible a trav\u00E9s Connect for Health Colorado.\n" +
                         "Si los miembros de su familia califican para Health First Colorado o para CHP+ pero no desean esa cobertura, pueden\n" +
                         "optar por inscribirse en un plan de seguro de salud por medio de Connect for Health Colorado.\n" +
                         "Para ver los planes que se ofrecen en su zona, ingrese en su cuenta de Connect for Health Colorado, haga\n"+
@@ -1634,7 +1634,6 @@ public class EligNotices {
 
     public static String getApplicationResultsSpanish(String docType, String language, String memberNumber, BasicActions basicActions) {
         String timestamp = getCurrentTimestamp(language, basicActions);
-        String lceCloseDate = getLceCloseDate(language, docType, basicActions);
 
         return String.format("ELG-101-01\n" +
                 SharedData.getPrimaryMember().getEmailId()+"\n" +
@@ -1662,7 +1661,7 @@ public class EligNotices {
                 "cuenta de Connect for Health Colorado para ver un resumen de la informaci\u00F3n que utilizamos para evaluar su\n" +
                 "elegibilidad.\n" +
                 "Puede solicitar una apelaci\u00F3n en una de estas cuatro formas:\n" +
-                "1. Llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de\n" +
+                "1. Llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de\n" +
                 "lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
                 "2. Visite  para descargar un formulario de solicitud de apelaci\u00F3n. Puede llenar su Es.ConnectForHealthCO.com\n" +
                 "solicitud de apelaci\u00F3n y subirla a su cuenta de Connect for Health Colorado en \u201CMis documentos\u201D.\n" +
@@ -1695,7 +1694,7 @@ public class EligNotices {
                 "la impresi\u00F3n en letra grande), int\u00E9rpretes de idiomas extranjeros y traducci\u00F3n de informaci\u00F3n a otros idiomas. Los\n" +
                 "apoyos y servicios pueden brindarse de manera oportuna y sin costo.\n" +
                 "Para solicitar apoyos o servicios gratuitos, llame al Centro de atenci\u00F3n al cliente de Connect for Health\n" +
-                "Colorado\u00AE al 855-752-6749 (TTY:855-346-3432) de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
+                "Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
                 "Para presentar una denuncia de discriminaci\u00F3n o para conocer mejor esta pol\u00EDtica, llame al 303-590-9640, env\u00EDe un\n" +
                 "fax al 303-322-4217, o escr\u00EDbanos por correo postal a:\n" +
                 "Connect for Health Colorado\n" +

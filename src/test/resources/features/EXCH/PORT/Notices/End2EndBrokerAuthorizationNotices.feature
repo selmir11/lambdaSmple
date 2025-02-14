@@ -25,7 +25,7 @@ Feature: End to End broker authorization notice validation for an individual, ag
     And I validate current Broker text exists
     And I save the broker's details
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Elmo"
 
     #Verifying the individual's broker authorization notice
     Then I open outlook Tab

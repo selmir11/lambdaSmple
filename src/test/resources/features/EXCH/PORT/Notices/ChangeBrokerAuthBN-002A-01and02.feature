@@ -24,7 +24,7 @@ Feature: Trigger the exchange individual notices for broker authorization/deauth
     And I click Authorized broker
     And I validate current Broker text exists
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
@@ -55,7 +55,7 @@ Feature: Trigger the exchange individual notices for broker authorization/deauth
     And I validate current Broker text exists
     And I save the broker's details
 
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"

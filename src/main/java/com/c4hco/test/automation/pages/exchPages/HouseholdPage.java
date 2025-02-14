@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.pages.exchPages;
 
-import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.Alert;
@@ -60,13 +59,13 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow input.linkButton[type='submit']")
     List<WebElement> memberNamesLinks;
 
-    @FindBy(xpath = "//*[contains(text(),'Account ID:')]")
+    @FindBy(xpath = "//*[contains(text(),'Account ID:') or contains(text(),'Identificaci\u00F3n de la cuenta')]")
     WebElement accountIdTxt;
 
     @FindBy(css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
     List<WebElement> basicMemberList;
 
-    @FindBy(name = "hhDeleteMember")
+    @FindBy(xpath = "//tr[4]//input[@name='hhDeleteMember']")
     WebElement removeMemberLnk;
     @FindBy(xpath = "//td[normalize-space()='Not Applicable']")
     WebElement nfaInfo;

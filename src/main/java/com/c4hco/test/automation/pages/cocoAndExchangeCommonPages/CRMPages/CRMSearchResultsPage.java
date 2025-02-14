@@ -35,7 +35,7 @@ public class CRMSearchResultsPage {
 
     public void handleSearchResultsPage() {
         // This function handles the Search Results page when searching from the dashboard page.
-        int retryCount = 100;
+        int retryCount = 130;
         int waitTime = 2;
 
         WebDriver driver = basicActions.getDriver();

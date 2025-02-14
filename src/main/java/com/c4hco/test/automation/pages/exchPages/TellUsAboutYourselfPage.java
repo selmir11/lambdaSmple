@@ -129,6 +129,7 @@ public class TellUsAboutYourselfPage {
     }
 
     public void isUserApplyingForHealthInsurance(String YNApplying){
+        MemberDetails subscriber = SharedData.getPrimaryMember();
         switch(YNApplying){
             case "Yes":
                 rdobtnApplyingYes.click();
@@ -139,6 +140,7 @@ public class TellUsAboutYourselfPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + YNApplying);
         }
+        subscriber.setApplyingforCov(YNApplying);
     }
 
     public void saveAndContinue(){
@@ -255,6 +257,17 @@ public class TellUsAboutYourselfPage {
             case "012123456":
                 softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name and the Social Security number you entered match your Social Security card and try again.");
                 break;
+            case "890901235":
+                softAssert.assertEquals(hdrSsaError.getText(), "Make sure the date of birth and the Social Security number you entered are correct and try again.");
+                break;
+            case "890901234":
+                softAssert.assertEquals(hdrSsaError.getText(), "Make sure the name, date of birth and the Social Security number you entered match your Social Security card and try again.");
+                break;
+            case "789890123":
+                softAssert.assertEquals(hdrSsaError.getText(), "Make sure that the Social Security number you entered is correct and try again.");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + SSN);
         }
 
         softAssert.assertAll();

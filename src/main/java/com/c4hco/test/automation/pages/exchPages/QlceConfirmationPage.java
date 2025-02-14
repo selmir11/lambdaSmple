@@ -49,6 +49,9 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Divorce')]")
     List<WebElement> divorceEventDate;
 
+    @FindBy(id = "changeOnIncarcerationStatus")
+    WebElement changeOnIncarcerationStatusLce;
+
     //Death
     @FindBy(id = "death")
     WebElement deathLce;
@@ -100,6 +103,8 @@ public class QlceConfirmationPage {
     WebElement noneOfTheseLCE;
     @FindBy(xpath = "//*[@id='continueButton']")
     WebElement saveAndContinue;
+    @FindBy(xpath = "//*[@id='submitButton']")
+    WebElement btnBack;
 
     @FindBy(css = "h1.c4PageHeader")
     WebElement textReportLifeChangeHeader;
@@ -260,7 +265,15 @@ public class QlceConfirmationPage {
                     allmemberDeathcheckbox.get(i).click();
                     deathEventDate.get(i).click();
                     deathEventDate.get(i).sendKeys(getCurrentDate());
-
+                }
+                break;
+            case "Divorce":
+                basicActions.waitForElementToBeClickable(divorceLce, 10);
+                divorceLce.click();
+                for (var i = 0; i < allmemberDivorcecheckbox.size(); i++) {
+                    allmemberDivorcecheckbox.get(i).click();
+                    divorceEventDate.get(i).click();
+                    divorceEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
             case "NoneOfThese":
@@ -275,6 +288,30 @@ public class QlceConfirmationPage {
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
     }
+    public void selectQLCEforMember(String QLCEType, String selectMember) {
+        switch (QLCEType) {
+            case "ChangeOnIncarcerationStatus":
+                basicActions.waitForElementToBeClickable(changeOnIncarcerationStatusLce, 10);
+                changeOnIncarcerationStatusLce.click();
+                WebElement incarcerationMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 incarcerationMemberWrapper']//span[contains(text(),'"+selectMember+"')]/preceding::input[2]"));
+                WebElement incarcerationMemEventDate = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 incarcerationMemberWrapper']//span[contains(text(),'"+selectMember+"')]/following::input[1]"));
+                incarcerationMemCheckbox.click();
+                incarcerationMemEventDate.sendKeys(getCurrentDate());
+                break;
+            case "Divorce":
+                basicActions.waitForElementToBeClickable(divorceLce, 10);
+                divorceLce.click();
+                WebElement divorceMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 divorceMemberWrapper']//span[contains(text(),'"+selectMember+"')]/preceding::input[2]"));
+                WebElement divorceMemEventDate = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 divorceMemberWrapper']//span[contains(text(),'"+selectMember+"')]/following::input[1]"));
+                divorceMemCheckbox.click();
+                divorceMemEventDate.sendKeys(getCurrentDate());
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid option: " + QLCEType);
+        }
+    }
+
 
     public void selectBirthLCE() {
         basicActions.waitForElementToBeClickable(birthQLCE, 10);
@@ -291,6 +328,9 @@ public class QlceConfirmationPage {
 
     public void saveAndContinue() {
         saveAndContinue.click();
+    }
+    public void clickBackButton() {
+        btnBack.click();
     }
 
     public void validateTheVerbiageOnTellUsAboutLifeChangesPage(List<String> data) {

@@ -31,6 +31,7 @@ Feature:Password reset error validation English/Spanish
     Then I validate the password cannot contain part of the "username" error message in "English"
     Then I validate the password cannot contain part of the "previous password" error message in "English"
     Then I validate the password cannot contain part of the "first name" error message in "English"
+    And I validate the assistance information is displayed in "English"
         
     And I change the language from header to "Spanish"
     Then I validate create new password must contain at least 8 characters error message in "Spanish"
@@ -40,6 +41,7 @@ Feature:Password reset error validation English/Spanish
     Then I validate the password cannot contain part of the "username" error message in "Spanish"
     Then I validate the password cannot contain part of the "previous password" error message in "Spanish"
     Then I validate the password cannot contain part of the "first name" error message in "Spanish"
+    And I validate the assistance information is displayed in "Spanish"
 
     And I change the language from header to "English"
     And I enter the new password in create new password page

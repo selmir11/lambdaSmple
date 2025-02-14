@@ -76,6 +76,9 @@ public class ApplicationResultsPage {
     @FindBy(css = ".linkButton")
     WebElement lnkProvideDocs;
 
+    @FindBy(css = "button.back-button-link")
+    WebElement backButton;
+
     private BasicActions basicActions;
 
     public ApplicationResultsPage(WebDriver webDriver) {
@@ -226,5 +229,24 @@ public class ApplicationResultsPage {
             }
         }
     }
+
+    public void iClickOnBackButton() {
+        basicActions.waitForElementToBeClickable(backButton, 20);
+        backButton.click();
+    }
+
+    public void verifyCostSharingReductions(String valueToCheck) {
+        basicActions.waitForElementListToBePresent(textMAEligibility, 10);
+        softAssert.assertFalse(textMAEligibility.stream().anyMatch(e -> e.getText().trim().equalsIgnoreCase(valueToCheck)), valueToCheck + " should not be present, but it was found.");
+        softAssert.assertAll();
+    }
+
+    public void validateHealthPlanMessage() {
+        basicActions.waitForElementToBePresent(youDoNotQualify, 10);
+        softAssert.assertEquals(youDoNotQualify.getText(), "Based on the information listed in your application, you do not qualify for a health plan at this time.");
+        softAssert.assertAll();
+    }
+
+
 
 }

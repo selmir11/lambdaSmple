@@ -547,5 +547,3 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I validate I am on the "Start Shopping" page
 
 
-
-

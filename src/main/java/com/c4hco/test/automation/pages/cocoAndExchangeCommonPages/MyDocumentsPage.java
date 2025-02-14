@@ -1,10 +1,8 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.PlanDbData;
 import com.c4hco.test.automation.pages.exchPages.AccountOverviewPage;
 import com.c4hco.test.automation.utils.BasicActions;
-
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
@@ -13,20 +11,22 @@ import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
+import java.time.Year;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+
 
 public class MyDocumentsPage {
 
@@ -34,6 +34,7 @@ public class MyDocumentsPage {
     SoftAssert softAssert = new SoftAssert();
     AccountOverviewPage accountOverviewPage = new AccountOverviewPage(WebDriverManager.getDriver());
     PDF pdf = new PDF(WebDriverManager.getDriver());
+
     public MyDocumentsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -64,8 +65,11 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//div[@class='drop-down-options']//div")
     List<WebElement> categoryList;
 
-    @FindBy(xpath = "//div[@class='doc-type-select']")
+    @FindBy(xpath = "(//div[@class='drop-down-option drop-down-option-selected'])[3]")
     WebElement docTypeDrpDwn;
+
+    @FindBy(xpath = "(//div[@class='drop-down-option drop-down-option-selected'])[4]")
+    WebElement docCategoryDrpDwn;
 
     @FindBy(xpath = "//span[@id='mvrActionButtonTitle_0']")
     WebElement verifyFinancialHelpEligbilityButton;
@@ -148,6 +152,105 @@ public class MyDocumentsPage {
 
     @FindBy(css = ".btn-upload.btn-primary-action-button")
     WebElement btnUploadDoc;
+
+    @FindBy(xpath = "//*[@class='drop-down-option drop-down-option-selected']")
+    List<WebElement> PlanYearDropDown;
+
+    @FindBy(xpath = "//*[@class='drop-down-options']//span")
+    List<WebElement> PlanYearValues;
+
+    @FindBy(xpath = "//*[@class='documents-notices-content-container']")
+    WebElement DocumentsNoticesList;
+
+    @FindBy(xpath="//*[@class='document-notice-name-left body-text-1']")
+    List<WebElement> DocumentsNoticesLists;
+
+    @FindBy(xpath="//div[@class='document-notice-select-double-chevrons-container']/span")
+    WebElement doubleChevrons;
+
+    @FindBy(xpath = "//div[@class='document-notice-name-right']/span")
+    List<WebElement>  SingleChevrons;
+
+    @FindBy(xpath = "//div[contains(text(), 'Date Received')]")
+    List<WebElement> dateReceived;
+
+    @FindBy(xpath = "//div[contains(text(), 'Time Received')]")
+    List<WebElement> timeReceived;
+
+    @FindBy(css = "div.document-notice-expanded-left.body-text-1")
+    List<WebElement> datetime;
+
+    @FindBy(xpath = "//a[contains(text(), 'Download')]")
+    List<WebElement> download;
+
+    @FindBy(xpath="//*[text()='Select a file from your device']/following::*[@aria-label='Close']")
+    WebElement btn_documentClose;
+
+    @FindBy(xpath = "//a[contains(@href,'UserProfile')]")
+    WebElement textUserName;
+
+
+    @FindBy(xpath = "//*[@class='btn-cancel btn-second-action-button']")
+    WebElement btncancel;
+
+    @FindBy(xpath = "//span[@class='center header-3']")
+    List<WebElement> txtHeaderTellUs;
+
+    @FindBy(xpath = "//*[@class='doc-type-label body-text-1']/span")
+    List<WebElement> txtWhatTypequestion;
+
+    @FindBy(xpath = "//*[@class='label-browse-my-files btn-second-action-button']")
+    WebElement browseFilesbtn;
+
+    @FindBy(xpath = "//*[@class='uploadonlyonefile-guide body-text-1']/span")
+    WebElement onlyOneDocumentTxt;
+
+    @FindBy(xpath = "//*[@class='btns-container']/button")
+    List<WebElement> btnContainertxt;
+
+    @FindBy(xpath = "//*[@class='modal-header-container']")
+    WebElement UploadPopupHeadercolor;
+
+    @FindBy(xpath = "//*[@class='group-title-box']")
+    List<WebElement> titleBackgroundrcolor;
+
+    @FindBy(xpath = "//*[@class='modal-body group-box']")
+    WebElement PopupContentBodyColor;
+
+    @FindBy(xpath = "//div[@class='btns-container']")
+    WebElement PopupFooterBackGroundColor;
+
+    @FindBy(xpath = "(//*[@class='drop-down-options']/div/span)[1]")
+    WebElement typeDrpDwn1stOption;
+
+    @FindBy(xpath = "//*[text()='Correction Proof']")
+    WebElement categoryDrpDwn1stOption;
+
+    @FindBy(xpath = "//*[@class='error ng-star-inserted']")
+    WebElement textErrorMsg_Filerequired;
+
+    @FindBy(xpath = "//*[@class='error']")
+    List<WebElement> textErrorMsg_selectionRequired;
+
+    @FindBy(xpath = "//div[@class='doc-type-select drop-down-error']")
+    WebElement redBorder_typeDrpDwnError;
+
+    @FindBy(xpath = "//div[@class='doc-subtype-select drop-down-error']")
+    WebElement redBorder_categoryDrpDwnError;
+
+    @FindBy(xpath = "//h3[@class='we-need-doc body-text-1']")
+    WebElement weNeedDocText;
+
+    @FindBy(xpath = "//a[@class='link-text-1 clickable']")
+    List<WebElement> helpMeToUnderstandText;
+
+    @FindBy(id= "documentsUploadTitle")
+    WebElement informationText;
+
+    @FindBy(id= "uploadAnother")
+    WebElement UploadDocumentText;
+
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -496,5 +599,276 @@ public class MyDocumentsPage {
     public void clickFinancialHelpEligibilltybutton(){
       basicActions.waitForElementToBePresent(verifyFinancialHelpEligbilityButton,30);
         verifyFinancialHelpEligbilityButton.click();
+    }
+
+    public void ValidateIAmOnContainer(String container) {
+        basicActions.waitForElementToBePresent(myDocumentsSubTitle,30);
+        softAssert.assertEquals(myDocumentsSubTitle.getText(),container, "Past Documents and Letters container not found");
+    }
+
+    public void ValidateDefaultPlanYear() {
+        String expectedYr = "";
+        String actualYr = "";
+        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0),30);
+        expectedYr = String.valueOf(Year.now().getValue());
+        basicActions.wait(2000);
+        softAssert.assertTrue(basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 10));
+        actualYr = PlanYearDropDown.get(0).getText();
+        softAssert.assertEquals(PlanYearDropDown.get(0).getText(),expectedYr);
+        System.out.println(actualYr);
+        softAssert.assertAll();
+    }
+
+    public void SelectPlanYeardropdown(String selectYear) {
+        String expectedYr = "";
+        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0), 30);
+        switch (selectYear) {
+            case "All":
+                PlanYearDropDown.get(0).click();
+                PlanYearValues.get(4).click();
+                break;
+            case "Current Year":
+                PlanYearDropDown.get(0).click();
+                PlanYearValues.get(0).click();
+                break;
+            case "Previous Year":
+                PlanYearDropDown.get(0).click();
+                PlanYearValues.get(1).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + selectYear);
+        }
+    }
+
+    public void iVerifyAllNoticesPresentandStartWith(String prefix, List<String> data) {
+
+        List<String> webElement = new ArrayList<>();
+        basicActions.waitForElementListToBePresent(DocumentsNoticesLists, 50);
+
+        //Fetching all list from container
+        for (WebElement element : DocumentsNoticesLists) {
+            webElement.add(element.getText().trim());
+        }
+        validateNoticesPresent(data, webElement);
+        validateAdditionalNoticesPresent(data, webElement);
+        validateNoticesStartwithIND(prefix, webElement);
+        softAssert.assertAll();
+    }
+
+    void validateNoticesPresent(List<String> data, List<String> webElement) {
+        //Comparing between actual and expected
+        for (String Notices : data) {
+            boolean isPresent = webElement.contains(Notices);
+            softAssert.assertTrue(isPresent, "notices  missing in the container ->" + Notices);
+        }
+    }
+
+    void validateAdditionalNoticesPresent(List<String> data, List<String> webElement) {
+        Set<String> dataFileSet = new HashSet<>(data);
+        Set<String> webNoticesSet = new HashSet<>(webElement);
+
+        //To verify additional list from container
+        webNoticesSet.removeAll(dataFileSet);
+        softAssert.assertTrue(webNoticesSet.isEmpty(),"Additonal Notices in container -> " + webNoticesSet);
+    }
+
+    void validateNoticesStartwithIND(String prefix, List<String> webElement) {
+        Set<String> webNoticesSet = new HashSet<>(webElement);
+        //Verify start with IND
+        for (String weblist : webNoticesSet) {
+            if (!weblist.startsWith(prefix)) {
+                softAssert.fail("Notices does not start with IND -> " + weblist);
+            }
+        }
+    }
+
+    public void clickDoubleChevron() {
+        basicActions.waitForElementToBeClickable(doubleChevrons, 200);
+        basicActions.wait(2000);
+        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", doubleChevrons);
+   }
+
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
+        basicActions.waitForElementListToBePresent(dateReceived,30);
+        int i=0;
+      if( i < DocumentsNoticesLists.size()){
+          softAssert.assertTrue( dateReceived.get(i).isDisplayed(),"Displayed");
+          softAssert.assertTrue( timeReceived.get(i).isDisplayed(),"Dispalyed");
+          softAssert.assertTrue(  download.get(i).isDisplayed(),"Displayed");
+          softAssert.assertAll();
+        }
+    }
+
+    public void validateYearForPresentNotice() {
+        int i = 0;
+        String actualYr = "", PreviousYear = "";
+        PreviousYear = String.valueOf(Year.now().getValue() - 1);
+        if (i < DocumentsNoticesLists.size()) {
+            basicActions.waitForElementToBeClickableWithRetries(SingleChevrons.get(i), 200);
+            ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", SingleChevrons.get(i));
+
+            basicActions.waitForElementToBePresentWithRetries(datetime.get(i), 10);
+            actualYr = datetime.get(i).getText();
+            System.out.println(PreviousYear + " Selected as Plan year and Contains " + actualYr);
+            softAssert.assertTrue(actualYr.contains(PreviousYear));
+            softAssert.assertAll();
+        }
+    }
+
+    public void validateNoDocumentMessage(String data) {
+        basicActions.waitForElementToBePresent(DocumentsNoticesList,100);
+        basicActions.wait(2000);
+        softAssert.assertEquals(DocumentsNoticesList.getText(),data);
+        softAssert.assertAll();
+    }
+    public void selectDocumentAndUpload(String documentName){
+        uploadDoc(documentName);
+    }
+    public void verifyUploadedDocument(String uploadedDocName){
+        basicActions.waitForElementToBePresent((WebDriverManager.getDriver().findElement(By.xpath("//p[text()='"+uploadedDocName+"']"))),10);
+    }
+    public void clickOnCloseToRemoveDoc(){
+        btn_documentClose.click();
+    }
+    public void verifyDocRemoved(){
+        basicActions.waitForElementToDisappear(btn_documentClose,10);
+    }
+    public void verifyUserNamePostUploadModalClose(){
+        Assert.assertEquals(textUserName.getText(), SharedData.getAdminDetails().getEmail(), "Admin email did not match");
+    }
+
+    public void clickCancelButton() {
+        basicActions.waitForElementToBePresent(btncancel,30);
+        btncancel.click();
+    }
+    public void textValidateOnUploadDocumentPopUp(List<String> data){
+        basicActions.waitForElementToBePresent(txtUploadADocument,30);
+        softAssert.assertEquals(txtUploadADocument.getText(),data.get(0),"Upload document Text Not Match");
+        softAssert.assertEquals(txtHeaderTellUs.get(0).getText(),data.get(1),"Tell us header Text Not Match");
+        softAssert.assertEquals(txtWhatTypequestion.get(0).getText(),data.get(2),"what type of Document text Not Match");
+        softAssert.assertTrue(PlanYearDropDown.get(2).isDisplayed(),"Dropdown Textbox not Displayed");
+        softAssert.assertEquals(txtWhatTypequestion.get(1).getText(),data.get(3),"which Document text Not Match");
+        softAssert.assertTrue(PlanYearDropDown.get(3).isDisplayed(),"Dropdown Textbox not Displayed");
+        softAssert.assertEquals(txtHeaderTellUs.get(1).getText(),data.get(4),"Select a file from text Not Match");
+        softAssert.assertEquals(browseFilesbtn.getText(),data.get(5),"Browse My File text Not Match");
+        softAssert.assertEquals(onlyOneDocumentTxt.getText(),data.get(6),"Only one Document text Not Match");
+        softAssert.assertEquals(btnContainertxt.get(0).getText(),data.get(7),"Cancel button text not Match");
+        softAssert.assertEquals(btnContainertxt.get(1).getText(),data.get(8),"Upload my document text Not Match");
+        softAssert.assertAll();
+    }
+
+    public void validateFontAndColor() {
+
+        HeaderFooterStyleValidation();
+        TitleAndTextStyleValidation();
+        CancelButtonStyleValidation();
+        UploadButtonStyleValidation();
+        softAssert.assertAll();
+
+    }
+    void HeaderFooterStyleValidation(){
+        softAssert.assertEquals(UploadPopupHeadercolor.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box","Header");
+        softAssert.assertEquals(txtUploadADocument.getCssValue("color"), "rgba(255, 255, 255, 1)","color error header Text ");
+        softAssert.assertEquals(txtUploadADocument.getCssValue("font"), "21px / 31.5px \"PT Sans\", sans-serif","Header font error");
+        softAssert.assertEquals(closeButton.getCssValue("color"), "rgba(255, 255, 255, 1)","Close X color error");
+
+        softAssert.assertEquals(PopupContentBodyColor.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box","Body color background error");
+
+        softAssert.assertEquals(PopupFooterBackGroundColor.getCssValue("background"), "rgb(143, 194, 217) none repeat scroll 0% 0% / auto padding-box border-box","Footer background error");
+
+    }
+    void TitleAndTextStyleValidation(){
+        softAssert.assertEquals(titleBackgroundrcolor.get(0).getCssValue("background"), "rgb(230, 243, 216) none repeat scroll 0% 0% / auto padding-box border-box","background error");
+
+        softAssert.assertEquals(txtHeaderTellUs.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "Body headerbackground error");
+        softAssert.assertEquals(txtHeaderTellUs.get(0).getCssValue("font-size"), "19px","font size error");
+        softAssert.assertEquals(txtHeaderTellUs.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif","font size error");
+
+        softAssert.assertEquals(txtWhatTypequestion.get(0).getCssValue("color"), "rgba(43, 49, 60, 1)","Question text color error");
+        softAssert.assertEquals(txtWhatTypequestion.get(0).getCssValue("font"), "16px / 28px \"PT Sans\", sans-serif","font error");
+        softAssert.assertEquals(txtWhatTypequestion.get(1).getCssValue("color"), "rgba(43, 49, 60, 1)","Question text color error");
+        softAssert.assertEquals(txtWhatTypequestion.get(1).getCssValue("font"), "16px / 28px \"PT Sans\", sans-serif","font error");
+
+        softAssert.assertEquals(titleBackgroundrcolor.get(1).getCssValue("background"), "rgb(230, 243, 216) none repeat scroll 0% 0% / auto padding-box border-box","background error");
+        softAssert.assertEquals(txtHeaderTellUs.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)", "Body headerbackground error");
+        softAssert.assertEquals(txtHeaderTellUs.get(1).getCssValue("font-size"), "19px","font size error");
+        softAssert.assertEquals(txtHeaderTellUs.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif","font size error");
+
+
+    }
+    void  CancelButtonStyleValidation(){
+        softAssert.assertEquals(btncancel.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box","cancel background error");
+        softAssert.assertEquals(btncancel.getCssValue("color"), "rgba(26, 112, 179, 1)","Cancel Text color  error");
+        softAssert.assertEquals(btncancel.getCssValue("border-color"),"rgb(16, 111, 153)","Border color error");
+        softAssert.assertEquals( btncancel .getCssValue("font-size"), "20px","font size error");
+        softAssert.assertEquals(btncancel.getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+    }
+    void UploadButtonStyleValidation(){
+        softAssert.assertEquals(uploadMyDocument.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box","Upload background error");
+        softAssert.assertEquals(uploadMyDocument.getCssValue("color"), "rgba(255, 255, 255, 1)","Upload Text color  error");
+        softAssert.assertEquals(uploadMyDocument.getCssValue("border-color"),"rgb(16, 111, 153)","upload Border color error");
+        softAssert.assertEquals( uploadMyDocument .getCssValue("font-size"), "20px","font size error");
+        softAssert.assertEquals(uploadMyDocument.getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+    }
+
+    public void select1stOptionFromDocType(){
+        basicActions.waitForElementToBePresent(docTypeDrpDwn,20);
+        docTypeDrpDwn.click();
+        typeDrpDwn1stOption.click();
+    }
+
+    public void select1stOptionFromDocCategory(){
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn,20);
+        docCategoryDrpDwn.click();
+        categoryDrpDwn1stOption.click();
+    }
+    public void clickOnUploadMyDoc(){
+        basicActions.waitForElementToBePresent(uploadMyDocument,20);
+        uploadMyDocument.click();
+    }
+    public void validateFileRequiredErrMsg(){
+        Assert.assertTrue(textErrorMsg_Filerequired.getText().contains("File required for upload, please attach a file and try again."),"Error message is incorrect");
+    }
+    public void validateSelectionRequiredErrMsg(){
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),"Selection Required");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(),"Selection Required");
+        softAssert.assertAll();
+    }
+    public void validateSelectionRequiredErrMsgDisappear(){
+        Assert.assertTrue(textErrorMsg_selectionRequired.isEmpty(),"Selection Error message did not disappear");
+    }
+
+    public void validateFontSizeAndColour_errorMsgSR(){
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertEquals( textErrorMsg_selectionRequired.get(0).getCssValue("font-size"), "14px","font size error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getCssValue("line-height"), "24px","line height error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertEquals( textErrorMsg_selectionRequired.get(1).getCssValue("font-size"), "14px","font size error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("line-height"), "24px","line height error");
+        softAssert.assertAll();
+    }
+
+    public void validateBorderColourOfTypeAndCategoryDropdown_errorMsg(){
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(redBorder_typeDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertAll();
+    }
+    public void verifyTextonDocumentPage(List<String > data) {
+        basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
+        softAssert.assertEquals(myDocumentsTitle.getText(),data.get(0), "Header Text Not Match");
+        softAssert.assertEquals(weNeedDocText.getText(),data.get(1), "We need more text not match");
+        softAssert.assertEquals(helpMeToUnderstandText.get(0).getText(),data.get(2), "Help me to understand text not match");
+        softAssert.assertEquals(informationText.getText(),data.get(3), "Information text not match");
+        softAssert.assertEquals(UploadDocumentText.getText(),data.get(4), "Upload another link text not match");
+        softAssert.assertEquals(myDocumentsSubTitle.getText(),data.get(5), "Past Documents and Letters Text not match");
+        softAssert.assertAll();
     }
 }

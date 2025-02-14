@@ -4,8 +4,10 @@ import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPag
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-
+import io.cucumber.java.en.When;
 import java.io.IOException;
+import java.util.List;
+
 
 public class MyDocumentsPageSteps {
 
@@ -81,5 +83,103 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I click on verify Financial Help for Eligibility button is displaying for user")
     public void iClickOnVerifyFinancialHelpForEligibilityButtonIsDisplayingForUser() {
         myDocumentsPage.clickFinancialHelpEligibilltybutton();
+    }
+
+    @Then("I validate I am on {string} container")
+    public void iValidateIAmOnContainer(String Container) {
+        myDocumentsPage.ValidateIAmOnContainer(Container);
+    }
+
+    @And("I validate current year defaulted in plan Year")
+    public void iValidateCurrentYearDefaultedInPlanYear() {
+        myDocumentsPage.ValidateDefaultPlanYear();
+    }
+
+    @And("I select year {string} in plan year")
+    public void iSelectYearInPlanYear(String selectYear) {
+        myDocumentsPage.SelectPlanYeardropdown(selectYear);
+    }
+
+    @Then("I validate all uploaded documents or notices loaded for my account start with {string}")
+    public void iValidateAllUploadedDocumentsOrNoticesLoadedForMyAccountStartWith(String prefix,List<String> data) {
+        myDocumentsPage.iVerifyAllNoticesPresentandStartWith( prefix,data);
+    }
+
+    @And("I Click on double chevron in Past Documents and Letters Container")
+    public void iClickOnDoubleChevronInPastDocumentsAndLettersContainer() {
+        myDocumentsPage.clickDoubleChevron();
+    }
+
+    @Then("I validate Date Received, Time Received and Download button available")
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
+        myDocumentsPage.iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable();
+    }
+
+    @Then("I validate no document message")
+    public void iValidateNoDocumentMessage(String data) {
+        myDocumentsPage.validateNoDocumentMessage(data);
+    }
+
+    @Then("I validate document date shows for selected year")
+    public void iValidateDocumentDateShowsForSelectedYear() {
+        myDocumentsPage.validateYearForPresentNotice();
+    }
+    @When("I select document {string} and upload")
+    public void selectAnyDocumentAndUpload(String documentName) {myDocumentsPage.selectDocumentAndUpload(documentName);}
+
+    @Then("I see the document {string} that I choose in the Upload modal")
+    public void I_see_the_document_I_choose_in_the_Upload_modal(String uploadedDocName) {myDocumentsPage.verifyUploadedDocument(uploadedDocName);}
+
+    @When("I click on close to remove the uploaded document")
+    public void I_click_on_close_to_remove_the_uploaded_document() {myDocumentsPage.clickOnCloseToRemoveDoc();}
+
+    @Then("I verify document removed successfully")
+    public void I_verify_document_removed_successfully() {myDocumentsPage.verifyDocRemoved();}
+
+    @Then("I see the username that I am currently logged into")
+    public void I_see_the_username_that_I_am_currently_logged_into() {myDocumentsPage.verifyUserNamePostUploadModalClose();}
+
+    @And("I click on cancel button on upload document pop up")
+    public void iClickOnCancelButtonOnUploadDocumentPopUp() {
+        myDocumentsPage.clickCancelButton();
+    }
+
+    @And("I validate Modal texts on upload a document pop up")
+    public void iValidateModalTextsOnUploadADocumentPopUp(List<String> data) {
+        myDocumentsPage.textValidateOnUploadDocumentPopUp(data);
+    }
+
+    @Then("I validate font and Background color of Document popup")
+    public void iValidateFontAndBackgroundColorOfDocumentPopup() {
+        myDocumentsPage.validateFontAndColor();
+    }
+
+    @When("I select any type of document from dropdown")
+    public void I_select_any_type_of_document_from_dropdown() {myDocumentsPage.select1stOptionFromDocType();}
+
+    @When("I select any category of document from dropdown")
+    public void I_select_any_category_of_document_from_dropdown() {myDocumentsPage.select1stOptionFromDocCategory();}
+
+    @When("I click on upload my document button")
+    public void I_click_on_upload_my_document_button() {myDocumentsPage.clickOnUploadMyDoc();}
+
+    @Then("I validate file required error message")
+    public void I_validate_file_required_error_message() {myDocumentsPage.validateFileRequiredErrMsg();}
+
+    @Then("I validate selection required error message")
+    public void I_validate_selection_required_error_message() {myDocumentsPage.validateSelectionRequiredErrMsg();}
+
+    @Then("I validate selection required error message disappear")
+    public void I_validate_selection_required_error_message_disappear() {myDocumentsPage.validateSelectionRequiredErrMsgDisappear();}
+
+    @Then("I validate font colour height and size of selection required error")
+    public void I_validate_font_colour_height_and_size_of_selection_required_error() {myDocumentsPage.validateFontSizeAndColour_errorMsgSR();}
+
+    @Then("I validate border colour of type and category dropdown")
+    public void I_validate_border_colour_of_type_and_category_dropdown() {myDocumentsPage.validateBorderColourOfTypeAndCategoryDropdown_errorMsg();}
+
+    @And("I verify the page text on the My Documents Page")
+    public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
+        myDocumentsPage.verifyTextonDocumentPage(data);
     }
 }

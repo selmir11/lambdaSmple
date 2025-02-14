@@ -506,7 +506,7 @@ public class AdminPortalSearchPage {
     }
 
     public void morethan100records() {
-        basicActions.waitForElementToBePresent(messagemorethan100records, 2000);
+        basicActions.waitForElementToBePresent(messagemorethan100records, 4000);
         softAssert.assertTrue(messagemorethan100records.isDisplayed(), "message should display");
         softAssert.assertEquals(messagemorethan100records.getText(), "More than 100 search results were found and only the first 100 are shown. Please enter more specific search criteria if your desired result is not included.");
         softAssert.assertAll();
@@ -688,6 +688,13 @@ public class AdminPortalSearchPage {
     public void selectTheFirstBrokerRecordFromTheSearchResults() {
         basicActions.waitForElementToBeClickableWithRetries(firstBrokerResult,30);
         firstBrokerResult.click();
+    }
+    public void validateCoCoDashboardButtons() {
+        basicActions.waitForElementToBePresent(coco, 20);
+        softAssert.assertEquals(buttonsList.get(0).getText(), "Search", "Search button as expected");
+        softAssert.assertEquals(buttonsList.get(1).getText(), "Reset", "Reset button as expected");
+        softAssert.assertEquals(buttonsList.get(2).getText(), "Create Account", "Create Account button as expected");
+        softAssert.assertAll();
     }
 }
 

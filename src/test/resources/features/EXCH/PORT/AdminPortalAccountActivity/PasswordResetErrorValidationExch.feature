@@ -12,7 +12,7 @@ Feature:Password reset error validation English/Spanish
     And I validate I am on the "Account Overview" page
     Then I click on Get Assistance in the "Exch NonElmo" Header
     And I click on Find Expert Assistance in the "individual dashboard" Header
-    Then I click on Sign Out in the Header for "WhoHelpsYouPage"
+    Then I click on Sign Out in the Header for "Portal"
     Then I wait for 1000 milliseconds
     And I validate I am on the "Login" page
     Then I click create forgot "password"
@@ -35,7 +35,7 @@ Feature:Password reset error validation English/Spanish
     Then I validate the password cannot contain part of the "previous password" error message in "English"
     Then I validate the password cannot contain part of the "first name" error message in "English"
 
-    And I change the language from header to "Spanish"
+    And I change the language from header to "Spanish Login"
     Then I validate create new password must contain at least 8 characters error message in "Spanish"
     Then I validate create new password must contain 1 uppercase character error message in "Spanish"
     Then I validate create new password must contain 1 lowercase character error message in "Spanish"

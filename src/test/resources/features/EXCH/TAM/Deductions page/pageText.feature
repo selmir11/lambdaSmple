@@ -387,6 +387,62 @@ Feature: Page Text-Deductions Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
-    
-    
-    
+
+  @SLER-2082 @PageTextDeductions
+  Scenario: SLER-2082 ELIG-Deductions-Page Text(RT-999)
+    Then I verify the text on ELIG Deductions page
+      |Income:|
+      |Deductions|
+      |Do you have any of the following expenses?|
+      |Select all that apply, and enter the amount of each expense.|
+      |Alimony or spousal support paid out                         |
+      |Domestic production activities                              |
+      |Health Savings Account contribution                         |
+      |Pre-tax retirement account contribution                     |
+      |School tuition and fees                                     |
+      |Self-employment tax                                         |
+      |Student loan interest                                       |
+      |Self-employment health insurance                            |
+      |Self-employment retirement plan                             |
+      |Moving expenses                                             |
+      |None of these                                               |
+      |Go back                                                     |
+      |Save and continue                                           |
+      |Help                                                        |
+    Then I click on all the expense checkboxes and verify the input field text "amount" along with the dollar sign for each checkbox
+    And I verify the Dropdown values for all the expenses after clicking it
+      |Select Option|
+      |Annually     |
+      |Every 2 weeks|
+      |Monthly      |
+      |Twice a month|
+      |Weekly       |
+    And I refresh the page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify the text on ELIG Deductions page
+      |Ingresos:|
+      |Deducciones|
+      |¿Tiene alguno de los siguientes gastos?|
+      |Seleccione todos los que correspondan, e ingrese la cantidad de cada gasto.|
+      |Pensión alimenticia o apoyo conyugal que paga                              |
+      |Actividades de producción para el mercado interno                          |
+      |Aporte a cuenta de ahorros de salud                                        |
+      |Aporte a la cuenta de retiro antes de impuestos                            |
+      |Colegiatura y cuotas escolares                                             |
+      |Impuesto al trabajo independiente                                          |
+      |Interés por préstamo de estudiante                                         |
+      |Seguro de salud de trabajador independiente                                |
+      |Plan de retiro como trabajador independiente                               |
+      |Gastos de mudanza                                                          |
+      |Ninguna de las anteriores                                                  |
+      |Volver                                                                     |
+      |Guardar y continuar                                                        |
+      |Ayuda                                                                      |
+    Then I click on all the expense checkboxes and verify the input field text "cantidad" along with the dollar sign for each checkbox
+    And I verify the Dropdown values for all the expenses after clicking it
+      |Seleccionar opción|
+      |Anualmente        |
+      |Cada dos semanas  |
+      |Mensualmente      |
+      |Dos veces por mes |
+      |Semanalmente      |
