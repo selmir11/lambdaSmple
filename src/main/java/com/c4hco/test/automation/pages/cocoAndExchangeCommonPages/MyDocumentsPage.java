@@ -6,6 +6,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -869,6 +870,84 @@ public class MyDocumentsPage {
         softAssert.assertEquals(informationText.getText(),data.get(3), "Information text not match");
         softAssert.assertEquals(UploadDocumentText.getText(),data.get(4), "Upload another link text not match");
         softAssert.assertEquals(myDocumentsSubTitle.getText(),data.get(5), "Past Documents and Letters Text not match");
+        softAssert.assertAll();
+    }
+
+
+    public void ValidateDocumentCategoryinAscendingOrder(List<String> category) {
+
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 20);
+        docTypeDrpDwn.click();
+
+        // Extract text from elements and store in a list
+        List<String> webDocumentCategoryList = new ArrayList<>();
+        for (WebElement element : categoryList) {
+            webDocumentCategoryList.add(element.getText());
+        }
+
+        List<String> weblistwithoutOther = new ArrayList<>(webDocumentCategoryList);
+        weblistwithoutOther.remove("Other");
+
+
+        List<String> sortedmainList = new ArrayList<>(category);
+        sortedmainList.remove("Other");
+
+       softAssert.assertTrue(isAscendingOrder(weblistwithoutOther), " List not in ascending order");
+
+        // Verify if the original list is equal to the sorted list
+        softAssert.assertEquals(weblistwithoutOther, sortedmainList, " List mising");
+
+        softAssert.assertTrue(webDocumentCategoryList.get(webDocumentCategoryList.size() - 1).equals("Other"), "Last value is not Other");
+
+        softAssert.assertAll();
+
+
+    }
+    private static boolean isAscendingOrder(List<String> list) {
+        List<String> sortedList = new ArrayList<>(list);
+        Collections.sort(sortedList);
+        return  list.equals(sortedList);
+    }
+
+    public void validateDoucmentTypeInAscendingOrder(DataTable datable) {
+
+        List<List<String>> expectedSubLists = datable.asLists(String.class);
+
+        basicActions.waitForElementListToBePresent(categoryList, 100);
+
+        int index = 0;
+        for (WebElement element : categoryList) {
+            element.click();
+
+            basicActions.waitForElementToBePresent(docCategoryDrpDwn,100);
+            docCategoryDrpDwn.click();  // Clicking on sublist dropdown to view items
+            List<String> actualDocumnetTypeList = new ArrayList<>();
+            for (WebElement item : categoryList) { //Fetching sub list items
+                actualDocumnetTypeList.add(item.getText().trim());
+            }
+
+            List<String> expectedDocumentTypeSubList = new ArrayList<>();
+            String[] splitvalues = expectedSubLists.get(index).get(0).split("--");
+            for (int j = 0; j < splitvalues.length; j++) {
+                String formattedvalue = (j == 0) ? splitvalues[j].trim() : "" + splitvalues[j].trim();
+                expectedDocumentTypeSubList.add(formattedvalue);
+            }
+
+            softAssert.assertEquals(actualDocumnetTypeList , expectedDocumentTypeSubList , " list not Match" );
+
+            List<String> actualDocumnetTypeWithOutOther = new ArrayList<>(actualDocumnetTypeList);
+            actualDocumnetTypeWithOutOther.removeIf(item -> item.startsWith("Other"));
+
+            //Verify sublist sorted in ASC
+            softAssert.assertTrue(isAscendingOrder(actualDocumnetTypeWithOutOther), " Document type list not in ascending order");
+
+            if (actualDocumnetTypeList.contains("Other")){
+                softAssert.assertTrue(actualDocumnetTypeList.get(actualDocumnetTypeList.size() - 1).startsWith("Other"), "Other list not at the end");
+            }
+
+            index++;
+            docTypeDrpDwn.click();
+        }
         softAssert.assertAll();
     }
 }

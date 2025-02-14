@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -182,4 +183,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
         myDocumentsPage.verifyTextonDocumentPage(data);
     }
+
+    @Then("I validate Document category list displayed in ascending order")
+    public void iValidateDocumentCategoryListDisplayedInAscendingOrder(List<String> CategoryList) {
+        myDocumentsPage.ValidateDocumentCategoryinAscendingOrder(CategoryList);
+    }
+
+    @Then("I validate Document Types for selected category list document category in ascending order")
+    public void iValidateDocumentTypesForSelectedCategoryListDocumentCategoryInAscendingOrder(DataTable dataTable) {
+        myDocumentsPage.validateDoucmentTypeInAscendingOrder(dataTable);
+    }
 }
+
