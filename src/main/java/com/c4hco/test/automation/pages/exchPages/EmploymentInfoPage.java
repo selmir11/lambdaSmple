@@ -876,8 +876,8 @@ public class EmploymentInfoPage {
 
     public void validateNetIncomeFrequencyDropdown(String language) {
 
-    switch (language.toLowerCase()) {
-            case "English":
+        switch (language.toLowerCase()) {
+            case "english":
                 basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
 
                 Select dropdown = new Select(selectIncomeFreq);
@@ -900,7 +900,7 @@ public class EmploymentInfoPage {
                 System.out.println("Net Income Frequency Dropdown validation passed.");
                 break;
 
-            case "Spanish":
+            case "spanish":
                 basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
 
                 // Wrap the element as a Select object
@@ -914,7 +914,7 @@ public class EmploymentInfoPage {
                 System.out.println("Dropdown options: " + actualOptionssp);
 
                 // Expected values in the dropdown menu in Spanish
-                List<String> expectedOptionssp = Arrays.asList("Semanalmente", "Dos veces por mes", "Mesnsualmente", "Anualmente", "Cada doe semanas");
+                List<String> expectedOptionssp = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
 
                 // Validate the dropdown contains all expected options in Spanish
                 for (String expectedOption : expectedOptionssp) {
@@ -923,6 +923,9 @@ public class EmploymentInfoPage {
                 }
                 System.out.println("Net Income Frequency Dropdown validation passed.");
                 break;
+            default:
+                System.out.println("Language not supported.");
+
         }
     }
 }
