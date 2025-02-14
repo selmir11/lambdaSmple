@@ -209,6 +209,7 @@ Feature: Seed05 - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
+    And I click Continue button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     Then I Search authorized Broker "Mister Broker"

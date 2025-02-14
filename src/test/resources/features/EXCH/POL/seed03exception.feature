@@ -105,7 +105,7 @@ Feature: Seed03exception - Exchange
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1991-WIP
+  @SLER-1991-WIP_@R4V
   Scenario: RT-2307 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL START DATES EARLIER THAN POLICY START DATE
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page

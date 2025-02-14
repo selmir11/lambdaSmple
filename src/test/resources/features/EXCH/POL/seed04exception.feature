@@ -172,7 +172,7 @@ Feature: Seed04exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1227-WIP
+  @SLER-1227-WIP_@R4V
   Scenario: RT-2303 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL - ALL MEMBERS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -187,7 +187,7 @@ Feature: Seed04exception - Exchange
     Then I click Okay on Thank you popup
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1229-WIP
+  @SLER-1229-WIP_@R4V
   Scenario: RT-2259 - ENR-EXCH: UPDATE CONTACT INFORMATION - CHANGE MAILING ADDRESS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -198,6 +198,7 @@ Feature: Seed04exception - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
+    And I click Continue button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page

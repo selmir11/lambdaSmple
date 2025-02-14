@@ -60,10 +60,10 @@ public class MyPoliciesPage {
     @FindBy(css = ".current-policy div:nth-child(4) .txt-left span")
     List<WebElement> policyNumSubscriber; // policy num, subscriber, updated On for both medical and dental plans
 
-    @FindBy(id="Cancel 2025 Medical PlansButton")
+    @FindBy(id="SOL-CurrentPolicies-CancelCurrentMedical")
     WebElement cancelMedicalPlanbtn;
 
-    @FindBy(id="Cancel 2025 Dental Plans Button")
+    @FindBy(id="SOL-CurrentPolicies-CancelCurrentDental")
     WebElement cancelDentalPlanbtn;
 
     @FindBy(id="SOL-CurrentPolicies-FuturePlans")

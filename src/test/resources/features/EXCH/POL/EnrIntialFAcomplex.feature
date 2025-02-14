@@ -258,7 +258,6 @@ Feature: Enroll a in a plan 8 HH
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-
   #Mem4
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
