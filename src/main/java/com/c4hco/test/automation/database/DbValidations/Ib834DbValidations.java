@@ -197,7 +197,7 @@ public class Ib834DbValidations {
         softAssert.assertEquals(SharedData.getScenarioDetails().getSubscribers(), ib834MedEntity.getTotal_subscribers(), "total subscribers did not match");
         softAssert.assertEquals(Integer.parseInt(SharedData.getScenarioDetails().getEnrollees().trim()), Integer.parseInt(ib834MedEntity.getTotal_enrollees().trim()), "Total enrollees does not match");
         softAssert.assertEquals(SharedData.getScenarioDetails().getDependents().toString().trim(), ib834MedEntity.getTotal_dependents().toString().trim(), "total dependents did not match");
-       // softAssert.assertTrue(dbData.getRatingAreaName().contains(ib834MedEntity.getRate_area()),"" );
+        softAssert.assertTrue(dbData.getRatingAreaName().contains(ib834MedEntity.getRate_area()),"" );
         softAssert.assertEquals(ib834MedEntity.getCsr_level(), dbData.getCsrLevel(), "CSR level does not match");
     }
     private void validateConstantFields(Ib834Entity ib834MedEntity) {

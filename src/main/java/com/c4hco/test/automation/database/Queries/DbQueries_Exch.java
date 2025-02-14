@@ -147,12 +147,7 @@ public class DbQueries_Exch {
                 "where fips = '" + fipcode + "'";
     }
 
-    public String getFipcode(String zipCode) {
-        return "select fips from " + dbName + ".en_county " +
-                "where zip = '" + zipCode + "'";
-    }
-
-    public String getFipcode_new(String zipCode, String county) {
+    public String getFipcode(String zipCode, String county) {
         return "select fips from " + dbName + ".en_county " +
                 "where zip = '" + zipCode + "' and county_name ='"+county+"'";
     }

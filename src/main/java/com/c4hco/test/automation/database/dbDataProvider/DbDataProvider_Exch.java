@@ -47,10 +47,6 @@ public class DbDataProvider_Exch {
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesCombinedQuery(coverageType));
     }
 
-    public List<Ob834DetailsEntity> getOb83Db4Details(){
-        return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
-    }
-
     public List<Ob834DetailsEntity> getOb834Details(String insurance_line_code){
         return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834DetailsRecords(insurance_line_code));
     }
@@ -83,15 +79,17 @@ public class DbDataProvider_Exch {
 
     public String getFipcode(){
         String zipcode = primaryMember.getResAddress().getAddressZipcode();
-        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode));
+        String county = primaryMember.getResAddress().getAddressCounty();
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode, county));
     }
 
     public String getFipCodeForMem(String name){
         String zipcode = basicActions.getMember(name).getResAddress().getAddressZipcode();
         String county = basicActions.getMember(name).getResAddress().getAddressCounty();
-        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode_new(zipcode, county));
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode, county));
 
     }
+
     public String getRatingAreaName(String fipcode){
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
 
