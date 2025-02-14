@@ -63,7 +63,6 @@ public class Ob834FileValidations {
             seSeg = transaction.getCommonSegments().getSE().get(0).get(0);
             transSegCount = transSegCount + Integer.parseInt(seSeg);
         }
-        segCount = segCount + 1;
         softAssert.assertEquals(transSegCount, segCount, "Total number of segments included in a transaction set including ST and SE segments does not match");
         softAssert.assertAll();
     }
@@ -456,6 +455,7 @@ public class Ob834FileValidations {
     }
 
     private void validateInsSegment(Member member, Ob834DetailsEntity entry) {
+        // remove insSegCount if not used - WIP
         insSegCount = insSegCount + 1;
         segCount = segCount + 1;
         List<String> insSegment = member.getINS().get(0);
@@ -623,7 +623,7 @@ public class Ob834FileValidations {
             softAssert.assertEquals(n1Segment.get(2).get(3), entry.getTpa_or_broker_id(), "Broker Id mismatch");
             List<String> actSegment = transaction.getCommonSegments().getACT().get(0);
             softAssert.assertEquals(actSegment.get(0), entry.getTpa_or_broker_lic_num(), "Broker License Number did not match");
-            segCount = segCount + 1;
+            segCount = segCount + 2;
         }
 
     }
