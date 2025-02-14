@@ -223,7 +223,7 @@ Feature: Seed06 - Exchange
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
-    @SLER-1834-WIP
+    @SLER-1834-WIP_@R4V
     Scenario: RT-2306 ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS - ADMIN OBO
       Given I open the login page on the "admin" portal
       And I validate I am on the "Login" page
