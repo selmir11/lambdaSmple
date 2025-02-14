@@ -202,8 +202,8 @@ Feature: Seed03 - Exchange
     Then I click on make changes button
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Marriage/Divorce" and click continue
+    Then I click Continue button on Report a Life Change Page
+    And I report "Marriage" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
