@@ -10,7 +10,10 @@ import io.cucumber.java.en.And;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
@@ -164,18 +167,23 @@ public class sftpStepDefinitions {
     @And("I download the {string} ob999 file from sftp server with location {string}")
     public void downloadOb999Files(String fileType, String remotePath) {
         List<String> fileNames = null;
+        List<String> uniqueFileNamesList= null;
             switch (fileType) {
                 case "medical":
                     fileNames = SharedData.getMedicalOb999FileNames();
+                    Set<String> uniqueFileNames = new HashSet<>(fileNames);
+                    uniqueFileNamesList = uniqueFileNames.stream().collect(Collectors.toList());
                     break;
                 case "dental":
                     fileNames = SharedData.getDentalOb999FileNames();
+                    Set<String> uniqueDenFileNames = new HashSet<>(fileNames);
+                    uniqueFileNamesList = uniqueDenFileNames.stream().collect(Collectors.toList());
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid argument: " + fileType);
             }
-        for(String fileName: fileNames){
-            sftpUtil.downloadFileWithSftp(remotePath, fileName);
+        for(String fileName: uniqueFileNamesList){
+            sftpUtil.downloadOb999File(remotePath, fileName);
         }
     }
 

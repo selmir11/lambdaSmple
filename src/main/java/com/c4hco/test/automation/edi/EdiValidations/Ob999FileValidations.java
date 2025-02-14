@@ -42,18 +42,20 @@ public class Ob999FileValidations {
     }
 
 
-    private void validateOb999File(Ob999Entity entry){
-        ob999Segments = SharedData.getIb999Segments();
-        validateISASegment(entry);
-        validateIEASegment(entry);
-        validateGSSegment(entry);
-        validateGESegment(entry);
-        validateSTSegment(entry);
-        validateSESegment(entry);
-        validateAK1Segment(entry);
-        validateAK2Segment(entry);
-        validateAK9Segment(entry);
-        validateIK5Segment(entry);
+    private void validateOb999File(Ob999Entity ob999Entity){
+        ob999Segments = SharedData.getOb999Segments();
+        validateISASegment(ob999Entity);
+        validateIEASegment(ob999Entity);
+        validateGSSegment(ob999Entity);
+        validateGESegment(ob999Entity);
+        validateSTSegment(ob999Entity);
+        validateSESegment(ob999Entity);
+        validateAK1Segment(ob999Entity);
+        validateAK9Segment(ob999Entity);
+        for(int i=0; i< Integer.parseInt(ob999Entity.getAk9_number_of_accepted_ts()); i++){
+            validateAK2Segment(ob999Entity, i);
+            validateIK5Segment(ob999Entity, i);
+        }
     }
 
     private void validateISASegment(Ob999Entity entry){
@@ -104,16 +106,18 @@ public class Ob999FileValidations {
         softAssert.assertAll();
     }
 
-    private void validateAK2Segment(Ob999Entity entry){
-        JSONArray ak2Seg = ob999Segments.getAK2().getJSONArray(0);
+    private void validateAK2Segment(Ob999Entity entry,int i){
+        JSONArray ak2Seg = ob999Segments.getAK2().getJSONArray(i);
         softAssert.assertEquals(ak2Seg.get(0),entry.getAk2_ts_id_code(), "Ak2_ts_id_code mismatch");
-        softAssert.assertEquals(ak2Seg.get(1), entry.getAk2_ts_control_number(), "Ak2_ts_control_number mismatch");
         softAssert.assertEquals(ak2Seg.get(2), entry.getAk2_imple_conv_reference(), "Ak2_imple_conv_reference mismatch");
+
+        ak2GrpCtrlNum_file.add((String) ak2Seg.get(1));
+        ak2GrpCtrlNum_db.add(entry.getAk2_ts_control_number());
         softAssert.assertAll();
     }
 
-    private void validateIK5Segment(Ob999Entity entry){
-        JSONArray ik5Seg = ob999Segments.getIK5().getJSONArray(0);
+    private void validateIK5Segment(Ob999Entity entry, int i){
+        JSONArray ik5Seg = ob999Segments.getIK5().getJSONArray(i);
         softAssert.assertEquals(ik5Seg.get(0), entry.getIk5_ts_ack_code(), "Ik5_ts_ack_code mismatch");
         softAssert.assertAll();
     }

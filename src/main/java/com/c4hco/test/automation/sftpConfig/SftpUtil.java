@@ -8,10 +8,7 @@ import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob999Util;
 import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 import org.testng.Assert;
 
 import java.io.File;
@@ -20,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 public class SftpUtil {
     private Session session;
@@ -89,6 +87,51 @@ public class SftpUtil {
             }
         } catch (Exception e){
             // fail
+            throw new RuntimeException("SFTP operation failed ", e);
+        }
+    }
+    public void downloadOb999File(String remoteFilePath, String fileNameToDownload){
+        try {
+            connectToSftp();
+            String localPath = SharedData.getLocalPathToDownloadFile();
+            ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+
+            try {
+                String fullRemotePath = remoteFilePath.endsWith("/") ? remoteFilePath + fileNameToDownload : remoteFilePath + "/" + fileNameToDownload;
+                System.out.println("Checking for file: " + fullRemotePath);
+
+                int maxRetries = 5;
+                int retryCount = 0;
+
+                while (retryCount < maxRetries) {
+                    try {
+                        Vector<ChannelSftp.LsEntry> files = channelSftp.ls(fullRemotePath);
+                        if (!files.isEmpty()) {
+                            System.out.println("Ob999 File found! Downloading...");
+                            channelSftp.get(fullRemotePath, localPath);
+                            System.out.println("Download successful!");
+                            break; // Exit loop after successful download
+                        }
+                    } catch (SftpException e) {
+                        System.out.println("File not found, retrying in 5 seconds...");
+                        basicActions.wait(5000);
+                        retryCount++;
+                    }
+                }
+
+                if (retryCount == maxRetries) {
+                    throw new RuntimeException("File was not found after " + maxRetries + " retries: " + fullRemotePath);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("SFTP operation failed ", e);
+            } finally {
+                channelSftp.disconnect();
+                disconnectFromSftp();
+            }
+        } catch (Exception e) {
             throw new RuntimeException("SFTP operation failed ", e);
         }
     }
