@@ -106,7 +106,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-  @SLER-1993-WIP
+  @SLER-1993-WIP-@R4V
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
