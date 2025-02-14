@@ -59,13 +59,8 @@ public class ImmigrationStatusPageSteps {
     public void clickBack() {
         ImmigrationStatusPage.clickBack();
     }
-    @Then("I validate Grant date cannot be in the future error message {string}")
-    public void verifyFutureDateErrorMessageForImmigrationStatus(String language, List<String> data){
-        ImmigrationStatusPage.verifyFutureDateErrorMessageForImmigrationStatus(language,data);}
-    @Then("I validate Invalid date error message {string}")
-    public void verifyInvalidDateErrorMessageForImmigrationStatus(String language, List<String> data){
-        ImmigrationStatusPage.verifyIncorrectDateErrorMessageForImmigrationStatus(language,data);}
-    @Then("I validate without date error message {string}")
-    public void verifyWithoutDateErrorMessageForImmigrationStatus(String language, List<String> data){
-        ImmigrationStatusPage.verifyWithoutDateValueErrorForImmigrationStatus(language,data);}
+
+    @Then("I validate {string} message {string}")
+    public void verifyWithoutDateErrorMessageForImmigrationStatus(String errorType, String language, List<String> data){
+        ImmigrationStatusPage.verifDateErrorForImmigrationStatus(errorType, language,data);}
 }

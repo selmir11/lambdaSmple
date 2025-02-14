@@ -323,48 +323,38 @@ public class ImmigrationStatusPage {
         basicActions.waitForElementToBePresent(backButton, 10);
         backButton.click();
     }
-    public void verifyFutureDateErrorMessageForImmigrationStatus(String language, List<String> data) {
-        saveContinue.click();
+
+    public void verifDateErrorForImmigrationStatus(String errorType, String language, List<String> data) {
         basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), "Grant date cannot be in the future");
-                break;
+                switch (errorType) {
+                    case "without date error":
+                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                        break;
+                    case "Invalid date error":
+                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                        break;
+                    case "Grant date cannot be in the future error":
+                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " +errorType );
+                }
             case "Spanish":
-                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " +language );
-        }
-        softAssert.assertAll();
-    }
-    public void verifyIncorrectDateErrorMessageForImmigrationStatus(String language, List<String> data) {
-        saveContinue.click();
-        basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
-        switch (language) {
-            case "English":
-                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                break;
-            case "Spanish":
-                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " +language );
-        }
-        softAssert.assertAll();
-    }
-    public void verifyWithoutDateValueErrorForImmigrationStatus(String language, List<String> data) {
-        basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
-        switch (language) {
-            case "English":
-                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                break;
-            case "Spanish":
-                softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " +language );
+                switch (errorType) {
+                    case "without date error":
+                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                        break;
+                    case "Invalid date error":
+                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                        break;
+                    case "Grant date cannot be in the future error":
+                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " +errorType );
+                }
         }
         softAssert.assertAll();
     }
