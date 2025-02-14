@@ -26,3 +26,5 @@ Feature: OPS: IndDash: CoCo Account Access details and Password Reset - CCRT-135
     And I validate Account Activity title row
     Then I verify "ID_PW_RESET_AP" and following events are displaying as "todays date within last 10 min timestamp" "C4test.aduser12.." "C4testaduser123.." "Password Reset via Admin .." "Response" "SUCCESS"
     And I logout from Admin Portal
+
+
