@@ -61,4 +61,9 @@ public class EmploymentIncomePageSteps {
     public void iverifyPageNavigation(DataTable dataTable){
         employmentIncomePage.verifyPageNavigation(dataTable);
     }
+
+    @Then("I verify validation text on the CoCo Employment Income page")
+    public void iverifyPageText(DataTable dataTable){
+        employmentIncomePage.validateErrorMessageAndStyleProp(dataTable);
+    }
 }
