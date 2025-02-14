@@ -271,16 +271,13 @@ public class AdminPortalIndividualDashboardSteps {
     public void iVerifyCocoIndividualAccountSummaryDetails() {
         adminPortalIndividualDashboardPage.VerifyCocoIndividualAccountSummary();
     }
-
+    @And("I validate CoCo Selected Member data on the far left side")
+    public void iValidateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData) {
+        adminPortalIndividualDashboardPage.validateCoCoSelectedMemberData(selectedMemberData);
+    }
     @Then("I verify Account status is suspended")
     public void iValidateAccountSuspended() {
         adminPortalIndividualDashboardPage.validateAccountSuspended();
     }
-
-    @And("I validate CoCo Selected Member data on the far left side")
-    public void iValidateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData) {
-        adminPortalIndividualDashboardPage.validateCoCoSelectedMemberData(selectedMemberData);
-
-    }
-
+}
 
