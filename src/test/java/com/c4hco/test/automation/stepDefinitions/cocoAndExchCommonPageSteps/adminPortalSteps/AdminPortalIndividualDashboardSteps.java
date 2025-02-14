@@ -275,5 +275,9 @@ public class AdminPortalIndividualDashboardSteps {
     public void iValidateCoCoSelectedMemberData(List<Map<String, String>> selectedMemberData) {
         adminPortalIndividualDashboardPage.validateCoCoSelectedMemberData(selectedMemberData);
     }
+    @Then("I verify Account status is suspended")
+    public void iValidateAccountSuspended() {
+        adminPortalIndividualDashboardPage.validateAccountSuspended();
+    }
 }
 
