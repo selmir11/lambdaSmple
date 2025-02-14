@@ -121,12 +121,10 @@ Feature: Page Text-Income Opt Out Page
   Scenario Outline: ELIG-Self-employment income-Page Text
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
-    Then I validate Employment Info Page header in "<Language>"
-    Then I validate the Net Income Frequency Dropdown Menu
+    And I change the language from Elmo header to "<Language>" if it isn't already in that language
+    Then I validate the Net Income Frequency Dropdown Menu in "<Language>"
 
     Examples:
     |Language|
     |English|
-#    |Spanish|
-
-
+    |Spanish|

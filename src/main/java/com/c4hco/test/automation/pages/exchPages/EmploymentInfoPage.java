@@ -874,48 +874,56 @@ public class EmploymentInfoPage {
         projectedIncomeInput.sendKeys(projectedIncome);
     }
 
-    public void ValidateDrpDwn() {
+    public void validateNetIncomeFrequencyDropdown(String language) {
 
-        String[] IncDrpDwn = {"Select Option", "Annually", "Every 2 weeks", "Monthly", "Twice a month"};
-        Select select = new Select(selectIncomeFreq);
+    switch (language.toLowerCase()) {
+            case "English":
+                basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
 
+                Select dropdown = new Select(selectIncomeFreq);
 
-        List<WebElement> options = select.getOptions();
-        for (WebElement we : options) {
-            boolean match = false;
-            for (int i = 0; i < IncDrpDwn.length; i++) {
-                if (we.getText().equals(IncDrpDwn[i])) {
-                    match = true;
-                    System.out.println(we.getText());
+                // Fetch the available options
+                List<WebElement> options = dropdown.getOptions();
+
+                // Debug: Print all options in the dropdown
+                List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
+                System.out.println("Dropdown options: " + actualOptions);
+
+                // Expected values in the dropdown menu
+                List<String> expectedOptions = Arrays.asList("Weekly", "Twice a month", "Monthly", "Annually", "Every 2 weeks");
+
+                // Validate the dropdown contains all expected options
+                for (String expectedOption : expectedOptions) {
+                    boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
+                    Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
                 }
-            }
-            Assert.assertTrue(match, we.getText());
+                System.out.println("Net Income Frequency Dropdown validation passed.");
+                break;
+
+            case "Spanish":
+                basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
+
+                // Wrap the element as a Select object
+                Select dropdownsp = new Select(selectIncomeFreq);
+
+                // Fetch the available options in Spanish
+                List<WebElement> optionssp = dropdownsp.getOptions();
+
+                // Debug: Print all options in the dropdown in Spanish
+                List<String> actualOptionssp = optionssp.stream().map(WebElement::getText).collect(Collectors.toList());
+                System.out.println("Dropdown options: " + actualOptionssp);
+
+                // Expected values in the dropdown menu in Spanish
+                List<String> expectedOptionssp = Arrays.asList("Semanalmente", "Dos veces por mes", "Mesnsualmente", "Anualmente", "Cada doe semanas");
+
+                // Validate the dropdown contains all expected options in Spanish
+                for (String expectedOption : expectedOptionssp) {
+                    boolean optionExists = actualOptionssp.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
+                    Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
+                }
+                System.out.println("Net Income Frequency Dropdown validation passed.");
+                break;
         }
-    }
-
-    public void validateNetIncomeFrequencyDropdown() {
-
-        basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
-
-        // Wrap the element as a Select object
-        Select dropdown = new Select(selectIncomeFreq);
-
-        // Fetch the available options
-        List<WebElement> options = dropdown.getOptions();
-
-        // Debug: Print all options in the dropdown
-        List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
-        System.out.println("Dropdown options: " + actualOptions);
-
-        // Expected values in the dropdown menu
-        List<String> expectedOptions = Arrays.asList("Weekly", "Twice a month", "Monthly", "Annually");
-
-        // Validate the dropdown contains all expected options
-        for (String expectedOption : expectedOptions) {
-            boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
-            Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
-        }
-        System.out.println("Net Income Frequency Dropdown validation passed.");
     }
 }
 

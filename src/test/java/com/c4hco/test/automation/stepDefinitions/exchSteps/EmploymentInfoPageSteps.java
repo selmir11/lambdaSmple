@@ -171,10 +171,9 @@ public class EmploymentInfoPageSteps {
         employmentInfoPage.enterProjectedIncome(projectedIncome);
     }
 
-    @Then("I validate the Net Income Frequency Dropdown Menu")
-    public void i_validate_the_net_income_frequency_dropdown_menu() {
-        employmentInfoPage.validateNetIncomeFrequencyDropdown();
-        // employmentInfoPage.ValidateDrpDwn();
-
+    @Then("I validate the Net Income Frequency Dropdown Menu in {string}")
+    public void iValidateTheNetIncomeFrequencyDropdownMenuIn(String language) {
+        employmentInfoPage.validateNetIncomeFrequencyDropdown(language);
     }
+
 }
