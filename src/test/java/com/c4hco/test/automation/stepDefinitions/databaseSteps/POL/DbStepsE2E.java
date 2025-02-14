@@ -17,12 +17,12 @@ public class DbStepsE2E {
     private final Ib834DbValidations_grps ib834DbValidationsGrps = new Ib834DbValidations_grps();
 
 
-    @And("I validate {string} entities from policy tables for groups")
+    @And("I validate {string} entities from policy tables")
     public void validateMedicalRecordsForGroups(String recordType){
         policyTableDbValidations_Grps.groupRecordsValidations(recordType);
     }
 
-    @And("I validate {string} entities from pre edi db tables for groups")
+    @And("I validate {string} entities from pre edi db tables")
     public void validateOb834MedicalRecordsForGroups(String recordType, List<Map<String, String>> expectedValues){
         ob834PreEdiDbValidationsGrp.groupRecordsValidations(recordType, expectedValues);
     }

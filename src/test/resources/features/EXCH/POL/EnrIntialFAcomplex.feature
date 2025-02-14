@@ -405,13 +405,13 @@ Feature: Enroll a in a plan 8 HH
 #    And I validate "dental" details on my policies page
 #    And I click on Sign Out in the Header for "NonElmo"
 
-    And I validate "medical" entities from policy tables for groups
-    And I validate "dental" entities from policy tables for groups
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
 
-    And I validate "medical" entities from pre edi db tables for groups
+    And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I validate "dental" entities from pre edi db tables for groups
+    And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
 

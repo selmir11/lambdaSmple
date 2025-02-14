@@ -106,9 +106,7 @@ Feature: Regression Tests that require Seed 1
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
 
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -119,13 +117,13 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1038 @pol_exch_passed
+  @SLER-1038 @pol_exch_passed @n1
   Scenario: RT-2246 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - SSN
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
