@@ -316,18 +316,8 @@ public class Ib834DbValidations_grps {
         softAssert.assertNull(ib834Entity.getFinancial_effective_date(), "Financial start date is not null");
 
         validateDetailsFromStep(ib834Entity, expectedValues.get(0));
-
-        setGrpCtrlNums(ib834Entity.getGroup_ctrl_number());
     }
 
-    private void setGrpCtrlNums(String grpCtrlNum) {
-        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
-        if (medGrpCtrlNums == null) {
-            medGrpCtrlNums = new ArrayList<>();
-        }
-        medGrpCtrlNums.add(grpCtrlNum);
-        SharedData.setMedGroupCtlNumbers(medGrpCtrlNums);
-    }
 
     private void denValidationsCommonForAllMembers(Ib834Entity ib834Entity, List<Map<String, String>> expectedValues) {
         MemberDetails member = basicActions.getMember(ib834Entity.getMember_first_name());
@@ -345,7 +335,6 @@ public class Ib834DbValidations_grps {
         softAssert.assertNull(ib834Entity.getFinancial_effective_date(), "Financial start date is not correct");
 
         validateDetailsFromStep(ib834Entity, expectedValues.get(0));
-        setGrpCtrlNums(ib834Entity.getGroup_ctrl_number());
     }
 
     private void medDenValidationsCommonForAllMem(Ib834Entity ib834Entity) {

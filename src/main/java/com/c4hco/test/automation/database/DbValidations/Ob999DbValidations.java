@@ -7,7 +7,9 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Ob999DbValidations {
     SoftAssert softAssert = new SoftAssert();
@@ -17,7 +19,8 @@ public class Ob999DbValidations {
 
     private void setOb999MedicalData(){
         List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
-        for(String medGrpCtrlNum: medGrpCtrlNums){
+        Set<String> uniqueMedGrpCtrlNum = new HashSet<>(medGrpCtrlNums);
+        for(String medGrpCtrlNum: uniqueMedGrpCtrlNum){
             ob999MedEntities = exchDbDataProvider.getOb999Details(medGrpCtrlNum);
         }
 
@@ -28,7 +31,8 @@ public class Ob999DbValidations {
 
     private void setOb999DentalData(){
         List<String> denGrpCtrlNums = SharedData.getDenGroupCtlNumbers();
-        for(String denGrpCtrlNum: denGrpCtrlNums){
+        Set<String> uniqueDenGrpCtrlNum = new HashSet<>(denGrpCtrlNums);
+        for(String denGrpCtrlNum: uniqueDenGrpCtrlNum){
             ob999DenEntities = exchDbDataProvider.getOb999Details(denGrpCtrlNum);
         }
         SharedData.setOb999DenDetailsEntities(ob999DenEntities);
