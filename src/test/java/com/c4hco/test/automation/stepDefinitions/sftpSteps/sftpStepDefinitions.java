@@ -22,7 +22,7 @@ public class sftpStepDefinitions {
     @And("I download the medical and dental files from sftp server with location {string}")
     public void downloadMedDenFiles(String remoteLocation)  {
         try{
-            String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
+             String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
             SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
             List<String> allFiles = new ArrayList<>();
             allFiles.addAll(SharedData.getMedicalFileName_grp());
@@ -33,6 +33,14 @@ public class sftpStepDefinitions {
         } catch(Exception e){
            Assert.fail("Failed with this exception::"+e);
         }
+    }
+
+    @And("I reset the previous file names in shared data")
+    public void resetFiles(){
+       SharedData.setMedicalFileName_grp(null);
+       SharedData.setDentalFileName_grp(null);
+       SharedData.setOb834DetailsMedEntities(null);
+        SharedData.setOb834DetailsDenEntities(null);
     }
 
     @And("I validate the ob834 files should not be empty")

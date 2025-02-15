@@ -3,7 +3,7 @@ Feature: Enroll a in a plan 8 HH
   Scenario: tst
     And I read the edi999 file locally
 
-  @SLER-832-WIP @n11
+  @SLER-832-WIP @n1
   Scenario: EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

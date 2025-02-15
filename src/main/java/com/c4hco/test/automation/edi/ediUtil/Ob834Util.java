@@ -217,7 +217,7 @@ public class Ob834Util {
             e.printStackTrace();
         }
         SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-        testLocal();
+       // testLocal();
     }
 
     public void testLocal(){
