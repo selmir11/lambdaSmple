@@ -53,7 +53,7 @@ public class AdminPortalAccountCreationPages {
         basicActions.waitForElementToBePresentWithRetries(successBodyText,30);
         softAssert.assertEquals(successTitleText.getText(), "Success!");
         softAssert.assertEquals(successBodyText.getText(), "New user was created. Please check the provided email for further instructions.");
-        softAssert.assertAll();
+
     }
     public void enterAdminPortalDataThatAlreadyExists(){
         basicActions.waitForElementToBePresent(firstName,30);
@@ -66,6 +66,5 @@ public class AdminPortalAccountCreationPages {
         basicActions.waitForElementToBePresentWithRetries(expectedErrorMessageInBody,30);
         softAssert.assertTrue(expectedErrorMessageInBody.isDisplayed());
         softAssert.assertEquals(expectedErrorMessageInBody, errorMessage);
-        //softAssert.assertAll();
     }
 }

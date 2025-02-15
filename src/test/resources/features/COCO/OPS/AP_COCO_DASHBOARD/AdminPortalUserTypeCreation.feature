@@ -23,3 +23,4 @@ Feature: AP Create account - Application Links, Admin Portal user creation
     And I validate I am on the "Admin Portal search" page
     Then I validate "AP Account Creation" application link not display
     And I logout from Admin Portal
+

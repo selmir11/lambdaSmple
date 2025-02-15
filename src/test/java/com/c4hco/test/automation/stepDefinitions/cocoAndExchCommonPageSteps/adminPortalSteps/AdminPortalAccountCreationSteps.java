@@ -13,12 +13,10 @@ public class AdminPortalAccountCreationSteps {
     public void iEnterGeneralDataToCreateAdminAccountWithEmail(String email) {
         adminPortalAccountCreationPages.enterValidDataToCreateAdminAccount(email);
     }
-
     @Then("I validate the Success message is displayed")
     public void iValidateTheSuccessMessageIsDisplayed() {
         adminPortalAccountCreationPages.validateTheSuccessMessageIsDisplayed();
     }
-
     @And("I enter my Admin Portal user data with email that is already in use")
     public void iEnterAdminPortalDataThatAlreadyExists(){
         adminPortalAccountCreationPages.enterAdminPortalDataThatAlreadyExists();
