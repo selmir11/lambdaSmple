@@ -31,7 +31,8 @@ public class AdminPortalAccountCreationPages {
     WebElement successTitleText;
     @FindBy(xpath = "//*[@id='create-account-page']/form/div[1]/div[2]/p[2]")
     WebElement successBodyText;
-
+    @FindBy(xpath = "//div[@class='error-message']")
+    WebElement expectedErrorMessageInBody;
 
     public void enterValidDataToCreateAdminAccount(String emailBase) {
         basicActions.waitForElementToBePresent(firstName,30);
@@ -52,6 +53,19 @@ public class AdminPortalAccountCreationPages {
         basicActions.waitForElementToBePresentWithRetries(successBodyText,30);
         softAssert.assertEquals(successTitleText.getText(), "Success!");
         softAssert.assertEquals(successBodyText.getText(), "New user was created. Please check the provided email for further instructions.");
-
+        softAssert.assertAll();
+    }
+    public void enterAdminPortalDataThatAlreadyExists(){
+        basicActions.waitForElementToBePresent(firstName,30);
+        firstName.sendKeys("Monday");
+        lastName.sendKeys("McAdminUser");
+        email.sendKeys("exmat3@gmail.com");
+        createBtn.click();
+    }
+    public void validateTheExpectedErrorsMessageDisplays(String errorMessage) {
+        basicActions.waitForElementToBePresentWithRetries(expectedErrorMessageInBody,30);
+        softAssert.assertTrue(expectedErrorMessageInBody.isDisplayed());
+        softAssert.assertEquals(expectedErrorMessageInBody, errorMessage);
+        //softAssert.assertAll();
     }
 }

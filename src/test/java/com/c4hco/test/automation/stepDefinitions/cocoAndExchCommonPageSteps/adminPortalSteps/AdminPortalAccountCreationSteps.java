@@ -18,4 +18,13 @@ public class AdminPortalAccountCreationSteps {
     public void iValidateTheSuccessMessageIsDisplayed() {
         adminPortalAccountCreationPages.validateTheSuccessMessageIsDisplayed();
     }
+
+    @And("I enter my Admin Portal user data with email that is already in use")
+    public void iEnterAdminPortalDataThatAlreadyExists(){
+        adminPortalAccountCreationPages.enterAdminPortalDataThatAlreadyExists();
+    }
+    @Then("I validate the expected error message is displayed as {string}")
+    public void iValidateTheExpectedErrorsMessage(String errorMessage) {
+        adminPortalAccountCreationPages.validateTheExpectedErrorsMessageDisplays(errorMessage);
+    }
 }
