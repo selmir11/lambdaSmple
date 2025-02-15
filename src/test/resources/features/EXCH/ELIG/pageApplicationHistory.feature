@@ -107,8 +107,8 @@ Feature: Testing will verify text and navigation for Application History Page fo
     And I change the language from header to "English NonElmo"
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-21?? @PageText
-  Scenario: SLER-21?? - ELIG - verify text on Application History Page for 50k enrollee
+  @SLER-2187 @PageText
+  Scenario: SLER-2187 - ELIG - verify text on Application History Page for 50k enrollee
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
