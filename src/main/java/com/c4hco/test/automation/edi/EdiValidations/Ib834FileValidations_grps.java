@@ -62,7 +62,6 @@ public class Ib834FileValidations_grps {
             seSeg = transaction.getCommonSegments().getSE().get(0).get(0);
             transSegCount = transSegCount + Integer.parseInt(seSeg);
         }
-        segCount = segCount + 1;
         softAssert.assertEquals(transSegCount, segCount, "Total number of segments included in a transaction set including ST and SE segments does not match");
         softAssert.assertAll();
     }

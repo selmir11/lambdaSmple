@@ -84,6 +84,9 @@ public class SftpUtil {
             } finally {
                 channelSftp.disconnect();
                 disconnectFromSftp();
+                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
+                Thread.sleep(2000); // Adjust if needed
+                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
             }
         } catch (Exception e){
             // fail
@@ -130,6 +133,10 @@ public class SftpUtil {
             } finally {
                 channelSftp.disconnect();
                 disconnectFromSftp();
+                //  Runtime.getRuntime().exec("cmd.exe /c explorer /select," + reportFolder.getAbsolutePath());
+                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
+                Thread.sleep(2000); // Adjust if needed
+                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
             }
         } catch (Exception e) {
             throw new RuntimeException("SFTP operation failed ", e);
@@ -173,10 +180,12 @@ public class SftpUtil {
                 if (!folderCreated) {
                     System.out.println("Failed to create the report folder.");
                 }
-                // Force refresh
-                Runtime.getRuntime().exec("cmd.exe /c explorer /select," + reportFolder.getAbsolutePath());
+              //  Runtime.getRuntime().exec("cmd.exe /c explorer /select," + reportFolder.getAbsolutePath());
+                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
+                Thread.sleep(2000); // Adjust if needed
+                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
             }
-        } catch (IOException e) {
+        } catch (IOException|InterruptedException e) {
             throw new RuntimeException(e);
         }
         return sftpFolderPath;
