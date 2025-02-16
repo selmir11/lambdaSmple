@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DbStepsE2E {
-    private final PolicyTableDbValidations policyTableDBValidations = new PolicyTableDbValidations();
-    private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
-    private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
     private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
     private final Ob834PreEdiDbValidations_grp ob834PreEdiDbValidationsGrp = new Ob834PreEdiDbValidations_grp();

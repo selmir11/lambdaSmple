@@ -166,12 +166,18 @@ public class SftpUtil {
     public String getLocalSftpDownloadPath(){
         String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
         String sftpFolderPath = "target/sftp-downloads/download-" + timestamp;
-        File reportFolder = new File(sftpFolderPath);
-        if (!reportFolder.exists()) {
-            boolean folderCreated = reportFolder.mkdirs();
-            if (!folderCreated) {
-                System.out.println("Failed to create the report folder.");
+        try {
+            File reportFolder = new File(sftpFolderPath);
+            if (!reportFolder.exists()) {
+                boolean folderCreated = reportFolder.mkdirs();
+                if (!folderCreated) {
+                    System.out.println("Failed to create the report folder.");
+                }
+                // Force refresh
+                Runtime.getRuntime().exec("cmd.exe /c explorer /select," + reportFolder.getAbsolutePath());
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return sftpFolderPath;
     }

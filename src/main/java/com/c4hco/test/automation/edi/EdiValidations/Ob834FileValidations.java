@@ -14,10 +14,10 @@ import java.util.*;
 
 public class Ob834FileValidations {
 
-    List<String> n1ListWithSepReason = new ArrayList<>();
-    List<String> n1ListWithAddtlMaintReas = new ArrayList<>();
-    List<String> n1ListWithSepReasonMem = new ArrayList<>();
-    List<String> n1ListWithAddtlMaintReasMem = new ArrayList<>();
+    List<String> n1ListWithSepReason;
+    List<String> n1ListWithAddtlMaintReas;
+    List<String> n1ListWithSepReasonMem;
+    List<String> n1ListWithAddtlMaintReasMem;
     List<Ob834DetailsEntity> subscriberMedEntities = new ArrayList<>();
     List<Ob834DetailsEntity> subscriberDenEntities = new ArrayList<>();
     Edi834TransactionDetails edi834TransactionDetails = new Edi834TransactionDetails();
@@ -37,7 +37,6 @@ public class Ob834FileValidations {
 
     public void validateOb834MedFile(String medFileName) {
         resetAllEntities();
-        System.out.println(subscriberMedEntities);
         List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
         getOb834MedEntityForSubscriber(medFileName);
         getDataByEmailAndAccNum();
@@ -45,7 +44,7 @@ public class Ob834FileValidations {
         validateCtrlFnGrpSegment(subscriberMedEntities.get(0));
         validateSubscriberSegments(subscriberMedEntities);
         validateMemSeg(medicalEntityList);
-        validateSegCount();
+         validateSegCount();
     }
 
     public void validateOb834DenFile(String denFileName) {
@@ -195,7 +194,6 @@ public class Ob834FileValidations {
             expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReasonMem : n1ListWithAddtlMaintReasMem;
         }
         Assert.assertEquals(n1SegList, expectedN1List);
-        //  segCount = segCount+n1SegList.size();
     }
 
     private List<String> getN1ListWithAddlMaintReas(Ob834DetailsEntity entry) {
@@ -210,34 +208,27 @@ public class Ob834FileValidations {
         if (member.getINS().get(0).get(0).equals("Y")) {
             switch ("LX" + lxSegCount) {
                 case "LX1":
-                    // segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX2":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_reduction_amt()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX3":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getCsr_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX4":
-                    //  segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getRate_area()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX5":
-                    // segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals("COHBE"), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX6":
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_responsible_amount()));
                     break;
                 case "LX7":
-                    // segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getTotal_premium_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX8":
-                    // segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()), "LX" + lxSegCount + " did not match");
                     break;
                 default:
@@ -247,11 +238,9 @@ public class Ob834FileValidations {
             // member
             switch ("LX" + lxSegCount) {
                 case "LX1":
-                    // segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX" + lxSegCount + " did not match");
                     break;
                 case "LX2":
-                    // segCount = segCount+1;
                     softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getSep_reason()), "LX" + lxSegCount + " did not match");
                     break;
                 default:
@@ -387,7 +376,6 @@ public class Ob834FileValidations {
                     String addtlMainReas1 = parts[0];
                     softAssert.assertEquals(refSeg.get(3), addtlMainReas1, "Additional Maintenance reason does not match");
                 } else {
-                    // segCount = segCount+1;
                     softAssert.assertEquals(refSeg.get(3), entry.getAddl_maint_reason(), "Additional Maintenance reason does not match");
                 }
                 if (refSeg.get(0).equals("LX2") && refSeg.get(1).equals("17") && entry.getAddl_maint_reason().contains("|")) {
@@ -406,7 +394,7 @@ public class Ob834FileValidations {
         List<String> leSegment = member.getLE().get(0);
         softAssert.assertEquals(lsSegment.get(1), "2700", "Loop Header, the loop ID number given on the transaction set does not match");
         softAssert.assertEquals(leSegment.get(0), "2700", "Loop trailer, The loop ID number given on the transaction set does not match");
-        segCount = segCount + 2; // one Ls and one LE segment per member
+        segCount = segCount + 2;
         softAssert.assertAll();
     }
 
@@ -633,7 +621,7 @@ public class Ob834FileValidations {
             softAssert.assertEquals(n1Segment.get(2).get(3), entry.getTpa_or_broker_id(), "Broker Id mismatch");
             List<String> actSegment = transaction.getCommonSegments().getACT().get(0);
             softAssert.assertEquals(actSegment.get(0), entry.getTpa_or_broker_lic_num(), "Broker License Number did not match");
-            segCount = segCount + 2;
+            segCount = segCount + 1;
         }
 
     }
