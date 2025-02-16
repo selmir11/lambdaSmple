@@ -209,7 +209,7 @@ Feature: Regression Tests that require Seed 1
       |          021          | 021                 | 25                   |                          |                             |                    |
     And I validate the ob834 files should have the values
 
-  @SLER-2030-WIP
+  @SLER-2030-WIP-@R4V
   Scenario: RT-2133 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -225,7 +225,6 @@ Feature: Regression Tests that require Seed 1
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I click continue on the Citizenship page
