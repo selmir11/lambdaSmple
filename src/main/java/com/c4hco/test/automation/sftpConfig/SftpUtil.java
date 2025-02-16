@@ -84,9 +84,6 @@ public class SftpUtil {
             } finally {
                 channelSftp.disconnect();
                 disconnectFromSftp();
-                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
-                Thread.sleep(2000); // Adjust if needed
-                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
             }
         } catch (Exception e){
             // fail

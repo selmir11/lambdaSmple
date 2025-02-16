@@ -261,7 +261,7 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertEquals(ob834Entity.getResponsible_person_city(), primaryMember.getMailingAddress().getAddressCity(), "Responsible person mailing city mismatch");
         softAssert.assertEquals(ob834Entity.getResponsible_person_st(), primaryMember.getMailingAddress().getAddressState(),"State mismatch");
         softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(),primaryMember.getMailingAddress().getAddressZipcode(), "Zipcode mismatch");
-        softAssert.assertAll();
+        softAssert.assertAll("validateResPerDetailsForMinorSubscriber failed");
     }
 
     private void validateResPerDetailsForMinorMem(Ob834DetailsEntity ob834Entity, MemberDetails member){
@@ -278,7 +278,7 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertEquals(ob834Entity.getResponsible_person_city(), subscriber.getMailingAddress().getAddressCity(), "Responsible person mail city mismatch");
         softAssert.assertEquals(ob834Entity.getResponsible_person_st(), subscriber.getMailingAddress().getAddressState(),"Responsible person mail state mismatch" );
         softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), subscriber.getMailingAddress().getAddressZipcode(), "Responsible person mail zipcode mismatch");
-        softAssert.assertAll();
+        softAssert.assertAll("validateResPerDetailsForMinorMem failed");
     }
 
     private void validateResPersonDetailsForMember(Ob834DetailsEntity ob834Entity){
@@ -294,6 +294,7 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertEquals(ob834Entity.getResponsible_person_city(), null);
         softAssert.assertEquals(ob834Entity.getResponsible_person_st(), null);
         softAssert.assertEquals(ob834Entity.getResponsible_person_zip_code(), null);
+        softAssert.assertAll("validateResPersonDetailsForMember failed");
     }
 
     private void validatePersonalDetails(Ob834DetailsEntity ob834Entity, MemberDetails member) {
@@ -307,7 +308,7 @@ public class Ob834PreEdiDbValidations_grp {
         softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I", "Marital Status did not match for "+member.getFirstName());
        // softAssert.assertEquals(getCodeForRelationship(member.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "RelationshipCode did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getSsn()!=null? member.getSsn(): "000000000", ob834Entity.getMember_ssn(), "ssn did not match for "+member.getFirstName());
-        softAssert.assertEquals(getCodeForRace(member.getRace()), ob834Entity.getMember_race(), "Race did not match");
+            softAssert.assertEquals(getCodeForRace(member.getRace()), ob834Entity.getMember_race(), "Race did not match");
         softAssert.assertAll("Personal Details for Member::"+member.getFirstName()+" did not match");
     }
 

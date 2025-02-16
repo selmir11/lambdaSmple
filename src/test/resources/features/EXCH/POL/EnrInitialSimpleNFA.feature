@@ -148,10 +148,10 @@ Feature: Simple NFA - Single Applicant
     And I validate the ib999 "dental" file data
 
     # SLER-1332, Ib834 database and file validations
-    And I validate ib834 "medical" details in database
+    And I validate ib834 "medical" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
-    And I validate ib834 "dental" details in database
+    And I validate ib834 "dental" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
 

@@ -12,7 +12,8 @@ public enum Race {
     MiddleEasternorNorthAfrican("E"),
     NativeHawaiianorPacificIslander("J"),
     AsianorAsianAmerican("A"),
-    NotListed("E");
+    NotListed("E"),
+    HispanicorLatino("H");
 
     private final String RaceCode;
     Race(String RaceCode) {

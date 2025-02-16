@@ -44,7 +44,7 @@ public class Ob834FileValidations {
         validateCtrlFnGrpSegment(subscriberMedEntities.get(0));
         validateSubscriberSegments(subscriberMedEntities);
         validateMemSeg(medicalEntityList);
-         validateSegCount();
+        validateSegCount();
     }
 
     public void validateOb834DenFile(String denFileName) {

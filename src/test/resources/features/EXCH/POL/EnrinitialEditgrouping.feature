@@ -1,7 +1,7 @@
 @E2E_EXCH
 Feature: Enroll a in a plan (FAMILY OF 3)
 
-  @SLER-41 @SLER-1170 @SLER-1250 @SLER-1252 @SLER-1283 @pol_exch_passed @n1
+  @SLER-41 @SLER-1170 @SLER-1250 @SLER-1252 @SLER-1283 @pol_exch_passed
   Scenario: RT-2266 EXCH Initial Application w/BirthLCE (FAMILY OF 3)
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
