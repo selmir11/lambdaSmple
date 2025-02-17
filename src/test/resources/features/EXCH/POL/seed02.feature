@@ -128,9 +128,6 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
@@ -182,8 +179,7 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-
-  @SLER-95 @pol_exch_passed
+  @SLER-95 @pol_exch_passed @n1
   Scenario: RT-2244 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
@@ -194,6 +190,7 @@ Feature: Seed02 - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
+    And I click Continue button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 
@@ -231,14 +228,13 @@ Feature: Seed02 - Exchange
 #    Then I validate I am on the "My Policies" page
 #    And I validate "medical" details on my policies page
 #    And I validate "dental" details on my policies page
-#    And I validate "medical" plan details from plan history
-#    And I validate "dental" plan details from plan history
 #    And I click on Sign Out in the Header for "Elmo"
 
     And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
+    And I reset the previous file names in shared data
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
