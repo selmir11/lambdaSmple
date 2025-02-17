@@ -91,7 +91,8 @@ public class ImmigrationStatusPage {
 
     @FindBy(id = "livedSince1996-error")
     WebElement errorLivedSince1996;
-
+    @FindBy(id = "imgrStatusGrantDate-error")
+    WebElement errorMsgImmigrationStatus;
 
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
         switch(YNLawfulPermanentResident){
@@ -321,5 +322,11 @@ public class ImmigrationStatusPage {
     public void clickBack(){
         basicActions.waitForElementToBePresent(backButton, 10);
         backButton.click();
+    }
+
+    public void verifDateErrorForImmigrationStatus(List<String> data) {
+        basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
+        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
+        softAssert.assertAll();
     }
 }

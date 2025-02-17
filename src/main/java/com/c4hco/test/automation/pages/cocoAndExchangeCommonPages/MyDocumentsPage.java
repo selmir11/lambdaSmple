@@ -250,6 +250,15 @@ public class MyDocumentsPage {
     @FindBy(id= "uploadAnother")
     WebElement UploadDocumentText;
 
+    @FindBy(xpath = "//p[@class='error ng-star-inserted']")
+    WebElement textErrorMsg_docFileSizeLarge;
+
+    @FindBy(xpath = "//*[@class='file-selected-show file-border-red']")
+    WebElement textBox_fileAlreadySelected;
+
+    @FindBy(xpath = "//div[@class='error-box ng-star-inserted']//*[name()='svg' and @role='img']")
+    WebElement img_errorMsg_docFileSizeLarge;
+
 
 
     public void ClickLinkMyDocsWelcomePage() {
@@ -834,6 +843,9 @@ public class MyDocumentsPage {
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(),"Selection Required");
         softAssert.assertAll();
     }
+    public void validateSelectionRequiredErrMsg_ForOnlyCategoryDoc(){
+        Assert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),"Selection Required","Selection Required error msg not displayed");
+    }
     public void validateSelectionRequiredErrMsgDisappear(){
         Assert.assertTrue(textErrorMsg_selectionRequired.isEmpty(),"Selection Error message did not disappear");
     }
@@ -847,6 +859,14 @@ public class MyDocumentsPage {
         softAssert.assertEquals( textErrorMsg_selectionRequired.get(1).getCssValue("font-size"), "14px","font size error");
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("line-height"), "24px","line height error");
+        softAssert.assertAll();
+    }
+
+    public void validateFontSizeAndColour_errorMsgFR(){
+        softAssert.assertEquals(textErrorMsg_Filerequired.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertEquals( textErrorMsg_Filerequired.getCssValue("font-size"), "14px","font size error");
+        softAssert.assertEquals(textErrorMsg_Filerequired.getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+        softAssert.assertEquals(textErrorMsg_Filerequired.getCssValue("line-height"), "24px","line height error");
         softAssert.assertAll();
     }
 
@@ -869,6 +889,28 @@ public class MyDocumentsPage {
         softAssert.assertEquals(informationText.getText(),data.get(3), "Information text not match");
         softAssert.assertEquals(UploadDocumentText.getText(),data.get(4), "Upload another link text not match");
         softAssert.assertEquals(myDocumentsSubTitle.getText(),data.get(5), "Past Documents and Letters Text not match");
+        softAssert.assertAll();
+    }
+
+    public void validateDocSizeLargeErrMsgAndTextColour(){
+        softAssert.assertTrue(textErrorMsg_docFileSizeLarge.getText().contains("Document file size too large. Files must be under 10MB."),"Error message is incorrect");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
+    public void validateAlreadySelectedFileBoxBorderColour(){
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertAll();
+    }
+
+    public void validateDocUnsupportedErrMsgAndTextColour(){
+        String docFileTypeUnsupportedErrMsg="Document file type is unsupported. Files must be pdf, doc, docx, gif, jpeg, jpg, png.";
+        softAssert.assertTrue(textErrorMsg_docFileSizeLarge.getText().contains(docFileTypeUnsupportedErrMsg),"Error message is incorrect");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
         softAssert.assertAll();
     }
 }
