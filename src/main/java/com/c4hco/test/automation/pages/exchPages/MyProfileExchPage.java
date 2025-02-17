@@ -532,6 +532,15 @@ public class MyProfileExchPage {
         savePrimaryContact.click();
         basicActions.wait(60);
     }
+    public void iChangePrimaryContact() {
+        basicActions.waitForElementToBeClickable(changePrimaryContact, 20);
+        changePrimaryContact.click();
+        basicActions.waitForElementToBeClickable(primaryContactDRP, 20);
+        primaryContactDRP.click();
+        dpdPrimaryChangeOpt2.click();
+        savePrimaryContact.click();
+        basicActions.wait(60);
+    }
 
     public void verifyPasswordPopupTextOnMyProfileExchPage(String language) {
         switch (language) {
