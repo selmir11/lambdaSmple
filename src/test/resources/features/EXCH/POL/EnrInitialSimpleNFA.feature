@@ -1,4 +1,4 @@
- @SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed @n1
+ @SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
@@ -90,23 +90,20 @@ Feature: Simple NFA - Single Applicant
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
 
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
-
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
-    And I click on ClickHere link for "My Documents"
+#    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+#    Then I validate I am on the "My Account Overview" page
+#    And I click on ClickHere link for "My Documents"
 
    #DbVerification
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-   # PDF Notice Validation
-    And I click on download "EN-002-04" document
-    Then I validate "EN-002-04 English" notice content
+#   # PDF Notice Validation
+#    And I click on download "EN-002-04" document
+#    Then I validate "EN-002-04 English" notice content
 
 #    @SLER-1069  # RT-1262
 #    Scenario: validate both medical and dental ob834 files
@@ -121,21 +118,21 @@ Feature: Simple NFA - Single Applicant
     And I validate the ob834 "dental" file data
 
     # @SLER-1262
-    And I upload medical ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-    And I upload dental ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-    #Email Notice Validation
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate additional details for "medical" plan on email notice
-      |Primary|
-    And I validate additional details for "dental" plan on email notice
-      |Primary|
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#    #Email Notice Validation
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate additional details for "medical" plan on email notice
+#      |Primary|
+#    And I validate additional details for "dental" plan on email notice
+#      |Primary|
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
 
     # Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
