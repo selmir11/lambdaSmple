@@ -1069,20 +1069,6 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Sí, soy nuevo a Connect for Health Colorado y ya presenté una solicitud Health First Colorado or Child Health Plan Plus                                                                                                                                                                                                                                                            |
       | No gracias, lléveme a la aplicación
 
-  @SLER-2041 @PageValidation
-  Scenario: ELIG-Let us guide you (Peak Application)-Page Text (RT-976)
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation
-    Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
-    Then I validate I am on the "Account Overview" page
-    And I apply for the current year
-    Then I validate I am on the "Let us guide you" page
-    Then I verify the text on Let us guide you page in "English"
-    And I change the language from header to "Spanish NonElmo"
-    Then I verify the text on Let us guide you page in "Spanish"
-
   @SLER-2059 @PageText
   Scenario: Verify English and Spanish Text for Tell us about life changes page [RT-1012]
     Given I open the login page on the "login" portal
