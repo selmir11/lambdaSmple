@@ -125,7 +125,7 @@ public class CompletedPeakApplicationPage {
     }
 
     public void verifyEnglishAndSpanishTextInLetUsGuidePage(List<String> languageText) {
-        for (int i=0;i<4;i++) {
+        for (int i=0;i<languageText.size();i++) {
             Assert.assertEquals(bodyText.get(i).getText(), languageText.get(i));
         }
     }
