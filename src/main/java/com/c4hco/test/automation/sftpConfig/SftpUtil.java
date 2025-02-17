@@ -131,9 +131,9 @@ public class SftpUtil {
                 channelSftp.disconnect();
                 disconnectFromSftp();
                 //  Runtime.getRuntime().exec("cmd.exe /c explorer /select," + reportFolder.getAbsolutePath());
-                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
-                Thread.sleep(2000); // Adjust if needed
-                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
+//                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
+//                Thread.sleep(2000); // Adjust if needed
+//                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
             }
         } catch (Exception e) {
             throw new RuntimeException("SFTP operation failed ", e);
@@ -170,20 +170,16 @@ public class SftpUtil {
     public String getLocalSftpDownloadPath(){
         String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
         String sftpFolderPath = "target/sftp-downloads/download-" + timestamp;
-        try {
-            File reportFolder = new File(sftpFolderPath);
-            if (!reportFolder.exists()) {
-                boolean folderCreated = reportFolder.mkdirs();
-                if (!folderCreated) {
-                    System.out.println("Failed to create the report folder.");
-                }
-              //  Runtime.getRuntime().exec("cmd.exe /c explorer /select," + reportFolder.getAbsolutePath());
-                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
-                Thread.sleep(2000); // Adjust if needed
-                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
+        File reportFolder = new File(sftpFolderPath);
+        if (!reportFolder.exists()) {
+            boolean folderCreated = reportFolder.mkdirs();
+            if (!folderCreated) {
+                System.out.println("Failed to create the report folder.");
             }
-        } catch (IOException|InterruptedException e) {
-            throw new RuntimeException(e);
+          //  Runtime.getRuntime().exec("cmd.exe /c explorer /select," + reportFolder.getAbsolutePath());
+//                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
+//                Thread.sleep(2000); // Adjust if needed
+//                Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe");
         }
         return sftpFolderPath;
     }

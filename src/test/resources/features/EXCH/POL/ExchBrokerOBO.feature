@@ -1,6 +1,6 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
-  @SLER-626 @n1
+  @SLER-626
   Scenario: : EXCH Initial Application -  Broker OBO -  Minor Only
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
