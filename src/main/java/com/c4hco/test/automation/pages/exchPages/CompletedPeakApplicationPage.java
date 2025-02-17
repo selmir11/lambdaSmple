@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
@@ -123,47 +124,10 @@ public class CompletedPeakApplicationPage {
         backBtnLetUsGuideYou.click();
     }
 
-    public void verifyEnglishAndSpanishTextInLetUsGuidePage(String languageOption) {
-        SoftAssert softAssert = new SoftAssert();
-        switch (languageOption) {
-            case "English":
-                List<String> englishTexts = getEnglishTexts();
-                softAssert.assertEquals(bodyText.get(0).getText(), englishTexts.get(0));
-                softAssert.assertEquals(bodyText.get(1).getText(), englishTexts.get(1));
-                softAssert.assertEquals(bodyText.get(2).getText(), englishTexts.get(2));
-                softAssert.assertEquals(bodyText.get(3).getText(), englishTexts.get(3));
-                softAssert.assertAll();
-                break;
-            case "Spanish":
-                List<String> spanishTexts = getSpanishTexts();
-                softAssert.assertEquals(bodyText.get(0).getText(), spanishTexts.get(0));
-                softAssert.assertEquals(bodyText.get(1).getText(), spanishTexts.get(1));
-                softAssert.assertEquals(bodyText.get(2).getText(), spanishTexts.get(2));
-                softAssert.assertEquals(bodyText.get(3).getText(), spanishTexts.get(3));
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + languageOption);
+    public void verifyEnglishAndSpanishTextInLetUsGuidePage(List<String> languageText) {
+        for (int i=0;i<4;i++) {
+            Assert.assertEquals(bodyText.get(i).getText(), languageText.get(i));
         }
-
-    }
-
-    private static List<String> getEnglishTexts() {
-        List<String> englishTexts = new ArrayList<>();
-        englishTexts.add("If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application?");
-        englishTexts.add("You will need your Case ID, which can be found on your Health First Colorado eligibility notice.");
-        englishTexts.add("Yes, I’m new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus");
-        englishTexts.add("No thanks, take me to the application");
-        return englishTexts;
-    }
-
-    private static List<String> getSpanishTexts() {
-        List<String> spanishTexts = new ArrayList<>();
-        spanishTexts.add("Si nunca se ha inscrito con nosotros antes pero ya presentó una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la información que envió antes. Usted tendrá la oportunidad de revisar y cambiar su información según sea necesario. ¿Desea buscar una solicitud previamente completada?");
-        spanishTexts.add("Necesitará su identificación del caso que aparece en su aviso de elegibilidad de Health First Colorado.");
-        spanishTexts.add("Sí, soy nuevo a Connect for Health Colorado y ya presenté una solicitud Health First Colorado or Child Health Plan Plus");
-        spanishTexts.add("No gracias, lléveme a la aplicación");
-        return spanishTexts;
     }
 
 }
