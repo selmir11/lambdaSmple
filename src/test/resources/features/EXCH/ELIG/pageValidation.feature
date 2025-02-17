@@ -3027,25 +3027,25 @@ Feature: Page validations on ELIG pages
     Then I select "Conditional Entrant Granted before 1980" for immigration status
     Then I click continue on the Immigration Status page
     Then I click continue on the Immigration Status page
-    Then I validate error message for date
+    Then I validate Immigration date error message on the Immigration Status page
       |Grant date is required|
     Then I input the grant date of my Lawful Permanent Residency as "15062025"
-    Then I validate error message for date
+    Then I validate Immigration date error message on the Immigration Status page
       |Grant date cannot be in the future|
     Then I input the grant date of my Lawful Permanent Residency as "01010220"
-    Then I validate error message for date
+    Then I validate Immigration date error message on the Immigration Status page
       |Date is not valid|
     Then I input the grant date of my Lawful Permanent Residency as "01012025673"
     Then I click continue on the Immigration Status page
     And I change the language from header to "Spanish NonElmo"
     Then I click continue on the Immigration Status page
-    Then I validate error message for date
+    Then I validate Immigration date error message on the Immigration Status page
       |Por favor ingrese una fecha de otorgamiento|
     Then I input the grant date of my Lawful Permanent Residency as "15062025"
-    Then I validate error message for date
+    Then I validate Immigration date error message on the Immigration Status page
       |La fecha de otorgamiento no debe ser a futuro|
     Then I input the grant date of my Lawful Permanent Residency as "01010220"
-    Then I validate error message for date
+    Then I validate Immigration date error message on the Immigration Status page
       |La fecha no es válida|
     Then I input the grant date of my Lawful Permanent Residency as "01012025673"
     Then I click continue on the Immigration Status page
