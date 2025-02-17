@@ -193,7 +193,7 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-94-WIP
+  @SLER-94-WIP-@R4V
   Scenario: RT-2075 ENR-EXCH: APPS - REMOVE MEMBER (LCE: Divorce) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -226,7 +226,7 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-134-WIP
+  @SLER-134-WIP-@R4V
   Scenario: RT-2242 ENR-EXCH: ADD DEPENDENT (LCE: Change on incarceration status) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -303,4 +303,5 @@ Feature: Seed03 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
 
