@@ -368,7 +368,7 @@ Feature: ELIG-CYA Eligible
       And I Apply for financial help
       Then I select the option "Yes" to employment
       And I select the option "No" to self employment
-      And I enter employment details with "550000" income at "Annually" frequency
+      And I enter employment details with "5500000" income at "Annually" frequency
       And I select the option "No" to seasonal employment
       And I select the option "No" to projected income
       And I click continue on the Employment Info Page
@@ -392,7 +392,8 @@ Feature: ELIG-CYA Eligible
       Then I Declare as Tax Household 1
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
-      Then I click on "No Thanks" on good news page
       Then I validate I am on the "Application History" page
       Then I click on view results and shop
+      Then I verify that "Health First Colorado or CHP+, if the State of Colorado determines you qualify" is not present in the list
+      And I click on Sign Out in the Header for "NonElmo"
       
