@@ -876,18 +876,20 @@ public class EmploymentInfoPage {
 
     public void validateNetIncomeFrequencyDropdown(String language) {
 
+        basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
+
+        // Wrap the element as a Select object
+        Select dropdown = new Select(selectIncomeFreq);
+
+        // Fetch the available options in Spanish
+        List<WebElement> options = dropdown.getOptions();
+
+        // Debug: Print all options in the dropdown in Spanish
+        List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
+        System.out.println("Dropdown options: " + actualOptions);
+
         switch (language.toLowerCase()) {
             case "english":
-                basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
-
-                Select dropdown = new Select(selectIncomeFreq);
-
-                // Fetch the available options
-                List<WebElement> options = dropdown.getOptions();
-
-                // Debug: Print all options in the dropdown
-                List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
-                System.out.println("Dropdown options: " + actualOptions);
 
                 // Expected values in the dropdown menu
                 List<String> expectedOptions = Arrays.asList("Weekly", "Twice a month", "Monthly", "Annually", "Every 2 weeks");
@@ -901,24 +903,13 @@ public class EmploymentInfoPage {
                 break;
 
             case "spanish":
-                basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
-
-                // Wrap the element as a Select object
-                Select dropdownsp = new Select(selectIncomeFreq);
-
-                // Fetch the available options in Spanish
-                List<WebElement> optionssp = dropdownsp.getOptions();
-
-                // Debug: Print all options in the dropdown in Spanish
-                List<String> actualOptionssp = optionssp.stream().map(WebElement::getText).collect(Collectors.toList());
-                System.out.println("Dropdown options: " + actualOptionssp);
 
                 // Expected values in the dropdown menu in Spanish
                 List<String> expectedOptionssp = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
 
                 // Validate the dropdown contains all expected options in Spanish
                 for (String expectedOption : expectedOptionssp) {
-                    boolean optionExists = actualOptionssp.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
+                    boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
                     Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
                 }
                 System.out.println("Net Income Frequency Dropdown validation passed.");
