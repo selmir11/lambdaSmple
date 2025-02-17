@@ -306,6 +306,14 @@ public class QlceConfirmationPage {
                 divorceMemCheckbox.click();
                 divorceMemEventDate.sendKeys(getCurrentDate());
                 break;
+            case "Death":
+                basicActions.waitForElementToBeClickable(deathLce, 10);
+                deathLce.click();
+                WebElement deathMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 deathMemberWrapper']//span[contains(text(),'"+selectMember+"')]/preceding::input[2]"));
+                WebElement deathMemEventDate = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 deathMemberWrapper']//span[contains(text(),'"+selectMember+"')]/following::input[1]"));
+                deathMemCheckbox.click();
+                deathMemEventDate.sendKeys(getCurrentDate());
+                break;
 
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
