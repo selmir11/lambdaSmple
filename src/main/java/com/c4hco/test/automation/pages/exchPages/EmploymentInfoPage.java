@@ -878,13 +878,9 @@ public class EmploymentInfoPage {
 
         basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
 
-        // Wrap the element as a Select object
         Select dropdown = new Select(selectIncomeFreq);
-
-        // Fetch the available options in Spanish
         List<WebElement> options = dropdown.getOptions();
 
-        // Debug: Print all options in the dropdown in Spanish
         List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
         System.out.println("Dropdown options: " + actualOptions);
 
