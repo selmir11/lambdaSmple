@@ -193,7 +193,7 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-94-WIP
+  @SLER-94-WIP-@R4V
   Scenario: RT-2075 ENR-EXCH: APPS - REMOVE MEMBER (LCE: Divorce) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -202,8 +202,8 @@ Feature: Seed03 - Exchange
     Then I click on make changes button
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Marriage/Divorce" and click continue
+    Then I click Continue button on Report a Life Change Page
+    And I report "Marriage" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
@@ -226,7 +226,7 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-134-WIP
+  @SLER-134-WIP-@R4V
   Scenario: RT-2242 ENR-EXCH: ADD DEPENDENT (LCE: Change on incarceration status) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -303,4 +303,5 @@ Feature: Seed03 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
 

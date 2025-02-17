@@ -62,9 +62,6 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate I am on the "Medical Plan Results" page
     And I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
-    Then I click continue on start shopping page
     And I validate I am on the "Dental Plan Results" page
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
@@ -109,7 +106,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-  @SLER-1993-WIP
+  @SLER-1993-WIP-@R4V
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
