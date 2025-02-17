@@ -60,7 +60,7 @@ public class ImmigrationStatusPageSteps {
         ImmigrationStatusPage.clickBack();
     }
 
-    @Then("I validate {string} message {string}")
-    public void verifyWithoutDateErrorMessageForImmigrationStatus(String errorType, String language, List<String> data){
-        ImmigrationStatusPage.verifDateErrorForImmigrationStatus(errorType, language,data);}
+    @Then("I validate error message for date")
+    public void verifyWithoutDateErrorMessageForImmigrationStatus(List<String> data){
+        ImmigrationStatusPage.verifDateErrorForImmigrationStatus(data);}
 }

@@ -324,38 +324,9 @@ public class ImmigrationStatusPage {
         backButton.click();
     }
 
-    public void verifDateErrorForImmigrationStatus(String errorType, String language, List<String> data) {
+    public void verifDateErrorForImmigrationStatus(List<String> data) {
         basicActions.waitForElementToBePresent(errorMsgImmigrationStatus, 10);
-        switch (language) {
-            case "English":
-                switch (errorType) {
-                    case "without date error":
-                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                        break;
-                    case "Invalid date error":
-                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                        break;
-                    case "Grant date cannot be in the future error":
-                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " +errorType );
-                }
-            case "Spanish":
-                switch (errorType) {
-                    case "without date error":
-                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                        break;
-                    case "Invalid date error":
-                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                        break;
-                    case "Grant date cannot be in the future error":
-                        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid option: " +errorType );
-                }
-        }
+        softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
         softAssert.assertAll();
     }
 }
