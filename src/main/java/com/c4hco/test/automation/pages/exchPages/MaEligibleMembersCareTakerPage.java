@@ -65,6 +65,8 @@ public class MaEligibleMembersCareTakerPage {
 
     @FindBy(id = "continueButton")
     WebElement btnSaveAndContinue;
+    @FindBy(css = "input#submitButton.back-button-link")
+    WebElement btnBack;
 
     public void answerUnder19(String nextOption){
         basicActions.waitForElementToBePresent(rdoYes, 20);
@@ -136,6 +138,11 @@ public class MaEligibleMembersCareTakerPage {
     public void  iContinue(){
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresentWithRetries(btnSaveAndContinue,20  );
+
+    }
+    public void  iClickBack(){
+        basicActions.waitForElementToBeClickable(btnBack, 20);
+        basicActions.click(btnBack);
 
     }
 
