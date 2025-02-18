@@ -31,7 +31,7 @@ public class AdminPortalAccountCreationPages {
     WebElement successTitleText;
     @FindBy(xpath = "//*[@id='create-account-page']/form/div[1]/div[2]/p[2]")
     WebElement successBodyText;
-    @FindBy(xpath = "//div[@class='error-message']")
+    @FindBy(css = ".error-message")
     WebElement expectedErrorMessageInBody;
 
     public void enterValidDataToCreateAdminAccount(String emailBase) {
@@ -62,9 +62,9 @@ public class AdminPortalAccountCreationPages {
         email.sendKeys("exmat3@gmail.com");
         createBtn.click();
     }
-    public void validateTheExpectedErrorsMessageDisplays(String errorMessage) {
+    public void validateTheExpectedErrorsMessageDisplays() {
         basicActions.waitForElementToBePresentWithRetries(expectedErrorMessageInBody,30);
-        softAssert.assertEquals(expectedErrorMessageInBody.getText(), errorMessage);
+        softAssert.assertEquals(expectedErrorMessageInBody.getText(), "Sorry, we're unable to proceed with this email. Please double-check and try again.");
         softAssert.assertAll();
     }
 }
