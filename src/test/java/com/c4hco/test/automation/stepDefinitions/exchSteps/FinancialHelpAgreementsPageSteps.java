@@ -22,4 +22,13 @@ public class FinancialHelpAgreementsPageSteps {
     public void continueInitialPaymentCoCo(){
         financialHelpAgreementsPage.clickContinue();
     }
+
+    @And("I select {string} agreement checkbox on the Financial Agreements page")
+    public void selectAgreementCheckbox(String checkboxOption){
+        financialHelpAgreementsPage.selectAgreementsCheckbox(checkboxOption);
+    }
+    @And("I verify text on Financial agreement page")
+    public void FinancialAgreementEnglish() {
+        financialHelpAgreementsPage.verifyFinancialAgreementPageVerbiage();
+    }
 }
