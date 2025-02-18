@@ -41,4 +41,8 @@ public class TellUsAboutAdditionalMembersPageSteps {
     }
     @And("I click back on Tell us about additional members page")
     public void clickbackButton(){tellUsAboutAdditionalMemberPage.clickBackButton();}
+
+    @And("I update member applying for coverage to {string}")
+    public void isMemberApplyingForInsurance(String Applying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(Applying);
+    }
 }

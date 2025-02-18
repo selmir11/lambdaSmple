@@ -6,6 +6,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.List;
+
 
 public class completedPeakApplicationSteps {
     CompletedPeakApplicationPage completedApplicationPage = new CompletedPeakApplicationPage(WebDriverManager.getDriver());
@@ -42,8 +44,8 @@ public class completedPeakApplicationSteps {
         completedApplicationPage.clickOnBackBtn();
     }
 
-    @Then("I verify the text on Let us guide you page in {string}")
-    public void verifyEnglishAndSpanishTextInLetUsGuide(String languageOption){
-        completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageOption);
+    @Then("I verify the text on Let us guide you page")
+    public void verifyEnglishAndSpanishTextInLetUsGuide(List<String> languageText){
+        completedApplicationPage.verifyEnglishAndSpanishTextInLetUsGuidePage(languageText);
     }
 }
