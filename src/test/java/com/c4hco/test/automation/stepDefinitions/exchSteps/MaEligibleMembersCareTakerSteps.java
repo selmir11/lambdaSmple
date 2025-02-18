@@ -18,5 +18,7 @@ public class MaEligibleMembersCareTakerSteps {
     @And ("I click continue on the Caretaker page")
     public void iContinue() {maEligibleMembersCareTakerForMAPage.iContinue();}
 
+    @And ("I click back on the Caretaker page")
+    public void iClickBack() {maEligibleMembersCareTakerForMAPage.iClickBack();}
 
 }
