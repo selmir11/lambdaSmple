@@ -62,9 +62,9 @@ public class AdminPortalAccountCreationPages {
         email.sendKeys("exmat3@gmail.com");
         createBtn.click();
     }
-    public void validateTheExpectedErrorsMessageDisplays(String errorMessage) {
+    public void validateTheExpectedErrorsMessageDisplays() {
         basicActions.waitForElementToBePresentWithRetries(expectedErrorMessageInBody,30);
-        softAssert.assertEquals(expectedErrorMessageInBody.getText(), errorMessage);
+        softAssert.assertEquals(expectedErrorMessageInBody.getText(), "Sorry, we're unable to proceed with this email. Please double-check and try again.");
         softAssert.assertAll();
     }
 }
