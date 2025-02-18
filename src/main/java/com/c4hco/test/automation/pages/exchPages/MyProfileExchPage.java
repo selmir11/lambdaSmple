@@ -532,7 +532,6 @@ public class MyProfileExchPage {
         savePrimaryContact.click();
         basicActions.wait(60);
     }
-
     public void verifyPasswordPopupTextOnMyProfileExchPage(String language) {
         switch (language) {
             case "English":
