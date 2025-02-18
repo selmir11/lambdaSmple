@@ -10,14 +10,14 @@ import java.util.Map;
 public class DbStepsE2E {
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
-    private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
+    private final PolicyTableDbValidations policyTableDbValidations = new PolicyTableDbValidations();
     private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
-    private final Ib834DbValidations ib834DbValidationsGrps = new Ib834DbValidations();
+    private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
 
 
     @And("I validate {string} entities from policy tables")
     public void validateMedicalRecordsForGroups(String recordType){
-        policyTableDbValidations_Grps.groupRecordsValidations(recordType);
+        policyTableDbValidations.groupRecordsValidations(recordType);
     }
 
     @And("I validate {string} entities from pre edi db tables")
@@ -39,7 +39,7 @@ public class DbStepsE2E {
 
     @And("I validate ib834 {string} details in database for groups")
     public void validateIb834DetailsDb_grps(String recordType, List<Map<String, String>> expectedValues){
-        ib834DbValidationsGrps.ib834DbRecordsValidations(recordType, expectedValues);
+        ib834DbValidations.ib834DbRecordsValidations(recordType, expectedValues);
     }
 
     @And("I validate {string} entities from ob999_details db table")
