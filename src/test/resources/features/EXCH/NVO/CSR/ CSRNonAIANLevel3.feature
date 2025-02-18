@@ -153,7 +153,7 @@ Feature: Enrollment end date validation for multiple scenarios
 
 
 
-  @SLER-1887
+  @SLER-1887 @NVOExchRegression
   Scenario:As a user who in plan year 2025 FPL 201 -250% would qualify for the CSR Non AIAN Level 1[RT-2106]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

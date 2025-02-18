@@ -1,5 +1,5 @@
 Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
- @SLER-1847
+ @SLER-1867 @NVOExchRegression
   Scenario:[RT-2185] - Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE, shopping is allowed, email and paper notice is triggered EE-11
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -149,7 +149,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
 
     Then I verify the application result details in DB as "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY" for "Primary"
 
-  @SLER-1941
+  @SLER-1941 @NVOExchRegression
   Scenario:  ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment Period is granted, shopping is allowed, email notice is triggered EE-11[RT-2187]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
