@@ -886,33 +886,25 @@ public class EmploymentInfoPage {
 
         switch (language.toLowerCase()) {
             case "english":
-
                 // Expected values in the dropdown menu
                 List<String> expectedOptions = Arrays.asList("Weekly", "Twice a month", "Monthly", "Annually", "Every 2 weeks");
-
                 // Validate the dropdown contains all expected options
                 for (String expectedOption : expectedOptions) {
                     boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
                     Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
                 }
-                System.out.println("Net Income Frequency Dropdown validation passed.");
                 break;
-
             case "spanish":
-
                 // Expected values in the dropdown menu in Spanish
                 List<String> expectedOptionssp = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
-
                 // Validate the dropdown contains all expected options in Spanish
                 for (String expectedOption : expectedOptionssp) {
                     boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
                     Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
                 }
-                System.out.println("Net Income Frequency Dropdown validation passed.");
                 break;
             default:
-                System.out.println("Language not supported.");
-
+                Assert.fail("Invalid option: " + language);
         }
     }
 }
