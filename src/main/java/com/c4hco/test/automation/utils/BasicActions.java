@@ -998,6 +998,30 @@ public class BasicActions {
         return allEligibleMembers;
     }
 
+    public String getTotalMedEnrollees(String firstName){
+        List<MemberDetails> allMembers = getAllMedicalEligibleMemInfo();
+        String totalMemInGrp = "";
+        for(MemberDetails member: allMembers){
+            if(member.getFirstName().equals(firstName)){
+                totalMemInGrp = getTotalMemInMedGrp(member.getMedGroupInd());
+                break;
+            }
+        }
+        return totalMemInGrp;
+    }
+
+    public String getTotalDentalEnrollees(String firstName){
+        List<MemberDetails> allMembers = getAllDentalEligibleMemInfo();
+        String totalMemInGrp = "";
+        for(MemberDetails member: allMembers){
+            if(member.getFirstName().equals(firstName)){
+                totalMemInGrp = getTotalMemInDenGrp(member.getDenGroupInd());
+                break;
+            }
+        }
+        return totalMemInGrp;
+    }
+
     public void setRelationToSubscriber(List<String> relationToSubscriber){
         for(String relation : relationToSubscriber){
             String[] relationDetails = relation.split(":");

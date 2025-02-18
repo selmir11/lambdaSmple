@@ -349,8 +349,7 @@ public class Ob834FileValidations {
                 }
             }
         }
-
-      //  softAssert.assertAll("LX switch case for sep reason null");
+        softAssert.assertAll("LX switch case for sep reason null");
     }
 
 

@@ -358,32 +358,9 @@ public class Ib834DbValidations_grps {
 
 
     private String getTotalEnrollees(Ib834Entity ib834Entity){
-        return ib834Entity.getInsurance_line_code().equals("HLT")? getTotalMedEnrollees(ib834Entity.getMember_first_name()) : getTotalDentalEnrollees(ib834Entity.getMember_first_name());
+        return ib834Entity.getInsurance_line_code().equals("HLT")? basicActions.getTotalMedEnrollees(ib834Entity.getMember_first_name()) : basicActions.getTotalDentalEnrollees(ib834Entity.getMember_first_name());
     }
 
-    private String getTotalMedEnrollees(String firstName){
-        List<MemberDetails> allMembers = basicActions.getAllMedicalEligibleMemInfo();
-        String totalMemInGrp = "";
-        for(MemberDetails member: allMembers){
-            if(member.getFirstName().equals(firstName)){
-                totalMemInGrp = basicActions.getTotalMemInMedGrp(member.getMedGroupInd());
-                break;
-            }
-        }
-        return totalMemInGrp;
-    }
-
-    private String getTotalDentalEnrollees(String firstName){
-        List<MemberDetails> allMembers = basicActions.getAllDentalEligibleMemInfo();
-        String totalMemInGrp = "";
-        for(MemberDetails member: allMembers){
-            if(member.getFirstName().equals(firstName)){
-                totalMemInGrp = basicActions.getTotalMemInDenGrp(member.getDenGroupInd());
-                break;
-            }
-        }
-        return totalMemInGrp;
-    }
 
     private void setMedicalFileName(Ib834Entity ib834Entity){
         List<String> medFileNames = SharedData.getMedicalIb834FileNames();
