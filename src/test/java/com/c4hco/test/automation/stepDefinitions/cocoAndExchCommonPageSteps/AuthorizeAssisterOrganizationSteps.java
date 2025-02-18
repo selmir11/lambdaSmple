@@ -32,6 +32,11 @@ public class AuthorizeAssisterOrganizationSteps {
         authorizeAssisterOrganizationPage.validateGoBackButton(language);
     }
 
+    @And("I validate the valid Assister site ID error message text in {string}")
+    public void iValidateValidAssisterSiteIdErrorText(String language){
+        authorizeAssisterOrganizationPage.validateValidAssisterSiteIdErrorText(language);
+    }
+
     @Then("I authorize my assister's site ID {string} or {string}")
     public void iAuthorizeAssisterSiteId(String StgSiteID, String QaSiteID){
         authorizeAssisterOrganizationPage.authorizeAssisterSiteID(StgSiteID, QaSiteID);
