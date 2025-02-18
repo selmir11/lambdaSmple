@@ -31,7 +31,7 @@ public class AdminPortalAccountCreationPages {
     WebElement successTitleText;
     @FindBy(xpath = "//*[@id='create-account-page']/form/div[1]/div[2]/p[2]")
     WebElement successBodyText;
-    @FindBy(xpath = "//div[@class='error-message']")
+    @FindBy(css = ".error-message")
     WebElement expectedErrorMessageInBody;
 
     public void enterValidDataToCreateAdminAccount(String emailBase) {
