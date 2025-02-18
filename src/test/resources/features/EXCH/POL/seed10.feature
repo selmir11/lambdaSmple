@@ -1,6 +1,6 @@
 Feature: Seed10 - Exchange
 
-  Scenario: : Seed 10 For Exchange- Grandparents with minors only  - NFA
+  Background: : Seed 10 For Exchange- Grandparents with minors only  - NFA
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -112,7 +112,6 @@ Feature: Seed10 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
     And I click on Sign Out in the Header for "NonElmo"
 
     Given I open the login page on the "admin" portal
@@ -160,6 +159,20 @@ Feature: Seed10 - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2191-WIP_@R4V
+  Scenario: RT-2539 ENR-EXCH: CHANGE PRIMARY CONTACT - RESPONSIBLE PERSON (Minors Only)
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I click on the Username Link Exch
+    And I click on Make Changes Button
+    And I click change primary contact on my profile page
+    Then I update "Spouse" as primary member
+    And I click on Save Button
+    And I click on Sign Out in the Header for "Elmo"
+
 
 
 
