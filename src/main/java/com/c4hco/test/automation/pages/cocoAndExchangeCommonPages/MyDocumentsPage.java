@@ -22,6 +22,7 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.Collator;
 import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
@@ -916,80 +917,86 @@ public class MyDocumentsPage {
     }
 
 
-    public void ValidateDocumentCategoryinAscendingOrder(List<String> category) {
-
+    public void ValidateDocumentCategoryinAscendingOrder(String OtherText,String language,List<String> category) {
         basicActions.waitForElementToBePresent(docTypeDrpDwn, 20);
         docTypeDrpDwn.click();
 
         // Extract text from elements and store in a list
-        List<String> webDocumentCategoryList = new ArrayList<>();
+        List<String> ActualCategoryList = new ArrayList<>();
         for (WebElement element : categoryList) {
-            webDocumentCategoryList.add(element.getText());
+            ActualCategoryList.add(element.getText());
         }
 
-        List<String> weblistwithoutOther = new ArrayList<>(webDocumentCategoryList);
-        weblistwithoutOther.remove("Other");
+        softAssert.assertEquals(ActualCategoryList,category, "Actual and expected list are not match");
+        List<String> ActualListExceptOther = new ArrayList<>(ActualCategoryList);
+        ActualListExceptOther.remove(OtherText);
 
+        //Validate Document list in ascending order
+        softAssert.assertTrue(isAscendingOrder(language,ActualListExceptOther),"Category list  not in ascending order");
 
-        List<String> sortedmainList = new ArrayList<>(category);
-        sortedmainList.remove("Other");
-
-       softAssert.assertTrue(isAscendingOrder(weblistwithoutOther), " List not in ascending order");
-
-        // Verify if the original list is equal to the sorted list
-        softAssert.assertEquals(weblistwithoutOther, sortedmainList, " List mising");
-
-        softAssert.assertTrue(webDocumentCategoryList.get(webDocumentCategoryList.size() - 1).equals("Other"), "Last value is not Other");
-
+        //Validate Other listed at the end
+        softAssert.assertTrue(ActualCategoryList.get(ActualCategoryList.size() - 1).equals(OtherText), "Other item missing at the end of the list");
         softAssert.assertAll();
 
-
     }
-    private static boolean isAscendingOrder(List<String> list) {
+
+    private static boolean isAscendingOrder(String language, List<String> list) {
         List<String> sortedList = new ArrayList<>(list);
-        Collections.sort(sortedList);
+
+        if(language.equals("Spanish")){
+            Collator collator = Collator.getInstance(new Locale("es","ES"));
+            collator.setStrength(Collator.PRIMARY);
+            sortedList.sort(collator);
+        }
+        else {
+            Collections.sort(sortedList);
+        }
         return  list.equals(sortedList);
     }
 
-    public void validateDoucmentTypeInAscendingOrder(DataTable datable) {
+    public void validateDoucmentTypeInAscendingOrder(String OtherText,String language,DataTable datable) {
 
-        List<List<String>> expectedSubLists = datable.asLists(String.class);
+        List<List<String>> expectedLists = datable.asLists();
 
         basicActions.waitForElementListToBePresent(categoryList, 100);
 
         int index = 0;
         for (WebElement element : categoryList) {
-            element.click();
+            element.click(); //Main dropdown item
 
             basicActions.waitForElementToBePresent(docCategoryDrpDwn,100);
             docCategoryDrpDwn.click();  // Clicking on sublist dropdown to view items
-            List<String> actualDocumnetTypeList = new ArrayList<>();
+
+            List<String> actualList = new ArrayList<>();
             for (WebElement item : categoryList) { //Fetching sub list items
-                actualDocumnetTypeList.add(item.getText().trim());
+                actualList.add(item.getText().trim());
             }
 
-            List<String> expectedDocumentTypeSubList = new ArrayList<>();
-            String[] splitvalues = expectedSubLists.get(index).get(0).split("--");
+            List<String> expectedList = new ArrayList<>();
+            String[] splitvalues = expectedLists.get(index).get(0).split("&");
             for (int j = 0; j < splitvalues.length; j++) {
                 String formattedvalue = (j == 0) ? splitvalues[j].trim() : "" + splitvalues[j].trim();
-                expectedDocumentTypeSubList.add(formattedvalue);
+                expectedList.add(formattedvalue);
             }
 
-            softAssert.assertEquals(actualDocumnetTypeList , expectedDocumentTypeSubList , " list not Match" );
+            softAssert.assertEquals(actualList , expectedList , " Expected and Actual list not Match" );
 
-            List<String> actualDocumnetTypeWithOutOther = new ArrayList<>(actualDocumnetTypeList);
-            actualDocumnetTypeWithOutOther.removeIf(item -> item.startsWith("Other"));
+            List<String> actualListExceptOther = new ArrayList<>(actualList); // Remove Other from sublist
+            actualListExceptOther.removeIf(item -> item.startsWith(OtherText));
 
-            //Verify sublist sorted in ASC
-            softAssert.assertTrue(isAscendingOrder(actualDocumnetTypeWithOutOther), " Document type list not in ascending order");
+            //Validate Sublist in ASC order
+            softAssert.assertTrue(isAscendingOrder(language,actualListExceptOther), " Document type List not in ascending order");
 
-            if (actualDocumnetTypeList.contains("Other")){
-                softAssert.assertTrue(actualDocumnetTypeList.get(actualDocumnetTypeList.size() - 1).startsWith("Other"), "Other list not at the end");
+            //using only  if, because not all sublist items contains other
+            if (actualList.contains(OtherText)) {
+                softAssert.assertTrue(actualList.get(actualList.size() - 1).startsWith(OtherText), "Other item  missing at the end of the list");
             }
 
             index++;
             docTypeDrpDwn.click();
         }
         softAssert.assertAll();
+
     }
+
 }

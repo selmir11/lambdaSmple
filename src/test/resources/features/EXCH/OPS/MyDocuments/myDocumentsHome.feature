@@ -244,8 +244,7 @@ Feature: My Document Home Page validations
     And I click "On Behalf Of (OBO)" from application links dropdown
     Then I click link my docs on accountOverview page
     And I click on upload another document
-    And I validate Document category list displayed in ascending order
-
+    And I validate Document category displayed in ascending order and "Other" at end of list "English"
       | 1095A Dispute |
       | American Indian/Alaska Native Tribal Membership |
       | Appeals |
@@ -268,28 +267,97 @@ Feature: My Document Home Page validations
       | Veterans Affairs (VA)                  |
       | Other|
 
-    Then I validate Document Types for selected category list document category in ascending order
-      | Correction Proof -- Correction Request |
-      | Bureau of Indian Affairs Issued Document -- Tribal Enrollment/Membership Document -- Other Official Federal Recognized Tribe Document |
+    Then I validate Document Types for corresponding category list in ascending order and "Other" at end of list "English"
+      | Correction Proof  & Correction Request |
+      | Bureau of Indian Affairs Issued Document  & Tribal Enrollment/Membership Document  & Other Official Federal Recognized Tribe Document |
       | Appeals                                                                                                           |
-      | Power of Attorney-- Other legal Document |
-      |Federally Approved Tribal Document-- U.S. Birth Certificate-- U.S. Certificate of Naturalization-- U.S. Passport-- Other Official Citizenship Document|
-      | Complaints--  Feedback  |
+      | Power of Attorney & Other legal Document |
+      |Federally Approved Tribal Document & U.S. Birth Certificate & U.S. Certificate of Naturalization & U.S. Passport & Other Official Citizenship Document|
+      | Complaints &  Feedback  |
       | Customer Authorization Form    |
       | Proof of Life Document    |
-      | DS2019 (Certificate of Eligibility for Exchange Visitor (J-1) Status)-- I-20 (Certificate of Eligibility for Nonimmigrant (F-1) Student Status)-- I-327 Reentry Permit-- I-551 Permanent Resident Card-- I-571 Refugee Travel Document-- I-766 Employment Authorization Card-- INS Form I-94 (Arrival/Departure Record)-- INS Form I-94 (Arrival/Departure Record) in Unexpired Foreign Passport-- Machine Readable Immigrant Visa (with Temporary I-551 Language)-- Temporary I-551 Stamp (on passport or I-94)-- Other Official US Citizenship and Immigration Services Document   |
+      | DS2019 (Certificate of Eligibility for Exchange Visitor (J-1) Status) & I-20 (Certificate of Eligibility for Nonimmigrant (F-1) Student Status) & I-327 Reentry Permit & I-551 Permanent Resident Card & I-571 Refugee Travel Document & I-766 Employment Authorization Card & INS Form I-94 (Arrival/Departure Record) & INS Form I-94 (Arrival/Departure Record) in Unexpired Foreign Passport & Machine Readable Immigrant Visa (with Temporary I-551 Language) & Temporary I-551 Stamp (on passport or I-94) & Other Official US Citizenship and Immigration Services Document   |
       |Health First Colorado (Medicaid) Application|
       | Health First Colorado (Medicaid) Redetermination (RRR)|
-      |Driver's License - State, Federal or Local Government --School ID-- US Military ID Card -- Other Official Government ID   |
-      | Court or Legal Document-- Unexpired State ID Card-- Other Official Document                                             |
-      |Employer Statement-- Form 8962 --Investment Income Statement-- Pay Stub/Check-- Premium Tax Credit Reconciliation Attestation Form-- Retirement Income Statement-- Self-Employment Ledger-- Social Security Income Statement-- Tax Document-- Unemployment Amount Letter-- Other Official Income Document   |
+      |Driver's License - State, Federal or Local Government  &School ID & US Military ID Card  & Other Official Government ID   |
+      | Court or Legal Document & Unexpired State ID Card & Other Official Document                                             |
+      |Employer Statement & Form 8962  &Investment Income Statement & Pay Stub/Check & Premium Tax Credit Reconciliation Attestation Form & Retirement Income Statement & Self-Employment Ledger & Social Security Income Statement & Tax Document & Unemployment Amount Letter & Other Official Income Document   |
       | Report Life Change Events Individual Marketplace    |
-      | Document from Medicare-- Explanation of Health Coverage Form|
-      |Document from Peace Corps-- Explanation of Health Coverage Form|
-      |Social Security Card-- Social Security Document-- Other Official Document with First/Last Name and SSN|
-      |Document from TRICARE-- Explanation of Health Coverage Form|
-      |Document from Veterans Affairs (VA)-- Explanation of Health Coverage Form|
+      | Document from Medicare & Explanation of Health Coverage Form|
+      |Document from Peace Corps & Explanation of Health Coverage Form|
+      |Social Security Card & Social Security Document & Other Official Document with First/Last Name and SSN|
+      |Document from TRICARE & Explanation of Health Coverage Form|
+      |Document from Veterans Affairs (VA) & Explanation of Health Coverage Form|
       |Other                                                                               |
+    And I close button to close modal
+    Then  I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2188
+  Scenario:  Verify document category and their types in Ascending orders via Admin Portal in Spanish [ RT-2012]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I change the language from header to "Spanish"
+    And I click on upload another document in spanish
+    And  I validate Document category displayed in ascending order and "Otros" at end of list "Spanish"
+
+      | 1095A Disputa |
+      | Apelaciones |
+      | Asuntos de los veteranos |
+      | Certificado de defunción |
+      | Cuerpo de Paz            |
+      | Documento emitido por la Oficina de Asuntos Indígenas |
+      | Encarcelamiento                                       |
+      | Evento de vida calificado                             |
+      | Formulario de Autorización del cliente                |
+      | Health First Colorado (Medicaid) Aplicación           |
+      | Health First Colorado (Medicaid) Redeterminación (RRR) |
+      | Identidad                                              |
+      | Ingreso                                                |
+      | Medicare                                               |
+      | Número de Seguro Social                                |
+      | Otro documento oficial de ciudadanía                   |
+      | Otro documento oficial de servicios de inmigración sobre ciudadanía de Estados Unidos |
+      | Quejas |
+      | Representante autorizado |
+      | TRICARE |
+      | Otros |
+
+    Then I validate Document Types for corresponding category list in ascending order and "Otro" at end of list "Spanish"
+      |  Comprobante de encarcelamiento  & Prueba de corrección |
+      | Apelaciones                                             |
+      | Documentos de la Administración de Veteranos  & Explicación del formulario de cobertura de salud |
+      | Certificación de prueba de vida |
+      | Documentos del Cuerpo de Paz  & Explicación del formulario de cobertura de salud |
+      | Documento de membresía/inscripción tribal  & Documento emitido por la Oficina de Asuntos Indígenas  & Otro documento oficial de una tribu reconocida por las autoridades federales|
+      | Documento legal o de un tribunal  & Tarjeta vigente de identificación estatal  & Otro documento oficial                                                                            |
+      | Informe de eventos de vida calificados Mercado individual                                                                                                                         |
+      | Formulario de Autorización del cliente   |
+      |  Health First Colorado (Medicaid) Aplicación   |
+      | Health First Colorado (Medicaid) Redeterminación (RRR)|
+      | Licencia de conducir expedida por el Gobierno estatal, federal o local  & Tarjeta de identidad del ejército de Estados Unidos  & Tarjeta de identificación escolar  & Otro documento de identificación gubernamental oficial |
+      | Carta de la cantidad por desempleo  & Declaración del empleador  & Documento fiscal  & Estado de cuenta de ingresos por inversiones  & Estado de cuenta de ingresos por jubilación  & Estado de cuenta del ingreso del Seguro Social  & Formulario 8962  & Formulario de ratificación de conciliación del crédito fiscal para el pago de la prima  & Libro contable de trabajo independiente  & Recibo de pago/cheque  & Otro documento oficial de ingresos |
+      |  Documento de Medicare  & Explicación del formulario de cobertura de salud |
+      |  Documento del Seguro Social  & Tarjeta del Seguro Social  & Otro documento oficial con nombre y apellido y n.º del Seguro Social |
+      |  Certificado (acta) de nacimiento de Estados Unidos  & Certificado de naturalización de Estados Unidos  & Documento tribal aprobado por las autoridades federales  & Pasaporte de Estados Unidos  & Otro documento oficial de ciudadanía |
+      |  Documento de viaje para refugiado I-571  & DS2019 (Certificado de elegibilidad o estatus de visitante de intercambio; J-1)  & Formulario INS I-94 (Registro de entrada/salida)  & I-20 (Certificado de elegibilidad para estatus de estudiante no inmigrante; F-1)  & I-94 (Registro de entrada/salida) en pasaporte extranjero vigente  & Permiso de reingreso I-327  & Sello temporal I-551 (en el pasaporte o I-94/I-94A)  & Tarjeta de autorización de empleo I-766  & Tarjeta de residente permanente I-551  & Visa de inmigrante legible por máquina (con idioma temporal I-551)  & Otro documento oficial de Servicios de Inmigración y Ciudadanía de Estados Unidos |
+      |  Comentarios  & Quejas                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+      |  Poder notarial  & Otro documento legal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+      |  Documento de TRICARE  &  Explicación del formulario de cobertura de salud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+      | Otros                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+    And I close button to close modal
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+
 
   @SLER-2164 @OPSRegression
   Scenario: OPS MyDocs Verify All Modal Errors[RT-1984]

@@ -198,14 +198,14 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I verify doc unsupported error message in red")
     public void  I_verify_doc_unsupported_error_message_in_red() {myDocumentsPage.validateDocUnsupportedErrMsgAndTextColour();}
 
-    @Then("I validate Document category list displayed in ascending order")
-    public void iValidateDocumentCategoryListDisplayedInAscendingOrder(List<String> CategoryList) {
-        myDocumentsPage.ValidateDocumentCategoryinAscendingOrder(CategoryList);
+    @And("I validate Document category displayed in ascending order and {string} at end of list {string}")
+    public void iValidateDocumentCategoryDisplayedInAscendingOrder(String OtherText, String language,List<String> category) {
+        myDocumentsPage.ValidateDocumentCategoryinAscendingOrder(OtherText,language, category);
     }
 
-    @Then("I validate Document Types for selected category list document category in ascending order")
-    public void iValidateDocumentTypesForSelectedCategoryListDocumentCategoryInAscendingOrder(DataTable dataTable) {
-        myDocumentsPage.validateDoucmentTypeInAscendingOrder(dataTable);
+    @Then("I validate Document Types for corresponding category list in ascending order and {string} at end of list {string}")
+    public void iValidateDocumentTypesForCorrespondingCategoryListInAscendingOrderAndAtEndOfList(String OtherText, String language,  DataTable dataTable) {
+        myDocumentsPage.validateDoucmentTypeInAscendingOrder(OtherText,language, dataTable);
     }
 }
 
