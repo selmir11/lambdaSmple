@@ -175,6 +175,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate font colour height and size of selection required error")
     public void I_validate_font_colour_height_and_size_of_selection_required_error() {myDocumentsPage.validateFontSizeAndColour_errorMsgSR();}
 
+    @Then("I validate font colour height and size of file required error")
+    public void I_validate_font_colour_height_and_size_of_file_required_error() {myDocumentsPage.validateFontSizeAndColour_errorMsgFR();}
+
     @Then("I validate border colour of type and category dropdown")
     public void I_validate_border_colour_of_type_and_category_dropdown() {myDocumentsPage.validateBorderColourOfTypeAndCategoryDropdown_errorMsg();}
 
@@ -182,4 +185,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
         myDocumentsPage.verifyTextonDocumentPage(data);
     }
+    @Then("I validate selection required error message for only document category")
+    public void I_validate_selection_required_error_message_for_only_document_category() {myDocumentsPage.validateSelectionRequiredErrMsg_ForOnlyCategoryDoc();}
+
+    @Then("I verify doc file size large error message in red")
+    public void I_verify_doc_file_size_large_error_message_in_red() {myDocumentsPage.validateDocSizeLargeErrMsgAndTextColour();}
+
+    @Then("I validate already selected file text box border is red")
+    public void I_validate_already_selected_file_text_box_border_is_red() {myDocumentsPage.validateAlreadySelectedFileBoxBorderColour();}
+
+    @Then("I verify doc unsupported error message in red")
+    public void  I_verify_doc_unsupported_error_message_in_red() {myDocumentsPage.validateDocUnsupportedErrMsgAndTextColour();}
 }
