@@ -144,7 +144,7 @@ Feature: Tests to determine the eligibility to shop
       Then I validate lce type and plan year from es_member table
 
 
-  @SLER-1885
+  @SLER-1885 @NVOExchRegression
   Scenario: Enrollment period end date is set to 7 days from the day the Admin LCE event date was set for user
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
