@@ -64,8 +64,7 @@ public class AdminPortalAccountCreationPages {
     }
     public void validateTheExpectedErrorsMessageDisplays(String errorMessage) {
         basicActions.waitForElementToBePresentWithRetries(expectedErrorMessageInBody,30);
-        softAssert.assertTrue(expectedErrorMessageInBody.isDisplayed());
-        softAssert.assertEquals(expectedErrorMessageInBody, errorMessage);
-        //softAssert.assertAll();
+        softAssert.assertEquals(expectedErrorMessageInBody.getText(), errorMessage);
+        softAssert.assertAll();
     }
 }
