@@ -13,6 +13,10 @@ public class QlceConfirmationPageSteps {
     public void selectQlceType(String qlceOption){
         qlceConfirmationPage.selectQLCE(qlceOption);
     }
+    @Then("I select {string} QLCE on tell us about life changes page for {string}")
+    public void selectQLCEforMember(String qlceOption, String selectMember) {
+        qlceConfirmationPage.selectQLCEforMember(qlceOption, selectMember);
+    }
 
     // WIP- rewrite this step
     @Then("I select Birth QLCE on tell us about life changes page")
@@ -31,6 +35,6 @@ public class QlceConfirmationPageSteps {
     }
     @Then("I click on back button on Tell us about life changes page")
     public void iClickBackButton(){
-        qlceConfirmationPage.saveAndContinue();
+        qlceConfirmationPage.clickBackButton();
     }
 }

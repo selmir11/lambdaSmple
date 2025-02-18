@@ -244,7 +244,7 @@ Feature: Tests related to the Employment Income page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page with "Spouse", "09151985", "Female", and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
@@ -269,7 +269,7 @@ Feature: Tests related to the Employment Income page
     And I select continue on the income Summary CoCo page
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page with "Spouse", "09151985", "Female", and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
@@ -282,3 +282,19 @@ Feature: Tests related to the Employment Income page
     Then I validate all text on the Employment Income page in "Spanish"
     Then I verify the income frequency options in "Spanish"
     Then I verify the navigation buttons on the CoCo Employment Income page in "Spanish"
+
+  @SLCR-774
+  Scenario: SLCR-774 Page Validation-Employment Income
+    And I click continue on the Employment income page
+    And I verify validation text on the CoCo Employment Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color   |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+    And I select "Yes" employment option
+    And I click continue on the Employment income page
+    And I verify validation text on the CoCo Employment Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color   |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+    And I click on Sign Out in the Header for "Elmo"

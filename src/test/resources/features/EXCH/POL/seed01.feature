@@ -108,7 +108,7 @@ Feature: Regression Tests that require Seed 1
 
     And I validate "medical" plan details from plan history
     And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -210,7 +210,7 @@ Feature: Regression Tests that require Seed 1
       |          021          | 021                 | 25                   |                          |                             |                    |
     And I validate the ob834 files should have the values
 
-  @SLER-132-WIP
+  @SLER-2030-WIP-@R4V
   Scenario: RT-2133 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -224,10 +224,11 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
-    Then I validate I am on the "Add Address" page
     Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
-    Then I click continue on the Immigration Status page
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -243,6 +244,9 @@ Feature: Regression Tests that require Seed 1
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -261,7 +265,7 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Spouse"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
@@ -275,21 +279,16 @@ Feature: Regression Tests that require Seed 1
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
-    Then I select make payment button to pay the premium
-    And I click continue on payment selection page
-    And I select second make payment button to pay the premium
-    And I click continue on payment selection page
-    And I click continue on initial payment page
-    And I click on Go To Welcome Page Button on whats next page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1244-WIP
+  @SLER-1244-WIP_@R4V
   Scenario: RT-2074 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -353,6 +352,7 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
@@ -375,7 +375,7 @@ Feature: Regression Tests that require Seed 1
     And I click on Sign Out in the Header for "NonElmo"
 
 
-  @SLER-1992-WIP
+  @SLER-1992-WIP_@R4V
   Scenario: RT-2052 ENR-EXCH: APPS - CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -391,7 +391,7 @@ Feature: Regression Tests that require Seed 1
     Then I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
     Then I select 'Yes' for Federally Recognized Tribe option
-    Then I add the tribe details
+    Then I add the tribe details state as "Colorado" and tribe name as "Ute Mountain Tribe of the Ute Mountain Reservation"
     Then I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page

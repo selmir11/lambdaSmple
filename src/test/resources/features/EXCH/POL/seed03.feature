@@ -156,7 +156,7 @@ Feature: Seed03 - Exchange
 #      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
 
 
-  @SLER-1835-WIP
+  @SLER-1835-WIP_@R4V
   Scenario: RT-2250 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - GENDER & RACE
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -167,6 +167,7 @@ Feature: Seed03 - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
+    And I click Continue With Application button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Female" as sex option
@@ -191,3 +192,116 @@ Feature: Seed03 - Exchange
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-94-WIP-@R4V
+  Scenario: RT-2075 ENR-EXCH: APPS - REMOVE MEMBER (LCE: Divorce) SAME PLANS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click Continue button on Report a Life Change Page
+    And I report "Marriage" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Spouse"
+    Then I click on Remove this Member
+    Then I click on "OK" in the Remove Member frame
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "Divorce" QLCE on tell us about life changes page for "Spouse"
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-134-WIP-@R4V
+  Scenario: RT-2242 ENR-EXCH: ADD DEPENDENT (LCE: Change on incarceration status) - SAME CARRIER / SAME PLANS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Change of Incarceration Status" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    And I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "05052010", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son|
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    And I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "ChangeOnIncarcerationStatus" QLCE on tell us about life changes page for "Son"
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Spouse"
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on grouping Members Medical page
+    Then I validate I am on the "Medical Plan Results" page
+    Then I select "Select Health Value Bronze $6900 Medical Deductible" medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "EssentialSmile Colorado - Total Care" plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
+    And I click continue on plan summary page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+
