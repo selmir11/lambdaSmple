@@ -12,7 +12,7 @@ public class DbStepsE2E {
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
     private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
     private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
-    private final Ib834DbValidations_grps ib834DbValidationsGrps = new Ib834DbValidations_grps();
+    private final Ib834DbValidations ib834DbValidationsGrps = new Ib834DbValidations();
 
 
     @And("I validate {string} entities from policy tables")
