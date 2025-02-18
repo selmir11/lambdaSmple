@@ -7,10 +7,7 @@ import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 import com.c4hco.test.automation.utils.BasicActions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
@@ -168,9 +165,9 @@ public class DbDataProvider_Exch {
         setDataFromDbGrp(name, dbData );
     }
     public void setDataFromDbGrp(String name, DbData dbData){
-        List<Map<String, DbData>> dbDataMapList = SharedData.getDbDataNew();
+        Set<Map<String, DbData>> dbDataMapList = SharedData.getDbDataNew();
         if(dbDataMapList == null){
-            dbDataMapList = new ArrayList<>();
+            dbDataMapList = new HashSet<>();
         }
         Map<String, DbData> dbDataMap = new HashMap<>();
         dbDataMap.put(name,dbData);

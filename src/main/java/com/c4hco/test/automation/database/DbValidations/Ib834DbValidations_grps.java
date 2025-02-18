@@ -3,7 +3,10 @@ package com.c4hco.test.automation.database.DbValidations;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.*;
+import com.c4hco.test.automation.database.EntityObj.DbData;
+import com.c4hco.test.automation.database.EntityObj.Ib834Entity;
+import com.c4hco.test.automation.database.EntityObj.PlanDbData;
+import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
@@ -13,7 +16,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static com.c4hco.test.automation.utils.BasicActions.isSSNValid;
-import static com.c4hco.test.automation.utils.EnumRelationship.getCodeForRelationship;
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
 
 public class Ib834DbValidations_grps {
@@ -24,7 +26,7 @@ public class Ib834DbValidations_grps {
     List<Ib834Entity> ib834MedEntities = new ArrayList<>();
     List<Ib834Entity> ib834DenEntities = new ArrayList<>();
     List<MemberDetails> subscribers = new ArrayList<>();
-    List<Map<String, DbData>> dbDataMapList = new ArrayList<>();
+    Set<Map<String, DbData>> dbDataMapList = new HashSet<>();
     List<Map<String, PlanDbData>> medicalPlanDbDataMapList = new ArrayList<>();
     List<Map<String, PlanDbData>> dentalPlanDbDataMapList = new ArrayList<>();
     Map<String, PlanDbData> medicalPlanDbDataMap = new HashMap<>();

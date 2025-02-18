@@ -10,10 +10,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PolicyTableDbValidations_Grps {
 
@@ -22,7 +19,7 @@ public class PolicyTableDbValidations_Grps {
     SoftAssert softAssert = new SoftAssert();
     List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
     List<PolicyTablesEntity> dentalPolicyEntities = new ArrayList<>();
-    List<Map<String, DbData>> dbDataMapList = new ArrayList<>();
+    Set<Map<String, DbData>> dbDataMapList = new HashSet<>();
     List<Map<String, PlanDbData>> medicalPlanDbDataMapList = new ArrayList<>();
     List<Map<String, PlanDbData>> dentalPlanDbDataMapList = new ArrayList<>();
     Map<String, PlanDbData> medicalPlanDbDataMap = new HashMap<>();
@@ -47,6 +44,7 @@ public class PolicyTableDbValidations_Grps {
 
 
         private void dentalRecordsValidations() {
+            resetValues();
             for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
                 if (dentalEntity.getSubscriber_ind().equals("1")) {
                     for(MemberDetails subscriber: subscribers){
@@ -62,7 +60,20 @@ public class PolicyTableDbValidations_Grps {
             }
         }
 
+        private void resetValues(){
+             medicalPolicyEntities = new ArrayList<>();
+             dentalPolicyEntities = new ArrayList<>();
+             dbDataMapList = new HashSet<>();
+             medicalPlanDbDataMapList = new ArrayList<>();
+            dentalPlanDbDataMapList = new ArrayList<>();
+             medicalPlanDbDataMap = new HashMap<>();
+             dentalPlanDbDataMap = new HashMap<>();
+             dbDataMap = new HashMap<>();
+             subscribers = new ArrayList<>();
+        }
+
         private void medicalRecordsValidations() {
+            resetValues();
             for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
                 if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                     for(MemberDetails subscriber : subscribers){

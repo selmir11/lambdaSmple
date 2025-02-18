@@ -28,7 +28,7 @@ public class Ob834PreEdiDbValidations_grp {
     List<Ob834DetailsEntity> ob834DetailsMedEntities = new ArrayList<>();
     List<Ob834DetailsEntity> ob834DetailsDenEntities = new ArrayList<>();
     List<MemberDetails> subscribers = new ArrayList<>();
-    List<Map<String, DbData>> dbDataMapList = new ArrayList<>();
+    Set<Map<String, DbData>> dbDataMapList = new HashSet<>();
     List<Map<String, PlanDbData>> medicalPlanDbDataMapList = new ArrayList<>();
     List<Map<String, PlanDbData>> dentalPlanDbDataMapList = new ArrayList<>();
     Map<String, PlanDbData> medicalPlanDbDataMap = new HashMap<>();
@@ -223,10 +223,11 @@ public class Ob834PreEdiDbValidations_grp {
 
     private void validateBrokerDetails(Ob834DetailsEntity ob834Entity) {
         BrokerDetails broker = SharedData.getBroker();
-        getDbDataMap(primaryMember.getFirstName());
+
         if (SharedData.getHasBroker()) {
+            getDbDataMap(primaryMember.getFirstName());
             softAssert.assertEquals(broker.getBroker_name(), ob834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
-            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbDataMap.get(primaryMember.getFirstName()).getBrokerTinNum(), "Broker Tin Number is incorrect");
+            softAssert.assertEquals(ob834Entity.getTpa_or_broker_id(), dbDataMap.get(primaryMember.getFirstName()).getBrokerTinNum().replace("-", ""), "Broker Tin Number is incorrect");
             softAssert.assertEquals(ob834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
         } else {
             softAssert.assertNull(ob834Entity.getTpa_or_broker_name(), "Broker name is incorrect");

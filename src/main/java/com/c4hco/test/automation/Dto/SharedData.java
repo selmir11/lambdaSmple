@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class SharedData {
     @Getter @Setter private static String firstPlanNameOnMedicalResultsPage;
@@ -50,7 +51,7 @@ public class SharedData {
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
     @Getter @Setter private static Map<String, PlanDbData> dentalPlanDbData;
-    @Getter @Setter private static List<Map<String, DbData>> dbDataNew;
+    @Getter @Setter private static Set<Map<String, DbData>> dbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> medicalPlanDbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> dentalPlanDbDataNew;
     @Getter @Setter private static String planYear;

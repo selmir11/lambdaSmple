@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps.POL;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.DbValidations.*;
 import io.cucumber.java.en.And;
 
@@ -26,6 +27,14 @@ public class DbStepsE2E {
     @And("I validate {string} entities from ib999_details db table")
     public void validateIb999DetailsDB(String recordType){
         ib999DbValidations.ib999RecordsValidations(recordType);
+    }
+
+    @And("I reset the previous file names in shared data")
+    public void resetFiles(){
+        SharedData.setMedicalFileName_grp(null);
+        SharedData.setDentalFileName_grp(null);
+        SharedData.setOb834DetailsMedEntities(null);
+        SharedData.setOb834DetailsDenEntities(null);
     }
 
     @And("I validate ib834 {string} details in database for groups")

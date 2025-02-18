@@ -39,14 +39,6 @@ public class sftpStepDefinitions {
         }
     }
 
-    @And("I reset the previous file names in shared data")
-    public void resetFiles(){
-       SharedData.setMedicalFileName_grp(null);
-       SharedData.setDentalFileName_grp(null);
-       SharedData.setOb834DetailsMedEntities(null);
-        SharedData.setOb834DetailsDenEntities(null);
-    }
-
     @And("I validate the ob834 files should not be empty")
     public void validateOb834RecordsNotNull(){
         sftpUtil.validateFileIsNotEmpty(SharedData.getMedicalFileName());
@@ -230,7 +222,4 @@ public class sftpStepDefinitions {
                 Assert.fail("Incorrect Argument passed in the step");
         }
     }
-
-
-
 }
