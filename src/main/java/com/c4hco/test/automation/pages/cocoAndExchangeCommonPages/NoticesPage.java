@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
@@ -958,37 +959,38 @@ public class NoticesPage {
             case "medical":
                 String coverageStartDate_medical = SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate();
                 String formattedCoverageDt_med = "Coverage Start Date: "+basicActions.changeDateFormat(coverageStartDate_medical, "yyyy-MM-dd", "MMMM dd, yyyy");
-                validateMembers("4", membersOnPolicy);
-                validatePlanDetails("4", SharedData.getPrimaryMember().getMedicalPlan());
+                for (String member:membersOnPolicy){
+                    validateMemberNameAndMedicalPlanInfo(member);
+                }
                 softAssert.assertTrue(emailPolicyDetails.get(15).getText().contains(formattedCoverageDt_med), "Medical coverage date mismatch");
                 break;
             case "dental":
                 String coverageStartDate_dental = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageStartDate();
                 String formattedCoverageDt_dental = "Coverage Start Date: "+basicActions.changeDateFormat(coverageStartDate_dental, "yyyy-MM-dd", "MMMM dd, yyyy");
-                validateMembers("1", membersOnPolicy);
-                validatePlanDetails("1", SharedData.getPrimaryMember().getDentalPlan());
+                for (String member:membersOnPolicy){
+                    validateMemberNameAndDentalPlanInfo(member);
+                }
                 softAssert.assertTrue(emailPolicyDetails.get(7).getText().contains(formattedCoverageDt_dental), "Dental coverage date mismatch");
                 break;
         }
         softAssert.assertAll();
     }
-
-
-    private void validateMembers(String locatorStringByPlan, List<String> membersOnPolicy) {
-        for (String memPrefix : membersOnPolicy) {
-            String memberName = basicActions.getCompleteFullNameWithPrefix(memPrefix);
-            WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[" + locatorStringByPlan + "] //*[contains(text(),'" + memPrefix + "')]"));
-            basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
-            softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberName), memberName + " member details not found");
-            softAssert.assertAll();
-        }
-    }
-
-    private void validatePlanDetails(String locatorByPlan, String planName) {
-        WebElement noticePlanDetails = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body'])[" + locatorByPlan + "] //*[contains(text(),'" + planName + "')]"));
-        softAssert.assertTrue(noticePlanDetails.getText().contains(planName), "Plan Name is not found in the email Notice");
+    private void validateMemberNameAndMedicalPlanInfo(String memPrefix) {
+        List<MemberDetails> allMembers = basicActions.getAllMedicalEligibleMemInfo();
+        String medicalPlanName = allMembers.stream().filter(member->member.getFirstName().contains(memPrefix) && member.getHasMedicalPlan()).map(MemberDetails::getMedicalPlan).findFirst().orElse("Medical Plan Not found");
+        WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body']) //*[contains(text(),'" + medicalPlanName + "')]/following-sibling::dd[contains(text(),'" + memPrefix + "')]"));
+        basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
+        softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memPrefix), memPrefix + " member details not found");
         softAssert.assertAll();
     }
 
+    private void validateMemberNameAndDentalPlanInfo(String memPrefix) {
+        List<MemberDetails> allMembers = basicActions.getAllDentalEligibleMemInfo();
+        String dentalPlanName = allMembers.stream().filter(member->member.getFirstName().contains(memPrefix) && member.getHasDentalPlan()).map(MemberDetails::getDentalPlan).findFirst().orElse("Dental Plan Not found");
+        WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body']) //*[contains(text(),'" + dentalPlanName + "')]/following-sibling::dd[contains(text(),'" + memPrefix + "')]"));
+        basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
+        softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memPrefix), memPrefix + " member details not found");
+        softAssert.assertAll();
+    }
 
 }

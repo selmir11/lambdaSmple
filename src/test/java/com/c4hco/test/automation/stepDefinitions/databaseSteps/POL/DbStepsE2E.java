@@ -11,7 +11,7 @@ public class DbStepsE2E {
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
     private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
-    private final Ob834PreEdiDbValidations_grp ob834PreEdiDbValidationsGrp = new Ob834PreEdiDbValidations_grp();
+    private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
     private final Ib834DbValidations_grps ib834DbValidationsGrps = new Ib834DbValidations_grps();
 
 
@@ -22,7 +22,7 @@ public class DbStepsE2E {
 
     @And("I validate {string} entities from pre edi db tables")
     public void validateOb834MedicalRecordsForGroups(String recordType, List<Map<String, String>> expectedValues){
-        ob834PreEdiDbValidationsGrp.groupRecordsValidations(recordType, expectedValues);
+        ob834PreEdiDbValidations.groupRecordsValidations(recordType, expectedValues);
     }
     @And("I validate {string} entities from ib999_details db table")
     public void validateIb999DetailsDB(String recordType){
