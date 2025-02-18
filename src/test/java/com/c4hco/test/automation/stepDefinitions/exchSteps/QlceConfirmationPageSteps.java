@@ -35,6 +35,6 @@ public class QlceConfirmationPageSteps {
     }
     @Then("I click on back button on Tell us about life changes page")
     public void iClickBackButton(){
-        qlceConfirmationPage.saveAndContinue();
+        qlceConfirmationPage.clickBackButton();
     }
 }

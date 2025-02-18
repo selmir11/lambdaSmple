@@ -71,11 +71,12 @@ public class DeclarationsAndSignaturePage {
     @FindBy(xpath ="//*[@class='control-label']/b")
     List<WebElement> textControlLabel;
 
-    @FindBy(xpath ="//*[@name='declarationAndSignatureForBack']")
+    @FindBy(id = "submitButton")
     WebElement buttonBackDeclarationAndSignature;
 
     @FindBy(xpath ="//*[@name='continue']")
     WebElement buttonContinueDeclarationAndSignature;
+
 
 
 
@@ -265,5 +266,9 @@ public class DeclarationsAndSignaturePage {
         softAssert.assertEquals(buttonBackDeclarationAndSignature.getAttribute("value"),"< Atrás");
         softAssert.assertEquals(buttonContinueDeclarationAndSignature.getAttribute("value"),"Continuar");
         softAssert.assertAll();
+    }
+    public void clickBackButton(){
+        basicActions.waitForElementToBeClickable(buttonBackDeclarationAndSignature, 20);
+        buttonBackDeclarationAndSignature.click();
     }
 }
