@@ -33,7 +33,6 @@ public class sftpStepDefinitions {
             for(String fileName: allFiles){
                 sftpUtil.downloadFileWithSftp(remoteLocation, fileName);
             }
-        //    Runtime.getRuntime().exec("cmd.exe /c taskkill /f /im explorer.exe && start explorer");
         } catch(Exception e){
            Assert.fail("Failed with this exception::"+e);
         }
