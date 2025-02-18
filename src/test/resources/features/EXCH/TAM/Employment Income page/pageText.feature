@@ -515,6 +515,28 @@ Feature: Page Text-Income Opt Out Page
         |No                                     |
     And I click on Sign Out in the Header for "Elmo"
 
+    @SLER-1336-RT-1023 @wip
+      Scenario: ELIG-Self-Employment (MA Questions)-Page Text
+      Then I click continue on the Employment Info Page
+      And I select the option "No" to employment
+      And I click continue on the Employment Info Page
+      Then I click None of these as additional income option
+      And I click continue on the Additional Income page
+      Then I click None of these as deduction option and continue
+      And I select the projected income option "No" and continue
+      And I select the option "No" to claim as dependent
+      And I select the option "No" to file federal income tax return next year
+      Then I click save and continue on tax status page
+
+#      And I validate I am on the "Employment Income" page
+#      Then I click continue on family overview page
+#      Then I validate I am on the "Tell us about life changes" page
+#      Then I select "ChangeOnIncarcerationStatus" QLCE on tell us about life changes page for "Son"
+#      Then I click on Save and Continue
+#      Then I validate I am on the "EXCH Declarations and Signature" page
+#      Then I Declare as Tax Household 1
+#      And I click Continue on the Declarations And Signature Page
+#      And I wait for hold on content to disappear
 
     
     
