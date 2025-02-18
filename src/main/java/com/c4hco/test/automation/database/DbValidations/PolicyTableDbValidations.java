@@ -256,7 +256,6 @@ public class PolicyTableDbValidations {
             }
             setExchPersonId();
             dbDataMapList = SharedData.getDbDataNew();
-
             medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
             setMedicalSubscriber();
         }
