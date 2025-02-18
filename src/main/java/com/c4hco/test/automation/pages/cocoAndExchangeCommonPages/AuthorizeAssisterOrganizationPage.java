@@ -18,7 +18,7 @@ public class AuthorizeAssisterOrganizationPage {
     @FindBy(xpath = "//span[@class='body-text-1 m-auto']")
     WebElement authAssisterOrgInformationalText;
 
-    @FindBy(xpath = "//span[@class='body-text-1 ps-0']")
+    @FindBy(xpath = "//label[@class='input-label form-label']")
     WebElement authAssisterSiteIdFieldText;
 
     @FindBy(id = "site-id")
@@ -32,6 +32,8 @@ public class AuthorizeAssisterOrganizationPage {
 
     @FindBy(id= "dashboard-button")
     WebElement assisterGoBackButton;
+    @FindBy(xpath= "//span[@id='site_id_error']")
+    WebElement assisterSiteIdErrorText;
     @FindBy(id= "assister-button-change")
     WebElement changeAssister;
     @FindBy(id= "container dashboard-card")
@@ -97,6 +99,20 @@ public class AuthorizeAssisterOrganizationPage {
                 break;
             case "Spanish" :
                 softAssert.assertEquals(assisterGoBackButton.getText(), "Volver");
+                break;
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateValidAssisterSiteIdErrorText(String language){
+        basicActions.waitForElementToBePresentWithRetries(assisterSiteIdErrorText, 10);
+        assisterAuthorizeButton.click();
+        switch (language){
+            case "English" :
+                softAssert.assertEquals(assisterSiteIdErrorText.getText(), "Please enter a valid Assister Organization Site ID");
+                break;
+            case "Spanish" :
+                softAssert.assertEquals(assisterSiteIdErrorText.getText(), "Por favor ingrese una Identificaci\u00F3n v\u00E1lida del Sitio de la Organizaci\u00F3n de asistencia");
                 break;
         }
         softAssert.assertAll();
