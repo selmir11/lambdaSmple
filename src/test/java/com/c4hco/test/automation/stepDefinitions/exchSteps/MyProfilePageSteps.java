@@ -123,10 +123,6 @@ public class MyProfilePageSteps {
     public void iSelectTheHouseholdMemberAsPrimaryContact(String memberName) {
         myProfileExchPage.SelectTheHouseholdMemberAsPrimaryContact(memberName);
     }
-    @Then("I change the primary contact")
-    public void iUpdatePrimaryContact() {
-        myProfileExchPage.iChangePrimaryContact();
-    }
 
     @And("I validate Email error message in {string} on my Profile Page")
     public void iverifyEmailUseErrorMessage(String language)  { myProfileExchPage.verifyEmailUseErrorMessage(language); }

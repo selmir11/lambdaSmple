@@ -160,7 +160,7 @@ Feature: Seed10 - Exchange
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-2191-WIP
+  @SLER-2191-WIP_@R4V
   Scenario: RT-2539 ENR-EXCH: CHANGE PRIMARY CONTACT - RESPONSIBLE PERSON (Minors Only)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -168,7 +168,8 @@ Feature: Seed10 - Exchange
     Then I validate I am on the "Account Overview" page
     And I click on the Username Link Exch
     And I click on Make Changes Button
-    Then I change the primary contact
+    And I click change primary contact on my profile page
+    Then I update "Spouse" as primary member
     And I click on Save Button
     And I click on Sign Out in the Header for "Elmo"
 
