@@ -17,7 +17,7 @@ Feature: AP Create account - Application Links, Admin Portal user creation
     Then I validate the Success message is displayed
     And I logout from Admin Portal
   @SLCR-709
-  Scenario:Admin Portal - Not architecture user have no link for AP Create Account
+  Scenario:Admin Portal - Not architecture user have no link for AP Create Account, negative check
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I open the login page on the "admin" portal
