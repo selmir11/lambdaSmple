@@ -82,12 +82,12 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -203,8 +203,8 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I click the save and continue button on the Income Summary Detail page
 
-    Then I validate I am on the "Tax status" page
-    Then I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
@@ -319,12 +319,12 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status" page
-      And I select the option "No" to claim as dependent
-      And I select the option "Yes" to file federal income tax return next year
-      And I select "Single" tax filing status
-      And I select "No" to claim dependents
-      And I click save and continue on tax status page
+      Then I validate I am on the "Tax status Elmo" page
+      Then I select "No" for will you be claimed as dependent question
+      Then I select "Yes" for will file tax return question
+      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select "No" for will claim dependents question
+      Then I click Save and Continue on Tax Status Elmo page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I select "None of these" as ELMO health coverage option
@@ -472,13 +472,13 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status" page
-      And I select the option "No" to claim as dependent
-      And I select the option "Yes" to file federal income tax return next year
-      And I select "Married filing jointly" tax filing status
-      And I select spouse to file taxes jointly
-      And I select "No" to claim dependents
-      And I click save and continue on tax status page
+      Then I validate I am on the "Tax status Elmo" page
+      Then I select "No" for will you be claimed as dependent question
+      Then I select "Yes" for will file tax return question
+      Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+      Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+      Then I select "No" for will claim dependents question
+      Then I click Save and Continue on Tax Status Elmo page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I click continue on the ELMO health coverage page
@@ -608,12 +608,12 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -762,14 +762,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
@@ -895,12 +894,12 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status" page
-      And I select the option "No" to claim as dependent
-      And I select the option "Yes" to file federal income tax return next year
-      And I select "Single" tax filing status
-      And I select "No" to claim dependents
-      And I click save and continue on tax status page
+      Then I validate I am on the "Tax status Elmo" page
+      Then I select "No" for will you be claimed as dependent question
+      Then I select "Yes" for will file tax return question
+      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select "No" for will claim dependents question
+      Then I click Save and Continue on Tax Status Elmo page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I select "None of these" as ELMO health coverage option
@@ -1051,14 +1050,14 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status" page
-      And I select the option "No" to claim as dependent
-      And I select the option "Yes" to file federal income tax return next year
-      And I select "Married filing jointly" tax filing status
-      And I select spouse to file taxes jointly
-      And I select "Yes" to claim dependents
-      And I select the first dependent
-      And I click save and continue on tax status page
+      Then I validate I am on the "Tax status Elmo" page
+      Then I select "No" for will you be claimed as dependent question
+      Then I select "Yes" for will file tax return question
+      Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+      Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+      Then I select "Yes" for will claim dependents question
+      Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+      Then I click Save and Continue on Tax Status Elmo page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I click continue on the ELMO health coverage page
@@ -1190,12 +1189,12 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -1341,14 +1340,14 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    And I select the first dependent
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "Yes" for will claim dependents question
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
@@ -1483,12 +1482,12 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -1724,16 +1723,16 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    And I select the first dependent
-    And I select the second dependent
-    And I select the third dependent
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "Yes" for will claim dependents question
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "DaughterOne" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "DaughterTwo" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I click Save and Continue on Tax Status Elmo page
     
     # member 1
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -1876,12 +1875,12 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status" page
-      And I select the option "No" to claim as dependent
-      And I select the option "Yes" to file federal income tax return next year
-      And I select "Single" tax filing status
-      And I select "No" to claim dependents
-      And I click save and continue on tax status page
+      Then I validate I am on the "Tax status Elmo" page
+      Then I select "No" for will you be claimed as dependent question
+      Then I select "Yes" for will file tax return question
+      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select "No" for will claim dependents question
+      Then I click Save and Continue on Tax Status Elmo page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I select "None of these" as ELMO health coverage option
@@ -2047,11 +2046,13 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I select the projected income option "No" and continue
 
 
-      Then I validate I am on the "Tax status" page
-      And I select "Married filing jointly" tax filing status
-      And I select spouse to file taxes jointly
-      And I select "No" to claim dependents
-      Then I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I click continue on the ELMO health coverage page
