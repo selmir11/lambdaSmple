@@ -120,7 +120,6 @@ public class Ob834PreEdiDbValidations {
                 validateMemberOnlyMedDenFields(ob834Entity);
                 validateMedDenForSubscriberAndMem(ob834Entity, member);
                 medDenValidationsCommonForAllMem(ob834Entity, member);
-               // medDenValidationsCommonForAllMem(ob834Entity, member);
             }
         }
     }

@@ -85,6 +85,9 @@ public class Ob834FileValidations {
                     if (entity.getMember_first_name().contains(member.getNM1().get(0).get(3))) {
                         System.out.println("validating the member segments for :::::::::::::" + member.getNM1().get(0).get(3));
                         validateSegments(member, entity);
+                        if(!(entity.getResponsible_person_email() ==null)){
+                            validatePerSeg(entity, member);
+                        }
                         break;
                     }
                 }

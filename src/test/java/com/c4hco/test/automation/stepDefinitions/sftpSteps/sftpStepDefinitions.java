@@ -1,7 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.EdiValidations.Ib834FileValidations_grps;
+import com.c4hco.test.automation.edi.EdiValidations.Ib834FileValidation;
 import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
 import com.c4hco.test.automation.edi.EdiValidations.Ob999FileValidations;
@@ -19,7 +19,7 @@ public class sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
    Ib999FileValidations ib999FileValidations = new Ib999FileValidations();
    Ob999FileValidations ob999FileValidations = new Ob999FileValidations();
-   Ib834FileValidations_grps ib834FileValidations_grps = new Ib834FileValidations_grps();
+   Ib834FileValidation ib834FileValidations_grps = new Ib834FileValidation();
    Ob834FileValidations ob834FileValidations = new Ob834FileValidations();
 
     @And("I download the medical and dental files from sftp server with location {string}")
