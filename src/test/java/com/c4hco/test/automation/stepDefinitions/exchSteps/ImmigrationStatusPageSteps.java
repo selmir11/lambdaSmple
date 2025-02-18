@@ -60,4 +60,7 @@ public class ImmigrationStatusPageSteps {
         ImmigrationStatusPage.clickBack();
     }
 
+    @Then("I validate Immigration date error message on the Immigration Status page")
+    public void verifyWithoutDateErrorMessageForImmigrationStatus(List<String> data){
+        ImmigrationStatusPage.verifDateErrorForImmigrationStatus(data);}
 }

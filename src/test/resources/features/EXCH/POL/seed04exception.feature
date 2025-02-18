@@ -213,7 +213,7 @@ Feature: Seed04exception - Exchange
     Then I validate I am on the "Family Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1994-WIP
+  @SLER-1994-WIP-@R4V
   Scenario: RT-2329 - ENR-EXCH: EDIT POLICY - RE-INSTATE MEMBER FROM A CANCEL (MEDICAL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page

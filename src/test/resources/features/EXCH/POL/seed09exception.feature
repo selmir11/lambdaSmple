@@ -127,5 +127,18 @@ Feature: Seed09exception - Exchange
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-2032-WIP-@R4V
+  Scenario: RT-2263 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON CONTACT INFORMATION
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I click on the Username Link Exch
+    And I click on Make Changes Button
+    And I update the contact home phone number on profile page
+    And I update the contact mobile phone number on profile page
+    And I update the contact email address on profile page
+    And I click on Save Button
+    And I click on Sign Out in the Header for "Elmo"
 
 

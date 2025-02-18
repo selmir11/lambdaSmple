@@ -241,3 +241,40 @@ Feature: Seed06 - Exchange
       Then I click continue on Cancellation Request page
       Then I click Okay on Thank you popup
       And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2034-WIP-@R4V
+    Scenario: RT-2322 ENR-EXCH: APPS - CHANGE OF SUBSCRIBER
+      Given I open the login page on the "login" portal
+      And I validate I am on the "Login" page
+      And I enter valid credentials to login
+      Then I validate I am on the "Account Overview" page
+      Then I click on make changes button
+      Then I select "No" option on the Let us guide you page
+      And I click on save and continue button
+      Then I click on continue with  application button on Before you begin page
+      And I report "Other" and click continue
+      And I click Continue button on Report a Life Change Page
+      Then I validate I am on the "Find Expert Help" page
+      Then I click Continue on my own button from Manage who helps you page
+      Then I validate I am on the "Tell us about yourself" page
+      Then I select "No" to Are You Applying
+      Then I click continue on Tell us about yourself page
+      Then I validate I am on the "Add Address" page
+      Then I click continue on the Add Address page
+      And I click continue on the Race and Ethnicity page
+      Then I click continue on the Immigration Status page
+      Then I validate I am on the "Family Overview" page
+      Then I click continue on family overview page
+      Then I validate I am on the "Tell us about life changes" page
+      Then I select "NoneOfThese" QLCE on tell us about life changes page
+      Then I click on Save and Continue
+      Then I validate I am on the "EXCH Declarations and Signature" page
+      Then I Declare as Tax Household 1
+      And I click Continue on the Declarations And Signature Page
+      And I wait for hold on content to disappear
+      Then I validate I am on the "Application History" page
+      And I click on Sign Out in the Header for "NonElmo"
+
+
+
+
