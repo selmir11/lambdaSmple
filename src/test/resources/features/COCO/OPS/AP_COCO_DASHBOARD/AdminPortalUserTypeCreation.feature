@@ -9,9 +9,11 @@ Feature: AP Create account - Application Links, Admin Portal user creation
     And I select "coco" checkbox on Admin Portal Dashboard
     Then I click "AP Account Creation" from application links dropdown
     And I enter my Admin Portal user data with email that is already in use
-    Then I validate the expected error message is displayed as "Sorry, we're unable to proceed with this email. Please double-check and try again."
+    And I wait for 200 milliseconds
+    Then I validate the expected error message is displayed as expected
     Then I click "AP Account Creation" from application links dropdown
     And I enter general data to create admin account with email "MGC4testing"
+    And I wait for 200 milliseconds
     Then I validate the Success message is displayed
     And I logout from Admin Portal
   @SLCR-709

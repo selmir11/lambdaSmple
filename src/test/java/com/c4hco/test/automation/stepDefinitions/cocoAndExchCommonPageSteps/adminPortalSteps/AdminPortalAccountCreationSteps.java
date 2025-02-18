@@ -21,8 +21,8 @@ public class AdminPortalAccountCreationSteps {
     public void iEnterAdminPortalDataThatAlreadyExists(){
         adminPortalAccountCreationPages.enterAdminPortalDataThatAlreadyExists();
     }
-    @Then("I validate the expected error message is displayed as {string}")
-    public void iValidateTheExpectedErrorsMessage(String errorMessage) {
-        adminPortalAccountCreationPages.validateTheExpectedErrorsMessageDisplays(errorMessage);
+    @Then("I validate the expected error message is displayed as expected")
+    public void iValidateTheExpectedErrorsMessage() {
+        adminPortalAccountCreationPages.validateTheExpectedErrorsMessageDisplays();
     }
 }
