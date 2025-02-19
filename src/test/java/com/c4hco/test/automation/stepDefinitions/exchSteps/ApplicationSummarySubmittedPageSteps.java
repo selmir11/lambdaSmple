@@ -22,7 +22,8 @@ public class ApplicationSummarySubmittedPageSteps {
     @Then("I click on Other Health Coverage on Application Summary")
     public void iClickOtherHealthCoverage() {applicationSummaryCompletedPage.clickOtherHealthCoverage();}
 
-
+    @Then("I click on back button on Application summary submitted page")
+    public void iclickBackButton() {applicationSummaryCompletedPage.clickBackButton();}
 
 
     // ############################## VALIDATION METHODS #########################
