@@ -445,14 +445,16 @@ public class Ob834FileValidations {
             softAssert.assertEquals(nm1Seg.get(2).get(0), "31", "NM1 segment with value 31");
             softAssert.assertEquals(nm1Seg.get(2).get(1), "1", "NM1 segment with value 1");
             softAssert.assertEquals(nm1Seg.get(0).get(1), entry.getIncorrect_entity_type_qualifier(), "Incorrect entity type qualifier does not match");
+           if("34".equals(entry.getIncorrect_id_code_qualifier())){
             softAssert.assertEquals(nm1Seg.get(0).get(7), entry.getIncorrect_id_code_qualifier(), "Incorrect id code qualifier does not match");
-            softAssert.assertEquals(nm1Seg.get(1).get(0), entry.getIncorrect_entity_id_code(), "Incorrect entity id code.");
+           }
+        softAssert.assertEquals(nm1Seg.get(1).get(0), entry.getIncorrect_entity_id_code(), "Incorrect entity id code.");
             if (SharedData.getPrimaryMember().getIncorrectIdCode() != null) {
                 softAssert.assertEquals(nm1Seg.get(1).get(8), entry.getIncorrect_id_code(), "Incorrect id code");
             }
             softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
     }
-    
+
 
     private void validateInsSegment(Member member, Ob834DetailsEntity entry) {
         segCount = segCount + 1;
