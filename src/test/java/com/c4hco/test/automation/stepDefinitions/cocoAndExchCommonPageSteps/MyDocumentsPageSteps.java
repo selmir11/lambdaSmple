@@ -203,7 +203,7 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @When("I click on expand arrow for 1st document")
     public void I_click_on_expand_arrow_for_1st_document() {myDocumentsPage.clickOnExpandForFirstDocument();}
 
-    @When("I verify file downloaded and it is not empty")
+    @Then("I verify file downloaded and it is not empty")
     public void I_click_on_download_button_and_save_it() {myDocumentsPage.verifyFileExistAndNotEmpty();}
 
 }
