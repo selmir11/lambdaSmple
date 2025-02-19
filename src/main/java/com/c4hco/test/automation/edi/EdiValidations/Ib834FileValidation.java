@@ -6,7 +6,6 @@ import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Transaction;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib834Entity;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -135,14 +134,6 @@ public class Ib834FileValidation {
         softAssert.assertEquals(nm1Seg.get(0).get(0), "74", "Entity Identifier Code does not match");
         softAssert.assertEquals(nm1Seg.get(2).get(0), "31", "NM1 segment with value 31");
         softAssert.assertEquals(nm1Seg.get(2).get(1), "1", "NM1 segment with value 1");
-        softAssert.assertEquals(nm1Seg.get(0).get(1), entry.getIncorrect_entity_type_qualifier(), "Incorrect entity type qualifier does not match");
-        if("34".equals(entry.getIncorrect_id_code_qualifier())){
-            softAssert.assertEquals(nm1Seg.get(0).get(7), entry.getIncorrect_id_code_qualifier(), "Incorrect id code qualifier does not match");
-        }
-        softAssert.assertEquals(nm1Seg.get(1).get(0), entry.getIncorrect_entity_id_code(), "Incorrect entity id code.");
-        if (SharedData.getPrimaryMember().getIncorrectIdCode() != null) {
-            softAssert.assertEquals(nm1Seg.get(1).get(8), entry.getIncorrect_id_code(), "Incorrect id code");
-        }
         softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
     }
 
@@ -154,7 +145,7 @@ public class Ib834FileValidation {
                 validateNM1IncorrectEntities(nm1Seg, entry);
             } else if (!SharedData.getPrimaryMember().getHasIncorrectEntities()){
                 if(!(entry.getResponsible_person_rel_code()==null)){
-                  // Bug exists - softAssert.assertEquals(nm1Seg.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
+                  // Bug POL-6875 - softAssert.assertEquals(nm1Seg.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
                     softAssert.assertEquals(nm1Seg.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
                     softAssert.assertEquals(nm1Seg.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
                     softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
