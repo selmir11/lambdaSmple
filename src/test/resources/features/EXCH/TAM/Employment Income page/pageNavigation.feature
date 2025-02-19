@@ -117,103 +117,16 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-1324 @wip
+  @SLER-1324
   Scenario Outline: ELIG-Self-employment income-Page Text
-    Then I validate I am on the "Employment Income" page
-    And I verify text on the "Exch" "Header" in "English"
-    And I verify text on the "Exch" "Footer" in "English"
-
-    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
-    Then I validate I am on the "My Account Overview" page
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Race and Ethnicity page
-    And I click continue on the Citizenship page
-    And I click plus icon next to member on household page for "Primary"
-    And I click the edit income icon on household page for "Primary"
-
-    Then I validate I am on the "Employment Income" page
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I validate I am on the "My Account Overview" page
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Race and Ethnicity page
-    And I click continue on the Citizenship page
-    And I click plus icon next to member on household page for "Primary"
-    And I click the edit income icon on household page for "Primary"
-
-    Then I validate I am on the "Employment Income" page
-    And I click on Find a Plan in the "Elmo" Header
-    Then I validate I am on the "Application History" page
-    And I click on Apply for Coverage in the "NonElmo" Header
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Race and Ethnicity page
-    And I click continue on the Citizenship page
-    And I click plus icon next to member on household page for "Primary"
-    And I click the edit income icon on household page for "Primary"
-
-    Then I validate I am on the "Employment Income" page
-    And I click on My Account in the "Elmo" Header
-    Then I validate I am on the "My Account Overview" page
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Race and Ethnicity page
-    And I click continue on the Citizenship page
-    And I click plus icon next to member on household page for "Primary"
-    And I click the edit income icon on household page for "Primary"
-
-    Then I validate I am on the "Employment Income" page
-    And I click on Learn More in the Header
-    And I validate I am on the "Faqs" page and close tab
-
-    Then I validate I am on the "Employment Income" page
-    And I click on Get Assistance in the "Exch" Header
-    And I click on Contact Us in the Header
-    And I validate I am on the "Customer Service" page and close tab
-
-    Then I validate I am on the "Employment Income" page
-    And I click on Get Assistance in the "Exch" Header
-    And I click on Find Expert Assistance in the "Exch" Header
-    Then I validate I am on the "Find Expert Help" page
-    And I click on Apply for Coverage in the "ExpertHelp" Header
-    Then I apply for the current year
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-    Then I click on continue with  application button on Before you begin page
-    And I report "Birth" and click continue
-    Then I click Continue on my own button from Manage who helps you page
-    And I click continue on Tell us about yourself page
-    And I click continue on the Add Address page
-    And I click continue on the Race and Ethnicity page
-    And I click continue on the Citizenship page
-    And I click plus icon next to member on household page for "Primary"
-    And I click the edit income icon on household page for "Primary"
-
-    Then I validate I am on the "Employment Income" page
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    And I change the language from Elmo header to "<Language>" if it isn't already in that language
+    Then I validate the Net Income Frequency Dropdown Menu in "<Language>"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
     Examples:
+    |Language|
+    |English|
+    |Spanish|
