@@ -21,7 +21,11 @@ Feature: Authorize Assister Organization page validation
     And I validate the Authorize Assister Site ID field text in "English"
     And I validate the Authorize button is displayed in "English"
     And I validate the Authorize Assister Organization page Go Back button is displayed in "English"
+    And I validate the valid Assister site ID error message text in "English"
 
+    Then I click Go Back on the Authorize Assister Organization page
+    And I click the Authorize Assister Organization button
+    Then I validate I am on the "Authorize Assister Organization" page
     Then I change the language from header to "Spanish Login"
 
     Then I validate the Authorize Assister Organization page title in "Spanish"
@@ -29,3 +33,4 @@ Feature: Authorize Assister Organization page validation
     And I validate the Authorize Assister Site ID field text in "Spanish"
     And I validate the Authorize button is displayed in "Spanish"
     And I validate the Authorize Assister Organization page Go Back button is displayed in "Spanish"
+    And I validate the valid Assister site ID error message text in "Spanish"

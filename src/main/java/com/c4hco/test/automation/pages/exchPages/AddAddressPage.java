@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,15 +12,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 
 public class AddAddressPage {
     private BasicActions basicActions;
+
+    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     public AddAddressPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
+
     }
     @FindBy(css = ".container > div:nth-child(1)")
     WebElement headerAdditionalInfo;
@@ -148,7 +153,7 @@ public class AddAddressPage {
     private String getMemberName(){
         String getHeader = getNameFromHeader.getText();
         String[] memNameSubstring = getHeader.split(" ");
-        String memFName = memNameSubstring[memNameSubstring.length-1];
+        String memFName = memNameSubstring[3];
         return memFName;
     }
 
@@ -173,8 +178,9 @@ public class AddAddressPage {
 
     public void Addtribedetails(String tState, String tName){
         basicActions.waitForElementToBePresent(tribestate,20);
-        basicActions.waitForElementToBePresent(tribeName, 20);
+        basicActions.waitForElementToBePresentWithRetries(tribeName, 20);
         tribestate.sendKeys(tState);
+        basicActions.clickElementWithRetries(tribeName, 10);
         tribeName.sendKeys(tName);
 
     }
@@ -289,6 +295,7 @@ public class AddAddressPage {
                  residentialAddress.setAddressZipcode(zipcode);
                  residentialAddress.setAddressCounty(county);
                  mem.setResAddress(residentialAddress);
+                 mem.setMailingAddress(SharedData.getPrimaryMember().getMailingAddress());
             });
              SharedData.setMembers(membersList);
         }
@@ -410,13 +417,21 @@ public class AddAddressPage {
             String address = selectspecificaddress.get(i).getText();
             if (address.contains(SpecificAddress)) {
                 WebElement radioElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]/parent::label/parent::div /input"));
+                WebElement addressElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]"));
+               MemberDetails member = basicActions.getMember(getMemberName());
+                Address residentialAddress = new Address();
+                residentialAddress.setAddressLine1(addressElement.getText().split(",")[0].trim().stripLeading());
+                residentialAddress.setAddressCity(addressElement.getText().split(",")[1].trim().stripLeading());
+                residentialAddress.setAddressState(addressElement.getText().split(",")[2].trim().stripLeading());
+                residentialAddress.setAddressZipcode(addressElement.getText().split(",")[4].trim().stripLeading());
+                residentialAddress.setAddressCounty(addressElement.getText().split(",")[3].trim().stripLeading());
+                member.setResAddress(residentialAddress);
+                member.setMailingAddress(SharedData.getPrimaryMember().getMailingAddress());
                 radioElement.click();
                 break;
             }
         }
     }
-
-
 }
 
 
