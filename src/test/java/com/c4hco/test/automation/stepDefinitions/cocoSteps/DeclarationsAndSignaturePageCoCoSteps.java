@@ -21,7 +21,8 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     @And("I enter a OBO signature on the Declarations And Signature Page CoCo")
     public void enterOBOSignature() {declarationsAndSignaturePageCoCo.enterOBOSignature();}
 
-
+    @And("I enter a full name valid signature")
+    public void enterFNSignature() {declarationsAndSignaturePageCoCo.enterFullNameSignatureinCoCo();}
 
 
 

@@ -154,6 +154,14 @@ public class WelcomePage {
         }
     }
 
+    public void clickMakeChanges() {
+        basicActions.waitForElementToDisappear( spinner, 40 );
+        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+        WebElement applyForYrCoco = applyForCurrentYearButton;
+        basicActions.waitForElementToBePresent(applyForYrCoco, 40);
+        applyForYrCoco.click();
+    }
+
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
     public void verifyTextOnWelcomePageFirstTime(String language) {

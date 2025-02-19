@@ -60,6 +60,10 @@ public class DeclarationsAndSignaturePageCoCo {
         String modifiedText = originalText.replace(" Electronic Signature:", "");
         signatureInputField.sendKeys(modifiedText);
     }
+    public void enterFullNameSignatureinCoCo(){
+        basicActions.waitForElementToBePresent(signatureInputField, 20);
+        signatureInputField.sendKeys(SharedData.getPrimaryMember().getCompleteFullName());
+    }
 
 
     //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////

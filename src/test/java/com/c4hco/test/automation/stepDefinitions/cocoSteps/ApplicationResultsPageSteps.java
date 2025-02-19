@@ -77,5 +77,9 @@ public class ApplicationResultsPageSteps {
     public void clickCloseOnPopup(){
         applicationResultsCoCoPage.clickCloseOnPopup();
     }
+    @And("I set new unavailable application id to null")
+    public void setApplicatioIdNull(){
+        applicationResultsCoCoPage.setApplicationIdNull();
+    }
 
 }

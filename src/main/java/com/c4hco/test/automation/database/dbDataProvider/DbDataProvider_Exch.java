@@ -615,4 +615,7 @@ public class DbDataProvider_Exch {
     public EsFDSHRetryControlEntity getEsFDSH_details() {
         return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
+    public List<String> getApplicationIdFromHouseholdTable() {
+        return postgresHandler.getResultListFor("application_id", exchDbQueries.getApplicationIdFromHouseholdTable());
+    }
 }

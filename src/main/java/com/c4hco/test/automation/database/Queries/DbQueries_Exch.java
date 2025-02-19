@@ -754,4 +754,11 @@ public String policyTablesCombinedQuery(String coverageType){
                 "FROM "+dbName+".es_fdsh_retry_control\n" +
                 "WHERE account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
+
+    public String getApplicationIdFromHouseholdTable(){
+        return "select esh.account_id, esh.household_id, esa.created_ts, esa.application_id\n" +
+                "from "+dbName+".es_household esh, "+dbName+".es_application esa\n" +
+                "where esh.household_id = esa.household_id\n" +
+                "and esh.account_id = '"+acctId+"'" + "order by created_ts desc";
+    }
 }
