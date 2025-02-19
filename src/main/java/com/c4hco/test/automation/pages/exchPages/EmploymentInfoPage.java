@@ -4,16 +4,15 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -882,29 +881,24 @@ public class EmploymentInfoPage {
         List<WebElement> options = dropdown.getOptions();
 
         List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
-        System.out.println("Dropdown options: " + actualOptions);
+    List<String> expectedOptions = new ArrayList<>();
 
         switch (language.toLowerCase()) {
             case "english":
                 // Expected values in the dropdown menu
-                List<String> expectedOptions = Arrays.asList("Weekly", "Twice a month", "Monthly", "Annually", "Every 2 weeks");
+                expectedOptions = Arrays.asList("Weekly", "Twice a month", "Monthly", "Annually", "Every 2 weeks");
                 // Validate the dropdown contains all expected options
-                for (String expectedOption : expectedOptions) {
-                    boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
-                    Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
-                }
                 break;
             case "spanish":
                 // Expected values in the dropdown menu in Spanish
-                List<String> expectedOptionssp = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
-                // Validate the dropdown contains all expected options in Spanish
-                for (String expectedOption : expectedOptionssp) {
-                    boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
-                    Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
-                }
+                 expectedOptions = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
                 break;
             default:
                 Assert.fail("Invalid option: " + language);
+        }
+        for (String expectedOption : expectedOptions) {
+            boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
+            Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
         }
     }
 }
