@@ -28,7 +28,6 @@ import java.time.Year;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static com.c4hco.test.automation.utils.BasicActions.isAscendingOrder;
 
 
 public class MyDocumentsPage {
@@ -963,7 +962,7 @@ public class MyDocumentsPage {
         ActualListExceptOther.remove(OtherText);
 
         //Validate Document list in ascending order
-        softAssert.assertTrue(isAscendingOrder(language,ActualListExceptOther),"Category list  not in ascending order");
+        softAssert.assertTrue(basicActions.isAscendingOrder(language,ActualListExceptOther),"Category list  not in ascending order");
 
         //Validate Other listed at the end
         softAssert.assertTrue(ActualCategoryList.get(ActualCategoryList.size() - 1).equals(OtherText), "Other item missing at the end of the list");
@@ -1002,7 +1001,7 @@ public class MyDocumentsPage {
             actualListExceptOther.removeIf(item -> item.startsWith(OtherText));
 
             //Validate Sublist in ASC order
-            softAssert.assertTrue(isAscendingOrder(language,actualListExceptOther), " Document type List not in ascending order");
+            softAssert.assertTrue(basicActions.isAscendingOrder(language,actualListExceptOther), " Document type List not in ascending order");
 
             //using only  if, because not all sublist items contains other
             if (actualList.contains(OtherText)) {

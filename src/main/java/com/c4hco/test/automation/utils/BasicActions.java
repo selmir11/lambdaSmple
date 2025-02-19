@@ -1168,7 +1168,7 @@ public class BasicActions {
         }
     }
 
-    public static boolean isAscendingOrder(String language, List<String> list) {
+    public boolean isAscendingOrder(String language, List<String> list) {
         List<String> sortedList = new ArrayList<>(list);
 
         if(language.equals("Spanish")){
