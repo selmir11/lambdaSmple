@@ -22,12 +22,13 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.text.Collator;
 import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
+import static com.c4hco.test.automation.utils.BasicActions.isAscendingOrder;
 
 
 public class MyDocumentsPage {
@@ -938,20 +939,6 @@ public class MyDocumentsPage {
         softAssert.assertTrue(ActualCategoryList.get(ActualCategoryList.size() - 1).equals(OtherText), "Other item missing at the end of the list");
         softAssert.assertAll();
 
-    }
-
-    private static boolean isAscendingOrder(String language, List<String> list) {
-        List<String> sortedList = new ArrayList<>(list);
-
-        if(language.equals("Spanish")){
-            Collator collator = Collator.getInstance(new Locale("es","ES"));
-            collator.setStrength(Collator.PRIMARY);
-            sortedList.sort(collator);
-        }
-        else {
-            Collections.sort(sortedList);
-        }
-        return  list.equals(sortedList);
     }
 
     public void validateDoucmentTypeInAscendingOrder(String OtherText,String language,DataTable datable) {
