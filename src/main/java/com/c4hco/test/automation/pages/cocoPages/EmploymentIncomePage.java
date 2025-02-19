@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,12 @@ public class EmploymentIncomePage {
 
     @FindBy(css = ".toolbar-content .username")
     WebElement userNameLink;
+
+    @FindBy(xpath = "//span[contains(@class,'error-message')]")
+    List<WebElement> errorMessages;
+
+    @FindBy(xpath = "//lib-fi[contains(@class,'error-icon')]")
+    List<WebElement> errorIcon;
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresent(saveAndContinueButton, 30);
@@ -410,5 +417,53 @@ public class EmploymentIncomePage {
             basicActions.getDriver().close();
             basicActions.switchtoPreviousTab();
         }
+    }
+
+    public void validateErrorMessageAndStyleProp(DataTable dataTable){
+        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToBePresent(errorMessages.get(0),10);
+
+        List<Map<String,String>> data = dataTable.asMaps();
+
+        int count = errorMessages.size();
+        int k=0;
+
+        while(!(k==count)) {
+            // Iterate over each row in the DataTable
+            for (Map<String, String> row : data) {
+                String validationText = row.get("Text");
+                String fontSize = row.get("fontSize");
+                String fontFamily = row.get("fontFamily");
+                String fontWeight = row.get("fontWeight");
+                String color = row.get("color");
+
+                WebElement elementAbove = basicActions.getDriver().findElement(RelativeLocator.with(By.xpath("//*[contains(@class,'input-label')]")).above(errorMessages.get(k)));
+                softAssert.assertEquals(errorMessages.get(k).getText(), validationText);
+                softAssert.assertEquals(errorMessages.get(k).getCssValue("font-size"), fontSize);
+                softAssert.assertEquals(errorMessages.get(k).getCssValue("font-family"), fontFamily);
+                softAssert.assertEquals(errorMessages.get(k).getCssValue("font-weight"), fontWeight);
+                softAssert.assertEquals(errorMessages.get(k).getCssValue("color"), hexToRgb(color));
+                softAssert.assertEquals(elementAbove.getCssValue("color"), hexToRgb(color));
+                softAssert.assertEquals(errorIcon.get(k).getCssValue("font-size"), "16px");
+                softAssert.assertEquals(errorIcon.get(k).getCssValue("font-weight"), "700");
+                softAssert.assertEquals(errorIcon.get(k).getCssValue("color"), "rgba(150, 0, 0, 1)");
+                k++;
+            }
+        }
+    }
+
+    private String hexToRgb(String hex) {
+        // Remove '#' if present
+        if (hex.startsWith("#")) {
+            hex = hex.substring(1);
+        }
+
+        // Extract red, green, blue components from HEX
+        int r = Integer.parseInt(hex.substring(0, 2), 16); // Red component
+        int g = Integer.parseInt(hex.substring(2, 4), 16); // Green component
+        int b = Integer.parseInt(hex.substring(4, 6), 16); // Blue component
+
+        // Return RGB string
+        return String.format("rgb(%d, %d, %d)", r, g, b);
     }
 }

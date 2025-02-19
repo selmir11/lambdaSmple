@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.MyDocumentsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -175,6 +176,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate font colour height and size of selection required error")
     public void I_validate_font_colour_height_and_size_of_selection_required_error() {myDocumentsPage.validateFontSizeAndColour_errorMsgSR();}
 
+    @Then("I validate font colour height and size of file required error")
+    public void I_validate_font_colour_height_and_size_of_file_required_error() {myDocumentsPage.validateFontSizeAndColour_errorMsgFR();}
+
     @Then("I validate border colour of type and category dropdown")
     public void I_validate_border_colour_of_type_and_category_dropdown() {myDocumentsPage.validateBorderColourOfTypeAndCategoryDropdown_errorMsg();}
 
@@ -182,4 +186,36 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
         myDocumentsPage.verifyTextonDocumentPage(data);
     }
+    @Then("I validate selection required error message for only document category")
+    public void I_validate_selection_required_error_message_for_only_document_category() {myDocumentsPage.validateSelectionRequiredErrMsg_ForOnlyCategoryDoc();}
+
+    @Then("I verify doc file size large error message in red")
+    public void I_verify_doc_file_size_large_error_message_in_red() {myDocumentsPage.validateDocSizeLargeErrMsgAndTextColour();}
+
+    @Then("I validate already selected file text box border is red")
+    public void I_validate_already_selected_file_text_box_border_is_red() {myDocumentsPage.validateAlreadySelectedFileBoxBorderColour();}
+
+    @Then("I verify doc unsupported error message in red")
+    public void  I_verify_doc_unsupported_error_message_in_red() {myDocumentsPage.validateDocUnsupportedErrMsgAndTextColour();}
+
+    @And("I validate Document category displayed in ascending order and {string} at end of list {string}")
+    public void iValidateDocumentCategoryDisplayedInAscendingOrder(String OtherText, String language,List<String> category) {
+        myDocumentsPage.ValidateDocumentCategoryinAscendingOrder(OtherText,language, category);
+    }
+
+    @Then("I validate Document Types for corresponding category list in ascending order and {string} at end of list {string}")
+    public void iValidateDocumentTypesForCorrespondingCategoryListInAscendingOrderAndAtEndOfList(String OtherText, String language,  DataTable dataTable) {
+        myDocumentsPage.validateDoucmentTypeInAscendingOrder(OtherText,language, dataTable);
+    }
+
+    @When("I select All and Documents from drop down below Past Documents and Letters")
+    public void I_select_All_and_Documents_from_drop_down_below_Past_Documents_and_Letters() {myDocumentsPage.selectAllAndDocumentsFromDropDown();}
+
+    @When("I click on expand arrow for 1st document")
+    public void I_click_on_expand_arrow_for_1st_document() {myDocumentsPage.clickOnExpandForFirstDocument();}
+
+    @Then("I verify file downloaded and it is not empty")
+    public void I_click_on_download_button_and_save_it() {myDocumentsPage.verifyFileExistAndNotEmpty();}
+
 }
+

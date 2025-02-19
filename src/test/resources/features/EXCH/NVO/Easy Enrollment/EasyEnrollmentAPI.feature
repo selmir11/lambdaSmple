@@ -84,7 +84,7 @@ Feature: Easy Enrollment API
     #Db steps
     Then I validate eventCD when no notices are sent
 
-@SLER-1938
+@SLER-1938 @NVOExchRegression
   Scenario: ELIG - Easy Enrollment: 1 member, QLCE is not granted, shopping is not allowed, only paper notice (EE 1-2) is triggered
   Given I click create a new account on login page
   Then I click create my account from pre-screen page
@@ -170,7 +170,7 @@ Feature: Easy Enrollment API
     |ACCOUNT_MATCH|
     And I verify the application result details in DB as "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY" for "Primary"
 
-   @SLER-1987
+   @SLER-1987 @NVOExchRegression
   Scenario: ELIG - Easy Enrollment: 2 member, QLCE is not granted, no notices are triggered
     Given I click create a new account on login page
     Then I click create my account from pre-screen page
