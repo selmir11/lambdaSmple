@@ -118,6 +118,11 @@ public class AgencyDetailsSteps {
         agencyDetailsPage.validateAgencyHideAddressTooltipText();
     }
 
+    @Then("I validate the error message to enter both to and from working hours")
+    public void iValidateFromToWorkingHoursError(){
+        agencyDetailsPage.validateFromToWorkingHoursError();
+    }
+
     @Then("I update my agency TIN")
     public void iUpdateAgencyTin(){
         agencyDetailsPage.updateAgencyTin();
