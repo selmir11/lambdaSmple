@@ -1004,7 +1004,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click on "No Thanks" on good news page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-2203 @PageNavigation @new
+  @SLER-2203 @PageNavigation
   Scenario: Testing will verify navigation on the Application History page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -1059,7 +1059,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I click back button on Application result page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-2204 @PageNavigation @new
+  @SLER-2204 @PageNavigation
   Scenario: Testing will verify navigation on the Application Summary (After Eligibility is completed) page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
