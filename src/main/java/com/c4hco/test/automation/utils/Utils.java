@@ -41,6 +41,9 @@ public class Utils {
             case "tax Silver":
                 baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/tax/silver/";
                 break;
+            case "tax Bronze":
+                baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/tax/bronze/";
+                break;
             case "QCPF":
                 baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
                 break;

@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -47,6 +48,21 @@ public class TaxToolsPage {
     WebElement plan;
     @FindBy(xpath = "//a[@class='weight-600 text-color-blue']")
     WebElement addAnotherPersonButton;
+    @FindBy(id = "age")
+    WebElement ageBronze;
+    @FindBy(xpath = "//select[@class='select-input']")
+    WebElement countyDrpBronze;
+    @FindBy(xpath  = "//select[@class='select-input']/option")
+    WebElement countyDrpOptionBr;
+    @FindBy(xpath  = "//div/button")
+    WebElement searchBtnBr;
+
+    @FindBy(xpath = "//div[contains(text(),'Lowest-cost Bronze plan monthly')]//div")
+    WebElement premiumAmountBr;
+    @FindBy(xpath = "//div[contains(text(),'Lowest-cost Bronze plan name')]//div[1]")
+    WebElement providerBr;
+    @FindBy(xpath = "//div[contains(text(),'Lowest-cost Bronze plan name')]//div[2]")
+    WebElement planBr;
 
 
         public void enterDataForOneMember(String zipCode, String county,String age){
@@ -154,4 +170,34 @@ public class TaxToolsPage {
             softAssert.assertEquals(plan.getText(),expectedPlan);
             softAssert.assertAll();
         }
+
+    public void checkBronzePlanForOneMember(String zipCode, String county, String age, String expectedPremium, String expectedProvider, String expectedPlan) {
+        basicActions.scrollToElement(zip);
+        basicActions.waitForElementToBePresentWithRetries(zip,30);
+        zip.sendKeys(zipCode);
+        countyDrpBronze.click();
+        JavascriptExecutor js = (JavascriptExecutor) basicActions.getDriver();
+        js.executeScript("arguments[0].click();", countyDrpBronze);
+        basicActions.waitForElementToBePresentWithRetries(countyDrpOptionBr,100);
+        countyDrpBronze.click();
+        basicActions.wait(200);
+        countyDrpBronze.sendKeys(county);
+        countyDrpBronze.sendKeys(Keys.ENTER);
+        basicActions.waitForElementToBePresentWithRetries(ageBronze,30);
+        ageBronze.sendKeys(age);
+        basicActions.waitForElementToBePresentWithRetries(searchBtnBr,100);
+        Actions actions = new Actions(basicActions.getDriver());
+        actions.moveToElement(searchBtnBr).perform();
+        basicActions.wait(200);
+        actions.doubleClick(searchBtnBr).perform();
+        basicActions.wait(500);
+        basicActions.waitForElementToBePresentWithRetries(premiumAmountBr,100);
+        basicActions.waitForElementToBePresentWithRetries(planBr,100);
+        softAssert.assertEquals(premiumAmountBr.getText(),expectedPremium);
+        softAssert.assertEquals(providerBr.getText(),expectedProvider);
+        softAssert.assertEquals(planBr.getText(),expectedPlan);
+        softAssert.assertAll();
+
+
+    }
 }
