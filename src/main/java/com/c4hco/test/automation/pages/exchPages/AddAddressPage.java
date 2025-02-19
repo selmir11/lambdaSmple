@@ -20,7 +20,6 @@ import java.util.Map;
 public class AddAddressPage {
     private BasicActions basicActions;
 
-    DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
     public AddAddressPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
