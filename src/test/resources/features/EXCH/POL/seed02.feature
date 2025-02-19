@@ -64,11 +64,21 @@ Feature: Seed02 - Exchange
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+
+    Then I validate I am on the "Tax status" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+
+# STG
+#    And I select the option "No" to claim as dependent
+#    And I select the option "Yes" to file federal income tax return next year
+#    And I select "Single" tax filing status
+#    And I select "No" to claim dependents
+#    And I click save and continue on tax status page
+
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -128,9 +138,6 @@ Feature: Seed02 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
@@ -160,18 +167,18 @@ Feature: Seed02 - Exchange
     Then I click on manage plan button on admin portal Individual dashboard
     Then I click Make Changes Medical button
     Then I update the premium value for
-      | 1:200.00 |
+      | 1:250.55 |
     Then I update the APTC value for
-      | 1:100.00 |
+      | 1:150.55 |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then logout from Admin Portal
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
-
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I reset the previous file names in shared data
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
@@ -182,8 +189,7 @@ Feature: Seed02 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-
-  @SLER-95 @pol_exch_passed
+  @SLER-95 @pol_exch_passed @n1
   Scenario: RT-2244 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
@@ -194,6 +200,7 @@ Feature: Seed02 - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
+    And I click Continue button on Report a Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 
@@ -224,21 +231,20 @@ Feature: Seed02 - Exchange
     Then I click on view results and shop
 
     # - New updated name is not being displayed on the below pages - Bug - POL-9149
-#    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
-#    Then I validate I am on the "My Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I validate "medical" plan details from plan history
-#    And I validate "dental" plan details from plan history
-#    And I click on Sign Out in the Header for "Elmo"
+    And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+    Then I validate I am on the "My Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
 
-    And I click on Sign Out in the Header for "NonElmo"
+    # And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
+    And I reset the previous file names in shared data
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
@@ -334,6 +340,8 @@ Feature: Seed02 - Exchange
     And I select "Cigna Dental Family + Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page

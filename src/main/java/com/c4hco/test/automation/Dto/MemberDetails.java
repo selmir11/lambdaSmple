@@ -64,7 +64,8 @@ public class MemberDetails {
     String maritalStatus;
     Boolean isMinor= false;
     Boolean hasIncorrectEntities = false;
-    String isSubscriber="N";
+    String isSubscriber="N"; // Medical Subscriber
+    String isDentalSubscriber = "N";
     String incorrectEntityIdCode;
     String incorrectEntityTypeQualifier;
     String incorrectIdCodeQualifier;

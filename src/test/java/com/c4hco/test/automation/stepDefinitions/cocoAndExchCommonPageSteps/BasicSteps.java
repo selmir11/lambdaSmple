@@ -820,4 +820,9 @@ public class BasicSteps {
     public void getMemId(){
         basicActions.setMemberIdFromUrl();
     }
+
+    @And("I check for minors in the household")
+    public void setMinor(){
+        basicActions.setMinor();
+    }
 }

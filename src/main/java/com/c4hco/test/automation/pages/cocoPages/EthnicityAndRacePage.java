@@ -295,11 +295,13 @@ public class EthnicityAndRacePage {
     }
 
     public void selectNotListedAndEnterCustomText(String customText) {
-        basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
-        raceEthnicityButton.get(7).click();
+//        basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
+//        raceEthnicityButton.get(7).click();
         basicActions.waitForElementToBePresent(notListedReason, 10);
         notListedReason.sendKeys(customText);
     }
+
+
 
     public void raceEthnicitySelectionMembers(String raceEthnicity, String memPrefix){
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
