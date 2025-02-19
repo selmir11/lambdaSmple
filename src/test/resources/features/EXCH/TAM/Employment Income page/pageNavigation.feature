@@ -123,6 +123,8 @@ Feature: Page Text-Income Opt Out Page
     And I select the option "Yes" to self employment
     And I change the language from Elmo header to "<Language>" if it isn't already in that language
     Then I validate the Net Income Frequency Dropdown Menu in "<Language>"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
     Examples:
     |Language|
