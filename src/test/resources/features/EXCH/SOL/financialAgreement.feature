@@ -204,7 +204,7 @@ Feature: UI Page Validation - Financial Agreement
     Then I click all done from payment portal page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-2206 @UpdatedFinancialAgreementPage @n1
+  @SLER-2206 @UpdatedFinancialAgreementPage
   Scenario: Validating Updated text and functionality on financial agreemnets page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
