@@ -85,7 +85,7 @@ public class Ob834FileValidations {
                     if (entity.getMember_first_name().contains(member.getNM1().get(0).get(3))) {
                         System.out.println("validating the member segments for :::::::::::::" + member.getNM1().get(0).get(3));
                         validateSegments(member, entity);
-                        if(!(entity.getResponsible_person_email() ==null)){
+                        if(!(entity.getResponsible_person_rel_code() == null)){
                             validatePerSeg(entity, member);
                         }
                         break;
@@ -410,51 +410,49 @@ public class Ob834FileValidations {
     }
 
     private void validateNM1Seg(Member member, Ob834DetailsEntity entry) {
-        List<List<String>> nm1Seg1 = member.getNM1();
-        segCount = segCount + nm1Seg1.size();
-
-        if (SharedData.getPrimaryMember().getHasIncorrectEntities()) {
-            softAssert.assertEquals(nm1Seg1.get(0).get(0), "74", "Entity Identifier Code does not match");
-            softAssert.assertEquals(nm1Seg1.get(2).get(0), "31", "NM1 segment with value 31");
-            softAssert.assertEquals(nm1Seg1.get(2).get(1), "1", "NM1 segment with value 1");
-            softAssert.assertEquals(nm1Seg1.get(0).get(1), entry.getIncorrect_entity_type_qualifier(), "Incorrect entity type qualifier does not match");
-            softAssert.assertEquals(nm1Seg1.get(0).get(7), entry.getIncorrect_id_code_qualifier(), "Incorrect id code qualifier does not match");
-            softAssert.assertEquals(nm1Seg1.get(1).get(0), entry.getIncorrect_entity_id_code(), "Incorrect entity id code.");
-            if (SharedData.getPrimaryMember().getIncorrectIdCode() != null) {
-                softAssert.assertEquals(nm1Seg1.get(1).get(8), entry.getIncorrect_id_code(), "Incorrect id code");
-            }
-            softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size is not equal to 3");
-        } else {
-            if (!SharedData.getPrimaryMember().getResAddress().equals(SharedData.getPrimaryMember().getMailingAddress())) {
-                if (entry.getSubscriber_indicator().equals("Y")) {
-                    if (nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
-                        softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
-                        softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
-                        softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
-                    } else if (!entry.getIndividual_rel_code().isEmpty() && !(entry.getResponsible_person_rel_code() == null)) {
-                        softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
-                        softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
-                        softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "3", "NM1 segment size for subscriber");
-                        softAssert.assertEquals(nm1Seg1.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
-                        softAssert.assertEquals(nm1Seg1.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
-                        softAssert.assertEquals(nm1Seg1.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
-                    } else if (entry.getResponsible_person_rel_code() == null) {
-                        softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
-                        softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
-                        softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for member is not equal to 1");
-                    }
+        List<List<String>> nm1Seg = member.getNM1();
+        segCount = segCount + nm1Seg.size();
+        if(entry.getSubscriber_indicator().equals("Y")){
+            if (SharedData.getPrimaryMember().getHasIncorrectEntities() && entry.getResponsible_person_rel_code()==null) {
+                validateNM1IncorrectEntities(nm1Seg, entry);
+            } else if (!SharedData.getPrimaryMember().getHasIncorrectEntities()){
+                if(!(entry.getResponsible_person_rel_code()==null)){
+                    softAssert.assertEquals(nm1Seg.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
+                    softAssert.assertEquals(nm1Seg.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
+                    softAssert.assertEquals(nm1Seg.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
+                    softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
                 }
+                softAssert.assertEquals(nm1Seg.get(1).get(0), "31", "NM1 segment with value 31");
+                softAssert.assertEquals(nm1Seg.get(1).get(1), "1", "NM1 segment with value 1");
             }
-            if (entry.getSubscriber_indicator().equals("N")) {
-                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "1", "NM1 segment size for member is not equal to 1");
-            }
-            softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
-            softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(), "Member Last name does not match");
-            softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
-            softAssert.assertEquals(nm1Seg1.get(0).get(8), entry.getMember_ssn(), "Member SSN does not match");
+        } else {
+            softAssert.assertEquals(String.valueOf(nm1Seg.size()), "1", "NM1 segment size for member is not equal to 1");
         }
+        validateNm1ILSeg(nm1Seg, entry);
+
         softAssert.assertAll();
     }
+
+    private void validateNm1ILSeg(List<List<String>> nm1Seg1, Ob834DetailsEntity entry) {
+        softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
+        softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(), "Member Last name does not match");
+        softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
+        softAssert.assertEquals(nm1Seg1.get(0).get(8), entry.getMember_ssn(), "Member SSN does not match");
+    }
+
+    private void validateNM1IncorrectEntities(List<List<String>> nm1Seg, Ob834DetailsEntity entry){
+            softAssert.assertEquals(nm1Seg.get(0).get(0), "74", "Entity Identifier Code does not match");
+            softAssert.assertEquals(nm1Seg.get(2).get(0), "31", "NM1 segment with value 31");
+            softAssert.assertEquals(nm1Seg.get(2).get(1), "1", "NM1 segment with value 1");
+            softAssert.assertEquals(nm1Seg.get(0).get(1), entry.getIncorrect_entity_type_qualifier(), "Incorrect entity type qualifier does not match");
+            softAssert.assertEquals(nm1Seg.get(0).get(7), entry.getIncorrect_id_code_qualifier(), "Incorrect id code qualifier does not match");
+            softAssert.assertEquals(nm1Seg.get(1).get(0), entry.getIncorrect_entity_id_code(), "Incorrect entity id code.");
+            if (SharedData.getPrimaryMember().getIncorrectIdCode() != null) {
+                softAssert.assertEquals(nm1Seg.get(1).get(8), entry.getIncorrect_id_code(), "Incorrect id code");
+            }
+            softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
+    }
+    
 
     private void validateInsSegment(Member member, Ob834DetailsEntity entry) {
         segCount = segCount + 1;
