@@ -139,24 +139,6 @@ public class FinancialHelpAgreementsPage {
 
     }
 
-    public void selectAgreementsCheckbox(String checkbox) {
-        basicActions.waitForElementToDisappear( spinner, 15 );
-        basicActions.waitForElementListToBePresentWithRetries(agreementsChckbx, 10);
-        switch (checkbox) {
-            case "Acknowledgement":
-                understandAcknowledgeChckbx.click();
-                break;
-            case "Submit":
-                understandSigChckbx.click();
-                break;
-            case "HouseholdAuthority":
-                understandAuthorityChckbx.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option selected to click checkboxes: " + checkbox);
-        }
-    }
-
     public void verifyFinancialAgreementPageVerbiage() {
         basicActions.waitForElementToBePresent(financialagrePageTitle, 10);
         softAssert.assertEquals(financialagrePageTitle.getText(), "Financial Agreements");
