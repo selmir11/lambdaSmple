@@ -28,6 +28,9 @@ public class BasicSteps {
             case "tax Silver":
                 pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
                 break;
+            case "tax Bronze":
+                pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/bronze/";
+                break;
             case "QCPF":
                 pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
                 break;
