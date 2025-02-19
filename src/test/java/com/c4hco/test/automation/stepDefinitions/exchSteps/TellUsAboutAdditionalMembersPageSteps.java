@@ -45,4 +45,13 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @And("I update member applying for coverage to {string}")
     public void isMemberApplyingForInsurance(String Applying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(Applying);
     }
+
+
+    @And("I select total babies as {int} and set expected due date as next month first day")
+    public void selectTotalBabiesAndSetDueDate(int totalBabies) {
+        tellUsAboutAdditionalMemberPage.selectTotalBabiesAndSetDueDate(totalBabies);
+    }
+
+
+
 }

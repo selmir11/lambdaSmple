@@ -82,6 +82,14 @@ public class TellUsAboutAdditionalMemberPage {
     @FindBy(xpath = "//*[@id='backButton']")
     WebElement btnBack;
 
+    @FindBy(id = "totalBabiesExpected")
+    WebElement selecttotalBabiesExpected;
+
+    @FindBy(id = "expectedDueDate")
+    WebElement expectedDueDate;
+
+
+
     SoftAssert softAssert = new SoftAssert();
 
     public static String getUniqueString(int length) {
@@ -367,6 +375,15 @@ public class TellUsAboutAdditionalMemberPage {
          String[] nameInfo = {firstName,middleName,lastName,ssn};
         return nameInfo;
     }
+
+    public void selectTotalBabiesAndSetDueDate(int totalBabies) {
+        basicActions.waitForElementToBePresent(selecttotalBabiesExpected, 1);
+        selecttotalBabiesExpected.sendKeys(String.valueOf(totalBabies));
+        String dob = basicActions.firstDateOfNextMonth();
+        String formattedDate = basicActions.changeDateFormat(dob, "yyyy-MM-dd", "MM/dd/yyyy");
+        expectedDueDate.sendKeys(formattedDate);
+    }
+
 
 
 }

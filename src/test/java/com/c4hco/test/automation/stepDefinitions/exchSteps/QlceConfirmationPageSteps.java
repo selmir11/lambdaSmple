@@ -37,4 +37,10 @@ public class QlceConfirmationPageSteps {
     public void iClickBackButton(){
         qlceConfirmationPage.clickBackButton();
     }
+
+    @And("I update the pregnancy event date as next month first")
+    public void updatePregnancyEventDate() {
+        qlceConfirmationPage.setPregnancyEventDate();
+    }
+
 }

@@ -73,7 +73,7 @@ public class TellUsAboutYourselfPage {
     @FindBy(id = "isPregnantFalse" )
     WebElement rdobtnPregnantNo;
 
-    @FindBy(css = "isPregnantTrue")
+    @FindBy(id = "isPregnantTrue")
     WebElement rdobtnPregnantYes;
 
     @FindBy(css = "div:nth-child(5) p")

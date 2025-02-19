@@ -18,6 +18,11 @@ public class AccountOverviewPageSteps {
     @Then("I apply for the current year")
     public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 
+
+    @And("I click on apply for dental plans")
+    public void iclickApplyForDentalPlan() {accountOverviewPage.clickApplyForDentalPlan();
+    }
+
     @Then("I click on ClickHere link for {string}")
     public void clickHere(String clickOption) {accountOverviewPage.clickHereLinks(clickOption);}
 

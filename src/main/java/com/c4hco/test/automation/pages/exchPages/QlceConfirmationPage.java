@@ -34,6 +34,10 @@ public class QlceConfirmationPage {
     //Marriage
     @FindBy(id = "marriage")
     WebElement marriageLce;
+
+    @FindBy(id = "pregnancyStatusRetainCoverageYes")
+    WebElement pregnancyStatusRetainCoverageYes;
+
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'Marriage')]")
     List<WebElement> allmemberMarriagecheckbox;
 
@@ -48,6 +52,9 @@ public class QlceConfirmationPage {
 
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Divorce')]")
     List<WebElement> divorceEventDate;
+
+    @FindBy(id = "lceMembersForPregnancyStatus0.lceEventDate")
+    WebElement pregnancyEventDate;
 
     @FindBy(id = "changeOnIncarcerationStatus")
     WebElement changeOnIncarcerationStatusLce;
@@ -315,6 +322,7 @@ public class QlceConfirmationPage {
                 deathMemEventDate.sendKeys(getCurrentDate());
                 break;
 
+
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
@@ -455,6 +463,15 @@ public class QlceConfirmationPage {
     void TaxTimeEnrollmentPeriodTextValidate(List<String>data) {
         softAssert.assertEquals(taxTimeEnrollmentPeriodText.get(0).getText(),data.get(15), "American Indian/Alaskan Native Text not match");
      }
+
+    public void setPregnancyEventDate() {
+        String date = basicActions.firstDateOfCurrMonth();
+        String formattedDate = basicActions.changeDateFormat(date, "yyyy-MM-dd", "MM/dd/yyyy");
+        pregnancyEventDate.sendKeys(formattedDate);
+        pregnancyStatusRetainCoverageYes.click();
+    }
+
+
 
 
 }

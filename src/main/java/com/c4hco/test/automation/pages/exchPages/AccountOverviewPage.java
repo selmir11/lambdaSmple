@@ -94,6 +94,9 @@ public class AccountOverviewPage {
     @FindBy(xpath = "//a[@class='linkButton']/parent::p")
     List<WebElement> txtlinkButton;
 
+    @FindBy(xpath = "//button[@id='submit' and @name='applyForCurrentYearDental']")
+    WebElement applyForDentalPlan;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -122,6 +125,12 @@ public class AccountOverviewPage {
         SharedData.setPlanYear(year);
         applyForYr.click();
     }
+    public void clickApplyForDentalPlan() {
+        basicActions.waitForElementToDisappear(spinner, 30 );
+        basicActions.waitForElementToBePresent(applyForDentalPlan, 30);
+        applyForDentalPlan.click();
+    }
+
 
 
     public void clickHereLinks(String clickHereOption){
