@@ -23,6 +23,7 @@ public class QlceConfirmationPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    //Birth
     @FindBy(id = "birth")
     WebElement birthQLCE;
 
@@ -30,6 +31,17 @@ public class QlceConfirmationPage {
     List<WebElement> allmembersBirthcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
     List<WebElement> birthEventDate;
+
+    // Pregnancy
+
+    @FindBy(id = "pregnancy")
+    WebElement pregnancyQLCE;
+
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'pregnancy')]")
+    List<WebElement> allmembersPregnancycheckbox;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'pregnancy')]")
+    List<WebElement> pregnancyEventDate;
+
 
     //Marriage
     @FindBy(id = "marriage")
@@ -276,13 +288,25 @@ public class QlceConfirmationPage {
                     divorceEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
-            case "NoneOfThese":
-                basicActions.waitForElementToBeClickable(noneOfTheseLCE, 10);
-                noneOfTheseLCE.click();
+            case "Pregnancy":
+                basicActions.waitForElementToBeClickable(pregnancyQLCE, 10);
+                pregnancyQLCE.click();
+                for (var i = 0; i < allmembersPregnancycheckbox.size(); i++) {
+                    allmembersPregnancycheckbox.get(i).click();
+                    pregnancyEventDate.get(i).click();
+                    pregnancyEventDate.get(i).sendKeys(getCurrentDate());
+                }
                 break;
+
+
             case "TaxTimeEnrollmentPeriod":
                 basicActions.waitForElementToBeClickable(taxTimeEnrollmentPeriod, 10);
                 taxTimeEnrollmentPeriod.click();
+                break;
+
+            case "NoneOfThese":
+                basicActions.waitForElementToBeClickable(noneOfTheseLCE, 10);
+                noneOfTheseLCE.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
