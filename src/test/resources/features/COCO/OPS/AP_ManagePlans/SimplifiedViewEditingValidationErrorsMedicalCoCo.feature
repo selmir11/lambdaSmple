@@ -1,5 +1,5 @@
 @OPS @SLCR-772 @managePlan
-Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoCo [CCRT-240]
+Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoCo [CCRT-462]
   Background:
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
@@ -17,7 +17,6 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
   @SLCR-772
   Scenario: MP:2023 Simplified View Editing Validation Errors Med Only
     And I click Make Changes Medical button
-    #    Medical Policy error validation
     And I update the Coverage Start date of member
       | 1:01012025 |
     Then I verify it displays coverage start date error
@@ -39,12 +38,12 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the Coverage Start date of member
-      | 1:01012024 |
+      | 1:01012021 |
     Then I verify it displays coverage start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the Financial Start date of member
-      | 1:01012024 |
+      | 1:01012021 |
     Then I verify it displays financial start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
@@ -79,12 +78,12 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the Coverage Start date of member
-      | 2:01012024 |
+      | 2:01012025 |
     Then I verify it displays coverage start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     And I update the Financial Start date of member
-      | 2:01012024 |
+      | 2:01012025 |
     Then I verify it displays financial start date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
@@ -98,7 +97,8 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
     Then I verify it displays financial end date error
     And I click Reset Changes Medical
     And I click Make Changes Medical button
-    Then I update the SES value for
+    # updates for APTC/SES values to check error messages
+    Then I update the APTC value for
       | 1:876.89 |
     And I click Save Button Medical
     Then I should see the Invalid monetary amount for SES error for
@@ -106,14 +106,14 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
       | 1      | 876.89  |
     And I click Reset Changes Medical
     And I click Make Changes Medical button
-    Then I update the SES value for
+    Then I update the APTC value for
       | 2:1090.40 |
     And I click Save Button Medical
     Then I should see the Invalid monetary amount for SES error for
       | member | aptc   |
       | 2      | 1090.40  |
-    And I validate SES entered exceeds EHB amount error is displaying
-    Then I update the SES value for
+    And I validate SES entered exceeds EHB amount error is displaying for "medical"
+    Then I update the APTC value for
       | 1: blank |
       | 2: blank |
     And I click Save Button Medical
@@ -122,8 +122,3 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
       | 1      |         |
       | 2      |         |
     Then I close current tab and switch back to previous tab
-    And I logout from Admin Portal
-
-
-
-

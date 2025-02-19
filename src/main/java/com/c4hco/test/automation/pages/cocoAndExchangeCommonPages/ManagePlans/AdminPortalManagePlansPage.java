@@ -396,13 +396,13 @@ public class AdminPortalManagePlansPage {
     WebElement aptcRowTwo;
     @FindBy(xpath = "//div/app-plan-container/div[3]/button")
     WebElement btnGoBack;
-    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for SES')]")
-    WebElement SESInvalidError;
     @FindBy(xpath = "(//input[@type='text'])[6]")
     WebElement sesmember1;
     @FindBy(xpath = "//div[1]/div[6]/div[15]/input[1]")
     WebElement sesmember2;
-    @FindBy(xpath = "//div[contains(text(),'SES entered exceeds SES amount: ')]")
+    @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[1]")
+    WebElement SESInvalidError;
+    @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[2]")
     WebElement SESEHBError;
 
     public void validateBluBar() {
@@ -1368,47 +1368,57 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     public void validateMakeChangesMedicalButtonNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));   }
-    public void addSESValue(List<String> memberSESDtList) {
-        for (String memberSESamt : memberSESDtList) {
-            String[] parts = memberSESamt.split(":");
-            String memberNo = parts[0];
-            String sesValue = parts[1];
-            WebElement SESMem = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_1']//input[@type='text']"));
-            SESMem.click();
-            SESMem.clear();
-            SESMem.sendKeys(sesValue);
-            if(SharedData.getPrimaryMember()!= null){
-                SharedData.getPrimaryMember().setMedicalAptcAmt(sesValue);
-                String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalSesAmt()));
-                SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);}
-        }
-    }
-    public void validateSESErrorMessages(DataTable table) {
+//    public void addSESValue(List<String> memberSESDtList) {
+//        for (String memberSESamt : memberSESDtList) {
+//            String[] parts = memberSESamt.split(":");
+//            String memberNo = parts[0];
+//            String sesValue = parts[1];
+//            WebElement SESMem = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_1']//input[@type='text']"));
+//            SESMem.click();
+//            SESMem.clear();
+//            SESMem.sendKeys(sesValue);
+//            if(SharedData.getPrimaryMember()!= null){
+//                SharedData.getPrimaryMember().setMedicalAptcAmt(sesValue);
+//                String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalSesAmt()));
+//                SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);}
+//        }
+//    }
+
+    public void validateErrorMessagesCoCo(DataTable table) {
         List<Map<String, String>> memberData = table.asMaps(String.class, String.class);
 
         for (Map<String, String> data : memberData) {
             String memberNo = data.get("member");
-            String sesValue = data.get("ses");
+            String aptcValue = data.get("aptc");
 
             String expectedErrorMessage = "";
 
-            if (sesValue == null || sesValue.trim().isEmpty()) {
+            if (aptcValue == null || aptcValue.trim().isEmpty()) {
                 expectedErrorMessage = "Invalid monetary amount for SES";
             } else {
-                expectedErrorMessage = "Invalid monetary amount for SES: $" + sesValue;
+                expectedErrorMessage = "Invalid monetary amount for SES: $" + aptcValue;
             }
-            throw new AssertionError("Error message: '" + expectedErrorMessage + "' not displayed for member " + memberNo);
-       }
+
+            boolean errorMessageElement;
+            if (SESInvalidError.getText().equals(expectedErrorMessage)) errorMessageElement = true;
+            else
+                throw new AssertionError("Error message: '" + expectedErrorMessage + "' not displayed for member " + memberNo);
+        }
     }
-    public void validateSesEHBErrors() {
-        String value1Text = sesmember2.getAttribute("value");
+    public void validateEHBErrorsCoCo(String planType) {
+        String value1Text = aptcmember2.getAttribute("value");
         String numericValue1 = value1Text.replaceAll("[^0-9.]", "");
-        String value2Text = sesmember1.getAttribute("value");
+        String value2Text = aptcmember1.getAttribute("value");
         String numericValue2 = value2Text.replaceAll("[^0-9.]", "");
 
-
+        String value3Text;
         String numericValue3;
-        String value3Text = EHBPremiumamtmedical.getText();
+
+        if ("medical".equalsIgnoreCase(planType)) {
+            value3Text = EHBPremiumamtmedical.getText();
+        } else {
+            value3Text = EHBPremiumamtDental.getText();
+        }
 
         numericValue3 = value3Text.replaceAll("[^0-9.]", "");
 
