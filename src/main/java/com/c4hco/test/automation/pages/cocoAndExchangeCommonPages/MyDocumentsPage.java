@@ -6,6 +6,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.time.Year;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
 
 
 public class MyDocumentsPage {
@@ -189,7 +191,6 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[contains(@href,'UserProfile')]")
     WebElement textUserName;
 
-
     @FindBy(xpath = "//*[@class='btn-cancel btn-second-action-button']")
     WebElement btncancel;
 
@@ -258,6 +259,18 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//div[@class='error-box ng-star-inserted']//*[name()='svg' and @role='img']")
     WebElement img_errorMsg_docFileSizeLarge;
+
+    @FindBy(xpath = "//*[@class='drop-down-option drop-down-option-selected']")
+    List<WebElement> drpDwn_Arrows_pastDocAndLetters;
+
+    @FindBy(xpath = "//*[@class='drop-down-option ng-star-inserted']")
+    List<WebElement> drpDwn_pastDocAndLetters;
+
+    @FindBy(xpath = "(//*[name()='svg' and @data-icon='angle-down'])[3]")
+    WebElement expandArrow_forFirstDoc;
+
+    @FindBy(xpath = "//a[text()='Download']")
+    WebElement btn_download;
 
 
 
@@ -913,4 +926,93 @@ public class MyDocumentsPage {
         softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
         softAssert.assertAll();
     }
+    public void selectAllAndDocumentsFromDropDown(){
+        basicActions.scrollToElement((drpDwn_Arrows_pastDocAndLetters.get(0)));
+        basicActions.waitForElementToBePresent(drpDwn_Arrows_pastDocAndLetters.get(0),10);
+        drpDwn_Arrows_pastDocAndLetters.get(0).click();
+        drpDwn_pastDocAndLetters.get(4).click();
+        basicActions.waitForElementToBePresent(drpDwn_Arrows_pastDocAndLetters.get(1),10);
+        drpDwn_Arrows_pastDocAndLetters.get(1).click();
+        drpDwn_pastDocAndLetters.get(6).click();
+    }
+    public void clickOnExpandForFirstDocument(){
+        basicActions.waitForElementToBePresentWithRetries(expandArrow_forFirstDoc, 10);
+        basicActions.clickElementWithRetries(expandArrow_forFirstDoc, 10);
+    }
+    public void verifyFileExistAndNotEmpty() {
+        basicActions.waitForElementToBeClickable(btn_download, 10);
+        btn_download.click();
+        String fileName=waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
+        Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
+    }
+
+
+    public void ValidateDocumentCategoryinAscendingOrder(String OtherText,String language,List<String> category) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 20);
+        docTypeDrpDwn.click();
+
+        // Extract text from elements and store in a list
+        List<String> ActualCategoryList = new ArrayList<>();
+        for (WebElement element : categoryList) {
+            ActualCategoryList.add(element.getText());
+        }
+
+        softAssert.assertEquals(ActualCategoryList,category, "Actual and expected list are not match");
+        List<String> ActualListExceptOther = new ArrayList<>(ActualCategoryList);
+        ActualListExceptOther.remove(OtherText);
+
+        //Validate Document list in ascending order
+        softAssert.assertTrue(basicActions.isAscendingOrder(language,ActualListExceptOther),"Category list  not in ascending order");
+
+        //Validate Other listed at the end
+        softAssert.assertTrue(ActualCategoryList.get(ActualCategoryList.size() - 1).equals(OtherText), "Other item missing at the end of the list");
+        softAssert.assertAll();
+
+    }
+
+    public void validateDoucmentTypeInAscendingOrder(String OtherText,String language,DataTable datable) {
+
+        List<List<String>> expectedLists = datable.asLists();
+
+        basicActions.waitForElementListToBePresent(categoryList, 100);
+
+        int index = 0;
+        for (WebElement element : categoryList) {
+            element.click(); //Main dropdown item
+
+            basicActions.waitForElementToBePresent(docCategoryDrpDwn,100);
+            docCategoryDrpDwn.click();  // Clicking on sublist dropdown to view items
+
+            List<String> actualList = new ArrayList<>();
+            for (WebElement item : categoryList) { //Fetching sub list items
+                actualList.add(item.getText().trim());
+            }
+
+            List<String> expectedList = new ArrayList<>();
+            String[] splitvalues = expectedLists.get(index).get(0).split("&");
+            for (int j = 0; j < splitvalues.length; j++) {
+                String formattedvalue = (j == 0) ? splitvalues[j].trim() : "" + splitvalues[j].trim();
+                expectedList.add(formattedvalue);
+            }
+
+            softAssert.assertEquals(actualList , expectedList , " Expected and Actual list not Match" );
+
+            List<String> actualListExceptOther = new ArrayList<>(actualList); // Remove Other from sublist
+            actualListExceptOther.removeIf(item -> item.startsWith(OtherText));
+
+            //Validate Sublist in ASC order
+            softAssert.assertTrue(basicActions.isAscendingOrder(language,actualListExceptOther), " Document type List not in ascending order");
+
+            //using only  if, because not all sublist items contains other
+            if (actualList.contains(OtherText)) {
+                softAssert.assertTrue(actualList.get(actualList.size() - 1).startsWith(OtherText), "Other item  missing at the end of the list");
+            }
+
+            index++;
+            docTypeDrpDwn.click();
+        }
+        softAssert.assertAll();
+
+    }
+
 }
