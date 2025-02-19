@@ -46,12 +46,19 @@ public class ApplicationSummarySubmittedPage {
 
     @FindBy(css = ".desk-button.row #submit")
     WebElement btnViewAppDetails;
+    @FindBy(css = "button.back-button-link")
+    WebElement btnBack;
 
 
     public void clickViewAppDetails(){
         basicActions.waitForElementToBeClickable(btnViewAppDetails,20);
         basicActions.scrollToElement(btnViewAppDetails);
         btnViewAppDetails.click();
+    }
+    public void clickBackButton(){
+        basicActions.waitForElementToBeClickable(btnBack,20);
+        basicActions.scrollToElement(btnBack);
+        btnBack.click();
     }
 
     public void clickDownloadPdfLink(){
