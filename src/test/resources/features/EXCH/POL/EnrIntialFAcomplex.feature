@@ -284,6 +284,20 @@ Feature: Enroll a in a plan 8 HH
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
+
+#    Steps to New Tax Status Page
+#    Then I select "No" for will you be claimed as dependent question
+#    Then I select "Yes" for will file tax return question
+#    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+#    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+#    Then I select "Yes" for will claim dependents question
+#    Then I select "Niece" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I click Save and Continue on Tax Status Elmo page
+
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
