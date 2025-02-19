@@ -116,9 +116,6 @@ Feature: UI Page Validation - Financial Agreement
     And I validate I am on the "Financial Help Agreements" page
     And I verify text on Financial agreement page
     And I select the terms and agreements checkbox
-#    And I select "Acknowledgement" agreement checkbox on the Financial Agreements page
-#    And I select "Submit" agreement checkbox on the Financial Agreements page
-#    And I select "HouseholdAuthority" agreement checkbox on the Financial Agreements page
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
     And I click on Sign Out in the Header for "Elmo"
@@ -409,9 +406,6 @@ Feature: UI Page Validation - Financial Agreement
     And I validate I am on the "Financial Help Agreements" page
     And I verify text on Financial agreement page
     And I select the terms and agreements checkbox
-#    And I select "Acknowledgement" agreement checkbox on the Financial Agreements page
-#    And I select "Submit" agreement checkbox on the Financial Agreements page
-#    And I select "HouseholdAuthority" agreement checkbox on the Financial Agreements page
     And I enter "taxHolder1" signature on the Financial Help Agreements page
     And I enter "taxHolder2" signature on the Financial Help Agreements page
     And I enter "taxHolder3" signature on the Financial Help Agreements page
