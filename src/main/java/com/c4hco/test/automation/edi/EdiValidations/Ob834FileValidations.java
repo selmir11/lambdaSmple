@@ -571,9 +571,9 @@ public class Ob834FileValidations {
         List<List<String>> qtySeg = transaction.getCommonSegments().getQTY();
         segCount = segCount + qtySeg.size();
         softAssert.assertEquals(qtySeg.get(0).get(0), "TO", "Total enrolls ");
-       // softAssert.assertEquals(qtySeg.get(0).get(1), entry.getTotal_enrollees(), "Total enrolls does not match");
+        softAssert.assertEquals(qtySeg.get(0).get(1), entry.getTotal_enrollees(), "Total enrolls does not match");
         softAssert.assertEquals(qtySeg.get(1).get(0), "DT", "Total dependents");
-      //  softAssert.assertEquals(qtySeg.get(1).get(1), entry.getTotal_dependents(), "Total dependents doe not match");
+        softAssert.assertEquals(qtySeg.get(1).get(1), entry.getTotal_dependents(), "Total dependents doe not match");
         softAssert.assertEquals(qtySeg.get(2).get(0), "ET", "Total subscribers");
         softAssert.assertEquals(qtySeg.get(2).get(1), entry.getTotal_subscribers(), "Total subscribers does not match");
     }

@@ -145,7 +145,8 @@ public class Ib834FileValidation {
                 validateNM1IncorrectEntities(nm1Seg, entry);
             } else if (!SharedData.getPrimaryMember().getHasIncorrectEntities()){
                 if(!(entry.getResponsible_person_rel_code()==null)){
-                  // Bug POL-6875 - softAssert.assertEquals(nm1Seg.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
+                  // Bug POL-6875 - remove the comment after/during 02/26 regression - This is expected to pass
+                    softAssert.assertEquals(nm1Seg.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
                     softAssert.assertEquals(nm1Seg.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
                     softAssert.assertEquals(nm1Seg.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
                     softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
