@@ -376,10 +376,20 @@ public class TellUsAboutAdditionalMemberPage {
         return nameInfo;
     }
 
-    public void selectTotalBabiesAndSetDueDate(int totalBabies) {
+    public void selectTotalBabiesAndSetDueDate(int totalBabies, String expectedDate) {
         basicActions.waitForElementToBePresent(selecttotalBabiesExpected, 1);
         selecttotalBabiesExpected.sendKeys(String.valueOf(totalBabies));
-        String dob = basicActions.firstDateOfNextMonth();
+        String dob;
+        switch (expectedDate) {
+            case "Firstdayofnextmonth":
+                dob = basicActions.firstDateOfNextMonth();
+                break;
+            case "Firstdayofcurrmonth":
+                dob = basicActions.firstDateOfCurrMonth();
+                break;
+            default:
+                dob = expectedDate;
+        }
         String formattedDate = basicActions.changeDateFormat(dob, "yyyy-MM-dd", "MM/dd/yyyy");
         expectedDueDate.sendKeys(formattedDate);
     }

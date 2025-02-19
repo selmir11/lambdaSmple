@@ -851,7 +851,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Female" as sex option
     And I select "Yes" as pregnancy option
-    And I select total babies as 1 and set expected due date as next month first day
+    And I select total babies as 1 and set expected due date as "Firstdayofnextmonth"
     And I mark the Additional member is pregnant as "Yes"
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -861,8 +861,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     And I select "No" for Federally Recognized Tribe option
     And I select "No" for Hardship Exemption option
     And I select "No" for Disability option
-    And I select "Yes" to the recently denied medicaid question
-    Then I set the Date of Medicaid or CHP Denied field to the first date of the current month
+    And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
@@ -896,7 +895,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    And  I update the pregnancy event date as next month first
+    And  I set pregnancy event date as "Firstdayofcurrmonth"
     Then I click on Save and Continue
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page

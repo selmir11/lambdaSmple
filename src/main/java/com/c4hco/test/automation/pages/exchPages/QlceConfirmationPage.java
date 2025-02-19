@@ -464,8 +464,18 @@ public class QlceConfirmationPage {
         softAssert.assertEquals(taxTimeEnrollmentPeriodText.get(0).getText(),data.get(15), "American Indian/Alaskan Native Text not match");
      }
 
-    public void setPregnancyEventDate() {
-        String date = basicActions.firstDateOfCurrMonth();
+    public void setPregnancyEventDate(String eventDateType) {
+        String date;
+        switch (eventDateType) {
+            case "Firstdayofnextmonth":
+                date = basicActions.firstDateOfNextMonth();
+                break;
+            case "Firstdayofcurrmonth":
+                date = basicActions.firstDateOfCurrMonth();
+                break;
+            default:
+                date = eventDateType;
+        }
         String formattedDate = basicActions.changeDateFormat(date, "yyyy-MM-dd", "MM/dd/yyyy");
         pregnancyEventDate.sendKeys(formattedDate);
         pregnancyStatusRetainCoverageYes.click();
