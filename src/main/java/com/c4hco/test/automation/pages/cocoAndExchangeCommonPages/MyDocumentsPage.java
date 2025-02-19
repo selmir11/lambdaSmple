@@ -192,7 +192,6 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[contains(@href,'UserProfile')]")
     WebElement textUserName;
 
-
     @FindBy(xpath = "//*[@class='btn-cancel btn-second-action-button']")
     WebElement btncancel;
 
@@ -261,6 +260,18 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//div[@class='error-box ng-star-inserted']//*[name()='svg' and @role='img']")
     WebElement img_errorMsg_docFileSizeLarge;
+
+    @FindBy(xpath = "//*[@class='drop-down-option drop-down-option-selected']")
+    List<WebElement> drpDwn_Arrows_pastDocAndLetters;
+
+    @FindBy(xpath = "//*[@class='drop-down-option ng-star-inserted']")
+    List<WebElement> drpDwn_pastDocAndLetters;
+
+    @FindBy(xpath = "(//*[name()='svg' and @data-icon='angle-down'])[3]")
+    WebElement expandArrow_forFirstDoc;
+
+    @FindBy(xpath = "//a[text()='Download']")
+    WebElement btn_download;
 
 
 
@@ -915,6 +926,25 @@ public class MyDocumentsPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
         softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
         softAssert.assertAll();
+    }
+    public void selectAllAndDocumentsFromDropDown(){
+        basicActions.scrollToElement((drpDwn_Arrows_pastDocAndLetters.get(0)));
+        basicActions.waitForElementToBePresent(drpDwn_Arrows_pastDocAndLetters.get(0),10);
+        drpDwn_Arrows_pastDocAndLetters.get(0).click();
+        drpDwn_pastDocAndLetters.get(4).click();
+        basicActions.waitForElementToBePresent(drpDwn_Arrows_pastDocAndLetters.get(1),10);
+        drpDwn_Arrows_pastDocAndLetters.get(1).click();
+        drpDwn_pastDocAndLetters.get(6).click();
+    }
+    public void clickOnExpandForFirstDocument(){
+        basicActions.waitForElementToBePresentWithRetries(expandArrow_forFirstDoc, 10);
+        basicActions.clickElementWithRetries(expandArrow_forFirstDoc, 10);
+    }
+    public void verifyFileExistAndNotEmpty() {
+        basicActions.waitForElementToBeClickable(btn_download, 10);
+        btn_download.click();
+        String fileName=waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
+        Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
     }
 
 

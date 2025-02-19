@@ -207,5 +207,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateDocumentTypesForCorrespondingCategoryListInAscendingOrderAndAtEndOfList(String OtherText, String language,  DataTable dataTable) {
         myDocumentsPage.validateDoucmentTypeInAscendingOrder(OtherText,language, dataTable);
     }
+
+    @When("I select All and Documents from drop down below Past Documents and Letters")
+    public void I_select_All_and_Documents_from_drop_down_below_Past_Documents_and_Letters() {myDocumentsPage.selectAllAndDocumentsFromDropDown();}
+
+    @When("I click on expand arrow for 1st document")
+    public void I_click_on_expand_arrow_for_1st_document() {myDocumentsPage.clickOnExpandForFirstDocument();}
+
+    @Then("I verify file downloaded and it is not empty")
+    public void I_click_on_download_button_and_save_it() {myDocumentsPage.verifyFileExistAndNotEmpty();}
+
 }
 
