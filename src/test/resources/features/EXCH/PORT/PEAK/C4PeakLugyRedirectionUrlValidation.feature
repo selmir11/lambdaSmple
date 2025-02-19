@@ -16,5 +16,5 @@ Feature: Connect for Health Colorado connection to PEAK redirection URL validati
     Then I click Apply for Health First Colorado in Let us guide you Page
     And I wait for 2000 milliseconds
     Then I click Ok on the PEAK alert
-    Then I validate the current PEAK connection URL is "https://peak--peaksit02.sandbox.my.site.com/peak/s/user-login?language=en_US"
-    #This is the correct URL per PORT-7316 as of December 2024
+    Then I validate the current PEAK connection URL is "https://peak--peaksit01.sandbox.my.site.com/peak/s/user-login?language=en_US"
+    #This is the correct URL per PORT-7511 as of February 2025
