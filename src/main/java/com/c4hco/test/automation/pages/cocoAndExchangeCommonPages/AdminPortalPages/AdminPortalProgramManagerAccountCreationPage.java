@@ -84,6 +84,7 @@ public class AdminPortalProgramManagerAccountCreationPage {
         softAssert.assertTrue(lastNameErrorMessage.isDisplayed(),"Did notdisplay last name error message");
         softAssert.assertTrue(emailErrorMessage.isDisplayed(),"Did not display email error message");
         softAssert.assertTrue(organizationGroupErrorMessage.isDisplayed(),"Did not display organization name error message");
+        softAssert.assertAll();
     }
 
 }
