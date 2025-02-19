@@ -46,6 +46,7 @@ Then I validate Lawful Presence help drawer "Active Duty Military Members or Hon
 And I select "Help me understand" icon on the Citizenship and Immigration Status page
 Then I validate I am on the "Citizenship" page
 When I change the language from header to "Spanish NonElmo"
+  And I wait for 9000 milliseconds
 Then I validate I am on the "Spanish" page
 Then I validate I am on the "Citizenship" page
 And I select "Help me understand" icon on the Citizenship and Immigration Status page

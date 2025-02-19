@@ -1057,9 +1057,17 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I validate I am on the "Let us guide you" page
-    Then I verify the text on Let us guide you page in "English"
+    Then I verify the text on Let us guide you page
+      | If you have never enrolled with us before but have completed an application for Health First Colorado (Colorado's Medicaid Program) or Child Health Plan Plus (CHP+), we can save you time and pull the information you submitted previously. You will have a chance to review and change your information as needed. Would you like to search for a previously completed application? |
+      | You will need your Case ID, which can be found on your Health First Colorado eligibility notice.                                                                                                                                                                                                                                                                                       |
+      | Yes, I’m new to Connect for Health Colorado and I have completed an application for Health First Colorado or Child Health Plan Plus                                                                                                                                                                                                                                                    |
+      | No thanks, take me to the application                                                                                                                                                                                                                                                                                                                                                  |
     And I change the language from header to "Spanish NonElmo"
-    Then I verify the text on Let us guide you page in "Spanish"
+    Then I verify the text on Let us guide you page
+      | Si nunca se ha inscrito con nosotros antes pero ya presentó una solicitud para Health First Colorado (el programa Medicaid de Colorado) o Child Health Plan Plus (CHP+), podemos ahorrarle tiempo y extraer la información que envió antes. Usted tendrá la oportunidad de revisar y cambiar su información según sea necesario. ¿Desea buscar una solicitud previamente completada? |
+      | Necesitará su identificación del caso que aparece en su aviso de elegibilidad de Health First Colorado.                                                                                                                                                                                                                                                                              |
+      | Sí, soy nuevo a Connect for Health Colorado y ya presenté una solicitud Health First Colorado or Child Health Plan Plus                                                                                                                                                                                                                                                            |
+      | No gracias, lléveme a la aplicación                                                                                                                                                                                                                                                                                                                                                |
 
   @SLER-2059 @PageText
   Scenario: Verify English and Spanish Text for Tell us about life changes page [RT-1012]
