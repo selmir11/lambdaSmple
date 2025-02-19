@@ -516,7 +516,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
 
     @SLER-1336-RT-1023 @wip
-      Scenario: ELIG-Self-Employment (MA Questions)-Page Text
+      Scenario Outline: ELIG-Self-Employment (MA Questions)-Page Text
       Then I click continue on the Employment Info Page
       And I select the option "No" to employment
       And I click continue on the Employment Info Page
@@ -527,16 +527,46 @@ Feature: Page Text-Income Opt Out Page
       And I select the option "No" to claim as dependent
       And I select the option "No" to file federal income tax return next year
       Then I click save and continue on tax status page
+      Then I select "None of these" as ELMO health coverage option
+      And I click continue on the ELMO health coverage page
+      Then I validate I am on the "Family Overview" page
+      Then I click continue on family overview page
+      Then I select "MoveToCO" QLCE on tell us about life changes page
+      Then I click on Save and Continue
+      Then I validate I am on the "EXCH Declarations and Signature" page
+      Then I Declare as Tax Household 1
+      And I click Continue on the Declarations And Signature Page
+      And I wait for hold on content to disappear
+      Then I validate I am on the "Good News" page
+      Then I click on "Continue" on good news page
+      Then I select "No" for under the age of 19 question and Continue on ParentCaretaker MA page
+      Then I select "No" temporarily absent from Colorado question and Continue on Out Of State MA page
+      Then I select "No" for attending school full-time question and Continue on Full-Time Student MA page
+      Then I select "No" for medical condition or disability question and Continue on Medical Condition MA page
+      Then I select "No" for medical expenses question and Continue on Medical Expenses MA page
+      Then I validate the Page Text on the Self-Employment MA page in "<language>"
+      |Label:|
+      |Is anyone in the household self-employed?|
+      |Self-Employment|
+      |Help me understand this page|
+      |Yes|
+      |No|
+      |¿Alguien de su familia trabaja por cuenta propia? |
+      |Trabajador independiente|
+      |Ayuda para entender esta página|
+      |Sí|
+      |No|
+      And I change the language from Elmo header to "Spanish" if it isn't already in that language
+      And I click on Sign Out in the Header for "Elmo"
 
-#      And I validate I am on the "Employment Income" page
-#      Then I click continue on family overview page
-#      Then I validate I am on the "Tell us about life changes" page
-#      Then I select "ChangeOnIncarcerationStatus" QLCE on tell us about life changes page for "Son"
-#      Then I click on Save and Continue
-#      Then I validate I am on the "EXCH Declarations and Signature" page
-#      Then I Declare as Tax Household 1
-#      And I click Continue on the Declarations And Signature Page
-#      And I wait for hold on content to disappear
+      Examples:
+      |language|
+      |English |
+      |Spanish |
+
+
+
+
 
     
     
