@@ -934,8 +934,8 @@ public class MyDocumentsPage {
         drpDwn_pastDocAndLetters.get(6).click();
     }
     public void clickOnExpandForFirstDocument(){
-        basicActions.wait(2000);
-        expandArrow_forFirstDoc.click();
+        basicActions.waitForElementToBePresentWithRetries(expandArrow_forFirstDoc, 10);
+        basicActions.clickElementWithRetries(expandArrow_forFirstDoc, 10);
     }
     public void verifyFileExistAndNotEmpty() {
         basicActions.waitForElementToBeClickable(btn_download, 10);
