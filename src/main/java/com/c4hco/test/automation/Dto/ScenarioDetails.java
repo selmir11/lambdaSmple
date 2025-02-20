@@ -4,7 +4,7 @@ import lombok.Data;
 @Data
 public class ScenarioDetails {
     int totalGroups;
-    int totalDentalGroups;
+    int totalDentalGroups = 0;
     int totalMembers;
     String subscribers;
     String dependents;

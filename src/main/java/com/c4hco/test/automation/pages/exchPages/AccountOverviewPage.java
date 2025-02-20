@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.testng.AssertJUnit.assertTrue;
-
 public class AccountOverviewPage {
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
