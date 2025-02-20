@@ -1368,21 +1368,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     public void validateMakeChangesMedicalButtonNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));   }
-//    public void addSESValue(List<String> memberSESDtList) {
-//        for (String memberSESamt : memberSESDtList) {
-//            String[] parts = memberSESamt.split(":");
-//            String memberNo = parts[0];
-//            String sesValue = parts[1];
-//            WebElement SESMem = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_1']//input[@type='text']"));
-//            SESMem.click();
-//            SESMem.clear();
-//            SESMem.sendKeys(sesValue);
-//            if(SharedData.getPrimaryMember()!= null){
-//                SharedData.getPrimaryMember().setMedicalAptcAmt(sesValue);
-//                String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalSesAmt()));
-//                SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);}
-//        }
-//    }
+
 
     public void validateErrorMessagesCoCo(DataTable table) {
         List<Map<String, String>> memberData = table.asMaps(String.class, String.class);
@@ -1410,9 +1396,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         String numericValue1 = value1Text.replaceAll("[^0-9.]", "");
         String value2Text = aptcmember1.getAttribute("value");
         String numericValue2 = value2Text.replaceAll("[^0-9.]", "");
+        String numericValue3 = value3Text.replaceAll("[^0-9.]", "");
 
-        String value3Text;
-        String numericValue3;
 
         if ("medical".equalsIgnoreCase(planType)) {
             value3Text = EHBPremiumamtmedical.getText();
@@ -1420,7 +1405,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             value3Text = EHBPremiumamtDental.getText();
         }
 
-        numericValue3 = value3Text.replaceAll("[^0-9.]", "");
+
 
         double value1 = Double.parseDouble(numericValue1);
         double value2 = Double.parseDouble(numericValue2);
@@ -1428,8 +1413,6 @@ public void selectThePlanYearOnManagePlan(String planYear) {
 
         if (value1 + value2 > value3) {
             Assert.assertTrue(SESEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
-        } else {
-            System.out.println("Condition not met, no error expected.");
         }
     }
 }
