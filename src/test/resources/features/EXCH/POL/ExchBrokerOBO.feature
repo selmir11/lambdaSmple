@@ -1,4 +1,4 @@
-Feature: Enroll  a plan from broker portal (FAMILY OF 1)
+Feature: Enroll a plan from broker portal (FAMILY OF 1)
 
   @SLER-626 @n1
   Scenario: : EXCH Initial Application -  Broker OBO -  Minor Only
@@ -120,36 +120,41 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page OBO
     And I check for minors in the household
+    Then I validate I am on the "Broker Portal Your Clients" page
+    Then I click on broker userName and logout
 
-#    Then I validate I am on the "Account Overview" page
-#    And I click on ClickHere link for "My Documents"
-#    And I click on download "EN-002-04" document
-#    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-#    Then I validate I am on the "My Account Overview" page
-#    And I Validate the correct enrolled plans are displayed on account overview page
-    #    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click on Sign Out in the Header for "NonElmo"
+    Then I validate I am on the "Login" page
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I click on ClickHere link for "My Documents"
+    And I click on download "EN-002-04" document
+    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+    Then I validate I am on the "My Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "NonElmo"
 
 # #   Gmail Verification
 #    Then I open outlook Tab
 #    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
 #    Then I open the notice "(EN-002-04)" in "English"
 #    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-#    And I validate the email notice details for "dental" plan
-#      |Daughter|
-#    And I validate the email notice details for "medical" plan
-#    |Daughter|
+#    And I validate additional details for "medical" plan on email notice
+#      | Daughter |
+#    And I validate additional details for "dental" plan on email notice
+#      | Daughter |
 #    Then I delete the open notice
 #    And I sign out of Outlook
 #    And I switch to the tab number 0
 
-#    #DbVerification
-#    And I verify the policy data quality check with Policy Ah keyset size 1
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-
+    #DbVerification
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables

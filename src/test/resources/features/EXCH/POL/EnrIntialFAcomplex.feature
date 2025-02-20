@@ -409,11 +409,11 @@ Feature: Enroll a in a plan 8 HH
 
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click on Sign Out in the Header for "NonElmo"
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -444,9 +444,9 @@ Feature: Enroll a in a plan 8 HH
 #    And I sign out of Outlook
 #    And I switch to the tab number 0
 
-#   # DbVerification
-#    And I verify the policy data quality check with Policy Ah keyset size 4
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+   # DbVerification
+    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data

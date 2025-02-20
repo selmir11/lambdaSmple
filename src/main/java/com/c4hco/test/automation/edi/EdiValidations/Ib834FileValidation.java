@@ -30,8 +30,8 @@ public class Ib834FileValidation {
     int insSegCount = 0;
     SoftAssert softAssert = new SoftAssert();
 
-    public Ib834FileValidation(){
-      setN1SegList();
+    public Ib834FileValidation() {
+        setN1SegList();
     }
 
     public void validateIb834MedFile(String medFile) {
@@ -46,7 +46,7 @@ public class Ib834FileValidation {
         validateSegCount();
     }
 
-    public void validateIb834DenFile(String denFile){
+    public void validateIb834DenFile(String denFile) {
         getIb834DenEntitiesForSubscriber(denFile);
         List<Ib834Entity> dentalEntityList = SharedData.getIb834DenDetailsEntities();
         getIb834DataByEmailAndAccNum();
@@ -59,9 +59,9 @@ public class Ib834FileValidation {
     }
 
     private void validateSegCount() {
-        int transSegCount=0;
+        int transSegCount = 0;
         String seSeg;
-        for(Transaction transaction: transactionsList){
+        for (Transaction transaction : transactionsList) {
             seSeg = transaction.getCommonSegments().getSE().get(0).get(0);
             transSegCount = transSegCount + Integer.parseInt(seSeg);
         }
@@ -77,7 +77,7 @@ public class Ib834FileValidation {
                     if (entity.getMember_first_name().contains(member.getNM1().get(0).get(3))) {
                         System.out.println("validating the member segments for :::::::::::::" + member.getNM1().get(0).get(3));
                         validateIb834MemSegments(member, entity);
-                        if(!(entity.getResponsible_person_email() ==null)){
+                        if (!(entity.getResponsible_person_email() == null)) {
                             validatePerSeg(entity, member);
                             nm1MinorSubs(member, entity);
                         }
@@ -110,7 +110,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(dmgSeg.get(0), "D8", "D8, Date Expressed in Format CCYYMMDD");
         softAssert.assertEquals(dmgSeg.get(1), entry.getMember_dob(), "Member date of birth does not match");
         softAssert.assertEquals(dmgSeg.get(2), entry.getMember_gender(), "Member gender does not match");
-        if(!(entry.getMember_race().equals("7") || entry.getMember_race().equals("8")) ){
+        if (!(entry.getMember_race().equals("7") || entry.getMember_race().equals("8"))) {
             softAssert.assertEquals(dmgSeg.get(4), entry.getMember_race(), "Member gender does not match");
         }
     }
@@ -134,7 +134,8 @@ public class Ib834FileValidation {
             softAssert.assertEquals(insSegment.get(7), "AC", "Active does not match");
         }
     }
-    private void validateNM1IncorrectEntities(List<List<String>> nm1Seg, Ib834Entity entry){
+
+    private void validateNM1IncorrectEntities(List<List<String>> nm1Seg, Ib834Entity entry) {
         softAssert.assertEquals(nm1Seg.get(0).get(0), "74", "Entity Identifier Code does not match");
         softAssert.assertEquals(nm1Seg.get(2).get(0), "31", "NM1 segment with value 31");
         softAssert.assertEquals(nm1Seg.get(2).get(1), "1", "NM1 segment with value 1");
@@ -144,8 +145,8 @@ public class Ib834FileValidation {
     private void validateIb834NM1Seg(Member member, Ib834Entity entry) {
         List<List<String>> nm1Seg = member.getNM1();
         segCount = segCount + nm1Seg.size();
-        MemberDetails memberFromSd =  basicActions.getMember(entry.getMember_first_name());
-        if(entry.getSubscriber_indicator().equals("Y") && !memberFromSd.getIsMinor()) {
+        MemberDetails memberFromSd = basicActions.getMember(entry.getMember_first_name());
+        if (entry.getSubscriber_indicator().equals("Y") && !memberFromSd.getIsMinor()) {
             if (memberFromSd.getHasIncorrectEntities()) {
                 validateNM1IncorrectEntities(nm1Seg, entry);
             } else {
@@ -155,7 +156,7 @@ public class Ib834FileValidation {
                     softAssert.assertEquals(nm1Seg.get(1).get(1), "1", "NM1 segment with value 1");
                 }
             }
-        }else  if (entry.getSubscriber_indicator().equals("N")){
+        } else if (entry.getSubscriber_indicator().equals("N")) {
             // member
             validateNm1ILSeg(nm1Seg, entry);
             softAssert.assertEquals(String.valueOf(nm1Seg.size()), "1", "NM1 segment size for member is not equal to 1");
@@ -163,11 +164,11 @@ public class Ib834FileValidation {
         softAssert.assertAll();
     }
 
-    private void nm1MinorSubs(Member member, Ib834Entity entry){
+    private void nm1MinorSubs(Member member, Ib834Entity entry) {
         List<List<String>> nm1Seg = member.getNM1();
-        MemberDetails memberFromSd =  basicActions.getMember(entry.getMember_first_name());
+        MemberDetails memberFromSd = basicActions.getMember(entry.getMember_first_name());
         validateNm1ILSeg(nm1Seg, entry);
-        if(!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress()) && !(memberFromSd.getMailingAddress() == null)){
+        if (!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress()) && !(memberFromSd.getMailingAddress() == null)) {
             softAssert.assertEquals(nm1Seg.get(1).get(0), "31", "NM1 segment with value 31");
             softAssert.assertEquals(nm1Seg.get(1).get(1), "1", "NM1 segment with value 1");
 
@@ -183,7 +184,6 @@ public class Ib834FileValidation {
             softAssert.assertEquals(String.valueOf(nm1Seg.size()), "2", "NM1 segment size is not equal to 3");
         }
     }
-
 
 
     private void validateNm1ILSeg(List<List<String>> nm1Seg1, Ib834Entity entry) {
@@ -231,7 +231,7 @@ public class Ib834FileValidation {
                 softAssert.assertEquals(dtpSeg.get(2), entry.getBenefit_end_date(), "DTP 349 does not match with benefit end date.");
             } else if (dtpSeg.get(0).contains("303")) {
                 // WIP - Financial_effective_date() is null in DB but had a value in file
-         //  softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
+                //  softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
             }
         }
     }
@@ -275,11 +275,13 @@ public class Ib834FileValidation {
         validateMemN1Seg(entry, n1SegList);
 
     }
+
     private void validateWithoutSepReasn(int lxSegCount, List<String> refSegList, Ib834Entity entry, Member member) {
         if (member.getINS().get(0).get(0).equals("Y")) {
             softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getAddl_maint_reason()), "LX" + lxSegCount + " did not match");
         }
     }
+
     private void validateMemN1Seg(Ib834Entity entry, List<String> n1SegList) {
         List<String> expectedN1List;
 
@@ -309,7 +311,7 @@ public class Ib834FileValidation {
                         softAssert.assertEquals(refSegList.get(1), entry.getEap_id(), "REF 1L segment mismatch");
                         break;
                     case "CE":
-                        softAssert.assertEquals(refSegList.get(1), entry.getHios_plan_id()+entry.getCsr_level(), "REF CE segment mismatch");
+                        softAssert.assertEquals(refSegList.get(1), entry.getHios_plan_id() + entry.getCsr_level(), "REF CE segment mismatch");
                         break;
                     case "E8":
                         softAssert.assertEquals(refSegList.get(1), "COH-INDV1", "REF E8 segment mismatch");
@@ -344,13 +346,13 @@ public class Ib834FileValidation {
         }
     }
 
-        private void validateDtpSegment(Ib834Entity entry, Transaction transaction) {
-            List<List<String>> dtpSegment = transaction.getCommonSegments().getDTP();
-            segCount = segCount + dtpSegment.size();
-            softAssert.assertEquals(dtpSegment.get(0).get(0), "303", "DTP01 segment, Date Time Qualifier, mismatch");
-            softAssert.assertEquals(dtpSegment.get(0).get(1), "D8", "DTP02 segment, Date Time Period Format Qualifier D8 mismatch");
-            softAssert.assertAll();
-        }
+    private void validateDtpSegment(Ib834Entity entry, Transaction transaction) {
+        List<List<String>> dtpSegment = transaction.getCommonSegments().getDTP();
+        segCount = segCount + dtpSegment.size();
+        softAssert.assertEquals(dtpSegment.get(0).get(0), "303", "DTP01 segment, Date Time Qualifier, mismatch");
+        softAssert.assertEquals(dtpSegment.get(0).get(1), "D8", "DTP02 segment, Date Time Period Format Qualifier D8 mismatch");
+        softAssert.assertAll();
+    }
 
     private void validateSponsorPayerDetails(Ib834Entity entry, Transaction transaction) {
         List<List<String>> n1Segment = transaction.getCommonSegments().getN1();
@@ -376,6 +378,7 @@ public class Ib834FileValidation {
             segCount = segCount + 1;
         }
     }
+
     private void validatePerSeg(Ib834Entity entry, Member member) {
         List<String> perSeg = member.getPER().get(0);
         segCount = segCount + 1;
@@ -387,6 +390,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(perSeg.get(6), "AP", "Alternate phone code does not match");
         softAssert.assertEquals(perSeg.get(7), entry.getAlternate_phone(), "Alternate phone number does not match");
     }
+
     private void validateBgnSeg(Ib834Entity entry, Transaction transaction) {
         List<String> bgnSeg = transaction.getCommonSegments().getBGN().get(0);
         segCount = segCount + 1;
@@ -395,6 +399,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(bgnSeg.get(4), "MT", "Interchange time does not match");
         softAssert.assertEquals(bgnSeg.get(7), entry.getBgn_action_code(), "BGN action code does not match");
     }
+
     private void validateQtySeg(Ib834Entity entry, Transaction transaction) {
         List<List<String>> qtySeg = transaction.getCommonSegments().getQTY();
         segCount = segCount + qtySeg.size();
@@ -405,6 +410,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(qtySeg.get(2).get(0), "ET", "Total subscribers");
         softAssert.assertEquals(qtySeg.get(2).get(1), entry.getTotal_subscribers(), "Total subscribers does not match");
     }
+
     private void validateLUISeg(Ib834Entity entry, Transaction transaction) {
         List<List<String>> luiSeg = transaction.getMembersList().get(0).getLUI();
         segCount = segCount + luiSeg.size();
@@ -413,6 +419,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(luiSeg.get(1).get(2), entry.getSpoken_language(), "Spoken Language does not match.");
         softAssert.assertEquals(luiSeg.get(1).get(3), String.valueOf(7), "Spoken Language Use Indicator does not match");
     }
+
     private void validateN3N4Segments(Ib834Entity entry, Member member) {
         //N3 Segment
         List<List<String>> n3Seg = member.getN3();
@@ -434,6 +441,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(n4Seg.get(0).get(4), "CY", "Country Code");
         softAssert.assertEquals(n4Seg.get(0).get(5), entry.getResidence_fip_code(), "Residence fipcode does not match");
     }
+
     private void validateTrnSeg(Ib834Entity entry, Transaction transaction) {
         // ST Segment
         List<String> stSeg = transaction.getCommonSegments().getST().get(0);
@@ -444,6 +452,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(seSeg.get(1), entry.getTs_control_number(), "Ts control number does not match");
         segCount = segCount + 2;
     }
+
     private void validateSubscriberRefSeg(Transaction transaction) {
         List<String> refSeg = transaction.getCommonSegments().getREF().get(0);
         segCount = segCount + 1;
@@ -476,7 +485,7 @@ public class Ib834FileValidation {
         softAssert.assertEquals(gsSeg.get(0), "BE", "Benefit Enrollment and Maintenance, Code identifying a group of application related transaction sets");
         softAssert.assertEquals(gsSeg.get(1), entry.getInterchange_sender_id(), "Sender's code does not match");
         softAssert.assertEquals(gsSeg.get(2), entry.getInterchange_receiver_id(), "Receiver's code does not match");
-        softAssert.assertEquals(gsSeg.get(3), "20"+entry.getInterchange_date(), "GS Seg,Interchange date does not match");
+        softAssert.assertEquals(gsSeg.get(3), "20" + entry.getInterchange_date(), "GS Seg,Interchange date does not match");
         softAssert.assertEquals(gsSeg.get(4), entry.getInterchange_time(), "GS Seg,Interchange time does not match");
         softAssert.assertEquals(gsSeg.get(5), entry.getGroup_ctrl_number(), "Group control number does not match");
         softAssert.assertEquals(gsSeg.get(6), "X", "Code identifying the issuer of the standard; this code is used in conjunction with Data, X\n" +
@@ -488,9 +497,9 @@ public class Ib834FileValidation {
         setTransGrpCtrlNum(geSeg);
     }
 
-    private void setTransGrpCtrlNum(JSONArray geSeg){
+    private void setTransGrpCtrlNum(JSONArray geSeg) {
         Map<String, String> transForGrpCtrlNum = SharedData.getIb834transForGrpCtrlNum();
-        if(transForGrpCtrlNum == null){
+        if (transForGrpCtrlNum == null) {
             transForGrpCtrlNum = new HashMap<>();
         }
         transForGrpCtrlNum.put(geSeg.get(1).toString(), geSeg.get(0).toString());
