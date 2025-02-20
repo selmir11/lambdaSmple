@@ -155,7 +155,7 @@ public class Ib834FileValidation {
                     softAssert.assertEquals(nm1Seg.get(1).get(1), "1", "NM1 segment with value 1");
                 }
             }
-        }else {
+        }else  if (entry.getSubscriber_indicator().equals("N")){
             // member
             validateNm1ILSeg(nm1Seg, entry);
             softAssert.assertEquals(String.valueOf(nm1Seg.size()), "1", "NM1 segment size for member is not equal to 1");
