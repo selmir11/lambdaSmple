@@ -19,6 +19,16 @@ public class AdminPortalProgramManagerAccountCreationSteps {
         accountCreationPage.validateTheSuccessMessageForProfileCreationIsDisplayed();
     }
 
+    @Then("I click on create profile button on Create Program Manager Profile page")
+    public void iClickOnCreateProfileButtonOnCreateProgramManagerProfilePage() {
+        accountCreationPage.clickCreateProfile();
+    }
+
+    @And("I validate errors are displaying on Create Program Manager Profile page")
+    public void iValidateErrorsAreDisplayingOnCreateProgramManagerProfilePage() {
+        accountCreationPage.validateErrors();
+    }
+
 
 
 }
