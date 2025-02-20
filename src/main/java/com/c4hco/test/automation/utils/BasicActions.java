@@ -11,6 +11,7 @@ import org.testng.Assert;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1233,6 +1234,20 @@ public class BasicActions {
                 break;
             }
         }
+    }
+
+    public boolean isAscendingOrder(String language, List<String> list) {
+        List<String> sortedList = new ArrayList<>(list);
+
+        if(language.equals("Spanish")){
+            Collator collator = Collator.getInstance(new Locale("es","ES"));
+            collator.setStrength(Collator.IDENTICAL);
+            sortedList.sort(collator);
+        }
+        else {
+            Collections.sort(sortedList);
+        }
+        return  list.equals(sortedList);
     }
 }
 

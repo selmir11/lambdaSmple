@@ -217,33 +217,8 @@ public class Ob834Util {
             e.printStackTrace();
         }
         SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-       // testLocal();
     }
 
     public void testLocal(){
-        Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        List<Transaction> transactionList = edi834TransactionDetails.getTransactionList();
-        Transaction transaction = edi834TransactionDetails.getTransactionList().get(0);
-        Member member = transaction.getMembersList().get(0);
-        List<List<String>> lxSegment = member.getLX();
-        edi834TransactionDetails.getTransactionList().get(0).getCommonSegments();
-        List<List<String>> nm1Seg1  = member.getNM1();
-        String expectedEmail = "emailaddressforautomation+R0gJAhGbv@gmail.com";
-        List<Transaction> sortedTransactionList = new ArrayList<>();
-
-        for(Transaction transaction1: transactionList){
-            List<Member> members = transaction1.getMembersList();
-
-            for(Member mem: members){
-                if(mem.getINS().get(0).get(0).equals("Y") && mem.getPER().get(0).get(5).equals(expectedEmail)){
-                    break;
-                }
-            }
-            sortedTransactionList.add(transaction1);
-        }
-
-        edi834TransactionDetails.setTransactionList(sortedTransactionList);
-        SharedData.setEdi834TransactionDetails(edi834TransactionDetails);
-        transactionList = edi834TransactionDetails.getTransactionList();
     }
 }
