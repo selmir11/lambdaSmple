@@ -208,8 +208,9 @@ public class Ob834Util {
                             memberList.add(member);
                         }
                     transaction.setMembersList(memberList);
-                    transactionList.add(transaction);
+
                 }
+                transactionList.add(transaction);
             }
             edi834TransactionDetails.setTransactionList(transactionList);
         } catch (Exception e) {
@@ -219,11 +220,5 @@ public class Ob834Util {
     }
 
     public void testLocal(){
-        Edi834TransactionDetails edi834TransactionDetails = SharedData.getEdi834TransactionDetails();
-        Transaction transaction = edi834TransactionDetails.getTransactionList().get(0);
-        Member member = transaction.getMembersList().get(0);
-        List<List<String>> lxSegment = member.getLX();
-        edi834TransactionDetails.getTransactionList().get(0).getCommonSegments();
-        List<List<String>> nm1Seg1  = member.getNM1();
     }
 }

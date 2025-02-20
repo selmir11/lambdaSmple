@@ -22,4 +22,9 @@ public class FinancialHelpAgreementsPageSteps {
     public void continueInitialPaymentCoCo(){
         financialHelpAgreementsPage.clickContinue();
     }
+
+    @And("I verify text on Financial agreement page")
+    public void FinancialAgreementEnglish() {
+        financialHelpAgreementsPage.verifyFinancialAgreementPageVerbiage();
+    }
 }

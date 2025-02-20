@@ -856,7 +856,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             premiumMem.clear();
             premiumMem.sendKeys(newPremiumAmt);
             if(SharedData.getPrimaryMember()!=null){
-            SharedData.getPrimaryMember().setMedicalAptcAmt(newPremiumAmt);}
+            SharedData.getPrimaryMember().setMedicalPremiumAmt(newPremiumAmt);}
         }
     }
 

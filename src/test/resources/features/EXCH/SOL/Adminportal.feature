@@ -367,12 +367,12 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -492,12 +492,12 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I validate I am on the "Deductions" page
       Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
-      And I select the option "No" to claim as dependent
-      And I select the option "Yes" to file federal income tax return next year
-      And I select "Married filing jointly" tax filing status
-      And I select spouse to file taxes jointly
-      And I select "No" to claim dependents
-      And I click save and continue on tax status page
+      Then I select "No" for will you be claimed as dependent question
+      Then I select "Yes" for will file tax return question
+      Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+      Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+      Then I select "No" for will claim dependents question
+      Then I click Save and Continue on Tax Status Elmo page
       Then I select "None of these" as ELMO health coverage option
       Then I click continue on the ELMO health coverage page
       Then I select "None of these" as ELMO health coverage option

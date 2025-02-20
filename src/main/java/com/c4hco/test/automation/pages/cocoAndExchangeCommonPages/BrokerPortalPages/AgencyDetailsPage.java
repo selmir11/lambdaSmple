@@ -18,76 +18,100 @@ public class AgencyDetailsPage {
     @FindBy(xpath = "//*[@id='elem']/app-agency-details/div/div")
     WebElement agencyDetailsTitle;
 
-    @FindBy(id = "l_agencyName")
+    @FindBy(xpath = "//label[@for='agencyName']")
     WebElement agencyNameLabel;
 
-    @FindBy(id = "agencyName")
+    @FindBy(xpath = "//input[@id='agencyName']")
     WebElement agencyName;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter Agency Name')]")
+    @FindBy(xpath = "//span[@id='an-mf-error']")
     WebElement agencyNameErrorMessage;
 
-    @FindBy(id = "l_agencyTin")
+    @FindBy(id = "sp-char-name")
+    WebElement agencyNameSpecialCharErrorMessage;
+
+    @FindBy(xpath = "//label[@for='agencyTin']")
     WebElement agencyTinLabel;
 
-    @FindBy(id = "agencyTin")
+    @FindBy(xpath = "//input[@id='agencyTin']")
     WebElement agencyTin;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter Agency TIN')]")
+    @FindBy(id = "atin-mf-error")
     WebElement agencyTinErrorMessage;
 
-    @FindBy(id = "l_agencyGroup")
+    @FindBy(xpath = "//label[@for='agencyGroup']")
     WebElement agencyGroupLabel;
 
-    @FindBy(id = "error_message_required")
+    @FindBy(xpath = "//select[@id='agencyGroup']")
+    WebElement agencyGroupDropdown;
+
+    @FindBy(xpath = "//span[@id='ag-mf-error']")
     WebElement agencyGroupErrorMessage;
 
     @FindBy(id = "l_mailingHeader")
     WebElement agencyAddress;
 
-    @FindBy(id = "l_primaryAddressLine1")
+    @FindBy(xpath = "//label[@for='primaryAddressLine1']")
     WebElement addressLine1Label;
 
-    @FindBy(id = "primaryAddressLine1")
+    @FindBy(xpath = "//input[@id='primaryAddressLine1']")
     WebElement addressLine1;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter Address Line1')]")
+    @FindBy(xpath = "//span[@id='address-mf-error']")
     WebElement addressLine1ErrorMessage;
 
-    @FindBy(id = "l_primaryAddressLine2")
+    @FindBy(id = "sp-char-addone")
+    WebElement addressLine1SpecialCharErrorMessage;
+
+    @FindBy(xpath = "//label[@for='primaryAddressLine2']")
     WebElement addressLine2Label;
 
-    @FindBy(id = "primaryAddressLine2")
+    @FindBy(xpath = "//input[@id='primaryAddressLine2']")
     WebElement addressLine2;
 
-    @FindBy(id = "l_primaryCity")
+    @FindBy(id = "sp-char-addtwo")
+    WebElement addressLine2SpecialCharErrorMessage;
+
+    @FindBy(xpath = "//label[@for='primaryCity']")
     WebElement cityLabel;
 
-    @FindBy(id = "primaryCity")
+    @FindBy(xpath = "//input[@id='primaryCity']")
     WebElement cityField;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter City')]")
+    @FindBy(xpath = "//span[@id='city-mf-error']")
     WebElement cityErrorMessage;
 
-    @FindBy(id = "l_primaryState")
+    @FindBy(id = "sp-char-city")
+    WebElement citySpecialCharErrorMessage;
+
+    @FindBy(xpath = "//label[@for='primaryState']")
     WebElement stateLabel;
 
-    @FindBy(xpath = "//div[normalize-space()='Please enter State']")
+    @FindBy(xpath = "//select[@id='primaryState']")
+    WebElement stateDropdown;
+
+    @FindBy(xpath = "//span[@id='state-mf-error']")
     WebElement stateErrorMessage;
 
-    @FindBy(id = "l_primaryZip")
+    @FindBy(xpath = "//label[@for='primaryZip']")
     WebElement zipCodeLabel;
 
-    @FindBy(id = "primaryZip")
+    @FindBy(xpath = "//input[@id='primaryZip']")
     WebElement zipCodeField;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter Zip Code')]")
+    @FindBy(xpath = "//span[@id='zc-mf-error']")
     WebElement zipCodeErrorMessage;
 
-    @FindBy(id = "l_primaryCounty")
+    @FindBy(id = "sp-char-zip")
+    WebElement zipCodeSpecialCharErrorMessage;
+
+    @FindBy(xpath = "//label[@for='primaryCounty']")
     WebElement countyLabel;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter County')]")
+    @FindBy(xpath = "//select[@id='primaryCounty']")
+    WebElement countyDropdown;
+
+    @FindBy(xpath = "//span[@id='country-mf-error']")
     WebElement countyErrorMessage;
 
     @FindBy(id = "l_hideAddress")
@@ -99,43 +123,58 @@ public class AgencyDetailsPage {
     @FindBy(id = "l_workingHours")
     WebElement workingHoursLabel;
 
-    @FindBy(xpath = "//div[normalize-space()='Please enter your working hours']")
+    @FindBy(id = "input-working-from")
+    WebElement workingHoursFrom;
+
+    @FindBy(id = "input-working-to")
+    WebElement workingHoursTo;
+
+    @FindBy(id = "wh-mf-error")
     WebElement workingHoursErrorMessage;
+
+    @FindBy(id = "both-wh-error")
+    WebElement workingHoursFromToErrorMessage;
 
     @FindBy(id = "l_workingDays")
     WebElement workingDaysLabel;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter Working Days')]")
+    @FindBy(xpath = "//*[@id='input-working-days']/ng-select/div/div/div[2]/input")
+    WebElement workingDaysDropdown;
+
+    @FindBy(xpath = "//span[normalize-space()='Monday']")
+    WebElement workingDaysDropdownOption;
+
+    @FindBy(id = "wd-mf-error")
     WebElement workingDaysErrorMessage;
-
-    @FindBy(id = "l_areaOfExpertise")
-    WebElement areaOfExpertiseLabel;
-
-    @FindBy(xpath = "//div[contains(text(),'Please enter area of expertise')]")
-    WebElement areaOfExpertiseErrorMessage;
 
     @FindBy(id = "l_languages")
     WebElement languagesLabel;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter language')]")
+    @FindBy(xpath = "//*[@id='input-languages']/ng-select/div/div/div[2]/input")
+    WebElement languagesDropdown;
+
+    @FindBy(xpath = "//span[@class='ng-option-label'][normalize-space()='English']")
+    WebElement languagesOption;
+
+    @FindBy(id = "lan-mf-error")
     WebElement languagesErrorMessage;
 
-    @FindBy(id = "l_email")
+    @FindBy(xpath = "//label[@for='email']")
     WebElement emailLabel;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement emailField;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter Email')]")
+    @FindBy(xpath = "//span[@id='email-mf-error']")
     WebElement emailErrorMessage;
 
     @FindBy(id = "l_phoneNumber")
     WebElement phoneNumberLabel;
 
-    @FindBy(id = "phoneNumber")
+    @FindBy(xpath = "//input[@id='phoneNumber']")
     WebElement phoneNumberField;
 
-    @FindBy(xpath = "//div[contains(text(),'Please enter Phone Number')]")
+    @FindBy(xpath = "//div[@id='ph-mf-error']")
     WebElement phoneNumberErrorMessage;
 
     @FindBy(id = "BP-AgencyDetails-GoBack")
@@ -204,7 +243,6 @@ public class AgencyDetailsPage {
         softAssert.assertEquals(hideAddressLabel.getText(),"Hide This Address:");
         softAssert.assertEquals(workingHoursLabel.getText(),"Working Hours:");
         softAssert.assertEquals(workingDaysLabel.getText(),"Working Days:");
-        softAssert.assertEquals(areaOfExpertiseLabel.getText(),"Area of Expertise:");
         softAssert.assertEquals(languagesLabel.getText(),"Languages:");
         softAssert.assertEquals(emailLabel.getText(),"Email:");
         softAssert.assertEquals(phoneNumberLabel.getText(),"Phone Number:");
@@ -225,7 +263,6 @@ public class AgencyDetailsPage {
         softAssert.assertEquals(countyErrorMessage.getText(),"Please enter County");
         softAssert.assertEquals(workingHoursErrorMessage.getText(),"Please enter your working hours");
         softAssert.assertEquals(workingDaysErrorMessage.getText(),"Please enter Working Days");
-        softAssert.assertEquals(areaOfExpertiseErrorMessage.getText(),"Please enter area of expertise");
         softAssert.assertEquals(languagesErrorMessage.getText(),"Please enter language");
         softAssert.assertEquals(emailErrorMessage.getText(),"Please enter Email");
         softAssert.assertEquals(phoneNumberErrorMessage.getText(),"Please enter Phone Number");
@@ -266,11 +303,16 @@ public class AgencyDetailsPage {
         cityField.sendKeys("#$%!@&*()");
         zipCodeField.sendKeys("#$%!@&*()");
 
-        softAssert.assertEquals(agencyName.getAttribute("value"), "");
-        softAssert.assertEquals(addressLine1.getAttribute("value"), "");
-        softAssert.assertEquals(addressLine2.getAttribute("value"), "");
-        softAssert.assertEquals(cityField.getAttribute("value"), "");
-        softAssert.assertEquals(zipCodeField.getAttribute("value"), "");
+        softAssert.assertEquals(agencyName.getAttribute("value"), "#$%!@&*()");
+        softAssert.assertEquals(agencyNameSpecialCharErrorMessage.getText(), "Special Characters not allowed");
+        softAssert.assertEquals(addressLine1.getAttribute("value"), "#$%!@&*()");
+        softAssert.assertEquals(addressLine1SpecialCharErrorMessage.getText(), "Special Characters not allowed");
+        softAssert.assertEquals(addressLine2.getAttribute("value"), "#$%!@&*()");
+        softAssert.assertEquals(addressLine2SpecialCharErrorMessage.getText(), "Special Characters not allowed");
+        softAssert.assertEquals(cityField.getAttribute("value"), "#$%!@&*()");
+        softAssert.assertEquals(citySpecialCharErrorMessage.getText(), "Special Characters not allowed");
+        softAssert.assertEquals(zipCodeField.getAttribute("value"), "#$%!@");
+        softAssert.assertEquals(zipCodeSpecialCharErrorMessage.getText(), "Characters & Special Characters not allowed and must follow format XXXXX");
         softAssert.assertAll();
     }
 
@@ -278,8 +320,8 @@ public class AgencyDetailsPage {
         addressLine1.sendKeys("438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweifh");
         addressLine2.sendKeys("438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweifh");
 
-        softAssert.assertEquals(addressLine1.getAttribute("value"), "438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweif");
-        softAssert.assertEquals(addressLine2.getAttribute("value"), "438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweif");
+        softAssert.assertEquals(addressLine1.getAttribute("value"), "#$%!@&*()438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhi");
+        softAssert.assertEquals(addressLine2.getAttribute("value"), "#$%!@&*()438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhi");
         softAssert.assertAll();
     }
 
@@ -295,7 +337,7 @@ public class AgencyDetailsPage {
     public void validateZipCodeMax(){
         basicActions.waitForElementToBePresent(zipCodeField, 10);
         zipCodeField.clear();
-        zipCodeField.sendKeys("8013x4x600");
+        zipCodeField.sendKeys("80134x600");
 
         softAssert.assertEquals(zipCodeField.getAttribute("value"), "80134");
         softAssert.assertAll();
@@ -371,6 +413,15 @@ public class AgencyDetailsPage {
         builder.moveToElement(agencyHideAddressTooltip).perform();
 
         softAssert.assertEquals(agencyHideAddressTooltipText.getText(), "By default address lines 1 and 2 display in the search results on the \u2018Find a Certified Broker near you\u2019 page. If you do not want your address displayed to the public, please check the box here and only city, state and zip code will display for your location.");
+        softAssert.assertAll();
+    }
+
+    public void validateFromToWorkingHoursError(){
+        basicActions.waitForElementToBePresent(workingHoursLabel, 10);
+        workingHoursTo.sendKeys("0500PM");
+
+        basicActions.waitForElementToBePresentWithRetries(workingHoursFromToErrorMessage, 10);
+        softAssert.assertEquals(workingHoursFromToErrorMessage.getText(), "Please enter both the To and From working hours");
         softAssert.assertAll();
     }
 
