@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.edi.ediUtil;
+
 import com.c4hco.test.automation.Dto.Edi.Edi834.*;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -12,7 +13,6 @@ import org.apache.commons.collections4.ListValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.testng.Assert;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -192,8 +192,8 @@ public class Ib834Util {
                             memberList.add(member);
                         }
                         transaction.setMembersList(memberList);
-                        transactionList.add(transaction);
                     }
+                    transactionList.add(transaction);
                 }
                 ediIb834TransactionDetails.setTransactionList(transactionList);
             } catch (Exception e) {

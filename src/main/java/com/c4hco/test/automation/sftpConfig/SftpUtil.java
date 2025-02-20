@@ -3,7 +3,6 @@ package com.c4hco.test.automation.sftpConfig;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.edi.ediUtil.Ib834Util;
-import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ib999Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob834Util;
 import com.c4hco.test.automation.edi.ediUtil.Ob999Util;
@@ -18,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 public class SftpUtil {
     private Session session;
@@ -90,21 +90,70 @@ public class SftpUtil {
             throw new RuntimeException("SFTP operation failed ", e);
         }
     }
+    public void downloadOb999File(String remoteFilePath, String fileNameToDownload){
+        try {
+            connectToSftp();
+            String localPath = SharedData.getLocalPathToDownloadFile();
+            ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+
+            try {
+                String fullRemotePath = remoteFilePath.endsWith("/") ? remoteFilePath + fileNameToDownload : remoteFilePath + "/" + fileNameToDownload;
+                System.out.println("Checking for file: " + fullRemotePath);
+
+                int maxRetries = 5;
+                int retryCount = 0;
+
+                while (retryCount < maxRetries) {
+                    try {
+                        Vector<ChannelSftp.LsEntry> files = channelSftp.ls(fullRemotePath);
+                        if (!files.isEmpty()) {
+                            System.out.println("Ob999 File found! Downloading...");
+                            channelSftp.get(fullRemotePath, localPath);
+                            System.out.println("Download successful!");
+                            break; // Exit loop after successful download
+                        }
+                    } catch (SftpException e) {
+                        System.out.println("File not found, retrying in 5 seconds...");
+                        basicActions.wait(5000);
+                        retryCount++;
+                    }
+                }
+
+                if (retryCount == maxRetries) {
+                    throw new RuntimeException("File was not found after " + maxRetries + " retries: " + fullRemotePath);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("SFTP operation failed ", e);
+            } finally {
+                channelSftp.disconnect();
+                disconnectFromSftp();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("SFTP operation failed ", e);
+        }
+    }
 
 
-    public void uploadFileInSftp(String fileName, String remoteFilePath) throws JSchException {
-        connectToSftp();
-        String localPath = SharedData.getLocalPathToDownloadFile();
-        basicActions.wait(3000);
-        ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
-        channelSftp.connect();
-        try{
-           channelSftp.put(localPath+"/"+fileName, remoteFilePath);
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally {
-            channelSftp.disconnect();
-            disconnectFromSftp();
+    public void uploadFileInSftp(String fileName, String remoteFilePath) {
+        try {
+            connectToSftp();
+            String localPath = SharedData.getLocalPathToDownloadFile();
+            basicActions.wait(3000);
+            ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+            try {
+                channelSftp.put(localPath + "/" + fileName, remoteFilePath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                channelSftp.disconnect();
+                disconnectFromSftp();
+            }
+        } catch(JSchException e){
+            Assert.fail("Exception");
         }
     }
 
@@ -256,7 +305,7 @@ public class SftpUtil {
     public void readEdiFromLocal(){
         try{
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("seed01TcMed");
+            InputStream inputStream = classLoader.getResourceAsStream("4STMultiINS");
 
             if (inputStream != null) {
                 System.out.println("File found");
@@ -279,6 +328,22 @@ public class SftpUtil {
                 ib999Util.parseIb999(inputStream);
             } else {
                 System.err.println("File 'edi_999' not found in the resource folder.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void readIb834FromLocal(){
+        try{
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("ib834FaComplex");
+
+            if (inputStream != null) {
+                System.out.println("File found");
+                ib834Util.parseIb834File(inputStream);
+            } else {
+                System.err.println("File 'edi_384' not found in the resource folder.");
             }
         }catch (Exception e){
             e.printStackTrace();
