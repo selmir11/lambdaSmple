@@ -23,6 +23,9 @@ public class QlceConfirmationPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     //Birth
     @FindBy(id = "birth")
     WebElement birthQLCE;
@@ -34,14 +37,16 @@ public class QlceConfirmationPage {
 
     // Pregnancy
 
-    @FindBy(id = "pregnancy")
+    @FindBy(xpath = "//*[@id = 'pregnancyStatus']")
     WebElement pregnancyQLCE;
 
-    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'pregnancy')]")
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'pregnancyChkbxWrapper')]")
     List<WebElement> allmembersPregnancycheckbox;
-    @FindBy(xpath = "//input[@type='date'and contains(@id,'pregnancy')]")
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForPregnancyStatus0.lceEventDate')]")
     List<WebElement> pregnancyEventDate;
 
+    @FindBy(xpath = "//input[@id = 'pregnancyStatusRetainCoverageYes']")
+    WebElement yesRetainPrgnancyCoverage;
 
     //Marriage
     @FindBy(id = "marriage")
@@ -289,15 +294,16 @@ public class QlceConfirmationPage {
                 }
                 break;
             case "Pregnancy":
-                basicActions.waitForElementToBeClickable(pregnancyQLCE, 10);
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries(pregnancyQLCE, 20);
                 pregnancyQLCE.click();
                 for (var i = 0; i < allmembersPregnancycheckbox.size(); i++) {
-                    allmembersPregnancycheckbox.get(i).click();
-                    pregnancyEventDate.get(i).click();
-                    pregnancyEventDate.get(i).sendKeys(getCurrentDate());
+                    allmembersPregnancycheckbox.get( i ).click();
+                    pregnancyEventDate.get( i ).click();
+                    pregnancyEventDate.get( i ).sendKeys( getCurrentDate() );
                 }
-                break;
-
+                yesRetainPrgnancyCoverage.click();
+                 break;
 
             case "TaxTimeEnrollmentPeriod":
                 basicActions.waitForElementToBeClickable(taxTimeEnrollmentPeriod, 10);
