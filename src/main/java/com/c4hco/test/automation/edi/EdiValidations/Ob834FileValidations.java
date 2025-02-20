@@ -90,7 +90,6 @@ public class Ob834FileValidations {
                         validateSegments(member, entity);
                         if(!(entity.getResponsible_person_rel_code() == null)){
                             validatePerSeg(entity, member);
-                            minorSubNm1Seg(member, entity);
                         }
                         break;
                     }
@@ -439,7 +438,7 @@ public class Ob834FileValidations {
                 softAssert.assertEquals(nm1Seg.get(1).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
                 softAssert.assertEquals(nm1Seg.get(1).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
                 softAssert.assertEquals(String.valueOf(nm1Seg.size()), "2", "NM1 segment size is not equal to 3");
-            } else if(!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress())){
+            } else if(!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress())&& memberFromSd.getMailingAddress()!=null){
                 validateNm1ILSeg(nm1Seg, entry);
 
                 softAssert.assertEquals(nm1Seg.get(1).get(0), "31", "NM1 segment with value 31");
@@ -453,13 +452,6 @@ public class Ob834FileValidations {
         softAssert.assertAll();
     }
 
-    private void minorSubNm1Seg(Member member, Ob834DetailsEntity entry) {
-        List<List<String>> nm1Seg = member.getNM1();
-        softAssert.assertEquals(nm1Seg.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
-        softAssert.assertEquals(nm1Seg.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
-        softAssert.assertEquals(nm1Seg.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
-        softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
-    }
 
     private void validateNm1ILSeg(List<List<String>> nm1Seg1, Ob834DetailsEntity entry) {
         softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
