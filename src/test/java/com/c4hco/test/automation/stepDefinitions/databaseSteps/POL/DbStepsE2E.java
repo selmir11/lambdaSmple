@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps.POL;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.DbValidations.*;
 import io.cucumber.java.en.And;
 
@@ -7,39 +8,37 @@ import java.util.List;
 import java.util.Map;
 
 public class DbStepsE2E {
-    private final PolicyTableDbValidations policyTableDBValidations = new PolicyTableDbValidations();
-    private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
     private final Ib999DbValidations ib999DbValidations = new Ib999DbValidations();
-    private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
-    private final PolicyTableDbValidations_Grps policyTableDbValidations_Grps = new PolicyTableDbValidations_Grps();
-    private final Ob834PreEdiDbValidations_grp ob834PreEdiDbValidationsGrp = new Ob834PreEdiDbValidations_grp();
-
+    private final PolicyTableDbValidations policyTableDbValidations = new PolicyTableDbValidations();
+    private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
+    private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
 
 
     @And("I validate {string} entities from policy tables")
-    public void validateMedicalRecords(String recordType){
-        policyTableDBValidations.recordsValidations(recordType);
-    }
-    @And("I validate {string} entities from policy tables for groups")
     public void validateMedicalRecordsForGroups(String recordType){
-        policyTableDbValidations_Grps.groupRecordsValidations(recordType);
+        policyTableDbValidations.groupRecordsValidations(recordType);
     }
 
     @And("I validate {string} entities from pre edi db tables")
-    public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
-        ob834PreEdiDbValidations.recordsValidations(recordType, expectedValues);
-    }
-    @And("I validate {string} entities from pre edi db tables for groups")
     public void validateOb834MedicalRecordsForGroups(String recordType, List<Map<String, String>> expectedValues){
-        ob834PreEdiDbValidationsGrp.groupRecordsValidations(recordType, expectedValues);
+        ob834PreEdiDbValidations.groupRecordsValidations(recordType, expectedValues);
     }
     @And("I validate {string} entities from ib999_details db table")
     public void validateIb999DetailsDB(String recordType){
         ib999DbValidations.ib999RecordsValidations(recordType);
     }
-    @And("I validate ib834 {string} details in database")
-    public void validateIb834DetailsDb(String recordType, List<Map<String, String>> expectedValues){
+
+    @And("I reset the previous file names in shared data")
+    public void resetFiles(){
+        SharedData.setMedicalFileName_grp(null);
+        SharedData.setDentalFileName_grp(null);
+        SharedData.setOb834DetailsMedEntities(null);
+        SharedData.setOb834DetailsDenEntities(null);
+    }
+
+    @And("I validate ib834 {string} details in database for groups")
+    public void validateIb834DetailsDb_grps(String recordType, List<Map<String, String>> expectedValues){
         ib834DbValidations.ib834DbRecordsValidations(recordType, expectedValues);
     }
 

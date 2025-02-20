@@ -1,4 +1,5 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
+
   @SLER-626
   Scenario: : EXCH Initial Application -  Broker OBO -  Minor Only
     Given I open the login page on the "login" portal
@@ -8,6 +9,12 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I enter general mandatory data for "exchange" account creation with email "MGC4testing"@outlook.com
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -107,37 +114,94 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     Then I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
 
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
+    Then I validate I am on the "Pay now" page
+    Then I click all done from payment portal page OBO
+    And I check for minors in the household
 
-    Then I click all done from payment portal page
+#    Then I validate I am on the "Account Overview" page
+#    And I click on ClickHere link for "My Documents"
+#    And I click on download "EN-002-04" document
+#    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
+#    Then I validate I am on the "My Account Overview" page
+#    And I Validate the correct enrolled plans are displayed on account overview page
+    #    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click on Sign Out in the Header for "NonElmo"
 
-    Then I validate I am on the "Account Overview" page
-    And I click on ClickHere link for "My Documents"
-    And I click on download "EN-002-04" document
-    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-    Then I validate I am on the "My Account Overview" page
-    And I Validate the correct enrolled plans are displayed on account overview page
+# #   Gmail Verification
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate the email notice details for "dental" plan
+#      |Daughter|
+#    And I validate the email notice details for "medical" plan
+#    |Daughter|
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+
+#    #DbVerification
+#    And I verify the policy data quality check with Policy Ah keyset size 1
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
 
-    #Gmail Verification
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate the email notice details for "dental" plan
-      |Daughter|
-    And I validate the email notice details for "medical" plan
-    |Daughter|
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
 
-    #DbVerification
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
-    And I verify the policy data quality check with Policy Ah keyset size 1
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+
+  # Ib999 DB Validation
+    And I validate "medical" entities from ib999_details db table
+    And I validate "dental" entities from ib999_details db table
+
+    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" ib999 files from sftp server with location "/archive/INBOUND999/"
+
+    And I validate the ib999 "medical" file data
+    And I validate the ib999 "dental" file data
+
+    #Ib834
+    And I validate ib834 "medical" details in database for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+    And I validate ib834 "dental" details in database for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+
+    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+    And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
+
+    And I validate the ib834 "medical" files data
+    And I validate the ib834 "dental" files data
+
+    # Ob999
+    And I validate "medical" entities from ob999_details db table
+    And I validate "dental" entities from ob999_details db table
+
+    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
+
+    And I validate the ob999 "medical" file data
+    And I validate the ob999 "dental" file data

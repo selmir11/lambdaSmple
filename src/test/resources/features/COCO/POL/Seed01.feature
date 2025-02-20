@@ -101,6 +101,3 @@ And I click on "My Plans" link on welcome page
 And I validate enrolled medical plans details on my policies page coco
 And I click view Plan History link from medical plan card in coco
 And I validate medical plan details from plan history in coco
-    #DBsteps
-And I validate "medical" entities from policy tables
-

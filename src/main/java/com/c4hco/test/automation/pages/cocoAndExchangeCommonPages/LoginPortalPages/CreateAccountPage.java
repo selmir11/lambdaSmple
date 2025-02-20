@@ -194,7 +194,7 @@ public class CreateAccountPage {
     @FindBy(id = "loginPortal-createAccount-indicatePrimary")
     WebElement primaryUserErrorMessage;
 
-    @FindBy(id = "mat-mdc-checkbox-2-input")
+    @FindBy(id = "pp-input")
     WebElement termsOfUseCheckbox;
 
     @FindBy(id = "pp-mf-error")

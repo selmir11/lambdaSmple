@@ -31,7 +31,8 @@ public class AdminPortalAccountCreationPages {
     WebElement successTitleText;
     @FindBy(xpath = "//*[@id='create-account-page']/form/div[1]/div[2]/p[2]")
     WebElement successBodyText;
-
+    @FindBy(css = ".error-message")
+    WebElement expectedErrorMessageInBody;
 
     public void enterValidDataToCreateAdminAccount(String emailBase) {
         basicActions.waitForElementToBePresent(firstName,30);
@@ -53,5 +54,17 @@ public class AdminPortalAccountCreationPages {
         softAssert.assertEquals(successTitleText.getText(), "Success!");
         softAssert.assertEquals(successBodyText.getText(), "New user was created. Please check the provided email for further instructions.");
 
+    }
+    public void enterAdminPortalDataThatAlreadyExists(){
+        basicActions.waitForElementToBePresent(firstName,30);
+        firstName.sendKeys("Monday");
+        lastName.sendKeys("McAdminUser");
+        email.sendKeys("exmat3@gmail.com");
+        createBtn.click();
+    }
+    public void validateTheExpectedErrorsMessageDisplays() {
+        basicActions.waitForElementToBePresentWithRetries(expectedErrorMessageInBody,30);
+        softAssert.assertEquals(expectedErrorMessageInBody.getText(), "Sorry, we're unable to proceed with this email. Please double-check and try again.");
+        softAssert.assertAll();
     }
 }
