@@ -350,7 +350,7 @@ public class OhcTricarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Go back");
+        softAssert.assertEquals(goBackBtn.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
@@ -439,7 +439,7 @@ public class OhcTricarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Volver");
+        softAssert.assertEquals(goBackBtn.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }

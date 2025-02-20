@@ -231,6 +231,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void verifyHeadersRetireeOhcPageEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertAll();
@@ -350,7 +351,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Go back");
+        softAssert.assertEquals(goBackBtn.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
@@ -439,7 +440,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Volver");
+        softAssert.assertEquals(goBackBtn.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }
@@ -475,8 +476,8 @@ public class OhcRetireeHealthPlanPage_Elmo {
     }
 
     public void verifyRetireePageFirstSectionSecondaryDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");

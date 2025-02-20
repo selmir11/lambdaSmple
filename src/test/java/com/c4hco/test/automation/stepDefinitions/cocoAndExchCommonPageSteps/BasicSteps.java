@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -746,7 +745,10 @@ public class BasicSteps {
         String origin = basicActions.getDriver().getWindowHandle();
         basicActions.switchToPageAndValidate(page, pageUrl, 90);
         basicActions.wait(3000);
-        basicActions.closeBrowserTab();
+        try {
+            basicActions.closeBrowserTab();
+        } catch (org.openqa.selenium.WebDriverException e) {
+        }
         basicActions.getDriver().switchTo().window(origin);
     }
 
