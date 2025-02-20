@@ -1,6 +1,6 @@
 Feature: Enroll a plan from broker portal (FAMILY OF 1)
 
-  @SLER-626 @n1
+  @SLER-626-wip @SLER-2221 @SLER-2223 @SLER-2225 @SLER-2227 @pol_exch_passed
   Scenario: : EXCH Initial Application -  Broker OBO -  Minor Only
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
