@@ -158,7 +158,7 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[1]/div[6]/div[15]/input[1]")
     WebElement aptcmember2;
 
-    @FindBy(xpath = "//div[@class='value-container body-text-1'][3]")
+    @FindBy(xpath = "//*[@id=\"form-edit-pan-member-info\"]/div/div[7]/div/div[2]")
     WebElement EHBPremiumamtmedical;
 
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[8]")
@@ -1369,10 +1369,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));   }
 
-
     public void validateErrorMessagesCoCo(DataTable table) {
-        List<Map<String, String>> memberData = table.asMaps(String.class, String.class);
-
+        List<Map<String, String>> memberData = table.asMaps();
         for (Map<String, String> data : memberData) {
             String memberNo = data.get("member");
             String aptcValue = data.get("aptc");
@@ -1386,31 +1384,14 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             }
 
             boolean errorMessageElement;
-            if (SESInvalidError.getText().equals(expectedErrorMessage)) errorMessageElement = true;
-            else
-                throw new AssertionError("Error message: '" + expectedErrorMessage + "' not displayed for member " + memberNo);
+            softAssert.assertEquals(SESInvalidError.getText(), expectedErrorMessage, "Message didn't display");
+            softAssert.assertAll();
         }
     }
-    public void validateEHBErrorsCoCo(String planType) {
-        String value1Text = aptcmember2.getAttribute("value");
-        String numericValue1 = value1Text.replaceAll("[^0-9.]", "");
-        String value2Text = aptcmember1.getAttribute("value");
-        String numericValue2 = value2Text.replaceAll("[^0-9.]", "");
-        String numericValue3 = value3Text.replaceAll("[^0-9.]", "");
-
-
-        if ("medical".equalsIgnoreCase(planType)) {
-            value3Text = EHBPremiumamtmedical.getText();
-        } else {
-            value3Text = EHBPremiumamtDental.getText();
-        }
-
-
-
-        double value1 = Double.parseDouble(numericValue1);
-        double value2 = Double.parseDouble(numericValue2);
-        double value3 = Double.parseDouble(numericValue3);
-
+    public void validateEHBErrorsCoCo() {
+        double value1 = Double.parseDouble(sesmember2.getAttribute("value").replaceAll("[^0-9.]", ""));
+        double value2 = Double.parseDouble(sesmember1.getAttribute("value").replaceAll("[^0-9.]", ""));
+        double value3 = Double.parseDouble(EHBPremiumamtmedical.getText().replaceAll("[^0-9.]", ""));
         if (value1 + value2 > value3) {
             Assert.assertTrue(SESEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
         }

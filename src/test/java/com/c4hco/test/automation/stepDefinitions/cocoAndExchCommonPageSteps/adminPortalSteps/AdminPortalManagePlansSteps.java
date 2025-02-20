@@ -341,9 +341,9 @@ public class AdminPortalManagePlansSteps {
     public void iShouldSeeTheInvalidMonetaryAmountForSESErrorFor(DataTable table) {
         adminPortalManagePlansPage.validateErrorMessagesCoCo(table);
     }
-    @And("I validate SES entered exceeds EHB amount error is displaying for {string}")
-    public void iValidateSESEnteredExceedsEHBAmountErrorIsDisplayingFor(String planType) {
-        adminPortalManagePlansPage.validateEHBErrorsCoCo(planType);
+    @And("I validate SES entered exceeds EHB amount error is displaying for")
+    public void iValidateSESEnteredExceedsEHBAmountErrorIsDisplayingFor() {
+        adminPortalManagePlansPage.validateEHBErrorsCoCo();
     }
 }
 
