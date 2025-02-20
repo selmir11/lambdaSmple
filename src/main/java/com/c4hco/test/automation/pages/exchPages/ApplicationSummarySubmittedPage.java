@@ -17,11 +17,8 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class ApplicationSummarySubmittedPage {
 
@@ -68,76 +65,7 @@ public class ApplicationSummarySubmittedPage {
         basicActions.scrollToElement(downloadPdf);
         downloadPdf.click();
 
-        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
-    }
-
-    private static String lastDownloadedFileName = null; // Track last file to avoid duplicates
-
-    public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
-        File dir = new File(localPath);
-        long startTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
-            File latestFile = getLatestFile(dir);
-            if (latestFile != null && isValidPdf(latestFile) && isFileDownloadComplete(latestFile)) {
-                if (lastDownloadedFileName != null && latestFile.getName().equals(lastDownloadedFileName)) {
-                    System.out.println("Skipping duplicate file: " + latestFile.getName());
-                } else {
-                    lastDownloadedFileName = latestFile.getName(); // Update the last seen file
-                    SharedData.setNoticeFileName(latestFile.getName());
-                    String filePath = SharedData.getLocalPathToDownloadFile();
-                    String fileName = SharedData.getNoticeFileName();
-                    if (filePath == null || fileName == null) {
-                        System.out.println("ERROR: File path or file name is null!");
-                        return null;
-                    }
-                    String pathAndName = filePath + "//" + fileName;
-                    System.out.println("New Downloaded File: " + pathAndName);
-                    return latestFile.getName();
-                }
-            }
-            try {
-                TimeUnit.SECONDS.sleep(1); // Wait 1 sec before checking again
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
-            }
-        }
-        return null; // Timeout occurred
-    }
-
-    private static File getLatestFile(File dir) {
-        File[] files = dir.listFiles();
-        if (files == null || files.length == 0) {
-            return null; // No files found
-        }
-        // Sort by last modified, newest file first
-        return Arrays.stream(files)
-                .filter(File::isFile)
-                .max(Comparator.comparingLong(File::lastModified))
-                .orElse(null);
-    }
-
-    private static boolean isValidPdf(File file) {
-        return file.getName().endsWith(".pdf") && file.length() > 0; // Ensure it's a non-empty PDF
-    }
-
-    private static boolean isFileDownloadComplete(File file) {
-        if (file.getName().endsWith(".crdownload") || file.getName().endsWith(".part")) {
-            return false; // Ignore temp files
-        }
-        long previousSize;
-        long currentSize = file.length();
-        do {
-            previousSize = currentSize;
-            try {
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return false;
-            }
-            currentSize = file.length();
-        } while (previousSize != currentSize);
-        return true;
+        basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
 
     public void clickOtherHealthCoverage(){
