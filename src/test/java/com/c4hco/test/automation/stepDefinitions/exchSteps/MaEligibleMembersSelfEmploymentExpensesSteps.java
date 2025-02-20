@@ -15,8 +15,8 @@ public class MaEligibleMembersSelfEmploymentExpensesSteps {
     }
 
     @Then("I validate the Page Text on the Self-Employment MA page in {string}")
-    public void iValidateTextOnSelfEMPLanguagePage(List<String> dataText, String language) {
-        maEligibleMembersSelfEmploymentExpensesPage.validateMaSelfEmploymentPage(dataText,language);
+    public void iValidateTextOnSelfEMPLanguagePage(String language, List<String> dataText) {
+        maEligibleMembersSelfEmploymentExpensesPage.validateMaSelfEmploymentPage(language,dataText);
     }
 
 
