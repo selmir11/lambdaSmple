@@ -4,8 +4,10 @@ import com.c4hco.test.automation.Dto.Edi.Edi834.CommonEDISegments;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Edi834TransactionDetails;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
 import com.c4hco.test.automation.Dto.Edi.Edi834.Transaction;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ib834Entity;
+import com.c4hco.test.automation.utils.BasicActions;
 import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -22,6 +24,7 @@ public class Ib834FileValidation {
     List<Ib834Entity> subscriberDenEntities = new ArrayList<>();
     Edi834TransactionDetails ib834TransactionDetails = new Edi834TransactionDetails();
     List<Transaction> transactionsList = new ArrayList<>();
+    BasicActions basicActions = new BasicActions();
 
     int segCount = 0;
     int insSegCount = 0;
@@ -138,28 +141,44 @@ public class Ib834FileValidation {
     }
 
     private void validateIb834NM1Seg(Member member, Ib834Entity entry) {
-        List<List<String>> nm1Seg = member.getNM1();
-        segCount = segCount + nm1Seg.size();
-        if(entry.getSubscriber_indicator().equals("Y")){
-            if (SharedData.getPrimaryMember().getHasIncorrectEntities() && entry.getResponsible_person_rel_code()==null) {
-                validateNM1IncorrectEntities(nm1Seg, entry);
-            } else if (!SharedData.getPrimaryMember().getHasIncorrectEntities()){
-                if(!(entry.getResponsible_person_rel_code()==null)){
-                  // Bug POL-6875 - remove the comment after/during 02/26 regression - This is expected to pass
+            List<List<String>> nm1Seg = member.getNM1();
+            segCount = segCount + nm1Seg.size();
+            MemberDetails memberFromSd =  basicActions.getMember(entry.getMember_first_name());
+            if(entry.getSubscriber_indicator().equals("Y")) {
+                if(memberFromSd.getIsMinor() && memberFromSd.getHasIncorrectEntities()){
+                    validateNM1IncorrectEntities(nm1Seg, entry); // WIP - should update based on test case in future
+                } else if (memberFromSd.getHasIncorrectEntities()) {
+                    validateNM1IncorrectEntities(nm1Seg, entry);
+                } else if (!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress())  && !(memberFromSd.getMailingAddress()==null )&& memberFromSd.getIsMinor()) {
+                    validateNm1ILSeg(nm1Seg, entry);
+
+                    softAssert.assertEquals(nm1Seg.get(1).get(0), "31", "NM1 segment with value 31");
+                    softAssert.assertEquals(nm1Seg.get(1).get(1), "1", "NM1 segment with value 1");
+
+                    // Bug POL-6875 - remove the comment after/during 02/26 regression - This is expected to pass
                    // softAssert.assertEquals(nm1Seg.get(2).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
                     softAssert.assertEquals(nm1Seg.get(2).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
                     softAssert.assertEquals(nm1Seg.get(2).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
                     softAssert.assertEquals(String.valueOf(nm1Seg.size()), "3", "NM1 segment size is not equal to 3");
-                }
-                softAssert.assertEquals(nm1Seg.get(1).get(0), "31", "NM1 segment with value 31");
-                softAssert.assertEquals(nm1Seg.get(1).get(1), "1", "NM1 segment with value 1");
-            }
-        } else {
-            softAssert.assertEquals(String.valueOf(nm1Seg.size()), "1", "NM1 segment size for member is not equal to 1");
-        }
-        validateNm1ILSeg(nm1Seg, entry);
 
-        softAssert.assertAll();
+                } else if (memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress()) && memberFromSd.getIsMinor()){
+                    validateNm1ILSeg(nm1Seg, entry);
+                    softAssert.assertEquals(nm1Seg.get(1).get(0), entry.getResponsible_person_rel_code(), "NM1 segment S1 responsible_person_rel_code mismatch");
+                    softAssert.assertEquals(nm1Seg.get(1).get(2), entry.getResponsible_person_last_name(), "NM1 segment responsible person last name");
+                    softAssert.assertEquals(nm1Seg.get(1).get(3), entry.getResponsible_person_first_name(), "NM1 segment responsible person first name");
+                    softAssert.assertEquals(String.valueOf(nm1Seg.size()), "2", "NM1 segment size is not equal to 3");
+                } else if(!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress())&& memberFromSd.getMailingAddress()!=null){
+                    validateNm1ILSeg(nm1Seg, entry);
+
+                    softAssert.assertEquals(nm1Seg.get(1).get(0), "31", "NM1 segment with value 31");
+                    softAssert.assertEquals(nm1Seg.get(1).get(1), "1", "NM1 segment with value 1");
+                }
+            } else {
+                // member
+                validateNm1ILSeg(nm1Seg, entry);
+                softAssert.assertEquals(String.valueOf(nm1Seg.size()), "1", "NM1 segment size for member is not equal to 1");
+            }
+            softAssert.assertAll();
     }
 
     private void validateNm1ILSeg(List<List<String>> nm1Seg1, Ib834Entity entry) {
