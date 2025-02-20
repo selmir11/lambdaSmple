@@ -1365,7 +1365,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select the first medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
-    Then I validate that there are 1 default groups
+    Then I validate that there are 1 default dental groups
 
 
 
