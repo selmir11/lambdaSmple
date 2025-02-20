@@ -23,9 +23,6 @@ public class MaEligibleMembersMedicalConditionAdditionalPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    //@FindBy(xpath = "//*[@class = 'btn btn-c4primary']")
-    //WebElement btnSaveAndContinue;
-
     @FindBy(xpath = "//*[@value = 'Save and Continue']")
     WebElement btnSaveAndContinue;
 
@@ -86,7 +83,6 @@ public class MaEligibleMembersMedicalConditionAdditionalPage {
 
         softAssert.assertEquals( valueText.getAttribute( "value" ), "< Back");
         softAssert.assertEquals( btnSaveAndContinue.getAttribute( "value" ), "Save and Continue");
-        //softAssert.assertEquals( btnSaveAndContinue.getText(), "Save and Continue" );
         softAssert.assertAll();
     }
 
@@ -101,7 +97,6 @@ public class MaEligibleMembersMedicalConditionAdditionalPage {
 
         softAssert.assertEquals( valueTextSP.getAttribute("value"), "< Atr\u00E1s" );
         softAssert.assertEquals( btnSaveAndContinue.getAttribute( "value" ), "Guardar y Continuar");
-        //softAssert.assertEquals( btnSaveAndContinue.getText(), "Guardar y Continuar" );
         softAssert.assertAll();
     }
 }
