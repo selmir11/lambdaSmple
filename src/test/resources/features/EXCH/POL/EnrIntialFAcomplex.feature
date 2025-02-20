@@ -445,7 +445,7 @@ Feature: Enroll a in a plan 8 HH
 #    And I switch to the tab number 0
 
    # DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 4
+    And I verify the policy data quality check with Policy Ah keyset size 6
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I download the medical and dental files from sftp server with location "/outboundedi/"
