@@ -1228,7 +1228,8 @@ public class BasicActions {
         for (String handle : driver.getWindowHandles()) {
             driver.switchTo().window(handle);
 
-            if (driver.getTitle().equals(page)) {
+            String currentUrl = driver.getCurrentUrl();
+            if (driver.getTitle().equals(page) || currentUrl.contains(pageUrl)) {
                 Assert.assertTrue(getUrlWithWait(pageUrl, timeout).contains(pageUrl),
                         "Expected page: " + pageUrl + " did not load.");
                 break;

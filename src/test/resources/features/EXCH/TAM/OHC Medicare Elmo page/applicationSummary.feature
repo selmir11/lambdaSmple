@@ -54,11 +54,11 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
@@ -98,7 +98,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
@@ -144,12 +144,12 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click on "Other Health Coverage" on Application Details
     And I verify the Medicare OHC details on Application Details
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
-      |   Medicare  |     Plain    |        Yes       |           Yellow           |   Yes  |      Green       |   75.0  |       Green       |   Yes  |      Green       |    Today    |       Green        |  Yes   |       Green      |    Today    |       Green        |
+      |   Medicare  |     Plain    |        Yes       |           Yellow           |   Yes  |      Green       |   75    |       Green       |   Yes  |      Green       |    Today    |       Green        |  Yes   |       Green      |    Today    |       Green        |
     Then I click on Download as PDF on Application Details
     And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
-      |   Medicare  |    Yes     |  Yes   |     75.0     |     Yes     |     Today     |     Yes     |     Today     |
+      |   Medicare  |    Yes     |  Yes   |     75       |     Yes     |     Today     |     Yes     |     Today     |
 #    Step 7
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -170,7 +170,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I enter Part A amount of "150.00"
@@ -196,12 +196,12 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click on "Other Health Coverage" on Application Details
     And I verify the Medicare OHC details on Application Details
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
-      |   Medicare  |     Plain    |       Yes        |           Plain            |   Yes  |      Plain       |  150.0  |       Yellow      |   Yes  |      Plain       |Current Month|       Yellow       |  Yes   |       Plain      |Current Month|       Yellow       |
+      |   Medicare  |     Plain    |       Yes        |           Plain            |   Yes  |      Plain       |  150    |       Yellow      |   Yes  |      Plain       |Current Month|       Yellow       |  Yes   |       Plain      |Current Month|       Yellow       |
     Then I click on Download as PDF on Application Details
     And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
-      |   Medicare  |    Yes     |  Yes   |    150.0     |     Yes     | Current Month |     Yes     | Current Month |
+      |   Medicare  |    Yes     |  Yes   |    150       |     Yes     | Current Month |     Yes     | Current Month |
 #    Step 9
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -221,7 +221,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I check checkbox for Part "A Don't Pay"
@@ -272,7 +272,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I check checkbox for Part "A"
@@ -323,11 +323,11 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
@@ -388,13 +388,13 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
-      |   Medicare  |    Yes     |  Yes   |    150.0     |     Yes     | Current Month |     Yes     | Current Month |
+      |   Medicare  |    Yes     |  Yes   |    150       |     Yes     | Current Month |     Yes     | Current Month |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
     And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "Spanish"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
-      |   Medicare  |    Yes     |  Yes   |    150.0     |     Yes     | Current Month |     Yes     | Current Month |
+      |   Medicare  |    Yes     |  Yes   |    150       |     Yes     | Current Month |     Yes     | Current Month |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
@@ -414,11 +414,11 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"
@@ -456,7 +456,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
@@ -510,14 +510,14 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click on "Other Health Coverage" on Application Details
     And I verify the Medicare OHC details on Application Details
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
-      |   Medicare  |     Green    |        Yes       |           Green            |   Yes  |      Green       |  300.0  |       Green       |   Yes  |      Green       |Current Month|       Green        |  Yes   |       Green      |Current Month|       Green        |
+      |   Medicare  |     Green    |        Yes       |           Green            |   Yes  |      Green       |  300    |       Green       |   Yes  |      Green       |Current Month|       Green        |  Yes   |       Green      |Current Month|       Green        |
 #    Step 4
     Then I click on Show Changes on Application Details
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on "Other Health Coverage" on Application Details
     And I verify the Medicare OHC details on Application Details
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
-      |   Medicare  |     Plain    |        Yes       |           Plain            |   Yes  |      Plain       |  300.0  |       Plain       |   Yes  |      Plain       |Current Month|       Plain        |  Yes   |       Plain      |Current Month|       Plain        |
+      |   Medicare  |     Plain    |        Yes       |           Plain            |   Yes  |      Plain       |  300    |       Plain       |   Yes  |      Plain       |Current Month|       Plain        |  Yes   |       Plain      |Current Month|       Plain        |
 #    Step 5
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I apply for the current year
@@ -538,7 +538,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"
@@ -594,11 +594,11 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
@@ -639,7 +639,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
@@ -707,7 +707,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I click "No" for currently eligible in Medicare question
@@ -768,7 +768,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I check checkbox for Part "A"

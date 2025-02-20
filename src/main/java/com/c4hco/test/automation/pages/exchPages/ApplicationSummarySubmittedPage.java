@@ -17,6 +17,8 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -69,55 +71,73 @@ public class ApplicationSummarySubmittedPage {
         waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
 
+    private static String lastDownloadedFileName = null; // Track last file to avoid duplicates
+
     public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
         File dir = new File(localPath);
-        File[] filesBefore = dir.listFiles();
         long startTime = System.currentTimeMillis();
-
-        // Loop until the timeout or until a new file is found
-        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 3000) {
-            File[] filesAfter = dir.listFiles();
-            if (filesAfter != null) {
-                for (File file : filesAfter) {
-                    if (!file.isDirectory() && (filesBefore == null || !fileExists(filesBefore, file))) {
-                        if (file.length() > 0 && isFileDownloadComplete(file)) {
-                            SharedData.setNoticeFileName(file.getName());
-                            return file.getName();
-                        }
+        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
+            File latestFile = getLatestFile(dir);
+            if (latestFile != null && isValidPdf(latestFile) && isFileDownloadComplete(latestFile)) {
+                if (lastDownloadedFileName != null && latestFile.getName().equals(lastDownloadedFileName)) {
+                    System.out.println("Skipping duplicate file: " + latestFile.getName());
+                } else {
+                    lastDownloadedFileName = latestFile.getName(); // Update the last seen file
+                    SharedData.setNoticeFileName(latestFile.getName());
+                    String filePath = SharedData.getLocalPathToDownloadFile();
+                    String fileName = SharedData.getNoticeFileName();
+                    if (filePath == null || fileName == null) {
+                        System.out.println("ERROR: File path or file name is null!");
+                        return null;
                     }
+                    String pathAndName = filePath + "//" + fileName;
+                    System.out.println("New Downloaded File: " + pathAndName);
+                    return latestFile.getName();
                 }
             }
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(1); // Wait 1 sec before checking again
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 throw new RuntimeException(e);
             }
         }
-        return null;
+        return null; // Timeout occurred
+    }
+
+    private static File getLatestFile(File dir) {
+        File[] files = dir.listFiles();
+        if (files == null || files.length == 0) {
+            return null; // No files found
+        }
+        // Sort by last modified, newest file first
+        return Arrays.stream(files)
+                .filter(File::isFile)
+                .max(Comparator.comparingLong(File::lastModified))
+                .orElse(null);
+    }
+
+    private static boolean isValidPdf(File file) {
+        return file.getName().endsWith(".pdf") && file.length() > 0; // Ensure it's a non-empty PDF
     }
 
     private static boolean isFileDownloadComplete(File file) {
-        long initialSize = file.length();
-        try {
-            TimeUnit.SECONDS.sleep(2); // Wait for 2 seconds to check if file size changes
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        if (file.getName().endsWith(".crdownload") || file.getName().endsWith(".part")) {
+            return false; // Ignore temp files
         }
-        long newSize = file.length();
-        return initialSize == newSize; // If the size hasn't changed, download is complete
-    }
-
-    private static boolean fileExists(File[] files, File file) {
-        if (files == null) {
-            return false;
-        }
-        for (File f : files) {
-            if (f.getName().equals(file.getName())) {
-                return true;
+        long previousSize;
+        long currentSize = file.length();
+        do {
+            previousSize = currentSize;
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return false;
             }
-        }
-        return false;
+            currentSize = file.length();
+        } while (previousSize != currentSize);
+        return true;
     }
 
     public void clickOtherHealthCoverage(){

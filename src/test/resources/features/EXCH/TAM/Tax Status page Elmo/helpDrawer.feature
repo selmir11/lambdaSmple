@@ -76,6 +76,7 @@ Feature: Page Validation-Tax Status Elmo Page
   Scenario: SLER-1902 I want English and Spanish text added to the help drawer so that I can find more information about the questions on the page (desktop)
     Then I click on the "Header" help link on Tax Status Elmo page
     And I verify the help drawer "Full:English" text on Tax Status Elmo page
+    And I set the browser resolution to 2000 x 800
     Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
     And I validate I am on the "We Can Help" page and close tab
     Then I click on the "Header" help link on Tax Status Elmo page
@@ -142,4 +143,4 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
