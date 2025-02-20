@@ -192,16 +192,16 @@ public class ApplicationHistoryPage {
     public void iValidateApplicationHistoryText(String language){
             basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
             switch (language) {
-                case "English":
+                case "EnglishQHP":
                     validateApplciationHistoryPageEnglish();
                     break;
-                case "Spanish":
+                case "SpanishQHP":
                     validateApplciationHistoryPageSpanish();
                     break;
-                case "English2":
+                case "English":
                     validateApplciationHistoryPageEnglish2();
                     break;
-                case "Spanish2":
+                case "Spanish":
                     validateApplciationHistoryPageSpanish2();
                     break;
 
