@@ -206,9 +206,8 @@ public class Ib834FileValidation {
             } else if (dtpSeg.get(0).contains("349")) {
                 softAssert.assertEquals(dtpSeg.get(2), entry.getBenefit_end_date(), "DTP 349 does not match with benefit end date.");
             } else if (dtpSeg.get(0).contains("303")) {
-                // WIP
-                //Financial_effective_date() is null in DB but had a value in file
-                //  softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
+                // WIP - Financial_effective_date() is null in DB but had a value in file
+           softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
             }
         }
     }

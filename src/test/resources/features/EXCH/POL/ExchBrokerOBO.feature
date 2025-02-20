@@ -1,6 +1,6 @@
 Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
-  @SLER-626
+  @SLER-626 @n1
   Scenario: : EXCH Initial Application -  Broker OBO -  Minor Only
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -26,7 +26,7 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     And I click on Find a Broker
-    Then I Search authorized Broker "EnrIntial Broker"
+    Then I Search authorized Broker "Amethyst"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     And I click Authorized broker
@@ -35,18 +35,14 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
 
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    And I login as Broker User any environment "enrintialtest@outlook.com" password "ALaska12!" and "enrintialtest@outlook.com" password "ALaska12!"
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "enrintialtest@outlook.com" and "ALaska12!"
-    Then I open the MFA notice
-    And I get the MFA code
-    And I delete the open notice
-    And I sign out of Outlook
-    Then I enter the MFA code and click Verify
+    And I login as Broker User any environment "Amethyst.Broker@invalid.com" password "ALaska13!" and "Amethyst.Broker@invalid.com" password "ALaska13!"
 
+    And I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
     And I search for clients
     And I click on first client search result
     And I click "manage" the client
+    Then I validate I am on the "Account Overview" page
 
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
