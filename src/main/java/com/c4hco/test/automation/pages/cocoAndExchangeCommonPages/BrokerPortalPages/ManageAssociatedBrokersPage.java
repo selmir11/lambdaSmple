@@ -11,6 +11,9 @@ public class ManageAssociatedBrokersPage {
     @FindBy(id = "search")
     WebElement manageAssocBrokersSearchField;
 
+    @FindBy(xpath = "//div[@class='col-md-6 header-2 mb-3']")
+    WebElement manageAssocBrokersPageTitle;
+
     @FindBy(id = "action-link")
     WebElement manageAssocBrokersSendInvite;
 
@@ -28,6 +31,8 @@ public class ManageAssociatedBrokersPage {
     WebElement BrokerCertificationStatus;
     @FindBy(id = "action-value")
     WebElement brokerActionStatus;
+    @FindBy(id = "add-broker-link")
+    WebElement addNewBrokerLink;
 
     private BasicActions basicActions;
     public ManageAssociatedBrokersPage(WebDriver webDriver){
@@ -40,10 +45,21 @@ public class ManageAssociatedBrokersPage {
         manageAssocBrokersGoBack.click();
     }
 
+    public void validateManageBrokerPageTitle(){
+        basicActions.waitForElementToBePresent(manageAssocBrokersPageTitle, 10);
+        softAssert.assertEquals(manageAssocBrokersPageTitle.getText(),"Manage Associated Brokers");
+        softAssert.assertAll();
+    }
+
     public void manageAssocBrokerSearch(String brokerName){
         basicActions.waitForElementToBePresent(manageAssocBrokersSearchField, 10);
         manageAssocBrokersSearchField.sendKeys(brokerName);
         manageAssocBrokersSearchField.sendKeys(Keys.ENTER);
+    }
+
+    public void clickAddNewBrokerLink(){
+        basicActions.waitForElementToBePresent(addNewBrokerLink, 10);
+        addNewBrokerLink.click();
     }
 
     public void manageAssocBrokerSendInvite(){
