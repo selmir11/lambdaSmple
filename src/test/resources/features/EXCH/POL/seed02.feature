@@ -200,7 +200,7 @@ Feature: Seed02 - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
-    And I click Continue button on Report a Life Change Page
+    And I click Continue With Application button on Report Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 
