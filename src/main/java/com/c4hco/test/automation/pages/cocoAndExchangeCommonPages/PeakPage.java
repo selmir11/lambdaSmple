@@ -23,7 +23,7 @@ public class PeakPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(xpath = "//input[@id='inputLabel-89']")
+    @FindBy(xpath = "//input[@placeholder='Enter email address or mobile number']")
     WebElement peakUsername;
 
     @FindBy(xpath = "//input[@id='input-93']")
@@ -32,7 +32,7 @@ public class PeakPage {
     @FindBy(xpath = "//button[@name='SignInButton']")
     WebElement peakSignInButton;
 
-    @FindBy(xpath = "//button[@title='Sign in with Connect for Health Colorado']")
+    @FindBy(xpath = "//button[@name='SignInWithConnectForHealthColorado']")
     WebElement peakSignInWithConnectForHealthColoradoButton;
 
     @FindBy(xpath = "//div[normalize-space()='Sign out']")

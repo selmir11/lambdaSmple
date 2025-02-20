@@ -28,6 +28,9 @@ public class BasicSteps {
             case "tax Silver":
                 pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/silver/";
                 break;
+            case "tax Bronze":
+                pageUrl = "uat-planfinder-internal.connectforhealthco.com/tax/bronze/";
+                break;
             case "QCPF":
                 pageUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
                 break;
@@ -819,5 +822,10 @@ public class BasicSteps {
     @And("I get the memberId of primary member from url")
     public void getMemId(){
         basicActions.setMemberIdFromUrl();
+    }
+
+    @And("I check for minors in the household")
+    public void setMinor(){
+        basicActions.setMinor();
     }
 }

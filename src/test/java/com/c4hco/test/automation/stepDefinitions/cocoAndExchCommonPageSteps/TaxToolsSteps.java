@@ -36,4 +36,9 @@ public class TaxToolsSteps {
     public void iEnterForOneMemberAndSecondMemberThirdMemberFourthMemberFifthMemberSixthMemberAndValidate(String zipCode, String county,String age, String age2,String age3, String age4,String age5,String age6,String ExpectedPremium, String ExpectedProvider, String ExpectedPlan) {
         taxToolsPage.validatePlanFor6Members(zipCode, county,age, age2, age3, age4,age5,age6, ExpectedPremium, ExpectedProvider,ExpectedPlan);
     }
+
+    @Then("I enter for one member {string} and {string} {string} and validate the cost of Branze Plan {string} {string} {string}")
+    public void iEnterForOneMemberAndAndValidateTheCostOfBranzePlan(String zipCode, String county,String age,  String ExpectedPremium, String ExpectedProvider, String ExpectedPlan) {
+        taxToolsPage.checkBronzePlanForOneMember(zipCode, county,age, ExpectedPremium, ExpectedProvider,ExpectedPlan);
+    }
 }
