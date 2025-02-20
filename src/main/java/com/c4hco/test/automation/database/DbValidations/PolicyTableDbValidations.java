@@ -243,6 +243,7 @@ public class PolicyTableDbValidations {
                     for (MemberDetails member : basicActions.getAllMem()) {
                         if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
                             member.setIsSubscriber("Y");
+                            member.setRelation_to_subscriber("SELF");
                             break;
                         }
                     }
