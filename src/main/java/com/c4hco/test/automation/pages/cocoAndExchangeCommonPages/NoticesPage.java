@@ -981,7 +981,7 @@ public class NoticesPage {
         String medicalPlanName = allMembers.stream().filter(member->member.getFirstName().contains(memPrefix) && member.getHasMedicalPlan()).map(MemberDetails::getMedicalPlan).findFirst().orElse("Medical Plan Not found");
         WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body']) //*[contains(text(),'" + medicalPlanName + "')]/following-sibling::dd[contains(text(),'" + memberCompleteFullName + "')]"));
         basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
-        softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memPrefix), memPrefix + " member details not found");
+        softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberCompleteFullName), memPrefix + " member details not found");
         softAssert.assertAll();
     }
 
@@ -991,7 +991,7 @@ public class NoticesPage {
         String memberCompleteFullName = allMembers.stream().filter(member->member.getFirstName().contains(memPrefix) && member.getHasMedicalPlan()).map(MemberDetails::getCompleteFullName).findFirst().orElse("Complete Full Name Not found");
         WebElement policyDetailsFromEmailNotice = basicActions.getDriver().findElement(By.xpath("(//div[@id='x_policyInformation'] //*[@class='x_body']) //*[contains(text(),'" + dentalPlanName + "')]/following-sibling::dd[contains(text(),'" + memberCompleteFullName + "')]"));
         basicActions.waitForElementToBePresent(policyDetailsFromEmailNotice, 30);
-        softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memPrefix), memPrefix + " member details not found");
+        softAssert.assertTrue(policyDetailsFromEmailNotice.getText().contains(memberCompleteFullName), memPrefix + " member details not found");
         softAssert.assertAll();
     }
 
