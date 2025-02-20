@@ -200,9 +200,9 @@ Feature: Testing will verify text and navigation for Application History Page fo
     And I wait for hold on content to disappear
 
     Then I validate I am on the "Application History" page
-    And I validate the "English" text on the Application History page
+    And I validate the "EnglishNonQHP" text on the Application History page
     And I change the language from header to "Spanish NonElmo"
-    And I validate the "Spanish" text on the Application History page
+    And I validate the "SpanishNonQHP" text on the Application History page
     And I change the language from header to "English NonElmo"
     And I click on Sign Out in the Header for "NonElmo"
 

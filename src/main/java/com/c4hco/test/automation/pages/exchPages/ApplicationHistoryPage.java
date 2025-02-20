@@ -198,10 +198,10 @@ public class ApplicationHistoryPage {
                 case "SpanishQHP":
                     validateApplciationHistoryPageSpanish();
                     break;
-                case "English":
+                case "EnglishNonQHP":
                     validateApplciationHistoryPageEnglish2();
                     break;
-                case "Spanish":
+                case "SpanishNonQHP":
                     validateApplciationHistoryPageSpanish2();
                     break;
 
