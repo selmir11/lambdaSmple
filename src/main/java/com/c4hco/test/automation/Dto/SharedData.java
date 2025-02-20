@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class SharedData {
     @Getter @Setter private static String firstPlanNameOnMedicalResultsPage;
@@ -25,14 +26,20 @@ public class SharedData {
     @Getter @Setter private static List<PolicyTablesEntity> dentalPolicyTablesEntities;
     @Getter @Setter private static String medicalFileName;
     @Getter @Setter private static String dentalFileName;
+    @Getter @Setter private static List<String> medicalFileName_grp;
+    @Getter @Setter private static List<String> dentalFileName_grp;
     @Getter @Setter private static List<Ib999Entity> ib999MedDetailsEntities;
     @Getter @Setter private static List<Ib999Entity> ib999DenDetailsEntities;
     @Getter @Setter private static List<Ib834Entity> ib834MedDetailsEntities;
     @Getter @Setter private static List<Ib834Entity> ib834DenDetailsEntities;
     @Getter @Setter private static String medicalIb999FileName;
     @Getter @Setter private static String dentalIb999FileName;
+    @Getter @Setter private static List<String> medicalIb999FileNames;
+    @Getter @Setter private static List<String> dentalIb999FileNames;
     @Getter @Setter private static String medicalIb834FileName;
     @Getter @Setter private static String dentalIb834FileName;
+    @Getter @Setter private static List<String> medicalIb834FileNames;
+    @Getter @Setter private static List<String> dentalIb834FileNames;
     @Getter @Setter private static String localPathToDownloadFile;
     @Getter @Setter private static Edi834TransactionDetails edi834TransactionDetails;
     @Getter @Setter private static Edi834TransactionDetails ib834TransactionDetails;
@@ -44,7 +51,7 @@ public class SharedData {
     @Getter @Setter private static DbData dbData;
     @Getter @Setter private static Map<String, PlanDbData> medicalPlanDbData;
     @Getter @Setter private static Map<String, PlanDbData> dentalPlanDbData;
-    @Getter @Setter private static List<Map<String, DbData>> dbDataNew;
+    @Getter @Setter private static Set<Map<String, DbData>> dbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> medicalPlanDbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> dentalPlanDbDataNew;
     @Getter @Setter private static String carrierPdfFileName;
@@ -66,9 +73,13 @@ public class SharedData {
     @Getter @Setter private static ScenarioDetails scenarioDetails;
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
+    @Getter @Setter private static List<String> medGroupCtlNumbers;
+    @Getter @Setter private static List<String> denGroupCtlNumbers;
     @Getter @Setter private static List<String> medicalPlansList;
     @Getter @Setter private static List<String> dentalPlansList;
     @Getter @Setter private static Map<String, String> calculatedDob;
+    @Getter @Setter private static Map<String, String> transForGrpCtrlNum;
+    @Getter @Setter private static Map<String, String> ib834transForGrpCtrlNum;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_medicalPlan;
     @Getter @Setter private static ExpectedCalculatedDates expectedCalculatedDates_dentalPlan;
     @Getter @Setter private static Map<String, String> exchPersonId;
@@ -80,6 +91,8 @@ public class SharedData {
     @Getter @Setter private static List<Ob999Entity> ob999DenDetailsEntities;
     @Getter @Setter private static String medicalOb999FileName;
     @Getter @Setter private static String dentalOb999FileName;
+    @Getter @Setter private static List<String> medicalOb999FileNames;
+    @Getter @Setter private static List<String> dentalOb999FileNames;
     @Getter @Setter private static AdminDetails adminDetails;
     @Getter @Setter private static String primaryTaxPayerKey;
     @Getter @Setter private static BigDecimal oldAccountId;
@@ -132,6 +145,9 @@ public class SharedData {
         expectedCalculatedDates_dentalPlan = null;
         oldAccountId = null;
         primaryTaxPayerKey=null;
+        transForGrpCtrlNum = null;
+        medGroupCtlNumbers = null;
+        denGroupCtlNumbers = null;
     }
 
 }

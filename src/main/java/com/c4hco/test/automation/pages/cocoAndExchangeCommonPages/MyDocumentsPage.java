@@ -6,6 +6,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.time.Year;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
 
 
 public class MyDocumentsPage {
@@ -189,7 +191,6 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[contains(@href,'UserProfile')]")
     WebElement textUserName;
 
-
     @FindBy(xpath = "//*[@class='btn-cancel btn-second-action-button']")
     WebElement btncancel;
 
@@ -249,6 +250,27 @@ public class MyDocumentsPage {
 
     @FindBy(id= "uploadAnother")
     WebElement UploadDocumentText;
+
+    @FindBy(xpath = "//p[@class='error ng-star-inserted']")
+    WebElement textErrorMsg_docFileSizeLarge;
+
+    @FindBy(xpath = "//*[@class='file-selected-show file-border-red']")
+    WebElement textBox_fileAlreadySelected;
+
+    @FindBy(xpath = "//div[@class='error-box ng-star-inserted']//*[name()='svg' and @role='img']")
+    WebElement img_errorMsg_docFileSizeLarge;
+
+    @FindBy(xpath = "//*[@class='drop-down-option drop-down-option-selected']")
+    List<WebElement> drpDwn_Arrows_pastDocAndLetters;
+
+    @FindBy(xpath = "//*[@class='drop-down-option ng-star-inserted']")
+    List<WebElement> drpDwn_pastDocAndLetters;
+
+    @FindBy(xpath = "(//*[name()='svg' and @data-icon='angle-down'])[3]")
+    WebElement expandArrow_forFirstDoc;
+
+    @FindBy(xpath = "//a[text()='Download']")
+    WebElement btn_download;
 
 
 
@@ -522,7 +544,6 @@ public class MyDocumentsPage {
         try {
 
             String pdfText = extractTextFromPDF(pdf.PDFDownloaded());
-
             // WIP - append text for coverage start date, welcome text, Dear tag, refactor household members validation
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate(), "yyyy-MM-dd", "MMMM dd, yyyy")), "coverage start date failed");
             softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "primary member email Id is not matching");
@@ -834,6 +855,9 @@ public class MyDocumentsPage {
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(),"Selection Required");
         softAssert.assertAll();
     }
+    public void validateSelectionRequiredErrMsg_ForOnlyCategoryDoc(){
+        Assert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),"Selection Required","Selection Required error msg not displayed");
+    }
     public void validateSelectionRequiredErrMsgDisappear(){
         Assert.assertTrue(textErrorMsg_selectionRequired.isEmpty(),"Selection Error message did not disappear");
     }
@@ -847,6 +871,14 @@ public class MyDocumentsPage {
         softAssert.assertEquals( textErrorMsg_selectionRequired.get(1).getCssValue("font-size"), "14px","font size error");
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getCssValue("line-height"), "24px","line height error");
+        softAssert.assertAll();
+    }
+
+    public void validateFontSizeAndColour_errorMsgFR(){
+        softAssert.assertEquals(textErrorMsg_Filerequired.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertEquals( textErrorMsg_Filerequired.getCssValue("font-size"), "14px","font size error");
+        softAssert.assertEquals(textErrorMsg_Filerequired.getCssValue("font-family"), "\"PT Sans\", sans-serif","font family error");
+        softAssert.assertEquals(textErrorMsg_Filerequired.getCssValue("line-height"), "24px","line height error");
         softAssert.assertAll();
     }
 
@@ -871,4 +903,115 @@ public class MyDocumentsPage {
         softAssert.assertEquals(myDocumentsSubTitle.getText(),data.get(5), "Past Documents and Letters Text not match");
         softAssert.assertAll();
     }
+
+    public void validateDocSizeLargeErrMsgAndTextColour(){
+        softAssert.assertTrue(textErrorMsg_docFileSizeLarge.getText().contains("Document file size too large. Files must be under 10MB."),"Error message is incorrect");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
+    public void validateAlreadySelectedFileBoxBorderColour(){
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(textBox_fileAlreadySelected.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertAll();
+    }
+
+    public void validateDocUnsupportedErrMsgAndTextColour(){
+        String docFileTypeUnsupportedErrMsg="Document file type is unsupported. Files must be pdf, doc, docx, gif, jpeg, jpg, png.";
+        softAssert.assertTrue(textErrorMsg_docFileSizeLarge.getText().contains(docFileTypeUnsupportedErrMsg),"Error message is incorrect");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
+    public void selectAllAndDocumentsFromDropDown(){
+        basicActions.scrollToElement((drpDwn_Arrows_pastDocAndLetters.get(0)));
+        basicActions.waitForElementToBePresent(drpDwn_Arrows_pastDocAndLetters.get(0),10);
+        drpDwn_Arrows_pastDocAndLetters.get(0).click();
+        drpDwn_pastDocAndLetters.get(4).click();
+        basicActions.waitForElementToBePresent(drpDwn_Arrows_pastDocAndLetters.get(1),10);
+        drpDwn_Arrows_pastDocAndLetters.get(1).click();
+        drpDwn_pastDocAndLetters.get(6).click();
+    }
+    public void clickOnExpandForFirstDocument(){
+        basicActions.waitForElementToBePresentWithRetries(expandArrow_forFirstDoc, 10);
+        basicActions.clickElementWithRetries(expandArrow_forFirstDoc, 10);
+    }
+    public void verifyFileExistAndNotEmpty() {
+        basicActions.waitForElementToBeClickable(btn_download, 10);
+        btn_download.click();
+        String fileName=waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
+        Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
+    }
+
+
+    public void ValidateDocumentCategoryinAscendingOrder(String OtherText,String language,List<String> category) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 20);
+        docTypeDrpDwn.click();
+
+        // Extract text from elements and store in a list
+        List<String> ActualCategoryList = new ArrayList<>();
+        for (WebElement element : categoryList) {
+            ActualCategoryList.add(element.getText());
+        }
+
+        softAssert.assertEquals(ActualCategoryList,category, "Actual and expected list are not match");
+        List<String> ActualListExceptOther = new ArrayList<>(ActualCategoryList);
+        ActualListExceptOther.remove(OtherText);
+
+        //Validate Document list in ascending order
+        softAssert.assertTrue(basicActions.isAscendingOrder(language,ActualListExceptOther),"Category list  not in ascending order");
+
+        //Validate Other listed at the end
+        softAssert.assertTrue(ActualCategoryList.get(ActualCategoryList.size() - 1).equals(OtherText), "Other item missing at the end of the list");
+        softAssert.assertAll();
+
+    }
+
+    public void validateDoucmentTypeInAscendingOrder(String OtherText,String language,DataTable datable) {
+
+        List<List<String>> expectedLists = datable.asLists();
+
+        basicActions.waitForElementListToBePresent(categoryList, 100);
+
+        int index = 0;
+        for (WebElement element : categoryList) {
+            element.click(); //Main dropdown item
+
+            basicActions.waitForElementToBePresent(docCategoryDrpDwn,100);
+            docCategoryDrpDwn.click();  // Clicking on sublist dropdown to view items
+
+            List<String> actualList = new ArrayList<>();
+            for (WebElement item : categoryList) { //Fetching sub list items
+                actualList.add(item.getText().trim());
+            }
+
+            List<String> expectedList = new ArrayList<>();
+            String[] splitvalues = expectedLists.get(index).get(0).split("&");
+            for (int j = 0; j < splitvalues.length; j++) {
+                String formattedvalue = (j == 0) ? splitvalues[j].trim() : "" + splitvalues[j].trim();
+                expectedList.add(formattedvalue);
+            }
+
+            softAssert.assertEquals(actualList , expectedList , " Expected and Actual list not Match" );
+
+            List<String> actualListExceptOther = new ArrayList<>(actualList); // Remove Other from sublist
+            actualListExceptOther.removeIf(item -> item.startsWith(OtherText));
+
+            //Validate Sublist in ASC order
+            softAssert.assertTrue(basicActions.isAscendingOrder(language,actualListExceptOther), " Document type List not in ascending order");
+
+            //using only  if, because not all sublist items contains other
+            if (actualList.contains(OtherText)) {
+                softAssert.assertTrue(actualList.get(actualList.size() - 1).startsWith(OtherText), "Other item  missing at the end of the list");
+            }
+
+            index++;
+            docTypeDrpDwn.click();
+        }
+        softAssert.assertAll();
+
+    }
+
 }

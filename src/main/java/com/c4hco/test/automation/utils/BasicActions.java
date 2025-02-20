@@ -11,6 +11,7 @@ import org.testng.Assert;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -219,7 +220,7 @@ public class BasicActions {
                 new WebDriverWait(driver,
                         Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
                 return true;
-            } catch (StaleElementReferenceException | NoSuchElementException | IndexOutOfBoundsException e) {
+            } catch (StaleElementReferenceException | NoSuchElementException | IndexOutOfBoundsException | ElementNotInteractableException e) {
                 retries--;
                 Log.info("StaleElementReferenceException or NoSuchElementException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
@@ -826,6 +827,7 @@ public class BasicActions {
         return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
     }
     public List<MemberDetails> getAllSubscribers(){
+        // Medical Subscribers
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allSubscribers = new ArrayList<>();
         for(MemberDetails member: allMembers){
@@ -835,6 +837,18 @@ public class BasicActions {
         }
         return allSubscribers;
     }
+
+    public List<MemberDetails> getAllDenSubscribers(){
+        List<MemberDetails> allMembers = getAllMem();
+        List<MemberDetails> allSubscribers = new ArrayList<>();
+        for(MemberDetails member: allMembers){
+            if(member.getIsDentalSubscriber().equals("Y")){
+                allSubscribers.add(member);
+            }
+        }
+        return allSubscribers;
+    }
+
     public List<MemberDetails> getAllDependents(){
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allDependents = new ArrayList<>();
@@ -952,6 +966,28 @@ public class BasicActions {
         return allEligibleMembers;
     }
 
+    public String getTotalMemInMedGrp(String grpInd){
+        List<MemberDetails> allMedicalEligMem = getAllMedicalEligibleMemInfo();
+        int totalMemInGrp = 0;
+        for(MemberDetails member: allMedicalEligMem){
+            if(member.getMedGroupInd().equals(grpInd)){
+                totalMemInGrp++;
+            }
+        }
+        return String.valueOf(totalMemInGrp);
+    }
+
+    public String getTotalMemInDenGrp(String grpInd){
+        List<MemberDetails> allDentalEligMem = getAllDentalEligibleMemInfo();
+        int totalMemInGrp = 0;
+        for(MemberDetails member: allDentalEligMem){
+            if(member.getDenGroupInd().equals(grpInd)){
+                totalMemInGrp++;
+            }
+        }
+        return String.valueOf(totalMemInGrp);
+    }
+
     public List<MemberDetails> getAllDentalEligibleMemInfo(){
         List<MemberDetails> allMembers = getAllMem();
         List<MemberDetails> allEligibleMembers = new ArrayList<>();
@@ -961,6 +997,30 @@ public class BasicActions {
             }
         }
         return allEligibleMembers;
+    }
+
+    public String getTotalMedEnrollees(String firstName){
+        List<MemberDetails> allMembers = getAllMedicalEligibleMemInfo();
+        String totalMemInGrp = "";
+        for(MemberDetails member: allMembers){
+            if(member.getFirstName().equals(firstName)){
+                totalMemInGrp = getTotalMemInMedGrp(member.getMedGroupInd());
+                break;
+            }
+        }
+        return totalMemInGrp;
+    }
+
+    public String getTotalDentalEnrollees(String firstName){
+        List<MemberDetails> allMembers = getAllDentalEligibleMemInfo();
+        String totalMemInGrp = "";
+        for(MemberDetails member: allMembers){
+            if(member.getFirstName().equals(firstName)){
+                totalMemInGrp = getTotalMemInDenGrp(member.getDenGroupInd());
+                break;
+            }
+        }
+        return totalMemInGrp;
     }
 
     public void setRelationToSubscriber(List<String> relationToSubscriber){
@@ -1053,12 +1113,21 @@ public class BasicActions {
         return sdf.format(date);
     }
 
-    public int getAge(String dob){
+    public int getAge(String dob) {
         dob = changeDateFormat(dob, "MMddyyyy", "MM/dd/yyyy");
         return Period.between(LocalDate.parse(dob, DateTimeFormatter.ofPattern("MM/dd/yyyy")), LocalDate.now()).getYears();
     }
 
-    public String formatPhNum(String number){
+    public void setMinor() {
+        List<MemberDetails> allMembers = getAllMem();
+        for (MemberDetails mem : allMembers) {
+            if (getAge(mem.getDob()) < 18) {
+                mem.setIsMinor(true);
+            }
+        }
+    }
+
+    public String formatPhNum(String number) {
         // inputFormat - 1234567890 outputFormat - 123-456-7890
         return number.substring(0, 3) + "-" +
                 number.substring(3, 6) + "-" +
@@ -1085,7 +1154,7 @@ public class BasicActions {
     }
 
     public void pageAtTop() {
-        wait(50);
+        wait(500);
         assertTrue("The page is not at the top.", isPageAtTop(driver));
         System.out.println("The page is at the top.");
     }
@@ -1165,6 +1234,20 @@ public class BasicActions {
                 break;
             }
         }
+    }
+
+    public boolean isAscendingOrder(String language, List<String> list) {
+        List<String> sortedList = new ArrayList<>(list);
+
+        if(language.equals("Spanish")){
+            Collator collator = Collator.getInstance(new Locale("es","ES"));
+            collator.setStrength(Collator.IDENTICAL);
+            sortedList.sort(collator);
+        }
+        else {
+            Collections.sort(sortedList);
+        }
+        return  list.equals(sortedList);
     }
 }
 

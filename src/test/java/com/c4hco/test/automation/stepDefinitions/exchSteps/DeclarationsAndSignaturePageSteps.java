@@ -23,5 +23,8 @@ public class DeclarationsAndSignaturePageSteps {
     public void verifyTextEnglishAndSpanish(String languageOption){
         declarationsAndSignaturePage.verifyTextEnglishAndSpanishInDASPage(languageOption);
     }
-
+    @Then("I click back button on Declarations and Signature page")
+    public void iClickBackButton(){
+        declarationsAndSignaturePage.clickBackButton();
+    }
 }

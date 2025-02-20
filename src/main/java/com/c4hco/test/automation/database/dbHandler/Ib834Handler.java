@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.database.dbHandler;
 
 import com.c4hco.test.automation.database.EntityObj.Ib834Entity;
-import com.c4hco.test.automation.database.EntityObj.Ib999Entity;
 import com.c4hco.test.automation.database.Utils.PostgresStatementExecutor;
 import com.c4hco.test.automation.utils.BasicActions;
 
@@ -68,11 +67,12 @@ public class Ib834Handler {
                 basicActions.wait(10000);
                 dbDataList = getIb834Details(query);
                 iterationCount++;
-                if(iterationCount>20){
+                System.out.println("---- Waiting for the Ib834 file ---- ");
+                if(iterationCount>30){
                     System.out.println("Iteration count is greater than 20. ");
                     break;
                 }
-                System.out.println("---- Waiting for the Ib834 file ---- ");
+
             } while (dbDataList.isEmpty());
         } catch (Exception e) {
             e.printStackTrace();

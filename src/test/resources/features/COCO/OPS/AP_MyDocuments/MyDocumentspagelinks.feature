@@ -1,7 +1,7 @@
-@OPS
+@OPS @COCO
 Feature: Verify Header, Footer and welcome back button link on my documents page for admin portal user
   @SLCR-80
-  Scenario: Verify Header, Footer and welcome back button link on my documents page for admin portal user
+  Scenario: SLCR-80 Verify Header, Footer and welcome back button link on my documents page for admin portal user
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -30,6 +30,7 @@ Feature: Verify Header, Footer and welcome back button link on my documents page
     And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Documents and Letters" link on welcome page
+    And I select year "All" in plan year
     Then I validate the notice "IND_Plan Selection and Payment Confirmation (EN-002-04)" exist in my document letter Containers
     And I click on Learn More in the Header
     And I validate I am on the "Contact Us" page and close tab

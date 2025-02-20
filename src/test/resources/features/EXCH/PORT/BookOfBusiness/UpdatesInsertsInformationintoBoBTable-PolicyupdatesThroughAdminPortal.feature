@@ -1,7 +1,7 @@
 @BrokerPortalBOB @port @SLER-1103
 Feature:Updates/Inserts Information into BoB Table - Policy updates through Admin Portal
 
-  Scenario: : Policy updates through Admin Portal
+  Scenario: Policy updates through Admin Portal
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

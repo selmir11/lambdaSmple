@@ -13,7 +13,6 @@ public class IncomeSummaryPageSteps {
     @Then("I select the projected income option {string} and continue")
     public void iSelectProjectedIncomeOption(String projectedIncomeOption) {
         incomeSummaryPage.selectProjectedIncome(projectedIncomeOption);
-
     }
 
     @Then("I click the save and continue button on the Income Summary Detail page")

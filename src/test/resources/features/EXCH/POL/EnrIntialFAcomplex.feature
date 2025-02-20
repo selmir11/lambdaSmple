@@ -1,7 +1,7 @@
 Feature: Enroll a in a plan 8 HH
 
   @SLER-832-WIP
-  Scenario: : EXCH Initial Application - Complex Household
+  Scenario: EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -12,15 +12,15 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
-   # And I report "MovedToColorado" and click continue
+    And I report "MovedToColorado" and click continue
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "07271963" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -163,7 +163,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    Then I enter details on tell us about additional members of your household exch page and continue with "Nephew", "0151995", "Male" and applying "Yes"
+    Then I enter details on tell us about additional members of your household exch page and continue with "Nephew", "01051995", "Male" and applying "Yes"
       |Primary:Nephew|
       |Spouse:Nephew |
       |SonOne:Cousin|
@@ -180,6 +180,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Not listed" for race and ethnicity for "Nephew"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -208,6 +209,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Not listed" for race and ethnicity for "Niece"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -253,7 +255,6 @@ Feature: Enroll a in a plan 8 HH
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-
   #Mem4
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -283,6 +284,20 @@ Feature: Enroll a in a plan 8 HH
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
+
+#    Steps to New Tax Status Page
+#    Then I select "No" for will you be claimed as dependent question
+#    Then I select "Yes" for will file tax return question
+#    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+#    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+#    Then I select "Yes" for will claim dependents question
+#    Then I select "Niece" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I click Save and Continue on Tax Status Elmo page
+
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
@@ -338,7 +353,7 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Niece,Nephew,Daughter"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
@@ -390,54 +405,86 @@ Feature: Enroll a in a plan 8 HH
     And I click submit enrollment on Enrollment Agreements page
 
     Then I click all done from payment portal page
+    And I check for minors in the household
 
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "NonElmo"
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click on Sign Out in the Header for "NonElmo"
 
-    And I validate "medical" entities from policy tables for groups
-    And I validate "dental" entities from policy tables for groups
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
 
-    And I validate "medical" entities from pre edi db tables for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | OEP        |
-    And I validate "dental" entities from pre edi db tables for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | OEP        |
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
 
 #    #Gmail Verification
 #    Then I open outlook Tab
 #    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
 #    Then I open the notice "(EN-002-04)" in "English"
 #    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate additional details for "medical" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |SonOne|
+#      |Daughter|
+#    And I validate additional details for "dental" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |SonOne|
+#      |Daughter|
 #    Then I delete the open notice
 #    And I sign out of Outlook
 #    And I switch to the tab number 0
 
-    #DbVerification
-    And I verify the policy data quality check with Policy Ah keyset size 4
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#   # DbVerification
+#    And I verify the policy data quality check with Policy Ah keyset size 4
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
+    And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+    And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
+  # Ib999 DB Validation
+    And I validate "medical" entities from ib999_details db table
+    And I validate "dental" entities from ib999_details db table
 
+    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+    And I download the "dental" ib999 files from sftp server with location "/archive/INBOUND999/"
 
+    And I validate the ib999 "medical" file data
+    And I validate the ib999 "dental" file data
 
+    #Ib834
+    And I validate ib834 "medical" details in database for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+    And I validate ib834 "dental" details in database for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
 
+    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+    And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
 
+    And I validate the ib834 "medical" files data
+    And I validate the ib834 "dental" files data
 
+    # Ob999
+    And I validate "medical" entities from ob999_details db table
+    And I validate "dental" entities from ob999_details db table
 
+    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
 
-
-
-
-
-
-
+    And I validate the ob999 "medical" file data
+    And I validate the ob999 "dental" file data

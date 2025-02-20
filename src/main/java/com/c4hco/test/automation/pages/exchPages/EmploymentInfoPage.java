@@ -12,8 +12,11 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class EmploymentInfoPage {
@@ -73,7 +76,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSeasonal-NoButton")
     WebElement btnIsSeasonalNo;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-YesButton")
+    @FindBy(id = "ELIG-summaryDetails-YesButton")
     WebElement btnIncomeSameYes;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-NoButton")
@@ -113,7 +116,7 @@ public class EmploymentInfoPage {
     WebElement helpDrawerContactUsLink;
 
     @FindBy(xpath = "(//a[@class=’clickable link-text-1’])[0]")
-    List<WebElement>EditUpdateLink;
+    List<WebElement> EditUpdateLink;
 
     @FindBy(xpath = "(//label[@class='input-label form-label']//span)[1]")
     WebElement haveAJobOrEmployedQuestion;
@@ -181,8 +184,9 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-summaryDetails-incomeAmountInput")
     WebElement projectedIncomeInput;
 
-    public void clickEditUpdateLink(int employer){
-    basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
+
+    public void clickEditUpdateLink(int employer) {
+        basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
         EditUpdateLink.get(employer).click();
     }
 
@@ -201,7 +205,7 @@ public class EmploymentInfoPage {
     }
 
     public void isUserSelfEmplyed(String selfEmploymentOption) {
-        basicActions.waitForElementToBeClickable(btnYesSelfEmployed,20);
+        basicActions.waitForElementToBeClickable(btnYesSelfEmployed, 20);
         switch (selfEmploymentOption) {
             case "Yes":
                 btnYesSelfEmployed.click();
@@ -214,7 +218,7 @@ public class EmploymentInfoPage {
         }
     }
 
-    public static String getUniqueString(int length){
+    public static String getUniqueString(int length) {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
@@ -231,12 +235,10 @@ public class EmploymentInfoPage {
         if (name.contains(primaryFirstName)) {
             primaryMem.setEmployerName(companyName);
             SharedData.setPrimaryMember(primaryMem);
-        } else if (memberList.size()>0) {
-            Optional<MemberDetails> requiredMem = memberList.stream()
-                    .filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName())))
-                    .findFirst();
+        } else if (memberList.size() > 0) {
+            Optional<MemberDetails> requiredMem = memberList.stream().filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName()))).findFirst();
             if (requiredMem.isPresent()) {
-                MemberDetails member =  (MemberDetails) requiredMem.get();
+                MemberDetails member = (MemberDetails) requiredMem.get();
                 member.setEmployerName(companyName);
             } else {
                 Assert.fail("No matching member found in the member list.");
@@ -271,12 +273,10 @@ public class EmploymentInfoPage {
         if (name.contains(primaryFirstName)) {
             primaryMem.setEmployerName(companyName);
             SharedData.setPrimaryMember(primaryMem);
-        } else if (memberList.size()>0) {
-            Optional<MemberDetails> requiredMem = memberList.stream()
-                    .filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName())))
-                    .findFirst();
+        } else if (memberList.size() > 0) {
+            Optional<MemberDetails> requiredMem = memberList.stream().filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName()))).findFirst();
             if (requiredMem.isPresent()) {
-                MemberDetails member =  (MemberDetails) requiredMem.get();
+                MemberDetails member = (MemberDetails) requiredMem.get();
                 member.setEmployerName(companyName);
             } else {
                 Assert.fail("No matching member found in the member list.");
@@ -292,7 +292,7 @@ public class EmploymentInfoPage {
         projectedIncomeQuestion(Same);
     }
 
-    public void genericEmploymentInfo(String addressline1, String city,String state, String zipcode, String Salary, String Frequency){
+    public void genericEmploymentInfo(String addressline1, String city, String state, String zipcode, String Salary, String Frequency) {
 
 
         basicActions.waitForElementToBePresent(txtHeaderPart1, 20);
@@ -306,12 +306,10 @@ public class EmploymentInfoPage {
         if (name.contains(primaryFirstName)) {
             primaryMem.setEmployerName(companyName);
             SharedData.setPrimaryMember(primaryMem);
-        } else if (memberList.size()>0) {
-            Optional<MemberDetails> requiredMem = memberList.stream()
-                    .filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName())))
-                    .findFirst();
+        } else if (memberList.size() > 0) {
+            Optional<MemberDetails> requiredMem = memberList.stream().filter(mem -> name.contains(BasicActions.capitalizeFirstLetter(mem.getFirstName()))).findFirst();
             if (requiredMem.isPresent()) {
-                MemberDetails member =  (MemberDetails) requiredMem.get();
+                MemberDetails member = (MemberDetails) requiredMem.get();
                 member.setEmployerName(companyName);
             } else {
                 Assert.fail("No matching member found in the member list.");
@@ -333,12 +331,13 @@ public class EmploymentInfoPage {
     }
 
     public void enterEmploymentIncome(String Salary) {
-        basicActions.waitForElementToBePresent(txtIncomeAmount,15);
+        basicActions.waitForElementToBePresent(txtIncomeAmount, 15);
         txtIncomeAmount.clear();
         txtIncomeAmount.click();
         txtIncomeAmount.sendKeys(Salary);
 
     }
+
     public void isUserEmploymentSeasonal(String seasonalEmploymentOption) {
         switch (seasonalEmploymentOption) {
             case "Yes":
@@ -366,15 +365,15 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToBePresent(btnContinue,90);
-        basicActions.waitForElementToBePresent(txtHeaderPart1,90);
+        basicActions.waitForElementToBePresent(btnContinue, 90);
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(btnContinue);
         btnContinue.click();
     }
 
     public void clickHelpIcon(String label) {
         basicActions.waitForElementListToBePresent(helpIcons, 10);
-        switch(label){
+        switch (label) {
             case "General help":
                 helpIcons.get(0).click();
                 break;
@@ -448,11 +447,11 @@ public class EmploymentInfoPage {
         }
     }
 
-    public void validateGeneralHelpBodyVerbiage(String language){
+    public void validateGeneralHelpBodyVerbiage(String language) {
         basicActions.click(helpDrawerMainHeaders.get(0));
         basicActions.click(helpDrawerBodyParagraphs.get(0));
         basicActions.click(helpDrawerBodyPoints.get(0));
-        switch(language){
+        switch (language) {
             case "English":
                 validateGeneralHelpBodyVerbiageEng();
                 break;
@@ -466,54 +465,38 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiageEng() {
-                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
-                softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Employment Overview");
-                softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText()+" "+helpDrawerOverviewHeaders.get(2).getText(), "Employment Overview");
-                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We need to know how much you and your family members earn at your job(s).");
-                softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "We need to know about the company you work for.");
-                softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "We need to know how much money you make from self-employment.");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Employment\n" +
-                        "Does this person earn money through a job or by being self-employed?");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Company Name\n" +
-                        "Enter a company name for each job.");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Gross Income\n" +
-                        "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "Seasonal, commission or tipped base employment\n" +
-                        "This question helps us calculate the annual income for customers who don't have the same income every week or month.");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "Same or lower\n" +
-                        "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "Net Income\n" +
-                        "Tell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Same or lower\n" +
-                        "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
-                softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "Employer Address\n" +
-                        "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
-                softAssert.assertAll();
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText() + " " + helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText() + " " + helpDrawerOverviewHeaders.get(1).getText(), "Employment Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText() + " " + helpDrawerOverviewHeaders.get(2).getText(), "Employment Overview");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We need to know how much you and your family members earn at your job(s).");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "We need to know about the company you work for.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "We need to know how much money you make from self-employment.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Employment\n" + "Does this person earn money through a job or by being self-employed?");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Company Name\n" + "Enter a company name for each job.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Gross Income\n" + "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "Seasonal, commission or tipped base employment\n" + "This question helps us calculate the annual income for customers who don't have the same income every week or month.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "Same or lower\n" + "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "Net Income\n" + "Tell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Same or lower\n" + "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "Employer Address\n" + "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
+        softAssert.assertAll();
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText()+" "+helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText()+" "+helpDrawerOverviewHeaders.get(1).getText(), "Empleo Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText()+" "+helpDrawerOverviewHeaders.get(2).getText(), "Empleo Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText() + " " + helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText() + " " + helpDrawerOverviewHeaders.get(1).getText(), "Empleo Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText() + " " + helpDrawerOverviewHeaders.get(2).getText(), "Empleo Resumen");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Necesitamos saber cu\u00E1nto ganan usted y los miembros de su familia en su(s) trabajo(s).");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Necesitamos informaci\u00F3n sobre la empresa para la que trabaja usted.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Necesitamos saber cu\u00E1nto gana como trabajador independiente.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Empleo\n" +
-                "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Nombre de la empresa\n" +
-                "Ingrese el nombre de la empresa de cada trabajo.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Ingreso bruto\n" +
-                "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "Trabajo temporal, por comisiones o por propinas\n" +
-                "Esta pregunta nos ayuda a calcular el ingreso anual de los clientes que no tienen el mismo ingreso cada semana o mes.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "Igual o bajar\u00E1\n" +
-                "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "Ingreso neto\n" +
-                "Indique su ingreso como trabajador independiente despues de pagar sus gastos de negocios. (Ingreso neto a veces se llama \"ganacias\".)");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Igual o bajar\u00E1\n" +
-                "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "Direcci\u00F3n del empleador\n" +
-                "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Empleo\n" + "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Nombre de la empresa\n" + "Ingrese el nombre de la empresa de cada trabajo.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Ingreso bruto\n" + "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "Trabajo temporal, por comisiones o por propinas\n" + "Esta pregunta nos ayuda a calcular el ingreso anual de los clientes que no tienen el mismo ingreso cada semana o mes.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "Igual o bajar\u00E1\n" + "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "Ingreso neto\n" + "Indique su ingreso como trabajador independiente despues de pagar sus gastos de negocios. (Ingreso neto a veces se llama \"ganacias\".)");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Igual o bajar\u00E1\n" + "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "Direcci\u00F3n del empleador\n" + "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
         softAssert.assertAll();
     }
 
@@ -740,14 +723,14 @@ public class EmploymentInfoPage {
         basicActions.waitForElementToBePresent(helpLabel, 10);
         basicActions.waitForElementToBePresent(btnYesEmployed, 10);
         basicActions.waitForElementToBePresent(btnNoEmployed, 10);
-        softAssert.assertEquals(txtHeaderPart1.getText(), dataText.get(0)+" "+ SharedData.getPrimaryMember().getFirstName()+" "+SharedData.getPrimaryMember().getLastName());
-        softAssert.assertEquals(txtHeaderPart2.getText(), dataText.get(1),"Title Not matching");
-        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), dataText.get(2),"Question Not matching");
-        softAssert.assertEquals(btnYesEmployed.getText(), dataText.get(3),"Yes button label not matching");
-        softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4),"No button label not matching");
-        softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5),"back button label not matching");
-        softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6),"continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7),"Help button label not matching");
+        softAssert.assertEquals(txtHeaderPart1.getText(), dataText.get(0) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(txtHeaderPart2.getText(), dataText.get(1), "Title Not matching");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), dataText.get(2), "Question Not matching");
+        softAssert.assertEquals(btnYesEmployed.getText(), dataText.get(3), "Yes button label not matching");
+        softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label not matching");
+        softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
+        softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
+        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
         softAssert.assertAll();
     }
 
@@ -812,7 +795,7 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(companyNameLabel.getText(), dataText.get(11), "Company Name label not matching");
         softAssert.assertEquals(currentNetIncomeQuestion.getText(), dataText.get(12), "Current Net Income question not matching");
         softAssert.assertEquals(enterProfitLabel.getText(), dataText.get(13), "Enter Profit label not matching");
-        softAssert.assertTrue(dollarSign.isDisplayed(),"Dollar sign not visible"); // Verifying dollar sign is present
+        softAssert.assertTrue(dollarSign.isDisplayed(), "Dollar sign not visible"); // Verifying dollar sign is present
         softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(14), "amount label in input text field not matching");
         softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(15), "Select Option Label not matching");
         softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenYesToSelfEmployedQuestion.getText(), dataText.get(16), "Income same or Lower question not matching");
@@ -863,9 +846,9 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
         softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
         softAssert.assertEquals(companyNameLabel.getText(), dataText.get(11), "Company Name label not matching");
-        softAssert.assertTrue(dollarSign.isDisplayed(),"Dollar sign not visible"); // Verifying dollar sign is present
+        softAssert.assertTrue(dollarSign.isDisplayed(), "Dollar sign not visible"); // Verifying dollar sign is present
         softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(12), "Amount label not matching");
-        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(13),"Select option label not matching");
+        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(13), "Select option label not matching");
         softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getText(), dataText.get(14), "Income same question not matching");
         softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(15), "Yes button label for Income same question not matching");
         softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(16), "No button label for Income same question not matching");
@@ -883,13 +866,41 @@ public class EmploymentInfoPage {
         softAssert.assertAll();
     }
 
-    public void enterProjectedIncome(String projectedIncome){
-        basicActions.waitForElementToBePresent(projectedIncomeInput,75);
+    public void enterProjectedIncome(String projectedIncome) {
+        basicActions.waitForElementToBePresent(projectedIncomeInput, 75);
         projectedIncomeInput.clear();
         projectedIncomeInput.click();
         projectedIncomeInput.sendKeys(projectedIncome);
     }
 
+    public void validateNetIncomeFrequencyDropdown(String language) {
+
+        basicActions.waitForElementToBePresent(selectIncomeFreq, 10);
+
+        Select dropdown = new Select(selectIncomeFreq);
+        List<WebElement> options = dropdown.getOptions();
+
+        List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
+    List<String> expectedOptions = new ArrayList<>();
+
+        switch (language.toLowerCase()) {
+            case "english":
+                // Expected values in the dropdown menu
+                expectedOptions = Arrays.asList("Weekly", "Twice a month", "Monthly", "Annually", "Every 2 weeks");
+                // Validate the dropdown contains all expected options
+                break;
+            case "spanish":
+                // Expected values in the dropdown menu in Spanish
+                 expectedOptions = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
+                break;
+            default:
+                Assert.fail("Invalid option: " + language);
+        }
+        for (String expectedOption : expectedOptions) {
+            boolean optionExists = actualOptions.stream().anyMatch(optionText -> optionText.equals(expectedOption)); // Check for the expected value
+            Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
+        }
+    }
 }
 
 
