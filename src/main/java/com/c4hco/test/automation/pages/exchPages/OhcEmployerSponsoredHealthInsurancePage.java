@@ -242,6 +242,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void clickCurrentlyEnrolled(String currentlyEnrolled){
+        basicActions.waitForElementToBePresent(esiCurrentlyEnrolledNoBtn,30);
         switch (currentlyEnrolled){
             case "Yes":
                 basicActions.click(esiCurrentlyEnrolledYesBtn);
@@ -255,6 +256,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void clickInsuranceEnd(String willEnd){
+        basicActions.waitForElementToBePresent(esiInsuranceEndYesBtn,30);
         switch (willEnd){
             case "Yes":
                 basicActions.click(esiInsuranceEndYesBtn);
@@ -435,6 +437,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     public void verifyHeadersEsiOhcPageEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcEsiHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcEsiHeader.getText(),"Employer-sponsored Health Insurance");
         softAssert.assertAll();
@@ -442,6 +445,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     public void verifyHeadersEsiOhcPageSpanish(){
         basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcEsiHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertAll();
@@ -628,7 +632,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyEsiPageData(String dataToVerify, String language){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         switch (language){
             case "English":
                 verifyEsiPageDataEnglish(dataToVerify);
@@ -642,7 +646,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyEsiPageDataEnglish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         switch (dataToVerify){
             case "No Job Section":
                 verifyEsiPageNoJobSectionDataEnglish();
@@ -697,13 +701,14 @@ public class OhcEmployerSponsoredHealthInsurancePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(goBackButton.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
     public void verifyEsiPageNoJobSectionDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcEsiHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcEsiHeader.getText(),"Employer-sponsored Health Insurance");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"Which job is offering health insurance?");
@@ -758,7 +763,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyEsiPageFirstSectionSecondaryDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcEsiHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcEsiHeader.getText(),"Employer-sponsored Health Insurance");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"Which job is offering health insurance?");
@@ -860,7 +866,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Volver");
+        softAssert.assertEquals(goBackButton.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }
@@ -921,7 +927,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyEsiPageFirstSectionSecondaryDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcEsiHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcEsiHeader.getText(),"Seguro de salud patrocinado por el empleador");
         softAssert.assertEquals(EsiQuestionTxt.get(0).getText(),"\u00BFQu\u00E9 empleo le ofrece seguro de salud?");

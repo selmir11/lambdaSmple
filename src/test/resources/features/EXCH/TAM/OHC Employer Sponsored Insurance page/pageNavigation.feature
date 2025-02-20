@@ -51,11 +51,11 @@ Feature: Page Navigation-OHC ESI Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "job" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
@@ -63,6 +63,7 @@ Feature: Page Navigation-OHC ESI Page
 
   @SLER-687 @PageNavigationESI
   Scenario: SLER-687 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in OHC Portal, Exchange
+    And I verify the header for Primary Member on the ESI page in "English"
     #Step1
     And I change the C4 url to "Other Health Coverage portal Error Exch"
     Then I validate I am on the "Error" page
@@ -91,10 +92,11 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page in "English"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I click Go Back button from chrome browser
@@ -124,7 +126,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I select "CHP+" as ELMO health coverage option
     Then I select "COBRA" as ELMO health coverage option
@@ -153,7 +155,8 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     And I validate Other Health Coverage options load "Medicaid, CHP+, COBRA"
 
     And I click on Sign Out in the Header for "Elmo"
@@ -176,7 +179,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I select "CHP+" as ELMO health coverage option
     Then I select "COBRA" as ELMO health coverage option
@@ -206,7 +209,8 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     And I validate Other Health Coverage options load "Medicaid, CHP+, ESI, COBRA"
 
     And I click on Sign Out in the Header for "Elmo"
@@ -276,10 +280,10 @@ Feature: Page Navigation-OHC ESI Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
@@ -296,6 +300,7 @@ Feature: Page Navigation-OHC ESI Page
   Scenario: SLER-2064 I want to be directed to the unauthorized page so that I know I have tried to access a page I am not authorized to access
 #    check in English and change to Spanish
     And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page in "English"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     Then I validate I am on the "Unauthorized" page
     Then I verify unauthorized text in "English"
@@ -327,10 +332,11 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "ESI" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the header for Primary Member on the ESI page in "Spanish"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     Then I validate I am on the "Unauthorized" page
     Then I verify unauthorized text in "Spanish"

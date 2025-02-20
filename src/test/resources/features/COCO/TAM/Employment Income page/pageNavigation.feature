@@ -110,12 +110,12 @@ Feature: Tests related to the Employment Income page
     Then I validate I am on the "CoCo Employment Income" page
     And I change the C4 url to "Employment Income Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    Then I verify unauthorized text in "English:Income"
+    Then I verify unauthorized text in "English"
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"
     And I change the language from header to "Spanish"
     Then I wait for 50 milliseconds
-    Then I verify unauthorized text in "Spanish:Income"
+    Then I verify unauthorized text in "Spanish"
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
 #    check in Spanish and change to English
@@ -131,12 +131,12 @@ Feature: Tests related to the Employment Income page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I change the C4 url to "Employment Income Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
-    Then I verify unauthorized text in "Spanish:Income"
+    Then I verify unauthorized text in "Spanish"
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I change the language from header to "English"
     Then I wait for 50 milliseconds
-    Then I verify unauthorized text in "English:Income"
+    Then I verify unauthorized text in "English"
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"
 
