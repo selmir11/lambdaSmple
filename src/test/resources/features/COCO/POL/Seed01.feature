@@ -105,7 +105,7 @@ And I validate Current Medical entities from COCO pre edi db tables
     | 021                   | 021                | EC                    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year |                   | NEW_CO_RESIDENT |
 And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
 
-@SLCR-780
+@SLCR-780 WIP
 Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
   Given I open the login page on the "login" portal
   Then I validate I am on the "Login" page
@@ -132,7 +132,7 @@ Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME 
   And I check "None of these" life change event checkbox
   And I select continue on the LCE page
   Then I validate I am on the "CoCo Declarations and Signature" page
-  And I enter a full name valid signature
+  And I enter a valid signature
   And I click Continue on the Declarations And Signature Page CoCo
   Then I validate I am on the "Application Results CoCo" page
   And I click Continue on the Application Results Page CoCo

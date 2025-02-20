@@ -36,6 +36,7 @@ Feature: Verify the Agency Details page of Broker Portal
     Then I validate the city field maximum character limit
     Then I validate the zip code field maximum limit
     Then I validate the agency hide address tooltip text
+    Then I validate the error message to enter both to and from working hours
     Then I validate the email field will not allow an invalid address
     Then I validate the email field maximum character limit
     Then I validate the phone number field formatting

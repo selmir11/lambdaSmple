@@ -66,5 +66,15 @@ public class AccountOverviewPageSteps {
 
     @Then("I validate the text of the Self Attestation container")
     public void iVerifySelfAttestContainerText(){accountOverviewPage.verifySelfAttestationContainer();}
+
+
+    @Then("I verify the button texts in account overview page {string}")
+    public void iVerifyTheButtonTextsIn(String language) {accountOverviewPage.verifyDentalButtonsText(language);
+    }
+
+
+
 }
+
+
 

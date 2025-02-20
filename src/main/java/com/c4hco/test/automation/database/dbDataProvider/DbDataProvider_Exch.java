@@ -5,11 +5,9 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
+import com.c4hco.test.automation.utils.BasicActions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DbDataProvider_Exch {
     private DbQueries_Exch exchDbQueries = new DbQueries_Exch();
@@ -35,6 +33,7 @@ public class DbDataProvider_Exch {
     EsHouseholdContactDbHandler esHouseholdContactDbHandler = new EsHouseholdContactDbHandler();
     EsMemberDbHandler esMemberDbHandler = new EsMemberDbHandler();
     EsSelfAttestationDbHandler esSelfAttestationDbHandler = new EsSelfAttestationDbHandler();
+    BasicActions basicActions = new BasicActions();
     EsFDSHRetryControlDbHandler esFDSHRetryControlDbHandler = new EsFDSHRetryControlDbHandler();
 
     public List<PolicyTablesEntity> getDataFromPolicyTables(){
@@ -43,10 +42,6 @@ public class DbDataProvider_Exch {
 
     public List<PolicyTablesEntity> getDataFrmPolicyTables(String coverageType){
         return policyTableDbHandler.getPolicyTableDetails(exchDbQueries.policyTablesCombinedQuery(coverageType));
-    }
-
-    public List<Ob834DetailsEntity> getOb83Db4Details(){
-        return ob834DetailsDbHandler.getOb834DetalsAfterCompleted(exchDbQueries.ob834Details());
     }
 
     public List<Ob834DetailsEntity> getOb834Details(String insurance_line_code){
@@ -81,8 +76,17 @@ public class DbDataProvider_Exch {
 
     public String getFipcode(){
         String zipcode = primaryMember.getResAddress().getAddressZipcode();
-        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode));
+        String county = primaryMember.getResAddress().getAddressCounty();
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode, county));
     }
+
+    public String getFipCodeForMem(String name){
+        String zipcode = basicActions.getMember(name).getResAddress().getAddressZipcode();
+        String county = basicActions.getMember(name).getResAddress().getAddressCounty();
+        return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode, county));
+
+    }
+
     public String getRatingAreaName(String fipcode){
        return postgresHandler.getResultFor("name", exchDbQueries.getRatingArea(fipcode));
 
@@ -97,6 +101,11 @@ public class DbDataProvider_Exch {
     public String[] getBaseIdAndHiosIssuerForPlan(String planName){
         return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_plan(planName));
     }
+
+//    public String[] getBaseIdAndHiosIssuerForDentalPlan(String planName){
+//        return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_Dentalplan(planName));
+//    }
+
     public String getExchPersonId(String memId){
         return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId(memId));
     }
@@ -134,7 +143,7 @@ public class DbDataProvider_Exch {
         SharedData.setDbData(dbData);
     }
     public void setDataFromDb_New(String name){
-        String fipcode = getFipcode();
+        String fipcode = getFipCodeForMem(name);
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
         String brokerTinNum = null;
@@ -156,9 +165,9 @@ public class DbDataProvider_Exch {
         setDataFromDbGrp(name, dbData );
     }
     public void setDataFromDbGrp(String name, DbData dbData){
-        List<Map<String, DbData>> dbDataMapList = SharedData.getDbDataNew();
+        Set<Map<String, DbData>> dbDataMapList = SharedData.getDbDataNew();
         if(dbDataMapList == null){
-            dbDataMapList = new ArrayList<>();
+            dbDataMapList = new HashSet<>();
         }
         Map<String, DbData> dbDataMap = new HashMap<>();
         dbDataMap.put(name,dbData);
@@ -596,6 +605,7 @@ public class DbDataProvider_Exch {
     public String getArpIndicator() {
         return postgresHandler.getResultFor("arp_quick_submit_ind", exchDbQueries.getArpIndicator());
     }
+
     public String getCyaEligibility() {
         return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getCyaEligibility());
     }
@@ -612,6 +622,9 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
     }
 
+    public List<String> getSubscribers(String memId) {
+        return postgresHandler.getResultListFor("SubscriberInd", exchDbQueries.getMedSubscribers(memId));
+	}
     public EsFDSHRetryControlEntity getEsFDSH_details() {
         return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }

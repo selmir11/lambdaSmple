@@ -26,9 +26,12 @@ public class Ib834FileValidations {
     int segCount = 0;
     int insSegCount = 0;
     SoftAssert softAssert = new SoftAssert();
+
+
     public Ib834FileValidations(){
         setN1SegList();
     }
+
     public void validateIb834MedFile() {
         getIb834MedEntityForSubscriber();
         List<Ib834Entity> medicalEntityList = SharedData.getIb834MedDetailsEntities();
@@ -49,12 +52,14 @@ public class Ib834FileValidations {
         validateMemSeg(dentalEntityList);
         validateSegCount();
     }
+
     private void validateSegCount() {
         List<String> seSeg = transaction.getCommonSegments().getSE().get(0);
         segCount = segCount + 1;
         softAssert.assertEquals(seSeg.get(0), String.valueOf(segCount), "Total number of segments included in a transaction set including ST and SE segments does not match");
         softAssert.assertAll();
     }
+
     private void getIb834MedEntityForSubscriber() {
         List<Ib834Entity> medicalEntityList = SharedData.getIb834MedDetailsEntities();
         for (Ib834Entity medIb834Entity : medicalEntityList) {
@@ -190,8 +195,6 @@ public class Ib834FileValidations {
         softAssert.assertEquals(luiSeg.get(1).get(2), entry.getSpoken_language(), "Spoken Language does not match.");
         softAssert.assertEquals(luiSeg.get(1).get(3), String.valueOf(7), "Spoken Language Use Indicator does not match");
     }
-
-
     private void validateN3N4Segments(Ib834Entity entry) {
         //N3 Segment
         List<List<String>> n3Seg = transaction.getMembersList().get(0).getN3();
@@ -210,8 +213,6 @@ public class Ib834FileValidations {
         softAssert.assertEquals(n4Seg.get(1).get(1), entry.getMail_st(), "Mailing State does not match");
         softAssert.assertEquals(n4Seg.get(1).get(2), entry.getMail_zip_code(), "Mailing zipcode does not match");
     }
-
-
     private void validateTrnSeg(Ib834Entity entry) {
         // ST Segment
         List<String> stSeg = transaction.getCommonSegments().getST().get(0);
@@ -222,7 +223,6 @@ public class Ib834FileValidations {
         softAssert.assertEquals(seSeg.get(1), entry.getTs_control_number(), "Ts control number does not match");
         segCount = segCount + 2;
     }
-
     private void validateSubscriberRefSeg() {
         List<String> refSeg = transaction.getCommonSegments().getREF().get(0);
         segCount = segCount + 1;
@@ -289,14 +289,14 @@ public class Ib834FileValidations {
     private void validateIb834NM1Seg(Member member, Ib834Entity entry) {
         List<List<String>> nm1Seg1 = member.getNM1();
         segCount = segCount + nm1Seg1.size();
-            softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
-            if (nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
-                softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
-                softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
-                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
-            } else {
-                softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "1", "NM1 segment size for member is not equal to 1");
-            }
+        softAssert.assertEquals(nm1Seg1.get(0).get(0), "IL", "Entity Identifier Code does not match");
+        if (nm1Seg1.get(0).get(3).toLowerCase().contains("primary")) {
+            softAssert.assertEquals(nm1Seg1.get(1).get(0), "31", "NM1 segment with value 31");
+            softAssert.assertEquals(nm1Seg1.get(1).get(1), "1", "NM1 segment with value 1");
+            softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "2", "NM1 segment size for subscriber is not equal to 2");
+        } else {
+            softAssert.assertEquals(String.valueOf(nm1Seg1.size()), "1", "NM1 segment size for member is not equal to 1");
+        }
         softAssert.assertEquals(nm1Seg1.get(0).get(2), entry.getMember_last_name(), "Member Last name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(3), entry.getMember_first_name(), "Member first name does not match");
         softAssert.assertEquals(nm1Seg1.get(0).get(7), "34", "");
@@ -340,7 +340,7 @@ public class Ib834FileValidations {
                 softAssert.assertEquals(dtpSeg.get(2), entry.getBenefit_end_date(), "DTP 349 does not match with benefit end date.");
             } else if (dtpSeg.get(0).contains("303")) {
                 //Financial_effective_date() is null in DB but had a value in file
-              //  softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
+                //  softAssert.assertEquals(dtpSeg.get(2), entry.getFinancial_effective_date(), "DTP 303 does not match with financial effective date.");
             }
         }
     }
@@ -373,8 +373,8 @@ public class Ib834FileValidations {
 
             for (List<String> refSegList : refSegListOfList) {
                 if (String.valueOf(refSegList.get(0)).equals("LX" + lxSegCount)) {
-                        validateWithoutSepReasn(lxSegCount, refSegList, entry, member);
-                  break;
+                    validateWithoutSepReasn(lxSegCount, refSegList, entry, member);
+                    break;
                 }
             }
             lxSegCount++;
@@ -385,8 +385,8 @@ public class Ib834FileValidations {
     }
     private void validateWithoutSepReasn(int lxSegCount, List<String> refSegList, Ib834Entity entry, Member member) {
         if (member.getINS().get(0).get(0).equals("Y")) {
-                    softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getAddl_maint_reason()), "LX" + lxSegCount + " did not match");
-            }
+            softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getAddl_maint_reason()), "LX" + lxSegCount + " did not match");
+        }
     }
     private void validateMemN1Seg(Ib834Entity entry, List<String> n1SegList) {
         List<String> expectedN1List;
@@ -429,6 +429,7 @@ public class Ib834FileValidations {
             }
         }
     }
+
     private void setN1SegList() {
         Collections.addAll(n1ListWithAddtlMaintReas, "ADDL MAINT REASON");
         Collections.addAll(n1ListWithAddtlMaintReasMem, "ADDL MAINT REASON");
