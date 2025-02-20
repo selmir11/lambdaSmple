@@ -269,6 +269,11 @@ public class TellUsAboutAdditionalMemberPage {
         member.setFullName(frstName + " " + mdlName.charAt(0) + ". " + lastName);
         member.setCompleteFullName(frstName + " " + mdlName + " " + lastName);
         member.setSsn("653035280");
+        member.setEmailId(SharedData.getPrimaryMember().getEmailId());
+        member.setPhoneNumber(SharedData.getPrimaryMember().getPhoneNumber());
+        member.setAlternatePhNum(SharedData.getPrimaryMember().getAlternatePhNum());
+        member.setSpokenLanguage("English");
+        member.setWrittenLanguage("English");
         memberList.add(member);
         SharedData.setMembers(memberList);
     }
