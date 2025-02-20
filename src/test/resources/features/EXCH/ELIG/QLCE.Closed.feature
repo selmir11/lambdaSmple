@@ -203,15 +203,16 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
     #And I wait for 10000 milliseconds
     Examples:
     | qlceOption             |
-    | Pregnancy              |
-    | Divorce                |
-     # | Death                  |
-     # | ChangePrimaryResidence |
-     # | LostCoverage           |
-     # | GainedLawfulPresence   |
-     # | MoveToCO               |
-     # | GainedStatus           |
-     # | Incarceration          |
-     # | GainOfTribalStatus     |
-     # | TaxTimeEnrollmentPeriod|
-     # | NoneOfThese            |
+    #| Pregnancy              |
+    #| Divorce                |
+    #  | Death                  |
+    #  | TaxTimeEnrollmentPeriod|
+    # | NoneOfThese            |
+     | Incarceration          |
+
+
+  #  | ChangePrimaryResidence | is valid during CE
+  # | GainedLawfulPresence   |
+  # | MoveToCO               |
+   #| LostCoverage           |
+   # | GainOfTribalStatus     |

@@ -66,8 +66,16 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Divorce')]")
     List<WebElement> divorceEventDate;
 
-    @FindBy(id = "changeOnIncarcerationStatus")
+    // Incarceration
+    @FindBy(xpath = "//input[@id = 'changeOnIncarcerationStatus']")
     WebElement changeOnIncarcerationStatusLce;
+
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'_lceMembersForIncarcerationStatus[0].lceEventStatus')]")
+    List<WebElement> allmemberIncarcerationcheckbox;
+
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'_lceMembersForIncarcerationStatus[0].lceEventStatus')]")
+    List<WebElement> incarcerationEventDate;
+
 
     //Death
     @FindBy(id = "death")
@@ -100,20 +108,22 @@ public class QlceConfirmationPage {
     @FindBy(id = "loseOrLostHealthInsurance")
     WebElement lostCoverageLCE;
 
-    @FindBy(id = "taxTimeEnrollmentPeriod")
-    WebElement taxTimeEnrollmentPeriod;
-
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> allMemberLostCoverageCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> lostCoverageEventDate;
 
+    //Gain Tribal Status
     @FindBy(id = "gainOfAIANStatus")
     WebElement tribalStatusLCE;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForGainOfTribalStatus')]")
     List<WebElement> allMembersGainedTribalStatusCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForGainOfTribalStatus')]")
     List<WebElement> tribalStatusEventDate;
+
+    //Tax Time Enrollment
+    @FindBy(id = "taxTimeEnrollmentPeriod")
+    WebElement taxTimeEnrollmentPeriod;
 
     //None of These
     @FindBy(id = "noneOfThese")
@@ -304,7 +314,17 @@ public class QlceConfirmationPage {
                 }
                 yesRetainPrgnancyCoverage.click();
                  break;
-
+            case "Incarceration":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries( changeOnIncarcerationStatusLce,30 );
+                changeOnIncarcerationStatusLce.click();
+                for (var i = 0; i < allmemberIncarcerationcheckbox.size(); i++) {
+                    allmemberIncarcerationcheckbox.get( i ).click();
+                    incarcerationEventDate.get( i ).click();
+                    incarcerationEventDate.get( i ).sendKeys( getCurrentDate() );
+                }
+                changeOnIncarcerationStatusLce.click();
+                break;
             case "TaxTimeEnrollmentPeriod":
                 basicActions.waitForElementToBeClickable(taxTimeEnrollmentPeriod, 10);
                 taxTimeEnrollmentPeriod.click();
