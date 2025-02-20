@@ -53,11 +53,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I click None of these as deduction option and continue
     And I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    Then I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "job" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
@@ -81,8 +81,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 2
     And I validate I am on the "ESI" page
@@ -112,8 +112,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 5
     And I validate I am on the "ESI" page
@@ -143,8 +143,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 8
     And I validate I am on the "ESI" page
@@ -172,8 +172,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 11
     And I validate I am on the "ESI" page
@@ -199,8 +199,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 14
     And I validate I am on the "ESI" page
@@ -226,8 +226,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 17
     And I validate I am on the "ESI" page
@@ -253,8 +253,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 20
     And I validate I am on the "ESI" page
@@ -279,8 +279,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 23
     And I validate I am on the "ESI" page
@@ -304,8 +304,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 26
     And I validate I am on the "ESI" page
@@ -329,8 +329,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 29
     And I validate I am on the "ESI" page
@@ -389,8 +389,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
@@ -459,10 +459,10 @@ Feature: Page Text-Other Health Coverage Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -526,7 +526,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "375.83" for employee amount question on the ESI page
@@ -586,7 +586,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "375.83" for employee amount question on the ESI page
@@ -650,8 +650,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
     Then I enter "187.91" for employee amount question on the ESI page
@@ -668,8 +668,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
     Then I enter "375.67" for employee amount question on the ESI page
@@ -707,10 +707,10 @@ Feature: Page Text-Other Health Coverage Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 #    Step 11
     And I validate I am on the "ESI" page
@@ -808,8 +808,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I validate I am on the "Tax status" page
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "ESI" page
     Then I enter "300.00" for employee amount question on the ESI page

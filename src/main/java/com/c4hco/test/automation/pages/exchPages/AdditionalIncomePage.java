@@ -333,7 +333,8 @@ public class AdditionalIncomePage {
     }
 
     public void verifyHeadersAdditionalIncomePageEnglish(){
-        basicActions.waitForElementToBePresent(hdr_Income,15);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome,30);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
         softAssert.assertAll();
@@ -442,7 +443,7 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(additlIncomeFrequencyError.get(11).getText(), "Please select one of the options below");
         softAssert.assertEquals(addtlIncomeOptionsName.get(12).getText(), "None of these");
         addtlIncomeOptionsCheckbox.get(12).click();
-        softAssert.assertEquals(backBtn.getText(), "  Go back");
+        softAssert.assertEquals(backBtn.getText(), "Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertAll();
     }
@@ -529,7 +530,7 @@ public class AdditionalIncomePage {
         softAssert.assertEquals(additlIncomeFrequencyError.get(11).getText(), "Seleccione una de las siguientes opciones");
         softAssert.assertEquals(addtlIncomeOptionsName.get(12).getText(), "Ninguna de las anteriores");
         addtlIncomeOptionsCheckbox.get(12).click();
-        softAssert.assertEquals(backBtn.getText(), "  Volver");
+        softAssert.assertEquals(backBtn.getText(), "Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertAll();
     }
