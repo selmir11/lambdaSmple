@@ -70,10 +70,10 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[@id = 'changeOnIncarcerationStatus']")
     WebElement changeOnIncarcerationStatusLce;
 
-    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'_lceMembersForIncarcerationStatus[0].lceEventStatus')]")
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForIncarcerationStatus0.lceEventStatus1')]")
     List<WebElement> allmemberIncarcerationcheckbox;
 
-    @FindBy(xpath = "//input[@type='date'and contains(@id,'_lceMembersForIncarcerationStatus[0].lceEventStatus')]")
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForIncarcerationStatus0.lceEventStatus1')]")
     List<WebElement> incarcerationEventDate;
 
 
@@ -84,6 +84,7 @@ public class QlceConfirmationPage {
     List<WebElement> allmemberDeathcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
     List<WebElement> deathEventDate;
+
     //Moved to Colorado
     @FindBy(id = "changeOfAddress")
     WebElement addressChangeLce;
