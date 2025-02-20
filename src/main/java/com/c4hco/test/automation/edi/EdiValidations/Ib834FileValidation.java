@@ -165,7 +165,6 @@ public class Ib834FileValidation {
 
     private void nm1MinorSubs(Member member, Ib834Entity entry){
         List<List<String>> nm1Seg = member.getNM1();
-        segCount = segCount + nm1Seg.size();
         MemberDetails memberFromSd =  basicActions.getMember(entry.getMember_first_name());
         validateNm1ILSeg(nm1Seg, entry);
         if(!memberFromSd.getResAddress().equals(memberFromSd.getMailingAddress()) && !(memberFromSd.getMailingAddress() == null)){

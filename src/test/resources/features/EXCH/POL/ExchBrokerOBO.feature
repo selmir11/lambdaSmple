@@ -32,7 +32,6 @@ Feature: Enroll  a plan from broker portal (FAMILY OF 1)
     And I click Authorized broker
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
 
-
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "Amethyst.Broker@invalid.com" password "ALaska13!" and "Amethyst.Broker@invalid.com" password "ALaska13!"
