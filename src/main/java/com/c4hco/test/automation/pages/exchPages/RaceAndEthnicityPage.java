@@ -60,8 +60,12 @@ public class RaceAndEthnicityPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinnerOverlay;
+
     public void raceEthnicitySelection(String raceEthnicity, String memPrefix){
         basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToDisappear(spinnerOverlay,20);
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
         switch (raceEthnicity) {
             case "Asian or Asian American":
@@ -103,6 +107,7 @@ public class RaceAndEthnicityPage {
     }
 
     public void clickSaveAndContinueButton() {
+        basicActions.waitForElementToDisappear( spinner, 90 );
         basicActions.waitForElementToDisappear( spinner, 90 );
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.scrollToElement(saveAndContinueButton);
