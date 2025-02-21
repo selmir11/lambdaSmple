@@ -1,5 +1,5 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
-  @SLER-106 @SLER-2151 @SLER-2222 @SLER-2224 @SLER-2226 @pol_exch_passed
+  @SLER-106-WIP @SLER-2151 @SLER-2222 @SLER-2224 @SLER-2226 @pol_exch_passed
   Scenario: EXCH Initial Application - Family of 4  FA (Admin Portal OBO)
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
