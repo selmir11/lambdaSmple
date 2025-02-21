@@ -120,6 +120,8 @@ public class AdminPortalBrokerDashboardPage {
     WebElement updateSuccessful;
     @FindBy(xpath = "//a[@routerlink='search']")
     WebElement searchBtn;
+    @FindBy(id = "div-158")
+    WebElement certificationStatusDrp;
 
 
 
@@ -369,8 +371,28 @@ public class AdminPortalBrokerDashboardPage {
 
 
     public void validateTheStatusCertificationIs(String certification) {
-        basicActions.waitForElementToBePresentWithRetries(certificationStatus,30);
+        basicActions.waitForElementToBePresentWithRetries(certificationStatus,50);
         softAssert.assertEquals(certificationStatus.getText(),certification);
         softAssert.assertAll();
+    }
+
+    public void changeTheCertificationStatusTo(String certificationStatus) {
+        basicActions.waitForElementToBePresentWithRetries(certificationStatusDrp,30);
+            switch (certificationStatus){
+                case "approved":
+                    certificationStatusDrp.click();
+                    basicActions.waitForElementToBePresentWithRetries(certStatusApproved,30);
+                    certStatusApproved.click();
+                break;
+                case "not approved":
+                    certificationStatusDrp.click();
+                    basicActions.waitForElementToBePresentWithRetries(certStatusApproved,30);
+                    certStatusNotApproved.click();
+
+                break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + certificationStatus);
+            }
+        buttonSave.click();
     }
 }
