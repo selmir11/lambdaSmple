@@ -465,21 +465,12 @@ public class QlceConfirmationPage {
      }
 
     public void setPregnancyEventDate(String eventDateType) {
-        String date;
-        switch (eventDateType) {
-            case "Firstdayofnextmonth":
-                date = basicActions.firstDateOfNextMonth();
-                break;
-            case "Firstdayofcurrmonth":
-                date = basicActions.firstDateOfCurrMonth();
-                break;
-            default:
-                date = eventDateType;
-        }
-        String formattedDate = basicActions.changeDateFormat(date, "yyyy-MM-dd", "MM/dd/yyyy");
+        String resolvedDate = basicActions.getDateBasedOnRequirement(eventDateType);
+        String formattedDate = basicActions.changeDateFormat(resolvedDate, "yyyy-MM-dd", "MM/dd/yyyy");
         pregnancyEventDate.sendKeys(formattedDate);
         pregnancyStatusRetainCoverageYes.click();
     }
+
 
 
 

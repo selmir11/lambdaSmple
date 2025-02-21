@@ -851,7 +851,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Female" as sex option
     And I select "Yes" as pregnancy option
-    And I select total babies as 1 and set expected due date as "Firstdayofnextmonth"
+    And I select total babies as 1 and set expected due date as "First Of Next Month"
     And I mark the Additional member is pregnant as "Yes"
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -895,7 +895,7 @@ Feature:   FA NON_AIAN_LEVEL_3-CSRRules
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
-    And  I set pregnancy event date as "Firstdayofcurrmonth"
+    And  I set pregnancy event date as "First Day of Current Month"
     Then I click on Save and Continue
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
