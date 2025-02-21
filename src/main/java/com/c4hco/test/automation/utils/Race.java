@@ -5,6 +5,7 @@ import lombok.Getter;
 public enum Race {
     Asian("A"),
     Black("B"),
+    BlackorAfricanAmerican("B"),
     Caucasian("C"),
     NativeAmerican("G"),
     WhiteorEuropean("C"),

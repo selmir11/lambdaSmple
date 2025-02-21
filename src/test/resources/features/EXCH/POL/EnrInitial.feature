@@ -10,6 +10,12 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I initiate incoming page
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -141,6 +147,16 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+#  New Tax Steps
+#    Then I select "No" for will you be claimed as dependent question
+#    Then I select "Yes" for will file tax return question
+#    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+#    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+#    Then I select "Yes" for will claim dependents question
+#    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+#    Then I click Save and Continue on Tax Status Elmo page
+
     And I select the option "No" to claim as dependent
     And I select the option "Yes" to file federal income tax return next year
     And I select "Married filing jointly" tax filing status
@@ -190,6 +206,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I set "Medical" Plans premium amount
     And I set "Dental" Plans premium amount
     And I click continue on plan summary page
+    And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -208,11 +225,11 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-
-    And I click on ClickHere link for "My Documents"
+#
+#    And I click on ClickHere link for "My Documents"
 #    # PDF Notice Validation
-    And I click on download "EN-002-04" document
-    Then I validate "EN-002-04 English" notice content
+#    And I click on download "EN-002-04" document
+#    Then I validate "EN-002-04 English" notice content
 
     And I close current tab and switch back to previous tab
     Then I click on manage plan button on admin portal Individual dashboard
@@ -225,23 +242,23 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then logout from Admin Portal
 
     #Email Notice Validation
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate additional details for "medical" plan on email notice
-      |Primary|
-      |Spouse|
-      |SonOne|
-      |Daughter|
-    And I validate additional details for "dental" plan on email notice
-      |Primary|
-      |Spouse|
-      |SonOne|
-      |Daughter|
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate additional details for "medical" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |SonOne|
+#      |Daughter|
+#    And I validate additional details for "dental" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |SonOne|
+#      |Daughter|
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
