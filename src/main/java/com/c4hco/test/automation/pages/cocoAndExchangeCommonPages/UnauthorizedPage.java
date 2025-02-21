@@ -24,39 +24,27 @@ public class UnauthorizedPage {
 
     public void verifyUnauthorizedText(String language) {
         basicActions.waitForElementToBePresent(unauthorizedTxt, 60);
-        String[] parts = language.split(":");
-        String lang = parts[0];
-        String pageType = (parts.length > 1) ? parts[1] : "";
-        String color = getColorForPageType(pageType);
-        switch (lang) {
+        switch (language) {
             case "English":
                 softAssert.assertEquals(unauthorizedTxt.getText(), "UNAUTHORIZED");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "40px");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "500");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), color);
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), "rgba(43, 49, 60, 1)");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("background"), "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box");
                 break;
             case "Spanish":
                 softAssert.assertEquals(unauthorizedTxt.getText(), "NO AUTORIZADO");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "40px");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "500");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), color);
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "36px");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), "rgba(43, 49, 60, 1)");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("background"), "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box");
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " + lang);
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
         softAssert.assertAll();
-    }
-
-    private String getColorForPageType(String pageType) {
-        if ("Income".equals(pageType)) {
-            return "rgba(33, 37, 41, 1)";
-        } else {
-            return "rgba(77, 77, 79, 1)";
-        }
     }
 
 }

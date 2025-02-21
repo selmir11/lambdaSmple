@@ -281,7 +281,7 @@ public class HeaderAndFooterPage {
     public void clickFindAPlanLinkLink(String pageType) {
         switch (pageType){
             case "Elmo":
-            basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
+            basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 15);
             basicActions.waitForElementToBePresent(connectLogoLink, 15);
             centerHeaderLink.get(1).click();
             break;
@@ -305,7 +305,7 @@ public class HeaderAndFooterPage {
 //        "ENonElmo" non Elmo pages (not listed above)
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementListToBePresent(centerHeaderLink, 15);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 15);
                 centerHeaderLink.get(2).click();
                 break;
             case "NonElmo":
@@ -646,7 +646,8 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyTextInExchHeader() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 30);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 30);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
@@ -739,7 +740,9 @@ public class HeaderAndFooterPage {
         softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
         softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(languageDrp.getText(), "");
+        actions.moveToElement(connectLogoLink).perform();
         clickLanguageDrp("Exch");
+        basicActions.waitForElementListToBePresent(languageDrpOption,15);
         softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
         softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
         softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");

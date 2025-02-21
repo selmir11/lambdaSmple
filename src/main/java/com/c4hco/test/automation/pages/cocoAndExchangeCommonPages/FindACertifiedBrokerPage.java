@@ -239,6 +239,7 @@ public class FindACertifiedBrokerPage {
 
     private void setBrokerDetails(){
         BrokerDetails broker = new BrokerDetails();
+        basicActions.waitForElementToBePresentWithRetries(licenseNumber, 10);
         broker.setBroker_name(brokerDisplayedName.getText());
         broker.setBroker_lic_num(licenseNumber.getText());
         broker.setAgencyName(agencyDisplayedName.getText());

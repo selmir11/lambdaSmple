@@ -14,7 +14,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
-    Then I click Continue button on Report a Life Change Page
+    And I click Continue With Application button on Report Life Change Page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "20011971" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
@@ -163,7 +163,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
-    Then I click Continue button on Report a Life Change Page
+    And I click Continue With Application button on Report Life Change Page
     Then I select "member" from the who are you question
     And I am a member with City "Colorado Springs" in State "CO" with dob "01011980" in county "EL PASO" with zipcode "80916"
     Then I answer all Id proofing questions and click continue
