@@ -4,11 +4,13 @@ import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.Random;
@@ -462,5 +464,54 @@ public class AgencyDetailsPage {
         addressLine1.clear();
         addressLine1.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
     }
+
+    public void initializeAgencyDetails(){
+        SharedData.getAgencyOwner().setAgencyName((basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8))));
+        SharedData.getAgencyOwner().setAgencyTin(generateAgencyTin());
+        Address agencyAddress = new Address();
+        agencyAddress.setAddressLine1(generateAgencyAddress() + " Deer Trail Dr");
+        agencyAddress.setAddressCity("Denver");
+        agencyAddress.setAddressZipcode("80205");
+        SharedData.getAgencyOwner().setAgencyAddress(agencyAddress);
+        SharedData.getAgencyOwner().setAgencyPhoneNumber((String) basicActions.generatePhoneNumber());
+        SharedData.getAgencyOwner().setAgencyEmail(SharedData.getAgencyOwner().getEmail());
+    }
+    public void enterAgencyDetails(){
+        basicActions.waitForElementToBePresent(agencyName, 10);
+        initializeAgencyDetails();
+
+        agencyName.sendKeys(SharedData.getAgencyOwner().getAgencyName());
+        agencyTin.sendKeys(SharedData.getAgencyOwner().getAgencyTin());
+        basicActions.waitForElementToBePresent(agencyGroupDropdown, 10);
+        agencyGroupDropdown.click();
+        Select groupDropdown = new Select(agencyGroupDropdown);
+        groupDropdown.selectByVisibleText("Broker");
+
+        addressLine1.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
+        cityField.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressCity());
+        stateDropdown.click();
+        Select stateOptions = new Select(stateDropdown);
+        stateOptions.selectByVisibleText("Colorado");
+        stateDropdown.click();
+
+        zipCodeField.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressZipcode());
+        countyDropdown.click();
+        countyDropdown.sendKeys(Keys.DOWN);
+        countyDropdown.sendKeys(Keys.ENTER);
+
+        workingHoursFrom.sendKeys("0800AM");
+        workingHoursTo.sendKeys("0500PM");
+        workingDaysDropdown.click();
+        workingDaysDropdownOption.click();
+        zipCodeField.click();
+
+        languagesDropdown.click();
+        languagesOption.click();
+        zipCodeField.click();
+
+        emailField.sendKeys(SharedData.getAgencyOwner().getAgencyEmail());
+        phoneNumberField.sendKeys(SharedData.getAgencyOwner().getAgencyPhoneNumber());
+    }
+
 
 }
