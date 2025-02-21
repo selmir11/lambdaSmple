@@ -1,5 +1,5 @@
 @OPS @SLCR-775 @managePlan
-Feature: Manage Plans:Current Medical Container - change policy
+Feature: Manage Plans:Current Medical Container - change policy [CCRT-232]
 
   Scenario:Manage plan current year 2025
     Given I open the login page on the "admin" portal
@@ -7,7 +7,6 @@ Feature: Manage Plans:Current Medical Container - change policy
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
     And I select "coco" checkbox on Admin Portal Dashboard
-   # Then I enter an accountId in any Env "5020858490" "4006533799" to search user
     Then I enter an accountId in any Env "5020858490" "" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
