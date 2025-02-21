@@ -59,7 +59,7 @@ Feature:verify deauthorize broker notice Spanish Mail prefrences BN-002-04
     Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header
     And I click link my docs on accountOverview page
     And I validate I am on the "My Documents" page
-#    Then I validate the notice "IND_Notify Client of Broker De-Authorization (BN-002A-04)" exist in my document letter Containers
+    Then I validate the notice "IND_Notify Client of Broker De-Authorization (BN-002A-04)" exist in my document letter Containers
 
 @SLER-485
   Scenario: verify deauthorize broker notice Spanish with Mail and Spanish preference BN-002-04
