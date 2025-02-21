@@ -125,6 +125,15 @@ public class LawfulPresencePage {
     @FindBy(css = "*[role='presentation']")
     List<WebElement> helpDrawerHelpText;
 
+    @FindBy(xpath = "//*[@class='c4BodyText1']")
+    List<WebElement> bodyTexts;
+
+    @FindBy(xpath = "//input[@id='naturalizationCertificate']//following-sibling::label/span")
+    WebElement textNaturalizationCertificate;
+
+    @FindBy(xpath = "//input[@id='citizenshipCertificate']//following-sibling::label/span")
+    WebElement textCitizenshipCertificate;
+
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
             case "Yes":
@@ -531,6 +540,32 @@ public class LawfulPresencePage {
     public void validateMilitaryMembersOrVeteransHelpTextVerbiageSp() {
         basicActions.waitForElementToBePresent( helpDrawerHelpText.get(8),20);
         softAssert.assertEquals(helpDrawerHelpText.get(8).getText(), "Servicio activo del ej\u00E9rcito o veterano dado de baja honrosamente\nUn inmigrante autorizado que tambi\u00E9n: (1) sea veterano dado de baja honrosamente, (2) est\u00E9 en servicio activo en el ej\u00E9rcito de Estados Unidos o (3) sea c\u00F3nyuge (incluso un c\u00F3nyuge sobreviviente que no se haya vuelto a casar) o sea hijo dependiente soltero de un veterano dado de baja honrosamente o de un miembro en servicio activo del ej\u00E9rcito de Estados Unidos, puede solicitar seguro de salud por medio de Connect for Health Colorado antes de concluir un per\u00EDodo de espera de cinco a\u00F1os. Tenga en cuenta que: los beneficiarios de DACA deben responder \"no\" a esta pregunta, incluso si cumplen con los requisitos que se mencionan en la parte superior.");
+        softAssert.assertAll();
+    }
+
+    public void validatePageTextWhenNaturalizedImmiOptYes(List<String> languageText){
+        softAssert.assertEquals(languageText.get(0),bodyTexts.get(3).getText());
+        softAssert.assertEquals(languageText.get(1),bodyTexts.get(4).getText());
+        softAssert.assertEquals(languageText.get(2),bodyTexts.get(5).getText());
+        softAssert.assertEquals(languageText.get(3),alienNumberCitizen.getAttribute("placeholder"));
+        softAssert.assertEquals(languageText.get(4),textNaturalizationCertificate.getText());
+        softAssert.assertEquals(languageText.get(5),textCitizenshipCertificate.getText());
+        softAssert.assertAll();
+    }
+    public void validatePageTextWhenEligibleImmiStatusNo(List<String> languageText){
+        softAssert.assertEquals(bodyTexts.get(7).getText(),languageText.get(0));
+        softAssert.assertEquals(bodyTexts.get(18).getText(),languageText.get(1));
+        softAssert.assertEquals(bodyTexts.get(19).getText(),languageText.get(2));
+        softAssert.assertEquals(bodyTexts.get(20).getText(),languageText.get(3));
+        softAssert.assertEquals(bodyTexts.get(21).getText(),languageText.get(4));
+        softAssert.assertEquals(bodyTexts.get(22).getText(),languageText.get(5));
+        String Firstname = SharedData.getPrimaryMember().getFirstName();
+        String Lastname = SharedData.getPrimaryMember().getLastName();
+        softAssert.assertEquals(bodyTexts.get(23).getText(),languageText.get(6)+" " + Firstname+" " + Lastname+" " + languageText.get(7));
+        softAssert.assertEquals(bodyTexts.get(24).getText(),languageText.get(8));
+        softAssert.assertEquals(bodyTexts.get(25).getText(),languageText.get(9));
+        softAssert.assertEquals(bodyTexts.get(26).getText(),languageText.get(10));
+        softAssert.assertEquals(bodyTexts.get(27).getText(),languageText.get(11));
         softAssert.assertAll();
     }
 }

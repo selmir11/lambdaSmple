@@ -94,4 +94,14 @@ public class LawfulPresencePageSteps {
     @Then("I validate Lawful Presence help drawer {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language){lawfulPresencePage.validateHelpVerbiage(helpText, language);}
 
+    @Then("I verify texts when Naturalized Immigrant option is Yes")
+    public void iVerifyTextsWhenNaturalizedImmigrantOptionIsYesIn(List<String> languageText) {
+        lawfulPresencePage.validatePageTextWhenNaturalizedImmiOptYes(languageText);}
+
+    @Then("I validate page text when eligible immigration status is No")
+    public void iValidatePageTextWhenEligibleImmigrationStatusIsNo(List<String> languageText) {
+        lawfulPresencePage.validatePageTextWhenEligibleImmiStatusNo(languageText);
+    }
+
+
 }
