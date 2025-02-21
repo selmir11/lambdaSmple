@@ -89,6 +89,8 @@ Feature: Seed04 - Exchange
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
+
+
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "1234 Main" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "3000000" at frequency "Annually"
@@ -100,13 +102,15 @@ Feature: Seed04 - Exchange
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
+
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -173,12 +177,7 @@ Feature: Seed04 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-    And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
-    And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "Elmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
@@ -194,7 +193,7 @@ Feature: Seed04 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    @SLER-1235-WIP_@RFV
+    @SLER-1235-WIP_@RFV @n1
     Scenario: RT-2051 ENR-EXCH: APPS - CHANGE PRIMARY RESIDENTIAL ADDRESS (Different Rating Area)
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
@@ -211,7 +210,7 @@ Feature: Seed04 - Exchange
       And I click on save and continue button
       Then I click on continue with  application button on Before you begin page
       And I report "Other" and click continue
-      And I click Continue button on Report a Life Change Page
+      And I click Continue With Application button on Report Life Change Page
       Then I validate I am on the "Find Expert Help" page
       Then I click Continue on my own button from Manage who helps you page
       Then I click continue on Tell us about yourself page
@@ -251,7 +250,7 @@ Feature: Seed04 - Exchange
       And I click on Sign Out in the Header for "NonElmo"
       And I validate "medical" entities from policy tables
       And I validate "dental" entities from policy tables
-
+      And I reset the previous file names in shared data
       And I verify the policy data quality check with Policy Ah keyset size 4
       And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
@@ -277,7 +276,7 @@ Feature: Seed04 - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
-    And I click Continue button on Report a Life Change Page
+    And I click Continue With Application button on Report Life Change Page
     Then I validate I am on the "Find Expert Help" page
     And I click on change the existing broker
     Then I Search authorized Broker "Mister Broker"

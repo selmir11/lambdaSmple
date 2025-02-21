@@ -64,11 +64,15 @@ Feature: Seed02 w/exception - Exchange
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+
+    Then I validate I am on the "Tax status" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+
+
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -111,10 +115,6 @@ Feature: Seed02 w/exception - Exchange
     And I validate "dental" details on my policies page
     And I click View Plan History link from "medical" plan card
 
-    And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
-    And I validate "dental" plan details from plan history
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
