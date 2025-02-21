@@ -72,13 +72,6 @@ Feature: Seed02 - Exchange
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
 
-# STG
-#    And I select the option "No" to claim as dependent
-#    And I select the option "Yes" to file federal income tax return next year
-#    And I select "Single" tax filing status
-#    And I select "No" to claim dependents
-#    And I click save and continue on tax status page
-
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
