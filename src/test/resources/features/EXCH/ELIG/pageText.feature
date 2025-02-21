@@ -1736,7 +1736,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I verify ARP Banner no longer present on Account Overview page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-2219 #WIP
+  @SLER-2219
   Scenario: ELIG-Select Immigration Status-Adult (Citizenship and Immigration status)-Page Text [RT-1089]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
