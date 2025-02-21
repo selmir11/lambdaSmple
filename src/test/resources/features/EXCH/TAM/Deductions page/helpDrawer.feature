@@ -43,10 +43,10 @@ Feature: Page Text-Deductions Page
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
-    And I set the browser resolution to 2000 x 800
 
   @SLER-930 @HelpDrawerDeductionsPage
   Scenario: SLER-930 Validate help drawer text on the Deductions page - English
+    And I set the browser resolution to 2000 x 800
     And I select "Help me understand" icon on the Deductions Page
     Then I validate Deductions help drawer "Full" verbiage in "English"
     Then I click on "Alimony paid out" link in Help Drawer on the Deductions page
@@ -159,11 +159,11 @@ Feature: Page Text-Deductions Page
     And I validate I am on the "School tuition: Self-Employed 2" page and close tab
     Then I click on "Item 4" link in Help Drawer on the Deductions page
     And I validate I am on the "School tuition: Armed Forces 1" page and close tab
+    And I set the browser resolution to Maximized
     Then I click on "Item 5" link in Help Drawer on the Deductions page
     And I validate I am on the "School tuition: Armed Forces 2" page and close tab
     Then I click on "Item 6" link in Help Drawer on the Deductions page
     And I validate I am on the "School tuition: Disability 1" page and close tab
-    And I set the browser resolution to Maximized
     Then I click on "Item 7" link in Help Drawer on the Deductions page
     And I validate I am on the "School tuition: Disability 2" page and close tab
     And I set the browser resolution to 2000 x 800

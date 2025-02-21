@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -295,6 +294,9 @@ public class BasicSteps {
                 break;
             case "Immigration Status":
                 pageUrl = "nes/fiveYearBar";
+                break;
+            case "Citizenship and Immigration Status Additional Info":
+                pageUrl = "nes/fiveYearBarAddlInfo";
                 break;
             case "forgotPassword":
                 pageUrl = "login-portal/forgotPassword";
@@ -746,7 +748,10 @@ public class BasicSteps {
         String origin = basicActions.getDriver().getWindowHandle();
         basicActions.switchToPageAndValidate(page, pageUrl, 90);
         basicActions.wait(3000);
-        basicActions.closeBrowserTab();
+        try {
+            basicActions.closeBrowserTab();
+        } catch (org.openqa.selenium.WebDriverException e) {
+        }
         basicActions.getDriver().switchTo().window(origin);
     }
 

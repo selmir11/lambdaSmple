@@ -64,9 +64,19 @@ public class ImmigrationStatusPageSteps {
     public void verifyWithoutDateErrorMessageForImmigrationStatus(List<String> data){
         ImmigrationStatusPage.verifDateErrorForImmigrationStatus(data);}
 
-    @And("I verify the immigration dropdown values")
-    public void verifyImmigrationDropdownValues(List<String> dropDownText) {
-        ImmigrationStatusPage.verifyImmigrationDropdownValues(dropDownText);
+    @Then("I select {string} for Authorized to work in the United States question")
+    public void areYouAuthorizedToWorkInTheUnitedStates(String Answer) {
+        ImmigrationStatusPage.areYouAuthorizedToWorkInTheUnitedStates(Answer);
+    }
+
+    @Then("I click on back button of immigration status additional info page")
+    public void clickOnBackButton() {
+        ImmigrationStatusPage.clickBack();
+    }
+
+    @Then("I click on save & continue button of immigration status additional info page")
+    public void clickOnSaveAndContinue() {
+        ImmigrationStatusPage.clickContinue();
     }
 
 }

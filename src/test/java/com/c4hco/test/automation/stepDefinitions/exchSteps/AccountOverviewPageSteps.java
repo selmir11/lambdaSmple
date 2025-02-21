@@ -25,7 +25,8 @@ public class AccountOverviewPageSteps {
     public void clickMakeChanges(){
         accountOverviewPage.iClickOnMakeChanges();
     }
-
+    @Then("I click on make changes to my dental plan button")
+    public void clickMakeChangesForDentalPlanBtn(){accountOverviewPage.clickMakeChangesForDentalButton();}
 
     // ================VALIDATION METHODS================//
     @And("I validate the page is in {string}")
@@ -66,15 +67,11 @@ public class AccountOverviewPageSteps {
 
     @Then("I validate the text of the Self Attestation container")
     public void iVerifySelfAttestContainerText(){accountOverviewPage.verifySelfAttestationContainer();}
-
-
-    @Then("I verify the button texts in account overview page {string}")
-    public void iVerifyTheButtonTextsIn(String language) {accountOverviewPage.verifyDentalButtonsText(language);
+    @Then("I validate make changes to my dental plan button popup message")
+    public void iValidateMakeChangesDentalPlanPopupMessage(List<String> message){
+    accountOverviewPage.iValidateMakeChangesForDentalPlanPopupMsg(message);
     }
-
-
-
+    @Then("I verify ARP Banner no longer present on Account Overview page")
+    public void iValidateARPBannerTextNotPresent(){accountOverviewPage.iValidateARPBannerTextNotPresent();}
 }
-
-
 

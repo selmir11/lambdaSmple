@@ -26,6 +26,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import java.util.Comparator;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -1228,7 +1231,8 @@ public class BasicActions {
         for (String handle : driver.getWindowHandles()) {
             driver.switchTo().window(handle);
 
-            if (driver.getTitle().equals(page)) {
+            String currentUrl = driver.getCurrentUrl();
+            if (driver.getTitle().equals(page) || currentUrl.contains(pageUrl)) {
                 Assert.assertTrue(getUrlWithWait(pageUrl, timeout).contains(pageUrl),
                         "Expected page: " + pageUrl + " did not load.");
                 break;
@@ -1248,6 +1252,75 @@ public class BasicActions {
             Collections.sort(sortedList);
         }
         return  list.equals(sortedList);
+    }
+
+    private String lastDownloadedFileName = null; // Track last file to avoid duplicates
+
+    public String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
+        File dir = new File(localPath);
+        long startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
+            File latestFile = getLatestFile(dir);
+            if (latestFile != null && isValidFile(latestFile) && isFileDownloadComplete(latestFile)) {
+                if (lastDownloadedFileName != null && latestFile.getName().equals(lastDownloadedFileName)) {
+                    System.out.println("Skipping duplicate file: " + latestFile.getName());
+                } else {
+                    lastDownloadedFileName = latestFile.getName(); // Update the last seen file
+                    SharedData.setNoticeFileName(latestFile.getName());
+                    String filePath = SharedData.getLocalPathToDownloadFile();
+                    String fileName = SharedData.getNoticeFileName();
+                    if (filePath == null || fileName == null) {
+                        System.out.println("ERROR: File path or file name is null!");
+                        return null;
+                    }
+                    String pathAndName = filePath + "//" + fileName;
+                    System.out.println("New Downloaded File: " + pathAndName);
+                    return latestFile.getName();
+                }
+            }
+            try {
+                TimeUnit.SECONDS.sleep(1); // Wait 1 sec before checking again
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException(e);
+            }
+        }
+        return null; // Timeout occurred
+    }
+
+    private static File getLatestFile(File dir) {
+        File[] files = dir.listFiles();
+        if (files == null || files.length == 0) {
+            return null; // No files found
+        }
+        // Sort by last modified, newest file first
+        return Arrays.stream(files)
+                .filter(File::isFile)
+                .max(Comparator.comparingLong(File::lastModified))
+                .orElse(null);
+    }
+
+    private static boolean isValidFile(File file) {
+        return (file.getName().endsWith(".pdf") || file.getName().endsWith(".docx")) && file.length() > 0; // Ensure it's a non-empty PDF or DOCX
+    }
+
+    private static boolean isFileDownloadComplete(File file) {
+        if (file.getName().endsWith(".crdownload") || file.getName().endsWith(".part")) {
+            return false; // Ignore temp files
+        }
+        long previousSize;
+        long currentSize = file.length();
+        do {
+            previousSize = currentSize;
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return false;
+            }
+            currentSize = file.length();
+        } while (previousSize != currentSize);
+        return true;
     }
 }
 

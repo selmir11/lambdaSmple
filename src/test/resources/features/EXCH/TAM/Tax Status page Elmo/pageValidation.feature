@@ -105,7 +105,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I verify Tax checkbox in "Hover" state
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1809 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1809 I want to see my data when claimed as dependent so that I can review my Tax Status information
@@ -195,7 +195,7 @@ Feature: Page Validation-Tax Status Elmo Page
     |  Anna    |  Marie    |  Bean   | 2: SR   |1990-02-16|
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1831 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1831 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - English
@@ -243,7 +243,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |          |           |         |      |   |
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1840 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1840 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - Spanish
@@ -293,7 +293,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |          |           |         |      |   |
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1842 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1842 I want to see my data when am married filing jointly so that I can review my Tax Status information
@@ -340,7 +340,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify will you claim dependents Yes "is not" and No "is" selected on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1844 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1844 I want to be able to save, update or remove my Tax Status information when claimed as dependent so that my Tax Status details are accurate
@@ -441,7 +441,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |                              |   NON_FILER   |
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1853 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1853 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Primary
@@ -579,7 +579,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1864 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1864 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Secondary
@@ -736,7 +736,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1871 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1871 I want to be able to save, update or remove my Tax Status information when I am married filing jointly so that my Tax Status details are accurate
@@ -849,7 +849,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id for "Primary" is "Different" compared to "Spouse" on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1884 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1884 I want standard errors displayed when I fail to enter information correctly for "Someone else" so that errors are displayed consistently
@@ -1093,7 +1093,7 @@ Feature: Page Validation-Tax Status Elmo Page
 #    Step 20 - Spouse cannot be automated due to calendar is not it's own element
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1888 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1888 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Primary
@@ -1199,7 +1199,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify no errors show on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1899 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1899 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Spouse
@@ -1311,7 +1311,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify no errors show on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1901 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1901 I want the "Someone else" errors cleared so that I don't continue to see these errors as I answer questions
@@ -1425,4 +1425,4 @@ Feature: Page Validation-Tax Status Elmo Page
       |          |           |         |         |          |
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page

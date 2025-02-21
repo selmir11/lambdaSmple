@@ -49,6 +49,7 @@ Feature: Page Navigation-Tax Status Elmo Page
 
   @SLER-1775 @PageNavigationTaxStatusElmoPage @TAMSmoke
   Scenario: SLER-1775 My session is invalidated when I log out in Tax Return Portal, Exchange
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     #step1
     Then I open current page in new tab
     Then I validate I am on the "Tax status Elmo" page
@@ -84,6 +85,7 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I open current page in new tab
     Then I validate I am on the "Tax status Elmo" page
     And I switch to the tab number 0
@@ -100,6 +102,7 @@ Feature: Page Navigation-Tax Status Elmo Page
 
   @SLER-1776 @PageNavigationTaxStatusElmoPage @TAMSmoke
   Scenario: SLER-1776 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Tax Return Portal, Exchange
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     #Step1
     And I change the C4 url to "Tax Return portal Error Exch"
     Then I validate I am on the "Error" page
@@ -129,6 +132,7 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
 
+    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     And I change the C4 url to "Tax Return portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I click Go Back button from chrome browser

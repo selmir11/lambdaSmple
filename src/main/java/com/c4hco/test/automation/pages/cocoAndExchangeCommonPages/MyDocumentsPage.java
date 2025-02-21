@@ -26,7 +26,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 
 
@@ -289,48 +288,7 @@ public class MyDocumentsPage {
         pastDocCarrot.click();
         WebElement downloadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::a[1]"));
         downloadButton.click();
-        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
-    }
-
-
-    public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
-        File dir = new File(localPath);
-        File[] filesBefore = dir.listFiles();
-        long startTime = System.currentTimeMillis();
-
-        // Loop until the timeout or until a new file is found
-        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
-            File[] filesAfter = dir.listFiles();
-            if (filesAfter != null) {
-                for (File file : filesAfter) {
-                    if (!file.isDirectory() && (filesBefore == null || !fileExists(filesBefore, file))) {
-                        if (file.length() > 0) {
-                            SharedData.setNoticeFileName(file.getName());
-                            return file.getName();
-                        }
-                    }
-                }
-            }
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
-            }
-        }
-        return null;
-    }
-
-    private static boolean fileExists(File[] files, File file) {
-        if (files == null) {
-            return false;
-        }
-        for (File f : files) {
-            if (f.getName().equals(file.getName())) {
-                return true;
-            }
-        }
-        return false;
+        basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
 
     public boolean verifyPDFText(String expectedText, String docType, String language, String memberNumber) throws IOException {
@@ -941,8 +899,12 @@ public class MyDocumentsPage {
     public void verifyFileExistAndNotEmpty() {
         basicActions.waitForElementToBeClickable(btn_download, 10);
         btn_download.click();
-        String fileName=waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
-        Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
+        String fileName=basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
+        if (SharedData.getEnv().equals("qa")) {
+            Assert.assertEquals(fileName, "Peace Corps-6103120466-11-Aug-2021.docx","File name is not matched");
+        } else {
+            Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
+        }
     }
 
 

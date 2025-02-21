@@ -17,10 +17,7 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 public class ApplicationDetailsPage {
 
@@ -56,58 +53,7 @@ public class ApplicationDetailsPage {
         basicActions.scrollToElement(downloadPdf);
         downloadPdf.click();
 
-        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
-    }
-
-    public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
-        File dir = new File(localPath);
-        File[] filesBefore = dir.listFiles();
-        long startTime = System.currentTimeMillis();
-
-        // Loop until the timeout or until a new file is found
-        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
-            File[] filesAfter = dir.listFiles();
-            if (filesAfter != null) {
-                for (File file : filesAfter) {
-                    if (!file.isDirectory() && (filesBefore == null || !fileExists(filesBefore, file))) {
-                        if (file.length() > 0 && isFileDownloadComplete(file)) {
-                            SharedData.setNoticeFileName(file.getName());
-                            return file.getName();
-                        }
-                    }
-                }
-            }
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
-            }
-        }
-        return null;
-    }
-
-    private static boolean isFileDownloadComplete(File file) {
-        long initialSize = file.length();
-        try {
-            TimeUnit.SECONDS.sleep(2); // Wait for 2 seconds to check if file size changes
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-        long newSize = file.length();
-        return initialSize == newSize; // If the size hasn't changed, download is complete
-    }
-
-    private static boolean fileExists(File[] files, File file) {
-        if (files == null) {
-            return false;
-        }
-        for (File f : files) {
-            if (f.getName().equals(file.getName())) {
-                return true;
-            }
-        }
-        return false;
+        basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
 
     public void clickHeader(String header){
