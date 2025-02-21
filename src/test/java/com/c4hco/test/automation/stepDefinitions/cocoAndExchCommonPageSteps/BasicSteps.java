@@ -575,9 +575,15 @@ public class BasicSteps {
             case "CoCo Contact Us":
                 pageUrl = "coco/InformationPortal/termsOfUse";
                 break;
-            default:
-                System.out.println("undefined page ");
+            case "Account Overview Spanish":
+                pageUrl = "nes/myAccountOverview?lang=es";
                 break;
+            case "My Document Spanish":
+                pageUrl = "MyDocuments/home?lang=es";
+                break;
+            default:
+                throw new IllegalArgumentException("Undefined Page: " + page);
+
         }
         basicActions.switchToPageAndValidate(page, pageUrl, 45);
     }
@@ -739,6 +745,20 @@ public class BasicSteps {
             case "OmniSalud Help":
                 pageUrl = "https://connectforhealthco.com/get-started/omnisalud-help/";
                 break;
+            case "Faqs Spanish":
+                pageUrl = "faqs/?lang=es";
+                break;
+            case "Privacy Policy Exch Spanish":
+                pageUrl = "es/politica-de-privacidad/";
+                break;
+            case "Terms of Use Exch Spanish":
+                pageUrl = "es/terminos-de-uso/";
+                break;
+            case "Contact Us Exch Spanish":
+                pageUrl = "es/pongase-en-contacto/";
+                break;
+
+
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }

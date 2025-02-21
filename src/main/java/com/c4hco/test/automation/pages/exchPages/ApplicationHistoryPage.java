@@ -34,6 +34,11 @@ public class ApplicationHistoryPage {
     WebElement goBackToWelcomePage;
     @FindBy(css = "div.not-qualified-div")
     WebElement taxHouseholdNotQualify;
+
+    @FindBy(xpath = "//div[@id='current-app']/h1")
+    List<WebElement> currentApplication ;
+
+
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -115,5 +120,12 @@ public class ApplicationHistoryPage {
     }
     public void validateMemberEligibilityForMA() {
     Assert.assertEquals(taxHouseholdNotQualify.getText(), "Based on the information listed in your application, you do not qualify for a health plan at this time.");
+    }
+
+    public void validatetextWithNoPolicy(String text) {
+        basicActions.waitForElementListToBePresent(currentApplication, 40);
+        System.out.println(currentApplication.get(0).getText());
+        Assert.assertEquals(currentApplication.get(0).getText(), text , text + "Not Found");
+
     }
 }

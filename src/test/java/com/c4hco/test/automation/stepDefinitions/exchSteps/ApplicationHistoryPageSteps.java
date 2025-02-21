@@ -46,4 +46,10 @@ public class ApplicationHistoryPageSteps {
 
     @Then("I validate member is not eligible for MA")
     public void iValidateMemberEligibilityForMA() {applicationHistoryPage.validateMemberEligibilityForMA();}
+
+
+    @Then("I validate that {string} text displays on the Application History page in Spanish")
+    public void iValidateTextOnTheApplicationHistoryPageInSpanish(String text) {
+        applicationHistoryPage.validatetextWithNoPolicy(text);
+    }
 }

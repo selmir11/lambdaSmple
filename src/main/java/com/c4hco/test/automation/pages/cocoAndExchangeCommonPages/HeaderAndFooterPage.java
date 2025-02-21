@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import java.time.Year;
 import java.util.List;
 
 public class HeaderAndFooterPage {
@@ -1077,12 +1079,14 @@ public class HeaderAndFooterPage {
             case "LinkedIn":
                 basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
                 basicActions.scrollToElement(LinkedInIcon);
-                LinkedInIcon.click();
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", LinkedInIcon);
+               // LinkedInIcon.click();
                 break;
             case "Threads":
                 basicActions.waitForElementToBeClickable(ThreadsIcon, 10);
                 basicActions.scrollToElement(ThreadsIcon);
-                ThreadsIcon.click();
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", ThreadsIcon);
+               // ThreadsIcon.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + MediaIcon);
@@ -1172,4 +1176,68 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementToBePresent(connectLogoLinkNonElmo,20);
         connectLogoLinkNonElmo.click();
     }
+
+    public void validateTextinHeader(String expectedText) {
+        basicActions.waitForElementListToBePresent(centerHeaderLink,20);
+        switch (expectedText) {
+            case "Username":
+                basicActions.waitForElementToBePresent(userNameLinkExch, 100);
+                Assert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
+                break;
+            case "Solicitud de cobertura":
+                basicActions.waitForElementToBePresent(centerHeaderLink.get(0),20);
+                softAssert.assertEquals(centerHeaderLink.get(0).getText(), expectedText , expectedText + " Not Found ");
+                break;
+            case "Buscar un plan":
+                 basicActions.waitForElementToBePresent(centerHeaderLink.get(1),20);
+                 softAssert.assertEquals(centerHeaderLink.get(1).getText(), expectedText , expectedText + " Not Found ");
+                 break;
+            case "Más información":
+                 basicActions.waitForElementToBePresent(learnMoreLink,20);
+                 softAssert.assertEquals(learnMoreLink.getText() , expectedText , expectedText + " Not Found ");
+                  break;
+            case "Mi cuenta":
+                  basicActions.waitForElementToBePresent(centerHeaderLink.get(2),20);
+                  softAssert.assertEquals(centerHeaderLink.get(2).getText(), expectedText , expectedText + " Not Found ");
+                  break;
+            case "Contacta con nosotros":
+                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
+                  actions.moveToElement(getAssistanceLink).perform();
+                  softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+                  break;
+            case "Buscar asistencia de expertos en su comunidad":
+                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
+                  actions.moveToElement(getAssistanceLink).perform();
+                  softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+                  break;
+            case "Globe":
+                  basicActions.waitForElementToBePresent(languageDrp,20);
+                  softAssert.assertEquals(languageDrp.getText(), "");
+                  clickLanguageDrp("Exch");
+                  softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+                  softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+                  break;
+            case "Póliza de privacidad":
+                  basicActions.waitForElementToBePresent(privacyPolicyLink,20);
+                  softAssert.assertEquals(privacyPolicyLink.getText(), "Pol\u00EDtica de privacidad");
+                  break;
+            case "Términos y Condiciones":
+                  basicActions.waitForElementToBePresent(termsOfUseLink,20);
+                  softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos de uso");
+                  break;
+            case "Copy Rights Spanish":
+                  String CurrentYear = String.valueOf(Year.now().getValue());
+                  basicActions.waitForElementToBePresent(copyRightCoCoText,20);
+                  softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 "+CurrentYear+" Connect for Health Colorado. Todos los derechos reservados.");
+                 break;
+            case "Follow Us Spanish":
+                    basicActions.waitForElementToBePresent(followUsText,20);
+                    softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
+                    break;
+                default:
+                    throw new IllegalArgumentException("Text not present: " + expectedText);
+            }
+            softAssert.assertAll();
+    }
+
 }
