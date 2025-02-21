@@ -248,7 +248,6 @@ public class ApplicationHistoryPage {
 
         softAssert.assertEquals( resultsAppSummaryTextSP.getText(),"Resultados del resumen" );
         softAssert.assertEquals( congratsText.getText(),"\u00A1Felicitaciones! Usted y sus familiares califican para lo siguiente:" );
-        //softAssert.assertEquals( premiumTaxText.getText(),"Premium Tax Credit" );
         softAssert.assertEquals( qualifiedHealthTextSP.getText(),"Plan de salud calificado" );
 
         softAssert.assertEquals( healthFirstTextSP.getText(), "Health First Colorado o CHP+, si el Gobierno del estado de Colorado decide que usted califica" );
