@@ -72,13 +72,6 @@ Feature: Seed02 - Exchange
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
 
-# STG
-#    And I select the option "No" to claim as dependent
-#    And I select the option "Yes" to file federal income tax return next year
-#    And I select "Single" tax filing status
-#    And I select "No" to claim dependents
-#    And I click save and continue on tax status page
-
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -200,7 +193,7 @@ Feature: Seed02 - Exchange
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
     And I report "Other" and click continue
-    And I click Continue button on Report a Life Change Page
+    And I click Continue With Application button on Report Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
 

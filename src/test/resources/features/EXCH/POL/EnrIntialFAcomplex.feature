@@ -1,6 +1,6 @@
 Feature: Enroll a in a plan 8 HH
 
-  @SLER-832-WIP
+  @SLER-832-wip @SLER-2215 @SLER-2229 @SLER-2230 @SLER-2228 @pol_exch_passed
   Scenario: EXCH Initial Application - Complex Household
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -285,30 +285,19 @@ Feature: Enroll a in a plan 8 HH
 
     Then I validate I am on the "Tax status" page
 
-#    Steps to New Tax Status Page
-#    Then I select "No" for will you be claimed as dependent question
-#    Then I select "Yes" for will file tax return question
-#    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-#    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
-#    Then I select "Yes" for will claim dependents question
-#    Then I select "Niece" for who will be claimed as dependent question on the Tax Status Elmo page
-#    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status Elmo page
-#    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
-#    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-#    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status Elmo page
-#    Then I click Save and Continue on Tax Status Elmo page
 
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    And I select the second dependent
-    And I select the third dependent
-    And I select the fourth dependent
-    And I select the fifth dependent
-    And I select the sixth dependent
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "Yes" for will claim dependents question
+    Then I select "Niece" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I click Save and Continue on Tax Status Elmo page
+
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -409,11 +398,11 @@ Feature: Enroll a in a plan 8 HH
 
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click on Sign Out in the Header for "NonElmo"
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -444,9 +433,9 @@ Feature: Enroll a in a plan 8 HH
 #    And I sign out of Outlook
 #    And I switch to the tab number 0
 
-#   # DbVerification
-#    And I verify the policy data quality check with Policy Ah keyset size 4
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+   # DbVerification
+    And I verify the policy data quality check with Policy Ah keyset size 6
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data

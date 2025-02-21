@@ -295,6 +295,9 @@ public class BasicSteps {
             case "Immigration Status":
                 pageUrl = "nes/fiveYearBar";
                 break;
+            case "Citizenship and Immigration Status Additional Info":
+                pageUrl = "nes/fiveYearBarAddlInfo";
+                break;
             case "forgotPassword":
                 pageUrl = "login-portal/forgotPassword";
                 break;
