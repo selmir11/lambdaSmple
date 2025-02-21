@@ -150,7 +150,7 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
     Then I click on continue with  application button on Before you begin page
 
     And I report "<qhpOption>" and click continue
-    And I click Continue button on Report a Life Change Page
+    And I click Continue with Application button on Report a Life Change Page
 
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
