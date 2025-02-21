@@ -158,7 +158,7 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[1]/div[6]/div[15]/input[1]")
     WebElement aptcmember2;
 
-    @FindBy(xpath = "//div[@class='value-container body-text-1'][3]")
+    @FindBy(xpath = "//*[@id=\"form-edit-pan-member-info\"]/div/div[7]/div/div[2]")
     WebElement EHBPremiumamtmedical;
 
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[8]")
@@ -396,7 +396,14 @@ public class AdminPortalManagePlansPage {
     WebElement aptcRowTwo;
     @FindBy(xpath = "//div/app-plan-container/div[3]/button")
     WebElement btnGoBack;
-
+    @FindBy(xpath = "(//input[@type='text'])[6]")
+    WebElement sesmember1;
+    @FindBy(xpath = "//div[1]/div[6]/div[15]/input[1]")
+    WebElement sesmember2;
+    @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[1]")
+    WebElement SESInvalidError;
+    @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[2]")
+    WebElement SESEHBError;
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -1361,6 +1368,34 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     public void validateMakeChangesMedicalButtonNotDisplay(){
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));   }
+
+    public void validateErrorMessagesCoCo(DataTable table) {
+        List<Map<String, String>> memberData = table.asMaps();
+        for (Map<String, String> data : memberData) {
+            String memberNo = data.get("member");
+            String aptcValue = data.get("aptc");
+
+            String expectedErrorMessage = "";
+
+            if (aptcValue == null || aptcValue.trim().isEmpty()) {
+                expectedErrorMessage = "Invalid monetary amount for SES";
+            } else {
+                expectedErrorMessage = "Invalid monetary amount for SES: $" + aptcValue;
+            }
+
+            boolean errorMessageElement;
+            softAssert.assertEquals(SESInvalidError.getText(), expectedErrorMessage, "Message didn't display");
+            softAssert.assertAll();
+        }
+    }
+    public void validateEHBErrorsCoCo() {
+        double value1 = Double.parseDouble(sesmember2.getAttribute("value").replaceAll("[^0-9.]", ""));
+        double value2 = Double.parseDouble(sesmember1.getAttribute("value").replaceAll("[^0-9.]", ""));
+        double value3 = Double.parseDouble(EHBPremiumamtmedical.getText().replaceAll("[^0-9.]", ""));
+        if (value1 + value2 > value3) {
+            Assert.assertTrue(SESEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
+        }
+    }
 }
 
 
