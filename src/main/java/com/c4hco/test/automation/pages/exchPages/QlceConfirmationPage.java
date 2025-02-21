@@ -67,13 +67,13 @@ public class QlceConfirmationPage {
     List<WebElement> divorceEventDate;
 
     // Incarceration
-    @FindBy(xpath = "//input[@id = 'changeOnIncarcerationStatus']")
+    @FindBy(xpath = "//*[@id = 'changeOnIncarcerationStatus']")
     WebElement changeOnIncarcerationStatusLce;
 
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForIncarcerationStatus0.lceEventStatus1')]")
     List<WebElement> allmemberIncarcerationcheckbox;
 
-    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForIncarcerationStatus0.lceEventStatus1')]")
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForIncarcerationStatus0.lceEventDate')]")
     List<WebElement> incarcerationEventDate;
 
 
@@ -122,6 +122,21 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForGainOfTribalStatus')]")
     List<WebElement> tribalStatusEventDate;
 
+    //changeOfIncomeOrJob
+    @FindBy(id = "changeOfIncomeOrJob")
+    WebElement changeOfIncomeOrJobLCE;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForChangeOfIncomeOrJob0.lceEventStatus1')]")
+    List<WebElement> allMemberschangeOfIncomeOrJobCheckbox;
+    @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForChangeOfIncomeOrJob0.lceEventDate')]")
+    List<WebElement> changeOfIncomeOrJobEventDate;
+
+    @FindBy(id = "enrollmentUpdate")
+    WebElement changeOfHealthCoverageLCE;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForEnrollmentInFutureOrExistingHealthInsurance0.lceEventStatus1')]")
+    List<WebElement> allMemberschangeOfHealthCoverageCheckbox;
+    @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForEnrollmentInFutureOrExistingHealthInsurance0.lceEventDate')]")
+    List<WebElement> changeOfHealthCoverageEventDate;
+
     //Tax Time Enrollment
     @FindBy(id = "taxTimeEnrollmentPeriod")
     WebElement taxTimeEnrollmentPeriod;
@@ -146,11 +161,6 @@ public class QlceConfirmationPage {
     @FindBy(css = ".drawer-heading h4")
     WebElement textHelpDrawerHeader;
 
-    @FindBy(id = "pregnancyStatus")
-    WebElement pregnancyLCE;
-
-    @FindBy(id = "changeOfIncomeOrJob")
-    WebElement changeOfIncomeOrJobLCE;
 
     @FindBy(xpath = "//span[contains(@class,'c4BodyText1')]")
     List<WebElement> textLceLable;
@@ -324,7 +334,26 @@ public class QlceConfirmationPage {
                     incarcerationEventDate.get( i ).click();
                     incarcerationEventDate.get( i ).sendKeys( getCurrentDate() );
                 }
-                changeOnIncarcerationStatusLce.click();
+                break;
+            case "IncomeJobChange":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries( changeOfIncomeOrJobLCE,30 );
+                changeOfIncomeOrJobLCE.click();
+                for (var i = 0; i < allMemberschangeOfIncomeOrJobCheckbox.size(); i++) {
+                    allMemberschangeOfIncomeOrJobCheckbox.get( i ).click();
+                    changeOfIncomeOrJobEventDate.get( i ).click();
+                    changeOfIncomeOrJobEventDate.get( i ).sendKeys( getCurrentDate() );
+                }
+                break;
+            case "HealthCoverageChange":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries( changeOfHealthCoverageLCE,30 );
+                changeOfHealthCoverageLCE.click();
+                for (var i = 0; i < allMemberschangeOfHealthCoverageCheckbox.size(); i++) {
+                    allMemberschangeOfHealthCoverageCheckbox.get( i ).click();
+                    changeOfHealthCoverageEventDate.get( i ).click();
+                    changeOfHealthCoverageEventDate.get( i ).sendKeys( getCurrentDate() );
+                }
                 break;
             case "TaxTimeEnrollmentPeriod":
                 basicActions.waitForElementToBeClickable(taxTimeEnrollmentPeriod, 10);
