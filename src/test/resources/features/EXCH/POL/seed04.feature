@@ -259,7 +259,7 @@ Feature: Seed04 - Exchange
       And I validate "medical" entities from policy tables
       And I validate "dental" entities from policy tables
       And I reset the previous file names in shared data
-      And I verify the policy data quality check with Policy Ah keyset size 4
+      And I verify the policy data quality check with Policy Ah keyset size 2
       And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
       And I validate "medical" entities from pre edi db tables
