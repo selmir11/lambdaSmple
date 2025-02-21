@@ -1,4 +1,4 @@
-@TAXTOOLS
+@TAXTOOLS @SLER-2179
 Feature:Tax Tool: - Silver - Verifying the correct amount is displayed
 
   Scenario Outline:Silver - Verifying the correct amount is displayed for one member
@@ -18,7 +18,7 @@ Feature:Tax Tool: - Silver - Verifying the correct amount is displayed
       | 81146   | ALAMOSA | 59  | $1257.74        | Anthem Blue Cross & Blue Shield | Anthem Silver Pathway X HMO 5000 $0 Select Drugs                                                      |
       | 81059   | OTERO   | 72  | $1449.57        | Anthem Blue Cross & Blue Shield | Anthem Silver Pathway X HMO 5000 $0 Select Drugs                                                      |
 
-  @SLER-2179
+
   Scenario Outline: Silver - Verifying the correct amount is displayed for two member
     Given I open the login page on the "tax Silver" portal
     When I validate I am on the "tax Silver" page
@@ -26,8 +26,8 @@ Feature:Tax Tool: - Silver - Verifying the correct amount is displayed
     Examples:
       | zipCode | county     | age1 | age2 | ExpectedPremium | ExpectedProvider            | ExpectedPlan                                                                                          |
 #   bug to be fixed
-      | 81230   | Gunnison   | 45   | 40   | $663.16         | Rocky Mountain Health Plans | RMHP Valley Silver Value ($0 Virtual Urgent Care + $0 PCP Visits, $5 Tier 2 Rx, $0 Insulin, Rx Copay) |
-#      | 81435   | San Miguel | 38   | 40   | $1159.15        | Rocky Mountain Health Plans | RMHP Valley Silver Value ($0 Virtual Urgent Care + $0 PCP Visits, $5 Tier 2 Rx, $0 Insulin, Rx Copay) |
+#      | 81230   | Gunnison   | 45   | 40   | $663.16         | Rocky Mountain Health Plans | RMHP Valley Silver Value ($0 Virtual Urgent Care + $0 PCP Visits, $5 Tier 2 Rx, $0 Insulin, Rx Copay) |
+      | 81435   | San Miguel | 38   | 40   | $1159.15        | Rocky Mountain Health Plans | RMHP Valley Silver Value ($0 Virtual Urgent Care + $0 PCP Visits, $5 Tier 2 Rx, $0 Insulin, Rx Copay) |
 
 
   Scenario Outline: Silver - Verifying the correct amount is displayed for three member
