@@ -30,6 +30,9 @@ public class LifeChangeEventsPage {
     @FindBy(id = "continueButton")
     List<WebElement> saveAndContinueButton;
 
+    @FindBy(xpath = "//*[text()='Continue with application']")
+    WebElement continueWithApplication;
+
     @FindBy(id = "continueButton")
     WebElement saveAndContinueOnlyButton;
 
@@ -138,6 +141,11 @@ public class LifeChangeEventsPage {
     public void clickContinueWithApplication(){
         saveAndContinueButton.get(1).click();
     }
+
+    public void clickContinueWithApplicationBtn(){
+        continueWithApplication.click();
+    }
+
 
     public void clickBackButton() {
         backButton.click();
