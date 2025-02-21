@@ -8,9 +8,19 @@ import io.cucumber.java.en.Then;
 public class ManageAssociatedBrokersSteps {
     ManageAssociatedBrokersPage manageAssociatedBrokersPage = new ManageAssociatedBrokersPage(WebDriverManager.getDriver());
 
+    @Then("I validate the Manage Associated Brokers page title")
+    public void iValidateManageBrokerPageTitle(){
+        manageAssociatedBrokersPage.validateManageBrokerPageTitle();
+    }
+
     @And("I search for a broker named {string}")
     public void manageBrokerSearch(String brokerName){
         manageAssociatedBrokersPage.manageAssocBrokerSearch(brokerName);
+    }
+
+    @Then("I click the Add New Broker Link")
+    public void iClickAddNewBrokerLink(){
+        manageAssociatedBrokersPage.clickAddNewBrokerLink();
     }
 
     @Then("I send the invite to join my agency")
