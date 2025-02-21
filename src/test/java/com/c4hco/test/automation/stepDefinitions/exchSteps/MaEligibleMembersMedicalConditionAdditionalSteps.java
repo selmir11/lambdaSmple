@@ -12,8 +12,8 @@ public class MaEligibleMembersMedicalConditionAdditionalSteps {
     @And("I validate the {string} text on the Medical Condition Additional MA page")
     public void iValidateMedicalConditionAdditionalText(String language) {maEligibleMembersMedicalConditionAdditionalPage.iValidateMedicalConditionAdditionalText( language );}
 
-    //@And("I select the calendar date on the Medical Condition Additional MA page")
-    //public void iValidateMedicalConditionText(String language) {maEligibleMembersMedicalConditionAdditionalPage.iValidateMedicalConditionText( language );}
+    @And("I select the medical condition date on the Medical Condition Additional MA page")
+    public void iValidateMedicalConditionText() {maEligibleMembersMedicalConditionAdditionalPage.iselectMedicalConditionDate();}
 
     @And("I click continue on the Medical Condition Additional MA page")
     public void iContinue() {maEligibleMembersMedicalConditionAdditionalPage.iContinue();}

@@ -72,15 +72,14 @@ Feature: Testing will verify text and navigation for Medical Condition Additiona
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
 
-
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I validate I am on the "Tax status Elmo" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -115,6 +114,7 @@ Feature: Testing will verify text and navigation for Medical Condition Additiona
 
     Then I validate I am on the "Medical Condition Additional" page
     And I validate the "English" text on the Medical Condition Additional MA page
+    And I select the medical condition date on the Medical Condition Additional MA page
 
     And I change the language from header to "Spanish NonElmo"
     And I validate the "Spanish" text on the Medical Condition Additional MA page

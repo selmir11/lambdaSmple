@@ -7,6 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 public class MaEligibleMembersMedicalConditionAdditionalPage {
 
     private BasicActions basicActions;
@@ -51,6 +55,22 @@ public class MaEligibleMembersMedicalConditionAdditionalPage {
     @FindBy(xpath = "//*[@value = '< Atr\u00E1s']")
     WebElement valueTextSP;
 
+    // Calendar
+    @FindBy(id = "medicalConditionBeginDate")
+    WebElement conditionDate;
+
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
+    List<WebElement> allmembersConditioncheckbox;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
+    List<WebElement> conditionEventDate;
+
+    public String getCurrentDate() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate currentDate = LocalDate.now();
+        // Now format the date
+        return dateFormat.format(currentDate);
+    }
+
     public void iContinue(){
         basicActions.waitForElementToBePresentWithRetries( btnSaveAndContinue,20 );
         basicActions.click( btnSaveAndContinue );
@@ -63,7 +83,7 @@ public class MaEligibleMembersMedicalConditionAdditionalPage {
                 validateMedicalConditionAdditionalEnglish();
                 break;
             case "Spanish":
-                vvalidateMedicalConditionAddtionalSpanish();
+                validateMedicalConditionAddtionalSpanish();
                 break;
             default:
                 throw new IllegalArgumentException( "Invalid option: " + language );
@@ -87,7 +107,7 @@ public class MaEligibleMembersMedicalConditionAdditionalPage {
     }
 
 
-    public void vvalidateMedicalConditionAddtionalSpanish(){
+    public void validateMedicalConditionAddtionalSpanish(){
         basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
         basicActions.waitForElementToBePresent(headerMedicalConditionAdditional,20  );
         softAssert.assertTrue(headerMedicalConditionAdditional.getText().contains( "Medical Condition or Disability:" ));
@@ -99,4 +119,10 @@ public class MaEligibleMembersMedicalConditionAdditionalPage {
         softAssert.assertEquals( btnSaveAndContinue.getAttribute( "value" ), "Guardar y Continuar");
         softAssert.assertAll();
     }
-}
+
+    public void iselectMedicalConditionDate(){
+        conditionDate.click();
+        conditionDate.sendKeys( getCurrentDate() );
+        }
+    }
+
