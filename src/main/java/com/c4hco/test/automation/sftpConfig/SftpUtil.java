@@ -45,6 +45,12 @@ public class SftpUtil {
             }else if("staging".equals(env)){
                 sftpPort = 10022;
             }
+        }else if("Admin exchange".equals(SharedData.getAppType())){
+            if("qa".equals(env)){
+                sftpPort = 10021;
+            }else if("staging".equals(env)){
+                sftpPort = 10022;
+            }
         }
         return sftpPort;
     }

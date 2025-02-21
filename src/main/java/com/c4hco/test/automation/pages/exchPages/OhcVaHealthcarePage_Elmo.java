@@ -350,7 +350,7 @@ public class OhcVaHealthcarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Go back");
+        softAssert.assertEquals(goBackBtn.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
@@ -410,7 +410,7 @@ public class OhcVaHealthcarePage_Elmo {
     }
 
     public void verifyVaHealthcarePageDataSpanish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         switch (dataToVerify){
             case "First Section":
                 verifyVaHealthcarePageFirstSectionDataSpanish();
@@ -439,7 +439,7 @@ public class OhcVaHealthcarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Volver");
+        softAssert.assertEquals(goBackBtn.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }
