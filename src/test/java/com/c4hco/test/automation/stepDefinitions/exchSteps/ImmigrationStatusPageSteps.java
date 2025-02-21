@@ -63,4 +63,20 @@ public class ImmigrationStatusPageSteps {
     @Then("I validate Immigration date error message on the Immigration Status page")
     public void verifyWithoutDateErrorMessageForImmigrationStatus(List<String> data){
         ImmigrationStatusPage.verifDateErrorForImmigrationStatus(data);}
+
+    @Then("I select {string} for Authorized to work in the United States question")
+    public void areYouAuthorizedToWorkInTheUnitedStates(String Answer) {
+        ImmigrationStatusPage.areYouAuthorizedToWorkInTheUnitedStates(Answer);
+    }
+
+    @Then("I click on back button of immigration status additional info page")
+    public void clickOnBackButton() {
+        ImmigrationStatusPage.clickBack();
+    }
+
+    @Then("I click on save & continue button of immigration status additional info page")
+    public void clickOnSaveAndContinue() {
+        ImmigrationStatusPage.clickContinue();
+    }
+
 }
