@@ -63,4 +63,11 @@ public class ImmigrationStatusPageSteps {
     @Then("I validate Immigration date error message on the Immigration Status page")
     public void verifyWithoutDateErrorMessageForImmigrationStatus(List<String> data){
         ImmigrationStatusPage.verifDateErrorForImmigrationStatus(data);}
+
+    @Then("I validate the immigration dropdown values for {string} language")
+    public void ivalidateImmigrationDropdownValues(String language, List<String> data) {
+        ImmigrationStatusPage.validateImmigrationDropdownValues(language, data);
+    }
+
+
 }
