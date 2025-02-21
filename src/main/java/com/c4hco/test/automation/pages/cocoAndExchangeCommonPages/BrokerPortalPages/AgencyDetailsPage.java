@@ -95,7 +95,7 @@ public class AgencyDetailsPage {
     @FindBy(xpath = "//span[@id='state-mf-error']")
     WebElement stateErrorMessage;
 
-    @FindBy(xpath = "//label[@for='primaryZip']")
+    @FindBy(xpath = "//label[@for='primaryZipLbl']")
     WebElement zipCodeLabel;
 
     @FindBy(xpath = "//input[@id='primaryZip']")
@@ -170,13 +170,13 @@ public class AgencyDetailsPage {
     @FindBy(xpath = "//span[@id='email-mf-error']")
     WebElement emailErrorMessage;
 
-    @FindBy(id = "l_phoneNumber")
+    @FindBy(xpath = "//label[@for='phoneNumber']")
     WebElement phoneNumberLabel;
 
     @FindBy(xpath = "//input[@id='phoneNumber']")
     WebElement phoneNumberField;
 
-    @FindBy(xpath = "//div[@id='ph-mf-error']")
+    @FindBy(id = "ph-mf-error")
     WebElement phoneNumberErrorMessage;
 
     @FindBy(id = "BP-AgencyDetails-GoBack")
@@ -305,16 +305,11 @@ public class AgencyDetailsPage {
         cityField.sendKeys("#$%!@&*()");
         zipCodeField.sendKeys("#$%!@&*()");
 
-        softAssert.assertEquals(agencyName.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(agencyNameSpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(addressLine1.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(addressLine1SpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(addressLine2.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(addressLine2SpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(cityField.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(citySpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(zipCodeField.getAttribute("value"), "#$%!@");
-        softAssert.assertEquals(zipCodeSpecialCharErrorMessage.getText(), "Characters & Special Characters not allowed and must follow format XXXXX");
+        softAssert.assertEquals(agencyName.getAttribute("value"), "");
+        softAssert.assertEquals(addressLine1.getAttribute("value"), "");
+        softAssert.assertEquals(addressLine2.getAttribute("value"), "");
+        softAssert.assertEquals(cityField.getAttribute("value"), "");
+        softAssert.assertEquals(zipCodeField.getAttribute("value"), "");
         softAssert.assertAll();
     }
 
@@ -322,8 +317,8 @@ public class AgencyDetailsPage {
         addressLine1.sendKeys("438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweifh");
         addressLine2.sendKeys("438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweifh");
 
-        softAssert.assertEquals(addressLine1.getAttribute("value"), "#$%!@&*()438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhi");
-        softAssert.assertEquals(addressLine2.getAttribute("value"), "#$%!@&*()438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhi");
+        softAssert.assertEquals(addressLine1.getAttribute("value"), "438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweif");
+        softAssert.assertEquals(addressLine2.getAttribute("value"), "438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweif");
         softAssert.assertAll();
     }
 
