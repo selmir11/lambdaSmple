@@ -1,5 +1,5 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
-  @SLER-106
+  @SLER-106-WIP @SLER-2151 @SLER-2222 @SLER-2224 @SLER-2226 @pol_exch_passed
   Scenario: EXCH Initial Application - Family of 4  FA (Admin Portal OBO)
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -266,7 +266,8 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-  #Download and Validation and upload of Ob834 file
+
+    #Download and Validation and upload of Ob834 file
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
@@ -274,8 +275,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-
-  # Ib999 DB Validation
+    #Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
@@ -285,7 +285,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
-        #Ib834
+    #Ib834
     And I validate ib834 "medical" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -299,7 +299,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib834 "medical" files data
     And I validate the ib834 "dental" files data
 
-    # Ob999
+    #Ob999
     And I validate "medical" entities from ob999_details db table
     And I validate "dental" entities from ob999_details db table
 
