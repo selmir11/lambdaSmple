@@ -138,24 +138,6 @@ public class PDF {
         }
     }
 
-    // Validating the plan details in dynamic text
-    public void validatePlanDetails(String pdfText) {
-        PlanDbData medicalPlanDbData = SharedData.getMedicalPlanDbData().get("group1");
-        String medicalPolicyId = "Your Connect for Health Colorado® Policy ID is " + SharedData.getPrimaryMember().getMedicalEapid_db() + ".";
-
-        softAssert.assertTrue(pdfText.contains(medicalPlanDbData.getPlanName()), "Medical plan name doesn't match.");
-        softAssert.assertTrue(pdfText.contains("Monthly Premium: $" + SharedData.getPrimaryMember().getTotalMedAmtAfterReduction()), "Medical premium amount doesn't match.");
-        softAssert.assertTrue(pdfText.contains(medicalPolicyId), "Policy ID is not matching.");
-
-        if (SharedData.getAppType().equals("exchange")) {
-            String dentalPolicyId = "Your Connect for Health Colorado® Policy ID is " + SharedData.getPrimaryMember().getDentalEapid_db() + ".";
-            PlanDbData dentalPlanDbData = SharedData.getDentalPlanDbData().get("group1");
-            softAssert.assertTrue(pdfText.contains(dentalPlanDbData.getPlanName()), "Dental plan name doesn't match.");
-            softAssert.assertTrue(pdfText.contains("Monthly Premium: $" + SharedData.getPrimaryMember().getTotalDentalPremAfterReduction()), "Dental premium amount doesn't match.");
-            softAssert.assertTrue(pdfText.contains(dentalPolicyId), "Dental policy ID is not matching.");
-        }
-    }
-
     // Validating member names in the dynamic PDF text
     public void validateMemNames(String pdfText) {
         List<MemberDetails> allMedicalEligMembers = basicActions.getAllMedicalEligibleMemInfo();
@@ -183,7 +165,8 @@ public class PDF {
         return new String[] { language, noticeType };
     }
 
-    public void validatePlansDetails(String pdfText) {
+    // Validating the plan details in dynamic text
+    public void validatePlanDetails(String pdfText) {
         List<MemberDetails> allMedicalEligMembers = basicActions.getAllMedicalEligibleMemInfo();
         List<String> memberCompleteFullName = allMedicalEligMembers.stream().filter(MemberDetails::getHasMedicalPlan).map(MemberDetails::getCompleteFullName).toList();
         String medicalPolicyId = "Your Connect for Health Colorado® Policy ID is " + SharedData.getPrimaryMember().getMedicalEapid_db() + ".";

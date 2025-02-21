@@ -549,8 +549,7 @@ public class MyDocumentsPage {
             softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "primary member email Id is not matching");
             softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy")), "current date is not matching");
             pdf.validateMemNames(pdfText);
-//            pdf.validatePlanDetails(pdfText);
-            pdf.validatePlansDetails(pdfText);
+            pdf.validatePlanDetails(pdfText);
             softAssert.assertAll();
         } catch(IOException e){
 
