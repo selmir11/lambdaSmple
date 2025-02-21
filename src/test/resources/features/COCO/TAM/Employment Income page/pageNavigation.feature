@@ -188,10 +188,10 @@ Feature: Tests related to the Employment Income page
       | Terms Of Use       | Terms of Use             | coco/InformationPortal/termsOfUse                |
       | Contact Us         | Contact Us               | coco/InformationPortal/contactUs                 |
       | Learn More         | Contact Us               | coco/InformationPortal/contactUs                 |
-      | Apply for Coverage | Welcome Portal           | coco/WelcomePortal/welcome                       |
+      | Apply for Coverage | Welcome                  | coco/WelcomePortal/welcome                       |
       | Find a Plan        | ApplicationResultsPortal | coco/ApplicationResultsPortal/applicationResults |
       | My Account         | User Profile             | coco/UserProfileAdmin/profile                    |
-      | CoCo Logo          | Welcome Portal           | coco/WelcomePortal/welcome                       |
+      | CoCo Logo          | Welcome                  | coco/WelcomePortal/welcome                       |
       | UserName           | User Profile             | coco/UserProfileAdmin/profile                    |
 
     #Navigate to Find Expert Assistance page

@@ -162,11 +162,11 @@ public class OhcMedicarePage_Elmo {
                 medicareCheckboxDetails.get(0).click();
                 break;
             case "B":
-                basicActions.waitForElementToBePresent(medicareCheckboxDetailsB,20);
+                basicActions.waitForElementToBePresentWithRetries(medicareCheckboxDetailsB,50);
                 medicareCheckboxDetailsB.click();
                 break;
             case "A Don't Pay":
-                basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
+                basicActions.waitForElementListToBePresentWithRetries(medicareCheckboxDetails,50);
                 medicareCheckboxDetails.get(1).click();
                 break;
             default:
@@ -358,6 +358,7 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void verifyCheckboxes(String boxA, String boxB){
+        basicActions.wait(500);
         basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
         switch (boxA){
             case "is":
