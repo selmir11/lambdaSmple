@@ -515,8 +515,8 @@ Feature: Page Text-Income Opt Out Page
       | No                                                                                                         |
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1336-RT-1023 @wip
-  Scenario: ELIG-Self-Employment (MA Questions)-Page Text
+  @SLER-2233
+  Scenario: ELIG-Self-Employment (MA Questions)-Page Text [RT-1023]
     Then I click continue on the Employment Info Page
     And I select the option "No" to employment
     And I click continue on the Employment Info Page
