@@ -40,9 +40,6 @@ public class MaEligibleMembersSelfEmploymentExpensesPage {
 
     @FindBy(xpath = "//a[@id='overviewButton']//preceding::h1")
     WebElement selfEmpH1Label;
-//    @FindBy(xpath = "//a[@id='overviewButton']//preceding::h1")
-//    WebElement selfEmpH1Labelsp;
-
 
     @FindBy(id = "overviewButton")
     WebElement overviewButton;
@@ -56,8 +53,7 @@ public class MaEligibleMembersSelfEmploymentExpensesPage {
 
     @FindBy(xpath = "//span[text()='No']")
     WebElement noLabel;
-//    @FindBy(xpath = "//span[text()='No']")
-//    WebElement noLabelsp;
+
 
 
     public void answerSelfEmployed(String nextOption) {
