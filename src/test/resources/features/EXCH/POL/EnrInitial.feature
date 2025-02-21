@@ -275,7 +275,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-    @SLER-2222 @pol_exch_passed  # Ib999 DB Validation
+    @SLER-2222 #Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
@@ -285,7 +285,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
-    @SLER-2224  @pol_exch_passed  #Ib834
+    @SLER-2224 #Ib834
     And I validate ib834 "medical" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -299,7 +299,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib834 "medical" files data
     And I validate the ib834 "dental" files data
 
-    @SLER-2226   @pol_exch_passed # Ob999
+    @SLER-2226 # Ob999
     And I validate "medical" entities from ob999_details db table
     And I validate "dental" entities from ob999_details db table
 
