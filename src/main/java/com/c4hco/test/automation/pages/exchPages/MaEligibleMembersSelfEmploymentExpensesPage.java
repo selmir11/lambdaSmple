@@ -43,8 +43,6 @@ public class MaEligibleMembersSelfEmploymentExpensesPage {
 
     @FindBy(id = "overviewButton")
     WebElement overviewButton;
-    @FindBy(xpath = "//a[text()='Ayuda para entender esta página']")
-    WebElement overviewButtonsp;
 
     @FindBy(xpath = "//span[text()='Yes']")
     WebElement yesLabel;
