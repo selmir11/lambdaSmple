@@ -565,9 +565,11 @@ public class BasicSteps {
             case "Temporarily OutOfState":
                 pageUrl = "/eligibleMembersOutOfStateForMA";
                 break;
-            case "Medical Condtion":
+            case "Medical Condition":
                 pageUrl = "/eligibleMembersMedicalConditionForMA";
                 break;
+            case "Medical Condition Additional":
+                pageUrl = "/choosedMembersForMEDICAL_CONDITION";
             case "CoCo Privacy Policy":
                 pageUrl = "coco/InformationPortal/privacyPolicy";
                 break;

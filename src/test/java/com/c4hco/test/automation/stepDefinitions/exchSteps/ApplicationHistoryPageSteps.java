@@ -46,4 +46,7 @@ public class ApplicationHistoryPageSteps {
 
     @Then("I validate member is not eligible for MA")
     public void iValidateMemberEligibilityForMA() {applicationHistoryPage.validateMemberEligibilityForMA();}
+
+    @And( "I validate the {string} text on the Application History page" )
+    public void iValidateApplicationHistoryText(String language) {applicationHistoryPage.iValidateApplicationHistoryText(language);}
 }
