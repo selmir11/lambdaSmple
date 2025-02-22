@@ -75,7 +75,6 @@ public class MyPoliciesPage {
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
     Set<String> allMemberNames = new HashSet<>();
-    Set<String> namesFromUI = new HashSet<>();
 
      public void validatePlanDetails(String planType){
         basicActions.waitForElementListToBePresent(memberNames, 10);
@@ -92,20 +91,6 @@ public class MyPoliciesPage {
                 throw new IllegalArgumentException("Invalid option: " + planType);
         }
     }
-
-    public void clickViewPlanHistory(String planType){
-        switch(planType){
-            case "medical":
-                clickViewPlanHistoryFromMed();
-                break;
-            case "dental":
-                clickViewPlanHistoryFromDental();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + planType);
-        }
-    }
-
 
     private void validateEnrolledDentalPlanDetails(){
         DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
