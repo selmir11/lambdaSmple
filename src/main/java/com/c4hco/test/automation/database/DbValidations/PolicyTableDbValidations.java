@@ -45,7 +45,6 @@ public class PolicyTableDbValidations {
 
 
         private void dentalRecordsValidations() {
-            resetValues();
             for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
                 if (dentalEntity.getSubscriber_ind().equals("1")) {
                     for(MemberDetails subscriber: subscribers){
@@ -74,7 +73,6 @@ public class PolicyTableDbValidations {
         }
 
         private void medicalRecordsValidations() {
-            resetValues();
             for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
                 if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                     for(MemberDetails subscriber : subscribers){
@@ -235,6 +233,7 @@ public class PolicyTableDbValidations {
             softAssert.assertAll();
         }
         private void setMedicalData(){
+            resetValues();
             medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
             SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntities);
 
@@ -262,6 +261,7 @@ public class PolicyTableDbValidations {
         }
 
         private void setDentalData(){
+        resetValues();
         dentalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("2");
             SharedData.setDentalPolicyTablesEntities(dentalPolicyEntities);
 

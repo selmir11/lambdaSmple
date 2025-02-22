@@ -109,16 +109,6 @@ Feature: Seed04 - Exchange
     Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status Elmo page
-
-    # STG
-#    And I select the option "No" to claim as dependent
-#    And I select the option "Yes" to file federal income tax return next year
-#    And I select "Married filing jointly" tax filing status
-#    And I select spouse to file taxes jointly
-#    And I select "No" to claim dependents
-#    And I click save and continue on tax status page
-
-
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -224,9 +214,9 @@ Feature: Seed04 - Exchange
       Then I click continue on Tell us about yourself page
       Then I validate I am on the "Add Address" page
       Then I select "New" for Residential Address
-      And I enter the new residential address details
-        | addressLine1           | addressLine2          | city    | state | zipcode | county  | dob     |
-        | 101 Update Lane        |                       | Denver  | CO    | 80205  | DENVER   | 11181993 |
+      And I enter the new residential address details for "Primary"
+        | addressLine1    | addressLine2 | city   | state | zipcode | county |
+        | 101 Update Lane |              | Denver | CO    | 80205   | DENVER |
       Then I select the Different Mailing Address option
       Then I enter member with address line1 "101 Update Lane" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
       Then I click continue on the Add Address page
@@ -255,20 +245,27 @@ Feature: Seed04 - Exchange
       And I wait for hold on content to disappear
       Then I validate I am on the "Application History" page
       Then I click on view results and shop
-      And I click on Sign Out in the Header for "NonElmo"
+      Then I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+      Then I validate I am on the "Account Overview" page
+      Then I validate that financials are updated on account overview page
+      And I Validate the correct enrolled plans are displayed on account overview page
+      Then I click on ClickHere link for "My Plans"
+      Then I validate I am on the "My Policies" page
+      And I validate "medical" details on my policies page
+      And I validate "dental" details on my policies page
+      And I click on Sign Out in the Header for "Elmo"
+
       And I validate "medical" entities from policy tables
       And I validate "dental" entities from policy tables
       And I reset the previous file names in shared data
       And I verify the policy data quality check with Policy Ah keyset size 2
       And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
-
       And I validate "medical" entities from pre edi db tables
         | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
         | 001                   | 001                | 25                    | FINANCIAL CHANGE or DEMOGRAPHIC CHANGE |            |
       And I validate "dental" entities from pre edi db tables
         | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
         | 001                   | 001                | 25                    | DEMOGRAPHIC CHANGE |            |
-
       And I download the medical and dental files from sftp server with location "/outboundedi/"
       And I validate the ob834 "medical" file data
       And I validate the ob834 "dental" file data
