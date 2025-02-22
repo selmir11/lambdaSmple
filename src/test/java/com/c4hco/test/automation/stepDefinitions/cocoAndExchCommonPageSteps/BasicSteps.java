@@ -295,6 +295,9 @@ public class BasicSteps {
             case "Immigration Status":
                 pageUrl = "nes/fiveYearBar";
                 break;
+            case "Citizenship and Immigration Status Additional Info":
+                pageUrl = "nes/fiveYearBarAddlInfo";
+                break;
             case "forgotPassword":
                 pageUrl = "login-portal/forgotPassword";
                 break;
@@ -562,9 +565,11 @@ public class BasicSteps {
             case "Temporarily OutOfState":
                 pageUrl = "/eligibleMembersOutOfStateForMA";
                 break;
-            case "Medical Condtion":
+            case "Medical Condition":
                 pageUrl = "/eligibleMembersMedicalConditionForMA";
                 break;
+            case "Medical Condition Additional":
+                pageUrl = "/choosedMembersForMEDICAL_CONDITION";
             case "CoCo Privacy Policy":
                 pageUrl = "coco/InformationPortal/privacyPolicy";
                 break;

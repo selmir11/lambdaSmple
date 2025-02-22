@@ -52,4 +52,7 @@ public class ApplicationHistoryPageSteps {
     public void iValidateTextOnTheApplicationHistoryPageInSpanish(String text) {
         applicationHistoryPage.validatetextWithNoPolicy(text);
     }
+
+    @And( "I validate the {string} text on the Application History page" )
+    public void iValidateApplicationHistoryText(String language) {applicationHistoryPage.iValidateApplicationHistoryText(language);}
 }
