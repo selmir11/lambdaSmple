@@ -1264,7 +1264,7 @@ Feature: Verify Navigation to the ELIG Pages
     And I click on Sign Out in the Header for "NonElmo"
     Then I validate I am on the "Login" page
 
-  @SLER-2249 @PageNavigation @wip
+  @SLER-2249 @PageNavigation
   Scenario: ELIG-Authorized to work in the United States (Citizenship and immigration status)-Page Navigation(RT-1188)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
