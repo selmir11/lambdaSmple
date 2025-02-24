@@ -18,6 +18,11 @@ public class AccountOverviewPageSteps {
     @Then("I apply for the current year")
     public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 
+
+    @And("I click on apply for dental plans")
+    public void iclickApplyForDentalPlan() {accountOverviewPage.clickApplyForDentalPlan();
+    }
+
     @Then("I click on ClickHere link for {string}")
     public void clickHere(String clickOption) {accountOverviewPage.clickHereLinks(clickOption);}
 
@@ -36,6 +41,12 @@ public class AccountOverviewPageSteps {
     public void validatePlanInfo(){
         accountOverviewPage.verifyMemberNames();
     }
+
+    @Then("I validate that financials are updated on account overview page")
+    public void validateNewFinancialAmt(){
+        accountOverviewPage.validateNewFinancialAmt();
+    }
+
     @Given("I set the test scenario details")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
         accountOverviewPage.setScenarioDetails(expectedResult);
@@ -73,5 +84,9 @@ public class AccountOverviewPageSteps {
     }
     @Then("I verify ARP Banner no longer present on Account Overview page")
     public void iValidateARPBannerTextNotPresent(){accountOverviewPage.iValidateARPBannerTextNotPresent();}
+    @Then("I verify the button texts in account overview page {string}")
+    public void iVerifyTheButtonTextsIn(String language) {accountOverviewPage.verifyDentalButtonsText(language);
+    }
+
 }
 

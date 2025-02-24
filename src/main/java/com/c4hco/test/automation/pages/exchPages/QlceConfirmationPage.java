@@ -223,6 +223,9 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//p[@class='c4BodyText1']")
     List<WebElement> PregancyAddtionalText;
 
+    @FindBy(id = "pregnancyStatusRetainCoverageYes")
+    WebElement pregnancyStatusRetainCoverageYes;
+
 
     public String getCurrentDate() {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -536,6 +539,13 @@ public class QlceConfirmationPage {
     void TaxTimeEnrollmentPeriodTextValidate(List<String>data) {
         softAssert.assertEquals(taxTimeEnrollmentPeriodText.get(0).getText(),data.get(15), "American Indian/Alaskan Native Text not match");
      }
+
+    public void setPregnancyEventDate(String eventDateType) {
+        String resolvedDate = basicActions.getDateBasedOnRequirement(eventDateType);
+        String formattedDate = basicActions.changeDateFormat(resolvedDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        pregnancyEventDate.get(0).sendKeys(formattedDate);
+        pregnancyStatusRetainCoverageYes.click();
+    }
 
 
 }

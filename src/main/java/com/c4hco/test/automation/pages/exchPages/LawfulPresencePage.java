@@ -312,7 +312,7 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageOnCitizenAndImmigratioStatusPage(List<String> data) {
-
+        basicActions.waitForElementToBePresent(citizenshipImmigrationStatusHeader,20);
         softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains(data.get(0)), "Page Header text mismatch");
         softAssert.assertEquals(helpMeUnderstandLink.getText(), data.get(1), "Page Hyperlink text mismatch");
         softAssert.assertEquals(usCitizenQuestionText.getText(), data.get(2), "US Citizen Question text mismatch");
