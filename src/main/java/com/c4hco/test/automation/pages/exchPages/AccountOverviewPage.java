@@ -93,7 +93,10 @@ public class AccountOverviewPage {
 
     @FindBy(xpath = "//a[@class='linkButton']/parent::p")
     List<WebElement> txtlinkButton;
-
+    @FindBy(xpath = "//button[text()='Start here']")
+    List<WebElement> btnStartHere;
+    @FindBy(css = "div.popover-content")
+    WebElement makeChangesDentalPopup;
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -402,5 +405,21 @@ public class AccountOverviewPage {
         softAssert.assertEquals(txtHeaderVerifyYourInformation.getText(),"We need you to verify your information");
         softAssert.assertEquals(txtContentVerifyYourInformation.getText(),"We attempted to verify your application information but need you to confirm a few things. Don't worry, it will only take a minute or two!");
         softAssert.assertEquals(btnVerifyYourInformation.getText(),"Verify My Information");
+    }
+    public void clickMakeChangesForDentalButton() {
+        basicActions.waitForElementToBeClickable(btnMakeChangesToMyDentalPlan, 10);
+        btnMakeChangesToMyDentalPlan.click();
+    }
+    public void iValidateARPBannerTextNotPresent() {
+        basicActions.waitForElementListToBePresent(btnStartHere, 10);
+        softAssert.assertFalse(btnStartHere.stream()
+                        .anyMatch(e -> e.isDisplayed() && e.getText().trim().equalsIgnoreCase("Start here")),
+                "The button with text 'Start here' is visible, but it should not be.");
+        softAssert.assertAll();
+    }
+    public void iValidateMakeChangesForDentalPlanPopupMsg(List<String> message){
+        basicActions.waitForElementPresence(makeChangesDentalPopup, 20);
+        softAssert.assertEquals(makeChangesDentalPopup.getText(), message.get(0));
+        softAssert.assertAll();
     }
 }

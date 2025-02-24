@@ -20,9 +20,8 @@ Feature:Tax Tool: - Bronze - Verifying the correct amount is displayed
       | 81230   | Gunnison  | 45  | $468.13         | Rocky Mountain Health Plans     | RMHP Valley Colorado Option Bronze                         |
       | 81064   | Baca      | 74  | $960.39         | Anthem Blue Cross & Blue Shield | Anthem Bronze Pathway X HMO 9450 $0 Select Drugs           |
       | 81143   | Saguache  | 63  | $945.02         | Anthem Blue Cross & Blue Shield | Anthem Bronze Pathway X HMO 9450 $0 Select Drugs           |
-#      Bug
-#      | 81301   | La Plata  | 23  | $302.88         | Denver Health Medical Plan      | Elevate Health Plans Bronze HDHP                           |
-#     | 81325   | Dolores   | 32  | $358.30         | Denver Health Medical Plan      | Elevate Health Plans Bronze HDHP                           |
+      | 81301   | La Plata  | 23  | $302.88         | Denver Health Medical Plan      | Elevate Health Plans Peak Bronze HDHP                      |
+      | 81325   | Dolores   | 32  | $358.30         | Denver Health Medical Plan      | Elevate Health Plans Peak Bronze HDHP                      |
       | 81623   | Gunnison  | 83  | $972.57         | Rocky Mountain Health Plans     | RMHP Valley Colorado Option Bronze                         |
       | 80480   | Jackson   | 51  | $749.82         | Anthem Blue Cross & Blue Shield | Anthem Bronze Pathway X HMO 9450 $0 Select Drugs           |
       | 81653   | Moffat    | 88  | $882.09         | Rocky Mountain Health Plans     | RMHP Monument One Colorado Option Bronze                   |

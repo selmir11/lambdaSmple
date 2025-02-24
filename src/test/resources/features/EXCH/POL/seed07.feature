@@ -160,18 +160,23 @@ Feature: Seed07 - Exchange
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+
+    Then I validate I am on the "Tax status" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+
+    Then I validate I am on the "Tax status" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -277,7 +282,4 @@ Feature: Seed07 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "Elmo"

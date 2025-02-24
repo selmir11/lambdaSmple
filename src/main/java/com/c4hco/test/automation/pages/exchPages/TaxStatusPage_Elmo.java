@@ -621,7 +621,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHeadersTaxStatusPage(String memPrefix, String language) {
-        basicActions.waitForElementToBePresent(existingTaxStatusHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 15);
         basicActions.waitForElementToBePresent(saveAndContinueBtn, 15);
 
         String expectedTextHeader = "";
