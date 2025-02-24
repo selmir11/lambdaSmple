@@ -240,10 +240,9 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status" page
-      And I select the option "No" to claim as dependent
-      And I select the option "No" to file federal income tax return next year
-      And I click save and continue on tax status page
+      Then I select "No" for will you be claimed as dependent question
+      Then I select "No" for will file tax return question
+      Then I click Save and Continue on Tax Status Elmo page
 
       And I validate I am on the "Elmo Other Health Coverage" page
       Then I select "None of these" as ELMO health coverage option
