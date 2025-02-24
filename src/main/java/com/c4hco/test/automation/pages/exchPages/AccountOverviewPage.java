@@ -13,13 +13,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static org.testng.AssertJUnit.assertTrue;
 
 public class AccountOverviewPage {
 
@@ -93,7 +93,10 @@ public class AccountOverviewPage {
 
     @FindBy(xpath = "//a[@class='linkButton']/parent::p")
     List<WebElement> txtlinkButton;
-
+    @FindBy(xpath = "//button[text()='Start here']")
+    List<WebElement> btnStartHere;
+    @FindBy(css = "div.popover-content")
+    WebElement makeChangesDentalPopup;
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -309,6 +312,37 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
+    public void validateNewFinancialAmt(){
+        List<MemberDetails> allEligibleMem = basicActions.getAllMedicalEligibleMemInfo();
+        for(MemberDetails member: allEligibleMem){
+            //Medical Plan Validation
+            WebElement MedicalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[5]/b"));
+            WebElement MedicalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[6]/b"));
+
+            BigDecimal dentalPremiumAmnt = new BigDecimal(basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[5]/b")).getText().replace("$", "").replace(",", ""));
+            DecimalFormat df = new DecimalFormat("0.00");
+            String dentalPremiumAmt = df.format(dentalPremiumAmnt);
+
+            basicActions.waitForElementToBePresentWithRetries(MedicalAPTCAmnt, 10);
+            softAssert.assertNotEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + member.getMedicalPremiumAmt(), member.getFirstName() + " Medical premium amount does not match");
+            softAssert.assertNotEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + member.getMedicalAptcAmt(), member.getFirstName() + " Medical APTC amount did not match");
+            softAssert.assertNotEquals(dentalPremiumAmt, "$" + basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), member.getFirstName() + " Dental Premium amount does not match");
+
+            BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(MedicalAPTCAmnt.getText().replace(",", "").replace("$", ""));
+            BigDecimal totalMedicalPremium = new BigDecimal(MedicalPremiumAmnt.getText().replace(",", "").replace("$", ""));
+            BigDecimal medPremiumAfterReduction = totalMedicalPremium.subtract(bigDecimalMedAPTCAmt);
+
+            member.setMedicalAptcAmt(String.valueOf(bigDecimalMedAPTCAmt));
+            member.setTotalMedAmtAfterReduction(String.valueOf(medPremiumAfterReduction));
+            member.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+
+
+            member.setDentalPremiumAmt(dentalPremiumAmt);
+            member.setTotalDentalPremAfterReduction(dentalPremiumAmt);
+            softAssert.assertAll();
+        }
+    }
+
     public void verifyMemberNames() {
         List<MemberDetails> allMemberList = basicActions.getAllMedicalEligibleMemInfo();
         int totalDentalGroups = SharedData.getScenarioDetails().getTotalDentalGroups() != 0 ? SharedData.getScenarioDetails().getTotalDentalGroups():SharedData.getScenarioDetails().getTotalGroups();
@@ -372,32 +406,20 @@ public class AccountOverviewPage {
         softAssert.assertEquals(txtContentVerifyYourInformation.getText(),"We attempted to verify your application information but need you to confirm a few things. Don't worry, it will only take a minute or two!");
         softAssert.assertEquals(btnVerifyYourInformation.getText(),"Verify My Information");
     }
-
-    public void verifyDentalButtonsText(String language) {
-        switch (language) {
-            case "English":
-                validateButtonsTextEnglish();
-                break;
-            case "Spanish":
-                validateButtonsTextSpanish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid language option: " + language);
-        }
+    public void clickMakeChangesForDentalButton() {
+        basicActions.waitForElementToBeClickable(btnMakeChangesToMyDentalPlan, 10);
+        btnMakeChangesToMyDentalPlan.click();
     }
-
-    private void validateButtonsTextEnglish() {
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(btnShopForVisionPlans.getText().trim(), "Shop for vision plans", "Mismatch in Vision Plan button text");
-        softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText().trim(), "Make changes to my dental plan", "Mismatch in Dental Plan button text");
+    public void iValidateARPBannerTextNotPresent() {
+        basicActions.waitForElementListToBePresent(btnStartHere, 10);
+        softAssert.assertFalse(btnStartHere.stream()
+                        .anyMatch(e -> e.isDisplayed() && e.getText().trim().equalsIgnoreCase("Start here")),
+                "The button with text 'Start here' is visible, but it should not be.");
         softAssert.assertAll();
     }
-
-    private void validateButtonsTextSpanish() {
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(btnShopForVisionPlans.getText().trim(), "Revisar planes de la vista", "Mismatch in Vision Plan button text (Spanish)");
-        softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText().trim(), "Realizar cambios en mi plan dental", "Mismatch in Dental Plan button text (Spanish)");
+    public void iValidateMakeChangesForDentalPlanPopupMsg(List<String> message){
+        basicActions.waitForElementPresence(makeChangesDentalPopup, 20);
+        softAssert.assertEquals(makeChangesDentalPopup.getText(), message.get(0));
         softAssert.assertAll();
     }
-
 }

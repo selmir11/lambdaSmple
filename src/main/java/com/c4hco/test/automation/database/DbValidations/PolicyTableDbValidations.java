@@ -45,7 +45,6 @@ public class PolicyTableDbValidations {
 
 
         private void dentalRecordsValidations() {
-            resetValues();
             for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
                 if (dentalEntity.getSubscriber_ind().equals("1")) {
                     for(MemberDetails subscriber: subscribers){
@@ -74,7 +73,6 @@ public class PolicyTableDbValidations {
         }
 
         private void medicalRecordsValidations() {
-            resetValues();
             for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
                 if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                     for(MemberDetails subscriber : subscribers){
@@ -113,8 +111,8 @@ public class PolicyTableDbValidations {
             softAssert.assertNull(policyTablesEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getTotalDentalPremAfterReduction(), "Dental Policy total responsible amount does not match");
             softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), dentalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt(), "Dental Policy total CSR amount does not match");
-            softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate(), "Medical financial start date does not match");
-            softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Medical financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate(), "Dental financial start date does not match");
+            softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Dental financial end date does not match");
             softAssert.assertAll();
         }
 
@@ -196,8 +194,8 @@ public class PolicyTableDbValidations {
                     softAssert.assertNull(denEntity.getPremium_reduction_type_epfh(), "premium reduction type in en policy financial ah table does not match");
                     softAssert.assertNull(denEntity.getTotal_responsible_amt(), "Dental Policy total responsible amount does not match");
                     softAssert.assertNull(denEntity.getTotal_csr_amt(), "Dental Policy total CSR amount does not match");
-                    softAssert.assertNull(denEntity.getFinancial_period_start_date(), "Medical financial start date does not match");
-                    softAssert.assertNull(denEntity.getFinancial_period_end_date(), "Medical financial end date does not match");
+                    softAssert.assertNull(denEntity.getFinancial_period_start_date(), "Dental financial start date does not match");
+                    softAssert.assertNull(denEntity.getFinancial_period_end_date(), "Dental financial end date does not match");
                     softAssert.assertAll();
                 }
             }
@@ -235,6 +233,7 @@ public class PolicyTableDbValidations {
             softAssert.assertAll();
         }
         private void setMedicalData(){
+            resetValues();
             medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
             SharedData.setMedicalPolicyTablesEntities(medicalPolicyEntities);
 
@@ -243,6 +242,7 @@ public class PolicyTableDbValidations {
                     for (MemberDetails member : basicActions.getAllMem()) {
                         if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
                             member.setIsSubscriber("Y");
+                            member.setRelation_to_subscriber("SELF");
                             break;
                         }
                     }
@@ -261,6 +261,7 @@ public class PolicyTableDbValidations {
         }
 
         private void setDentalData(){
+        resetValues();
         dentalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("2");
             SharedData.setDentalPolicyTablesEntities(dentalPolicyEntities);
 

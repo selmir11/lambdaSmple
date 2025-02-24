@@ -233,6 +233,7 @@ public class OhcIndividualInsurancePage_Elmo {
 
     public void verifyHeadersIndividualInsuranceOhcPageEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcIndividualInsuranceHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Individual Insurance");
         softAssert.assertAll();
@@ -535,13 +536,14 @@ public class OhcIndividualInsurancePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(goBackButton.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
     public void verifyIndividualInsurancePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcIndividualInsuranceHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Individual Insurance");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -554,6 +556,7 @@ public class OhcIndividualInsurancePage_Elmo {
 
     public void verifyIndividualInsurancePageSecondSectionDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcIndividualInsuranceHeader,15);
         softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
         softAssert.assertEquals(insuranceEndingYes.getText(),"Yes");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
@@ -571,7 +574,8 @@ public class OhcIndividualInsurancePage_Elmo {
     }
 
     public void verifyIndividualInsurancePageFirstSectionSecondaryDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcIndividualInsuranceHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Individual Insurance");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -622,7 +626,7 @@ public class OhcIndividualInsurancePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Volver");
+        softAssert.assertEquals(goBackButton.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }

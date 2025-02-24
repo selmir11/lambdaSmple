@@ -133,4 +133,9 @@ public class AgencyDetailsSteps {
         agencyDetailsPage.updateAgencyAddress();
     }
 
+    @Then("I enter the mandatory information on the Agency Details page")
+    public void iEnterAgencyDetails(){
+        agencyDetailsPage.enterAgencyDetails();
+    }
+
 }

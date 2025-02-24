@@ -158,7 +158,7 @@ public class OhcMedicarePage_Elmo {
     public void clickInsurancePartOption(String insurancePart) {
         switch (insurancePart){
             case "A":
-                basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
+                basicActions.waitForElementListToBePresentWithRetries(medicareCheckboxDetails,20);
                 medicareCheckboxDetails.get(0).click();
                 break;
             case "B":
@@ -258,7 +258,7 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void clickHelpIcon(String label) {
-        basicActions.waitForElementListToBePresent(helpIcons, 10);
+        basicActions.waitForElementListToBePresentWithRetries(helpIcons, 10);
         switch(label){
             case "Help me understand":
                 helpLnk.click();
@@ -538,13 +538,14 @@ public class OhcMedicarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(goBackButton.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
     public void verifyMedicarePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Medicare.");
@@ -577,6 +578,7 @@ public class OhcMedicarePage_Elmo {
 
     public void verifyMedicarePageFirstSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
         softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about "+SharedData.getMembers().get(0).getFullName()+"'s eligibility or current enrollment in Medicare."));
@@ -627,7 +629,7 @@ public class OhcMedicarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Volver");
+        softAssert.assertEquals(goBackButton.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }
@@ -666,6 +668,7 @@ public class OhcMedicarePage_Elmo {
 
     public void verifyMedicarePageFirstSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
         softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en Medicare."));

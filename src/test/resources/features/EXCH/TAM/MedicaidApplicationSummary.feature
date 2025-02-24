@@ -54,11 +54,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -134,11 +134,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 #    Step 2
@@ -192,11 +192,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 #    Step 2
@@ -228,7 +228,7 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -328,11 +328,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"
@@ -369,7 +369,7 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "Health First Colorado" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"
@@ -441,7 +441,7 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"
@@ -497,11 +497,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "CHP+" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -523,7 +523,7 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2500 milliseconds
+    Then I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -577,11 +577,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "CHP+" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 #    Step 2
@@ -635,11 +635,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 #    Step 2
@@ -671,7 +671,7 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "CHP+" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -771,11 +771,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"
@@ -812,7 +812,7 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "CHP+" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"
@@ -884,7 +884,7 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I click plus icon next to member on household page for "Primary"

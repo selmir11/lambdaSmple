@@ -309,6 +309,7 @@ public class TaxStatusPage_Elmo {
     WebElement helpFooterLnk;
 
     public void selectClaimedAsDependent(String claimedAsDependent){
+        basicActions.waitForElementToBeClickable(helpTaxStatusHeader, 20);
         switch (claimedAsDependent) {
             case "Yes":
                 basicActions.waitForElementToBeClickable(claimedAsDependentYes, 20);
@@ -513,6 +514,7 @@ public class TaxStatusPage_Elmo {
 
     public void clickHelpContactUs() {
         basicActions.waitForElementToBePresent(helpFooterLnk,10);
+        basicActions.scrollToElement(helpFooterLnk);
         helpFooterLnk.click();
     }
 
@@ -619,7 +621,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHeadersTaxStatusPage(String memPrefix, String language) {
-        basicActions.waitForElementToBePresent(existingTaxStatusHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 15);
         basicActions.waitForElementToBePresent(saveAndContinueBtn, 15);
 
         String expectedTextHeader = "";

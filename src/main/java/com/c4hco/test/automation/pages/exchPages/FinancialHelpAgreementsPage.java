@@ -117,20 +117,13 @@ public class FinancialHelpAgreementsPage {
     }
 
     public void selectTermsAgreementsCheckbox(){
-        // WIP - After the new FA page is released to STG, this if and else should be removed
         basicActions.waitForElementToBePresent(termsAndAgreeChkbx, 20);
-        if(SharedData.getEnv().equals("staging")){
-            termsAndAgreeChkbx.click();
-        } else {
             basicActions.waitForElementToDisappear( spinner, 15 );
             basicActions.waitForElementListToBePresentWithRetries(agreementsChckbx, 10);
             understandAcknowledgeChckbx.click();
             understandSigChckbx.click();
             understandAuthorityChckbx.click();
         }
-
-
-    }
 
     public void clickContinue() {
         basicActions.waitForElementToBeClickable(continueButton, 5);

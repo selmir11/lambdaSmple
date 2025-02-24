@@ -16,9 +16,14 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.selectLCE(lceOption);
     }
 
-    @And("I click Continue button on Report a Life Change Page")
+    @And("I click Continue With Application button on Report Life Change Page")
     public void iClickContinueWithApplication(){
         lifeChangeEventsPage.clickContinueWithApplication();
+    }
+
+    @And ("I click Continue with Application button on Report a Life Change Page")
+    public void clickContinueWithApplicationBtn() {
+        lifeChangeEventsPage.clickContinueWithApplicationBtn();
     }
 
     @Then("I click back button on Report a Life Change Page")
