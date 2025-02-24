@@ -707,10 +707,10 @@ public class Ob834FileValidations {
 
             for (Member mem : members) {
                 if (mem.getINS().get(0).get(0).equals("Y") && mem.getPER().get(0).get(5).equals(email)) {
+                    updatedTransactionList.add(trans);
                     break;
                 }
             }
-            updatedTransactionList.add(trans);
         }
 
         edi834TransactionDetails.setTransactionList(updatedTransactionList);

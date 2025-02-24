@@ -26,7 +26,7 @@ Feature: Broker Portal OBO - Three Subscriber Groups FA policy submission
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
-    And I click on Sign Out in the Header for "WhoHelpsYouPage"
+    And I click on Sign Out in the Header for "Portal"
 
     And I verify the broker authorization in BoB DB is "PORT BoB-Testing"
 
@@ -253,6 +253,7 @@ Feature: Broker Portal OBO - Three Subscriber Groups FA policy submission
     And I verify my client's name is displayed
     Then I verify that my client's current status is "POLICY SUBMITTED"
     And I verify my client's second subscriber's name
+
     Then I verify that my client's second subscriber status is POLICY SUBMITTED
     And I verify my client's third subscriber's name
     Then I verify that my client's third subscriber status is POLICY SUBMITTED

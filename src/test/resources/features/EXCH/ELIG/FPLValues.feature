@@ -52,9 +52,9 @@ Then I click None of these as additional income option and continue
 Then I validate I am on the "Deductions" page
 Then I click None of these as deduction option and continue
 Then I select the projected income option "No" and continue
-And I select the option "No" to claim as dependent
-And I select the option "No" to file federal income tax return next year
-And I click save and continue on tax status page
+Then I select "No" for will you be claimed as dependent question
+Then I select "No" for will file tax return question
+Then I click Save and Continue on Tax Status Elmo page
 And I validate I am on the "Elmo Other Health Coverage" page
 Then I select "None of these" as ELMO health coverage option
 Then I click continue on the ELMO health coverage page
@@ -64,9 +64,9 @@ Then I click on Save and Continue
 Then I Declare as Tax Household 1
 And I click Continue on the Declarations And Signature Page
 And I wait for hold on content to disappear
-    Then I click on "No Thanks" on good news page
-    Then I click on view results and shop
-    And I click continue on application results page
-    #DB step
-    Then  I validate the FPL percent 100
+Then I click on "No Thanks" on good news page
+Then I click on view results and shop
+And I click continue on application results page
+#DB step
+Then  I validate the FPL percent 100
 

@@ -1,5 +1,5 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
-  @SLER-106
+  @SLER-106-WIP @SLER-2151 @SLER-2222 @SLER-2224 @SLER-2226 @pol_exch_passed
   Scenario: EXCH Initial Application - Family of 4  FA (Admin Portal OBO)
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -147,24 +147,17 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-#  New Tax Steps
-#    Then I select "No" for will you be claimed as dependent question
-#    Then I select "Yes" for will file tax return question
-#    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-#    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
-#    Then I select "Yes" for will claim dependents question
-#    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
-#    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-#    Then I click Save and Continue on Tax Status Elmo page
 
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    And I select the "2" option for Who Will Claim as Dependents
-    And I select the "3" option for Who Will Claim as Dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "Yes" for will claim dependents question
+    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I click Save and Continue on Tax Status Elmo page
+
+
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -273,7 +266,8 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-  #Download and Validation and upload of Ob834 file
+
+    #Download and Validation and upload of Ob834 file
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
@@ -281,8 +275,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-
-  # Ib999 DB Validation
+    #Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
@@ -292,7 +285,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
-        #Ib834
+    #Ib834
     And I validate ib834 "medical" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -306,7 +299,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib834 "medical" files data
     And I validate the ib834 "dental" files data
 
-    # Ob999
+    #Ob999
     And I validate "medical" entities from ob999_details db table
     And I validate "dental" entities from ob999_details db table
 

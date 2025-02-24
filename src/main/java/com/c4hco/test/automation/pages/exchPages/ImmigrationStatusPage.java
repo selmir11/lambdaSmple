@@ -94,6 +94,25 @@ public class ImmigrationStatusPage {
     @FindBy(id = "imgrStatusGrantDate-error")
     WebElement errorMsgImmigrationStatus;
 
+    @FindBy(xpath = "(//input[@class='control-label input-radio'])[1]")
+    WebElement citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSYesButton;
+
+    @FindBy(xpath = "(//input[@class='control-label input-radio'])[2]")
+    WebElement citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSNoButton;
+
+    public void areYouAuthorizedToWorkInTheUnitedStates(String Answer){
+        switch(Answer){
+            case "Yes":
+                citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSYesButton.click();
+                break;
+            case "No":
+                citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSNoButton.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Answer);
+        }
+    }
+
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
         switch(YNLawfulPermanentResident){
             case "Yes":
