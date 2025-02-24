@@ -84,5 +84,9 @@ public class AccountOverviewPageSteps {
     }
     @Then("I verify ARP Banner no longer present on Account Overview page")
     public void iValidateARPBannerTextNotPresent(){accountOverviewPage.iValidateARPBannerTextNotPresent();}
+    @Then("I verify the button texts in account overview page {string}")
+    public void iVerifyTheButtonTextsIn(String language) {accountOverviewPage.verifyDentalButtonsText(language);
+    }
+
 }
 
