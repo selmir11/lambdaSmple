@@ -424,45 +424,48 @@ Feature: My Document Home Page validations
       | Información que Necesitamos                                                                 |
       | Cargar otro documento |
       | Documentos y Cartas Anteriores |
-    Then I validate "Username" text
+    Then I verify text "Username" in the Header or in the Footer
     And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I validate I am on the "Account Overview Spanish" page
     And I validate the page is in "Spanish"
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Document Spanish" page
-    Then I validate "Solicitud de cobertura" text
+    Then I verify text "Apply for coverage Spanish" in the Header or in the Footer
     And I click on Apply for Coverage in the "Elmo" Header
     And I validate I am on the "Account Overview Spanish" page
     Then I click link my docs on accountOverview page
-    Then I validate "Buscar un plan" text
+    Then I verify text "Find a plan Spanish" in the Header or in the Footer
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
-    Then I validate that "Solicitud actual" text displays on the Application History page in Spanish
+    Then I validate that "Current Application Spanish" text displays on the Application History page in Spanish
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I click link my docs on accountOverview page
-    Then I validate "Mi cuenta" text
+    Then I verify text "My Account Spanish" in the Header or in the Footer
     And I click on My Account in the "Elmo" Header
     And I validate I am on the "Account Overview Spanish" page
     Then I click link my docs on accountOverview page
-    Then I validate "Más información" text
+    Then I verify text "Learn More Spanish" in the Header or in the Footer
     And I click on Learn More in the Header
     And I validate I am on the "Faqs Spanish" page and close tab
-    Then I validate "Buscar asistencia de expertos en su comunidad" text
+    Then I verify text "Find Expert Assistance Spanish" in the Header or in the Footer
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help Exch Spanish" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I click link my docs on accountOverview page
-    Then I validate "Globe" text
+    Then I verify text "Globe" in the Header or in the Footer
     And I change the language from header to "English"
     And I change the language from header to "Spanish"
+    Then I verify text "Privacy Policy Spanish" in the Header or in the Footer
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy Exch Spanish" page and close tab
+    Then I verify text "Terms of Use Spanish" in the Header or in the Footer
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms of Use Exch Spanish" page and close tab
     And I click on Contact Us in the "Exch" Footer
+    Then I verify text "Contact Us Footer Link Spanish" in the Header or in the Footer
     And I validate I am on the "Contact Us Exch Spanish" page and close tab
-    Then I validate "Copy Rights Spanish" text
-    Then I validate "Follow Us Spanish" text
+    Then I verify text "Copy Rights Spanish" in the Header or in the Footer
+    Then I verify text "Follow Us Spanish" in the Header or in the Footer
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
     And I click on "X" Icon in the Footer

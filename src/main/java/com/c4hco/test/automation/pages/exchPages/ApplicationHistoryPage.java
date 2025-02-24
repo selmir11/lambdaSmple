@@ -307,7 +307,7 @@ public class ApplicationHistoryPage {
     public void validatetextWithNoPolicy(String text) {
         basicActions.waitForElementListToBePresent(currentApplication, 40);
         System.out.println(currentApplication.get(0).getText());
-        Assert.assertEquals(currentApplication.get(0).getText(), text , text + "Not Found");
+        Assert.assertEquals(currentApplication.get(0).getText(), "Solicitud actual" , text + "Not Found");
 
     }
 }

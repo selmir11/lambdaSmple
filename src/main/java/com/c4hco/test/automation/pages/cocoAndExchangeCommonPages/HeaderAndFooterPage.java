@@ -1187,28 +1187,28 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBePresent(userNameLinkExch, 100);
                 Assert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
                 break;
-            case "Solicitud de cobertura":
+            case "Apply for coverage Spanish":
                 basicActions.waitForElementToBePresent(centerHeaderLink.get(0),20);
-                softAssert.assertEquals(centerHeaderLink.get(0).getText(), expectedText , expectedText + " Not Found ");
+                softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura" , expectedText + " Not Found ");
                 break;
-            case "Buscar un plan":
+            case "Find a plan Spanish":
                  basicActions.waitForElementToBePresent(centerHeaderLink.get(1),20);
-                 softAssert.assertEquals(centerHeaderLink.get(1).getText(), expectedText , expectedText + " Not Found ");
+                 softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan" , expectedText + " Not Found ");
                  break;
-            case "Más información":
+            case "My Account Spanish":
+                basicActions.waitForElementToBePresent(centerHeaderLink.get(2),20);
+                softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta" , expectedText + " Not Found ");
+                break;
+            case "Learn More Spanish":
                  basicActions.waitForElementToBePresent(learnMoreLink,20);
-                 softAssert.assertEquals(learnMoreLink.getText() , expectedText , expectedText + " Not Found ");
+                 softAssert.assertEquals(learnMoreLink.getText() , "Más información" , expectedText + " Not Found ");
                   break;
-            case "Mi cuenta":
-                  basicActions.waitForElementToBePresent(centerHeaderLink.get(2),20);
-                  softAssert.assertEquals(centerHeaderLink.get(2).getText(), expectedText , expectedText + " Not Found ");
-                  break;
-            case "Contacta con nosotros":
+            case "Contact US Spanish":
                   basicActions.waitForElementToBePresent(getAssistanceLink,20);
                   actions.moveToElement(getAssistanceLink).perform();
                   softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
                   break;
-            case "Buscar asistencia de expertos en su comunidad":
+            case "Find Expert Assistance Spanish":
                   basicActions.waitForElementToBePresent(getAssistanceLink,20);
                   actions.moveToElement(getAssistanceLink).perform();
                   softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
@@ -1220,14 +1220,19 @@ public class HeaderAndFooterPage {
                   softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
                   softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
                   break;
-            case "Póliza de privacidad":
+            case "Privacy Policy Spanish":
                   basicActions.waitForElementToBePresent(privacyPolicyLink,20);
-                  softAssert.assertEquals(privacyPolicyLink.getText(), "Pol\u00EDtica de privacidad");
+                  softAssert.assertEquals(privacyPolicyLink.getText(), "Póliza de privacidad");
                   break;
-            case "Términos y Condiciones":
+            case "Terms of Use Spanish":
                   basicActions.waitForElementToBePresent(termsOfUseLink,20);
-                  softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos de uso");
+                  softAssert.assertEquals(termsOfUseLink.getText(), "Términos y Condiciones");
                   break;
+            case "Contact Us Footer Link Spanish":
+                basicActions.waitForElementToBePresent(contactUsLinkExch,20);
+                softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
+                break;
+
             case "Copy Rights Spanish":
                   String CurrentYear = String.valueOf(Year.now().getValue());
                   basicActions.waitForElementToBePresent(copyRightCoCoText,20);
@@ -1235,7 +1240,7 @@ public class HeaderAndFooterPage {
                  break;
             case "Follow Us Spanish":
                     basicActions.waitForElementToBePresent(followUsText,20);
-                    softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
+                    softAssert.assertEquals(followUsText.getText(), "Síguenos en:");
                     break;
                 default:
                     throw new IllegalArgumentException("Text not present: " + expectedText);

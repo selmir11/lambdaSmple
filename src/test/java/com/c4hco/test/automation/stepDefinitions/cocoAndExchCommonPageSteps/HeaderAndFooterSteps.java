@@ -73,8 +73,8 @@ public class HeaderAndFooterSteps {
     public void iClickFacebookIcon(String MediaIcon){ headerAndFooterPage.clickFacebookIcon(MediaIcon); }
 
 
-    @Then("I validate {string} text")
-    public void iValidateTextInHeader(String text) {
+    @Then("I verify text {string} in the Header or in the Footer")
+    public void iVerifyTextOnTheHeaderOrFooter(String text) {
         headerAndFooterPage.validateTextinHeader(text);
     }
 }
