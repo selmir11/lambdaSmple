@@ -13,16 +13,6 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.validatePlanDetails(planType);
     }
 
-    @And("I click View Plan History link from {string} plan card")
-    public void clickViewPlanHistory(String planType){
-        myPoliciesPage.clickViewPlanHistory(planType);
-    }
-
-//    @And("I validate {string} plan details from plan history")
-//    public void medPlanDetailsPlanHistory(String planType){
-//        myPoliciesPage.validatePlanDetailsPlanHistory(planType);
-//    }
-
     @And("I click on to Back to Current Plan Details button")
     public void clickBackToCurrentPlans(){
         myPoliciesPage.clickBackButton();

@@ -41,6 +41,12 @@ public class AccountOverviewPageSteps {
     public void validatePlanInfo(){
         accountOverviewPage.verifyMemberNames();
     }
+
+    @Then("I validate that financials are updated on account overview page")
+    public void validateNewFinancialAmt(){
+        accountOverviewPage.validateNewFinancialAmt();
+    }
+
     @Given("I set the test scenario details")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
         accountOverviewPage.setScenarioDetails(expectedResult);

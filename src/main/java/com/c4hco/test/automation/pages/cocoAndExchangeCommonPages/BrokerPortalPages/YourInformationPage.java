@@ -230,7 +230,7 @@ public class YourInformationPage {
         BrokerDetails broker;
         Date todayDate = new Date();
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.YEAR, 5);
+        calendar.add(Calendar.YEAR, 4);
         Date futureDate = calendar.getTime();
         switch(accountType){
             case "Agency Owner":

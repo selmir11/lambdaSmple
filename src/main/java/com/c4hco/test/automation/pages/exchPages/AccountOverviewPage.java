@@ -13,6 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -93,8 +95,8 @@ public class AccountOverviewPage {
     List<WebElement> txtlinkButton;
     @FindBy(xpath = "//button[text()='Start here']")
     List<WebElement> btnStartHere;
-    @FindBy(xpath = "//button[@id='submit' and @name='applyForCurrentYearDental']")
-    WebElement applyForDentalPlan;
+    @FindBy(css = "div.popover-content")
+    WebElement makeChangesDentalPopup;
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -106,12 +108,6 @@ public class AccountOverviewPage {
     public void clickuserNameExchLink() {
         basicActions.waitForElementToBeClickable(userNameExchLink, 15);
         userNameExchLink.click();
-    }
-
-    public void clickApplyForDentalPlan() {
-        basicActions.waitForElementToDisappear(spinner, 30 );
-        basicActions.waitForElementToBePresent(applyForDentalPlan, 30);
-        applyForDentalPlan.click();
     }
 
     public void clickApplyForCurrentYear(){
@@ -316,6 +312,37 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
+    public void validateNewFinancialAmt(){
+        List<MemberDetails> allEligibleMem = basicActions.getAllMedicalEligibleMemInfo();
+        for(MemberDetails member: allEligibleMem){
+            //Medical Plan Validation
+            WebElement MedicalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[5]/b"));
+            WebElement MedicalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[6]/b"));
+
+            BigDecimal dentalPremiumAmnt = new BigDecimal(basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[5]/b")).getText().replace("$", "").replace(",", ""));
+            DecimalFormat df = new DecimalFormat("0.00");
+            String dentalPremiumAmt = df.format(dentalPremiumAmnt);
+
+            basicActions.waitForElementToBePresentWithRetries(MedicalAPTCAmnt, 10);
+            softAssert.assertNotEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + member.getMedicalPremiumAmt(), member.getFirstName() + " Medical premium amount does not match");
+            softAssert.assertNotEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + member.getMedicalAptcAmt(), member.getFirstName() + " Medical APTC amount did not match");
+            softAssert.assertNotEquals(dentalPremiumAmt, "$" + basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), member.getFirstName() + " Dental Premium amount does not match");
+
+            BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(MedicalAPTCAmnt.getText().replace(",", "").replace("$", ""));
+            BigDecimal totalMedicalPremium = new BigDecimal(MedicalPremiumAmnt.getText().replace(",", "").replace("$", ""));
+            BigDecimal medPremiumAfterReduction = totalMedicalPremium.subtract(bigDecimalMedAPTCAmt);
+
+            member.setMedicalAptcAmt(String.valueOf(bigDecimalMedAPTCAmt));
+            member.setTotalMedAmtAfterReduction(String.valueOf(medPremiumAfterReduction));
+            member.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+
+
+            member.setDentalPremiumAmt(dentalPremiumAmt);
+            member.setTotalDentalPremAfterReduction(dentalPremiumAmt);
+            softAssert.assertAll();
+        }
+    }
+
     public void verifyMemberNames() {
         List<MemberDetails> allMemberList = basicActions.getAllMedicalEligibleMemInfo();
         int totalDentalGroups = SharedData.getScenarioDetails().getTotalDentalGroups() != 0 ? SharedData.getScenarioDetails().getTotalDentalGroups():SharedData.getScenarioDetails().getTotalGroups();
@@ -388,6 +415,11 @@ public class AccountOverviewPage {
         softAssert.assertFalse(btnStartHere.stream()
                         .anyMatch(e -> e.isDisplayed() && e.getText().trim().equalsIgnoreCase("Start here")),
                 "The button with text 'Start here' is visible, but it should not be.");
+        softAssert.assertAll();
+    }
+    public void iValidateMakeChangesForDentalPlanPopupMsg(List<String> message){
+        basicActions.waitForElementPresence(makeChangesDentalPopup, 20);
+        softAssert.assertEquals(makeChangesDentalPopup.getText(), message.get(0));
         softAssert.assertAll();
     }
 }
