@@ -2969,7 +2969,6 @@ Feature: Page validations on ELIG pages
 
   @SLER-2003 @PageValidation
   Scenario Outline: Validate Footer on the Spanish Application Results page
-
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

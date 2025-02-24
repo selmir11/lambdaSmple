@@ -15,9 +15,9 @@ public class AddAddressPageSteps {
      @Then("I select {string} for Residential Address")
     public void memberResidentialAddress(String Address){addAddressPage.selectResidentialAddress(Address);}
 
-    @And("I enter the new residential address details")
-    public void addNewResidentialAddress(List<Map<String, String>> addressDetails){
-         addAddressPage.addNewResidentialAddress(addressDetails);}
+    @And("I enter the new residential address details for {string}")
+    public void addNewResidentialAddress(String prefix, List<Map<String, String>> addressDetails){
+         addAddressPage.addNewResidentialAddress(prefix, addressDetails);}
 
 
     @And("I enter a new residential address with city {string} state {string} zip {string} and county {string}")
