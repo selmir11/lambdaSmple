@@ -782,6 +782,9 @@ public class BasicActions {
                 case "Today":
                     date = getTodayDate();
                     break;
+                case "First Day of Current Month":
+                    date = firstDateOfCurrMonth();
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
             }
