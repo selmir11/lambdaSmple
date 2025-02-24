@@ -97,12 +97,20 @@ public class AccountOverviewPage {
     List<WebElement> btnStartHere;
     @FindBy(css = "div.popover-content")
     WebElement makeChangesDentalPopup;
+    @FindBy(xpath = "//button[@id='submit' and @name='applyForCurrentYearDental']")
+    WebElement applyForDentalPlan;
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
+    }
+
+    public void clickApplyForDentalPlan() {
+        basicActions.waitForElementToDisappear(spinner, 30 );
+        basicActions.waitForElementToBePresent(applyForDentalPlan, 30);
+        applyForDentalPlan.click();
     }
 
     public void clickuserNameExchLink() {
