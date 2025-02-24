@@ -79,4 +79,9 @@ public class ImmigrationStatusPageSteps {
         ImmigrationStatusPage.clickContinue();
     }
 
+    @Then("I validate the immigration dropdown values for {string} language")
+    public void ivalidateImmigrationDropdownValues(String language, List<String> data) {
+        ImmigrationStatusPage.validateImmigrationDropdownValues(language, data);
+    }
+
 }

@@ -422,4 +422,33 @@ public class AccountOverviewPage {
         softAssert.assertEquals(makeChangesDentalPopup.getText(), message.get(0));
         softAssert.assertAll();
     }
+
+
+    public void verifyDentalButtonsText(String language) {
+        switch (language) {
+            case "English":
+                validateButtonsTextEnglish();
+                break;
+            case "Spanish":
+                validateButtonsTextSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void validateButtonsTextEnglish() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(btnShopForVisionPlans.getText().trim(), "Shop for vision plans", "Mismatch in Vision Plan button text");
+        softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText().trim(), "Make changes to my dental plan", "Mismatch in Dental Plan button text");
+        softAssert.assertAll();
+    }
+
+    private void validateButtonsTextSpanish() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(btnShopForVisionPlans.getText().trim(), "Revisar planes de la vista", "Mismatch in Vision Plan button text (Spanish)");
+        softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText().trim(), "Realizar cambios en mi plan dental", "Mismatch in Dental Plan button text (Spanish)");
+        softAssert.assertAll();
+    }
+
 }
