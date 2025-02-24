@@ -1083,13 +1083,11 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
                 basicActions.scrollToElement(LinkedInIcon);
                 ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", LinkedInIcon);
-               // LinkedInIcon.click();
                 break;
             case "Threads":
                 basicActions.waitForElementToBeClickable(ThreadsIcon, 10);
                 basicActions.scrollToElement(ThreadsIcon);
                 ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", ThreadsIcon);
-               // ThreadsIcon.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + MediaIcon);
