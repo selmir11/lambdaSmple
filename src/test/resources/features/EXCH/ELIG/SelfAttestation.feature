@@ -60,11 +60,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -150,11 +150,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -240,11 +240,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -331,11 +331,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -421,11 +421,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -510,11 +510,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -600,11 +600,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -690,11 +690,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -780,11 +780,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -800,7 +800,7 @@ Feature: Self Attestation
     Then I validate I am on the "My Account Overview" page
     Then I validate the text of the Self Attestation container
 
-  @SLER-1875 @PageText
+  @SLER-1875
   Scenario: Self Attestation Container - Self Attestation Page Text English and Spanish
     And I enter first name "MVRAutomationTest", middle name "", last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
@@ -852,11 +852,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -877,7 +877,7 @@ Feature: Self Attestation
     And I wait for 3000 milliseconds
     Then I validate the "Spanish" text on the Self Attestation page
 
-  @SLER-1876 @PageText
+  @SLER-1876
   Scenario: Post Attestation - Action Required Spanish Text.
     And I enter first name "MVRAutomationTest", middle name "", last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
@@ -929,11 +929,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -957,7 +957,7 @@ Feature: Self Attestation
     Then I click on Submit Self Attestation button
     Then I verify the "Action Required" text on the Spanish Post Attestation page
 
-  @SLER-1877 @PageText
+  @SLER-1877
   Scenario: Post Attestation Update Application Message Page Text
     And I enter first name "MVRAutomationTest", middle name "", last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
@@ -1009,11 +1009,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1035,7 +1035,7 @@ Feature: Self Attestation
     Then I click on Submit Self Attestation button
     Then I verify the "Update Application" text on the Spanish Post Attestation page
 
-  @SLER-1877 @PageText
+  @SLER-1877
   Scenario: Post Attestation Thank You Spanish Message Text
     And I enter first name "MVRAutomationTest", middle name "", last name "OPENINCOMEMVR" and general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
@@ -1087,11 +1087,11 @@ Feature: Self Attestation
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page

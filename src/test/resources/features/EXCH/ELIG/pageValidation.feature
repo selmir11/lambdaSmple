@@ -316,7 +316,7 @@ Feature: Page validations on ELIG pages
     And I open on chat widget
     Then I minimize the chat window
 
-  @SLER-121 @PageValidation
+  @SLER-121 @PageValidation #TODO: Test may belong to NVO now - Needs Updated Elements for Chat Widget
   Scenario: Verify Chat Widget on the Tax status page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -418,11 +418,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I validate chat widget is present
     And I open on chat widget
@@ -477,11 +477,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -539,11 +539,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -603,11 +603,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -670,11 +670,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -741,11 +741,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1402,11 +1402,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -1477,11 +1477,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1555,11 +1555,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1635,11 +1635,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1718,11 +1718,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -1805,11 +1805,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -2439,7 +2439,7 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    When I change the language from header to "Spanish NonElmo"
+    When I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -2510,11 +2510,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     When I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -2587,11 +2587,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -2667,11 +2667,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -2749,11 +2749,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -2834,11 +2834,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -2923,11 +2923,11 @@ Feature: Page validations on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
