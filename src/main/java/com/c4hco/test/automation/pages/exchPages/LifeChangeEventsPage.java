@@ -29,7 +29,7 @@ public class LifeChangeEventsPage {
 
     @FindBy(id = "continueButton")
     List<WebElement> saveAndContinueButton;
-    
+
     @FindBy(xpath = "//button[@id = 'continueButton']")
     WebElement continueWithApplication;
 

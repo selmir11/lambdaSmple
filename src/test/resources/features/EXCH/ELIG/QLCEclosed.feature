@@ -5,7 +5,7 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-CLOSED-WIP1 @SLER-2171 @SLER-2172 @SLER-2173 @SLER-2174
+  @SLER-2171 @SLER-2239 @SLER-2172 @SLER-2173 @SLER-2174 @SLER-2246
   Scenario Outline: ELIG-QLCE vaildations allows user to shop under Closed Enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -136,7 +136,7 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
       | GainedAmericanIndianAlaskaNative| GainOfTribalStatus     |
       | MovedToColorado                 | MoveToCO               |
 
-  @SLER-CLOSED-WIP2
+  @SLER-2240 @SLER-2241 @SLER-2175
   Scenario Outline: ELIG-QLCE vaildations allows user to shop under Closed Enrollment when Other QHC is selected
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -264,7 +264,7 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
       | Other                           | IncomeJobChange        |
       | Other                           | Incarceration          |
 
-  @SLER-CLOSED-WIP3
+  @SLER-2245 @SLER-2238 @SLER-2176 @SLER-2248 @SLER-2244 @SLER-2247
   Scenario Outline: ELIG-QLCE vaildations won't allow a user to shop under Closed Enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page

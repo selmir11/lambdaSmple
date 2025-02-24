@@ -130,6 +130,7 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForChangeOfIncomeOrJob0.lceEventDate')]")
     List<WebElement> changeOfIncomeOrJobEventDate;
 
+    // Future or Existing health insurance
     @FindBy(id = "enrollmentUpdate")
     WebElement changeOfHealthCoverageLCE;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForEnrollmentInFutureOrExistingHealthInsurance0.lceEventStatus1')]")
