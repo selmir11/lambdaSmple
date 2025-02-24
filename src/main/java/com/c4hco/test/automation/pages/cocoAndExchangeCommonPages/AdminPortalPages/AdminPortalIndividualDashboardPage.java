@@ -287,6 +287,8 @@ public class AdminPortalIndividualDashboardPage {
     WebElement selectedMemberData;
     @FindBy(css = "#account-status")
     WebElement suspended;
+    @FindBy(css = "#account-status")
+    WebElement passwordReset;
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -970,6 +972,11 @@ public class AdminPortalIndividualDashboardPage {
     public void validateAccountSuspended() {
         basicActions.waitForElementToBePresent(accountStatus, 30);
         softAssert.assertEquals(suspended.getText(), "Account Status: Suspended");
+    }
+    public void validateAccountPasswordReset() {
+        basicActions.waitForElementToBePresent(accountStatus, 30);
+        softAssert.assertEquals(passwordReset.getText(), "Account Status: Password Reset");
+        softAssert.assertAll();
     }
 }
 
