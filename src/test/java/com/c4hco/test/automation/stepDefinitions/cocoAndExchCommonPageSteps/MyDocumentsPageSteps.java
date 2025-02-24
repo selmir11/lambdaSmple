@@ -217,5 +217,10 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I verify file downloaded and it is not empty")
     public void I_click_on_download_button_and_save_it() {myDocumentsPage.verifyFileExistAndNotEmpty();}
 
+    @Then("I verify file {string} downloaded with Proper name format")
+    public void iVerifyFileDownloadedWithProperNameFormat(String NoticeName) {
+        myDocumentsPage.verifyFileNameFormat(NoticeName);
+    }
+
 }
 
