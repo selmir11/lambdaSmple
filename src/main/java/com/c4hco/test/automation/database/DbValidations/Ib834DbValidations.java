@@ -187,7 +187,7 @@ public class Ib834DbValidations {
         getDbDataMap(primaryMember.getFirstName());
         if (SharedData.getHasBroker()) {
             softAssert.assertEquals(broker.getBroker_name(), ib834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
-            softAssert.assertEquals(ib834Entity.getTpa_or_broker_id(), dbDataMap.get(primaryMember.getFirstName()).getBrokerTinNum(), "Broker Tin Number is incorrect");
+            softAssert.assertEquals(ib834Entity.getTpa_or_broker_id(), dbDataMap.get(primaryMember.getFirstName()).getBrokerTinNum().replace("-",""), "Broker Tin Number is incorrect");
             softAssert.assertEquals(ib834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
         } else {
             softAssert.assertNull(ib834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
