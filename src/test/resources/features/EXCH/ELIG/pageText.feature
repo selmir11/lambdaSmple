@@ -1789,7 +1789,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I change the language from header to "Spanish NonElmo"
     Then I select "Yes" for Citizen option
     And I select "Yes" for Naturalized Immigrant option
-    Then I verify texts when Naturalized Immigrant option is Yes
+    Then I validate page texts when Naturalized Immigrant option is Yes
       | Número A/Número USCIS         |
       | Tipo de documento             |
       | Número del documento          |
