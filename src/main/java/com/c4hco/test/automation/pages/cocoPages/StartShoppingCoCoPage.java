@@ -36,6 +36,16 @@ public class StartShoppingCoCoPage {
 
     @FindBy(css = ".container .header-1")
     WebElement headerText;
+
+    @FindBy(xpath = "//*[@class = 'c4-type-header-lg center']")
+    WebElement headerTextMinor;
+
+    @FindBy(xpath ="//*[@class = 'c4-type-body-md center ng-star-inserted']")
+    WebElement headerTextNextYoullReview;
+
+    @FindBy(xpath ="//*[@class = 'c4-type-body-md center']")
+    WebElement headerTextNotReady;
+
     @FindBy(css = ".container .body-text-1")
     List<WebElement> bodyText;
 
@@ -60,7 +70,7 @@ public class StartShoppingCoCoPage {
     public void iclickContinue() {
         basicActions.waitForElementToDisappear( spinner,40 );
         softAssert.assertTrue(basicActions.waitForElementToBePresent(continueBtn, 30));
-        basicActions.waitForElementToBeClickableWithRetries(continueBtn, 30);
+        basicActions.waitForElementToBePresentWithRetries(continueBtn, 60);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtn);
         basicActions.clickElementWithRetries(continueBtn, 10);
     }
@@ -87,6 +97,17 @@ public class StartShoppingCoCoPage {
         softAssert.assertEquals(saveAndExitButton.getText(), saveExitTxt);
         softAssert.assertEquals(continueBtn.getText(), continueBtnTxt);
         softAssert.assertAll();
+    }
+
+    public void verifyTextWithNoTobaccoText(){
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresentWithRetries(headerTextMinor, 40);
+        softAssert.assertEquals(headerTextMinor.getText(), "It's almost time to start shopping for a health insurance plan!");
+        softAssert.assertNotEquals(tobaccoUsageTxt.getText(), "First, we need to ask you about tobacco usage.");
+        softAssert.assertEquals(headerTextNextYoullReview.getText(), "Next, you'll review your plan options and pick an insurance plan that fits your needs.");
+        softAssert.assertEquals(headerTextNotReady.getText(), "Not ready to shop? Now's a good time to save your progress.");
+        softAssert.assertAll();
+
     }
 
     public void verifyTextOnTobaccoPage() {
