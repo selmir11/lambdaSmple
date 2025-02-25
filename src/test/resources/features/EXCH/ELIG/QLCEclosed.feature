@@ -380,9 +380,11 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
     And I wait for hold on content to disappear
     Then I click on view results and shop
     And I click continue on application results page
-    Then I verify pop up text on the application results page "English"
 
-    And I click on Sign Out in the Header for "Elmo"
+    Then I verify pop up text on the application results page "English"
+    Then I click Back to App Results button on the pop up
+
+    And I click on Sign Out in the Header for "Household Page"
     And I wait for 10000 milliseconds
     Examples:
 
