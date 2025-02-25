@@ -196,6 +196,7 @@ public class DentalPlansResultsPage {
     }
 
     public void clickFirstTwoCompareBoxes() {
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresentWithRetries( comparePlanBox1, 40 );
         comparePlanBox1.click();
         comparePlanBox2.click();

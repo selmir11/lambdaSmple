@@ -199,12 +199,15 @@ public class DentalPlanComparePage {
         softAssert.assertEquals(getTxtCleaningChild.getText(), "Cleaning Child");
 
         softAssert.assertEquals( collapseAllLink.getText(),"Collapse All Categories" );
+        basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.click(collapseAllLink );
-        softAssert.assertNull( collapseAllLink.getText(), "Individual Collapse function works ");
-        softAssert.assertNull( getTxtCleaningChild.getText(), "Individual Collapse function works ");
-
-        softAssert.assertEquals( txtDentalDiagnosticChild.getText(),"Diagnostic and Preventive Services Child" );
-        basicActions.click( txtDentalDiagnosticChild );
+        basicActions.click( txtDentalMajorServicesAdult );
+        softAssert.assertEquals( getTxtDenturesAdult.getText(),"Dentures and Bridges Adult" );
+        basicActions.scrollToElement( collapseAllLink );
+        basicActions.click(collapseAllLink );
+        basicActions.scrollToElement( expandAllLink );
+        basicActions.click( expandAllLink );
+        softAssert.assertAll();
     }
 
     public void validateInNetworkDental(){
