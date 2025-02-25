@@ -318,8 +318,8 @@ Feature: Medical Plan Results page related tests
     Then I validate I am on the "Dental Plan Results" page
     Then I click on Sign Out in the Header for "DentalPlanResults"
 
-  @SLER-1927-WIP @DentalCompareSpecificHeaderExpandCollapse
-  Scenario: SLER-1927-WIP - Validate the Expand and Collapse Functionality for a specific header on the Compare Plans page (Dental)
+  @SLER-1927 @DentalCompareSpecificHeaderExpandCollapse
+  Scenario: SLER-1927- Validate the Expand and Collapse Functionality for a specific header on the Compare Plans page (Dental)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
