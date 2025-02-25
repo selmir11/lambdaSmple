@@ -60,7 +60,7 @@ public class StartShoppingCoCoPage {
     public void iclickContinue() {
         basicActions.waitForElementToDisappear( spinner,40 );
         softAssert.assertTrue(basicActions.waitForElementToBePresent(continueBtn, 30));
-        basicActions.waitForElementToBeClickableWithRetries(continueBtn, 30);
+        basicActions.waitForElementToBePresentWithRetries(continueBtn, 60);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", continueBtn);
         basicActions.clickElementWithRetries(continueBtn, 10);
     }
