@@ -52,7 +52,7 @@ Feature: FA - 4groups - enroll in plan
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
+    Then I enter the new residential address details
       | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
       | 456 Trail Ave          | Trail Ave    | Boulder | CO    | 80020   | BOULDER |09051959 |
     And I select "Yes" for CO Resident option

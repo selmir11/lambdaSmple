@@ -1,4 +1,4 @@
-@COCO5
+@SIR-COCO5
     # SLCR-157, SLCR-159, SLCR-255, SLCR-256, SLCR-257, SLCR-263, SLCR-265, SLCR-267, SLCR-268, SLCR-282, SLCR-316, SLCR-317,
 Feature: Individual adult - End to End Test
 
@@ -491,7 +491,7 @@ Feature: Individual adult - End to End Test
     And I click Continue on the Application Results Page CoCo
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I verify there is no Tobacco Text for a Primary Minor enrollee
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page

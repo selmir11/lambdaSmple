@@ -22,7 +22,10 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
@@ -599,8 +602,10 @@ public class MyDocumentsPage {
     }
 
     public void SelectPlanYeardropdown(String selectYear) {
-        String expectedYr = "";
         basicActions.waitForElementToBePresent(PlanYearDropDown.get(0), 30);
+        basicActions.refreshPage();
+        basicActions.wait(1000);
+        basicActions.refreshPage();
         switch (selectYear) {
             case "All":
                 PlanYearDropDown.get(0).click();
@@ -974,6 +979,14 @@ public class MyDocumentsPage {
         }
         softAssert.assertAll();
 
+    }
+
+    public void verifyFileNameFormat(String NoticeName) {
+        String formatedDate =   basicActions.changeDateFormat( basicActions.getTodayDate(),"MM/dd/yyyy","dd-MMM-yyyy");
+        basicActions.waitForElementToBeClickable(btn_download, 10);
+        btn_download.click();
+        String fileName = basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 40);
+        Assert.assertEquals(fileName, NoticeName + "-" + SharedData.getPrimaryMember().getAccount_id() + "-" + formatedDate +" (1).pdf", "File Name Not Match :  ");
     }
 
 }
