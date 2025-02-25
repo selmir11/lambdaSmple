@@ -203,7 +203,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(6).getText(), "C\u00F3digo postal");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(7).getText(), "Condado");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "\u00BF" + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " vive en Colorado?");
-        softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "Si");
+        softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "S\u00ED");
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Volver");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
