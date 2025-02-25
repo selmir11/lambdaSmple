@@ -6,6 +6,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class FindACertifiedBrokerPage {
@@ -217,6 +218,7 @@ public class FindACertifiedBrokerPage {
     }
     public void clickAuthorizeButton() {
         basicActions.waitForElementToBePresent(authorizeButton,60);
+        SharedData.getBroker().getBroker_name();
         authorizeButton.click();
     }
 
@@ -239,12 +241,13 @@ public class FindACertifiedBrokerPage {
 
     private void setBrokerDetails(){
         BrokerDetails broker = new BrokerDetails();
-        basicActions.waitForElementToBePresentWithRetries(licenseNumber, 10);
+        Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(licenseNumber, 10));
         broker.setBroker_name(brokerDisplayedName.getText());
         broker.setBroker_lic_num(licenseNumber.getText());
         broker.setAgencyName(agencyDisplayedName.getText());
         SharedData.setBroker(broker);
         SharedData.setAgencyOwner(broker);
+
     }
 
     public void clickMoreDetailsBroker() {
