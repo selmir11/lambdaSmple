@@ -192,7 +192,7 @@ Feature: Seed04 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    @SLER-1235-WIP_@RFV @n1
+    @SLER-1235-WIP_@RFV
     Scenario: RT-2051 ENR-EXCH: APPS - CHANGE PRIMARY RESIDENTIAL ADDRESS (Different Rating Area)
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
