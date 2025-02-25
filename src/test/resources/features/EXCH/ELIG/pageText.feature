@@ -1723,3 +1723,15 @@ Feature: Verify all English and Spanish Text on ELIG pages
     And I change the language from header to "English NonElmo"
     And I click continue on the Out of State MA page
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2217 @PageText
+  Scenario: Testing will verify the ARP BANNER/Start Here button is no longer Present
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+
+    Then I validate I am on the "Account Overview" page
+    Then I verify ARP Banner no longer present on Account Overview page
+    And I click on Sign Out in the Header for "NonElmo"
