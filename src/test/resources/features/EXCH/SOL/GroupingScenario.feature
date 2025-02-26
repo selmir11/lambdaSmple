@@ -364,7 +364,7 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click save button to save the groups
     Then I get error message as groups are invalid
 
-    # Failing because of defect
+    
   @SLER-159 @groupingBasedOnAgeAndDisability
   Scenario: A family of 3 all applying for insurance,Two parents and one 29 year old son who is blind
     When I click create a new account on login page
@@ -482,14 +482,6 @@ Feature: UI Page Validation - Grouping Members (Medical)
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    And I select the second dependent
-    And I click save and continue on tax status page
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
