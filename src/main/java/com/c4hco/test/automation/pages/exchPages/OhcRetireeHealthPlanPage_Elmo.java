@@ -238,7 +238,8 @@ public class OhcRetireeHealthPlanPage_Elmo {
     }
 
     public void verifyHeadersRetireeOhcPageSpanish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
         softAssert.assertAll();
