@@ -15,6 +15,7 @@ Feature: Verify Broker Portal footers on the Broker Dashboard pages
     Then I sign out of Outlook
     Then I enter the MFA code and click Verify
 
+    Then I click Broker Dashboard
     And I validate I am on the "Broker Dashboard" page
     And I wait for 2000 milliseconds
 

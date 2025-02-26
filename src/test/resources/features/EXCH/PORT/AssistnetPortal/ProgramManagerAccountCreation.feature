@@ -28,6 +28,7 @@ Feature: Create a new Program Manager account
     And I validate I am on the "Create Account" page
     Then I complete mandatory data for program manager account creation
     Then I validate I am on the "Login" page
+    Then I switch to the tab number 0
     And I log into my Program Manager account
 
     Then I switch to the tab number 2
