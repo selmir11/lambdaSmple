@@ -503,3 +503,86 @@ Feature: My Document Home Page validations
     And I click on download "IND_Welcome Message (AM-001-01)" document
     Then I verify file "IND_Welcome Message (AM-001-01)" downloaded with Proper name format
     Then  I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2252
+  Scenario: Verify user can upload Document to the MVR for all Document Category [RT-1979]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "7605717009" "7732518009" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I click upload MVR button if present for category "Social Security Number"
+    And I click Upload MVR carrot and verify default category "Social Security Number" and corresponding document types
+      | Social Security Card & Social Security Document & Other Official Document with First/Last Name and SSN   |
+    Then I upload MVR doc on the My Documents page and verify success message
+    And I click upload MVR button if present for category "US Citizenship"
+    And I click Upload MVR carrot and verify default category "US Citizenship" and corresponding document types
+      | Federally Approved Tribal Document &  U.S. Birth Certificate & U.S. Certificate of Naturalization & U.S. Passport & Other Official Citizenship Document |
+    Then I upload MVR doc on the My Documents page and verify success message
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    And I click on reset button on admin portal search page
+    Then I enter an "accountID" in any env "2908004501" "6301040608" to search user
+    Then I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I click upload MVR button if present for category "American Indian or Alaska Native Membership"
+    And I click Upload MVR carrot and verify default category "American Indian or Alaska Native Membership" and corresponding document types
+      | Bureau of Indian Affairs Issued Document & Tribal Enrollment/Membership Document & Other Official Federal Recognized Tribe Document |
+    Then I upload MVR doc on the My Documents page and verify success message
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    And I click on reset button on admin portal search page
+    Then I enter an "accountID" in any env "3891909040" "5930557950" to search user
+    Then I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I click upload MVR button if present for category "Life"
+    And I click Upload MVR carrot and verify default category "Life" and corresponding document types
+      |Proof of Life Document |
+    Then I upload MVR doc on the My Documents page and verify success message
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    And I click on reset button on admin portal search page
+    Then I enter an "accountID" in any env "3891105690" "5940607420" to search user
+    Then I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I click upload MVR button if present for category "Eligible Immigration Status"
+    And I click Upload MVR carrot and verify default category "Eligible Immigration Status" and corresponding document types
+      | DS2019 (Certificate of Eligibility for Exchange Visitor (J-1) Status) & I-20 (Certificate of Eligibility for Nonimmigrant (F-1) Student Status) & I-327 Reentry Permit & I-551 Permanent Resident Card & I-571 Refugee Travel Document & I-766 Employment Authorization Card & INS Form I-94 (Arrival/Departure Record) & INS Form I-94 (Arrival/Departure Record) in Unexpired Foreign Passport & Machine Readable Immigrant Visa (with Temporary I-551 Language) & Temporary I-551 Stamp (on passport or I-94) & Other Official US Citizenship and Immigration Services Document   |
+    Then I upload MVR doc on the My Documents page and verify success message
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    And I click on reset button on admin portal search page
+    Then I enter an "accountID" in any env "5450920960" "7892055002" to search user
+    Then I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I click upload MVR button if present for category "Financial Help Eligibility"
+    And I click Upload MVR carrot and verify default category "Financial Help Eligibility" and corresponding document types
+      |Employer Statement & Form 8962  &Investment Income Statement & Pay Stub/Check & Premium Tax Credit Reconciliation Attestation Form & Retirement Income Statement & Self-Employment Ledger & Social Security Income Statement & Tax Document & Unemployment Amount Letter & Other Official Income Document   |
+    Then I upload MVR doc on the My Documents page and verify success message
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    And I click on reset button on admin portal search page
+    Then I enter an "accountID" in any env "5480980120" "8509559700" to search user
+    Then I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I click upload MVR button if present for category "Incarceration Status"
+    And I click Upload MVR carrot and verify default category "Incarceration Status" and corresponding document types
+      | Court or Legal Document & Unexpired State ID Card & Other Official Document    |
+    Then I upload MVR doc on the My Documents page and verify success message
