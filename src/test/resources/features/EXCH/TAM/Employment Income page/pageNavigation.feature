@@ -132,3 +132,83 @@ Feature: Page Text-Income Opt Out Page
     |Language|
     |English|
     |Spanish|
+
+  @SLER-2264 #WIP
+  Scenario:  [RT-2703]The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify text on the "Exch" "Header" in "Spanish"
+    And I verify text on the "Exch" "Footer" in "Spanish"
+    Then I validate page Navigation works for Footer hyperlink text in Spanish
+      | HyperLinkText         | ExpectedPageTitle                                       | ContainsUrl                                      |
+      | Póliza de privacidad  | Política de Privacidad • Connect for Health Colorado    | connectforhealthco.com/es/politica-de-privacidad/ |
+      | Términos y Condiciones| Términos de uso • Connect for Health Colorado           | connectforhealthco.com/es/terminos-de-uso/  |
+      | Comentarios           | Póngase en contacto • Connect for Health Colorado       | connectforhealthco.com/es/pongase-en-contacto/ |
+      | FacebookIcon          | Facebook                                                | facebook.com/*connectforhealthco|
+      | xIcon                 | Profile / X                                             | x.com/i/flow/login?redirect_after_login=%2FC4HCO  |
+      | YouTubeIcon           | ConnectForHealthCO - YouTube                            | youtube.com/user/ConnectForHealthCO |
+      | LinkedInIcon          | Connect for Health Colorado \| LinkedIn                 | www.linkedin.com%2Fcompany%2Fconnect-for-health-colorado |
+      | InstagramIcon         | Login • Instagram                                       | instagram.com/c4hco/ |
+      | ThreadsIcon           | Connect for Health Colorado (@c4hco) • Threads, Say more| threads.net/@c4hco |
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I validate I am on the "Additional income" page
+    Then I validate page Navigation works for Footer hyperlink text in Spanish
+      | HyperLinkText         | ExpectedPageTitle                                       | ContainsUrl                                      |
+      | Póliza de privacidad  | Política de Privacidad • Connect for Health Colorado    | connectforhealthco.com/es/politica-de-privacidad/ |
+      | Términos y Condiciones| Términos de uso • Connect for Health Colorado           | connectforhealthco.com/es/terminos-de-uso/  |
+      | Comentarios           | Póngase en contacto • Connect for Health Colorado       | connectforhealthco.com/es/pongase-en-contacto/ |
+      | FacebookIcon          | Facebook                                                | www.facebook.com/login/*|
+      | xIcon                 | Profile / X                                             | x.com/C4HCO  |
+      | YouTubeIcon           | ConnectForHealthCO - YouTube                            | youtube.com/user/ConnectForHealthCO |
+      | LinkedInIcon          | Connect for Health Colorado \| LinkedIn                 | www.linkedin.com/company/connect-for-health-colorado |
+      | InstagramIcon         | Login • Instagram                                       | www.instagram.com/accounts/login |
+      | ThreadsIcon           | Connect for Health Colorado (@c4hco) • Threads, Say more| threads.net/@c4hco |
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+  #Deductions Page
+    Then I validate I am on the "Deductions" page
+    Then I validate page Navigation works for Footer hyperlink text in Spanish
+      | HyperLinkText         | ExpectedPageTitle                                       | ContainsUrl                                      |
+      | Póliza de privacidad  | Política de Privacidad • Connect for Health Colorado    | connectforhealthco.com/es/politica-de-privacidad/ |
+      | Términos y Condiciones| Términos de uso • Connect for Health Colorado           | connectforhealthco.com/es/terminos-de-uso/  |
+      | Comentarios           | Póngase en contacto • Connect for Health Colorado       | connectforhealthco.com/es/pongase-en-contacto/ |
+      | FacebookIcon          | Facebook                                                | www.facebook.com/login/* |
+      | xIcon                 | Profile / X                                             | x.com/C4HCO  |
+      | YouTubeIcon           | ConnectForHealthCO - YouTube                            | youtube.com/user/ConnectForHealthCO |
+      | LinkedInIcon          | Connect for Health Colorado \| LinkedIn                 | www.linkedin.com/company/connect-for-health-colorado |
+      | InstagramIcon         | Login • Instagram                                       | www.instagram.com/accounts/login |
+      | ThreadsIcon           | Connect for Health Colorado (@c4hco) • Threads, Say more| threads.net/@c4hco |
+    Then I validate I am on the "Deductions" page
+    And I verify the header for Primary Member on the Deductions page in "Spanish"
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I validate page Navigation works for Footer hyperlink text in Spanish
+      | HyperLinkText         | ExpectedPageTitle                                       | ContainsUrl                                      |
+      | Póliza de privacidad  | Política de Privacidad • Connect for Health Colorado    | connectforhealthco.com/es/politica-de-privacidad/ |
+      | Términos y Condiciones| Términos de uso • Connect for Health Colorado           | connectforhealthco.com/es/terminos-de-uso/  |
+      | Comentarios           | Póngase en contacto • Connect for Health Colorado       | connectforhealthco.com/es/pongase-en-contacto/ |
+      | FacebookIcon          | Facebook                                                | www.facebook.com/login/* |
+      | xIcon                 | Profile / X                                             | x.com/C4HCO  |
+      | YouTubeIcon           | ConnectForHealthCO - YouTube                            | youtube.com/user/ConnectForHealthCO |
+      | LinkedInIcon          | Connect for Health Colorado \| LinkedIn                 | www.linkedin.com/company/connect-for-health-colorado |
+      | InstagramIcon         | Login • Instagram                                       | www.instagram.com/accounts/login |
+      | ThreadsIcon           | Connect for Health Colorado (@c4hco) • Threads, Say more| threads.net/@c4hco |
+    Then I select the projected income option "No" and continue
+  #TaxPage
+    Then I validate I am on the "Tax status Elmo" page
+    Then I validate page Navigation works for Footer hyperlink text in Spanish
+      | HyperLinkText         | ExpectedPageTitle                                       | ContainsUrl                                      |
+      | Póliza de privacidad  | Política de Privacidad • Connect for Health Colorado    | connectforhealthco.com/es/politica-de-privacidad/ |
+      | Términos y Condiciones| Términos de uso • Connect for Health Colorado           | connectforhealthco.com/es/terminos-de-uso/  |
+      | Comentarios           | Póngase en contacto • Connect for Health Colorado       | connectforhealthco.com/es/pongase-en-contacto/ |
+      | FacebookIcon          | Facebook                                                | www.facebook.com/login/* |
+      | xIcon                 | Profile / X                                             | x.com/C4HCO  |
+      | YouTubeIcon           | ConnectForHealthCO - YouTube                            | youtube.com/user/ConnectForHealthCO |
+      | LinkedInIcon          | Connect for Health Colorado \| LinkedIn                 | www.linkedin.com/company/connect-for-health-colorado |
+      | InstagramIcon         | Login • Instagram                                       | www.instagram.com/accounts/login |
+      | ThreadsIcon           | Connect for Health Colorado (@c4hco) • Threads, Say more| threads.net/@c4hco |
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page

@@ -2,10 +2,8 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.datatable.DataTable;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +11,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import java.time.Year;
 import java.util.List;
+import java.util.Map;
 
 public class HeaderAndFooterPage {
     SoftAssert softAssert = new SoftAssert();
@@ -1245,5 +1244,53 @@ public class HeaderAndFooterPage {
             }
             softAssert.assertAll();
     }
+
+    public void verifyFooterlinktextNavigation(DataTable dataTable) {
+        basicActions.waitForElementToDisappear(spinner, 30);
+
+        List<Map<String, String>> data = dataTable.asMaps();
+        for (Map<String, String> row : data) {
+            String hyperlinkText = row.get("HyperLinkText");
+            String expectedPageTitle = row.get("ExpectedPageTitle");
+            String containsUrl = row.get("ContainsUrl");
+            WebElement hyperlink;
+
+            if (hyperlinkText.equalsIgnoreCase("FacebookIcon")) {
+                hyperlink = FacebookIcon;
+            } else if (hyperlinkText.equalsIgnoreCase("xIcon")) {
+                hyperlink = xIcon;
+            } else if (hyperlinkText.equalsIgnoreCase("YouTubeIcon")) {
+                hyperlink = YouTubeIcon;
+            } else if (hyperlinkText.equalsIgnoreCase("LinkedInIcon")) {
+                hyperlink = LinkedInIcon;
+            } else if (hyperlinkText.equalsIgnoreCase("InstagramIcon")) {
+                hyperlink = InstagramIcon;
+            } else if (hyperlinkText.equalsIgnoreCase("ThreadsIcon")) {
+                hyperlink = ThreadsIcon;
+            } else {
+                hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
+            }
+
+            // Open the link in a new tab using [Ctrl+Click]
+            Actions actionKey = new Actions(basicActions.getDriver());
+            actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
+            basicActions.switchtoactiveTab();
+            basicActions.waitForElementToDisappear(spinner, 30);
+
+            // Fetch actual title and URL
+
+            String actualTitle = basicActions.getDriver().getTitle();
+            String currentUrl = basicActions.getDriver().getCurrentUrl();
+            softAssert.assertEquals(actualTitle, expectedPageTitle);
+            softAssert.assertTrue(currentUrl.contains(containsUrl));
+            softAssert.assertAll();
+            // Close the new tab and switch back
+            basicActions.getDriver().close();
+            basicActions.switchtoPreviousTab();
+        }
+
+        softAssert.assertAll();
+    }
+
 
 }
