@@ -3143,7 +3143,7 @@ Feature: Page validations on ELIG pages
       |obtener ayuda de un experto sin costo                                                                                                                             |
       |.                                                                                                                                                 |
 
-  @SLER-2254 @wip
+  @SLER-2254
   Scenario: ELIG-Naturalized Citizen Status (Citizenship and immigration status)-Page Validation [RT-1183]
     When I click create a new account on login page
     Then I click create my account from pre-screen page
