@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: OPS: COCO: Search buttons Create account button - CCRT-138
   @SLCR-756
   Scenario:OPS: COCO: Create account

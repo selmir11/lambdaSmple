@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: OPS: CoCo: IndDash: Update Preferred Lang
   @SLCR-736
   Scenario: OPS: CoCo: IndDash: Update Preferred Lang
