@@ -158,9 +158,9 @@ public class DeductionsCoCoPage {
     WebElement spinner;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,30);
-        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,30);
-        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueButton, 30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,60);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 60);
         saveAndContinueButton.click();
     }
 
@@ -340,7 +340,9 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyHeadersDeductionsPageEnglish(){
-        basicActions.waitForElementToBePresent(hdr_Deductions,15);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,120);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,120);
         softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
@@ -353,10 +355,11 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyHeadersDeductionsPageSpanish(){
-        basicActions.waitForElementToBePresent(hdr_Deductions,90);
-        basicActions.waitForElementToBePresent(hdr_Deductions2,90);
-        basicActions.waitForElementToBePresent(saveAndContinueButton,90);
-        basicActions.waitForElementToBePresent(backButton,90);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,90);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,90);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton,90);
+        basicActions.waitForElementToBePresentWithRetries(backButton,90);
         softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
@@ -547,32 +550,32 @@ public class DeductionsCoCoPage {
         basicActions.waitForElementToBePresent(backButton, 15);
         switch (language) {
             case ("English"):
-                softAssert.assertEquals(backButton.getText(), "  Go back");
+                softAssert.assertEquals(backButton.getText(), "Go back");
                 softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(backButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-                softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
-                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
                 break;
             case ("Spanish"):
-                softAssert.assertEquals(backButton.getText(), "  Volver");
+                softAssert.assertEquals(backButton.getText(), "Volver");
                 softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(backButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-                softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
-                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
                 break;
@@ -601,7 +604,7 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyNotSelectedStateOfCheckboxesCOCO() {
-        basicActions.waitForElementListToBePresent(deductionButton, 15);
+        basicActions.waitForElementListToBePresentWithRetries(deductionButton, 15);
         for (int i = 0; i < deductionButton.size(); i++) {
             WebElement element1 = deductionButton.get(i);
             WebElement element2 = deductionOptionBox.get(i);

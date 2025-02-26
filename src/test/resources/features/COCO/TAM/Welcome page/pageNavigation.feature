@@ -818,6 +818,7 @@ Feature: Navigation-Welcome Page
   Scenario: SLCR-734 I want to be directed to the unauthorized page so that I know I have tried to access a page I am not authorized to access
 #    check in English and change to Spanish
     Then I wait for 100 milliseconds
+    Then I verify text on the Welcome page for first time signed into an account in "English"
     And I change the C4 url to "Welcome portal Unauthorized CoCo"
     Then I wait for 100 milliseconds
     Then I validate I am on the "Unauthorized" page
@@ -833,6 +834,7 @@ Feature: Navigation-Welcome Page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify text on the Welcome page for an account without a policy in "Spanish"
     And I change the C4 url to "Welcome portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
     Then I verify unauthorized text in "Spanish"

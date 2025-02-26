@@ -28,17 +28,17 @@ public class UnauthorizedPage {
             case "English":
                 softAssert.assertEquals(unauthorizedTxt.getText(), "UNAUTHORIZED");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "36px");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "700");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), "rgba(43, 49, 60, 1)");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "40px");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "500");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), "rgba(77, 77, 79, 1)");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("background"), "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box");
                 break;
             case "Spanish":
                 softAssert.assertEquals(unauthorizedTxt.getText(), "NO AUTORIZADO");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "36px");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "700");
-                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), "rgba(43, 49, 60, 1)");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-size"), "40px");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("font-weight"), "500");
+                softAssert.assertEquals(unauthorizedTxt.getCssValue("color"), "rgba(77, 77, 79, 1)");
                 softAssert.assertEquals(unauthorizedTxt.getCssValue("background"), "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box");
                 break;
             default:

@@ -136,9 +136,9 @@ public class OtherHealthCoveragePage_Elmo {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 40);
-        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
+        basicActions.waitForElementToDisappear(spinner, 60);
+        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 60);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 60);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }

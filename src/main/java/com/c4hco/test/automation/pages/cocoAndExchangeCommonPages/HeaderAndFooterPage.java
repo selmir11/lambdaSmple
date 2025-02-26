@@ -214,7 +214,8 @@ public class HeaderAndFooterPage {
                 connectLogoNonElmo.click();
                 break;
             case "Elmo":
-                basicActions.waitForElementToBeClickable(connectLogoLink, 10);
+                basicActions.waitForElementToDisappear(spinner, 30);
+                basicActions.waitForElementToBeClickableWithRetries(connectLogoLink, 10);
                 connectLogoLink.click();
                 break;
             case "FindAPlan":
@@ -281,8 +282,8 @@ public class HeaderAndFooterPage {
     public void clickFindAPlanLinkLink(String pageType) {
         switch (pageType){
             case "Elmo":
-            basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 15);
-            basicActions.waitForElementToBePresent(connectLogoLink, 15);
+            basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 90);
+            basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 60);
             centerHeaderLink.get(1).click();
             break;
             case "NonElmo":
@@ -305,7 +306,7 @@ public class HeaderAndFooterPage {
 //        "ENonElmo" non Elmo pages (not listed above)
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 15);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 60);
                 centerHeaderLink.get(2).click();
                 break;
             case "NonElmo":
@@ -318,7 +319,7 @@ public class HeaderAndFooterPage {
     }
 
     public void clickLearnMoreLink() {
-        basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 15);
+        basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 60);
         learnMoreLink.click();
     }
 
@@ -436,6 +437,7 @@ public class HeaderAndFooterPage {
                 break;
             }
         }
+        basicActions.wait(90);
     }
 
     public void changeLanguage(String language) {
@@ -507,10 +509,10 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink(String pageType) {
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementToBePresent(signOutLink, 30);
-                basicActions.waitForElementToBePresent(learnMoreLink, 25);
-                basicActions.waitForElementToBePresent(getAssistanceLink, 25);
-                basicActions.waitForElementToBePresent(languageDrp, 25);
+                basicActions.waitForElementToBePresentWithRetries(signOutLink, 30);
+                basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 25);
+                basicActions.waitForElementToBePresentWithRetries(getAssistanceLink, 25);
+                basicActions.waitForElementToBePresentWithRetries(languageDrp, 25);
                 basicActions.scrollToElement(signOutLink);
                 basicActions.click(signOutLink);
                 break;
@@ -558,7 +560,8 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyTextInCoCoHeader() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 60);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 60);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");

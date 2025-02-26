@@ -24,6 +24,7 @@ Feature: Tests related to the Employment Income page
 
   @SLCR-58 @PageTextEmploymentIncome @TAMSmoke
   Scenario: SLCR-58 I can see Employment Income's Header and footer - English
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"
 
@@ -59,6 +60,7 @@ Feature: Tests related to the Employment Income page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -70,6 +72,7 @@ Feature: Tests related to the Employment Income page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
