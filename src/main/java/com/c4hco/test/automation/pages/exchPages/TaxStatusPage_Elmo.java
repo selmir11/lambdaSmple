@@ -308,6 +308,12 @@ public class TaxStatusPage_Elmo {
     @FindBy(css = ".drawer-footer > h3 a")
     WebElement helpFooterLnk;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinnerOverlay;
+
     public void selectClaimedAsDependent(String claimedAsDependent){
         basicActions.waitForElementToBeClickable(helpTaxStatusHeader, 20);
         switch (claimedAsDependent) {
@@ -421,8 +427,10 @@ public class TaxStatusPage_Elmo {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 40);
-        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);
+        basicActions.waitForElementToDisappear(spinner,60);
+        basicActions.waitForElementToDisappear(spinnerOverlay,60);
+        basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 60);
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 60);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }

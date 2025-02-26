@@ -80,6 +80,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I select "Yes" for will claim dependents question
     Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
@@ -114,6 +115,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
+    And I verify the header for "Secondary" Member on the Medicare page in "English"
     And I select "Help me understand" icon on the Medicare Page
     Then I validate Medicare help drawer verbiage in "English"
     And I click Medicare DOI link in help drawer
