@@ -237,5 +237,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.uploadMvrDocAndSuccesMessage();
     }
 
+    @Then("I upload another doc {string} for {string} on the My Documents page and verify success message")
+    public void iUploadAnotherDocForOnTheMyDocumentsPageAndVerifySuccessMessage(String uploadDocFile,String mvrType) {
+        myDocumentsPage.uploadAnotherDocWithSuccessMessage(uploadDocFile,mvrType);
+    }
 }
 

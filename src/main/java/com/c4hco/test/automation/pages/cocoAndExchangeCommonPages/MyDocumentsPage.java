@@ -22,10 +22,7 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
@@ -565,7 +562,9 @@ public class MyDocumentsPage {
             try {
                 basicActions.waitForElementToBePresent(btnUploadDoc, 10);
                 btnUploadDoc.click();
-                basicActions.wait(10);
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess,20);
+                Assert.assertEquals(txtUploadSuccess.getText(), "Document uploaded successfully.");
+                basicActions.wait(5);
                 if (basicActions.isElementDisplayed(txtUploadError,20)) {
                     throw new Exception("Upload error detected");
                 }
@@ -1093,14 +1092,44 @@ public class MyDocumentsPage {
     public void uploadMvrDocAndSuccesMessage() {
         clickWhichDocument();
         uploadDoc("TestMyDocs.docx");
-        clickUploadAndVerifySuccessMessage();
+        clickUploadDoc();
     }
 
-    private void clickUploadAndVerifySuccessMessage() {
-        basicActions.waitForElementToBePresent(btnUploadDoc, 10);
-        btnUploadDoc.click();
-        basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess,20);
-        Assert.assertEquals(txtUploadSuccess.getText(), "Document uploaded successfully.");
+    public void uploadAnotherDocWithSuccessMessage(String uploadDocFile, String mvrType) {
+         selectDocumentCategoryAndType(mvrType);
+         uploadDoc(uploadDocFile);
+         clickUploadDoc();
     }
 
+    private void selectDocumentCategoryAndType(String mvrType) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 100);
+        docTypeDrpDwn.click();
+        basicActions.waitForElementListToBePresent(categoryList, 100);
+        switch (mvrType) {
+            case "American Indian or Alaska Native Membership":
+                categoryList.get(1).click();
+                break;
+            case "US Citizenship":
+                categoryList.get(4).click();
+                break;
+            case "Death":
+                categoryList.get(7).click();
+                break;
+            case "Eligible Immigration Status":
+                categoryList.get(8).click();
+                break;
+            case "Incarceration Status":
+                categoryList.get(12).click();
+                break;
+            case "Financial Help Eligibility":
+                categoryList.get(13).click();
+                break;
+            case "Social Security Number":
+                categoryList.get(17).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + mvrType);
+        }
+        clickWhichDocument();
+    }
 }
