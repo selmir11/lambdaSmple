@@ -64,6 +64,12 @@ public class MyProfilePage {
     @FindBy(id = "homePhone")
     WebElement HomephoneCoCo;
 
+    @FindBy(id = "myProfile_mobilePhone")
+    WebElement MobilephonePrimaryChangeCoCo;
+
+    @FindBy(id = "myProfile_homePhone")
+    WebElement HomephonePrimaryChangeCoCo;
+
     @FindBy(css = "#userPassword")
     WebElement PasswordInputCoCo;
 
@@ -880,12 +886,12 @@ public class MyProfilePage {
         softAssert.assertEquals(EmailAddressCoCo.getCssValue("font-size"), "16px");
         softAssert.assertEquals(EmailAddressCoCo.getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getText(), "Mobile Phone");
-        softAssert.assertEquals(MobilephoneCoCo.getText(), formatedPhoneNumber);
+        softAssert.assertEquals(MobilephonePrimaryChangeCoCo.getText(), formatedPhoneNumber);
         softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentlineCoCo.get(4).getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getText(), "Home Phone");
-        softAssert.assertEquals(HomephoneCoCo.getText(), formatedPhoneNumber);
+        softAssert.assertEquals(HomephonePrimaryChangeCoCo.getText(), formatedPhoneNumber);
         softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("font-size"), "16px");
         softAssert.assertEquals(MyProfileContentlineCoCo.get(5).getCssValue("color"), "rgba(77, 77, 79, 1)");
