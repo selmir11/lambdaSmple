@@ -106,6 +106,11 @@ public class ApplicationHistoryPage {
     WebElement goBackToWelcomePage;
     @FindBy(css = "div.not-qualified-div")
     WebElement taxHouseholdNotQualify;
+
+    @FindBy(xpath = "//div[@id='current-app']/h1")
+    List<WebElement> currentApplication ;
+
+
     private BasicActions basicActions;
 
     public ApplicationHistoryPage(WebDriver webDriver) {
@@ -298,4 +303,11 @@ public class ApplicationHistoryPage {
         softAssert.assertAll();
     }
 
+
+    public void validatetextWithNoPolicy(String text) {
+        basicActions.waitForElementListToBePresent(currentApplication, 40);
+        System.out.println(currentApplication.get(0).getText());
+        Assert.assertEquals(currentApplication.get(0).getText(), "Solicitud actual" , text + "Not Found");
+
+    }
 }

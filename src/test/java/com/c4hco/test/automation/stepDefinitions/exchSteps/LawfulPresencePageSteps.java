@@ -94,4 +94,26 @@ public class LawfulPresencePageSteps {
     @Then("I validate Lawful Presence help drawer {string} verbiage in {string}")
     public void iValidateHelp(String helpText, String language){lawfulPresencePage.validateHelpVerbiage(helpText, language);}
 
+    @Then("I validate the error message {string} is thrown while clicking on Continue button")
+    public void iValidateUSCitizenErrorMessage(String expectedErrorMessage){lawfulPresencePage.validateUSCitizenErrorMessage(expectedErrorMessage);}
+
+    @Then("I Validate the Naturalized citizen question and its options text along with the Yes & No radio buttons")
+    public void iValidateNaturalizedCitizenQuestionAndOptions(List<String> expectedTextList){lawfulPresencePage.validateNaturalizedCitizenQuestionAndOptions(expectedTextList);}
+
+    @Then("I validate the text for Eligible Immigration Status along with the Yes & No radio buttons")
+    public void iValidateEligibleImmigrationStatusQuestionAndOptions(List<String> expectedTextList){lawfulPresencePage.validateEligibleImmigrationStatusQuestionAndOptions(expectedTextList);}
+
+    @Then("I validate the following text on selecting No to Eligible Immigration Status Question")
+    public void iValidateTextOnSelectingNoToEligibleImmigrationStatusQuestion(List<String> expectedTextList){lawfulPresencePage.validateTextOnSelectingNoToEligibleImmigrationStatusQuestion(expectedTextList);}
+
+    @Then("I validate the error message {string} is thrown while clicking on Continue button when no answer is selected for Naturalized citizen question")
+    public void iValidateNaturalizedCitizenErrorMessage(String expectedErrorMessage){lawfulPresencePage.validateNaturalizedCitizenErrorMessage(expectedErrorMessage);}
+
+    @Then("I validate the error message {string} is thrown while clicking on Continue button when no answer is selected for Eligible Immigration Status question")
+    public void iValidateEligibleImmigrationStatusErrorMessage(String expectedErrorMessage){lawfulPresencePage.validateEligibleImmigrationStatusErrorMessage(expectedErrorMessage);}
+
+    @Then("I Validate the US citizen question and its options text along with the Yes & No radio buttons")
+    public void iValidateUSCitizenQuestionAndOptions(List<String> expectedTextList){lawfulPresencePage.validateUSCitizenQuestionAndOptions(expectedTextList);}
+
+
 }

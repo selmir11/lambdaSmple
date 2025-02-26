@@ -137,6 +137,7 @@ public class IncomeSummaryPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + projectedIncomeNo);
         }
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 30);
         saveAndContinueBtn.click();
     }
 

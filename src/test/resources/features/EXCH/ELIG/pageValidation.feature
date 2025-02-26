@@ -2965,8 +2965,6 @@ Feature: Page validations on ELIG pages
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
 
-
-
   @SLER-2003 @PageValidation
   Scenario Outline: Validate Footer on the Spanish Application Results page
     When I click create a new account on login page
@@ -2983,6 +2981,54 @@ Feature: Page validations on ELIG pages
     Examples:
       |Error Message English                  |Error Message Spanish                    |
       | Please select one of the options below|Seleccione una de las opciones siguientes|
+
+  @SLER-2004 @NVOExchRegression
+  Scenario: ELIG-Let us guide you (Peak Application)-Page Navigation (RT-974)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    When I click on back button on the Let us guide you page
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "Yes" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Enter Case ID" page
+    And I click on Back button on Loadby1B result page
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    And I click on My Account in the "NonElmo" Header
+    Then I apply for the current year
+    Then I click on Sign Out in the Header for "CaseId Page"
+    Then I validate I am on the "Login" page
+
+  @SLER-2005 @PageValidation
+  Scenario: Verify navigation on Enter Case Info page to Peak Application url (RT-975)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    And I select "Yes" option on the Let us guide you page
+    And I click on save and continue button
+    Then I enter valid "1BEQ5Q3","81657","Jones" details in enterCaseID page
+    And  I click on save and continue button
+    Then I validate I am on the "load By 1B Result" page
+    And  I click on Back button on Loadby1B result page
+    Then I validate I am on the "Let us guide you" page
+    And I select "Yes" option on the Let us guide you page
+    And I click on save and continue button
+    Then I enter valid "1BEQ5Q3","81657","Jones" details in enterCaseID page
+    And  I click on Sign Out in the Header for "CaseId Page"
+    Then I validate I am on the "Login" page
 
   @SLER-2165 @PageValidation
   Scenario: Testing will verify validation on the When was your immigration status granted (Citizenship and immigration status) page
@@ -3049,3 +3095,96 @@ Feature: Page validations on ELIG pages
     Then I input the grant date of my Lawful Permanent Residency as "01012025673"
     Then I click continue on the Immigration Status page
     Then I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2253 @PageValidation
+  Scenario: ELIG-Citizenship and immigration status-Page Validation(RT-1181)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I Validate the US citizen question and its options text along with the Yes & No radio buttons
+      |Are you a U.S. Citizen?|
+      |Yes                           |
+      |No                            |
+    And I click continue on the Citizenship page
+    And I validate the error message "Please select one of the options below" is thrown while clicking on Continue button
+    Then I select "Yes" for Citizen option
+    And I Validate the Naturalized citizen question and its options text along with the Yes & No radio buttons
+    |Are you a Naturalized Citizen?|
+    |Yes                           |
+    |No                            |
+    And I click continue on the Citizenship page
+    And I validate the error message "Please select one of the options below" is thrown while clicking on Continue button when no answer is selected for Naturalized citizen question
+    Then I select "No" for Citizen option
+    And I validate the text for Eligible Immigration Status along with the Yes & No radio buttons
+      | Do you have an eligible immigration status or are you authorized to work in the U.S.?                                                                                                         |
+      | Yes                                                                                                                                                                                           |
+      | No                                                                                                                                                                                            |
+      | Starting November 1, 2024, DACA status is considered an eligible immigration status. People with DACA status will be able to enroll in a plan and get financial help through the marketplace. |
+    And I click continue on the Citizenship page
+    And I validate the error message "Please select one of the options below" is thrown while clicking on Continue button when no answer is selected for Eligible Immigration Status question
+    Then I select "No" for Eligible Immigration Status option
+    Then I validate the following text on selecting No to Eligible Immigration Status Question
+      |If you are undocumented, you may qualify for other coverage options and financial help, such as |
+      |OmniSalud                                                                                       |
+      |. In 2025, there are also new coverage options for undocumented people who are pregnant or under age 19. To find the best option for you, you can |
+      |get free, expert help                                                                                                                             |
+      |.                                                                                                                                                 |
+    And I refresh the page
+    When I change the language from header to "Spanish NonElmo"
+    And I validate I am on the "Spanish" page
+    And I Validate the US citizen question and its options text along with the Yes & No radio buttons
+      |¿Es usted ciudadano/a de Estados Unidos?|
+      |Sí                           |
+      |No                            |
+    And I click continue on the Citizenship page
+    And I validate the error message "Seleccione una de las opciones siguientes" is thrown while clicking on Continue button
+    Then I select "Yes" for Citizen option
+    And I Validate the Naturalized citizen question and its options text along with the Yes & No radio buttons
+      |¿Es usted ciudadano/a naturalizado(a) de Estados Unidos?|
+      |Sí                           |
+      |No                            |
+    And I click continue on the Citizenship page
+    And I validate the error message "Seleccione una de las opciones siguientes" is thrown while clicking on Continue button when no answer is selected for Naturalized citizen question
+    Then I select "No" for Citizen option
+    And I validate the text for Eligible Immigration Status along with the Yes & No radio buttons
+      | ¿Tiene un estatus migratorio elegible o tiene autorización para trabajar en los Estados Unidos?                                                                                                         |
+      | Sí                                                                                                                                                                                           |
+      | No                                                                                                                                                                                            |
+      | A partir del 1º de noviembre de 2024, el estatus de DACA se considera como un estatus migratorio elegible. Las personas con el estatus de DACA podrán inscribirse en un plan y recibir ayuda financiera a través del Mercado. |
+    And I click continue on the Citizenship page
+    And I validate the error message "Seleccione una de las opciones siguientes" is thrown while clicking on Continue button when no answer is selected for Eligible Immigration Status question
+    Then I select "No" for Eligible Immigration Status option
+    Then I validate the following text on selecting No to Eligible Immigration Status Question
+      |Si es una persona indocumentada, puede calificar para otras opciones de cobertura y ayuda financiera, tal como |
+      |OmniSalud                                                                                       |
+      |. En 2025, también hay nuevas opciones de cobertura para personas indocumentadas que están embarazadas o son menores de 19 años. Para encontrar la mejor opción para usted, puede |
+      |obtener ayuda de un experto sin costo                                                                                                                             |
+      |.                                                                                                                                                 |

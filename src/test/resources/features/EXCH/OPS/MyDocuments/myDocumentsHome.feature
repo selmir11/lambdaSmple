@@ -404,3 +404,102 @@ Feature: My Document Home Page validations
     Then I verify doc unsupported error message in red
     Then I validate already selected file text box border is red
 
+  @SLER-2208
+  Scenario: My documents Indiviual porter Header , Footer, Title validation in Spanish [RT-1962]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I change the language from header to "Spanish NonElmo"
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Document Spanish" page
+    And I verify the page text on the My Documents Page
+      | Mis Documentos y Cartas |
+      | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
+      | Ayuda para entender esta página                                                        |
+      | Información que Necesitamos                                                                 |
+      | Cargar otro documento |
+      | Documentos y Cartas Anteriores |
+    Then I verify text "Username" in the Header or in the Footer
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    And I validate I am on the "Account Overview Spanish" page
+    And I validate the page is in "Spanish"
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Document Spanish" page
+    Then I verify text "Apply for coverage Spanish" in the Header or in the Footer
+    And I click on Apply for Coverage in the "Elmo" Header
+    And I validate I am on the "Account Overview Spanish" page
+    Then I click link my docs on accountOverview page
+    Then I verify text "Find a plan Spanish" in the Header or in the Footer
+    And I click on Find a Plan in the "Elmo" Header
+    Then I validate I am on the "Application History" page
+    Then I validate that "Current Application Spanish" text displays on the Application History page in Spanish
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I click link my docs on accountOverview page
+    Then I verify text "My Account Spanish" in the Header or in the Footer
+    And I click on My Account in the "Elmo" Header
+    And I validate I am on the "Account Overview Spanish" page
+    Then I click link my docs on accountOverview page
+    Then I verify text "Learn More Spanish" in the Header or in the Footer
+    And I click on Learn More in the Header
+    And I validate I am on the "Faqs Spanish" page and close tab
+    Then I verify text "Find Expert Assistance Spanish" in the Header or in the Footer
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help Exch Spanish" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I click link my docs on accountOverview page
+    Then I verify text "Globe" in the Header or in the Footer
+    And I change the language from header to "English"
+    And I change the language from header to "Spanish"
+    Then I verify text "Privacy Policy Spanish" in the Header or in the Footer
+    And I click on Privacy Policy in the "Individual Portal" Footer
+    And I validate I am on the "Privacy Policy Exch Spanish" page and close tab
+    Then I verify text "Terms of Use Spanish" in the Header or in the Footer
+    And I click on Terms Of Use in the "Individual Portal" Footer
+    And I validate I am on the "Terms of Use Exch Spanish" page and close tab
+    And I click on Contact Us in the "Exch" Footer
+    Then I verify text "Contact Us Footer Link Spanish" in the Header or in the Footer
+    And I validate I am on the "Contact Us Exch Spanish" page and close tab
+    Then I verify text "Copy Rights Spanish" in the Header or in the Footer
+    Then I verify text "Follow Us Spanish" in the Header or in the Footer
+    And I click on "Facebook" Icon in the Footer
+    And I validate I am on the "Facebook" page and close tab
+    And I click on "X" Icon in the Footer
+    And I validate I am on the "X" page and close tab
+    And I click on "YouTube" Icon in the Footer
+    And I validate I am on the "YouTube" page and close tab
+    And I click on "Instagram" Icon in the Footer
+    And I validate I am on the "Instagram" page and close tab
+    And I click on "LinkedIn" Icon in the Footer
+    And I validate I am on the "LinkedIn" page and close tab
+    And I click on "Threads" Icon in the Footer
+    And I validate I am on the "Threads" page and close tab
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2234 @OPSRegression
+  Scenario: Verify Welcome letter downloaded with proper name format [RT-1996]
+
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    Then I validate I am on "Past Documents and Letters" container
+    And I select year "All" in plan year
+    And I select year "Current Year" in plan year
+    And I click on download "IND_Welcome Message (AM-001-01)" document
+    Then I verify file "IND_Welcome Message (AM-001-01)" downloaded with Proper name format
+    Then  I click on Sign Out in the Header for "Elmo"
