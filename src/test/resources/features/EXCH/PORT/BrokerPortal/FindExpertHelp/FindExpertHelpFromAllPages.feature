@@ -67,8 +67,8 @@ Scenario: Verify access the Find expert help/Manage who helps you page from top 
   Then I validate I am on the "Plan Summary" page
   And I click continue on plan summary page
   Then I validate I am on the "Enrollment Agreements" page
-  Then I click on Get Assistance in the "Exch" Header
-  And I click on Find Expert Assistance in the "Exch" Header
+  Then I click on Get Assistance in the "Login Portal" Header
+  And I click on Find Expert Assistance in the "ExpertHelp in community" Header
   Then I click Go Back button from chrome browser
   Then I validate I am on the "Enrollment Agreements" page
   And I select "Acknowledgement" agreement checkbox
