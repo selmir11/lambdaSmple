@@ -134,6 +134,15 @@ public class LawfulPresencePage {
     @FindBy(id = "lawfulNonCitizen-error")
     WebElement EligibleImmigrantStatusErrorMessage;
 
+    @FindBy(xpath = "//label[@id='alienNumber-error']")
+    WebElement UsicsNumErrMsg;
+
+    @FindBy(xpath = "//label[@id='documentTypeCitzn-error']")
+    WebElement DocTypeErrorMsg;
+
+    @FindBy(xpath = "//label[@id='documentNumber-error']")
+    WebElement DocNumError;
+
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
             case "Yes":
@@ -618,4 +627,32 @@ public class LawfulPresencePage {
         softAssert.assertEquals(EligibleImmigrantStatusErrorMessage.getText(), expectedErrorMessage);
         softAssert.assertAll();
     }
+
+    public void verifyErrMsgInCitizenshipAndImmigrationPage(String language, List<String> dataText) {
+
+        switch (language.toLowerCase()) {
+            case "english":
+
+                basicActions.waitForElementToBePresent(UsicsNumErrMsg, 2);
+                basicActions.waitForElementToBePresent(DocTypeErrorMsg, 1);
+                basicActions.waitForElementToBePresent(DocNumError, 1);
+                softAssert.assertEquals(UsicsNumErrMsg.getText(), dataText.get(1),"Label Not matching");
+                softAssert.assertEquals(DocTypeErrorMsg.getText(), dataText.get(2),"Label Not matching");
+                softAssert.assertEquals(DocNumError.getText(), dataText.get(3),"label not matching");
+                break;
+            case "spanish":
+                basicActions.waitForElementToBePresent(UsicsNumErrMsg, 2);
+                basicActions.waitForElementToBePresent(DocTypeErrorMsg, 1);
+                basicActions.waitForElementToBePresent(DocNumError, 1);
+                softAssert.assertEquals(UsicsNumErrMsg.getText(), dataText.get(1),"Label Not matching");
+                softAssert.assertEquals(DocTypeErrorMsg.getText(), dataText.get(2),"Label Not matching");
+                softAssert.assertEquals(DocNumError.getText(), dataText.get(3),"label not matching");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+
 }

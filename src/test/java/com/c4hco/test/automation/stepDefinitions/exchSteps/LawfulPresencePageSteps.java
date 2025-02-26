@@ -115,5 +115,10 @@ public class LawfulPresencePageSteps {
     @Then("I Validate the US citizen question and its options text along with the Yes & No radio buttons")
     public void iValidateUSCitizenQuestionAndOptions(List<String> expectedTextList){lawfulPresencePage.validateUSCitizenQuestionAndOptions(expectedTextList);}
 
+    @Then("I validate the error message in Citizenship and Immigration status page in {string}")
+    public void iValidateTheErrorMessageInCitizenshipAndImmigrationStatusPageIn(String language, List<String> dataText) {
+        lawfulPresencePage.verifyErrMsgInCitizenshipAndImmigrationPage(language,dataText);
+    }
+
 
 }
