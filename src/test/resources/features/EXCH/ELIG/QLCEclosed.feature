@@ -264,7 +264,7 @@ Feature: UI Tests related to QLCE vaildations under Open Enrollment
       | Other                           | IncomeJobChange        |
       | Other                           | Incarceration          |
 
-  @SLER-2245 @SLER-2238 @SLER-2176 @SLER-2248 @SLER-2244 @SLER-2247
+  @SLER-2245 @SLER-2238 @SLER-2176 @SLER-2248 @SLER-2244 @SLER-2247 @SLER-2177
   Scenario Outline: ELIG-QLCE vaildations won't allow a user to shop under Closed Enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
