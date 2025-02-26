@@ -87,6 +87,10 @@ public class AccountOverviewPageSteps {
     @Then("I verify the button texts in account overview page {string}")
     public void iVerifyTheButtonTextsIn(String language) {accountOverviewPage.verifyDentalButtonsText(language);
     }
+    @Then("I validate page text for plan information table header")
+    public void iValidatePageTextForPlanInformationTableHeaderAndFirstColumn(List<String> languageText) {
+        accountOverviewPage.validatePageTextForTableHeader(languageText);
+    }
 
 }
 

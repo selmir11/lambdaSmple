@@ -545,6 +545,17 @@ public class QlceConfirmationPage {
         pregnancyEventDate.get(0).sendKeys(formattedDate);
         pregnancyStatusRetainCoverageYes.click();
     }
+    public void selectBirthOptionWithEventDate(String firstDateOfCurrentMonth){
+        basicActions.waitForElementToBeClickable(birthQLCE, 10);
+        birthQLCE.click();
+        for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
+            allmembersBirthcheckbox.get(i).click();
+            birthEventDate.get(i).click();
+            String requiredDate = basicActions.getDateBasedOnRequirement(firstDateOfCurrentMonth);
+            String formattedDate = basicActions.changeDateFormat(requiredDate, "yyyy-MM-dd", "MM/dd/yyyy");
+            birthEventDate.get(i).sendKeys(formattedDate);
+        }
+    }
 
 
 }
