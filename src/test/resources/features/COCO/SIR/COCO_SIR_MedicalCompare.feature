@@ -1,4 +1,4 @@
-@COCO6
+@SIR-COCO6
   #SLCR-90, SLCR-91, SLCR-93, SLCR-131,  SLCR-276, SLCR-277, SLCR-286, SLCR-287, SCLR-360, @SLCR-419, @SLCR-420, @SLCR-421
 Feature: Verify COCO Medical Plan results
 
@@ -81,7 +81,7 @@ Feature: Verify COCO Medical Plan results
 
 
   @SCLR-360
-  Scenario: SCLR-360 - This will track the Plan Compare path and verify that the Plan detail link works
+  Scenario: SCLR-360 - This will validate the Plan detail link on the Plan Compare page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation

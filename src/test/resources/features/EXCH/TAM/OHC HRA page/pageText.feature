@@ -50,17 +50,18 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
 
   @SLER-284 @PageTextOhcHraElmo
   Scenario: SLER-284 I can see HRA's Header and footer - English
+    And I verify the header for Primary Member on the HRA page in "English"
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
@@ -82,7 +83,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
@@ -104,7 +105,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
@@ -127,7 +128,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
@@ -149,7 +150,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
@@ -182,10 +183,11 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
+    And I verify the header for Primary Member on the HRA page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -205,10 +207,11 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
+    And I verify the header for Primary Member on the HRA page in "English"
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -266,7 +269,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -290,7 +293,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -315,7 +318,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -339,7 +342,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -376,7 +379,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -401,7 +404,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -455,11 +458,12 @@ Feature: Page Text-Other Health Coverage Page HRA
     And I click continue on the Citizenship page
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
+    And I validate I am on the "Employment Summary" page
     Then I click continue on the Employment Summary Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
 #Step 1
@@ -479,9 +483,10 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
+    And I verify the header for Primary Member on the HRA page in "English"
 #Step 3
     And I verify year is "Current Year", amount is "500.00", type is "QSEHRA", "Without" APTC question "" on the HRA page
 #Set-up
@@ -495,7 +500,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
 #Step 4
@@ -516,7 +521,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    And I click save and continue on tax status page
+    Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
     And I verify year is "Current Year", amount is "15.00", type is "ICHRA", "With" APTC question "No" on the HRA page

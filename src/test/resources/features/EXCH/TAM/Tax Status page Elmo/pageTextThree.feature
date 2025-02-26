@@ -208,7 +208,7 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
 
   @SLER-1829 @PageTextTaxStatusElmoPage
   Scenario: SLER-1829 I need to see the updated page so that my Tax Status choices can be collected - Spanish
@@ -314,4 +314,4 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
 
     And I click on Sign Out in the Header for "Elmo"
-#    Then I validate I am on the "Login" page
+    Then I validate I am on the "Login" page

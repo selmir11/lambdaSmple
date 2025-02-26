@@ -9,6 +9,8 @@ public class MaEligibleMembersMedicalExpensesSteps {
     MaEligibleMembersMedicalExpensesPage maEligibleMembersMedicalExpensesPage = new MaEligibleMembersMedicalExpensesPage(WebDriverManager.getDriver());
 
     @Then("I select {string} for medical expenses question and Continue on Medical Expenses MA page")
-    public void iAnswerUnder19(String yesNo) {maEligibleMembersMedicalExpensesPage.answerUnder19(yesNo);}
+    public void iAnswerUnder19(String yesNo) {
+        maEligibleMembersMedicalExpensesPage.answerUnder19(yesNo);}
+
 
 }

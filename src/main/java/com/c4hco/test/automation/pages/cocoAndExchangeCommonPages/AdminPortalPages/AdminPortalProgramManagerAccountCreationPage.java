@@ -33,6 +33,18 @@ public class AdminPortalProgramManagerAccountCreationPage {
     WebElement createAccountBtn;
     @FindBy(xpath = "//p[@class='body-text-1 success']")
     List<WebElement> successMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'First Name is required')]")
+    WebElement firstNameErrorMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'Last Name is required')]")
+    WebElement lastNameErrorMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'Email Address is required')]")
+    WebElement emailErrorMessage;
+
+    @FindBy(xpath = "//div[contains(text(),'Organization Group Name is required')]")
+    WebElement organizationGroupErrorMessage;
     AssisterDetails assister = new AssisterDetails();
     public void initializeProgramManagerInAdminPortal(String emailBase){
         assister.setFirstName(basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8)+"TestAssister"));
@@ -61,4 +73,18 @@ public class AdminPortalProgramManagerAccountCreationPage {
         softAssert.assertEquals(successMessage.get(1).getText(),"Please note that the account will not be created until the user follows the instructions in the invitation email.");
         softAssert.assertAll();
     }
+
+    public void clickCreateProfile(){
+        basicActions.waitForElementToBePresent(createAccountBtn, 60);
+        createAccountBtn.click();
+    }
+
+    public void validateErrors(){
+        softAssert.assertTrue(firstNameErrorMessage.isDisplayed(),"Did notdisplay first name error message");
+        softAssert.assertTrue(lastNameErrorMessage.isDisplayed(),"Did notdisplay last name error message");
+        softAssert.assertTrue(emailErrorMessage.isDisplayed(),"Did not display email error message");
+        softAssert.assertTrue(organizationGroupErrorMessage.isDisplayed(),"Did not display organization name error message");
+        softAssert.assertAll();
+    }
+
 }

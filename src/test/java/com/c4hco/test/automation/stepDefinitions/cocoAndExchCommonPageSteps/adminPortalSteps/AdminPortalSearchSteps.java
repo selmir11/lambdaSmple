@@ -187,6 +187,11 @@ public class AdminPortalSearchSteps {
     public void iValidateOrganizationDetailsButtons() {
         adminPortalSearchPage.validateCoCoDashboardButtons();
     }
+
+    @Then("I search for the {string} generated")
+    public void iSearchForTheGenerated(String brokerPortal) {
+        adminPortalSearchPage.searchForTheBrokerGenerated(brokerPortal);
+    }
 }
 
 

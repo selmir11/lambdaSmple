@@ -13,6 +13,11 @@ public class ManageAuthorizedUsersSteps {
         manageAuthorizedUsersPage.validateManageAuthorizedUsersPageTitle();
     }
 
+    @Then("I click the Add Authorized User link")
+    public void iClickAddAuthorizedUserLink(){
+        manageAuthorizedUsersPage.clickAddAuthorizedUserLink();
+    }
+
     @And("I search for an authorized user {string}")
     public void iSearchForAuthorizedUserNamed(String authorizedUserName){
         manageAuthorizedUsersPage.searchForAuthorizedUserNamed(authorizedUserName);

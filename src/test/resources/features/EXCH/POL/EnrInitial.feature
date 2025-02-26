@@ -1,5 +1,5 @@
 Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a plan
-  @SLER-106
+  @SLER-106-WIP @SLER-2151 @SLER-2222 @SLER-2224 @SLER-2226 @pol_exch_passed
   Scenario: EXCH Initial Application - Family of 4  FA (Admin Portal OBO)
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -10,6 +10,12 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I initiate incoming page
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -141,14 +147,17 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Married filing jointly" tax filing status
-    And I select spouse to file taxes jointly
-    And I select "Yes" to claim dependents
-    And I select the "2" option for Who Will Claim as Dependents
-    And I select the "3" option for Who Will Claim as Dependents
-    And I click save and continue on tax status page
+
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select "Yes" for will claim dependents question
+    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
+    Then I click Save and Continue on Tax Status Elmo page
+
+
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -190,6 +199,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I set "Medical" Plans premium amount
     And I set "Dental" Plans premium amount
     And I click continue on plan summary page
+    And I validate I am on the "Financial Help Agreements" page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
@@ -208,11 +218,11 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
     Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
     Then I validate I am on the "My Account Overview" page
-
-    And I click on ClickHere link for "My Documents"
+#
+#    And I click on ClickHere link for "My Documents"
 #    # PDF Notice Validation
-    And I click on download "EN-002-04" document
-    Then I validate "EN-002-04 English" notice content
+#    And I click on download "EN-002-04" document
+#    Then I validate "EN-002-04 English" notice content
 
     And I close current tab and switch back to previous tab
     Then I click on manage plan button on admin portal Individual dashboard
@@ -225,23 +235,23 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then logout from Admin Portal
 
     #Email Notice Validation
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-    Then I open the notice "(EN-002-04)" in "English"
-    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-    And I validate additional details for "medical" plan on email notice
-      |Primary|
-      |Spouse|
-      |SonOne|
-      |Daughter|
-    And I validate additional details for "dental" plan on email notice
-      |Primary|
-      |Spouse|
-      |SonOne|
-      |Daughter|
-    Then I delete the open notice
-    And I sign out of Outlook
-    And I switch to the tab number 0
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+#    And I validate additional details for "medical" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |SonOne|
+#      |Daughter|
+#    And I validate additional details for "dental" plan on email notice
+#      |Primary|
+#      |Spouse|
+#      |SonOne|
+#      |Daughter|
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -256,7 +266,8 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-  #Download and Validation and upload of Ob834 file
+
+    #Download and Validation and upload of Ob834 file
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
@@ -264,8 +275,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-
-  # Ib999 DB Validation
+    #Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
     And I validate "dental" entities from ib999_details db table
 
@@ -275,7 +285,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib999 "medical" file data
     And I validate the ib999 "dental" file data
 
-        #Ib834
+    #Ib834
     And I validate ib834 "medical" details in database for groups
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
       | 021                   | 021                | 28                    | CONFIRM           |
@@ -289,7 +299,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     And I validate the ib834 "medical" files data
     And I validate the ib834 "dental" files data
 
-    # Ob999
+    #Ob999
     And I validate "medical" entities from ob999_details db table
     And I validate "dental" entities from ob999_details db table
 

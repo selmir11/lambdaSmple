@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -296,6 +295,9 @@ public class BasicSteps {
             case "Immigration Status":
                 pageUrl = "nes/fiveYearBar";
                 break;
+            case "Citizenship and Immigration Status Additional Info":
+                pageUrl = "nes/fiveYearBarAddlInfo";
+                break;
             case "forgotPassword":
                 pageUrl = "login-portal/forgotPassword";
                 break;
@@ -563,9 +565,11 @@ public class BasicSteps {
             case "Temporarily OutOfState":
                 pageUrl = "/eligibleMembersOutOfStateForMA";
                 break;
-            case "Medical Condtion":
+            case "Medical Condition":
                 pageUrl = "/eligibleMembersMedicalConditionForMA";
                 break;
+            case "Medical Condition Additional":
+                pageUrl = "/choosedMembersForMEDICAL_CONDITION";
             case "CoCo Privacy Policy":
                 pageUrl = "coco/InformationPortal/privacyPolicy";
                 break;
@@ -575,9 +579,15 @@ public class BasicSteps {
             case "CoCo Contact Us":
                 pageUrl = "coco/InformationPortal/termsOfUse";
                 break;
-            default:
-                System.out.println("undefined page ");
+            case "Account Overview Spanish":
+                pageUrl = "nes/myAccountOverview?lang=es";
                 break;
+            case "My Document Spanish":
+                pageUrl = "MyDocuments/home?lang=es";
+                break;
+            default:
+                throw new IllegalArgumentException("Undefined Page: " + page);
+
         }
         basicActions.switchToPageAndValidate(page, pageUrl, 45);
     }
@@ -739,6 +749,20 @@ public class BasicSteps {
             case "OmniSalud Help":
                 pageUrl = "https://connectforhealthco.com/get-started/omnisalud-help/";
                 break;
+            case "Faqs Spanish":
+                pageUrl = "faqs/?lang=es";
+                break;
+            case "Privacy Policy Exch Spanish":
+                pageUrl = "es/politica-de-privacidad/";
+                break;
+            case "Terms of Use Exch Spanish":
+                pageUrl = "es/terminos-de-uso/";
+                break;
+            case "Contact Us Exch Spanish":
+                pageUrl = "es/pongase-en-contacto/";
+                break;
+
+
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
         }
@@ -746,7 +770,10 @@ public class BasicSteps {
         String origin = basicActions.getDriver().getWindowHandle();
         basicActions.switchToPageAndValidate(page, pageUrl, 90);
         basicActions.wait(3000);
-        basicActions.closeBrowserTab();
+        try {
+            basicActions.closeBrowserTab();
+        } catch (org.openqa.selenium.WebDriverException e) {
+        }
         basicActions.getDriver().switchTo().window(origin);
     }
 

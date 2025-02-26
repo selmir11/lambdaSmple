@@ -187,7 +187,7 @@ public class Ib834DbValidations {
         getDbDataMap(primaryMember.getFirstName());
         if (SharedData.getHasBroker()) {
             softAssert.assertEquals(broker.getBroker_name(), ib834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
-            softAssert.assertEquals(ib834Entity.getTpa_or_broker_id(), dbDataMap.get(primaryMember.getFirstName()).getBrokerTinNum(), "Broker Tin Number is incorrect");
+            softAssert.assertEquals(ib834Entity.getTpa_or_broker_id(), dbDataMap.get(primaryMember.getFirstName()).getBrokerTinNum().replace("-",""), "Broker Tin Number is incorrect");
             softAssert.assertEquals(ib834Entity.getTpa_or_broker_lic_num(), broker.getBroker_lic_num(), "Broker license number is incorrect");
         } else {
             softAssert.assertNull(ib834Entity.getTpa_or_broker_name(), "Broker name is incorrect");
@@ -211,7 +211,7 @@ public class Ib834DbValidations {
         MemberDetails primaryMember = SharedData.getPrimaryMember();
         softAssert.assertEquals(ib834Entity.getResponsible_person_first_name(), primaryMember.getFirstName(), "Responsible person first name mismatch");
         softAssert.assertEquals(ib834Entity.getResponsible_person_last_name(), primaryMember.getLastName(), "Responsible person last name mismatch");
-        softAssert.assertEquals(ib834Entity.getResponsible_person_rel_code(), "1", "Responsible person rel_code mismatch");
+        softAssert.assertEquals(ib834Entity.getResponsible_person_rel_code(), "S1", "Responsible person rel_code mismatch");
         softAssert.assertNull(ib834Entity.getResponsible_person_ssn(), "Responsible person SSN is not null");
         softAssert.assertEquals(ib834Entity.getResponsible_person_phone(), primaryMember.getPhoneNumber() ,"Responsible person phone mismatch");
         softAssert.assertEquals(ib834Entity.getResponsible_person_email(), primaryMember.getEmailId(),"Responsible person email mismatch");

@@ -196,8 +196,12 @@ public class EmploymentIncomePage {
     }
 
     public void verifyHeadersEmploymentIncomePageEnglish() {
-        basicActions.waitForElementToBePresent(hdr_Income, 15);
-        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        basicActions.wait(500);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income, 90);
+        basicActions.waitForElementToBePresentWithRetries(hdr_EmploymentIncome, 90);
+        String expected = "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName();
+        String actual = hdr_Income.getText();
+        softAssert.assertTrue(actual.equalsIgnoreCase(expected), "Income header mismatch! Expected: " + expected + " Actual: " + actual);
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
         softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -209,6 +213,7 @@ public class EmploymentIncomePage {
     }
 
     public void verifyHeadersEmploymentIncomePageSpanish() {
+        basicActions.wait(250);
         basicActions.waitForElementToBePresent(hdr_Income, 50);
         basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 50);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
@@ -223,6 +228,7 @@ public class EmploymentIncomePage {
     }
 
     public void verifyAdditionalMemberHeadersOnEmploymentIncomeCoCoPage(String language) {
+        basicActions.wait(250);
         basicActions.waitForElementToBePresent(hdr_Income, 50);
         switch (language) {
             case "English":
@@ -261,12 +267,12 @@ public class EmploymentIncomePage {
     public void verifyJobOption_EmploymentInfo(String isEmployed) {
         switch (isEmployed) {
             case "Yes":
-                basicActions.waitForElementToBePresent(employmentYesButton, 15);
+                basicActions.waitForElementToBePresent(employmentYesButton, 60);
                 softAssert.assertTrue(employmentYesButton.getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
             case "No":
-                basicActions.waitForElementToBePresent(employmentNoButton, 15);
+                basicActions.waitForElementToBePresent(employmentNoButton, 60);
                 softAssert.assertTrue(employmentNoButton.getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
@@ -337,32 +343,32 @@ public class EmploymentIncomePage {
         basicActions.waitForElementToBePresent(hdr_Income, 15);
         switch (language) {
             case "English":
-                softAssert.assertEquals(goBackButton.getText(), "  Go back");
+                softAssert.assertEquals(goBackButton.getText(), "Go back");
                 softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
-                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(goBackButton.getText(), "  Volver");
+                softAssert.assertEquals(goBackButton.getText(), "Volver");
                 softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
-                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(255, 255, 255, 1)");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
                 break;
@@ -380,8 +386,8 @@ public class EmploymentIncomePage {
     }
 
     public void verifyPageNavigation(DataTable dataTable) {
-        basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresent(saveAndContinueButton, 10);
+        basicActions.waitForElementToDisappear(spinner, 60);
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 60);
 
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
 
@@ -399,6 +405,7 @@ public class EmploymentIncomePage {
             }else {
                 hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
             }
+            basicActions.scrollToElement(hyperlink);
 
             //Creating new tab with [Ctrl+Click] and change focus to the new tab
             Actions actionKey = new Actions(basicActions.getDriver());
@@ -416,6 +423,7 @@ public class EmploymentIncomePage {
             //Close the new tab and change focus to the existing tab
             basicActions.getDriver().close();
             basicActions.switchtoPreviousTab();
+            basicActions.wait(50);
         }
     }
 

@@ -71,16 +71,17 @@ Feature: Page Text-Income Opt Out Page
   @SLER-2065
   Scenario: SLER-2065 I want to be directed to the unauthorized page so that I know I have tried to access a page I am not authorized to access
 #    check in English and change to Spanish
+    Then I validate Employment Info Page header in "English"
     And I change the C4 url to "Employment Income Unauthorized Exch"
     Then I validate I am on the "Unauthorized" page
-    Then I verify unauthorized text in "English:Income"
+    Then I verify unauthorized text in "English"
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
     And I set the browser resolution to 1200 x 800
     And I change the language from header to "Spanish"
     And I set the browser resolution to Maximized
     Then I wait for 50 milliseconds
-    Then I verify unauthorized text in "Spanish:Income"
+    Then I verify unauthorized text in "Spanish"
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
 #    check in Spanish and change to English
@@ -100,16 +101,17 @@ Feature: Page Text-Income Opt Out Page
     And I click the edit income icon on household page for "Primary"
     Then I validate I am on the "Employment Income" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate Employment Info Page header in "Spanish"
     And I change the C4 url to "Employment Income Unauthorized Exch"
     Then I validate I am on the "Unauthorized" page
-    Then I verify unauthorized text in "Spanish:Income"
+    Then I verify unauthorized text in "Spanish"
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
     And I set the browser resolution to 1200 x 800
     And I change the language from header to "English"
     And I set the browser resolution to Maximized
     Then I wait for 50 milliseconds
-    Then I verify unauthorized text in "English:Income"
+    Then I verify unauthorized text in "English"
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
@@ -117,8 +119,8 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-1324
-  Scenario Outline: ELIG-Self-employment income-Page Text
+  @SLER-2076
+  Scenario Outline: SLER-2076 ELIG-Self-employment income-Page Text [RT-997]
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
     And I change the language from Elmo header to "<Language>" if it isn't already in that language

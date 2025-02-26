@@ -24,6 +24,9 @@ public class StartShoppingCoCoPageSteps {
         startShoppingCoCoPage.verifyTextOnTobaccoPage();
     }
 
+    @Then ("I verify there is no Tobacco Text for a Primary Minor enrollee")
+    public void verifyTextWithNoTobaccoText(){ startShoppingCoCoPage.verifyTextWithNoTobaccoText(); }
+
     @And("I click go back on the tobacco usage page coco")
     public void clickBackBtn(){
         startShoppingCoCoPage.clickBackBtn();

@@ -17,15 +17,15 @@ public class ForgotUsernamePage {
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
-    @FindBy(xpath ="//input[@id='fn-mf-error']")
+    @FindBy(xpath ="//input[@id='fn']")
     WebElement firstName;
-    @FindBy(xpath ="//input[@id='ln-mf-error']")
+    @FindBy(xpath ="//input[@id='ln']")
     WebElement lastName;
     @FindBy(xpath ="//input[@id='phone']")
     WebElement phone;
-    @FindBy(xpath ="//select[@id='at-mf-error']")
+    @FindBy(xpath ="//select[@id='at']")
     WebElement accountTypeDrp;
-    @FindBy(xpath ="//select[@id='at-mf-error']/option")
+    @FindBy(xpath ="//select[@id='at']/option")
     List<WebElement> accountTypeOptions;
 
     @FindBy(id ="submit-button")
