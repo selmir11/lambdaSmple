@@ -246,6 +246,7 @@ public class AddAddressPage {
 
     public void addNewResidentialAddress(String prefix, List<Map<String, String>> addDetails){
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
+
         String addressLine1 = addDetails.get(0).get("addressLine1");
         String city = addDetails.get(0).get("city");
         String state = addDetails.get(0).get("state");
@@ -264,7 +265,12 @@ public class AddAddressPage {
 
     public void setNewResidentialAddress(String prefix, String addressLine1, String city, String state, String zipcode, String county) {
         MemberDetails member = basicActions.getMember(prefix);
-        // if there is address exisiting for this member in sharedData then set incorrect entities true and set those values needed as well.
+        Address oldResAddress = SharedData.getPrimaryMember().getResAddress();
+        if(oldResAddress==null){
+            oldResAddress = new Address();
+        }
+        SharedData.getPrimaryMember().setOldResAddress(oldResAddress);
+
         Address residentialAddress = new Address();
         residentialAddress.setAddressLine1(addressLine1);
         residentialAddress.setAddressCity(city);

@@ -211,6 +211,12 @@ public class AccountOverviewPage {
         SharedData.setScenarioDetails(scenarioDetails);
    }
 
+   public void setProfileChange(String prefix){
+       MemberDetails member = basicActions.getMember(prefix);
+       member.setIsProfileChange(true);
+       member.setIsResAddChange(true);
+   }
+
     public void setDates(String planType, List<Map<String, String>> expectedResult) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         String policyStartDate;
