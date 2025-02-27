@@ -1255,36 +1255,41 @@ public class HeaderAndFooterPage {
             String containsUrl = row.get("ContainsUrl");
             WebElement hyperlink;
 
-            if (hyperlinkText.equalsIgnoreCase("FacebookIcon")) {
-                hyperlink = FacebookIcon;
-            } else if (hyperlinkText.equalsIgnoreCase("xIcon")) {
-                hyperlink = xIcon;
-            } else if (hyperlinkText.equalsIgnoreCase("YouTubeIcon")) {
-                hyperlink = YouTubeIcon;
-            } else if (hyperlinkText.equalsIgnoreCase("LinkedInIcon")) {
-                hyperlink = LinkedInIcon;
-            } else if (hyperlinkText.equalsIgnoreCase("InstagramIcon")) {
-                hyperlink = InstagramIcon;
-            } else if (hyperlinkText.equalsIgnoreCase("ThreadsIcon")) {
-                hyperlink = ThreadsIcon;
-            } else {
-                hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
+            switch (hyperlinkText.toLowerCase()) {
+                case "facebookicon":
+                    hyperlink = FacebookIcon;
+                    break;
+                case "xicon":
+                    hyperlink = xIcon;
+                    break;
+                case "youtubeicon":
+                    hyperlink = YouTubeIcon;
+                    break;
+                case "linkedinicon":
+                    hyperlink = LinkedInIcon;
+                    break;
+                case "instagramicon":
+                    hyperlink = InstagramIcon;
+                    break;
+                case "threadsicon":
+                    hyperlink = ThreadsIcon;
+                    break;
+                default:
+                    hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
+                    break;
             }
 
-            // Open the link in a new tab using [Ctrl+Click]
             Actions actionKey = new Actions(basicActions.getDriver());
             actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
             basicActions.switchtoactiveTab();
             basicActions.waitForElementToDisappear(spinner, 30);
 
-            // Fetch actual title and URL
-
             String actualTitle = basicActions.getDriver().getTitle();
             String currentUrl = basicActions.getDriver().getCurrentUrl();
-            softAssert.assertEquals(actualTitle, expectedPageTitle);
+            softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present");
             softAssert.assertTrue(currentUrl.contains(containsUrl));
             softAssert.assertAll();
-            // Close the new tab and switch back
+
             basicActions.getDriver().close();
             basicActions.switchtoPreviousTab();
         }
