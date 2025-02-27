@@ -1,4 +1,4 @@
-@AssistNet @port
+@AssistNet @port @AdminPortalOBO
 Feature: Authorize Assister Organization page header and footer validation via Admin Portal OBO
 
   @SLER-1278
@@ -8,6 +8,7 @@ Feature: Authorize Assister Organization page header and footer validation via A
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
+    And I wait for 300 milliseconds
     Then I enter an "Email" "AutomationUser" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
@@ -78,12 +79,14 @@ Feature: Authorize Assister Organization page header and footer validation via A
 
     And I click on Sign Out in the Header for "Portal"
     And I close current tab and switch back to previous tab
+    Then I wait for 300 milliseconds
 
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
+    Then I wait for 500 milliseconds
     Then I enter an "Email" "AutomationUser" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results

@@ -17,6 +17,9 @@ public class ManageAuthorizedUsersPage {
     @FindBy(id = "search")
     WebElement manageAuthorizedUsersSearchField ;
 
+    @FindBy(id = "add-authorized-user-link")
+    WebElement addAuthorizedUserLink ;
+
     @FindBy(xpath = "//*[@id='elem']/app-agency-manage-authorized-users/div/div/div[3]/div/table/tbody/tr")
     WebElement searchResultsTable ;
 
@@ -30,6 +33,11 @@ public class ManageAuthorizedUsersPage {
         basicActions.waitForElementToBePresent(manageAuthorizedUsersPageTitle,10);
         softAssert.assertEquals(manageAuthorizedUsersPageTitle.getText(), "Manage Authorized Users");
         softAssert.assertAll();
+    }
+
+    public void clickAddAuthorizedUserLink(){
+        basicActions.waitForElementToBePresent(addAuthorizedUserLink,10);
+        addAuthorizedUserLink.click();
     }
 
     public void searchForAuthorizedUserNamed(String authorizedUserName){

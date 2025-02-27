@@ -164,18 +164,38 @@ public class Ob834PreEdiDbValidations {
 
 
     private void validateResidentialAddress(Ob834DetailsEntity ob834Entity, MemberDetails member) {
-        String name = getName(ob834Entity, member);
-        getDbDataMap(name);
-        softAssert.assertEquals(member.getResAddress().getAddressLine1(), ob834Entity.getResidence_street_line1(), "Residential address line 1 does not match");
-        if (member.getResAddress().getAddressLine2() != null) {
-            softAssert.assertEquals(member.getResAddress().getAddressLine2(), ob834Entity.getResidence_street_line2(), "Residential line2 is null");
+        if(member.getIsProfileChange()&&member.getIsResAddChange()){
+            dbDataMapList = new HashSet<>();
+            SharedData.setDbDataNew(dbDataMapList);
+            exchDbDataProvider.setDataFromDb_New(member.getFirstName());
+            dbDataMapList = SharedData.getDbDataNew();
+            String name = getName(ob834Entity, member);
+            getDbDataMap(name);
+            softAssert.assertEquals(member.getOldResAddress().getAddressLine1(), ob834Entity.getResidence_street_line1(), "Residential address line 1 does not match");
+            if (member.getOldResAddress().getAddressLine2() != null) {
+                softAssert.assertEquals(member.getOldResAddress().getAddressLine2(), ob834Entity.getResidence_street_line2(), "Residential line2 is null");
+            } else {
+                softAssert.assertNull(ob834Entity.getResidence_street_line2(), "Residential address line 2 is not null");
+            }
+            softAssert.assertEquals(member.getOldResAddress().getAddressCity(), ob834Entity.getResidence_city(), "Residential address city does not match");
+            softAssert.assertEquals(member.getOldResAddress().getAddressState(), ob834Entity.getResidence_st(), "Residential address state does not match");
+            softAssert.assertEquals(member.getOldResAddress().getAddressZipcode(), ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
+            softAssert.assertEquals(dbDataMap.get(name).getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
         } else {
-            softAssert.assertNull(ob834Entity.getResidence_street_line2(), "Residential address line 2 is not null");
+
+            String name = getName(ob834Entity, member);
+            getDbDataMap(name);
+            softAssert.assertEquals(member.getResAddress().getAddressLine1(), ob834Entity.getResidence_street_line1(), "Residential address line 1 does not match");
+            if (member.getResAddress().getAddressLine2() != null) {
+                softAssert.assertEquals(member.getResAddress().getAddressLine2(), ob834Entity.getResidence_street_line2(), "Residential line2 is null");
+            } else {
+                softAssert.assertNull(ob834Entity.getResidence_street_line2(), "Residential address line 2 is not null");
+            }
+            softAssert.assertEquals(member.getResAddress().getAddressCity(), ob834Entity.getResidence_city(), "Residential address city does not match");
+            softAssert.assertEquals(member.getResAddress().getAddressState(), ob834Entity.getResidence_st(), "Residential address state does not match");
+            softAssert.assertEquals(member.getResAddress().getAddressZipcode(), ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
+            softAssert.assertEquals(dbDataMap.get(name).getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
         }
-        softAssert.assertEquals(member.getResAddress().getAddressCity(), ob834Entity.getResidence_city(), "Residential address city does not match");
-        softAssert.assertEquals(member.getResAddress().getAddressState(), ob834Entity.getResidence_st(), "Residential address state does not match");
-        softAssert.assertEquals(member.getResAddress().getAddressZipcode(), ob834Entity.getResidence_zip_code(), "Residential address zipcode does not match");
-        softAssert.assertEquals(dbDataMap.get(name).getFipcode(), ob834Entity.getResidence_fip_code(), "Residential address fipcode does not match");
         softAssert.assertAll();
     }
 
@@ -506,7 +526,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         validateSponsorId(ob834Entity, subscriber);
         validateResidentialAddress(ob834Entity, subscriber);
-        if(subscriber.getMailingAddress()!=null&&!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
+        if((subscriber.getMailingAddress()!=null&&!subscriber.getMailingAddress().equals(subscriber.getResAddress())) || subscriber.getIsProfileChange()){
             validateMailingAddress(ob834Entity, subscriber);
         } else {
             validateMailingAddressIsNull(ob834Entity, subscriber);
@@ -525,14 +545,19 @@ public class Ob834PreEdiDbValidations {
     }
 
     private void validateDetailsFromStep(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues) {
+        if(ob834Entity.getSubscriber_indicator().equals("N")&& !basicActions.getMember(ob834Entity.getMember_first_name()).getIsProfileChange() && SharedData.getPrimaryMember().getIsProfileChange() ){
+            softAssert.assertEquals(ob834Entity.getAddl_maint_reason(), "NO CHANGE", "addl_maint_reason mismatched");
+        } else {
+            softAssert.assertEquals(ob834Entity.getAddl_maint_reason(), expectedValues.get("addl_maint_reason")!=null? expectedValues.get("addl_maint_reason").replace(" or ", "|") : expectedValues.get("addl_maint_reason"), "addl_maint_reason mismatched");
+        }
         softAssert.assertEquals(ob834Entity.getMaintenance_type_code(), expectedValues.get("maintenance_type_code"), "maintenance_type_code mismatched");
         softAssert.assertEquals(ob834Entity.getHd_maint_type_code(), expectedValues.get("hd_maint_type_code"), "hd_maint_type_code mismatched");
         softAssert.assertEquals(ob834Entity.getMaintenance_reas_code(), expectedValues.get("maintenance_reas_code"), "maintenance_reas_code mismatched");
-        softAssert.assertEquals(ob834Entity.getAddl_maint_reason(), expectedValues.get("addl_maint_reason")!=null? expectedValues.get("addl_maint_reason").replace(" or ", "|") : expectedValues.get("addl_maint_reason"), "addl_maint_reason mismatched");
         softAssert.assertTrue(expectedValues.get("sep_reason") == null ? ob834Entity.getSep_reason().isEmpty() : ob834Entity.getSep_reason().equals(expectedValues.get("sep_reason")), "Sep_reason mismatch or expected blank but was: " + ob834Entity.getSep_reason());
     }
 
     private void setMedicalData(){
+        SharedData.setMedicalFileName_grp(null);
         ob834DetailsMedEntities = exchDbDataProvider.getOb834Details("HLT");
         SharedData.setOb834DetailsMedEntities(ob834DetailsMedEntities);
         subscribers = basicActions.getAllSubscribers();
@@ -542,6 +567,7 @@ public class Ob834PreEdiDbValidations {
     }
 
     private void setDentalData() {
+        SharedData.setDentalFileName_grp(null);
         ob834DetailsDenEntities = exchDbDataProvider.getOb834Details("DEN");
         SharedData.setOb834DetailsDenEntities(ob834DetailsDenEntities);
         ob834DetailsDenEntities = SharedData.getOb834DetailsDenEntities();

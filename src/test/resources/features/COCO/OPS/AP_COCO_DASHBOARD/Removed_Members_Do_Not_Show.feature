@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: OPS: IndDash: Removed Members Don't Show
   @SLCR-717
   Scenario:SLCR-717 : OPS: IndDash: Removed Members Don't Show

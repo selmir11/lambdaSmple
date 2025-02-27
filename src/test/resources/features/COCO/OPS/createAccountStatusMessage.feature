@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: OPS: COCO: Create account
   @SLER-1269
   Scenario:OPS: COCO: Create account

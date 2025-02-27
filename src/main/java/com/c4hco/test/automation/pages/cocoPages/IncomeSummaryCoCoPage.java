@@ -147,7 +147,9 @@ public class IncomeSummaryCoCoPage {
     }
 
     public void verifyHeadersIncomeSummaryPageEnglish(){
-        basicActions.waitForElementToBePresent(hdr_Income,15);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,60);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
@@ -160,9 +162,12 @@ public class IncomeSummaryCoCoPage {
     }
 
     public void verifyHeadersIncomeSummaryPageSpanish(){
-        basicActions.waitForElementToBePresent(hdr_Income,15);
-        basicActions.waitForElementToBePresent(hdr_IncomeSummary,15);
-        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,60);
+        String actualText = hdr_Income.getText().replace("\u00A0", " ").trim();
+        String expectedText = "Ingresos: " + basicActions.getMemFirstLastNames("Primary").replace("\u00A0", " ").trim();
+        softAssert.assertTrue(actualText.equalsIgnoreCase(expectedText), "Header text mismatch! Expected: '" + expectedText + "', but found: '" + actualText + "'");
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
         softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");

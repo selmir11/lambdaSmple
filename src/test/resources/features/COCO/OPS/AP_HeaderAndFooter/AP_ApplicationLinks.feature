@@ -1,4 +1,4 @@
-@SLCR-34 @OPS
+@SLCR-34 @OPS @COCO
 Feature: AdminPortal: General: Header, footer, and application links
 
   @SLCR-34

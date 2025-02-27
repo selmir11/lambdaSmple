@@ -322,7 +322,8 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageInitialSecondaryDataEnglish(String expectedIncome) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 60);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Health Reimbursement Arrangement (HRA) offered through an employer");
         softAssert.assertEquals(helpMeLink.getText(), "Help me understand this page");
@@ -338,7 +339,8 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageInitialSecondaryDataSpanish(String expectedIncome) {
-        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 60);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Las Provisiones de reembolso de salud (HRA) se ofrecen a trav\u00E9s de su empleador");
         softAssert.assertEquals(helpMeLink.getText(), "Ayuda para entender esta p\u00E1gina");

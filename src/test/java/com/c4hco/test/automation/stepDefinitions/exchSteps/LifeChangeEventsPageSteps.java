@@ -21,6 +21,11 @@ public class LifeChangeEventsPageSteps {
         lifeChangeEventsPage.clickContinueWithApplication();
     }
 
+    @And ("I click Continue with Application button on Report a Life Change Page")
+    public void clickContinueWithApplicationBtn() {
+        lifeChangeEventsPage.clickContinueWithApplicationBtn();
+    }
+
     @Then("I click back button on Report a Life Change Page")
     public void iClickOnBackButton(){
         lifeChangeEventsPage.clickBackButton();

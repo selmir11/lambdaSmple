@@ -56,6 +56,7 @@ Feature: Page Validation-OHC COBRA Elmo Page
 
   @SLER-333 @PageValidationOhcCobraElmo
   Scenario: SLER-333 I can see Cobra's standard errors consistently - English
+    And I verify the header for Primary Member on the Cobra page in "English"
     And I verify the "First Section" Cobra page data in "English"
     Then I click continue on the Elmo OHC Cobra page
     And I verify "Currently Enrolled" error in "English" on the Cobra page

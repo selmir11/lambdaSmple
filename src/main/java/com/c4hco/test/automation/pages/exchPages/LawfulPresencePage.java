@@ -125,14 +125,14 @@ public class LawfulPresencePage {
     @FindBy(css = "*[role='presentation']")
     List<WebElement> helpDrawerHelpText;
 
-    @FindBy(xpath = "//*[@class='c4BodyText1']")
-    List<WebElement> bodyTexts;
+    @FindBy(id = "usCitizen-error")
+    WebElement USCitizenErrorMessage;
 
-    @FindBy(xpath = "//input[@id='naturalizationCertificate']//following-sibling::label/span")
-    WebElement textNaturalizationCertificate;
+    @FindBy(id = "naturalizedCitizen-error")
+    WebElement NaturalizedCitizenErrorMessage;
 
-    @FindBy(xpath = "//input[@id='citizenshipCertificate']//following-sibling::label/span")
-    WebElement textCitizenshipCertificate;
+    @FindBy(id = "lawfulNonCitizen-error")
+    WebElement EligibleImmigrantStatusErrorMessage;
 
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
@@ -321,7 +321,7 @@ public class LawfulPresencePage {
     }
 
     private void validateVerbiageOnCitizenAndImmigratioStatusPage(List<String> data) {
-
+        basicActions.waitForElementToBePresent(citizenshipImmigrationStatusHeader,20);
         softAssert.assertTrue(citizenshipImmigrationStatusHeader.getText().contains(data.get(0)), "Page Header text mismatch");
         softAssert.assertEquals(helpMeUnderstandLink.getText(), data.get(1), "Page Hyperlink text mismatch");
         softAssert.assertEquals(usCitizenQuestionText.getText(), data.get(2), "US Citizen Question text mismatch");
@@ -543,29 +543,79 @@ public class LawfulPresencePage {
         softAssert.assertAll();
     }
 
-    public void validatePageTextWhenNaturalizedImmiOptYes(List<String> languageText){
-        softAssert.assertEquals(languageText.get(0),bodyTexts.get(3).getText());
-        softAssert.assertEquals(languageText.get(1),bodyTexts.get(4).getText());
-        softAssert.assertEquals(languageText.get(2),bodyTexts.get(5).getText());
-        softAssert.assertEquals(languageText.get(3),alienNumberCitizen.getAttribute("placeholder"));
-        softAssert.assertEquals(languageText.get(4),textNaturalizationCertificate.getText());
-        softAssert.assertEquals(languageText.get(5),textCitizenshipCertificate.getText());
+    public void validateUSCitizenErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent( USCitizenErrorMessage,20);
+        softAssert.assertEquals(USCitizenErrorMessage.getText(), expectedErrorMessage);
         softAssert.assertAll();
     }
-    public void validatePageTextWhenEligibleImmiStatusNo(List<String> languageText){
-        softAssert.assertEquals(bodyTexts.get(7).getText(),languageText.get(0));
-        softAssert.assertEquals(bodyTexts.get(18).getText(),languageText.get(1));
-        softAssert.assertEquals(bodyTexts.get(19).getText(),languageText.get(2));
-        softAssert.assertEquals(bodyTexts.get(20).getText(),languageText.get(3));
-        softAssert.assertEquals(bodyTexts.get(21).getText(),languageText.get(4));
-        softAssert.assertEquals(bodyTexts.get(22).getText(),languageText.get(5));
-        String Firstname = SharedData.getPrimaryMember().getFirstName();
-        String Lastname = SharedData.getPrimaryMember().getLastName();
-        softAssert.assertEquals(bodyTexts.get(23).getText(),languageText.get(6)+" " + Firstname+" " + Lastname+" " + languageText.get(7));
-        softAssert.assertEquals(bodyTexts.get(24).getText(),languageText.get(8));
-        softAssert.assertEquals(bodyTexts.get(25).getText(),languageText.get(9));
-        softAssert.assertEquals(bodyTexts.get(26).getText(),languageText.get(10));
-        softAssert.assertEquals(bodyTexts.get(27).getText(),languageText.get(11));
+
+    public void validateUSCitizenQuestionAndOptions(List<String> expectedTextList) {
+        basicActions.waitForElementToBePresent( usCitizenQuestionText,20);
+        basicActions.waitForElementToBePresent( textYesUSCitizen,20);
+        basicActions.waitForElementToBePresent( textNoUSCitizen,20);
+        basicActions.waitForElementToBePresent( rdobtnCitizenYes,20);
+        basicActions.waitForElementToBePresent( rdobtnCitizenNo,20);
+        softAssert.assertEquals(usCitizenQuestionText.getText(), expectedTextList.get(0));
+        softAssert.assertEquals(textYesUSCitizen.getText(), expectedTextList.get(1));
+        softAssert.assertEquals(textNoUSCitizen.getText(), expectedTextList.get(2));
+        softAssert.assertTrue(rdobtnCitizenYes.isDisplayed(), "'Yes' Radio button for US Citizen question not visible"); // Verifying whether Yes radio button is present
+        softAssert.assertTrue(rdobtnCitizenNo.isDisplayed(), "'No' Radio button for US Citizen question not visible"); // Verifying whether No radio button is present
+        softAssert.assertAll();
+    }
+
+    public void validateNaturalizedCitizenQuestionAndOptions(List<String> expectedTextList) {
+        basicActions.waitForElementToBePresent( naturalizedCitizenGroup.get(0),20);
+        basicActions.waitForElementToBePresent( naturalizedCitizenGroup.get(1),20);
+        basicActions.waitForElementToBePresent( naturalizedCitizenGroup.get(2),20);
+        basicActions.waitForElementToBePresent( rdobtnNaturalizedYes,20);
+        basicActions.waitForElementToBePresent( rdobtnnaturalizedNo,20);
+        softAssert.assertEquals(naturalizedCitizenGroup.get(0).getText(), expectedTextList.get(0));
+        softAssert.assertEquals(naturalizedCitizenGroup.get(1).getText(), expectedTextList.get(1));
+        softAssert.assertEquals(naturalizedCitizenGroup.get(2).getText(), expectedTextList.get(2));
+        softAssert.assertTrue(rdobtnNaturalizedYes.isDisplayed(), "'Yes' Radio button for Naturalized Citizen question not visible"); // Verifying whether Yes radio button is present
+        softAssert.assertTrue(rdobtnnaturalizedNo.isDisplayed(), "'No' Radio button for Naturalized Citizen question not visible"); // Verifying whether No radio button is present
+        softAssert.assertAll();
+    }
+
+    public void validateEligibleImmigrationStatusQuestionAndOptions(List<String> expectedTextList) {
+        basicActions.waitForElementToBePresent( immigrationStatusQuestion.get(0),20);
+        basicActions.waitForElementToBePresent( immigrationStatusQuestion.get(1),20);
+        basicActions.waitForElementToBePresent( immigrationStatusQuestion.get(2),20);
+        basicActions.waitForElementToBePresent( textNonCitizenInfoBox,20);
+        basicActions.waitForElementToBePresent( rdobtnEligibleImmigrantYes,20);
+        basicActions.waitForElementToBePresent( rdobtnEligibleImmigrantNo,20);
+        softAssert.assertEquals(immigrationStatusQuestion.get(0).getText(), expectedTextList.get(0));
+        softAssert.assertEquals(immigrationStatusQuestion.get(1).getText(), expectedTextList.get(1));
+        softAssert.assertEquals(immigrationStatusQuestion.get(2).getText(), expectedTextList.get(2));
+        softAssert.assertEquals(textNonCitizenInfoBox.getText(), expectedTextList.get(3));
+        softAssert.assertTrue(rdobtnEligibleImmigrantYes.isDisplayed(), "'Yes' Radio button for eligible immigration status question not visible"); // Verifying whether Yes radio button is present
+        softAssert.assertTrue(rdobtnEligibleImmigrantNo.isDisplayed(), "'No' Radio button for eligible immigration status question not visible"); // Verifying whether No radio button is present
+        softAssert.assertAll();
+    }
+
+    public void validateTextOnSelectingNoToEligibleImmigrationStatusQuestion(List<String> expectedTextList) {
+        basicActions.waitForElementToBePresent( textUndocumentedCitizenInfo.get(0),20);
+        basicActions.waitForElementToBePresent( linkUndocumentedCitizenInfo.get(1),20);
+        basicActions.waitForElementToBePresent( textUndocumentedCitizenInfo.get(1),20);
+        basicActions.waitForElementToBePresent( linkUndocumentedCitizenInfo.get(2),20);
+        basicActions.waitForElementToBePresent( textUndocumentedCitizenInfo.get(2),20);
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(0).getText(), expectedTextList.get(0));
+        softAssert.assertEquals(linkUndocumentedCitizenInfo.get(1).getText(), expectedTextList.get(1));
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(1).getText(), expectedTextList.get(2));
+        softAssert.assertEquals(linkUndocumentedCitizenInfo.get(2).getText(), expectedTextList.get(3));
+        softAssert.assertEquals(textUndocumentedCitizenInfo.get(2).getText(), expectedTextList.get(4));
+        softAssert.assertAll();
+    }
+
+    public void validateNaturalizedCitizenErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent( NaturalizedCitizenErrorMessage,20);
+        softAssert.assertEquals(NaturalizedCitizenErrorMessage.getText(), expectedErrorMessage);
+        softAssert.assertAll();
+    }
+
+    public void validateEligibleImmigrationStatusErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent( EligibleImmigrantStatusErrorMessage,20);
+        softAssert.assertEquals(EligibleImmigrantStatusErrorMessage.getText(), expectedErrorMessage);
         softAssert.assertAll();
     }
 }

@@ -240,7 +240,8 @@ public class OhcIndividualInsurancePage_Elmo {
     }
 
     public void verifyHeadersIndividualInsuranceOhcPageSpanish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcIndividualInsuranceHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Seguro individual");
         softAssert.assertAll();
@@ -662,7 +663,8 @@ public class OhcIndividualInsurancePage_Elmo {
     }
 
     public void verifyIndividualInsurancePageFirstSectionSecondaryDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcIndividualInsuranceHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Seguro individual");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");

@@ -70,9 +70,11 @@ Feature: Navigation-Declarations and Signature Page
   Scenario: SLCR-727 Verify you see the warning banner
     #Step 4
     Then I validate I am on the "CoCo Declarations and Signature" page
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     And I right click on Apply for Coverage to open in new tab in the ELMO Header
     #Step 5
     Then I validate I am on the "CoCo Declarations and Signature" page
+    And I wait for 250 milliseconds
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     #Step 6
@@ -88,7 +90,7 @@ Feature: Navigation-Declarations and Signature Page
     Then I validate I am on the "Login" page
 
   @SLCR-770
-  Scenario: Page Navigation-Declarations and Signature
+  Scenario: SLCR-770 Page Navigation-Declarations and Signature
     And I validate page Navigation works for Header and Footer hyperlink text
       | HyperLinkText      | ExpectedPageTitle        | ContainsUrl                                      |
       | Privacy Policy     | Privacy Policy           | coco/InformationPortal/privacyPolicy             |

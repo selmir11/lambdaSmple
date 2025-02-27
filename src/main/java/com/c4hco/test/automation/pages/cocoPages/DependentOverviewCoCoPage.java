@@ -76,7 +76,7 @@ public class DependentOverviewCoCoPage {
         basicActions.waitForElementToBePresent(hdr_DependentOverview,15);
         softAssert.assertEquals(hdr_DependentOverview.getText(), "Resumen del dependiente");
         softAssert.assertEquals(dependentOverviewQuestionText.getText(), "\u00BFEs " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1) + " una persona discapacitada no casado y dependiente en su familia?");
-        softAssert.assertEquals(dependentOverviewYesButton.getText(), "Si");
+        softAssert.assertEquals(dependentOverviewYesButton.getText(), "S\u00ED");
         softAssert.assertEquals(dependentOverviewNoButton.getText(), "  No");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
         softAssert.assertEquals(goBackButton.getText(), " Volver");
