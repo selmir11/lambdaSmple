@@ -197,3 +197,13 @@ Feature: Page Verification-Deductions Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2260
+  Scenario: [RT-2711] As an Exchange user on the ELMO Income pages, I want errors cleared on the Deductions page so that I don't see errors when I select an option
+    Then I click continue on the Deductions page
+    Then I verify "English" error shows for Deductions page
+    Then I verify all checkbox deduction errors for "English"
+    And I change the language from header to "Spanish"
+    Then I validate I am on the "Spanish" page
+    Then I verify all checkbox deduction errors for "Spanish"
+    And I click on Sign Out in the Header for "Elmo"
