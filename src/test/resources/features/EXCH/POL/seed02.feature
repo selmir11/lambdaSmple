@@ -349,10 +349,3 @@ Feature: Seed02 - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
-
-
-
-
-
-
-
