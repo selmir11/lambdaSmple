@@ -633,20 +633,9 @@ public class LawfulPresencePage {
         basicActions.waitForElementToBePresent(UsicsNumErrMsg, 2);
         basicActions.waitForElementToBePresent(DocTypeErrorMsg, 1);
         basicActions.waitForElementToBePresent(DocNumError, 1);
-        switch (language.toLowerCase()) {
-            case "english":
-                softAssert.assertEquals(UsicsNumErrMsg.getText(), dataText.get(1),"Label Not matching");
-                softAssert.assertEquals(DocTypeErrorMsg.getText(), dataText.get(2),"Label Not matching");
-                softAssert.assertEquals(DocNumError.getText(), dataText.get(3),"label not matching");
-                break;
-            case "spanish":
-                softAssert.assertEquals(UsicsNumErrMsg.getText(), dataText.get(1),"Label Not matching");
-                softAssert.assertEquals(DocTypeErrorMsg.getText(), dataText.get(2),"Label Not matching");
-                softAssert.assertEquals(DocNumError.getText(), dataText.get(3),"label not matching");
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid language: " + language);
-        }
+        softAssert.assertEquals(UsicsNumErrMsg.getText(), dataText.get(1),"Label Not matching");
+        softAssert.assertEquals(DocTypeErrorMsg.getText(), dataText.get(2),"Label Not matching");
+        softAssert.assertEquals(DocNumError.getText(), dataText.get(3),"label not matching");
         softAssert.assertAll();
     }
 
