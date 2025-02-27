@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class UploadDocumentsRIDPPageSteps {
     UploadDocumentsRIDPPage  uploadDocumentsRIDPPage = new  UploadDocumentsRIDPPage(WebDriverManager.getDriver());
 
@@ -26,6 +28,11 @@ public class UploadDocumentsRIDPPageSteps {
     @Then("I validate error {string} text in Id proofing secondary request Page in {string}")
     public void iValidateErrorMessage(String errorMessage,String language){
         uploadDocumentsRIDPPage.validateErrorMessage(errorMessage,language);
+    }
+
+    @Then("I validate the following text on Upload Documents (RIDP) page including the error message and button texts")
+    public void iValidateErrorMessageAndButtonTexts(List<String> textList){
+        uploadDocumentsRIDPPage.validateErrorMessageAndButtonTexts(textList);
     }
 
 }

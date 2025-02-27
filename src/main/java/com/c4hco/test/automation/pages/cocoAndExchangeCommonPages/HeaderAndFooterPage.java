@@ -2,10 +2,8 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.datatable.DataTable;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +11,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import java.time.Year;
 import java.util.List;
+import java.util.Map;
 
 public class HeaderAndFooterPage {
     SoftAssert softAssert = new SoftAssert();
@@ -1248,5 +1247,58 @@ public class HeaderAndFooterPage {
             }
             softAssert.assertAll();
     }
+
+    public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
+        basicActions.waitForElementToDisappear(spinner, 30);
+
+        List<Map<String, String>> data = dataTable.asMaps();
+        for (Map<String, String> row : data) {
+            String hyperlinkText = row.get("HyperLinkText");
+            String expectedPageTitle = row.get("ExpectedPageTitle");
+            String containsUrl = row.get("ContainsUrl");
+            WebElement hyperlink;
+
+            switch (hyperlinkText.toLowerCase()) {
+                case "facebookicon":
+                    hyperlink = FacebookIcon;
+                    break;
+                case "xicon":
+                    hyperlink = xIcon;
+                    break;
+                case "youtubeicon":
+                    hyperlink = YouTubeIcon;
+                    break;
+                case "linkedinicon":
+                    hyperlink = LinkedInIcon;
+                    break;
+                case "instagramicon":
+                    hyperlink = InstagramIcon;
+                    break;
+                case "threadsicon":
+                    hyperlink = ThreadsIcon;
+                    break;
+                default:
+                    hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
+                    break;
+            }
+
+            Actions actionKey = new Actions(basicActions.getDriver());
+            actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
+            basicActions.switchtoactiveTab();
+            basicActions.waitForElementToDisappear(spinner, 30);
+
+            String actualTitle = basicActions.getDriver().getTitle();
+            String currentUrl = basicActions.getDriver().getCurrentUrl();
+            softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present");
+            softAssert.assertTrue(currentUrl.contains(containsUrl));
+            softAssert.assertAll();
+
+            basicActions.getDriver().close();
+            basicActions.switchtoPreviousTab();
+        }
+
+        softAssert.assertAll();
+    }
+
 
 }
