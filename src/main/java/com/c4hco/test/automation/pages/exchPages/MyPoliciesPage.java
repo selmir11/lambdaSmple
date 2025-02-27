@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
@@ -105,13 +106,13 @@ public class MyPoliciesPage {
             WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
             //DateConversion
-            String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
-            String expecEndDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanEndDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getDentalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecEndDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getDentalPlanEndDate(),"MM/dd/yyyy","MM/dd/yy");
             String expecLastUpdatedDate = basicActions.changeDateFormat(lastUpdated,"MM/dd/yyyy","MM/dd/yy");
 
             //validation
-            softAssert.assertEquals(planStartDate.getText().replace(" -",""),expecStartDate, "Start Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(planEndDate.getText(),expecEndDate, "End Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planStartDate.getText().replace(" -",""),expecStartDate, "plan start Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planEndDate.getText(),expecEndDate, "plan End Date mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace(" /month","").replace(",", ""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(".00 financial help","").replace(",", ""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
 
@@ -194,5 +195,32 @@ public class MyPoliciesPage {
             throw new IllegalArgumentException("Invalid option: " + btnDetail);
         }
 
+    }
+
+    public void validateCancelPlanButnNotPresent(String planType) {
+        switch (planType){
+            case "medical":
+                validateMedPlanCancelButton();
+                break;
+            case "dental":
+                validateDenPlanCancelButton();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+    }
+    public void validateMedPlanCancelButton(){
+        if (!basicActions.elementExists(basicActions.getDriver(), By.id("SOL-CurrentPolicies-CancelCurrentMedical"))){
+            System.out.println("Cancel 2025 Medical Plans button not present as expected");
+        }else{
+            Assert.fail("Cancel 2025 Medical Plans button present");
+        }
+    }
+    public void validateDenPlanCancelButton(){
+        if (!basicActions.elementExists(basicActions.getDriver(), By.id("SOL-CurrentPolicies-CancelCurrentDental"))){
+            System.out.println("Cancel 2025 Dental Plans button not present as expected");
+        }else{
+            Assert.fail("Cancel 2025 Dental Plans button present");
+        }
     }
 }
