@@ -19,7 +19,7 @@ public class PaymentPortalCoCoPage {
     @FindBy(css = "c4-type-header-lg")
     WebElement hdr_AllDone;
 
-    @FindBy(id="SOL-PayNow-AllDone-Indv")
+    @FindBy(xpath = "//*[@id='SOL-PayNow-AllDone-Indv' or @id='SOL-PayNow-AllDone-Obo']")
     WebElement allDoneBtn;
 
     @FindBy(id="SOL-PayNow-AllDone-Obo")
