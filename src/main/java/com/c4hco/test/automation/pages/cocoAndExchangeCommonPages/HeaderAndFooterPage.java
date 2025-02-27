@@ -1248,7 +1248,7 @@ public class HeaderAndFooterPage {
             softAssert.assertAll();
     }
 
-    public void verifyFooterlinktextNavigation(DataTable dataTable) {
+    public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
         basicActions.waitForElementToDisappear(spinner, 30);
 
         List<Map<String, String>> data = dataTable.asMaps();

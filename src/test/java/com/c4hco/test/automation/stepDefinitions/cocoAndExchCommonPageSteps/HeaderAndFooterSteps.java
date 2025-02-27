@@ -79,8 +79,12 @@ public class HeaderAndFooterSteps {
         headerAndFooterPage.validateTextinHeader(text);
     }
 
-    @Then("I validate page Navigation works for Footer hyperlink text in Spanish")
-    public void iverifyPageNavigation(DataTable dataTable){
-        headerAndFooterPage.verifyFooterlinktextNavigation(dataTable);
+    @Then("I validate page Navigation works for Footer hyperlink text in {string}")
+    public void iverifyPageNavigation(String language, DataTable dataTable) {
+        headerAndFooterPage.verifyFooterlinktextNavigation(language, dataTable);
     }
+
+
+
+
 }
