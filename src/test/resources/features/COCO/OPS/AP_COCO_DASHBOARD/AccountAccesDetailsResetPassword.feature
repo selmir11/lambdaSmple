@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: OPS: IndDash: CoCo Account Access details and Password Reset - CCRT-135
   @SLCR-748
   Scenario: CoCo Account Access details tab Reset Password
