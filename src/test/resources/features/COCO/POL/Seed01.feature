@@ -1,103 +1,192 @@
-Feature: Regression Tests that require Seed 1
+Feature: Regression Tests that require COCO Seed 1
 
-  @SLCR-137 # WIP
-Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
+  Background: Seed 01 For COCO- Single Applicant with Income of $19k
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+#   Given I set the dynamic policy, coverage and financial dates in coco
+#     | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+#     | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
+    And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
+    And I select "No" for mailing address option
+    And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "30,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    And I select the No projected Income button on the Income Summary page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "MoveToCO" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on coco start shopping page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:Cigna Connect Colorado Option Bronze |
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I set medical premium amount
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
 
-Given I set the test scenario details in coco
-| totalGroups | totalMembers |
-| 1           | 1            |
-Given I open the login page on the "login" portal
-And I validate I am on the "Login" page
-When I click create a new account on login page
-Then I click create my account from pre-screen page
-And I enter general mandatory data for "coco" account creation
-Then I validate I am on the "Login" page
-And I enter valid credentials to login
-Then I click continue signing in on the CAC Screener page
-Given I set the dynamic policy, coverage and financial dates in coco
-| PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-| First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
-And I apply for the current year in CoCo
-Then I validate I am on the "Find Expert Help" page
-And I click Continue on my own button from Manage who helps you page
-Then I validate I am on the "CoCo Family Overview" page
-Then I click EditUpdate on Family Overview page for "Primary"
-Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
-And I enter my residential address "101 Coco Drive", "Denver", "CO", "80205", "DENVER"
-And I select "No" for mailing address option
-And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
-And I select "Yes" for live in Colorado option
-And I click continue on the Add info for yourself page
-Then I validate I am on the "Elmo Race and Ethnicity" page
-And I select "Prefer not to answer" for race and ethnicity option for "Primary"
-And I click save and continue on the Race and Ethnicity page
-And I select "Yes" employment option
-And I enter "30,000.00" income amount
-And I select "Annually" income frequency option
-And I select "No" income seasonal option
-And I select "No" income changes option
-And I click continue on the Employment income page
-And I select None of these as additional income option
-And I select continue on the Additional Income CoCO page
-Then I validate I am on the "CoCo Deductions" page
-And I select "None of these" as deductions option
-And I select continue on the Deductions CoCo page
-And I select the No projected Income button on the Income Summary page
-And I select continue on the income Summary CoCo page
-Then I validate I am on the "CoCo Family Overview" page
-And I select continue on the Family Overview page
-Then I validate I am on the "CoCo life change event" page
-And I select "MoveToCO" life change event with event date of "Today"
-And I select continue on the LCE page
-Then I validate I am on the "CoCo Declarations and Signature" page
-And I enter a valid signature
-And I click Continue on the Declarations And Signature Page CoCo
-Then I validate I am on the "Application Results CoCo" page
-And I click Continue on the Application Results Page CoCo
-Then I validate I am on the "Start Shopping" page
-Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-Then I click continue on coco start shopping page
-Then I validate I am on the "Medical Plan Results" page
-And I select or skip the medical plans for groups on medical plan page
-    | Group 1:Cigna Connect Colorado Option Bronze |
-Then I validate I am on the "planSummaryMedicalDental" page
-And I set medical premium amount
-And I click continue on coco plan summary page
-Then I validate I am on the "Enrollment Agreements" page
-And I select "Acknowledgement" agreement checkbox CoCo
-And I select "Submit" agreement checkbox CoCo
-And I enter householder signature on the Enrollment Agreements page CoCo
-And I select submit enrollment button on the Enrollment Agreements CoCo page
-Then I click all done from payment portal page coco
-Then I validate I am on the "CoCo Welcome" page
-And I click on Sign Out in the Header for "Elmo"
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I click on "Manage Plans" user dashboard button
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member
+    | 1:01012025 |
+    And I update the Financial Start date of member
+    | 1:01012025 |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I close current tab and switch back to previous tab
+    And logout from Admin Portal
 
-Given I open the login page on the "admin" portal
-And I validate I am on the "Login" page
-When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-And I validate I am on the "Admin dashboard" page
-And I select "coco" checkbox on Admin Portal Dashboard
-And I search for user and click email from search results
-Then I click on "Manage Plans" user dashboard button
-Then I click Make Changes Medical button
-And I update the Coverage Start date of member
-| 1:01012025 |
-And I update the Financial Start date of member
-| 1:01012025 |
-And I click Save Button Medical
-And I select the reason to confirm the changes
-Then I close current tab and switch back to previous tab
-And logout from Admin Portal
+    #Given I open the login page on the "login" portal
+    #Then I validate I am on the "Login" page
+    #And I enter valid credentials to login
+    #Then I validate I am on the "CoCo Welcome" page
+    #Then I click continue signing in on the CAC Screener page
+    #Then I validate I am on the "CoCo Welcome" page
+    #And I select year "2025" from My Current Plan container
+    #And I Validate the correct enrolled plans are displayed on coco welcome page
+    #And I click on "My Plans" link on welcome page
+    #And I validate enrolled medical plans details on my policies page coco
 
-Given I open the login page on the "login" portal
-Then I validate I am on the "Login" page
-And I enter valid credentials to login
-Then I validate I am on the "CoCo Welcome" page
-Then I click continue signing in on the CAC Screener page
-Then I validate I am on the "CoCo Welcome" page
-And I select year "2025" from My Current Plan container
-And I Validate the correct enrolled plans are displayed on coco welcome page
-And I click on "My Plans" link on welcome page
-And I validate enrolled medical plans details on my policies page coco
-And I click view Plan History link from medical plan card in coco
-And I validate medical plan details from plan history in coco
+   @SLCR-782-WIP-@R4V
+  Scenario: CCRT-106 - ENR-COCO: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click Make changes button on Welcome Page
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I enter new first name and last name on Tell Us About Yourself Page Coco
+    And I enter the primary member new middle name on tell us about yourself page coco
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select continue on the Deductions CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I check "None of these" life change event checkbox
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click on Sign Out in the Header for "Elmo"
+
+    @SLCR-783-WIP-@R4V
+  Scenario: CCRT-125 - ENR-COCO: ADD DEPENDENT (LCE: Birth) SAME PLANS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click Make changes button on Welcome Page
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    And I get the newborn "Newborn" dob as "current date" in CoCo page
+    And I enter details on tell us about additional members of your household page with name "Newborn", dob "getFromSharedData", gender "Male", and applying "Yes"
+    And I select the relationship to primary member as "Child or Other dependent"
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "101 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Newborn"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    And I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Birth:Newborn" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on coco start shopping page
+    Then I click continue on grouping Members Medical coco page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:Cigna Connect Colorado Option Bronze |
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I set medical premium amount
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
