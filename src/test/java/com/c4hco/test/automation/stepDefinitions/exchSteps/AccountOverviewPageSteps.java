@@ -52,9 +52,10 @@ public class AccountOverviewPageSteps {
         accountOverviewPage.setScenarioDetails(expectedResult);
     }
 
-    @And("I set the profileChange and residential address change for {string} to be true")
-    public void isetProfileChange(String prefix){
-        accountOverviewPage.setProfileChange(prefix);
+    @And("I set the profileChange and residential address change for {string} to be {string}")
+    public void isetProfileChange(String prefix, String option){
+        boolean isOption = Boolean.parseBoolean(option);
+        accountOverviewPage.setProfileChange(prefix, isOption);
     }
 
     @Given("I set the dynamic policy, coverage and financial dates for {string} plan")
