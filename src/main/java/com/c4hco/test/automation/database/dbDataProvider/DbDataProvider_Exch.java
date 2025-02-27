@@ -88,7 +88,6 @@ public class DbDataProvider_Exch {
             zipcode = member.getOldResAddress().getAddressZipcode();
             county = member.getOldResAddress().getAddressCounty();
         }
-
         return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode, county));
 
     }

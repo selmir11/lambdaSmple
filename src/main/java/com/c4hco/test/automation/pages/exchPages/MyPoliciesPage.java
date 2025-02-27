@@ -209,10 +209,9 @@ public class MyPoliciesPage {
                 throw new IllegalArgumentException("Invalid option: " + planType);
         }
     }
+    
     public void validateCancelPlan(String planType){
          WebElement element = basicActions.getDriver().findElement(By.id("SOL-CurrentPolicies-CancelCurrent"+planType+"\")"));
-         if(!element.isDisplayed()) {
-             Assert.assertFalse(basicActions.waitForElementToBePresent(element, 10));
-         }
+         Assert.assertFalse(basicActions.waitForElementToBePresent(element, 10));
     }
 }
