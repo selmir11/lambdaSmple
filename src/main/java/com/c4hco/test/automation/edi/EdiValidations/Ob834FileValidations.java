@@ -150,6 +150,7 @@ public class Ob834FileValidations {
         List<List<String>> n1SegListOfList = member.getN1();
         List<List<String>> refSegListOfList = member.getREF();
         List<String> n1SegList = new ArrayList<>();
+
         int lxSegCount = 1;
 
         if (member.getINS().get(0).get(0).equals("Y")) {
@@ -158,9 +159,11 @@ public class Ob834FileValidations {
             } else {
                 softAssert.assertEquals(lxSegment.size(), 8, "LX Seg size is not equals to 8 for subscriber");
             }
-        } else {
+        } else if(SharedData.getPrimaryMember().getIsProfileChange()&& entry.getAddl_maint_reason().contains("|")){
+            // For SLER-1235 - rating area update. Works for one group
+            softAssert.assertEquals(lxSegment.size(), 3, "LX Seg size is not equals to 3 for member");
+        }else {
             softAssert.assertEquals(lxSegment.size(), 2, "LX Seg size is not equals to 2 for member");
-
         }
         softAssert.assertEquals(lxSegment.size(), n1SegListOfList.size(), "LX seg size is not equal to n1seg size within LS loop for this member");
 
@@ -241,7 +244,8 @@ public class Ob834FileValidations {
                 default:
                     Assert.fail("Incorrect LX Case");
             }
-        } else {
+        }
+        else {
             // member
             switch ("LX" + lxSegCount) {
                 case "LX1":
@@ -296,7 +300,23 @@ public class Ob834FileValidations {
                     default:
                         Assert.fail("Incorrect LX Case");
                 }
-            } else {
+            } else
+                if(SharedData.getPrimaryMember().getIsProfileChange()&&entry.getAddl_maint_reason().contains("|")){
+                switch ("LX" + lxSegCount) {
+                    case "LX1":
+                        softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(addtlMainReas1), "LX" + lxSegCount + " did not match");
+                        break;
+                    case "LX2":
+                        softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(addtlMainReas2), "LX" + lxSegCount + " did not match");
+                        break;
+                    case "LX3":
+                        softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX" + lxSegCount + " did not match");
+                        break;
+                    default:
+                        Assert.fail("Incorrect LX Case");
+                }
+            } else
+            {
                 // member
                 switch ("LX" + lxSegCount) {
                     case "LX1":
@@ -310,6 +330,7 @@ public class Ob834FileValidations {
                 }
             }
         } else {
+
             if (member.getINS().get(0).get(0).equals("Y")) {
                 switch ("LX" + lxSegCount) {
                     case "LX1":
@@ -339,7 +360,8 @@ public class Ob834FileValidations {
                     default:
                         Assert.fail("Incorrect LX Case");
                 }
-            } else {
+            }
+           else {
                 // member
                 switch ("LX" + lxSegCount) {
                     case "LX1":

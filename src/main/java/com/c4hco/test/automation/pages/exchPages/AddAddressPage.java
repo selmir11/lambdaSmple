@@ -247,6 +247,7 @@ public class AddAddressPage {
     public void addNewResidentialAddress(String prefix, List<Map<String, String>> addDetails){
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
 
+
         String addressLine1 = addDetails.get(0).get("addressLine1");
         String city = addDetails.get(0).get("city");
         String state = addDetails.get(0).get("state");
@@ -257,6 +258,7 @@ public class AddAddressPage {
         newResidentialAdressCity.sendKeys(city);
         newResidentialAddressState.sendKeys(state);
         newResidentialAddressZip.sendKeys(zipcode);
+        basicActions.waitForElementToBePresentWithRetries(newResidentialAddressCounty, 10);
         newResidentialAddressCounty.click();
         Select dropdown = new Select(newResidentialAddressCounty);
         dropdown.selectByValue(county);

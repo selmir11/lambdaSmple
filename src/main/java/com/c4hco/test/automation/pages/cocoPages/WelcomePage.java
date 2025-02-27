@@ -55,6 +55,9 @@ public class WelcomePage {
     @FindBy(css = "button#ELIG-WelcomePage-ApplyForInsurance-2025")
     WebElement applyForCurrentYearButton;
 
+    @FindBy(id = "ELIG-WelcomePage-ApplyForInsurance-2025")
+    WebElement makeChangeButton;
+
     @FindBy(css = ".plan-year-control-container > label")
     WebElement planYearText;
 
@@ -118,6 +121,10 @@ public class WelcomePage {
 //        String year = applyForYrCoco.getText().replace("Apply for ", "");
 //        SharedData.setPlanYear(year);
 //        applyForYrCoco.click();
+    }
+    public void iClickMakeChangeButton() {
+        basicActions.waitForElementToBePresent(makeChangeButton, 20);
+        makeChangeButton.click();
     }
 
     public void selectPlanyear(String planYear) {
