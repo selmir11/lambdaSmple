@@ -213,6 +213,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click plus icon next to member on household page for "Primary"

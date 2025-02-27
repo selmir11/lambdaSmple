@@ -548,7 +548,7 @@ public class LoginPage {
     }
 
     public void logIntoMyProgramManagerAccount() {
-        basicActions.waitForElementToBePresentWithRetries(username,30);
+        basicActions.waitForElementToBePresentWithRetries(signInButton,30);
         username.sendKeys(SharedData.getAssisterDetails().getEmail());
         password.sendKeys(SharedData.getAssisterDetails().getPassword());
         signInButton.click();

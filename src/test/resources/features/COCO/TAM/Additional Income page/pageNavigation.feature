@@ -27,20 +27,25 @@ Feature: Tests related to the Additional Income page
     And I select "No" income changes option
     And I click continue on the Employment income page
 
-  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke
+  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke @test
   Scenario: SLCR-133 There is "None of these" option is selected on the Additional Income page in the first tab after changes are made in the second tab
     #Step1
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I select "Cash Support" as additional income option with "1000" amount at "Annually" frequency
     And I select "Untaxed Foreign Income" as additional income option with "100" amount at "Monthly" frequency
     And I select continue on the Additional Income CoCO page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
     And I select Back on the Deductions CoCo page
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     #Step2
     Then I open current page in new tab
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I switch to the tab number 0
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I unselect "Cash Support" option on the Additional Income CoCo page
     And I unselect "Untaxed Foreign Income" option on the Additional Income CoCo page
     And I select "Royalty Income" as additional income option with "5000" amount at "Monthly" frequency
@@ -48,15 +53,18 @@ Feature: Tests related to the Additional Income page
     #Step3
     And I switch to the tab number 1
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I select continue on the Additional Income CoCO page
-    Then I validate the error banner is displayed on the Additional Income CoCo page
+    Then I verify the error banner at the top of the page
     #Step4
     And I switch to the tab number 0
     Then I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
     And I refresh the page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
     And I select Back on the Deductions CoCo page
     #And I unselect "None of these" option on the Additional Income CoCo page
-    Then I validate no errors are displayed on the Additional Income CoCo page
+    Then I validate no error banner is displayed at the top of the page
     Then I validate "None of these" option is selected on the Additional Income CoCo page
 
     And I click on Sign Out in the Header for "Elmo"
@@ -66,6 +74,7 @@ Feature: Tests related to the Additional Income page
   Scenario: SLCR-136 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages
     #Step1
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I change the C4 url to "Income portal Error CoCo"
     Then I validate I am on the "Error" page
     And I click Back to Welcome page Button on error CoCo page
@@ -84,6 +93,7 @@ Feature: Tests related to the Additional Income page
     And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I change the C4 url to "Income portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
     And I verify User name Link is displayed in the "CoCo" Header
@@ -94,7 +104,7 @@ Feature: Tests related to the Additional Income page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-435 @PageNavigationAdditionalIncome
+  @SLCR-435 @PageNavigationAdditionalIncome @test
   Scenario: SLCR-435 My session is invalidated when I log out in Income Portal, COCO
     #step1
     Then I validate I am on the "CoCo Additional Income" page
@@ -123,6 +133,7 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Employment income page
 
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     Then I open current page in new tab
     Then I validate I am on the "CoCo Additional Income" page
     And I switch to the tab number 0
@@ -243,25 +254,30 @@ Feature: Tests related to the Additional Income page
   @SLCR-758
   Scenario: SLCR-758 Page Navigation - Additional Income CoCo page
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     And I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
     And I select Back on the Deductions CoCo page
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I select Go Back on the Additional Income CoCo page
     And I validate I am on the "Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I validate page Navigation works for Header and Footer hyperlink text
       | HyperLinkText      | ExpectedPageTitle        | ContainsUrl                                      |
       | Privacy Policy     | Privacy Policy           | coco/InformationPortal/privacyPolicy             |
       | Terms Of Use       | Terms of Use             | coco/InformationPortal/termsOfUse                |
       | Contact Us         | Contact Us               | coco/InformationPortal/contactUs                 |
       | Learn More         | Contact Us               | coco/InformationPortal/contactUs                 |
-      | Apply for Coverage | Welcome Portal           | coco/WelcomePortal/welcome                       |
+      | Apply for Coverage | Welcome                  | coco/WelcomePortal/welcome                       |
       | Find a Plan        | ApplicationResultsPortal | coco/ApplicationResultsPortal/applicationResults |
       | My Account         | User Profile             | coco/UserProfileAdmin/profile                    |
-      | CoCo Logo          | Welcome Portal           | coco/WelcomePortal/welcome                       |
+      | CoCo Logo          | Welcome                  | coco/WelcomePortal/welcome                       |
       | UserName           | User Profile             | coco/UserProfileAdmin/profile                    |
 
     #Navigate to Find Expert Assistance page

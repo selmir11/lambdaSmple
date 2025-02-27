@@ -33,12 +33,16 @@ Feature: Tests related to the Employment Income page
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
     #Step2
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     And I select Go Back on the Additional Income CoCo page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I select "No" employment option
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
     Then I validate no error banner is displayed at the top of the page
-    And I go to the previous browser page
+    And I select Go Back on the Additional Income CoCo page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     Then I validate no errors are displayed on the Employment income page
     Then I validate "No" job option is selected on the Employment income page
     #Step3
@@ -78,9 +82,10 @@ Feature: Tests related to the Employment Income page
     And I select Go Back on the Additional Income CoCo page
     And I select "No" employment option
     And I click continue on the Employment income page
-    Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for additional member on the CoCo Additional Income page in "English"
     Then I validate no error banner is displayed at the top of the page
-    And I go to the previous browser page
+    And I select Go Back on the Additional Income CoCo page
+    And I verify the header for additional member on the CoCo Employment income page in "English"
     Then I validate no errors are displayed on the Employment income page
     Then I validate "No" job option is selected on the Employment income page
     #Step3
@@ -108,6 +113,7 @@ Feature: Tests related to the Employment Income page
     And I click save and continue on the Race and Ethnicity page
 #    check in English and change to Spanish
     Then I validate I am on the "CoCo Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I change the C4 url to "Employment Income Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
     Then I verify unauthorized text in "English"
@@ -129,6 +135,7 @@ Feature: Tests related to the Employment Income page
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the header for Primary Member on the CoCo Employment income page in "Spanish"
     And I change the C4 url to "Employment Income Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
     Then I verify unauthorized text in "Spanish"
@@ -144,18 +151,7 @@ Feature: Tests related to the Employment Income page
     Then I validate I am on the "Login" page
 
   @SLCR-751
-  Scenario: Page Navigation-Employment Income
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
-    And I apply for the current year in CoCo
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
+  Scenario: SLCR-751 Page Navigation-Employment Income
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"
@@ -182,16 +178,17 @@ Feature: Tests related to the Employment Income page
     And I click continue on the Employment income page
 
     And I select Go Back on the Additional Income CoCo page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I validate page Navigation works for Header and Footer hyperlink text
       | HyperLinkText      | ExpectedPageTitle        | ContainsUrl                                      |
       | Privacy Policy     | Privacy Policy           | coco/InformationPortal/privacyPolicy             |
       | Terms Of Use       | Terms of Use             | coco/InformationPortal/termsOfUse                |
       | Contact Us         | Contact Us               | coco/InformationPortal/contactUs                 |
       | Learn More         | Contact Us               | coco/InformationPortal/contactUs                 |
-      | Apply for Coverage | Welcome Portal           | coco/WelcomePortal/welcome                       |
+      | Apply for Coverage | Welcome                  | coco/WelcomePortal/welcome                       |
       | Find a Plan        | ApplicationResultsPortal | coco/ApplicationResultsPortal/applicationResults |
       | My Account         | User Profile             | coco/UserProfileAdmin/profile                    |
-      | CoCo Logo          | Welcome Portal           | coco/WelcomePortal/welcome                       |
+      | CoCo Logo          | Welcome                  | coco/WelcomePortal/welcome                       |
       | UserName           | User Profile             | coco/UserProfileAdmin/profile                    |
 
     #Navigate to Find Expert Assistance page
@@ -216,18 +213,7 @@ Feature: Tests related to the Employment Income page
 
 
   @SLCR-768
-  Scenario: Page Navigation-Additional Member Employment Income
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
-    And I apply for the current year in CoCo
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
+  Scenario: SLCR-768 Page Navigation-Additional Member Employment Income
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11281986", "Male", and applying "Yes"

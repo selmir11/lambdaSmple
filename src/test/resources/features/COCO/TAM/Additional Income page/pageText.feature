@@ -245,7 +245,7 @@ Feature: Tests related to the Additional Income page
     Then I verify the text on the CoCo Additional Income page in "Spanish"
     Then I verify the navigation buttons on the CoCO Additional Income page in "Spanish"
 
-  @SLCR-413 @PageTextAdditionalIncome
+  @SLCR-413 @PageTextAdditionalIncome @test
     Scenario: SLCR-413 I verify the text on the CoCo Additional Income Additional Member page - English
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
