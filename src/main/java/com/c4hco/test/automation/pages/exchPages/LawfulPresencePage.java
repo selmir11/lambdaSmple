@@ -629,7 +629,6 @@ public class LawfulPresencePage {
     }
 
     public void verifyErrMsgInCitizenshipAndImmigrationPage(String language, List<String> dataText) {
-
         basicActions.waitForElementToBePresent(UsicsNumErrMsg, 2);
         basicActions.waitForElementToBePresent(DocTypeErrorMsg, 1);
         basicActions.waitForElementToBePresent(DocNumError, 1);
