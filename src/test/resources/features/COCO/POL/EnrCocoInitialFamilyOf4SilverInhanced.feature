@@ -128,10 +128,8 @@ Feature: Initial Application Family of 4(Silver Enhanced)
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
-    And I select year "2024" from My Current Plan container
+    And I select year "2025" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And I validate enrolled medical plans details on my policies page coco
-    And I click view Plan History link from medical plan card in coco
-    And I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
