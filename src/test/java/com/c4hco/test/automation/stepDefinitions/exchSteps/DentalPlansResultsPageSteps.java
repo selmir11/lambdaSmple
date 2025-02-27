@@ -51,8 +51,7 @@ public class DentalPlansResultsPageSteps {
     public void selectSkipOnDentalPlanResultsPage() { dentalPlansResultsPage.clickSkip(); }
 
     @Then("I click on the compare links on the first 2 dental plans")
-    public void clickFirstTwoCompareBoxes() {
-        dentalPlansResultsPage.clickFirstTwoCompareBoxes();
+    public void clickFirstTwoCompareBoxes() {dentalPlansResultsPage.clickFirstTwoCompareBoxes();
     }
 
     @Then("I click on the compare dental button")

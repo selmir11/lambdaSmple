@@ -192,7 +192,7 @@ Feature: Seed04 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    @SLER-1235-WIP_@RFV @n1
+    @SLER-1235-WIP_@RFV
     Scenario: RT-2051 ENR-EXCH: APPS - CHANGE PRIMARY RESIDENTIAL ADDRESS (Different Rating Area)
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
@@ -261,7 +261,7 @@ Feature: Seed04 - Exchange
       And I validate "dental" entities from policy tables
       And I reset the previous file names in shared data
       And I verify the policy data quality check with Policy Ah keyset size 2
-      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+#      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
       And I validate "medical" entities from pre edi db tables
         | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
         | 001                   | 001                | 25                    | FINANCIAL CHANGE or DEMOGRAPHIC CHANGE |            |

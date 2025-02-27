@@ -1,4 +1,4 @@
-@COCO11
+@SIR-COCO11
     # SLCR-719, SLCR-720, SLCR-721, SLCR-722, SLCR-723,
 
     # for closed enrollment post Jan 15 - Pregnancy, Death, and Divorce are not qualified LCEs  - only the Admin can override this status

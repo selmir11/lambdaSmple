@@ -70,6 +70,7 @@ public class PolicyTableDbValidations {
              dentalPlanDbDataMap = new HashMap<>();
              dbDataMap = new HashMap<>();
              subscribers = new ArrayList<>();
+             SharedData.setDbDataNew(dbDataMapList);
         }
 
         private void medicalRecordsValidations() {

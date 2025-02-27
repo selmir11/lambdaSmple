@@ -30,7 +30,7 @@ Feature: Programme Manager
       | PrimaryPhone     |
       | OrganisationName |
       | siteID           |
-    Then I enter an "FirstName" in any env "dst" "dst" to search user
+    Then I enter an "FirstName" in any env "adst" "adst" to search user
     Then I wait for 2000 milliseconds
     Then I click on Search button in AP dashboard page
     When I select "Sort by: First Name A to Z"

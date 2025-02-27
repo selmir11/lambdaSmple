@@ -47,10 +47,10 @@ public class DentalPlansResultsPage {
     @FindBy(id = "PlanResults-RemovePlan_1")
     WebElement removeplan;
 
-    @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
+    @FindBy(css = "#PlanResults-PlanCompareCheckbox_1")
     WebElement comparePlanBox1;
 
-    @FindBy(id = "PlanResults-PlanCompareCheckbox_2")
+    @FindBy(css = "#PlanResults-PlanCompareCheckbox_2")
     WebElement comparePlanBox2;
 
     @FindBy(id = "DentalPlanResults-ComparePlans")
@@ -172,8 +172,8 @@ public class DentalPlansResultsPage {
     }
 
     public void clickGoBack() {
-        basicActions.waitForElementToDisappear( spinner, 30 );
-        basicActions.waitForElementToBeClickableWithRetries( btnGoBack, 20 );
+        basicActions.waitForElementToDisappear( spinner, 50 );
+        basicActions.waitForElementToBePresentWithRetries( btnGoBack, 30 );
         basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
 
@@ -196,7 +196,8 @@ public class DentalPlansResultsPage {
     }
 
     public void clickFirstTwoCompareBoxes() {
-        basicActions.waitForElementToBePresent( comparePlanBox1, 10 );
+        basicActions.waitForElementToDisappear( spinner,30 );
+        basicActions.waitForElementToBePresentWithRetries( comparePlanBox1, 40 );
         comparePlanBox1.click();
         comparePlanBox2.click();
     }

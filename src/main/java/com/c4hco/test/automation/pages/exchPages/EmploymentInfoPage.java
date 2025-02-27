@@ -76,7 +76,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSeasonal-NoButton")
     WebElement btnIsSeasonalNo;
 
-    @FindBy(id = "ELIG-summaryDetails-YesButton")
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-YesButton")
     WebElement btnIncomeSameYes;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-NoButton")
@@ -184,6 +184,12 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-summaryDetails-incomeAmountInput")
     WebElement projectedIncomeInput;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinnerOverlay;
+
 
     public void clickEditUpdateLink(int employer) {
         basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
@@ -206,6 +212,7 @@ public class EmploymentInfoPage {
 
     public void isUserSelfEmplyed(String selfEmploymentOption) {
         basicActions.waitForElementToBeClickable(btnYesSelfEmployed, 20);
+        basicActions.waitForElementToBeClickable(btnNoSelfEmployed, 20);
         switch (selfEmploymentOption) {
             case "Yes":
                 btnYesSelfEmployed.click();
@@ -352,6 +359,7 @@ public class EmploymentInfoPage {
     }
 
     public void projectedIncomeQuestion(String projectedIncomeOption) {
+        basicActions.waitForElementToBePresent(btnIncomeSameYes,30);
         switch (projectedIncomeOption) {
             case "Yes":
                 btnIncomeSameYes.click();
@@ -365,6 +373,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
+        basicActions.waitForElementToDisappear(spinner,15);
+        basicActions.waitForElementToDisappear(spinnerOverlay,15);
         basicActions.waitForElementToBePresent(btnContinue, 90);
         basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(btnContinue);
