@@ -73,6 +73,7 @@ Feature: Anonymous Find Expert Help page header and footer validation
     And I validate I am on the "Threads" page and close tab
 
     Then I change the language from header to "Spanish"
+    And I wait for 2000 milliseconds
     And I verify text on the "Exch" "Anonymous Find Expert Help" in "Spanish"
 
     Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header

@@ -79,6 +79,7 @@ Feature: Page Text-OHC VA Healthcare Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status Elmo page
+    Then I validate I am on the "Elmo Other Health Coverage" page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo Ohc VA Healthcare" page
@@ -182,6 +183,7 @@ Feature: Page Text-OHC VA Healthcare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I verify the header for Primary Member on the VA Healthcare page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -205,6 +207,7 @@ Feature: Page Text-OHC VA Healthcare Elmo Page
     Then I click continue on the ELMO health coverage page
     
     And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I verify the header for Primary Member on the VA Healthcare page in "English"
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab

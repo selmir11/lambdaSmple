@@ -61,6 +61,7 @@ Feature: Page Text-Other Health Coverage Page HRA
 
   @SLER-284 @PageTextOhcHraElmo
   Scenario: SLER-284 I can see HRA's Header and footer - English
+    And I verify the header for Primary Member on the HRA page in "English"
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
@@ -186,6 +187,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
+    And I verify the header for Primary Member on the HRA page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -209,6 +211,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo HRA" page
+    And I verify the header for Primary Member on the HRA page in "English"
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
