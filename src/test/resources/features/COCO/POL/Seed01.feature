@@ -52,7 +52,6 @@ Then I validate I am on the "Application Results CoCo" page
 And I click Continue on the Application Results Page CoCo
 Then I validate I am on the "Start Shopping" page
 Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
-And I get the application id from the url from tobacco page coco
 Then I click continue on coco start shopping page
 Then I validate I am on the "Medical Plan Results" page
 And I select or skip the medical plans for groups on medical plan page
@@ -86,7 +85,19 @@ And I select the reason to confirm the changes
 Then I close current tab and switch back to previous tab
 And logout from Admin Portal
 
-#UI Validation - WIP
+#UI Validation - WIP  Need to update because of new page in UI
+#  Given I open the login page on the "login" portal
+#  Then I validate I am on the "Login" page
+#  And I enter valid credentials to login
+#  Then I validate I am on the "CoCo Welcome" page
+#  Then I click continue signing in on the CAC Screener page
+#  Then I validate I am on the "CoCo Welcome" page
+#  And I select year "2025" from My Current Plan container
+#  And I Validate the correct enrolled plans are displayed on coco welcome page
+#  And I click on "My Plans" link on welcome page
+#  And I validate enrolled medical plans details on my policies page coco
+#  And I click view Plan History link from medical plan card in coco
+#  And I validate medical plan details from plan history in coco
 
 # DB Validation
 And I validate "CANCELLED" Medical entities from COCO policy tables
@@ -105,7 +116,7 @@ And I validate Current Medical entities from COCO pre edi db tables
     | 021                   | 021                | EC                    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year |                   | NEW_CO_RESIDENT |
 And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
 
-@SLCR-780 WIP
+@SLCR-780-WIP
 Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
   Given I open the login page on the "login" portal
   Then I validate I am on the "Login" page
@@ -137,7 +148,6 @@ Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME 
   Then I validate I am on the "Application Results CoCo" page
   And I click Continue on the Application Results Page CoCo
   And I click close on open enrollment ended pop up modal
-  And I set new unavailable application id to null
   And I click on Sign Out in the Header for "Elmo"
 
   # DB Validation

@@ -441,7 +441,4 @@ public class ApplicationResultsCoCoPage {
         basicActions.waitForElementToBePresent(warningModalCloseBtn, 10);
         basicActions.getDriver().findElement(By.id("not-elig-shop-close-button")).click();
     }
-    public void setApplicationIdNull(){
-        SharedData.getPrimaryMember().setApplication_id(null);
-    }
 }
