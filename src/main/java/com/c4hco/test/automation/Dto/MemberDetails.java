@@ -25,7 +25,9 @@ public class MemberDetails {
     String dob;
     String zipcode;
     Address resAddress;
+    Address oldResAddress;
     Address mailingAddress;
+    Address oldMailingAddress;
     String gender;
     String race;
     String medicalPlan;
@@ -94,6 +96,9 @@ public class MemberDetails {
     List<String> taxReturnId;
     String contactPref;
     String applyingforCov;
+    String medicalSesAmt;
+    Boolean isProfileChange = false;
+    Boolean isResAddChange = false;
 }
 
 

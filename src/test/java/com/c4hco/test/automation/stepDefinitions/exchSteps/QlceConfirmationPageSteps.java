@@ -37,4 +37,14 @@ public class QlceConfirmationPageSteps {
     public void iClickBackButton(){
         qlceConfirmationPage.clickBackButton();
     }
+
+    @And("I set pregnancy event date as {string}")
+    public void setPregnancyEventDate(String eventDateType) {
+        qlceConfirmationPage.setPregnancyEventDate(eventDateType);
+    }
+    @When("I select birth and check member and {string} as event date on QLCE")
+    public void iSelectBirthAndCheckMemberAndAsEventDateOnQLCE(String firstDateOfCurrentMonth) {
+        qlceConfirmationPage.selectBirthOptionWithEventDate(firstDateOfCurrentMonth);
+    }
+
 }

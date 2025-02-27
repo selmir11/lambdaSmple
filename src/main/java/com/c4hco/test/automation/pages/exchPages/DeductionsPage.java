@@ -205,7 +205,7 @@ public class DeductionsPage {
     @FindBy(css = ".checkbox-container span")
     List<WebElement> checkBoxLabels;
 
-    @FindBy(css="span .btn-second-action-button")
+    @FindBy(id="Deductions-GoBack")
     WebElement goBackButton;
 
     @FindBy(xpath = "(//button[@role='checkbox'])[position()<11]")
@@ -402,15 +402,20 @@ public class DeductionsPage {
                 helpDrawerSelfEmploymentRetirementLink.click();
                 break;
             case "Moving Expenses":
-                basicActions.scrollToElement(helpDrawerMovingLink);
-                int elementWidth = helpDrawerMovingLink.getSize().getWidth(); //Click left of center due to chat widget
-                int elementHeight = helpDrawerMovingLink.getSize().getHeight();
-                int centerX = elementWidth / 2;
-                int centerY = elementHeight / 2;
-                int offsetX = centerX - 200;
-                actions.moveToElement(helpDrawerMovingLink, offsetX, centerY)
-                        .click()
-                        .perform();
+                String incomeSummaryHeaderText = IncomeSummaryHeader.getText().trim();
+                if (incomeSummaryHeaderText.startsWith("Income")) { // English version
+                    basicActions.scrollToElement(helpDrawerMovingLink);
+                    int elementWidth = helpDrawerMovingLink.getSize().getWidth();
+                    int elementHeight = helpDrawerMovingLink.getSize().getHeight();
+                    int centerX = elementWidth / 2;
+                    int centerY = elementHeight / 2;
+                    int offsetX = centerX - 200; // Adjust click position to avoid chat widget
+                    actions.moveToElement(helpDrawerMovingLink, offsetX, centerY)
+                            .click()
+                            .perform();
+                } else if (incomeSummaryHeaderText.startsWith("Ingresos")) { // Spanish version
+                    helpDrawerMovingLink.click();
+                }
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + lnkName);
@@ -1103,15 +1108,27 @@ public class DeductionsPage {
         }
         softAssert.assertAll();
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public void verifyAllDeductioncheckboxErrors(String language) {
+        int checkBoxCount = addtlDeductionBox.size();
+        for (int i = 0; i < checkBoxCount-1; i++) {
+            addtlDeductionBox.get(i).click();
+            saveAndContinueBtn.click();
+            verifyDeductionsOptionAmt1Error(language);
+            verifyDeductionsOptionFreq1Error(language);
+            addtlDeductionBox.get(i).click();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

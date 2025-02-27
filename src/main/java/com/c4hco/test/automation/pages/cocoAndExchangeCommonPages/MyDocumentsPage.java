@@ -26,7 +26,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 
 
@@ -272,6 +271,12 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[text()='Download']")
     WebElement btn_download;
 
+    @FindBy(xpath = "//*[@class='toast fade ng-star-inserted show']")
+    WebElement txtUploadSuccess;
+
+    @FindBy(id = "documentsUploadMessage")
+    WebElement noNeedToUpload;
+
 
 
     public void ClickLinkMyDocsWelcomePage() {
@@ -289,48 +294,7 @@ public class MyDocumentsPage {
         pastDocCarrot.click();
         WebElement downloadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + docType + "')]/p//following::a[1]"));
         downloadButton.click();
-        waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
-    }
-
-
-    public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
-        File dir = new File(localPath);
-        File[] filesBefore = dir.listFiles();
-        long startTime = System.currentTimeMillis();
-
-        // Loop until the timeout or until a new file is found
-        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
-            File[] filesAfter = dir.listFiles();
-            if (filesAfter != null) {
-                for (File file : filesAfter) {
-                    if (!file.isDirectory() && (filesBefore == null || !fileExists(filesBefore, file))) {
-                        if (file.length() > 0) {
-                            SharedData.setNoticeFileName(file.getName());
-                            return file.getName();
-                        }
-                    }
-                }
-            }
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
-            }
-        }
-        return null;
-    }
-
-    private static boolean fileExists(File[] files, File file) {
-        if (files == null) {
-            return false;
-        }
-        for (File f : files) {
-            if (f.getName().equals(file.getName())) {
-                return true;
-            }
-        }
-        return false;
+        basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 30);
     }
 
     public boolean verifyPDFText(String expectedText, String docType, String language, String memberNumber) throws IOException {
@@ -598,7 +562,9 @@ public class MyDocumentsPage {
             try {
                 basicActions.waitForElementToBePresent(btnUploadDoc, 10);
                 btnUploadDoc.click();
-                basicActions.wait(10);
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess,20);
+                Assert.assertEquals(txtUploadSuccess.getText(), "Document uploaded successfully.");
+                basicActions.wait(5);
                 if (basicActions.isElementDisplayed(txtUploadError,20)) {
                     throw new Exception("Upload error detected");
                 }
@@ -641,8 +607,10 @@ public class MyDocumentsPage {
     }
 
     public void SelectPlanYeardropdown(String selectYear) {
-        String expectedYr = "";
         basicActions.waitForElementToBePresent(PlanYearDropDown.get(0), 30);
+        basicActions.refreshPage();
+        basicActions.wait(1000);
+        basicActions.refreshPage();
         switch (selectYear) {
             case "All":
                 PlanYearDropDown.get(0).click();
@@ -941,8 +909,12 @@ public class MyDocumentsPage {
     public void verifyFileExistAndNotEmpty() {
         basicActions.waitForElementToBeClickable(btn_download, 10);
         btn_download.click();
-        String fileName=waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
-        Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
+        String fileName=basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
+        if (SharedData.getEnv().equals("qa")) {
+            Assert.assertEquals(fileName, "Peace Corps-6103120466-11-Aug-2021.docx","File name is not matched");
+        } else {
+            Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
+        }
     }
 
 
@@ -1014,4 +986,150 @@ public class MyDocumentsPage {
 
     }
 
+    public void verifyFileNameFormat(String NoticeName) {
+        String formatedDate =   basicActions.changeDateFormat( basicActions.getTodayDate(),"MM/dd/yyyy","dd-MMM-yyyy");
+        basicActions.waitForElementToBeClickable(btn_download, 10);
+        btn_download.click();
+        String fileName = basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 40);
+        Assert.assertEquals(fileName, NoticeName + "-" + SharedData.getPrimaryMember().getAccount_id() + "-" + formatedDate +" (1).pdf", "File Name Not Match :  ");
+    }
+
+    public void iClickUploadButton(String mvrType) {
+        String btnUpload = "//p[contains(text(),'Proof of "+ mvrType +"')]//following::button[1]";
+        List<WebElement> btnUploadMvr = basicActions.getDriver().findElements(By.xpath(btnUpload));
+        if(!btnUploadMvr.isEmpty()) {
+            btnUploadMvr.get(0).click();
+        }
+        else {
+            basicActions.waitForElementToBeClickable(UploadDocumentText, 30);
+            basicActions.click(UploadDocumentText);
+        }
+    }
+
+    public void iVerifyDocumentCategoryAndTypes(String mvrType, List<String> docTypes) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 100);
+        String actual = docTypeDrpDwn.getText();
+        switch (mvrType) {
+            case "American Indian or Alaska Native Membership":
+                if (actual.contains("American Indian/Alaska Native Tribal Membership")) {
+                    Assert.assertEquals(actual, "American Indian/Alaska Native Tribal Membership", " list not defaulted with" + mvrType);
+                } else {
+                    docTypeDrpDwn.click();
+                    categoryList.get(1).click();
+                }
+                break;
+            case "US Citizenship":
+                if (actual.contains("Citizenship Status")) {
+                    Assert.assertEquals(actual, "Citizenship Status", " list not defaulted with" + mvrType);
+                } else {
+                    docTypeDrpDwn.click();
+                    categoryList.get(4).click();
+                }
+                break;
+            case "Life":
+                if (actual.contains("Death")) {
+                    Assert.assertEquals(actual, "Death", " list not defaulted with" + mvrType);
+                } else {
+                    docTypeDrpDwn.click();
+                    categoryList.get(7).click();
+                }
+                break;
+            case "Eligible Immigration Status":
+                if (actual.contains("Eligible Immigration Status")) {
+                    Assert.assertEquals(actual, "Eligible Immigration Status", " list not defaulted with" + mvrType);
+                } else {
+                    docTypeDrpDwn.click();
+                    categoryList.get(8).click();
+                }
+                break;
+            case "Incarceration Status":
+                if (actual.contains("Incarceration")) {
+                    Assert.assertEquals(actual, "Incarceration", " list not defaulted with" + mvrType);
+                } else {
+                    docTypeDrpDwn.click();
+                    categoryList.get(12).click();
+                }
+                break;
+            case "Financial Help Eligibility":
+                if (actual.contains("Income")) {
+                    Assert.assertEquals(actual, "Income", " list not defaulted with" + mvrType);
+                } else {
+                    docTypeDrpDwn.click();
+                    categoryList.get(13).click();
+                }
+                break;
+            case "Social Security Number":
+                if (actual.contains("Social Security Number")) {
+                    Assert.assertEquals(actual, "Social Security Number", " list not defaulted with" + mvrType);
+                } else {
+                    docTypeDrpDwn.click();
+                    categoryList.get(17).click();
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + mvrType);
+        }
+        verifyDocumentTypes(docTypes);
+    }
+
+    private void verifyDocumentTypes(List<String > DocType){
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn, 100);
+        docCategoryDrpDwn.click();  // Clicking on sublist dropdown to view items
+        List<String> actualList = new ArrayList<>();
+        for (WebElement item : categoryList) { //Fetching sub list items
+            actualList.add(item.getText().trim());
+        }
+        List<String> expectedList = new ArrayList<>();
+        String[] splitvalues = DocType.get(0).split("&");
+        for (int j = 0; j < splitvalues.length; j++) {
+            String formattedvalue = (j == 0) ? splitvalues[j].trim() : "" + splitvalues[j].trim();
+            expectedList.add(formattedvalue);
+        }
+        Assert.assertEquals(actualList, expectedList, " Expected and Actual list not Match");
+        dpdWhichDocumentOptions.get(0).click();
+    }
+
+    public void uploadMvrDocAndSuccesMessage() {
+        clickWhichDocument();
+        uploadDoc("TestMyDocs.docx");
+        clickUploadDoc();
+    }
+
+    public void uploadAnotherDocWithSuccessMessage(String uploadDocFile, String mvrType) {
+         selectDocumentCategoryAndType(mvrType);
+         uploadDoc(uploadDocFile);
+         clickUploadDoc();
+    }
+
+    private void selectDocumentCategoryAndType(String mvrType) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 100);
+        docTypeDrpDwn.click();
+        basicActions.waitForElementListToBePresent(categoryList, 100);
+        switch (mvrType) {
+            case "American Indian or Alaska Native Membership":
+                categoryList.get(1).click();
+                break;
+            case "US Citizenship":
+                categoryList.get(4).click();
+                break;
+            case "Death":
+                categoryList.get(7).click();
+                break;
+            case "Eligible Immigration Status":
+                categoryList.get(8).click();
+                break;
+            case "Incarceration Status":
+                categoryList.get(12).click();
+                break;
+            case "Financial Help Eligibility":
+                categoryList.get(13).click();
+                break;
+            case "Social Security Number":
+                categoryList.get(17).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + mvrType);
+        }
+        clickWhichDocument();
+    }
 }

@@ -76,13 +76,15 @@ public class DeclarationsAndSignaturePageCoCo {
     }
 
     public void verifyHeadersDeclarationsAndSignaturePageEnglish(){
-        basicActions.waitForElementToBePresent(hdr_DeclarationsAndSignature,15);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_DeclarationsAndSignature,120);
         softAssert.assertEquals(hdr_DeclarationsAndSignature.getText(), "Declarations and Signature");
         softAssert.assertAll();
     }
 
     public void verifyHeadersDeclarationsAndSignaturePageSpanish(){
-        basicActions.waitForElementToBePresent(hdr_DeclarationsAndSignature,50);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_DeclarationsAndSignature,60);
         softAssert.assertEquals(hdr_DeclarationsAndSignature.getText(), "Declaraciones y firma");
         softAssert.assertAll();
     }

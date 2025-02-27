@@ -212,6 +212,7 @@ public class OhcHraPage_Elmo {
 
     public void verifyHeadersHraOhcPageEnglish() {
         basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresent(ohcHraHeader, 15);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Health Reimbursement Arrangement (HRA) offered through an employer");
         softAssert.assertAll();
@@ -219,6 +220,7 @@ public class OhcHraPage_Elmo {
 
     public void verifyHeadersHraOhcPageSpanish() {
         basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresent(ohcHraHeader, 15);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Las Provisiones de reembolso de salud (HRA) se ofrecen a trav\u00E9s de su empleador");
         softAssert.assertAll();
@@ -239,7 +241,7 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraDataEnglish(String dataToVerify, String expectedIncome) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 15);
         switch (dataToVerify) {
             case "Initial Page":
                 verifyHraPageInitialDataEnglish(expectedIncome);
@@ -287,7 +289,8 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageInitialDataEnglish(String expectedIncome) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 15);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Health Reimbursement Arrangement (HRA) offered through an employer");
         softAssert.assertEquals(helpMeLink.getText(), "Help me understand this page");
@@ -319,7 +322,8 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageInitialSecondaryDataEnglish(String expectedIncome) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 60);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Health Reimbursement Arrangement (HRA) offered through an employer");
         softAssert.assertEquals(helpMeLink.getText(), "Help me understand this page");
@@ -335,7 +339,8 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageInitialSecondaryDataSpanish(String expectedIncome) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 60);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Las Provisiones de reembolso de salud (HRA) se ofrecen a trav\u00E9s de su empleador");
         softAssert.assertEquals(helpMeLink.getText(), "Ayuda para entender esta p\u00E1gina");
@@ -387,68 +392,68 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraContinueAndgoBackBtnsEnglish() {
-        softAssert.assertEquals(goBackBtn.getText(), "  Go back");
+        softAssert.assertEquals(goBackBtn.getText(), "Go back");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(goBackBtn).pause(1000L).build().perform();
-        softAssert.assertEquals(goBackBtn.getText(), "  Go back");
+        softAssert.assertEquals(goBackBtn.getText(), "Go back");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
         softAssert.assertAll();
     }
 
     public void verifyHraContinueAndgoBackBtnsSpanish() {
-        softAssert.assertEquals(goBackBtn.getText(), "  Volver");
+        softAssert.assertEquals(goBackBtn.getText(), "Volver");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(goBackBtn).pause(1000L).build().perform();
-        softAssert.assertEquals(goBackBtn.getText(), "  Volver");
+        softAssert.assertEquals(goBackBtn.getText(), "Volver");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(227, 246, 255) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
         softAssert.assertAll();
     }
 
     public void verifyEnrolledOption(String year, String amount, String type, String withOrWithout, String aptc) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
-        basicActions.waitForElementToBePresent(ohcHraHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 15);
         basicActions.waitForElementToBePresent(whenYouPayTxt, 15);
         basicActions.waitForElementToBePresent(planYeardpd, 15);
         basicActions.waitForElementToBePresent(amountInput, 15);
@@ -723,13 +728,14 @@ public class OhcHraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(), "  Go back");
+        softAssert.assertEquals(goBackBtn.getText(), "Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertAll();
     }
 
     public void verifyHraPageFirstSectionDataEnglish() {
         basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresent(ohcHraHeader, 15);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Health Reimbursement Arrangement (HRA) offered through an employer");
         softAssert.assertEquals(helpMeLink.getText(), "Help me understand this page");
@@ -767,7 +773,7 @@ public class OhcHraPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(), "  Volver");
+        softAssert.assertEquals(goBackBtn.getText(), "Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertAll();
     }

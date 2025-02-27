@@ -18,6 +18,11 @@ public class AccountOverviewPageSteps {
     @Then("I apply for the current year")
     public void iApplyForCurrentYear(){accountOverviewPage.clickApplyForCurrentYear();}
 
+
+    @And("I click on apply for dental plans")
+    public void iclickApplyForDentalPlan() {accountOverviewPage.clickApplyForDentalPlan();
+    }
+
     @Then("I click on ClickHere link for {string}")
     public void clickHere(String clickOption) {accountOverviewPage.clickHereLinks(clickOption);}
 
@@ -25,7 +30,8 @@ public class AccountOverviewPageSteps {
     public void clickMakeChanges(){
         accountOverviewPage.iClickOnMakeChanges();
     }
-
+    @Then("I click on make changes to my dental plan button")
+    public void clickMakeChangesForDentalPlanBtn(){accountOverviewPage.clickMakeChangesForDentalButton();}
 
     // ================VALIDATION METHODS================//
     @And("I validate the page is in {string}")
@@ -35,9 +41,20 @@ public class AccountOverviewPageSteps {
     public void validatePlanInfo(){
         accountOverviewPage.verifyMemberNames();
     }
+
+    @Then("I validate that financials are updated on account overview page")
+    public void validateNewFinancialAmt(){
+        accountOverviewPage.validateNewFinancialAmt();
+    }
+
     @Given("I set the test scenario details")
     public void ivalidateScenarioDetails(List<Map<String, String>> expectedResult){
         accountOverviewPage.setScenarioDetails(expectedResult);
+    }
+
+    @And("I set the profileChange and residential address change for {string} to be true")
+    public void isetProfileChange(String prefix){
+        accountOverviewPage.setProfileChange(prefix);
     }
 
     @Given("I set the dynamic policy, coverage and financial dates for {string} plan")
@@ -66,15 +83,19 @@ public class AccountOverviewPageSteps {
 
     @Then("I validate the text of the Self Attestation container")
     public void iVerifySelfAttestContainerText(){accountOverviewPage.verifySelfAttestationContainer();}
-
-
+    @Then("I validate make changes to my dental plan button popup message")
+    public void iValidateMakeChangesDentalPlanPopupMessage(List<String> message){
+    accountOverviewPage.iValidateMakeChangesForDentalPlanPopupMsg(message);
+    }
+    @Then("I verify ARP Banner no longer present on Account Overview page")
+    public void iValidateARPBannerTextNotPresent(){accountOverviewPage.iValidateARPBannerTextNotPresent();}
     @Then("I verify the button texts in account overview page {string}")
     public void iVerifyTheButtonTextsIn(String language) {accountOverviewPage.verifyDentalButtonsText(language);
     }
-
-
+    @Then("I validate page text for plan information table header")
+    public void iValidatePageTextForPlanInformationTableHeaderAndFirstColumn(List<String> languageText) {
+        accountOverviewPage.validatePageTextForTableHeader(languageText);
+    }
 
 }
-
-
 

@@ -117,4 +117,10 @@ public class AdminPortalBrokerDashboardSteps {
     public void iValidateTheStatusCertificationIs(String certificationStatus) {
         adminPortalBrokerDashboardPage.validateTheStatusCertificationIs(certificationStatus);
     }
+
+    @Then("I change the certification status to {string}")
+    public void iChangeTheCertificationStatusTo(String certificationStatus) {
+        adminPortalBrokerDashboardPage.changeTheCertificationStatusTo(certificationStatus);
+    }
+
 }

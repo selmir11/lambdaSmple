@@ -158,15 +158,15 @@ public class OhcMedicarePage_Elmo {
     public void clickInsurancePartOption(String insurancePart) {
         switch (insurancePart){
             case "A":
-                basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
+                basicActions.waitForElementListToBePresentWithRetries(medicareCheckboxDetails,120);
                 medicareCheckboxDetails.get(0).click();
                 break;
             case "B":
-                basicActions.waitForElementToBePresent(medicareCheckboxDetailsB,20);
+                basicActions.waitForElementToBePresentWithRetries(medicareCheckboxDetailsB,120);
                 medicareCheckboxDetailsB.click();
                 break;
             case "A Don't Pay":
-                basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
+                basicActions.waitForElementListToBePresentWithRetries(medicareCheckboxDetails,120);
                 medicareCheckboxDetails.get(1).click();
                 break;
             default:
@@ -258,7 +258,8 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void clickHelpIcon(String label) {
-        basicActions.waitForElementListToBePresent(helpIcons, 10);
+        basicActions.waitForElementListToBePresentWithRetries(helpIcons, 60);
+        basicActions.waitForElementToBePresentWithRetries(helpLnk, 60);
         switch(label){
             case "Help me understand":
                 helpLnk.click();
@@ -302,8 +303,9 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void verifyHeadersMedicareOhcPageEnglish(String member){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcMedicareHeader,60);
         switch (member){
             case "Primary":
                 softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
@@ -321,7 +323,8 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void verifyHeadersMedicareOhcPageSpanish(String member){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcMedicareHeader,60);
         switch (member){
             case "Primary":
                 softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
@@ -538,13 +541,14 @@ public class OhcMedicarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Go back");
+        softAssert.assertEquals(goBackButton.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
 
     public void verifyMedicarePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
         softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Medicare.");
@@ -577,6 +581,7 @@ public class OhcMedicarePage_Elmo {
 
     public void verifyMedicarePageFirstSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
         softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about "+SharedData.getMembers().get(0).getFullName()+"'s eligibility or current enrollment in Medicare."));
@@ -627,7 +632,7 @@ public class OhcMedicarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackButton.getText(),"  Volver");
+        softAssert.assertEquals(goBackButton.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }
@@ -666,6 +671,7 @@ public class OhcMedicarePage_Elmo {
 
     public void verifyMedicarePageFirstSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcMedicareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcMedicareHeader.getText(),"Medicare");
         softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en Medicare."));
@@ -933,6 +939,7 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void verifyMedicareCheckboxes(String state){
+        basicActions.wait(250);
         switch (state){
             case "Selected":
                 verifySelectedStateOfCheckboxes();
@@ -952,7 +959,7 @@ public class OhcMedicarePage_Elmo {
     }
 
     public void verifyNotSelectedStateOfCheckboxes() {
-        basicActions.waitForElementListToBePresentWithRetries(medicareCheckboxes, 15);
+        basicActions.waitForElementListToBePresentWithRetries(medicareCheckboxes, 60);
         for (int i = 0; i < medicareCheckboxes.size(); i++) {
             WebElement element1 = medicareCheckboxes.get(i);
             WebElement element2 = medicareCheckboxDetails.get(i);

@@ -279,5 +279,9 @@ public class AdminPortalIndividualDashboardSteps {
     public void iValidateAccountSuspended() {
         adminPortalIndividualDashboardPage.validateAccountSuspended();
     }
+    @And("I verify Account status is Password Reset")
+    public void iValidateAccountPasswordReset() {
+        adminPortalIndividualDashboardPage.validateAccountPasswordReset();
+    }
 }
 

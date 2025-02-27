@@ -198,15 +198,15 @@ public class YourClientsPage {
     }
 
     public void searchForClient(){
-        basicActions.waitForElementListToBePresent(clientsList, 1000);
-        basicActions.waitForElementToBePresent(searchClient, 1000);
+        basicActions.waitForElementListToBePresent(clientsList, 60);
+        basicActions.waitForElementToBePresent(searchClient, 60);
         String firstName =SharedData.getPrimaryMember().getFirstName();
         searchClient.sendKeys(firstName);
         searchClient.sendKeys(Keys.ENTER);
     }
 
     public void searchForTheSecondaryClient(){
-        basicActions.waitForElementToBePresent(searchClient, 1000);
+        basicActions.waitForElementToBePresent(searchClient, 60);
         String firstName =SharedData.getMembers().get(0).getFirstName();
         searchClient.sendKeys(firstName);
         searchClient.sendKeys(Keys.ENTER);
@@ -231,16 +231,16 @@ public class YourClientsPage {
     }
 
     public void searchClientNamed(String clientName) {
-        basicActions.waitForElementListToBePresentWithRetries(clientsList, 1000);
-        basicActions.waitForElementToBePresentWithRetries(searchClient, 1000);
+        basicActions.waitForElementListToBePresentWithRetries(clientsList, 60);
+        basicActions.waitForElementToBePresentWithRetries(searchClient, 60);
 
         searchClient.sendKeys(clientName);
         searchClient.sendKeys(Keys.ENTER);
     }
 
     public void resetClientSearchBox() {
-        basicActions.waitForElementListToBePresent(clientsList, 1000);
-        basicActions.waitForElementToBePresent(searchClient, 1000);
+        basicActions.waitForElementListToBePresent(clientsList, 60);
+        basicActions.waitForElementToBePresent(searchClient, 60);
 
         searchClient.clear();
         searchClient.sendKeys(" ");
@@ -304,8 +304,8 @@ public class YourClientsPage {
     }
 
     public void clickOptionToHandelClient(String option) {
+        basicActions.wait(2000);
         basicActions.waitForElementToBePresent(clientRow,100);
-
         switch (option){
             case "remove Client":
                 basicActions.waitForElementToBePresent(removeClient,100);

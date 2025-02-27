@@ -160,7 +160,6 @@ Feature: Seed05 - COCO
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I validate I am on the "Manage Plans" page
-    And I select "DIL" from the SelectPolicy Dropdown to update the dates
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
       |1:01012025|

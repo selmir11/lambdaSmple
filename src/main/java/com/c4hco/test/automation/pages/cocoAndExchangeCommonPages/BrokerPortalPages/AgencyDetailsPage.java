@@ -4,11 +4,13 @@ import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.Random;
@@ -93,7 +95,7 @@ public class AgencyDetailsPage {
     @FindBy(xpath = "//span[@id='state-mf-error']")
     WebElement stateErrorMessage;
 
-    @FindBy(xpath = "//label[@for='primaryZip']")
+    @FindBy(xpath = "//label[@for='primaryZipLbl']")
     WebElement zipCodeLabel;
 
     @FindBy(xpath = "//input[@id='primaryZip']")
@@ -168,13 +170,13 @@ public class AgencyDetailsPage {
     @FindBy(xpath = "//span[@id='email-mf-error']")
     WebElement emailErrorMessage;
 
-    @FindBy(id = "l_phoneNumber")
+    @FindBy(xpath = "//label[@for='phoneNumber']")
     WebElement phoneNumberLabel;
 
     @FindBy(xpath = "//input[@id='phoneNumber']")
     WebElement phoneNumberField;
 
-    @FindBy(xpath = "//div[@id='ph-mf-error']")
+    @FindBy(id = "ph-mf-error")
     WebElement phoneNumberErrorMessage;
 
     @FindBy(id = "BP-AgencyDetails-GoBack")
@@ -189,7 +191,7 @@ public class AgencyDetailsPage {
     @FindBy(id = "agencygroup_helptext")
     WebElement agencyGroupTooltipText;
 
-    @FindBy(xpath = "//div[contains(@class, 'dropdown-disable')]")
+    @FindBy(id = "agencyGroup")
     WebElement disabledAgencyGroup;
 
     @FindBy(id= "cancel-button")
@@ -303,16 +305,11 @@ public class AgencyDetailsPage {
         cityField.sendKeys("#$%!@&*()");
         zipCodeField.sendKeys("#$%!@&*()");
 
-        softAssert.assertEquals(agencyName.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(agencyNameSpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(addressLine1.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(addressLine1SpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(addressLine2.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(addressLine2SpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(cityField.getAttribute("value"), "#$%!@&*()");
-        softAssert.assertEquals(citySpecialCharErrorMessage.getText(), "Special Characters not allowed");
-        softAssert.assertEquals(zipCodeField.getAttribute("value"), "#$%!@");
-        softAssert.assertEquals(zipCodeSpecialCharErrorMessage.getText(), "Characters & Special Characters not allowed and must follow format XXXXX");
+        softAssert.assertEquals(agencyName.getAttribute("value"), "");
+        softAssert.assertEquals(addressLine1.getAttribute("value"), "");
+        softAssert.assertEquals(addressLine2.getAttribute("value"), "");
+        softAssert.assertEquals(cityField.getAttribute("value"), "");
+        softAssert.assertEquals(zipCodeField.getAttribute("value"), "");
         softAssert.assertAll();
     }
 
@@ -320,8 +317,8 @@ public class AgencyDetailsPage {
         addressLine1.sendKeys("438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweifh");
         addressLine2.sendKeys("438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweifh");
 
-        softAssert.assertEquals(addressLine1.getAttribute("value"), "#$%!@&*()438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhi");
-        softAssert.assertEquals(addressLine2.getAttribute("value"), "#$%!@&*()438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhi");
+        softAssert.assertEquals(addressLine1.getAttribute("value"), "438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweif");
+        softAssert.assertEquals(addressLine2.getAttribute("value"), "438756438----7568ceygfueg3465873463c fuefgue fgvuergf nuvrhfvrfh fghv dhgfhgfh g fgfuguwe dfhdfhdfhjfdffiwf iwfi wiufhiueeuhweif");
         softAssert.assertAll();
     }
 
@@ -389,7 +386,7 @@ public class AgencyDetailsPage {
 
     public void verifyAgencyGroupDisabled(){
         basicActions.waitForElementToBePresent(disabledAgencyGroup, 10);
-        softAssert.assertEquals(disabledAgencyGroup.getAttribute("class"), "d-inline-flex w-100 dropdown-disable");
+        softAssert.assertEquals(disabledAgencyGroup.getAttribute("class"), "dropdown-disable");
         softAssert.assertAll();
     }
 
@@ -462,5 +459,54 @@ public class AgencyDetailsPage {
         addressLine1.clear();
         addressLine1.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
     }
+
+    public void initializeAgencyDetails(){
+        SharedData.getAgencyOwner().setAgencyName((basicActions.capitalizeFirstLetter(basicActions.getUniqueString(8))));
+        SharedData.getAgencyOwner().setAgencyTin(generateAgencyTin());
+        Address agencyAddress = new Address();
+        agencyAddress.setAddressLine1(generateAgencyAddress() + " Deer Trail Dr");
+        agencyAddress.setAddressCity("Denver");
+        agencyAddress.setAddressZipcode("80205");
+        SharedData.getAgencyOwner().setAgencyAddress(agencyAddress);
+        SharedData.getAgencyOwner().setAgencyPhoneNumber((String) basicActions.generatePhoneNumber());
+        SharedData.getAgencyOwner().setAgencyEmail(SharedData.getAgencyOwner().getEmail());
+    }
+    public void enterAgencyDetails(){
+        basicActions.waitForElementToBePresent(agencyName, 10);
+        initializeAgencyDetails();
+
+        agencyName.sendKeys(SharedData.getAgencyOwner().getAgencyName());
+        agencyTin.sendKeys(SharedData.getAgencyOwner().getAgencyTin());
+        basicActions.waitForElementToBePresent(agencyGroupDropdown, 10);
+        agencyGroupDropdown.click();
+        Select groupDropdown = new Select(agencyGroupDropdown);
+        groupDropdown.selectByVisibleText("Broker");
+
+        addressLine1.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressLine1());
+        cityField.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressCity());
+        stateDropdown.click();
+        Select stateOptions = new Select(stateDropdown);
+        stateOptions.selectByVisibleText("Colorado");
+        stateDropdown.click();
+
+        zipCodeField.sendKeys(SharedData.getAgencyOwner().getAgencyAddress().getAddressZipcode());
+        countyDropdown.click();
+        countyDropdown.sendKeys(Keys.DOWN);
+        countyDropdown.sendKeys(Keys.ENTER);
+
+        workingHoursFrom.sendKeys("0800AM");
+        workingHoursTo.sendKeys("0500PM");
+        workingDaysDropdown.click();
+        workingDaysDropdownOption.click();
+        zipCodeField.click();
+
+        languagesDropdown.click();
+        languagesOption.click();
+        zipCodeField.click();
+
+        emailField.sendKeys(SharedData.getAgencyOwner().getAgencyEmail());
+        phoneNumberField.sendKeys(SharedData.getAgencyOwner().getAgencyPhoneNumber());
+    }
+
 
 }

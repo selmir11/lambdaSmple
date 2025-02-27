@@ -337,7 +337,7 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(pageValidationText.get(7).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(pageValidationText.get(7).getCssValue("font-size"), "16px");
         softAssert.assertEquals(pageValidationText.get(7).getCssValue("color"), "rgba(43, 49, 60, 1)");
-        softAssert.assertEquals(applyButton.get(0).getText(), "  Si");
+        softAssert.assertEquals(applyButton.get(0).getText(), "  S\u00ED");
         softAssert.assertEquals(applyButton.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(applyButton.get(0).getCssValue("font-size"), "20px");
         softAssert.assertEquals(applyButton.get(0).getCssValue("color"), "rgba(255, 255, 255, 1)");

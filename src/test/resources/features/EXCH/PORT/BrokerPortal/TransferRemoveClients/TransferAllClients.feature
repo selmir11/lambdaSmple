@@ -50,6 +50,7 @@ Feature: Transfer all clients validation
     Then I click the transfer link on the Agency Broker Transfer page
 
     And I verify the transfer all client message
+    And I wait for 2000 milliseconds
     And I verify the total number of clients to transfer
 
     Then I click the Transfer Clients button on the Review Transfer page

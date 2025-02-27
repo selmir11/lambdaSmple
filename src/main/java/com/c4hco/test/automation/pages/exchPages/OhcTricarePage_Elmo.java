@@ -236,8 +236,8 @@ public class OhcTricarePage_Elmo {
     }
 
     public void verifyHeadersTricareOhcPageSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcTricareHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcTricareHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcTricareHeader.getText(),"TRICARE");
         softAssert.assertAll();
@@ -350,7 +350,7 @@ public class OhcTricarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Go back");
+        softAssert.assertEquals(goBackBtn.getText(),"Go back");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
         softAssert.assertAll();
     }
@@ -439,7 +439,7 @@ public class OhcTricarePage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
-        softAssert.assertEquals(goBackBtn.getText(),"  Volver");
+        softAssert.assertEquals(goBackBtn.getText(),"Volver");
         softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
         softAssert.assertAll();
     }

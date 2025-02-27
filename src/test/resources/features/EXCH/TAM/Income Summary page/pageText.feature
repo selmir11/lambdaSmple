@@ -408,7 +408,7 @@ Feature: Page Text-Income Summary Page
     Then I validate I am on the "Login" page
 
   @SLER-2128 @PageTextIncomeSummaryPage
-  Scenario: ELIG-Income Summary-Page Text - English[RT-1000]
+  Scenario: SLER-2128 ELIG-Income Summary-Page Text - English[RT-1000]
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "45000.00" at frequency "Annually"
@@ -450,7 +450,7 @@ Feature: Page Text-Income Summary Page
       |annual amount                       |
 
   @SLER-2139 @PageTextIncomeSummaryPage
-  Scenario: ELIG-Income Summary-Page Text - Spanish[RT-1000]
+  Scenario: SLER-2139 ELIG-Income Summary-Page Text - Spanish[RT-1000]
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "45000.00" at frequency "Annually"
