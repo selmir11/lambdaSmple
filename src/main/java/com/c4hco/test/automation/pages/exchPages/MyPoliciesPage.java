@@ -199,28 +199,20 @@ public class MyPoliciesPage {
 
     public void validateCancelPlanButnNotPresent(String planType) {
         switch (planType){
-            case "medical":
-                validateMedPlanCancelButton();
+            case "Medical":
+                validateCancelPlan(planType);
                 break;
-            case "dental":
-                validateDenPlanCancelButton();
+            case "Dental":
+                validateCancelPlan(planType);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + planType);
         }
     }
-    public void validateMedPlanCancelButton(){
-        if (!basicActions.elementExists(basicActions.getDriver(), By.id("SOL-CurrentPolicies-CancelCurrentMedical"))){
-            System.out.println("Cancel 2025 Medical Plans button not present as expected");
-        }else{
-            Assert.fail("Cancel 2025 Medical Plans button present");
-        }
-    }
-    public void validateDenPlanCancelButton(){
-        if (!basicActions.elementExists(basicActions.getDriver(), By.id("SOL-CurrentPolicies-CancelCurrentDental"))){
-            System.out.println("Cancel 2025 Dental Plans button not present as expected");
-        }else{
-            Assert.fail("Cancel 2025 Dental Plans button present");
-        }
+    public void validateCancelPlan(String planType){
+         WebElement element = basicActions.getDriver().findElement(By.id("SOL-CurrentPolicies-CancelCurrent"+planType+"\")"));
+         if(!element.isDisplayed()) {
+             Assert.assertFalse(basicActions.waitForElementToBePresent(element, 10));
+         }
     }
 }
