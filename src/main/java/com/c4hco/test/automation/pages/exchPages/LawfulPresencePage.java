@@ -134,6 +134,15 @@ public class LawfulPresencePage {
     @FindBy(id = "lawfulNonCitizen-error")
     WebElement EligibleImmigrantStatusErrorMessage;
 
+    @FindBy(xpath = "//*[@class='c4BodyText1']")
+    List<WebElement> bodyTexts;
+
+    @FindBy(xpath = "//input[@id='naturalizationCertificate']//following-sibling::label/span")
+    WebElement textNaturalizationCertificate;
+
+    @FindBy(xpath = "//input[@id='citizenshipCertificate']//following-sibling::label/span")
+    WebElement textCitizenshipCertificate;
+
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
             case "Yes":
@@ -618,4 +627,44 @@ public class LawfulPresencePage {
         softAssert.assertEquals(EligibleImmigrantStatusErrorMessage.getText(), expectedErrorMessage);
         softAssert.assertAll();
     }
+
+    public void validatePageTextWhenUsCitizenOptYesOrNo(String option,List<String> languageText){
+        switch (option){
+            case "Yes":
+                validatePageTextWhenUsCitizenOptYes(languageText);
+                break;
+            case "No":
+                validatePageTextWhenUsCitizenOptNo(languageText);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + option);
+        }
+    }
+
+    private void validatePageTextWhenUsCitizenOptYes(List<String> languageText){
+        softAssert.assertEquals(languageText.get(0),bodyTexts.get(3).getText());
+        softAssert.assertEquals(languageText.get(1),bodyTexts.get(4).getText());
+        softAssert.assertEquals(languageText.get(2),bodyTexts.get(5).getText());
+        softAssert.assertEquals(languageText.get(3),alienNumberCitizen.getAttribute("placeholder"));
+        softAssert.assertEquals(languageText.get(4),textNaturalizationCertificate.getText());
+        softAssert.assertEquals(languageText.get(5),textCitizenshipCertificate.getText());
+        softAssert.assertAll();
+    }
+    private void validatePageTextWhenUsCitizenOptNo(List<String> languageText){
+        softAssert.assertEquals(bodyTexts.get(7).getText(),languageText.get(0));
+        softAssert.assertEquals(bodyTexts.get(18).getText(),languageText.get(1));
+        softAssert.assertEquals(bodyTexts.get(19).getText(),languageText.get(2));
+        softAssert.assertEquals(bodyTexts.get(20).getText(),languageText.get(3));
+        softAssert.assertEquals(bodyTexts.get(21).getText(),languageText.get(4));
+        softAssert.assertEquals(bodyTexts.get(22).getText(),languageText.get(5));
+        String Firstname = SharedData.getPrimaryMember().getFirstName();
+        String Lastname = SharedData.getPrimaryMember().getLastName();
+        softAssert.assertEquals(bodyTexts.get(23).getText(),languageText.get(6)+" " + Firstname+" " + Lastname+" " + languageText.get(7));
+        softAssert.assertEquals(bodyTexts.get(24).getText(),languageText.get(8));
+        softAssert.assertEquals(bodyTexts.get(25).getText(),languageText.get(9));
+        softAssert.assertEquals(bodyTexts.get(26).getText(),languageText.get(10));
+        softAssert.assertEquals(bodyTexts.get(27).getText(),languageText.get(11));
+        softAssert.assertAll();
+    }
+
 }

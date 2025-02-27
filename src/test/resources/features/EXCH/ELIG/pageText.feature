@@ -1956,6 +1956,134 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | CUOTA                        |
       | APTC                         |
 
+  @SLER-2262 @PageText
+  Scenario: ELIG- Please call Experian (RIDP)-Page Text(RT-1436)
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "09051959" in county "DENVER" with zipcode "80205"
+    Then I validate I am on the "Identity Proofing - Initial Questions" page
+    Then I select specific answers for Id proofing questions and click continue
+      | CapGemini         |
+      | Littleton Address |
+      | CHASE             |
+    Then I validate I am on the "Upload Documents (RIDP)" page
+    Then I validate the following text on Upload Documents RIDP page including the error message and button texts
+      |Please call Experian to unlock your account. 1 (866) 578-5409\nMake sure to provide your reference number: Farsd\nExperian hours of operation are Monday - Friday, 6:30am to 8pm MST; Saturday, 8am-6pm MST; Sunday, 9am-6pm MST.|
+      |Check Status                                                                                                                                                                                                                     |
+      |< Back                                                                                                                                                                                                                           |
+    When I change the language from header to "Spanish NonElmo"
+    Then I validate the following text on Upload Documents RIDP page including the error message and button texts
+      |Por favor llame a Experian para desbloquear su cuenta. 1 (866) 578-5409\nSu número de referencia DSH es Farsd\nLas horas de operación de Experian son de lunes a viernes, de 6:30 a.m. a 8 p.m. MST; sábados, de 8 a.m. a 6 p.m. MST; domingo, de 9 a.m. a 6 p.m. MST.|
+      |Check Status                                                                                                                                                                                                                     |
+      |< Atrás                                                                                                                                                                                                                           |
+    Then I click on Sign Out in the Header for "NonElmo"
 
-
-
+  @SLER-2216 @PageText
+  Scenario: ELIG-Naturalized Citizen Status (Citizenship and immigration status)-Page Text(RT-1067)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+    And I am a member with SSN "234345678" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I validate I am on the "Identity Proofing - Initial Questions" page
+    Then I answer all Id proofing questions and click continue
+    Then I validate I am on the "Identify Proofing - Congratulations" page
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "Male" as sex option
+    Then I select "Yes" to Are You Applying
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    And I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "Yes" for Naturalized Immigrant option
+    Then I validate page texts when us citizen option is "Yes"
+      | A-Number/USCIS number      |
+      | Document type              |
+      | Document Number            |
+      | A########                  |
+      | Naturalization Certificate |
+      | Citizenship Certificate    |
+    And I change the language from header to "Spanish NonElmo"
+    Then I select "Yes" for Citizen option
+    And I select "Yes" for Naturalized Immigrant option
+    Then I validate page texts when us citizen option is "Yes"
+      | Número A/Número USCIS         |
+      | Tipo de documento             |
+      | Número del documento          |
+      | A########                     |
+      | Certificado de naturalización |
+      | Certificado de ciudadanía     |
+    And I change the language from header to "English NonElmo"
+    Then I select "No" for Citizen option
+    Then I select "Yes" for Eligible Immigration Status option
+    Then I select "I-327 Reentry Permit" as Document type
+    Then I select "No" for name matching the document
+    Then I validate page texts when us citizen option is "No"
+      | A-Number/USCIS number                                                                                                 |
+      | Are any of the following active-duty members of the military or honorably discharged veterans? (check all that apply) |
+      | Me                                                                                                                    |
+      | My spouse                                                                                                             |
+      | One or both of my parents                                                                                             |
+      | None of the above                                                                                                     |
+      | Does                                                                                                                  |
+      | match the name on the document?                                                                                       |
+      | Enter name as it appears on document                                                                                  |
+      | First Name                                                                                                            |
+      | Middle Name                                                                                                           |
+      | Last Name                                                                                                             |
+    And I change the language from header to "Spanish NonElmo"
+    Then I select "No" for Citizen option
+    Then I select "Yes" for Eligible Immigration Status option
+    Then I select "Permiso de reingreso I-327" as Document type
+    Then I select "No" for name matching the document
+    Then I validate page texts when us citizen option is "No"
+      | Número A/Número USCIS                                                                                                                          |
+      | ¿Alguno de los siguientes es miembro en servicio activo del ejército o veterano dado de baja honrosamente? (marque todos los que correspondan) |
+      | Yo                                                                                                                                             |
+      | Mi esposo(a)                                                                                                                                   |
+      | Uno o ambos de mis padres                                                                                                                      |
+      | Ningunos de los anteriores                                                                                                                     |
+      | ¿Coincide el nombre de                                                                                                                         |
+      | con el de la tarjeta?                                                                                                                          |
+      | Ingrese el nombre según aparece en el documento                                                                                                |
+      | Nombre                                                                                                                                         |
+      | Segundo nombre o inicial (opcional)                                                                                                            |
+      | Apellido(s)                                                                                                                                    |
