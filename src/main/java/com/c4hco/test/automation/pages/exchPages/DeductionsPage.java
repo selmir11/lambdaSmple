@@ -1108,15 +1108,27 @@ public class DeductionsPage {
         }
         softAssert.assertAll();
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public void verifyAllDeductioncheckboxErrors(String language) {
+        int checkBoxCount = addtlDeductionBox.size();
+        for (int i = 0; i < checkBoxCount-1; i++) {
+            addtlDeductionBox.get(i).click();
+            saveAndContinueBtn.click();
+            verifyDeductionsOptionAmt1Error(language);
+            verifyDeductionsOptionFreq1Error(language);
+            addtlDeductionBox.get(i).click();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
