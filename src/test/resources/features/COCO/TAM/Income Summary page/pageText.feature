@@ -138,7 +138,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-66 @PageTextIncomeSummary @TAMSmoke
+  @SLCR-66 @PageTextIncomeSummary @TAMSmoke @test
   Scenario: SLCR-66 I can see Income Summary's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the CoCo Income Summary page in "Spanish"
@@ -261,7 +261,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-377
+  @SLCR-377 @test
   Scenario: SLCR-377 I want to see a pencil icon rather than the Edit/Update link
     And I verify the header for Primary Member on the CoCo Income Summary page in "English"
     Then I verify the edit icon

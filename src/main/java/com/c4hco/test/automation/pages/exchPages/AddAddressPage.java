@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.Address;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -246,14 +244,14 @@ public class AddAddressPage {
 
     public void DifferentMailingAddress(){rdobtnDifferentMailingAddress.click();}
 
-    public void addNewResidentialAddress(List<Map<String, String>> addDetails){
+    public void addNewResidentialAddress(String prefix, List<Map<String, String>> addDetails){
         basicActions.waitForElementToBePresent(newResidentialAddressline1, 10);
+
         String addressLine1 = addDetails.get(0).get("addressLine1");
         String city = addDetails.get(0).get("city");
         String state = addDetails.get(0).get("state");
         String zipcode = addDetails.get(0).get("zipcode");
         String county = addDetails.get(0).get("county");
-        String dob =addDetails.get(0).get("dob");
 
         newResidentialAddressline1.sendKeys(addressLine1);
         newResidentialAdressCity.sendKeys(city);
@@ -262,42 +260,24 @@ public class AddAddressPage {
         newResidentialAddressCounty.click();
         Select dropdown = new Select(newResidentialAddressCounty);
         dropdown.selectByValue(county);
-        setNewResidentialAddress(addressLine1,city,state,zipcode,county,dob);
+        setNewResidentialAddress(prefix, addressLine1, city, state, zipcode, county);
     }
 
-    public void setNewResidentialAddress(String addressLine1, String city, String state, String zipcode, String county, String dob){
-        String getHeader = getNameFromHeader.getText();
-        String name = getMemberName();
-
-        List<MemberDetails> membersList = SharedData.getMembers();
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-
-        if (getHeader.contains("yourself")) {
-            //set data for subscriber
-            Address residentialAddress = new Address();
-            residentialAddress.setAddressLine1(addressLine1);
-            residentialAddress.setAddressCity(city);
-            residentialAddress.setAddressState(state);
-            residentialAddress.setAddressZipcode(zipcode);
-            residentialAddress.setAddressCounty(county);
-            subscriber.setResAddress(residentialAddress);
-            SharedData.setPrimaryMember(subscriber);
-        }else{
-           // filter by dob as it is unique
-             membersList.stream().filter(mem -> mem.getDob().equals(dob) &&
-                    mem.getSignature().contains(name)
-            ).findFirst().ifPresent(mem ->{
-                 Address residentialAddress = new Address();
-                 residentialAddress.setAddressLine1(addressLine1);
-                 residentialAddress.setAddressCity(city);
-                 residentialAddress.setAddressState(state);
-                 residentialAddress.setAddressZipcode(zipcode);
-                 residentialAddress.setAddressCounty(county);
-                 mem.setResAddress(residentialAddress);
-                 mem.setMailingAddress(SharedData.getPrimaryMember().getMailingAddress());
-            });
-             SharedData.setMembers(membersList);
+    public void setNewResidentialAddress(String prefix, String addressLine1, String city, String state, String zipcode, String county) {
+        MemberDetails member = basicActions.getMember(prefix);
+        Address oldResAddress = SharedData.getPrimaryMember().getResAddress();
+        if(oldResAddress==null){
+            oldResAddress = new Address();
         }
+        SharedData.getPrimaryMember().setOldResAddress(oldResAddress);
+
+        Address residentialAddress = new Address();
+        residentialAddress.setAddressLine1(addressLine1);
+        residentialAddress.setAddressCity(city);
+        residentialAddress.setAddressState(state);
+        residentialAddress.setAddressZipcode(zipcode);
+        residentialAddress.setAddressCounty(county);
+        member.setResAddress(residentialAddress);
     }
 
     public void isColoradoResident(String YNCOResident){
@@ -417,7 +397,8 @@ public class AddAddressPage {
             if (address.contains(SpecificAddress)) {
                 WebElement radioElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]/parent::label/parent::div /input"));
                 WebElement addressElement = basicActions.getDriver().findElement(By.xpath("//span[contains(text(),'" + SpecificAddress + "')]"));
-               MemberDetails member = basicActions.getMember(getMemberName());
+               basicActions.waitForElementToBePresentWithRetries(addressElement, 10);
+                MemberDetails member = basicActions.getMember(getMemberName());
                 Address residentialAddress = new Address();
                 residentialAddress.setAddressLine1(addressElement.getText().split(",")[0].trim().stripLeading());
                 residentialAddress.setAddressCity(addressElement.getText().split(",")[1].trim().stripLeading());

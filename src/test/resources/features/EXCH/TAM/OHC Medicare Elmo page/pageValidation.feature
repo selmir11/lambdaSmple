@@ -231,6 +231,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
+    And I verify the header for "Primary" Member on the Medicare page in "English"
     Then I check checkbox for Part "A"
     Then I click continue on the Elmo OHC Medicare page
     And I verify the OHC options selected in the DB for "Primary"
@@ -348,8 +349,9 @@ Feature: Page Validation-OHC Medicare Elmo Page
 
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1222
+  @SLER-1222 @test
   Scenario: SLER-1222 I verify that income-portal-ui uses common components from ng-common on the ELMO Medicare page
+    And I verify the header for "Primary" Member on the Medicare page in "English"
     Then I verify Medicare checkbox in "Not Selected" state
     And I refresh the page
     Then I verify Medicare checkbox in "Selected" state

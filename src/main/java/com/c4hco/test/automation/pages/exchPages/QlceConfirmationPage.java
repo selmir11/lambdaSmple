@@ -23,6 +23,10 @@ public class QlceConfirmationPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
+    //Birth
     @FindBy(id = "birth")
     WebElement birthQLCE;
 
@@ -30,6 +34,19 @@ public class QlceConfirmationPage {
     List<WebElement> allmembersBirthcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'BirthAdoptionOrPlacementForAdoption')]")
     List<WebElement> birthEventDate;
+
+    // Pregnancy
+
+    @FindBy(xpath = "//*[@id = 'pregnancyStatus']")
+    WebElement pregnancyQLCE;
+
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'pregnancyChkbxWrapper')]")
+    List<WebElement> allmembersPregnancycheckbox;
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForPregnancyStatus0.lceEventDate')]")
+    List<WebElement> pregnancyEventDate;
+
+    @FindBy(xpath = "//input[@id = 'pregnancyStatusRetainCoverageYes']")
+    WebElement yesRetainPrgnancyCoverage;
 
     //Marriage
     @FindBy(id = "marriage")
@@ -49,8 +66,16 @@ public class QlceConfirmationPage {
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Divorce')]")
     List<WebElement> divorceEventDate;
 
-    @FindBy(id = "changeOnIncarcerationStatus")
+    // Incarceration
+    @FindBy(xpath = "//*[@id = 'changeOnIncarcerationStatus']")
     WebElement changeOnIncarcerationStatusLce;
+
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForIncarcerationStatus0.lceEventStatus1')]")
+    List<WebElement> allmemberIncarcerationcheckbox;
+
+    @FindBy(xpath = "//input[@type='date'and contains(@id,'lceMembersForIncarcerationStatus0.lceEventDate')]")
+    List<WebElement> incarcerationEventDate;
+
 
     //Death
     @FindBy(id = "death")
@@ -59,6 +84,7 @@ public class QlceConfirmationPage {
     List<WebElement> allmemberDeathcheckbox;
     @FindBy(xpath = "//input[@type='date'and contains(@id,'Death')]")
     List<WebElement> deathEventDate;
+
     //Moved to Colorado
     @FindBy(id = "changeOfAddress")
     WebElement addressChangeLce;
@@ -83,20 +109,37 @@ public class QlceConfirmationPage {
     @FindBy(id = "loseOrLostHealthInsurance")
     WebElement lostCoverageLCE;
 
-    @FindBy(id = "taxTimeEnrollmentPeriod")
-    WebElement taxTimeEnrollmentPeriod;
-
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> allMemberLostCoverageCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForLoseOrLostHealthInsurance')]")
     List<WebElement> lostCoverageEventDate;
 
+    //Gain Tribal Status
     @FindBy(id = "gainOfAIANStatus")
     WebElement tribalStatusLCE;
     @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForGainOfTribalStatus')]")
     List<WebElement> allMembersGainedTribalStatusCheckbox;
     @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForGainOfTribalStatus')]")
     List<WebElement> tribalStatusEventDate;
+
+    //changeOfIncomeOrJob
+    @FindBy(id = "changeOfIncomeOrJob")
+    WebElement changeOfIncomeOrJobLCE;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForChangeOfIncomeOrJob0.lceEventStatus1')]")
+    List<WebElement> allMemberschangeOfIncomeOrJobCheckbox;
+    @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForChangeOfIncomeOrJob0.lceEventDate')]")
+    List<WebElement> changeOfIncomeOrJobEventDate;
+
+    @FindBy(id = "enrollmentUpdate")
+    WebElement changeOfHealthCoverageLCE;
+    @FindBy(xpath = "//input[contains(@class,'checkbox')and contains(@id, 'lceMembersForEnrollmentInFutureOrExistingHealthInsurance0.lceEventStatus1')]")
+    List<WebElement> allMemberschangeOfHealthCoverageCheckbox;
+    @FindBy(xpath = "//input[@type='date' and contains(@id,'lceMembersForEnrollmentInFutureOrExistingHealthInsurance0.lceEventDate')]")
+    List<WebElement> changeOfHealthCoverageEventDate;
+
+    //Tax Time Enrollment
+    @FindBy(id = "taxTimeEnrollmentPeriod")
+    WebElement taxTimeEnrollmentPeriod;
 
     //None of These
     @FindBy(id = "noneOfThese")
@@ -118,11 +161,6 @@ public class QlceConfirmationPage {
     @FindBy(css = ".drawer-heading h4")
     WebElement textHelpDrawerHeader;
 
-    @FindBy(id = "pregnancyStatus")
-    WebElement pregnancyLCE;
-
-    @FindBy(id = "changeOfIncomeOrJob")
-    WebElement changeOfIncomeOrJobLCE;
 
     @FindBy(xpath = "//span[contains(@class,'c4BodyText1')]")
     List<WebElement> textLceLable;
@@ -183,6 +221,9 @@ public class QlceConfirmationPage {
 
     @FindBy(xpath = "//p[@class='c4BodyText1']")
     List<WebElement> PregancyAddtionalText;
+
+    @FindBy(id = "pregnancyStatusRetainCoverageYes")
+    WebElement pregnancyStatusRetainCoverageYes;
 
 
     public String getCurrentDate() {
@@ -276,13 +317,55 @@ public class QlceConfirmationPage {
                     divorceEventDate.get(i).sendKeys(getCurrentDate());
                 }
                 break;
-            case "NoneOfThese":
-                basicActions.waitForElementToBeClickable(noneOfTheseLCE, 10);
-                noneOfTheseLCE.click();
+            case "Pregnancy":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries(pregnancyQLCE, 20);
+                pregnancyQLCE.click();
+                for (var i = 0; i < allmembersPregnancycheckbox.size(); i++) {
+                    allmembersPregnancycheckbox.get( i ).click();
+                    pregnancyEventDate.get( i ).click();
+                    pregnancyEventDate.get( i ).sendKeys( getCurrentDate() );
+                }
+                yesRetainPrgnancyCoverage.click();
+                 break;
+            case "Incarceration":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries( changeOnIncarcerationStatusLce,30 );
+                changeOnIncarcerationStatusLce.click();
+                for (var i = 0; i < allmemberIncarcerationcheckbox.size(); i++) {
+                    allmemberIncarcerationcheckbox.get( i ).click();
+                    incarcerationEventDate.get( i ).click();
+                    incarcerationEventDate.get( i ).sendKeys( getCurrentDate() );
+                }
+                break;
+            case "IncomeJobChange":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries( changeOfIncomeOrJobLCE,30 );
+                changeOfIncomeOrJobLCE.click();
+                for (var i = 0; i < allMemberschangeOfIncomeOrJobCheckbox.size(); i++) {
+                    allMemberschangeOfIncomeOrJobCheckbox.get( i ).click();
+                    changeOfIncomeOrJobEventDate.get( i ).click();
+                    changeOfIncomeOrJobEventDate.get( i ).sendKeys( getCurrentDate() );
+                }
+                break;
+            case "HealthCoverageChange":
+                basicActions.waitForElementToDisappear( spinner, 30 );
+                basicActions.waitForElementToBePresentWithRetries( changeOfHealthCoverageLCE,30 );
+                changeOfHealthCoverageLCE.click();
+                for (var i = 0; i < allMemberschangeOfHealthCoverageCheckbox.size(); i++) {
+                    allMemberschangeOfHealthCoverageCheckbox.get( i ).click();
+                    changeOfHealthCoverageEventDate.get( i ).click();
+                    changeOfHealthCoverageEventDate.get( i ).sendKeys( getCurrentDate() );
+                }
                 break;
             case "TaxTimeEnrollmentPeriod":
                 basicActions.waitForElementToBeClickable(taxTimeEnrollmentPeriod, 10);
                 taxTimeEnrollmentPeriod.click();
+                break;
+
+            case "NoneOfThese":
+                basicActions.waitForElementToBeClickable(noneOfTheseLCE, 10);
+                noneOfTheseLCE.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
@@ -455,6 +538,24 @@ public class QlceConfirmationPage {
     void TaxTimeEnrollmentPeriodTextValidate(List<String>data) {
         softAssert.assertEquals(taxTimeEnrollmentPeriodText.get(0).getText(),data.get(15), "American Indian/Alaskan Native Text not match");
      }
+
+    public void setPregnancyEventDate(String eventDateType) {
+        String resolvedDate = basicActions.getDateBasedOnRequirement(eventDateType);
+        String formattedDate = basicActions.changeDateFormat(resolvedDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        pregnancyEventDate.get(0).sendKeys(formattedDate);
+        pregnancyStatusRetainCoverageYes.click();
+    }
+    public void selectBirthOptionWithEventDate(String firstDateOfCurrentMonth){
+        basicActions.waitForElementToBeClickable(birthQLCE, 10);
+        birthQLCE.click();
+        for (var i = 0; i < allmembersBirthcheckbox.size(); i++) {
+            allmembersBirthcheckbox.get(i).click();
+            birthEventDate.get(i).click();
+            String requiredDate = basicActions.getDateBasedOnRequirement(firstDateOfCurrentMonth);
+            String formattedDate = basicActions.changeDateFormat(requiredDate, "yyyy-MM-dd", "MM/dd/yyyy");
+            birthEventDate.get(i).sendKeys(formattedDate);
+        }
+    }
 
 
 }

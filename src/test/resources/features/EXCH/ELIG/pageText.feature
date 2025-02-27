@@ -474,11 +474,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -561,11 +561,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -730,11 +730,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -817,12 +817,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1069,6 +1068,7 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Sí, soy nuevo a Connect for Health Colorado y ya presenté una solicitud Health First Colorado or Child Health Plan Plus                                                                                                                                                                                                                                                            |
       | No gracias, lléveme a la aplicación                                                                                                                                                                                                                                                                                                                                                |
 
+
   @SLER-2059 @PageText
   Scenario: Verify English and Spanish Text for Tell us about life changes page [RT-1012]
     Given I open the login page on the "login" portal
@@ -1231,11 +1231,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page
@@ -1362,11 +1362,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -1464,11 +1464,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -1574,11 +1574,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -1688,11 +1688,11 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status" page
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     Then I select "None of these" as ELMO health coverage option
@@ -1735,3 +1735,227 @@ Feature: Verify all English and Spanish Text on ELIG pages
     Then I validate I am on the "Account Overview" page
     Then I verify ARP Banner no longer present on Account Overview page
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2219
+  Scenario: ELIG-Select Immigration Status-Adult (Citizenship and Immigration status)-Page Text [RT-1089]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    And I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "11181980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    And I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I verify the text on the Citizenship and Immigration Status page in "English"
+      | Citizenship and immigration status: |
+      | Help me understand this page |
+      | Are you a U.S. Citizen? |
+      | Yes |
+      | No |
+    Then I select "No" for Citizen option
+    Then I select "Yes" for Eligible Immigration Status option
+    Then I select "I-327 Reentry Permit" as Document type
+    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
+    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
+    Then I select "Yes" for name matching the document
+    And I click continue on the Citizenship page
+    Then I select "No" for Lawful Permanent Resident
+    Then I validate the immigration dropdown values for "English" language
+      | Administrative order staying removal |
+      | Afghan or Iraqi Special Immigrant Visa (SIV) holder |
+      | Afghan or Ukrainian Humanitarian Parolee |
+      | Applicant for adjustment to LPR status |
+      | Applicant for asylum |
+      | Applicant for Cancellation of Removal or Suspension of Deportation |
+      | Applicant for legalization under the Immigration Reform and Control Act |
+      | Applicant for Legalization under the LIFE Act |
+      | Applicant/recipient for Temporary Protected Status |
+      | Applicant for withholding of deportation or removal |
+      | Citizen of Micronesia, the Marshall Islands, or Palau |
+      | Conditional Entrant Granted before 1980 |
+      | Cuban/Haitian Entrant |
+      | Deferred Action Status (including DACA) |
+      | Deferred Enforced Departure |
+      | Granted Withholding of Deportation |
+      | Native American born in Canada |
+      | Non-immigrant visa holder |
+      | Order of Supervision |
+      | Paroled into the U.S. |
+      | Refugee or asylee |
+      | Registry applicant |
+      | Resident of American Samoa |
+      | Temporary Protected Status |
+      | Temporary Resident Status |
+      | Victim of battery/abuse (or victim's spouse, child, or parent) |
+
+    When I change the language from header to "Spanish NonElmo"
+    Then I select "No" for Lawful Permanent Resident
+    Then I validate the immigration dropdown values for "Spanish" language
+      | Afgano o iraquí titular de una visa especial de inmigrante (SIV) |
+      | Afgano o Ucraniano en libertad condicional humanitaria |
+      | Ciudadano de Micronesia, de las Islas Marshall y Palau |
+      | En libertad condicional otorgada en EE. UU. |
+      | Estatus de Acción Diferida (incluido DACA) |
+      | Estatus de residente temporal |
+      | Estatus temporalmente protegido |
+      | Expulsión forzada aplazada |
+      | Indígena norteamericano nacido en Canadá |
+      | Orden administrativa de aplazamiento de traslado |
+      | Orden de supervisión |
+      | Participante condicional: estatus otorgado antes de 1980 |
+      | Participante cubano o haitiano |
+      | Refugiado o asilado |
+      | Residente de Samoa Americana |
+      | Solicitante de asilo |
+      | Solicitante de cambio de estatus a residente permanente legal (LPR) |
+      | Solicitante de cancelación de traslado o de suspensión de deportación |
+      | Solicitante o sujeto de Estatus temporalmente protegido |
+      | Solicitante de legalización según la Ley de Reforma y Control de la Inmigración |
+      | Solicitante de Legalización según la ley LIFE |
+      | Solicitante de registro |
+      | Solicitante de suspensión de deportación o traslado |
+      | Suspensión de deportación otorgada |
+      | Titular de visa no inmigrante |
+      | Víctima de tráfico (o es cónyuge, hijo/a, hermano/a o padre/madre de la víctima) |
+      | Víctima de violencia/abuso (o es cónyuge, hijo/a o padre/madre de la víctima) |
+
+  @SLER-2251 @PageText
+  Scenario: ELIG-Welcome Page (Enrollment)-Page Text (RT-1429)
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    Given I set the test scenario details
+      | totalGroups | totalDentalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 2           | 2                 | 4            | 1                 | 1                | 2               |
+    And  I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I validate I am on the "Let us guide you" page
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
+    And I report "MovedToColorado" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I select "member" from the who are you question
+    And I am a member with SSN "234345678" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I validate I am on the "Identity Proofing - Initial Questions" page
+    Then I answer all Id proofing questions and click continue
+    Then I validate I am on the "Identify Proofing - Congratulations" page
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help Exch" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "Male" as sex option
+    Then I select "Yes" to Are You Applying
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    And I enter member with address line1 "1234 Road" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "None of these" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click continue on family overview page
+    When I select birth and check member and "First Day of Current Month" as event date on QLCE
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on "No Thanks" on good news page
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click continue on start shopping page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan
+    Then I click continue on medical plan results page
+    Then I select first dental plan
+    Then I click continue on dental plan results page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
+    And I click continue on plan summary page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I validate page text for plan information table header
+      | PLAN TYPE     |
+      | MEMBER(S)     |
+      | CARRIER/PHONE |
+      | PLAN          |
+      | PREMIUM       |
+      | APTC          |
+    And I change the language from header to "Spanish NonElmo"
+    Then I validate page text for plan information table header
+      | TIPO DE PLAN                 |
+      | MIEMBRO(S)                   |
+      | COMPAÑÍA DE SEGURO/TELÉFONO: |
+      | PLAN                         |
+      | CUOTA                        |
+      | APTC                         |
+
+
+
+

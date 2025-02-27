@@ -217,7 +217,7 @@ public class BasicActions {
     }
 
     public Boolean waitForElementToBePresentWithRetries(WebElement webElement, int waitTime) {
-        int retries = 5; // Number of retries to handle stale element
+        int retries = 10; // Number of retries to handle stale element
         while (retries > 0) {
             try {
                 new WebDriverWait(driver,
@@ -421,8 +421,14 @@ public class BasicActions {
     }
 
     public void switchTabs(int tabNumber) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         tabs = new ArrayList<>(getDriver().getWindowHandles());
-        getDriver().switchTo().window(tabs.get(tabNumber));
+        String targetHandle = (String) tabs.toArray()[tabNumber];
+        getDriver().switchTo().window(targetHandle);
     }
 
     public void changeToNewUrl(String page) {
@@ -781,6 +787,9 @@ public class BasicActions {
                     break;
                 case "Today":
                     date = getTodayDate();
+                    break;
+                case "First Day of Current Month":
+                    date = firstDateOfCurrMonth();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);

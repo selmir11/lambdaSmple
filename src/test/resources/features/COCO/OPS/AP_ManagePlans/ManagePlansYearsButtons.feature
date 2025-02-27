@@ -1,4 +1,4 @@
-@OPS
+@OPS @manageplan
 Feature: Manage Plans: Buttons (positive and negative testing)
   @SLCR-275
   Scenario: Verify user with role for Manage Plans will be able to make changes

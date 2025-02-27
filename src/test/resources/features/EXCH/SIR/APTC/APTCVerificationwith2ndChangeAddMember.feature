@@ -1053,8 +1053,7 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Tax status Elmo" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-      Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status Elmo page
       Then I select "Yes" for will claim dependents question
       Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
       Then I click Save and Continue on Tax Status Elmo page

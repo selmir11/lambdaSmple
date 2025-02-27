@@ -94,6 +94,25 @@ public class ImmigrationStatusPage {
     @FindBy(id = "imgrStatusGrantDate-error")
     WebElement errorMsgImmigrationStatus;
 
+    @FindBy(xpath = "(//input[@class='control-label input-radio'])[1]")
+    WebElement citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSYesButton;
+
+    @FindBy(xpath = "(//input[@class='control-label input-radio'])[2]")
+    WebElement citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSNoButton;
+
+    public void areYouAuthorizedToWorkInTheUnitedStates(String Answer){
+        switch(Answer){
+            case "Yes":
+                citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSYesButton.click();
+                break;
+            case "No":
+                citizenshipImmigrationAdditionalInfoAuthorizedToWorkInUSNoButton.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Answer);
+        }
+    }
+
     public void isMemberLawfulPermanentResident(String YNLawfulPermanentResident){
         switch(YNLawfulPermanentResident){
             case "Yes":
@@ -329,4 +348,86 @@ public class ImmigrationStatusPage {
         softAssert.assertEquals(errorMsgImmigrationStatus.getText(), data.get(0));
         softAssert.assertAll();
     }
+
+    public void validateImmigrationDropdownValues(String language, List<String> dropDownText) {
+        switch (language) {
+            case "English":
+                verifyImmigrationDropdownValuesEnglish(dropDownText);
+                break;
+            case "Spanish":
+                verifyImmigrationDropdownValuesInSpanish(dropDownText);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+
+     private void verifyImmigrationDropdownValuesEnglish(List<String> dropDownText) {
+        basicActions.waitForElementToBePresent(immigrationStatusLPRNo, 40);
+        Select dropdown = new Select(immigrationStatusLPRNo);
+        List<WebElement> options = dropdown.getOptions();
+        List<String> actualDropdownValues = options.stream().map(WebElement::getText).map(String::trim).toList();
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(0).trim()), "Administrative order staying removal is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(1).trim()), "Afghan or Iraqi Special Immigrant Visa (SIV) holder is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(2).trim()), "Afghan or Ukrainian Humanitarian Parolee is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(3).trim()), "Applicant for adjustment to LPR status is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(4).trim()), "Applicant for asylum is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(5).trim()), "Applicant for Cancellation of Removal or Suspension of Deportation is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(6).trim()), "Applicant for legalization under the Immigration Reform and Control Act is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(7).trim()), "Applicant for Legalization under the LIFE Act is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(8).trim()), "Applicant/recipient for Temporary Protected Status is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(9).trim()), "Applicant for withholding of deportation or removal is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(10).trim()), "Citizen of Micronesia, the Marshall Islands, or Palau is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(11).trim()), "Conditional Entrant Granted before 1980 is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(12).trim()), "Cuban/Haitian Entrant is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(13).trim()), "Deferred Action Status (including DACA) is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(14).trim()), "Deferred Enforced Departure is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(15).trim()), "Granted Withholding of Deportation is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(16).trim()), "Native American born in Canada is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(17).trim()), "Non-immigrant visa holder is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(18).trim()), "Order of Supervision is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(19).trim()), "Paroled into the U.S. is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(20).trim()), "Refugee or asylee is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(21).trim()), "Registry applicant is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(22).trim()), "Resident of American Samoa is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(23).trim()), "Temporary Protected Status is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(24).trim()), "Temporary Resident Status is not present");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(25).trim()), "Victim of battery/abuse (or victim's spouse, child, or parent) is not present");
+        softAssert.assertAll();
+    }
+
+    private void verifyImmigrationDropdownValuesInSpanish(List<String> dropDownText) {
+        basicActions.waitForElementToBePresent(immigrationStatusLPRNo, 40);
+        Select select = new Select(immigrationStatusLPRNo);
+        List<String> actualDropdownValues = select.getOptions().stream().map(WebElement::getText).map(String::trim).toList();
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(0)), "Afgano o iraquí titular de una visa especial de inmigrante (SIV) no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(1)), "Afgano o Ucraniano en libertad condicional humanitaria no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(2)), "Ciudadano de Micronesia, de las Islas Marshall y Palau no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(3)), "En libertad condicional otorgada en EE. UU. no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(4)), "Estatus de Acción Diferida (incluido DACA) no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(5)), "Estatus de residente temporal no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(6)), "Estatus temporalmente protegido no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(7)), "Expulsión forzada aplazada no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(8)), "Indígena norteamericano nacido en Canadá no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(9)), "Orden administrativa de aplazamiento de traslado no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(10)), "Orden de supervisión no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(11)), "Participante condicional: estatus otorgado antes de 1980 no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(12)), "Participante cubano o haitiano no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(13)), "Refugiado o asilado no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(14)), "Residente de Samoa Americana no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(15)), "Solicitante de asilo no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(16)), "Solicitante de cambio de estatus a residente permanente legal (LPR) no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(17)), "Solicitante de cancelación de traslado o de suspensión de deportación no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(18)), "Solicitante o sujeto de Estatus temporalmente protegido no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(19)), "Solicitante de legalización según la Ley de Reforma y Control de la Inmigración no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(20)), "Solicitante de Legalización según la ley LIFE no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(21)), "Solicitante de registro no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(22)), "Solicitante de suspensión de deportación o traslado no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(23)), "Suspensión de deportación otorgada no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(24)), "Titular de visa no inmigrante no está presente");
+        softAssert.assertTrue(actualDropdownValues.contains(dropDownText.get(25)), "Víctima de tráfico (o es cónyuge, hijo/a, hermano/a o padre/madre de la víctima) no está presente");
+        softAssert.assertAll();
+    }
+
 }

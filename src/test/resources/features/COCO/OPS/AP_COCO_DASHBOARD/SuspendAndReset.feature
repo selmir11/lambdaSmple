@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: OPS: IndDash: Account Access details and password reset
   @SLCR-649
   Scenario:SLER-1828 : OPS: IndDash: Account Access details and password reset

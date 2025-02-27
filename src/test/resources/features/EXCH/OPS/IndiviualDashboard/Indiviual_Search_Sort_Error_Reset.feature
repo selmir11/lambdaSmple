@@ -47,5 +47,5 @@ Feature: Indiviual Dashboard
     And I select "individual" checkbox on Admin Portal Dashboard
     Then I enter an "FirstName" in any env "a" "a" to search user
     Then I click on Search button in AP dashboard page
-    Then I wait for 1000 milliseconds
+    Then I wait for 3000 milliseconds
     Then I validate message for over hundred records

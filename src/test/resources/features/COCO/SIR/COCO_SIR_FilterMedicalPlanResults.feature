@@ -1,4 +1,4 @@
-@COCO4 @COCOMedicalResults
+@SIR-COCO4 @COCOMedicalResults
   # SLCR-84, SLCR-272, SLCR-284, SLCR-338, SLCR-339,
 Feature: Verify COCO Medical Plan results
 

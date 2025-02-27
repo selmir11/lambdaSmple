@@ -50,6 +50,7 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I select Not listed for race and ethnicity option and enter "Multiracial" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
+    And I wait for 5000 milliseconds
     And I validate "American_Indian_Alaskan_Native,Native_Hawaiian_Pacific_Islander,Other" race and "Multiracial" other text in the database
     And I click Go back on the Employment income page
     Then I validate I am on the "Elmo Race and Ethnicity" page

@@ -3,10 +3,12 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AssistnetPort
 import com.c4hco.test.automation.Dto.AssisterDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -23,82 +25,82 @@ public class OrganizationDetailsPage {
     @FindBy(id = "My-info-header")
     WebElement organizationDetailsPageTitle;
 
-    @FindBy(id = "orgName")
+    @FindBy(xpath = "//input[@id='orgName']")
     WebElement organizationNameField;
 
-    @FindBy(id = "orgName-text")
+    @FindBy(xpath = "//label[@for='orgName']")
     WebElement organizationNameFieldLabel;
 
-    @FindBy(id = "orgName-errorMsg")
+    @FindBy(id = "on_mf_error")
     WebElement organizationNameError;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement organizationEmailField;
 
-    @FindBy(id = "email-text")
+    @FindBy(xpath = "//label[@for='email']")
     WebElement organizationEmailFieldLabel;
 
-    @FindBy(id = "email-errorMsg")
+    @FindBy(id = "em_mf_error")
     WebElement organizationEmailError;
 
-    @FindBy(id = "phoneNumber-input")
+    @FindBy(xpath = "//input[@id='phoneNumber-input']")
     WebElement organizationPhoneNumberField;
 
-    @FindBy(id = "phoneNumber-text")
+    @FindBy(xpath = "//label[@for='phoneNumber']")
     WebElement organizationPhoneNumberFieldLabel;
 
-    @FindBy(id = "phone-errorMsg")
+    @FindBy(id = "op_mf_error")
     WebElement organizationPhoneNumberError;
 
-    @FindBy(id = "address1")
+    @FindBy(xpath = "//input[@id='address1']")
     WebElement organizationAddressField;
 
-    @FindBy(id = "address1-text")
+    @FindBy(xpath = "//label[@for='address1']")
     WebElement organizationAddressFieldLabel;
 
-    @FindBy(id = "address1-errorMsg")
+    @FindBy(id = "address_mf_error")
     WebElement organizationAddressError;
 
-    @FindBy(id = "city")
+    @FindBy(xpath = "//input[@id='city']")
     WebElement organizationCityField;
 
-    @FindBy(id = "city-text")
+    @FindBy(xpath = "//label[@for='city']")
     WebElement organizationCityFieldLabel;
 
-    @FindBy(id = "city-errorMsg")
+    @FindBy(id = "city_mf_error")
     WebElement organizationCityError;
 
-    @FindBy(xpath = "//*[@id='primaryState']//div/div")
+    @FindBy(xpath = "//select[@id='primaryState']")
     WebElement organizationStateDropdown;
 
     @FindBy(id = "Colorado-option")
     WebElement organizationStateDropdownColorado;
 
-    @FindBy(id = "state-text")
+    @FindBy(xpath = "//label[@for='primaryState']")
     WebElement organizationStateDropdownLabel;
 
-    @FindBy(id = "state-errorMsg")
+    @FindBy(id = "state_mf_error")
     WebElement organizationStateDropdownError;
 
-    @FindBy(id = "zipcode")
+    @FindBy(xpath = "//input[@id='zipcode']")
     WebElement organizationZipCodeField;
 
-    @FindBy(id = "zipcode-text")
+    @FindBy(xpath = "//label[@for='zipcode']")
     WebElement organizationZipCodeFieldLabel;
 
-    @FindBy(id = "zip-errorMsg")
+    @FindBy(id = "zc_mf_error")
     WebElement organizationZipCodeError;
 
-    @FindBy(xpath = "//*[@id='county']//div/div")
+    @FindBy(xpath = "//select[@id='county']")
     WebElement organizationCountyDropdown;
 
     @FindBy(id = "DENVER-option")
     WebElement organizationCountyDropdownDenver;
 
-    @FindBy(id = "county-text")
+    @FindBy(xpath = "//label[@for='county']")
     WebElement organizationCountyDropdownLabel;
 
-    @FindBy(xpath = "//div[normalize-space()='County is required']//div[@id='zip-errorMsg']")
+    @FindBy(id = "county_mf_error")
     WebElement organizationCountyDropdownError;
 
     @FindBy(xpath = "//*[@id='input-languages']/ng-select/div/div/div[2]/input")
@@ -137,19 +139,19 @@ public class OrganizationDetailsPage {
     @FindBy(id = "input-working-to")
     WebElement organizationWorkingHoursTo;
 
-    @FindBy(id = "working-hours-errorMsg")
+    @FindBy(id = "both-wh-error")
     WebElement organizationWorkingHoursError;
 
-    @FindBy(id = "allow-assoc-text")
+    @FindBy(xpath = "//label[@for='agencyOwner']//span")
     WebElement organizationClientAssociationQuestionText;
 
-    @FindBy(xpath = "//div[@class='help-block text-danger w-100 text-center body-text-1']")
+    @FindBy(id = "org_association_mf_error")
     WebElement organizationClientAssociationQuestionError;
 
-    @FindBy(id = "clientAssociation-yes-label")
+    @FindBy(xpath = "//*[@id='agencyOwner-yes']//span")
     WebElement organizationClientAssociationYesButton;
 
-    @FindBy(id = "clientAssociation-no-label")
+    @FindBy(xpath = "//*[@id='agencyOwner-no']//span")
     WebElement organizationClientAssociationNoButton;
 
     @FindBy(id = "AN-OrganizationDetails-Submit")
@@ -246,7 +248,8 @@ public class OrganizationDetailsPage {
         organizationCityField.sendKeys("Denver");
 
         organizationStateDropdown.click();
-        organizationStateDropdownColorado.click();
+        Select stateDropdown = new Select(organizationStateDropdown);
+        stateDropdown.selectByVisibleText("Colorado");
 
         organizationZipCodeField.sendKeys("80205");
 
@@ -254,7 +257,8 @@ public class OrganizationDetailsPage {
         organizationLanguagesDropdownEnglish.click();
 
         organizationCountyDropdown.click();
-        organizationCountyDropdownDenver.click();
+        organizationCountyDropdown.sendKeys(Keys.DOWN);
+        organizationCountyDropdown.sendKeys(Keys.ENTER);
 
         organizationAreaOfExpertiseDropdown.click();
         organizationAreaOfExpertiseDropdownOption.click();

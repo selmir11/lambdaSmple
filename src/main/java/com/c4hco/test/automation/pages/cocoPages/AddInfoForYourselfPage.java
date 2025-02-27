@@ -283,7 +283,7 @@ public class AddInfoForYourselfPage {
         softAssert.assertEquals(AddInfoForYourselfPageText.get(6).getText(), "C\u00F3digo postal");
         softAssert.assertEquals(AddInfoForYourselfPageText.get(7).getText(), "Condado");
         softAssert.assertEquals(AddInfoForYourselfPageText.get(9).getText(), "\u00BFSu domicilio postal es el mismo que el domicilio residencial que se especifica arriba?");
-        softAssert.assertEquals(mailingAddressButtons.get(0).getText(), "Si");
+        softAssert.assertEquals(mailingAddressButtons.get(0).getText(), "S\u00ED");
         softAssert.assertEquals(mailingAddressButtons.get(1).getText(), "  No");
         softAssert.assertEquals(AddInfoForYourselfPageText.get(10).getText(), "\u00BFCu\u00E1l es su direcci\u00F3n postal?");
         softAssert.assertEquals(AddInfoForYourselfPageText.get(11).getText(), "Domicilio 1");
@@ -306,7 +306,7 @@ public class AddInfoForYourselfPage {
         softAssert.assertEquals(AddInfoForYourselfPageText.get(16).getText(), "C\u00F3digo postal");
         softAssert.assertEquals(AddInfoForYourselfPageText.get(17).getText(), "Condado");
         softAssert.assertEquals(AddInfoForYourselfPageText.get(19).getText(), "\u00BFVive usted en Colorado?");
-        softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "Si");
+        softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "S\u00ED");
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Volver");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");

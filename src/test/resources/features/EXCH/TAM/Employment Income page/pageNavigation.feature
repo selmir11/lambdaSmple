@@ -119,8 +119,8 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-1324
-  Scenario Outline: ELIG-Self-employment income-Page Text
+  @SLER-2076
+  Scenario Outline: SLER-2076 ELIG-Self-employment income-Page Text [RT-997]
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
     And I change the language from Elmo header to "<Language>" if it isn't already in that language
