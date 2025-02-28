@@ -34,7 +34,7 @@ public class ForgetPasswordPage {
     WebElement submitBtn;
     @FindBy(xpath="//input[@id='un']")
     WebElement emailForgetPassword;
-    @FindBy(xpath ="//span[@class='error-message ng-star-inserted']")
+    @FindBy(xpath ="//span[@class='error-message c4-text-body-100 ng-star-inserted']")
     WebElement errorUsername;
 
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 m-3 ng-star-inserted']")
@@ -147,7 +147,7 @@ public class ForgetPasswordPage {
                 System.out.println(resetPW);
     }
     public void loginAsIndividualWithPasswordResetCode(String qaEmail, String stgEmail) {
-        basicActions.waitForElementToBePresentWithRetries(loginPage.password, 40);
+        basicActions.waitForElementToBePresentWithRetries(loginPage.signInButton, 40);
         basicActions.wait(60);
         if (SharedData.getEnv().equals("qa")) {
             loginPage.username.sendKeys(qaEmail);
@@ -165,10 +165,9 @@ public class ForgetPasswordPage {
 
 
     public void LoginAsIndividualWithPasswordResetCode() {
-        basicActions.waitForElementToBePresent(loginPage.password, 40);
+        basicActions.waitForElementToBePresentWithRetries(loginPage.signInButton,30);
         loginPage.username.sendKeys(SharedData.getPrimaryMember().getEmailId());
         loginPage.password.sendKeys(resetPW);
-        basicActions.waitForElementToBePresentWithRetries(loginPage.signInButton,30);
         loginPage.signInButton.click();
     }
 

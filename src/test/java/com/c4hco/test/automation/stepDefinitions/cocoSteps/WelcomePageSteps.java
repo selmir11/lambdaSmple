@@ -18,6 +18,10 @@ public class WelcomePageSteps {
     @And("I apply for the next year in CoCo during open enrollment")
     public void iApplyForNextYear(){welcomePage.applyForNextYear();}
 
+    @And("I click Make changes button on Welcome Page")
+    public void iClickMakeChangeButton(){welcomePage.iClickMakeChangeButton();
+    }
+
     @And("I click on {string} link on welcome page")
     public void iClickActionLink(String actionLink) { welcomePage.clickActionLinks(actionLink); }
 

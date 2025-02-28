@@ -217,9 +217,38 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I verify file downloaded and it is not empty")
     public void I_click_on_download_button_and_save_it() {myDocumentsPage.verifyFileExistAndNotEmpty();}
 
-    @Then("I verify file {string} downloaded with Proper name format")
-    public void iVerifyFileDownloadedWithProperNameFormat(String NoticeName) {
-        myDocumentsPage.verifyFileNameFormat(NoticeName);
+    @Then("I verify file {string} downloaded with Proper name format in {string} type")
+    public void iVerifyFileDownloadedWithProperNameFormat(String NoticeName, String fileType) {
+        myDocumentsPage.verifyFileNameFormat(NoticeName,fileType);
+    }
+
+    @And("I click upload MVR button if present for category {string}")
+    public void iClickUploadMVRButtonIfPresentForCategory(String mvrType) {
+        myDocumentsPage.iClickUploadButton(mvrType);
+    }
+
+    @And("I click Upload MVR carrot and verify default category {string} and corresponding document types")
+    public void iClickUploadMVRCarrotAndVerifyDefaultCategoryAndCorrespondingDocumentTypes(String mvrType , List<String> docTyes) {
+        myDocumentsPage.iVerifyDocumentCategoryAndTypes(mvrType,docTyes);
+    }
+
+    @Then("I upload MVR doc on the My Documents page and verify success message")
+    public void iUploadMVRDocForOnTheMyDocumentsPageAndVerifySuccessMessage() {
+        myDocumentsPage.uploadMvrDocAndSuccesMessage();
+    }
+
+    @Then("I upload another doc {string} for {string} on the My Documents page and verify success message")
+    public void iUploadAnotherDocForOnTheMyDocumentsPageAndVerifySuccessMessage(String uploadDocFile,String mvrType) {
+        myDocumentsPage.uploadAnotherDocWithSuccessMessage(uploadDocFile,mvrType);
+    }
+
+    @And("I click on upload another document link")
+    public void iClickOnUploadAnotherDocumentLink() {
+        myDocumentsPage.clickUploadAnotherDocumentlink();
+    }
+    @Then("I upload another doc {string} for category {string} and type {string} and verify success message")
+    public void iUploadAnotherDocForCategoryAndTypeAndVerifySuccessMessage(String uploadDocFile,String mvrType,String docType) {
+        myDocumentsPage.uploadAnotherDocAndVerifySuccessMessage(uploadDocFile,mvrType,docType);
     }
 
 }

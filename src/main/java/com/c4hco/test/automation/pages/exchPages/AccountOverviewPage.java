@@ -214,6 +214,12 @@ public class AccountOverviewPage {
         SharedData.setScenarioDetails(scenarioDetails);
    }
 
+   public void setProfileChange(String prefix, Boolean option){
+       MemberDetails member = basicActions.getMember(prefix);
+       member.setIsProfileChange(option);
+       member.setIsResAddChange(option);
+   }
+
     public void setDates(String planType, List<Map<String, String>> expectedResult) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
         String policyStartDate;
@@ -336,7 +342,9 @@ public class AccountOverviewPage {
 
             basicActions.waitForElementToBePresentWithRetries(MedicalAPTCAmnt, 10);
             softAssert.assertNotEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + member.getMedicalPremiumAmt(), member.getFirstName() + " Medical premium amount does not match");
-            softAssert.assertNotEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + member.getMedicalAptcAmt(), member.getFirstName() + " Medical APTC amount did not match");
+            if(SharedData.getPrimaryMember().getFinancialHelp()){
+                softAssert.assertNotEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + member.getMedicalAptcAmt(), member.getFirstName() + " Medical APTC amount did not match");
+            }
             softAssert.assertNotEquals(dentalPremiumAmt, "$" + basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), member.getFirstName() + " Dental Premium amount does not match");
 
             BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(MedicalAPTCAmnt.getText().replace(",", "").replace("$", ""));
@@ -346,7 +354,6 @@ public class AccountOverviewPage {
             member.setMedicalAptcAmt(String.valueOf(bigDecimalMedAPTCAmt));
             member.setTotalMedAmtAfterReduction(String.valueOf(medPremiumAfterReduction));
             member.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
-
 
             member.setDentalPremiumAmt(dentalPremiumAmt);
             member.setTotalDentalPremAfterReduction(dentalPremiumAmt);

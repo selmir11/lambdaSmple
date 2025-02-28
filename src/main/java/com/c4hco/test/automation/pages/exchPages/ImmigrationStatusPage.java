@@ -91,7 +91,7 @@ public class ImmigrationStatusPage {
 
     @FindBy(id = "livedSince1996-error")
     WebElement errorLivedSince1996;
-    @FindBy(id = "imgrStatusGrantDate-error")
+    @FindBy(xpath = "//*[@id='imgrStatusGrantDate-error' or @id='paroleeGrantDate-error']")
     WebElement errorMsgImmigrationStatus;
 
     @FindBy(xpath = "(//input[@class='control-label input-radio'])[1]")
