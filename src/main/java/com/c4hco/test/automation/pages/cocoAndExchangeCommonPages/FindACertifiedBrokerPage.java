@@ -141,7 +141,7 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath= "//div[@class='row justify-content-center header-2 mb-2']")
     WebElement changeBrokerContainerTitle;
 
-    @FindBy(xpath= "//div[@class='mb-4 me-auto ms-auto ng-star-inserted']")
+    @FindBy(xpath= "//div[@class='mb-4 me-auto ms-auto']")
     WebElement changeBrokerContainerWarningText;
 
     @FindBy(xpath= "//div[@id='client-information-table']/div[2]")
@@ -379,8 +379,8 @@ public class FindACertifiedBrokerPage {
     }
 
     public void validateAgencyDetailsHidden(){
-        String agencyDetailsContainer = basicActions.getDriver().findElement(By.id("cdk-accordion-child-0")).getAttribute("style");
-        softAssert.assertEquals(agencyDetailsContainer, "height: 0px; visibility: hidden;");
+        String agencyDetailsContainer = basicActions.getDriver().findElement(By.id("mat-expansion-panel-header-0")).getAttribute("class");
+        softAssert.assertEquals(agencyDetailsContainer, "mat-expansion-panel-header mat-focus-indicator disable_ripple mat-expansion-toggle-indicator-after cdk-focused cdk-mouse-focused");
         softAssert.assertAll();
     }
 
