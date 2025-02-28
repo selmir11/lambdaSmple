@@ -91,7 +91,7 @@ public class SelfAttestationPage {
     @FindBy(xpath = "/html/body/app-root/lib-base-layout/div/main/div/app-post-attestation/app-container/div/div/div[2]/section")
     WebElement pageText1;
 
-    @FindBy(id = "undefined-SaveAndContinue")
+    @FindBy(id = "PostAttestation-SaveAndContinue")
     WebElement finish;
 
     @FindBy(xpath = "//button[text()='here']")

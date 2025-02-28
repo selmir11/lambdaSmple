@@ -607,21 +607,28 @@ public class MyDocumentsPage {
     }
 
     public void SelectPlanYeardropdown(String selectYear) {
-        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0), 30);
+        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0), 10);
         basicActions.refreshPage();
-        basicActions.wait(1000);
+        basicActions.wait(50);
         basicActions.refreshPage();
+        basicActions.wait(50);
         switch (selectYear) {
             case "All":
+                basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 20);
                 PlanYearDropDown.get(0).click();
+                basicActions.waitForElementListToBePresentWithRetries(PlanYearValues, 20);
                 PlanYearValues.get(4).click();
                 break;
             case "Current Year":
+                basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 20);
                 PlanYearDropDown.get(0).click();
+                basicActions.waitForElementListToBePresentWithRetries(PlanYearValues, 20);
                 PlanYearValues.get(0).click();
                 break;
             case "Previous Year":
+                basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 20);
                 PlanYearDropDown.get(0).click();
+                basicActions.waitForElementListToBePresentWithRetries(PlanYearValues, 20);
                 PlanYearValues.get(1).click();
                 break;
             default:
@@ -986,12 +993,18 @@ public class MyDocumentsPage {
 
     }
 
-    public void verifyFileNameFormat(String NoticeName) {
+    public void verifyFileNameFormat(String NoticeName,String fileType) {
         String formatedDate =   basicActions.changeDateFormat( basicActions.getTodayDate(),"MM/dd/yyyy","dd-MMM-yyyy");
-        basicActions.waitForElementToBeClickable(btn_download, 10);
-        btn_download.click();
+        basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 20);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
+        basicActions.scrollToElement(expandDownloadEnrolmentDocument);
+        basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 10);
+        WebElement pastDocCarrot = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + NoticeName + "')]/p//following::span[1]"));
+        pastDocCarrot.click();
+        WebElement downloadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + NoticeName + "')]/p//following::a[1]"));
+        downloadButton.click();
         String fileName = basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 40);
-        Assert.assertEquals(fileName, NoticeName + "-" + SharedData.getPrimaryMember().getAccount_id() + "-" + formatedDate +" (1).pdf", "File Name Not Match :  ");
+        Assert.assertEquals(fileName, NoticeName + "-" + SharedData.getPrimaryMember().getAccount_id() + "-" + formatedDate + fileType, "File Name Not Match :  ");
     }
 
     public void iClickUploadButton(String mvrType) {
@@ -1121,7 +1134,7 @@ public class MyDocumentsPage {
             case "Incarceration Status":
                 categoryList.get(12).click();
                 break;
-            case "Financial Help Eligibility":
+            case "Financial Help Eligibility", "Income":
                 categoryList.get(13).click();
                 break;
             case "Social Security Number":
@@ -1132,4 +1145,31 @@ public class MyDocumentsPage {
         }
         clickWhichDocument();
     }
+
+    public void clickUploadAnotherDocumentlink() {
+        basicActions.waitForElementToBeClickable(UploadDocumentText, 30);
+        basicActions.click(UploadDocumentText);
+    }
+
+    public void uploadAnotherDocAndVerifySuccessMessage(String uploadDocFile, String mvrType, String docType) {
+        selectDocumentCategoryAndType(mvrType);
+        clickWhichDocumentType(docType);
+        uploadDoc(uploadDocFile);
+        clickUploadDoc();
+    }
+
+    public void clickWhichDocumentType(String docType){
+        basicActions.waitForElementToBePresent(dpdWhichDocument,10);
+        dpdWhichDocument.click();
+        boolean found = false;
+        for ( WebElement element : categoryList) {
+            if(element.getText().trim().equals(docType)) {
+                element.click();
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found,"Document types not found");
+    }
+
 }
