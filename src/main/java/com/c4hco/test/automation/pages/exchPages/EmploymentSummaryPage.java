@@ -37,7 +37,7 @@ public class EmploymentSummaryPage {
     @FindBy(css = "app-confirmation-dialog button")
     List<WebElement> lnkRemoveContinue;
 
-    @FindBy(css = ".col-3.content-center")
+    @FindBy(css = "a.clickable.c4-type-links-lg")
     WebElement btnAddJob;
 
     @FindBy(css = "lib-help-icon a")
@@ -165,8 +165,9 @@ public class EmploymentSummaryPage {
 
     public void clickAddJob(){
         basicActions.waitForElementToBePresent(spinner,20);
-        basicActions.waitForElementToBePresent(btnAddJob,20);
-        btnAddJob.click();
+        basicActions.waitForElementToBePresent(btnAddJob,30);
+        basicActions.waitForElementToBeClickable(btnAddJob, 10);
+        basicActions.click(btnAddJob);
     }
 
     public void clickRemoveJob(String DeleteJob){

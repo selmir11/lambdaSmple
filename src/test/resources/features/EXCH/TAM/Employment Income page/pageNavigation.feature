@@ -322,3 +322,202 @@ Feature: Page Text-Income Opt Out Page
       | InstagramIcon  | instagram         | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.net                           |
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2270
+  Scenario: RT-2670 As an Exchange user, I need navigation functionality to navigate from the modernized ESI page to Exchange
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "1276000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status Elmo page
+    Then I validate I am on the "Elmo Other Health Coverage" page
+
+    Then I validate selecting insurance options
+      | InsuranceOption       |
+      | Health First Colorado |
+      | CHP+                  |
+      | Medicare              |
+      | job                   |
+      | HRA                   |
+      | Retiree Health Plan   |
+      | Peace Corps           |
+      | COBRA                 |
+      | VA Health Care        |
+      | TRICARE               |
+      | Other                 |
+      | None of these         |
+    #Medicare
+    Then I select "Medicare" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I verify the header for "Primary" Member on the Medicare page in "English"
+    And I validate I am on the "Elmo Ohc Medicare" page
+    Then I click "Yes" for currently eligible in Medicare question
+    Then I check checkbox for Part "A"
+    Then I enter Part A amount of "150.00"
+    Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
+    Then I enter end date of "Current Month" for Medicare part "A"
+    And I click Go Back on the Elmo OHC Medicare page
+
+    #ESI
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page in "English"
+    Then I select the "0" employer for "Primary" member on the ESI page
+    Then I select "Yes" for meet the Minimum Value Standard on the ESI page
+    Then I enter "220.03" for employee amount question on the ESI page
+    Then I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
+    Then I enter the end date as "Current Month" on the ESI page
+    Then I select the Are you voluntarily ending "Yes" button on the ESI page
+    Then I select the Go Back button on the ESI page
+
+    #HRA
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "HRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo HRA" page
+    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I enter "6.00" amount on the Elmo OHC HRA page
+    Then I select "ICHRA" for HRA type
+    Then I select "Yes" for opt out on the Elmo OHC HRA page
+    Then I click Go Back on the Elmo OHC HRA page
+
+    #RetiRee
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I click "Yes" for currently enrolled in Retiree question
+    Then I click "Yes" for insurance ending in 60 days in Retiree question
+    Then I enter the end date as "Future Day" on the Retiree page
+    Then I click "No" for insurance ending voluntary for Retiree question
+    Then I click Go Back on the Elmo OHC Retiree page
+
+    #PeaceCorps
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "Peace Corps" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I click "Yes" for currently enrolled in Peace Corps question
+    Then I click "Yes" for insurance ending in 60 days in Peace Corps question
+    Then I enter the end date as "Future Day" on the Peace Corps page
+    Then I click "No" for insurance ending voluntary for Peace Corps question
+    Then I click Go Back on the Elmo OHC Peace Corps page
+
+    #Cobra
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo COBRA" page
+    Then I click "Yes" for currently enrolled in COBRA question
+    Then I click "Yes" for insurance ending in 60 days in COBRA question
+    Then I enter the end date as "Future Day" on the Cobra page
+    Then I click "No" for insurance ending voluntary for COBRA question
+    Then I click Go Back on the Elmo OHC Cobra page
+
+   #VAhealthcare
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "VA Health Care" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I click "Yes" for currently enrolled in VA Healthcare question
+    Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
+    Then I enter the end date as "Future Day" on the VA Healthcare page
+    Then I click "No" for insurance ending voluntary for VA Healthcare question
+    Then I click Go Back on the Elmo OHC VA Healthcare page
+
+    #TRICARE
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "TRICARE" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohc Tricare" page
+    Then I click "Yes" for currently enrolled in Tricare question
+    Then I click "Yes" for insurance ending in 60 days in Tricare question
+    Then I enter the end date as "Future Day" on the Tricare page
+    Then I click "No" for insurance ending voluntary for Tricare question
+    Then I click Go Back on the Elmo OHC Tricare page
+
+          #individual
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "Other" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I click "Yes" for currently enrolled in Individual Insurance question
+    Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
+    Then I enter the end date as "Future Day" on the Individual Insurance page
+    Then I click "No" for insurance ending voluntary for Individual Insurance question
+    Then I click continue on the Elmo OHC Individual Insurance page
+
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I click continue on the Employment Summary Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I select the projected income option "No" and continue
+    Then I click Save and Continue on Tax Status Elmo page
+
+    Then I validate selecting insurance options
+      | InsuranceOption       |
+      | Health First Colorado |
+      | CHP+                  |
+      | Medicare              |
+      | job                   |
+      | HRA                   |
+      | Retiree Health Plan   |
+      | Peace Corps           |
+      | COBRA                 |
+      | VA Health Care        |
+      | TRICARE               |
+      | Other                 |
+      | None of these         |
+
+    And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2272 #WIP
+  Scenario: RT-2620 As a user on the Employment Summary page, I need the ability to remove a job/employer so that I can accurately report my employment details
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "3000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "1500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "200000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "50000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    #DB step
+
+
+
+
+

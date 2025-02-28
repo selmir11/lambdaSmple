@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -1547,5 +1548,16 @@ public class OtherHealthCoveragePage_Elmo {
             existingHealthInsuranceHeader.click();
         }
     }
+
+    public void selectInsuranceOptions(DataTable insuranceOptionsTable) {
+        List<String> insuranceOptions = insuranceOptionsTable.asList();
+        basicActions.waitForElementToDisappear(spinner, 10);
+        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
+        int totalOptions = insuranceOptionsCheckBox.size();
+        for (int i = 0; i < totalOptions && i < insuranceOptions.size(); i++) {
+            basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(i), 10);
+        }
+    }
+
 
 }
