@@ -86,6 +86,9 @@ public class YourInformationPage {
     @FindBy(id = "inviteCode-input")
     WebElement inviteCode;
 
+    @FindBy(id = "have-code-checkbox-input")
+    WebElement noCodeCheckbox;
+
     @FindBy(id = "noCode-checkbox-errorMsg")
     WebElement noInviteCodeErrorMessage;
 
@@ -210,6 +213,11 @@ public class YourInformationPage {
         continueYourInformation.click();
         softAssert.assertEquals(noInviteCodeErrorMessage.getText(),"Response is Required");
         softAssert.assertAll();
+    }
+
+    public void clickIDoNotHaveCodeCheckbox(){
+        basicActions.waitForElementToBePresent(noCodeCheckbox,10);
+        noCodeCheckbox.click();
     }
 
     public void validateLicenseMaxCharacterLimit(){
