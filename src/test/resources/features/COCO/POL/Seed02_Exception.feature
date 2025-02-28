@@ -13,6 +13,9 @@ Feature: Seed02 with exception - Coco
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -91,19 +94,12 @@ Feature: Seed02 with exception - Coco
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
-    And I click on Sign Out in the Header for "Elmo"
 
-  #UI Validation - WIP  Need to update because of new page in UI
-    #Given I open the login page on the "login" portal
-    #Then I validate I am on the "Login" page
-    #And I enter valid credentials to login
-    #Then I validate I am on the "CoCo Welcome" page
-    #Then I click continue signing in on the CAC Screener page
-    #Then I validate I am on the "CoCo Welcome" page
-    #And I select year "2025" from My Current Plan container
-    #And I Validate the correct enrolled plans are displayed on coco welcome page
-    #And I click on "My Plans" link on welcome page
-    #And I validate enrolled medical plans details on my policies page coco
+  #UI Validation
+    And I select year "2025" from My Current Plan container
+    And I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on "My Plans" link on welcome page
+    And I validate enrolled medical plans details on my policies page coco
 
   # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables

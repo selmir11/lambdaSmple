@@ -25,7 +25,7 @@ public class MyPoliciesCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = ".current-policy-data")
+    @FindBy(id = "SOL-CurrentPolicies-EnrolledMemberInfo")   //(css = ".current-policy-data")
     List<WebElement> memberNames;  // Gives names of all members - both medical and dental
 
     @FindBy(css = ".current-policy .current-policy-container")

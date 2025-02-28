@@ -447,7 +447,20 @@ public class WelcomePage {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
-        List<String> memberNamesList = basicActions.getAllMemCompleteNames();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        List<MemberDetails> dependents = SharedData.getMembers();
+        List<MemberDetails> allMembers = new ArrayList<>();
+        if (primaryMem != null){allMembers.add(primaryMem);}
+        if (dependents != null) {
+            for (MemberDetails dependent : dependents) {
+                if (!dependent.getFirstName().equals(primaryMem.getFirstName())){
+                    allMembers.add(dependent);
+                }}
+        }
+        List<String> memberNamesList = new ArrayList<>();
+        for (MemberDetails mem : allMembers) {
+            memberNamesList.add(mem.getCompleteFullName());
+        }
         List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
         Collections.sort(memberNamesList);
         Collections.sort(memberNamesListWelcomePage);

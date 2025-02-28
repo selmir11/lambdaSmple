@@ -87,17 +87,17 @@ Feature: Regression Tests that require COCO Seed 1
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
 
-#UI Validation - WIP  Need to update because of new page in UI
-    #Given I open the login page on the "login" portal
-    #Then I validate I am on the "Login" page
-    #And I enter valid credentials to login
-    #Then I validate I am on the "CoCo Welcome" page
-    #Then I click continue signing in on the CAC Screener page
-    #Then I validate I am on the "CoCo Welcome" page
-    #And I select year "2025" from My Current Plan container
-    #And I Validate the correct enrolled plans are displayed on coco welcome page
-    #And I click on "My Plans" link on welcome page
-    #And I validate enrolled medical plans details on my policies page coco
+#UI Validation
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "CoCo Welcome" page
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I select year "2025" from My Current Plan container
+    And I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on "My Plans" link on welcome page
+    And I validate enrolled medical plans details on my policies page coco
 
 # DB Validation
     And I validate "CANCELLED" Medical entities from COCO policy tables
