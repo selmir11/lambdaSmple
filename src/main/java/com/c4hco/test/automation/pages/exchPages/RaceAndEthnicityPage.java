@@ -24,7 +24,7 @@ public class RaceAndEthnicityPage {
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
-    @FindBy(id = "Race Ethnicity-SaveAndContinue")
+    @FindBy(id = "saveAndContinue")
     WebElement saveAndContinueButton;
 
     @FindBy(css = "Lib-navigations-buttons.btn-second-action-button")

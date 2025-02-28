@@ -435,6 +435,14 @@ public class EmploymentInfoPage {
         basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
         helpDrawerContactUsLink.click();
     }
+    public void goBackButton() {
+        basicActions.waitForElementToDisappear(spinner,15);
+        basicActions.waitForElementToDisappear(spinnerOverlay,15);
+        basicActions.waitForElementToBePresent(goBackButton, 90);
+        basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
+        basicActions.scrollToElement(goBackButton);
+        goBackButton.click();
+    }
 
     // ############################## VALIDATION METHODS #########################
 
