@@ -461,6 +461,7 @@ Feature: Header and Footer validation on Coco application pages
 
     #Application Results
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 3000 milliseconds
     And I verify text on the "CoCo" "Header" in "English"
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
