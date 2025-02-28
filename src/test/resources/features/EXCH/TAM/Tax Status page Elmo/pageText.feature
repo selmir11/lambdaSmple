@@ -48,7 +48,7 @@ Feature: Page Text-Tax Status Elmo Page
 
     Then I validate I am on the "Tax status Elmo" page
 
-  @SLER-1804 @PageTextTaxStatusElmoPage
+  @SLER-1804 @PageTextTaxStatusElmoPage @TAMSmoke
   Scenario: SLER-1804 I can see ELMO Tax Status page's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
