@@ -22,7 +22,7 @@ public class LoginPage {
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement username;
 
     @FindBy(id = "password")
@@ -84,9 +84,9 @@ public class LoginPage {
     @FindBy(css = ".yellow.warning.sign.icon")
     WebElement warningIcon;
 
-    @FindBy(css = "div.help-block.text-danger.mb-3.form-group-custom.mb-0.ng-star-inserted")
+    @FindBy(xpath = "//div[@class='help-block error-label mb-3 form-group-custom mb-0 ng-star-inserted']")
     WebElement lockedOutMessage;
-    @FindBy(xpath = "//div[@class='help-block text-danger mb-3 form-group-custom mb-0 ng-star-inserted']")
+    @FindBy(xpath = "//div[@class='help-block error-label mb-3 form-group-custom mb-0 ng-star-inserted']")
     WebElement invalidLoginMessage;
     @FindBy(id = "user-type-selection")
     WebElement userIcon;
@@ -112,7 +112,7 @@ public class LoginPage {
     }
 
     public void logInWithValidCredentials() {
-        basicActions.waitForElementToBePresentWithRetries(username, 10);
+        basicActions.waitForElementToBePresentWithRetries(signInButton, 10);
         basicActions.wait(2000);
         String emailId = SharedData.getPrimaryMember().getIncorrectEmail()!=null? SharedData.getPrimaryMember().getIncorrectEmail():SharedData.getPrimaryMember().getEmailId();
         System.out.println("Email::" + emailId);
@@ -123,11 +123,10 @@ public class LoginPage {
         password.sendKeys(pswd);
         System.out.println("Password::" + pswd);
         signInButton.click();
-        //  basicActions.waitForElementToDisappear(signInButton, 30);
     }
 
     public void logInBrokerPortal(String accountType) {
-        basicActions.waitForElementToBePresent(username, 10);
+        basicActions.waitForElementToBePresentWithRetries(signInButton, 10);
         BrokerDetails user;
         switch (accountType) {
             case "Agency Owner":
@@ -162,15 +161,15 @@ public class LoginPage {
     }
 
     public void loginAsBrokerUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
-        basicActions.waitForElementToBePresentWithRetries(usernameAdmin, 40);
+        basicActions.waitForElementToBePresentWithRetries(signInButton, 40);
         if (SharedData.getEnv().equals("staging")) {
-            usernameAdmin.sendKeys(stgUser);
-            passwordAdmin.sendKeys(stgPW);
+            username.sendKeys(stgUser);
+            password.sendKeys(stgPW);
         } else {
-            usernameAdmin.sendKeys(qaUser);
-            passwordAdmin.sendKeys(qaPW);
+            username.sendKeys(qaUser);
+            password.sendKeys(qaPW);
         }
-        signAdmin.click();
+        signInButton.click();
     }
 
     public void loginAsAdminUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {

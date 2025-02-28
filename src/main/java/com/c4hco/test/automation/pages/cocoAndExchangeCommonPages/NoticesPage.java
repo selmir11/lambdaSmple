@@ -242,6 +242,7 @@ public class NoticesPage {
             if (element.isDisplayed()) {
                 element.click();
             }
+            basicActions.waitForElementToDisappear(outlookLogOut, 20);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
