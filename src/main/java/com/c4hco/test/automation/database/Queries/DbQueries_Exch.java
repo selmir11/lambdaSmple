@@ -734,9 +734,9 @@ public class DbQueries_Exch {
 
     public String getMemberReasonCodeByAccountId() {
         return "SELECT err.reason_code " +
-                "FROM EXCH.ES_MEMBER esm " +
-                "JOIN EXCH.ES_MEMBER_RULES_RESULT err ON esm.member_id = err.member_id " +
-                "JOIN EXCH.ES_HOUSEHOLD esh ON esm.household_id = esh.household_id " +
+                "FROM " + dbName + ".ES_MEMBER esm " +
+                "JOIN " + dbName + ".ES_MEMBER_RULES_RESULT err ON esm.member_id = err.member_id " +
+                "JOIN " + dbName + ".ES_HOUSEHOLD esh ON esm.household_id = esh.household_id " +
                 "WHERE err.determination = 'CSR' " +
                 "AND err.eligibility_type = 'CSR' " +
                 "AND esh.account_id = '" + acctId + "'";

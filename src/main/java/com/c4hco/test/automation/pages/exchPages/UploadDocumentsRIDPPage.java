@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class UploadDocumentsRIDPPage {
     private BasicActions basicActions;
     private HeaderAndFooterPage headerandFooterpage;
@@ -51,6 +53,16 @@ public class UploadDocumentsRIDPPage {
         headerandFooterpage.changeLanguage(language+" NonElmo");
         basicActions.waitForElementToBePresent(errorMessage,10);
         softAssert.assertEquals(errorMessage.getText(),expectedMessage);
+        softAssert.assertAll();
+    }
+
+    public void validateErrorMessageAndButtonTexts(List<String> textList){
+        basicActions.waitForElementToBePresent(errorMessage,10);
+        basicActions.waitForElementToBePresent(backButton,10);
+        basicActions.waitForElementToBePresent(checkStatusbtn,10);
+        softAssert.assertEquals(errorMessage.getText(),textList.get(0),"Actual & Expected Error message not matching");
+        softAssert.assertEquals(checkStatusbtn.getAttribute("value"),textList.get(1),"Check status button label not matching");
+        softAssert.assertEquals(backButton.getAttribute("value"),textList.get(2),"Back button label not matching");
         softAssert.assertAll();
     }
 

@@ -214,10 +214,10 @@ public class AccountOverviewPage {
         SharedData.setScenarioDetails(scenarioDetails);
    }
 
-   public void setProfileChange(String prefix){
+   public void setProfileChange(String prefix, Boolean option){
        MemberDetails member = basicActions.getMember(prefix);
-       member.setIsProfileChange(true);
-       member.setIsResAddChange(true);
+       member.setIsProfileChange(option);
+       member.setIsResAddChange(option);
    }
 
     public void setDates(String planType, List<Map<String, String>> expectedResult) {
