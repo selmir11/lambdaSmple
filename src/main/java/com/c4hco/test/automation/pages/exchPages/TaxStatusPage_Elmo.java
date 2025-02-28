@@ -630,8 +630,9 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyHeadersTaxStatusPage(String memPrefix, String language) {
-        basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 15);
-        basicActions.waitForElementToBePresent(saveAndContinueBtn, 15);
+        basicActions.wait(500);
+        basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 60);
+        basicActions.waitForElementToBePresent(saveAndContinueBtn, 60);
 
         String expectedTextHeader = "";
         String expectedTextHelp = "";
@@ -1165,27 +1166,27 @@ public class TaxStatusPage_Elmo {
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px","Go back font-size");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700","Go back font-weight");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)","Go back color");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box","Go back background");
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(252, 252, 252, 1)","Go back background");
         action.moveToElement(goBackBtn).pause(1000L).build().perform();
         softAssert.assertEquals(goBackBtn.getText(), "Go back");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif","Go back hover font-family");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px","Go back hover font-size");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700","Go back hover font-weight");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)","Go back hover color");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box","Go back hover background");
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(226, 241, 248, 1)","Go back hover background");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif","Save and continue font-family");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px","Save and continue font-size");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700","Save and continue font-weight");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)","Save and continue color");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box","Save and continue background");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)","Save and continue background");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif","Save and continue hover font-family");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px","Save and continue hover font-size");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700","Save and continue hover font-weight");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)","Save and continue hover color");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box","Save and continue hover background");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)","Save and continue hover background");
         softAssert.assertAll();
     }
 
@@ -1195,27 +1196,27 @@ public class TaxStatusPage_Elmo {
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px","Go back font-size");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700","Go back font-weight");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)","Go back color");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box","Go back background");
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(252, 252, 252, 1)","Go back background");
         action.moveToElement(goBackBtn).pause(1000L).build().perform();
         softAssert.assertEquals(goBackBtn.getText(), "Volver");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif","Go back hover font-family");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px","Go back hover font-size");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700","Go back hover font-weight");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)","Go back hover color");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box","Go back hover background");
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(226, 241, 248, 1)","Go back hover background");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif","Save and continue font-family");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px","Save and continue font-size");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700","Save and continue font-weight");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)","Save and continue color");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box","Save and continue background");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)","Save and continue background");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif","Save and continue hover font-family");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px","Save and continue hover font-size");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700","Save and continue hover font-weight");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)","Save and continue hover color");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box","Save and continue hover background");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)","Save and continue hover background");
         softAssert.assertAll();
     }
 

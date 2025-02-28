@@ -349,7 +349,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
 
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1222 @test
+  @SLER-1222
   Scenario: SLER-1222 I verify that income-portal-ui uses common components from ng-common on the ELMO Medicare page
     And I verify the header for "Primary" Member on the Medicare page in "English"
     Then I verify Medicare checkbox in "Not Selected" state

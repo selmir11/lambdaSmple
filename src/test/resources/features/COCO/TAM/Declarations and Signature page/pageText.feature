@@ -37,7 +37,7 @@ Feature: PageText-Declarations and Signature Page
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
 
-  @SLCR-191 @PageTextD&SPage @TAMSmoke @test
+  @SLCR-191 @PageTextD&SPage @TAMSmoke
   Scenario: SLCR-191 I can see Declarations and Signature Page's Header and footer - English
     And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     And I verify text on the "CoCo" "Header" in "English"
@@ -119,7 +119,7 @@ Feature: PageText-Declarations and Signature Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-192 @PageTextD&SPage @test
+  @SLCR-192 @PageTextD&SPage
   Scenario: SLCR-192 I can see Declarations and Signature Page's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the CoCo Declarations And Signature page in "Spanish"
