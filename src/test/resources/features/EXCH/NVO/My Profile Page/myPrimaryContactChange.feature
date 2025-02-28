@@ -112,7 +112,7 @@ Feature: My Profile Page Exch
     And I click change primary contact on my profile page
     Then I validate Primary Contact Change Popup "Spanish" on My profile page
 
-  @SLER-1870
+  @SLER-1870 @NVOExchRegression
   Scenario: Validate CRM Queue after changing the primary person
     Then I validate I am on the "Add Address" page
     Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
@@ -173,7 +173,7 @@ Feature: My Profile Page Exch
     Then I click on Go back to Welcome page Button on My Profile Exch
     Then I validate the details from rq_queue_messages database
 
-  @SLER-1874
+  @SLER-1874 @NVOExchRegression
     Scenario: Validate bob Queue after change the primary person and the contact information
       Then I validate I am on the "Add Address" page
       Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
@@ -240,7 +240,7 @@ Feature: My Profile Page Exch
       Then I click on Go back to Welcome page Button on My Profile Exch
       Then I validate the details from rq_queue_messages database
 
-@SLER-1880
+@SLER-1880 @NVOExchRegression
   Scenario: Admin portal validations after change the primary person
     Then I validate I am on the "Add Address" page
     Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
@@ -319,7 +319,7 @@ Feature: My Profile Page Exch
   Then I validate member id of all members
   Then logout from Admin Portal
 
-  @SLER-1882
+  @SLER-1882 @NVOExchRegression
   Scenario: Admin portal validations after updating the editable fields for primary person on my profile page
     Then I validate I am on the "Add Address" page
     Then I enter member with address line1 "501 Mail Drive" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
@@ -401,7 +401,7 @@ Feature: My Profile Page Exch
     Then I validate the account activity record for "Info update" for "individualportal"
     Then logout from Admin Portal
 
-    @SLER-1883
+    @SLER-1883 @NVOExchRegression
     Scenario: Admin portal validations after creating an account
       Then I validate I am on the "Add Address" page
       And I click on Sign Out in the Header for "NonElmo"
