@@ -143,6 +143,15 @@ public class LawfulPresencePage {
     @FindBy(xpath = "//input[@id='citizenshipCertificate']//following-sibling::label/span")
     WebElement textCitizenshipCertificate;
 
+    @FindBy(xpath = "//label[@id='alienNumber-error']")
+    WebElement UsicsNumErrMsg;
+
+    @FindBy(xpath = "//label[@id='documentTypeCitzn-error']")
+    WebElement DocTypeErrorMsg;
+
+    @FindBy(xpath = "//label[@id='documentNumber-error']")
+    WebElement DocNumError;
+
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
             case "Yes":
@@ -664,6 +673,15 @@ public class LawfulPresencePage {
         softAssert.assertEquals(bodyTexts.get(25).getText(),languageText.get(9));
         softAssert.assertEquals(bodyTexts.get(26).getText(),languageText.get(10));
         softAssert.assertEquals(bodyTexts.get(27).getText(),languageText.get(11));
+        softAssert.assertAll();
+    }
+    public void verifyErrMsgInCitizenshipAndImmigrationPage(String language, List<String> dataText) {
+        basicActions.waitForElementToBePresent(UsicsNumErrMsg, 2);
+        basicActions.waitForElementToBePresent(DocTypeErrorMsg, 1);
+        basicActions.waitForElementToBePresent(DocNumError, 1);
+        softAssert.assertEquals(UsicsNumErrMsg.getText(), dataText.get(1), "Label Not matching");
+        softAssert.assertEquals(DocTypeErrorMsg.getText(), dataText.get(2), "Label Not matching");
+        softAssert.assertEquals(DocNumError.getText(), dataText.get(3), "label not matching");
         softAssert.assertAll();
     }
 
