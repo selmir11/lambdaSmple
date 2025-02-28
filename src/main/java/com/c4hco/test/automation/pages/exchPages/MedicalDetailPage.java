@@ -58,35 +58,69 @@ public class MedicalDetailPage {
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_0")
     WebElement lnkDocument0;
 
+    @FindBy(xpath = "//td[normalize-space()='Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01']")
+    WebElement linkDoc0Anthem;
+
+
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_1")
     WebElement lnkDocument1;
+
+    @FindBy(xpath = "//td[normalize-space()='Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220065-01']")
+    WebElement linkDoc1Anthem;
+
 
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_2")
     WebElement lnkDocument2;
 
+    @FindBy(xpath = "//td[normalize-space()='Evidence of Coverage Anthem BCBS English 0220065-01']")
+    WebElement linkDoc2Anthem;
+
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_3")
     WebElement lnkDocument3;
+
+    @FindBy(xpath = "//td[normalize-space()='Evidence of Coverage Anthem BCBS Spanish 0220065-01']")
+    WebElement linkDoc3Anthem;
 
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_4")
     WebElement lnkDocument4;
 
+    @FindBy(xpath = "//td[normalize-space()='Summary of Benefits and Coverage Anthem BCBS English 0220065-01']")
+    WebElement linkDoc4Anthem;
+
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_5")
     WebElement lnkDocument5;
+
+    @FindBy(xpath = "//td[normalize-space()='Summary of Benefits and Coverage Anthem BCBS Spanish 0220065-01']")
+    WebElement linkDoc5Anthem;
 
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_6")
     WebElement lnkDocument6;
 
+    @FindBy(xpath = "//td[normalize-space()='Brochure Anthem Medical English']")
+    WebElement linkDoc6Anthem;
+
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_7")
     WebElement lnkDocument7;
+
+    @FindBy(xpath = "//td[normalize-space()='Provider Network Anthem Pathway Essentials']")
+    WebElement linkDoc7Anthem;
 
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_8")
     WebElement lnkDocument8;
 
+    @FindBy(xpath = "//td[normalize-space()='Quality Overview Anthem English']")
+    WebElement linkDoc8Anthem;
+
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_9")
     WebElement lnkDocument9;
 
+    @FindBy(xpath = "//td[normalize-space()='Quality Overview Anthem Spanish']")
+    WebElement linkDoc9Anthem;
     @FindBy(id = "MedicalCarrierDetails-downloadPlanDocument_10")
     WebElement lnkDocument10;
+
+    @FindBy(xpath = "//td[normalize-space()='Brochure Anthem Medical Spanish']")
+    WebElement linkDoc10Anthem;
 
     @FindBy(css = "#MedicalCarrierDetails-InNetworkTier1")
     WebElement inNetwork1;
@@ -418,95 +452,11 @@ public class MedicalDetailPage {
             case "Anthem":
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
                 lnkDocument0.isDisplayed();
-                softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
+                String actualString0 = ( linkDoc0Anthem.getText());
+                softAssert.assertTrue( actualString0.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
+
                 lnkDocument0.click();
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                String actualString0 = lnkDocument0.getText();
-                softAssert.assertTrue( actualString0.contains( "\nSummary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" ) );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
-                lnkDocument1.isDisplayed();
-                softAssert.assertEquals( lnkDocument1, "Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01" );
-                lnkDocument1.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                String actualString1 = lnkDocument1.getText();
-                softAssert.assertTrue( actualString1.contains( "[[ChromeDriver: chrome on windows (151ac1366573d86c208be54abcfcb645)] -> id: MedicalCarrierDetails-downloadPlanDocument_1]" ) );
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
-                lnkDocument2.isDisplayed();
-                softAssert.assertEquals( lnkDocument2, "Evidence of Coverage Denver Health English 0030008-01" );
-                lnkDocument2.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString2 = lnkDocument2.getText();
-                //softAssert.assertTrue(actualString2.contains("Evidence of Coverage Denver Health English 0030008-01"));
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
-                lnkDocument3.isDisplayed();
-                softAssert.assertEquals( lnkDocument3, "Evidence of Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument3.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString3 = lnkDocument3.getText();
-                //softAssert.assertTrue(actualString3.contains("Evidence of Coverage Denver Health Spanish 0030008-01"));
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
-                lnkDocument4.isDisplayed();
-                softAssert.assertEquals( lnkDocument4, "Summary of Benefits and Coverage Denver Health English 0030008-01" );
-                lnkDocument4.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString4 = lnkDocument4.getText();
-                //softAssert.assertTrue(actualString4.contains("Summary of Benefits and Coverage Denver Health English 0030008-01"));
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
-                lnkDocument5.isDisplayed();
-                softAssert.assertEquals( lnkDocument5, "Summary of Benefits and Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument5.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString5 = lnkDocument5.getText();
-                //softAssert.assertTrue(actualString5.contains("Summary of Benefits and Coverage Denver Health Spanish 0030008-01"));
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
-                lnkDocument6.isDisplayed();
-                softAssert.assertEquals( lnkDocument6, "Quality Overview Denver Health English" );
-                lnkDocument6.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString6 = lnkDocument6.getText();
-                //softAssert.assertTrue(actualString6.contains("Quality Overview Denver Health English"));
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
-                lnkDocument7.isDisplayed();
-                softAssert.assertEquals( lnkDocument7, "Quality Overview Denver Health Spanish" );
-                lnkDocument7.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString7 = lnkDocument7.getText();
-                //softAssert.assertTrue(actualString7.contains("Quality Overview Denver Health Spanish"));
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health English" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString8 = lnkDocument8.getText();
-                //softAssert.assertTrue(actualString8.contains("Brochure Denver Health English"));
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument9, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument9, "Brochure Denver Health Spanish" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString9 = lnkDocument9.getText();
-                //softAssert.assertTrue(actualString9.contains("Brochure Denver Health Spanish"));
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument10, "Provider Network Denver Health" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-                //String actualString10 = lnkDocument10.getText();
-                //softAssert.assertTrue(actualString10.contains("Provider Network Denver Health"));
-
                 softAssert.assertAll();
 
             case "Rocky":
@@ -516,77 +466,6 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
 
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
-                lnkDocument1.isDisplayed();
-                softAssert.assertEquals( lnkDocument1, "Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01" );
-                lnkDocument1.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
-                lnkDocument2.isDisplayed();
-                softAssert.assertEquals( lnkDocument2, "Evidence of Coverage Denver Health English 0030008-01" );
-                lnkDocument2.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
-                lnkDocument3.isDisplayed();
-                softAssert.assertEquals( lnkDocument3, "Evidence of Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument3.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
-                lnkDocument4.isDisplayed();
-                softAssert.assertEquals( lnkDocument4, "Summary of Benefits and Coverage Denver Health English 0030008-01" );
-                lnkDocument4.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
-                lnkDocument5.isDisplayed();
-                softAssert.assertEquals( lnkDocument5, "Summary of Benefits and Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument5.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
-                lnkDocument6.isDisplayed();
-                softAssert.assertEquals( lnkDocument6, "Quality Overview Denver Health English" );
-                lnkDocument6.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
-                lnkDocument7.isDisplayed();
-                softAssert.assertEquals( lnkDocument7, "Quality Overview Denver Health Spanish" );
-                lnkDocument7.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health English" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument9, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health Spanish" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Provider Network Denver Health" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
                 softAssert.assertAll();
 
             case "Kaiser":
@@ -595,77 +474,6 @@ public class MedicalDetailPage {
                 softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
                 lnkDocument0.click();
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
-                lnkDocument1.isDisplayed();
-                softAssert.assertEquals( lnkDocument1, "Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01" );
-                lnkDocument1.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
-                lnkDocument2.isDisplayed();
-                softAssert.assertEquals( lnkDocument2, "Evidence of Coverage Denver Health English 0030008-01" );
-                lnkDocument2.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
-                lnkDocument3.isDisplayed();
-                softAssert.assertEquals( lnkDocument3, "Evidence of Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument3.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
-                lnkDocument4.isDisplayed();
-                softAssert.assertEquals( lnkDocument4, "Summary of Benefits and Coverage Denver Health English 0030008-01" );
-                lnkDocument4.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
-                lnkDocument5.isDisplayed();
-                softAssert.assertEquals( lnkDocument5, "Summary of Benefits and Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument5.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
-                lnkDocument6.isDisplayed();
-                softAssert.assertEquals( lnkDocument6, "Quality Overview Denver Health English" );
-                lnkDocument6.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
-                lnkDocument7.isDisplayed();
-                softAssert.assertEquals( lnkDocument7, "Quality Overview Denver Health Spanish" );
-                lnkDocument7.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health English" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument9, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health Spanish" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Provider Network Denver Health" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
 
                 softAssert.assertAll();
 
@@ -677,77 +485,6 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
 
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
-                lnkDocument1.isDisplayed();
-                softAssert.assertEquals( lnkDocument1, "Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01" );
-                lnkDocument1.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
-                lnkDocument2.isDisplayed();
-                softAssert.assertEquals( lnkDocument2, "Evidence of Coverage Denver Health English 0030008-01" );
-                lnkDocument2.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
-                lnkDocument3.isDisplayed();
-                softAssert.assertEquals( lnkDocument3, "Evidence of Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument3.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
-                lnkDocument4.isDisplayed();
-                softAssert.assertEquals( lnkDocument4, "Summary of Benefits and Coverage Denver Health English 0030008-01" );
-                lnkDocument4.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
-                lnkDocument5.isDisplayed();
-                softAssert.assertEquals( lnkDocument5, "Summary of Benefits and Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument5.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
-                lnkDocument6.isDisplayed();
-                softAssert.assertEquals( lnkDocument6, "Quality Overview Denver Health English" );
-                lnkDocument6.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
-                lnkDocument7.isDisplayed();
-                softAssert.assertEquals( lnkDocument7, "Quality Overview Denver Health Spanish" );
-                lnkDocument7.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health English" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument9, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health Spanish" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Provider Network Denver Health" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
                 softAssert.assertAll();
 
             case "Cigna":
@@ -758,76 +495,6 @@ public class MedicalDetailPage {
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
 
 
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
-                lnkDocument1.isDisplayed();
-                softAssert.assertEquals( lnkDocument1, "Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01" );
-                lnkDocument1.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
-                lnkDocument2.isDisplayed();
-                softAssert.assertEquals( lnkDocument2, "Evidence of Coverage Denver Health English 0030008-01" );
-                lnkDocument2.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
-                lnkDocument3.isDisplayed();
-                softAssert.assertEquals( lnkDocument3, "Evidence of Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument3.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
-                lnkDocument4.isDisplayed();
-                softAssert.assertEquals( lnkDocument4, "Summary of Benefits and Coverage Denver Health English 0030008-01" );
-                lnkDocument4.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
-                lnkDocument5.isDisplayed();
-                softAssert.assertEquals( lnkDocument5, "Summary of Benefits and Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument5.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
-                lnkDocument6.isDisplayed();
-                softAssert.assertEquals( lnkDocument6, "Quality Overview Denver Health English" );
-                lnkDocument6.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
-                lnkDocument7.isDisplayed();
-                softAssert.assertEquals( lnkDocument7, "Quality Overview Denver Health Spanish" );
-                lnkDocument7.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health English" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument9, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health Spanish" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Provider Network Denver Health" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
                 softAssert.assertAll();
 
             case "Select":
@@ -835,76 +502,6 @@ public class MedicalDetailPage {
                 lnkDocument0.isDisplayed();
                 softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
                 lnkDocument0.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
-                lnkDocument1.isDisplayed();
-                softAssert.assertEquals( lnkDocument1, "Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01" );
-                lnkDocument1.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
-                lnkDocument2.isDisplayed();
-                softAssert.assertEquals( lnkDocument2, "Evidence of Coverage Denver Health English 0030008-01" );
-                lnkDocument2.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
-                lnkDocument3.isDisplayed();
-                softAssert.assertEquals( lnkDocument3, "Evidence of Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument3.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
-                lnkDocument4.isDisplayed();
-                softAssert.assertEquals( lnkDocument4, "Summary of Benefits and Coverage Denver Health English 0030008-01" );
-                lnkDocument4.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
-                lnkDocument5.isDisplayed();
-                softAssert.assertEquals( lnkDocument5, "Summary of Benefits and Coverage Denver Health Spanish 0030008-01" );
-                lnkDocument5.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
-                lnkDocument6.isDisplayed();
-                softAssert.assertEquals( lnkDocument6, "Quality Overview Denver Health English" );
-                lnkDocument6.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
-                lnkDocument7.isDisplayed();
-                softAssert.assertEquals( lnkDocument7, "Quality Overview Denver Health Spanish" );
-                lnkDocument7.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health English" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument9, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Brochure Denver Health Spanish" );
-                lnkDocument8.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
-                lnkDocument8.isDisplayed();
-                softAssert.assertEquals( lnkDocument8, "Provider Network Denver Health" );
-                lnkDocument8.click();
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
 
 
