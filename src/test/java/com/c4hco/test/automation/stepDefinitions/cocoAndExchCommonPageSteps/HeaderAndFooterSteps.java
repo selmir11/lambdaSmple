@@ -2,7 +2,9 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps;
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.HeaderAndFooterPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class HeaderAndFooterSteps {
 
@@ -70,6 +72,19 @@ public class HeaderAndFooterSteps {
 
     @And("I click on {string} Icon in the Footer")
     public void iClickFacebookIcon(String MediaIcon){ headerAndFooterPage.clickFacebookIcon(MediaIcon); }
+
+
+    @Then("I verify text {string} in the Header or in the Footer")
+    public void iVerifyTextOnTheHeaderOrFooter(String text) {
+        headerAndFooterPage.validateTextinHeader(text);
+    }
+
+    @Then("I validate page Navigation works for Footer hyperlink text in {string}")
+    public void iverifyPageNavigation(String language, DataTable dataTable) {
+        headerAndFooterPage.verifyFooterlinktextNavigation(language, dataTable);
+    }
+
+
 
 
 }

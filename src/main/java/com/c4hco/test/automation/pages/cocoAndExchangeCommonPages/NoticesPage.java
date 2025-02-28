@@ -189,6 +189,10 @@ public class NoticesPage {
     WebElement bodyTextAM00403LoginWarning;
     @FindBy(xpath = "//*[@id='x_programManagerAccountCreationNoticeBody']/p[2]")
     WebElement bodyTextAM00403TrainingLink;
+    @FindBy(xpath = "//*[@id='x_brokerCertificationNoticeBody']/p[2]")
+    WebElement bodyTextBN001A01;
+    @FindBy(xpath = "//*[@id='x_brokerCertificationNoticeBody']/p[3]")
+    WebElement bodyTextBN001A01part3;
 
 
     public String MFACode = "";
@@ -238,6 +242,7 @@ public class NoticesPage {
             if (element.isDisplayed()) {
                 element.click();
             }
+            basicActions.waitForElementToDisappear(outlookLogOut, 20);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -481,6 +486,9 @@ public class NoticesPage {
             case "AM-003-01 Agency":
                 VerifyTheNoticeTextAM00301ExchAgency();
             break;
+            case "BN-001A-01":
+                VerifyTheNoticeTextBN001A01();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
@@ -608,6 +616,17 @@ public class NoticesPage {
         }
     }
 
+    private void VerifyTheNoticeTextBN001A01() {
+            softAssert.assertEquals(individualEmailBN002A0304.getText(),SharedData.getBroker().getEmail());
+            softAssert.assertEquals(BodyTextBN002A0404.get(1).getText(),"We have confirmed your Colorado licensure and completion of certification training, and we have received a copy of your Certified Producer Agreement. You are now certified to assist people with applying for coverage through Connect for Health Colorado");
+            softAssert.assertTrue(bodyTextBN001A01.getText().contains("Login ID: "+SharedData.getBroker().getEmail()));
+            softAssert.assertTrue(bodyTextBN001A01.getText().contains("Status: ACTIVE"));
+            softAssert.assertEquals(bodyTextBN001A01part3.getText(),"If you have questions regarding this update or believe that these changes were not authorized, please contact the Connect for Health Colorado Broker Team at BrokerTeam@c4hco.com <mailTo:BrokerTeam@c4hco.com>.");
+
+            softAssert.assertAll();
+
+    }
+
     private void VerifyTheNoticeTextBN002A04(String language) {
         switch (language){
             case "Spanish":
@@ -685,7 +704,7 @@ public class NoticesPage {
             case "AM-016-07":
                 VerifyTheNoticeTextAM01607Coco(language);
                 break;
-                case "AM-016-08":
+            case "AM-016-08":
                 VerifyTheNoticeTextAM01608Coco(language);
                 break;
             default:

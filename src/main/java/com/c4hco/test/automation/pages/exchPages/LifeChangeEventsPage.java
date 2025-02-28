@@ -29,8 +29,8 @@ public class LifeChangeEventsPage {
 
     @FindBy(id = "continueButton")
     List<WebElement> saveAndContinueButton;
-
-    @FindBy(xpath = "//*[text()='Continue with application']")
+    
+    @FindBy(xpath = "//button[@id = 'continueButton']")
     WebElement continueWithApplication;
 
     @FindBy(id = "continueButton")
@@ -143,6 +143,7 @@ public class LifeChangeEventsPage {
     }
 
     public void clickContinueWithApplicationBtn(){
+        basicActions.waitForElementToBePresentWithRetries( continueWithApplication,30 );
         continueWithApplication.click();
     }
 

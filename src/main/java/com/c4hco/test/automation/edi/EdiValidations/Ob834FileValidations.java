@@ -30,16 +30,9 @@ public class Ob834FileValidations {
 
     SoftAssert softAssert = new SoftAssert();
 
-    public Ob834FileValidations() {
-         n1ListWithSepReason = new ArrayList<>();
-       n1ListWithAddtlMaintReas = new ArrayList<>();
-         n1ListWithSepReasonMem = new ArrayList<>();
-         n1ListWithAddtlMaintReasMem = new ArrayList<>();
-        setN1SegList();
-    }
-
     public void validateOb834MedFile(String medFileName) {
         resetAllEntities();
+        setN1SegList();
         List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
         getOb834MedEntityForSubscriber(medFileName);
         getDataByEmailAndAccNum();
@@ -52,6 +45,7 @@ public class Ob834FileValidations {
 
     public void validateOb834DenFile(String denFileName) {
         resetAllEntities();
+        setN1SegList();
         getOb834DenEntityForSubscriber(denFileName);
         List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
         getDataByEmailAndAccNum();
@@ -78,6 +72,10 @@ public class Ob834FileValidations {
        subscriberDenEntities = new ArrayList<>();
          edi834TransactionDetails = new Edi834TransactionDetails();
          transactionsList = new ArrayList<>();
+        n1ListWithSepReason = new ArrayList<>();
+        n1ListWithAddtlMaintReas = new ArrayList<>();
+        n1ListWithSepReasonMem = new ArrayList<>();
+        n1ListWithAddtlMaintReasMem = new ArrayList<>();
     }
 
     private void validateMemSeg(List<Ob834DetailsEntity> entityList) {
@@ -150,6 +148,7 @@ public class Ob834FileValidations {
         List<List<String>> n1SegListOfList = member.getN1();
         List<List<String>> refSegListOfList = member.getREF();
         List<String> n1SegList = new ArrayList<>();
+
         int lxSegCount = 1;
 
         if (member.getINS().get(0).get(0).equals("Y")) {
@@ -158,9 +157,11 @@ public class Ob834FileValidations {
             } else {
                 softAssert.assertEquals(lxSegment.size(), 8, "LX Seg size is not equals to 8 for subscriber");
             }
-        } else {
+        } else if(SharedData.getPrimaryMember().getIsProfileChange()&& entry.getAddl_maint_reason().contains("|")){
+            // For SLER-1235 - rating area update. Works for one group
+            softAssert.assertEquals(lxSegment.size(), 3, "LX Seg size is not equals to 3 for member");
+        }else {
             softAssert.assertEquals(lxSegment.size(), 2, "LX Seg size is not equals to 2 for member");
-
         }
         softAssert.assertEquals(lxSegment.size(), n1SegListOfList.size(), "LX seg size is not equal to n1seg size within LS loop for this member");
 
@@ -198,7 +199,7 @@ public class Ob834FileValidations {
         if (entry.getSubscriber_indicator().equals("Y")) {
             expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReason : getN1ListWithAddlMaintReas(entry);
         } else {
-            expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReasonMem : n1ListWithAddtlMaintReasMem;
+            expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReasonMem : getN1ListWithAddlMaintReasMem(entry);
         }
         Assert.assertEquals(n1SegList, expectedN1List);
     }
@@ -206,9 +207,15 @@ public class Ob834FileValidations {
     private List<String> getN1ListWithAddlMaintReas(Ob834DetailsEntity entry) {
         if (entry.getAddl_maint_reason().contains("|")) {
             n1ListWithAddtlMaintReas.add(0, "ADDL MAINT REASON");
-            segCount = segCount + 1;
         }
         return n1ListWithAddtlMaintReas;
+    }
+
+    private List<String> getN1ListWithAddlMaintReasMem(Ob834DetailsEntity entry) {
+        if (entry.getAddl_maint_reason().contains("|")&&SharedData.getPrimaryMember().getIsProfileChange()) {
+            n1ListWithAddtlMaintReasMem.add(0, "ADDL MAINT REASON");
+        }
+        return n1ListWithAddtlMaintReasMem;
     }
 
     private void validateLxWithSepReason(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member) {
@@ -241,7 +248,8 @@ public class Ob834FileValidations {
                 default:
                     Assert.fail("Incorrect LX Case");
             }
-        } else {
+        }
+        else {
             // member
             switch ("LX" + lxSegCount) {
                 case "LX1":
@@ -296,7 +304,23 @@ public class Ob834FileValidations {
                     default:
                         Assert.fail("Incorrect LX Case");
                 }
-            } else {
+            } else
+                if(SharedData.getPrimaryMember().getIsProfileChange()&&entry.getAddl_maint_reason().contains("|")){
+                switch ("LX" + lxSegCount) {
+                    case "LX1":
+                        softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(addtlMainReas1), "LX" + lxSegCount + " did not match");
+                        break;
+                    case "LX2":
+                        softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(addtlMainReas2), "LX" + lxSegCount + " did not match");
+                        break;
+                    case "LX3":
+                        softAssert.assertTrue(String.valueOf(refSegList.get(3)).equals(entry.getPremium_amount()), "LX" + lxSegCount + " did not match");
+                        break;
+                    default:
+                        Assert.fail("Incorrect LX Case");
+                }
+            } else
+            {
                 // member
                 switch ("LX" + lxSegCount) {
                     case "LX1":
@@ -310,6 +334,7 @@ public class Ob834FileValidations {
                 }
             }
         } else {
+
             if (member.getINS().get(0).get(0).equals("Y")) {
                 switch ("LX" + lxSegCount) {
                     case "LX1":
@@ -339,7 +364,8 @@ public class Ob834FileValidations {
                     default:
                         Assert.fail("Incorrect LX Case");
                 }
-            } else {
+            }
+           else {
                 // member
                 switch ("LX" + lxSegCount) {
                     case "LX1":
@@ -707,10 +733,10 @@ public class Ob834FileValidations {
 
             for (Member mem : members) {
                 if (mem.getINS().get(0).get(0).equals("Y") && mem.getPER().get(0).get(5).equals(email)) {
+                    updatedTransactionList.add(trans);
                     break;
                 }
             }
-            updatedTransactionList.add(trans);
         }
 
         edi834TransactionDetails.setTransactionList(updatedTransactionList);

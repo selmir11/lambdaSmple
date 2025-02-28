@@ -181,6 +181,7 @@ Feature: Page Text-OHC Retiree Elmo Page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo Ohc Retiree" page
+    And I verify the header for Primary Member on the Retiree page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header

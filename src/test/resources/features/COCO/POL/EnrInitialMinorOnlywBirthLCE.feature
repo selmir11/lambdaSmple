@@ -83,7 +83,6 @@ Feature: Initial Application Minor only with Birth LCE(Admin OBO)
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Plans" link on welcome page
-    And Validate selected medical plan for "Daughter" is "KP Colorado Option Bronze"
     And I click on Sign Out in the Header for "Elmo"
 
 

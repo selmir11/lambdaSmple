@@ -57,6 +57,7 @@ Feature: Page Text-OHC Medicare Elmo Page
   @SLER-271 @PageTextOhcMedicareElmo
   Scenario: SLER-271 I can see Medicare's Header and footer - English
     Then I validate I am on the "Elmo Ohc Medicare" page
+    And I verify the header for "Primary" Member on the Medicare page in "English"
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
 
@@ -182,6 +183,7 @@ Feature: Page Text-OHC Medicare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     Then I validate I am on the "Elmo Ohc Medicare" page
+    And I verify the header for "Primary" Member on the Medicare page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -205,6 +207,7 @@ Feature: Page Text-OHC Medicare Elmo Page
     Then I click continue on the ELMO health coverage page
 
     And I validate I am on the "Elmo Ohc Medicare" page
+    And I verify the header for "Primary" Member on the Medicare page in "English"
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab

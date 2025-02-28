@@ -61,7 +61,7 @@ Feature: Enroll a in a plan 8 HH
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
+    And I enter the new residential address details for "Spouse"
       | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
       | 501 DIFF Drive         | Unit 23      | Boulder | CO    | 80020   | BOULDER |09051959 |
     And I select "Yes" for CO Resident option
@@ -84,7 +84,7 @@ Feature: Enroll a in a plan 8 HH
 
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
+    And I enter the new residential address details for "SonOne"
       | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
       | 900 Jailhouse Rock     | Unit 23      | Denver  | CO    | 80205   | DENVER  |06281996 |
 
@@ -180,7 +180,6 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Not listed" for race and ethnicity for "Nephew"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -209,7 +208,6 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Not listed" for race and ethnicity for "Niece"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -414,24 +412,24 @@ Feature: Enroll a in a plan 8 HH
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
 
-#    #Gmail Verification
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-#    And I validate additional details for "medical" plan on email notice
-#      |Primary|
-#      |Spouse|
-#      |SonOne|
-#      |Daughter|
-#    And I validate additional details for "dental" plan on email notice
-#      |Primary|
-#      |Spouse|
-#      |SonOne|
-#      |Daughter|
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
+    #Gmail Verification
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And I validate additional details for "medical" plan on email notice
+      |Primary|
+      |SonTwo|
+      |Niece|
+      |Nephew|
+    And I validate additional details for "dental" plan on email notice
+      |Primary|
+      |SonTwo|
+      |Niece|
+      |Nephew|
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
 
    # DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 6

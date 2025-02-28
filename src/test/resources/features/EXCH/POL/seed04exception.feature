@@ -13,8 +13,11 @@ Feature: Seed04exception - Exchange
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
-      | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month |
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -153,12 +156,6 @@ Feature: Seed04exception - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-    And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
-    And I validate "dental" plan details from plan history
-    And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
@@ -180,6 +177,9 @@ Feature: Seed04exception - Exchange
     And I validate I am on the "Login" page
     And I enter valid credentials to login
     And I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I click on ClickHere link for "My Plans"
     And I validate I am on the "My Policies" page
     And I click on "Cancel Medical Plan" button
@@ -187,7 +187,19 @@ Feature: Seed04exception - Exchange
     Then I affirm and cancel the active plan
     Then I click continue on Cancellation Request page
     Then I click Okay on Thank you popup
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "Medical" details card is not present on my policies page
+    And I validate "dental" details on my policies page
+    And I validate "medical-cancelled" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 024                   | 024                | AI                    | CANCEL            |            |
 
   @SLER-1229-WIP_@R4V
   Scenario: RT-2259 - ENR-EXCH: UPDATE CONTACT INFORMATION - CHANGE MAILING ADDRESS

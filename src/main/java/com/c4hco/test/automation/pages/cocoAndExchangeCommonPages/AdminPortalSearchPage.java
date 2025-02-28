@@ -1,4 +1,5 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
+import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
@@ -695,6 +696,27 @@ public class AdminPortalSearchPage {
         softAssert.assertEquals(buttonsList.get(1).getText(), "Reset", "Reset button as expected");
         softAssert.assertEquals(buttonsList.get(2).getText(), "Create Account", "Create Account button as expected");
         softAssert.assertAll();
+    }
+
+    public void searchForTheBrokerGenerated(String brokerPortal) {
+
+        basicActions.waitForElementListToBePresent(searchInputList, 10);
+        switch (brokerPortal){
+            case "Broker":
+          BrokerDetails broker = SharedData.getBroker();
+          searchInputList.get(1).sendKeys(broker.getFirstName());
+          searchInputList.get(2).sendKeys(broker.getLastName());
+          buttonsList.get(0).click();
+          break;
+            case "Agency":
+          BrokerDetails agency = SharedData.getAgencyOwner();
+                searchInputList.get(1).sendKeys(agency.getFirstName());
+                searchInputList.get(2).sendKeys(agency.getLastName());
+                buttonsList.get(0).click();
+          break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + brokerPortal);
+      }
     }
 }
 

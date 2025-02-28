@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: AP Create account - Application Links, Admin Portal user creation
   @SLCR-709
   Scenario:Admin Portal - Architecture user creates Admin Portal account with already used email to check error message then create unique A P user

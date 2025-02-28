@@ -31,17 +31,21 @@ Feature: Tests related to the Deductions page
     And I select "School tuition" as deduction option with "1500.00" amount at "Annually" frequency
     And I select continue on the Deductions CoCo page
     Then I validate I am on the "CoCo Income Summary" page
+    And I verify the header for Primary Member on the CoCo Income Summary page in "English"
     And I select go back on the income summary CoCo page
     Then I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
     Then I verify "School tuition" as Deductions option with "1,500.00" amount at "1: Annually" frequency CoCo page
     Then I open current page in new tab
     And I switch to the tab number 0
     Then I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I validate I am on the "CoCo Income Summary" page
     And I switch to the tab number 1
     Then I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
     And I select continue on the Deductions CoCo page
     Then I verify the error banner at the top of the page
 

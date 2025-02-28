@@ -2,15 +2,16 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.datatable.DataTable;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import java.time.Year;
 import java.util.List;
+import java.util.Map;
 
 public class HeaderAndFooterPage {
     SoftAssert softAssert = new SoftAssert();
@@ -212,7 +213,8 @@ public class HeaderAndFooterPage {
                 connectLogoNonElmo.click();
                 break;
             case "Elmo":
-                basicActions.waitForElementToBeClickable(connectLogoLink, 10);
+                basicActions.waitForElementToDisappear(spinner, 30);
+                basicActions.waitForElementToBeClickableWithRetries(connectLogoLink, 10);
                 connectLogoLink.click();
                 break;
             case "FindAPlan":
@@ -279,8 +281,8 @@ public class HeaderAndFooterPage {
     public void clickFindAPlanLinkLink(String pageType) {
         switch (pageType){
             case "Elmo":
-            basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 15);
-            basicActions.waitForElementToBePresent(connectLogoLink, 15);
+            basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 90);
+            basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 60);
             centerHeaderLink.get(1).click();
             break;
             case "NonElmo":
@@ -303,7 +305,7 @@ public class HeaderAndFooterPage {
 //        "ENonElmo" non Elmo pages (not listed above)
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 15);
+                basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 60);
                 centerHeaderLink.get(2).click();
                 break;
             case "NonElmo":
@@ -316,7 +318,7 @@ public class HeaderAndFooterPage {
     }
 
     public void clickLearnMoreLink() {
-        basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 15);
+        basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 60);
         learnMoreLink.click();
     }
 
@@ -434,6 +436,7 @@ public class HeaderAndFooterPage {
                 break;
             }
         }
+        basicActions.wait(90);
     }
 
     public void changeLanguage(String language) {
@@ -505,10 +508,10 @@ public class HeaderAndFooterPage {
     public void clickSignOutLink(String pageType) {
         switch (pageType) {
             case "Elmo":
-                basicActions.waitForElementToBePresent(signOutLink, 30);
-                basicActions.waitForElementToBePresent(learnMoreLink, 25);
-                basicActions.waitForElementToBePresent(getAssistanceLink, 25);
-                basicActions.waitForElementToBePresent(languageDrp, 25);
+                basicActions.waitForElementToBePresentWithRetries(signOutLink, 30);
+                basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 25);
+                basicActions.waitForElementToBePresentWithRetries(getAssistanceLink, 25);
+                basicActions.waitForElementToBePresentWithRetries(languageDrp, 25);
                 basicActions.scrollToElement(signOutLink);
                 basicActions.click(signOutLink);
                 break;
@@ -556,7 +559,8 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyTextInCoCoHeader() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 60);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 60);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
@@ -1080,12 +1084,12 @@ public class HeaderAndFooterPage {
             case "LinkedIn":
                 basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
                 basicActions.scrollToElement(LinkedInIcon);
-                LinkedInIcon.click();
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", LinkedInIcon);
                 break;
             case "Threads":
                 basicActions.waitForElementToBeClickable(ThreadsIcon, 10);
                 basicActions.scrollToElement(ThreadsIcon);
-                ThreadsIcon.click();
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", ThreadsIcon);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + MediaIcon);
@@ -1175,4 +1179,126 @@ public class HeaderAndFooterPage {
         basicActions.waitForElementToBePresent(connectLogoLinkNonElmo,20);
         connectLogoLinkNonElmo.click();
     }
+
+    public void validateTextinHeader(String expectedText) {
+        basicActions.waitForElementListToBePresent(centerHeaderLink,20);
+        switch (expectedText) {
+            case "Username":
+                basicActions.waitForElementToBePresent(userNameLinkExch, 100);
+                Assert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
+                break;
+            case "Apply for coverage Spanish":
+                basicActions.waitForElementToBePresent(centerHeaderLink.get(0),20);
+                softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura" , expectedText + " Not Found ");
+                break;
+            case "Find a plan Spanish":
+                 basicActions.waitForElementToBePresent(centerHeaderLink.get(1),20);
+                 softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan" , expectedText + " Not Found ");
+                 break;
+            case "My Account Spanish":
+                basicActions.waitForElementToBePresent(centerHeaderLink.get(2),20);
+                softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta" , expectedText + " Not Found ");
+                break;
+            case "Learn More Spanish":
+                 basicActions.waitForElementToBePresent(learnMoreLink,20);
+                 softAssert.assertEquals(learnMoreLink.getText() , "Más información" , expectedText + " Not Found ");
+                  break;
+            case "Contact US Spanish":
+                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
+                  actions.moveToElement(getAssistanceLink).perform();
+                  softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+                  break;
+            case "Find Expert Assistance Spanish":
+                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
+                  actions.moveToElement(getAssistanceLink).perform();
+                  softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+                  break;
+            case "Globe":
+                  basicActions.waitForElementToBePresent(languageDrp,20);
+                  softAssert.assertEquals(languageDrp.getText(), "");
+                  clickLanguageDrp("Exch");
+                  softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+                  softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+                  break;
+            case "Privacy Policy Spanish":
+                  basicActions.waitForElementToBePresent(privacyPolicyLink,20);
+                  softAssert.assertEquals(privacyPolicyLink.getText(), "Póliza de privacidad");
+                  break;
+            case "Terms of Use Spanish":
+                  basicActions.waitForElementToBePresent(termsOfUseLink,20);
+                  softAssert.assertEquals(termsOfUseLink.getText(), "Términos y Condiciones");
+                  break;
+            case "Contact Us Footer Link Spanish":
+                basicActions.waitForElementToBePresent(contactUsLinkExch,20);
+                softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
+                break;
+
+            case "Copy Rights Spanish":
+                  String CurrentYear = String.valueOf(Year.now().getValue());
+                  basicActions.waitForElementToBePresent(copyRightCoCoText,20);
+                  softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 "+CurrentYear+" Connect for Health Colorado. Todos los derechos reservados.");
+                 break;
+            case "Follow Us Spanish":
+                    basicActions.waitForElementToBePresent(followUsText,20);
+                    softAssert.assertEquals(followUsText.getText(), "Síguenos en:");
+                    break;
+                default:
+                    throw new IllegalArgumentException("Text not present: " + expectedText);
+            }
+            softAssert.assertAll();
+    }
+
+    public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
+        basicActions.waitForElementToDisappear(spinner, 30);
+
+        List<Map<String, String>> data = dataTable.asMaps();
+        for (Map<String, String> row : data) {
+            String hyperlinkText = row.get("HyperLinkText");
+            String expectedPageTitle = row.get("ExpectedPageTitle");
+            String containsUrl = row.get("ContainsUrl");
+            WebElement hyperlink;
+
+            switch (hyperlinkText.toLowerCase()) {
+                case "facebookicon":
+                    hyperlink = FacebookIcon;
+                    break;
+                case "xicon":
+                    hyperlink = xIcon;
+                    break;
+                case "youtubeicon":
+                    hyperlink = YouTubeIcon;
+                    break;
+                case "linkedinicon":
+                    hyperlink = LinkedInIcon;
+                    break;
+                case "instagramicon":
+                    hyperlink = InstagramIcon;
+                    break;
+                case "threadsicon":
+                    hyperlink = ThreadsIcon;
+                    break;
+                default:
+                    hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
+                    break;
+            }
+
+            Actions actionKey = new Actions(basicActions.getDriver());
+            actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
+            basicActions.switchtoactiveTab();
+            basicActions.waitForElementToDisappear(spinner, 30);
+
+            String actualTitle = basicActions.getDriver().getTitle();
+            String currentUrl = basicActions.getDriver().getCurrentUrl();
+            softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present");
+            softAssert.assertTrue(currentUrl.contains(containsUrl));
+            softAssert.assertAll();
+
+            basicActions.getDriver().close();
+            basicActions.switchtoPreviousTab();
+        }
+
+        softAssert.assertAll();
+    }
+
+
 }

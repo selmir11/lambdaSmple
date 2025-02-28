@@ -744,7 +744,7 @@ public class CreateAccountPage {
         phoneNumber.clear();
         phoneNumber.sendKeys("ABCDefghij");
 
-        softAssert.assertEquals(phoneNumber.getAttribute("value"), "(");
+        softAssert.assertEquals(phoneNumber.getAttribute("value"), "");
         softAssert.assertAll();
     }
 

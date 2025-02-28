@@ -75,4 +75,10 @@ public class DeductionsPageSteps {
     @Then("I verify the Dropdown values for all the expenses after clicking it")
     public void iVerifyDropdownValuesForAllTheExpenses(List<String> dataText){
         deductionsPage.verifyDropdownValuesForAllTheExpenses(dataText);}
+
+    @Then("I verify all checkbox deduction errors for {string}")
+    public void iVerifyAllDeductionErrors(String language) {
+        deductionsPage.verifyAllDeductioncheckboxErrors(language);
+    }
+
 }

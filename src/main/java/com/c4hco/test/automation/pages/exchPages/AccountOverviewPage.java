@@ -13,6 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -95,12 +97,23 @@ public class AccountOverviewPage {
     List<WebElement> btnStartHere;
     @FindBy(css = "div.popover-content")
     WebElement makeChangesDentalPopup;
+    @FindBy(xpath = "//button[@id='submit' and @name='applyForCurrentYearDental']")
+    WebElement applyForDentalPlan;
     private BasicActions basicActions;
+    @FindBy(xpath = "//th[@id]")
+    List<WebElement> planInfoTableHeader;
+
     SoftAssert softAssert = new SoftAssert();
 
     public AccountOverviewPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
+    }
+
+    public void clickApplyForDentalPlan() {
+        basicActions.waitForElementToDisappear(spinner, 30 );
+        basicActions.waitForElementToBePresent(applyForDentalPlan, 30);
+        applyForDentalPlan.click();
     }
 
     public void clickuserNameExchLink() {
@@ -199,6 +212,12 @@ public class AccountOverviewPage {
         scenarioDetails.setDependents(totalDependents);
         scenarioDetails.setEnrollees(totalEnrollees);
         SharedData.setScenarioDetails(scenarioDetails);
+   }
+
+   public void setProfileChange(String prefix, Boolean option){
+       MemberDetails member = basicActions.getMember(prefix);
+       member.setIsProfileChange(option);
+       member.setIsResAddChange(option);
    }
 
     public void setDates(String planType, List<Map<String, String>> expectedResult) {
@@ -310,6 +329,38 @@ public class AccountOverviewPage {
         softAssert.assertAll();
     }
 
+    public void validateNewFinancialAmt(){
+        List<MemberDetails> allEligibleMem = basicActions.getAllMedicalEligibleMemInfo();
+        for(MemberDetails member: allEligibleMem){
+            //Medical Plan Validation
+            WebElement MedicalPremiumAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[5]/b"));
+            WebElement MedicalAPTCAmnt = basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[1]/td[6]/b"));
+
+            BigDecimal dentalPremiumAmnt = new BigDecimal(basicActions.getDriver().findElement(By.xpath("(//b[contains(text(),'" + member.getFirstName() + "')]/ancestor-or-self::tr)[2]/td[5]/b")).getText().replace("$", "").replace(",", ""));
+            DecimalFormat df = new DecimalFormat("0.00");
+            String dentalPremiumAmt = df.format(dentalPremiumAmnt);
+
+            basicActions.waitForElementToBePresentWithRetries(MedicalAPTCAmnt, 10);
+            softAssert.assertNotEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + member.getMedicalPremiumAmt(), member.getFirstName() + " Medical premium amount does not match");
+            if(SharedData.getPrimaryMember().getFinancialHelp()){
+                softAssert.assertNotEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + member.getMedicalAptcAmt(), member.getFirstName() + " Medical APTC amount did not match");
+            }
+            softAssert.assertNotEquals(dentalPremiumAmt, "$" + basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), member.getFirstName() + " Dental Premium amount does not match");
+
+            BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(MedicalAPTCAmnt.getText().replace(",", "").replace("$", ""));
+            BigDecimal totalMedicalPremium = new BigDecimal(MedicalPremiumAmnt.getText().replace(",", "").replace("$", ""));
+            BigDecimal medPremiumAfterReduction = totalMedicalPremium.subtract(bigDecimalMedAPTCAmt);
+
+            member.setMedicalAptcAmt(String.valueOf(bigDecimalMedAPTCAmt));
+            member.setTotalMedAmtAfterReduction(String.valueOf(medPremiumAfterReduction));
+            member.setMedicalPremiumAmt(String.valueOf(totalMedicalPremium));
+
+            member.setDentalPremiumAmt(dentalPremiumAmt);
+            member.setTotalDentalPremAfterReduction(dentalPremiumAmt);
+            softAssert.assertAll();
+        }
+    }
+
     public void verifyMemberNames() {
         List<MemberDetails> allMemberList = basicActions.getAllMedicalEligibleMemInfo();
         int totalDentalGroups = SharedData.getScenarioDetails().getTotalDentalGroups() != 0 ? SharedData.getScenarioDetails().getTotalDentalGroups():SharedData.getScenarioDetails().getTotalGroups();
@@ -389,4 +440,39 @@ public class AccountOverviewPage {
         softAssert.assertEquals(makeChangesDentalPopup.getText(), message.get(0));
         softAssert.assertAll();
     }
+
+
+    public void verifyDentalButtonsText(String language) {
+        switch (language) {
+            case "English":
+                validateButtonsTextEnglish();
+                break;
+            case "Spanish":
+                validateButtonsTextSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid language option: " + language);
+        }
+    }
+
+    private void validateButtonsTextEnglish() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(btnShopForVisionPlans.getText().trim(), "Shop for vision plans", "Mismatch in Vision Plan button text");
+        softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText().trim(), "Make changes to my dental plan", "Mismatch in Dental Plan button text");
+        softAssert.assertAll();
+    }
+
+    private void validateButtonsTextSpanish() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(btnShopForVisionPlans.getText().trim(), "Revisar planes de la vista", "Mismatch in Vision Plan button text (Spanish)");
+        softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText().trim(), "Realizar cambios en mi plan dental", "Mismatch in Dental Plan button text (Spanish)");
+        softAssert.assertAll();
+    }
+
+    public void validatePageTextForTableHeader(List<String> languageText){
+        for (int i=0;i<languageText.size();i++){
+            Assert.assertEquals(planInfoTableHeader.get(i).getText().toUpperCase(),languageText.get(i));
+        }
+    }
+
 }

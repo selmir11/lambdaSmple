@@ -233,15 +233,16 @@ public class OhcCobraPage_Elmo {
     }
 
     public void verifyHeadersCobraOhcPageEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcCobraHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcCobraHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcCobraHeader.getText(),"COBRA");
         softAssert.assertAll();
     }
 
     public void verifyHeadersCobraOhcPageSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcCobraHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcCobraHeader.getText(),"COBRA");
         softAssert.assertAll();
@@ -362,7 +363,8 @@ public class OhcCobraPage_Elmo {
     }
 
     public void verifyCobraPageFirstSectionDataEnglish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcCobraHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(OhcCobraHeader.getText(),"COBRA");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -374,7 +376,8 @@ public class OhcCobraPage_Elmo {
     }
 
     public void verifyCobraPageFirstSectionSecondaryDataEnglish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcCobraHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcCobraHeader.getText(),"COBRA");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
@@ -479,7 +482,8 @@ public class OhcCobraPage_Elmo {
     }
 
     public void verifyCobraPageFirstSectionSecondaryDataSpanish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcCobraHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcCobraHeader.getText(),"COBRA");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");

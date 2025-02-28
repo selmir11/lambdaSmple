@@ -20,6 +20,7 @@ Feature: Create a new Program Manager account and verify the account activity in
     Then I open the notice "AM-004-01" in "English"
     Then I saved the invitation code for the new program manager account
     Then I delete the open notice
+    Then I sign out of Outlook
 
     Then I switch to the tab number 0
     Given I open the login page on the "assistNet" portal
@@ -30,7 +31,9 @@ Feature: Create a new Program Manager account and verify the account activity in
     Then I validate I am on the "Login" page
     And I log into my Program Manager account
 
-    Then I switch to the tab number 2
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "c4assistorportal@outlook.com" and "ALaska12!"
+    And I wait for 200 milliseconds
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice

@@ -60,6 +60,8 @@ public class ApplicationResultsCoCoPage {
 
     @FindBy(css = ".plan-name")
     WebElement eligiblePlan;
+    @FindBy(xpath = "//div[@class='overview-text']/p")
+    List<WebElement> eligiblePlanWithoutSes;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
@@ -107,7 +109,7 @@ public class ApplicationResultsCoCoPage {
 
     public void continueWithApplication()  {
         basicActions.waitForElementToDisappear( spinner, 200);
-        basicActions.waitForElementToBePresentWithRetries( continueButton, 120);
+        basicActions.waitForElementToBePresentWithRetries( continueButton, 130);
         basicActions.scrollToElement( continueButton );
         continueButton.click();
     }
@@ -249,7 +251,7 @@ public class ApplicationResultsCoCoPage {
         if(SharedData.getSes().equals("yes")){
             softAssert.assertEquals(eligiblePlan.getText(), "SilverEnhanced Savings");
         } else{
-            softAssert.assertEquals(eligiblePlan.getText(), "Health insurance plans through Colorado Connect");
+            softAssert.assertEquals(eligiblePlanWithoutSes.get(0).getText(), "Health insurance plans through Colorado Connect");
         }
         softAssert.assertAll();
         }

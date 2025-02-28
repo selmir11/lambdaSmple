@@ -1,10 +1,9 @@
-@seed03
 Feature: Seed03 - Exchange
 
- Background: Seed 03 For Exchange- Husband + Wife Both Smokers with Broker - NFA
+  Background: Seed 03 For Exchange- Husband + Wife Both Smokers with Broker - NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
-      | 1           | 2            | 2                 | 0                |   2             |
+      | 1           | 2            | 2                 | 0                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -14,12 +13,12 @@ Feature: Seed03 - Exchange
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
-#    Given I set the dynamic policy, coverage and financial dates for "medical" plan
-#      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-#      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
-#    Given I set the dynamic policy, coverage and financial dates for "dental" plan
-#      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-#      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -59,7 +58,7 @@ Feature: Seed03 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -133,28 +132,27 @@ Feature: Seed03 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
 
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click View Plan History link from "medical" plan card
-#    And I validate "medical" plan details from plan history
-#    And I click on to Back to Current Plan Details button
-#    And I click View Plan History link from "dental" plan card
-#    And I validate "dental" plan details from plan history
-     And I click on Sign Out in the Header for "NonElmo"
-#
-#    And I validate "medical" entities from policy tables
-#    And I validate "dental" entities from policy tables
-#
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-#
-#    And I validate "medical" entities from pre edi db tables
-#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-#      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
   @SLER-1835-WIP_@R4V
   Scenario: RT-2250 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - GENDER & RACE
@@ -173,7 +171,7 @@ Feature: Seed03 - Exchange
     Then I select "Female" as sex option
     Then I select "No" as pregnancy option
     Then I select new relationship of members to primary
-      |Spouse:Spouse|
+      | Spouse:Spouse |
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
     And I select "White or European" for race and ethnicity for "Primary"
@@ -202,7 +200,9 @@ Feature: Seed03 - Exchange
     Then I click on make changes button
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
-    And I click Continue With Application button on Report Life Change Page
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
     And I report "Marriage" and click continue
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
@@ -224,7 +224,30 @@ Feature: Seed03 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
-    And I click on Sign Out in the Header for "NonElmo"
+    Then I click on view results and shop
+    Then I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I validate that financials are updated on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+    #And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | AI                    | FINANCIAL CHANGE  |            |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | AI                    | FINANCIAL CHANGE  |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
   @SLER-134-WIP-@R4V
   Scenario: RT-2242 ENR-EXCH: ADD DEPENDENT (LCE: Change on incarceration status) - SAME CARRIER / SAME PLANS
@@ -248,8 +271,8 @@ Feature: Seed03 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "05052010", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
+      | Primary:Son |
+      | Spouse:Son  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address

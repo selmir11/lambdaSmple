@@ -123,8 +123,16 @@ public class IncomeSummaryPage {
     @FindBy(xpath = "(//div//lib-fi[@name='dollar-sign']//*)[1]")
     WebElement DollarSymbolForProjectedIncomeInputField;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinnerOverlay;
+
     public void selectProjectedIncome(String projectedIncomeOption){
         basicActions.waitForElementToDisappear(loaderIcon, 120);
+        basicActions.waitForElementToDisappear(spinner,60);
+        basicActions.waitForElementToDisappear(spinnerOverlay,60);
         basicActions.waitForElementToBePresentWithRetries(hdr_Income,10);
         switch(projectedIncomeOption){
             case "No":
@@ -137,6 +145,7 @@ public class IncomeSummaryPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + projectedIncomeNo);
         }
+        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 30);
         saveAndContinueBtn.click();
     }
 

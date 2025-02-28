@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
@@ -75,7 +76,6 @@ public class MyPoliciesPage {
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
     Set<String> allMemberNames = new HashSet<>();
-    Set<String> namesFromUI = new HashSet<>();
 
      public void validatePlanDetails(String planType){
         basicActions.waitForElementListToBePresent(memberNames, 10);
@@ -93,50 +93,9 @@ public class MyPoliciesPage {
         }
     }
 
-    public void clickViewPlanHistory(String planType){
-        switch(planType){
-            case "medical":
-                clickViewPlanHistoryFromMed();
-                break;
-            case "dental":
-                clickViewPlanHistoryFromDental();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + planType);
-        }
-    }
-
-    public void validatePlanDetailsPlanHistory(String planType){
-        basicActions.waitForElementToBePresent(planHistoryTitle, 10);
-        basicActions.waitForElementListToBePresent(tableRecord, 10);
-      //  validateNamesOnPlanHistory();
-        switch (planType){
-            case "medical":
-                validateMedicalPlanFromPlanHistory();
-                break;
-            case "dental":
-                validateDentalPlanFromPlanHistory();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + planType);
-        }
-    }
-
-    private void validateNamesOnPlanHistory(){
-        if(basicActions.waitForElementListToBePresent(enrolledMemNames, 10)){
-            allMemberNames = new HashSet<>(basicActions.getAllMemNames());
-            enrolledMemNames.stream().forEach(element-> namesFromUI.add(element.getText()));
-            softAssert.assertTrue(namesFromUI.equals(allMemberNames),"Member names  from plan history page did not match");
-        } else {
-            softAssert.assertTrue(tableRecord.get(0).getText().equals(SharedData.getPrimaryMember().getSignature()));
-        }
-        softAssert.assertAll();
-    }
-
     private void validateEnrolledDentalPlanDetails(){
         DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
-
 
             //WebElements
             WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
@@ -147,18 +106,18 @@ public class MyPoliciesPage {
             WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
             //DateConversion
-            String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
-            String expecEndDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanEndDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getDentalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
+            String expecEndDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getDentalPlanEndDate(),"MM/dd/yyyy","MM/dd/yy");
             String expecLastUpdatedDate = basicActions.changeDateFormat(lastUpdated,"MM/dd/yyyy","MM/dd/yy");
 
             //validation
-            softAssert.assertEquals(planStartDate.getText().replace(" -",""),expecStartDate, "Start Date mismatch for member: " + member.getFirstName());
-            softAssert.assertEquals(planEndDate.getText(),expecEndDate, "End Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planStartDate.getText().replace(" -",""),expecStartDate, "plan start Date mismatch for member: " + member.getFirstName());
+            softAssert.assertEquals(planEndDate.getText(),expecEndDate, "plan End Date mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(premiumAfterReduction.getText().replace("$","").replace(" /month","").replace(",", ""),(member.getTotalDentalPremAfterReduction()), "Dental Premium after reduction mismatch for member: " + member.getFirstName());
             softAssert.assertEquals(aptc.getText().replace(".00 financial help","").replace(",", ""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
 
             Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
-            member.setMedicalEapid_db(denEapidDb.get(member.getDenGroupInd()));
+            member.setDentalEapid_db(denEapidDb.get(member.getDenGroupInd()));
             softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
@@ -205,62 +164,6 @@ public class MyPoliciesPage {
             softAssert.assertAll();
         }
     }
-    private void validateMedicalPlanFromPlanHistory(){
-        for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
-            basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical,10);
-            WebElement viewPlanHistoryLink = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + member.getMedicalPlan() + "')]/ancestor::div[4][.//span[contains(text(),'" + member.getFirstName() + "')]] //a"));
-            viewPlanHistoryLink.click();
-            validateMedPlanDetailsFromPlanHistory(member);
-            clickBackButton();
-        }
-    }
-
-    private void validateDentalPlanFromPlanHistory(){
-        for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
-            basicActions.waitForElementToBePresent(viewPlanHistoryLinkDental,10);
-            WebElement viewPlanHistoryLink = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'" + member.getDentalPlan() + "')]/ancestor::div[4][.//span[contains(text(),'" + member.getFirstName() + "')]] //a"));
-            viewPlanHistoryLink.click();
-            validateDentalPlanDetailsFromPlanHistory(member);
-            clickBackButton();
-        }
-    }
-
-
-    private void clickViewPlanHistoryFromMed(){
-        basicActions.waitForElementToBePresent(viewPlanHistoryLinkMedical, 10);
-        viewPlanHistoryLinkMedical.click();
-    }
-
-    private void clickViewPlanHistoryFromDental(){
-        basicActions.waitForElementToBePresent(viewPlanHistoryLinkDental, 10);
-        viewPlanHistoryLinkDental.click();
-    }
-
-    private void validateMedPlanDetailsFromPlanHistory(MemberDetails member){
-        basicActions.waitForElementListToBePresent(tableRecord,10);
-        softAssert.assertTrue(tableRecord.get(0).getText().contains(member.getFirstName()), "Member Name mismatch");
-        softAssert.assertEquals(tableRecord.get(1).getText(),(member.getMedicalPlan()), "Medical plan mismatch");
-        softAssert.assertEquals(tableRecord.get(2).getText().replace(",", ""), ("$"+member.getTotalMedAmtAfterReduction()),"medical premium amount after reduction mismatch");
-        if(member.getMedicalAptcAmt().equals("0")){
-            softAssert.assertEquals(tableRecord.get(3).getText(),("$"+member.getMedicalAptcAmt()+".00"),"Medical APTC amount mismatch");
-        }else {
-            softAssert.assertEquals(tableRecord.get(3).getText().replace(",",""),("$" + member.getMedicalAptcAmt()), "Medical APTC amount mismatch");
-        }
-        softAssert.assertTrue(tableRecord.get(4).getText().equals(SharedData.getPrimaryMember().getMedicalPlanStartDate()), "plan start date mismatch");
-        softAssert.assertTrue(tableRecord.get(5).getText().equals(SharedData.getPrimaryMember().getMedicalPlanEndDate()), "plan end date mismatch");
-        softAssert.assertAll();
-    }
-
-    private void validateDentalPlanDetailsFromPlanHistory(MemberDetails member){
-        basicActions.waitForElementListToBePresent(tableRecord,10);
-        softAssert.assertTrue(tableRecord.get(0).getText().contains(member.getFirstName()), "Member Name not match");
-        softAssert.assertEquals(tableRecord.get(1).getText(), member.getDentalPlan(), "Dental plan did not match");
-        softAssert.assertEquals(tableRecord.get(2).getText().replace("$",""), member.getDentalPremiumAmt().replace("$",""), "Dental premium did not match" );
-        softAssert.assertEquals(tableRecord.get(3).getText(),(member.getDentalAptcAmt()+".00"),"Dental APTC mismatch"); //  financial help
-        softAssert.assertEquals(tableRecord.get(4).getText(), SharedData.getPrimaryMember().getDentalPlanStartDate(), "dental plan start date did not match");
-        softAssert.assertEquals(tableRecord.get(5).getText(), SharedData.getPrimaryMember().getDentalPlanEndDate(), "dental plan end date did not match");
-        softAssert.assertAll();
-    }
 
     public void clickBackButton(){
         basicActions.waitForElementToBePresent(backToCurPlansBtn, 10);
@@ -292,5 +195,23 @@ public class MyPoliciesPage {
             throw new IllegalArgumentException("Invalid option: " + btnDetail);
         }
 
+    }
+
+    public void validateCancelPlanButnNotPresent(String planType) {
+        switch (planType){
+            case "Medical":
+                validateCancelPlan(planType);
+                break;
+            case "Dental":
+                validateCancelPlan(planType);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+    }
+    
+    public void validateCancelPlan(String planType){
+         WebElement element = basicActions.getDriver().findElement(By.id("SOL-CurrentPolicies-CancelCurrent"+planType+"\")"));
+         Assert.assertFalse(basicActions.waitForElementToBePresent(element, 10));
     }
 }

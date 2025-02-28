@@ -6,6 +6,7 @@ import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class FindACertifiedBrokerPage {
@@ -140,7 +141,7 @@ public class FindACertifiedBrokerPage {
     @FindBy(xpath= "//div[@class='row justify-content-center header-2 mb-2']")
     WebElement changeBrokerContainerTitle;
 
-    @FindBy(xpath= "//div[@class='mb-4 me-auto ms-auto ng-star-inserted']")
+    @FindBy(xpath= "//div[@class='mb-4 me-auto ms-auto']")
     WebElement changeBrokerContainerWarningText;
 
     @FindBy(xpath= "//div[@id='client-information-table']/div[2]")
@@ -217,6 +218,7 @@ public class FindACertifiedBrokerPage {
     }
     public void clickAuthorizeButton() {
         basicActions.waitForElementToBePresent(authorizeButton,60);
+        SharedData.getBroker().getBroker_name();
         authorizeButton.click();
     }
 
@@ -239,12 +241,13 @@ public class FindACertifiedBrokerPage {
 
     private void setBrokerDetails(){
         BrokerDetails broker = new BrokerDetails();
-        basicActions.waitForElementToBePresentWithRetries(licenseNumber, 10);
+        Assert.assertTrue(basicActions.waitForElementToBePresentWithRetries(licenseNumber, 10));
         broker.setBroker_name(brokerDisplayedName.getText());
         broker.setBroker_lic_num(licenseNumber.getText());
         broker.setAgencyName(agencyDisplayedName.getText());
         SharedData.setBroker(broker);
         SharedData.setAgencyOwner(broker);
+
     }
 
     public void clickMoreDetailsBroker() {
@@ -376,8 +379,8 @@ public class FindACertifiedBrokerPage {
     }
 
     public void validateAgencyDetailsHidden(){
-        String agencyDetailsContainer = basicActions.getDriver().findElement(By.id("cdk-accordion-child-0")).getAttribute("style");
-        softAssert.assertEquals(agencyDetailsContainer, "height: 0px; visibility: hidden;");
+        String agencyDetailsContainer = basicActions.getDriver().findElement(By.id("mat-expansion-panel-header-0")).getAttribute("class");
+        softAssert.assertEquals(agencyDetailsContainer, "mat-expansion-panel-header mat-focus-indicator disable_ripple mat-expansion-toggle-indicator-after cdk-focused cdk-mouse-focused");
         softAssert.assertAll();
     }
 
