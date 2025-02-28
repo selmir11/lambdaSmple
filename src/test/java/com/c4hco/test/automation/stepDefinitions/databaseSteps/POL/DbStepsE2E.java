@@ -16,8 +16,8 @@ public class DbStepsE2E {
 
 
     @And("I validate {string} entities from policy tables")
-    public void validateMedicalRecordsForGroups(String recordType){
-        policyTableDbValidations.groupRecordsValidations(recordType);
+    public void validateMedicalRecordsForGroups(String recordType, List<String> policyStatus){
+        policyTableDbValidations.groupRecordsValidations(recordType, policyStatus);
     }
 
     @And("I validate {string} entities from pre edi db tables")
