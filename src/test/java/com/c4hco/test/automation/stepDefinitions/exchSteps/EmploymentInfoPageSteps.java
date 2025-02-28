@@ -72,6 +72,10 @@ public class EmploymentInfoPageSteps {
         employmentInfoPage.clickEditUpdateLink(index);
     }
 
+    @And("I click go back button on the Employment Info Page")
+    public void iClickGoBackButton() {
+        employmentInfoPage.goBackButton();
+    }
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
