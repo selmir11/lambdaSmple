@@ -169,10 +169,10 @@ public class PDF {
     public void validatePlanDetails(String pdfText) {
         List<MemberDetails> allMedicalEligMembers = basicActions.getAllMedicalEligibleMemInfo();
         List<String> memberCompleteFullName = allMedicalEligMembers.stream().filter(MemberDetails::getHasMedicalPlan).map(MemberDetails::getCompleteFullName).toList();
-        String medicalPolicyId = "Your Connect for Health Colorado® Policy ID is " + SharedData.getPrimaryMember().getMedicalEapid_db() + ".";
         for(String memberName:memberCompleteFullName){
             String medicalPlanName = basicActions.getAllMem().stream().filter(member->member.getCompleteFullName().contains(memberName) && member.getHasMedicalPlan()).map(MemberDetails::getMedicalPlan).findFirst().orElse("Medical Plan Name Not found for member : "+memberName);
             String monthlyPremium = basicActions.getAllMem().stream().filter(member->member.getCompleteFullName().contains(memberName) && member.getHasMedicalPlan()).map(MemberDetails::getTotalMedAmtAfterReduction).findFirst().orElse("Medical Plan Premium Not found for member : "+memberName);
+            String medicalPolicyId = basicActions.getAllMem().stream().filter(member->member.getCompleteFullName().contains(memberName) && member.getHasMedicalPlan()).map(MemberDetails::getMedicalEapid_db).findFirst().orElse("Medical Policy Id Not found for member : "+memberName);
 
             softAssert.assertTrue(pdfText.contains(medicalPlanName), "Medical plan name doesn't match.");
             softAssert.assertTrue(pdfText.contains("Monthly Premium: $" + monthlyPremium), "Medical premium amount doesn't match.");
@@ -183,10 +183,11 @@ public class PDF {
         if (SharedData.getAppType().equals("exchange")) {
             List<MemberDetails> allDentalEligMembers = basicActions.getAllMedicalEligibleMemInfo();
             List<String> memberCompleteFullNames = allDentalEligMembers.stream().filter(MemberDetails::getHasDentalPlan).map(MemberDetails::getCompleteFullName).toList();
-            String dentalPolicyId = "Your Connect for Health Colorado® Policy ID is " + SharedData.getPrimaryMember().getDentalEapid_db() + ".";
+
             for (String memberName : memberCompleteFullNames) {
                 String DentalPlanName = basicActions.getAllMem().stream().filter(member -> member.getCompleteFullName().contains(memberName) && member.getHasDentalPlan()).map(MemberDetails::getDentalPlan).findFirst().orElse("Dental Plan Name Not found for member : " + memberName);
                 String monthlyPremium = basicActions.getAllMem().stream().filter(member -> member.getCompleteFullName().contains(memberName) && member.getHasDentalPlan()).map(MemberDetails::getTotalDentalPremAfterReduction).findFirst().orElse("Dental Premium Not found for member : " + memberName);
+                String dentalPolicyId = basicActions.getAllMem().stream().filter(member -> member.getCompleteFullName().contains(memberName) && member.getHasDentalPlan()).map(MemberDetails::getDentalEapid_db).findFirst().orElse("Dental Policy Id Not found for member : " + memberName);
 
                 softAssert.assertTrue(pdfText.contains(DentalPlanName), "Dental plan name doesn't match.");
                 softAssert.assertTrue(pdfText.contains("Monthly Premium: $" + monthlyPremium), "Dental premium amount doesn't match.");

@@ -117,7 +117,7 @@ public class MyPoliciesPage {
             softAssert.assertEquals(aptc.getText().replace(".00 financial help","").replace(",", ""),(member.getDentalAptcAmt()), "Dental APTC amount mismatch for member: " + member.getFirstName());
 
             Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
-            member.setMedicalEapid_db(denEapidDb.get(member.getDenGroupInd()));
+            member.setDentalEapid_db(denEapidDb.get(member.getDenGroupInd()));
             softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();

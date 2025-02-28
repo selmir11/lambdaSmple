@@ -27,6 +27,7 @@ Feature: Tests broker search details on the anonymous Find a Certified Broker pa
     Then I validate agency name is "Arrow Head Agency"
     Then I validate agency address is "1234 Road, 1234 Road"
     Then I validate agency city state and zip is "Denver, CO 80205"
+    And I wait for 2000 milliseconds
     And I validate the agency details are hidden
 
   @SLER-380

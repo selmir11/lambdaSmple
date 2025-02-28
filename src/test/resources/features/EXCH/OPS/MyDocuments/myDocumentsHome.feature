@@ -500,8 +500,7 @@ Feature: My Document Home Page validations
     Then I validate I am on "Past Documents and Letters" container
     And I select year "All" in plan year
     And I select year "Current Year" in plan year
-    And I click on download "IND_Welcome Message (AM-001-01)" document
-    Then I verify file "IND_Welcome Message (AM-001-01)" downloaded with Proper name format
+    Then I verify file "IND_Welcome Message (AM-001-01)" downloaded with Proper name format in ".pdf" type
     Then  I click on Sign Out in the Header for "Elmo"
 
   @SLER-2252 @OPSRegression
@@ -666,4 +665,27 @@ Feature: My Document Home Page validations
       And I click on upload another document
       Then I upload another doc "TestMyDocs.docx" for "Social Security Number" on the My Documents page and verify success message
       Then  I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2265 @OPSRegression
+  Scenario: Verify Document uploaded for Income type and downloaded with proper name format [RT-1989]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I click on upload another document link
+    Then I upload another doc "TestMyDocs.docx" for category "Income" and type "Form 8962" and verify success message
+    Then I validate I am on "Past Documents and Letters" container
+    And I select year "All" in plan year
+    And I select year "Current Year" in plan year
+    Then I verify file "Income" downloaded with Proper name format in ".docx" type
+    Then  I click on Sign Out in the Header for "Elmo"
 
