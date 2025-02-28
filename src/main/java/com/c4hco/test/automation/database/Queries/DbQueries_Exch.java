@@ -530,8 +530,8 @@ public class DbQueries_Exch {
 
     public String getMemberNonAIAn(String reasonCode) {
         return "SELECT DISTINCT t1.* " +
-                "FROM exch.es_member_rules_result t1 " +
-                "JOIN exch.es_member_rules_result t2 ON t1.member_id = t2.member_id " +
+                "FROM " + dbName + ".es_member_rules_result t1 " +
+                "JOIN " + dbName + ".es_member_rules_result t2 ON t1.member_id = t2.member_id " +
                 "WHERE t1.member_id = '" + SharedData.getPrimaryMember().getMemberId() + "' " +
                 "AND t1.eligibility_type = 'CSR' " +
                 "AND t1.determination = 'CSR' " +
