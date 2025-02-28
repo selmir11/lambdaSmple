@@ -30,16 +30,9 @@ public class Ob834FileValidations {
 
     SoftAssert softAssert = new SoftAssert();
 
-    public Ob834FileValidations() {
-         n1ListWithSepReason = new ArrayList<>();
-       n1ListWithAddtlMaintReas = new ArrayList<>();
-         n1ListWithSepReasonMem = new ArrayList<>();
-         n1ListWithAddtlMaintReasMem = new ArrayList<>();
-        setN1SegList();
-    }
-
     public void validateOb834MedFile(String medFileName) {
         resetAllEntities();
+        setN1SegList();
         List<Ob834DetailsEntity> medicalEntityList = SharedData.getOb834DetailsMedEntities();
         getOb834MedEntityForSubscriber(medFileName);
         getDataByEmailAndAccNum();
@@ -52,6 +45,7 @@ public class Ob834FileValidations {
 
     public void validateOb834DenFile(String denFileName) {
         resetAllEntities();
+        setN1SegList();
         getOb834DenEntityForSubscriber(denFileName);
         List<Ob834DetailsEntity> dentalEntityList = SharedData.getOb834DetailsDenEntities();
         getDataByEmailAndAccNum();
@@ -78,6 +72,10 @@ public class Ob834FileValidations {
        subscriberDenEntities = new ArrayList<>();
          edi834TransactionDetails = new Edi834TransactionDetails();
          transactionsList = new ArrayList<>();
+        n1ListWithSepReason = new ArrayList<>();
+        n1ListWithAddtlMaintReas = new ArrayList<>();
+        n1ListWithSepReasonMem = new ArrayList<>();
+        n1ListWithAddtlMaintReasMem = new ArrayList<>();
     }
 
     private void validateMemSeg(List<Ob834DetailsEntity> entityList) {
@@ -201,7 +199,7 @@ public class Ob834FileValidations {
         if (entry.getSubscriber_indicator().equals("Y")) {
             expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReason : getN1ListWithAddlMaintReas(entry);
         } else {
-            expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReasonMem : n1ListWithAddtlMaintReasMem;
+            expectedN1List = (entry.getAddl_maint_reason() == null && entry.getSep_reason() != null) ? n1ListWithSepReasonMem : getN1ListWithAddlMaintReasMem(entry);
         }
         Assert.assertEquals(n1SegList, expectedN1List);
     }
@@ -209,9 +207,15 @@ public class Ob834FileValidations {
     private List<String> getN1ListWithAddlMaintReas(Ob834DetailsEntity entry) {
         if (entry.getAddl_maint_reason().contains("|")) {
             n1ListWithAddtlMaintReas.add(0, "ADDL MAINT REASON");
-            segCount = segCount + 1;
         }
         return n1ListWithAddtlMaintReas;
+    }
+
+    private List<String> getN1ListWithAddlMaintReasMem(Ob834DetailsEntity entry) {
+        if (entry.getAddl_maint_reason().contains("|")&&SharedData.getPrimaryMember().getIsProfileChange()) {
+            n1ListWithAddtlMaintReasMem.add(0, "ADDL MAINT REASON");
+        }
+        return n1ListWithAddtlMaintReasMem;
     }
 
     private void validateLxWithSepReason(int lxSegCount, List<String> refSegList, Ob834DetailsEntity entry, Member member) {
