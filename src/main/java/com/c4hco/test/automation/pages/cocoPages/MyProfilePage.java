@@ -130,7 +130,7 @@ public class MyProfilePage {
     @FindBy(css = "a#termsOfUseLink.action-link1")
     WebElement termsOfUseCoCo;
 
-    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c3387428997-0")
+    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c2876597241-0")
     WebElement Headertimeoutcoco;
 
     @FindBy(css = "p.ng-tns-c3387428997-0")
