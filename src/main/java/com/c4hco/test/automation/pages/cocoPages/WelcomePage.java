@@ -55,6 +55,9 @@ public class WelcomePage {
     @FindBy(css = "button#ELIG-WelcomePage-ApplyForInsurance-2025")
     WebElement applyForCurrentYearButton;
 
+    @FindBy(id = "ELIG-WelcomePage-ApplyForInsurance-2025")
+    WebElement makeChangeButton;
+
     @FindBy(css = ".plan-year-control-container > label")
     WebElement planYearText;
 
@@ -118,6 +121,10 @@ public class WelcomePage {
 //        String year = applyForYrCoco.getText().replace("Apply for ", "");
 //        SharedData.setPlanYear(year);
 //        applyForYrCoco.click();
+    }
+    public void iClickMakeChangeButton() {
+        basicActions.waitForElementToBePresent(makeChangeButton, 20);
+        makeChangeButton.click();
     }
 
     public void selectPlanyear(String planYear) {
@@ -510,7 +517,8 @@ public class WelcomePage {
     }
 
     public void validateNotificationBanner(String language) {
-        basicActions.waitForElementToBePresent(containerMainHeaderText, 5);
+        basicActions.waitForElementToBePresent(containerMainHeaderText, 60);
+        basicActions.waitForElementToBePresent(notificationBannerIcon, 60);
 
         softAssert.assertTrue(notificationBannerIcon.getAttribute("class").contains("feather-alert-triangle"));
         softAssert.assertEquals(notificationBannerIcon.getCssValue("left"), "auto","left error (icon)");

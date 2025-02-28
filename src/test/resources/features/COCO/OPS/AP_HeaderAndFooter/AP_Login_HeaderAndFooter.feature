@@ -1,4 +1,4 @@
-@SLER-130
+@SLER-130 @OPS @COCO
 
 Feature: AdminPortal: General: Header, footer, and error message validation on Login screen
   @SLER-130

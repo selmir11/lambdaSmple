@@ -108,7 +108,7 @@ public class RaceAndEthnicityPage {
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToDisappear( spinner, 90 );
-        basicActions.waitForElementToDisappear( spinner, 90 );
+        basicActions.waitForElementToDisappear( spinnerOverlay, 90 );
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 30);
         basicActions.scrollToElement(saveAndContinueButton);
         saveAndContinueButton.click();

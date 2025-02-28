@@ -12,6 +12,8 @@ Feature: As a Program Manager user, I must see an 'Edit' button under account su
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
+    Then I sign out of Outlook
+
     Then I enter the MFA code and click Verify
     Then I validate I am on the "assistnet dashboard" page
     And I click Edit button on assistnet dashboard Page

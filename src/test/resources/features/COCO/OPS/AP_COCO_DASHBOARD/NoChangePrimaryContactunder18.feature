@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: OPS: CoCo: IndDash: No Change Primary Contact under 18
   @SLCR-735
   Scenario:SLCR-735 : OPS: CoCo: IndDash: No Change Primary Contact under 18

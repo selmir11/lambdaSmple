@@ -191,7 +191,7 @@ public class AgencyDetailsPage {
     @FindBy(id = "agencygroup_helptext")
     WebElement agencyGroupTooltipText;
 
-    @FindBy(xpath = "//div[contains(@class, 'dropdown-disable')]")
+    @FindBy(id = "agencyGroup")
     WebElement disabledAgencyGroup;
 
     @FindBy(id= "cancel-button")
@@ -386,7 +386,7 @@ public class AgencyDetailsPage {
 
     public void verifyAgencyGroupDisabled(){
         basicActions.waitForElementToBePresent(disabledAgencyGroup, 10);
-        softAssert.assertEquals(disabledAgencyGroup.getAttribute("class"), "d-inline-flex w-100 dropdown-disable");
+        softAssert.assertEquals(disabledAgencyGroup.getAttribute("class"), "dropdown-disable");
         softAssert.assertAll();
     }
 

@@ -81,8 +81,13 @@ public class DbDataProvider_Exch {
     }
 
     public String getFipCodeForMem(String name){
-        String zipcode = basicActions.getMember(name).getResAddress().getAddressZipcode();
-        String county = basicActions.getMember(name).getResAddress().getAddressCounty();
+        MemberDetails member = basicActions.getMember(name);
+        String zipcode = member.getResAddress().getAddressZipcode();
+        String county = member.getResAddress().getAddressCounty();
+        if(member.getIsProfileChange()){
+            zipcode = member.getOldResAddress().getAddressZipcode();
+            county = member.getOldResAddress().getAddressCounty();
+        }
         return  postgresHandler.getResultFor("fips", exchDbQueries.getFipcode(zipcode, county));
 
     }
@@ -120,6 +125,7 @@ public class DbDataProvider_Exch {
         Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getCSRRecords());
         return csrAmount;
     }
+
 
     public void setDataFromDb(){
         String fipcode = getFipcode();

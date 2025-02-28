@@ -100,6 +100,9 @@ public class AccountOverviewPage {
     @FindBy(xpath = "//button[@id='submit' and @name='applyForCurrentYearDental']")
     WebElement applyForDentalPlan;
     private BasicActions basicActions;
+    @FindBy(xpath = "//th[@id]")
+    List<WebElement> planInfoTableHeader;
+
     SoftAssert softAssert = new SoftAssert();
 
     public AccountOverviewPage(WebDriver webDriver) {
@@ -209,6 +212,12 @@ public class AccountOverviewPage {
         scenarioDetails.setDependents(totalDependents);
         scenarioDetails.setEnrollees(totalEnrollees);
         SharedData.setScenarioDetails(scenarioDetails);
+   }
+
+   public void setProfileChange(String prefix, Boolean option){
+       MemberDetails member = basicActions.getMember(prefix);
+       member.setIsProfileChange(option);
+       member.setIsResAddChange(option);
    }
 
     public void setDates(String planType, List<Map<String, String>> expectedResult) {
@@ -457,6 +466,12 @@ public class AccountOverviewPage {
         softAssert.assertEquals(btnShopForVisionPlans.getText().trim(), "Revisar planes de la vista", "Mismatch in Vision Plan button text (Spanish)");
         softAssert.assertEquals(btnMakeChangesToMyDentalPlan.getText().trim(), "Realizar cambios en mi plan dental", "Mismatch in Dental Plan button text (Spanish)");
         softAssert.assertAll();
+    }
+
+    public void validatePageTextForTableHeader(List<String> languageText){
+        for (int i=0;i<languageText.size();i++){
+            Assert.assertEquals(planInfoTableHeader.get(i).getText().toUpperCase(),languageText.get(i));
+        }
     }
 
 }
