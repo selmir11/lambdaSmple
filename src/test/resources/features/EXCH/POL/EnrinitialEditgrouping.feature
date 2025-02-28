@@ -205,20 +205,20 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
+    And I click on to Back to Current Plan Details button
 
-#    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-#    Then I validate I am on the "My Account Overview" page
-#    And I click on ClickHere link for "My Documents"
+     # PDF Notice Validation
+    Then I validate I am on the "My Account Overview" page
+    And I click on ClickHere link for "My Documents"
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+    And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-#   # PDF Notice Validation
-#    And I click on download "EN-002-04" document
-#    Then I validate "EN-002-04 English" notice content
-#
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     #SLER-1170
     And I validate "medical" entities from pre edi db tables
@@ -237,22 +237,22 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-  #    # Email Notice Validation
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-#    And I validate additional details for "medical" plan on email notice
-#      | Primary |
-#      | Spouse  |
-#      | Son     |
-#    And I validate additional details for "dental" plan on email notice
-#      | Primary |
-#      | Spouse  |
-#      | Son     |
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
+      # Email Notice Validation
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And I validate additional details for "medical" plan on email notice
+      | Primary |
+      | Spouse  |
+      | Son     |
+    And I validate additional details for "dental" plan on email notice
+      | Primary |
+      | Spouse  |
+      | Son     |
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
 
     # Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
