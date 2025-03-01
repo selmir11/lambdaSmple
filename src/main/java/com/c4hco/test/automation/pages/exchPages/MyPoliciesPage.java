@@ -211,7 +211,12 @@ public class MyPoliciesPage {
     }
     
     public void validateCancelPlan(String planType){
-         WebElement element = basicActions.getDriver().findElement(By.id("SOL-CurrentPolicies-CancelCurrent"+planType+"\")"));
-         Assert.assertFalse(basicActions.waitForElementToBePresent(element, 10));
+         By locator = By.id("SOL-CurrentPolicies-CancelCurrent" + planType + "\")");
+         try {
+              List<WebElement> elements = basicActions.getDriver().findElements(locator);
+              Assert.assertTrue(elements.isEmpty(), "Element should be absent but was found.");
+         }catch (NoSuchElementException e) {
+             Assert.assertTrue(true);
+         }
     }
 }
