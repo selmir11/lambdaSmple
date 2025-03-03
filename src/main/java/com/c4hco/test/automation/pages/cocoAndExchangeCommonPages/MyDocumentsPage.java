@@ -994,7 +994,7 @@ public class MyDocumentsPage {
     }
 
     public void verifyFileNameFormat(String NoticeName,String fileType) {
-        String formatedDate =   basicActions.changeDateFormat( basicActions.getTodayDate(),"MM/dd/yyyy","dd-MMM-yyyy");
+        String formatedDate =   basicActions.changeDateFormat( basicActions.getTodayDate(),"MM/dd/yyyy","d-MMM-yyyy");
         basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 20);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
@@ -1028,6 +1028,7 @@ public class MyDocumentsPage {
                     Assert.assertEquals(actual, "American Indian/Alaska Native Tribal Membership", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
+                    basicActions.waitForElementListToBePresent(categoryList, 20);
                     categoryList.get(1).click();
                 }
                 break;
@@ -1036,6 +1037,7 @@ public class MyDocumentsPage {
                     Assert.assertEquals(actual, "Citizenship Status", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
+                    basicActions.waitForElementListToBePresent(categoryList, 20);
                     categoryList.get(4).click();
                 }
                 break;
@@ -1044,6 +1046,7 @@ public class MyDocumentsPage {
                     Assert.assertEquals(actual, "Death", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
+                    basicActions.waitForElementListToBePresent(categoryList, 20);
                     categoryList.get(7).click();
                 }
                 break;
@@ -1052,6 +1055,7 @@ public class MyDocumentsPage {
                     Assert.assertEquals(actual, "Eligible Immigration Status", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
+                    basicActions.waitForElementListToBePresent(categoryList, 20);
                     categoryList.get(8).click();
                 }
                 break;
@@ -1060,6 +1064,7 @@ public class MyDocumentsPage {
                     Assert.assertEquals(actual, "Incarceration", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
+                    basicActions.waitForElementListToBePresent(categoryList, 20);
                     categoryList.get(12).click();
                 }
                 break;
@@ -1068,6 +1073,7 @@ public class MyDocumentsPage {
                     Assert.assertEquals(actual, "Income", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
+                    basicActions.waitForElementListToBePresent(categoryList, 20);
                     categoryList.get(13).click();
                 }
                 break;
@@ -1076,6 +1082,7 @@ public class MyDocumentsPage {
                     Assert.assertEquals(actual, "Social Security Number", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
+                    basicActions.waitForElementListToBePresent(categoryList, 20);
                     categoryList.get(17).click();
                 }
                 break;
@@ -1178,5 +1185,44 @@ public class MyDocumentsPage {
 
     public void verifyModalPopUpClosed(){
         Assert.assertTrue( basicActions.waitForElementToDisappear(PopupContentBodyColor,10),"Modal popup not closed");
+    }
+
+    public void uploadAnotherDocAndVerifyMessageSpanish(String uploadDocFile, String mvrType, String docType,String language) {
+        selectDocumentCategoryAndTypeSpanish(mvrType);
+        clickWhichDocumentType(docType);
+        uploadDoc(uploadDocFile);
+        clickUploadDocSpanish(language);
+    }
+    private void selectDocumentCategoryAndTypeSpanish(String mvrType) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 100);
+        docTypeDrpDwn.click();
+        basicActions.waitForElementListToBePresent(categoryList, 100);
+            boolean found = false;
+            for ( WebElement element : categoryList) {
+                if(element.getText().trim().equals(mvrType)) {
+                    element.click();
+                    found = true;
+                    break;
+                }
+            }
+            Assert.assertTrue(found,"Document Category not found");
+        clickWhichDocument();
+    }
+
+    public void clickUploadDocSpanish(String language) {
+        basicActions.waitForElementToBePresentWithRetries(btnUploadDoc, 10);
+        btnUploadDoc.click();
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                Assert.assertEquals(txtUploadSuccess.getText(), "Document uploaded successfully.");
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                Assert.assertEquals(txtUploadSuccess.getText(), "Documento cargado satisfactoriamente");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +language );
+        }
     }
 }
