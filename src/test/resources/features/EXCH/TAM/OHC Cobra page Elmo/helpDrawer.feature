@@ -66,6 +66,7 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     And I select "Help me understand" icon on the Cobra Page
     Then I validate Cobra "full" help drawer verbiage in "English"
+    And I set the browser resolution to Maximized
     And I click Cobra Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
     And I select "Help me understand" icon on the Cobra Page

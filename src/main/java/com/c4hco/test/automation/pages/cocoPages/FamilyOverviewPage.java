@@ -115,13 +115,13 @@ public class FamilyOverviewPage {
 
     public void verifyTextManageWhoHelpsYouButtonEnglish(){
         basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
-        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Manage who helps you" );
+        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "Manage who helps you" );
         softAssert.assertAll();
     }
 
     public void verifyTextManageWhoHelpsYouButtonSpanish(){
         basicActions.waitForElementToBePresent(manageWhoHelpsYouButton, 30);
-        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "  Administrar qui\u00E9n te ayuda");
+        softAssert.assertEquals(manageWhoHelpsYouButton.getText(), "Administrar qui\u00E9n te ayuda");
         softAssert.assertAll();
     }
 

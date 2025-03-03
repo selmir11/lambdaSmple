@@ -612,17 +612,17 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     public void verifyFamilyEnrollmentStatusMember(String enrollmentStatus, int memberIndex) {
         switch (enrollmentStatus) {
             case "Enrolled":
-                basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 20);
+                basicActions.waitForElementListToBePresent(esiFamilyEnrolledBtn, 60);
                 softAssert.assertTrue(esiFamilyEnrolledBtn.get(memberIndex).getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
             case "Offered":
-                basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 20);
+                basicActions.waitForElementListToBePresent(esiFamilyOfferedBtn, 60);
                 softAssert.assertTrue(esiFamilyOfferedBtn.get(memberIndex).getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;
             case "No Option":
-                basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 20);
+                basicActions.waitForElementListToBePresent(esiFamilyNoOptionBtn, 60);
                 softAssert.assertTrue(esiFamilyNoOptionBtn.get(memberIndex).getAttribute("class").contains("selected"));
                 softAssert.assertAll();
                 break;

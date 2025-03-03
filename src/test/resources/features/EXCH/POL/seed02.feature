@@ -169,8 +169,8 @@ Feature: Seed02 - Exchange
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I reset the previous file names in shared data
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
@@ -233,7 +233,6 @@ Feature: Seed02 - Exchange
     And I validate "dental" details on my policies page
     And I click on Sign Out in the Header for "Elmo"
 
-    # And I click on Sign Out in the Header for "NonElmo"
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2

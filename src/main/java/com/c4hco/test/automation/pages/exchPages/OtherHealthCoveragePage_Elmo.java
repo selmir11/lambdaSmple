@@ -298,27 +298,27 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
         action.moveToElement(backButton).pause(1000L).build().perform();
         softAssert.assertEquals(backButton.getText(),"Go back");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(226, 241, 248, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 
@@ -429,27 +429,27 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
         action.moveToElement(backButton).pause(1000L).build().perform();
         softAssert.assertEquals(backButton.getText(),"Go back");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(226, 241, 248, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 
@@ -560,27 +560,27 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
         action.moveToElement(backButton).pause(1000L).build().perform();
         softAssert.assertEquals(backButton.getText(),"Volver");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(226, 241, 248, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 
@@ -691,27 +691,27 @@ public class OtherHealthCoveragePage_Elmo {
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
         action.moveToElement(backButton).pause(1000L).build().perform();
         softAssert.assertEquals(backButton.getText(),"Volver");
         softAssert.assertEquals(backButton.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(backButton.getCssValue("font-size"), "20px");
         softAssert.assertEquals(backButton.getCssValue("font-weight"), "700");
         softAssert.assertEquals(backButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(backButton.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(backButton.getCssValue("background-color"), "rgba(226, 241, 248, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
         action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 

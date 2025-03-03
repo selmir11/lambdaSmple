@@ -28,8 +28,14 @@ public class DashboardPage {
     @FindBy(xpath = "//*[@id='elem']/app-broker-dashboard/div/div[1]")
     WebElement dashboardPageTitle;
 
+    @FindBy(xpath = "//*[@id='elem']/app-agency-dashboard/div/div[1]")
+    WebElement agencyDashboardPageTitle;
+
     @FindBy(xpath = "//app-broker-certification/div/div[2]/div[3]/div[4]/div")
     WebElement brokerCertifcationStatus;
+
+    @FindBy(id = "accountSummary")
+    WebElement accountSummaryTitle;
 
     @FindBy(id = "manage-account-button")
     WebElement completeProfile;
@@ -103,7 +109,7 @@ public class DashboardPage {
     }
 
     public void verifyBrokerDashboardTitle(String portalUserType){
-        basicActions.waitForElementToBePresentWithRetries(dashboardPageTitle,10);
+        basicActions.waitForElementToBePresentWithRetries(accountSummaryTitle,10);
         switch (portalUserType){
             case "Agency Owner":
                 softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getAgencyOwner().getFirstName() + " " + SharedData.getAgencyOwner().getLastName());
@@ -112,7 +118,7 @@ public class DashboardPage {
                 softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getBroker().getFirstName() + " " + SharedData.getBroker().getLastName());
                 break;
             case "Admin Staff":
-                softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getAdminStaff().getFirstName() + " " + SharedData.getAdminStaff().getLastName());
+                softAssert.assertEquals(agencyDashboardPageTitle.getText(),SharedData.getAdminStaff().getFirstName() + " " + SharedData.getAdminStaff().getLastName());
                 break;
         }
         softAssert.assertAll();

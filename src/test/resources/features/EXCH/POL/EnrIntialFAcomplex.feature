@@ -180,7 +180,6 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Not listed" for race and ethnicity for "Nephew"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -209,7 +208,6 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Not listed" for race and ethnicity for "Niece"
     And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page

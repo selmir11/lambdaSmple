@@ -11,7 +11,7 @@ Feature: Coco user validations for warning modal when SEP Period Ended
   @SLCR-692
   Scenario: Validate the warning modal text in English when sep period is closed
     And I click Continue on the Application Results Page CoCo
-    Then I validate open enrollment ended pop up in "English-SES"
+    Then I validate open enrollment ended pop up in "English-SEP"
     And I click close on open enrollment ended pop up modal
     And I click on Sign Out in the Header for "Elmo"
 
@@ -19,6 +19,6 @@ Feature: Coco user validations for warning modal when SEP Period Ended
   Scenario: Validate the warning modal text in Spanish when sep period is closed
     And I change the language from header to "Spanish"
     And I click Continue on the Application Results Page CoCo
-    Then I validate open enrollment ended pop up in "Spanish-SES"
+    Then I validate open enrollment ended pop up in "Spanish-SEP"
     And I click close on open enrollment ended pop up modal
     And I click on Sign Out in the Header for "Elmo"

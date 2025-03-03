@@ -115,7 +115,7 @@ public class MyProfileExchPage {
     @FindBy(css = ".content_line_label.red-text")
     WebElement  EmailinUseMessage;
 
-    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c3387428997-0")
+    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c2876597241-0")
     WebElement Headertimeout;
 
     @FindBy(css = "p.ng-tns-c3387428997-0")
