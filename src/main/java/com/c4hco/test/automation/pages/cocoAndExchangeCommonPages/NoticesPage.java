@@ -193,6 +193,8 @@ public class NoticesPage {
     WebElement bodyTextBN001A01;
     @FindBy(xpath = "//*[@id='x_brokerCertificationNoticeBody']/p[3]")
     WebElement bodyTextBN001A01part3;
+    @FindBy(xpath = "//*[@id='x_brokerProfileUpdateNoticeBody']/p")
+    List<WebElement> bodyTextAM01301;
 
 
     public String MFACode = "";
@@ -242,6 +244,7 @@ public class NoticesPage {
             if (element.isDisplayed()) {
                 element.click();
             }
+            basicActions.waitForElementToDisappear(outlookLogOut, 20);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -488,6 +491,15 @@ public class NoticesPage {
             case "BN-001A-01":
                 VerifyTheNoticeTextBN001A01();
                 break;
+            case "AM-013-01 Agency":
+                VerifyTheNoticeTextAM01301("Agency owner");
+                break;
+            case "AM-013-01 Broker":
+                VerifyTheNoticeTextAM01301("Broker");
+                break;
+            case "AM-013-01 Admin Staff":
+                VerifyTheNoticeTextAM01301("Admin Staff");
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
@@ -623,6 +635,33 @@ public class NoticesPage {
             softAssert.assertEquals(bodyTextBN001A01part3.getText(),"If you have questions regarding this update or believe that these changes were not authorized, please contact the Connect for Health Colorado Broker Team at BrokerTeam@c4hco.com <mailTo:BrokerTeam@c4hco.com>.");
 
             softAssert.assertAll();
+
+    }
+
+    private void VerifyTheNoticeTextAM01301(String userType) {
+        String name;
+        String email;
+        switch (userType) {
+            case "Agency owner":
+                name = SharedData.getAgencyOwner().getFirstName()+" "+SharedData.getAgencyOwner().getLastName();
+                email = SharedData.getAgencyOwner().getEmail();
+                break;
+            case "Broker":
+                name = SharedData.getBroker().getFirstName()+" "+SharedData.getBroker().getLastName();
+                email = SharedData.getBroker().getEmail();
+                break;
+            case "Admin Staff":
+                name = SharedData.getAdminStaff().getFirstName()+" "+SharedData.getAdminStaff().getLastName();
+                email = SharedData.getAdminStaff().getEmail();
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid option: " + userType);
+        }
+        softAssert.assertEquals(brokerNameBN002A0102.getText(), name);
+        softAssert.assertTrue(bodyTextAM01301.get(0).getText().contains("Welcome to Connect for Health Colorado\u00AE. Our records indicate that your Connect for Health Colorado\u00AE Broker Portal profile for " + email));
+        softAssert.assertEquals(bodyTextAM01301.get(1).getText(), "If you have questions regarding your account or feel these changes were not authorized, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.");
+        softAssert.assertAll();
 
     }
 

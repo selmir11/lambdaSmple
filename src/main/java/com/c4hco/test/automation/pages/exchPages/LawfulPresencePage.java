@@ -134,6 +134,15 @@ public class LawfulPresencePage {
     @FindBy(id = "lawfulNonCitizen-error")
     WebElement EligibleImmigrantStatusErrorMessage;
 
+    @FindBy(id = "documentFirstName")
+    WebElement DocumentFirstNameField;
+
+    @FindBy(id = "documentMiddleName")
+    WebElement DocumentMiddleNameField;
+
+    @FindBy(id = "documentLastName")
+    WebElement DocumentLastNameField;
+
     @FindBy(xpath = "//*[@class='c4BodyText1']")
     List<WebElement> bodyTexts;
 
@@ -142,6 +151,51 @@ public class LawfulPresencePage {
 
     @FindBy(xpath = "//input[@id='citizenshipCertificate']//following-sibling::label/span")
     WebElement textCitizenshipCertificate;
+
+    @FindBy(xpath = "//label[@id='alienNumber-error']")
+    WebElement UsicsNumErrMsg;
+
+    @FindBy(xpath = "//label[@id='documentTypeCitzn-error']")
+    WebElement DocTypeErrorMsg;
+
+    @FindBy(xpath = "//label[@id='documentNumber-error']")
+    WebElement DocNumError;
+
+    @FindBy(id = "documentType-error")
+    WebElement DocumentTypeErrorMessage;
+
+    @FindBy(css = ".aNumber.row .col-sm-4 .control-label span")
+    WebElement ANumberOrUSCISNumberLabel;
+
+    @FindBy(css = "#militaryFamilyGrp .control-label span")
+    WebElement MilitaryOrDischargedVeteransQuestion;
+
+    @FindBy(css = ".input-checkbox[type='checkbox']")
+    List<WebElement> CheckBoxesForMilitaryOrDischargedVeteransQuestion;
+
+    @FindBy(css = ".input-group div .label-checkbox")
+    List<WebElement> CheckBoxesLabelsForMilitaryOrDischargedVeteransQuestion;
+
+    @FindBy(css = "#NameMatchesDocumentQ label span")
+    List<WebElement> UsernameMatchWithDocumentNameQuestionWithYesNoLabels;
+
+    @FindBy(css = ".control-label.input-radio[type='radio'][name='nameMatchesDocument']")
+    List<WebElement> RadioButtonsForUsernameMatchWithDocumentNameQuestion;
+
+    @FindBy(id = "alienNumberNonCitizen-error")
+    WebElement AlienNumberErrorMessage;
+
+    @FindBy(id = "nameMatchesDocument-error")
+    WebElement nameMatchesDocumentErrorMessage;
+
+    @FindBy(id = "documentFirstName-error")
+    WebElement DocumentFirstNameErrorMessage;
+
+    @FindBy(id = "documentLastName-error")
+    WebElement DocumentLastNameErrorMessage;
+
+    @FindBy(id = "selectOption")
+    WebElement MilitaryOrHonorablyDischargedVeteransErrorMessage;
 
     public void isMemberCitizen(String YNCitizen) {
         switch (YNCitizen) {
@@ -666,5 +720,132 @@ public class LawfulPresencePage {
         softAssert.assertEquals(bodyTexts.get(27).getText(),languageText.get(11));
         softAssert.assertAll();
     }
+    public void verifyErrMsgInCitizenshipAndImmigrationPage(String language, List<String> dataText) {
+        basicActions.waitForElementToBePresent(UsicsNumErrMsg, 2);
+        basicActions.waitForElementToBePresent(DocTypeErrorMsg, 1);
+        basicActions.waitForElementToBePresent(DocNumError, 1);
+        softAssert.assertEquals(UsicsNumErrMsg.getText(), dataText.get(1), "Label Not matching");
+        softAssert.assertEquals(DocTypeErrorMsg.getText(), dataText.get(2), "Label Not matching");
+        softAssert.assertEquals(DocNumError.getText(), dataText.get(3), "label not matching");
+        softAssert.assertAll();
+    }
+
+    public void validateDocumentTypeDropdownErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent( DocumentTypeErrorMessage,20);
+        softAssert.assertEquals(DocumentTypeErrorMessage.getText(), expectedErrorMessage);
+        softAssert.assertAll();
+    }
+
+    public void validateWebElementsAfterSelectingDocumentType(List<String> expectedText) {
+        basicActions.waitForElementToBePresent( ANumberOrUSCISNumberLabel,20);
+        basicActions.waitForElementToBePresent( alienNumberNonCitizen,20);
+        basicActions.waitForElementToBePresent( MilitaryOrDischargedVeteransQuestion,20);
+        basicActions.waitForElementListToBePresent( CheckBoxesForMilitaryOrDischargedVeteransQuestion,20);
+        basicActions.waitForElementListToBePresent( CheckBoxesLabelsForMilitaryOrDischargedVeteransQuestion,20);
+        basicActions.waitForElementListToBePresent( UsernameMatchWithDocumentNameQuestionWithYesNoLabels,20);
+        basicActions.waitForElementListToBePresent( RadioButtonsForUsernameMatchWithDocumentNameQuestion,20);
+        softAssert.assertEquals(ANumberOrUSCISNumberLabel.getText(), expectedText.get(0));
+        softAssert.assertTrue(alienNumberNonCitizen.isDisplayed(), "A-Number/USCIS number text box not visible");
+        softAssert.assertEquals(MilitaryOrDischargedVeteransQuestion.getText(), expectedText.get(1));
+        softAssert.assertTrue(CheckBoxesForMilitaryOrDischargedVeteransQuestion.get(0).isDisplayed(), "Me checkbox label not visible");
+        softAssert.assertTrue(CheckBoxesForMilitaryOrDischargedVeteransQuestion.get(1).isDisplayed(), "My spouse checkbox label not visible");
+        softAssert.assertTrue(CheckBoxesForMilitaryOrDischargedVeteransQuestion.get(2).isDisplayed(), "One or both of my parents checkbox label not visible");
+        softAssert.assertTrue(CheckBoxesForMilitaryOrDischargedVeteransQuestion.get(3).isDisplayed(), "'None of the above' checkbox label not visible");
+        softAssert.assertEquals(CheckBoxesLabelsForMilitaryOrDischargedVeteransQuestion.get(0).getText(), expectedText.get(2));
+        softAssert.assertEquals(CheckBoxesLabelsForMilitaryOrDischargedVeteransQuestion.get(1).getText(), expectedText.get(3));
+        softAssert.assertEquals(CheckBoxesLabelsForMilitaryOrDischargedVeteransQuestion.get(2).getText(), expectedText.get(4));
+        softAssert.assertEquals(CheckBoxesLabelsForMilitaryOrDischargedVeteransQuestion.get(3).getText(), expectedText.get(5));
+        softAssert.assertTrue(UsernameMatchWithDocumentNameQuestionWithYesNoLabels.get(0).isDisplayed(), "User name Match With Document Name Question not visible");
+        softAssert.assertEquals(UsernameMatchWithDocumentNameQuestionWithYesNoLabels.get(1).getText(), expectedText.get(6));
+        softAssert.assertEquals(UsernameMatchWithDocumentNameQuestionWithYesNoLabels.get(2).getText(), expectedText.get(7));
+        softAssert.assertAll();
+    }
+
+    public void validateAlienNumberFieldErrorMessage(String expectedErrorMessage,String value) {
+        basicActions.waitForElementToBePresent( alienNumberNonCitizen,20);
+        alienNumberNonCitizen.clear();
+        alienNumberNonCitizen.sendKeys(value);
+        clickContinue();
+        basicActions.waitForElementToBePresent( AlienNumberErrorMessage,20);
+        softAssert.assertEquals(AlienNumberErrorMessage.getText(), expectedErrorMessage);
+        softAssert.assertAll();
+    }
+
+    public void iValidateTrimmedValueInANumberField(String expectedValue,String givenValue) {
+        basicActions.waitForElementToBePresent( alienNumberNonCitizen,20);
+        alienNumberNonCitizen.clear();
+        alienNumberNonCitizen.sendKeys(givenValue);
+        basicActions.waitForElementToBePresent( alienNumberNonCitizen,40);
+        softAssert.assertEquals(alienNumberNonCitizen.getAttribute("value"), expectedValue);
+        softAssert.assertAll();
+    }
+
+    public void validateNameMatchesDocumentErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent( nameMatchesDocumentErrorMessage,20);
+        softAssert.assertEquals(nameMatchesDocumentErrorMessage.getText(), expectedErrorMessage);
+        softAssert.assertAll();
+    }
+
+    public void validateTextAndWebElementsAfterSelectingNoToDocumentNameMatchQuestion(List<String> expectedText) {
+        basicActions.waitForElementToBePresent( bodyTexts.get(24),20);
+        basicActions.waitForElementToBePresent( bodyTexts.get(25),20);
+        basicActions.waitForElementToBePresent( bodyTexts.get(26),20);
+        basicActions.waitForElementToBePresent( bodyTexts.get(27),20);
+        basicActions.waitForElementToBePresent( DocumentFirstNameField,20);
+        basicActions.waitForElementToBePresent( DocumentMiddleNameField,20);
+        basicActions.waitForElementToBePresent( DocumentLastNameField,20);
+        softAssert.assertEquals(bodyTexts.get(24).getText(), expectedText.get(0));
+        softAssert.assertEquals(bodyTexts.get(25).getText(), expectedText.get(1));
+        softAssert.assertEquals(bodyTexts.get(26).getText(), expectedText.get(2));
+        softAssert.assertEquals(bodyTexts.get(27).getText(), expectedText.get(3));
+        softAssert.assertTrue(DocumentFirstNameField.isDisplayed(), "Document First Name field is not visible");
+        softAssert.assertTrue(DocumentMiddleNameField.isDisplayed(), "Document Middle Name field is not visible");
+        softAssert.assertTrue(DocumentLastNameField.isDisplayed(), "Document Last Name field is not visible");
+        softAssert.assertAll();
+    }
+
+    public void validateErrorMessagesWhenNoValueGivenInFirstNameAndLastNameFields(List<String> expectedText) {
+        basicActions.waitForElementToBePresent( DocumentFirstNameErrorMessage,20);
+        basicActions.waitForElementToBePresent( DocumentLastNameErrorMessage,20);
+        softAssert.assertEquals(DocumentFirstNameErrorMessage.getText(), expectedText.get(0));
+        softAssert.assertEquals(DocumentLastNameErrorMessage.getText(), expectedText.get(1));
+        softAssert.assertAll();
+    }
+
+    public void validateFieldDoesNotAcceptMoreThan25Characters(String inputText) {
+        basicActions.waitForElementToBePresent( DocumentFirstNameField,20);
+        DocumentFirstNameField.sendKeys(inputText);
+        softAssert.assertTrue(DocumentFirstNameField.getAttribute("value").length()<26,"First name field accepting more than 25 characters");
+        softAssert.assertAll();
+    }
+
+    public void validateFieldDoesNotAcceptMoreThan40Characters(String inputText) {
+        basicActions.waitForElementToBePresent( DocumentLastNameField,20);
+        DocumentLastNameField.clear();
+        DocumentLastNameField.sendKeys(inputText);
+        softAssert.assertTrue(DocumentLastNameField.getAttribute("value").length()<41,"Last name field accepting more than 40 characters");
+        softAssert.assertAll();
+    }
+
+    public void validateLastNameFieldErrorMessageWhenNumericValueIsGivenInIt(String expectedErrorMessage,String value) {
+        DocumentLastNameField.clear();
+        DocumentLastNameField.sendKeys(value);
+        clickContinue();
+        basicActions.waitForElementToBePresent( DocumentLastNameErrorMessage,20);
+        softAssert.assertEquals(DocumentLastNameErrorMessage.getText(), expectedErrorMessage);
+        softAssert.assertAll();
+    }
+
+    public void validateMilitaryOrHonorablyDischargedVeteranErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent( MilitaryOrHonorablyDischargedVeteransErrorMessage,20);
+        softAssert.assertEquals(MilitaryOrHonorablyDischargedVeteransErrorMessage.getText(), expectedErrorMessage);
+        softAssert.assertAll();
+    }
+
+
+
+
+
+
 
 }

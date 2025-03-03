@@ -43,7 +43,7 @@ Feature: Testing CRM (MD365) updates
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
 
-  @SLER-1298
+  @SLER-1298 @NVOExchRegression
   Scenario: SLER-1298 Changing Primary Contact is shared with the CRM
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -147,12 +147,14 @@ Feature: Testing CRM (MD365) updates
 
     And I wait for 50000 milliseconds
     Then I log into the CRM system
+    And I wait for 50000 milliseconds
     Then I search for user's Email
     Then I handle the search results page
+    And I wait for 50000 milliseconds
     And I verify the Individual Contact data in the CRM
     Then I sign out of CRM
 
-  @SLER-1334
+  @SLER-1334 @NVOExchRegression
   Scenario: SLER-1334 Changing Primary Contact data is shared with the CRM
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page
@@ -212,7 +214,7 @@ Feature: Testing CRM (MD365) updates
     Then I update SSN number to new SSN number "123456789"
     Then I click continue on Tell us about yourself page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
+    And I enter the new residential address details for "Primary"
       | addressLine1           | addressLine2   | city              | state | zipcode | county  |
       | 101 Springs Drive      |                | Colorado Springs  | CO    | 80919   | EL PASO |
     Then I select the Different Mailing Address option
@@ -238,7 +240,7 @@ Feature: Testing CRM (MD365) updates
     And I verify the Individual Details data in the CRM
     Then I sign out of CRM
 
-  @SLER-1774
+  @SLER-1774 @NVOExchRegression
   Scenario: SLER-1774 Changing Primary Contact's email and phone is shared with the CRM
     Then I click continue on family overview page
     Then I validate I am on the "Financial Help" page

@@ -119,5 +119,45 @@ public class LawfulPresencePageSteps {
     public void iValidatePageTextsWhenUsCitizenOptionIs(String option,List<String> languageText) {
         lawfulPresencePage.validatePageTextWhenUsCitizenOptYesOrNo(option, languageText);
     }
+    @Then("I validate the error message in Citizenship and Immigration status page in {string}")
+    public void iValidateTheErrorMessageInCitizenshipAndImmigrationStatusPageIn(String language, List<String> dataText) {
+        lawfulPresencePage.verifyErrMsgInCitizenshipAndImmigrationPage(language,dataText);
+    }
+
+    @Then("I validate the error message {string} is thrown while clicking on Continue button when no answer is selected for Document type dropdown")
+    public void iValidateDocumentTypeDropdownErrorMessage(String expectedErrorMessage){lawfulPresencePage.validateDocumentTypeDropdownErrorMessage(expectedErrorMessage);}
+
+    @Then("I validate the following text along with the checkboxes,radiobuttons,text box and the username match with document name question")
+    public void iValidateWebElementsAfterSelectingDocumentType(List<String> expectedText){lawfulPresencePage.validateWebElementsAfterSelectingDocumentType(expectedText);}
+
+    @Then("I validate the error message {string} is thrown while clicking on Continue button when value {string} is given in the field A-Number Or USCIS number")
+    public void iValidateWebElementsAfterSelectingDocumentType(String expectedErrorMessage,String value){lawfulPresencePage.validateAlienNumberFieldErrorMessage(expectedErrorMessage,value);}
+
+    @Then("I validate the value in A-number field is trimmed to {string} when the input is given as {string}")
+    public void iValidateTrimmedValueInANumberField(String expectedValue,String givenValue){lawfulPresencePage.iValidateTrimmedValueInANumberField(expectedValue,givenValue);}
+
+    @Then("I validate the error message {string} is thrown while clicking on Continue button when username match the name on the document question")
+    public void iValidateNameMatchesDocumentErrorMessage(String expectedErrorMessage){lawfulPresencePage.validateNameMatchesDocumentErrorMessage(expectedErrorMessage);}
+
+    @Then("I validate the following text along with the First Name,Middle Name & Last Name textboxes")
+    public void iValidateTextAndWebElementsAfterSelectingNoToDocumentNameMatchQuestion(List<String> expectedText){lawfulPresencePage.validateTextAndWebElementsAfterSelectingNoToDocumentNameMatchQuestion(expectedText);}
+
+    @Then("I validate the following error messages are thrown while clicking on Continue button when no values are given in the First Name and Last Name fields")
+    public void iValidateErrorMessagesWhenNoValueGivenInFirstNameAndLastNameFields(List<String> expectedText){lawfulPresencePage.validateErrorMessagesWhenNoValueGivenInFirstNameAndLastNameFields(expectedText);}
+
+    @Then("I enter the value {string} in First Name field and validate that it doesnot accept the characters more than 25")
+    public void iValidateFieldDoesNotAcceptMoreThan25Characters(String inputText){lawfulPresencePage.validateFieldDoesNotAcceptMoreThan25Characters(inputText);}
+
+    @Then("I enter the value {string} in Last Name field and validate that it doesnot accept the characters more than 40")
+    public void iValidateFieldDoesNotAcceptMoreThan40Characters(String inputText){lawfulPresencePage.validateFieldDoesNotAcceptMoreThan40Characters(inputText);}
+
+    @Then("I validate the error message {string} is thrown while clicking on Continue button when value {string} is given in the field Last Name")
+    public void iValidateLastNameFieldErrorMessageWhenNumericValueIsGivenInIt(String expectedErrorMessage,String value){lawfulPresencePage.validateLastNameFieldErrorMessageWhenNumericValueIsGivenInIt(expectedErrorMessage,value);}
+
+    @Then("I validate the error message {string} is thrown while clicking on Continue button when no answers are selected for military or honorably discharged veterans question")
+    public void iValidateMilitaryOrHonorablyDischargedVeteranErrorMessage(String expectedErrorMessage){lawfulPresencePage.validateMilitaryOrHonorablyDischargedVeteranErrorMessage(expectedErrorMessage);}
+
+
+
 
 }

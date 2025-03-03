@@ -57,9 +57,21 @@ Feature: My Profile Page Coco
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
 
+    And I wait for 3000 milliseconds
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
     And I validate Preferred Contact Method save changes on My Profile page CoCo
+
+    #Email error validation
+    Then I validate I am on the "My Profile" page
+    And I wait for 5000 milliseconds
+    And I validate Email error message in "English" on my Profile Page CoCo
+    And I click on Go back to Welcome page Button on My Profile CoCo
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Profile" link on welcome page
+    Then I validate I am on the "My Profile" page
+    And I change the language from header to "Spanish"
+    And I validate Email error message in "Spanish" on my Profile Page CoCo
     And I click on Sign Out in the Header for "Elmo"
 
 
