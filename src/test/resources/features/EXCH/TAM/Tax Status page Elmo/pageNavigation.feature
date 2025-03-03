@@ -152,7 +152,7 @@ Feature: Page Navigation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
     Then I validate I am on the "Login" page
 
-    @SLER-2236 @PageNavigationTaxStatusElmoPage
+    @SLER-2236 @PageNavigationTaxStatusElmoPage @TAMSmoke
     Scenario: SLER-2236 Navigation works as expected when tax filing status is changed from a filer to a dependent in Tax Return Portal, Exchange
       #step2 - add a family member
       Then I click Add Another Family Member

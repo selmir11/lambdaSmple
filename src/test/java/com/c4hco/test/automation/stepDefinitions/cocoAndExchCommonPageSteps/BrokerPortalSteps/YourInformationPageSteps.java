@@ -113,6 +113,11 @@ public class YourInformationPageSteps {
         yourInformationPage.validateNoInviteCodeCheckboxErrorMessage();
     }
 
+    @Then("I click the checkbox for I do not have a code")
+    public void iClickIDoNotHaveCodeCheckbox(){
+        yourInformationPage.clickIDoNotHaveCodeCheckbox();
+    }
+
     @Then("I click Continue on the Your Information page")
     public void iClickContinueYourInformationPage(){
         yourInformationPage.clickContinueYourInformationPage();
