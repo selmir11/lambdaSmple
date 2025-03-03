@@ -823,7 +823,7 @@ public class LawfulPresencePage {
         basicActions.waitForElementToBePresent( DocumentLastNameField,20);
         DocumentLastNameField.clear();
         DocumentLastNameField.sendKeys(inputText);
-        softAssert.assertTrue(DocumentLastNameField.getAttribute("value").length()<41,"First name field accepting more than 40 characters");
+        softAssert.assertTrue(DocumentLastNameField.getAttribute("value").length()<41,"Last name field accepting more than 40 characters");
         softAssert.assertAll();
     }
 
