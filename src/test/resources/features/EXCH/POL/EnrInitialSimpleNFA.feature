@@ -1,4 +1,4 @@
- @SLER-34 @SLER-1069 @SLER-1262 @pol_exch_passed
+ @SLER-34 @SLER-1069 @SLER-1262 @SLER-1332 @ALER-1295 @pol_exch_passed
 Feature: Simple NFA - Single Applicant
   Scenario: EXCH Initial Application  - Single Applicant - Simple NFA
     Given I set the test scenario details
@@ -89,24 +89,25 @@ Feature: Simple NFA - Single Applicant
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
+    And I click on to Back to Current Plan Details button
 
-#    Then I click on the Colorado Connect or C4 Logo in the "My Policies" Header
-#    Then I validate I am on the "My Account Overview" page
-#    And I click on ClickHere link for "My Documents"
+     # PDF Notice Validation
+    Then I validate I am on the "My Account Overview" page
+    And I click on ClickHere link for "My Documents"
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+    And I click on Sign Out in the Header for "Elmo"
 
    #DbVerification
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-#   # PDF Notice Validation
-#    And I click on download "EN-002-04" document
-#    Then I validate "EN-002-04 English" notice content
 
-#    @SLER-1069  # RT-1262
-#    Scenario: validate both medical and dental ob834 files
+
+    #SLER-1069  # RT-1262
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
@@ -117,22 +118,22 @@ Feature: Simple NFA - Single Applicant
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    # @SLER-1262
+     #SLER-1262
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-#    #Email Notice Validation
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
-#    And I validate additional details for "medical" plan on email notice
-#      |Primary|
-#    And I validate additional details for "dental" plan on email notice
-#      |Primary|
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
+    #Email Notice Validation
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Exch"
+    And I validate additional details for "medical" plan on email notice
+      |Primary|
+    And I validate additional details for "dental" plan on email notice
+      |Primary|
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
 
     # Ib999 DB Validation
     And I validate "medical" entities from ib999_details db table
@@ -158,7 +159,7 @@ Feature: Simple NFA - Single Applicant
     And I validate the ib834 "medical" file data
     And I validate the ib834 "dental" file data
 
-    # SLER-1295 - Validate ob999 database and files
+     #SLER-1295, Validate ob999 database and files
     And I validate "medical" entities from ob999_details db table
     And I validate "dental" entities from ob999_details db table
 

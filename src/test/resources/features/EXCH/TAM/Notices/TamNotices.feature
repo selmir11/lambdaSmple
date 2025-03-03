@@ -1,4 +1,4 @@
-@TAM @TamPdf @TAMSmoke
+@TAM @TamPdf @TAMSmokePDF
 Feature: Elig101-01 - TAM Notices
 
   Background:

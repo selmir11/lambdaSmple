@@ -66,6 +66,7 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     And I select "Help me understand" icon on the Peace Corps Page
     Then I validate Peace Corps "full" help drawer verbiage in "English"
+    And I set the browser resolution to Maximized
     And I click Peace Corps Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
     And I select "Help me understand" icon on the Peace Corps Page

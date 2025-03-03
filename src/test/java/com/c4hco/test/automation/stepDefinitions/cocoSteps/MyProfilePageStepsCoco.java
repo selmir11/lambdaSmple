@@ -138,4 +138,7 @@ public class MyProfilePageStepsCoco {
         myProfilePage.verifyPreferredLanguage(expectedLanguage);
     }
 
+    @And("I validate Email error message in {string} on my Profile Page CoCo")
+    public void iverifyEmailUseErrorMessage(String language)  { myProfilePage.verifyEmailUseErrorMessage(language); }
+
 }

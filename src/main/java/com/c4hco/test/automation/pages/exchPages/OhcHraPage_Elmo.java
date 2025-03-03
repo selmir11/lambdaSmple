@@ -397,27 +397,27 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
-        action.moveToElement(goBackBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
+        action.moveToElement(goBackBtn).perform();
         softAssert.assertEquals(goBackBtn.getText(), "Go back");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(226, 241, 248, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
-        action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+        action.moveToElement(saveAndContinueBtn).perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Save and continue");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 
@@ -427,27 +427,27 @@ public class OhcHraPage_Elmo {
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(252, 252, 252) none repeat scroll 0% 0% / auto padding-box border-box");
-        action.moveToElement(goBackBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
+        action.moveToElement(goBackBtn).perform();
         softAssert.assertEquals(goBackBtn.getText(), "Volver");
         softAssert.assertEquals(goBackBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(goBackBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(goBackBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(goBackBtn.getCssValue("color"), "rgba(26, 112, 179, 1)");
-        softAssert.assertEquals(goBackBtn.getCssValue("background"), "rgb(226, 241, 248) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(goBackBtn.getCssValue("background-color"), "rgba(226, 241, 248, 1)");
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(26, 112, 179) none repeat scroll 0% 0% / auto padding-box border-box");
-        action.moveToElement(saveAndContinueBtn).pause(1000L).build().perform();
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+        action.moveToElement(saveAndContinueBtn).perform();
         softAssert.assertEquals(saveAndContinueBtn.getText(), "Guardar y continuar");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-weight"), "700");
         softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)");
-        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background"), "rgb(22, 156, 216) none repeat scroll 0% 0% / auto padding-box border-box");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)");
         softAssert.assertAll();
     }
 
@@ -734,8 +734,9 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageFirstSectionDataEnglish() {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
-        basicActions.waitForElementToBePresent(ohcHraHeader, 15);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 60);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Health Reimbursement Arrangement (HRA) offered through an employer");
         softAssert.assertEquals(helpMeLink.getText(), "Help me understand this page");
@@ -751,8 +752,8 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageOptOutSectionDataEnglish() {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
-        basicActions.waitForElementToBePresent(ifMayTxt, 15);
+        basicActions.waitForElementToBePresent(ohcHeader, 60);
+        basicActions.waitForElementToBePresent(ifMayTxt, 60);
         softAssert.assertEquals(ifMayTxt.getText(), "It may be less expensive to pay for your coverage with the Advanced Premium Tax Credit you could receive through Connect for Health Colorado. This would replace your employer's contribution.");
         softAssert.assertEquals(hraQuestionTxt.get(3).getText(), "If receiving Advance Premium Tax Credit is a more affordable option, would you choose to opt out from receiving an employer contribution?");
         softAssert.assertEquals(optOutBtn.get(0).getText(), "Yes");

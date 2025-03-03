@@ -381,6 +381,7 @@ public class AdditionalIncomeCoCoPage {
 
 //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
 public void verifyHeadersAdditionalIncomePage(String language){
+    basicActions.wait(250);
     switch (language){
         case "English":
             verifyHeadersAdditionalIncomePageEnglish();
@@ -394,7 +395,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
 }
 
     public void verifyHeadersAdditionalIncomePageEnglish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBePresentWithRetries(hdrAddInfoForYourself,120);
         basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome,120);
         softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
@@ -409,7 +409,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
     }
 
     public void verifyHeadersAdditionalIncomePageSpanish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
         basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
         basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
