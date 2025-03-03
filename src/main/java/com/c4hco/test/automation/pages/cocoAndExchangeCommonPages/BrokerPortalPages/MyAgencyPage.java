@@ -14,6 +14,15 @@ public class MyAgencyPage {
     @FindBy(id = "action-link-deny")
     WebElement denyAgencyInviteLink;
 
+    @FindBy(id = "agency-0-name")
+    WebElement agencyNameText;
+
+    @FindBy(id = "agency-0-phone-number")
+    WebElement agencyPhoneText;
+
+    @FindBy(id = "agency-0-status")
+    WebElement agencyInviteStatusText;
+
     @FindBy(id = "BP-MyAgency-GoBack")
     WebElement myAgencyGoBackButton;
 
@@ -45,6 +54,20 @@ public class MyAgencyPage {
         softAssert.assertEquals(denyAgencyInviteLink.getText(),"Deny");
         softAssert.assertAll();
         denyAgencyInviteLink.click();
+    }
+
+    public void verifyAgencyInviteStatus(String agencyInviteName, String agencyPhone, String inviteStatus){
+        basicActions.waitForElementToBePresent(agencyInviteStatusText, 10);
+        softAssert.assertEquals(agencyNameText.getText(), agencyInviteName);
+        softAssert.assertEquals(agencyPhoneText.getText(), agencyPhone);
+        softAssert.assertEquals(agencyInviteStatusText.getText(), inviteStatus);
+        softAssert.assertAll();
+    }
+
+    public void verifyNoPendingAgencyInvites(){
+        int rows = basicActions.getDriver().findElements(By.xpath("//*[@id='associated-agencies']//tr")).size();
+        softAssert.assertEquals(rows, 1);
+        softAssert.assertAll();
     }
 
     public void clickGoBackManageAssocBrokers(){

@@ -22,6 +22,7 @@ public class LoginPage {
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
+
     @FindBy(xpath = "//input[@id='email']")
     WebElement username;
 
@@ -31,7 +32,7 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
     WebElement signInButton;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement usernameAdmin;
 
     @FindBy(id = "password")
