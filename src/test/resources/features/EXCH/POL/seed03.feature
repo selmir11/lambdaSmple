@@ -29,7 +29,7 @@ Feature: Seed03 - Exchange
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    And I Search authorized Broker "Margie"
+    And I Search authorized Broker "Amethyst"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -191,7 +191,7 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-94-WIP-@R4V
+  @SLER-94-WIP-@R4V @n1
   Scenario: RT-2075 ENR-EXCH: APPS - REMOVE MEMBER (LCE: Divorce) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -227,6 +227,12 @@ Feature: Seed03 - Exchange
     Then I click on view results and shop
     Then I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
     Then I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I validate that financials are updated on account overview page
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
@@ -236,6 +242,9 @@ Feature: Seed03 - Exchange
     And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
+      |Primary: SUBMITTED|
+      |Spouse: CANCELLED |
+
     And I validate "dental" entities from policy tables
 #    And I verify the policy data quality check with Policy Ah keyset size 2
     #And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type

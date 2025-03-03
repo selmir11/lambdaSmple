@@ -217,6 +217,9 @@ Feature: Enroll a in a plan (FAMILY OF 3)
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
+    And I click on download "EN-002-04" document
+    Then I validate "EN-002-04 English" notice content
+
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
