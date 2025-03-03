@@ -66,4 +66,7 @@ public class EmploymentIncomePageSteps {
     public void iverifyPageText(DataTable dataTable){
         employmentIncomePage.validateErrorMessageAndStyleProp(dataTable);
     }
+
+    @Then("I verify Employment Income CoCo error format for {string}")
+    public void iVerifyErrorFormat(String incomeType){employmentIncomePage.verifyErrorFormat(incomeType);}
 }

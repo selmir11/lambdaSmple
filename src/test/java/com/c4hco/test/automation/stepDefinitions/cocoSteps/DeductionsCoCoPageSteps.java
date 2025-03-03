@@ -58,4 +58,7 @@ public class DeductionsCoCoPageSteps {
     public void iVerifyStateOfDeductionsCheckbox(String state){
         deductionsCoCoPage.verifyDeductionsOptionCheckboxCOCO(state);}
 
+    @Then("I verify Deductions CoCo error format for {string}")
+    public void iVerifyErrorFormat(String incomeType){deductionsCoCoPage.verifyErrorFormat(incomeType);}
+
 }

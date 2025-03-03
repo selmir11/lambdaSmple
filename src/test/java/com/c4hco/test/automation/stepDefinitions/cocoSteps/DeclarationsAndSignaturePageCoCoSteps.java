@@ -29,4 +29,7 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     // Add only validation methods below this line
     @And("I verify the header for Primary Member on the CoCo Declarations And Signature page in {string}")
     public void iVerifyTextOnDeclarationsAndSignaturePage(String language){declarationsAndSignaturePageCoCo.verifyHeadersDeclarationsAndSignaturePage(language);}
+
+    @Then("I verify Declarations And Signature CoCo error format")
+    public void iVerifyErrorFormat(){declarationsAndSignaturePageCoCo.verifyErrorFormat();}
 }
