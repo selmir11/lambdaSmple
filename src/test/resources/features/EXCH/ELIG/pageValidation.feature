@@ -3353,3 +3353,114 @@ Feature: Page validations on ELIG pages
     Then I input the grant date of my Lawful Permanent Residency as "01012025673"
     Then I click continue on the Immigration Status page
     Then I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2263 @PageValidation
+  Scenario: SLER-2263-ELIG-Reentry Permit  (Citizenship and immigration status)-Page Validation
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "01011985" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I select "No" for Citizen option
+    Then I select "Yes" for Eligible Immigration Status option
+    And I click continue on the Citizenship page
+    And I validate the error message "Please select one of the options below" is thrown while clicking on Continue button when no answer is selected for Document type dropdown
+    Then I select "I-327 Reentry Permit" as Document type
+    Then I validate the following text along with the checkboxes,radiobuttons,text box and the username match with document name question
+      |A-Number/USCIS number|
+      |Are any of the following active-duty members of the military or honorably discharged veterans? (check all that apply)|
+      |Me                                                                                                                   |
+      |My spouse                                                                                                            |
+      |One or both of my parents                                                                                            |
+      |None of the above                                                                                                    |
+      |Yes                                                                                                                  |
+      |No                                                                                                                   |
+    And I validate the error message "A-number starts with 'A' and ends with 8 or 9 numbers" is thrown while clicking on Continue button when value "" is given in the field A-Number Or USCIS number
+    And I validate the error message "A-number starts with 'A' and ends with 8 or 9 numbers" is thrown while clicking on Continue button when value "12345678" is given in the field A-Number Or USCIS number
+    And I validate the error message "A-number starts with 'A' and ends with 8 or 9 numbers" is thrown while clicking on Continue button when value "A1234567" is given in the field A-Number Or USCIS number
+    And I validate the value in A-number field is trimmed to "A12345678" when the input is given as "A123456789"
+    And I validate the value in A-number field is trimmed to "123456789" when the input is given as "1234567891"
+    And I validate the error message "A-number starts with 'A' and ends with 8 or 9 numbers" is thrown while clicking on Continue button when value "Q12345678" is given in the field A-Number Or USCIS number
+    And I validate the value in A-number field is trimmed to "A12345678" when the input is given as "A123456789"
+    And I click continue on the Citizenship page
+    And I validate the error message "Please select one of the options below" is thrown while clicking on Continue button when username match the name on the document question
+    Then I select "No" for name matching the document
+    Then I validate the following text along with the First Name,Middle Name & Last Name textboxes
+    |Enter name as it appears on document|
+    |First Name                          |
+    |Middle Name                         |
+    |Last Name                           |
+    And I click continue on the Citizenship page
+    And I validate the following error messages are thrown while clicking on Continue button when no values are given in the First Name and Last Name fields
+    |First name is required|
+    |Last name is required |
+    Then I enter the value "Tom marvollo ryan dumbledore potter hermoine Riddle" in First Name field and validate that it doesnot accept the characters more than 25
+    And I validate the error message "Max 40 characters, space, hyphen, single quote allowed" is thrown while clicking on Continue button when value "123" is given in the field Last Name
+    Then I enter the value "Tom marvollo ryan dumbledore potter hermoine Riddle" in Last Name field and validate that it doesnot accept the characters more than 40
+    And I click continue on the Citizenship page
+    And I validate the error message "Please select one or more of the options below" is thrown while clicking on Continue button when no answers are selected for military or honorably discharged veterans question
+    And I change the language from header to "Spanish NonElmo"
+    Then I select "No" for Citizen option
+    Then I select "Yes" for Eligible Immigration Status option
+    And I click continue on the Citizenship page
+    And I validate the error message "Seleccione una de las opciones siguientes" is thrown while clicking on Continue button when no answer is selected for Document type dropdown
+    Then I select "Permiso de reingreso I-327" as Document type
+    Then I validate the following text along with the checkboxes,radiobuttons,text box and the username match with document name question
+      |Número A/Número USCIS|
+      |¿Alguno de los siguientes es miembro en servicio activo del ejército o veterano dado de baja honrosamente? (marque todos los que correspondan)|
+      |Yo                                                                                                                   |
+      |Mi esposo(a)                                                                                                            |
+      |Uno o ambos de mis padres                                                                                            |
+      |Ningunos de los anteriores                                                                                                    |
+      |Sí                                                                                                                  |
+      |No                                                                                                                   |
+    And I validate the error message "El numer A empieza con la 'A' y termina con 8 o 9 numeros" is thrown while clicking on Continue button when value "" is given in the field A-Number Or USCIS number
+    And I validate the error message "El numer A empieza con la 'A' y termina con 8 o 9 numeros" is thrown while clicking on Continue button when value "12345678" is given in the field A-Number Or USCIS number
+    And I validate the error message "El numer A empieza con la 'A' y termina con 8 o 9 numeros" is thrown while clicking on Continue button when value "A1234567" is given in the field A-Number Or USCIS number
+    And I validate the value in A-number field is trimmed to "A12345678" when the input is given as "A123456789"
+    And I validate the value in A-number field is trimmed to "123456789" when the input is given as "1234567891"
+    And I validate the error message "El numer A empieza con la 'A' y termina con 8 o 9 numeros" is thrown while clicking on Continue button when value "Q12345678" is given in the field A-Number Or USCIS number
+    And I validate the value in A-number field is trimmed to "A12345678" when the input is given as "A123456789"
+    And I click continue on the Citizenship page
+    And I validate the error message "Seleccione una de las opciones siguientes" is thrown while clicking on Continue button when username match the name on the document question
+    Then I select "No" for name matching the document
+    Then I validate the following text along with the First Name,Middle Name & Last Name textboxes
+      |Ingrese el nombre según aparece en el documento|
+      |Nombre                          |
+      |Segundo nombre o inicial (opcional)|
+      |Apellido(s)                           |
+    And I click continue on the Citizenship page
+    And I validate the following error messages are thrown while clicking on Continue button when no values are given in the First Name and Last Name fields
+      |El primer nombre es obligatorio|
+      |El apellido es obligatorio |
+    Then I enter the value "Tom marvollo ryan dumbledore potter hermoine Riddle" in First Name field and validate that it doesnot accept the characters more than 25
+    And I validate the error message "Max 40 caracteres, espacio, guion, una sola comilla permitida" is thrown while clicking on Continue button when value "123" is given in the field Last Name
+    Then I enter the value "Tom marvollo ryan dumbledore potter hermoine Riddle" in Last Name field and validate that it doesnot accept the characters more than 40
+    And I click continue on the Citizenship page
+    And I validate the error message "Seleccione una o más de las opciones siguientes" is thrown while clicking on Continue button when no answers are selected for military or honorably discharged veterans question
+    Then I click on Sign Out in the Header for "NonElmo"
+    Then I validate I am on the "Login" page

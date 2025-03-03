@@ -333,8 +333,9 @@ public class AdditionalIncomePage {
     }
 
     public void verifyHeadersAdditionalIncomePageEnglish(){
-        basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);
-        basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome,30);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome,60);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdr_AdditionalIncome.getText(), "Additional income sources");
         softAssert.assertAll();

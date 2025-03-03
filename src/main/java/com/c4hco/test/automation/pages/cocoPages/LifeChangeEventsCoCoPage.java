@@ -396,7 +396,8 @@ public class LifeChangeEventsCoCoPage {
     }
 
     public void verifyHeadersEmploymentIncomePageSpanish(){
-        basicActions.waitForElementToBePresent(hdr_Lce,15);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresent(hdr_Lce,60);
         softAssert.assertEquals(hdr_Lce.getText(), "Inf\u00F3rmenos sobre los cambios importantes en su vida");
         softAssert.assertEquals(hdr_LceText.getText(), "Seleccione los cambios de vida que usted o alguien de su familia haya tenido en los \u00FAltimos 60 d\u00EDas. La p\u00E9rdida de seguro de salud se puede reportar hasta 60 d\u00EDas antes de que alguien pierda su seguro.");
         softAssert.assertAll();

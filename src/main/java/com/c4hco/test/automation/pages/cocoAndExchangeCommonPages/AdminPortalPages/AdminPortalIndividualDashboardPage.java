@@ -372,6 +372,7 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     public void verifyPrimaryHolder() {
+        basicActions.wait(250);
         basicActions.waitForElementToBePresent(memberPrimary, 100);
         softAssert.assertTrue(memberPrimary.isDisplayed());
         basicActions.waitForElementToBePresent(memberAcctId, 100);

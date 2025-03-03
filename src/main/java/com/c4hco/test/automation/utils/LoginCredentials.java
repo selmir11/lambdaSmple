@@ -9,7 +9,7 @@ public class LoginCredentials {
     public static void setSepCredentials() {
         MemberDetails primaryMember = new MemberDetails();
         if (SharedData.getEnv().equals("qa")) {
-            primaryMember.setEmailId("julie.cascade@test.com");
+            primaryMember.setEmailId("mady.castro010@test.com");
         } else {
             primaryMember.setEmailId("castillo.luis@test.com");
         }
