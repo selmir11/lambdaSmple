@@ -1172,4 +1172,11 @@ public class MyDocumentsPage {
         Assert.assertTrue(found,"Document types not found");
     }
 
+    public void verifyUserName(){
+        Assert.assertEquals(textUserName.getText(), SharedData.getPrimaryMember().getEmailId(), "User name email did not match");
+    }
+
+    public void verifyModalPopUpClosed(){
+        Assert.assertTrue( basicActions.waitForElementToDisappear(PopupContentBodyColor,10),"Modal popup not closed");
+    }
 }

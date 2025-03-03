@@ -689,3 +689,46 @@ Feature: My Document Home Page validations
     Then I verify file "Income" downloaded with Proper name format in ".docx" type
     Then  I click on Sign Out in the Header for "Elmo"
 
+  @SLER-2268 @OPSRegression
+  Scenario: Verify upload document modal Errors[RT-1999]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click link my docs on accountOverview page
+    And I verify the page text on the My Documents Page
+      | My Documents and Letters |
+      | We need more information to confirm or verify what you told us in your application. |
+      | Help me understand this page                                                        |
+      | Information We Need                                                                 |
+      | Upload another document |
+      | Past Documents and Letters |
+    And I click on upload another document link
+    And I validate Modal texts on upload a document pop up
+      |Upload a document|
+      |Tell us more about this document|
+      |What type of document is this?  |
+      |Which document are you submitting?|
+      |Select a file from your device    |
+      |Browse My Files                   |
+      |Only one document can be uploaded at a time using this window|
+      |Cancel                                                       |
+      | Upload My Document |
+    And I click on upload my document button
+    Then I validate file required error message
+    Then I validate selection required error message
+    And I select any type of document from dropdown
+    And I close button to close modal
+    Then I verify modal popup closed
+    Then I see the username in Exch that I am currently logged into
+    And I click on upload another document link
+    And I select any type of document from dropdown
+    And I click on cancel button on upload document pop up
+    Then I verify modal popup closed
+    Then I see the username in Exch that I am currently logged into
+    Then  I click on Sign Out in the Header for "Elmo"
+
