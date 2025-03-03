@@ -301,3 +301,17 @@ Feature: Tests related to the Employment Income page
       | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
       | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-793
+  Scenario: SLCR-793 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Employer Income
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+    And I click continue on the Employment income page
+    Then I verify Employment Income CoCo error format for "Do you have a job"
+    And I select "Yes" employment option
+    And I click continue on the Employment income page
+    Then I verify Employment Income CoCo error format for "total income"
+    Then I verify Employment Income CoCo error format for "seasonal"
+    Then I verify Employment Income CoCo error format for "income change"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

@@ -181,6 +181,14 @@ public class LifeChangeEventsCoCoPage {
             case "Move", "MoveToCO":
                 addressChangeLCE.click();
                 break;
+            case "All LCEs":
+                insuranceLossLCE.click();
+                birthLCE.click();
+                pregnancyLCE.click();
+                marriageLCE.click();
+                divorceLCE.click();
+                addressChangeLCE.click();
+                break;
             case "None of these":
                 noneOfTheseLCE.click();
                 break;
@@ -895,5 +903,42 @@ public class LifeChangeEventsCoCoPage {
             softAssert.assertAll();
             basicActions.wait(200);
         }
+    }
+
+    public void verifyErrorFormat(String incomeType) {
+        basicActions.waitForElementListToBePresent(insuranceLossEventDate, 15);
+        WebElement elementDate;
+        switch (incomeType) {
+            case "InsuranceLoss":
+                elementDate = insuranceLossEventDate.get(0);
+                break;
+            case "Birth":
+                elementDate = birthEventDate.get(0);
+                break;
+            case "Pregnancy":
+                elementDate = pregnancyEventDate.get(0);
+                break;
+            case "Marriage":
+                elementDate = marriageEventDate.get(0);
+                break;
+            case "Divorce":
+                elementDate = divorceEventDate.get(0);
+                break;
+            case "Move":
+                elementDate = qachangeOfAddressEventDate.get(0);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+        verifyElementStyles(elementDate);
+        softAssert.assertAll();
+    }
+
+    public void verifyElementStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "6px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(150, 0, 0)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
 }
