@@ -39,6 +39,7 @@ Feature: Navigation-Declarations and Signature Page
 
   @SLCR-151 @PageNavigationD&SPage @TAMSmoke
   Scenario: SLCR-151 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in D&S portal
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     #Step1
     And I change the C4 url to "Declarations and Signature portal Error CoCo"
     Then I validate I am on the "Error" page
@@ -56,6 +57,7 @@ Feature: Navigation-Declarations and Signature Page
     And I select continue on the Family Overview page
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     And I change the C4 url to "Declarations and Signature portal Unauthorized CoCo"
     Then I validate I am on the "Unauthorized" page
     And I verify User name Link is displayed in the "CoCo" Header

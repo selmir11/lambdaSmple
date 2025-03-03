@@ -197,6 +197,8 @@ public class EmploymentInfoPage {
     }
 
     public void isUserEmployed(String employmentOption) {
+        basicActions.waitForElementToDisappear(spinner,60);
+        basicActions.waitForElementToDisappear(spinnerOverlay,60);
         basicActions.waitForElementToBePresent(btnYesEmployed, 15);
         switch (employmentOption) {
             case "Yes":
@@ -373,8 +375,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToDisappear(spinner,15);
-        basicActions.waitForElementToDisappear(spinnerOverlay,15);
+        basicActions.waitForElementToDisappear(spinner,60);
+        basicActions.waitForElementToDisappear(spinnerOverlay,60);
         basicActions.waitForElementToBePresent(btnContinue, 90);
         basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(btnContinue);

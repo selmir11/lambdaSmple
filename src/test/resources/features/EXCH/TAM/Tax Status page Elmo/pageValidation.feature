@@ -107,7 +107,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1809 @PageValidationTaxStatusElmoPage
+  @SLER-1809 @PageValidationTaxStatusElmoPage @TAMSmoke
   Scenario: SLER-1809 I want to see my data when claimed as dependent so that I can review my Tax Status information
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -581,7 +581,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1864 @PageValidationTaxStatusElmoPage
+  @SLER-1864 @PageValidationTaxStatusElmoPage @TAMSmoke
   Scenario: SLER-1864 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Secondary
     Then I click continue on family overview page
     And I Apply for financial help
@@ -600,7 +600,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
 #    Step 2
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
@@ -617,7 +616,6 @@ Feature: Page Validation-Tax Status Elmo Page
       |    FILER      |                              |     SNGL        |           1            |
 #    Step 4
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will claim dependents question
     Then I select "Primary" for who will be claimed as dependent question on the Tax Status Elmo page
@@ -665,7 +663,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will file tax return question
@@ -682,7 +679,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 10
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select the "Single" tax filing option on the Tax Status Elmo page
@@ -694,7 +690,6 @@ Feature: Page Validation-Tax Status Elmo Page
       |  Anna    |  Marie    |  Bean   |      |02162020|
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 11
-    And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |     SNGL        |           0            |
@@ -704,7 +699,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 12
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will claim dependents question
@@ -720,7 +714,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status Elmo page
 #    Step 14
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I check Exceptional circumstances checkbox on the Tax Status Elmo page
