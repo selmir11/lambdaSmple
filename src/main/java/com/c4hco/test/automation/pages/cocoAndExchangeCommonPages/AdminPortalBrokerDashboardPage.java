@@ -120,7 +120,7 @@ public class AdminPortalBrokerDashboardPage {
     WebElement updateSuccessful;
     @FindBy(xpath = "//a[@routerlink='search']")
     WebElement searchBtn;
-    @FindBy(id = "div-158")
+    @FindBy(xpath = "(//div[@class='drop-down-option drop-down-option-selected'])[2]")
     WebElement certificationStatusDrp;
 
 

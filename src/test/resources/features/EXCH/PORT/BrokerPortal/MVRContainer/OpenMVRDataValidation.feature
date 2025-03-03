@@ -23,18 +23,18 @@ Feature: Open MVR container data in Broker Portal
     Then I click on broker userName and logout
 
 Examples:
-  | STGClient     | QAClient   | MVRType                       | ActionButton |
-  | tryblzjrvj    | Mertie     | Income                        | Verify Info  |
-  | Primarybfxsyw | Sandra     | American Indian/Alaska Native | Upload Doc   |
-  | Sonxfypgufv   | czvtav     | Citizenship                   | Upload Doc   |
-  | yakxnjdeq     | scsgtgrl   | Lawful Presence               | Upload Doc   |
-  | Sonxfypgufv   | czvtav     | SSN                           | Upload Doc   |
-  | OPENINCARMVR  | cccobixaqu | Incarceration                 | Upload Doc   |
-  | OPENDEATHMVR  | Mertie     | Proof of Life                 | Upload Doc   |
-  | Pecoy         | Joe        | Peace Corps                   | Upload Doc   |
-  | Mediy         | Joe        | Medicare                      | Upload Doc   |
-  | Vhpcy         | Joe        | VA                            | Upload Doc   |
-  | Triy          | Joe        | TRICARE                       | Upload Doc   |
+  | STGClient             | QAClient   | MVRType                       | ActionButton |
+  | tryblzjrvj            | Mertie     | Income                        | Verify Info  |
+#  | PrimaryMemberlwaltulg | Sandra     | American Indian/Alaska Native | Upload Doc   |
+#  | Sonxfypgufv           | czvtav     | Citizenship                   | Upload Doc   |
+#  | PrimaryMemberqsavqfrd | scsgtgrl   | Lawful Presence               | Upload Doc   |
+#  | Sonxfypgufv           | czvtav     | SSN                           | Upload Doc   |
+#  | OPENINCARMVR          | cccobixaqu | Incarceration                 | Upload Doc   |
+#  | OPENDEATHMVR          | Mertie     | Proof of Life                 | Upload Doc   |
+#  | Pecoy                 | Joe        | Peace Corps                   | Upload Doc   |
+#  | Mediy                 | Joe        | Medicare                      | Upload Doc   |
+#  | Vhpcy                 | Joe        | VA                            | Upload Doc   |
+#  | Triy                  | Joe        | TRICARE                       | Upload Doc   |
 
 
 

@@ -18,7 +18,7 @@ Feature: Manage who helps you Assister Text validation
     Then I validate I am on the "FindExpertHelpCoco" page
     Then I verify Find Expert Help header Text in "Spanish"
     Then I verify Find Expert Help page "CoCo" title Text in "Spanish"
-    And I change the language from Elmo header to "English" if it isn't already in that language
+    And I change the language from header to "English"
     And I click the Authorize Assister Organization button
     Then I authorize my assister's site ID "Ucr14" or "8Gvzo"
     And I validate the authorization success message

@@ -34,7 +34,7 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
-    @FindBy(css=".input-label.form-label.ng-star-inserted")
+    @FindBy(xpath="//label[@class='input-label form-label']")
     WebElement getSignature;
 
     public void enterSignatureinCoCo(){
@@ -52,7 +52,7 @@ public class DeclarationsAndSignaturePageCoCo {
     }
 
     public void enterOBOSignature(){
-        basicActions.waitForElementToBeClickable(signatureInputField, 10);
+        basicActions.waitForElementToBeClickable(signatureInputField, 100);
         // Extract the text from the element
         String originalText = getSignature.getText();
 

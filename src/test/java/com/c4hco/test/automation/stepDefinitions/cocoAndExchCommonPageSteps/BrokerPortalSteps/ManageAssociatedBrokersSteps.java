@@ -23,6 +23,16 @@ public class ManageAssociatedBrokersSteps {
         manageAssociatedBrokersPage.clickAddNewBrokerLink();
     }
 
+    @Then("I search for the new broker on the Manage Associated Brokers page")
+    public void iSearchNewBrokerName(){
+        manageAssociatedBrokersPage.searchNewBrokerName();
+    }
+
+    @And("I validate the broker results match my new broker")
+    public void iValidateNewBrokerResults(){
+        manageAssociatedBrokersPage.validateNewBrokerResults();
+    }
+
     @Then("I send the invite to join my agency")
     public void sendAgencyInvite(){
         manageAssociatedBrokersPage.manageAssocBrokerSendInvite();
