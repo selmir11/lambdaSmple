@@ -10,10 +10,10 @@ public class COCO_DbStepsE2E {
     private final COCO_Ob834PreEdiDbValidations ob834PreEdiDbValidations_coco = new COCO_Ob834PreEdiDbValidations();
 
     @And("I validate {string} Medical entities from COCO policy tables")
-    public void validateCOCOMedicalRecords(String policyStatus, List<Map<String, String>> expectedValues){
-        policyTableDBValidations_coco.recordsValidationsPolicyTable(policyStatus,expectedValues);
+    public void validateCOCOMedicalRecords(String policyStatus){
+        policyTableDBValidations_coco.recordsValidationsPolicyTable(policyStatus);
     }
-    @And("I validate Current Medical entities from COCO pre edi db tables")
+    @And("I validate Medical entities from COCO pre edi db tables")
     public void validateOb834MedicalRecords(List<Map<String, String>> expectedValues){
         ob834PreEdiDbValidations_coco.recordsValidations(expectedValues);
     }

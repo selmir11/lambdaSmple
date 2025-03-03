@@ -103,10 +103,8 @@ Feature: Seed02 with exception - Coco
 
   # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
-      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | PolicyMemberCoverageStatus |
-      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | SUBMITTED                  |
-    And I validate Current Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | PolicyStartDate     | PolicyEndDate            | FinancialStartDate  |addl_maint_reason  | sep_reason      |
-      | 021                   | 021                | EC                    | First Of Next Month | Last Day Of Current Year | First Of Next Month |                   | NEW_CO_RESIDENT |
-    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
     And I validate the coco ob834 medical file data

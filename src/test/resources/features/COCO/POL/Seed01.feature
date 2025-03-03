@@ -13,8 +13,8 @@ Feature: Regression Tests that require COCO Seed 1
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
     Given I set the dynamic policy, coverage and financial dates in coco
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -87,6 +87,16 @@ Feature: Regression Tests that require COCO Seed 1
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
 
+    And I validate "CANCELLED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason  |
+      | 024                   | 024                | AI                    | CANCEL            |             |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+
 #UI Validation
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
@@ -100,21 +110,12 @@ Feature: Regression Tests that require COCO Seed 1
     And I validate enrolled medical plans details on my policies page coco
 
 # DB Validation
-    And I validate "CANCELLED" Medical entities from COCO policy tables
-      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    | PolicyMemberCoverageStatus |
-      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | DISENROLL_SUBMITTED        |
     And I validate "SUBMITTED" Medical entities from COCO policy tables
-      | PolicyStartDate           | PolicyEndDate           | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | PolicyMemberCoverageStatus |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | SUBMITTED                  |
-    And I validate Current Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | PolicyStartDate     | PolicyEndDate       | FinancialStartDate  |addl_maint_reason  | sep_reason  |
-      | 024                   | 024                | AI                    | First Of Next Month | First Of Next Month | First Of Next Month | CANCEL            |             |
-    And I download the medical files from coco sftp server with location "/outboundedi/"
-    And I validate the coco ob834 medical file data
-    And I validate Current Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | PolicyStartDate           | PolicyEndDate            | FinancialStartDate        |addl_maint_reason  | sep_reason      |
-      | 021                   | 021                | EC                    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year |                   | NEW_CO_RESIDENT |
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
     And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
+    And I validate the coco ob834 medical file data
 
   @SLCR-780-WIP
   Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
@@ -152,11 +153,9 @@ Feature: Regression Tests that require COCO Seed 1
 
   # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
-      | PolicyStartDate           | PolicyEndDate           | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | PolicyMemberCoverageStatus |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | SUBMITTED                  |
-    And I validate Current Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier | PolicyStartDate           | PolicyEndDate            | FinancialStartDate        |addl_maint_reason  | sep_reason  |
-      | 001                   | 001                | 25                    | 70                       | 1                           | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year |DEMOGRAPHIC CHANGE |             |
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier |addl_maint_reason  | sep_reason  |
+      | 001                   | 001                | 25                    | 70                       | 1                           |DEMOGRAPHIC CHANGE |             |
     And I download the medical files from coco sftp server with location "/outboundedi/"
     And I validate the coco ob834 medical file data
 
