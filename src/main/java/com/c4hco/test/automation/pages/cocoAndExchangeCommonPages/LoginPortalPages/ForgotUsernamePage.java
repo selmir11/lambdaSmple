@@ -32,7 +32,7 @@ public class ForgotUsernamePage {
     WebElement submitBTN;
     @FindBy(xpath ="//div[@class='alert alert-warning mb-3 mt-3 ng-star-inserted']")
     WebElement noticeIsSentMsg;
-    @FindBy(xpath ="//span[@class='error-message ng-star-inserted']")
+    @FindBy(xpath ="//span[@class='error-message c4-text-body-100 ng-star-inserted']")
     List<WebElement> errorMsg;
     public void informationSForForgotUsername(String FirsnameSTG, String LastNameSTG, String phoneSTG, String accountTypeData, String FirsnameQA, String LastNameQA, String phoneQA){
             if (SharedData.getEnv().equals("qa") ) {

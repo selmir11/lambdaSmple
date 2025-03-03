@@ -23,7 +23,7 @@ public class EthnicityAndRacePage {
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
-    @FindBy(id = "saveAndContinue")
+    @FindBy(id = "Race Ethnicity-SaveAndContinue")
     WebElement saveAndContinue_Button;
 
     @FindBy(id = "goBack")
