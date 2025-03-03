@@ -579,8 +579,8 @@ Feature: Dental Plan Verification test
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-???? @SelectVerifyDentalPremiumDeductible
-  Scenario: SLER-???? - SelectVerifyDentalPremiumDeductible
+  @SLER-2275 @SelectVerifyDentalPremiumDeductible
+  Scenario: SLER-2275 - SelectVerifyDentalPremiumDeductible
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -650,7 +650,27 @@ Feature: Dental Plan Verification test
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I click the Coverage Level dropdown
+    And I select the sorting "Monthly Premium- Low to High" option on the Dental Plan Results page
+    Then I validate sorting based on "Monthly Premium- Low to High" on the Dental Plan Results page
+    And I select the sorting "Monthly Premium- High to Low" option on the Dental Plan Results page
+    Then I validate sorting based on "Monthly Premium- High to Low" on the Dental Plan Results page
+    And I select the sorting "Annual Deductible- Low to High" option on the Dental Plan Results page
+    Then I validate sorting based on "Annual Deductible- Low to High" on the Dental Plan Results page
+    And I select the sorting "Annual Deductible- High to Low" option on the Dental Plan Results page
+    Then I validate sorting based on "Annual Deductible- High to Low" on the Dental Plan Results page
+
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I select the sorting "Prima mensual- Baja a alta" option on the Dental Plan Results page
+    Then I validate Spanish sorting based on "Prima mensual- Baja a alta" on the Dental Plan Results page
+    And I select the sorting "Prima mensual- Alta a baja" option on the Dental Plan Results page
+    Then I validate Spanish sorting based on "Prima mensual- Alta a baja" on the Dental Plan Results page
+    And I select the sorting "Deducible anual- Bajo a alto" option on the Dental Plan Results page
+    Then I validate Spanish sorting based on "Deducible anual- Bajo a alto" on the Dental Plan Results page
+    And I select the sorting "Deducible anual- Alto a bajo" option on the Dental Plan Results page
+    Then I validate Spanish sorting based on "Deducible anual- Alto a bajo" on the Dental Plan Results page
+    And I click on Sign Out in the Header for "Portal"
+
+
 
 
 
