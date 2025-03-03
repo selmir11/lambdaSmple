@@ -448,7 +448,7 @@ public class WelcomePage {
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
         MemberDetails primaryMem = SharedData.getPrimaryMember();
-        List<MemberDetails> dependents = SharedData.getMembers();
+        List<MemberDetails> dependents = basicActions.getAllDependents();
         List<MemberDetails> allMembers = new ArrayList<>();
         allMembers.add(primaryMem);
         if (dependents != null) {
