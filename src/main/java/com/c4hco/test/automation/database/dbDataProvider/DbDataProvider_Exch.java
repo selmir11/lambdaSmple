@@ -634,4 +634,10 @@ public class DbDataProvider_Exch {
     public EsFDSHRetryControlEntity getEsFDSH_details() {
         return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
+
+    public String getEmployerIncomeRowCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getMemberIncomeDetailsQuery() );
+    }
+
+
 }
