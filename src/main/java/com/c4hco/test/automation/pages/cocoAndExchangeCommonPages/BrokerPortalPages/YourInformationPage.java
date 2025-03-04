@@ -215,6 +215,11 @@ public class YourInformationPage {
         softAssert.assertAll();
     }
 
+    public void enterAdminStaffInviteCode(){
+        basicActions.waitForElementToBePresent(inviteCode,10);
+        inviteCode.sendKeys(SharedData.getAdminStaff().getAdminStaffInviteCode());
+    }
+
     public void clickIDoNotHaveCodeCheckbox(){
         basicActions.waitForElementToBePresent(noCodeCheckbox,10);
         noCodeCheckbox.click();

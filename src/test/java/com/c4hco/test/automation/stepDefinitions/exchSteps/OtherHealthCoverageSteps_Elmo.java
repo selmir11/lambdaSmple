@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.OtherHealthCoveragePage_Elmo;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -72,4 +73,10 @@ public class OtherHealthCoverageSteps_Elmo {
     @Then("I verify main OHC checkbox in {string} state")
     public void iVerifyStateOfMainOHCCheckboxes(String state){
         otherHealthCoveragePage_Elmo.verifyMainOHCCheckboxes(state);}
+
+    @Then("I validate selecting insurance options")
+    public void iValidateSelectingInsuranceOptions(DataTable insuranceOptionsTable) {
+        otherHealthCoveragePage_Elmo.selectInsuranceOptions(insuranceOptionsTable);
+    }
+
 }

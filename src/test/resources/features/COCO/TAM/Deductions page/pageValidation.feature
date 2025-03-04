@@ -323,3 +323,28 @@ Feature: Tests related to the Deductions page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-799
+  Scenario: SLCR-799 - As CoCo user on the ELMO Income pages, I verify errors cleared on the Deductions page so that I don't see errors when I select an option[CCRT-728]
+    And I select continue on the Deductions CoCo page
+    Then I verify error for Deductions no option in "English" CoCo page
+    And I select "Alimony" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    And I select "Alimony" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I verify error for Deductions no option in "English" CoCo page
+    Then I select "None of these" as deductions option
+    Then I verify no errors show for Deductions options CoCo page
+    And I select "Domestic production" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I verify error for Deductions option with no amount in "English" CoCo page
+    Then I verify error for Deductions option with no frequency in "English" CoCo page
+    And I select "Domestic production" as deductions option
+    And I select "Domestic production" as deduction option with "200.00" amount at "Monthly" frequency
+    And I select "School tuition" as deduction option with "1500.00" amount at "Annually" frequency
+    Then I select "Student loan" as deduction option with "2500.00" amount at "Annually" frequency
+    Then I verify no errors show for Deductions options CoCo page
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Income Summary" page
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
