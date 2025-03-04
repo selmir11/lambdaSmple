@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.databaseSteps;
 
 import com.c4hco.test.automation.database.DbValidations.*;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -343,6 +344,12 @@ public class DbSteps {
     public void validateFDSHRetry(List<Map<String, String>> expectedValues){
         dbValidations.validateFDSHRetry(expectedValues);
     }
+    @Then("I validate the deduction for kind {string} with amount {string} and frequency {string} in DB")
+    public void iValidateTheDeduction(String kind, String amount, String frequency) {
+        dbValidations.validateDeductionAmount(kind, amount, frequency);
+    }
+
+
 }
 
 
