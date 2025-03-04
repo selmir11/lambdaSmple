@@ -803,4 +803,11 @@ public class DbQueries_Exch {
 
 
 
+
+    public String getApplicationIdFromHouseholdTable(){
+        return "select esh.account_id, esh.household_id, esa.created_ts, esa.application_id\n" +
+                "from "+dbName+".es_household esh, "+dbName+".es_application esa\n" +
+                "where esh.household_id = esa.household_id\n" +
+                "and esh.account_id = '"+acctId+"'" + "order by created_ts desc";
+    }
 }

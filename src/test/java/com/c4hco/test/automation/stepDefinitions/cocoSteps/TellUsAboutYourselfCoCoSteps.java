@@ -69,5 +69,9 @@ public class TellUsAboutYourselfCoCoSteps {
     public void iValidateRelationshipOption(List<String> Relationship) {
         tellUsAboutYourselfCoCoPage.validateAutoPopRelationshipOption(Relationship);
     }
+    @Then("I update full name of member with prefix {string} in coco")
+    public void updateName(String namePrefix) {
+        tellUsAboutYourselfCoCoPage.updateFullName(namePrefix);
+    }
 
 }
