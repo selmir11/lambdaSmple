@@ -778,4 +778,20 @@ public class DbQueries_Exch {
                 "FROM "+dbName+".es_fdsh_retry_control\n" +
                 "WHERE account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
+
+    public String getMemberIncomeDetailsQuery() {
+        return "SELECT count(employer_name) " +
+                "FROM " + dbName + ".es_member m " +
+                "JOIN " + dbName + ".es_household h ON m.household_id = h.household_id " +
+                "LEFT JOIN " + dbName + ".es_income i ON i.member_id = m.member_id " +
+                "LEFT JOIN " + dbName + ".es_employer e ON i.employer_id = e.employer_id " +
+                "LEFT JOIN " + dbName + ".es_job_title jt ON jt.employer_id = e.employer_id " +
+                "LEFT JOIN " + dbName + ".es_address a ON e.address_id = a.address_id " +
+                "WHERE h.account_id = '" + acctId + "'";
+    }
+
+
+
+
+
 }
