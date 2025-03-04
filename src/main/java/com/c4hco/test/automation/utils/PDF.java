@@ -21,9 +21,11 @@ import java.util.List;
 
 public class PDF {
 
+    // Global Variables
     private BasicActions basicActions;
     static SoftAssert softAssert = new SoftAssert();
 
+    // Constructor for PDF class
     public PDF(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -85,9 +87,9 @@ public class PDF {
         String noticeType = extractedValues[1]; // "Elig"
 
         if (SharedData.getIsOpenEnrollment().equals("no")) {
-            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Closed Enrollment/"+ noticeType +"/ignore"+ language +".conf");
+            return String.format("src/main/resources/MyDocs/Notices/Exempt/Closed Enrollment/"+ noticeType +"/"+ language +"/"+ pdfExpected  +".conf");
         } else {
-            return String.format("src/main/resources/MyDocs/Elig/Elig/Exempt/Open Enrollment/"+ noticeType +"/ignore"+ language +".conf");
+            return String.format("src/main/resources/MyDocs/Notices/Exempt/Open Enrollment/"+ noticeType +"/"+ language +"/"+ pdfExpected  +".conf");
         }
 
 
@@ -96,10 +98,16 @@ public class PDF {
     // Getting the expected PDF path
     public String PDFExpected(String pdfExpected) {
 
+        nameExtract(pdfExpected);
+        String[] extractedValues = nameExtract(pdfExpected);
+
+        String language = extractedValues[0];  // "English" or "Spanish"
+        String noticeType = extractedValues[1]; // "Elig"
+
         if (SharedData.getIsOpenEnrollment().equals("no")) {
-            return String.format("src/main/resources/MyDocs/Elig/Elig/Source/Closed Enrollment/" + pdfExpected + ".pdf");
+            return String.format("src/main/resources/MyDocs/Notices/Source/Closed Enrollment/"+ noticeType +"/"+ language +"/"+ pdfExpected + ".pdf");
         } else {
-            return String.format("src/main/resources/MyDocs/Elig/Elig/Source/Open Enrollment/" + pdfExpected + ".pdf");
+            return String.format("src/main/resources/MyDocs/Notices/Source/Open Enrollment/"+ noticeType +"/"+ language +"/"+ pdfExpected + ".pdf");
         }
     }
 
