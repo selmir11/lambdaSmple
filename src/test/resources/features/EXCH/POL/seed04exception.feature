@@ -29,7 +29,7 @@ Feature: Seed04exception - Exchange
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    And I Search authorized Broker "Margie"
+    And I Search authorized Broker "Amethyst"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -196,10 +196,12 @@ Feature: Seed04exception - Exchange
     And I validate "medical-cancelled" entities from policy tables
     And I validate "dental" entities from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the BOB entry for "medical" with "POLICY_UPDATE" as event type
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 024                   | 024                | AI                    | CANCEL            |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
 
   @SLER-1229-WIP_@R4V
   Scenario: RT-2259 - ENR-EXCH: UPDATE CONTACT INFORMATION - CHANGE MAILING ADDRESS
