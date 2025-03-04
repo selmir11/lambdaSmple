@@ -343,6 +343,9 @@ public class DbSteps {
     public void validateFDSHRetry(List<Map<String, String>> expectedValues){
         dbValidations.validateFDSHRetry(expectedValues);
     }
+
+    @Then("I validate the Income details in DB")
+    public void iValidateIncomeDetails(List<Map<String, String>> expectedValues){dbValidations.validateIncomeDetails(expectedValues);}
 }
 
 

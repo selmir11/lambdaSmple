@@ -1250,3 +1250,68 @@ Feature: End to End Testing
     Then I validate open enrollment ended pop up in "English"
     And I click close on open enrollment ended pop up modal
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-798 @test
+  Scenario: SLCR-798 Resolve issues that arise when database entity schema validation on startup for Java applications that use the database is turned on for the income-service
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+#    Step 3
+    And I select "Yes" employment option
+    And I enter "25000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select "Untaxed Foreign Income" as additional income option with "98.00" amount at "Annually" frequency
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "HSA" as deduction option with "629.20" amount at "Annually" frequency
+    And I select continue on the Deductions CoCo page
+    Then I verify the total annual income to be "24,468.80"
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+#    Step 4
+    Then I validate the Total Income on the Family Overview page equals "24,468.80"
+#    Step 5
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I click Save and Continue only on the tell us about yourself page
+    And I click continue on the Add info for yourself page
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    Then I validate "Yes" job option is selected on the Employment income page
+    And I verify selected data on the CoCo Employment Income data
+    |HaveJob|IncomeAmt|IncomeFrequency|Seasonal|IncomeChange|
+    |Yes    |25,000.00|1: Annually    |No      |No          |
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I verify "Untaxed Foreign Income" as additional income option with "98.00" amount at "1: Annually" frequency CoCo page
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    Then I verify "HSA" as Deductions option with "629.20" amount at "1: Annually" frequency CoCo page
+    And I select continue on the Deductions CoCo page
+    Then I validate I am on the "CoCo Income Summary" page
+    Then I verify the total annual income to be "24,468.80"
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I validate the Total Income on the Family Overview page equals "24,468.80"
+#    Step 6
+    And I select continue on the Family Overview page
+    And I select "InsuranceLoss" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    Then I verify the header in "English With App" on the Application Results Page CoCo
+    Then I validate the Income details in DB
+    |type      |kind|amount  |period  |annual_amount|future_income_changes_ind|self_employed_ind|season_comm_tip_samelower_ind|monthly_amount|
+    |DEDUCTION |HSAC|629.20  |Annually|629.20       |                         |0                |0                            |52.43         |
+    |INCOME    |UTFI|98.00   |Annually|98.00        |                         |0                |0                            |8.17          |
+    |JOB_INCOME|NETI|25000.00|Annually|25000.00     |                         |0                |0                            |2083.33       |
+
+    And I click on Sign Out in the Header for "Elmo"

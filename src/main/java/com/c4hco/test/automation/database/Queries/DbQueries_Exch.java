@@ -778,4 +778,17 @@ public class DbQueries_Exch {
                 "FROM "+dbName+".es_fdsh_retry_control\n" +
                 "WHERE account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
+
+    public String getIncomeDataDetails() {
+        String query = "SELECT DISTINCT a.member_id AS member_id, d.employer_ah_id AS employer_ah_id, f.employer_id AS employer_id, d.employer_name AS employer_name, a.type AS type, a.kind AS kind, a.amount AS amount, a.period AS period, a.annual_amount AS annual_amount, d.future_income_changes_ind AS future_income_changes_ind, f.self_employed_ind AS self_employed_ind, d.season_comm_tip_ind AS season_comm_tip_ind, d.season_comm_tip_samelower_ind AS season_comm_tip_samelower_ind, f.created_by AS created_by, a.monthly_amount AS monthly_amount\n" +
+                "FROM " + dbName + ".es_income a\n" +
+                "JOIN " + dbName + ".es_income_ah b ON a.member_id = b.member_id\n" +
+                "JOIN " + dbName + ".es_employer c ON a.member_id = c.member_id\n" +
+                "JOIN " + dbName + ".es_employer_ah d ON c.member_id = d.member_id\n" +
+                "JOIN " + dbName + ".es_job_title e ON c.employer_id = e.employer_id\n" +
+                "JOIN " + dbName + ".es_job_title_ah f ON e.member_id = f.member_id\n" +
+                "WHERE a.member_id = '" + SharedData.getPrimaryMemberId() + "';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
 }

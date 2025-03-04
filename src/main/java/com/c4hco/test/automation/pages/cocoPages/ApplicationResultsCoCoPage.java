@@ -115,14 +115,18 @@ public class ApplicationResultsCoCoPage {
     }
 
     public void verifyHeader(String language)  {
+        basicActions.waitForElementToDisappear( spinner, 200);
+        basicActions.waitForElementToBePresent(applicationResultsHeader,20);
         switch (language) {
             case "English":
-                basicActions.waitForElementToBePresent(applicationResultsHeader,20);
                 softAssert.assertEquals(applicationResultsHeader.getText(), "Application results");
                 softAssert.assertAll();
                 break;
+            case "English With App":
+                softAssert.assertEquals(applicationResultsHeader.getText(), "Here's what your household qualifies for");
+                softAssert.assertAll();
+                break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(applicationResultsHeader,20);
                 softAssert.assertEquals(applicationResultsHeader.getText(), "Resultados de la solicitud");
                 softAssert.assertAll();
                 break;

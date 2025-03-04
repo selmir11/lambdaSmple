@@ -337,16 +337,34 @@ public class EthnicityAndRacePage {
                 throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
         }
         setRaceAndEthnicity(raceEthnicity, memPrefix);
-        setMemberID(memPrefix);
+        setMemberID();
     }
     private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
           List<MemberDetails> members = basicActions.getAllMem();
           members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
         }
-    private void setMemberID(String memPrefix){
-        List<MemberDetails> members = basicActions.getAllMem();
-        String memberId = basicActions.getMemberIDFromURL();
-        members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setMemberId(memberId));
+
+    private void setMemberID() {
+        List<MemberDetails> memberDetailsList = SharedData.getMembers();
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+
+        String currentUrl = basicActions.getCurrentUrl();
+        String headerText = hdrRaceAndEthnicity.getText();
+        String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
+        String memberId = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+        if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
+            SharedData.setPrimaryMemberId(memberId);
+            subscriber.setMemberId(memberId);
+        }
+        if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
+            for (MemberDetails member : memberDetailsList) {
+                if (nameFromHeader.equals(member.getFullName())) {
+                    member.setMemberId(memberId);
+                    break;
+                }
+            }
+            SharedData.setMembers(memberDetailsList);
+        }
     }
 
     }
