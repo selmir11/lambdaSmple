@@ -84,6 +84,18 @@ public class DashboardPage {
     @FindBy(id = "accountSummary-data-agencyOwner")
     WebElement accountSummaryAgencyOwnerName;
 
+    @FindBy(id = "agencyInformation")
+    WebElement agencyInformationContainerTitle;
+
+    @FindBy(id = "agencyName-data")
+    WebElement agencyInformationAgencyName;
+
+    @FindBy(id = "agencyEmail-data")
+    WebElement agencyInformationAgencyEmail;
+
+    @FindBy(id = "phoneNumber-data")
+    WebElement agencyInformationAgencyPhone;
+
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -105,6 +117,12 @@ public class DashboardPage {
     public void verifyBrokerDashboard(){
         basicActions.waitForElementToBePresent(brokerDashboard,10);
         softAssert.assertEquals(brokerDashboard.getText(),"Broker Dashboard");
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyDashboard(){
+        basicActions.waitForElementToBePresent(agencyDashboard,10);
+        softAssert.assertEquals(agencyDashboard.getText(),"Agency Dashboard");
         softAssert.assertAll();
     }
 
@@ -236,5 +254,12 @@ public class DashboardPage {
 
     }
 
-
+    public void verifyAgencyInformationDetails(String agencyName, String agencyEmail, String agencyPhone){
+        basicActions.waitForElementToBePresent(agencyInformationContainerTitle, 10);
+        softAssert.assertEquals(agencyInformationContainerTitle.getText(), "Agency Information");
+        softAssert.assertEquals(agencyInformationAgencyName.getText(), agencyName);
+        softAssert.assertEquals(agencyInformationAgencyEmail.getText(), agencyEmail);
+        softAssert.assertEquals(agencyInformationAgencyPhone.getText(), agencyPhone);
+        softAssert.assertAll();
+    }
 }
