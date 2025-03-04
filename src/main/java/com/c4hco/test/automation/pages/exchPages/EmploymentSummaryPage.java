@@ -37,7 +37,7 @@ public class EmploymentSummaryPage {
     @FindBy(css = "app-confirmation-dialog button")
     List<WebElement> lnkRemoveContinue;
 
-    @FindBy(css = ".col-3.content-center")
+    @FindBy(css = "a.clickable.c4-type-links-lg")
     WebElement btnAddJob;
 
     @FindBy(css = "lib-help-icon a")
@@ -165,8 +165,9 @@ public class EmploymentSummaryPage {
 
     public void clickAddJob(){
         basicActions.waitForElementToBePresent(spinner,20);
-        basicActions.waitForElementToBePresent(btnAddJob,20);
-        btnAddJob.click();
+        basicActions.waitForElementToBePresent(btnAddJob,30);
+        basicActions.waitForElementToBeClickable(btnAddJob, 10);
+        basicActions.click(btnAddJob);
     }
 
     public void clickRemoveJob(String DeleteJob){
@@ -183,11 +184,22 @@ public class EmploymentSummaryPage {
                 System.out.println("Second employer is "+setEmployerName);
                 lnkRemoveJob.get(1).click();
                 break;
+            case "Third":
+                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
+                System.out.println("Third employer is "+setEmployerName);
+                lnkRemoveJob.get(2).click();
+                break;
+            case "Fourth":
+                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
+                System.out.println("Fourth employer is "+setEmployerName);
+                lnkRemoveJob.get(3).click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid member type: " + DeleteJob);
         }
-        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 20);
+        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 30);
         lnkRemoveContinue.get(0).click();
+
     }
 
     public void clickHelpIcon(String label) {

@@ -39,7 +39,7 @@ public class DeclarationsAndSignaturePageCoCo {
 
     public void enterSignatureinCoCo(){
         basicActions.waitForElementToBePresent(signatureInputField, 20);
-        signatureInputField.sendKeys(SharedData.getPrimaryMember().getSignature());
+        signatureInputField.sendKeys(SharedData.getPrimaryMember().getCompleteFullName());
     }
     public void goBack() {
         basicActions.waitForElementToBeClickable(goBackButton,10);
@@ -60,7 +60,6 @@ public class DeclarationsAndSignaturePageCoCo {
         String modifiedText = originalText.replace(" Electronic Signature:", "");
         signatureInputField.sendKeys(modifiedText);
     }
-
 
     //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
     public void verifyHeadersDeclarationsAndSignaturePage(String language){

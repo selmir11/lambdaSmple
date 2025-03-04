@@ -689,3 +689,152 @@ Feature: My Document Home Page validations
     Then I verify file "Income" downloaded with Proper name format in ".docx" type
     Then  I click on Sign Out in the Header for "Elmo"
 
+ @SLER-2268 @OPSRegression
+  Scenario: Verify upload document modal Errors[RT-1999]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click link my docs on accountOverview page
+    And I verify the page text on the My Documents Page
+      | My Documents and Letters |
+      | We need more information to confirm or verify what you told us in your application. |
+      | Help me understand this page                                                        |
+      | Information We Need                                                                 |
+      | Upload another document |
+      | Past Documents and Letters |
+    And I click on upload another document link
+    And I validate Modal texts on upload a document pop up
+      |Upload a document|
+      |Tell us more about this document|
+      |What type of document is this?  |
+      |Which document are you submitting?|
+      |Select a file from your device    |
+      |Browse My Files                   |
+      |Only one document can be uploaded at a time using this window|
+      |Cancel                                                       |
+      | Upload My Document |
+    And I click on upload my document button
+    Then I validate file required error message
+    Then I validate selection required error message
+    And I select any type of document from dropdown
+    And I close button to close modal
+    Then I verify modal popup closed
+    Then I see the username in Exch that I am currently logged into
+    And I click on upload another document link
+    And I select any type of document from dropdown
+    And I click on cancel button on upload document pop up
+    Then I verify modal popup closed
+    Then I see the username in Exch that I am currently logged into
+    Then  I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2277 @OPSRegression
+  Scenario: Verify Document uploaded for Income type and downloaded with proper name format Spanish [RT-2014]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I click on upload another document link
+    Then I upload another doc "TestMyDocs.docx" for category "Ingreso" and type "Formulario 8962" and verify success message "Spanish"
+    Then I validate I am on "Past Documents and Letters" container
+    And I select year "All" in plan year
+    And I select year "Current Year" in plan year
+    Then I verify file "Income" downloaded with Proper name format in ".docx" type
+    Then  I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2282 @OPSRegression
+  Scenario:  OPS: MyDocs: verify Document Type blank when new document category selected [RT-2003]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I click on upload another document link
+    Then I verify Document category blank by default
+    And I verify Document category "1095A Dispute" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Correction Proof" is selected on modal popup
+    And I verify Document category "American Indian/Alaska Native Tribal Membership" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Bureau of Indian Affairs Issued Document" is selected on modal popup
+    And I verify Document category "Appeals" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Appeals" is selected on modal popup
+    And I verify Document category "Authorized Representative" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Power of Attorney" is selected on modal popup
+    And I verify Document category "Citizenship Status" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Federally Approved Tribal Document" is selected on modal popup
+    And I verify Document category "Complaints" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Complaints" is selected on modal popup
+    And I verify Document category "Customer Authorization Form" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Customer Authorization Form" is selected on modal popup
+    And I verify Document category "Death" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Proof of Life Document" is selected on modal popup
+    And I verify Document category "Eligible Immigration Status" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "I-327 Reentry Permit" is selected on modal popup
+    And I verify Document category "Health First Colorado (Medicaid) Application" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Health First Colorado (Medicaid) Application" is selected on modal popup
+    And I verify Document category "Health First Colorado (Medicaid) Redetermination (RRR)" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Health First Colorado (Medicaid) Redetermination (RRR)" is selected on modal popup
+    And I verify Document category "Identity" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "US Military ID Card" is selected on modal popup
+    And I verify Document category "Incarceration" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Court or Legal Document" is selected on modal popup
+    And I verify Document category "Income" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Form 8962" is selected on modal popup
+    And I verify Document category "Life Change Event" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Report Life Change Events Individual Marketplace" is selected on modal popup
+    And I verify Document category "Medicare" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from Medicare" is selected on modal popup
+    And I verify Document category "Peace Corps" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from Peace Corps" is selected on modal popup
+    And I verify Document category "Social Security Number" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Social Security Card" is selected on modal popup
+    And I verify Document category "TRICARE" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from TRICARE" is selected on modal popup
+    And I verify Document category "Veterans Affairs (VA)" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from Veterans Affairs (VA)" is selected on modal popup
+    And I verify Document category "Other" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Other" is selected on modal popup
+    And I close button to close modal
+    Then  I click on Sign Out in the Header for "Elmo"

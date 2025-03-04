@@ -206,6 +206,8 @@ Feature: Page Text-OHC Medicare Elmo Page
     Then I click Save and Continue on Tax Status Elmo page
     Then I click continue on the ELMO health coverage page
 
+
+
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "English"
 #    And I set the browser resolution to 1200 x 800

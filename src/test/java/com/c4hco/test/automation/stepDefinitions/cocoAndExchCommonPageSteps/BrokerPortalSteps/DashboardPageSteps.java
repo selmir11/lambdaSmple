@@ -23,6 +23,11 @@ public class DashboardPageSteps {
         dashboardPage.verifyBrokerDashboard();
     }
 
+    @Then("I verify the Agency Dashboard button is displayed")
+    public void iVerifyAgencyDashboard(){
+        dashboardPage.verifyAgencyDashboard();
+    }
+
     @Then("I validate the dashboard displays my {string} name")
     public void iVerifyBrokerDashboardTitle(String portalUserType){
         dashboardPage.verifyBrokerDashboardTitle(portalUserType);
@@ -112,5 +117,8 @@ public class DashboardPageSteps {
         dashboardPage.saveAgencyDetails();
     }
 
-
+    @Then("I verify the Agency Information displays {string}, {string} and {string}")
+    public void iVerifyAgencyInformationDetails(String agencyName, String agencyEmail, String agencyPhone){
+        dashboardPage.verifyAgencyInformationDetails(agencyName,agencyEmail, agencyPhone);
+    }
 }
