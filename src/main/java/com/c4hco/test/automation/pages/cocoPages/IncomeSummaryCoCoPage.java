@@ -69,7 +69,7 @@ public class IncomeSummaryCoCoPage {
     WebElement projectedIncomeNo;
 
     @FindBy(id = "ELIG-summaryDetails-YesButton")
-    WebElement getProjectedIncomeYes;
+    WebElement projectedIncomeYes;
 
     @FindBy(css = "#ELIG-summaryDetails-incomeAmountInput-container > div.row.label-row.ng-star-inserted > div > label")
     WebElement enterProjectedIncomeText;
@@ -515,6 +515,39 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertEquals(enterProjectedIncomeText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(enterProjectedIncomeText.getCssValue("margin-left"), "32px");
         softAssert.assertAll();
+    }
+
+    public void verifyErrorFormat(String incomeType) {
+        basicActions.waitForElementToBePresent(projectedIncomeNo, 15);
+        switch (incomeType) {
+            case "Projected Income":
+                verifyElementStyles(projectedIncomeYes);
+                verifyElementStyles(projectedIncomeNo);
+                softAssert.assertAll();
+                break;
+            case "Income Input":
+                verifyElementInputStyles(projectedIncomeInput);
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+    }
+
+    public void verifyElementStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "4px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(150, 0, 0)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "2px solid rgb(150, 0, 0)", element + " Border mismatch");
+    }
+
+    public void verifyElementInputStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "6px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(150, 0, 0)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
     
 }

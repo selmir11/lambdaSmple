@@ -309,3 +309,22 @@ Feature: Tests related to the Deductions page
     And I verify the header for additional member on the CoCo Deductions page in "Spanish"
     Then I verify the text on the deductions coco page in "Spanish"
     Then I verify the navigation buttons on the deductions coco page in "Spanish"
+
+  @SLCR-794
+  Scenario: SLCR-794 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Deductions
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
+    And I select "All Deductions" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I verify Deductions CoCo error format for "Alimony Received"
+    Then I verify Deductions CoCo error format for "Domestic production activities"
+    Then I verify Deductions CoCo error format for "HSA"
+    Then I verify Deductions CoCo error format for "Pre-tax retirement"
+    Then I verify Deductions CoCo error format for "School tuition"
+    Then I verify Deductions CoCo error format for "Self-employment tax"
+    Then I verify Deductions CoCo error format for "Student loan"
+    Then I verify Deductions CoCo error format for "Self-employment health insurance"
+    Then I verify Deductions CoCo error format for "Self-employment retirement"
+    Then I verify Deductions CoCo error format for "Moving expenses"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
