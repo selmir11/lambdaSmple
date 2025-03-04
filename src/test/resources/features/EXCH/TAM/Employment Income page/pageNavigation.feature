@@ -487,7 +487,7 @@ Feature: Page Text-Income Opt Out Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2272 #WIP
+  @SLER-2272 
   Scenario: RT-2620 As a user on the Employment Summary page, I need the ability to remove a job/employer so that I can accurately report my employment details
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
