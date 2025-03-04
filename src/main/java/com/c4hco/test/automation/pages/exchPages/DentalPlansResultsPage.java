@@ -487,7 +487,7 @@ public class DentalPlansResultsPage {
 
     public void evaluateSortingValue(String sortingTypeSelection) {
         basicActions.waitForElementToDisappear( spinner, 30 );
-        while (basicActions.elementExists( basicActions.getDriver(), By.xpath( "//a[@class='ng-star-inserted']" ) )) {
+        while (basicActions.elementExists(By.xpath( "//a[@class='ng-star-inserted']" ) )) {
             try {
                 basicActions.waitForElementToDisappear( spinner, 10 );
                 basicActions.waitForElementToBePresent( monthlyPremiumValue.get( 0 ), 30 );
@@ -526,7 +526,7 @@ public class DentalPlansResultsPage {
     public void evaluateSpanishSortingValues(String sortingTypeSelection) {
 
         basicActions.waitForElementToDisappear( spinner, 30 );
-        while (basicActions.elementExists( basicActions.getDriver(), By.xpath( "//a[@class='ng-star-inserted']" ) )) {
+        while (basicActions.elementExists(By.xpath( "//a[@class='ng-star-inserted']" ) )) {
             try {
                 basicActions.waitForElementToDisappear( spinner, 10 );
                 basicActions.waitForElementToBePresent( monthlyPremiumValue.get( 0 ), 30 );

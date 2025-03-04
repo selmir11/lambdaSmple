@@ -118,7 +118,7 @@ public class MyPoliciesPage {
 
             Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
             member.setDentalEapid_db(denEapidDb.get(member.getDenGroupInd()));
-            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
@@ -159,7 +159,7 @@ public class MyPoliciesPage {
 
             Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
             member.setMedicalEapid_db(medEapidDb.get(member.getMedGroupInd()));
-            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText().replace("Policy number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
@@ -211,7 +211,7 @@ public class MyPoliciesPage {
     }
     
     public void validateCancelPlan(String planType){
-         WebElement element = basicActions.getDriver().findElement(By.id("SOL-CurrentPolicies-CancelCurrent"+planType+"\")"));
-         Assert.assertFalse(basicActions.waitForElementToBePresent(element, 10));
+         By locator = By.id("SOL-CurrentPolicies-CancelCurrent" + planType + "\")");
+         softAssert.assertFalse(basicActions.elementExists(locator),"Element should be absent but was found.");
     }
 }
