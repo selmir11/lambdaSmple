@@ -44,4 +44,10 @@ public class IncomeSummaryPageSteps {
     @Then("I verify the following text along with the dollar sign after clicking yes button to the Income different than the amount Question")
     public void iVerifyTextAfterClickingYesToDifferentIncomeQuestion(List<String> dataText) {incomeSummaryPage.verifyTextAfterClickingYesToDifferentIncomeQuestion(dataText);}
 
+
+    @And("I click on Go Back on income summary page")
+    public void iClickOnGoBackOnIncomeSummaryPage() {
+        incomeSummaryPage.clickGoBackOnIncomeSummary();
+    }
+
 }

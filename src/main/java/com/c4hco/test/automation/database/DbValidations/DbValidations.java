@@ -857,5 +857,27 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateMemberRowCount(int expectedRowCount) {
+        int actualRowCount = Integer.parseInt(exchDbDataProvider.getEmployerIncomeRowCount());
+        softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
+        softAssert.assertAll();
+    }
+
+    public void validateDeductionAmount(String kind, String expectedAmount, String expectedFrequency) {
+        SoftAssert softAssert = new SoftAssert();
+        String[] deductionDetails = exchDbDataProvider.getDeductionAmount(SharedData.getPrimaryMember().getFirstName(), kind);
+        String actualKind = deductionDetails[0];
+        String actualAmount = deductionDetails[1];
+        String actualFrequency = deductionDetails[2];
+        softAssert.assertEquals(actualKind, kind, "Kind does not match!");
+        softAssert.assertEquals(actualAmount, expectedAmount, "Amount does not match!");
+        softAssert.assertEquals(actualFrequency, expectedFrequency, "Frequency does not match!");
+
+        softAssert.assertAll();
+    }
+
+
+
+
 }
 

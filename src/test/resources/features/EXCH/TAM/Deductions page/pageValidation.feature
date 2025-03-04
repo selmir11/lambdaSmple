@@ -207,3 +207,57 @@ Feature: Page Verification-Deductions Page
     Then I validate I am on the "Spanish" page
     Then I verify all checkbox deduction errors for "Spanish"
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2284
+  Scenario: [RT-2622] ELIG-DB: As an Exchange user on the Deductions page, I want to be able to save, update and remove my deduction information so that my deduction information is available and accurate
+
+    Then I validate I am on the "Deductions" page
+    Then I click "School tuition and fees" as deduction option with "1000.00" amount at "Monthly" frequency
+    Then I click "Student loan interest" as deduction option with "500.00" amount at "Annually" frequency
+    Then I click continue on the Deductions page
+    #DB STep
+    Then I validate the deduction for kind "STAF" with amount "1000.00" and frequency "Monthly" in DB
+    Then I validate the deduction for kind "STLI" with amount "500.00" and frequency "Annually" in DB
+    And  I click on Go Back on income summary page
+    Then I validate I am on the "Deductions" page
+    Then I click "STAF" as deduction option only
+    Then I click "Pre-tax retirement account contribution" as deduction option with "5000.00" amount at "Annually" frequency
+    Then I click continue on the Deductions page
+    #DB STep
+    Then I validate I am on the "Income Summary" page
+    Then I validate the deduction for kind "PRAC" with amount "5000.00" and frequency "Annually" in DB
+    Then I validate the deduction for kind "STLI" with amount "500.00" and frequency "Annually" in DB
+    And  I click on Go Back on income summary page
+    Then I validate I am on the "Deductions" page
+    Then I click "STLI" as deduction option only
+    Then I click "PRAC" as deduction option only
+    Then I click "Alimony or spousal support paid out" as deduction option with "9000.00" amount at "Annually" frequency
+    Then I click "Self-employment tax" as deduction option with "7000.00" amount at "Weekly" frequency
+    Then I click continue on the Deductions page
+    #DB STep
+    Then I validate I am on the "Income Summary" page
+    Then I validate the deduction for kind "AOSS" with amount "9000.00" and frequency "Annually" in DB
+    Then I validate the deduction for kind "SETX" with amount "7000.00" and frequency "Weekly" in DB
+    And  I click on Go Back on income summary page
+    Then I validate I am on the "Deductions" page
+    Then I click "AOSS" as deduction option only
+    Then I click "SETX" as deduction option only
+
+    Then I click "Moving expenses" as deduction option with "9000.00" amount at "Annually" frequency
+    Then I click "Self-employment retirement plan" as deduction option with "7000.00" amount at "Weekly" frequency
+    Then I click continue on the Deductions page
+    #DB STep
+    Then I validate I am on the "Income Summary" page
+    Then I validate the deduction for kind "MOVE" with amount "9000.00" and frequency "Annually" in DB
+    Then I validate the deduction for kind "SERP" with amount "7000.00" and frequency "Weekly" in DB
+    And  I click on Go Back on income summary page
+    Then I validate I am on the "Deductions" page
+    Then I click "NoDeductions" as deduction option only
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+
+
+

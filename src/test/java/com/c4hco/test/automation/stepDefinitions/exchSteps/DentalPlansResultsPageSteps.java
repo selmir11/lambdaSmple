@@ -120,5 +120,16 @@ public class DentalPlansResultsPageSteps {
     @And( "I validate the {string} Tool Tips Text on the Dental Plan Results page" )
     public void validateToolTipText(String language){dentalPlansResultsPage.validateToolTipText(language);}
 
+    @And("I select the sorting {string} option on the Dental Plan Results page")
+    public void clickSortingDropdown(String sortingValue) {
+        dentalPlansResultsPage.clickSortingDropdown(sortingValue);
+    }
+
+    @Then("I validate sorting based on {string} on the Dental Plan Results page")
+    public void evaluateSortingValue(String sortingTypeSelection) { dentalPlansResultsPage.evaluateSortingValue(sortingTypeSelection);}
+
+    @Then("I validate Spanish sorting based on {string} on the Dental Plan Results page")
+    public void evaluateSpanishSortingValues(String sortingTypeSelection) { dentalPlansResultsPage.evaluateSpanishSortingValues(sortingTypeSelection);}
+
 
 }

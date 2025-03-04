@@ -637,4 +637,15 @@ public class DbDataProvider_Exch {
     public List<String> getApplicationIdFromHouseholdTable() {
         return postgresHandler.getResultListFor("application_id", exchDbQueries.getApplicationIdFromHouseholdTable());
     }
+
+    public String getEmployerIncomeRowCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getMemberIncomeDetailsQuery() );
+    }
+
+    public String[] getDeductionAmount(String fName, String kindValue) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForThreeColumnValues("kind", "amount", "period", exchDbQueries.getDeductionamountDetails(memberId, kindValue));
+    }
+
+
 }
