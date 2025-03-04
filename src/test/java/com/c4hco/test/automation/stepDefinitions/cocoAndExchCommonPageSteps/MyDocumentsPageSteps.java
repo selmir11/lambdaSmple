@@ -251,5 +251,19 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.uploadAnotherDocAndVerifySuccessMessage(uploadDocFile,mvrType,docType);
     }
 
+    @Then("I see the username in Exch that I am currently logged into")
+    public void iSeeTheUsernameInExchThatIAmCurrentlyLoggedInto() {
+        myDocumentsPage.verifyUserName();
+    }
+
+    @Then("I verify modal popup closed")
+    public void iVerifyModalPopupClosed() {
+        myDocumentsPage.verifyModalPopUpClosed();
+    }
+
+    @Then("I upload another doc {string} for category {string} and type {string} and verify success message {string}")
+    public void iUploadAnotherDocForCategoryAndTypeAndVerifySuccessMessageSpanish(String uploadDocFile,String mvrType,String docType,String language) {
+        myDocumentsPage.uploadAnotherDocAndVerifyMessageSpanish(uploadDocFile,mvrType,docType,language);
+    }
 }
 
