@@ -1251,7 +1251,7 @@ Feature: End to End Testing
     And I click close on open enrollment ended pop up modal
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-798 @test
+  @SLCR-798
   Scenario: SLCR-798 Resolve issues that arise when database entity schema validation on startup for Java applications that use the database is turned on for the income-service
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
     And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
