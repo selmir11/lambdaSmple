@@ -184,11 +184,22 @@ public class EmploymentSummaryPage {
                 System.out.println("Second employer is "+setEmployerName);
                 lnkRemoveJob.get(1).click();
                 break;
+            case "Third":
+                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
+                System.out.println("Third employer is "+setEmployerName);
+                lnkRemoveJob.get(2).click();
+                break;
+            case "Fourth":
+                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
+                System.out.println("Fourth employer is "+setEmployerName);
+                lnkRemoveJob.get(3).click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid member type: " + DeleteJob);
         }
-        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 20);
+        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 30);
         lnkRemoveContinue.get(0).click();
+
     }
 
     public void clickHelpIcon(String label) {

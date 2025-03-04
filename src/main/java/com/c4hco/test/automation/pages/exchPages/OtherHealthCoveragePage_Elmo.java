@@ -1553,11 +1553,13 @@ public class OtherHealthCoveragePage_Elmo {
         List<String> insuranceOptions = insuranceOptionsTable.asList();
         basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
-        int totalOptions = insuranceOptionsCheckBox.size();
-        for (int i = 0; i < totalOptions && i < insuranceOptions.size(); i++) {
+        for (int i = 0; i < insuranceOptionsCheckBox.size() && i < insuranceOptions.size(); i++) {
             basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(i), 10);
+            softAssert.assertTrue(insuranceOptionsCheckBox.get(i).isSelected(), "Checkbox not selected for: " + insuranceOptions.get(i));
         }
+        softAssert.assertAll();
     }
+
 
 
 }

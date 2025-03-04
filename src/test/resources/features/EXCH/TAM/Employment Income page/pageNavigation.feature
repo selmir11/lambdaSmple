@@ -516,6 +516,20 @@ Feature: Page Text-Income Opt Out Page
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     #DB step
+    And I validate the employee income details row count 4
+    Then I click on Remove job "First" entered for Primary on the Employment Summary Page
+    And I validate I am on the "Employment Summary" page
+    And I validate the employee income details row count 3
+    Then I click on Remove job "First" entered for Primary on the Employment Summary Page
+    And I validate I am on the "Employment Summary" page
+    And I validate the employee income details row count 2
+    Then I click on Remove job "First" entered for Primary on the Employment Summary Page
+    And I validate I am on the "Employment Summary" page
+    And I validate the employee income details row count 1
+    Then I click on Remove job "First" entered for Primary on the Employment Summary Page
+    And I validate I am on the "Employment Summary" page
+    And I validate the employee income details row count 0
+
 
 
 
