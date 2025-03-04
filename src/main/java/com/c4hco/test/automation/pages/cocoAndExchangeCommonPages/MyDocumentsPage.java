@@ -1169,7 +1169,41 @@ public class MyDocumentsPage {
                 break;
             }
         }
-        Assert.assertTrue(found,"Document types not found");
+        Assert.assertTrue(found,"Document types" +docType+ " not found");
+        Assert.assertTrue(dpdWhichDocument.getText().startsWith(docType.substring(0,Math.min(5,docType.length()))),"List Not Selected");
     }
 
+    private void selectDocumentCategory(String mvrType) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 100);
+        docTypeDrpDwn.click();
+        basicActions.waitForElementListToBePresent(categoryList, 100);
+        boolean found = false;
+        for ( WebElement element : categoryList) {
+            if(element.getText().trim().equals(mvrType)) {
+                element.click();
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found,"Document Category " +mvrType+ " not found");
+        Assert.assertTrue(docTypeDrpDwn.getText().startsWith(mvrType.substring(0,Math.min(5,mvrType.length()))),"List not selected");
+    }
+
+    public void verifyDefaultValueOnDocumentCategory() {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
+        Assert.assertEquals(docTypeDrpDwn.getText(),"","Document category not blank by default");
+    }
+
+    public void verifyDocumentCategorySelected(String mvrType) {
+        selectDocumentCategory(mvrType);
+    }
+
+    public void verifyDefaultValueOnDocumentType() {
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn, 30);
+        Assert.assertEquals(docCategoryDrpDwn.getText(),"","Document Type not blank by default");
+    }
+
+    public void verifyDocumentTypeSelected(String docTpe) {
+        clickWhichDocumentType(docTpe);
+    }
 }

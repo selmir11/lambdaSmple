@@ -251,5 +251,24 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.uploadAnotherDocAndVerifySuccessMessage(uploadDocFile,mvrType,docType);
     }
 
+    @Then("I verify Document category blank by default")
+    public void iVerifyDocumentCategoryBlankByDefault() {
+        myDocumentsPage.verifyDefaultValueOnDocumentCategory();
+    }
+
+    @And("I verify Document category {string} is selected on modal popup")
+    public void iVerifyDocumentCategoryIsSelectedOnModalPopup(String mvrType) {
+        myDocumentsPage.verifyDocumentCategorySelected(mvrType);
+    }
+
+    @And("I verify Document type blank by default")
+    public void iVerifyDocumentTypeBlankByDefault() {
+        myDocumentsPage.verifyDefaultValueOnDocumentType();
+    }
+
+    @Then("I verify Document type {string} is selected on modal popup")
+    public void iVerifyDocumentTypeIsSelectedOnModalPopup(String DocTpe) {
+        myDocumentsPage.verifyDocumentTypeSelected(DocTpe);
+    }
 }
 
