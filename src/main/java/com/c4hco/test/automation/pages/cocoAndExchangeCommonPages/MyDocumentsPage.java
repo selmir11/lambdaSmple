@@ -1259,4 +1259,5 @@ public class MyDocumentsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " +language );
         }
+    }
 }
