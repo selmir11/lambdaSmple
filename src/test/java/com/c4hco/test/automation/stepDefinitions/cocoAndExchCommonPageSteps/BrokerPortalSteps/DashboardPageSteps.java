@@ -38,6 +38,11 @@ public class DashboardPageSteps {
         dashboardPage.verifyBrokerCertStatus(certificationStatus);
     }
 
+    @Then("I validate the current agency certification status is {string}")
+    public void iVerifyAgencyCertStatus(String certificationStatus){
+        dashboardPage.verifyAgencyCertStatus(certificationStatus);
+    }
+
     @And("I validate that the broker certification is not displayed")
     public void iVerifyBrokerCertStatusNotDisplayed(){
         dashboardPage.verifyBrokerCertStatusNotDisplayed();
@@ -81,6 +86,11 @@ public class DashboardPageSteps {
     @Then("I click Edit in Account Summary")
     public void clickEditAccountSummary(){
         dashboardPage.clickEditAccountSummary();
+    }
+
+    @And("I verify the new agency owner Account Summary details")
+    public void iVerifyAgencyOwnerAccountSummaryDetails(){
+        dashboardPage.verifyAgencyOwnerAccountSummaryDetails();
     }
 
     @Then("I click View Your Clients button")
