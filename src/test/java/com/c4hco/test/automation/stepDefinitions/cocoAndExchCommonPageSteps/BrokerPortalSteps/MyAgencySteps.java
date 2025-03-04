@@ -18,6 +18,16 @@ public class MyAgencySteps {
         myAgencyPage.denyAgencyInvite();
     }
 
+    @Then("I verify the current agency invitation details are {string}, {string} and {string}")
+    public void iVerifyAgencyInviteStatus(String agencyInviteName, String agencyPhone, String inviteStatus){
+        myAgencyPage.verifyAgencyInviteStatus(agencyInviteName, agencyPhone, inviteStatus);
+    }
+
+    @And("I verify there are no agency invites")
+    public void iVerifyNoPendingAgencyInvites(){
+        myAgencyPage.verifyNoPendingAgencyInvites();
+    }
+
     @Then("I click Go Back on the My Agency page")
     public void clickGoBackManageAssocBrokersPage(){
         myAgencyPage.clickGoBackManageAssocBrokers();

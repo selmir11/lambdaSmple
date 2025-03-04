@@ -34,7 +34,7 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
-    @FindBy(css=".input-label.form-label.ng-star-inserted")
+    @FindBy(xpath="//label[@class='input-label form-label']")
     WebElement getSignature;
 
     public void enterSignatureinCoCo(){
@@ -52,7 +52,7 @@ public class DeclarationsAndSignaturePageCoCo {
     }
 
     public void enterOBOSignature(){
-        basicActions.waitForElementToBeClickable(signatureInputField, 10);
+        basicActions.waitForElementToBeClickable(signatureInputField, 100);
         // Extract the text from the element
         String originalText = getSignature.getText();
 
@@ -88,6 +88,20 @@ public class DeclarationsAndSignaturePageCoCo {
         basicActions.waitForElementToBePresentWithRetries(hdr_DeclarationsAndSignature,60);
         softAssert.assertEquals(hdr_DeclarationsAndSignature.getText(), "Declaraciones y firma");
         softAssert.assertAll();
+    }
+
+    public void verifyErrorFormat() {
+        basicActions.waitForElementToBePresent(signatureInputField, 15);
+        verifyElementStyles(signatureInputField);
+        softAssert.assertAll();
+    }
+
+    public void verifyElementStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "6px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(150, 0, 0)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
 
 }

@@ -293,3 +293,24 @@ Feature: Tests related to the Additional Income page
     Then I verify the header for additional member on the CoCo Additional Income page in "Spanish"
     Then I verify the text on the CoCo Additional Income page in "Spanish"
     Then I verify the navigation buttons on the CoCO Additional Income page in "Spanish"
+
+  @SLCR-784 @PageTextAdditionalIncome
+  Scenario: SLCR-784 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Additional Income
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
+    Then I select "All Income" as additional income option CoCO page
+    And I select continue on the Additional Income CoCO page
+    Then I verify Additional Income CoCo error format for "Alimony Received"
+    Then I verify Additional Income CoCo error format for "Capital Gains"
+    Then I verify Additional Income CoCo error format for "Income from rental property"
+    Then I verify Additional Income CoCo error format for "Pension"
+    Then I verify Additional Income CoCo error format for "Private Retirement Income"
+    Then I verify Additional Income CoCo error format for "Income from Social Security"
+    Then I verify Additional Income CoCo error format for "Unemployment Insurance Benefit"
+    Then I verify Additional Income CoCo error format for "Investment Income"
+    Then I verify Additional Income CoCo error format for "Cash Support"
+    Then I verify Additional Income CoCo error format for "Untaxed Foreign Income"
+    Then I verify Additional Income CoCo error format for "Royalty Income"
+    Then I verify Additional Income CoCo error format for "Taxable income from Tribal Sources"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

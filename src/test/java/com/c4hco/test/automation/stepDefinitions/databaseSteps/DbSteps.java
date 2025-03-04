@@ -343,6 +343,18 @@ public class DbSteps {
     public void validateFDSHRetry(List<Map<String, String>> expectedValues){
         dbValidations.validateFDSHRetry(expectedValues);
     }
+
+    @And("I validate the employee income details row count {int}")
+    public void ivalidateMemberRowCount(int expectedRowCount) {
+        dbValidations.validateMemberRowCount(expectedRowCount);
+    }
+
+    @Then("I validate the deduction for kind {string} with amount {string} and frequency {string} in DB")
+    public void iValidateTheDeduction(String kind, String amount, String frequency) {
+        dbValidations.validateDeductionAmount(kind, amount, frequency);
+    }
+
+
 }
 
 

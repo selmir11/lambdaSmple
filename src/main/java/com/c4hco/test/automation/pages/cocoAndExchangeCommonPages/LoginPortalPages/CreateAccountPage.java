@@ -123,7 +123,7 @@ public class CreateAccountPage {
     @FindBy(id = "realtime-pw-error4")
     WebElement passwordFirstNameErrorMessage;
 
-    @FindBy(id = "confirm-password")
+    @FindBy(xpath = "//input[@id='confirm-password']")
      WebElement confirmPassword;
     @FindBy(id = "confirm-password-label")
      WebElement confirmPasswordTxt;
@@ -930,6 +930,7 @@ public class CreateAccountPage {
 
     public void EnterPasswordInCreateAccountPage() {
         password.sendKeys("ALaska12!");
+        basicActions.waitForElementToBePresentWithRetries(confirmPassword,50);
         confirmPassword.sendKeys("ALaska12!");
     }
 

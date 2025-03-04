@@ -192,3 +192,24 @@ Feature: Tests related to the Life Change Event page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-797 @PageTextAdditionalIncome
+  Scenario: SLCR-797 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - LCE
+    And I verify the header for Primary Member on the CoCo LCE page in "English"
+    And I check "All LCEs" life change event checkbox
+    And I select all members of "InsuranceLoss" Life Change Event
+    And I select all members of "Birth" Life Change Event
+    And I select all members of "Pregnancy" Life Change Event
+    And I select all members of "Marriage" Life Change Event
+    And I select all members of "Divorce" Life Change Event
+    And I select all members of "Move" Life Change Event
+    And I select continue on the LCE page
+    Then I verify LCE CoCo error format for "InsuranceLoss"
+    Then I verify LCE CoCo error format for "Birth"
+    Then I verify LCE CoCo error format for "Pregnancy"
+    Then I verify LCE CoCo error format for "Marriage"
+    Then I verify LCE CoCo error format for "Divorce"
+    Then I verify LCE CoCo error format for "Move"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

@@ -25,7 +25,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".logo")
     WebElement connectLogoLinkNonElmo;
-    @FindBy(css = "#logo")
+    @FindBy(id = "logo")
     WebElement connectLogoLinkExpertHelp;
 
     @FindBy(css = ".center-links .clickable")

@@ -634,4 +634,15 @@ public class DbDataProvider_Exch {
     public EsFDSHRetryControlEntity getEsFDSH_details() {
         return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
+
+    public String getEmployerIncomeRowCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getMemberIncomeDetailsQuery() );
+    }
+
+    public String[] getDeductionAmount(String fName, String kindValue) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForThreeColumnValues("kind", "amount", "period", exchDbQueries.getDeductionamountDetails(memberId, kindValue));
+    }
+
+
 }
