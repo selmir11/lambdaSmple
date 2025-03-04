@@ -790,6 +790,7 @@ public class DbQueries_Exch {
                 "WHERE a.member_id = '" + SharedData.getPrimaryMemberId() + "';";
         System.out.println("Executing Query: " + query);
         return query;
+    }
 
     public String getMemberIncomeDetailsQuery() {
         return "SELECT count(employer_name) " +
