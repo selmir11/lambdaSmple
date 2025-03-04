@@ -111,6 +111,7 @@ public class ApplicationResultsCoCoPage {
         basicActions.waitForElementToDisappear( spinner, 200);
         basicActions.waitForElementToBePresentWithRetries( continueButton, 130);
         basicActions.scrollToElement( continueButton );
+        basicActions.wait(200);
         continueButton.click();
     }
 
