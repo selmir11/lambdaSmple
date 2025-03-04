@@ -790,6 +790,15 @@ public class DbQueries_Exch {
                 "WHERE h.account_id = '" + acctId + "'";
     }
 
+    public String getDeductionamountDetails(String memberId, String kindValue) {
+        return "SELECT m.member_id, i.income_id, i.type, i.kind, i.amount, i.period " +
+                "FROM " + dbName + ".es_member m " +
+                "JOIN " + dbName + ".es_income i ON m.member_id = i.member_id " +
+                "WHERE m.member_id = '" + memberId + "' " +
+                "AND i.type = 'DEDUCTION' " +
+                "AND i.kind = '" + kindValue + "';";
+    }
+
 
 
 

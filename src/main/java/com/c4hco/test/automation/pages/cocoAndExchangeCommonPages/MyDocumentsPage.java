@@ -1257,6 +1257,7 @@ public class MyDocumentsPage {
                 Assert.assertEquals(txtUploadSuccess.getText(), "Documento cargado satisfactoriamente");
                 break;
             default:
-                throw new IllegalArgumentException("Invalid option: " +language );
+                throw new IllegalArgumentException("Invalid option: " + language);
         }
+    }
 }
