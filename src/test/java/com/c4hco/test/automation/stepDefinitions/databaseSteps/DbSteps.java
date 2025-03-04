@@ -349,6 +349,11 @@ public class DbSteps {
         dbValidations.validateMemberRowCount(expectedRowCount);
     }
 
+    @Then("I validate the deduction for kind {string} with amount {string} and frequency {string} in DB")
+    public void iValidateTheDeduction(String kind, String amount, String frequency) {
+        dbValidations.validateDeductionAmount(kind, amount, frequency);
+    }
+
 
 }
 
