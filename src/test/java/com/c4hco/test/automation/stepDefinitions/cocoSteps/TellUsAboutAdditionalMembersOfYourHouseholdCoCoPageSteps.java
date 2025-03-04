@@ -70,8 +70,10 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    public void validateRelationshipDropdownValues(List<String> relationship) {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.validateDropdownOptions(relationship);
    }
-
-
+   @And("I update applying for coverage option to {string}")
+   public void applyingForCoverage(String applying) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.applyingForCoverage(applying);
+   }
 
 
 }
