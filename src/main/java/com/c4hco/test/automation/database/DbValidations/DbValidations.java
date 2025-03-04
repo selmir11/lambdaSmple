@@ -164,6 +164,7 @@ public class DbValidations {
        List<BookOfBusinessQEntity> bookOfBusinessQList = exchDbDataProvider.getBookOfBusinessQ(eventType);
 
        applicationIdListFromPolicyAh = exchDbDataProvider.getApplicationId();
+       List<String> uniqueApplicationId = new ArrayList<>(new HashSet<>(applicationIdListFromPolicyAh));
        policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
        for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
            if(bookOfBusinessQEntity.getEventtype().equals(eventType)){
@@ -174,7 +175,7 @@ public class DbValidations {
                softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), " BOB,Bob created date mismatch");
                softAssert.assertTrue(PolicyIds.contains(bookOfBusinessQEntity.getPolicyid()), " BOB,Policy Id mismatch ");
                softAssert.assertTrue(applicationIdListFromPolicyAh.contains(bookOfBusinessQEntity.getApplicationid()), " BOB,application id mismatch");
-               //softAssert.assertEquals(applicationIdListFromPolicyAh.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
+               softAssert.assertEquals(uniqueApplicationId.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
                softAssert.assertAll();
            }
        }
