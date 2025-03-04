@@ -129,7 +129,7 @@ Feature: Regression Tests that require COCO Seed 1
     And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
     And I validate the coco ob834 medical file data
 
-  @SLCR-780-WIP
+  @SLCR-780 @pol_coco_passed
   Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
@@ -168,7 +168,7 @@ Feature: Regression Tests that require COCO Seed 1
 #    And I Validate the correct enrolled plans are displayed on coco welcome page
 #    And I click on Sign Out in the Header for "Elmo"
 
-  # DB Validation Blocked by POL-9532
+  # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
     And I validate Medical entities from COCO pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier |addl_maint_reason  | sep_reason  |
