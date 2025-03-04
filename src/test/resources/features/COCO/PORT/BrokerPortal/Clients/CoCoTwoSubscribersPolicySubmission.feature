@@ -59,6 +59,7 @@ Feature: End to end agency owner CoCo policy submission for two subscribers
 
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    Then I wait for 5000 milliseconds
     And I click save and continue on the Race and Ethnicity page
 
     And I select "Yes" employment option
@@ -117,7 +118,7 @@ Feature: End to end agency owner CoCo policy submission for two subscribers
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
 
-    Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header
+    Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I validate I am on the "Broker Portal Your Clients" page
     Then I validate the Your Clients page title
     And I click on "colorado Connect" tab
