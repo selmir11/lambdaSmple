@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.actions.ClickAction;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MedicalPlansCoCoPage {
@@ -317,7 +315,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void evaluateSortingValue(String sortingTypeSelection) {
-        while (basicActions.elementExists(basicActions.getDriver(), By.xpath("//a[@class='ng-star-inserted']"))) {
+        while (basicActions.elementExists( By.xpath("//a[@class='ng-star-inserted']"))) {
             try {
                 basicActions.waitForElementToDisappear(spinner, 10);
                 basicActions.waitForElementToBePresent(monthlyPremiumValue.get(0), 30);
