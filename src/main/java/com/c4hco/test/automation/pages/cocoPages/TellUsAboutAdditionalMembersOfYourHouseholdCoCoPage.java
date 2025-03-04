@@ -170,10 +170,8 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
         }
 
-        List<MemberDetails> memberList = SharedData.getMembers();
-        if (memberList == null) {
-            memberList = new ArrayList<>();
-        }
+        List<MemberDetails> membersList = SharedData.getAllMembers();
+
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);
         member.setLastName(lastName);
@@ -194,9 +192,12 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
                 member.setRelation_to_subscriber(Relation.split(":")[1].toUpperCase());
             }
         }
+        if(membersList==null){
+           membersList = new ArrayList<>();
+        }
 
-        memberList.add(member);
-        SharedData.setMembers(memberList);
+       membersList.add(member);
+        SharedData.setMembers(membersList);
     }
 
     public void memberDetailswithAge(int Age){
