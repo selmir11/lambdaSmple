@@ -149,7 +149,12 @@ Feature: Regression Tests that require COCO Seed 1
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     And I click close on open enrollment ended pop up modal
-    And I click on Sign Out in the Header for "Elmo"
+
+    #UI Validation  Blocked by TAM-5248
+#    Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+#    Then I validate I am on the "CoCo Welcome" page
+#    And I Validate the correct enrolled plans are displayed on coco welcome page
+#    And I click on Sign Out in the Header for "Elmo"
 
   # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
