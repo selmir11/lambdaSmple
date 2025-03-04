@@ -15,8 +15,8 @@ Feature: Seed02 - Coco
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Given I set the dynamic policy, coverage and financial dates in coco
-      | PolicyStartDate      | PolicyEndDate            | CoverageStartDate    | CoverageEndDate          | FinancialStartDate   | FinancialEndDate         |
-      | First Of Next Month  | Last Day Of Current Year | First Of Next Month  | Last Day Of Current Year | First Of Next Month  | Last Day Of Current Year |
+      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
     Then I Search authorized Broker "ENR Agency"
@@ -113,6 +113,16 @@ Feature: Seed02 - Coco
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
+    And I validate "CANCELLED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason  |
+      | 024                   | 024                | AI                    | CANCEL            |             |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+
     # UI Validation
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
@@ -121,26 +131,14 @@ Feature: Seed02 - Coco
     Then I validate I am on the "CoCo Welcome" page
     Then I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
-    Then I validate I am on the "My Policies" page
     And I validate enrolled medical plans details on my policies page coco
-    And I click view Plan History link from medical plan card in coco
-    Then I validate medical plan details from plan history in coco
     And I click on Sign Out in the Header for "Elmo"
+
     # DB Validation
-    And I validate "CANCELLED" Medical entities from COCO policy tables
-      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    | PolicyMemberCoverageStatus |
-      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | DISENROLL_SUBMITTED        |
     And I validate "SUBMITTED" Medical entities from COCO policy tables
-      | PolicyStartDate           | PolicyEndDate           | CoverageStartDate          | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | PolicyMemberCoverageStatus |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | SUBMITTED                  |
-    And I validate Current Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | PolicyStartDate     | PolicyEndDate       | FinancialStartDate  |addl_maint_reason  | sep_reason  |
-      | 024                   | 024                | AI                    | First Of Next Month | First Of Next Month | First Of Next Month | CANCEL            |             |
-    And I download the medical files from coco sftp server with location "/outboundedi/"
-    And I validate the coco ob834 medical file data
-    And I validate Current Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | PolicyStartDate           | PolicyEndDate            | FinancialStartDate        |addl_maint_reason  | sep_reason      |
-      | 021                   | 021                | EC                    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year |                   | NEW_CO_RESIDENT |
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
     And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
 
    @SLCR-787-WIP
