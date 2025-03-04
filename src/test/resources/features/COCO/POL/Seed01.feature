@@ -13,8 +13,8 @@ Feature: Regression Tests that require COCO Seed 1
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
     Given I set the dynamic policy, coverage and financial dates in coco
-      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
-      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -70,6 +70,17 @@ Feature: Regression Tests that require COCO Seed 1
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
+    And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
+
+
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -108,6 +119,7 @@ Feature: Regression Tests that require COCO Seed 1
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And I validate enrolled medical plans details on my policies page coco
+    And I click on Sign Out in the Header for "Elmo"
 
 # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
@@ -157,12 +169,12 @@ Feature: Regression Tests that require COCO Seed 1
 #    And I click on Sign Out in the Header for "Elmo"
 
   # DB Validation Blocked by POL-9532
-#    And I validate "SUBMITTED" Medical entities from COCO policy tables
-#    And I validate Medical entities from COCO pre edi db tables
-#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier |addl_maint_reason  | sep_reason  |
-#      | 001                   | 001                | 25                    | 70                       | 1                           |DEMOGRAPHIC CHANGE |             |
-#    And I download the medical files from coco sftp server with location "/outboundedi/"
-#    And I validate the coco ob834 medical file data
+    And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier |addl_maint_reason  | sep_reason  |
+      | 001                   | 001                | 25                    | 70                       | 1                           |DEMOGRAPHIC CHANGE |             |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
 
 
   @SLCR-783-WIP-@R4V
