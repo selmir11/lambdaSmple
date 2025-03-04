@@ -171,7 +171,7 @@ Feature: Seed04exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1227-WIP_@R4V
+  @SLER-1227 @pol_exch_passed
   Scenario: RT-2303 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL - ALL MEMBERS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
