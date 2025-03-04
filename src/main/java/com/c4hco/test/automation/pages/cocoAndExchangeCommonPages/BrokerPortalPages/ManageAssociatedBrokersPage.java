@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -27,6 +28,10 @@ public class ManageAssociatedBrokersPage {
     WebElement manageAssocBrokersGoBack;
     @FindBy(id = "full-name")
     WebElement brokerNameSearched;
+    @FindBy(id = "email")
+    WebElement brokerEmailSearched;
+    @FindBy(id = "license-number")
+    WebElement brokerLicenseSearched;
     @FindBy(id = "certification-status")
     WebElement BrokerCertificationStatus;
     @FindBy(id = "action-value")
@@ -60,6 +65,20 @@ public class ManageAssociatedBrokersPage {
     public void clickAddNewBrokerLink(){
         basicActions.waitForElementToBePresent(addNewBrokerLink, 10);
         addNewBrokerLink.click();
+    }
+
+    public void searchNewBrokerName(){
+        basicActions.waitForElementToBePresent(manageAssocBrokersSearchField, 10);
+        manageAssocBrokersSearchField.sendKeys(SharedData.getBroker().getFirstName());
+        manageAssocBrokersSearchField.sendKeys(Keys.ENTER);
+    }
+
+    public void validateNewBrokerResults(){
+        basicActions.waitForElementToBePresentWithRetries(brokerNameSearched,30);
+        softAssert.assertEquals(brokerNameSearched.getText(), SharedData.getBroker().getFirstName() + " " + SharedData.getBroker().getLastName());
+        softAssert.assertEquals(brokerEmailSearched.getText(), SharedData.getBroker().getEmail());
+        softAssert.assertEquals(brokerLicenseSearched.getText(), SharedData.getBroker().getLicense());
+        softAssert.assertAll();
     }
 
     public void manageAssocBrokerSendInvite(){
