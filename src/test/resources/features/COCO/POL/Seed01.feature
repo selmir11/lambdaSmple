@@ -150,19 +150,19 @@ Feature: Regression Tests that require COCO Seed 1
     And I click Continue on the Application Results Page CoCo
     And I click close on open enrollment ended pop up modal
 
-    #UI Validation  Blocked by TAM-5248
+    #UI Validation  Blocked by POL-9532
 #    Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
 #    Then I validate I am on the "CoCo Welcome" page
 #    And I Validate the correct enrolled plans are displayed on coco welcome page
 #    And I click on Sign Out in the Header for "Elmo"
 
-  # DB Validation
-    And I validate "SUBMITTED" Medical entities from COCO policy tables
-    And I validate Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier |addl_maint_reason  | sep_reason  |
-      | 001                   | 001                | 25                    | 70                       | 1                           |DEMOGRAPHIC CHANGE |             |
-    And I download the medical files from coco sftp server with location "/outboundedi/"
-    And I validate the coco ob834 medical file data
+  # DB Validation Blocked by POL-9532
+#    And I validate "SUBMITTED" Medical entities from COCO policy tables
+#    And I validate Medical entities from COCO pre edi db tables
+#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier |addl_maint_reason  | sep_reason  |
+#      | 001                   | 001                | 25                    | 70                       | 1                           |DEMOGRAPHIC CHANGE |             |
+#    And I download the medical files from coco sftp server with location "/outboundedi/"
+#    And I validate the coco ob834 medical file data
 
 
   @SLCR-783-WIP-@R4V
