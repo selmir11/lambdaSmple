@@ -319,6 +319,12 @@ public class IncomeSummaryPage {
         softAssert.assertAll();
     }
 
+    public void clickGoBackOnIncomeSummary() {
+        basicActions.waitForElementToBePresent(goBackBtn,15);
+        goBackBtn.click();
+    }
+
+
 
 
 }

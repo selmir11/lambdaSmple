@@ -25,7 +25,7 @@ public class HeaderAndFooterPage {
 
     @FindBy(css = ".logo")
     WebElement connectLogoLinkNonElmo;
-    @FindBy(css = "#logo")
+    @FindBy(id = "logo")
     WebElement connectLogoLinkExpertHelp;
 
     @FindBy(css = ".center-links .clickable")
@@ -193,6 +193,9 @@ public class HeaderAndFooterPage {
     @FindBy(id = "instagram-img")
     WebElement InstagramIcon;
 
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinnerOverlay;
+
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
@@ -240,7 +243,8 @@ public class HeaderAndFooterPage {
 ////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
 //        "NonElmo" non Elmo pages (not listed above)
 //        "ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
-        basicActions.waitForElementToDisappear(spinner,50);
+        basicActions.waitForElementToDisappear(spinner,60);
+        basicActions.waitForElementToDisappear(spinnerOverlay,60);
         switch (pageType) {
             case "Elmo":
                 basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 70);

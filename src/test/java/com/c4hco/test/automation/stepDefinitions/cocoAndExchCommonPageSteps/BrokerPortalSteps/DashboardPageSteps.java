@@ -23,6 +23,11 @@ public class DashboardPageSteps {
         dashboardPage.verifyBrokerDashboard();
     }
 
+    @Then("I verify the Agency Dashboard button is displayed")
+    public void iVerifyAgencyDashboard(){
+        dashboardPage.verifyAgencyDashboard();
+    }
+
     @Then("I validate the dashboard displays my {string} name")
     public void iVerifyBrokerDashboardTitle(String portalUserType){
         dashboardPage.verifyBrokerDashboardTitle(portalUserType);
@@ -31,6 +36,11 @@ public class DashboardPageSteps {
     @Then("I validate the current broker certification status is {string}")
     public void iVerifyBrokerCertStatus(String certificationStatus){
         dashboardPage.verifyBrokerCertStatus(certificationStatus);
+    }
+
+    @Then("I validate the current agency certification status is {string}")
+    public void iVerifyAgencyCertStatus(String certificationStatus){
+        dashboardPage.verifyAgencyCertStatus(certificationStatus);
     }
 
     @And("I validate that the broker certification is not displayed")
@@ -78,6 +88,11 @@ public class DashboardPageSteps {
         dashboardPage.clickEditAccountSummary();
     }
 
+    @And("I verify the new agency owner Account Summary details")
+    public void iVerifyAgencyOwnerAccountSummaryDetails(){
+        dashboardPage.verifyAgencyOwnerAccountSummaryDetails();
+    }
+
     @Then("I click View Your Clients button")
     public void clickViewYourClients(){
         dashboardPage.clickViewYourClientsButton();
@@ -112,5 +127,8 @@ public class DashboardPageSteps {
         dashboardPage.saveAgencyDetails();
     }
 
-
+    @Then("I verify the Agency Information displays {string}, {string} and {string}")
+    public void iVerifyAgencyInformationDetails(String agencyName, String agencyEmail, String agencyPhone){
+        dashboardPage.verifyAgencyInformationDetails(agencyName,agencyEmail, agencyPhone);
+    }
 }

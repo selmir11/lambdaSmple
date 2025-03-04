@@ -1,6 +1,6 @@
 Feature: Seed03 - COCO
-  Scenario: Seed 03 For COCO- Family of 4
 
+  Background: Seed 03 For COCO- Family of 4
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -165,3 +165,90 @@ Feature: Seed03 - COCO
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
 
+   @SLCR-801-WIP
+  Scenario: CCRT-126 - ENR-COCO: ADD DEPENDENT (LCE: Birth) DIFFERENT PLANS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click Make changes button on Welcome Page
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I select add another family member on the Family Overview page
+    And I get the newborn "Newborn" dob as "current date" in CoCo page
+     Then I enter details on tell us about additional members of your household page with "Newborn", "getFromSharedData", "Male", and applying "Yes"
+       |Primary:Child or Other dependent|
+       |Wife:Child or Other dependent|
+       |Daughter:Sibling|
+       |Son:Sibling|
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "103 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "Elmo Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Newborn"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    And I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Birth:Newborn" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
+    Then I click continue on coco start shopping page
+    Then I click continue on grouping Members Medical coco page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select or skip the medical plans for groups on medical plan page
+      | Group 1:KP Colorado Option Bronze |
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I set medical premium amount
+    And I click continue on coco plan summary page
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
+
+
+   @SLCR-803-WIP
+  Scenario: CCRT-445 - ENR-COCO: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - ADD BROKER
+   Given I open the login page on the "login" portal
+   And I validate I am on the "Login" page
+   And I enter valid credentials to login
+   Then I click continue signing in on the CAC Screener page
+   Then I validate I am on the "CoCo Welcome" page
+   And I click Make changes button on Welcome Page
+   Then I validate I am on the "Find Expert Help" page
+   And I click on Find a Broker
+   Then I Search authorized Broker "ENR Agency"
+   And I click on Search button in find certified broker page
+   And I click more details from the first broker result container
+   Then I click Authorized broker
+   Then I click Continue on my own button from Manage who helps you page
+   And I select continue on the Family Overview page
+   Then I validate I am on the "CoCo life change event" page
+   And I check "None of these" life change event checkbox
+   And I select continue on the LCE page
+   Then I validate I am on the "CoCo Declarations and Signature" page
+   And I enter a valid signature
+   And I click Continue on the Declarations And Signature Page CoCo
+   Then I validate I am on the "Application Results CoCo" page
+   And I click on Sign Out in the Header for "Elmo"

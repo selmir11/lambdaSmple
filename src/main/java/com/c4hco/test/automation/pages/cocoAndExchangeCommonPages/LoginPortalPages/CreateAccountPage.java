@@ -123,7 +123,7 @@ public class CreateAccountPage {
     @FindBy(id = "realtime-pw-error4")
     WebElement passwordFirstNameErrorMessage;
 
-    @FindBy(id = "confirm-password")
+    @FindBy(xpath = "//input[@id='confirm-password']")
      WebElement confirmPassword;
     @FindBy(id = "confirm-password-label")
      WebElement confirmPasswordTxt;
@@ -218,6 +218,8 @@ public class CreateAccountPage {
     WebElement invitationErrorMsg;
     @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/p[3]/span")
     WebElement invitationPMCode;
+    @FindBy(xpath = "//*[@id='x_agencyAddsAuthorizedRepNoticeBody']/p[3]/span[2]")
+    WebElement invitationCodeAdminStaff;
     @FindBy(xpath = "//input[@id='invitation']")
     WebElement invitationCodeInput;
     @FindBy(css = "#email-label")
@@ -930,6 +932,7 @@ public class CreateAccountPage {
 
     public void EnterPasswordInCreateAccountPage() {
         password.sendKeys("ALaska12!");
+        basicActions.waitForElementToBePresentWithRetries(confirmPassword,50);
         confirmPassword.sendKeys("ALaska12!");
     }
 
@@ -985,6 +988,11 @@ public class CreateAccountPage {
         primaryUserCheckbox.click();
         termsOfUseCheckbox.click();
         submitButton.click();
+    }
+
+    public void saveInviteCodeAdminStaffAccountCreation() {
+        basicActions.waitForElementToBePresentWithRetries(invitationCodeAdminStaff,30);
+        SharedData.getAdminStaff().setAdminStaffInviteCode(invitationCodeAdminStaff.getText());
     }
 
     public void validateSpecialCharactersErrorAssistNetMessage(String language){

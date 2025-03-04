@@ -1,7 +1,10 @@
 Feature: Regression Tests that require Seed 1 without exception
-# verification WIP
-  Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
 
+Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
+
+    Given I set the test scenario details in coco
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                |  1              |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -9,6 +12,10 @@ Feature: Regression Tests that require Seed 1 without exception
     And I enter general mandatory data for "coco" account creation
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Given I set the dynamic policy, coverage and financial dates in coco
+        | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+        | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -48,11 +55,13 @@ Feature: Regression Tests that require Seed 1 without exception
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    And I get the application id from the url from tobacco page coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Medical Plan Results" page
     And I select or skip the medical plans for groups on medical plan page
       | Group 1:Cigna Connect Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set medical premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -61,3 +70,24 @@ Feature: Regression Tests that require Seed 1 without exception
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
+
+#UI Validation
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "CoCo Welcome" page
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I select year "2025" from My Current Plan container
+    And I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on "My Plans" link on welcome page
+    And I validate enrolled medical plans details on my policies page coco
+
+# DB Validation
+    And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+        | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
+    And I validate the coco ob834 medical file data

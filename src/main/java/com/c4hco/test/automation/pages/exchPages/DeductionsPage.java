@@ -50,8 +50,29 @@ public class DeductionsPage {
     @FindBy(id = "ELIG-Deductions-SETX-amountInput")
     WebElement txtSETXAmount;
 
+    @FindBy(id = "ELIG-Deductions-STAF-amountInput")
+    WebElement txtSTAFAmount;
+
+    @FindBy(id = "ELIG-Deductions-STLI-amountInput")
+    WebElement txtSTLIAmount;
+
+    @FindBy(id = "ELIG-Deductions-MOVE-amountInput")
+    WebElement txtMoveAmount;
+    @FindBy(id = "ELIG-Deductions-SERP-amountInput")
+    WebElement txtSERPAmount;
+
+    @FindBy(id = "ELIG-Deductions-SERP-frequencySelect")
+    WebElement selectSERPFrequency;
     @FindBy(id = "ELIG-Deductions-SETX-frequencySelect")
     WebElement selectSETXFrequency;
+    @FindBy(id = "ELIG-Deductions-MOVE-frequencySelect")
+    WebElement selectMoveFrequency;
+
+    @FindBy(id = "ELIG-Deductions-STLI-frequencySelect")
+    WebElement selectSTLIFrequency;
+
+    @FindBy(id = "ELIG-Deductions-STAF-frequencySelect")
+    WebElement selectSATFFrequency;
 
     @FindBy(css = ".monetary-input-container input")
     List<WebElement> deductionsAmount;
@@ -240,13 +261,45 @@ public class DeductionsPage {
                 basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
                 addtlDeductionOptionsCheckbox.get(5).click();
                 txtSETXAmount.sendKeys(Amount);
-
                 Select dropdown6 = new Select(selectSETXFrequency);
                 dropdown6.selectByVisibleText(" "+Frequency+" ");
                 break;
+            case "School tuition and fees":
+                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
+                addtlDeductionOptionsCheckbox.get(4).click();
+                txtSTAFAmount.sendKeys(Amount);
+                Select dropdown5 = new Select(selectSATFFrequency);
+                dropdown5.selectByVisibleText(" "+Frequency+" ");
+                break;
+            case "Student loan interest":
+                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
+                addtlDeductionOptionsCheckbox.get(6).click();
+                txtSTLIAmount.sendKeys(Amount);
+                Select dropdown7 = new Select(selectSTLIFrequency);
+                dropdown7.selectByVisibleText(" "+Frequency+" ");
+                break;
+            case "Moving expenses":
+                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
+                addtlDeductionOptionsCheckbox.get(9).click();
+                txtMoveAmount.sendKeys(Amount);
+                Select dropdown8 = new Select(selectMoveFrequency);
+                dropdown8.selectByVisibleText(" "+Frequency+" ");
+                break;
+
+            case "Self-employment retirement plan":
+                basicActions.waitForElementListToBePresent(addtlDeductionOptionsCheckbox, 10);
+                addtlDeductionOptionsCheckbox.get(8).click();
+                txtSERPAmount.sendKeys(Amount);
+                Select dropdown9 = new Select(selectSERPFrequency);
+                dropdown9.selectByVisibleText(" "+Frequency+" ");
+                break;
+
+
             default:
                 throw new IllegalArgumentException("Invalid option: " + addtlDeductionOption);
         }
+
+
     }
 
     public void selectNoneAddtlDeductionOption(){

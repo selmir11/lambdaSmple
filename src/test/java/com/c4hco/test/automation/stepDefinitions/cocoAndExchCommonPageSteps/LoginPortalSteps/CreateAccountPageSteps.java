@@ -183,6 +183,11 @@ public class CreateAccountPageSteps {
         createAccountPage.enterDuplicateDataForProgramManagerAccountCreation();
     }
 
+    @Then("I save the invitation code for the new admin staff account")
+    public void iSaveInviteCodeAdminStaffAccountCreation() {
+        createAccountPage.saveInviteCodeAdminStaffAccountCreation();
+    }
+
     @And("I enter first name contains {string}, middle name {string}, last name {string} and general mandatory data for {string} account creation")
     public void iEnterFirstNameContainsMiddleNameLastNameAndGeneralMandatoryDataForAccountCreation(String fname, String mName, String lName, String appType) {
         createAccountPage.createAccountWithSpecificData(fname,mName, lName,appType);

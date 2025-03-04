@@ -97,7 +97,7 @@ public class CacScreenerPage {
     @FindBy(css = ".retake-quiz-button-container button")
     WebElement retakeQuizBtn;
 
-    @FindBy(css = ".results.ng-star-inserted > div")
+    @FindBy(css = ".results > div")
     WebElement resultsHeaderTxt;
 
     @FindBy(css = "#healthFirstColorado-enrollment-option img")
@@ -325,7 +325,8 @@ public class CacScreenerPage {
     }
 
     public void validateSearchResults(String screenerOption, String language) {
-        basicActions.waitForElementToBePresent(cacScreenerHeader, 40);
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresent(cacScreenerHeader, 60);
         Map<String, String> expectedTexts = new HashMap<>();
 
         switch (language) {

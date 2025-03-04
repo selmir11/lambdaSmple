@@ -11,6 +11,9 @@ public class AddInfoForYourselfPageSteps {
     @And("I enter my residential address {string}, {string}, {string}, {string}, {string}")
     public void enterMemberResidentialCOAddress(String addressLine1, String city, String state, String zipcode, String county){addInfoForYourselfPage.memberResidentialAddressCoCo(addressLine1, city, state, zipcode, county);}
 
+    @And("I update my residential address {string}, {string}, {string}, {string}, {string}")
+    public void updateMemberResidentialCOAddress(String addressLine1, String city, String state, String zipcode, String county){addInfoForYourselfPage.updateResidentialAddressCoCo(addressLine1, city, state, zipcode, county);}
+
     @And("I select {string} for mailing address option")
     public void iAnswerMailingAddressQuestion(String YNMailingAddress){addInfoForYourselfPage.mailingAddressSelection(YNMailingAddress);}
 
