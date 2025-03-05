@@ -19,7 +19,6 @@ public class SharedData {
     @Getter @Setter private static MemberDetails primaryMember;
     @Getter @Setter private static List<MemberDetails> members;
     @Getter @Setter private static List<MemberDetails> allMembers; // should be removed
-    @Getter @Setter private static String primaryMemberId;
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsMedEntities;
     @Getter @Setter private static List<Ob834DetailsEntity> ob834DetailsDenEntities;
     @Getter @Setter private static List<PolicyTablesEntity> medicalPolicyTablesEntities;
@@ -105,7 +104,6 @@ public class SharedData {
         appType = null;
         primaryMember = null;
         members = null;
-        primaryMemberId = null;
         edi834TransactionDetails = null;
         commonEDISegments = null;
         env = null;
