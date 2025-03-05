@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Optional;
 
 public class EthnicityAndRacePage {
     private BasicActions basicActions;
@@ -337,34 +338,20 @@ public class EthnicityAndRacePage {
                 throw new IllegalArgumentException("Invalid option: " + raceEthnicity);
         }
         setRaceAndEthnicity(raceEthnicity, memPrefix);
-        setMemberID();
+        setMemberID(memPrefix);
     }
     private void setRaceAndEthnicity(String raceEthnicity, String memPrefix){
           List<MemberDetails> members = basicActions.getAllMem();
           members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
         }
 
-    private void setMemberID() {
-        List<MemberDetails> memberDetailsList = SharedData.getMembers();
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-
+    private void setMemberID(String memPrefix) {
         String currentUrl = basicActions.getCurrentUrl();
-        String headerText = hdrRaceAndEthnicity.getText();
-        String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
         String memberId = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
-        if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
-            SharedData.setPrimaryMemberId(memberId);
-            subscriber.setMemberId(memberId);
-        }
-        if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
-            for (MemberDetails member : memberDetailsList) {
-                if (nameFromHeader.equals(member.getFullName())) {
-                    member.setMemberId(memberId);
-                    break;
-                }
-            }
-            SharedData.setMembers(memberDetailsList);
-        }
+        List<MemberDetails> members = basicActions.getAllMem();
+        members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member -> {member.setMemberId(memberId);
+        SharedData.setPrimaryMemberId(memberId);
+        });
     }
 
-    }
+}
