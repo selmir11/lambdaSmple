@@ -567,6 +567,10 @@ public class LoginPage {
                 softAssert.assertEquals(usernameError.getText(),"Se requiere su nombre de usuario");
                 softAssert.assertEquals(passwordError.getText(),"Se requiere su contrase\u00F1a");
             break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
         }
+        softAssert.assertAll();
     }
 }
