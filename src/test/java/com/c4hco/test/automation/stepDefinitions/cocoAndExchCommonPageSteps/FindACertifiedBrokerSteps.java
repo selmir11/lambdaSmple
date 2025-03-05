@@ -32,6 +32,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.enterNewLicenseNumberSearch();
     }
 
+    @Then("I search for the new {string} account on the Find a Certified Broker page")
+    public void iSearchNewBrokerAccount(String brokerType) {
+        findACertifiedBrokerPage.searchNewBrokerAccount(brokerType);
+    }
+
     @Then("I clear the broker location search box")
     public void IClearTheBrokerLocationSearchBox(){
         findACertifiedBrokerPage.clearSearchForBrokerLocation();
@@ -130,6 +135,11 @@ public class FindACertifiedBrokerSteps {
     @Then("I validate the new agency details {string}, {string}, {string}, {string}, {string}")
     public void iValidateNewAgencyDetails(String emailAddress, String expectedPhoneNumber, String availability, String officeHours, String agencyLanguage){
         findACertifiedBrokerPage.validateNewAgencyDetails(emailAddress, expectedPhoneNumber, availability, officeHours, agencyLanguage);
+    }
+
+    @Then("I validate the newly created agency details")
+    public void iValidateCreatedAgencyDetails(){
+        findACertifiedBrokerPage.validateCreatedAgencyDetails();
     }
 
     @Then("I verify the over 50 search results error is displayed in {string}")
