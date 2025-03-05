@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Optional;
 
 public class EthnicityAndRacePage {
     private BasicActions basicActions;
@@ -23,7 +24,7 @@ public class EthnicityAndRacePage {
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
-    @FindBy(id = "saveAndContinue")
+    @FindBy(id = "Race Ethnicity-SaveAndContinue")
     WebElement saveAndContinue_Button;
 
     @FindBy(id = "Race Ethnicity-GoBack")
@@ -343,10 +344,11 @@ public class EthnicityAndRacePage {
           List<MemberDetails> members = basicActions.getAllMem();
           members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
         }
+
     private void setMemberID(String memPrefix){
         List<MemberDetails> members = basicActions.getAllMem();
         String memberId = basicActions.getMemberIDFromURL();
         members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setMemberId(memberId));
     }
 
-    }
+}
