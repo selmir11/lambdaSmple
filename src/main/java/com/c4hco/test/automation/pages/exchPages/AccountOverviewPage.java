@@ -219,6 +219,11 @@ public class AccountOverviewPage {
        member.setIsProfileChange(option);
        member.setIsResAddChange(option);
    }
+   public void isetProfileChangeForPriandMembers(Boolean mailAddChange, Boolean resAddChange, String prefix){
+       MemberDetails member = basicActions.getMember(prefix);
+       member.setIsProfileChange(mailAddChange);
+       member.setIsResAddChange(resAddChange);
+   }
 
     public void setDates(String planType, List<Map<String, String>> expectedResult) {
         MemberDetails subscriber = SharedData.getPrimaryMember();

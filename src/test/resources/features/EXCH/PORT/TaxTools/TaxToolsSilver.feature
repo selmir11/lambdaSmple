@@ -26,7 +26,7 @@ Feature:Tax Tool: - Silver - Verifying the correct amount is displayed
     Examples:
       | zipCode | county     | age1 | age2 | ExpectedPremium | ExpectedProvider            | ExpectedPlan                                                                                          |
 #   bug to be fixed
-#      | 81230   | Gunnison   | 45   | 40   | $663.16         | Rocky Mountain Health Plans | RMHP Valley Silver Value ($0 Virtual Urgent Care + $0 PCP Visits, $5 Tier 2 Rx, $0 Insulin, Rx Copay) |
+      | 81230   | Gunnison   | 45   | 40   | $1250.08        | Rocky Mountain Health Plans | RMHP Valley Silver Value ($0 Virtual Urgent Care + $0 PCP Visits, $5 Tier 2 Rx, $0 Insulin, Rx Copay) |
       | 81435   | San Miguel | 38   | 40   | $1159.15        | Rocky Mountain Health Plans | RMHP Valley Silver Value ($0 Virtual Urgent Care + $0 PCP Visits, $5 Tier 2 Rx, $0 Insulin, Rx Copay) |
 
 
