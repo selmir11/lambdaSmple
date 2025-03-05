@@ -286,6 +286,9 @@ public class DbValidations {
             case "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY":
                 determination = "TAX_TIME_ENROLLMENT_QLCE";
                 break;
+            case "TAX_TIME_ENROLLMENT_ELIGIBILITY":
+                determination = "TAX_TIME_ENROLLMENT_QLCE";
+                break;
             default:
                 Assert.fail("Expected Reason Code is not valid");
         }
