@@ -345,13 +345,10 @@ public class EthnicityAndRacePage {
           members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setRace(raceEthnicity));
         }
 
-    private void setMemberID(String memPrefix) {
-        String currentUrl = basicActions.getCurrentUrl();
-        String memberId = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+    private void setMemberID(String memPrefix){
         List<MemberDetails> members = basicActions.getAllMem();
-        members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member -> {member.setMemberId(memberId);
-        SharedData.setPrimaryMemberId(memberId);
-        });
+        String memberId = basicActions.getMemberIDFromURL();
+        members.stream().filter(member -> member.getFirstName().contains(memPrefix)).findFirst().ifPresent(member-> member.setMemberId(memberId));
     }
 
 }

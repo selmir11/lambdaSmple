@@ -787,7 +787,7 @@ public class DbQueries_Exch {
                 "JOIN " + dbName + ".es_employer_ah d ON c.member_id = d.member_id\n" +
                 "JOIN " + dbName + ".es_job_title e ON c.employer_id = e.employer_id\n" +
                 "JOIN " + dbName + ".es_job_title_ah f ON e.member_id = f.member_id\n" +
-                "WHERE a.member_id = '" + SharedData.getPrimaryMemberId() + "';";
+                "WHERE a.member_id = '" + SharedData.getPrimaryMember().getMemberId() + "';";
         System.out.println("Executing Query: " + query);
         return query;
     }
