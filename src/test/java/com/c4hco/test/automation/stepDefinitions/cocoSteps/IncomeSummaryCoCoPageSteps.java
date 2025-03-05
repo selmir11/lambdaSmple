@@ -55,4 +55,7 @@ public class IncomeSummaryCoCoPageSteps {
     @Then("I verify the Projected Income text on CoCo Income Summary in {string}")
     public void iVerifyProjectedIncomeText(String language) {incomeSummaryCoCoPage.verifyProjectedIncomeText(language);}
 
+    @Then("I verify income Summary CoCo error format for {string}")
+    public void iVerifyErrorFormat(String incomeType){incomeSummaryCoCoPage.verifyErrorFormat(incomeType);}
+
 }

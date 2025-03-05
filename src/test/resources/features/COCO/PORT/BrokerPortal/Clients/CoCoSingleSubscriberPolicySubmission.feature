@@ -90,7 +90,7 @@ Feature: End to end agency owner CoCo policy submission
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
 
-    Then I click on the Colorado Connect or C4 Logo in the "ExpertHelp" Header
+    Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     And I validate I am on the "Broker Portal Your Clients" page
     Then I validate the Your Clients page title
     And I click on "colorado Connect" tab

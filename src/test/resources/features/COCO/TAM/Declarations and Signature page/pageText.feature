@@ -211,3 +211,12 @@ Feature: PageText-Declarations and Signature Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
+  @SLCR-796
+  Scenario: SLCR-796 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - D&S
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I verify Declarations And Signature CoCo error format
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+

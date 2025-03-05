@@ -1,6 +1,6 @@
 Feature: Seed05 W Exception - COCO
 # verification WIP
-  Scenario: Seed 05 W Exception For COCO- MULTI-GROUP (DIFFERENT RATING AREAS)
+  Background: Seed 05 W Exception For COCO- MULTI-GROUP (DIFFERENT RATING AREAS)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -151,3 +151,26 @@ Feature: Seed05 W Exception - COCO
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-808-WIP
+  Scenario: CCRT-370 - ENR-COCO: EDIT POLICY - COVERAGE & FINANCIAL END DATES (CANCEL)
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I click on "Manage Plans" user dashboard button
+    And I select "Son" from the SelectPolicy Dropdown to update the dates
+    Then I click Make Changes Medical button
+    Then I update the coverage end date
+      | 1:Cancel |
+      | 2:Cancel |
+    And I update the financial end date
+      | 1:Cancel |
+      | 2:Cancel |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I close current tab and switch back to previous tab
+    And logout from Admin Portal
+    

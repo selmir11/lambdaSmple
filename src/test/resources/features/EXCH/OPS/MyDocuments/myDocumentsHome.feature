@@ -689,3 +689,219 @@ Feature: My Document Home Page validations
     Then I verify file "Income" downloaded with Proper name format in ".docx" type
     Then  I click on Sign Out in the Header for "Elmo"
 
+ @SLER-2268 @OPSRegression
+  Scenario: Verify upload document modal Errors[RT-1999]
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click link my docs on accountOverview page
+    And I verify the page text on the My Documents Page
+      | My Documents and Letters |
+      | We need more information to confirm or verify what you told us in your application. |
+      | Help me understand this page                                                        |
+      | Information We Need                                                                 |
+      | Upload another document |
+      | Past Documents and Letters |
+    And I click on upload another document link
+    And I validate Modal texts on upload a document pop up
+      |Upload a document|
+      |Tell us more about this document|
+      |What type of document is this?  |
+      |Which document are you submitting?|
+      |Select a file from your device    |
+      |Browse My Files                   |
+      |Only one document can be uploaded at a time using this window|
+      |Cancel                                                       |
+      | Upload My Document |
+    And I click on upload my document button
+    Then I validate file required error message
+    Then I validate selection required error message
+    And I select any type of document from dropdown
+    And I close button to close modal
+    Then I verify modal popup closed
+    Then I see the username in Exch that I am currently logged into
+    And I click on upload another document link
+    And I select any type of document from dropdown
+    And I click on cancel button on upload document pop up
+    Then I verify modal popup closed
+    Then I see the username in Exch that I am currently logged into
+    Then  I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2277 @OPSRegression
+  Scenario: Verify Document uploaded for Income type and downloaded with proper name format Spanish [RT-2014]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I click on upload another document link
+    Then I upload another doc "TestMyDocs.docx" for category "Ingreso" and type "Formulario 8962" and verify success message "Spanish"
+    Then I validate I am on "Past Documents and Letters" container
+    And I select year "All" in plan year
+    And I select year "Current Year" in plan year
+    Then I verify file "Income" downloaded with Proper name format in ".docx" type
+    Then  I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2282 @OPSRegression
+  Scenario:  OPS: MyDocs: verify Document Type blank when new document category selected [RT-2003]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I click on upload another document link
+    Then I verify Document category blank by default
+    And I verify Document category "1095A Dispute" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Correction Proof" is selected on modal popup
+    And I verify Document category "American Indian/Alaska Native Tribal Membership" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Bureau of Indian Affairs Issued Document" is selected on modal popup
+    And I verify Document category "Appeals" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Appeals" is selected on modal popup
+    And I verify Document category "Authorized Representative" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Power of Attorney" is selected on modal popup
+    And I verify Document category "Citizenship Status" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Federally Approved Tribal Document" is selected on modal popup
+    And I verify Document category "Complaints" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Complaints" is selected on modal popup
+    And I verify Document category "Customer Authorization Form" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Customer Authorization Form" is selected on modal popup
+    And I verify Document category "Death" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Proof of Life Document" is selected on modal popup
+    And I verify Document category "Eligible Immigration Status" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "I-327 Reentry Permit" is selected on modal popup
+    And I verify Document category "Health First Colorado (Medicaid) Application" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Health First Colorado (Medicaid) Application" is selected on modal popup
+    And I verify Document category "Health First Colorado (Medicaid) Redetermination (RRR)" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Health First Colorado (Medicaid) Redetermination (RRR)" is selected on modal popup
+    And I verify Document category "Identity" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "US Military ID Card" is selected on modal popup
+    And I verify Document category "Incarceration" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Court or Legal Document" is selected on modal popup
+    And I verify Document category "Income" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Form 8962" is selected on modal popup
+    And I verify Document category "Life Change Event" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Report Life Change Events Individual Marketplace" is selected on modal popup
+    And I verify Document category "Medicare" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from Medicare" is selected on modal popup
+    And I verify Document category "Peace Corps" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from Peace Corps" is selected on modal popup
+    And I verify Document category "Social Security Number" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Social Security Card" is selected on modal popup
+    And I verify Document category "TRICARE" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from TRICARE" is selected on modal popup
+    And I verify Document category "Veterans Affairs (VA)" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Document from Veterans Affairs (VA)" is selected on modal popup
+    And I verify Document category "Other" is selected on modal popup
+    And I verify Document type blank by default
+    Then I verify Document type "Other" is selected on modal popup
+    And I close button to close modal
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2290 @OPSRegression
+  Scenario: Verify Help drawer text on the document page [RT-2020]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "7724352002" "7867062002" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I click on the help drawer icon on the document page
+    Then I validate help drawer open in right side of the page
+    And I verify help drawer "header" text on the My Document page
+      | Help |
+    And I verify help drawer "sub header" text on the My Document page
+      | My Documents and Letters Explanation |
+    And I verify help drawer "body title" text on the My Document page
+      | Overview |
+    And I verify help drawer "body content" text on the My Document page
+      | Have questions about documents you need to provide? Click here for more information. |
+      | You have 90 days to submit the document(s) we requested. The color of the due date signifies the time you have left to provide the document. |
+      | If the due date is green, you have 60 to 90 days to provide your documentation.                                                              |
+      | If the due date is yellow, you have 30 to 59 days to provide your documentation.                                                             |
+      | If the due date is red, you have less than 30 days to provide your documentation.                                                            |
+      | Did your document request expire? If the upload button is still available, provide the documentation for review.                            |
+      | If you are not able to upload your document(s), please contact our Service Center at 1-855-752-6749. |
+    And I verify help drawer "footer" text on the My Document page
+      | Need more help? Contact us |
+    And I click on the help drawer icon to close on the document page
+    Then I validate help drawer closed on the document page
+    And I click on "Help me understand this page" link in Help Drawer
+    Then I validate help drawer open in right side of the page
+    And I click on "here" link in Help Drawer
+    And I validate I am on the "Submit Documents" page and close tab
+    And I click on "Contact Us" link in Help Drawer
+    And I validate I am on the "We Can Help" page and close tab
+    And I click on the help drawer icon to close on the document page
+    And I click upload MVR button for "Financial Help Eligibility"
+    Then I validate help drawer open in right side of the page
+    And I verify help drawer "Income header" text on the My Document page
+      | Help |
+    And I verify help drawer "Income sub header" text on the My Document page
+      | Proof of Financial Help Eligibility|
+    And I verify help drawer "Income body title" text on the My Document page
+      | Overview |
+    And I verify help drawer "Income body content" text on the My Document page
+      | In order to verify your income, you must submit two documents: |
+      | (1) Confirming your income and                                 |
+      | (2) Confirming that you previously filed and reconciled APTC on your federal taxes, or were not required to. |
+      | More information is available on our website. |
+    And I verify help drawer "Income footer" text on the My Document page
+      | Need more help? Contact us |
+    And I click on "our website" link in Help Drawer
+    And I validate I am on the "Submit Documents" page and close tab
+    And I click on "Contact Us" link in Help Drawer
+    And I validate I am on the "We Can Help" page and close tab
+    And I close button to close modal
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+

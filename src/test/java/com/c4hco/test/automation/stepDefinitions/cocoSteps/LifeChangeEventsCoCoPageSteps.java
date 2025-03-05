@@ -47,4 +47,7 @@ public class LifeChangeEventsCoCoPageSteps {
     @Then("I verify LCE checkbox COCO in {string} state")
     public void iVerifyStateOfLCECheckboxesCOCO(String state){
         lifeChangeEventsCoCoPage.verifyLCECheckboxesCOCO(state);}
+
+    @Then("I verify LCE CoCo error format for {string}")
+    public void iVerifyErrorFormat(String incomeType){lifeChangeEventsCoCoPage.verifyErrorFormat(incomeType);}
 }

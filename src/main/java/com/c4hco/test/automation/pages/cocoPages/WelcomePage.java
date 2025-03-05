@@ -161,6 +161,14 @@ public class WelcomePage {
         }
     }
 
+    public void clickMakeChanges() {
+        basicActions.waitForElementToDisappear( spinner, 40 );
+        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+        WebElement applyForYrCoco = applyForCurrentYearButton;
+        basicActions.waitForElementToBePresent(applyForYrCoco, 40);
+        applyForYrCoco.click();
+    }
+
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
     public void verifyTextOnWelcomePageFirstTime(String language) {
@@ -439,7 +447,7 @@ public class WelcomePage {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
-        List<String> memberNamesList = basicActions.getAllMemCompleteNames();
+        List<String> memberNamesList = basicActions.getAllMemNames();
         List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
         Collections.sort(memberNamesList);
         Collections.sort(memberNamesListWelcomePage);
