@@ -528,4 +528,58 @@ public class EmploymentIncomePage {
         softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
+
+    public void verifySelectedData(List<Map<String, String>> employmentData) {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresent(employmentYesButton, 10);
+        String haveJob = employmentData.get(0).get("HaveJob");
+        String incomeAmt = employmentData.get(0).get("IncomeAmt");
+        String incomeFrequency = employmentData.get(0).get("IncomeFrequency");
+        String seasonal = employmentData.get(0).get("Seasonal");
+        String incomeChange = employmentData.get(0).get("IncomeChange");
+
+        verifyJobOption_EmploymentInfo(haveJob);
+        verifyIncomeAmountFrequency(incomeAmt,incomeFrequency);
+        verifyIncomeSeasonal(seasonal);
+        verifyIncomeChange(incomeChange);
+    }
+
+    public void verifyIncomeAmountFrequency(String incomeAmt,String incomeFrequency) {
+        basicActions.waitForElementToBePresent(incomeInput, 60);
+        softAssert.assertEquals(incomeInput.getAttribute("value"), incomeAmt);
+        softAssert.assertEquals(incomeFrequencyDropdown.getAttribute("value"), incomeFrequency);
+        softAssert.assertAll();
+    }
+
+    public void verifyIncomeSeasonal(String seasonal) {
+        basicActions.waitForElementToBePresent(incomeSeasonalYesButton, 60);
+        switch (seasonal) {
+            case "Yes":
+                softAssert.assertTrue(incomeSeasonalYesButton.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                softAssert.assertTrue(incomeSeasonalNoButton.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + seasonal);
+        }
+    }
+
+    public void verifyIncomeChange(String incomeChange) {
+        basicActions.waitForElementToBePresent(incomeChangesYesButton, 60);
+        switch (incomeChange) {
+            case "Yes":
+                softAssert.assertTrue(incomeChangesYesButton.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            case "No":
+                softAssert.assertTrue(incomeChangesNoButton.getAttribute("class").contains("selected"));
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + incomeChange);
+        }
+    }
 }

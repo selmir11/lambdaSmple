@@ -947,9 +947,6 @@ public class BasicActions {
 
     public String getMemberId(String memPrefix){
         String memId = "";
-        if (memPrefix.equals("Primary")) {
-            memId = SharedData.getPrimaryMemberId();
-        } else {
             List<MemberDetails> members = getAllMem();
             for (MemberDetails mem : members) {
                 if (mem.getFirstName().contains(memPrefix)) {
@@ -957,7 +954,6 @@ public class BasicActions {
                     break;
                 }
             }
-        }
         return memId;
     }
 
@@ -1207,8 +1203,6 @@ public class BasicActions {
     public void setMemberIdFromUrl(){
         String memberId = getMemberIDFromURL();
         SharedData.getPrimaryMember().setMemberId(memberId);
-        SharedData.setPrimaryMemberId(memberId);
-
     }
 
     public String firstDateOfTheMonthAfterNext() {

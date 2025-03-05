@@ -57,6 +57,12 @@ public class AccountOverviewPageSteps {
         boolean isOption = Boolean.parseBoolean(option);
         accountOverviewPage.setProfileChange(prefix, isOption);
     }
+    @And("I set the profileChange to be {string} and residential address change to be {string} for {string}")
+    public void isetProfileChangeForMembers(String mailAddChange, String resAddchange, String prefix){
+        boolean mailAdd = Boolean.parseBoolean(mailAddChange);
+        boolean resiAdd = Boolean.parseBoolean(resAddchange);
+        accountOverviewPage.isetProfileChangeForPriandMembers(mailAdd, resiAdd, prefix);
+    }
 
     @Given("I set the dynamic policy, coverage and financial dates for {string} plan")
     public void iSetDates(String planType, List<Map<String, String>> expectedResult){

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class PrivacyPolicyCoCoPage {
     @FindBy(xpath = "/html/body/app-root/div/div/div/app-privacy-policy/app-container/div/div/div[1]")
     WebElement title;
@@ -137,6 +139,8 @@ public class PrivacyPolicyCoCoPage {
     @FindBy(xpath = "/html/body/app-root/div/div/div/app-privacy-policy/app-container/div/div/div[2]/div/p[42]")
     WebElement p30;
 
+    @FindBy(css = "ul li")
+    List<WebElement> InformationListForTypesOfInformationWeCollect;
 
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
@@ -278,6 +282,36 @@ public class PrivacyPolicyCoCoPage {
                 "Effective Date: October 2023");
 
 
+        softAssert.assertAll();
+
+    }
+
+    public void verifyPageTextForTypesOfInformationWeCollectSection(List<String> expectedText) {
+
+        basicActions.refreshPage();
+        basicActions.waitForElementToBePresent(title,40);
+        basicActions.waitForElementToBePresent(h4,40);
+        basicActions.scrollToElement(h4);
+        softAssert.assertEquals(p13.getText(), expectedText.get(0));
+        softAssert.assertEquals(p14.getText(), expectedText.get(1));
+        softAssert.assertEquals(InformationListForTypesOfInformationWeCollect.get(0).getText(), expectedText.get(2));
+        softAssert.assertEquals(InformationListForTypesOfInformationWeCollect.get(1).getText(), expectedText.get(3));
+        softAssert.assertEquals(InformationListForTypesOfInformationWeCollect.get(2).getText(), expectedText.get(4));
+        softAssert.assertEquals(InformationListForTypesOfInformationWeCollect.get(3).getText(), expectedText.get(5));
+        softAssert.assertEquals(InformationListForTypesOfInformationWeCollect.get(4).getText(), expectedText.get(6));
+        softAssert.assertEquals(InformationListForTypesOfInformationWeCollect.get(5).getText(), expectedText.get(7));
+        softAssert.assertEquals(InformationListForTypesOfInformationWeCollect.get(6).getText(), expectedText.get(8));
+        softAssert.assertEquals(p15.getText(), expectedText.get(9));
+        softAssert.assertEquals(p16.getText(), expectedText.get(10));
+        softAssert.assertAll();
+
+    }
+
+    public void verifyPageTextAtTheBottomOfThePage(String expectedText) {
+
+        basicActions.waitForElementToBePresent(p30,20);
+        basicActions.scrollToElement(p30);
+        softAssert.assertTrue(p30.getText().contains(expectedText), "Effective Date is not present");
         softAssert.assertAll();
 
     }

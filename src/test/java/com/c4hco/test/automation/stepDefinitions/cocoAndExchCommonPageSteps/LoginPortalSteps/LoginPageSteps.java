@@ -177,4 +177,9 @@ public class LoginPageSteps {
     public void iLogIntoMyProgramManagerAccount() {
         loginPage.logIntoMyProgramManagerAccount();
     }
+
+    @And("I validate the error msg username and password required in {string}")
+    public void iValidateTheErrorMsgUsernameAndPasswordRequiredIn(String language) {
+            loginPage.validateTheErrorMsgUsernameAndPasswordRequiredIn(language);
+    }
 }
