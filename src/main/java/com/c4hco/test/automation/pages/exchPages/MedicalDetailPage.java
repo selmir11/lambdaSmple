@@ -457,6 +457,8 @@ public class MedicalDetailPage {
 
                 lnkDocument0.click();
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
+                String localPathDownload1 = (SharedData.getLocalPathToDownloadFile());
+                softAssert.assertTrue( localPathDownload1.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
                 softAssert.assertAll();
 
             case "Rocky":
