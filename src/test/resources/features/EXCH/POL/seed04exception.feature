@@ -171,7 +171,7 @@ Feature: Seed04exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1227-WIP_@R4V
+  @SLER-1227 @pol_exch_passed
   Scenario: RT-2303 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL - ALL MEMBERS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -209,6 +209,12 @@ Feature: Seed04exception - Exchange
     And I validate I am on the "Login" page
     And I enter valid credentials to login
     And I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I click on make changes button
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -222,12 +228,22 @@ Feature: Seed04exception - Exchange
     Then I select the Different Mailing Address option
     Then I enter member with address line1 "PO BOX 8575" in city "Boulder" in state "CO" with zipcode "80020" and county "BOULDER"
     Then I click continue on the Add Address page
+    And I set the profileChange to be "true" and residential address change to be "false" for "Primary"
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     And I click on Sign Out in the Header for "NonElmo"
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | AI                    | DEMOGRAPHIC CHANGE |            |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | AI                    | DEMOGRAPHIC CHANGE |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
   @SLER-1994-WIP-@R4V
   Scenario: RT-2329 - ENR-EXCH: EDIT POLICY - RE-INSTATE MEMBER FROM A CANCEL (MEDICAL)

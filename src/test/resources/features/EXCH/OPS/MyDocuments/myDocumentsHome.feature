@@ -838,3 +838,70 @@ Feature: My Document Home Page validations
     Then I verify Document type "Other" is selected on modal popup
     And I close button to close modal
     Then  I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2290 @OPSRegression
+  Scenario: Verify Help drawer text on the document page [RT-2020]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "7724352002" "7867062002" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I click on the help drawer icon on the document page
+    Then I validate help drawer open in right side of the page
+    And I verify help drawer "header" text on the My Document page
+      | Help |
+    And I verify help drawer "sub header" text on the My Document page
+      | My Documents and Letters Explanation |
+    And I verify help drawer "body title" text on the My Document page
+      | Overview |
+    And I verify help drawer "body content" text on the My Document page
+      | Have questions about documents you need to provide? Click here for more information. |
+      | You have 90 days to submit the document(s) we requested. The color of the due date signifies the time you have left to provide the document. |
+      | If the due date is green, you have 60 to 90 days to provide your documentation.                                                              |
+      | If the due date is yellow, you have 30 to 59 days to provide your documentation.                                                             |
+      | If the due date is red, you have less than 30 days to provide your documentation.                                                            |
+      | Did your document request expire? If the upload button is still available, provide the documentation for review.                            |
+      | If you are not able to upload your document(s), please contact our Service Center at 1-855-752-6749. |
+    And I verify help drawer "footer" text on the My Document page
+      | Need more help? Contact us |
+    And I click on the help drawer icon to close on the document page
+    Then I validate help drawer closed on the document page
+    And I click on "Help me understand this page" link in Help Drawer
+    Then I validate help drawer open in right side of the page
+    And I click on "here" link in Help Drawer
+    And I validate I am on the "Submit Documents" page and close tab
+    And I click on "Contact Us" link in Help Drawer
+    And I validate I am on the "We Can Help" page and close tab
+    And I click on the help drawer icon to close on the document page
+    And I click upload MVR button for "Financial Help Eligibility"
+    Then I validate help drawer open in right side of the page
+    And I verify help drawer "Income header" text on the My Document page
+      | Help |
+    And I verify help drawer "Income sub header" text on the My Document page
+      | Proof of Financial Help Eligibility|
+    And I verify help drawer "Income body title" text on the My Document page
+      | Overview |
+    And I verify help drawer "Income body content" text on the My Document page
+      | In order to verify your income, you must submit two documents: |
+      | (1) Confirming your income and                                 |
+      | (2) Confirming that you previously filed and reconciled APTC on your federal taxes, or were not required to. |
+      | More information is available on our website. |
+    And I verify help drawer "Income footer" text on the My Document page
+      | Need more help? Contact us |
+    And I click on "our website" link in Help Drawer
+    And I validate I am on the "Submit Documents" page and close tab
+    And I click on "Contact Us" link in Help Drawer
+    And I validate I am on the "We Can Help" page and close tab
+    And I close button to close modal
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+

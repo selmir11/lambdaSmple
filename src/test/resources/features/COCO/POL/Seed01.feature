@@ -1,6 +1,9 @@
 Feature: Regression Tests that require COCO Seed 1
 
   Background: Seed 01 For COCO- Single Applicant with Income of $19k
+    Given I set the test scenario details in coco
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                |  1              |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -9,9 +12,9 @@ Feature: Regression Tests that require COCO Seed 1
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
-   Given I set the dynamic policy, coverage and financial dates in coco
-     | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-     | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
@@ -67,6 +70,17 @@ Feature: Regression Tests that require COCO Seed 1
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
+    And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
+
+
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -76,43 +90,59 @@ Feature: Regression Tests that require COCO Seed 1
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
-    | 1:01012025 |
+      | 1:01012025 |
     And I update the Financial Start date of member
-    | 1:01012025 |
+      | 1:01012025 |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
 
-    #Given I open the login page on the "login" portal
-    #Then I validate I am on the "Login" page
-    #And I enter valid credentials to login
-    #Then I validate I am on the "CoCo Welcome" page
-    #Then I click continue signing in on the CAC Screener page
-    #Then I validate I am on the "CoCo Welcome" page
-    #And I select year "2025" from My Current Plan container
-    #And I Validate the correct enrolled plans are displayed on coco welcome page
-    #And I click on "My Plans" link on welcome page
-    #And I validate enrolled medical plans details on my policies page coco
+    And I validate "CANCELLED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason  |
+      | 024                   | 024                | AI                    | CANCEL            |             |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
 
-   @SLCR-782-WIP-@R4V
-  Scenario: CCRT-106 - ENR-COCO: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+#UI Validation
     Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "CoCo Welcome" page
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I select year "2025" from My Current Plan container
+    And I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on "My Plans" link on welcome page
+    And I validate enrolled medical plans details on my policies page coco
+    And I click on Sign Out in the Header for "Elmo"
+
+# DB Validation
+    And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
+    And I validate the coco ob834 medical file data
+
+  @SLCR-780 @pol_coco_passed
+  Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
-    Given I set the dynamic policy, coverage and financial dates in coco
-     | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-     | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "CoCo Welcome" page
-    And I click Make changes button on Welcome Page
+    And I click make Changes button on welcome page
     Then I validate I am on the "Find Expert Help" page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primary"
-    Then I enter new first name and last name on Tell Us About Yourself Page Coco
-    And I enter the primary member new middle name on tell us about yourself page coco
-    Then I click Save and Continue only on the tell us about yourself page
+    And I click EditUpdate on Family Overview page for "Primary"
+    Then I update full name of member with prefix "Primary" in coco
+    And I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Elmo Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
@@ -129,9 +159,25 @@ Feature: Regression Tests that require COCO Seed 1
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-    And I click on Sign Out in the Header for "Elmo"
+    And I click Continue on the Application Results Page CoCo
+    And I click close on open enrollment ended pop up modal
 
-    @SLCR-783-WIP-@R4V
+    #UI Validation  Blocked by POL-9532
+#    Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+#    Then I validate I am on the "CoCo Welcome" page
+#    And I Validate the correct enrolled plans are displayed on coco welcome page
+#    And I click on Sign Out in the Header for "Elmo"
+
+  # DB Validation
+    And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier |addl_maint_reason  | sep_reason  |
+      | 001                   | 001                | 25                    | 70                       | 1                           |DEMOGRAPHIC CHANGE |             |
+    And I download the medical files from coco sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+
+
+  @SLCR-783-WIP-@R4V
   Scenario: CCRT-125 - ENR-COCO: ADD DEPENDENT (LCE: Birth) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

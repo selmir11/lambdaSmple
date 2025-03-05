@@ -482,6 +482,41 @@ public class TellUsAboutYourselfCoCoPage {
             softAssert.assertAll();
         }
     }
+
+    public void updateFullName(String namePrefix){
+        MemberDetails member = basicActions.getMember(namePrefix);
+        String oldFirstName = member.getFirstName();
+        String oldMiddleName = member.getMiddleName()!=null ? member.getMiddleName() : "";
+        String oldLastName = member.getLastName();
+        member.setHasIncorrectEntities(true);
+
+        String newFirstName = namePrefix+basicActions.getUniqueString(8);
+        String newMiddleName = "Test";
+        String newLastName = "update"+ member.getLastName();
+
+        member.setIncorrectEntityTypeQualifier("1");
+        member.setIncorrectEntityIdCode("70");
+        member.setIncorrect_first_name(oldFirstName);
+        member.setIncorrect_middle_name(oldMiddleName);
+        member.setIncorrect_last_name(oldLastName);
+
+        member.setFirstName(newFirstName);
+        member.setMiddleName(newMiddleName);
+        member.setLastName(newLastName);
+        member.setSignature(newFirstName+" "+newLastName);
+        member.setFullName(newFirstName+" "+newLastName);
+        member.setCompleteFullName(newFirstName+" "+newMiddleName+" "+newLastName);
+
+
+        basicActions.waitForElementToBePresent(firstNameText, 50);
+        basicActions.clearElementWithRetries(firstNameText);
+        firstNameText.sendKeys(newFirstName);
+        basicActions.clearElementWithRetries(middleNameText);
+        middleNameText.sendKeys(newMiddleName);
+        basicActions.clearElementWithRetries(lastNameText);
+        lastNameText.sendKeys(newLastName);
+    }
+
 }
 
 
