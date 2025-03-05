@@ -134,7 +134,7 @@ public class DbQueries_Exch {
     public String getPrimaryHraRecords() {
         return "select *\n" +
                 "From  " + dbName + ".es_member_hra\n" +
-                "where member_id = '" + SharedData.getPrimaryMemberId() + "'";
+                "where member_id = '" + SharedData.getPrimaryMember().getMemberId() + "'";
     }
 
     public String getRatingArea(String fipcode) {
@@ -375,7 +375,7 @@ public class DbQueries_Exch {
     public String getPrimaryHraAhRecords() {
         return "select *\n" +
                 "From  " + dbName + ".es_member_hra_ah\n" +
-                "where member_id = '" + SharedData.getPrimaryMemberId() + "' \n" +
+                "where member_id = '" + SharedData.getPrimaryMember().getMemberId() + "' \n" +
                 "order by updated_ts asc limit 1";
     }
 

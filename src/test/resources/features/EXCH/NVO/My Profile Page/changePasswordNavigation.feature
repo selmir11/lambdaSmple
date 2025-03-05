@@ -20,6 +20,7 @@ Feature: My profile page
     Then I verify Password text on My profile page "Spanish"
     And I wait for 10000 milliseconds
     And I click the Change Password Button
+    And I wait for 10000 milliseconds
     Then I validate I am on the "Forgot my password" page
     Then I validate the Forgot my password page title in "Spanish"
 

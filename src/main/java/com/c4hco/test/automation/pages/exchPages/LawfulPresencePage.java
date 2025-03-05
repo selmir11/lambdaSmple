@@ -3,7 +3,6 @@ package com.c4hco.test.automation.pages.exchPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.jsoup.internal.FieldsAreNonnullByDefault;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -358,7 +357,7 @@ public class LawfulPresencePage {
         String nameFromHeader = headerText.substring(headerText.indexOf(':') + 1).trim();
         String memberId = currentUrl.substring(currentUrl.indexOf('=') + 1);
         if (nameFromHeader.equals(SharedData.getPrimaryMember().getFullName())) {
-            SharedData.setPrimaryMemberId(memberId);
+            SharedData.getPrimaryMember().setMemberId(memberId);
             subscriber.setMemberId(memberId);
         }
         if (memberDetailsList != null && !memberDetailsList.isEmpty()) {
