@@ -22,7 +22,9 @@ public class DbValidations {
     String formattedDate; //formatted in YYYY-MM-DD
 
     BasicActions basicActions = new BasicActions();
-
+    List<PolicyTablesEntity> PolicyTableEntity;
+    List<String> applicationIdListFromPolicyAh;
+    List<String> policyIdFromPolicyDB;
     public String getCurrentdate() {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -124,8 +126,8 @@ public class DbValidations {
         List<String> applicationIdListFromBob = new ArrayList<>();
 
         // WIP - get these from existing policyTables instead of new tables/queries.
-        List<String> applicationIdListFromPolicyAh = exchDbDataProvider.getApplicationId();
-        List<String> policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
+        applicationIdListFromPolicyAh = exchDbDataProvider.getApplicationId();
+        policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
 
         for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
             softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
@@ -143,6 +145,41 @@ public class DbValidations {
         softAssert.assertAll();
 
     }
+   public void validateBookOfBusinessQMedical(String coverageType, String eventType){
+        switch(coverageType) {
+            case "medical":
+                PolicyTableEntity = SharedData.getMedicalPolicyTablesEntities();
+                break;
+            case "dental":
+                PolicyTableEntity = SharedData.getDentalPolicyTablesEntities();
+                break;
+            default:
+                Assert.fail("Coverage Type entered is not valid");
+        }
+       HashSet<String> PolicyIds = new HashSet<>();
+      for(PolicyTablesEntity entity: PolicyTableEntity){
+          PolicyIds.add(entity.getPolicy_id());
+      }
+       getCurrentdate();
+       List<BookOfBusinessQEntity> bookOfBusinessQList = exchDbDataProvider.getBookOfBusinessQ(eventType);
+
+       applicationIdListFromPolicyAh = exchDbDataProvider.getApplicationId();
+       List<String> uniqueApplicationId = new ArrayList<>(new HashSet<>(applicationIdListFromPolicyAh));
+       policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
+       for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQList) {
+           if(bookOfBusinessQEntity.getEventtype().equals(eventType)){
+               softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", " BOB, exchange mismatch");
+               softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", " BOB, routing key mismatch");
+               softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), SharedData.getPlanYear(), " BOB, plan year mismatch");
+               softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", " BOB, Status mismatch");
+               softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), " BOB,Bob created date mismatch");
+               softAssert.assertTrue(PolicyIds.contains(bookOfBusinessQEntity.getPolicyid()), " BOB,Policy Id mismatch ");
+               softAssert.assertTrue(applicationIdListFromPolicyAh.contains(bookOfBusinessQEntity.getApplicationid()), " BOB,application id mismatch");
+               softAssert.assertEquals(uniqueApplicationId.size(), bookOfBusinessQList.size(), "No of records does not match for event type " + eventType);
+               softAssert.assertAll();
+           }
+       }
+   }
 
     public void validateAccountHolderNameFromBOB() {
         List<String> acct_holderBOB = exchDbDataProvider.getAccount_holder_fn();
@@ -859,6 +896,28 @@ public class DbValidations {
         }
         softAssert.assertAll();
     }
+
+    public void validateMemberRowCount(int expectedRowCount) {
+        int actualRowCount = Integer.parseInt(exchDbDataProvider.getEmployerIncomeRowCount());
+        softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
+        softAssert.assertAll();
+    }
+
+    public void validateDeductionAmount(String kind, String expectedAmount, String expectedFrequency) {
+        SoftAssert softAssert = new SoftAssert();
+        String[] deductionDetails = exchDbDataProvider.getDeductionAmount(SharedData.getPrimaryMember().getFirstName(), kind);
+        String actualKind = deductionDetails[0];
+        String actualAmount = deductionDetails[1];
+        String actualFrequency = deductionDetails[2];
+        softAssert.assertEquals(actualKind, kind, "Kind does not match!");
+        softAssert.assertEquals(actualAmount, expectedAmount, "Amount does not match!");
+        softAssert.assertEquals(actualFrequency, expectedFrequency, "Frequency does not match!");
+
+        softAssert.assertAll();
+    }
+
+
+
 
 }
 

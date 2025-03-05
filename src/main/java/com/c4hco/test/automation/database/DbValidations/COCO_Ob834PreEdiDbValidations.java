@@ -193,18 +193,14 @@ public class COCO_Ob834PreEdiDbValidations {
         softAssert.assertAll();
     }
     private void medValidationsCommonForAllMembers(Ob834DetailsEntity ob834Entity, Map<String, String> expectedValues) {
-        String formatPlanStartDate =  basicActions.getDateBasedOnRequirement(expectedValues.get("PolicyStartDate")).replaceAll("-", "");
-        String formatMedicalPlanEndDate = basicActions.getDateBasedOnRequirement(expectedValues.get("PolicyEndDate")).replaceAll("-", "");
-        String formatedFinStartDate = basicActions.getDateBasedOnRequirement(expectedValues.get("FinancialStartDate")).replaceAll("-", "");
-
         SharedData.setMedGroupCtlNumber(ob834Entity.getGroup_ctrl_number());
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalDbData.getBaseId(), "Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), medicalDbData.getIssuerName(), "Insurer Name did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_id(), medicalDbData.getIssuerId(), "Insurer Id did not match!");
 
-        softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), formatPlanStartDate, "Medical plan start date is not correct");
-        softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate, "Medical plan end date is not correct");
-        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Financial start date is not correct");
+        softAssert.assertEquals(ob834Entity.getBenefit_begin_date(),SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate().replaceAll("-", ""), "Medical plan start date is not correct");
+        softAssert.assertEquals(ob834Entity.getBenefit_end_date(),SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate().replaceAll("-", ""), "Medical plan end date is not correct");
+        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate().replaceAll("-", ""), "Financial start date is not correct");
 
         validateDetailsFromStep(ob834Entity, expectedValues);
         validateIndivMedPremAmt(ob834Entity);

@@ -29,7 +29,7 @@ public class PolicyTableDbValidations {
     String policyStatus;
     String policyMemCoverageStatus;
 
-    public void groupRecordsValidations(String recordType, List<String> expectedPolicyStatus) {
+    public void groupRecordsValidations(String recordType) {
             switch (recordType) {
                 case "medical":
                     policyStatus ="SUBMITTED";
