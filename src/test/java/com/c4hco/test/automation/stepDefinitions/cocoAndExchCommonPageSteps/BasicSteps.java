@@ -761,7 +761,9 @@ public class BasicSteps {
             case "Contact Us Exch Spanish":
                 pageUrl = "es/pongase-en-contacto/";
                 break;
-
+            case "Submit Documents":
+                pageUrl = "/find-answers/after-you-buy/submit-documents/";
+                break;
 
             default:
                 throw new IllegalArgumentException("Invalid option: " + pageUrl);
