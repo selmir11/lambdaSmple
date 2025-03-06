@@ -210,4 +210,9 @@ public class FindACertifiedBrokerSteps {
     public void iClickContinueWithMyApplication() {
         findACertifiedBrokerPage.ClickContinueWithMyApplication();
     }
+
+    @Then("I Search by licence number the authorized Broker generated")
+    public void iSearchByLicenceNumberTheAuthorizedBrokerGenerated() {
+        findACertifiedBrokerPage.SearchAuthorizedBrokerGenerated();
+    }
 }
