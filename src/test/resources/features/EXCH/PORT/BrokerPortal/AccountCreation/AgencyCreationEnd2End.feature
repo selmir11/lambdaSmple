@@ -37,6 +37,7 @@ Feature: Full agency creation from end to end
 
     Then I click on broker userName and logout
 
+  @SLER-2295
   Scenario: Agency owner account creation
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
@@ -87,6 +88,7 @@ Feature: Full agency creation from end to end
     And I validate the Invitation Sent text
     Then I click on broker userName and logout
 
+  @SLER-2295
   Scenario: Verifying that the agency owner and the broker can't be found on the Find a Broker page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -105,6 +107,7 @@ Feature: Full agency creation from end to end
     And I click on Search button in find certified broker page
     Then I verify that a total of "0" results displays in "English"
 
+  @SLER-2295
   Scenario: Broker approves an invite to a new agency
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
@@ -122,6 +125,7 @@ Feature: Full agency creation from end to end
     And I wait for 2000 milliseconds
     Then I click on broker userName and logout
 
+  @SLER-2295
   Scenario: Agency owner and broker certification via Admin Portal
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -150,6 +154,7 @@ Feature: Full agency creation from end to end
     Then I validate the status certification is "APPROVED"
     And I logout from Admin Portal
 
+  @SLER-2295
   Scenario: Individual account creation and agency owner authorization
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -175,6 +180,7 @@ Feature: Full agency creation from end to end
 
     And I click on Sign Out in the Header for "Elmo"
 
+  @SLER-2295
   Scenario: Individual account creation and broker authorization
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
