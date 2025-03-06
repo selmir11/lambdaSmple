@@ -1366,4 +1366,41 @@ public class MyDocumentsPage {
                 throw new IllegalArgumentException("Invalid option: " + linkName);
         }
     }
+
+    public void validateFileRequiredErrorMessage(String data){
+        Assert.assertEquals(textErrorMsg_Filerequired.getText().trim(),data,"Error message is incorrect");
+    }
+    public void validateSelectionRequiredErrorMessage(String data){
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertAll();
+    }
+
+    public void clickUploadButton() {
+        basicActions.waitForElementToBePresentWithRetries(btnUploadDoc, 10);
+        btnUploadDoc.click();
+    }
+
+    public void validateBorderColorofErrorCategory() {
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,20);
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertAll();
+
+    }
+
+    public void validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(String data) {
+        Assert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),data, "Selection Required error msg not displayed");
+    }
+
+    public void validateDocUnsupportedErrorAndTextColour(String data){
+      //  String docFileTypeUnsupportedErrMsg="Document file type is unsupported. Files must be pdf, doc, docx, gif, jpeg, jpg, png.";
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
+
 }

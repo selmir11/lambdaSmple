@@ -319,5 +319,35 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickUploadMVRButtonFor(String mvrType) {
         myDocumentsPage.clickUploadMvr(mvrType);
     }
+
+    @Then("I validate file required error message on modal popup")
+    public void iValidateFileRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateFileRequiredErrorMessage(data);
+    }
+
+    @Then("I validate selection required error message on modal popup")
+    public void iValidateSelectionRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage(data);
+    }
+
+    @When("I click on upload documents button in modal popup")
+    public void iClickOnUploadDocumentsButtonInModalPopup() {
+        myDocumentsPage.clickUploadButton();
+    }
+
+    @Then("I validate border colour of category dropdown")
+    public void iValidateBorderColourOfCategoryDropdown() {
+        myDocumentsPage.validateBorderColorofErrorCategory();
+    }
+
+    @Then("I validate selection required error message for only document category on modal popup")
+    public void iValidateSelectionRequiredErrorMessageForOnlyDocumentCategoryOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(data);
+    }
+
+    @Then("I verify unsupported document error message with red in color")
+    public void iVerifyUnsupportedDocumentErrorMessageWithRedInColor(String data) {
+        myDocumentsPage.validateDocUnsupportedErrorAndTextColour(data);
+    }
 }
 
