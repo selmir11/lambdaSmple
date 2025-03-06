@@ -43,4 +43,9 @@ public class CommunicationPreferencesSteps {
         communicationPreferencesPage.validateRequiredFieldsErrorMessages();
     }
 
+    @Then("I validate the valid entries error messages")
+    public void iValidateValidErrorMessages(){
+        communicationPreferencesPage.validateValidErrorMessages();
+    }
+
 }

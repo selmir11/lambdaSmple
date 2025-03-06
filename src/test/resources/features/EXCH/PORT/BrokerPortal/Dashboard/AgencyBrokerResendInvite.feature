@@ -40,7 +40,7 @@ Feature: Verify a newly created associated broker's ability to deny an agency in
   Scenario: Agency Owner sends an invite to a new broker
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    And I login as Broker User any environment "johnc4hcoautomation+1734age@gmail.com" password "ALaska13!" and "NoahTrujilloAgency@agency.com" password "ALaska14!"
+    And I login as Broker User any environment "NoahTrujilloAgencySTG@agency.com" password "ALaska15!" and "NoahTrujilloAgency@agency.com" password "ALaska14!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice

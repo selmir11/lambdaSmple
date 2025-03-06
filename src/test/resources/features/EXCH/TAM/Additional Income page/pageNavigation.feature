@@ -42,7 +42,6 @@ Feature: Page Navigation-Additional Income Page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I validate I am on the "Additional income" page
-    Then I wait for 50 milliseconds
     And I verify the header for Primary Member on the Additional Income page in "English"
 
   @SLER-686 @PageNavigationAdditionalIncomePage @TAMSmoke
