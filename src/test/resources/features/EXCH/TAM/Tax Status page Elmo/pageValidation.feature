@@ -684,6 +684,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |  Anna    |  Marie    |  Bean   |      |02162020|
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 11
+    And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |     SNGL        |           0            |
