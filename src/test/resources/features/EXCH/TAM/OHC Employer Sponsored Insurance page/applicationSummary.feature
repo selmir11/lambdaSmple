@@ -259,7 +259,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-973 @test
+  @SLER-973
   Scenario: SLER-973 I want changes to my job's ESI family information and see changes made to ESI information in the OBO Application Details
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "04161981", "Female" and applying "Yes"
@@ -959,7 +959,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
 
-  @SLER-1018 @test
+  @SLER-1018
   Scenario: SLER-1018 I want to show and hide changes for ESI information in the OBO Application Details Multi Members
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "04161981", "Female" and applying "Yes"

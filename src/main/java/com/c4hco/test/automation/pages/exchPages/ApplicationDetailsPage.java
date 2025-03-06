@@ -396,36 +396,6 @@ public class ApplicationDetailsPage {
         softAssert.assertAll();
     }
 
-//    private static String getString(String name) {
-//        if (name == null || name.trim().isEmpty()) {
-//            return "";
-//        }
-//
-//        String memberFullName = "";
-//
-//        switch (name) {
-//            case "Member1FullName":
-//                if (SharedData.getMembers().size() > 0) {
-//                    memberFullName = SharedData.getMembers().get(0).getCompleteFullName();
-//                }
-//                break;
-//            case "Member2FullName":
-//                if (SharedData.getMembers().size() > 1) {
-//                    memberFullName = SharedData.getMembers().get(1).getCompleteFullName();
-//                }
-//                break;
-//            case "Member3FullName":
-//                if (SharedData.getMembers().size() > 2) {
-//                    memberFullName = SharedData.getMembers().get(2).getCompleteFullName();
-//                }
-//                break;
-//            default:
-//                break;
-//        }
-//        return memberFullName;
-//    }
-
-
     private static String extractTextFromPDF(Path pdfPath) throws IOException {
         try (PDDocument document = Loader.loadPDF(new File(String.valueOf(pdfPath)))) {
             PDFTextStripper pdfStripper = new PDFTextStripper();
