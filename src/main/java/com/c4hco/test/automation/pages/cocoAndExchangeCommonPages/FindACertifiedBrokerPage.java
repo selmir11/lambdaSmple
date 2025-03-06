@@ -634,4 +634,9 @@ public class FindACertifiedBrokerPage {
         continueWithMyOwn.click();
 
     }
+
+    public void SearchAuthorizedBrokerGenerated() {
+        basicActions.waitForElementToBePresent(searchContainer,60);
+        searchContainer.sendKeys(SharedData.getAgencyOwner().getLicense());
+    }
 }
