@@ -151,6 +151,7 @@ public class EmploymentSummaryPage {
 
 
     public void clickContinue(){
+        basicActions.wait(500);
         basicActions.waitForElementToDisappear( spinner,100 );
         basicActions.waitForElementToBePresentWithRetries(btnContinue,30);
         basicActions.scrollToElement(btnContinue);

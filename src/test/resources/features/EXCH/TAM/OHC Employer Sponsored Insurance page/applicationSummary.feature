@@ -152,7 +152,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Employer Sponsored Insurance|     Plain    |    Yellow   |          No          |        Yellow         |                    300                      |       Yellow        |       Yes        |      Plain       |             Yes                |     Plain      |   Today    |    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          No          |                    300                      |       Yes        |             Yes                |   Today    |        No        |
@@ -205,7 +204,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |          No          |         Plain         |                    300                      |       Plain         |       Yes        |      Plain       |             No                 |    Yellow      |    None    |      Red     |     None         |         Red         |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          No          |                    300                      |       Yes        |             No                 |            |                  |
@@ -254,7 +252,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |          No          |         Plain         |                    300                      |       Plain         |       No         |      Yellow      |               None             |      Red       |            |              |                  |                     |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          No          |                    300                      |       No         |                                |            |                  |
@@ -743,12 +740,10 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -773,13 +768,11 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|         Yes          |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "Spanish"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|         Yes          |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
@@ -1206,12 +1199,10 @@ Feature: Tests related to the Application Summary/Detail for ESI
     |          OHC Type          |Currently Enrolled|  End date  |
     |Employer Sponsored Insurance|       Yes        |   Today    |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |       Coverage Type    	  |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|       Yes       |    Today    |
     And I change the language from header to "Spanish NonElmo"
-    Then I wait for 50 milliseconds
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
@@ -1219,7 +1210,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       Sí         |   Today    |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|         Sí       |    Today    |
@@ -1270,7 +1260,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       Yes        |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|        Yes       |             |
@@ -1282,7 +1271,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       Sí         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|        Sí        |             |
@@ -1330,7 +1318,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|       No         |             |
@@ -1342,7 +1329,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|       No         |             |

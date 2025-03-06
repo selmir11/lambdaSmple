@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalP
 import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,22 +21,25 @@ public class CommunicationPreferencesPage {
     @FindBy(id = "l_communication_preferences")
     WebElement communicationPreferencesTitle;
 
-    @FindBy(id = "l_email")
+    @FindBy(xpath = "//label[@for='email']")
     WebElement emailFieldTitle;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement emailField;
 
-    @FindBy(id = "emailFormatValidation")
+    @FindBy(id = "valid-email")
+    WebElement emailFieldValidEmailError;
+
+    @FindBy(id = "mf-email")
     WebElement emailFieldRequiredError;
 
-    @FindBy(id = "l_primaryContact")
+    @FindBy(xpath = "//label[@for='phoneNumber']")
     WebElement phoneNumberFieldTitle;
 
-    @FindBy(id = "primaryPhoneNumber")
+    @FindBy(xpath = "//input[@id='primaryPhoneNumber']")
     WebElement phoneNumberField;
 
-    @FindBy(id = "phoneRequiredValidation")
+    @FindBy(id = "valid-num")
     WebElement phoneNumberFieldRequiredError;
 
     private BasicActions basicActions;
@@ -83,11 +87,20 @@ public class CommunicationPreferencesPage {
 
     public void validateRequiredFieldsErrorMessages(){
         basicActions.waitForElementToBePresent(emailField,10);
+        emailField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        phoneNumberField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        softAssert.assertEquals(emailFieldRequiredError.getText(),"Email is required");
+        softAssert.assertEquals(phoneNumberFieldRequiredError.getText(),"Please enter Phone Number");
+        softAssert.assertAll();
+    }
+
+    public void validateValidErrorMessages(){
+        basicActions.waitForElementToBePresent(emailField,10);
         emailField.clear();
-        emailField.sendKeys("a");
+        emailField.sendKeys("a$");
         phoneNumberField.clear();
         phoneNumberField.sendKeys("32");
-        softAssert.assertEquals(emailFieldRequiredError.getText(),"Enter valid email");
+        softAssert.assertEquals(emailFieldValidEmailError.getText(),"Enter valid email");
         softAssert.assertEquals(phoneNumberFieldRequiredError.getText(),"Valid phone number is required");
         softAssert.assertAll();
     }

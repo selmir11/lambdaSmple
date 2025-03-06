@@ -180,7 +180,6 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify "Family Offered" is "Yes" on the ESI page
     And I verify offered family amount is "650.00" on the ESI page
-    Then I wait for 500 milliseconds
     Then I verify enrollment status for the members
       |   enrollmentStatus    |
       |      Enrolled         |
