@@ -457,7 +457,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectWhoWillBeClaimed(String memPrefix) {
-        basicActions.waitForElementToDisappear( spinner, 30);
+        basicActions.waitForElementToDisappear( spinner, 50);
         WebElement selectMember = basicActions.getDriver().findElement(By.xpath("//span[contains(text(), '" + memPrefix + "')]"));
         selectMember.click();
     }

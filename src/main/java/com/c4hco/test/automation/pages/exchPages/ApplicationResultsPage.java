@@ -17,13 +17,19 @@ import java.util.List;
 public class ApplicationResultsPage {
     SoftAssert softAssert = new SoftAssert();
 
+    private BasicActions basicActions;
 // TO DO: Update all the below locators
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
     @FindBy(css = ".btn-c4primary")
     WebElement continueBtn;
     @FindBy(xpath = "//*[contains(text(),\"Here's what your household qualifies\")]")
     WebElement headerText;
+    @FindBy(xpath = "//*[contains(text(),\"Usted y/o su familia califica para lo siguiente\")]")
+    WebElement headerTextSP;
     @FindBy(xpath = "//*[contains(text(),\"you do not qualify for a health plan\")]")
     WebElement youDoNotQualify;
     @FindBy(xpath = "//*[contains(text(),\"Submit a new application if your situation changes\")]")
@@ -79,7 +85,13 @@ public class ApplicationResultsPage {
     @FindBy(css = "button.back-button-link")
     WebElement backButton;
 
-    private BasicActions basicActions;
+    @FindBy(id ="QualifedHealthPlanbtn")
+    WebElement linkQualifiedPlan;
+
+    @FindBy(id ="HealthFirstCOCHPbtn")
+    WebElement linkHealthFirst;
+
+
 
     public ApplicationResultsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -247,6 +259,36 @@ public class ApplicationResultsPage {
         softAssert.assertAll();
     }
 
+    public void iValidateApplicationResultsPage(String language){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        switch (language) {
+            case "EnglishQHP":
+                validateApplciationResultsPageEnglish();
+                break;
+            case "SpanishQHP":
+                validateApplciationResultsPageSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+        }
+    }
 
+    public void validateApplciationResultsPageEnglish(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerText,20  );
+        softAssert.assertEquals( headerText.getText(), "Here's what your household qualifies for" );
+        softAssert.assertEquals( applicationSummaryLnk.getText(),"View Application Summary >" );
+        softAssert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
+        softAssert.assertAll();
+    }
+
+    public void validateApplciationResultsPageSpanish(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerTextSP,20  );
+        softAssert.assertEquals( headerTextSP.getText(), "Usted y/o su familia califica para lo siguiente" );
+        softAssert.assertEquals( applicationSummaryLnk.getText(),"Ver resumen de la solicitud >" );
+        softAssert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado o CHP+, si el Gobierno del estado de Colorado decide que usted califica");
+        softAssert.assertAll();
+    }
 
 }

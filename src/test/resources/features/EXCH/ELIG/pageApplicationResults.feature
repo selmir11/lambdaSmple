@@ -105,14 +105,12 @@ Feature: Testing will verify text and navigation for Application Results Page
 
     Then I validate I am on the "Application Results" page
 
-
-    And I click continue on application results page
-
-
-    #And I validate the "English" text on the Application Results page
+    And I validate the "English" text on the Application Results page
     #And I change the language from header to "Spanish NonElmo"
     #And I validate the "Spanish" text on the Application Results page
     #And I change the language from header to "English NonElmo"
+
+    #And I click continue on application results page
     #And I click on Sign Out in the Header for "NonElmo"
 
 
