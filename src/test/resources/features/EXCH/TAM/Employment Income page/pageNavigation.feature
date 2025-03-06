@@ -531,6 +531,41 @@ Feature: Page Text-Income Opt Out Page
     And I validate the employee income details row count 0
 
 
+  @SLER-2301
+  Scenario: [RT-2600] As a Exch user on the Employment Summary page, I want to see the employment summary list presented in the order it was added so that I can review and update
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "200000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "200000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "200000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "200000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate company names in employment summary page
+    Then I click on Remove job "Third" entered for Primary on the Employment Summary Page
+    And I validate company names in employment summary page
+    Then I click on Remove job "First" entered for Primary on the Employment Summary Page
+    And I validate company names in employment summary page
+    And I click on Sign Out in the Header for "Elmo"
+
 
 
 
