@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -24,7 +25,10 @@ public class RaceAndEthnicityPage {
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
-    @FindBy(id = "Race Ethnicity-SaveAndContinue")
+    @FindAll({
+            @FindBy(id = "saveAndContinue"), // Staging
+            @FindBy(id = "Race Ethnicity-SaveAndContinue") // QA EAVS
+    })
     WebElement saveAndContinueButton;
 
     @FindBy(id = "Race Ethnicity-GoBack")
