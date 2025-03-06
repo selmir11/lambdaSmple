@@ -74,6 +74,11 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPageSteps {
    public void applyingForCoverage(String applying) {
       tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.applyingForCoverage(applying);
    }
+   @And("I update member date of birth to {string}")
+   public void updateMemberDOB(String dateOfBirth) {
+      tellUsAboutAdditionalMembersOfYourHouseholdCoCoPage.updateMemberDOB(dateOfBirth);
+   }
+
 
 
 }

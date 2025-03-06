@@ -89,6 +89,12 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         MemberDOB.sendKeys(dateOfBirth);
     }
 
+    public void updateMemberDOB(String dateOfBirth){
+        basicActions.waitForElementToBeClickable(MemberDOB, 30);
+        MemberDOB.clear();
+        MemberDOB.sendKeys(dateOfBirth);
+    }
+
     public void clickSaveandContinueButton() {
         basicActions.waitForElementToBeClickable(SaveandContinueButton, 30);
         SaveandContinueButton.click();
