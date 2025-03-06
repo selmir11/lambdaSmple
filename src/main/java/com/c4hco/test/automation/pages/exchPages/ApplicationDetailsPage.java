@@ -345,17 +345,17 @@ public class ApplicationDetailsPage {
             switch (relation) {
                 case "Enrolled":
                     if (!name.isEmpty()) {
-                        enrolledMembers.add(getString(name));
+                        enrolledMembers.add(basicActions.getCompleteFullNameWithPrefix(name));
                     }
                     break;
                 case "Offered a plan but not enrolled":
                     if (!name.isEmpty()) {
-                        offeredMembers.add(getString(name));
+                        offeredMembers.add(basicActions.getCompleteFullNameWithPrefix(name));
                     }
                     break;
                 case "No option to enroll":
                     if (!name.isEmpty()) {
-                        noOptionMembers.add(getString(name));
+                        noOptionMembers.add(basicActions.getCompleteFullNameWithPrefix(name));
                     }
                     break;
                 default:
@@ -396,34 +396,34 @@ public class ApplicationDetailsPage {
         softAssert.assertAll();
     }
 
-    private static String getString(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            return "";
-        }
-
-        String memberFullName = "";
-
-        switch (name) {
-            case "Member1FullName":
-                if (SharedData.getMembers().size() > 0) {
-                    memberFullName = SharedData.getMembers().get(0).getCompleteFullName();
-                }
-                break;
-            case "Member2FullName":
-                if (SharedData.getMembers().size() > 1) {
-                    memberFullName = SharedData.getMembers().get(1).getCompleteFullName();
-                }
-                break;
-            case "Member3FullName":
-                if (SharedData.getMembers().size() > 2) {
-                    memberFullName = SharedData.getMembers().get(2).getCompleteFullName();
-                }
-                break;
-            default:
-                break;
-        }
-        return memberFullName;
-    }
+//    private static String getString(String name) {
+//        if (name == null || name.trim().isEmpty()) {
+//            return "";
+//        }
+//
+//        String memberFullName = "";
+//
+//        switch (name) {
+//            case "Member1FullName":
+//                if (SharedData.getMembers().size() > 0) {
+//                    memberFullName = SharedData.getMembers().get(0).getCompleteFullName();
+//                }
+//                break;
+//            case "Member2FullName":
+//                if (SharedData.getMembers().size() > 1) {
+//                    memberFullName = SharedData.getMembers().get(1).getCompleteFullName();
+//                }
+//                break;
+//            case "Member3FullName":
+//                if (SharedData.getMembers().size() > 2) {
+//                    memberFullName = SharedData.getMembers().get(2).getCompleteFullName();
+//                }
+//                break;
+//            default:
+//                break;
+//        }
+//        return memberFullName;
+//    }
 
 
     private static String extractTextFromPDF(Path pdfPath) throws IOException {
