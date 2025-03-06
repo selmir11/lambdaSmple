@@ -567,8 +567,9 @@ public class AdminPortalManagePlansPage {
             String[] parts = memberCoverageStrtDate.split(":");
             String memberNo = parts[0];
             String coverageStartDateValue = parts[1];
+            String updateDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(coverageStartDateValue), "yyyy-MM-dd", "MM/dd/yyyy");
             String coverageStartDatemem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
-            basicActions.updateElementWithRetries(coverageStartDatemem, coverageStartDateValue);
+            basicActions.updateElementWithRetries(coverageStartDatemem, updateDate);
         }
     }
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
@@ -576,6 +577,7 @@ public class AdminPortalManagePlansPage {
             String[] parts = memberFinancialStrtDate.split(":");
             String memberNo = parts[0];
             String financialStartDateValue = parts[1];
+            String updateDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(financialStartDateValue), "yyyy-MM-dd", "MM/dd/yyyy");
 
             basicActions.scrollToElement(financialStartDate);
             basicActions.waitForElementToBePresent(financialStartDate, 30);
@@ -584,7 +586,7 @@ public class AdminPortalManagePlansPage {
             WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + memberNo + "']//input[1]"));
             financialStartDateMem.click();
             financialStartDateMem.clear();
-            financialStartDateMem.sendKeys(financialStartDateValue);
+            financialStartDateMem.sendKeys(updateDate);
 
         }
     }

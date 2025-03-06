@@ -447,7 +447,7 @@ public class WelcomePage {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
-        List<String> memberNamesList = basicActions.getAllMemNames();
+        List<String> memberNamesList = basicActions.getAllMemCompleteNames();
         List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
         Collections.sort(memberNamesList);
         Collections.sort(memberNamesListWelcomePage);
