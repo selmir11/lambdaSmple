@@ -1555,5 +1555,6 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     public void verifyLanguageTextInESIPage(List<String> dataText) {
         softAssert.assertEquals(OhcHeader.getText(), dataText.get(1) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName(), "Page Header 1 Not matching");
         softAssert.assertEquals(OhcEsiHeader.getText(), dataText.get(2), "Page Header 2 Not matching");
+        softAssert.assertAll();
     }
 }
