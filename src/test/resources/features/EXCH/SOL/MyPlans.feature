@@ -139,7 +139,7 @@ Feature: My Plans Page test
     Then I click on Future Plans
     Then I click on Current Plans
 
-  @SLER-2309 @CurrentFuturePlansTabs
+  @SLER-2309 @CancelMedicalPlan
   Scenario: SLER-2309 Navigate to My Plans page and cancel a medical plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
