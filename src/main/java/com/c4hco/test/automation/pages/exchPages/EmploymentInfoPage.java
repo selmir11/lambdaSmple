@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+
 
 
 public class EmploymentInfoPage {
@@ -189,6 +192,9 @@ public class EmploymentInfoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinnerOverlay;
+
+    @FindBy(xpath = "//label[@for='ELIG-Exch-EmploymentIncomeJob-IsEmployed']")
+    WebElement employmentStatusLabel;
 
 
     public void clickEditUpdateLink(int employer) {
@@ -921,6 +927,18 @@ public class EmploymentInfoPage {
             Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
         }
     }
+
+    public void verifyNoEmployedButtonIsEnabled() {
+        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
+        softAssert.assertTrue(btnNoEmployed.isEnabled(), "'No Employment' button should be enabled");
+    }
+
+    public void validateEmploymentStatusLabelAbsence() {
+        softAssert.assertTrue(basicActions.waitForElementToDisappear(employmentStatusLabel,20), "Employment Status Label is present, but it should NOT be.");
+        softAssert.assertAll();
+    }
+
+
 }
 
 
