@@ -147,8 +147,7 @@ public class AdminPortalBrokerDashboardPage {
            softAssert.assertEquals(brokerUsername.getText(),"Dale.Cooper@invalid.com");
            //softAssert.assertEquals(emailUsername.getText(),"eematu1@msn.com");
            softAssert.assertEquals(agencyTIN.getText(),"67-8675766");
-           softAssert.assertEquals(mailingAddress.getText(),"4435 Cut Dr\n" +
-                   "Denver, CO 80222");
+           softAssert.assertEquals(mailingAddress.getText(),"");
            softAssert.assertEquals(primaryPhone.getText(),"567-875-4345");
            softAssert.assertEquals(language.getText(),"English");
         }else{

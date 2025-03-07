@@ -46,6 +46,7 @@ public class MyDocumentsPage {
             @FindBy(css = ".primary-header-container > h2"), // Staging
             @FindBy(xpath = "//div[contains(@class, 'header-1')]") // QA EAVS
     })
+    @FindBy(css = "div.header-1.text-center.ng-star-inserted")
     WebElement myDocumentsTitle;
 
     @FindBy(css = ".document-content-select-double-chevrons-container")
@@ -115,7 +116,7 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
     WebElement btnCargarotrodocumento;
 
-    @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
+    @FindBy(css = ".modal-title")
     WebElement txtCargarUnDocumento;
 
     @FindBy(xpath = "//span[normalize-space()='Díganos m\u00E1s sobre este documento']")
