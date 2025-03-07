@@ -571,9 +571,8 @@ public class AdminPortalManagePlansPage {
             String[] parts = memberCoverageStrtDate.split(":");
             String memberNo = parts[0];
             String coverageStartDateValue = parts[1];
-            String updateDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(coverageStartDateValue), "yyyy-MM-dd", "MM/dd/yyyy");
             String coverageStartDatemem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
-            basicActions.updateElementWithRetries(coverageStartDatemem, updateDate);
+            basicActions.updateElementWithRetries(coverageStartDatemem, coverageStartDateValue);
         }
     }
     public void memberCoverageStrtDateNew(List<String> memberCoverageStrtDtList) {
@@ -594,8 +593,8 @@ public class AdminPortalManagePlansPage {
             }
         }
     }
-    public void memberFinancialStrtDateNew(List<String> memberCoverageStrtDtList) {
-        Map<String ,String> memberUpdates = memberCoverageStrtDtList.stream()
+    public void memberFinancialStrtDateNew(List<String> memberFinancialStrtDtList) {
+        Map<String ,String> memberUpdates = memberFinancialStrtDtList.stream()
                 .map(entry -> entry.split(":"))
                 .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
         for (WebElement nameElement : MedicalPlanMembersDetailsContainer){
@@ -616,7 +615,6 @@ public class AdminPortalManagePlansPage {
             String[] parts = memberFinancialStrtDate.split(":");
             String memberNo = parts[0];
             String financialStartDateValue = parts[1];
-            String updateDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(financialStartDateValue), "yyyy-MM-dd", "MM/dd/yyyy");
 
             basicActions.scrollToElement(financialStartDate);
             basicActions.waitForElementToBePresent(financialStartDate, 30);
@@ -625,7 +623,7 @@ public class AdminPortalManagePlansPage {
             WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + memberNo + "']//input[1]"));
             financialStartDateMem.click();
             financialStartDateMem.clear();
-            financialStartDateMem.sendKeys(updateDate);
+            financialStartDateMem.sendKeys(financialStartDateValue);
 
         }
     }
