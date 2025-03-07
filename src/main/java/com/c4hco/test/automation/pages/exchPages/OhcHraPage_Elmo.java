@@ -716,7 +716,7 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageDataEnglish(String dataToVerify) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
         switch (dataToVerify) {
             case "First Section":
                 verifyHraPageFirstSectionDataEnglish();
