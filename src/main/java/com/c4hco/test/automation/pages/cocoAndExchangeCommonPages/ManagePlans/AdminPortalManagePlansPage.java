@@ -13,6 +13,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import java.math.BigDecimal;
         import java.time.Year;
         import java.util.*;
+        import java.util.stream.Collectors;
 
 public class AdminPortalManagePlansPage {
 
@@ -405,6 +406,9 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[2]")
     WebElement SESEHBError;
 
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='member-details-grid']//div[contains(@id,'firstName_')]")
+    List<WebElement> MedicalPlanMembersDetailsContainer;
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -570,6 +574,41 @@ public class AdminPortalManagePlansPage {
             String updateDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(coverageStartDateValue), "yyyy-MM-dd", "MM/dd/yyyy");
             String coverageStartDatemem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
             basicActions.updateElementWithRetries(coverageStartDatemem, updateDate);
+        }
+    }
+    public void memberCoverageStrtDateNew(List<String> memberCoverageStrtDtList) {
+        Map<String ,String> memberUpdates = memberCoverageStrtDtList.stream()
+                .map(entry -> entry.split(":"))
+                .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
+        basicActions.waitForElementListToBePresentWithRetries(MedicalPlanMembersDetailsContainer,15);
+        for (WebElement nameElement : MedicalPlanMembersDetailsContainer){
+            String memberFullName = nameElement.getText().trim();
+            String nameElementID = nameElement.getAttribute("id");
+            String index = nameElementID.replace("firstName_","");
+            String matchingname = memberUpdates.keySet().stream().filter(memberFullName::startsWith).findFirst().orElse(null);
+            String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
+            String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
+            if (matchingname!=null){
+                 String coverageStartDateElement = "//div[@class='coverage-details-grid']//div[@id='coverageStartDate_"+index+"']//input[@type='date']";
+                 basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
+            }
+        }
+    }
+    public void memberFinancialStrtDateNew(List<String> memberCoverageStrtDtList) {
+        Map<String ,String> memberUpdates = memberCoverageStrtDtList.stream()
+                .map(entry -> entry.split(":"))
+                .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
+        for (WebElement nameElement : MedicalPlanMembersDetailsContainer){
+            String memberFullName = nameElement.getText().trim();
+            String nameElementID = nameElement.getAttribute("id");
+            String index = nameElementID.replace("firstName_","");
+            String matchingname = memberUpdates.keySet().stream().filter(memberFullName::startsWith).findFirst().orElse(null);
+            String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
+            String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
+            if (matchingname!=null){
+                String financialStartDateElement = "//div[@class='financial-details-grid']//div[@id='financialStartDate_"+index+"']//input[@type='date']";
+                basicActions.updateElementWithRetries(financialStartDateElement, updatedDate);
+            }
         }
     }
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
