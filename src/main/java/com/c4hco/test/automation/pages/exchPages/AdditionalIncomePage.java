@@ -1215,4 +1215,9 @@ public class AdditionalIncomePage {
             hdr_Income.click();
         }
     }
+    public void clickOnBackButton() {
+        basicActions.waitForElementToBePresent(backBtn,20);
+        backBtn.click();
+    }
+
 }
