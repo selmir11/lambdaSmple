@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -24,7 +25,10 @@ public class RaceAndEthnicityPage {
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
-    @FindBy(id = "saveAndContinue")
+    @FindAll({
+            @FindBy(id = "saveAndContinue"), // Staging
+            @FindBy(id = "Race Ethnicity-SaveAndContinue") // QA EAVS
+    })
     WebElement saveAndContinueButton;
 
     @FindBy(id = "Race Ethnicity-GoBack")
@@ -197,7 +201,7 @@ public class RaceAndEthnicityPage {
         softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getText(), "Please fill in the blank with your race and ethnicity");
         softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getCssValue("font-size"), "14px");
         softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getCssValue("color"), "rgba(43, 49, 60, 1)");
-        softAssert.assertEquals(goBackButton.getText(), "< Go back");
+        softAssert.assertEquals(goBackButton.getText(), "Go back");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
         softAssert.assertAll();
     }
@@ -266,7 +270,7 @@ public class RaceAndEthnicityPage {
         softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getText(), "Complete el espacio en blanco con su raza y origen \u00E9tnico");
         softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getCssValue("font-size"), "14px");
         softAssert.assertEquals(RaceAndEthnicityExamplesText.get(7).getCssValue("color"), "rgba(43, 49, 60, 1)");
-        softAssert.assertEquals(goBackButton.getText(), "< Volver");
+        softAssert.assertEquals(goBackButton.getText(), "Volver");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
         softAssert.assertAll();
     }

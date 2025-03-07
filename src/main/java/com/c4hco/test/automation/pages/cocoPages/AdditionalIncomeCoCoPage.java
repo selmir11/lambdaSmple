@@ -696,6 +696,12 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 softAssert.assertEquals(pensionFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
+            case "Untaxed Foreign Income":
+                basicActions.waitForElementToBePresent(untaxedForeignAmount,20);
+                softAssert.assertEquals(untaxedForeignAmount.getAttribute("value"), Amount);
+                softAssert.assertEquals(untaxedForeignFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
         }

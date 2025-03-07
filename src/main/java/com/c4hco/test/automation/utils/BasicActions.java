@@ -20,15 +20,13 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import java.util.Comparator;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -591,7 +589,7 @@ public class BasicActions {
         return true;
     }
 
-    public boolean elementExists(WebDriver driver, By locator) {
+    public boolean elementExists( By locator) {
         return !driver.findElements(locator).isEmpty();
     }
 
@@ -949,9 +947,6 @@ public class BasicActions {
 
     public String getMemberId(String memPrefix){
         String memId = "";
-        if (memPrefix.equals("Primary")) {
-            memId = SharedData.getPrimaryMemberId();
-        } else {
             List<MemberDetails> members = getAllMem();
             for (MemberDetails mem : members) {
                 if (mem.getFirstName().contains(memPrefix)) {
@@ -959,7 +954,6 @@ public class BasicActions {
                     break;
                 }
             }
-        }
         return memId;
     }
 
@@ -1209,8 +1203,6 @@ public class BasicActions {
     public void setMemberIdFromUrl(){
         String memberId = getMemberIDFromURL();
         SharedData.getPrimaryMember().setMemberId(memberId);
-        SharedData.setPrimaryMemberId(memberId);
-
     }
 
     public String firstDateOfTheMonthAfterNext() {

@@ -40,6 +40,10 @@ public class DbSteps {
     public void iValidateBookOfBusinessQ(String eventType) {
         dbValidations.validateBookOfBusinessQ(eventType);
     }
+    @And("I verify the BOB entry for {string} with {string} as event type")
+    public void iValidateBoBMedical(String coverageType, String eventType){
+        dbValidations.validateBookOfBusinessQMedical(coverageType,eventType);
+    }
 
     @And("I verify the account holder Name in BOB DB")
     public void iVerifyTheAccountHolderNameInBOBDB() {
@@ -344,6 +348,9 @@ public class DbSteps {
         dbValidations.validateFDSHRetry(expectedValues);
     }
 
+    @Then("I validate the Income details in DB")
+    public void iValidateIncomeDetails(List<Map<String, String>> expectedValues){dbValidations.validateIncomeDetails(expectedValues);}
+
     @And("I validate the employee income details row count {int}")
     public void ivalidateMemberRowCount(int expectedRowCount) {
         dbValidations.validateMemberRowCount(expectedRowCount);
@@ -353,6 +360,7 @@ public class DbSteps {
     public void iValidateTheDeduction(String kind, String amount, String frequency) {
         dbValidations.validateDeductionAmount(kind, amount, frequency);
     }
+
 
 
 }

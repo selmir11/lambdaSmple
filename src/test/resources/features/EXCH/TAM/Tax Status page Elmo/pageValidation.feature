@@ -393,7 +393,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will you be claimed as dependent question
@@ -425,7 +424,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will you be claimed as dependent question
@@ -508,7 +506,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 8
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "Yes" for will file tax return question
@@ -525,7 +522,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 10
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select the "Single" tax filing option on the Tax Status Elmo page
@@ -547,7 +543,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 12
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I select "No" for will claim dependents question
@@ -563,7 +558,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status Elmo page
 #    Step 14
     Then I click Go back on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
     And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
     Then I check Exceptional circumstances checkbox on the Tax Status Elmo page
@@ -690,6 +684,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |  Anna    |  Marie    |  Bean   |      |02162020|
     Then I click Save and Continue on Tax Status Elmo page
 #    Step 11
+    And I wait for 5000 milliseconds
     And I verify the tax return data for "Spouse" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
       |    FILER      |                              |     SNGL        |           0            |
@@ -867,7 +862,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "English"
 #    Step 5 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 6 - Primary
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
@@ -881,7 +875,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 7 - Primary
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
     And I verify error messages with date "not valid" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "English"
@@ -901,7 +894,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "English"
 #    Step 11 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 12 - Primary
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
@@ -915,7 +907,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 13 - Primary
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
     And I verify error messages with date "not valid" for filing jointly with enter the name question on the Tax Status Elmo page data in "English"
@@ -934,7 +925,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
 #    Step 17 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 18 - Primary
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
@@ -948,7 +938,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 19 - Primary
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
     And I verify error messages with date "not valid" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
@@ -982,7 +971,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
 #    Step 3/4 - Spouse
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
@@ -992,7 +980,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "English"
 #    Step 5 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 6 - Spouse
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
@@ -1006,7 +993,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 7 - Spouse
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
     And I verify error messages with date "not valid" for who will claim as dependent enter the name question on the Tax Status Elmo page data in "English"
@@ -1026,7 +1012,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "English"
 #    Step 11 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 12 - Spouse
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
@@ -1040,7 +1025,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for filing jointly with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 13 - Spouse
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
     And I verify error messages with date "not valid" for filing jointly with enter the name question on the Tax Status Elmo page data in "English"
@@ -1059,7 +1043,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
 #    Step 17 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 18 - Spouse
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
@@ -1073,7 +1056,6 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify error messages with date "required" for who will be claimed with enter the name question on the Tax Status Elmo page data in "Spanish"
 #    Step 19 - Spouse
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
     Then I enter date of "Future 1" for Someone else's DOB on Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
     And I verify error messages with date "not valid" for who will be claimed with enter the name question on the Tax Status Elmo page data in "English"
@@ -1109,23 +1091,18 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify will you be claimed error on the Tax Status Elmo page for "Primary" in "English"
 #    Step 4 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify will you be claimed error on the Tax Status Elmo page for "Primary" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 5 - Primary
     Then I select "Yes" for will you be claimed as dependent question
-    And I wait for 50 milliseconds
     And I verify no errors show on the Tax Status Elmo page
 #    Step 6 - Primary
     Then I click Save and Continue on Tax Status Elmo page
     And I verify who will claim you error on the Tax Status Elmo page for "Primary" in "English"
 #    Step 7 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify who will claim you error on the Tax Status Elmo page for "Primary" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 8 - Primary
     Then I select "Spouse" for who will claim as dependent question
     And I verify no errors show on the Tax Status Elmo page
@@ -1135,10 +1112,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify file tax return error on the Tax Status Elmo page for "Primary" in "English"
 #    Step 10 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify file tax return error on the Tax Status Elmo page for "Primary" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 11 - Primary
     Then I select "Yes" for will file tax return question
     And I verify no errors show on the Tax Status Elmo page
@@ -1147,10 +1122,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify select tax filing status error on the Tax Status Elmo page in "English"
 #    Step 13 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify select tax filing status error on the Tax Status Elmo page in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 14 - Primary
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
     And I verify no errors show on the Tax Status Elmo page
@@ -1159,10 +1132,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify who will you be filing jointly with error on the Tax Status Elmo page for "Primary" in "English"
 #    Step 16 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify who will you be filing jointly with error on the Tax Status Elmo page for "Primary" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 17 - Primary
     Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
     And I verify no errors show on the Tax Status Elmo page
@@ -1171,10 +1142,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify will you claim dependents error on the Tax Status Elmo page for "Primary" in "English"
 #    Step 19 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify will you claim dependents error on the Tax Status Elmo page for "Primary" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 20 - Primary
     Then I select "Yes" for will claim dependents question
     And I verify no errors show on the Tax Status Elmo page
@@ -1183,10 +1152,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify who will be claimed error on the Tax Status Elmo page for "Primary" in "English"
 #    Step 22 - Primary
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify who will be claimed error on the Tax Status Elmo page for "Primary" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 23 - Primary
     Then I select "Yes" for will claim dependents question
     And I verify no errors show on the Tax Status Elmo page
@@ -1213,7 +1180,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
     Then I validate I am on the "Tax status Elmo" page
 #    Step 3 - Spouse
     And I verify the header for "Spouse" Member on the Tax Status Elmo page in "English"
@@ -1221,23 +1187,18 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify will you be claimed error on the Tax Status Elmo page for "Spouse" in "English"
 #    Step 4 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify will you be claimed error on the Tax Status Elmo page for "Spouse" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 5 - Spouse
     Then I select "Yes" for will you be claimed as dependent question
-    And I wait for 50 milliseconds
     And I verify no errors show on the Tax Status Elmo page
 #    Step 6 - Spouse
     Then I click Save and Continue on Tax Status Elmo page
     And I verify who will claim you error on the Tax Status Elmo page for "Spouse" in "English"
 #    Step 7 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify who will claim you error on the Tax Status Elmo page for "Spouse" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 8 - Spouse
     Then I select "Primary" for who will claim as dependent question
     And I verify no errors show on the Tax Status Elmo page
@@ -1247,10 +1208,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify file tax return error on the Tax Status Elmo page for "Spouse" in "English"
 #    Step 10 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify file tax return error on the Tax Status Elmo page for "Spouse" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 11 - Spouse
     Then I select "Yes" for will file tax return question
     And I verify no errors show on the Tax Status Elmo page
@@ -1259,10 +1218,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify select tax filing status error on the Tax Status Elmo page in "English"
 #    Step 13 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify select tax filing status error on the Tax Status Elmo page in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 14 - Spouse
     Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
     And I verify no errors show on the Tax Status Elmo page
@@ -1271,10 +1228,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify who will you be filing jointly with error on the Tax Status Elmo page for "Spouse" in "English"
 #    Step 16 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify who will you be filing jointly with error on the Tax Status Elmo page for "Spouse" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 17 - Spouse
     Then I select "Primary" as filing jointly with option on the Tax Status Elmo page
     And I verify no errors show on the Tax Status Elmo page
@@ -1283,10 +1238,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify will you claim dependents error on the Tax Status Elmo page for "Spouse" in "English"
 #    Step 19 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify will you claim dependents error on the Tax Status Elmo page for "Spouse" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 20 - Spouse
     Then I select "Yes" for will claim dependents question
     And I verify no errors show on the Tax Status Elmo page
@@ -1295,10 +1248,8 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify who will be claimed error on the Tax Status Elmo page for "Spouse" in "English"
 #    Step 22 - Spouse
     And I change the language from header to "Spanish"
-    And I wait for 50 milliseconds
     And I verify who will be claimed error on the Tax Status Elmo page for "Spouse" in "Spanish"
     And I change the language from header to "English"
-    And I wait for 50 milliseconds
 #    Step 23 - Spouse
     Then I select "Yes" for will claim dependents question
     And I verify no errors show on the Tax Status Elmo page

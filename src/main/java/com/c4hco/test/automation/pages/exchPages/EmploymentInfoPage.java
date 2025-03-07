@@ -88,6 +88,9 @@ public class EmploymentInfoPage {
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcons;
 
+    @FindBy(xpath = "//*[@class='company-column-value']")
+    List<WebElement> Companynames;
+
     @FindBy(css = ".drawer-heading .body-text-1")
     WebElement helpDrawerHeaderHelp;
 
@@ -303,9 +306,14 @@ public class EmploymentInfoPage {
 
     public void genericEmploymentInfo(String addressline1, String city, String state, String zipcode, String Salary, String Frequency) {
 
-
         basicActions.waitForElementToBePresent(txtHeaderPart1, 20);
         String companyName = getUniqueString(8) + "Company";
+        List<String> employerNames = SharedData.getCompanyname();
+        if (employerNames == null) {
+            employerNames = new ArrayList<>();
+        }
+        employerNames.add(companyName);
+        SharedData.setCompanyname(employerNames);
         String name = txtHeaderPart1.getText();
 
         MemberDetails primaryMem = SharedData.getPrimaryMember();
@@ -337,6 +345,7 @@ public class EmploymentInfoPage {
 
         dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
+
     }
 
     public void enterEmploymentIncome(String Salary) {
@@ -921,6 +930,22 @@ public class EmploymentInfoPage {
             Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
         }
     }
+
+
+
+    public void validateCompanyName() {
+        basicActions.wait(500);
+        basicActions.waitForElementListToBePresent(Companynames, 30);
+        List<String> actualList = new ArrayList<>();
+        for (WebElement element : Companynames) {
+            actualList.add(element.getText().trim());
+        }
+        List<String> expectedList = SharedData.getCompanyname();
+        softAssert.assertEquals(actualList, expectedList, "Company names do not match! expected: "+expectedList+ " actual: "+actualList );
+        softAssert.assertAll();
+    }
+
+
 }
 
 

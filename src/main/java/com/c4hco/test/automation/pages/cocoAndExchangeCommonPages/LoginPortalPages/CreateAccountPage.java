@@ -218,6 +218,8 @@ public class CreateAccountPage {
     WebElement invitationErrorMsg;
     @FindBy(xpath = "//*[@id=\"x_programManagerActivateAccountNoticeBody\"]/p[3]/span")
     WebElement invitationPMCode;
+    @FindBy(xpath = "//*[@id='x_agencyAddsAuthorizedRepNoticeBody']/p[3]/span[2]")
+    WebElement invitationCodeAdminStaff;
     @FindBy(xpath = "//input[@id='invitation']")
     WebElement invitationCodeInput;
     @FindBy(css = "#email-label")
@@ -986,6 +988,11 @@ public class CreateAccountPage {
         primaryUserCheckbox.click();
         termsOfUseCheckbox.click();
         submitButton.click();
+    }
+
+    public void saveInviteCodeAdminStaffAccountCreation() {
+        basicActions.waitForElementToBePresentWithRetries(invitationCodeAdminStaff,30);
+        SharedData.getAdminStaff().setAdminStaffInviteCode(invitationCodeAdminStaff.getText());
     }
 
     public void validateSpecialCharactersErrorAssistNetMessage(String language){

@@ -75,12 +75,10 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -105,13 +103,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |     Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Health First Colorado|                  |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
       |     Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Health First Colorado|                  |                |             |                            |
@@ -159,7 +155,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |       OHC Type      |Currently Enrolled|   End date  |
       |Health First Colorado|                  |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |     Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Health First Colorado|                  |                |             |                            |
@@ -171,7 +166,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |       OHC Type      |Currently Enrolled|   End date  |
       |Health First Colorado|                  |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |     Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Health First Colorado|                  |                |             |                            |
@@ -267,7 +261,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |       OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Health First Colorado|     Green    |                  |                  |                |                |            |              |                  |                     |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |     Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Health First Colorado|                  |                |             |                            |
@@ -305,7 +298,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |       OHC Type      |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Health First Colorado|     Plain    |                  |                  |                |                |             |              |                  |                     |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |     Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |Health First Colorado|                  |                |             |                            |
@@ -518,12 +510,10 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    Then I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -548,13 +538,11 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |		CHP+	|                  |                |             |                            |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |		CHP+	|                  |                |             |                            |
@@ -602,7 +590,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |   OHC Type  |Currently Enrolled|   End date  |
       |		CHP+	|                  |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |		CHP+	|                  |                |             |                            |
@@ -614,7 +601,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |   OHC Type  |Currently Enrolled|   End date  |
       |		CHP+	|                  |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |		CHP+	|                  |                |             |                            |
@@ -710,7 +696,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |		CHP+	|     Green    |                  |                  |                |                |            |              |                  |                     |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |		CHP+	|                  |                |             |                            |
@@ -748,7 +733,6 @@ Feature: Tests related to the Application Summary/Detail for Health First Colora
       |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |		CHP+	|     Plain    |                  |                  |                |                |             |              |                  |                     |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |		CHP+	|                  |                |             |                            |

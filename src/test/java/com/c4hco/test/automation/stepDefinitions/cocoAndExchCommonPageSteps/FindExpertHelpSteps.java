@@ -210,4 +210,9 @@ public class FindExpertHelpSteps {
         public void iVerifyAssisterButtonsDisabled(){
                 findExpertHelpPage.verifyAssisterButtonsDisabled();
         }
+
+        @And("I validate my broker details in the current broker table are equal to the broker created")
+        public void iValidateMyBrokerDetailsInTheCurrentBrokerTableAreEqualToTheBrokerCreated() {
+                findExpertHelpPage.validateMyBrokerDetailsEqualToTheBrokerCreated();
+        }
 }

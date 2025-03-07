@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -41,7 +42,10 @@ public class MyDocumentsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = ".primary-header-container > h2")
+    @FindAll({
+            @FindBy(css = ".primary-header-container > h2"), // Staging
+            @FindBy(xpath = "//div[contains(@class, 'header-1')]") // QA EAVS
+    })
     WebElement myDocumentsTitle;
 
     @FindBy(css = ".document-content-select-double-chevrons-container")
@@ -277,6 +281,38 @@ public class MyDocumentsPage {
     @FindBy(id = "documentsUploadMessage")
     WebElement noNeedToUpload;
 
+    @FindBy(css = ".drawer-controls > div")
+    WebElement helpDrawerOpen;
+
+    @FindBy(xpath = "//div[contains(@class,'drawer-contents')]")
+    WebElement helpDrawerContent;
+
+    @FindBy(css = ".drawer-controls > div > div > a > svg")
+    WebElement helpCloseSide;
+
+    @FindBy(css = ".drawer-heading .body-text-1")
+    WebElement helpDrawerHeaderText;
+
+    @FindBy(css = ".drawer-footer > h3")
+    WebElement helpDrawerNeedMoreHelp;
+
+    @FindBy(css = ".drawer-heading .drawer-title")
+    WebElement helpDrawerSubHeaderText;
+
+    @FindBy(css = "div.drawer-text-content.body-text-1 > b")
+    WebElement helpDrawerBodyHeaderText;
+
+    @FindBy(css = "div.drawer-text-content.body-text-1 > p")
+    List<WebElement> helpDrawerBodyContent;
+
+    @FindBy(xpath = "//a[text() ='here']")
+    WebElement helpDrawerHereLink;
+
+    @FindBy(xpath = "//a[text() ='our website.']")
+    WebElement helpDrawerOurWebsiteLink;
+
+    @FindBy(xpath = "//a[text() ='Contact us']")
+    WebElement helpDrawerContactUsLink;
 
 
     public void ClickLinkMyDocsWelcomePage() {
@@ -1258,6 +1294,80 @@ public class MyDocumentsPage {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void clickHelpDrawerToOpen() {
+        basicActions.waitForElementToBePresent(helpDrawerOpen,20);
+        helpDrawerOpen.click();
+    }
+
+    public void validateHelpDrawerOpened() {
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerSubHeaderText,20);
+        Assert.assertTrue(basicActions.waitForElementToBePresent(helpDrawerSubHeaderText,10)," Help drawer not opened");
+    }
+
+    public void verifyHelpDrawerContent(String contentOn, List<String> data) {
+        basicActions.waitForElementToBePresent(helpDrawerContent,20);
+        switch (contentOn) {
+            case "header","Income header":
+                basicActions.waitForElementToBePresent(helpDrawerHeaderText, 20);
+                softAssert.assertEquals(helpDrawerHeaderText.getText(), data.get(0), " Header not match");
+                break;
+            case "sub header" , "Income sub header":
+                basicActions.waitForElementToBePresent(helpDrawerSubHeaderText, 20);
+                softAssert.assertEquals(helpDrawerSubHeaderText.getText(), data.get(0), " Sub Header title not match");
+                break;
+            case "body title" , "Income body title":
+                basicActions.waitForElementToBePresent(helpDrawerBodyHeaderText, 20);
+                softAssert.assertEquals(helpDrawerBodyHeaderText.getText(), data.get(0), " Overview title not match");
+                break;
+            case "body content" , "Income body content":
+                basicActions.waitForElementListToBePresent(helpDrawerBodyContent, 20);
+               for (int i = 0 ; i < data.size() && i < helpDrawerBodyContent.size(); i++){
+                   softAssert.assertEquals( helpDrawerBodyContent.get(i).getText(), data.get(i), " Help content not match");
+               }
+               break;
+            case "footer" , "Income footer":
+                basicActions.waitForElementToBePresent(helpDrawerNeedMoreHelp, 20);
+                String needHelpText = helpDrawerNeedMoreHelp.getAttribute("textContent").trim();
+                softAssert.assertEquals(needHelpText,data.get(0), "Help drawer need help not match");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + contentOn);
+        }
+        softAssert.assertAll();
+    }
+
+    public void clickHelpDrawerToClose() {
+        basicActions.waitForElementToBePresent(helpCloseSide,20);
+        helpCloseSide.click();
+    }
+
+    public void validateHelpDrawerClosed() {
+        Assert.assertTrue(basicActions.waitForElementToDisappear(helpDrawerContent,20)," Help drawer not closed");
+    }
+
+    public void clickLinkForHelp(String linkName) {
+        switch (linkName) {
+            case "Help me understand this page" :
+                basicActions.waitForElementToBePresent(helpMeToUnderstandText.get(0), 10);
+                helpMeToUnderstandText.get(0).click();
+                break;
+            case "here" :
+                basicActions.waitForElementToBePresent(helpDrawerHereLink, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerHereLink);
+                break;
+            case "our website":
+                basicActions.waitForElementToBePresent(helpDrawerOurWebsiteLink, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerOurWebsiteLink);
+                break;
+            case "Contact Us":
+                basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerContactUsLink);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + linkName);
         }
     }
 }

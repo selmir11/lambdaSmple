@@ -237,7 +237,6 @@ Feature: Page Text-Welcome Page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
     And I change the language from header to "Spanish"
-    Then I wait for 50 milliseconds
     Then I validate CAC Screener banner text on welcome page in "Spanish"
     And I select take a short quiz on welcome page
     Then I validate I am on the "CAC Screener" page
@@ -251,7 +250,43 @@ Feature: Page Text-Welcome Page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate the action link properties on welcome page
 
-
-
-
-
+  @SLCR-800
+  Scenario: SLCR-800 As a CoCo user, I verify the updated Privacy Policy so that we inform users on the types of information we collect[CCRT-642]
+    And I click on Privacy Policy in the "Individual Portal" Footer
+    Then I validate I am on the "CoCo Privacy Policy" page
+    Then I scroll to the Types of information we collect section and verify the following text within the section
+    |Information we get from your use of our website: When you use our website, we may collect certain information about your visit. Information is collected as part of overall performance and effectiveness monitoring and helps us measure the number of visitors to our site, make the site more useful, and to improve our public education and outreach efforts.|
+    |We automatically and continuously collect various types of information about your visit using a variety of Web measurement software tools. This information includes, but is not limited to:                                                                                                                                                                      |
+    |Domain from which you access the Internet                                                                                                                                                                                                                                                                                                                         |
+    |IP address                                                                                                                                                                                                                                                                                                                                                        |
+    |Operating system on your computer and information about the browser you used when visiting the site                                                                                                                                                                                                                                                               |
+    |Date and time of your visit                                                                                                                                                                                                                                                                                                                                       |
+    |Pages you visited and your activity                                                                                                                                                                                                                                                                                                                               |
+    |Address of the website that connected you to our websites                                                                                                                                                                                                                                                                                                         |
+    |Geographic location                                                                                                                                                                                                                                                                                                                                               |
+    |We may also use various types of standard website technologies, such as cookies, persistent cookies, and web beacons in order to improve the functions of our website.                                                                                                                                                                                            |
+    |If you disable cookies in your browser, turn on Do-Not-Track, or use anonymous browsing this may affect the way that our website performs, but should not affect your ability to shop or enroll.                                                                                                                                                                  |
+    Then I scroll down to the bottom of the Privacy Policy page and verify the text "Effective Date: October 2023" is present
+    Then I close current tab and switch back to previous tab
+    Then I validate I am on the "CoCo Welcome" page
+    And I change the language from header to "Spanish"
+    And I validate I am on the "Spanish" page
+    And I click on Privacy Policy in the "Individual Portal" Footer
+    Then I validate I am on the "CoCo Privacy Policy" page
+    Then I scroll to the Types of information we collect section and verify the following text within the section
+      |Información que obtenemos por el uso de nuestro sitio web: Cuando utiliza nuestros sitios web, podemos recopilar cierta información sobre su visita. La información se obtiene como parte de la supervisión global de desempeño y eficacia, y nos ayuda a medir la cantidad de visitantes que recibe nuestro sitio, hacerlo más útil y mejorar nuestras iniciativas para la enseñanza al público y la participación.|
+      |Recabamos de forma automática y continua distintos tipos de información sobre sus visitas, por medio de diversas herramientas de medición de Internet. Esta información incluye, entre otros datos, los siguientes:|
+      |Dominio desde el cual accede a Internet                                                                                                                                                                                                                                                                                                                         |
+      |Dirección IP                                                                                                                                                                                                                                                                                                                                                       |
+      |Sistema operativo de su computadora e información sobre el navegador que utilizó al visitar nuestro sitio|
+      |Fecha y hora de su visita                                                                                                                                                                                                                                                                                                                                       |
+      |Páginas que visitó y actividad                                                                                                                                                                                                                                                                                                                               |
+      |Dirección del sitio web que le conectó a nuestros sitios                                                                                                                                                                                                                                                                                                         |
+      |Ubicación geográfica                                                                                                                                                                                                                                                                                                                                               |
+      |También podemos utilizar varios tipos de tecnologías estándares web, como cookies temporales o persistentes y balizas de acceso, para mejorar las funciones de nuestro sitio.|
+      |Si desactiva las cookies de su navegador, activa Do-Not-Track ("No rastrear") o elige navegación anónima, puede modificar el funcionamiento de nuestro sitio web, pero no debe afectar su capacidad para adquirir planes o inscribirse.|
+    Then I scroll down to the bottom of the Privacy Policy page and verify the text "Fecha de entrada en vigencia: Octubre, 2023" is present
+    Then I close current tab and switch back to previous tab
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

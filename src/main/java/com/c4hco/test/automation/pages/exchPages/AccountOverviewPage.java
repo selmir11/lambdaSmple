@@ -139,6 +139,7 @@ public class AccountOverviewPage {
 
 
     public void clickHereLinks(String clickHereOption){
+        basicActions.wait(50);
         basicActions.waitForElementListToBePresent(clickHereLinks, 15);
         switch(clickHereOption){
             case "My Profile":
@@ -218,6 +219,11 @@ public class AccountOverviewPage {
        MemberDetails member = basicActions.getMember(prefix);
        member.setIsProfileChange(option);
        member.setIsResAddChange(option);
+   }
+   public void isetProfileChangeForPriandMembers(Boolean mailAddChange, Boolean resAddChange, String prefix){
+       MemberDetails member = basicActions.getMember(prefix);
+       member.setIsProfileChange(mailAddChange);
+       member.setIsResAddChange(resAddChange);
    }
 
     public void setDates(String planType, List<Map<String, String>> expectedResult) {

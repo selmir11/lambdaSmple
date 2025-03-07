@@ -80,12 +80,10 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -110,13 +108,11 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |       Yes        |      Yes       |Current Month|         Yes                |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |       Yes        |      Yes       |Current Month|         Yes                |
@@ -204,7 +200,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |          OHC Type    	   |Currently Enrolled|   End date  |
       |        VA Health Care      |       Yes        |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |       Yes        |                |             |                            |
@@ -216,7 +211,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |          OHC Type    	   |Currently Enrolled|   End date  |
       |        VA Health Care      |        Sí        |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |       Sí         |                |             |                            |
@@ -266,7 +260,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |          OHC Type    	   |Currently Enrolled|     End date     |
       |        VA Health Care      |       Yes        |Last Current Month|
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
       |   VA Health Care  |       Yes        |      Yes       |Last Current Month|           Yes              |
@@ -278,7 +271,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |          OHC Type    	   |Currently Enrolled|     End date     |
       |        VA Health Care      |        Sí        |Last Current Month|
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
       |   VA Health Care  |       Sí         |      Sí        |Last Current Month|           Sí               |
@@ -325,7 +317,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |          OHC Type    	   |Currently Enrolled|     End date     |
       |        VA Health Care      |        No        |                  |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |       No         |                |             |                            |
@@ -337,7 +328,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |          OHC Type    	   |Currently Enrolled|     End date     |
       |        VA Health Care      |        No        |                  |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |       No         |                |             |                            |
@@ -443,7 +433,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |    OHC Type     |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |	VA Health Care	|     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Future Day:3|    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |       Yes        |      Yes       | Future Day:3|           Yes              |
@@ -493,7 +482,6 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
       |    OHC Type     |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |	VA Health Care	|     Plain    |       No         |      Yellow      |                |      Red       |             |     Red      |                  |        Red          |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |   Coverage Type   |Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |   VA Health Care  |        No        |                |             |                            |
