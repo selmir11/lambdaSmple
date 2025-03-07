@@ -209,7 +209,7 @@ Feature: Page Text-Tax Status Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1829 @PageTextTaxStatusElmoPage
+  @SLER-1829 @PageTextTaxStatusElmoPage @TAMSmoke
   Scenario: SLER-1829 I need to see the updated page so that my Tax Status choices can be collected - Spanish
     Then I validate I am on the "Tax status Elmo" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language

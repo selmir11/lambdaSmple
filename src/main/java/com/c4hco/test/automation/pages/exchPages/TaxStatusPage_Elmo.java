@@ -432,6 +432,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void clickSaveAndContinue(){
+        basicActions.wait(250);
         basicActions.waitForElementToDisappear(spinner,60);
         basicActions.waitForElementToDisappear(spinnerOverlay,60);
         basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 60);
