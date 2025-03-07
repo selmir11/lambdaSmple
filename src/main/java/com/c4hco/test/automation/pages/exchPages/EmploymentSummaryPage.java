@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmploymentSummaryPage {
@@ -171,36 +172,39 @@ public class EmploymentSummaryPage {
         basicActions.click(btnAddJob);
     }
 
-    public void clickRemoveJob(String DeleteJob){
+    public void clickRemoveJob(String DeleteJob) {
+        basicActions.waitForElementListToBePresent(lnkRemoveJob, 20);
+
+        List<String> employerNames = new ArrayList<>(SharedData.getCompanyname());
         String setEmployerName;
-        basicActions.waitForElementListToBePresent(lnkRemoveJob,20);
+        int indexToRemove;
+
         switch (DeleteJob) {
             case "First":
-                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
-                System.out.println("First employer is "+setEmployerName);
-                lnkRemoveJob.get(0).click();
+                indexToRemove = 0;
                 break;
             case "Second":
-                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
-                System.out.println("Second employer is "+setEmployerName);
-                lnkRemoveJob.get(1).click();
+                indexToRemove = 1;
                 break;
             case "Third":
-                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
-                System.out.println("Third employer is "+setEmployerName);
-                lnkRemoveJob.get(2).click();
+                indexToRemove = 2;
                 break;
             case "Fourth":
-                setEmployerName = SharedData.getPrimaryMember().getEmployerName();
-                System.out.println("Fourth employer is "+setEmployerName);
-                lnkRemoveJob.get(3).click();
+                indexToRemove = 3;
                 break;
             default:
                 throw new IllegalArgumentException("Invalid member type: " + DeleteJob);
         }
+
+        if (indexToRemove < employerNames.size()) {
+            setEmployerName = employerNames.get(indexToRemove);
+            System.out.println(DeleteJob + " employer is " + setEmployerName);
+            employerNames.remove(indexToRemove);
+            lnkRemoveJob.get(indexToRemove).click();
+            SharedData.setCompanyname(new ArrayList<>(employerNames));
+        } 
         basicActions.waitForElementListToBePresent(lnkRemoveContinue, 30);
         lnkRemoveContinue.get(0).click();
-
     }
 
     public void clickHelpIcon(String label) {

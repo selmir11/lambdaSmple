@@ -180,13 +180,11 @@ public class EmploymentInfoPageSteps {
         employmentInfoPage.validateNetIncomeFrequencyDropdown(language);
     }
 
-    @Then("I verify that the No Employment button is enabled")
-    public void verifyNoEmploymentButton() {
-        employmentInfoPage.verifyNoEmployedButtonIsEnabled();
+    @Then(("I validate company names in employment summary page"))
+    public  void ivalidatecompanyname(){
+        employmentInfoPage.validateCompanyName();
     }
-    @Then("I validate that the employment status label is not present")
-    public void validateEmploymentStatusLabelAbsence() {
-        employmentInfoPage.validateEmploymentStatusLabelAbsence();
-    }
+
+
 
 }

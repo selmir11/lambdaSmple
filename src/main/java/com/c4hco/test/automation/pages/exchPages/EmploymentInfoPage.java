@@ -4,7 +4,6 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,8 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-
 
 
 public class EmploymentInfoPage {
@@ -90,6 +87,9 @@ public class EmploymentInfoPage {
 
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcons;
+
+    @FindBy(xpath = "//*[@class='company-column-value']")
+    List<WebElement> Companynames;
 
     @FindBy(css = ".drawer-heading .body-text-1")
     WebElement helpDrawerHeaderHelp;
@@ -192,9 +192,6 @@ public class EmploymentInfoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinnerOverlay;
-
-    @FindBy(xpath = "//label[@for='ELIG-Exch-EmploymentIncomeJob-IsEmployed']")
-    WebElement employmentStatusLabel;
 
 
     public void clickEditUpdateLink(int employer) {
@@ -309,9 +306,14 @@ public class EmploymentInfoPage {
 
     public void genericEmploymentInfo(String addressline1, String city, String state, String zipcode, String Salary, String Frequency) {
 
-
         basicActions.waitForElementToBePresent(txtHeaderPart1, 20);
         String companyName = getUniqueString(8) + "Company";
+        List<String> employerNames = SharedData.getCompanyname();
+        if (employerNames == null) {
+            employerNames = new ArrayList<>();
+        }
+        employerNames.add(companyName);
+        SharedData.setCompanyname(employerNames);
         String name = txtHeaderPart1.getText();
 
         MemberDetails primaryMem = SharedData.getPrimaryMember();
@@ -343,6 +345,7 @@ public class EmploymentInfoPage {
 
         dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
+
     }
 
     public void enterEmploymentIncome(String Salary) {
@@ -928,14 +931,17 @@ public class EmploymentInfoPage {
         }
     }
 
-    public void verifyNoEmployedButtonIsEnabled() {
-        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
-        softAssert.assertTrue(btnNoEmployed.isEnabled(), "'No Employment' button should be enabled");
-        softAssert.assertAll();
-    }
 
-    public void validateEmploymentStatusLabelAbsence() {
-        softAssert.assertTrue(basicActions.waitForElementToDisappear(employmentStatusLabel,20), "Employment Status Label is present, but it should NOT be.");
+
+    public void validateCompanyName() {
+        basicActions.wait(500);
+        basicActions.waitForElementListToBePresent(Companynames, 30);
+        List<String> actualList = new ArrayList<>();
+        for (WebElement element : Companynames) {
+            actualList.add(element.getText().trim());
+        }
+        List<String> expectedList = SharedData.getCompanyname();
+        softAssert.assertEquals(actualList, expectedList, "Company names do not match! expected: "+expectedList+ " actual: "+actualList );
         softAssert.assertAll();
     }
 
