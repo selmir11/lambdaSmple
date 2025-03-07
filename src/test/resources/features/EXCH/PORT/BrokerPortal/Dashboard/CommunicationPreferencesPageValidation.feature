@@ -26,6 +26,7 @@ Feature: Verify the Communication Preferences page of Broker Portal
     And I validate the field labels on the Communication Preferences page
     And I validate the email field shows my email
     And I validate the phone number field shows my phone number
+    Then I validate the valid entries error messages
     Then I validate the required fields error messages
 
     Then I click Go Back on the Communication Preferences page

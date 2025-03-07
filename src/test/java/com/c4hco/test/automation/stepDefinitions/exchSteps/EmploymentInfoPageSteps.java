@@ -180,4 +180,11 @@ public class EmploymentInfoPageSteps {
         employmentInfoPage.validateNetIncomeFrequencyDropdown(language);
     }
 
+    @Then(("I validate company names in employment summary page"))
+    public  void ivalidatecompanyname(){
+        employmentInfoPage.validateCompanyName();
+    }
+
+
+
 }

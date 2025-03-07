@@ -86,7 +86,7 @@ public class DbDataProvider_Exch {
         MemberDetails member = basicActions.getMember(name);
         String zipcode = member.getResAddress().getAddressZipcode();
         String county = member.getResAddress().getAddressCounty();
-        if(member.getIsProfileChange()){
+        if(member.getIsProfileChange()&&member.getIsResAddChange()){
             zipcode = member.getOldResAddress().getAddressZipcode();
             county = member.getOldResAddress().getAddressCounty();
         }

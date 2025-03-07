@@ -451,8 +451,11 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertAll();
     }
 
-    public void verifyCurrentSelections(String question, String dataOffered) {
-        switch (question) {
+
+    public void verifyCurrentSelections(String question, String dataOffered){
+        basicActions.wait(500);
+        switch (question){
+
             case "Min Value":
                 verifyMinValueOption(dataOffered);
                 break;

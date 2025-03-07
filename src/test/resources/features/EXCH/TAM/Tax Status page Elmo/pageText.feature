@@ -222,7 +222,6 @@ Feature: Page Text-Tax Status Elmo Page
   @SLER-1805 @PageTextTaxStatusElmoPage
   Scenario: SLER-1805 I can see ELMO Tax Status page's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I wait for 500 milliseconds
     And I validate I am on the "Spanish" page
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
@@ -248,7 +247,6 @@ Feature: Page Text-Tax Status Elmo Page
 
     Then I validate I am on the "Tax status Elmo" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I wait for 500 milliseconds
     And I validate I am on the "Spanish" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
