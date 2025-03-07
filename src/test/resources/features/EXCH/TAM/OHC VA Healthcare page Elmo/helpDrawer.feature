@@ -54,7 +54,7 @@ Feature: Help Drawer-OHC VA Healthcare Elmo Page
     Then I select "VA Health Care" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc VA Healthcare" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-904 @HelpDrawerOhcVaHealthcareElmo
   Scenario: SLER-904 Validate help drawer text on the VA Healthcare page - English
