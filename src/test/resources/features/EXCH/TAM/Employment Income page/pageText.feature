@@ -559,3 +559,52 @@ Feature: Page Text-Income Opt Out Page
       | Ayuda para entender esta página                   |
       | Sí                                                |
       | No                                                |
+
+
+  @SLER-2303
+  Scenario: [RT-2596] As a Exch account user on the Employment Income details page, I want to see my dynamic data so that I can verify my employer income information
+    Then I Verify the page text on Employment Income page, which is in initial state
+      | Income:                                          |
+      | Employment Income                                |
+      | Do you have a job or are you currently employed? |
+      | Yes                                              |
+      | No                                               |
+      | Go back                                          |
+      | Save and continue                                |
+      | Help                                             |
+    Then I select the option "Yes" to employment
+    Then I Verify the page text on Employment Income page after clicking yes to employment
+      | Income:                                          |
+      | Employment Income                                |
+      | Do you have a job or are you currently employed? |
+      | Yes                                              |
+      | No                                               |
+      | Go back                                          |
+      | Save and continue                                |
+      | Help                                             |
+      | Is this job self-employment?                     |
+      | Yes                                              |
+      | No                                               |
+
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I validate I am on the "Additional income" page
+    Then I click on the Back button on the Additionalincomepage
+    Then I verify that the No Employment button is enabled
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "333 Some Road" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "1500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click Edit on Income Summary row 1
+    Then I validate that the employment status label is not present
+    And I select the option "Yes" to self employment
+    And I click continue on the Employment Info Page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    Then I validate that the employment status label is not present
+    And I click on Sign Out in the Header for "Elmo"
+
+
+

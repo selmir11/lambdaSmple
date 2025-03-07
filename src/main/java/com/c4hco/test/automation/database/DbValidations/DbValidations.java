@@ -942,6 +942,12 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateOverriddenAmount(String overriddenAmt) {
+        String overriddenAmount = exchDbDataProvider.getOverriddenAmount();
+        softAssert.assertTrue(overriddenAmount.contains("overriddenAptcAmount>" + overriddenAmt), "Amount does not match! Expected to contain: overriddenAptcAmount>" + overriddenAmt + " Found: " + overriddenAmount);
+        softAssert.assertAll();
+    }
+
 
 
 
