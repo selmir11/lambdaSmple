@@ -653,6 +653,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForThreeColumnValues("kind", "amount", "period", exchDbQueries.getDeductionamountDetails(memberId, kindValue));
     }
 
+    public String getOverriddenAmount() {
+        return postgresHandler.getResultFor("ind_ssap_data", exchDbQueries.getOverriddenAmountDetails());
+    }
+
 
 
 }
