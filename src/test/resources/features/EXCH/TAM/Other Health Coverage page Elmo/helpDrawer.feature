@@ -52,7 +52,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-343 @PageVerificationOtherHealthInsurancePage
   Scenario: SLER-343 I Validate help drawer text in English on the Other Health Coverage page
