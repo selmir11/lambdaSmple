@@ -931,6 +931,7 @@ public class EmploymentInfoPage {
     public void verifyNoEmployedButtonIsEnabled() {
         basicActions.waitForElementToBePresent(btnNoEmployed, 10);
         softAssert.assertTrue(btnNoEmployed.isEnabled(), "'No Employment' button should be enabled");
+        softAssert.assertAll();
     }
 
     public void validateEmploymentStatusLabelAbsence() {
