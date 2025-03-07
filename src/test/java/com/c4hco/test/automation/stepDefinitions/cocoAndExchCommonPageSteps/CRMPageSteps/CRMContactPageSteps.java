@@ -31,4 +31,7 @@ public class CRMContactPageSteps {
 
     @And("I verify the contact type is {string}")
     public void iVerifyContactType(String contactType){crmContactPage.verifyContactType(contactType);}
+
+    @And("I verify the new agency name displays on the contact page")
+    public void iVerifyNewAgencyName(){crmContactPage.verifyNewAgencyName();}
 }

@@ -468,17 +468,17 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500                      |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |        Plain           |                   200                   |           Yellow           |
     Then I verify the OHC detail family enrollment details on Application Details
-      | Member3FullName:Enrolled:Yellow                        |
-      | Member1FullName:Offered a plan but not enrolled:Yellow |
-      | Member2FullName:No option to enroll:Yellow             |
+      | Son:Enrolled:Yellow                          |
+      | Spouse:Offered a plan but not enrolled:Yellow|
+      | Kid:No option to enroll:Yellow               |
     Then I click on Download as PDF on Application Details
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          Yes         |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "200"
-      | Member3FullName:Enrolled                        |
-      | Member1FullName:Offered a plan but not enrolled |
-      | Member2FullName:No option to enroll             |
+      | Son:Enrolled                           |
+      | Spouse:Offered a plan but not enrolled |
+      | Kid:No option to enroll                |
 #    Step 8
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -604,17 +604,17 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500                      |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |        Yellow          |              300                        |           Green            |
     Then I verify the OHC detail family enrollment details on Application Details
-      | Member1FullName:Enrolled:Green                        |
-      | Member2FullName:Offered a plan but not enrolled:Green |
-      | Member3FullName:No option to enroll:Green             |
+      | Spouse:Enrolled:Green                     |
+      | Kid:Offered a plan but not enrolled:Green |
+      | Son:No option to enroll:Green             |
     Then I click on Download as PDF on Application Details
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          Yes         |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "300"
-      | Member1FullName:Enrolled                        |
-      | Member2FullName:Offered a plan but not enrolled |
-      | Member3FullName:No option to enroll             |
+      | Spouse:Enrolled                     |
+      | Kid:Offered a plan but not enrolled |
+      | Son:No option to enroll             |
 #    Step 12
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -676,9 +676,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500                      |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |         Plain          |              300                        |           Plain            |
     Then I verify the OHC detail family enrollment details on Application Details
-      | Member1FullName:Enrolled:Yellow      |
-      | Member2FullName:Enrolled:Yellow      |
-      | Member3FullName:Enrolled:Yellow      |
+      | Spouse:Enrolled:Yellow               |
+      | Kid:Enrolled:Yellow                  |
+      | Son:Enrolled:Yellow                  |
       | :Offered a plan but not enrolled:Red |
       | :No option to enroll:Red             |
     Then I click on Download as PDF on Application Details
@@ -686,9 +686,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          Yes         |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "300"
-      | Member1FullName:Enrolled |
-      | Member2FullName:Enrolled |
-      | Member3FullName:Enrolled |
+      | Spouse:Enrolled |
+      | Kid:Enrolled    |
+      | Son:Enrolled    |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
