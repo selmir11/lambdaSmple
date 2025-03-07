@@ -1553,11 +1553,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
     public void verifyLanguageTextInESIPage(List<String> dataText) {
-
-        softAssert.assertEquals(OhcHeader.getText(), dataText.get(1), "Page Header 1 Not matching");
+        softAssert.assertEquals(OhcHeader.getText(), dataText.get(1) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName(), "Page Header 1 Not matching");
         softAssert.assertEquals(OhcEsiHeader.getText(), dataText.get(2), "Page Header 2 Not matching");
-        String companyName = getUniqueString(8) + "Company";
-        Select objSelect = new Select(esiSelectEmployerDpd);
-        softAssert.assertEquals(objSelect.getOptions().contains(companyName), "Company Name Not matching");
     }
 }

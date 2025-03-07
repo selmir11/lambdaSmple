@@ -887,13 +887,14 @@ Feature: Page Text-Other Health Coverage Page
   I want the ability to see the page in English or Spanish so that I can review and update the ESI information
     When I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
-    Then I validate that I am able to see the page in both english and Spanish so that I can review and update the ESI information
+    Then I validate that I am able to see the page in the relevant language so that I can review and update the ESI information
       | Labels:                             |
-      | Other Health Coverage               |
+      | Other Health Coverage:               |
       | Employer-sponsored Health Insurance |
     And I change the language from header to "Spanish"
-    Then I validate that I am able to see the page in both english and Spanish so that I can review and update the ESI information
+    And I verify the header for Primary Member on the ESI page in "Spanish"
+    Then I validate that I am able to see the page in the relevant language so that I can review and update the ESI information
       | Labels:                             |
-      | Otra cobertura de salud               |
+      | Otra cobertura de salud:               |
       | Seguro de salud patrocinado por el empleador |
 
