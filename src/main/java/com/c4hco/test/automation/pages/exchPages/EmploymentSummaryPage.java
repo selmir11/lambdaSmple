@@ -202,10 +202,7 @@ public class EmploymentSummaryPage {
             employerNames.remove(indexToRemove);
             lnkRemoveJob.get(indexToRemove).click();
             SharedData.setCompanyname(new ArrayList<>(employerNames));
-        } else {
-            throw new IndexOutOfBoundsException("No employer found at index " + indexToRemove);
-        }
-
+        } 
         basicActions.waitForElementListToBePresent(lnkRemoveContinue, 30);
         lnkRemoveContinue.get(0).click();
     }
