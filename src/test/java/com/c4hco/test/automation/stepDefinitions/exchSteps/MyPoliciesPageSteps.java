@@ -37,9 +37,6 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.clickCurrentPlans();
     }
 
-    @Then("I click on {string}")
-    public void clickPlanCancelButton(String btnDetail){
-        myPoliciesPage.clickPlanCancelButton(btnDetail);
-    }
+
 
 }
