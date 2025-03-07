@@ -139,6 +139,7 @@ public class AccountOverviewPage {
 
 
     public void clickHereLinks(String clickHereOption){
+        basicActions.wait(50);
         basicActions.waitForElementListToBePresent(clickHereLinks, 15);
         switch(clickHereOption){
             case "My Profile":

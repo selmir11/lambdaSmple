@@ -76,7 +76,7 @@ Feature: Navigation-Declarations and Signature Page
     And I right click on Apply for Coverage to open in new tab in the ELMO Header
     #Step 5
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I wait for 250 milliseconds
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     #Step 6

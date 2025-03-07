@@ -203,7 +203,7 @@ Feature: Seed04exception - Exchange
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
 
-  @SLER-1229-WIP_@R4V
+  @SLER-1229 @pol_exch_passed
   Scenario: RT-2259 - ENR-EXCH: UPDATE CONTACT INFORMATION - CHANGE MAILING ADDRESS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
