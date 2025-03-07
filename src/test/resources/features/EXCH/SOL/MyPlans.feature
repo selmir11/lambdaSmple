@@ -202,11 +202,14 @@ Feature: My Plans Page test
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    Then I click on "Cancel Medical Plan"
+    Then I click on "Cancel Medical Plan" button
     Then I cancel the active plan detail
     Then I click continue on Cancellation Request page
     Then I click Okay on Thank you popup
     And I click on Sign Out in the Header for "Elmo"
+
+
+
 
 
 
