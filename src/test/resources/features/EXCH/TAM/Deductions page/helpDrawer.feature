@@ -46,7 +46,7 @@ Feature: Page Text-Deductions Page
 
   @SLER-930 @HelpDrawerDeductionsPage
   Scenario: SLER-930 Validate help drawer text on the Deductions page - English
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
     And I select "Help me understand" icon on the Deductions Page
     Then I validate Deductions help drawer "Full" verbiage in "English"
     Then I click on "Alimony paid out" link in Help Drawer on the Deductions page
@@ -166,7 +166,7 @@ Feature: Page Text-Deductions Page
     And I validate I am on the "School tuition: Disability 1" page and close tab
     Then I click on "Item 7" link in Help Drawer on the Deductions page
     And I validate I am on the "School tuition: Disability 2" page and close tab
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
     And I click on "Contact Us" link in Help Drawer on the Deductions page
     And I validate I am on the "We Can Help" page and close tab
     And I select "School tuition" icon on the Deductions Page
@@ -176,7 +176,7 @@ Feature: Page Text-Deductions Page
     And I set the browser resolution to Maximized
     Then I click on "Item" link in Help Drawer on the Deductions page
     And I validate I am on the "Self-employment tax" page and close tab
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
     And I click on "Contact Us" link in Help Drawer on the Deductions page
     And I validate I am on the "We Can Help" page and close tab
     And I select "Self-employment tax" icon on the Deductions Page

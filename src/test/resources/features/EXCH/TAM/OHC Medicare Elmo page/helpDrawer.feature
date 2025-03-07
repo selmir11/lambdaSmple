@@ -84,7 +84,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-898
   Scenario: SLER-898 Validate help drawer text on the ELMO OHC Medicare page - English

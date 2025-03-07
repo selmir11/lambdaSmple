@@ -47,4 +47,9 @@ public class MyAgencySteps {
     public void clickOkAgencyErrorMessage(){
         myAgencyPage.clickOkAgencyInviteErrorMessage();
     }
+
+    @And("I save the broker's new agency details")
+    public void iSaveBrokerAgencyDetails(){
+        myAgencyPage.saveBrokerAgencyDetails();
+    }
 }

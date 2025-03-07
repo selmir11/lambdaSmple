@@ -192,6 +192,8 @@ public class EmploymentInfoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinnerOverlay;
+    @FindBy(xpath = "//label[@for='ELIG-Exch-EmploymentIncomeJob-IsEmployed']")
+    WebElement employmentStatusLabel;
 
 
     public void clickEditUpdateLink(int employer) {
@@ -945,6 +947,17 @@ public class EmploymentInfoPage {
         softAssert.assertAll();
     }
 
+
+    public void verifyNoEmployedButtonIsEnabled() {
+        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
+        softAssert.assertTrue(btnNoEmployed.isEnabled(), "'No Employment' button should be enabled");
+        softAssert.assertAll();
+    }
+
+    public void validateEmploymentStatusLabelAbsence() {
+        softAssert.assertTrue(basicActions.waitForElementToDisappear(employmentStatusLabel,20), "Employment Status Label is present, but it should NOT be.");
+        softAssert.assertAll();
+    }
 
 }
 

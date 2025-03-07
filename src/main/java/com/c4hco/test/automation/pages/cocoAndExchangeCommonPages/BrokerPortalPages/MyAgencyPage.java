@@ -1,5 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
+import com.c4hco.test.automation.Dto.BrokerDetails;
+import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -92,5 +94,13 @@ public class MyAgencyPage {
     public void clickOkAgencyInviteErrorMessage(){
         basicActions.waitForElementToBePresent(errorMessageOkButton, 10);
         errorMessageOkButton.click();
+    }
+
+    public void saveBrokerAgencyDetails(){
+        basicActions.waitForElementToBePresent(agencyNameText, 10);
+        BrokerDetails agencyDetails = new BrokerDetails();
+        agencyDetails.setAgencyName(agencyNameText.getText());
+        SharedData.setAgencyOwner(agencyDetails);
+        SharedData.getBroker().setBroker_name(SharedData.getBroker().getFirstName() + " " + SharedData.getBroker().getLastName());
     }
 }
