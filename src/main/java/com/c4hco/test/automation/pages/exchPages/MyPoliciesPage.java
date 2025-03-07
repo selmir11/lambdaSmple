@@ -9,12 +9,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class MyPoliciesPage {
     private BasicActions basicActions;
@@ -72,6 +74,9 @@ public class MyPoliciesPage {
 
     @FindBy(id="SOL-CurrentPolicies-CurrentPlans")
     WebElement CurrentPlans;
+
+    @FindBy(id="SOL-MyPolicies-ShowCancelledPlans")
+    WebElement CancelPlansSlider;
 
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
@@ -213,5 +218,10 @@ public class MyPoliciesPage {
     public void validateCancelPlan(String planType){
          By locator = By.id("SOL-CurrentPolicies-CancelCurrent" + planType + "\")");
          softAssert.assertFalse(basicActions.elementExists(locator),"Element should be absent but was found.");
+    }
+
+    public void clickCancelledPlansSlider(){
+        basicActions.waitForElementToBePresent(CancelPlansSlider, 10);
+        CancelPlansSlider.click();
     }
 }
