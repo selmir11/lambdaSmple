@@ -295,6 +295,9 @@ public class AdminPortalBrokerDashboardPage {
             case "Manage Account Access":
                 manageAccountAccess.click();
                 break;
+            case "View Report":
+                viewAccountActivityReport.click();
+                break;
         }
     }
     public void EnterNewEmailEmailAdresseInTheSummaryContainer(String newEmail) {

@@ -182,17 +182,15 @@ public class ApplicationDetailsPdf {
             String name = parts[0].trim();
             String relation = parts[1].trim();
 
-            String memberFullName = getString(name);
-
             switch (relation) {
                 case "Enrolled":
-                    enrolledMembers.add(memberFullName);
+                    enrolledMembers.add(basicActions.getCompleteFullNameWithPrefix(name));
                     break;
                 case "Offered a plan but not enrolled":
-                    offeredNotEnrolledMembers.add(memberFullName);
+                    offeredNotEnrolledMembers.add(basicActions.getCompleteFullNameWithPrefix(name));
                     break;
                 case "No option to enroll":
-                    noOptionMembers.add(memberFullName);
+                    noOptionMembers.add(basicActions.getCompleteFullNameWithPrefix(name));
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid relation: " + relation);
@@ -272,24 +270,6 @@ public class ApplicationDetailsPdf {
         }
         return member;
     }
-
-    private static String getString(String name) {
-        String memberFName;
-        String memberLName;
-        if (name.equals("Member1FullName")) {
-            memberFName = SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName();
-            memberLName = SharedData.getMembers().get(0).getLastName();
-        } else if (name.equals("Member2FullName")) {
-            memberFName = SharedData.getMembers().get(1).getFirstName() + " " + SharedData.getMembers().get(1).getMiddleName();
-            memberLName = SharedData.getMembers().get(1).getLastName();
-        } else if (name.equals("Member3FullName")) {
-            memberFName = SharedData.getMembers().get(2).getFirstName() + " " + SharedData.getMembers().get(2).getMiddleName();
-            memberLName = SharedData.getMembers().get(2).getLastName();
-        } else {
-            throw new IllegalArgumentException("Invalid name placeholder: " + name);
-        }
-        return memberFName + " " + memberLName;
-        }
 
     public static String getBasicApplicationDetails(String coverageType, String currentlyEnrolled, String insuranceEnding, String endDate, String voluntarilyEnding) {
         String endingDate = "";

@@ -331,6 +331,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectWillFileTaxReturn(String willFile){
+        basicActions.wait(50);
         switch (willFile) {
             case "Yes":
                 basicActions.waitForElementToBeClickable(willFileTaxReturnYes, 20);
@@ -346,6 +347,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectFilingStatus(String option) {
+        basicActions.wait(50);
         basicActions.waitForElementListToBePresent(filingStatusDpd, 50);
 
         switch (option) {
@@ -373,6 +375,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectFilingJointlyWithOption(String filingJointlyOption) {
+        basicActions.wait(50);
         basicActions.waitForElementListToBePresent(filingJointlyWithRadio, 50);
         boolean optionSelected = false;
         for (int i = 0; i < filingJointlyWithRadio.size(); i++) {
@@ -407,6 +410,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectWillClaimDependents(String willFile){
+        basicActions.wait(50);
         switch (willFile) {
             case "Yes":
                 basicActions.waitForElementToBeClickable(willClaimDependentsYes, 20);
@@ -422,11 +426,13 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectWhoWillClaimYou(String memPrefix) {
+        basicActions.wait(50);
         WebElement selectMember = basicActions.getDriver().findElement(By.xpath("//*[contains(text(), '" + memPrefix + "')]/input"));
         selectMember.click();
     }
 
     public void clickSaveAndContinue(){
+        basicActions.wait(250);
         basicActions.waitForElementToDisappear(spinner,60);
         basicActions.waitForElementToDisappear(spinnerOverlay,60);
         basicActions.waitForElementToBePresentWithRetries(existingTaxStatusHeader, 60);
@@ -482,6 +488,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void enterDobForSomeoneElse(String dobDate) {
+        basicActions.wait(50);
         WebElement dobInput = basicActions.getDriver().findElement(By.xpath("//input[@type='date']"));
         basicActions.waitForElementToBePresent(dobInput,10);
         String dateValue = "";
@@ -718,6 +725,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyClaimedDependentErrors(String memPrefix, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(claimedAsDependentTxt,10);
 
         String questionTxt;
@@ -797,6 +805,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyFileTaxReturnErrors(String memPrefix, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(willFileTaxReturnTxt,10);
 
         String questionTxt;
@@ -992,6 +1001,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyWhoWillClaimYouErrors(String memPrefix, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(whoClaimedAsDependentsTxt,10);
         List<String> allMemNames = basicActions.getAllMemNames();
         List<String> filteredMemNames = allMemNames.stream().filter(name -> !name.startsWith(memPrefix)).toList();
@@ -1073,6 +1083,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyEnterTheNameErrors(String dateError, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(claimFirstNameError,10);
 
         String firstNameErrorTxt;
@@ -1252,6 +1263,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifySelectTaxFilingStatusErrors(String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(filingStatusTxt,10);
 
         String questionTxt;
@@ -1371,6 +1383,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyFilingJointlyWithErrors(String memPrefix, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(filingJointlyWithTxt,10);
         List<String> allMemNames = basicActions.getAllMemNames();
         List<String> filteredMemNames = allMemNames.stream().filter(name -> !name.startsWith(memPrefix)).toList();
@@ -1498,6 +1511,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyFilingJointlyWithNameErrors(String dateError, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(filingFirstNameError,10);
 
         String firstNameErrorTxt;
@@ -1601,6 +1615,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyWillYouClaimDependentsErrors(String memPrefix, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(willClaimDependentsTxt,10);
 
         String questionTxt;
@@ -1716,6 +1731,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyWhoClaimedErrors(String memPrefix, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(whoClaimedTxt,10);
         List<String> allMemNames = basicActions.getAllMemNames();
         List<String> filteredMemNames = allMemNames.stream().filter(name -> !name.startsWith(memPrefix)).toList();
@@ -1743,8 +1759,8 @@ public class TaxStatusPage_Elmo {
         softAssert.assertEquals(whoClaimedTxt.getCssValue("color"), "rgba(150, 0, 0, 1)","Question Text is not as expected");
         softAssert.assertEquals(whoClaimedTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif","Question Text is not as expected");
         softAssert.assertEquals(whoClaimedErrorTxt.getText(), errorTxt);
-        softAssert.assertEquals(whoClaimedErrorTxt.getCssValue("font-weight"), "400","Error Text is not as expected");
-        softAssert.assertEquals(whoClaimedErrorTxt.getCssValue("font-size"), "14px","Error Text is not as expected");
+        softAssert.assertEquals(whoClaimedErrorTxt.getCssValue("font-weight"), "700","Error Text is not as expected");
+        softAssert.assertEquals(whoClaimedErrorTxt.getCssValue("font-size"), "16px","Error Text is not as expected");
         softAssert.assertEquals(whoClaimedErrorTxt.getCssValue("color"), "rgba(150, 0, 0, 1)","Error Text is not as expected");
         softAssert.assertEquals(whoClaimedErrorTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif","Error Text is not as expected");
         for (int i = 0; i < filteredMemNames.size(); i++) {
@@ -1796,6 +1812,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyWhoClaimedWithNameErrors(String dateError, String language) {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(claimedFirstNameError,10);
 
         String firstNameErrorTxt;
@@ -2029,6 +2046,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void verifyNoErrors() {
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(existingTaxStatusHeader,10);
         softAssert.assertFalse(basicActions.waitForElementPresence(englishErrorTxt,10));
         softAssert.assertFalse(basicActions.waitForElementPresence(spanishErrorTxt,10));

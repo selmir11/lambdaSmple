@@ -235,6 +235,7 @@ public class QlceConfirmationPage {
     }
 
     public void selectQLCE(String QLCEType) {
+        basicActions.wait(50);
         switch (QLCEType) {
             case "Birth":
                 basicActions.waitForElementToBeClickable(birthQLCE, 10);

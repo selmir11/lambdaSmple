@@ -211,8 +211,8 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHeadersHraOhcPageEnglish() {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
-        basicActions.waitForElementToBePresent(ohcHraHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
+        basicActions.waitForElementToBePresentWithRetries(ohcHraHeader, 60);
         softAssert.assertTrue(ohcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(ohcHraHeader.getText(), "Health Reimbursement Arrangement (HRA) offered through an employer");
         softAssert.assertAll();
@@ -716,7 +716,7 @@ public class OhcHraPage_Elmo {
     }
 
     public void verifyHraPageDataEnglish(String dataToVerify) {
-        basicActions.waitForElementToBePresent(ohcHeader, 15);
+        basicActions.waitForElementToBePresentWithRetries(ohcHeader, 60);
         switch (dataToVerify) {
             case "First Section":
                 verifyHraPageFirstSectionDataEnglish();

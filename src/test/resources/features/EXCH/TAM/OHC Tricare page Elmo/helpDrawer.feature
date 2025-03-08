@@ -58,7 +58,7 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I select "TRICARE" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-910 @HelpDrawerTricarePage
   Scenario: SLER-910 Validate help drawer text on the Tricare page - English
