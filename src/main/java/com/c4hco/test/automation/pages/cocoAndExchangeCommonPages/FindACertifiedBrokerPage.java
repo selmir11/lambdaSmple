@@ -212,6 +212,20 @@ public class FindACertifiedBrokerPage {
 
     }
 
+    public void searchNewBrokerAccount(String brokerType) {
+        basicActions.waitForElementToBePresent(searchContainer,60);
+        switch (brokerType) {
+            case "Agency Owner":
+                searchContainer.sendKeys(SharedData.getAgencyOwner().getFirstName());
+                break;
+            case "Broker":
+                searchContainer.sendKeys(SharedData.getBroker().getFirstName());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + brokerType);
+        }
+    }
+
     public void clearSearchForBrokerLocation() {
         basicActions.waitForElementToBePresent(searchBrokerLocation,60);
         searchBrokerLocation.clear();
@@ -375,6 +389,14 @@ public class FindACertifiedBrokerPage {
         softAssert.assertEquals(availablityHours.getText(),officeHours);
         softAssert.assertEquals(licenseNumber.getText(),SharedData.getAgencyOwner().getLicense());
         softAssert.assertEquals(availableLanguages.getText(),agencyLanguage);
+        softAssert.assertAll();
+    }
+
+    public void validateCreatedAgencyDetails(){
+        basicActions.waitForElementToBePresent(emailLabel,100);
+        softAssert.assertEquals(agencyEmail.getText(),SharedData.getAgencyOwner().getAgencyEmail());
+        softAssert.assertEquals(phoneNumber.getText(),SharedData.getAgencyOwner().getAgencyPhoneNumber());
+        softAssert.assertEquals(licenseNumber.getText(),SharedData.getAgencyOwner().getLicense());
         softAssert.assertAll();
     }
 
@@ -611,5 +633,10 @@ public class FindACertifiedBrokerPage {
         basicActions.waitForElementToBePresent(continueWithMyOwn,30);
         continueWithMyOwn.click();
 
+    }
+
+    public void SearchAuthorizedBrokerGenerated() {
+        basicActions.waitForElementToBePresent(searchContainer,60);
+        searchContainer.sendKeys(SharedData.getAgencyOwner().getLicense());
     }
 }

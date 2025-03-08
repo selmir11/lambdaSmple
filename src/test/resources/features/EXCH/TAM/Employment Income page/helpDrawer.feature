@@ -42,7 +42,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I validate I am on the "Financial Help" page
     And I Apply for financial help
     Then I validate I am on the "Employment Income" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-60
     #fails when run on small screens (Let's chat widget covers up help drawer footer)

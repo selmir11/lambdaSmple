@@ -470,6 +470,12 @@ public class DeductionsCoCoPage {
                 softAssert.assertEquals(pretaxRetirementFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
+            case "HSA":
+                basicActions.waitForElementToBePresent(hsaAmount,20);
+                softAssert.assertEquals(hsaAmount  .getAttribute("value"), Amount);
+                softAssert.assertEquals(hsaFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
         }

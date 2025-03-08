@@ -3,6 +3,7 @@ package com.c4hco.test.automation.database.dbDataProvider;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
+import com.c4hco.test.automation.database.Queries.DBQueries_qa_coco;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -14,6 +15,7 @@ public class DbDataProvider_Exch {
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
     EnPolicyMemberAhHandler enPolicyMemberAhHandler = new EnPolicyMemberAhHandler();
+    EsIncomeDbHandler esIncomeDbHandler = new EsIncomeDbHandler();
 
     EnMemberEffectiveDatesHandler enMemberEffectiveDatesHandler = new EnMemberEffectiveDatesHandler();
 
@@ -84,7 +86,7 @@ public class DbDataProvider_Exch {
         MemberDetails member = basicActions.getMember(name);
         String zipcode = member.getResAddress().getAddressZipcode();
         String county = member.getResAddress().getAddressCounty();
-        if(member.getIsProfileChange()){
+        if(member.getIsProfileChange()&&member.getIsResAddChange()){
             zipcode = member.getOldResAddress().getAddressZipcode();
             county = member.getOldResAddress().getAddressCounty();
         }
@@ -634,6 +636,10 @@ public class DbDataProvider_Exch {
     public EsFDSHRetryControlEntity getEsFDSH_details() {
         return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
+    public List<IncomeDataEntity> getIncomeData() {
+        return esIncomeDbHandler.getIncomeDetailsFromIncomeTables(exchDbQueries.getIncomeDataDetails());
+    }
+
     public List<String> getApplicationIdFromHouseholdTable() {
         return postgresHandler.getResultListFor("application_id", exchDbQueries.getApplicationIdFromHouseholdTable());
     }
@@ -646,6 +652,11 @@ public class DbDataProvider_Exch {
         String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
         return postgresHandler.getResultForThreeColumnValues("kind", "amount", "period", exchDbQueries.getDeductionamountDetails(memberId, kindValue));
     }
+
+    public String getOverriddenAmount() {
+        return postgresHandler.getResultFor("ind_ssap_data", exchDbQueries.getOverriddenAmountDetails());
+    }
+
 
 
 }

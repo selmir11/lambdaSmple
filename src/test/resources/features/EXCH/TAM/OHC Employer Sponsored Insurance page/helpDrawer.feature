@@ -59,7 +59,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I select "job" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
 
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
     Then I validate I am on the "ESI" page
 
   @SLER-156
@@ -109,7 +109,7 @@ Feature: Tests related to the help drawer on ELMO pages
     And I validate I am on the "Employer Coverage" page and close tab
     And I set the browser resolution to Maximized
     Then I click on "Employer Coverage Tool 3" link in Help Drawer on the ESI page
-    And I set the browser resolution to 2000 x 800
+    #And I set the browser resolution to 2000 x 800
     And I validate I am on the "Employer Coverage" page and close tab
     Then I click on "Contact Us" link in Help Drawer on the ESI page
     And I validate I am on the "We Can Help" page and close tab
