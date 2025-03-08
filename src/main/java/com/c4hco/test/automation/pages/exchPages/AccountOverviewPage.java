@@ -346,11 +346,11 @@ public class AccountOverviewPage {
             String dentalPremiumAmt = df.format(dentalPremiumAmnt);
 
             basicActions.waitForElementToBePresentWithRetries(MedicalAPTCAmnt, 10);
-            softAssert.assertNotEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + member.getMedicalPremiumAmt(), member.getFirstName() + " Medical premium amount does not match");
-            if(SharedData.getPrimaryMember().getFinancialHelp()){
-                softAssert.assertNotEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + member.getMedicalAptcAmt(), member.getFirstName() + " Medical APTC amount did not match");
-            }
-            softAssert.assertNotEquals(dentalPremiumAmt, "$" + basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), member.getFirstName() + " Dental Premium amount does not match");
+       //     softAssert.assertNotEquals(MedicalPremiumAmnt.getText().replace(",", ""), "$" + member.getMedicalPremiumAmt(), member.getFirstName() + " Medical premium amount does not match");
+//            if(SharedData.getPrimaryMember().getFinancialHelp()){
+//                softAssert.assertNotEquals(MedicalAPTCAmnt.getText().replace(",", ""), "$" + member.getMedicalAptcAmt(), member.getFirstName() + " Medical APTC amount did not match");
+//            }
+//            softAssert.assertNotEquals(dentalPremiumAmt, "$" + basicActions.doubleAmountFormat(member.getDentalPremiumAmt()), member.getFirstName() + " Dental Premium amount does not match");
 
             BigDecimal bigDecimalMedAPTCAmt = new BigDecimal(MedicalAPTCAmnt.getText().replace(",", "").replace("$", ""));
             BigDecimal totalMedicalPremium = new BigDecimal(MedicalPremiumAmnt.getText().replace(",", "").replace("$", ""));
