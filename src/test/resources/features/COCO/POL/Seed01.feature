@@ -89,9 +89,9 @@ Feature: Regression Tests that require COCO Seed 1
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member in coco
+    And I update the Coverage Start date of member on manage plan page
       | Primary:First Day Of Current Year |
-    And I update the Financial Start date of member in coco
+    And I update the Financial Start date of member on manage plan page
       | Primary:First Day Of Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes

@@ -94,11 +94,11 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDate(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDate(memberFinancialStrtDtList);
     }
-    @And("I update the Coverage Start date of member in coco")
+    @And("I update the Coverage Start date of member on manage plan page")
     public void coverageStartDateCOCO(List<String> memberCoverageStrtDtList) {
         adminPortalManagePlansPage.memberCoverageStrtDateNew(memberCoverageStrtDtList);
     }
-    @And("I update the Financial Start date of member in coco")
+    @And("I update the Financial Start date of member on manage plan page")
     public void financialStartDateCOCO(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDateNew(memberFinancialStrtDtList);
     }
