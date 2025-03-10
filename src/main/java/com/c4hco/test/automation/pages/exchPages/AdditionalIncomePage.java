@@ -210,6 +210,7 @@ public class AdditionalIncomePage {
     }
 
     public void clickHelpIcon(String label) {
+        basicActions.wait(250);
         basicActions.waitForElementListToBePresent(helpLnk, 10);
         switch(label){
             case "Help me understand":
@@ -1215,4 +1216,9 @@ public class AdditionalIncomePage {
             hdr_Income.click();
         }
     }
+    public void clickOnBackButton() {
+        basicActions.waitForElementToBePresent(backBtn,20);
+        backBtn.click();
+    }
+
 }

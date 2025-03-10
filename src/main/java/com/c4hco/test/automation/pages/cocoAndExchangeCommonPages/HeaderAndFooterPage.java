@@ -432,6 +432,7 @@ public class HeaderAndFooterPage {
     }
 
     public void headerLanguage(String language){
+        basicActions.wait(250);
         basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 100);
         basicActions.waitForElementToBePresentWithRetries(languageDrp, 120);
         for (WebElement headerLink : centerHeaderLink) {
@@ -440,7 +441,7 @@ public class HeaderAndFooterPage {
                 break;
             }
         }
-        basicActions.wait(90);
+        basicActions.wait(600);
     }
 
     public void changeLanguage(String language) {
@@ -449,6 +450,7 @@ public class HeaderAndFooterPage {
 //        "English Login" and "Spanish Login" is for the Login page
 //        "English ExpertHelp" and "Spanish ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
 
+        basicActions.wait(250);
         switch (language) {
             case "English":
                 basicActions.waitForElementToDisappear(spinner,20);
@@ -507,6 +509,7 @@ public class HeaderAndFooterPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+        basicActions.wait(50);
     }
 
     public void clickSignOutLink(String pageType) {

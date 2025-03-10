@@ -489,6 +489,7 @@ public class FindExpertHelpPage {
     }
 
     public void clickBackButton() {
+        basicActions.wait(250);
         basicActions.waitForElementToBeClickableWithRetries(backButton, 5);
         backButton.click();
     }
@@ -697,4 +698,16 @@ public class FindExpertHelpPage {
         softAssert.assertAll();
     }
 
+    public void validateMyBrokerDetailsEqualToTheBrokerCreated() {
+        basicActions.waitForElementToBePresent(currentBrokerName,100);
+        softAssert.assertEquals(currentBrokerName.getText(),SharedData.getAgencyOwner().getFirstName()+" "+SharedData.getAgencyOwner().getLastName());
+        softAssert.assertEquals(currentAgencyName.getText(),SharedData.getAgencyOwner().getAgencyName());
+        softAssert.assertEquals(currentBrokerLicense.getText(),SharedData.getAgencyOwner().getLicense());
+        softAssert.assertEquals(currentBrokerZipCode.getText(),SharedData.getAgencyOwner().getAgencyAddress().getAddressZipcode());
+        softAssert.assertEquals(currentBrokerPhone.getText(),SharedData.getAgencyOwner().getPhoneNumber());
+        softAssert.assertEquals(currentBrokerType.getText(),"BROKER");
+        softAssert.assertEquals(currentBrokerStatus.getText(),"Active");
+        softAssert.assertEquals(currentBrokerAction.getText(),"Remove");
+        softAssert.assertAll();
+    }
 }

@@ -58,7 +58,7 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I select "Other" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc Individual Insurance" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-914 @HelpDrawerIndividualInsurancePage
   Scenario: SLER-914 Validate help drawer text on the Individual Insurance page - English

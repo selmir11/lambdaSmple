@@ -75,7 +75,6 @@ Feature: Navigation-Welcome Page
 
   @SLCR-40 @PageNavigationWelcomePage @TAMSmoke
   Scenario: SLCR-40 I check navigation from CoCo Welcome page - Spanish
-    Then I wait for 200 milliseconds
     And I change the language from header to "Spanish"
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
