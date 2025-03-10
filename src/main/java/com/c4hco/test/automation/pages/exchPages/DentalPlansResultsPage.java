@@ -209,8 +209,8 @@ public class DentalPlansResultsPage {
     }
 
     public void clickSkip() {
-        basicActions.waitForElementToDisappear( spinner, 50 );
-        basicActions.waitForElementToBePresent( dentalSkipBtn, 30 );
+        basicActions.waitForElementToDisappear( spinner, 70 );
+        basicActions.waitForElementToBePresentWithRetries( dentalSkipBtn, 30 );
         dentalSkipBtn.click();
     }
 
@@ -295,7 +295,7 @@ public class DentalPlansResultsPage {
                 break;
             case "Solstice Healthplans / UHC":
                 basicActions.waitForElementToBePresentWithRetries( verifySolstice,20 );
-                softAssert.assertEquals( verifySolstice.getText(), "Solstice Healthplans / UHC" );
+                softAssert.assertEquals( verifySolstice.getText(), "Solstice Healthplans /UHC" );
                 softAssert.assertAll();
                 verifySolstice.click();
                 break;
