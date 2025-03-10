@@ -131,4 +131,34 @@ public class DashboardPageSteps {
     public void iVerifyAgencyInformationDetails(String agencyName, String agencyEmail, String agencyPhone){
         dashboardPage.verifyAgencyInformationDetails(agencyName,agencyEmail, agencyPhone);
     }
+
+    @Then("I verify the Enter Agency invitation code field is displayed")
+    public void iVerifyAgencyInformationInviteCode(){
+        dashboardPage.verifyAgencyInformationInviteCode();
+    }
+
+    @Then("I verify the Enter Agency invitation code error message")
+    public void iVerifyAgencyInfoInviteCodeError(){
+        dashboardPage.verifyAgencyInfoInviteCodeError();
+    }
+
+    @Then("I enter the admin staff invitation code under Agency Information")
+    public void iEnterAgencyInfoInviteCode(){
+        dashboardPage.enterAgencyInfoInviteCode();
+    }
+
+    @Then("I verify the new Agency Information displays")
+    public void iVerifyNewAgencyInformation(){
+        dashboardPage.verifyNewAgencyInformation();
+    }
+
+    @And("I verify the Agency Information does not display")
+    public void iVerifyNoAgencyInformation(){
+        dashboardPage.verifyNoAgencyInformation();
+    }
+
+    @And("I verify the Complete your profile button displays")
+    public void iVerifyCompleteProfileButtonDisplays(){
+        dashboardPage.verifyCompleteProfileButtonDisplays();
+    }
 }
