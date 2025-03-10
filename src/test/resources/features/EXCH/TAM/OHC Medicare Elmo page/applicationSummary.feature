@@ -146,7 +146,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
       |   Medicare  |     Plain    |        Yes       |           Yellow           |   Yes  |      Green       |   75    |       Green       |   Yes  |      Green       |    Today    |       Green        |  Yes   |       Green      |    Today    |       Green        |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
       |   Medicare  |    Yes     |  Yes   |     75       |     Yes     |     Today     |     Yes     |     Today     |
@@ -198,7 +197,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
       |   Medicare  |     Plain    |       Yes        |           Plain            |   Yes  |      Plain       |  150    |       Yellow      |   Yes  |      Plain       |Current Month|       Yellow       |  Yes   |       Plain      |Current Month|       Yellow       |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
       |   Medicare  |    Yes     |  Yes   |    150       |     Yes     | Current Month |     Yes     | Current Month |
@@ -250,7 +248,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
       |   Medicare  |     Plain    |       Yes        |           Plain            |   Yes  |      Plain       |  None   |        Red        |   No   |      Yellow      |    None     |        Red         |  No    |      Yellow      |    None     |         Red        |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
       |   Medicare  |    Yes     |  Yes   |              |     No      |               |     No      |               |
@@ -300,7 +297,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Type Highlight|Currently Eligible|Currently Eligible Highlight|Enrolled|Enrolled Highlight|A Premium|A Premium Highlight|A Ending|A Ending Highlight| A End Date  |A End Date Highlight|B Ending|B Ending Highlight| B End Date  |B End Date Highlight|
       |   Medicare  |     Plain    |       Yes        |           Plain            |   No   |      Yellow      |         |                   |  None  |       Red        |             |                    |  None  |        Red       |             |                    |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
       |   Medicare  |    Yes     |   No   |              |             |               |             |               |
@@ -356,12 +352,10 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -386,13 +380,11 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "English"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
       |   Medicare  |    Yes     |  Yes   |    150       |     Yes     | Current Month |     Yes     | Current Month |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate Medicare PDF OHC data on Application Details in "Spanish"
       |   OHC Type  |Premium Free|Enrolled|Part A Premium|Part A Ending|Part A End Date|Part B Ending|Part B End Date|
       |   Medicare  |    Yes     |  Yes   |    150       |     Yes     | Current Month |     Yes     | Current Month |
@@ -670,12 +662,10 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |     Today     |     Today     |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF Medicare OHC data on Application Summary in "English"
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |     Today     |     Today     |
     And I change the language from header to "Spanish NonElmo"
-    Then I wait for 50 milliseconds
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
@@ -683,7 +673,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |     Today     |     Today     |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF Medicare OHC data on Application Summary in "Spanish"
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |     Today     |     Today     |
@@ -733,7 +722,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  | Part A End Date  |  Part B End Date |
       |   Medicare  |Last Current Month|Last Current Month|
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF Medicare OHC data on Application Summary in "English"
       |   OHC Type  | Part A End Date  |  Part B End Date |
       |   Medicare  |Last Current Month|Last Current Month|
@@ -745,7 +733,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  | Part A End Date  |  Part B End Date |
       |   Medicare  |Last Current Month|Last Current Month|
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF Medicare OHC data on Application Summary in "Spanish"
       |   OHC Type  | Part A End Date  |  Part B End Date |
       |   Medicare  |Last Current Month|Last Current Month|
@@ -793,7 +780,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |               |               |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF Medicare OHC data on Application Summary in "English"
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |               |               |
@@ -805,7 +791,6 @@ Feature: Tests related to the Application Summary/Detail for Medicare
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |               |               |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF Medicare OHC data on Application Summary in "Spanish"
       |   OHC Type  |Part A End Date|Part B End Date|
       |   Medicare  |               |               |

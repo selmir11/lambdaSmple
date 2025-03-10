@@ -42,7 +42,7 @@ Feature: Page Text-Additional Income Page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I validate I am on the "Additional income" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-925 @HelpDrawerAdditionalIncomePage
   Scenario: SLER-925 Validate help drawer text on the Additional income page - English

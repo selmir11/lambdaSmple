@@ -88,8 +88,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          1           |           1             |           220.03            |             0           |             0           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 1                          | 1                      | 1                         | 220.03                        | 0                         | 0                         |
 #    Step 3
     And I verify "Min Value" is "Yes" on the ESI page
     And I verify "Amount" is "220.03" on the ESI page
@@ -119,8 +119,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          0           |           0             |           80.95             |             1           |             1           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 1                          | 0                      | 0                         | 80.95                         | 1                         | 1                         |
 #    Step 6
     And I verify "Min Value" is "No" on the ESI page
     And I verify "Amount" is "80.95" on the ESI page
@@ -150,8 +150,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             1            |          0           |           2             |           111.46            |             1           |             1           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 1                          | 0                      | 2                         | 111.46                        | 1                         | 1                         |
 #    Step 9
     And I verify "Min Value" is "I don't know" on the ESI page
     And I verify "Amount" is "111.46" on the ESI page
@@ -179,8 +179,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |             1           |           73.03             |             1           |             1           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 73.03                         | 1                         | 1                         |
 #    Step 12
     And I verify "Min Value" is "Yes" on the ESI page
     And I verify "Amount" is "73.03" on the ESI page
@@ -206,8 +206,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           0             |           230.01            |             0           |             0           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 0                         | 230.01                        | 0                         | 0                         |
 #    Step 15
     And I verify "Min Value" is "No" on the ESI page
     And I verify "Amount" is "230.01" on the ESI page
@@ -233,8 +233,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           2             |           120.87            |             1           |             1           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 2                         | 120.87                        | 1                         | 1                         |
 #    Step 18
     And I verify "Min Value" is "I don't know" on the ESI page
     And I verify "Amount" is "120.87" on the ESI page
@@ -260,8 +260,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |             0            |                      |           1             |           221.03            |             0           |             0           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 221.03                        | 0                         | 0                         |
 #    Step 21
     And I verify "Min Value" is "Yes" on the ESI page
     And I verify "Amount" is "221.03" on the ESI page
@@ -286,8 +286,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           506.03            |             0           |             0           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 1                         | 506.03                        | 0                         | 0                         |
 #    Step 24
     And I verify "Min Value" is "Yes" on the ESI page
     And I verify "Amount" is "506.03" on the ESI page
@@ -311,8 +311,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |           257.00            |             0           |             0           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 0                         | 257.00                        | 0                         | 0                         |
 #    Step 27
     And I verify "Min Value" is "No" on the ESI page
     And I verify "Amount" is "257.00" on the ESI page
@@ -336,8 +336,8 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           2             |           475.00            |             0           |             0           |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 2                         | 475.00                        | 0                         | 0                         |
 #    Step 30
     And I verify "Min Value" is "I don't know" on the ESI page
     And I verify "Amount" is "475.00" on the ESI page
@@ -355,8 +355,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           187.91            |                                     |                               |            1            |            1            |                                |                                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 1                         | 187.91                        |                                       |                                 | 1                         | 1                         |                                  |                                  |
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -398,8 +398,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |              0             |                          |                      |           0             |          187.91             |                                     |                               |            1            |            1            |                                |                                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 0                         | 187.91                        |                                       |                                 | 1                         | 1                         |                                  |                                  |
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -471,11 +471,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "375.83" for offer family amount question
     Then I click enrollment status for the members
-      |      Spouse:TypeAccess    |
+      | Spouse:TypeAccess |
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           375.83            |                1                    |           375.83              |            1            |            1            |                1               |                 1              |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 1                         | 375.83                        | 1                                     | 375.83                          | 1                         | 1                         | 1                                | 1                                |
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "job" as ELMO health coverage option
@@ -488,11 +488,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "375.83" for offer family amount question
     Then I click enrollment status for the members
-      |      Primary:TypeAccess    |
+      | Primary:TypeAccess |
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Spouse"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |           375.83            |                1                    |           375.83              |            1            |            1            |                1               |                 1              |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 1                         | 375.83                        | 1                                     | 375.83                          | 1                         | 1                         | 1                                | 1                                |
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -534,11 +534,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "375.83" for offer family amount question
     Then I click enrollment status for the members
-      |      Spouse:NoAccess    |
+      | Spouse:NoAccess |
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |          375.83             |                1                    |           375.83              |            1            |            1            |                1               |                 1              |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 0                         | 375.83                        | 1                                     | 375.83                          | 1                         | 1                         | 1                                | 1                                |
     Then I click continue on the ELMO health coverage page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -548,11 +548,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "375.83" for offer family amount question
     Then I click enrollment status for the members
-      |      Primary:NoAccess    |
+      | Primary:NoAccess |
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Spouse"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |          375.83             |                1                    |           375.83              |            1            |            1            |                1               |                 1              |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 0                         | 375.83                        | 1                                     | 375.83                          | 1                         | 1                         | 1                                | 1                                |
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -594,11 +594,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "375.83" for offer family amount question
     Then I click enrollment status for the members
-      |      Spouse:NoAccess    |
+      | Spouse:NoAccess |
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           0             |          375.83             |                1                    |           375.83              |            1            |            1            |                1               |                 1              |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 0                         | 375.83                        | 1                                     | 375.83                          | 1                         | 1                         | 1                                | 1                                |
     Then I click continue on the ELMO health coverage page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -608,11 +608,11 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "375.83" for offer family amount question
     Then I click enrollment status for the members
-      |      Primary:TypeAccess    |
+      | Primary:TypeAccess |
     Then I click continue on the ESI page
     And I verify the OHC options selected in the DB for "Spouse"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             0              |                          |                      |           1             |          375.83             |                1                    |           375.83              |            1            |            1            |                1               |                 1              |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 0                            |                            |                        | 1                         | 375.83                        | 1                                     | 375.83                          | 1                         | 1                         | 1                                | 1                                |
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -640,8 +640,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ESI page
 #    Step 4
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          187.92             |                                     |                               |            0            |            0            |                                |                                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 187.92                        |                                       |                                 | 0                         | 0                         |                                  |                                  |
 #    Step 5
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -658,8 +658,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ESI page
 #    Step 6
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          187.91             |                                     |                               |            1            |            1            |                                |                                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 187.91                        |                                       |                                 | 1                         | 1                         |                                  |                                  |
 #    Step 7
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -676,8 +676,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ESI page
 #    Step 8
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          375.67             |                                     |                               |            0            |            0            |                                |                                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 375.67                        |                                       |                                 | 0                         | 0                         |                                  |                                  |
 #    Step 9
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
@@ -720,15 +720,15 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "187.91" for offer family amount question
     Then I click enrollment status for the members
-      |      Spouse:Enrolled    |
+      | Spouse:Enrolled |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "None of these" as ELMO health coverage option
 #    Step 12
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          187.91             |                  1                  |           187.91              |            1            |            1            |               1                |               1                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 187.91                        | 1                                     | 187.91                          | 1                         | 1                         | 1                                | 1                                |
 #    Step 13
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
@@ -738,30 +738,30 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for offer family plans question
     Then I enter "187.92" for offer family amount question
     Then I click enrollment status for the members
-      |      Spouse:Enrolled    |
+      | Spouse:Enrolled |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "None of these" as ELMO health coverage option
 #    Step 14
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          187.92             |                  1                  |           187.92              |            0            |            0            |               0                |               0                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 187.92                        | 1                                     | 187.92                          | 0                         | 0                         | 0                                | 0                                |
 #    Step 15
     Then I click Go back on the ELMO health coverage page
     And I validate I am on the "ESI" page
     Then I enter "100.67" for employee amount question on the ESI page
     Then I enter "375.67" for offer family amount question
     Then I click enrollment status for the members
-      |      Spouse:Enrolled    |
+      | Spouse:Enrolled |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     Then I select "None of these" as ELMO health coverage option
 #    Step 16
     And I verify the OHC options selected in the DB for "Primary"
-      |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|curr_year_esi_family_afford_ind3|next_year_esi_family_afford_ind3|
-      |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |             1              |            0             |                      |           1             |          100.67             |                  1                  |           375.67              |            1            |            1            |               0                |               0                |
+      | retiree_health_plan_ind | medicare_ind | va_health_care_ind | cobra_ind | tricare_ind | peace_corps_ind | health_plus_plan_ind | child_health_plan_plus_ind | individual_insurance_ind | hra_ind | emp_sponsored_covg_ind | enrl_emp_sponsored_covg_ind3 | emp_coverage_end_soon_ind3 | emp_end_voluntary_ind3 | emp_coverage_min_std_ind3 | emp_coverage_monthly_prem_amt | emp_coverage_family_plan_offered_ind3 | emp_coverage_family_prem_amount | curr_year_esi_afford_ind3 | next_year_esi_afford_ind3 | curr_year_esi_family_afford_ind3 | next_year_esi_family_afford_ind3 |
+      | 0                       | 0            | 0                  | 0         | 0           | 0               | 0                    | 0                          | 0                        | 0       | 1                      | 1                            | 0                          |                        | 1                         | 100.67                        | 1                                     | 375.67                          | 1                         | 1                         | 0                                | 0                                |
 
     And I click on Sign Out in the Header for "Elmo"
 
@@ -788,7 +788,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate the aptc section doesn't exist on the application history page
     Then I click on view results and shop
     Then I validate the member application results
-      |      Primary:Qualified Health Plan   |
+      | Primary:Qualified Health Plan |
     And I verify that the APTC amount does not appear on the app results page
 #    Step 3
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -828,7 +828,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I validate that my APTC value is "464.18/mo"
     Then I click on view results and shop
     Then I validate the member application results
-      |      Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan   |
+      | Primary:Premium Tax Credit, Cost-Sharing Reductions, Qualified Health Plan |
     Then I validate that my Tax Household's 1 APTC value is "$464.18/mo"
 
     And I click on Sign Out in the Header for "NonElmo"
@@ -881,4 +881,20 @@ Feature: Page Text-Other Health Coverage Page
     And I validate I am on the "Family Overview" page
 
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2278
+  Scenario: ELIG-As an Exchange individual user with family members on the ESI Employer Sponsored Insurance page,
+  I want the ability to see the page in English or Spanish so that I can review and update the ESI information
+    When I validate I am on the "ESI" page
+    And I verify the header for Primary Member on the ESI page in "English"
+    Then I validate that I am able to see the page in the relevant language so that I can review and update the ESI information
+      | Labels:                             |
+      | Other Health Coverage:               |
+      | Employer-sponsored Health Insurance |
+    And I change the language from header to "Spanish"
+    And I verify the header for Primary Member on the ESI page in "Spanish"
+    Then I validate that I am able to see the page in the relevant language so that I can review and update the ESI information
+      | Labels:                             |
+      | Otra cobertura de salud:               |
+      | Seguro de salud patrocinado por el empleador |
 

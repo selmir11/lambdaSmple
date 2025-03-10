@@ -374,7 +374,6 @@ Feature: Elig101-01 - TAM Notices
     Then I click on "No Thanks" on good news page
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
-    Then I wait for 50 milliseconds
 
     Then I click on ClickHere link for "My Documents"
     Then I validate the notice "Application Results" exist in my document letter Containers
