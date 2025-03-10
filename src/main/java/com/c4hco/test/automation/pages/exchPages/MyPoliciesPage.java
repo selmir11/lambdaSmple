@@ -9,12 +9,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class MyPoliciesPage {
     private BasicActions basicActions;
@@ -118,7 +120,7 @@ public class MyPoliciesPage {
 
             Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
             member.setDentalEapid_db(denEapidDb.get(member.getDenGroupInd()));
-            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy number: ",""), "Dental EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
@@ -159,7 +161,7 @@ public class MyPoliciesPage {
 
             Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
             member.setMedicalEapid_db(medEapidDb.get(member.getMedGroupInd()));
-            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText().replaceAll("Policy number: ", ""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
