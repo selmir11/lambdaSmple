@@ -58,7 +58,7 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I select "COBRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo COBRA" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-907 @HelpDrawerCobraPage @TAMSmoke
   Scenario: SLER-907 Validate help drawer text on the COBRA page - English

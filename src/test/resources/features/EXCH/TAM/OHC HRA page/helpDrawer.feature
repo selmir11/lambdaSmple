@@ -58,7 +58,7 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     Then I select "HRA" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo HRA" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-901 @HelpDrawerOhcHraElmo
   Scenario: SLER-901 Validate help drawer text on the ELMO OHC HRA page - English
