@@ -1421,7 +1421,7 @@ public class MyDocumentsPage {
                 expectedMvrNames = Arrays.asList("Proof of Financial Help Eligibility",
                         "Proof of Social Security Number",
                         "Proof of US Citizenship");
-                Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0] + " ");
+                Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
             }
             else {
                 String[] mvrTypeName = mvrTextWithDueDate.split("Fecha límite");
@@ -1461,9 +1461,9 @@ public class MyDocumentsPage {
         if (actualMemberName.equals("Primarynfdxxg YtkvelwTest")) {
             softAssert.assertEquals(actualMemberName, "Primarynfdxxg YtkvelwTest", "Name not match" );
         } else if (actualMemberName.equals("Spousepjjrzdxm Nombyeyptqssf")) {
-            softAssert.assertEquals(actualMemberName, "Spousepjjrzdxm Nombyeyptqssf", "" );
+            softAssert.assertEquals(actualMemberName, "Spousepjjrzdxm Nombyeyptqssf", "Name Not Match" );
         } else {
-            softAssert.assertEquals(actualMemberName, "Sonrgonmbvx Stxcyheghapri", "");
+            softAssert.assertEquals(actualMemberName, "Sonrgonmbvx Stxcyheghapri", "Name not match");
         }
     }
 
@@ -1471,9 +1471,9 @@ public class MyDocumentsPage {
         if (actualMemberName.equals("apelizfadst apindefurdst")) {
             softAssert.assertEquals(actualMemberName, "apelizfadst apindefurdst", "Name not match" );
         } else if (actualMemberName.equals("gsdertetr apindefurdst")) {
-            softAssert.assertEquals(actualMemberName, "gsdertetr apindefurdst", "");
+            softAssert.assertEquals(actualMemberName, "gsdertetr apindefurdst", "Name Not Match");
         } else {
-            softAssert.assertEquals(actualMemberName, "Sonrgonmbvx Stxcyheghapri", "" );
+            softAssert.assertEquals(actualMemberName, "apelizfadst apindefurdst", "Name not match" );
         }
     }
 
