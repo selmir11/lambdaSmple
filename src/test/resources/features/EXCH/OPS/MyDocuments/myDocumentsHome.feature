@@ -903,11 +903,11 @@ Feature: My Document Home Page validations
     And I close button to close modal
     Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2298
+  @SLER-2298 @OPSRegression
   Scenario: Verify Modal pop up error in Spanish  [RT-2019]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
-    When I click create a new account on login page
+    Then I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
     Then I validate I am on the "Login" page
@@ -916,70 +916,53 @@ Feature: My Document Home Page validations
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Documents" page
     And I change the language from header to "Spanish"
-   And I click on upload another document link
-    When I click on upload documents button in modal popup
-    #just click upload
+    And I click on upload another document link
+    Then I click on upload documents button in modal popup
     Then I validate selection required error message on modal popup
       | Debe hacer una Selección |
     Then I validate font colour height and size of selection required error
     Then I validate border colour of type and category dropdown
     Then I validate file required error message on modal popup
-   | Archivo requerido para cargar, adjunte un archivo y inténtelo de nuevo. |
-  Then I validate font colour height and size of file required error
+     | Archivo requerido para cargar, adjunte un archivo y inténtelo de nuevo. |
+    Then I validate font colour height and size of file required error
     Then I validate border colour of type and category dropdown
-    #select type only ie category
-    When I select any type of document from dropdown
-
-    When I click on upload documents button in modal popup
-        Then I validate selection required error message for only document category on modal popup
+    Then I select any type of document from dropdown
+    Then I click on upload documents button in modal popup
+    Then I validate selection required error message for only document category on modal popup
       | Debe hacer una Selección |
-    #Then I validate font colour height and size of selection required error
     Then I validate border colour of category dropdown
     Then I validate file required error message on modal popup
       | Archivo requerido para cargar, adjunte un archivo y inténtelo de nuevo. |
-
-#slect cateogu - type already seletd
-    When I select any category of document from dropdown
-    When I click on upload documents button in modal popup
+    Then  I select any category of document from dropdown in spanish
+    Then  I click on upload documents button in modal popup
     Then I validate file required error message on modal popup
       | Archivo requerido para cargar, adjunte un archivo y inténtelo de nuevo. |
     Then I validate font colour height and size of file required error
-
     And I close button to close modal
-#upload file
     And I click on upload another document link
-    When I select document "TestMyDocs.docx" and upload
-    When I click on upload documents button in modal popup
+    Then I select document "TestMyDocs.docx" and upload
+    Then I click on upload documents button in modal popup
     Then I validate selection required error message on modal popup
       | Debe hacer una Selección |
     Then I validate font colour height and size of selection required error
     Then I validate border colour of type and category dropdown
-
-    #select type - file already added
-    When I select any type of document from dropdown
-    When I click on upload documents button in modal popup
+    Then I select any type of document from dropdown
+    Then I click on upload documents button in modal popup
     Then I validate selection required error message for only document category on modal popup
       | Debe hacer una Selección |
-        Then I validate border colour of category dropdown
-
-#oviersize
-
-    When I select any category of document from dropdown
-    When I select document "OversizeTestJPEG.jpg" and upload
-    When I click on upload documents button in modal popup
-    Then I verify doc file size large error message in red
+    Then I validate border colour of category dropdown
+    Then I select any category of document from dropdown in spanish
+    Then I select document "OversizeTestJPEG.jpg" and upload
+    Then I click on upload documents button in modal popup
+    Then I verify doc file size large error message in red in Spanish
     Then I validate already selected file text box border is red
-    #unsupported doc
-    When I select document "TestTIFF.tif" and upload
-    When I click on upload documents button in modal popup
+    Then I select document "TestTIFF.tif" and upload
+    Then I click on upload documents button in modal popup
     Then I verify unsupported document error message with red in color
     | No se admite este tipo de archivo. Los archivos deben ser pdf, doc, docx, gif, jpeg, jpg, o png.|
     Then I validate already selected file text box border is red
-
+    And I close button to close modal
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
-
-
-
 
 

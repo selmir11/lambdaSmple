@@ -349,5 +349,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyUnsupportedDocumentErrorMessageWithRedInColor(String data) {
         myDocumentsPage.validateDocUnsupportedErrorAndTextColour(data);
     }
+
+    @When("I select any category of document from dropdown in spanish")
+    public void iSelectAnyCategoryOfDocumentFromDropdownInSpanish() {
+        myDocumentsPage.select1stOptionFromDocTypeSpanish();
+    }
+
+    @Then("I verify doc file size large error message in red in Spanish")
+    public void iVerifyDocFileSizeLargeErrorMessageInRedOnModelPopup() {
+        myDocumentsPage.validateDocSizeLargeErrMsgAndTextColourSpanish();
+    }
 }
 

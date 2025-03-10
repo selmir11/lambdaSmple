@@ -310,6 +310,19 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[text() ='Contact us']")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(xpath = "//*[contains(text(),'Comprobante de encarcelamiento')]")
+    WebElement documentType1stValueSpanish;
+
+    @FindBy(xpath = "//p[@class='error ng-star-inserted']//*[name()='svg']")
+    WebElement ErrorSvgSymbol;
+
+    @FindBy(xpath = "//*[@class='error']//*[name()='svg']")
+    List<WebElement> SelectionRequiredErrorSvgSymbol;
+
+
+
+
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -1369,10 +1382,14 @@ public class MyDocumentsPage {
 
     public void validateFileRequiredErrorMessage(String data){
         Assert.assertEquals(textErrorMsg_Filerequired.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
     }
     public void validateSelectionRequiredErrorMessage(String data){
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(0).isDisplayed(),"! not present in error message");
         softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(1).isDisplayed(),"! not present in error message");
         softAssert.assertAll();
     }
 
@@ -1388,19 +1405,35 @@ public class MyDocumentsPage {
         softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
         softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
         softAssert.assertAll();
-
     }
 
     public void validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(String data) {
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
         Assert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),data, "Selection Required error msg not displayed");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(0).isDisplayed(),"! not present in error message");
     }
 
     public void validateDocUnsupportedErrorAndTextColour(String data){
-      //  String docFileTypeUnsupportedErrMsg="Document file type is unsupported. Files must be pdf, doc, docx, gif, jpeg, jpg, png.";
+        basicActions.waitForElementToBePresent(textErrorMsg_docFileSizeLarge,10);
         softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
         softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
         softAssert.assertAll();
     }
 
+    public void select1stOptionFromDocTypeSpanish(){
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn,20);
+        docCategoryDrpDwn.click();
+        documentType1stValueSpanish.click();
+    }
+
+    public void validateDocSizeLargeErrMsgAndTextColourSpanish() {
+        basicActions.waitForElementToBePresent(textErrorMsg_docFileSizeLarge,10);
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getText()," Documento demasiado grande. El archivo deber ser menor de 10MB.","Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
 }
