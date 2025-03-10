@@ -58,7 +58,7 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I select "Peace Corps" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     And I validate I am on the "Elmo Ohc Peace Corps" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-912 @HelpDrawerPeaceCorpsPage @TAMSmoke
   Scenario: SLER-912 Validate help drawer text on the Peace Corps page - English

@@ -897,6 +897,32 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+    public void validateIncomeDetails(List<Map<String, String>> expectedValues) {
+        List<IncomeDataEntity> actualResults = exchDbDataProvider.getIncomeData();
+        softAssert.assertEquals(actualResults.size(), expectedValues.size(), "Row count mismatch");
+
+        for (int i = 0; i < expectedValues.size(); i++) {
+            IncomeDataEntity actualResult = actualResults.get(i);
+            Map<String, String> expectedRow = expectedValues.get(i);
+            System.out.println("Validating row " + (i + 1) + ": " + actualResult);
+            softAssert.assertEquals(actualResult.getType(), expectedRow.get("type"), "Type mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getKind(), expectedRow.get("kind"), "Kind mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getAmount(), expectedRow.get("amount"), "Amount mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getPeriod(), expectedRow.get("period"), "Period mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getAnnual_amount(), expectedRow.get("annual_amount"), "Annual_amount mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getFuture_income_changes_ind(), expectedRow.get("future_income_changes_ind"), "Future_income_changes_ind mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getSelf_employed_ind(), expectedRow.get("self_employed_ind"), "Self_employed_ind mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getSeason_comm_tip_samelower_ind(), expectedRow.get("season_comm_tip_samelower_ind"), "Season_comm_tip_samelower_ind mismatch at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getMonthly_amount(), expectedRow.get("monthly_amount"), "Monthly_amount mismatch at row " + (i + 1));
+            softAssert.assertNotNull(actualResult.getEmployer_ah_id(), "Employer_ah_id is null at row " + (i + 1));
+            softAssert.assertNotNull(actualResult.getEmployer_id(), "Employer_id is null at row " + (i + 1));
+            softAssert.assertEquals(actualResult.getEmployer_name(), "COCO_DEFAULT_EMPLOYER", "Employer_name mismatch at row " + (i + 1));
+            softAssert.assertNotNull(actualResult.getSeason_comm_tip_ind(), "Season_comm_tip_ind is null at row " + (i + 1));
+            softAssert.assertNotNull(actualResult.getCreated_by(), "Created_by is null at row " + (i + 1));
+        }
+        softAssert.assertAll();
+    }
+
     public void validateMemberRowCount(int expectedRowCount) {
         int actualRowCount = Integer.parseInt(exchDbDataProvider.getEmployerIncomeRowCount());
         softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
@@ -913,6 +939,12 @@ public class DbValidations {
         softAssert.assertEquals(actualAmount, expectedAmount, "Amount does not match!");
         softAssert.assertEquals(actualFrequency, expectedFrequency, "Frequency does not match!");
 
+        softAssert.assertAll();
+    }
+
+    public void validateOverriddenAmount(String overriddenAmt) {
+        String overriddenAmount = exchDbDataProvider.getOverriddenAmount();
+        softAssert.assertTrue(overriddenAmount.contains("overriddenAptcAmount>" + overriddenAmt), "Amount does not match! Expected to contain: overriddenAptcAmount>" + overriddenAmt + " Found: " + overriddenAmount);
         softAssert.assertAll();
     }
 

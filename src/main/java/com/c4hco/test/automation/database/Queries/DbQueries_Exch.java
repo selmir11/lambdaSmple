@@ -779,6 +779,19 @@ public class DbQueries_Exch {
                 "WHERE account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
 
+    public String getIncomeDataDetails() {
+        String query = "SELECT DISTINCT a.member_id AS member_id, d.employer_ah_id AS employer_ah_id, f.employer_id AS employer_id, d.employer_name AS employer_name, a.type AS type, a.kind AS kind, a.amount AS amount, a.period AS period, a.annual_amount AS annual_amount, d.future_income_changes_ind AS future_income_changes_ind, f.self_employed_ind AS self_employed_ind, d.season_comm_tip_ind AS season_comm_tip_ind, d.season_comm_tip_samelower_ind AS season_comm_tip_samelower_ind, f.created_by AS created_by, a.monthly_amount AS monthly_amount\n" +
+                "FROM " + dbName + ".es_income a\n" +
+                "JOIN " + dbName + ".es_income_ah b ON a.member_id = b.member_id\n" +
+                "JOIN " + dbName + ".es_employer c ON a.member_id = c.member_id\n" +
+                "JOIN " + dbName + ".es_employer_ah d ON c.member_id = d.member_id\n" +
+                "JOIN " + dbName + ".es_job_title e ON c.employer_id = e.employer_id\n" +
+                "JOIN " + dbName + ".es_job_title_ah f ON e.member_id = f.member_id\n" +
+                "WHERE a.member_id = '" + SharedData.getPrimaryMember().getMemberId() + "';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
     public String getMemberIncomeDetailsQuery() {
         return "SELECT count(employer_name) " +
                 "FROM " + dbName + ".es_member m " +
@@ -799,15 +812,23 @@ public class DbQueries_Exch {
                 "AND i.kind = '" + kindValue + "';";
     }
 
-
-
-
-
-
     public String getApplicationIdFromHouseholdTable(){
         return "select esh.account_id, esh.household_id, esa.created_ts, esa.application_id\n" +
                 "from "+dbName+".es_household esh, "+dbName+".es_application esa\n" +
                 "where esh.household_id = esa.household_id\n" +
                 "and esh.account_id = '"+acctId+"'" + "order by created_ts desc";
+
     }
+
+    public String getOverriddenAmountDetails(){
+        String query = "Select ind_ssap_data\n" +
+                "From "+dbName+".ssap_data ss, "+dbName+".es_household esh\n" +
+                "Where security_token_id = CAST(esh.household_id AS varchar(25))\n" +
+                "And esh.account_id = '"+acctId+"';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+	
+	
+	
 }

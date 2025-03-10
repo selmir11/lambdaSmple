@@ -206,7 +206,6 @@ Feature: Navigation-Life Change Event Page
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"
     And I change the language from header to "Spanish"
-    Then I wait for 50 milliseconds
     Then I verify unauthorized text in "Spanish"
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
@@ -225,7 +224,6 @@ Feature: Navigation-Life Change Event Page
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I change the language from header to "English"
-    Then I wait for 50 milliseconds
     Then I verify unauthorized text in "English"
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"

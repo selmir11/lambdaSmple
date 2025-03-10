@@ -32,6 +32,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.enterNewLicenseNumberSearch();
     }
 
+    @Then("I search for the new {string} account on the Find a Certified Broker page")
+    public void iSearchNewBrokerAccount(String brokerType) {
+        findACertifiedBrokerPage.searchNewBrokerAccount(brokerType);
+    }
+
     @Then("I clear the broker location search box")
     public void IClearTheBrokerLocationSearchBox(){
         findACertifiedBrokerPage.clearSearchForBrokerLocation();
@@ -132,6 +137,11 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.validateNewAgencyDetails(emailAddress, expectedPhoneNumber, availability, officeHours, agencyLanguage);
     }
 
+    @Then("I validate the newly created agency details")
+    public void iValidateCreatedAgencyDetails(){
+        findACertifiedBrokerPage.validateCreatedAgencyDetails();
+    }
+
     @Then("I verify the over 50 search results error is displayed in {string}")
     public void IVerifyTheOver50SearchResultsErrorDisplayed(String language) {
         findACertifiedBrokerPage.validateOver50SearchResultsErrorExists(language);
@@ -199,5 +209,10 @@ public class FindACertifiedBrokerSteps {
     @Then("I click Continue with my application")
     public void iClickContinueWithMyApplication() {
         findACertifiedBrokerPage.ClickContinueWithMyApplication();
+    }
+
+    @Then("I Search by licence number the authorized Broker generated")
+    public void iSearchByLicenceNumberTheAuthorizedBrokerGenerated() {
+        findACertifiedBrokerPage.SearchAuthorizedBrokerGenerated();
     }
 }

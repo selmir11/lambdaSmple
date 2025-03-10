@@ -120,5 +120,9 @@ public class OhcEmployerSponsoredHealthInsuranceSteps {
     public void iVerifyNoErrorMessage(String errorType)  {
         ohcEmployerSponsoredHealthInsurancePage.verifyNoErrorMessage(errorType);}
 
+    @Then("I validate that I am able to see the page in the relevant language so that I can review and update the ESI information")
+    public void i_validate_that_i_am_able_to_see_the_page_in_both_english_and_Spanish_so_that_i_can_review_and_update_the_esi_information(List<String> dataText) {
+        ohcEmployerSponsoredHealthInsurancePage.verifyLanguageTextInESIPage(dataText);
+    }
 
 }

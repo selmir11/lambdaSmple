@@ -123,7 +123,7 @@ Feature: End to End Tests
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
   @SLER-782 @groupingbysiblingsin3differentgroups
   Scenario: Three members all siblings in seperate households, 1 not applying and 2 applying three groups should exist

@@ -309,7 +309,6 @@ Feature: Page Navigation-OHC ESI Page
     And I set the browser resolution to 1200 x 800
     And I change the language from header to "Spanish"
     And I set the browser resolution to Maximized
-    Then I wait for 50 milliseconds
     Then I verify unauthorized text in "Spanish"
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
@@ -345,7 +344,6 @@ Feature: Page Navigation-OHC ESI Page
     And I set the browser resolution to 1200 x 800
     And I change the language from header to "English"
     And I set the browser resolution to Maximized
-    Then I wait for 50 milliseconds
     Then I verify unauthorized text in "English"
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"

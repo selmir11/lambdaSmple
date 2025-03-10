@@ -105,6 +105,15 @@ public class DashboardPage {
     @FindBy(id = "phoneNumber-data")
     WebElement agencyInformationAgencyPhone;
 
+    @FindBy(id = "enter-InviteCode-label")
+    WebElement agencyInformationEnterInviteCodeText;
+
+    @FindBy(id = "enter-InviteCode-input")
+    WebElement agencyInformationEnterInviteCodefield;
+
+    @FindBy(id = "inviteCode-errorMsg")
+    WebElement agencyInformationEnterInviteCodeError;
+
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -287,6 +296,54 @@ public class DashboardPage {
         softAssert.assertEquals(agencyInformationAgencyName.getText(), agencyName);
         softAssert.assertEquals(agencyInformationAgencyEmail.getText(), agencyEmail);
         softAssert.assertEquals(agencyInformationAgencyPhone.getText(), agencyPhone);
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyInformationInviteCode(){
+        basicActions.waitForElementToBePresent(agencyInformationContainerTitle, 10);
+        softAssert.assertEquals(agencyInformationEnterInviteCodeText.getText(), "Enter Agency invitation code:");
+        softAssert.assertTrue(agencyInformationEnterInviteCodefield.isDisplayed());
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyInfoInviteCodeError(){
+        basicActions.waitForElementToBePresent(agencyInformationContainerTitle, 10);
+        agencyInformationEnterInviteCodefield.sendKeys("BBBBB");
+        agencyInformationEnterInviteCodefield.sendKeys(Keys.ENTER);
+
+        basicActions.waitForElementToBePresent(agencyInformationEnterInviteCodeError, 10);
+        softAssert.assertEquals(agencyInformationEnterInviteCodeError.getText(), "Please enter valid invitation code");
+        softAssert.assertAll();
+    }
+
+    public void enterAgencyInfoInviteCode(){
+        basicActions.waitForElementToBePresent(agencyInformationContainerTitle, 10);
+        agencyInformationEnterInviteCodefield.clear();
+        agencyInformationEnterInviteCodefield.sendKeys(SharedData.getAdminStaff().getAdminStaffInviteCode());
+        agencyInformationEnterInviteCodefield.sendKeys(Keys.ENTER);
+    }
+
+    public void verifyNewAgencyInformation(){
+        basicActions.waitForElementToBePresent(agencyInformationContainerTitle, 10);
+        softAssert.assertEquals(agencyInformationContainerTitle.getText(), "Agency Information");
+        softAssert.assertEquals(agencyInformationAgencyName.getText(), SharedData.getAgencyOwner().getAgencyName());
+        softAssert.assertEquals(agencyInformationAgencyEmail.getText(), SharedData.getAgencyOwner().getAgencyEmail());
+        softAssert.assertEquals(agencyInformationAgencyPhone.getText(), SharedData.getAgencyOwner().getAgencyPhoneNumber());
+        softAssert.assertAll();
+    }
+
+    public void verifyNoAgencyInformation(){
+        basicActions.waitForElementToBePresent(agencyInformationContainerTitle, 10);
+        softAssert.assertEquals(agencyInformationContainerTitle.getText(), "Agency Information");
+        softAssert.assertFalse(basicActions.waitForElementPresence(agencyInformationAgencyName,10));
+        softAssert.assertFalse(basicActions.waitForElementPresence(agencyInformationAgencyEmail,10));
+        softAssert.assertFalse(basicActions.waitForElementPresence(agencyInformationAgencyPhone,10));
+        softAssert.assertAll();
+    }
+
+    public void verifyCompleteProfileButtonDisplays(){
+        basicActions.waitForElementToBePresentWithRetries(agencyCompleteProfile, 10);
+        softAssert.assertEquals(agencyCompleteProfile.getText(), "Complete your profile");
         softAssert.assertAll();
     }
 }
