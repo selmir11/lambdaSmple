@@ -314,6 +314,30 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[text() ='Contact us']")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(xpath = "//*[contains(@class,'header-1')]")
+    WebElement myDocumentHeaderTxt;
+
+    @FindBy(xpath = " //*[contains(@class,'header-1')]/following::div[1]")
+    WebElement myDocumentSubtitleTxt;
+
+    @FindBy(xpath = "//*[contains(text(),'Necesitamos más información para confirmar')]")
+    WebElement myDocumentSubtitleTxtSpanish;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]")
+    List<WebElement> mvrContainer;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div[1]")
+    List<WebElement> mvrTypes;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div[1]/div/p/span")
+    List<WebElement> mvrDueDate;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div[2]/div[1]")
+    List<WebElement> houseHolderNames;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div/div[2]")
+    List<WebElement> mvrUploadButton;
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -1369,5 +1393,113 @@ public class MyDocumentsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + linkName);
         }
+    }
+
+
+    public void verifyDocumentHeaderOnMyDocument(String data) {
+        basicActions.waitForElementToBePresent(myDocumentHeaderTxt, 20);
+        Assert.assertEquals(myDocumentHeaderTxt.getText(), data, "My Documents and Letters text not match");
+    }
+
+    public void verifySubHeaderOnMyDocumentPage(String data) {
+        basicActions.waitForElementToBePresent(myDocumentSubtitleTxt, 20);
+        Assert.assertEquals(myDocumentSubtitleTxt.getText(), data, "We need more text not match");
+    }
+
+    public void verifyContaineNameForInfoWeNeed(String data) {
+        basicActions.waitForElementToBePresent(informationText, 20);
+        Assert.assertEquals(informationText.getText(), data, "Information we need text not match");
+    }
+
+    public void verifyMvrNames(String language) {
+        basicActions.waitForElementListToBePresent(mvrContainer, 20);
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            String mvrTextWithDueDate = mvrTypes.get(i).getText();
+            List<String> expectedMvrNames;
+            if (language.equals("English")) {
+                String[] mvrTypeName = mvrTextWithDueDate.split("Due");
+                expectedMvrNames = Arrays.asList("Proof of Financial Help Eligibility",
+                        "Proof of Social Security Number",
+                        "Proof of US Citizenship");
+                Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0] + " ");
+            }
+            else {
+                String[] mvrTypeName = mvrTextWithDueDate.split("Fecha límite");
+                expectedMvrNames = Arrays.asList("Comprobante de elegibilidad para ayuda financiera",
+                        "Comprobante de Número de Seguro Social",
+                        "Comprobante de ciudadanía de EE. UU.");
+                Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found" +mvrTypeName[0].trim());
+            }
+        }
+    }
+
+    public void verifyDueDateColor() {
+        List<String> expectedColors = Arrays.asList("rgba(255, 0, 0, 1)", "rgba(112, 163, 0, 1)", "rgba(241, 182, 27, 1)"); //Red , Green , Yellow
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            String mvrText = mvrTypes.get(i).getText().trim();
+            String actualColorValue = mvrDueDate.get(i).getCssValue("color");
+            softAssert.assertTrue(expectedColors.contains(actualColorValue), "Invalid due date color found for " + mvrText + " Color ->" + actualColorValue);
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyMemberName() {
+        basicActions.waitForElementListToBePresent(houseHolderNames, 20);
+        String actualMemberName = "";
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            actualMemberName = houseHolderNames.get(i).getText();
+            if (SharedData.getEnv().equals("qa")) {
+                verifyMemberNamesForQA(actualMemberName);
+            } else {
+                verifyMemberNamesForStaging(actualMemberName);
+            }
+            softAssert.assertAll();
+        }
+    }
+
+    private void verifyMemberNamesForQA ( String actualMemberName) {
+        if (actualMemberName.equals("Primarynfdxxg YtkvelwTest")) {
+            softAssert.assertEquals(actualMemberName, "Primarynfdxxg YtkvelwTest", "Name not match" );
+        } else if (actualMemberName.equals("Spousepjjrzdxm Nombyeyptqssf")) {
+            softAssert.assertEquals(actualMemberName, "Spousepjjrzdxm Nombyeyptqssf", "" );
+        } else {
+            softAssert.assertEquals(actualMemberName, "Sonrgonmbvx Stxcyheghapri", "");
+        }
+    }
+
+    private void verifyMemberNamesForStaging ( String actualMemberName) {
+        if (actualMemberName.equals("apelizfadst apindefurdst")) {
+            softAssert.assertEquals(actualMemberName, "apelizfadst apindefurdst", "Name not match" );
+        } else if (actualMemberName.equals("gsdertetr apindefurdst")) {
+            softAssert.assertEquals(actualMemberName, "gsdertetr apindefurdst", "");
+        } else {
+            softAssert.assertEquals(actualMemberName, "Sonrgonmbvx Stxcyheghapri", "" );
+        }
+    }
+
+    public void verifyMvrTypesWithTextandButtons() {
+        basicActions.waitForElementListToBePresent(mvrContainer, 20);
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(mvrTypes.get(i), 20), "MVR Type not present");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(mvrDueDate.get(i), 20), "Due Date not present");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(houseHolderNames.get(i), 20), "Member name not present");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(mvrUploadButton.get(i), 20), "Upload button not present");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyUploadBtnForMrv() {
+        String[] mvrName;
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            String mvrNameWithDate = mvrTypes.get(i).getText();
+            mvrName = mvrNameWithDate.split("Due|Fecha");
+            WebElement uploadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + mvrName[0].trim() + "')]/p//following::button[1]"));
+            Assert.assertTrue(basicActions.waitForElementToBePresent(uploadButton, 20), "Upload button not present");
+        }
+    }
+
+    public void verifyNoDocumentMessage(String data) {
+        basicActions.waitForElementToBePresent(noNeedToUpload, 20);
+        Assert.assertEquals(noNeedToUpload.getText(), data, "No document message not found");
     }
 }
