@@ -191,7 +191,7 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-94-WIP-@R4V @n1
+  @SLER-94-WIP-@R4V @n11
   Scenario: RT-2075 ENR-EXCH: APPS - REMOVE MEMBER (LCE: Divorce) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
