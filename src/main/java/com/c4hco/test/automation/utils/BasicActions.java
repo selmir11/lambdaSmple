@@ -15,10 +15,7 @@ import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
@@ -640,6 +637,9 @@ public class BasicActions {
     public String getCurrYear() {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear());
+    }
+    public String getYear(int num) {
+        return Integer.toString(Year.now().getValue() - num);
     }
 
     public String getStartDateOE() {// Today

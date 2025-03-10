@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.*;
@@ -130,8 +132,26 @@ public class WelcomePage {
     public void selectPlanyear(String planYear) {
         basicActions.waitForElementToBeClickable(planYearSelectorDp, 10);
         basicActions.scrollToElement(planYearSelectorDp);
-        planYearSelectorDp.click();
-        basicActions.selectValueFromDropdown(planYearSelectorDp, planYearSelectorOptions, planYear);
+        selectValueFromDropdown(planYearSelectorDp, planYear);
+    }
+    public void selectValueFromDropdown(WebElement dropdownElement,String PlanYear) {
+        switch (PlanYear) {
+            case "Current Year":
+                PlanYear = basicActions.getCurrYear();
+                break;
+            case "Previous Year":
+                PlanYear = basicActions.getYear(1);
+                break;
+            case "Previous Previous Year":
+                PlanYear = basicActions.getYear(2);
+                break;
+            default:
+                Assert.fail("Plan details not available for the given Year");
+        }
+        dropdownElement.click();
+        System.out.println("Selecting plan year " + PlanYear);
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText(PlanYear);
     }
 
     public void clickTakeQuiz() {
