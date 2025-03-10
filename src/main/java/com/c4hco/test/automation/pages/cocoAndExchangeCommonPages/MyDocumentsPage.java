@@ -1416,19 +1416,24 @@ public class MyDocumentsPage {
         for (int i = 0; i < mvrContainer.size(); i++) {
             String mvrTextWithDueDate = mvrTypes.get(i).getText();
             List<String> expectedMvrNames;
-            if (language.equals("English")) {
-                String[] mvrTypeName = mvrTextWithDueDate.split("Due");
-                expectedMvrNames = Arrays.asList("Proof of Financial Help Eligibility",
-                        "Proof of Social Security Number",
-                        "Proof of US Citizenship");
-                Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
-            }
-            else {
-                String[] mvrTypeName = mvrTextWithDueDate.split("Fecha límite");
-                expectedMvrNames = Arrays.asList("Comprobante de elegibilidad para ayuda financiera",
-                        "Comprobante de Número de Seguro Social",
-                        "Comprobante de ciudadanía de EE. UU.");
-                Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found" +mvrTypeName[0].trim());
+            String[] mvrTypeName;
+            switch (language) {
+                case "English":
+                    mvrTypeName = mvrTextWithDueDate.split("Due");
+                    expectedMvrNames = Arrays.asList("Proof of Financial Help Eligibility",
+                            "Proof of Social Security Number",
+                            "Proof of US Citizenship");
+                    Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
+                    break;
+                case "Spanish":
+                    mvrTypeName = mvrTextWithDueDate.split("Fecha límite");
+                    expectedMvrNames = Arrays.asList("Comprobante de elegibilidad para ayuda financiera",
+                            "Comprobante de Número de Seguro Social",
+                            "Comprobante de ciudadanía de EE. UU.");
+                    Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + language);
             }
         }
     }
