@@ -108,7 +108,16 @@ Feature: Regression Tests that require COCO Seed 1
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
 
-#UI Validation
+
+# DB Validation
+    And I validate "SUBMITTED" Medical entities from COCO policy tables
+    And I validate Medical entities from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
+    And I validate the coco ob834 medical file data
+
+    #UI Validation
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -121,16 +130,8 @@ Feature: Regression Tests that require COCO Seed 1
     And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 
-# DB Validation
-    And I validate "SUBMITTED" Medical entities from COCO policy tables
-    And I validate Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
-    And I validate the coco ob834 medical file data
-
   @SLCR-780 @pol_coco_passed
-  Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+  Scenario: CCRT-106 - DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
