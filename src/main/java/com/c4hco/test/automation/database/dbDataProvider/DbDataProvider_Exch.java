@@ -86,7 +86,7 @@ public class DbDataProvider_Exch {
         MemberDetails member = basicActions.getMember(name);
         String zipcode = member.getResAddress().getAddressZipcode();
         String county = member.getResAddress().getAddressCounty();
-        if(member.getIsProfileChange()){
+        if(member.getIsProfileChange()&&member.getIsResAddChange()){
             zipcode = member.getOldResAddress().getAddressZipcode();
             county = member.getOldResAddress().getAddressCounty();
         }
@@ -653,6 +653,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForThreeColumnValues("kind", "amount", "period", exchDbQueries.getDeductionamountDetails(memberId, kindValue));
     }
 
+    public String getOverriddenAmount() {
+        return postgresHandler.getResultFor("ind_ssap_data", exchDbQueries.getOverriddenAmountDetails());
+    }
 
-
+    public String getVlpRequestCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getVlpRequestCountQuery());}
 }

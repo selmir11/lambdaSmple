@@ -96,6 +96,7 @@ public class SharedData {
     @Getter @Setter private static String primaryTaxPayerKey;
     @Getter @Setter private static BigDecimal oldAccountId;
     @Getter @Setter private static AssisterDetails assisterDetails;
+    @Getter @Setter private static List<String> Companyname;
 
 
 
@@ -146,6 +147,7 @@ public class SharedData {
         transForGrpCtrlNum = null;
         medGroupCtlNumbers = null;
         denGroupCtlNumbers = null;
+        Companyname = null;
     }
 
 }

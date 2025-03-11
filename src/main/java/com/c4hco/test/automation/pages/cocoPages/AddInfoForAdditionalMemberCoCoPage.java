@@ -151,8 +151,8 @@ public class AddInfoForAdditionalMemberCoCoPage {
     }
 
     public void verifyTextOnAdditionalInfoForAddMemberEnglish() {
-        softAssert.assertEquals(hdrAddInfoForAddMember.getText(), "Additional information for " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1));
-        softAssert.assertEquals(AddInfoForAddMemberPageText.get(0).getText(), "Enter "+ Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + "'s residential address");
+        softAssert.assertEquals(hdrAddInfoForAddMember.getText(), "Additional information for " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1));
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(0).getText(), "Enter "+ Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + "'s residential address");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(1).getText(), "Address line 1");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(2).getText(), "Address line 2");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(3).getText(), "City");
@@ -172,7 +172,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
 
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(6).getText(), "Zip code");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(7).getText(), "County");
-        softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "Does " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " live in Colorado?");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "Does " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " live in Colorado?");
         softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "Yes");
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Go Back");
@@ -181,8 +181,8 @@ public class AddInfoForAdditionalMemberCoCoPage {
     }
 
     public void verifyTextOnAdditionalInfoForAddMemberSpanish() {
-        softAssert.assertEquals(hdrAddInfoForAddMember.getText(), "Informaci\u00F3n adicional para " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1));
-        softAssert.assertEquals(AddInfoForAddMemberPageText.get(0).getText(), "Ingrese el domicilio particular de " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1));
+        softAssert.assertEquals(hdrAddInfoForAddMember.getText(), "Informaci\u00F3n adicional para " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1));
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(0).getText(), "Ingrese el domicilio particular de " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1));
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(1).getText(), "Domicilio 1");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(2).getText(), "Domicilio 2");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(3).getText(), "Ciudad");
@@ -202,7 +202,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
 
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(6).getText(), "C\u00F3digo postal");
         softAssert.assertEquals(AddInfoForAddMemberPageText.get(7).getText(), "Condado");
-        softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "\u00BF" + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " vive en Colorado?");
+        softAssert.assertEquals(AddInfoForAddMemberPageText.get(9).getText(), "\u00BF" + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " vive en Colorado?");
         softAssert.assertEquals(liveInColoradoButtons.get(0).getText(), "S\u00ED");
         softAssert.assertEquals(liveInColoradoButtons.get(1).getText(), "No");
         softAssert.assertEquals(goBackButton.getText(), " Volver");

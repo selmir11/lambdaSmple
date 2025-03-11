@@ -819,7 +819,19 @@ public class DbQueries_Exch {
                 "and esh.account_id = '"+acctId+"'" + "order by created_ts desc";
 
     }
-	
-	
-	
+
+    public String getOverriddenAmountDetails(){
+        String query = "Select ind_ssap_data\n" +
+                "From "+dbName+".ssap_data ss, "+dbName+".es_household esh\n" +
+                "Where security_token_id = CAST(esh.household_id AS varchar(25))\n" +
+                "And esh.account_id = '"+acctId+"';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getVlpRequestCountQuery() {
+            return "select count(evr.*) from " + dbName + ".es_member em, " + dbName + ".es_household eh, " + dbName + ".es_vlp_req evr \n" +
+                    "where eh.household_id = em.household_id and em.member_id = evr.member_id \n" +
+                    "and eh.account_id = '" + acctId + "'";
+        }
 }

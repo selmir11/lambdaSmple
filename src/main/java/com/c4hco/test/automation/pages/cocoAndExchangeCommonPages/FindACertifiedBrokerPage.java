@@ -165,7 +165,7 @@ public class FindACertifiedBrokerPage {
     @FindBy(id = "auth-brok")
     WebElement brokerAuthorizationButton;
 
-    @FindBy (xpath = "//button[.='Continue with my application']")
+    @FindBy (xpath = "//button[.='Continue with my application ']")
     WebElement continueWithMyOwn;
 
 
@@ -633,5 +633,10 @@ public class FindACertifiedBrokerPage {
         basicActions.waitForElementToBePresent(continueWithMyOwn,30);
         continueWithMyOwn.click();
 
+    }
+
+    public void SearchAuthorizedBrokerGenerated() {
+        basicActions.waitForElementToBePresent(searchContainer,60);
+        searchContainer.sendKeys(SharedData.getAgencyOwner().getLicense());
     }
 }

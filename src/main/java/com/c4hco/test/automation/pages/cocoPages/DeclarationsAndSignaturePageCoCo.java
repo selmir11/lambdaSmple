@@ -2,11 +2,16 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.SharedData;
+import io.cucumber.datatable.DataTable;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
+import java.util.Map;
 
 public class DeclarationsAndSignaturePageCoCo {
 
@@ -25,7 +30,7 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(css = ".input-label")
     WebElement signatureLabel;
 
-    @FindBy(id = "ELIG-DeclarationsAndSignature-signatureBox")
+    @FindBy(xpath = "//div[@id='ELIG-DeclarationsAndSignature-signatureBox-container']//div[3]//input")
     WebElement signatureInputField;
 
     @FindBy(id = "DeclarationsAndSignature-GoBack")
@@ -34,8 +39,14 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
-    @FindBy(xpath="//label[@class='input-label form-label']")
+    @FindBy(xpath="//label[@class='input-label form-label ng-star-inserted']")
     WebElement getSignature;
+
+    @FindBy(css = ".error-message")
+    WebElement ErrorMessage;
+
+    @FindBy(css = ".input-error-message .error-icon")
+    WebElement ErrorIcon;
 
     public void enterSignatureinCoCo(){
         basicActions.waitForElementToBePresent(signatureInputField, 20);
@@ -101,6 +112,67 @@ public class DeclarationsAndSignaturePageCoCo {
         softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
         softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
+    }
+
+    public void verifyElectronicSignatureLabelAndInputBox(String language) {
+        basicActions.waitForElementToBePresent(signatureLabel, 15);
+        basicActions.waitForElementToBePresent(signatureInputField, 15);
+        switch (language){
+            case "English":
+                softAssert.assertEquals(signatureLabel.getText(), SharedData.getPrimaryMember().getCompleteFullName() + " Electronic Signature:");
+                softAssert.assertTrue(signatureInputField.isDisplayed(), "Electronic signature input field is not visible");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(signatureLabel.getText(), SharedData.getPrimaryMember().getCompleteFullName() + " Firma electrónica:");
+                softAssert.assertTrue(signatureInputField.isDisplayed(), "Electronic signature input field is not visible");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyErrorMessageWithoutEnteringAnythingInInputSignatureBox(String expectedErrorMsg) {
+        basicActions.waitForElementToBePresent(ErrorMessage, 15);
+        softAssert.assertEquals(ErrorMessage.getText(),expectedErrorMsg);
+        softAssert.assertAll();
+    }
+
+    public void validateErrorMessageAndStyleProp(DataTable dataTable){
+        basicActions.waitForElementToBePresent(ErrorIcon,20);
+        basicActions.waitForElementToBePresent(ErrorMessage,10);
+
+        List<Map<String,String>> data = dataTable.asMaps();
+                softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
+                softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
+                softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("color"), data.get(0).get("color"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("line-height"), data.get(0).get("lineHeight"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("text-align"), data.get(0).get("textAlign"));
+                softAssert.assertAll();
+    }
+
+    public void validateLabelTextAndStyleProp(DataTable dataTable){
+        basicActions.waitForElementToBePresent(signatureLabel,10);
+
+        List<Map<String,String>> data = dataTable.asMaps();
+        softAssert.assertTrue(signatureLabel.isDisplayed(),"Username Electronic signature label not visible");
+        softAssert.assertEquals(signatureLabel.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(signatureLabel.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(signatureLabel.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(signatureLabel.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertEquals(signatureLabel.getCssValue("line-height"), data.get(0).get("lineHeight"));
+        softAssert.assertEquals(signatureLabel.getCssValue("text-align"), data.get(0).get("textAlign"));
+        softAssert.assertAll();
+    }
+
+    public void enterInvalidSignatureName() {
+        basicActions.waitForElementToBePresent(signatureInputField, 15);
+        signatureInputField.sendKeys("sakjchfdgldj");
     }
 
 }
