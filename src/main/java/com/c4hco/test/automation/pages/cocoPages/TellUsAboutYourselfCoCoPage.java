@@ -259,7 +259,7 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
         softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " is " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1) + "'s?");
+        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " is " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + "'s?");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-size"), "16px");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("color"), "rgba(43, 49, 60, 1)");
@@ -328,7 +328,7 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
         softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " es " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1) + "'s?");
+        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " es " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + "'s?");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-size"), "16px");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("color"), "rgba(43, 49, 60, 1)");
