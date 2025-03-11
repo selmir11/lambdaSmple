@@ -466,6 +466,7 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed, 10);
         btnMakeChangeMed.click();
+        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 20);
         PlanContainer = MedicalPlanMembersDetailsContainer;
     }
 
@@ -478,6 +479,7 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeDental, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeDental, 10);
         btnMakeChangeDental.click();
+        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 20);
         PlanContainer=DentalPlanMembersDetailsContainer;
     }
 
@@ -586,7 +588,7 @@ public class AdminPortalManagePlansPage {
         Map<String ,String> memberUpdates = memberCoverageStrtDtList.stream()
                 .map(entry -> entry.split(":"))
                 .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
-        basicActions.waitForElementListToBePresentWithRetries(MedicalPlanMembersDetailsContainer,15);
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,15);
         basicActions.scrollToElement(CurrentPlanInfo);
         for (WebElement nameElement : PlanContainer){
             String memberFullName = nameElement.getText().trim();
@@ -596,17 +598,16 @@ public class AdminPortalManagePlansPage {
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
-            if (matchingname!=null){
                  String coverageStartDateElement = "//div[@id='coverageStartDate_"+index+"']//input[1]";
                  basicActions.waitForElementToBeClickable(coverageStartdate, 30);
                  basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
-            }
         }
     }
     public void memberFinancialStrtDateNew(List<String> memberFinancialStrtDtList) {
         Map<String ,String> memberUpdates = memberFinancialStrtDtList.stream()
                 .map(entry -> entry.split(":"))
                 .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,15);
         basicActions.scrollToElement(CurrentPlanInfo);
         for (WebElement nameElement : PlanContainer){
             String memberFullName = nameElement.getText().trim();
@@ -616,11 +617,9 @@ public class AdminPortalManagePlansPage {
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
-            if (matchingname!=null){
                 String financialStartDateElement = "//div[@id='financialStartDate_"+index+"']//input[1]";
                 basicActions.waitForElementToBeClickable(financialStartDate, 30);
                 basicActions.updateElementWithRetries(financialStartDateElement, updatedDate);
-            }
         }
     }
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
