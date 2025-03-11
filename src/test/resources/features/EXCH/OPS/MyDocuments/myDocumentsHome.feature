@@ -1010,6 +1010,8 @@ Feature: My Document Home Page validations
     And I verify no document on new account
       | You don't need to upload any documents at this time|
     Then  I click on Sign Out in the Header for "Elmo"
+
+
   @SLER-2298 @OPSRegression
   Scenario: Verify Modal pop up error in Spanish  [RT-2019]
     Given I open the login page on the "login" portal

@@ -7,7 +7,6 @@ import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java8.Da;
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -28,7 +27,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 
 public class MyDocumentsPage {
