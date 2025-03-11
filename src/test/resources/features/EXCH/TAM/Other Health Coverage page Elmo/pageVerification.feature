@@ -566,6 +566,7 @@ Feature: Page Text-Other Health Coverage Page
 
   @SLER-1221
   Scenario: SLER-1221 I verify that other-health-coverage portal uses common components from ng-common on the main OHC page
+    And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I verify main OHC checkbox in "Not Selected" state
     And I refresh the page
     Then I verify main OHC checkbox in "Selected" state
