@@ -375,8 +375,9 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectFilingJointlyWithOption(String filingJointlyOption) {
+        basicActions.waitForElementToDisappear( spinner,50 );
         basicActions.wait(50);
-        basicActions.waitForElementListToBePresent(filingJointlyWithRadio, 50);
+        basicActions.waitForElementListToBePresentWithRetries(filingJointlyWithRadio, 50);
         boolean optionSelected = false;
         for (int i = 0; i < filingJointlyWithRadio.size(); i++) {
             int adjustedIndex = i + 2;
@@ -463,7 +464,7 @@ public class TaxStatusPage_Elmo {
     }
 
     public void selectWhoWillBeClaimed(String memPrefix) {
-        basicActions.waitForElementToDisappear( spinner, 30);
+        basicActions.waitForElementToDisappear( spinner, 40);
         WebElement selectMember = basicActions.getDriver().findElement(By.xpath("//span[contains(text(), '" + memPrefix + "')]"));
         selectMember.click();
     }
