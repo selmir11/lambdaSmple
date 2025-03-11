@@ -124,7 +124,7 @@ public class DeclarationsAndSignaturePageCoCo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(signatureLabel.getText(), SharedData.getPrimaryMember().getCompleteFullName() + " Firma electrónica:");
+                softAssert.assertEquals(signatureLabel.getText(), SharedData.getPrimaryMember().getCompleteFullName() + " Firma electr\u00F3nica:");
                 softAssert.assertTrue(signatureInputField.isDisplayed(), "Electronic signature input field is not visible");
                 softAssert.assertAll();
                 break;
