@@ -7,6 +7,7 @@ import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java8.Da;
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -27,7 +28,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
-
+import java.util.stream.Collectors;
 
 
 public class MyDocumentsPage {
@@ -1413,28 +1414,27 @@ public class MyDocumentsPage {
 
     public void verifyMvrNames(String language) {
         basicActions.waitForElementListToBePresent(mvrContainer, 20);
+        List<String> expectedMvrNames;
+        String[] mvrTypeName;
         for (int i = 0; i < mvrContainer.size(); i++) {
             String mvrTextWithDueDate = mvrTypes.get(i).getText();
-            List<String> expectedMvrNames;
-            String[] mvrTypeName;
             switch (language) {
                 case "English":
                     mvrTypeName = mvrTextWithDueDate.split("Due");
                     expectedMvrNames = Arrays.asList("Proof of Financial Help Eligibility",
                             "Proof of Social Security Number",
                             "Proof of US Citizenship");
-                    Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
                     break;
                 case "Spanish":
                     mvrTypeName = mvrTextWithDueDate.split("Fecha límite");
                     expectedMvrNames = Arrays.asList("Comprobante de elegibilidad para ayuda financiera",
                             "Comprobante de Número de Seguro Social",
                             "Comprobante de ciudadanía de EE. UU.");
-                    Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + language);
             }
+            Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
         }
     }
 
@@ -1448,38 +1448,19 @@ public class MyDocumentsPage {
         }
     }
 
-    public void verifyMemberName() {
+    public void verifyMemberName(DataTable dataTable) {
+        List<Map<String,String >> expectedMemberList = dataTable.asMaps();
+        List<String> ExpectedMemberName = expectedMemberList.stream()
+                .filter(row -> row.get("Env").equalsIgnoreCase(SharedData.getEnv()))
+                .map(row -> row.get("memberNames"))
+                .toList();
         basicActions.waitForElementListToBePresent(houseHolderNames, 20);
         String actualMemberName = "";
         for (int i = 0; i < mvrContainer.size(); i++) {
             actualMemberName = houseHolderNames.get(i).getText();
-            if (SharedData.getEnv().equals("qa")) {
-                verifyMemberNamesForQA(actualMemberName);
-            } else {
-                verifyMemberNamesForStaging(actualMemberName);
-            }
-            softAssert.assertAll();
+            softAssert.assertTrue(ExpectedMemberName.contains(actualMemberName), "User name " + actualMemberName + " is not match ");
         }
-    }
-
-    private void verifyMemberNamesForQA ( String actualMemberName) {
-        if (actualMemberName.equals("Primarynfdxxg YtkvelwTest")) {
-            softAssert.assertEquals(actualMemberName, "Primarynfdxxg YtkvelwTest", "Name not match" );
-        } else if (actualMemberName.equals("Spousepjjrzdxm Nombyeyptqssf")) {
-            softAssert.assertEquals(actualMemberName, "Spousepjjrzdxm Nombyeyptqssf", "Name Not Match" );
-        } else {
-            softAssert.assertEquals(actualMemberName, "Sonrgonmbvx Stxcyheghapri", "Name not match");
-        }
-    }
-
-    private void verifyMemberNamesForStaging ( String actualMemberName) {
-        if (actualMemberName.equals("apelizfadst apindefurdst")) {
-            softAssert.assertEquals(actualMemberName, "apelizfadst apindefurdst", "Name not match" );
-        } else if (actualMemberName.equals("gsdertetr apindefurdst")) {
-            softAssert.assertEquals(actualMemberName, "gsdertetr apindefurdst", "Name Not Match");
-        } else {
-            softAssert.assertEquals(actualMemberName, "apelizfadst apindefurdst", "Name not match" );
-        }
+        softAssert.assertAll();
     }
 
     public void verifyMvrTypesWithTextandButtons() {

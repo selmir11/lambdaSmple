@@ -6,6 +6,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java8.Da;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -347,8 +349,8 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     }
 
     @Then("I verify member name in MVR type")
-    public void iVerifyMemberNameInMVRType() {
-        myDocumentsPage.verifyMemberName();
+    public void iVerifyMemberNameInMVRType(DataTable datatable) {
+        myDocumentsPage.verifyMemberName(datatable);
     }
 
     @Then("I verify mvr type with date, member name and upload button")
