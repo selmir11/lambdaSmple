@@ -4,7 +4,6 @@ Feature: Tests related to Dental plans
 
   @SLER-1200
   Scenario:  SLER-1200 - set of Dental plan results with plans was consistent through the year - all pages in the results were checked
-
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page

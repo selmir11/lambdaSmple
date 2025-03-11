@@ -826,8 +826,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-807
-      # ELIG-APTCRules - SLER - 807 - formerly RT-2400
-    Scenario Outline: SLER-807 - APTCRules - formerly RT-2400 - Add a daughter on 2nd enrollmnent
+      # ELIG-APTCRules - SLER - 807
+    Scenario Outline: SLER-807 - APTCRules - Add a daughter on 2nd enrollmnent
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
