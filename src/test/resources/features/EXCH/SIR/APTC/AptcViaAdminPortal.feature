@@ -300,7 +300,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page
