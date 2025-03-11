@@ -638,7 +638,7 @@ public class BasicActions {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear());
     }
-    public String getYear(int num) {
+    public String getPastYear(int num) {
         return Integer.toString(Year.now().getValue() - num);
     }
 
@@ -793,10 +793,10 @@ public class BasicActions {
                     date = getCurrYear();
                     break;
                 case "Previous Year":
-                    date = getYear(1);
+                    date = getPastYear(1);
                     break;
                 case "Previous Previous Year":
-                    date = getYear(2);
+                    date = getPastYear(2);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
