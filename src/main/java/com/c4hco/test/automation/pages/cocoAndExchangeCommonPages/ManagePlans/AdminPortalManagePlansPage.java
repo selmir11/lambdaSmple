@@ -613,6 +613,7 @@ public class AdminPortalManagePlansPage {
             String nameElementID = nameElement.getAttribute("id");
             String index = nameElementID.replace("firstName_","");
             String matchingname = memberUpdates.keySet().stream().filter(memberFullName::startsWith).findFirst().orElse(null);
+            Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
             if (matchingname!=null){
