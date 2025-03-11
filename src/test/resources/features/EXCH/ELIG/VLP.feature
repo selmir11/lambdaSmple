@@ -1,9 +1,11 @@
 Feature: ELIG - VLP related scenarios
 
-  @SLER-2101_WIP
-  Scenario: verify system functionality for receiving successful response from VLP
+  Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
+
+  @SLER-2101_WIP
+  Scenario: verify system functionality for receiving successful response from VLP
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -53,8 +55,6 @@ Feature: ELIG - VLP related scenarios
 
   @SLER-2107_WIP
   Scenario: verify system functionality for receiving successful response from VLP
-    Given I open the login page on the "login" portal
-    And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
