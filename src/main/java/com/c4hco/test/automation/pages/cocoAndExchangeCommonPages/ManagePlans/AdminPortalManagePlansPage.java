@@ -408,6 +408,11 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='member-details-grid']//div[contains(@id,'firstName_')]")
     List<WebElement> MedicalPlanMembersDetailsContainer;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='member-details-grid']//div[contains(@id,'firstName_')]")
+    List<WebElement> DentalPlanMembersDetailsContainer;
+    @FindBy(xpath = "//app-current-plan//div[@class='plan-member-info']")
+    WebElement CurrentPlanInfo;
+    List<WebElement> PlanContainer;
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -461,6 +466,7 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed, 10);
         btnMakeChangeMed.click();
+        PlanContainer = MedicalPlanMembersDetailsContainer;
     }
 
     public void clickResetChangesMedical() {
@@ -472,6 +478,7 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeDental, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeDental, 10);
         btnMakeChangeDental.click();
+        PlanContainer=DentalPlanMembersDetailsContainer;
     }
 
     public void verifySaveDentalButtonDisplayed(String saveDental) {
@@ -580,7 +587,8 @@ public class AdminPortalManagePlansPage {
                 .map(entry -> entry.split(":"))
                 .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
         basicActions.waitForElementListToBePresentWithRetries(MedicalPlanMembersDetailsContainer,15);
-        for (WebElement nameElement : MedicalPlanMembersDetailsContainer){
+        basicActions.scrollToElement(CurrentPlanInfo);
+        for (WebElement nameElement : PlanContainer){
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
             String index = nameElementID.replace("firstName_","");
@@ -588,7 +596,8 @@ public class AdminPortalManagePlansPage {
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
             if (matchingname!=null){
-                 String coverageStartDateElement = "//div[@class='coverage-details-grid']//div[@id='coverageStartDate_"+index+"']//input[@type='date']";
+                 String coverageStartDateElement = "//div[@id='coverageStartDate_"+index+"']//input[1]";
+                 basicActions.waitForElementToBeClickable(coverageStartdate, 30);
                  basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
             }
         }
@@ -597,7 +606,8 @@ public class AdminPortalManagePlansPage {
         Map<String ,String> memberUpdates = memberFinancialStrtDtList.stream()
                 .map(entry -> entry.split(":"))
                 .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
-        for (WebElement nameElement : MedicalPlanMembersDetailsContainer){
+        basicActions.scrollToElement(CurrentPlanInfo);
+        for (WebElement nameElement : PlanContainer){
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
             String index = nameElementID.replace("firstName_","");
@@ -605,7 +615,8 @@ public class AdminPortalManagePlansPage {
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
             if (matchingname!=null){
-                String financialStartDateElement = "//div[@class='financial-details-grid']//div[@id='financialStartDate_"+index+"']//input[@type='date']";
+                String financialStartDateElement = "//div[@id='financialStartDate_"+index+"']//input[1]";
+                basicActions.waitForElementToBeClickable(financialStartDate, 30);
                 basicActions.updateElementWithRetries(financialStartDateElement, updatedDate);
             }
         }
