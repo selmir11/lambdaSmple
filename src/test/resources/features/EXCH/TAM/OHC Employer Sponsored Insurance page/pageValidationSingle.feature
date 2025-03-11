@@ -883,7 +883,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click on Sign Out in the Header for "NonElmo"
 
   @SLER-2278
-  Scenario: ELIG-As an Exchange individual user with family members on the ESI Employer Sponsored Insurance page,
+  Scenario: SLER-2278 ELIG-As an Exchange individual user with family members on the ESI Employer Sponsored Insurance page,
   I want the ability to see the page in English or Spanish so that I can review and update the ESI information
     When I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"

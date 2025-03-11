@@ -2,7 +2,7 @@
 Feature: Page Navigation-Deductions Page
 
   @SLER-2283
-  Scenario: ELIG-Deductions-Page Navigation [RT-1207]
+  Scenario: SLER-2283 ELIG-Deductions-Page Navigation [RT-1207]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
