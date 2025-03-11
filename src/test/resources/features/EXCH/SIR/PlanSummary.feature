@@ -7,7 +7,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I validate I am on the "Login" page
 
   @SLER-100 @VerifyMedicalDentalPlanSummaryResults
-  Scenario: SLER-100 - VerifyMedicalDentalPlanSummaryResults - used to be RT-1693
+  Scenario: SLER-100 - VerifyMedicalDentalPlanSummaryResults
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
