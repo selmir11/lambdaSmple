@@ -366,7 +366,7 @@ public class DbSteps {
 
     @Then("I validate {int} VLP calls have been made for the member")
     public void iValidateVLPCallsHaveBeenMadeForTheMember(int number) {
-        dbValidations.verifyTwoVLPCallsMadeForMember(number);
+        dbValidations.verifyVLPCallsMadeForMember(number);
     }
 }
 
