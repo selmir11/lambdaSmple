@@ -135,23 +135,11 @@ public class WelcomePage {
         selectValueFromDropdown(planYearSelectorDp, planYear);
     }
     public void selectValueFromDropdown(WebElement dropdownElement,String PlanYear) {
-        switch (PlanYear) {
-            case "Current Year":
-                PlanYear = basicActions.getCurrYear();
-                break;
-            case "Previous Year":
-                PlanYear = basicActions.getYear(1);
-                break;
-            case "Previous Previous Year":
-                PlanYear = basicActions.getYear(2);
-                break;
-            default:
-                Assert.fail("Plan details not available for the given Year");
-        }
+        String SelectYear = basicActions.getDateBasedOnRequirement(PlanYear);
         dropdownElement.click();
-        System.out.println("Selecting plan year " + PlanYear);
+        System.out.println("Selecting plan year " + SelectYear);
         Select dropdown = new Select(dropdownElement);
-        dropdown.selectByVisibleText(PlanYear);
+        dropdown.selectByVisibleText(SelectYear);
     }
 
     public void clickTakeQuiz() {

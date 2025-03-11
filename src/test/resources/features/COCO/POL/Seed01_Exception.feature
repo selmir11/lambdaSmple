@@ -79,7 +79,7 @@ Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
     Then I validate I am on the "CoCo Welcome" page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
-    And I select year "2025" from My Current Plan container
+    And I select "Previous Year" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And I validate enrolled medical plans details on my policies page coco

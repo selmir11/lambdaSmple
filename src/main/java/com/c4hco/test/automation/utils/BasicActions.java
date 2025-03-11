@@ -789,6 +789,15 @@ public class BasicActions {
                 case "First Day of Current Month":
                     date = firstDateOfCurrMonth();
                     break;
+                case "Current Year":
+                    date = getCurrYear();
+                    break;
+                case "Previous Year":
+                    date = getYear(1);
+                    break;
+                case "Previous Previous Year":
+                    date = getYear(2);
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
             }
