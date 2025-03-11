@@ -129,6 +129,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     And I validate I am on the "Medicare DOI" page and close tab
     And I click Medicare Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
+    And I set the browser resolution to Maximized
     And I select "Please enter" icon on the Medicare Page
     And I select "currently eligible" icon on the Medicare Page
     Then I validate Medicare help drawer verbiage in "English"
@@ -184,6 +185,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     And I click Medicare DOI link in help drawer
     And I validate I am on the "Medicare DOI" page and close tab
     And I click Medicare Contact Us link in help drawer footer
+    And I set the browser resolution to Maximized
     And I validate I am on the "We Can Help" page and close tab
     And I select "Please enter" icon on the Medicare Page
     And I select "currently eligible" icon on the Medicare Page

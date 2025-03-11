@@ -1111,13 +1111,13 @@ public class DeductionsPage {
     }
 
     public void verifyTextOnDeductionsPage(List<String> dataText) {
-        basicActions.waitForElementToBePresent(IncomeSummaryHeader,20);
-        basicActions.waitForElementToBePresent(DeductionSummaryHeader,20);
-        basicActions.waitForElementToBePresent(expenseQuestion,20);
-        basicActions.waitForElementToBePresent(selectAllThatApplyLabel,20);
-        basicActions.waitForElementToBePresent(goBackButton,20);
-        basicActions.waitForElementToBePresent(saveAndContinueBtn,20);
-        basicActions.waitForElementToBePresent(helpSide,20);
+        basicActions.waitForElementToBePresentWithRetries(IncomeSummaryHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(DeductionSummaryHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(expenseQuestion,60);
+        basicActions.waitForElementToBePresentWithRetries(selectAllThatApplyLabel,60);
+        basicActions.waitForElementToBePresentWithRetries(goBackButton,60);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueBtn,60);
+        basicActions.waitForElementToBePresentWithRetries(helpSide,60);
         softAssert.assertEquals(IncomeSummaryHeader.getText(), dataText.get(0) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(DeductionSummaryHeader.getText(), dataText.get(1), "Title Not matching");
         softAssert.assertEquals(expenseQuestion.getText(), dataText.get(2), "Expense Question Not matching");

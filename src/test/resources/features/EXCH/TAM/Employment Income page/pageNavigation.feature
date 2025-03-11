@@ -136,7 +136,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
   @SLER-2264
-  Scenario:  [RT-2703]The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
+  Scenario:  SLER-2264 The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify text on the "Exch" "Header" in "Spanish"
     And I verify text on the "Exch" "Footer" in "Spanish"
@@ -236,7 +236,7 @@ Feature: Page Text-Income Opt Out Page
 
 
   @SLER-2266
-  Scenario:  [RT-2668]The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
+  Scenario:  SLER-2266 The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
     Then I validate page Navigation works for Footer hyperlink text in "English"
       | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
       | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
@@ -326,7 +326,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2270
-  Scenario: RT-2670 As an Exchange user, I need navigation functionality to navigate from the modernized ESI page to Exchange
+  Scenario: SLER-2270 As an Exchange user, I need navigation functionality to navigate from the modernized ESI page to Exchange
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -489,8 +489,8 @@ Feature: Page Text-Income Opt Out Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2272 
-  Scenario: RT-2620 As a user on the Employment Summary page, I need the ability to remove a job/employer so that I can accurately report my employment details
+  @SLER-2272
+  Scenario: SLER-2272 As a user on the Employment Summary page, I need the ability to remove a job/employer so that I can accurately report my employment details
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I enter employment details with "3000000" income at "Annually" frequency
@@ -534,7 +534,7 @@ Feature: Page Text-Income Opt Out Page
 
 
   @SLER-2301
-  Scenario: [RT-2600] As a Exch user on the Employment Summary page, I want to see the employment summary list presented in the order it was added so that I can review and update
+  Scenario: SLER-2301 As a Exch user on the Employment Summary page, I want to see the employment summary list presented in the order it was added so that I can review and update
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "200000" at frequency "Annually"
@@ -567,6 +567,20 @@ Feature: Page Text-Income Opt Out Page
     Then I click on Remove job "First" entered for Primary on the Employment Summary Page
     And I validate company names in employment summary page
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2276
+  Scenario: SLER-2276 ELIG-Self-employment income-Page Navigation[RT-1203]
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    Then I validate Employment Info Page header in "English"
+    Then I validate I am on the "Employment Income" page
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    And I enter self-employment details with "54000.00" income at "Annually" frequency and "Yes" to same or lower
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click Edit on Income Summary row 1
+    Then I validate I am on the "Employment Income" page
 
 
 
