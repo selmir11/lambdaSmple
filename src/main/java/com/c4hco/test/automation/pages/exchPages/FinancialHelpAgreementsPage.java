@@ -27,6 +27,8 @@ public class FinancialHelpAgreementsPage {
     WebElement signatureInput;
     @FindBy(xpath = "(//input[@id='SOL-FinHelpAgreements-ElectronicSignatureLegalEffect'])[2]")
     WebElement signatureForSecondTaxPayer;
+    @FindBy(xpath = "(//input[@id='SOL-FinHelpAgreements-ElectronicSignatureLegalEffect'])[3]")
+    WebElement signatureForThirdTaxPayer;
     @FindBy(css="mat-checkbox input")
     WebElement termsAndAgreeChkbx;
     @FindBy(css="mat-checkbox input")
@@ -92,22 +94,22 @@ public class FinancialHelpAgreementsPage {
         String memberSignature;
         switch (taxHolder) {
             case "taxHolder1":
-                 memberSignature = "(//div/div/span)[2]";
+                 memberSignature = "(//div[1]/div[4]/span)";
                 String signatureFirstMember = basicActions.getDriver().findElement(By.xpath(memberSignature)).getText();
                 signatureInput.click();
                 signatureInput.sendKeys(signatureFirstMember);
                 break;
             case "taxHolder2":
-                 memberSignature = "(//div/div/span)[3]";
+                 memberSignature = "(//div[1]/div[5]/span)";
                 String signatureSecondMember = basicActions.getDriver().findElement(By.xpath(memberSignature)).getText();
                 signatureForSecondTaxPayer.click();
                 signatureForSecondTaxPayer.sendKeys(signatureSecondMember);
                 break;
             case "taxHolder3":
-                memberSignature = "(//div/div/span)[4]";
+                memberSignature = "(//div[1]/div[6]/span)";
                 String signatureThirdMember = basicActions.getDriver().findElement(By.xpath(memberSignature)).getText();
-                signatureForSecondTaxPayer.click();
-                signatureForSecondTaxPayer.sendKeys(signatureThirdMember);
+                signatureForThirdTaxPayer.click();
+                signatureForThirdTaxPayer.sendKeys(signatureThirdMember);
                 break;
 
             default:
