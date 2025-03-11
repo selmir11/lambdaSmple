@@ -6,6 +6,9 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+import java.util.Map;
+
 public class EmploymentIncomePageSteps {
     EmploymentIncomePage employmentIncomePage = new EmploymentIncomePage(WebDriverManager.getDriver());
 
@@ -66,4 +69,10 @@ public class EmploymentIncomePageSteps {
     public void iverifyPageText(DataTable dataTable){
         employmentIncomePage.validateErrorMessageAndStyleProp(dataTable);
     }
+
+    @Then("I verify Employment Income CoCo error format for {string}")
+    public void iVerifyErrorFormat(String incomeType){employmentIncomePage.verifyErrorFormat(incomeType);}
+
+    @And("I verify selected data on the CoCo Employment Income data")
+    public void iVerifySelectedData(List<Map<String, String>> employmentData){employmentIncomePage.verifySelectedData(employmentData);}
 }

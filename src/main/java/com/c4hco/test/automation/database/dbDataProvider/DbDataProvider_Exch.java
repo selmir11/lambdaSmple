@@ -3,6 +3,7 @@ package com.c4hco.test.automation.database.dbDataProvider;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
+import com.c4hco.test.automation.database.Queries.DBQueries_qa_coco;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -14,6 +15,7 @@ public class DbDataProvider_Exch {
     PolicyTableDbHandler policyTableDbHandler = new PolicyTableDbHandler();
     EnPolicyAhHandler enPolicyAhHandler = new EnPolicyAhHandler();
     EnPolicyMemberAhHandler enPolicyMemberAhHandler = new EnPolicyMemberAhHandler();
+    EsIncomeDbHandler esIncomeDbHandler = new EsIncomeDbHandler();
 
     EnMemberEffectiveDatesHandler enMemberEffectiveDatesHandler = new EnMemberEffectiveDatesHandler();
 
@@ -634,4 +636,23 @@ public class DbDataProvider_Exch {
     public EsFDSHRetryControlEntity getEsFDSH_details() {
         return esFDSHRetryControlDbHandler.getDetailsFromFDSHRetry(exchDbQueries.getFDSHRetryDetails());
     }
+    public List<IncomeDataEntity> getIncomeData() {
+        return esIncomeDbHandler.getIncomeDetailsFromIncomeTables(exchDbQueries.getIncomeDataDetails());
+    }
+
+    public List<String> getApplicationIdFromHouseholdTable() {
+        return postgresHandler.getResultListFor("application_id", exchDbQueries.getApplicationIdFromHouseholdTable());
+    }
+
+    public String getEmployerIncomeRowCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getMemberIncomeDetailsQuery() );
+    }
+
+    public String[] getDeductionAmount(String fName, String kindValue) {
+        String memberId = postgresHandler.getResultFor("member_id", exchDbQueries.getMemberId(fName));
+        return postgresHandler.getResultForThreeColumnValues("kind", "amount", "period", exchDbQueries.getDeductionamountDetails(memberId, kindValue));
+    }
+
+
+
 }

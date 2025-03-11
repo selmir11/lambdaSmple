@@ -69,4 +69,7 @@ public class AdditionalIncomeCoCoPageSteps {
     @Then("I verify Additional Income checkbox COCO in {string} state")
     public void iVerifyStateOfAddIncomeCheckboxCOCO(String state){
         additionalIncomeCoCoPage.verifyAddtlIncomeOptionCheckboxCOCO(state);}
+
+    @Then("I verify Additional Income CoCo error format for {string}")
+    public void iVerifyErrorFormat(String incomeType){additionalIncomeCoCoPage.verifyErrorFormat(incomeType);}
 }

@@ -130,7 +130,7 @@ public class MyProfilePage {
     @FindBy(css = "a#termsOfUseLink.action-link1")
     WebElement termsOfUseCoCo;
 
-    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c3387428997-0")
+    @FindBy(css = "div.session-expiration-alert-modal-header.ng-tns-c2876597241-0")
     WebElement Headertimeoutcoco;
 
     @FindBy(css = "p.ng-tns-c3387428997-0")
@@ -162,6 +162,9 @@ public class MyProfilePage {
 
     @FindBy(xpath = "//button[normalize-space()='Save changes']")
     WebElement saveChangesButtonAdminPortal;
+
+    @FindBy(css = ".content_line_label.red-text")
+    WebElement  EmailInUseMessage;
 
     SoftAssert softAssert = new SoftAssert();
     private BasicActions basicActions;
@@ -1079,6 +1082,64 @@ public class MyProfilePage {
     public void clicksaveChangesButtonAdminPortal(){
         basicActions.waitForElementToBePresent(saveChangesButtonAdminPortal,30);
         saveChangesButtonAdminPortal.click();
+    }
+
+    public void verifyEmailUseErrorMessage(String language) {
+        switch (language) {
+            case "English":
+                ValidateEmailInUseErrorEnglish();
+                break;
+            case "Spanish":
+                ValidateEmailInUseErrorSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void ValidateEmailInUseErrorEnglish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40000);
+        MyProfileButtonCoCo.get(1).click();
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmailQA =  "testcocoaccount@test.com";
+        String newEmailStg =  "testaccount_coco@test.com";
+        InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        if (SharedData.getEnv().equals("qa")) {
+            InputEmail.sendKeys(newEmailQA);
+        } else {
+            InputEmail.sendKeys(newEmailStg);
+        }
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(EmailInUseMessage, 10);
+        softAssert.assertEquals(EmailInUseMessage.getText(), "Email already in use");
+        softAssert.assertAll();
+    }
+
+
+    public void ValidateEmailInUseErrorSpanish() {
+        basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
+        MyProfileButtonCoCo.get(1).click();
+        System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
+        String newEmailQA =  "testcocoaccount@test.com";
+        String newEmailStg =  "testaccount_coco@test.com";
+        InputEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        if (SharedData.getEnv().equals("qa")) {
+            InputEmail.sendKeys(newEmailQA);
+        } else {
+            InputEmail.sendKeys(newEmailStg);
+        }
+        MyProfileButtonCoCo.get(1).click();
+        basicActions.waitForElementToBePresent(PasswordInputCoCo, 40);
+        PasswordInputCoCo.sendKeys(SharedData.getPrimaryMember().getPassword());
+        basicActions.waitForElementToBePresent(PasswordSaveChangesCoCo, 40);
+        PasswordSaveChangesCoCo.click();
+        basicActions.waitForElementToBePresent(EmailInUseMessage, 10);
+        softAssert.assertEquals(EmailInUseMessage.getText(), "Correo electr\u00F3nico en uso");
+        softAssert.assertAll();
     }
 }
 

@@ -134,7 +134,7 @@ public class DbQueries_Exch {
     public String getPrimaryHraRecords() {
         return "select *\n" +
                 "From  " + dbName + ".es_member_hra\n" +
-                "where member_id = '" + SharedData.getPrimaryMemberId() + "'";
+                "where member_id = '" + SharedData.getPrimaryMember().getMemberId() + "'";
     }
 
     public String getRatingArea(String fipcode) {
@@ -375,7 +375,7 @@ public class DbQueries_Exch {
     public String getPrimaryHraAhRecords() {
         return "select *\n" +
                 "From  " + dbName + ".es_member_hra_ah\n" +
-                "where member_id = '" + SharedData.getPrimaryMemberId() + "' \n" +
+                "where member_id = '" + SharedData.getPrimaryMember().getMemberId() + "' \n" +
                 "order by updated_ts asc limit 1";
     }
 
@@ -530,8 +530,8 @@ public class DbQueries_Exch {
 
     public String getMemberNonAIAn(String reasonCode) {
         return "SELECT DISTINCT t1.* " +
-                "FROM exch.es_member_rules_result t1 " +
-                "JOIN exch.es_member_rules_result t2 ON t1.member_id = t2.member_id " +
+                "FROM " + dbName + ".es_member_rules_result t1 " +
+                "JOIN " + dbName + ".es_member_rules_result t2 ON t1.member_id = t2.member_id " +
                 "WHERE t1.member_id = '" + SharedData.getPrimaryMember().getMemberId() + "' " +
                 "AND t1.eligibility_type = 'CSR' " +
                 "AND t1.determination = 'CSR' " +
@@ -778,4 +778,48 @@ public class DbQueries_Exch {
                 "FROM "+dbName+".es_fdsh_retry_control\n" +
                 "WHERE account_id = '"+SharedData.getPrimaryMember().getAccount_id()+"'";
     }
+
+    public String getIncomeDataDetails() {
+        String query = "SELECT DISTINCT a.member_id AS member_id, d.employer_ah_id AS employer_ah_id, f.employer_id AS employer_id, d.employer_name AS employer_name, a.type AS type, a.kind AS kind, a.amount AS amount, a.period AS period, a.annual_amount AS annual_amount, d.future_income_changes_ind AS future_income_changes_ind, f.self_employed_ind AS self_employed_ind, d.season_comm_tip_ind AS season_comm_tip_ind, d.season_comm_tip_samelower_ind AS season_comm_tip_samelower_ind, f.created_by AS created_by, a.monthly_amount AS monthly_amount\n" +
+                "FROM " + dbName + ".es_income a\n" +
+                "JOIN " + dbName + ".es_income_ah b ON a.member_id = b.member_id\n" +
+                "JOIN " + dbName + ".es_employer c ON a.member_id = c.member_id\n" +
+                "JOIN " + dbName + ".es_employer_ah d ON c.member_id = d.member_id\n" +
+                "JOIN " + dbName + ".es_job_title e ON c.employer_id = e.employer_id\n" +
+                "JOIN " + dbName + ".es_job_title_ah f ON e.member_id = f.member_id\n" +
+                "WHERE a.member_id = '" + SharedData.getPrimaryMember().getMemberId() + "';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getMemberIncomeDetailsQuery() {
+        return "SELECT count(employer_name) " +
+                "FROM " + dbName + ".es_member m " +
+                "JOIN " + dbName + ".es_household h ON m.household_id = h.household_id " +
+                "LEFT JOIN " + dbName + ".es_income i ON i.member_id = m.member_id " +
+                "LEFT JOIN " + dbName + ".es_employer e ON i.employer_id = e.employer_id " +
+                "LEFT JOIN " + dbName + ".es_job_title jt ON jt.employer_id = e.employer_id " +
+                "LEFT JOIN " + dbName + ".es_address a ON e.address_id = a.address_id " +
+                "WHERE h.account_id = '" + acctId + "'";
+    }
+
+    public String getDeductionamountDetails(String memberId, String kindValue) {
+        return "SELECT m.member_id, i.income_id, i.type, i.kind, i.amount, i.period " +
+                "FROM " + dbName + ".es_member m " +
+                "JOIN " + dbName + ".es_income i ON m.member_id = i.member_id " +
+                "WHERE m.member_id = '" + memberId + "' " +
+                "AND i.type = 'DEDUCTION' " +
+                "AND i.kind = '" + kindValue + "';";
+    }
+
+    public String getApplicationIdFromHouseholdTable(){
+        return "select esh.account_id, esh.household_id, esa.created_ts, esa.application_id\n" +
+                "from "+dbName+".es_household esh, "+dbName+".es_application esa\n" +
+                "where esh.household_id = esa.household_id\n" +
+                "and esh.account_id = '"+acctId+"'" + "order by created_ts desc";
+
+    }
+	
+	
+	
 }

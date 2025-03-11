@@ -138,7 +138,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-66 @PageTextIncomeSummary @TAMSmoke @test
+  @SLCR-66 @PageTextIncomeSummary @TAMSmoke
   Scenario: SLCR-66 I can see Income Summary's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the CoCo Income Summary page in "Spanish"
@@ -261,7 +261,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-377 @test
+  @SLCR-377
   Scenario: SLCR-377 I want to see a pencil icon rather than the Edit/Update link
     And I verify the header for Primary Member on the CoCo Income Summary page in "English"
     Then I verify the edit icon
@@ -635,3 +635,15 @@ Feature: Tests related to the Deductions page
     And I select "Moving expenses" as deduction option with "100" amount at "Anualmente" frequency
     And I select continue on the Deductions CoCo page
     Then I verify deduction "Moving expenses" in "Spanish" on the income summary CoCo page
+
+  @SLCR-795
+  Scenario: SLCR-795 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Income Summary
+    And I verify the header for Primary Member on the CoCo Income Summary page in "English"
+    And I select continue on the income Summary CoCo page
+    Then I verify income Summary CoCo error format for "Projected Income"
+    Then I select the projected income option "Yes" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I verify income Summary CoCo error format for "Income Input"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

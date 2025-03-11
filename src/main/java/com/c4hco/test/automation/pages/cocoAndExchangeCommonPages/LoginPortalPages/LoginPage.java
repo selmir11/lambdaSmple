@@ -22,6 +22,7 @@ public class LoginPage {
     @FindBy(id = "create-account-link")
     WebElement createAccountLink;
 
+
     @FindBy(xpath = "//input[@id='email']")
     WebElement username;
 
@@ -31,7 +32,7 @@ public class LoginPage {
     @FindBy(id = "main-sign-in")
     WebElement signInButton;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement usernameAdmin;
 
     @FindBy(id = "password")
@@ -49,10 +50,10 @@ public class LoginPage {
     @FindBy(xpath = "//a[text()='username']")
     WebElement forgotUsername;
 
-    @FindBy(xpath = "//span[normalize-space()='Username is required']")
+    @FindBy(id = "username_mf_error")
     WebElement usernameError;
 
-    @FindBy(xpath = "//span[normalize-space()='Password is required']")
+    @FindBy(id = "password_mf_error")
     WebElement passwordError;
 
     @FindBy(css = ".fw-bold")
@@ -92,6 +93,7 @@ public class LoginPage {
     WebElement userIcon;
     @FindBy(xpath = "//a[@id='user-type-selection']//p")
     List<WebElement> userIconDropdown;
+
 
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
@@ -551,5 +553,24 @@ public class LoginPage {
         username.sendKeys(SharedData.getAssisterDetails().getEmail());
         password.sendKeys(SharedData.getAssisterDetails().getPassword());
         signInButton.click();
+    }
+
+    public void validateTheErrorMsgUsernameAndPasswordRequiredIn(String language) {
+        basicActions.waitForElementToBePresentWithRetries(usernameError,60);
+        basicActions.waitForElementToBePresentWithRetries(passwordError,60);
+        switch (language){
+            case "English":
+                softAssert.assertEquals(usernameError.getText(),"Username is required");
+                softAssert.assertEquals(passwordError.getText(),"Password is required");
+            break;
+            case "Spanish":
+                softAssert.assertEquals(usernameError.getText(),"Se requiere su nombre de usuario");
+                softAssert.assertEquals(passwordError.getText(),"Se requiere su contrase\u00F1a");
+            break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+
+        }
+        softAssert.assertAll();
     }
 }

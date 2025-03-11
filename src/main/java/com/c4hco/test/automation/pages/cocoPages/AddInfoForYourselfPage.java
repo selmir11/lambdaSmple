@@ -166,6 +166,36 @@ public class AddInfoForYourselfPage {
         address.setAddressCounty(county);
         subscriber.setResAddress(address);
     }
+    public void updateResidentialAddressCoCo(String addressLine1, String city, String state, String zipcode, String county) {
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        Address address = new Address();
+        basicActions.waitForElementToBePresent(addressLine1Input, 30);
+        addressLine1Input.clear();
+        addressLine1Input.sendKeys(addressLine1);
+
+        basicActions.waitForElementToBePresent(cityInput, 30);
+        cityInput.clear();
+        cityInput.sendKeys(city);
+
+        basicActions.waitForElementToBePresent(stateDropdown, 30);
+        stateDropdown.click();
+        basicActions.selectValueFromDropdown(stateDropdown, stateDropdownOptions, state);
+
+        basicActions.waitForElementToBePresent(zipcodeInput, 30);
+        zipcodeInput.clear();
+        zipcodeInput.sendKeys(zipcode);
+
+        basicActions.waitForElementToBeClickable(countyDropdown, 30);
+        countyDropdown.click();
+        basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
+
+        address.setAddressLine1(addressLine1);
+        address.setAddressCity(city);
+        address.setAddressState(state);
+        address.setAddressZipcode(zipcode);
+        address.setAddressCounty(county);
+        subscriber.setResAddress(address);
+    }
 
     public void memberMailingAddressCoCo(String addressLine1, String city, String state, String zipcode, String county) {
         MemberDetails subscriber = SharedData.getPrimaryMember();
@@ -191,7 +221,6 @@ public class AddInfoForYourselfPage {
         mailinglAddress.setAddressCounty(county);
         subscriber.setMailingAddress(mailinglAddress);
     }
-
     public void clickGoBackButton() {
         basicActions.waitForElementToBeClickable(goBackButton, 30);
         goBackButton.click();

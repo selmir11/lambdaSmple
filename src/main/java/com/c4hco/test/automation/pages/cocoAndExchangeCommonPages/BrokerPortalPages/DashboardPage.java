@@ -28,8 +28,23 @@ public class DashboardPage {
     @FindBy(xpath = "//*[@id='elem']/app-broker-dashboard/div/div[1]")
     WebElement dashboardPageTitle;
 
+    @FindBy(xpath = "//*[@id='elem']/app-agency-dashboard/div/div[1]")
+    WebElement agencyDashboardPageTitle;
+
     @FindBy(xpath = "//app-broker-certification/div/div[2]/div[3]/div[4]/div")
     WebElement brokerCertifcationStatus;
+
+    @FindBy(id = "accountSummary-data-agencyCertification")
+    WebElement agencyCertificationStatus;
+
+    @FindBy(id = "accountSummary")
+    WebElement accountSummaryTitle;
+
+    @FindBy(id = "accountSummary-title-username")
+    WebElement accountSummaryName;
+
+    @FindBy(id = "accountSummary-data-username")
+    WebElement accountSummaryUsername;
 
     @FindBy(id = "manage-account-button")
     WebElement completeProfile;
@@ -78,6 +93,18 @@ public class DashboardPage {
     @FindBy(id = "accountSummary-data-agencyOwner")
     WebElement accountSummaryAgencyOwnerName;
 
+    @FindBy(id = "agencyInformation")
+    WebElement agencyInformationContainerTitle;
+
+    @FindBy(id = "agencyName-data")
+    WebElement agencyInformationAgencyName;
+
+    @FindBy(id = "agencyEmail-data")
+    WebElement agencyInformationAgencyEmail;
+
+    @FindBy(id = "phoneNumber-data")
+    WebElement agencyInformationAgencyPhone;
+
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -102,8 +129,14 @@ public class DashboardPage {
         softAssert.assertAll();
     }
 
+    public void verifyAgencyDashboard(){
+        basicActions.waitForElementToBePresent(agencyDashboard,10);
+        softAssert.assertEquals(agencyDashboard.getText(),"Agency Dashboard");
+        softAssert.assertAll();
+    }
+
     public void verifyBrokerDashboardTitle(String portalUserType){
-        basicActions.waitForElementToBePresentWithRetries(dashboardPageTitle,10);
+        basicActions.waitForElementToBePresentWithRetries(accountSummaryTitle,10);
         switch (portalUserType){
             case "Agency Owner":
                 softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getAgencyOwner().getFirstName() + " " + SharedData.getAgencyOwner().getLastName());
@@ -112,7 +145,10 @@ public class DashboardPage {
                 softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getBroker().getFirstName() + " " + SharedData.getBroker().getLastName());
                 break;
             case "Admin Staff":
-                softAssert.assertEquals(dashboardPageTitle.getText(),SharedData.getAdminStaff().getFirstName() + " " + SharedData.getAdminStaff().getLastName());
+                softAssert.assertEquals(agencyDashboardPageTitle.getText(),SharedData.getAdminStaff().getFirstName() + " " + SharedData.getAdminStaff().getLastName());
+                break;
+            case "Agency Owner Completed Profile":
+                softAssert.assertEquals(agencyDashboardPageTitle.getText(),SharedData.getAgencyOwner().getFirstName() + " " + SharedData.getAgencyOwner().getLastName());
                 break;
         }
         softAssert.assertAll();
@@ -121,6 +157,12 @@ public class DashboardPage {
     public void verifyBrokerCertStatus(String certificationStatus){
         basicActions.waitForElementToBePresentWithRetries(brokerCertifcationStatus,10);
         softAssert.assertEquals(brokerCertifcationStatus.getText(), certificationStatus);
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyCertStatus(String certificationStatus){
+        basicActions.waitForElementToBePresentWithRetries(agencyCertificationStatus,10);
+        softAssert.assertEquals(agencyCertificationStatus.getText(), certificationStatus);
         softAssert.assertAll();
     }
 
@@ -178,6 +220,15 @@ public class DashboardPage {
         editAccountSummary.click();
     }
 
+    public void verifyAgencyOwnerAccountSummaryDetails(){
+        basicActions.waitForElementToBePresent(accountSummaryTitle, 10);
+        softAssert.assertEquals(accountSummaryTitle.getText(), "Account Summary");
+        softAssert.assertEquals(accountSummaryName.getText(), SharedData.getAgencyOwner().getFirstName() + " " + SharedData.getAgencyOwner().getLastName());
+        softAssert.assertEquals(accountSummaryUsername.getText(), SharedData.getAgencyOwner().getEmail());
+        softAssert.assertEquals(accountSummaryAgencyOwnerName.getText(), SharedData.getAgencyOwner().getFirstName() + " " + SharedData.getAgencyOwner().getLastName());
+        softAssert.assertAll();
+    }
+
     public void clientInformationSearch(){
         basicActions.waitForElementToBePresent(clientInformationSearchBox, 10);
         String firstName = SharedData.getPrimaryMember().getFirstName();
@@ -230,5 +281,12 @@ public class DashboardPage {
 
     }
 
-
+    public void verifyAgencyInformationDetails(String agencyName, String agencyEmail, String agencyPhone){
+        basicActions.waitForElementToBePresent(agencyInformationContainerTitle, 10);
+        softAssert.assertEquals(agencyInformationContainerTitle.getText(), "Agency Information");
+        softAssert.assertEquals(agencyInformationAgencyName.getText(), agencyName);
+        softAssert.assertEquals(agencyInformationAgencyEmail.getText(), agencyEmail);
+        softAssert.assertEquals(agencyInformationAgencyPhone.getText(), agencyPhone);
+        softAssert.assertAll();
+    }
 }

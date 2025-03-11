@@ -25,7 +25,7 @@ public class ErrorProcessingRequestBannerPage {
     }
 
     public void verifyErrorBanner() {
-        basicActions.waitForElementToBePresent(bannerErrorTxt, 15);
+        basicActions.waitForElementToBePresent(bannerErrorTxt, 60);
         softAssert.assertEquals(bannerErrorTxt.getText(), "There was an error processing your request. Please refresh the page and try again.");
         String transactionText = bannerTransactionIdTxt.getText();
         String pattern = "^Transaction ID: [a-zA-Z0-9]{32}$";

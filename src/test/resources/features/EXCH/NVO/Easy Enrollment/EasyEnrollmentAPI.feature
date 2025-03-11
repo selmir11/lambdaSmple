@@ -11,7 +11,7 @@ Feature: Easy Enrollment API
     Then response status code should be 400
     And validation message should be "{taxHouseholdMembers[0].ssn:: Must be 9 digits}"
 
-@SLER-1934
+@SLER-1934 @NVOExchRegression
   Scenario: ELIG-Easy Enrollment DOR to C4-QLCE granted, Shopping allowed, No notices triggered
     Given I get Easy Enrollment API base URL
     Then I send a request body with the following data: adjustedGrossIncome:"40000", emailAddress:"null", filedByDeadline:"1", filingType:"1", firstName:"Matt", householdSize:"1", lastName:"Gaetz", mailingAddressLine1:"null", mailingAddressLine2:"null", city:"Denver", zipCode:"80205", middleInitial:"M", phoneNumber:"7206661280", dateOfBirth:"11211984", ssn:"134251980", year:"2021"
@@ -65,11 +65,11 @@ Feature: Easy Enrollment API
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "Yes" to file federal income tax return next year
-    And I select "Single" tax filing status
-    And I select "No" to claim dependents
-    And I click save and continue on tax status page
+  Then I select "No" for will you be claimed as dependent question
+  Then I select "Yes" for will file tax return question
+  Then I select the "Single" tax filing option on the Tax Status Elmo page
+  Then I select "No" for will claim dependents question
+  Then I click Save and Continue on Tax Status Elmo page
     Then I select "None of these" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
     Then I click continue on family overview page

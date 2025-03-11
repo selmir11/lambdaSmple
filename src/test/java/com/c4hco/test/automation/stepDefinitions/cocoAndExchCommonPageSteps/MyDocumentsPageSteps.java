@@ -251,5 +251,73 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.uploadAnotherDocAndVerifySuccessMessage(uploadDocFile,mvrType,docType);
     }
 
+    @Then("I verify Document category blank by default")
+    public void iVerifyDocumentCategoryBlankByDefault() {
+        myDocumentsPage.verifyDefaultValueOnDocumentCategory();
+    }
+
+    @And("I verify Document category {string} is selected on modal popup")
+    public void iVerifyDocumentCategoryIsSelectedOnModalPopup(String mvrType) {
+        myDocumentsPage.verifyDocumentCategorySelected(mvrType);
+    }
+
+    @And("I verify Document type blank by default")
+    public void iVerifyDocumentTypeBlankByDefault() {
+        myDocumentsPage.verifyDefaultValueOnDocumentType();
+    }
+
+    @Then("I verify Document type {string} is selected on modal popup")
+    public void iVerifyDocumentTypeIsSelectedOnModalPopup(String DocTpe) {
+        myDocumentsPage.verifyDocumentTypeSelected(DocTpe);
+    }
+  
+    @Then("I see the username in Exch that I am currently logged into")
+    public void iSeeTheUsernameInExchThatIAmCurrentlyLoggedInto() {
+        myDocumentsPage.verifyUserName();
+    }
+
+    @Then("I verify modal popup closed")
+    public void iVerifyModalPopupClosed() {
+        myDocumentsPage.verifyModalPopUpClosed();
+    }
+
+    @Then("I upload another doc {string} for category {string} and type {string} and verify success message {string}")
+    public void iUploadAnotherDocForCategoryAndTypeAndVerifySuccessMessageSpanish(String uploadDocFile,String mvrType,String docType,String language) {
+        myDocumentsPage.uploadAnotherDocAndVerifyMessageSpanish(uploadDocFile,mvrType,docType,language);
+    }
+
+    @And("I click on the help drawer icon on the document page")
+    public void iClickOnTheHelpDrawerIconOnTheDocumentPage() {
+        myDocumentsPage.clickHelpDrawerToOpen();
+    }
+
+    @Then("I validate help drawer open in right side of the page")
+    public void iValidateHelpDrawerOpenInRightSideOfThePage() {
+        myDocumentsPage.validateHelpDrawerOpened();
+    }
+
+    @And("I verify help drawer {string} text on the My Document page")
+    public void iVerifyHelpDrawerSubHeaderTextOnTheMyDocumentPage(String contentOn, List<String> data) {
+        myDocumentsPage.verifyHelpDrawerContent(contentOn, data);
+    }
+
+    @And("I click on the help drawer icon to close on the document page")
+    public void iClickOnTheHelpDrawerIconToCloseOnTheDocumentPage() {
+        myDocumentsPage.clickHelpDrawerToClose();
+    }
+
+    @Then("I validate help drawer closed on the document page")
+    public void iValidateHelpDrawerClosedOnTheDocumentPage() {
+        myDocumentsPage.validateHelpDrawerClosed();
+    }
+    @And("I click on {string} link in Help Drawer")
+    public void iClickOnLinkInHelpDrawer(String linkName) {
+        myDocumentsPage.clickLinkForHelp(linkName);
+    }
+
+    @And("I click upload MVR button for {string}")
+    public void iClickUploadMVRButtonFor(String mvrType) {
+        myDocumentsPage.clickUploadMvr(mvrType);
+    }
 }
 

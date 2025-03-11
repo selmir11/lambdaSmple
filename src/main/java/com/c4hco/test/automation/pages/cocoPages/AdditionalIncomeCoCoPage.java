@@ -234,6 +234,20 @@ public class AdditionalIncomeCoCoPage {
             case "Taxable income from Tribal Sources":
                 addIncomeButton.get(11).click();
                 break;
+            case "All Income":
+                addIncomeButton.get(0).click();
+                addIncomeButton.get(1).click();
+                addIncomeButton.get(2).click();
+                addIncomeButton.get(3).click();
+                addIncomeButton.get(4).click();
+                addIncomeButton.get(5).click();
+                addIncomeButton.get(6).click();
+                addIncomeButton.get(7).click();
+                addIncomeButton.get(8).click();
+                addIncomeButton.get(9).click();
+                addIncomeButton.get(10).click();
+                addIncomeButton.get(11).click();
+                break;
             case "None of these":
                 addIncomeButton.get(12).click();
                 break;
@@ -381,6 +395,7 @@ public class AdditionalIncomeCoCoPage {
 
 //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
 public void verifyHeadersAdditionalIncomePage(String language){
+    basicActions.wait(250);
     switch (language){
         case "English":
             verifyHeadersAdditionalIncomePageEnglish();
@@ -394,7 +409,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
 }
 
     public void verifyHeadersAdditionalIncomePageEnglish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBePresentWithRetries(hdrAddInfoForYourself,120);
         basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome,120);
         softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
@@ -409,7 +423,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
     }
 
     public void verifyHeadersAdditionalIncomePageSpanish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
         basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
         basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
@@ -683,6 +696,12 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 softAssert.assertEquals(pensionFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
+            case "Untaxed Foreign Income":
+                basicActions.waitForElementToBePresent(untaxedForeignAmount,20);
+                softAssert.assertEquals(untaxedForeignAmount.getAttribute("value"), Amount);
+                softAssert.assertEquals(untaxedForeignFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
         }
@@ -783,6 +802,77 @@ public void verifyHeadersAdditionalIncomePage(String language){
             hdr_AdditionalIncome.click();
         }
     }
+
+    public void verifyErrorFormat(String incomeType) {
+        basicActions.waitForElementListToBePresent(additlIncomeCheckboxes, 15);
+        WebElement elementAmount;
+        WebElement elementFrequency;
+        switch (incomeType) {
+            case "Alimony Received":
+                elementAmount = alimonyAmount;
+                elementFrequency = alimonyFrequency;
+                break;
+            case "Capital Gains":
+                elementAmount = capGainsAmount;
+                elementFrequency = capGainsFrequency;
+                break;
+            case "Income from rental property":
+                elementAmount = rentalAmount;
+                elementFrequency = rentalFrequency;
+                break;
+            case "Pension":
+                elementAmount = pensionAmount;
+                elementFrequency = pensionFrequency;
+                break;
+            case "Private Retirement Income":
+                elementAmount = retirementAmount;
+                elementFrequency = retirementFrequency;
+                break;
+            case "Income from Social Security":
+                elementAmount = socialSecurityAmount;
+                elementFrequency = socialSecurityFrequency;
+                break;
+            case "Unemployment Insurance Benefit":
+                elementAmount = unemploymentAmount;
+                elementFrequency = unemploymentFrequency;
+                break;
+            case "Investment Income":
+                elementAmount = investmentAmount;
+                elementFrequency = investmentFrequency;
+                break;
+            case "Cash Support":
+                elementAmount = cashSupportAmount;
+                elementFrequency = cashSupportFrequency;
+                break;
+            case "Untaxed Foreign Income":
+                elementAmount = untaxedForeignAmount;
+                elementFrequency = untaxedForeignFrequency;
+                break;
+            case "Royalty Income":
+                elementAmount = royaltyAmount;
+                elementFrequency = royaltyFrequency;
+                break;
+            case "Taxable income from Tribal Sources":
+                elementAmount = taxableAmount;
+                elementFrequency = taxableFrequency;
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+        verifyElementStyles(elementAmount);
+        verifyElementStyles(elementFrequency);
+        softAssert.assertAll();
+    }
+
+    public void verifyElementStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "6px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(150, 0, 0)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
+    }
+
+
 
 
 }

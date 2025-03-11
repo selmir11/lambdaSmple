@@ -111,18 +111,23 @@ public class ApplicationResultsCoCoPage {
         basicActions.waitForElementToDisappear( spinner, 200);
         basicActions.waitForElementToBePresentWithRetries( continueButton, 130);
         basicActions.scrollToElement( continueButton );
+        basicActions.wait(200);
         continueButton.click();
     }
 
     public void verifyHeader(String language)  {
+        basicActions.waitForElementToDisappear( spinner, 200);
+        basicActions.waitForElementToBePresent(applicationResultsHeader,20);
         switch (language) {
             case "English":
-                basicActions.waitForElementToBePresent(applicationResultsHeader,20);
                 softAssert.assertEquals(applicationResultsHeader.getText(), "Application results");
                 softAssert.assertAll();
                 break;
+            case "English With App":
+                softAssert.assertEquals(applicationResultsHeader.getText(), "Here's what your household qualifies for");
+                softAssert.assertAll();
+                break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(applicationResultsHeader,20);
                 softAssert.assertEquals(applicationResultsHeader.getText(), "Resultados de la solicitud");
                 softAssert.assertAll();
                 break;
@@ -392,11 +397,11 @@ public class ApplicationResultsCoCoPage {
             case "Spanish":
                 validateWarningModalSp();
                 break;
-            case "English-SES":
-                validateWarningModalEn_SES();
+            case "English-SEP":
+                validateWarningModalEn_SEP();
                 break;
-            case "Spanish-SES":
-                validateWarningModalSp_Ses();
+            case "Spanish-SEP":
+                validateWarningModalSp_Sep();
                 break;
             default: Assert.fail("Language passed is incorrect");
         }
@@ -411,7 +416,7 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/get-started/when-can-i-buy-insurance", "URL for hyperlink did not match in English");
     }
 
-    private void validateWarningModalEn_SES(){
+    private void validateWarningModalEn_SEP(){
         softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANT!", "Header text did not match in english");
         softAssert.assertEquals(contactUsTxt.get(0).getText(), "You can't enroll in health insurance because it is currently not Open Enrollment.", "The text line 1 did not match");
         softAssert.assertEquals(contactUsTxt.get(1).getText(), "You can't enroll in health insurance because your Special Enrollment Period ended.", "Ses specific text did not match");
@@ -428,7 +433,7 @@ public class ApplicationResultsCoCoPage {
         softAssert.assertEquals(contactUsLink.getAttribute("href"), "https://connectforhealthco.com/es/comenzar/cuando-puedo-adquirir-un-seguro/", "URL for hyperlink did not match in Spanish");
     }
 
-    private void validateWarningModalSp_Ses(){
+    private void validateWarningModalSp_Sep(){
         softAssert.assertEquals(warningModalHeader.getText(), "IMPORTANTE!", "Header text did not match in spanish");
         softAssert.assertEquals(contactUsTxt.get(0).getText(), "No puede inscribirse en un seguro de salud porque este no es el per\u00EDodo de inscripci\u00F3n abierta.", "The text line 1 did not match in spanish");
         softAssert.assertEquals(contactUsTxt.get(1).getText(), "No puede inscribirse en el seguro de salud porque termin\u00F3 su per\u00EDodo de inscripci\u00F3n especial.", "SES specific text did not match in spanish");

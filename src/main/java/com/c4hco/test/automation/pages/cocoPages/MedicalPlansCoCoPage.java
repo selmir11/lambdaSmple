@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.actions.ClickAction;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MedicalPlansCoCoPage {
@@ -317,37 +315,44 @@ public class MedicalPlansCoCoPage {
     }
 
     public void evaluateSortingValue(String sortingTypeSelection) {
-        while (basicActions.elementExists(basicActions.getDriver(), By.xpath("//a[@class='ng-star-inserted']"))) {
+        while (basicActions.elementExists( By.xpath("//a[@class='ng-star-inserted']"))) {
             try {
                 basicActions.waitForElementToDisappear(spinner, 10);
                 basicActions.waitForElementToBePresent(monthlyPremiumValue.get(0), 30);
 
-                if (sortingTypeSelection.contains("Monthly Premium- Low to High")) {
-                    Assert.assertTrue(basicActions.isSortedAscending(monthlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
-                } else if (sortingTypeSelection.contains("Monthly Premium- High to Low")) {
-                    Assert.assertTrue(basicActions.isSortedDescending(monthlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
-                } else if (sortingTypeSelection.contains("Annual Deductible- Low to High")) {
-                    List<WebElement> webElementList = new ArrayList<>();
+                switch (sortingTypeSelection) {
+                    case ("Monthly Premium- Low to High"):
+                        Assert.assertTrue(basicActions.isSortedAscending(monthlyPremiumValue), "Medical Plan sorting for expected Monthly Premium- Low to High");
+                        break;
+                    case ("Monthly Premium- High to Low"):
+                        Assert.assertTrue(basicActions.isSortedDescending(monthlyPremiumValue), "Medical Plan sorting for Monthly Premium- High to Low");
+                        break;
+                    case ("Annual Deductible- Low to High"):
+                        List<WebElement> webElementList = new ArrayList<>();
+                        for (int i = 1; i <= medicalPlanNamesList.size(); i += 2) {
+                            String dynamicXPath = "((//app-medical-plan-card //*[contains(text(),'Deductible')]//ancestor-or-self::div[@class='col c4-type-body-sm'] //div[@class='row details-data-row'])[" + i + "]/div/span)[1]";
+                            WebElement element = basicActions.getDriver().findElement(By.xpath(dynamicXPath));
+                            webElementList.add(element);
+                        }
+                        Assert.assertTrue(basicActions.isSortedAscending(webElementList), "Medical Plan sorting for Annual Deductible- Low to High");
+                        break;
+                    case ("Annual Deductible- High to Low"):
+                        webElementList = new ArrayList<>();
 
+                        for (int i = 1; i <= medicalPlanNamesList.size(); i += 2) {
+                            String dynamicXPath = "((//app-medical-plan-card //*[contains(text(),'Deductible')]//ancestor-or-self::div[@class='col c4-type-body-sm'] //div[@class='row details-data-row'])[" + i + "]/div/span)[1]";
+                            WebElement element = basicActions.getDriver().findElement(By.xpath(dynamicXPath));
+                            webElementList.add(element);
+                        }
+                        Assert.assertTrue(basicActions.isSortedDescending(webElementList), "Medical Plan sorting for Annual Deductible- High to Low");
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid option: " + sortingTypeSelection);
 
-                    for (int i = 1; i <= medicalPlanNamesList.size(); i += 2) {
-                        String dynamicXPath = "((//app-medical-plan-card //*[contains(text(),'Deductible')]//ancestor-or-self::div[@class='col c4-type-body-sm'] //div[@class='row details-data-row'])[" + i + "]/div/span)[1]";
-                        WebElement element = basicActions.getDriver().findElement(By.xpath(dynamicXPath));
-                        webElementList.add(element);
-                    }
-                    Assert.assertTrue(basicActions.isSortedAscending(webElementList), "Medical Plan sorting for Annual Deductible- Low to High");
-                } else if (sortingTypeSelection.contains("Annual Deductible- High to Low")) {
-                    List<WebElement> webElementList = new ArrayList<>();
-
-                    for (int i = 1; i <= medicalPlanNamesList.size(); i += 2) {
-                        String dynamicXPath = "((//app-medical-plan-card //*[contains(text(),'Deductible')]//ancestor-or-self::div[@class='col c4-type-body-sm'] //div[@class='row details-data-row'])[" + i + "]/div/span)[1]";
-                        WebElement element = basicActions.getDriver().findElement(By.xpath(dynamicXPath));
-                        webElementList.add(element);
-                    }
-                    Assert.assertTrue(basicActions.isSortedDescending(webElementList), "Medical Plan sorting for Annual Deductible- High to Low");
                 }
                 nextPageArrow.click();
-            } catch (Exception e) {
+
+        } catch (Exception e) {
                 break; // Break out of the loop if an error occurs
             }
         }

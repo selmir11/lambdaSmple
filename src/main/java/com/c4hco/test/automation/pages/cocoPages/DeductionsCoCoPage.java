@@ -193,11 +193,20 @@ public class DeductionsCoCoPage {
         optionToIndex.put("Self-employment retirement", 8);
         optionToIndex.put("Moving expenses", 9);
         optionToIndex.put("None of these", 10);
+        optionToIndex.put("All Deductions", -1);
 
-        Integer index = optionToIndex.get(deductionOption);
         List<WebElement> updatedDeductionButtons = basicActions.getDriver().findElements(By.cssSelector("app-show-options button"));
-        basicActions.waitForElementListToBePresentWithRetries(updatedDeductionButtons,10);
-        basicActions.clickElementWithRetries(updatedDeductionButtons.get(index),5);
+        basicActions.waitForElementListToBePresentWithRetries(updatedDeductionButtons, 10);
+        if ("All Deductions".equals(deductionOption)) {
+            for (int i = 0; i < updatedDeductionButtons.size(); i++) {
+                if (i != optionToIndex.get("None of these")) {
+                    basicActions.clickElementWithRetries(updatedDeductionButtons.get(i), 5);
+                }
+            }
+        } else {
+            Integer index = optionToIndex.get(deductionOption);
+            basicActions.clickElementWithRetries(updatedDeductionButtons.get(index), 5);
+        }
     }
 
     private void enterAmount(String deductionOption, String amount) {
@@ -461,6 +470,12 @@ public class DeductionsCoCoPage {
                 softAssert.assertEquals(pretaxRetirementFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
+            case "HSA":
+                basicActions.waitForElementToBePresent(hsaAmount,20);
+                softAssert.assertEquals(hsaAmount  .getAttribute("value"), Amount);
+                softAssert.assertEquals(hsaFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
         }
@@ -678,5 +693,66 @@ public class DeductionsCoCoPage {
             element1.click();
             hdr_Deductions.click();
         }
+    }
+
+    public void verifyErrorFormat(String incomeType) {
+        basicActions.waitForElementToBePresent(hdr_Deductions2, 15);
+        WebElement elementAmount;
+        WebElement elementFrequency;
+        switch (incomeType) {
+            case "Alimony Received":
+                elementAmount = alimonyAmount;
+                elementFrequency = alimonyFrequency;
+                break;
+            case "Domestic production activities":
+                elementAmount = domesticProductionAmount;
+                elementFrequency = domesticProductionFrequency;
+                break;
+            case "HSA":
+                elementAmount = hsaAmount;
+                elementFrequency = hsaFrequency;
+                break;
+            case "Pre-tax retirement":
+                elementAmount = pretaxRetirementAmount;
+                elementFrequency = pretaxRetirementFrequency;
+                break;
+            case "School tuition":
+                elementAmount = schoolTuitionAmount;
+                elementFrequency = schoolTuitionFrequency;
+                break;
+            case "Self-employment tax":
+                elementAmount = selfemploymentTaxAmount;
+                elementFrequency = selfemploymentTaxFrequency;
+                break;
+            case "Student loan":
+                elementAmount = studentLoanAmount;
+                elementFrequency = studentLoanFrequency;
+                break;
+            case "Self-employment health insurance":
+                elementAmount = selfemploymentInsuranceAmount;
+                elementFrequency = selfemploymentInsuranceFrequency;
+                break;
+            case "Self-employment retirement":
+                elementAmount = selfemploymentRetirementAmount;
+                elementFrequency = selfemploymentRetirementFrequency;
+                break;
+            case "Moving expenses":
+                elementAmount = movingExpensesAmount;
+                elementFrequency = movingExpensesFrequency;
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+        verifyElementStyles(elementAmount);
+        verifyElementStyles(elementFrequency);
+        softAssert.assertAll();
+    }
+
+    public void verifyElementStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "6px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(150, 0, 0)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
 }

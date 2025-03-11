@@ -15,6 +15,9 @@ public class WelcomePageSteps {
     @And("I apply for the current year in CoCo")
     public void iApplyForCurrentYear(){welcomePage.clickApplyForInsurance();}
 
+    @And("I click make Changes button on welcome page")
+    public void iClickmakeChangeButton(){welcomePage.clickMakeChanges();}
+
     @And("I apply for the next year in CoCo during open enrollment")
     public void iApplyForNextYear(){welcomePage.applyForNextYear();}
 

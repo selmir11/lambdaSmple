@@ -16,7 +16,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
     And I report "Other" and click continue
     And I click Continue With Application button on Report Life Change Page
     Then I select "member" from the who are you question
-    And I am a member with City "Denver" in State "CO" with dob "20011971" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "12011971" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -49,14 +49,14 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
       | mailingAddressCity  | Denver        |
       | mailingAddressState | CO            |
       | mailingAddressZip   | 80205         |
-      | middleInitial       | C             |
+      | middleInitial       | null          |
       | phoneNumber         | <RandomPhone> |
       | taxpayerKey         | <taxpayerKey> |
       | year                | 2025          |
     And I have the following tax household members
-      | dateOfBirth   | firstName   | lastName    | middleInitial | ssn       |
-      | 12011971      | <PrimFName> | <PrimLName> | C             | <PrimSSN> |
-      | <CurrentDate> | <Random>    | <Random>    | A             | 787348251 |
+      | dateOfBirth   | firstName   | lastName    | ssn       |
+      | 12011971      | <PrimFName> | <PrimLName> | <PrimSSN> |
+      | <CurrentDate> | <Random>    | <Random>    | 787348251 |
     And I send the DOR to C4 API request
     Then response status code should be 200
 
@@ -147,7 +147,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
       | PASSED_EMAIL_ADDRESS_VALIDATION  |
       | INITIAL_EE_11_NOTICE_SENT        |
 
-    Then I verify the application result details in DB as "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY" for "Primary"
+    Then I verify the application result details in DB as "TAX_TIME_ENROLLMENT_ELIGIBILITY" for "Primary"
 
   @SLER-1941 @NVOExchRegression
   Scenario:  ELIG - Easy Enrollment: 1 member - SEP Tax Time Enrollment Period is granted, shopping is allowed, email notice is triggered EE-11[RT-2187]
@@ -197,13 +197,13 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
       | mailingAddressLine1 | 123 main@        |
       | mailingAddressState | CO               |
       | mailingAddressZip   | 80916            |
-      | middleInitial       | M                |
+      | middleInitial       | null             |
       | phoneNumber         | <RandomPhone>    |
       | taxpayerKey         | <taxpayerKey>    |
       | year                | 2025             |
     And I have the following tax household members
-      | dateOfBirth | firstName   | lastName    | middleInitial | ssn       |
-      | 01011980    | <PrimLName> | <PrimLName> | C             | <PrimSSN> |
+      | dateOfBirth | firstName   | lastName    | ssn       |
+      | 01011980    | <PrimFName> | <PrimLName> | <PrimSSN> |
 
     And I send the DOR to C4 API request
     Then response status code should be 200
@@ -257,6 +257,6 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
       | PASSED_EMAIL_ADDRESS_VALIDATION  |
       | INITIAL_EE_11_NOTICE_SENT        |
 
-    Then I verify the application result details in DB as "NO_TAX_TIME_ENROLLMENT_ELIGIBILITY" for "Primary"
+    Then I verify the application result details in DB as "TAX_TIME_ENROLLMENT_ELIGIBILITY" for "Primary"
 
 
