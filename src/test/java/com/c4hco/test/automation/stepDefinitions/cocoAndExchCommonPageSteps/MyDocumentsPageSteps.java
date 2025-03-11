@@ -6,6 +6,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java8.Da;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -318,6 +320,52 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I click upload MVR button for {string}")
     public void iClickUploadMVRButtonFor(String mvrType) {
         myDocumentsPage.clickUploadMvr(mvrType);
+    }
+
+    @And("I verify Document header on my document page")
+    public void iVerifyDocumentHeaderOnMyDocumentPage(String data) {
+        myDocumentsPage.verifyDocumentHeaderOnMyDocument(data);
+    }
+
+    @Then("I verify Sub header on my document page")
+    public void iVerifySubHeaderOnMyDocumentPage(String data) {
+        myDocumentsPage.verifySubHeaderOnMyDocumentPage(data);
+
+    }
+
+    @Then("I verify container header for information we need")
+    public void iVerifyContainerHeaderForInformationWeNeed(String data) {
+        myDocumentsPage.verifyContaineNameForInfoWeNeed(data);
+    }
+
+    @And("I verify MVR name on the information we need container in {string}")
+    public void iVerifyMVRNameAreCorrect(String language) {
+        myDocumentsPage.verifyMvrNames(language);
+    }
+
+    @Then("I Verify due date are displaying in proper color")
+    public void iVerifyDueDateAreDisplayingInProperColor() {
+        myDocumentsPage.verifyDueDateColor();
+    }
+
+    @Then("I verify member name in MVR type")
+    public void iVerifyMemberNameInMVRType(DataTable datatable) {
+        myDocumentsPage.verifyMemberName(datatable);
+    }
+
+    @Then("I verify mvr type with date, member name and upload button")
+    public void iVerifyMvrTypeWithDateHouseHolderNameAndUploadButton() {
+        myDocumentsPage.verifyMvrTypesWithTextandButtons();
+    }
+
+    @Then("I verify Upload button on the right")
+    public void iVerifyUploadButtonOnTheRight() {
+        myDocumentsPage.verifyUploadBtnForMrv();
+    }
+
+    @And("I verify no document on new account")
+    public void iVerifyNoDocumentOnNewAccount(String data) {
+        myDocumentsPage.verifyNoDocumentMessage(data);
     }
 
     @Then("I validate file required error message on modal popup")

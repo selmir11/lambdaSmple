@@ -903,6 +903,113 @@ Feature: My Document Home Page validations
     And I close button to close modal
     Then  I click on Sign Out in the Header for "Elmo"
 
+  @SLER-2297 @OPSRegression
+  Scenario: Verify due date color on document page for MVR Types in Spanish [RT-2017]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "2343002676" "5990496490" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I verify Document header on my document page
+      | Mis Documentos y Cartas |
+    Then I verify Sub header on my document page
+      | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
+    Then I verify container header for information we need
+      | Información que Necesitamos |
+    And I verify MVR name on the information we need container in "Spanish"
+    Then I Verify due date are displaying in proper color
+    Then I verify member name in MVR type
+    # Member names for an account 2343002676 in QA Env
+      |     memberNames            |      Env     |
+      | Primarynfdxxg YtkvelwTest    |      qa      |
+      | Spousepjjrzdxm Nombyeyptqssf |      qa      |
+      | Sonrgonmbvx Stxcyheghapri    |      qa      |
+    # Member Names for an account 5990496490 in Staging Env
+      | apelizfadst apindefurdst     |      staging  |
+      | gsdertetr apindefurdst       |      staging  |
+    Then I verify Upload button on the right
+    Then I verify mvr type with date, member name and upload button
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I change the language from header to "Spanish"
+    And I verify Document header on my document page
+      | Mis Documentos y Cartas |
+    Then I verify Sub header on my document page
+      | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
+    Then I verify container header for information we need
+      | Información que Necesitamos |
+    And I verify no document on new account
+      | En este momento no es necesario que cargue ningún documento |
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2322 @OPSRegression
+  Scenario: Verify due date color on document page for MVR Types in English [RT-1813]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "2343002676" "5990496490" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I verify Document header on my document page
+      | My Documents and Letters |
+    Then I verify Sub header on my document page
+      | We need more information to confirm or verify what you told us in your application. |
+    Then I verify container header for information we need
+      | Information We Need |
+    And I verify MVR name on the information we need container in "English"
+    Then I Verify due date are displaying in proper color
+    Then I verify member name in MVR type
+    # Member names for an account 2343002676 in QA Env
+      |     memberNames            |      Env     |
+      | Primarynfdxxg YtkvelwTest    |      qa      |
+      | Spousepjjrzdxm Nombyeyptqssf |      qa      |
+      | Sonrgonmbvx Stxcyheghapri    |      qa      |
+    # Member Names for an account 5990496490 in Staging Env
+      | apelizfadst apindefurdst     |      staging  |
+      | gsdertetr apindefurdst       |      staging  |
+    Then I verify Upload button on the right
+    Then I verify mvr type with date, member name and upload button
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I verify Document header on my document page
+      | My Documents and Letters |
+    Then I verify Sub header on my document page
+      | We need more information to confirm or verify what you told us in your application. |
+    Then I verify container header for information we need
+      | Information We Need |
+    And I verify no document on new account
+      | You don't need to upload any documents at this time|
+    Then  I click on Sign Out in the Header for "Elmo"
   @SLER-2298 @OPSRegression
   Scenario: Verify Modal pop up error in Spanish  [RT-2019]
     Given I open the login page on the "login" portal
