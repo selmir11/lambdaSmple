@@ -7,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-325
-  Scenario: SLER-325- ELIG- APTCRules - formerly RT-2397 - born 1982 and 2011
+  Scenario: SLER-325- ELIG- APTCRules - born 1982 and 2011
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -249,7 +249,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     @SLER-999
-    Scenario Outline: SLER-999 - ELIG - APTCRules  - 1 member add enrollment - income change - formerly RT-2346
+    Scenario Outline: SLER-999 - ELIG - APTCRules  - 1 member add enrollment - income change
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
@@ -538,7 +538,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-998
-  Scenario Outline: SLER-998 - ELIG - APTCRules - 1 member add enrollment - income change - formerly RT-2344
+  Scenario Outline: SLER-998 - ELIG - APTCRules - 1 member add enrollment - income change
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1119,7 +1119,7 @@ Feature: UI Tests related to APTC after second enrollment change
         |Leadville  |CO       |01011990   |Lake     |80461        |1500000  |$0.00      |5240000      |$362.74/mo      |-$362.74    |01012007   |
 
   @SLER-804
-  Scenario Outline: SLER-804 -APTCRules - formerly RT-2411 - Add a daughter on 2nd enrollmnent - primary income change
+  Scenario Outline: SLER-804 -APTCRules - Add a daughter only on 2nd enrollmnent - primary income change
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1342,8 +1342,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Head of household" tax filing option on the Tax Status Elmo page
     Then I select "Yes" for will claim dependents question
     Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
@@ -1405,7 +1404,7 @@ Feature: UI Tests related to APTC after second enrollment change
       |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$412.32/mo      |-$412.32    | 01012011  |
 
   @SLER-1007
-  Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2345
+  Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
