@@ -7,7 +7,6 @@ import com.c4hco.test.automation.utils.EligNotices;
 import com.c4hco.test.automation.utils.PDF;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java8.Da;
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -28,7 +27,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 
 public class MyDocumentsPage {
@@ -338,6 +337,15 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div/div[2]")
     List<WebElement> mvrUploadButton;
+
+    @FindBy(xpath = "//*[contains(text(),'Comprobante de encarcelamiento')]")
+    WebElement documentType1stValueSpanish;
+
+    @FindBy(xpath = "//p[@class='error ng-star-inserted']//*[name()='svg']")
+    WebElement ErrorSvgSymbol;
+
+    @FindBy(xpath = "//*[@class='error']//*[name()='svg']")
+    List<WebElement> SelectionRequiredErrorSvgSymbol;
 
 
     public void ClickLinkMyDocsWelcomePage() {
@@ -1487,5 +1495,64 @@ public class MyDocumentsPage {
     public void verifyNoDocumentMessage(String data) {
         basicActions.waitForElementToBePresent(noNeedToUpload, 20);
         Assert.assertEquals(noNeedToUpload.getText(), data, "No document message not found");
+    }
+
+    public void validateFileRequiredErrorMessage(String data){
+        softAssert.assertEquals(textErrorMsg_Filerequired.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
+    }
+    public void validateSelectionRequiredErrorMessage(String data){
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(0).isDisplayed(),"! not present in error message");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(1).isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
+    }
+
+    public void clickUploadButton() {
+        basicActions.waitForElementToBePresentWithRetries(btnUploadDoc, 10);
+        btnUploadDoc.click();
+    }
+
+    public void validateBorderColorofErrorCategory() {
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,20);
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertAll();
+    }
+
+    public void validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(String data) {
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),data, "Selection Required error msg not displayed");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(0).isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
+    }
+
+    public void validateDocUnsupportedErrorAndTextColour(String data){
+        basicActions.waitForElementToBePresent(textErrorMsg_docFileSizeLarge,10);
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
+
+    public void select1stOptionFromDocTypeSpanish(){
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn,20);
+        docCategoryDrpDwn.click();
+        documentType1stValueSpanish.click();
+    }
+
+    public void validateDocSizeLargeErrMsgAndTextColourSpanish() {
+        basicActions.waitForElementToBePresent(textErrorMsg_docFileSizeLarge,10);
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getText()," Documento demasiado grande. El archivo deber ser menor de 10MB.","Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
     }
 }
