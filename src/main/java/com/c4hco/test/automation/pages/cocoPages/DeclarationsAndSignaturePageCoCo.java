@@ -39,7 +39,7 @@ public class DeclarationsAndSignaturePageCoCo {
     @FindBy(id = "DeclarationsAndSignature-SaveAndContinue")
     WebElement continueButton;
 
-    @FindBy(xpath="//label[@class='input-label form-label']")
+    @FindBy(xpath="//label[@class='input-label form-label ng-star-inserted']")
     WebElement getSignature;
 
     @FindBy(css = ".error-message")
