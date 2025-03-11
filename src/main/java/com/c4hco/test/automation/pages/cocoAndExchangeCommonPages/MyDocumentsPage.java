@@ -324,10 +324,6 @@ public class MyDocumentsPage {
     List<WebElement> SelectionRequiredErrorSvgSymbol;
 
 
-
-
-
-
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
@@ -1385,8 +1381,9 @@ public class MyDocumentsPage {
     }
 
     public void validateFileRequiredErrorMessage(String data){
-        Assert.assertEquals(textErrorMsg_Filerequired.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertEquals(textErrorMsg_Filerequired.getText().trim(),data,"Error message is incorrect");
         softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
     }
     public void validateSelectionRequiredErrorMessage(String data){
         basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
@@ -1413,8 +1410,9 @@ public class MyDocumentsPage {
 
     public void validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(String data) {
         basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
-        Assert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),data, "Selection Required error msg not displayed");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),data, "Selection Required error msg not displayed");
         softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(0).isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
     }
 
     public void validateDocUnsupportedErrorAndTextColour(String data){
