@@ -15,7 +15,7 @@ Then I validate I am on the "CoCo Welcome" page
 And I apply for the current year in CoCo
 Then I validate I am on the "Find Expert Help" page
 And I click Continue on my own button from Manage who helps you page
-  Then I click EditUpdate on Family Overview page for "Primary"
+Then I click EditUpdate on Family Overview page for "Primary"
 And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"
 Then I validate I am on the "CoCo Additional information for yourself" page
 And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
