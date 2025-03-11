@@ -11,7 +11,7 @@ public class LoginCredentials {
         if (SharedData.getEnv().equals("qa")) {
             primaryMember.setEmailId("mady.castro010@test.com");
         } else {
-            primaryMember.setEmailId("castillo.luis@test.com");
+            primaryMember.setEmailId("fred.gonazlez@test.com");
         }
         primaryMember.setPassword("ALaska12!");
         SharedData.setPrimaryMember(primaryMember);

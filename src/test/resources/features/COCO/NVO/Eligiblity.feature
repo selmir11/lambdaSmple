@@ -87,6 +87,7 @@ Feature: Coco user Validate the eligibility
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-683
   Scenario Outline: Validate the eligibility for HIAE Phase 2 and/or Off Exchange plans for single member
@@ -158,6 +159,7 @@ Feature: Coco user Validate the eligibility
     Then I validate I am on the "CoCo Family Overview" page
     Then I verify no one is applying text on the Family Overview page
     And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
 
   @SLCR-695
   Scenario Outline: Validate the eligibility for HIAE Phase 2 and/or Off Exchange plans for additional member
