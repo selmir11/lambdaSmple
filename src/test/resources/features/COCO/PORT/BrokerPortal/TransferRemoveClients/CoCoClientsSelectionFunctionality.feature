@@ -38,12 +38,14 @@ Feature: CoCo Your Clients page client selection functionality
     Then I verify the current client list result page is "2"
 
     And I click the client list left pagination arrow button
+    And I wait for 1000 milliseconds
     Then I select all clients checkbox
     Then I verify that a total of "11" clients have been selected
     Then I verify the current client list result page is "1"
 
     And I click the client list right pagination arrow button
     Then I verify the current client list result page is "2"
+    And I wait for 1000 milliseconds
     Then I select all clients checkbox
     And I validate the "Remove Selected Clients" header option is displayed
     And I validate the "Transfer Selected Clients" header option is displayed
@@ -51,6 +53,7 @@ Feature: CoCo Your Clients page client selection functionality
 
     And I click the client list right pagination arrow button
     Then I verify the current client list result page is "3"
+    And I wait for 1000 milliseconds
     Then I select all clients checkbox
     And I validate the "Remove Selected Clients" header option is displayed
     And I validate the "Transfer Selected Clients" header option is displayed
@@ -58,6 +61,7 @@ Feature: CoCo Your Clients page client selection functionality
 
     And I click the client list right pagination arrow button
     Then I verify the current client list result page is "4"
+    And I wait for 1000 milliseconds
     Then I select all clients checkbox
     And I validate the "Remove Selected Clients" header option is displayed
     And I validate the "Transfer Selected Clients" header option is displayed
@@ -65,6 +69,7 @@ Feature: CoCo Your Clients page client selection functionality
 
     And I click the client list right pagination arrow button
     Then I verify the current client list result page is "5"
+    And I wait for 1000 milliseconds
     Then I select all clients checkbox
     And I validate the "Remove Selected Clients" header option is displayed
     And I validate the "Transfer Selected Clients" header option is displayed
