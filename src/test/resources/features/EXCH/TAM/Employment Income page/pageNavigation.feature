@@ -117,7 +117,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-2076 @SLER-2331 @test
+  @SLER-2076 @SLER-2331
   Scenario Outline: "<TestNumber>" ELIG-Self-employment income-Page Text [RT-997] - "<Language>"
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
