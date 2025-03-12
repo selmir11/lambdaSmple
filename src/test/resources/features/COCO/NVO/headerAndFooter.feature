@@ -719,6 +719,7 @@ Feature: Header and Footer validation on Coco application pages
 
     #Application Results
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 3000 milliseconds
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
@@ -798,6 +799,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
+    And I wait for 3000 milliseconds
     And I click Continue on my own button from Manage who helps you page
     Then I select add another family member on the Family Overview page
     Then I validate I am on the "CoCo Tell us about additional members" page
@@ -896,6 +898,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
     And I verify text on the "CoCo" "Header" in "Spanish"
+    And I wait for 2000 milliseconds
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Profile" page
     And I verify text on the "CoCo" "Header" in "Spanish"

@@ -166,8 +166,8 @@ public class EmploymentSummaryPage {
     }
 
     public void clickAddJob(){
-        basicActions.waitForElementToBePresent(spinner,20);
-        basicActions.waitForElementToBePresent(btnAddJob,30);
+        basicActions.waitForElementToBePresentWithRetries(spinner,60);
+        basicActions.waitForElementToBePresentWithRetries(btnAddJob,60);
         basicActions.waitForElementToBeClickable(btnAddJob, 10);
         basicActions.click(btnAddJob);
     }
@@ -202,13 +202,15 @@ public class EmploymentSummaryPage {
             employerNames.remove(indexToRemove);
             lnkRemoveJob.get(indexToRemove).click();
             SharedData.setCompanyname(new ArrayList<>(employerNames));
-        } 
-        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 30);
+            System.out.println("Remaining employer(s) "+SharedData.getCompanyname());
+        }
+
+        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 60);
         lnkRemoveContinue.get(0).click();
     }
 
     public void clickHelpIcon(String label) {
-        basicActions.waitForElementToBePresent(helpLnk, 10);
+        basicActions.waitForElementToBePresentWithRetries(helpLnk, 60);
         switch(label){
             case "Help me understand":
                 helpLnk.click();

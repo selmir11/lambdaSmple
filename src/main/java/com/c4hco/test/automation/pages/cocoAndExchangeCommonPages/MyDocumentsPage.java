@@ -314,6 +314,39 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[text() ='Contact us']")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(xpath = "//*[contains(@class,'header-1')]")
+    WebElement myDocumentHeaderTxt;
+
+    @FindBy(xpath = " //*[contains(@class,'header-1')]/following::div[1]")
+    WebElement myDocumentSubtitleTxt;
+
+    @FindBy(xpath = "//*[contains(text(),'Necesitamos más información para confirmar')]")
+    WebElement myDocumentSubtitleTxtSpanish;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]")
+    List<WebElement> mvrContainer;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div[1]")
+    List<WebElement> mvrTypes;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div[1]/div/p/span")
+    List<WebElement> mvrDueDate;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div[2]/div[1]")
+    List<WebElement> houseHolderNames;
+
+    @FindBy(xpath = "//*[contains(@class,'documents-content-row row')]/div/div[2]")
+    List<WebElement> mvrUploadButton;
+
+    @FindBy(xpath = "//*[contains(text(),'Comprobante de encarcelamiento')]")
+    WebElement documentType1stValueSpanish;
+
+    @FindBy(xpath = "//p[@class='error ng-star-inserted']//*[name()='svg']")
+    WebElement ErrorSvgSymbol;
+
+    @FindBy(xpath = "//*[@class='error']//*[name()='svg']")
+    List<WebElement> SelectionRequiredErrorSvgSymbol;
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -1369,5 +1402,189 @@ public class MyDocumentsPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + linkName);
         }
+    }
+
+
+    public void verifyDocumentHeaderOnMyDocument(String data) {
+        basicActions.waitForElementToBePresent(myDocumentHeaderTxt, 20);
+        Assert.assertEquals(myDocumentHeaderTxt.getText(), data, "My Documents and Letters text not match");
+    }
+
+    public void verifySubHeaderOnMyDocumentPage(String data) {
+        basicActions.waitForElementToBePresent(myDocumentSubtitleTxt, 20);
+        Assert.assertEquals(myDocumentSubtitleTxt.getText(), data, "We need more text not match");
+    }
+
+    public void verifyContaineNameForInfoWeNeed(String data) {
+        basicActions.waitForElementToBePresent(informationText, 20);
+        Assert.assertEquals(informationText.getText(), data, "Information we need text not match");
+    }
+
+    public void verifyMvrNames(String language) {
+        basicActions.waitForElementListToBePresent(mvrContainer, 20);
+        List<String> expectedMvrNames;
+        String[] mvrTypeName;
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            String mvrTextWithDueDate = mvrTypes.get(i).getText();
+            switch (language) {
+                case "English":
+                    mvrTypeName = mvrTextWithDueDate.split("Due");
+                    expectedMvrNames = Arrays.asList("Proof of Financial Help Eligibility",
+                            "Proof of Social Security Number",
+                            "Proof of US Citizenship");
+                    break;
+                case "Spanish":
+                    mvrTypeName = mvrTextWithDueDate.split("Fecha límite");
+                    expectedMvrNames = Arrays.asList("Comprobante de elegibilidad para ayuda financiera",
+                            "Comprobante de Número de Seguro Social",
+                            "Comprobante de ciudadanía de EE. UU.");
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid option: " + language);
+            }
+            Assert.assertTrue(expectedMvrNames.contains(mvrTypeName[0].trim()), "MVR type not Match and found " + mvrTypeName[0]);
+        }
+    }
+
+    public void verifyDueDateColor() {
+        List<String> expectedColors = Arrays.asList("rgba(255, 0, 0, 1)", "rgba(112, 163, 0, 1)", "rgba(241, 182, 27, 1)"); //Red , Green , Yellow
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            String mvrText = mvrTypes.get(i).getText().trim();
+            String actualColorValue = mvrDueDate.get(i).getCssValue("color");
+            softAssert.assertTrue(expectedColors.contains(actualColorValue), "Invalid due date color found for " + mvrText + " Color ->" + actualColorValue);
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyMemberName(DataTable dataTable) {
+        List<Map<String,String >> expectedMemberList = dataTable.asMaps();
+        List<String> ExpectedMemberName = expectedMemberList.stream()
+                .filter(row -> row.get("Env").equalsIgnoreCase(SharedData.getEnv()))
+                .map(row -> row.get("memberNames"))
+                .toList();
+        basicActions.waitForElementListToBePresent(houseHolderNames, 20);
+        String actualMemberName = "";
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            actualMemberName = houseHolderNames.get(i).getText();
+            softAssert.assertTrue(ExpectedMemberName.contains(actualMemberName), "User name " + actualMemberName + " is not match ");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyMvrTypesWithTextandButtons() {
+        basicActions.waitForElementListToBePresent(mvrContainer, 20);
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(mvrTypes.get(i), 20), "MVR Type not present");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(mvrDueDate.get(i), 20), "Due Date not present");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(houseHolderNames.get(i), 20), "Member name not present");
+            softAssert.assertTrue(basicActions.waitForElementToBePresent(mvrUploadButton.get(i), 20), "Upload button not present");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyUploadBtnForMrv() {
+        String[] mvrName;
+        for (int i = 0; i < mvrContainer.size(); i++) {
+            String mvrNameWithDate = mvrTypes.get(i).getText();
+            mvrName = mvrNameWithDate.split("Due|Fecha");
+            WebElement uploadButton = basicActions.getDriver().findElement(By.xpath("//div[contains(normalize-space(), '" + mvrName[0].trim() + "')]/p//following::button[1]"));
+            Assert.assertTrue(basicActions.waitForElementToBePresent(uploadButton, 20), "Upload button not present");
+        }
+    }
+
+    public void verifyNoDocumentMessage(String data) {
+        basicActions.waitForElementToBePresent(noNeedToUpload, 20);
+        Assert.assertEquals(noNeedToUpload.getText(), data, "No document message not found");
+    }
+
+    public void validateFileRequiredErrorMessage(String data){
+        softAssert.assertEquals(textErrorMsg_Filerequired.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
+    }
+    public void validateSelectionRequiredErrorMessage(String data){
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(0).isDisplayed(),"! not present in error message");
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(1).getText().trim(), data , " Error message is incorrect");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(1).isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
+    }
+
+    public void clickUploadButton() {
+        basicActions.waitForElementToBePresentWithRetries(btnUploadDoc, 10);
+        btnUploadDoc.click();
+    }
+
+    public void validateBorderColorofErrorCategory() {
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,20);
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-bottom-color"), "rgba(150, 0, 0, 1)","border bottom color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-left-color"), "rgba(150, 0, 0, 1)","border left color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-right-color"), "rgba(150, 0, 0, 1)","border right color error");
+        softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
+        softAssert.assertAll();
+    }
+
+    public void validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(String data) {
+        basicActions.waitForElementListToBePresent(textErrorMsg_selectionRequired,10);
+        softAssert.assertEquals(textErrorMsg_selectionRequired.get(0).getText().trim(),data, "Selection Required error msg not displayed");
+        softAssert.assertTrue(SelectionRequiredErrorSvgSymbol.get(0).isDisplayed(),"! not present in error message");
+        softAssert.assertAll();
+    }
+
+    public void validateDocUnsupportedErrorAndTextColour(String data){
+        basicActions.waitForElementToBePresent(textErrorMsg_docFileSizeLarge,10);
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getText().trim(),data,"Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
+
+    public void select1stOptionFromDocTypeSpanish(){
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn,20);
+        docCategoryDrpDwn.click();
+        documentType1stValueSpanish.click();
+    }
+
+    public void validateDocSizeLargeErrMsgAndTextColourSpanish() {
+        basicActions.waitForElementToBePresent(textErrorMsg_docFileSizeLarge,10);
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getText()," Documento demasiado grande. El archivo deber ser menor de 10MB.","Error message is incorrect");
+        softAssert.assertTrue(ErrorSvgSymbol.isDisplayed(),"! not present in error message");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
+        softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
+        softAssert.assertAll();
+    }
+
+    public void uploadMvrDocAndSuccesMessage(String mvrType, String language) {
+        clickMvrDoubleChevrons();
+        clickUploadMvr(mvrType,language);
+        clickWhichDocument();
+        uploadDoc("TestMyDocs.docx");
+        clickUploadDocSpanish(language);
+        clickMvrDoubleChevrons();
+    }
+    public void clickUploadMvr(String mvrType ,String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                WebElement btnUploadMvr = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Proof of "+ mvrType +"')]//following::button[1]"));
+                btnUploadMvr.click();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                WebElement btnUploadMvrSpanish = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Comprobante de "+ mvrType +"')]//following::button[1]"));
+                btnUploadMvrSpanish.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void uploadAnotherDocAndSuccessMessage(String fileName, String mvrType, String language) {
+        selectDocumentCategory(mvrType);
+        clickWhichDocument();
+        uploadDoc(fileName);
+        clickUploadDocSpanish(language);
     }
 }
