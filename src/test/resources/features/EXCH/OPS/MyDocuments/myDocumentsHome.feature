@@ -1,7 +1,7 @@
 @OPS
 Feature: My Document Home Page validations
 
-  @SLER-2090 @OPSRegression
+  @SLER-2090
   Scenario: OPS MyDocs Navigating to file explorer[RT-1819]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -23,7 +23,7 @@ Feature: My Document Home Page validations
     And I close button to close modal
     Then I see the username that I am currently logged into
 
-  @SLER-2109 @OPSRegression
+  @SLER-2109
   Scenario: OPS MyDocs Select Type and checks errors[RT-1938]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -88,9 +88,6 @@ Feature: My Document Home Page validations
       |No tiene documentos ni cartas en este momento |
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
-
-
-
 
 
   @SLER-2102
@@ -481,7 +478,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2234 @OPSRegression
+  @SLER-2234
   Scenario: Verify Welcome letter downloaded with proper name format [RT-1996]
 
     Given I open the login page on the "admin" portal
@@ -503,7 +500,7 @@ Feature: My Document Home Page validations
     Then I verify file "IND_Welcome Message (AM-001-01)" downloaded with Proper name format in ".pdf" type
     Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2252 @OPSRegression
+  @SLER-2252
   Scenario: Verify user can upload Document to the MVR for all Document Category [RT-1979]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -587,7 +584,7 @@ Feature: My Document Home Page validations
     Then I upload MVR doc on the My Documents page and verify success message
     Then  I click on Sign Out in the Header for "Elmo"
 
-    @SLER-2259 @OPSRegression
+    @SLER-2259
     Scenario: OPS: Verify Document Success Message for Another and Upload [RT-1991]
       Given I open the login page on the "admin" portal
       And I refresh the page
@@ -666,7 +663,7 @@ Feature: My Document Home Page validations
       Then I upload another doc "TestMyDocs.docx" for "Social Security Number" on the My Documents page and verify success message
       Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2265 @OPSRegression
+  @SLER-2265
   Scenario: Verify Document uploaded for Income type and downloaded with proper name format [RT-1989]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -689,7 +686,7 @@ Feature: My Document Home Page validations
     Then I verify file "Income" downloaded with Proper name format in ".docx" type
     Then  I click on Sign Out in the Header for "Elmo"
 
- @SLER-2268 @OPSRegression
+ @SLER-2268
   Scenario: Verify upload document modal Errors[RT-1999]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -756,7 +753,7 @@ Feature: My Document Home Page validations
     Then I verify file "Income" downloaded with Proper name format in ".docx" type
     Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2282 @OPSRegression
+  @SLER-2282
   Scenario:  OPS: MyDocs: verify Document Type blank when new document category selected [RT-2003]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -840,7 +837,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2290 @OPSRegression
+  @SLER-2290
   Scenario: Verify Help drawer text on the document page [RT-2020]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -848,7 +845,7 @@ Feature: My Document Home Page validations
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
-    Then I enter an "accountID" in any env "7724352002" "7867062002" to search user
+    Then I enter an "accountID" in any env "7724352002" "1909077514" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
