@@ -28,9 +28,9 @@ public class EthnicityAndRacePageSteps {
         ethnicityAndRacePage.validateTextBoxInputAndCheckboxSelection();
     }
 
-    @And("I select Not listed for race and ethnicity option and enter {string} in the text box")
-    public void selectNotListedAndEnterText(String customText) {
-        ethnicityAndRacePage.selectNotListedAndEnterCustomText(customText);
+    @And("I select Not listed for race and ethnicity option and enter {string} in the text box for {string}")
+    public void selectNotListedAndEnterText(String customText, String memPrefix) {
+        ethnicityAndRacePage.selectNotListedAndEnterCustomText(customText,memPrefix);
     }
     @And("I select {string} for race and ethnicity option for {string}")
     public void iSelectMemberRaceEthnicity(String memberRaceEthnicity, String memPrefix){ethnicityAndRacePage.raceEthnicitySelectionMembers(memberRaceEthnicity, memPrefix);}
