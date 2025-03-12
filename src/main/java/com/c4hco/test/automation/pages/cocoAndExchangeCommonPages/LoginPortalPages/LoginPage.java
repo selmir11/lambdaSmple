@@ -60,9 +60,9 @@ public class LoginPage {
     WebElement iForgotUsernameandPassword;
     @FindBy(id = "title")
     WebElement loginPageTitle;
-    @FindBy(id = "email-label")
+    @FindBy(xpath = "//label[@for='email']")
     WebElement usernameText;
-    @FindBy(id = "password-label")
+    @FindBy(xpath = "//label[@for='password-label']")
     WebElement passwordText;
     @FindBy(id = "peak-login")
     WebElement peakTitleText;
@@ -214,6 +214,7 @@ public class LoginPage {
     }
 
     public void clickSignInWithPeak() {
+        basicActions.waitForElementToBePresentWithRetries(signInWithPeak, 20);
         signInWithPeak.click();
     }
 
