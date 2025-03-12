@@ -49,5 +49,9 @@ public class IncomeSummaryPageSteps {
     public void iClickOnGoBackOnIncomeSummaryPage() {
         incomeSummaryPage.clickGoBackOnIncomeSummary();
     }
+    @And("I verify the error message on income summary page")
+    public void iverifyErrorMessage() {
+        incomeSummaryPage.verifyErrorMessage();
+    }
 
 }
