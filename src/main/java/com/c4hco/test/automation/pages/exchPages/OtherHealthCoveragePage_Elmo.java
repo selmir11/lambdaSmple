@@ -1548,13 +1548,13 @@ public class OtherHealthCoveragePage_Elmo {
             existingHealthInsuranceHeader.click();
         }
     }
-    public void selectInsuranceOptions(DataTable insuranceOptionsTable) {
+    public void verifyInsuranceOptions(DataTable insuranceOptionsTable) {
         List<String> insuranceOptions = insuranceOptionsTable.asList();
         basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
 
         for (WebElement checkbox : insuranceOptionsCheckBox) {
-            String checkboxLabel = checkbox.getAttribute("value").trim(); 
+            String checkboxLabel = checkbox.getAttribute("value").trim();
 
             if (insuranceOptions.contains(checkboxLabel)) {
                 if (!checkbox.isSelected()) {

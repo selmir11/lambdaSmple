@@ -342,7 +342,7 @@ Feature: Page Text-Income Opt Out Page
     Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
 
-    Then I validate selecting insurance options
+    Then I verify insurance options selected on the Other Health Coverage page
       | InsuranceOption       |
       | Health First Colorado |
       | CHP+                  |
@@ -469,7 +469,7 @@ Feature: Page Text-Income Opt Out Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status Elmo page
 
-    Then I validate selecting insurance options
+    Then I verify insurance options selected on the Other Health Coverage page
       | InsuranceOption       |
       | Health First Colorado |
       | CHP+                  |
