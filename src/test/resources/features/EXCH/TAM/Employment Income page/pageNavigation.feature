@@ -484,6 +484,38 @@ Feature: Page Text-Income Opt Out Page
       | Other                 |
       | None of these         |
 
+    Then I select "Medicare" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I click Go Back on the Elmo OHC Medicare page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select the Go Back button on the ESI page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "HRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC HRA page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Retiree page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "Peace Corps" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Peace Corps page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Cobra page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "VA Health Care" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC VA Healthcare page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "TRICARE" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Tricare page
+
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2272
