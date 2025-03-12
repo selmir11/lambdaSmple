@@ -356,6 +356,7 @@ Feature: Page Text-Income Opt Out Page
       | TRICARE               |
       | Other                 |
       | None of these         |
+
     #Medicare
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
