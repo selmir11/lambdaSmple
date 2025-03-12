@@ -1,5 +1,6 @@
 Feature: OHI (Other health insurance) and other associated existing health insurance pages
   @SLER-2285
+#    we have intermittent failure while running the script
   Scenario: Navigation to the modernized ESI (Employee Sponsored Insurance) page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
