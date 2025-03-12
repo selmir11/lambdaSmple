@@ -102,6 +102,7 @@ public class OhcVaHealthcarePage_Elmo {
 
 
     public void clickGoBack() {
+        basicActions.waitForElementToBeClickable(goBackBtn, 20);
         basicActions.click(goBackBtn);
     }
 

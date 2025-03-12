@@ -128,6 +128,8 @@ public class IncomeSummaryPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinnerOverlay;
+    @FindBy(css = "span.error-message.c4-text-body-100")
+    private WebElement errorMessage;
 
     public void selectProjectedIncome(String projectedIncomeOption){
         basicActions.waitForElementToDisappear(loaderIcon, 120);
@@ -322,6 +324,18 @@ public class IncomeSummaryPage {
     public void clickGoBackOnIncomeSummary() {
         basicActions.waitForElementToBePresent(goBackBtn,15);
         goBackBtn.click();
+    }
+
+
+    public void verifyErrorMessage() {
+        basicActions.waitForElementToBePresent(errorMessage,15);
+        softAssert.assertTrue(errorMessage.isDisplayed(), "Error message is not displayed.");
+        projectedIncomeYes.click();
+        saveAndContinueBtn.click();
+        softAssert.assertTrue(errorMessage.isDisplayed(), "Error message is not displayed.");
+        ProjectedIncomeInputTextField.sendKeys("11111111111");
+        softAssert.assertTrue(errorMessage.isDisplayed(), "Error message is not displayed.");
+        softAssert.assertAll();
     }
 
 
