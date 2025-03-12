@@ -518,9 +518,9 @@ public class MyProfilePage {
         basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 2000);
         softAssert.assertEquals(headerChangePrimaryCoCo.getText(), "Change Primary Contact");
         primaryContactDRPCoCo.click();
-        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(1).getFirstName() + " " + SharedData.getMembers().get(1).getMiddleName() +" "+ SharedData.getMembers().get(1).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
         softAssert.assertEquals(dpdPrimaryChangeOpt2CoCo.getText(), SharedData.getPrimaryMember().getFullName());
-        String firstName = SharedData.getMembers().get(1).getFirstName();
+        String firstName = SharedData.getMembers().get(0).getFirstName();
         primaryContactDRPCoCo.sendKeys(firstName);
         primaryContactDRPCoCo.sendKeys(Keys.ENTER);
         softAssert.assertEquals(cancelPrimaryPopupCoCo.getText(), "Cancel");
@@ -536,9 +536,9 @@ public class MyProfilePage {
         basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 10);
         softAssert.assertEquals(headerChangePrimaryCoCo.getText(), "Cambiar el contacto principal");
         primaryContactDRPCoCo.click();
-        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(1).getFirstName() + " " + SharedData.getMembers().get(1).getMiddleName() +" "+ SharedData.getMembers().get(1).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
         softAssert.assertEquals(dpdPrimaryChangeOpt2CoCo.getText(), SharedData.getPrimaryMember().getFullName());
-        String firstName = SharedData.getMembers().get(1).getFirstName();
+        String firstName = SharedData.getMembers().get(0).getFirstName();
         primaryContactDRPCoCo.sendKeys(firstName);
         primaryContactDRPCoCo.sendKeys(Keys.ENTER);
         softAssert.assertEquals(getCancelPrimaryPopupSpCoCo.getText(), "Cancelar");

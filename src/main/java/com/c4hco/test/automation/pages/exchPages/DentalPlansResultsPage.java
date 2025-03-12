@@ -125,6 +125,29 @@ public class DentalPlansResultsPage {
     @FindBy(css = ".premium-summary .c4-type-header-md")
     List<WebElement> monthlyPremiumValue;
 
+    @FindBy(id = "DentalPlanResults-CoverageLevel_0-input")
+    WebElement verifyLowLevel;
+
+    @FindBy(id = "DentalPlanResults-CoverageLevel_0")
+    WebElement verifyLowLevelText;
+
+    @FindBy(id = "DentalPlanResults-CoverageLevel_1-input")
+    WebElement verifyHighLevel;
+
+    @FindBy(id = "DentalPlanResults-CoverageLevel_1")
+    WebElement verifyHighLevelText;
+
+    @FindBy(id = "DentalPlanResults-InsuranceCompany_0")
+    WebElement verifyAnthem;
+
+    @FindBy(id = "DentalPlanResults-InsuranceCompany_1")
+    WebElement verifyCigna;
+
+    @FindBy(id = "DentalPlanResults-InsuranceCompany_2")
+    WebElement verifyDelta;
+
+    @FindBy(id = "DentalPlanResults-InsuranceCompany_3")
+    WebElement verifySolstice;
 
     public void clickResetButton() {
         basicActions.waitForElementToDisappear( spinner, 50 );
@@ -186,8 +209,8 @@ public class DentalPlansResultsPage {
     }
 
     public void clickSkip() {
-        basicActions.waitForElementToDisappear( spinner, 50 );
-        basicActions.waitForElementToBePresent( dentalSkipBtn, 30 );
+        basicActions.waitForElementToDisappear( spinner, 70 );
+        basicActions.waitForElementToBePresentWithRetries( dentalSkipBtn, 30 );
         dentalSkipBtn.click();
     }
 
@@ -222,21 +245,64 @@ public class DentalPlansResultsPage {
     }
 
     public void selectfromCoverageLevelList(String coverageLevel) {
-        basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel, 10 );
-        String coveragePath = "//*[text()='" + coverageLevel + "']";
-        basicActions.getDriver().findElement( By.xpath( coveragePath ) ).click();
+        basicActions.waitForElementToBePresentWithRetries( dropdownCoverageLevel,30 );
+        switch (coverageLevel) {
+            case "Low":
+                basicActions.waitForElementToBePresentWithRetries( verifyLowLevel,20 );
+                softAssert.assertEquals( verifyLowLevelText.getText(), "Low" );
+                softAssert.assertAll();
+                verifyLowLevel.click();
+                break;
+            case "High":
+                basicActions.waitForElementToBePresentWithRetries( verifyHighLevel,20 );
+                softAssert.assertEquals( verifyHighLevelText.getText(), "High" );
+                softAssert.assertAll();
+                verifyHighLevel.click();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + dropdownCoverageLevel );
+
+        }
     }
 
     public void clickDentalInsuranceCompanyDropdown() {
         basicActions.waitForElementToDisappear( spinner, 20 );
-        basicActions.waitForElementToBeClickableWithRetries( dropdownCoverageLevel, 10 );
-        basicActions.waitForElementToBeClickableWithRetries( dropdownInsuranceCompany, 10 );
+        basicActions.waitForElementToBePresentWithRetries( dropdownCoverageLevel, 10 );
+        basicActions.waitForElementToBePresentWithRetries( dropdownInsuranceCompany, 10 );
         dropdownInsuranceCompany.click();
     }
 
     public void selectfromInsuranceCompanyList(String insuranceCompany) {
-        String companyPath = "//*[text()='" + insuranceCompany + "']";
-        basicActions.getDriver().findElement( By.xpath( companyPath ) ).click();
+        basicActions.waitForElementToBePresentWithRetries( dropdownInsuranceCompany,30 );
+        switch (insuranceCompany) {
+            case "Anthem Dental":
+                basicActions.waitForElementToBePresentWithRetries( verifyAnthem,20 );
+                softAssert.assertEquals( verifyAnthem.getText(), "Anthem Dental" );
+                softAssert.assertAll();
+                verifyAnthem.click();
+                break;
+            case "Cigna Healthcare":
+                basicActions.waitForElementToBePresentWithRetries( verifyCigna,20 );
+                softAssert.assertEquals( verifyCigna.getText(), "Cigna Healthcare" );
+                softAssert.assertAll();
+                verifyCigna.click();
+                break;
+            case "Delta Dental":
+                basicActions.waitForElementToBePresentWithRetries( verifyDelta,20 );
+                softAssert.assertEquals( verifyDelta.getText(), "Delta Dental" );
+                softAssert.assertAll();
+                verifyDelta.click();
+                break;
+            case "Solstice Healthplans / UHC":
+                basicActions.waitForElementToBePresentWithRetries( verifySolstice,20 );
+                softAssert.assertEquals( verifySolstice.getText(), "Solstice Healthplans /UHC" );
+                softAssert.assertAll();
+                verifySolstice.click();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + dropdownCoverageLevel );
+
+        }
     }
 
     public void validateDentalPlanText(int index, String dentalPlanText) {
@@ -478,8 +544,8 @@ public class DentalPlansResultsPage {
     }
 
     public void clickSortingDropdown(String sortingValue) {
-        basicActions.waitForElementToDisappear( spinner, 30 );
-        basicActions.waitForElementToBePresent( premiumSortingDropdown, 30 );
+        basicActions.waitForElementToDisappear( spinner, 40 );
+        basicActions.waitForElementToBePresentWithRetries( premiumSortingDropdown, 30 );
         premiumSortingDropdown.click();
         WebElement value = basicActions.getDriver().findElement( By.xpath( "//strong[contains(text(),'" + sortingValue + "')]" ) );
         value.click();

@@ -79,6 +79,7 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     Then I validate HRA help drawer verbiage in "English"
     And I click HRA Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
+    And I set the browser resolution to Maximized
     And I select "opt out" icon on the HRA Page
 
     And I click on Sign Out in the Header for "Elmo"
@@ -99,6 +100,7 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     Then I validate HRA help drawer verbiage in "Spanish"
     And I click HRA Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
+    And I set the browser resolution to Maximized
     And I select "employer contribution" icon on the HRA Page
     And I select "opt out" icon on the HRA Page
     Then I validate HRA help drawer verbiage in "Spanish"
