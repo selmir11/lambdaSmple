@@ -43,7 +43,7 @@ Feature: Page Verification-Additional Income Page
     And I click continue on the Employment Info Page
     Then I validate I am on the "Additional income" page
 
-  @SLER-141 @PageVerificationAdditionalIncomePage @TAMSmoke
+  @SLER-141 @PageVerificationAdditionalIncomePage @TAMSmokeExch
   Scenario: SLER-141 I see the Errors Cleared on the Additional Income page - English
     Then I click "Alimony Received" as additional income option
     Then I click continue on the Additional Income page

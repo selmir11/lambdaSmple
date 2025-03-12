@@ -68,8 +68,8 @@ Feature: Seed02 - Exchange - OE
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "NoneOfThese" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -282,10 +282,10 @@ Feature: Seed02 - Exchange - OE
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "Marriage" QLCE on tell us about life changes page

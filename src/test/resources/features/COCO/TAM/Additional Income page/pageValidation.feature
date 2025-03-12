@@ -28,7 +28,7 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
 
-  @SLCR-375 @TAMSmoke
+  @SLCR-375 @TAMSmokeCoCo
   Scenario: SLCR-375 I want amount and frequency errors cleared on the Additional income sources page so that I don't see errors when I select an option - English
     #Step3
     Then I select "Income from rental property" as additional income option CoCO page

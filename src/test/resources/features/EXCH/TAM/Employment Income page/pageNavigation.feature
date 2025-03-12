@@ -42,7 +42,7 @@ Feature: Page Text-Employment Income Page
 
     And I validate I am on the "Employment Income" page
 
-  @SLER-1903 @PageNavigationEmploymentIncome @TAMSmoke
+  @SLER-1903 @PageNavigationEmploymentIncome @TAMSmokeExch
   Scenario: SLER-1903 NR Bug (exch): TypeError
 #    Step 1
     Then I select the option "Yes" to employment
@@ -147,9 +147,9 @@ Feature: Page Text-Employment Income Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     Then I validate I am on the "Elmo Other Health Coverage" page
 
     Then I verify insurance options selected on the Other Health Coverage page
@@ -166,10 +166,9 @@ Feature: Page Text-Employment Income Page
       | TRICARE               |
       | Other                 |
       | None of these         |
-
     #Medicare
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
     And I verify the header for "Primary" Member on the Medicare page in "English"
     And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
@@ -177,12 +176,12 @@ Feature: Page Text-Employment Income Page
     Then I enter Part A amount of "150.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     Then I enter end date of "Current Month" for Medicare part "A"
-    And I click Go Back on the Elmo OHC Medicare page
+    And I click Go Back on the OHC Medicare page
 
     #ESI
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     Then I select the "0" employer for "Primary" member on the ESI page
@@ -195,81 +194,81 @@ Feature: Page Text-Employment Income Page
     Then I select the Go Back button on the ESI page
 
     #HRA
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "6.00" amount on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "6.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click Go Back on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click Go Back on the OHC HRA page
 
     #RetiRee
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Retiree" page
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I enter the end date as "Future Day" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
-    Then I click Go Back on the Elmo OHC Retiree page
+    Then I click Go Back on the OHC Retiree page
 
     #PeaceCorps
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Peace Corps" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "Peace Corps" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Peace Corps" page
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I enter the end date as "Future Day" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
-    Then I click Go Back on the Elmo OHC Peace Corps page
+    Then I click Go Back on the OHC Peace Corps page
 
     #Cobra
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo COBRA" page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Future Day" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
-    Then I click Go Back on the Elmo OHC Cobra page
+    Then I click Go Back on the OHC Cobra page
 
    #VAhealthcare
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "VA Health Care" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "VA Health Care" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc VA Healthcare" page
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
     Then I enter the end date as "Future Day" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
-    Then I click Go Back on the Elmo OHC VA Healthcare page
+    Then I click Go Back on the OHC VA Healthcare page
 
     #TRICARE
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I enter the end date as "Future Day" on the Tricare page
     Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click Go Back on the Elmo OHC Tricare page
+    Then I click Go Back on the OHC Tricare page
 
           #individual
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Other" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "Other" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
     Then I enter the end date as "Future Day" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
-    Then I click continue on the Elmo OHC Individual Insurance page
+    Then I click continue on the OHC Individual Insurance page
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -277,7 +276,7 @@ Feature: Page Text-Employment Income Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     Then I verify insurance options selected on the Other Health Coverage page
       | InsuranceOption       |
@@ -294,37 +293,37 @@ Feature: Page Text-Employment Income Page
       | Other                 |
       | None of these         |
 
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I click Go Back on the Elmo OHC Medicare page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
+    And I click Go Back on the OHC Medicare page
+    Then I select "None of these" as health coverage option
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     Then I select the Go Back button on the ESI page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click Go Back on the Elmo OHC HRA page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click Go Back on the Elmo OHC Retiree page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Peace Corps" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click Go Back on the Elmo OHC Peace Corps page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click Go Back on the Elmo OHC Cobra page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "VA Health Care" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click Go Back on the Elmo OHC VA Healthcare page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I click Go Back on the Elmo OHC Tricare page
+    Then I select "None of these" as health coverage option
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click Go Back on the OHC HRA page
+    Then I select "None of these" as health coverage option
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click Go Back on the OHC Retiree page
+    Then I select "None of these" as health coverage option
+    Then I select "Peace Corps" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click Go Back on the OHC Peace Corps page
+    Then I select "None of these" as health coverage option
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click Go Back on the OHC Cobra page
+    Then I select "None of these" as health coverage option
+    Then I select "VA Health Care" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click Go Back on the OHC VA Healthcare page
+    Then I select "None of these" as health coverage option
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click Go Back on the OHC Tricare page
 
     And I click on Sign Out in the Header for "Elmo"
 

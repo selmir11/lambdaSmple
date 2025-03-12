@@ -14,7 +14,7 @@ Feature: Tests related to the Family Overview page
     And I click Continue on my own button from Manage who helps you page
     Then I validate I am on the "CoCo Family Overview" page
 
-  @SLCR-41 @TAMSmoke
+  @SLCR-41 @TAMSmokeCoCo
   Scenario: SLCR-41 Validate Total Income equals to Annual Income when only projected income is reported
     Then I click EditUpdate on Family Overview page for "PrimaryMember"
     And I enter details on tell us about yourself page and continue with "01011991", "Female", and applying "Yes"

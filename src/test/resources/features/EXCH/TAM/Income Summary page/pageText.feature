@@ -40,7 +40,7 @@ Feature: Page Text-Income Summary Page
     Then I click continue on family overview page
     And I Apply for financial help
 
-  @SLER-249 @PageTextIncomeSummaryPage @TAMSmoke
+  @SLER-249 @PageTextIncomeSummaryPage @TAMSmokeExch
   Scenario: SLER-249 I can see Income Summary's Header and footer - English
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page

@@ -73,13 +73,13 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
 #Step 2
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I validate I am on the "Family Overview" page
 #Step 3
     And I click on "Spouse" to edit information from household page
@@ -88,13 +88,13 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Family Overview" page
 #Step 4
     And I click on "Spouse" to edit information from household page
@@ -103,11 +103,11 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "Family Overview" page
 #Step 5
     And I click on "Spouse" to edit information from household page
@@ -116,12 +116,12 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "Health First Colorado" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Health First Colorado" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Family Overview" page
 
     And I click on Sign Out in the Header for "NonElmo"
@@ -186,26 +186,26 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Kid" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "Kid" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
 #Step 1
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 2
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
 #Step 3
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Family Overview" page
 #Step 4
     And I click on "Primary" to edit information from household page
@@ -214,75 +214,75 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I select "Health First Colorado" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Health First Colorado" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 5
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 #Step 6
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "Health First Colorado" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Health First Colorado" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
 #Step 7
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 8
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
 #Step 9
-    Then I click Go Back on the Elmo OHC HRA page
+    Then I click Go Back on the OHC HRA page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I select "HRA" as ELMO health coverage option
+    Then I select "HRA" as health coverage option
 #Step 10
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Retiree" page
 
-    Then I click Go Back on the Elmo OHC Retiree page
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC Retiree page
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
 #Step 11
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
 #Step 12
-    Then I click Go Back on the Elmo OHC Tricare page
+    Then I click Go Back on the OHC Tricare page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
 #Step 13
-    Then I click Go Back on the Elmo OHC Tricare page
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC Tricare page
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I select "Other" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Other" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Individual Insurance" page
 #Step 14
-    Then I click Go Back on the Elmo OHC Individual Insurance page
+    Then I click Go Back on the OHC Individual Insurance page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Individual Insurance" page
 
     And I click on Sign Out in the Header for "Elmo"
@@ -300,13 +300,13 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 #Step 3
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     Then I click Add Another Family Member
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "04161981", "Female" and applying "Yes"
       | Primary:Spouse |
@@ -334,16 +334,16 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
 #Step 4
     Then I validate I am on the "Tax status Elmo" page
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1303 @PageNavigationOtherHealthCoveragePage @TAMSmoke
+  @SLER-1303 @PageNavigationOtherHealthCoveragePage @TAMSmokeExch
   Scenario: SLER-1303 My session is invalidated when I log out in OHC Portal, Exchange
     Then I click continue on family overview page
     And I Apply for financial help
@@ -354,9 +354,9 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
@@ -393,7 +393,7 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
@@ -406,8 +406,8 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     #step4
     And I switch to the tab number 1
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Login" page
 
   @SLER-1904 @PageNavigationOtherHealthCoveragePage
@@ -445,64 +445,64 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 #    Step 2
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the page is scrolled to the top
 #    Step 3
-    Then I select "Medicare" as ELMO health coverage option
-    Then I select "HRA" as ELMO health coverage option
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Medicare" as health coverage option
+    Then I select "HRA" as health coverage option
+    Then I select "TRICARE" as health coverage option
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently eligible in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "500.00" amount on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "500.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 #    Step 4
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the page is scrolled to the top
 #    Step 5
-    Then I select "Medicare" as ELMO health coverage option
-    Then I select "HRA" as ELMO health coverage option
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Medicare" as health coverage option
+    Then I select "HRA" as health coverage option
+    Then I select "TRICARE" as health coverage option
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently eligible in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "500.00" amount on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "500.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
     Then I click "No" for currently enrolled in Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 #    Step 6
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -510,37 +510,37 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the page is scrolled to the top
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the page is scrolled to the top
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I validate I am on the "Elmo HRA" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I validate I am on the "Elmo COBRA" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the page is scrolled to the top
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 
     And I click on Sign Out in the Header for "NonElmo"
     Then I validate I am on the "Login" page

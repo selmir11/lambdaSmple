@@ -56,16 +56,16 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I select the Go Back button on the ESI page
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -111,12 +111,12 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -127,10 +127,10 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click enrollment status for the members
       |      Primary:TypeNoAccess    |
     Then I click continue on the ESI page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     Then I select the Go Back button on the ESI page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I select the "0" employer for "Secondary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "100.00" for employee amount question on the ESI page
@@ -148,8 +148,8 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo Other Health Coverage" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I switch to the tab number 1
@@ -183,9 +183,9 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
@@ -206,9 +206,9 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     And I click on Find a Plan in the "Elmo" Header
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -230,9 +230,9 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     And I click on My Account in the "Elmo" Header
     Then I apply for the current year
@@ -253,9 +253,9 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     And I click on Learn More in the Header
     And I switch to the tab number 1
@@ -282,9 +282,9 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
@@ -312,8 +312,8 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     And I click on Sign Out in the Header for "Elmo"

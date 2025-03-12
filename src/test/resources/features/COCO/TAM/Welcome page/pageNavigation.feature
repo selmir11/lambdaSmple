@@ -12,7 +12,7 @@ Feature: Navigation-Welcome Page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
 
-    @SLCR-28 @PageNavigationWelcomePage @TAMSmoke
+    @SLCR-28 @PageNavigationWelcomePage @TAMSmokeCoCo
   Scenario: SLCR-28 I check navigation from CoCo Welcome page - English
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -73,7 +73,7 @@ Feature: Navigation-Welcome Page
     Then I validate I am on the "Login" page
 
 
-  @SLCR-40 @PageNavigationWelcomePage @TAMSmoke
+  @SLCR-40 @PageNavigationWelcomePage @TAMSmokeCoCo
   Scenario: SLCR-40 I check navigation from CoCo Welcome page - Spanish
     And I change the language from header to "Spanish"
     Then I validate I am on the "CoCo Welcome" page

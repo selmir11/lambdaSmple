@@ -52,11 +52,11 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
 
   @SLER-280 @PageTextOhcTricareElmo
@@ -83,8 +83,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo Ohc Tricare" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -105,8 +105,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo Ohc Tricare" page
     And I click on Find a Plan in the "Elmo" Header
@@ -128,8 +128,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo Ohc Tricare" page
     And I click on My Account in the "Elmo" Header
@@ -150,8 +150,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo Ohc Tricare" page
     And I click on Learn More in the Header
@@ -183,8 +183,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo Ohc Tricare" page
     And I verify the header for Primary Member on the Tricare page in "English"
@@ -207,8 +207,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo Ohc Tricare" page
     And I verify the header for Primary Member on the Tricare page in "English"
@@ -270,8 +270,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo Ohc Tricare" page
@@ -294,8 +294,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo Ohc Tricare" page
@@ -319,8 +319,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo Ohc Tricare" page
@@ -343,8 +343,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo Ohc Tricare" page
@@ -380,8 +380,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo Ohc Tricare" page
@@ -405,8 +405,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Elmo Ohc Tricare" page
@@ -453,7 +453,7 @@ Feature: Page Text-OHC Tricare Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-315 @PageVerificationTricarePage @TAMSmoke
+  @SLER-315 @PageVerificationTricarePage @TAMSmokeExch
   Scenario: SLER-315 I Validate the saved options persist on the Tricare page
 #Step 3
     And I verify the header for Primary Member on the Tricare page in "English"
@@ -476,13 +476,13 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify the header for Primary Member on the Tricare page in "English"
 #Step 5
     Then I click "No" for currently enrolled in Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 #Step 6
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -490,14 +490,14 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify Currently Enrolled is "No" on the Tricare page
 
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "No" for insurance ending in 60 days in Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -505,8 +505,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify Currently Enrolled is "Yes" on the Tricare page
     And I verify Insurance Ending in 60 days is "No" on the Tricare page
@@ -514,7 +514,7 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I enter the end date as "Current Month" on the Tricare page
     Then I click "Yes" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -522,8 +522,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify Currently Enrolled is "Yes" on the Tricare page
     And I verify Insurance Ending in 60 days is "Yes" on the Tricare page
@@ -531,7 +531,7 @@ Feature: Page Text-OHC Tricare Elmo Page
     And I verify Voluntarily Ending is "Yes" on the Tricare page
 
     Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -539,8 +539,8 @@ Feature: Page Text-OHC Tricare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Tricare" page
     And I verify Currently Enrolled is "Yes" on the Tricare page
     And I verify Insurance Ending in 60 days is "Yes" on the Tricare page

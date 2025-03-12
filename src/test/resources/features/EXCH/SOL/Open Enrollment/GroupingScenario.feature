@@ -486,12 +486,12 @@ Feature: UI Page Validation - Grouping Members (Medical)
     And I select "Yes" to claim dependents
     And I select the second dependent
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
