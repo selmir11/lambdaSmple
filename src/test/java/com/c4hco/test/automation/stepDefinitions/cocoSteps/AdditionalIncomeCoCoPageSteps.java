@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.AdditionalIncomeCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -29,6 +30,11 @@ public class AdditionalIncomeCoCoPageSteps {
 
     @And("I unselect {string} option on the Additional Income CoCo page")
     public void unselectOption(String option){additionalIncomeCoCoPage.unselectOptions(option);}
+
+    @And("I select {string} as additional income option with {string} amount")
+    public void enterAdditionalIncomeWithoutSelectingFrequency(String addtlIncomeOption, String Amount) {
+        additionalIncomeCoCoPage.selectAdditionalIncomeOptionAndIncome(addtlIncomeOption, Amount);
+    }
 
 
 
@@ -72,4 +78,15 @@ public class AdditionalIncomeCoCoPageSteps {
 
     @Then("I verify Additional Income CoCo error format for {string}")
     public void iVerifyErrorFormat(String incomeType){additionalIncomeCoCoPage.verifyErrorFormat(incomeType);}
+
+    @Then("I validate the error text with its properties and the error icon on the CoCo Additional Income page")
+    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){
+        additionalIncomeCoCoPage.validateErrorMessageAndItsProperties(dataTable);
+    }
+
+    @Then("I verify no error message gets displayed for pension additional income & amount gets converted to {string}")
+    public void iVerifyTheAmountAndNoErrorMessageDisplaying(String amount){
+        additionalIncomeCoCoPage.verifyTheAmountAndNoErrorMessageDisplaying(amount);
+    }
+
 }
