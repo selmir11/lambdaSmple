@@ -118,7 +118,7 @@ Feature: Page Text-Employment Income Page
 
 
   @SLER-2076 @SLER-2331
-  Scenario Outline: "<TestNumber>" ELIG-Self-employment income-Page Text [RT-997] - "<Language>"
+  Scenario Outline: <TestNumber> ELIG-Self-employment income-Page Text [RT-997] - <Language>
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
     And I change the language from Elmo header to "<Language>" if it isn't already in that language
