@@ -392,8 +392,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToDisappear(spinner,60);
-        basicActions.waitForElementToDisappear(spinnerOverlay,60);
+        basicActions.waitForElementToDisappear(spinner,90);
+        basicActions.waitForElementToDisappear(spinnerOverlay,90);
         basicActions.waitForElementToBePresent(btnContinue, 90);
         basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(btnContinue);

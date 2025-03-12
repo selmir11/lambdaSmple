@@ -109,16 +109,16 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Kid" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Kid" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
 
-  @SLER-239 @PageTextOtherHealthInsurancePage @TAMSmoke
+  @SLER-239 @PageTextOtherHealthInsurancePage @TAMSmokeExch
   Scenario: SLER-239 I Validate saved data on the ESI page for multiple members
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -152,8 +152,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 #Step 1
     And I validate I am on the "ESI" page
     And I verify "Family Offered" is "No" on the ESI page
@@ -161,9 +161,9 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the ESI page
 #Step 3
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
+    Then I select "None of these" as health coverage option
 #Step 4
-    Then  I click Go back on the ELMO health coverage page
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify "Family Offered" is "No" on the ESI page
     Then I click "Yes" for offer family plans question
@@ -174,9 +174,9 @@ Feature: Page Text-Other Health Coverage Page
 #Step 5
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
+    Then I select "None of these" as health coverage option
 #Step 6
-    Then  I click Go back on the ELMO health coverage page
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify "Family Offered" is "Yes" on the ESI page
     And I verify offered family amount is "650.00" on the ESI page
@@ -191,8 +191,8 @@ Feature: Page Text-Other Health Coverage Page
       |      Kid:NoAccess         |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify "Family Offered" is "Yes" on the ESI page
     And I verify offered family amount is "800.00" on the ESI page
@@ -342,8 +342,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -356,8 +356,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the Are you voluntarily ending "No" button on the ESI page
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -375,8 +375,8 @@ Feature: Page Text-Other Health Coverage Page
       |      Kid:TypeAccess     |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -392,8 +392,8 @@ Feature: Page Text-Other Health Coverage Page
       |      Kid:TypeAccess     |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -408,8 +408,8 @@ Feature: Page Text-Other Health Coverage Page
       |      Kid:NoAccess       |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -424,8 +424,8 @@ Feature: Page Text-Other Health Coverage Page
       |      Kid:Enrolled       |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -440,8 +440,8 @@ Feature: Page Text-Other Health Coverage Page
       |      Kid:TypeAccess       |
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -453,8 +453,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -465,8 +465,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "257.00" for employee amount question on the ESI page
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -477,8 +477,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I enter "475.00" for employee amount question on the ESI page
     Then I click continue on the ESI page
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then  I click Go back on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then  I click Go back on the health coverage page
     And I validate I am on the "ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I verify the OHC options selected in the DB for "Primary"
@@ -490,7 +490,7 @@ Feature: Page Text-Other Health Coverage Page
   @SLER-1084 @PageValidationOhcEsiElmo
   Scenario: SLER-1084 I want the family of 3 affordability flags aggregated on submitted application
     Then I select the Go Back button on the ESI page
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I click on "Spouse" to edit information from household page
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -505,9 +505,9 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I click on "Kid" to edit information from household page
     Then I validate I am on the "Application Summary" page
     Then I select the Edit Income link
@@ -522,10 +522,10 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "338.26" for employee amount question on the ESI page
@@ -537,8 +537,8 @@ Feature: Page Text-Other Health Coverage Page
       |    Kid:TypeAccess       |
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Secondary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -551,8 +551,8 @@ Feature: Page Text-Other Health Coverage Page
       |    Kid:TypeAccess        |
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Third" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -602,15 +602,15 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
@@ -656,17 +656,17 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I enter "338.25" for employee amount question on the ESI page
     Then I enter "338.25" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
@@ -712,19 +712,19 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I enter "338.25" for employee amount question on the ESI page
     Then I enter "338.25" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
@@ -757,19 +757,19 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
     Then I click continue on the ESI page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
@@ -812,15 +812,15 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I enter "338.25" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question
@@ -863,10 +863,10 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -879,9 +879,9 @@ Feature: Page Text-Other Health Coverage Page
       |    Kid:TypeAccess        |
     Then I click continue on the ESI page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     And I validate I am on the "ESI" page
     Then I enter "338.26" for employee amount question on the ESI page
     Then I enter "338.26" for offer family amount question

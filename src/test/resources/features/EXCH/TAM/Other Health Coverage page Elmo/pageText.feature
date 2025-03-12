@@ -47,9 +47,9 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
 
@@ -76,7 +76,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
@@ -99,7 +99,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
@@ -122,7 +122,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
@@ -144,7 +144,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
@@ -177,7 +177,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
@@ -200,7 +200,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
@@ -262,7 +262,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -285,7 +285,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -309,7 +309,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -332,7 +332,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -368,7 +368,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Elmo Other Health Coverage" page
@@ -392,7 +392,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -439,7 +439,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-298 @PageVerificationOtherHealthInsurancePage @TAMSmoke
+  @SLER-298 @PageVerificationOtherHealthInsurancePage @TAMSmokeExch
   Scenario: SLER-298 I Validate the saved options persist on the Other Health Coverage page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
@@ -461,29 +461,29 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
     And I validate Other Health Coverage options load "unselected"
 
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
     And I click continue on the Employment Info Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     And I validate Other Health Coverage options load "none of these"
 
-    Then I select "Medicare" as ELMO health coverage option
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Medicare" as health coverage option
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
@@ -501,7 +501,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     And I validate Other Health Coverage options load "Medicare, retiree, TRICARE"

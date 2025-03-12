@@ -9,10 +9,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class OhcTricarePage_Elmo {
+public class OhcTricarePage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    public OhcTricarePage_Elmo(WebDriver webDriver){
+    public OhcTricarePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }

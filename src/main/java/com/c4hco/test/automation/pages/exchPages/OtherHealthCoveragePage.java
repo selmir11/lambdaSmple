@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 
-public class OtherHealthCoveragePage_Elmo {
+public class OtherHealthCoveragePage {
     BasicActions basicActions;
     Actions action;
 
@@ -24,7 +24,7 @@ public class OtherHealthCoveragePage_Elmo {
 
     SoftAssert softAssert = new SoftAssert();
     private WebDriver driver;
-    public OtherHealthCoveragePage_Elmo(WebDriver webDriver){
+    public OtherHealthCoveragePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
