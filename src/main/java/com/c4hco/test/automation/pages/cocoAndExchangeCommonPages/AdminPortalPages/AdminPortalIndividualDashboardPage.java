@@ -96,7 +96,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberEmail;
     @FindBy(css = "#dob")
     WebElement memberDob;
-    @FindBy(css = ".member-prop-container")
+    @FindBy(xpath = "//*[@id=\"app-individual-selected-member-75\"]/div/div[6]")
     WebElement memberAddress;
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;

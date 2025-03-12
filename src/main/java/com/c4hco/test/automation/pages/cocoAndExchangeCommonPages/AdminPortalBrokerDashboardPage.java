@@ -145,17 +145,16 @@ public class AdminPortalBrokerDashboardPage {
     public void VerifyBrokerInformationsAccountSummary() {
         if (SharedData.getEnv().equals("qa")){
            softAssert.assertEquals(brokerUsername.getText(),"Dale.Cooper@invalid.com");
-           //softAssert.assertEquals(emailUsername.getText(),"eematu1@msn.com");
+           softAssert.assertEquals(emailUsername.getText(),"eematu1@msn.com");
            softAssert.assertEquals(agencyTIN.getText(),"67-8675766");
            softAssert.assertEquals(mailingAddress.getText(),"");
            softAssert.assertEquals(primaryPhone.getText(),"567-875-4345");
            softAssert.assertEquals(language.getText(),"English");
         }else{
             softAssert.assertEquals(brokerUsername.getText(),"Crystal.Broker@invalid.com");
-            //softAssert.assertEquals(emailUsername.getText(),"");
+            softAssert.assertEquals(emailUsername.getText(),"Crystal.Broker@invalid.com");
             softAssert.assertEquals(agencyTIN.getText(),"45-7654345");
-            softAssert.assertEquals(mailingAddress.getText(),"3423 Gems Way\n" +
-                    "Denver, CO 80205");
+            softAssert.assertEquals(mailingAddress.getText(),"");
             softAssert.assertEquals(primaryPhone.getText(),"687-687-5676");
             softAssert.assertEquals(language.getText(),"English");
             softAssert.assertAll();

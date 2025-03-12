@@ -28,7 +28,7 @@ Feature: Indiviual Dashboard
       | Email            |
       | DOB              |
       | PrimaryPhoneNumber|
-    Then I enter an "Email" in any env "testing12" "testing12" to search user
+    Then I enter an "FirstName" in any env "dsta" "dsta" to search user
     Then I click on Search button in AP dashboard page
     When I select "Sort by: First Name A to Z"
     Then I validate the list is sorted in order by "First Name" and "asc"

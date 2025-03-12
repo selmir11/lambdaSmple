@@ -1208,7 +1208,7 @@ public class HeaderAndFooterPage {
                 break;
             case "Learn More Spanish":
                  basicActions.waitForElementToBePresent(learnMoreLink,20);
-                 softAssert.assertEquals(learnMoreLink.getText() , "Más información" , expectedText + " Not Found ");
+                 softAssert.assertEquals(learnMoreLink.getText() , "M\u00E1s informaci\u00F3n" , expectedText + " Not Found ");
                   break;
             case "Contact US Spanish":
                   basicActions.waitForElementToBePresent(getAssistanceLink,20);
@@ -1229,11 +1229,11 @@ public class HeaderAndFooterPage {
                   break;
             case "Privacy Policy Spanish":
                   basicActions.waitForElementToBePresent(privacyPolicyLink,20);
-                  softAssert.assertEquals(privacyPolicyLink.getText(), "Póliza de privacidad");
+                  softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
                   break;
             case "Terms of Use Spanish":
                   basicActions.waitForElementToBePresent(termsOfUseLink,20);
-                  softAssert.assertEquals(termsOfUseLink.getText(), "Términos y Condiciones");
+                  softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
                   break;
             case "Contact Us Footer Link Spanish":
                 basicActions.waitForElementToBePresent(contactUsLinkExch,20);
@@ -1247,7 +1247,7 @@ public class HeaderAndFooterPage {
                  break;
             case "Follow Us Spanish":
                     basicActions.waitForElementToBePresent(followUsText,20);
-                    softAssert.assertEquals(followUsText.getText(), "Síguenos en:");
+                    softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
                     break;
                 default:
                     throw new IllegalArgumentException("Text not present: " + expectedText);

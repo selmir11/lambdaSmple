@@ -15,6 +15,7 @@ Feature: Verify Header, Footer and welcome back button link on my documents page
     And I click "On Behalf Of (OBO)" from application links dropdown
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Documents" page
+    And I select year "Previous Year" in plan year
     And I verify the page text in "English" on the My Documents Page
 #    Verify Footer and welcome back navigate button
     Then I validate Welcome back button navigates to welcome page
