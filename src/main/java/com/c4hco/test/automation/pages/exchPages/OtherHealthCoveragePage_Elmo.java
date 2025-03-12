@@ -1554,7 +1554,7 @@ public class OtherHealthCoveragePage_Elmo {
         basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
 
         for (WebElement checkbox : insuranceOptionsCheckBox) {
-            String checkboxLabel = checkbox.getAttribute("value").trim(); // Adjust if label is fetched differently
+            String checkboxLabel = checkbox.getAttribute("value").trim(); 
 
             if (insuranceOptions.contains(checkboxLabel)) {
                 if (!checkbox.isSelected()) {
