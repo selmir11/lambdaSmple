@@ -117,23 +117,19 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-2076
-  Scenario: SLER-2076 ELIG-Self-employment income-Page Text [RT-997] - English
+  @SLER-2076 @SLER-2331 @test
+  Scenario Outline: "<TestNumber>" ELIG-Self-employment income-Page Text [RT-997] - "<Language>"
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
-    And I change the language from Elmo header to "English" if it isn't already in that language
-    Then I validate the Net Income Frequency Dropdown Menu in "English"
+    And I change the language from Elmo header to "<Language>" if it isn't already in that language
+    Then I validate the Net Income Frequency Dropdown Menu in "<Language>"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-2331
-  Scenario: SLER-2331 ELIG-Self-employment income-Page Text [RT-997] - Spanish
-    Then I select the option "Yes" to employment
-    And I select the option "Yes" to self employment
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate the Net Income Frequency Dropdown Menu in "Spanish"
-    And I click on Sign Out in the Header for "Elmo"
-    Then I validate I am on the "Login" page
+    Examples:
+      |TestNumber|Language|
+      |SLER-2076 |English|
+      |SLER-2331 |Spanish|
 
   @SLER-2264
   Scenario:  SLER-2264 The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
