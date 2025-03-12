@@ -1,5 +1,5 @@
 Feature: OHI (Other health insurance) and other associated existing health insurance pages
-  @SLER-2285_WIP
+  @SLER-2285
   Scenario: Navigation to the modernized ESI (Employee Sponsored Insurance) page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -316,4 +316,3 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the ELMO health coverage page
 
     And I click on Sign Out in the Header for "Elmo"
-    
