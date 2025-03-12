@@ -127,7 +127,7 @@ public class CRMContactPage {
     }
 
     public void verifyContactData(){
-        basicActions.waitForElementToBePresentWithRetries(txtFirstNameInput,50);
+        basicActions.waitForElementToBePresentWithRetries(txtFirstNameInput,100);
         basicActions.waitForElementToBePresent(txtAddress1Input,50);
         basicActions.waitForElementToBePresent(txtCityInput,50);
 

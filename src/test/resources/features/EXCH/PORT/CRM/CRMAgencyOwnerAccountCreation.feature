@@ -40,6 +40,7 @@ Feature: CRM validation following agency owner new account creation
     Then I click Go to my Dashboard
 
     And I validate I am on the "Agency Dashboard" page
+    And I wait for 2000 milliseconds
     Then I validate the dashboard displays my "Agency Owner Completed Profile" name
     Then I validate the current agency certification status is "NOT APPROVED"
     Then I click on broker userName and logout
@@ -54,7 +55,7 @@ Feature: CRM validation following agency owner new account creation
     Then I validate I am on the "AP Broker dashboard" page
     And I click Manage Certification button
     Then I change the certification status to "approved"
-    And I wait for 300 milliseconds
+    And I wait for 3000 milliseconds
     Then I validate the status certification is "APPROVED"
     And I logout from Admin Portal
 

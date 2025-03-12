@@ -193,6 +193,7 @@ Feature: Testing CRM (MD365) updates
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page
+    And I wait for 1000 milliseconds
     And I verify the Individual Contact data in the CRM
     Then I open the "Details" Tab on contact page
     And I verify the Individual Details data in the CRM

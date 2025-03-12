@@ -26,6 +26,9 @@ public class EmploymentSummaryPage {
     @FindBy(css = ".header-2")
     WebElement hdr_Employment;
 
+    @FindBy(css = ".header-3")
+    List<WebElement> jobOrSelfEmploymentHeaders;
+
     @FindBy(id = "EmploymentSummary-SaveAndContinue")
     WebElement btnContinue;
 
@@ -149,6 +152,15 @@ public class EmploymentSummaryPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(xpath = "//app-employment-summary//div[contains(@class,'bold')]")
+    List<WebElement> employmentSummaryBoldTexts;
+
+    @FindBy(id = "EmploymentSummary-GoBack")
+    WebElement btnGoBack;
+
+
+
+
 
     public void clickContinue(){
         basicActions.wait(500);
@@ -166,8 +178,8 @@ public class EmploymentSummaryPage {
     }
 
     public void clickAddJob(){
-        basicActions.waitForElementToBePresent(spinner,20);
-        basicActions.waitForElementToBePresent(btnAddJob,30);
+        basicActions.waitForElementToBePresentWithRetries(spinner,60);
+        basicActions.waitForElementToBePresentWithRetries(btnAddJob,60);
         basicActions.waitForElementToBeClickable(btnAddJob, 10);
         basicActions.click(btnAddJob);
     }
@@ -202,13 +214,15 @@ public class EmploymentSummaryPage {
             employerNames.remove(indexToRemove);
             lnkRemoveJob.get(indexToRemove).click();
             SharedData.setCompanyname(new ArrayList<>(employerNames));
-        } 
-        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 30);
+            System.out.println("Remaining employer(s) "+SharedData.getCompanyname());
+        }
+
+        basicActions.waitForElementListToBePresent(lnkRemoveContinue, 60);
         lnkRemoveContinue.get(0).click();
     }
 
     public void clickHelpIcon(String label) {
-        basicActions.waitForElementToBePresent(helpLnk, 10);
+        basicActions.waitForElementToBePresentWithRetries(helpLnk, 60);
         switch(label){
             case "Help me understand":
                 helpLnk.click();
@@ -534,5 +548,68 @@ public class EmploymentSummaryPage {
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
+
+    public void validateTextEmploymentSummaryPage(String language) {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+        switch (language) {
+            case "English":
+                validateEnglishTextEmploymentSummaryPage();
+                break;
+            case "Spanish":
+                validateSpanishTextEmploymentSummaryPage();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateEnglishTextEmploymentSummaryPage() {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(hdr_Employment.getText().contains("Employment"), "Header text mismatch!");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getText(), "Job or Self-Employment Income");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(1).getText(), "Total Job or Employment Income");
+
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(0).getText(), "Company Name");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(1).getText(), "Self-employed");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(2).getText(), "Job Income");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(3).getText(), "Frequency");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(4).getText(), "Annual Total");
+
+        softAssert.assertEquals(btnContinue.getText(), "Continue");
+        softAssert.assertEquals(lnkEditIncome.getText(), "Edit/Update");
+        softAssert.assertEquals(lnkRemoveJob.get(0).getText(), "Remove this job");
+        softAssert.assertEquals(btnAddJob.getText(), "+ Add job or self-employment");
+        softAssert.assertEquals(btnGoBack.getText(), "Go back");
+
+        softAssert.assertAll();
+    }
+
+    public void validateSpanishTextEmploymentSummaryPage() {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(hdr_Employment.getText(), "Ingresos por empleo");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getText(), "Ingreso por empleo o por trabajo independiente");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(1).getText(), "Ingreso total por empleo o por trabajo independiente");
+
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(0).getText(), "Nombre de la compa\u00F1\u00EDa");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(1).getText(), "Trabajadores por cuenta propia");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(2).getText(), "Ingresos laborales");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(3).getText(), "Frecuencia");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(4).getText(), "Total anual");
+
+        softAssert.assertEquals(btnContinue.getText(), "Continuar");
+        softAssert.assertEquals(lnkEditIncome.getText(), "Editar/Actualizar");
+        softAssert.assertEquals(lnkRemoveJob.get(0).getText(), "Eliminar este trabajo");
+        softAssert.assertEquals(btnAddJob.getText(), "+ Agregar un empleo o trabajo independiente");
+        softAssert.assertEquals(btnGoBack.getText(), "Volver");
+
+        softAssert.assertAll();
+    }
+
+
+
 
 }

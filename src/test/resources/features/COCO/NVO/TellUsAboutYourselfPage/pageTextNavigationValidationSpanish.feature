@@ -43,7 +43,6 @@ Feature: Spanish- Tell us about yourself page
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Male", and applying "Yes"
       | Primary:Spouse |
-    And I change the language from header to "Spanish"
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
@@ -59,6 +58,7 @@ Feature: Spanish- Tell us about yourself page
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
+    And I change the language from header to "Spanish"
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I validate the page text on Tell us about Yourself "Spanish"

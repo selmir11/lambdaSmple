@@ -64,7 +64,7 @@ public class DependentOverviewCoCoPage {
     public void verifyTextOnDependentOverviewPageEnglish() {
         basicActions.waitForElementToBePresent(hdr_DependentOverview,15);
         softAssert.assertEquals(hdr_DependentOverview.getText(), "Dependent Overview");
-        softAssert.assertEquals(dependentOverviewQuestionText.getText(), "Is " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1) + " disabled, not married and a dependent in your household?");
+        softAssert.assertEquals(dependentOverviewQuestionText.getText(), "Is " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + " disabled, not married and a dependent in your household?");
         softAssert.assertEquals(dependentOverviewYesButton.getText(), "Yes");
         softAssert.assertEquals(dependentOverviewNoButton.getText(), "  No");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
@@ -75,7 +75,7 @@ public class DependentOverviewCoCoPage {
     public void verifyTextOnDependentOverviewPageSpanish() {
         basicActions.waitForElementToBePresent(hdr_DependentOverview,15);
         softAssert.assertEquals(hdr_DependentOverview.getText(), "Resumen del dependiente");
-        softAssert.assertEquals(dependentOverviewQuestionText.getText(), "\u00BFEs " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1) + " una persona discapacitada no casado y dependiente en su familia?");
+        softAssert.assertEquals(dependentOverviewQuestionText.getText(), "\u00BFEs " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + " una persona discapacitada no casado y dependiente en su familia?");
         softAssert.assertEquals(dependentOverviewYesButton.getText(), "S\u00ED");
         softAssert.assertEquals(dependentOverviewNoButton.getText(), "  No");
         softAssert.assertEquals(saveAndContinueButton.getText(), "Guardar y continuar");
