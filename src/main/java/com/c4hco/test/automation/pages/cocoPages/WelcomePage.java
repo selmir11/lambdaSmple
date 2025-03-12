@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.*;
@@ -130,8 +132,14 @@ public class WelcomePage {
     public void selectPlanyear(String planYear) {
         basicActions.waitForElementToBeClickable(planYearSelectorDp, 10);
         basicActions.scrollToElement(planYearSelectorDp);
-        planYearSelectorDp.click();
-        basicActions.selectValueFromDropdown(planYearSelectorDp, planYearSelectorOptions, planYear);
+        selectValueFromDropdown(planYearSelectorDp, planYear);
+    }
+    public void selectValueFromDropdown(WebElement dropdownElement,String PlanYear) {
+        String SelectYear = basicActions.getDateBasedOnRequirement(PlanYear);
+        dropdownElement.click();
+        System.out.println("Selecting plan year " + SelectYear);
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText(SelectYear);
     }
 
     public void clickTakeQuiz() {
@@ -447,7 +455,7 @@ public class WelcomePage {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
-        List<String> memberNamesList = basicActions.getAllMemNames();
+        List<String> memberNamesList = basicActions.getAllMemCompleteNames();
         List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
         Collections.sort(memberNamesList);
         Collections.sort(memberNamesListWelcomePage);

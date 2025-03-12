@@ -1548,17 +1548,24 @@ public class OtherHealthCoveragePage_Elmo {
             existingHealthInsuranceHeader.click();
         }
     }
-
-    public void selectInsuranceOptions(DataTable insuranceOptionsTable) {
+    public void verifyInsuranceOptions(DataTable insuranceOptionsTable) {
         List<String> insuranceOptions = insuranceOptionsTable.asList();
         basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
-        for (int i = 0; i < insuranceOptionsCheckBox.size() && i < insuranceOptions.size(); i++) {
-            basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(i), 10);
-            softAssert.assertTrue(insuranceOptionsCheckBox.get(i).isSelected(), "Checkbox not selected for: " + insuranceOptions.get(i));
+
+        for (WebElement checkbox : insuranceOptionsCheckBox) {
+            String checkboxLabel = checkbox.getAttribute("value").trim();
+
+            if (insuranceOptions.contains(checkboxLabel)) {
+                if (!checkbox.isSelected()) {
+                    basicActions.clickElementWithRetries(checkbox, 10);
+                }
+                softAssert.assertTrue(checkbox.isSelected(), "Checkbox not selected for: " + checkboxLabel);
+            }
         }
         softAssert.assertAll();
     }
+
 
 
 

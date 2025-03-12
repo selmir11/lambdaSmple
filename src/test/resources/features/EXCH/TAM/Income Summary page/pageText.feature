@@ -491,3 +491,40 @@ Feature: Page Text-Income Summary Page
     Then I verify the following text along with the dollar sign after clicking yes button to the Income different than the amount Question
       |Indique los ingresos que proyecta tener en 2025.|
       |Cantidad anual                       |
+
+
+  @SLER-2329
+  Scenario:ELIG-Income Summary-Page Validation[RT-1208]
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "20000.00" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    And I verify the header for Primary Member on the Income Summary page in "English"
+    Then I click the save and continue button on the Income Summary Detail page
+    And I verify the error message on income summary page
+
+  @SLER-2330
+  Scenario:LIG-Income Summary-Page Validation Spanish[RT-1208]
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "20000.00" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the header for Primary Member on the Income Summary page in "Spanish"
+    Then I click the save and continue button on the Income Summary Detail page
+    And I verify the error message on income summary page
+

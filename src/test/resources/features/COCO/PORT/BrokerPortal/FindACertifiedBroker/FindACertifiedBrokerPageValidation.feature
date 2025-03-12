@@ -57,6 +57,7 @@ Feature: Find a Certified Broker page validation
     And I click on Search button in find certified broker page
     Then I verify the over 50 search results error is displayed in "English"
     Then I clear the broker location search box
+    And I wait for 2000 milliseconds
 
     And I click the right pagination arrow button 3 times
     Then I verify the current result page is "5"

@@ -366,6 +366,20 @@ Feature: Page Text-Income Opt Out Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2327
+  Scenario: RT-2594[ELIG-As an Exchange User on Employment Summary page, I want the ability to see the page in English or Spanish so that I can review and update the income information]
+    And I validate I am on the "Employment Summary" page
+    Then I validate Employment Summary text in "English"
+    And I validate I am on the "Employment Summary" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate Employment Summary text in "Spanish"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+
+
+
     
     
     
