@@ -91,6 +91,7 @@ Feature: Broker account creation and account activity code verification
     Then I validate the status certification is "APPROVED"
 
     Then I click "View Report" on Account Summary container AP Broker dashboard page
+    Then I switch to the tab number 1
     And I validate Account Activity title row
     Then I validate "UI_ACCT_CREATED" event code and description "Account created" in activity event report
     Then I validate "BP_ASSIGNED_ROLE" event code and description "Role Assigned" in activity event report
