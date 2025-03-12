@@ -7,7 +7,7 @@ Feature: Medical Plan Compare page related tests
     And I validate I am on the "Login" page
 
    @SLER-46
-  Scenario: SLER-46 - Validate the Navigation and Functionality of Compare Plans Link (Medical) - formerly RT-1971 - 2 check boxes
+  Scenario: SLER-46 - Validate the Navigation and Functionality of Compare Plans Link (Medical) - 2 check boxes
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -226,7 +226,7 @@ Feature: Medical Plan Compare page related tests
 
 
    @SLER-726 @MedicalCompareDetailTextVerification
-  Scenario: SLER-726 - Validate the detail information of the Compare Plans page (Medical) - formerly RT-1977
+  Scenario: SLER-726 - Validate the detail information of the Compare Plans page (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

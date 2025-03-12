@@ -319,5 +319,101 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickUploadMVRButtonFor(String mvrType) {
         myDocumentsPage.clickUploadMvr(mvrType);
     }
+
+    @And("I verify Document header on my document page")
+    public void iVerifyDocumentHeaderOnMyDocumentPage(String data) {
+        myDocumentsPage.verifyDocumentHeaderOnMyDocument(data);
+    }
+
+    @Then("I verify Sub header on my document page")
+    public void iVerifySubHeaderOnMyDocumentPage(String data) {
+        myDocumentsPage.verifySubHeaderOnMyDocumentPage(data);
+
+    }
+
+    @Then("I verify container header for information we need")
+    public void iVerifyContainerHeaderForInformationWeNeed(String data) {
+        myDocumentsPage.verifyContaineNameForInfoWeNeed(data);
+    }
+
+    @And("I verify MVR name on the information we need container in {string}")
+    public void iVerifyMVRNameAreCorrect(String language) {
+        myDocumentsPage.verifyMvrNames(language);
+    }
+
+    @Then("I Verify due date are displaying in proper color")
+    public void iVerifyDueDateAreDisplayingInProperColor() {
+        myDocumentsPage.verifyDueDateColor();
+    }
+
+    @Then("I verify member name in MVR type")
+    public void iVerifyMemberNameInMVRType(DataTable datatable) {
+        myDocumentsPage.verifyMemberName(datatable);
+    }
+
+    @Then("I verify mvr type with date, member name and upload button")
+    public void iVerifyMvrTypeWithDateHouseHolderNameAndUploadButton() {
+        myDocumentsPage.verifyMvrTypesWithTextandButtons();
+    }
+
+    @Then("I verify Upload button on the right")
+    public void iVerifyUploadButtonOnTheRight() {
+        myDocumentsPage.verifyUploadBtnForMrv();
+    }
+
+    @And("I verify no document on new account")
+    public void iVerifyNoDocumentOnNewAccount(String data) {
+        myDocumentsPage.verifyNoDocumentMessage(data);
+    }
+
+    @Then("I validate file required error message on modal popup")
+    public void iValidateFileRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateFileRequiredErrorMessage(data);
+    }
+
+    @Then("I validate selection required error message on modal popup")
+    public void iValidateSelectionRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage(data);
+    }
+
+    @When("I click on upload documents button in modal popup")
+    public void iClickOnUploadDocumentsButtonInModalPopup() {
+        myDocumentsPage.clickUploadButton();
+    }
+
+    @Then("I validate border colour of category dropdown")
+    public void iValidateBorderColourOfCategoryDropdown() {
+        myDocumentsPage.validateBorderColorofErrorCategory();
+    }
+
+    @Then("I validate selection required error message for only document category on modal popup")
+    public void iValidateSelectionRequiredErrorMessageForOnlyDocumentCategoryOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(data);
+    }
+
+    @Then("I verify unsupported document error message with red in color")
+    public void iVerifyUnsupportedDocumentErrorMessageWithRedInColor(String data) {
+        myDocumentsPage.validateDocUnsupportedErrorAndTextColour(data);
+    }
+
+    @When("I select any category of document from dropdown in spanish")
+    public void iSelectAnyCategoryOfDocumentFromDropdownInSpanish() {
+        myDocumentsPage.select1stOptionFromDocTypeSpanish();
+    }
+
+    @Then("I verify doc file size large error message in red in Spanish")
+    public void iVerifyDocFileSizeLargeErrorMessageInRedOnModelPopup() {
+        myDocumentsPage.validateDocSizeLargeErrMsgAndTextColourSpanish();
+    }
+
+    @Then("I upload MVR doc for {string} on the My Documents page in {string}")
+    public void iUploadMVRDocForOnTheMyDocumentsPageIn(String mvrType, String language) {
+        myDocumentsPage.uploadMvrDocAndSuccesMessage(mvrType,language);
+    }
+
+    @Then("I upload another doc {string} for {string} on the My Documents page and verify success message in {string}")
+    public void iUploadAnotherDocForOnTheMyDocumentsPageAndVerifySuccessMessageIn(String fileName, String mvrType, String language) {
+        myDocumentsPage.uploadAnotherDocAndSuccessMessage(fileName,mvrType,language);
+    }
 }
 

@@ -4,7 +4,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
   @SLER-778
   Scenario: SLER-778 Admin Account creation, enrolling in a plan through Admin Portal "OBO" and validating the aptc and APTC Re-calculating with family of 4 and Primary person income changed
-  # SLER-778 formerly RT-1618
+  # SLER-778
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     Then I click create account on admin portal
@@ -300,7 +300,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
     Then I click Save and Continue on Tax Status Elmo page
 
     And I validate I am on the "Elmo Other Health Coverage" page

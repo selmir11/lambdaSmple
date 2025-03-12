@@ -7,7 +7,7 @@ Feature: Dental Plan Verification test
     And I validate I am on the "Login" page
 
   @SLER-955 @VerifyDentalDetailNavigation
-  Scenario: SLER-955 - VerifyDentalDetailNavigation - this is a breakaway from RT-1653
+  Scenario: SLER-955 - VerifyDentalDetailNavigation
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
