@@ -1555,4 +1555,36 @@ public class MyDocumentsPage {
         softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
         softAssert.assertAll();
     }
+
+    public void uploadMvrDocAndSuccesMessage(String mvrType, String language) {
+        clickMvrDoubleChevrons();
+        clickUploadMvr(mvrType,language);
+        clickWhichDocument();
+        uploadDoc("TestMyDocs.docx");
+        clickUploadDocSpanish(language);
+        clickMvrDoubleChevrons();
+    }
+    public void clickUploadMvr(String mvrType ,String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                WebElement btnUploadMvr = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Proof of "+ mvrType +"')]//following::button[1]"));
+                btnUploadMvr.click();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                WebElement btnUploadMvrSpanish = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Comprobante de "+ mvrType +"')]//following::button[1]"));
+                btnUploadMvrSpanish.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void uploadAnotherDocAndSuccessMessage(String fileName, String mvrType, String language) {
+        selectDocumentCategory(mvrType);
+        clickWhichDocument();
+        uploadDoc(fileName);
+        clickUploadDocSpanish(language);
+    }
 }
