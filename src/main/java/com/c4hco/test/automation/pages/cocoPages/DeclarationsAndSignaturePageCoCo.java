@@ -125,7 +125,7 @@ public class DeclarationsAndSignaturePageCoCo {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(signatureLabel.getText(), SharedData.getPrimaryMember().getCompleteFullName() + " Firma electrónica:");
+                softAssert.assertEquals(signatureLabel.getText(), SharedData.getPrimaryMember().getCompleteFullName() + " Firma electr\u00F3nica:");
                 softAssert.assertTrue(signatureInputField.isDisplayed(), "Electronic signature input field is not visible");
                 softAssert.assertAll();
                 break;
@@ -145,22 +145,15 @@ public class DeclarationsAndSignaturePageCoCo {
         basicActions.waitForElementToBePresent(ErrorMessage,10);
 
         List<Map<String,String>> data = dataTable.asMaps();
-                String validationText = data.get(0).get("Text");
-                String fontSize = data.get(0).get("fontSize");
-                String fontFamily = data.get(0).get("fontFamily");
-                String fontWeight = data.get(0).get("fontWeight");
-                String color = data.get(0).get("color");
-                String lineHeight = data.get(0).get("lineHeight");
-                String textAlign = data.get(0).get("textAlign");
                 softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
                 softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
-                softAssert.assertEquals(ErrorMessage.getText(), validationText);
-                softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), fontSize);
-                softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), fontFamily);
-                softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), fontWeight);
-                softAssert.assertEquals(ErrorMessage.getCssValue("color"), color);
-                softAssert.assertEquals(ErrorMessage.getCssValue("line-height"), lineHeight);
-                softAssert.assertEquals(ErrorMessage.getCssValue("text-align"), textAlign);
+                softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("color"), data.get(0).get("color"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("line-height"), data.get(0).get("lineHeight"));
+                softAssert.assertEquals(ErrorMessage.getCssValue("text-align"), data.get(0).get("textAlign"));
                 softAssert.assertAll();
     }
 
@@ -168,19 +161,13 @@ public class DeclarationsAndSignaturePageCoCo {
         basicActions.waitForElementToBePresent(signatureLabel,10);
 
         List<Map<String,String>> data = dataTable.asMaps();
-        String fontSize = data.get(0).get("fontSize");
-        String fontFamily = data.get(0).get("fontFamily");
-        String fontWeight = data.get(0).get("fontWeight");
-        String color = data.get(0).get("color");
-        String lineHeight = data.get(0).get("lineHeight");
-        String textAlign = data.get(0).get("textAlign");
         softAssert.assertTrue(signatureLabel.isDisplayed(),"Username Electronic signature label not visible");
-        softAssert.assertEquals(signatureLabel.getCssValue("font-size"), fontSize);
-        softAssert.assertEquals(signatureLabel.getCssValue("font-family"), fontFamily);
-        softAssert.assertEquals(signatureLabel.getCssValue("font-weight"), fontWeight);
-        softAssert.assertEquals(signatureLabel.getCssValue("color"), color);
-        softAssert.assertEquals(signatureLabel.getCssValue("line-height"), lineHeight);
-        softAssert.assertEquals(signatureLabel.getCssValue("text-align"), textAlign);
+        softAssert.assertEquals(signatureLabel.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(signatureLabel.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(signatureLabel.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(signatureLabel.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertEquals(signatureLabel.getCssValue("line-height"), data.get(0).get("lineHeight"));
+        softAssert.assertEquals(signatureLabel.getCssValue("text-align"), data.get(0).get("textAlign"));
         softAssert.assertAll();
     }
 

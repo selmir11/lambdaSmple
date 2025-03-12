@@ -74,9 +74,9 @@ public class OtherHealthCoverageSteps_Elmo {
     public void iVerifyStateOfMainOHCCheckboxes(String state){
         otherHealthCoveragePage_Elmo.verifyMainOHCCheckboxes(state);}
 
-    @Then("I validate selecting insurance options")
+    @Then("I verify insurance options selected on the Other Health Coverage page")
     public void iValidateSelectingInsuranceOptions(DataTable insuranceOptionsTable) {
-        otherHealthCoveragePage_Elmo.selectInsuranceOptions(insuranceOptionsTable);
+        otherHealthCoveragePage_Elmo.verifyInsuranceOptions(insuranceOptionsTable);
     }
 
 }

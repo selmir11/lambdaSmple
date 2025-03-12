@@ -25,10 +25,7 @@ public class EthnicityAndRacePage {
     @FindBy(css = "button[role='checkbox'].checkbox-mark")
     List<WebElement> raceEthnicityButton;
 
-    @FindAll({
-            @FindBy(id = "saveAndContinue"), // Staging
-            @FindBy(id = "Race Ethnicity-SaveAndContinue") // QA EAVS
-    })
+    @FindBy(id = "Race Ethnicity-SaveAndContinue")
     WebElement saveAndContinue_Button;
 
     @FindBy(id = "Race Ethnicity-GoBack")
@@ -299,9 +296,11 @@ public class EthnicityAndRacePage {
         saveAndContinue_Button.click();
     }
 
-    public void selectNotListedAndEnterCustomText(String customText) {
+    public void selectNotListedAndEnterCustomText(String customText, String memPrefix) {
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
         raceEthnicityButton.get(7).click();
+        setRaceAndEthnicity("Not listed", memPrefix);
+        setMemberID(memPrefix);
         basicActions.waitForElementToBePresent(notListedReason, 10);
         notListedReason.sendKeys(customText);
     }

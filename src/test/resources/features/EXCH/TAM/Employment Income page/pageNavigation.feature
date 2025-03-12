@@ -1,5 +1,5 @@
 @TAM @TamExch
-Feature: Page Text-Income Opt Out Page
+Feature: Page Text-Employment Income Page
 
   Background:
     Given I open the login page on the "login" portal
@@ -117,8 +117,8 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-2076
-  Scenario Outline: SLER-2076 ELIG-Self-employment income-Page Text [RT-997]
+  @SLER-2076 @SLER-2331
+  Scenario Outline: <TestNumber> ELIG-Self-employment income-Page Text [RT-997] - <Language>
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
     And I change the language from Elmo header to "<Language>" if it isn't already in that language
@@ -127,202 +127,12 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
     Examples:
-    |Language|
-    |English|
-    |Spanish|
-
-  @SLER-2264
-  Scenario:  [RT-2703]The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And I verify text on the "Exch" "Header" in "Spanish"
-    And I verify text on the "Exch" "Footer" in "Spanish"
-    Then I validate page Navigation works for Footer hyperlink text in "Spanish"
-      | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
-      | Póliza de privacidad   | Política de Privacidad • Connect for Health Colorado | connectforhealthco.com/es/politica-de-privacidad/        |
-      | Términos y Condiciones | Términos de uso • Connect for Health Colorado        | connectforhealthco.com/es/terminos-de-uso/               |
-      | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
-      | FacebookIcon           | Facebook                                             | facebook.com                                             |
-      | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-    Then I validate I am on the "Additional income" page
-    Then I validate page Navigation works for Footer hyperlink text in "Spanish"
-      | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
-      | Póliza de privacidad   | Política de Privacidad • Connect for Health Colorado | connectforhealthco.com/es/politica-de-privacidad/        |
-      | Términos y Condiciones | Términos de uso • Connect for Health Colorado        | connectforhealthco.com/es/terminos-de-uso/               |
-      | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
-      | FacebookIcon           | Facebook                                             | facebook.com                                             |
-      | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
-
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-  #Deductions Page
-    Then I validate I am on the "Deductions" page
-    Then I validate page Navigation works for Footer hyperlink text in "Spanish"
-      | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
-      | Póliza de privacidad   | Política de Privacidad • Connect for Health Colorado | connectforhealthco.com/es/politica-de-privacidad/        |
-      | Términos y Condiciones | Términos de uso • Connect for Health Colorado        | connectforhealthco.com/es/terminos-de-uso/               |
-      | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
-      | FacebookIcon           | Facebook                                             | facebook.com                                             |
-      | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
-
-    Then I validate I am on the "Deductions" page
-    And I verify the header for Primary Member on the Deductions page in "Spanish"
-    Then I click None of these as deduction option and continue
-    Then I validate I am on the "Income Summary" page
-    Then I validate page Navigation works for Footer hyperlink text in "Spanish"
-      | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
-      | Póliza de privacidad   | Política de Privacidad • Connect for Health Colorado | connectforhealthco.com/es/politica-de-privacidad/        |
-      | Términos y Condiciones | Términos de uso • Connect for Health Colorado        | connectforhealthco.com/es/terminos-de-uso/               |
-      | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
-      | FacebookIcon           | Facebook                                             | facebook.com                                             |
-      | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
-
-    Then I select the projected income option "No" and continue
-  #TaxPage
-    Then I validate I am on the "Tax status Elmo" page
-    And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate page Navigation works for Footer hyperlink text in "Spanish"
-      | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
-      | Póliza de privacidad   | Política de Privacidad • Connect for Health Colorado | connectforhealthco.com/es/politica-de-privacidad/        |
-      | Términos y Condiciones | Términos de uso • Connect for Health Colorado        | connectforhealthco.com/es/terminos-de-uso/               |
-      | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
-      | FacebookIcon           | Facebook                                             | facebook.com                                             |
-      | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
-
-    Then I select "No" for will you be claimed as dependent question
-    Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
-    Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    #ELMO page
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I validate page Navigation works for Footer hyperlink text in "Spanish"
-      | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
-      | Póliza de privacidad   | Política de Privacidad • Connect for Health Colorado | connectforhealthco.com/es/politica-de-privacidad/        |
-      | Términos y Condiciones | Términos de uso • Connect for Health Colorado        | connectforhealthco.com/es/terminos-de-uso/               |
-      | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
-      | FacebookIcon           | Facebook                                             | facebook.com                                             |
-      | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
-    And I click on Sign Out in the Header for "Elmo"
-
-
-  @SLER-2266
-  Scenario:  [RT-2668]The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
-    Then I validate page Navigation works for Footer hyperlink text in "English"
-      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
-      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
-      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
-      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
-      | FacebookIcon   | Facebook          | facebook.com                          |
-      | xIcon          | X                 | x.com                                 |
-      | YouTubeIcon    | YouTube           | youtube.com                           |
-      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
-    Then I select the option "No" to employment
-    And I click continue on the Employment Info Page
-    Then I validate I am on the "Additional income" page
-    Then I validate page Navigation works for Footer hyperlink text in "English"
-      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
-      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
-      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
-      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
-      | FacebookIcon   | Facebook          | facebook.com                          |
-      | xIcon          | X                 | x.com                                 |
-      | YouTubeIcon    | YouTube           | youtube.com                           |
-      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
-    Then I validate I am on the "Additional income" page
-    Then I click None of these as additional income option and continue
-  #Deductions Page
-    Then I validate I am on the "Deductions" page
-    Then I validate page Navigation works for Footer hyperlink text in "English"
-      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
-      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
-      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
-      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
-      | FacebookIcon   | Facebook          | facebook.com                          |
-      | xIcon          | X                 | x.com                                 |
-      | YouTubeIcon    | YouTube           | youtube.com                           |
-      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I validate I am on the "Income Summary" page
-    Then I validate page Navigation works for Footer hyperlink text in "English"
-      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
-      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
-      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
-      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
-      | FacebookIcon   | Facebook          | facebook.com                          |
-      | xIcon          | X                 | x.com                                 |
-      | YouTubeIcon    | YouTube           | youtube.com                           |
-      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
-    Then I select the projected income option "No" and continue
-  #TaxPage
-    Then I validate I am on the "Tax status Elmo" page
-    Then I validate page Navigation works for Footer hyperlink text in "English"
-      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
-      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
-      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
-      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
-      | FacebookIcon   | Facebook          | facebook.com                          |
-      | xIcon          | X                 | x.com                                 |
-      | YouTubeIcon    | YouTube           | youtube.com                           |
-      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
-    Then I select "No" for will you be claimed as dependent question
-    Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
-    Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    #ELMO page
-    Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I validate page Navigation works for Footer hyperlink text in "English"
-      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
-      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
-      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
-      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
-      | FacebookIcon   | Facebook          | facebook.com                          |
-      | xIcon          | X                 | x.com                                 |
-      | YouTubeIcon    | YouTube           | youtube.com                           |
-      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
-    And I click on Sign Out in the Header for "Elmo"
+      |TestNumber|Language|
+      |SLER-2076 |English|
+      |SLER-2331 |Spanish|
 
   @SLER-2270
-  Scenario: RT-2670 As an Exchange user, I need navigation functionality to navigate from the modernized ESI page to Exchange
+  Scenario: SLER-2270 As an Exchange user, I need navigation functionality to navigate from the modernized ESI page to Exchange
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -342,7 +152,7 @@ Feature: Page Text-Income Opt Out Page
     Then I click Save and Continue on Tax Status Elmo page
     Then I validate I am on the "Elmo Other Health Coverage" page
 
-    Then I validate selecting insurance options
+    Then I verify insurance options selected on the Other Health Coverage page
       | InsuranceOption       |
       | Health First Colorado |
       | CHP+                  |
@@ -356,6 +166,7 @@ Feature: Page Text-Income Opt Out Page
       | TRICARE               |
       | Other                 |
       | None of these         |
+
     #Medicare
     Then I select "Medicare" as ELMO health coverage option
     Then I click continue on the ELMO health coverage page
@@ -468,7 +279,7 @@ Feature: Page Text-Income Opt Out Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status Elmo page
 
-    Then I validate selecting insurance options
+    Then I verify insurance options selected on the Other Health Coverage page
       | InsuranceOption       |
       | Health First Colorado |
       | CHP+                  |
@@ -483,10 +294,42 @@ Feature: Page Text-Income Opt Out Page
       | Other                 |
       | None of these         |
 
+    Then I select "Medicare" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    And I click Go Back on the Elmo OHC Medicare page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "job" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I select the Go Back button on the ESI page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "HRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC HRA page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "Retiree Health Plan" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Retiree page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "Peace Corps" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Peace Corps page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "COBRA" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Cobra page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "VA Health Care" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC VA Healthcare page
+    Then I select "None of these" as ELMO health coverage option
+    Then I select "TRICARE" as ELMO health coverage option
+    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the Elmo OHC Tricare page
+
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2272 
-  Scenario: RT-2620 As a user on the Employment Summary page, I need the ability to remove a job/employer so that I can accurately report my employment details
+  @SLER-2272
+  Scenario: SLER-2272 As a user on the Employment Summary page, I need the ability to remove a job/employer so that I can accurately report my employment details
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I enter employment details with "3000000" income at "Annually" frequency
@@ -530,7 +373,7 @@ Feature: Page Text-Income Opt Out Page
 
 
   @SLER-2301
-  Scenario: [RT-2600] As a Exch user on the Employment Summary page, I want to see the employment summary list presented in the order it was added so that I can review and update
+  Scenario: SLER-2301 As a Exch user on the Employment Summary page, I want to see the employment summary list presented in the order it was added so that I can review and update
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "200000" at frequency "Annually"
@@ -563,6 +406,20 @@ Feature: Page Text-Income Opt Out Page
     Then I click on Remove job "First" entered for Primary on the Employment Summary Page
     And I validate company names in employment summary page
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2276
+  Scenario: SLER-2276 ELIG-Self-employment income-Page Navigation[RT-1203]
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    Then I validate Employment Info Page header in "English"
+    Then I validate I am on the "Employment Income" page
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    And I enter self-employment details with "54000.00" income at "Annually" frequency and "Yes" to same or lower
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click Edit on Income Summary row 1
+    Then I validate I am on the "Employment Income" page
 
 
 

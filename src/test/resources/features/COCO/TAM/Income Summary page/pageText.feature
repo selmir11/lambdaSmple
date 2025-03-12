@@ -647,3 +647,53 @@ Feature: Tests related to the Deductions page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-818
+  Scenario: SLCR-818 As CoCo user, I want to see standard errors errors on the Income Summary page so that errors are displayed consistently(CCRT-571)
+    And I verify the header for Primary Member on the CoCo Income Summary page in "English"
+    Then I select the projected income option "Yes" on Income Summary CoCo page
+    Then I click on the Projected Income Input field and click out of this field
+    And I validate the error text along with its properties on the CoCo Income Summary page
+      | Text               | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Amount is required | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    And I validate the label text along with its properties on the CoCo Income Summary page
+      | Text                                 | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Enter your projected income in 2025. | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) | 28px       | start     |
+    And I enter "70.00" of projected income on Income Summary CoCo page
+    And I verify no error shows on the Income Summary page
+    And I refresh the page
+    Then I select the projected income option "Yes" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    And I validate the error text along with its properties on the CoCo Income Summary page
+      | Text               | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Amount is required | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    And I validate the label text along with its properties on the CoCo Income Summary page
+      | Text                                 | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Enter your projected income in 2025. | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) | 28px       | start     |
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I verify no error shows on the Income Summary page
+    And I refresh the page
+    And I select continue on the income Summary CoCo page
+    And I validate the error text along with its properties on the CoCo Income Summary page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I verify no error shows on the Income Summary page
+    And I refresh the page
+    And I select continue on the income Summary CoCo page
+    And I validate the error text along with its properties on the CoCo Income Summary page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    Then I select the projected income option "Yes" on Income Summary CoCo page
+    And I verify no error shows on the Income Summary page
+    And I select continue on the income Summary CoCo page
+    And I validate the error text along with its properties on the CoCo Income Summary page
+      | Text               | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Amount is required | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    And I validate the label text along with its properties on the CoCo Income Summary page
+      | Text                                 | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Enter your projected income in 2025. | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) | 28px       | start     |
+    And I enter "70.00" of projected income on Income Summary CoCo page
+    And I verify no error shows on the Income Summary page
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

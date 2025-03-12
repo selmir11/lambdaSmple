@@ -1026,6 +1026,8 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickableWithRetries(termsOfUseLink, 70);
                 basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                 basicActions.scrollToElement(privacyPolicyLink);
+                basicActions.waitForElementPresence(privacyPolicyLink, 70);
+                basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                  privacyPolicyLink.click();
                 break;
             default:
@@ -1055,7 +1057,11 @@ public class HeaderAndFooterPage {
                 contactUsLink.click();
                 break;
             case "Exch":
-                basicActions.waitForElementToBeClickable(contactUsLinkExch, 10);
+                basicActions.waitForElementToDisappear(spinner, 90);
+                basicActions.waitForElementToBePresent(contactUsLinkExch, 70);
+                basicActions.waitForElementToBeClickable(contactUsLinkExch, 60);
+                basicActions.scrollToElement(contactUsLinkExch);
+                basicActions.waitForElementToBeClickable(contactUsLinkExch,90);
                 contactUsLinkExch.click();
                 break;
             case "Admin Portal":

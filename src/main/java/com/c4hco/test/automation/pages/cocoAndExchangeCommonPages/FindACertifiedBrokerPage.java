@@ -166,6 +166,7 @@ public class FindACertifiedBrokerPage {
     WebElement brokerAuthorizationButton;
 
     @FindBy (id = "contineOwn-button")
+    @FindBy (xpath = "//button[.='Continue with my application ']")
     WebElement continueWithMyOwn;
 
 

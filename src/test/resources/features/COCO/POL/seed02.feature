@@ -23,7 +23,7 @@ Feature: Seed02 - Coco
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    Then I click Continue with my application
+    Then I click Continue on my own button from Manage who helps you page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11181993", "Male", and applying "Yes"
     And I enter my residential address "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
@@ -103,12 +103,12 @@ Feature: Seed02 - Coco
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      |1:01012025|
-      |2:01012025|
-    And I update the Financial Start date of member
-      |1:01012025|
-      |2:01012025|
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
