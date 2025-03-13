@@ -235,6 +235,8 @@ Feature: Seed02 - Coco
       And I enter a valid signature
       And I click Continue on the Declarations And Signature Page CoCo
       Then I validate I am on the "Application Results CoCo" page
+      And I click Continue on the Application Results Page CoCo
+      And I click close on open enrollment ended pop up modal
       And I click on Sign Out in the Header for "Elmo"
 
 # DB Validation
