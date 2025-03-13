@@ -57,7 +57,7 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I set the browser resolution to 1536 x 864
 
   @SLER-901 @HelpDrawerOhcHraElmo

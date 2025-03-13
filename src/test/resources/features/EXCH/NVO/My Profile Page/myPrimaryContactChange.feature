@@ -123,7 +123,7 @@ Feature: My Profile Page Exch
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -144,7 +144,7 @@ Feature: My Profile Page Exch
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -184,7 +184,7 @@ Feature: My Profile Page Exch
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
       Then I validate I am on the "Citizenship" page
@@ -205,7 +205,7 @@ Feature: My Profile Page Exch
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
       And I click continue on the Race and Ethnicity page
       Then I validate I am on the "Citizenship" page
@@ -251,7 +251,7 @@ Feature: My Profile Page Exch
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -272,7 +272,7 @@ Feature: My Profile Page Exch
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -330,7 +330,7 @@ Feature: My Profile Page Exch
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Middle Eastern or North African" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page

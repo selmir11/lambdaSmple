@@ -150,7 +150,7 @@ Feature: Page Text-Employment Income Page
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
 
     Then I verify insurance options selected on the Other Health Coverage page
       | InsuranceOption       |
@@ -170,7 +170,7 @@ Feature: Page Text-Employment Income Page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
     And I verify the header for "Primary" Member on the Medicare page in "English"
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "150.00"
@@ -182,7 +182,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "job" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -197,7 +197,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "6.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -208,7 +208,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "Retiree Health Plan" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I enter the end date as "Future Day" on the Retiree page
@@ -219,7 +219,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I enter the end date as "Future Day" on the Peace Corps page
@@ -230,7 +230,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "COBRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Ohc COBRA" page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Future Day" on the Cobra page
@@ -241,7 +241,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
     Then I enter the end date as "Future Day" on the VA Healthcare page
@@ -252,7 +252,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "TRICARE" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I enter the end date as "Future Day" on the Tricare page
@@ -263,7 +263,7 @@ Feature: Page Text-Employment Income Page
     Then I select "None of these" as health coverage option
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
     Then I enter the end date as "Future Day" on the Individual Insurance page

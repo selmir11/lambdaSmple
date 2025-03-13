@@ -58,7 +58,7 @@ Feature: Page Text-Other Health Coverage Page
 
   @SLER-128 @PageTextOtherHealthInsurancePage
   Scenario: SLER-128 I Validate the page text and checkboxes on the Other Health Coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     And I verify text on the Other Health Coverage page in "English"
     And I verify the checkboxes on the Other Health Coverage page
@@ -72,7 +72,7 @@ Feature: Page Text-Other Health Coverage Page
 
   @SLER-237 @PageTextOtherHealthInsurancePage
   Scenario: SLER-237 I Validate the header and footer on the Other Health Coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
 
     And I verify text on the "Exch" "Header" in "English"
@@ -91,7 +91,7 @@ Feature: Page Text-Other Health Coverage Page
 
   @SLER-307 @PageTextOtherHealthInsurancePage
   Scenario: SLER-307 I can see Other Health Coverage's standard errors consistently - English
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
 
     And I verify the text on Other Health Coverage page data in "English"
     Then I click continue on the health coverage page
@@ -106,7 +106,7 @@ Feature: Page Text-Other Health Coverage Page
 
   @SLER-310 @PageTextOtherHealthInsurancePage
   Scenario: SLER-310 I can see Other Health Coverage's standard errors consistently - Spanish
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
 
@@ -122,7 +122,7 @@ Feature: Page Text-Other Health Coverage Page
 
   @SLER-347 @PageTextOtherHealthInsurancePage @TAMSmokeExch
   Scenario: SLER-347 I validate save, update and remove on Other Health Coverage are updated in the DB
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
 
     Then I select "Health First Colorado" as health coverage option
     Then I select "CHP+" as health coverage option
@@ -137,7 +137,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
     Then I click Go Back on the OHC Medicare page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         1            |      1     |         1        |     1   |            1          |     1     |       1       |        1           |             1            |            1           |   1   |
@@ -145,13 +145,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I select "CHP+" as health coverage option
     Then I click continue on the health coverage page
     Then I click Go Back on the OHC Medicare page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         1            |      1     |         1        |     1   |            1          |     1     |       1       |        0           |             0            |            1           |   1   |
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
@@ -165,7 +165,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-386 I validate remove Medicare on Other Health Coverage is updated in the DB
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      1     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
@@ -198,7 +198,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -214,7 +214,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-400 I validate remove Individual Insurance on Other Health Coverage is updated in the DB
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            1           |   0   |
@@ -243,7 +243,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -259,7 +259,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-401 I validate remove Individual Insurance on ESI is updated in the DB
     Then I select "job" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     And I verify the OHC options selected in the DB for "Primary"
       |retiree_health_plan_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|emp_sponsored_covg_ind|enrl_emp_sponsored_covg_ind3|emp_coverage_end_soon_ind3|emp_end_voluntary_ind3|emp_coverage_min_std_ind3|emp_coverage_monthly_prem_amt|emp_coverage_family_plan_offered_ind3|emp_coverage_family_prem_amount|curr_year_esi_afford_ind3|next_year_esi_afford_ind3|
       |         0             |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1         |                            |                          |                      |                         |                             |                                     |                               |                         |                         |
@@ -280,7 +280,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -296,7 +296,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-473 I validate remove COBRA on Other Health Coverage is updated in the DB
     Then I select "COBRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Ohc COBRA" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     1   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
@@ -325,7 +325,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -340,14 +340,14 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-475 I validate remove HRA on Other Health Coverage is updated in the DB
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   1   |
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "500.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I click continue on the OHC HRA page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
@@ -374,7 +374,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -391,7 +391,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-476 I validate remove VA Healthcare on Other Health Coverage is updated in the DB
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         1        |     0   |            0          |     0     |       0       |        0           |             0            |            0           |   0   |
@@ -420,7 +420,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -436,7 +436,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-477 I validate remove Retiree Health Plan on Other Health Coverage is updated in the DB
     Then I select "Retiree Health Plan" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            1          |     0     |       0       |        0           |             0            |            0           |   0   |
@@ -465,7 +465,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -481,7 +481,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-478 I validate remove TRICARE on Other Health Coverage is updated in the DB
     Then I select "TRICARE" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     1     |       0       |        0           |             0            |            0           |   0   |
@@ -510,7 +510,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"
@@ -526,7 +526,7 @@ Feature: Page Text-Other Health Coverage Page
   Scenario: SLER-479 I validate remove Peace Corps on Other Health Coverage is updated in the DB
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|
       |         0            |      0     |         0        |     0   |            0          |     0     |       1       |        0           |             0            |            0           |   0   |
@@ -555,7 +555,7 @@ Feature: Page Text-Other Health Coverage Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     And I verify the OHC options selected in the DB for "Primary"

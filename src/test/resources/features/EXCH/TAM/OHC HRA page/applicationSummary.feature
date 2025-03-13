@@ -98,7 +98,7 @@ Feature: Tests related to the Application Summary/Detail for HRA
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "175.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type

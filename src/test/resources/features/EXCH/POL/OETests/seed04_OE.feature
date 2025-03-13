@@ -45,7 +45,7 @@ Feature: Seed04 based on open enrollment - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -66,7 +66,7 @@ Feature: Seed04 based on open enrollment - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -106,10 +106,10 @@ Feature: Seed04 based on open enrollment - Exchange
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
@@ -209,7 +209,7 @@ Feature: Seed04 based on open enrollment - Exchange
     Then I select the Different Mailing Address option
     Then I enter member with address line1 "PO BOX 8575" in city "Boulder" in state "CO" with zipcode "80020" and county "BOULDER"
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -244,7 +244,7 @@ Feature: Seed04 based on open enrollment - Exchange
     Then I select the Different Mailing Address option
     Then I enter member with address line1 "101 Update Lane" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -255,7 +255,7 @@ Feature: Seed04 based on open enrollment - Exchange
     Then I validate I am on the "Add Address" page
     Then I select "101 Update Lane" specific Address
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I click continue on the Citizenship page
@@ -309,7 +309,7 @@ Feature: Seed04 based on open enrollment - Exchange
     Then I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I click continue on the Immigration Status page

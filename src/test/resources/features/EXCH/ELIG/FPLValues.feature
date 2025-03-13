@@ -55,7 +55,7 @@ Then I select the projected income option "No" and continue
 Then I select "No" for will you be claimed as dependent question
 Then I select "No" for will file tax return question
 Then I click Save and Continue on Tax Status page
-And I validate I am on the "Elmo Other Health Coverage" page
+And I validate I am on the "Other Health Coverage" page
 Then I select "None of these" as health coverage option
 Then I click continue on the health coverage page
 Then I click continue on family overview page

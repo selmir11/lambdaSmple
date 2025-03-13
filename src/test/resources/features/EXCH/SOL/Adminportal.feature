@@ -38,7 +38,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   And I select "No" to the recently denied medicaid question
   And I select "No" for Incarceration option
   And I click continue on the Add Address page
-  Then I validate I am on the "Elmo Race and Ethnicity" page
+  Then I validate I am on the "Race and Ethnicity" page
   And I select "Prefer not to answer" for race and ethnicity for "Primary"
   And I click continue on the Race and Ethnicity page
   Then I select "Yes" for Citizen option
@@ -57,7 +57,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   And I select "No" to the recently denied medicaid question
   And I select "No" for Incarceration option
   And I click continue on the Add Address page
-  Then I validate I am on the "Elmo Race and Ethnicity" page
+  Then I validate I am on the "Race and Ethnicity" page
   And I select "Prefer not to answer" for race and ethnicity for "Spouse"
   And I click continue on the Race and Ethnicity page
   Then I validate I am on the "Citizenship" page
@@ -78,7 +78,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
   And I select "No" to the recently denied medicaid question
   And I select "No" for Incarceration option
   And I click continue on the Add Address page
-  Then I validate I am on the "Elmo Race and Ethnicity" page
+  Then I validate I am on the "Race and Ethnicity" page
   And I select "Prefer not to answer" for race and ethnicity for "Son"
   And I click continue on the Race and Ethnicity page
   Then I validate I am on the "Citizenship" page
@@ -151,7 +151,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
@@ -214,7 +214,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
       Then I select "Yes" for Citizen option
@@ -244,7 +244,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       Then I select "No" for will file tax return question
       Then I click Save and Continue on Tax Status page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
+      And I validate I am on the "Other Health Coverage" page
       Then I select "None of these" as health coverage option
       Then I click continue on the health coverage page
 
@@ -309,7 +309,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
@@ -328,7 +328,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
@@ -373,7 +373,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I select "None of these" as health coverage option
@@ -443,7 +443,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
       Then I select "Yes" for Citizen option
@@ -461,7 +461,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity for "Spouse"
       And I click continue on the Race and Ethnicity page
       Then I select "Yes" for Citizen option
@@ -532,7 +532,7 @@ Scenario: Account creation, shopping and enrolling in a plan through Admin Porta
       And I click continue on Tell us about yourself page
       And I click continue on the Add Address page
 
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I click continue on the Race and Ethnicity page
       And I click continue on the Citizenship page
       Then I click continue on family overview page

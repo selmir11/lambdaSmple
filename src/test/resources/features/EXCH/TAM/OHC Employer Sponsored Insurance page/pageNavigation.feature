@@ -58,7 +58,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click Save and Continue on Tax Status page
     Then I select "job" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
 
 
   @SLER-687 @PageNavigationESI
@@ -95,7 +95,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
@@ -222,36 +222,36 @@ Feature: Page Navigation-OHC ESI Page
     Then I select the Go Back button on the ESI page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     Then I select the Go Back button on the ESI page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I click continue on the health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "250.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I click Go Back on the OHC HRA page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     Then I select the Go Back button on the ESI page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "HRA" as health coverage option
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "150.00"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
     Then I click continue on the OHC Medicare page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     Then I select the Go Back button on the ESI page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     Then I click continue on the OHC Medicare page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     Then I click continue on the ESI page
     And I validate I am on the "Family Overview" page
 
@@ -286,12 +286,12 @@ Feature: Page Navigation-OHC ESI Page
     Then I click Save and Continue on Tax Status page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I click Go back on the health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
@@ -299,7 +299,7 @@ Feature: Page Navigation-OHC ESI Page
   @SLER-2064
   Scenario: SLER-2064 I want to be directed to the unauthorized page so that I know I have tried to access a page I am not authorized to access
 #    check in English and change to Spanish
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     Then I validate I am on the "Unauthorized" page
@@ -333,7 +333,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "ESI" page
+    Then I validate I am on the "Ohc ESI" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the ESI page in "Spanish"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"

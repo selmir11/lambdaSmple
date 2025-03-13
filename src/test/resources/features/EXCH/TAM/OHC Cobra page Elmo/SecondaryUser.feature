@@ -81,7 +81,7 @@ Feature: Secondary User-OHC COBRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "COBRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Ohc COBRA" page
 
   @SLER-482 @SecondaryUserOhcCobraElmo
   Scenario: SLER-482 I can see Cobra's dynamic data for Primary and Secondary user - English
@@ -96,7 +96,7 @@ Feature: Secondary User-OHC COBRA Elmo Page
 
     Then I select "COBRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Ohc COBRA" page
     And I verify the "First Section Secondary" Cobra page data in "English"
     Then I click "Yes" for currently enrolled in COBRA question
     And I verify the "Second Section Secondary" Cobra page data in "English"
@@ -122,7 +122,7 @@ Feature: Secondary User-OHC COBRA Elmo Page
 
     Then I select "COBRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Ohc COBRA" page
     And I verify the "First Section Secondary" Cobra page data in "Spanish"
     Then I click "Yes" for currently enrolled in COBRA question
     And I verify the "Second Section Secondary" Cobra page data in "Spanish"

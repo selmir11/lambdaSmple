@@ -81,7 +81,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
 
 @SLER-812 @PageVerificationHraPage
 Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user - English
@@ -95,7 +95,7 @@ Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user -
 
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I verify the "Initial Page Secondary" amount "" HRA page data in "English"
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "1.00" amount on the OHC HRA page
@@ -118,7 +118,7 @@ Scenario: SLER-812 I can see HRA's dynamic data for Primary and Secondary user -
 
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I verify the "Initial Page Secondary" amount "" HRA page data in "Spanish"
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "1.00" amount on the OHC HRA page

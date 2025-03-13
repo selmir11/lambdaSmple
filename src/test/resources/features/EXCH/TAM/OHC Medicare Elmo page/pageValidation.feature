@@ -52,7 +52,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
 
   @SLER-329 @PageValidationOhcMedicareElmo
   Scenario: SLER-329 I can see Medicare's standard errors consistently - English
@@ -158,7 +158,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "250.00"
@@ -176,7 +176,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
@@ -194,7 +194,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     Then I click "No" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "300.00"
@@ -213,7 +213,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A Don't Pay"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
@@ -230,7 +230,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "English"
     Then I check checkbox for Part "A"
     Then I click continue on the OHC Medicare page
@@ -324,11 +324,11 @@ Feature: Page Validation-OHC Medicare Elmo Page
     And I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
     Then I click "No" for currently eligible in Medicare question

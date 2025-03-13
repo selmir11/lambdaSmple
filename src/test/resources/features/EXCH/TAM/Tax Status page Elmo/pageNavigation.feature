@@ -48,18 +48,18 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     #step1
     Then I open current page in new tab
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I switch to the tab number 0
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I click on Sign Out in the Header for "Elmo"
     And I validate I am on the "Login" page
     #step2
     And I switch to the tab number 1
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I refresh the page
     And I validate I am on the "Login" page
     And I close current tab and switch back to previous tab
@@ -84,17 +84,17 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I open current page in new tab
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I switch to the tab number 0
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I click on Sign Out in the Header for "Elmo"
     And I validate I am on the "Login" page
     #step4
     And I switch to the tab number 1
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
@@ -109,7 +109,7 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     #Step1
     And I change the C4 url to "Tax Return portal Error Exch"
@@ -188,7 +188,7 @@ Feature: Page Navigation-Tax Status Elmo Page
       Then I click None of these as additional income option and continue
       Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       #step4 - provide filer tax information for account holder
       And I verify the header for "Primary" Member on the Tax Status page in "English"
       Then I select "No" for will you be claimed as dependent question
@@ -211,12 +211,12 @@ Feature: Page Navigation-Tax Status Elmo Page
       Then I click continue on the Additional Income page
       Then I click continue on the Deductions page
       Then I click the save and continue button on the Income Summary Detail page
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       #step6 - change from filer to dependent
       Then I select "Yes" for will you be claimed as dependent question
       Then I select "Spouse" for who will claim as dependent question
       Then I click Save and Continue on Tax Status page
-      And I validate I am on the "Elmo Other Health Coverage" page
+      And I validate I am on the "Other Health Coverage" page
       Then I click continue on the health coverage page
       And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
       Then I click continue on the health coverage page

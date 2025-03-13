@@ -24,7 +24,7 @@ Feature: Page Text-Additional information for yourself page
     And I enter my mailing address "4321 Road", "Colorado Springs", "CO", "80916", "EL PASO"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
@@ -56,7 +56,7 @@ Feature: Page Text-Additional information for yourself page
     And I enter my mailing address "11", "City", "CO", "80205", "DENVER"
     And I select "No" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     Then I validate complete residential address details for "Primary" member in DB addressLine1 "12345 testRoad",addressLine2 "12345 testarea",city "Denver",state "CO",zipcode "80205",county "DENVER"
     Then I validate mailing address details for "Primary" member in DB addressLine1 "P. O. Box 145411",city "DenverCity",state "CO",zipcode "80205",county "DENVER"
     Then I validate state details for "Primary" member in DB 0

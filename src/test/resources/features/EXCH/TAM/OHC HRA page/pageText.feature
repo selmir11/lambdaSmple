@@ -57,7 +57,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
 
   @SLER-284 @PageTextOhcHraElmo
   Scenario: SLER-284 I can see HRA's Header and footer - English
@@ -86,7 +86,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -108,7 +108,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -131,7 +131,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -153,16 +153,16 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
@@ -186,7 +186,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -210,36 +210,36 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "English"
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -273,7 +273,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "Spanish"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -297,7 +297,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "Spanish"
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
@@ -322,7 +322,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "Spanish"
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -346,18 +346,18 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "Spanish"
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
@@ -383,7 +383,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "Spanish"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -408,35 +408,35 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo HRA" page
+    Then I validate I am on the "HRA" page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -465,7 +465,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
 #Step 1
     And I verify the header for Primary Member on the HRA page in "English"
 #Step 2
@@ -475,7 +475,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "500.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I click continue on the OHC HRA page
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -485,7 +485,7 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I verify the header for Primary Member on the HRA page in "English"
 #Step 3
     And I verify year is "Current Year", amount is "500.00", type is "QSEHRA", "Without" APTC question "" on the HRA page
@@ -502,13 +502,13 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
 #Step 4
     And I verify year is "Current Year", amount is "6.00", type is "ICHRA", "With" APTC question "Yes" on the HRA page
 #Step 5
     Then I enter "350.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I verify year is "Current Year", amount is "350.00", type is "ICHRA", "Without" APTC question "" on the HRA page
 #Set-up
     Then I enter "15.00" amount on the OHC HRA page
@@ -523,11 +523,11 @@ Feature: Page Text-Other Health Coverage Page HRA
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I verify year is "Current Year", amount is "15.00", type is "ICHRA", "With" APTC question "No" on the HRA page
 #Step 6
     Then I select "QSEHRA" for HRA type
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     And I verify year is "Current Year", amount is "15.00", type is "QSEHRA no Continue", "Without" APTC question "" on the HRA page
 
     And I click on Sign Out in the Header for "Elmo"

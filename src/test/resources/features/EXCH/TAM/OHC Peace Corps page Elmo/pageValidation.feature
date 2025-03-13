@@ -52,7 +52,7 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
 
   @SLER-338 @PageValidationOhcPeaceCorpsElmo @TAMSmokeExch
   Scenario: SLER-338 I can see Peace Corps' standard errors consistently - English
@@ -147,7 +147,7 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I click continue on the OHC Peace Corps page
@@ -167,7 +167,7 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
@@ -183,7 +183,7 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "Yes" for insurance ending voluntary for Peace Corps question
     Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
@@ -197,7 +197,7 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "No" for insurance ending in 60 days in Peace Corps question
     Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
@@ -211,7 +211,7 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "No" for currently enrolled in Peace Corps question
     Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"

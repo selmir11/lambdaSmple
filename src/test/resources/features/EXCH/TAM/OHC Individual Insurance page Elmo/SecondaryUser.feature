@@ -81,7 +81,7 @@ Feature: Secondary User-OHC Individual Insurance Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
 
   @SLER-490 @SecondaryUserOhcIndividualInsuranceElmo
   Scenario: SLER-490 I can see Individual Insurance's dynamic data for Primary and Secondary user - English
@@ -96,7 +96,7 @@ Feature: Secondary User-OHC Individual Insurance Elmo Page
 
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     And I verify the "First Section Secondary" Individual Insurance page data in "English"
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify the "Second Section Secondary" Individual Insurance page data in "English"
@@ -122,7 +122,7 @@ Feature: Secondary User-OHC Individual Insurance Elmo Page
 
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     And I verify the "First Section Secondary" Individual Insurance page data in "Spanish"
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify the "Second Section Secondary" Individual Insurance page data in "Spanish"

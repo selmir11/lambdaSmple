@@ -20,7 +20,7 @@ Feature: Seed06 - COCO
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -47,7 +47,7 @@ Feature: Seed06 - COCO
     And I enter residential address details for additional member "106 Coco Drive", "Englewood", "CO", "80113", "ARAPAHOE"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Husband"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -72,7 +72,7 @@ Feature: Seed06 - COCO
     And I enter residential address details for additional member "106 Coco Drive", "Englewood", "CO", "80113", "ARAPAHOE"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -98,7 +98,7 @@ Feature: Seed06 - COCO
     And I enter residential address details for additional member "106 Coco Drive", "Englewood", "CO", "80113", "ARAPAHOE"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option

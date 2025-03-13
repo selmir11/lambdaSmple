@@ -81,7 +81,7 @@ Feature: Secondary User-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
 
   @SLER-499 @SecondaryUserOhcPeaceCorpsElmo
   Scenario: SLER-499 I can see Peace Corps' dynamic data for Primary and Secondary user - English
@@ -96,7 +96,7 @@ Feature: Secondary User-OHC Peace Corps Elmo Page
 
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify the "First Section Secondary" Peace Corps page data in "English"
     Then I click "Yes" for currently enrolled in Peace Corps question
     And I verify the "Second Section Secondary" Peace Corps page data in "English"
@@ -122,7 +122,7 @@ Feature: Secondary User-OHC Peace Corps Elmo Page
 
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify the "First Section Secondary" Peace Corps page data in "Spanish"
     Then I click "Yes" for currently enrolled in Peace Corps question
     And I verify the "Second Section Secondary" Peace Corps page data in "Spanish"
