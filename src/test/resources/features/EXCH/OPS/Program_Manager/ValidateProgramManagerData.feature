@@ -15,4 +15,5 @@ Feature: Verify Program Manager Data
     Then I validate the assistnet Data in Profile summary container
     And I validate the assistNet Organization Details in admin portal
     Then I click on Search button in AP broker dashboard page
+    Then I validate I am on the "Admin search" page
     And I logout from Admin Portal
