@@ -888,7 +888,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             String aptcvalue = parts[1];
             WebElement APTCMem = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + memberNo + "']//input[@type='text']"));
             APTCMem.click();
-            APTCMem.clear();
+            for (int i = 0; i < 6; i++) { APTCMem.sendKeys(Keys.BACK_SPACE); }
             APTCMem.sendKeys(aptcvalue);
             if(SharedData.getPrimaryMember()!= null){
             SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);

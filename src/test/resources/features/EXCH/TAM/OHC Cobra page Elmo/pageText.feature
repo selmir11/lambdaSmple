@@ -52,14 +52,14 @@ Feature: Page Text-Other Health Coverage Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo COBRA" page
 
-  @SLER-238 @PageVerificationCobraPage @TAMSmoke
+  @SLER-238 @PageVerificationCobraPage @TAMSmokeExch
   Scenario: SLER-238 I Validate the saved options persist on the Cobra page
 #Step 3
     And I verify the header for Primary Member on the Cobra page in "English"
@@ -82,13 +82,13 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo COBRA" page
     And I verify the header for Primary Member on the Cobra page in "English"
 #Step 5
     Then I click "No" for currently enrolled in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
 #Step 6
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -96,14 +96,14 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "No" on the Cobra page
 
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -111,8 +111,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "Yes" on the Cobra page
     And I verify Insurance Ending in 60 days is "No" on the Cobra page
@@ -120,7 +120,7 @@ Feature: Page Text-Other Health Coverage Page
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
 
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -128,8 +128,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo COBRA" page
     And I verify Currently Enrolled is "Yes" on the Cobra page
     And I verify Insurance Ending in 60 days is "Yes" on the Cobra page
@@ -162,8 +162,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo COBRA" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -184,8 +184,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo COBRA" page
     And I verify the header for Primary Member on the Cobra page in "English"
@@ -208,8 +208,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo COBRA" page
     And I click on My Account in the "Elmo" Header
@@ -230,8 +230,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo COBRA" page
     And I click on Learn More in the Header
@@ -263,8 +263,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Elmo COBRA" page
     And I verify the header for Primary Member on the Cobra page in "English"
@@ -288,8 +288,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo COBRA" page
     And I verify the header for Primary Member on the Cobra page in "English"
@@ -351,8 +351,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the Cobra page in "Spanish"
@@ -376,8 +376,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo COBRA" page
@@ -401,8 +401,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo COBRA" page
@@ -425,8 +425,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo COBRA" page
@@ -462,8 +462,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate I am on the "Elmo COBRA" page
@@ -487,8 +487,8 @@ Feature: Page Text-Other Health Coverage Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo COBRA" page
 #    And I set the browser resolution to 1200 x 800

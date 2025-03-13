@@ -74,13 +74,13 @@ Feature: Secondary User-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Peace Corps" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Peace Corps" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Peace Corps" page
 
   @SLER-499 @SecondaryUserOhcPeaceCorpsElmo
@@ -92,10 +92,10 @@ Feature: Secondary User-OHC Peace Corps Elmo Page
     And I verify the "Third Section" Peace Corps page data in "English"
     Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
 
-    Then I select "Peace Corps" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Peace Corps" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Peace Corps" page
     And I verify the "First Section Secondary" Peace Corps page data in "English"
     Then I click "Yes" for currently enrolled in Peace Corps question
@@ -118,10 +118,10 @@ Feature: Secondary User-OHC Peace Corps Elmo Page
     And I verify the "Third Section" Peace Corps page data in "Spanish"
     Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
 
-    Then I select "Peace Corps" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Peace Corps" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Peace Corps" page
     And I verify the "First Section Secondary" Peace Corps page data in "Spanish"
     Then I click "Yes" for currently enrolled in Peace Corps question

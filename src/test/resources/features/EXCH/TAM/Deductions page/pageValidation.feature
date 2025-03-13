@@ -115,7 +115,7 @@ Feature: Page Verification-Deductions Page
 
 
 
-  @SLER-236 @PageVerificationDeductionsPage @TAMSmoke
+  @SLER-236 @PageVerificationDeductionsPage @TAMSmokeExch
   Scenario: SLER-236 I see the Errors Cleared on the Deductions page - Spanish
     And I change the language from header to "Spanish"
     Then I validate I am on the "Spanish" page

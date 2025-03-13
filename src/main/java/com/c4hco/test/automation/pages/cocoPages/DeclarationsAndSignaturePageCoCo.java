@@ -64,6 +64,7 @@ public class DeclarationsAndSignaturePageCoCo {
 
     public void enterOBOSignature(){
         basicActions.waitForElementToBeClickable(signatureInputField, 100);
+        basicActions.waitForElementToBeClickable(signatureInputField, 50);
         // Extract the text from the element
         String originalText = getSignature.getText();
 

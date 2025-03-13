@@ -13,7 +13,7 @@ Feature: Tests related to the Employment Income page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
 
-  @SLCR-46 @PageNavigationEmploymentIncome @TAMSmoke
+  @SLCR-46 @PageNavigationEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-46 I can navigate to and from Employment Income page with no errors
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
@@ -58,7 +58,7 @@ Feature: Tests related to the Employment Income page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-639 @PageNavigationEmploymentIncome @TAMSmoke
+  @SLCR-639 @PageNavigationEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-639 I can navigate to and from Employment Income additional member page with no errors
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page with "Spouse", "08111990", "Male", and applying "Yes"

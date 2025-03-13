@@ -96,7 +96,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberEmail;
     @FindBy(css = "#dob")
     WebElement memberDob;
-    @FindBy(css = "body app-root div:nth-child(6)")
+    @FindBy(xpath = "//*[@id=\"app-individual-selected-member-75\"]/div/div[6]")
     WebElement memberAddress;
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
@@ -281,7 +281,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement tax;
     @FindBy(xpath = "//td[normalize-space()='Application ID:']")
     WebElement applicationId;
-    @FindBy(css = "#app-individual-selected-member-80 > label")
+    @FindBy(css = ".selected-member-header")
     WebElement selectedMemberLabel;
     @FindBy(css = "#app-individual-selected-member-80 > div")
     WebElement selectedMemberData;

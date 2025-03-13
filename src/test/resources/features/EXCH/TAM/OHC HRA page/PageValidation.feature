@@ -47,30 +47,30 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
 
   @SLER-789 @PageValidationOhcHraElmo
   Scenario: SLER-789 I can see HRA's standard errors consistently - English
     And I verify the "First Section" HRA page data in "English"
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify "Plan Year" error in "English" on the HRA page
     And I verify "Amount" error in "English" on the HRA page
     And I verify "Type" error in "English" on the HRA page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
     And I verify "Plan Year" error does not show for HRA page
-    Then I enter "6.00" amount on the Elmo OHC HRA page
+    Then I enter "6.00" amount on the OHC HRA page
     And I verify "Amount" error does not show for HRA page
     Then I select "ICHRA" for HRA type
     And I verify "Type" error does not show for HRA page
     And I verify the "Opt Out Section" HRA page data in "English"
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify "Opt Out" error in "English" on the HRA page
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
     And I verify "Opt Out" error does not show for HRA page
 
     And I click on Sign Out in the Header for "Elmo"
@@ -80,25 +80,25 @@ Feature: Page Validation-OHC HRA Elmo Page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify the "First Section" HRA page data in "Spanish"
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify "Plan Year" error in "Spanish" on the HRA page
     And I verify "Amount" error in "Spanish" on the HRA page
     And I verify "Type" error in "Spanish" on the HRA page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
     And I verify "Plan Year" error does not show for HRA page
-    Then I enter "6.00" amount on the Elmo OHC HRA page
+    Then I enter "6.00" amount on the OHC HRA page
     And I verify "Amount" error does not show for HRA page
     Then I select "ICHRA" for HRA type
     And I verify "Type" error does not show for HRA page
     And I verify the "Opt Out Section" HRA page data in "Spanish"
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify "Opt Out" error in "Spanish" on the HRA page
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
     And I verify "Opt Out" error does not show for HRA page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-811 @PageValidationOhcHraElmo @TAMSmoke
+  @SLER-811 @PageValidationOhcHraElmo @TAMSmokeExch
   Scenario: SLER-811 I validate save, update and remove on HRA are updated in the DB
     And I verify year is "Not Selected", amount is "Not Selected", type is "Not Selected", "Without" APTC question "" on the HRA page
     And I verify the OHC options selected in the DB for "Primary"
@@ -107,10 +107,10 @@ Feature: Page Validation-OHC HRA Elmo Page
     And I verify the HRA options selected in the DB
       |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
       |         |             |        |                    |                      |
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "500.00" amount on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "500.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
@@ -124,11 +124,11 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I enter "60.00" amount on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I enter "60.00" amount on the OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
@@ -142,13 +142,13 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I enter "25.00" amount on the Elmo OHC HRA page
+    Then I enter "25.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
@@ -162,13 +162,13 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I enter "25.00" amount on the Elmo OHC HRA page
+    Then I enter "25.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
@@ -182,12 +182,12 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I enter "45.00" amount on the Elmo OHC HRA page
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I enter "45.00" amount on the OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
@@ -201,11 +201,11 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I enter "500.00" amount on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I enter "500.00" amount on the OHC HRA page
+    Then I click continue on the OHC HRA page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|retiree_health_plan_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|cobra_ind|
       |         0            |      0     |         0        |            0          |     0     |       0       |        0           |             0            |            0           |   1   |    0    |
@@ -217,11 +217,11 @@ Feature: Page Validation-OHC HRA Elmo Page
 
   @SLER-1032 @PageValidationOhcHraElmo
   Scenario: SLER-1032 I validate HRA data is saved in Application History DB
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "6.00" amount on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "6.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -253,12 +253,12 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo HRA" page
-    Then I enter "575.65" amount on the Elmo OHC HRA page
+    Then I enter "575.65" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue

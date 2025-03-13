@@ -75,14 +75,14 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I set the browser resolution to 1536 x 864
 
@@ -111,9 +111,9 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     And I select "currently eligible" icon on the Medicare Page
 
     Then I click "Yes" for currently eligible in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the OHC Medicare page
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Secondary" Member on the Medicare page in "English"
     And I select "Help me understand" icon on the Medicare Page
@@ -168,9 +168,9 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     And I select "currently eligible" icon on the Medicare Page
 
     Then I click "Yes" for currently eligible in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the OHC Medicare page
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Secondary" Member on the Medicare page in "Spanish"
     And I select "Help me understand" icon on the Medicare Page

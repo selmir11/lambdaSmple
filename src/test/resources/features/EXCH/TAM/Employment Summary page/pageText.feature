@@ -194,7 +194,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-244 @PageTextEmploymentSummary @TAMSmoke
+  @SLER-244 @PageTextEmploymentSummary @TAMSmokeExch
   Scenario: SLER-244 I can see Employment Summary's Header and footer - Spanish
     And I validate I am on the "Employment Summary" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
