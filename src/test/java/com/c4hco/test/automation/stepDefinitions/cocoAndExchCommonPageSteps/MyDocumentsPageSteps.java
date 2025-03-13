@@ -405,5 +405,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyDocFileSizeLargeErrorMessageInRedOnModelPopup() {
         myDocumentsPage.validateDocSizeLargeErrMsgAndTextColourSpanish();
     }
+
+    @Then("I upload MVR doc for {string} on the My Documents page in {string}")
+    public void iUploadMVRDocForOnTheMyDocumentsPageIn(String mvrType, String language) {
+        myDocumentsPage.uploadMvrDocAndSuccesMessage(mvrType,language);
+    }
+
+    @Then("I upload another doc {string} for {string} on the My Documents page and verify success message in {string}")
+    public void iUploadAnotherDocForOnTheMyDocumentsPageAndVerifySuccessMessageIn(String fileName, String mvrType, String language) {
+        myDocumentsPage.uploadAnotherDocAndSuccessMessage(fileName,mvrType,language);
+    }
 }
 

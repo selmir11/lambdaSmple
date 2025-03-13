@@ -7,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-131
-  Scenario: SLER-131 - ELIG-APTCRules -  formerly RT-2349 - 40 year old - lost coverage
+  Scenario: SLER-131 - ELIG-APTCRules - 40 year old - lost coverage
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -79,13 +79,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -197,10 +197,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -242,7 +242,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
-  Scenario: SLER-322 - ELIG-  -APTCRules -  formerly RT-2350 - 40 year old
+  Scenario: SLER-322 - ELIG - APTCRules - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -309,13 +309,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -428,10 +428,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -483,7 +483,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click all done from payment portal page
 
     @SLER-319
-  Scenario: SLER-319 - ELIG - APTCRules - formerly RT-2351 - 60 year old
+  Scenario: SLER-319 - ELIG - APTCRules - 60 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -551,13 +551,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -670,10 +670,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -714,7 +714,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-320
-  Scenario: SLER-320 - ELIG - APTC Rules - formerly RT-2352 - 62 year old
+  Scenario: SLER-320 - ELIG - APTC Rules - 62 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -780,13 +780,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -898,10 +898,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -942,7 +942,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-321
-  Scenario: SLER-321 - ELIG - APTCRules -  formerly RT-2353 - 50 year old
+  Scenario: SLER-321 - ELIG - APTCRules - 50 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1010,13 +1010,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1128,10 +1128,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1172,7 +1172,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-323
-  Scenario: SLER-323 - ELIG -  formerly RT-2354 - 40 year old //born in 1976
+  Scenario: SLER-323 - ELIG - 40 year old //born in 1976
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1240,13 +1240,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1357,10 +1357,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1401,7 +1401,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
 @SLER-375
-  Scenario:  SLER-375 - ELIG - APTCRules -  formerly RT-2355 - 40 year old
+  Scenario:  SLER-375 - ELIG - APTCRules - 40 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1467,13 +1467,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1584,10 +1584,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1628,7 +1628,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
     @SLER-324
-  Scenario: SLER-324 - ELIG - APTCRules  - formerly RT-2356 - 65 year old
+  Scenario: SLER-324 - ELIG - APTCRules - 65 year old
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1694,13 +1694,13 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Tax status Elmo" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status page
       Then I select "No" for will claim dependents question
-      Then I click Save and Continue on Tax Status Elmo page
+      Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1812,10 +1812,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1854,7 +1854,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-691
-  Scenario: SLER-691 - ELIG - APTCRules - formerly RT-2340 - income change from 10K to 100K
+  Scenario: SLER-691 - ELIG - APTCRules - income change from 10K to 100K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1920,13 +1920,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     Then I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2037,10 +2037,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2081,7 +2081,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-690
-  Scenario: SLER-690 - ELIG - APTCRules - formerly RT-2341- income change from 100K to 10K
+  Scenario: SLER-690 - ELIG - APTCRules - income change from 100K to 10K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2147,13 +2147,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2264,10 +2264,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2308,7 +2308,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-689
-  Scenario: SLER-689 - ELIG - APTCRules - formerly RT-2342- income change from 50K to 35K
+  Scenario: SLER-689 - ELIG - APTCRules - income change from 50K to 35K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2374,13 +2374,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2491,10 +2491,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2535,7 +2535,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-692
-  Scenario: SLER-692 - ELIG - APTCRules - formerly RT-2343- income change from 50K to 65K
+  Scenario: SLER-692 - ELIG - APTCRules - income change from 50K to 65K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -2601,13 +2601,13 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Tax status Elmo" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -2721,10 +2721,10 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I click the save and continue button on the Income Summary Detail page
 
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page

@@ -48,7 +48,7 @@ Feature: Page Text-Tax Status Elmo Page
 
     Then I validate I am on the "Tax status Elmo" page
 
-  @SLER-1804 @PageTextTaxStatusElmoPage @TAMSmoke
+  @SLER-1804 @PageTextTaxStatusElmoPage @TAMSmokeExch
   Scenario: SLER-1804 I can see ELMO Tax Status page's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"
@@ -94,7 +94,7 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -117,7 +117,7 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -139,7 +139,7 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
@@ -172,7 +172,7 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -195,7 +195,7 @@ Feature: Page Text-Tax Status Elmo Page
     Then I select the projected income option "No" and continue
 
     Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer

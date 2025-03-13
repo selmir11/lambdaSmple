@@ -12,6 +12,7 @@ Feature: Broker Dashboard- Verify Broker Data
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "AP Broker dashboard" page
     Then I validate AP broker dashboard Header any env: QA name "Dale Cooper" ID "5590786800" User Type "BROKER" STG name "Crystal Broker" ID "7670732006" User Type "BROKER"
+    And I wait for 2000 milliseconds
     And I verify Broker information's Account Summary
     And I verify Broker certification information's
     And I verify Broker Account Activity Container

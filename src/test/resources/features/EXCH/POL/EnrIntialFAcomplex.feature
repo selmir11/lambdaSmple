@@ -180,7 +180,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
+    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box for "Nephew"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -208,7 +208,7 @@ Feature: Enroll a in a plan 8 HH
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box
+    And I select Not listed for race and ethnicity option and enter "Cajun" in the text box for "Niece"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -286,44 +286,44 @@ Feature: Enroll a in a plan 8 HH
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Niece" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "Niece" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status page
+    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
 
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -340,7 +340,8 @@ Feature: Enroll a in a plan 8 HH
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary,Niece,Nephew,Daughter"
+    Then I click "Yes" to the Tobacco usage question on start shopping page for "Primary"
+    And I click "No" to the Tobacco usage question on start shopping page for "Niece,Nephew,Daughter"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link

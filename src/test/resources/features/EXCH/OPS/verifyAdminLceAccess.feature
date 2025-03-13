@@ -11,6 +11,7 @@ Feature: This scenario checks Admin LCE Access role positive and negative scenar
     Then I validate I am on the "Admin LCE" page
     And I validate Admin Lce container title text
     And I logout from Admin Portal LCE
+    And I close current tab and switch back to previous tab
     And I validate I am on the "Login" page
     Then I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalSEReport_UN_STG" password "adminPortalSEReport_PW_STG" and "adminPortalSEReport_UN_QA" password "adminPortalSEReport_PW_QA"

@@ -46,6 +46,7 @@ public class MyDocumentsPage {
             @FindBy(css = ".primary-header-container > h2"), // Staging
             @FindBy(xpath = "//div[contains(@class, 'header-1')]") // QA EAVS
     })
+    @FindBy(css = "div.header-1.text-center.ng-star-inserted")
     WebElement myDocumentsTitle;
 
     @FindBy(css = ".document-content-select-double-chevrons-container")
@@ -115,7 +116,7 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
     WebElement btnCargarotrodocumento;
 
-    @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
+    @FindBy(css = ".modal-title")
     WebElement txtCargarUnDocumento;
 
     @FindBy(xpath = "//span[normalize-space()='Díganos m\u00E1s sobre este documento']")
@@ -1554,5 +1555,37 @@ public class MyDocumentsPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(img_errorMsg_docFileSizeLarge,10),"Img is not Present");
         softAssert.assertEquals(textErrorMsg_docFileSizeLarge.getCssValue("color"), "rgba(150, 0, 0, 1)","Font colour error");
         softAssert.assertAll();
+    }
+
+    public void uploadMvrDocAndSuccesMessage(String mvrType, String language) {
+        clickMvrDoubleChevrons();
+        clickUploadMvr(mvrType,language);
+        clickWhichDocument();
+        uploadDoc("TestMyDocs.docx");
+        clickUploadDocSpanish(language);
+        clickMvrDoubleChevrons();
+    }
+    public void clickUploadMvr(String mvrType ,String language){
+        switch (language) {
+            case "English":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                WebElement btnUploadMvr = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Proof of "+ mvrType +"')]//following::button[1]"));
+                btnUploadMvr.click();
+                break;
+            case "Spanish":
+                basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
+                WebElement btnUploadMvrSpanish = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Comprobante de "+ mvrType +"')]//following::button[1]"));
+                btnUploadMvrSpanish.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void uploadAnotherDocAndSuccessMessage(String fileName, String mvrType, String language) {
+        selectDocumentCategory(mvrType);
+        clickWhichDocument();
+        uploadDoc(fileName);
+        clickUploadDocSpanish(language);
     }
 }

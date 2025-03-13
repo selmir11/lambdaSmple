@@ -47,17 +47,17 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
 
   @SLER-329 @PageValidationOhcMedicareElmo
   Scenario: SLER-329 I can see Medicare's standard errors consistently - English
     And I verify the "First Section" Medicare page data in "English"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Currently Eligible" error in "English" on the Medicare page
     Then I click "No" for currently eligible in Medicare question
     And I verify "Currently Eligible" error does not show for Medicare page
@@ -65,14 +65,14 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     And I verify the "Part A Section" Medicare page data in "English"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part A Amount Required" error in "English" on the Medicare page
     And I verify "Part A" error in "English" on the Medicare page
     Then I enter Part A amount of "150.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     And I verify "Part A" error does not show for Medicare page
     Then I enter Part A amount of "del"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part A Amount Required" error in "English" on the Medicare page
     And I verify "Part A Date" error in "English" on the Medicare page
     Then I check checkbox for Part "A Don't Pay"
@@ -83,11 +83,11 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     And I verify the "Part B Section" Medicare page data in "English"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part B" error in "English" on the Medicare page
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
     And I verify "Part B" error does not show for Medicare page
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part B Date" error in "English" on the Medicare page
     Then I enter end date of "Current Month" for Medicare part "B"
     And I verify "Part B Date" error does not show for Medicare page
@@ -95,12 +95,12 @@ Feature: Page Validation-OHC Medicare Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-330 @PageValidationOhcMedicareElmo @TAMSmoke
+  @SLER-330 @PageValidationOhcMedicareElmo @TAMSmokeExch
   Scenario: SLER-330 I can see Medicare's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify the "First Section" Medicare page data in "Spanish"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Currently Eligible" error in "Spanish" on the Medicare page
     Then I click "No" for currently eligible in Medicare question
     And I verify "Currently Eligible" error does not show for Medicare page
@@ -108,14 +108,14 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     And I verify the "Part A Section" Medicare page data in "Spanish"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part A Amount Required" error in "Spanish" on the Medicare page
     And I verify "Part A" error in "Spanish" on the Medicare page
     Then I enter Part A amount of "150.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     And I verify "Part A" error does not show for Medicare page
     Then I enter Part A amount of "del"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part A Amount Required" error in "Spanish" on the Medicare page
     And I verify "Part A Date" error in "Spanish" on the Medicare page
     Then I check checkbox for Part "A Don't Pay"
@@ -126,11 +126,11 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     And I verify the "Part B Section" Medicare page data in "Spanish"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part B" error in "Spanish" on the Medicare page
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
     And I verify "Part B" error does not show for Medicare page
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part B Date" error in "Spanish" on the Medicare page
     Then I enter end date of "Current Month" for Medicare part "B"
     And I verify "Part B Date" error does not show for Medicare page
@@ -146,7 +146,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |                        |                            |                            |
     Then I click "No" for currently eligible in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |                  |                  |                       |                            |            0           |                            |                            |
@@ -156,15 +156,15 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "250.00"
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     Then I enter end date of "Current Month" for Medicare part "A"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |                  |        250.00         |                            |            1           |             1              |                            |
@@ -174,15 +174,15 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
     Then I enter end date of "Current Month" for Medicare part "B"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |        1         |                       |                            |            1           |                            |              1             |
@@ -192,8 +192,8 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "No" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
@@ -201,7 +201,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     Then I enter end date of "Current Month" for Medicare part "A"
     Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         1        |        300.00         |                            |            0           |             1              |               0            |
@@ -211,14 +211,14 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A Don't Pay"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
     Then I check checkbox for Part "B"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         1        |         0        |                       |              1             |            1           |             0              |                            |
@@ -228,12 +228,12 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify the header for "Primary" Member on the Medicare page in "English"
     Then I check checkbox for Part "A"
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|retiree_health_plan_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|medicare_ind|medicare_parta_ind|medicare_partb_ind|medicare_premium_amount|medicare_no_premium_paid_ind|medicare_prem_parta_ind3|medicare_parta_end_soon_ind3|medicare_partb_end_soon_ind3|
       |         0            |           0           |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |     1      |         0        |         0        |                       |                            |            1           |                            |                            |
@@ -249,16 +249,16 @@ Feature: Page Validation-OHC Medicare Elmo Page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
 
     #step2 - verify errors are cleared for part A
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     Then I check checkbox for Part "A"
     And I verify "Part A Amount Required" error does not show for Medicare page
     And I verify "Part A" error does not show for Medicare page
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part A Amount Required" error in "English" on the Medicare page
     And I verify "Part A" error in "English" on the Medicare page
     Then I click "Yes" for Part "A" insurance ending in 60 days in Medicare question
     And I verify "Part A Date" error does not show for Medicare page
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part A Date" error in "English" on the Medicare page
     Then I check checkbox for Part "A"
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
@@ -271,11 +271,11 @@ Feature: Page Validation-OHC Medicare Elmo Page
     #step3 - verify errors are cleared for part B
     Then I check checkbox for Part "B"
     And I verify "Part B" error does not show for Medicare page
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     And I verify "Part B" error in "English" on the Medicare page
     Then I click "Yes" for Part "B" insurance ending in 60 days in Medicare question
     And I verify "Part B Date" error does not show for Medicare page
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
     Then I check checkbox for Part "B"
     And I verify Part A "is" and Part B "is not" checked on the Medicare page
     Then I check checkbox for Part "B"
@@ -285,12 +285,12 @@ Feature: Page Validation-OHC Medicare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1125 @PageValidationOhcMedicareElmo @TAMSmoke
+  @SLER-1125 @PageValidationOhcMedicareElmo @TAMSmokeExch
   Scenario: SLER-1125 I validate no errors displayed on the Family Overview page after user selects Medicare coverage
     And I verify Currently eligible is "Not Selected" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
     Then I click "Yes" for currently eligible in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
 
   #verify there are no errors after user selects only "Yes" to Currently eligible question
     And I validate I am on the "Family Overview" page
@@ -325,14 +325,14 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
     And I validate I am on the "Elmo Ohc Medicare" page
     And I verify Currently eligible is "Yes" on the Medicare page
     And I verify Part A "is not" and Part B "is not" checked on the Medicare page
     Then I click "No" for currently eligible in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
+    Then I click continue on the OHC Medicare page
 
   #verify there are no errors after user selects only "No" to Currently eligible question
     And I validate I am on the "Family Overview" page

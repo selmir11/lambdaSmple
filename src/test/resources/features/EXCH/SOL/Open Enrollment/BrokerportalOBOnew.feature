@@ -150,12 +150,12 @@ Feature: UI Page Validation - Broker Portal OBO
     And I select "Yes" to claim dependents
     And I select the "2" option for Who Will Claim as Dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -362,8 +362,8 @@ Feature: UI Page Validation - Broker Portal OBO
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue

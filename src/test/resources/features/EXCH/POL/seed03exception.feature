@@ -114,21 +114,21 @@ Feature: Seed03exception - Exchange
     And I search for user and click email from search results
     Then I click on manage plan button on admin portal Individual dashboard
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      | 1:01012025|
-      | 2:01012025 |
-    And I update the Financial Start date of member
-      | 1:01012025 |
-      | 2:01012025 |
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I click Make Changes Dental button
-    And I update the Coverage Start date of member
-      | 1:01012025|
-      | 2:01012025 |
-    And I update the Financial Start date of member
-      | 1:01012025 |
-      | 2:01012025 |
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
     And I click Save Button Dental
     And I select the reason to confirm the changes
     Then logout from Admin Portal

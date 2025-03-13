@@ -61,7 +61,7 @@ Feature: Verify agency owner new account creation
     Then I validate I am on the "AP Broker dashboard" page
     And I click Manage Certification button
     Then I change the certification status to "approved"
-    And I wait for 300 milliseconds
+    And I wait for 3000 milliseconds
     Then I validate the status certification is "APPROVED"
     And I logout from Admin Portal
 

@@ -1,4 +1,4 @@
-@TAM @TAMSmoke @TamExch
+@TAM @TAMSmokeExch @TamExch
 Feature: TAM Chat Widget
 
   Background:
@@ -83,102 +83,102 @@ Feature: TAM Chat Widget
 
     Then I select the projected income option "No" and continue
     Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Elmo Other Health Coverage" page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "ESI" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
     Then I select the Go Back button on the ESI page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo HRA" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC HRA page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC HRA page
+    Then I select "None of these" as health coverage option
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo Ohc Medicare" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC Medicare page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "VA Health Care" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC Medicare page
+    Then I select "None of these" as health coverage option
+    Then I select "VA Health Care" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo Ohc VA Healthcare" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC VA Healthcare page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC VA Healthcare page
+    Then I select "None of these" as health coverage option
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo COBRA" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC Cobra page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC Cobra page
+    Then I select "None of these" as health coverage option
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo Ohc Retiree" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC Retiree page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC Retiree page
+    Then I select "None of these" as health coverage option
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo Ohc Tricare" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC Tricare page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Peace Corps" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC Tricare page
+    Then I select "None of these" as health coverage option
+    Then I select "Peace Corps" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo Ohc Peace Corps" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC Peace Corps page
-    Then I select "None of these" as ELMO health coverage option
-    Then I select "Other" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Go Back on the OHC Peace Corps page
+    Then I select "None of these" as health coverage option
+    Then I select "Other" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Elmo Ohc Individual Insurance" page
     Then I validate chat widget is present
     Then I open on chat widget
     Then I minimize the chat window
 
-    Then I click Go Back on the Elmo OHC Individual Insurance page
+    Then I click Go Back on the OHC Individual Insurance page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 

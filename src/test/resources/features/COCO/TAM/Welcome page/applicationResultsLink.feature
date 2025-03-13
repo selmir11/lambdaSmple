@@ -13,7 +13,7 @@ Feature: Tests related to the Application Results link
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
 
-  @SLCR-25 @TAMSmoke
+  @SLCR-25 @TAMSmokeCoCo
   Scenario: SLCR-25 Validate Action links navigation and text
     And I change the language from header to "Spanish"
     And I click on "My Profile" link on welcome page
