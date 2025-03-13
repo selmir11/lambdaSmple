@@ -1,12 +1,12 @@
 @OPS
 Feature: Manage Plans:Simplified View Editing Validation Errors (Dental)
   @SLER-2256
-  Scenario: SLER-2256 Dental plan current year - 2025
+  Scenario: SLER-2256 Dental plan year - 2023
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
-    Then I wait for 300 milliseconds
+    Then I wait for 500 milliseconds
     Then I enter an accountId in any Env "1303017415" "2110007768" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
@@ -128,7 +128,7 @@ Feature: Manage Plans:Simplified View Editing Validation Errors (Dental)
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
-    Then I wait for 400 milliseconds
+    Then I wait for 500 milliseconds
     Then I enter an accountId in any Env "5830106510" "2110007768" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
