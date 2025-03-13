@@ -107,7 +107,7 @@ Feature: Footer verification - Multiple pages
 
     Then I select the projected income option "No" and continue
   #TaxPage
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I validate page Navigation works for Footer hyperlink text in "Spanish"
       | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
@@ -127,7 +127,7 @@ Feature: Footer verification - Multiple pages
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
     #ELMO page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I validate page Navigation works for Footer hyperlink text in "Spanish"
       | HyperLinkText          | ExpectedPageTitle                                    | ContainsUrl                                              |
       | Póliza de privacidad   | Política de Privacidad • Connect for Health Colorado | connectforhealthco.com/es/politica-de-privacidad/        |
@@ -200,7 +200,7 @@ Feature: Footer verification - Multiple pages
       | ThreadsIcon    | Threads           | threads.net                           |
     Then I select the projected income option "No" and continue
   #TaxPage
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I validate page Navigation works for Footer hyperlink text in "English"
       | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
       | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
@@ -218,7 +218,7 @@ Feature: Footer verification - Multiple pages
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
     #ELMO page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I validate page Navigation works for Footer hyperlink text in "English"
       | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
       | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |

@@ -42,7 +42,7 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -63,7 +63,7 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -84,7 +84,7 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -107,7 +107,7 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -131,7 +131,7 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -155,7 +155,7 @@ Feature: Premium is not $0 when 4+ children
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Niece"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -225,7 +225,7 @@ Feature: Premium is not $0 when 4+ children
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
@@ -238,27 +238,27 @@ Feature: Premium is not $0 when 4+ children
     Then I select "Niece" for who will be claimed as dependent question on the Tax Status page
     Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
 

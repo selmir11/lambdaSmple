@@ -57,7 +57,7 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I click Save and Continue on Tax Status page
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I set the browser resolution to 1536 x 864
 
   @SLER-912 @HelpDrawerPeaceCorpsPage @TAMSmokeExch

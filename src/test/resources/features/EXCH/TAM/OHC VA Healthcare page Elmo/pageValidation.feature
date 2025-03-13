@@ -53,7 +53,7 @@ Feature: Page Validation-OHC VA Healthcare Elmo Page
 
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
 
   @SLER-331 @PageValidationOhcVaHealthcareElmo @TAMSmokeExch
   Scenario: SLER-331 I can see VA Healthcare's standard errors consistently - English
@@ -148,7 +148,7 @@ Feature: Page Validation-OHC VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
@@ -168,7 +168,7 @@ Feature: Page Validation-OHC VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
     Then I enter the end date as "Current Month" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
@@ -184,7 +184,7 @@ Feature: Page Validation-OHC VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     Then I click "Yes" for insurance ending voluntary for VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
     And I verify the OHC options selected in the DB for "Primary"
@@ -198,7 +198,7 @@ Feature: Page Validation-OHC VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     Then I click "No" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
     And I verify the OHC options selected in the DB for "Primary"
@@ -212,7 +212,7 @@ Feature: Page Validation-OHC VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     Then I click "No" for currently enrolled in VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
     And I verify the OHC options selected in the DB for "Primary"

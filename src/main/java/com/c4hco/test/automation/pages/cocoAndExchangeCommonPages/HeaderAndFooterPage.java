@@ -1262,7 +1262,7 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
-        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToDisappear(spinner, 40);
 
         List<Map<String, String>> data = dataTable.asMaps();
         for (Map<String, String> row : data) {
@@ -1299,13 +1299,11 @@ public class HeaderAndFooterPage {
             actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
             basicActions.switchtoactiveTab();
             basicActions.waitForElementToDisappear(spinner, 30);
-
             String actualTitle = basicActions.getDriver().getTitle();
             String currentUrl = basicActions.getDriver().getCurrentUrl();
             softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present");
             softAssert.assertTrue(currentUrl.contains(containsUrl));
             softAssert.assertAll();
-
             basicActions.getDriver().close();
             basicActions.switchtoPreviousTab();
         }

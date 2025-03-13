@@ -52,7 +52,7 @@ Feature: Page Validation-OHC Individual Insurance Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
 
   @SLER-260 @PageValidationOhcIndividualInsuranceElmo
   Scenario: SLER-260 I can see Individual Insurance's standard errors consistently - English
@@ -141,7 +141,7 @@ Feature: Page Validation-OHC Individual Insurance Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
@@ -161,7 +161,7 @@ Feature: Page Validation-OHC Individual Insurance Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
     Then I enter the end date as "Current Month" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
@@ -177,7 +177,7 @@ Feature: Page Validation-OHC Individual Insurance Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for insurance ending voluntary for Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
     And I verify the OHC options selected in the DB for "Primary"
@@ -191,7 +191,7 @@ Feature: Page Validation-OHC Individual Insurance Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
     And I verify the OHC options selected in the DB for "Primary"
@@ -205,7 +205,7 @@ Feature: Page Validation-OHC Individual Insurance Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "No" for currently enrolled in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
     And I verify the OHC options selected in the DB for "Primary"

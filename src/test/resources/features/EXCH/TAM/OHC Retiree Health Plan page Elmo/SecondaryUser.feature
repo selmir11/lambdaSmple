@@ -81,7 +81,7 @@ Feature: Secondary User-OHC Retiree Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Retiree Health Plan" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
 
   @SLER-615 @SecondaryUserOhcRetireeElmo
   Scenario: SLER-615 I can see Retiree's dynamic data for Primary and Secondary user - English
@@ -96,7 +96,7 @@ Feature: Secondary User-OHC Retiree Elmo Page
 
     Then I select "Retiree Health Plan" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     And I verify the "First Section Secondary" Retiree page data in "English"
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section Secondary" Retiree page data in "English"
@@ -122,7 +122,7 @@ Feature: Secondary User-OHC Retiree Elmo Page
 
     Then I select "Retiree Health Plan" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     And I verify the "First Section Secondary" Retiree page data in "Spanish"
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section Secondary" Retiree page data in "Spanish"

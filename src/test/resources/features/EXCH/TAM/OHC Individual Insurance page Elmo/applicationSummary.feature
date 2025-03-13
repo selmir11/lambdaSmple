@@ -142,7 +142,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I click Save and Continue on Tax Status page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
@@ -179,7 +179,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
     Then I click continue on family overview page
@@ -237,7 +237,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
     Then I enter the end date as "Current Month" on the Individual Insurance page
     Then I click "Yes" for insurance ending voluntary for Individual Insurance question
@@ -296,7 +296,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
     Then I click "No" for currently enrolled in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
     Then I click continue on family overview page
@@ -356,7 +356,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I click Save and Continue on Tax Status page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
 #    Step 2
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
@@ -393,7 +393,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
     Then I enter the end date as "Future Day:3" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
@@ -458,7 +458,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
     Then I click "No" for currently enrolled in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
     Then I click continue on family overview page
@@ -549,7 +549,7 @@ Feature: Tests related to the Application Summary/Detail for Individual Insuranc
     Then I click Save and Continue on Tax Status page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "Yes" for insurance ending in 60 days in Individual Insurance question
     Then I enter the end date as "Current Month" on the Individual Insurance page

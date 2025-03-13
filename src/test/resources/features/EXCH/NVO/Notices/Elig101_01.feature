@@ -77,7 +77,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -85,7 +85,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -188,7 +188,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -196,7 +196,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -294,7 +294,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -302,7 +302,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -402,7 +402,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -410,7 +410,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 #
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -509,7 +509,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -517,7 +517,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -657,7 +657,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
@@ -666,10 +666,10 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -771,7 +771,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -779,7 +779,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -888,7 +888,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -896,7 +896,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1000,7 +1000,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -1008,7 +1008,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1114,7 +1114,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -1122,7 +1122,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 #
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1228,7 +1228,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -1236,7 +1236,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1382,7 +1382,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
@@ -1391,10 +1391,10 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1522,7 +1522,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -1530,7 +1530,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1662,7 +1662,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -1670,7 +1670,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1797,7 +1797,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -1805,7 +1805,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -1934,7 +1934,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -1942,7 +1942,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 #
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -2070,7 +2070,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -2078,7 +2078,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -2247,7 +2247,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
@@ -2256,10 +2256,10 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -2363,7 +2363,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -2371,7 +2371,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -2509,7 +2509,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -2517,7 +2517,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -2650,7 +2650,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -2658,7 +2658,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -2792,7 +2792,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -2800,7 +2800,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 #
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -2934,7 +2934,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -2942,7 +2942,7 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
@@ -3117,7 +3117,7 @@ Feature: Eligibility 101-01 Notices
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
@@ -3126,10 +3126,10 @@ Feature: Eligibility 101-01 Notices
     Then I click Save and Continue on Tax Status page
 
     # Health coverage and life change information
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
