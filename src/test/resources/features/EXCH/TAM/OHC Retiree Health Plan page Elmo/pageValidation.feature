@@ -53,7 +53,7 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
 
     Then I select "Retiree Health Plan" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
 
   @SLER-327 @PageValidationOhcRetireeElmo
   Scenario: SLER-327 I can see Retiree's standard errors consistently - English
@@ -148,7 +148,7 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I click continue on the OHC Retiree page
@@ -168,7 +168,7 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I enter the end date as "Current Month" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
@@ -184,7 +184,7 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "Yes" for insurance ending voluntary for Retiree question
     Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
@@ -198,7 +198,7 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "No" for insurance ending in 60 days in Retiree question
     Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
@@ -212,7 +212,7 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "No" for currently enrolled in Retiree question
     Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"

@@ -81,7 +81,7 @@ Feature: Secondary User-OHC TRICARE Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "TRICARE" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
 
   @SLER-495 @SecondaryUserOhcTricareElmo @TAMSmokeExch
   Scenario: SLER-495 I can see Tricare's dynamic data for Primary and Secondary user - English
@@ -96,7 +96,7 @@ Feature: Secondary User-OHC TRICARE Elmo Page
 
     Then I select "TRICARE" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     And I verify the "First Section Secondary" Tricare page data in "English"
     Then I click "Yes" for currently enrolled in Tricare question
     And I verify the "Second Section Secondary" Tricare page data in "English"
@@ -122,7 +122,7 @@ Feature: Secondary User-OHC TRICARE Elmo Page
 
     Then I select "TRICARE" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     And I verify the "First Section Secondary" Tricare page data in "Spanish"
     Then I click "Yes" for currently enrolled in Tricare question
     And I verify the "Second Section Secondary" Tricare page data in "Spanish"

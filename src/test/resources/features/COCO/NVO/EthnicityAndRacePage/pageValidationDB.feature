@@ -21,7 +21,7 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select Not listed for race and ethnicity option and enter "Mixed Race" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
@@ -43,7 +43,7 @@ Feature: Page Validation Database - Race And Ethnicity page
     Then I click EditUpdate on Family Overview page for "Primary"
     And I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Not listed" for race and ethnicity option for "Primary"
     And I select "Indigenous or Native American" for race and ethnicity option for "Primary"
     And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
@@ -53,13 +53,13 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I wait for 5000 milliseconds
     And I validate "American_Indian_Alaskan_Native,Native_Hawaiian_Pacific_Islander,Other" race and "Multiracial" other text in the database
     And I click Go back on the Employment income page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click Go Back on the Race and Ethnicity page
     Then I validate I am on the "CoCo Additional information for yourself" page
     And I validate "American_Indian_Alaskan_Native,Native_Hawaiian_Pacific_Islander,Other" race and "Multiracial" other text in the database
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page

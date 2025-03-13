@@ -61,7 +61,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click Save and Continue on Tax Status page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
 #    Step 2
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the OHC Medicare page
@@ -100,7 +100,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "75.00"
@@ -171,7 +171,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I enter Part A amount of "150.00"
     Then I enter end date of "Current Month" for Medicare part "A"
     Then I enter end date of "Current Month" for Medicare part "B"
@@ -211,7 +211,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click plus icon next to member on household page for "Primary"
@@ -222,7 +222,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I check checkbox for Part "A Don't Pay"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
     Then I click "No" for Part "B" insurance ending in 60 days in Medicare question
@@ -272,7 +272,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click continue on the OHC Medicare page
@@ -327,7 +327,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click Save and Continue on Tax Status page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "150.00"
@@ -452,7 +452,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click Save and Continue on Tax Status page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "300.00"
@@ -594,7 +594,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I click Save and Continue on Tax Status page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
 #    Step 2
     Then I click "No" for currently eligible in Medicare question
     Then I click continue on the OHC Medicare page
@@ -634,7 +634,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "75.00"
@@ -699,7 +699,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I click "No" for currently eligible in Medicare question
     Then I enter end date of "Current Month" for Medicare part "A"
     Then I enter end date of "Current Month" for Medicare part "B"
@@ -758,7 +758,7 @@ Feature: Tests related to the Application Summary/Detail for Medicare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc Medicare" page
+    Then I validate I am on the "Ohc Medicare" page
     Then I check checkbox for Part "A"
     Then I check checkbox for Part "B"
     Then I click continue on the OHC Medicare page

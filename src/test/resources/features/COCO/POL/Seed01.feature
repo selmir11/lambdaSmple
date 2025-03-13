@@ -26,7 +26,7 @@ Feature: Regression Tests that require COCO Seed 1
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -144,7 +144,7 @@ Feature: Regression Tests that require COCO Seed 1
     Then I update full name of member with prefix "Primary" in coco
     And I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
@@ -199,7 +199,7 @@ Feature: Regression Tests that require COCO Seed 1
     And I enter residential address details for additional member "101 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Newborn"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option

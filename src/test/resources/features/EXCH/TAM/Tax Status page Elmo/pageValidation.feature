@@ -73,7 +73,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     #step3 - validate checkboxes
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
@@ -125,7 +125,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -159,7 +159,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 1
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I verify will you be claimed question on the Tax Status page for "Primary" in "English"
@@ -211,7 +211,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 2
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I verify will you be claimed question on the Tax Status page for "Primary" in "English"
@@ -261,7 +261,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select the projected income option "No" and continue
 #    Step 2
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I validate I am on the "Spanish" page
     And I verify the header for "Primary" Member on the Tax Status page in "Spanish"
     And I verify will you be claimed question on the Tax Status page for "Primary" in "Spanish"
@@ -309,7 +309,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 2
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
@@ -356,7 +356,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 2
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
@@ -368,7 +368,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |claimed_as_dep_on_othr_ftr_ind|tax_filing_type|
       |                              |  NON_FILER    |
 #    Step 4
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Primary" for who will claim as dependent question
@@ -389,11 +389,11 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Someone else" for who will claim as dependent question
@@ -421,10 +421,10 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
@@ -455,7 +455,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 2
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
@@ -491,7 +491,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
@@ -506,7 +506,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status page
 #    Step 8
     Then I click Go back on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "Yes" for will file tax return question
     Then I select the "Qualified widow(er)" tax filing option on the Tax Status page
@@ -522,7 +522,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status page
 #    Step 10
     Then I click Go back on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
@@ -543,7 +543,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status page
 #    Step 12
     Then I click Go back on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
@@ -558,7 +558,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Primary" on the Tax Status page
 #    Step 14
     Then I click Go back on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I check Exceptional circumstances checkbox on the Tax Status page
     Then I click Save and Continue on Tax Status page
@@ -589,12 +589,12 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 2
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
@@ -631,7 +631,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
@@ -652,12 +652,12 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "Yes" for will file tax return question
     Then I select the "Qualified widow(er)" tax filing option on the Tax Status page
@@ -673,7 +673,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status page
 #    Step 10
     Then I click Go back on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
@@ -694,7 +694,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status page
 #    Step 12
     Then I click Go back on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
@@ -709,7 +709,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify tax_return_id is "Different" as last ID for "Spouse" on the Tax Status page
 #    Step 14
     Then I click Go back on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I check Exceptional circumstances checkbox on the Tax Status page
     Then I click Save and Continue on Tax Status page
@@ -740,7 +740,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 2
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
@@ -769,7 +769,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
@@ -814,7 +814,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
@@ -853,7 +853,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 3/4 - Primary
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "Yes" for will you be claimed as dependent question
@@ -966,12 +966,12 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 3/4 - Spouse
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I select "Yes" for will you be claimed as dependent question
@@ -1084,7 +1084,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 3 - Primary
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I click Save and Continue on Tax Status page
@@ -1175,12 +1175,12 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 3 - Spouse
     And I verify the header for "Spouse" Member on the Tax Status page in "English"
     Then I click Save and Continue on Tax Status page
@@ -1271,7 +1271,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 2
     And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I select "Yes" for will you be claimed as dependent question

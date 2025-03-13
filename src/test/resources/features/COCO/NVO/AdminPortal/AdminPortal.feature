@@ -38,7 +38,7 @@ Feature: Admin Portal Validations
       And I select "Yes" for mailing address option
       And I select "Yes" for live in Colorado option
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I click on the Username in the "CoCo" Header
       Then I validate I am on the "My Profile" page
       And I click on Make Changes Button in CoCo
@@ -99,7 +99,7 @@ Feature: Admin Portal Validations
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -124,7 +124,7 @@ Feature: Admin Portal Validations
     And I enter residential address details for additional member "103 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Asian or Asian American" for race and ethnicity for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option

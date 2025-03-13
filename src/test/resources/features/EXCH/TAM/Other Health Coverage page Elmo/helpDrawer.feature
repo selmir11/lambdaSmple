@@ -51,7 +51,7 @@ Feature: Page Text-Other Health Coverage Elmo Page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I set the browser resolution to 1536 x 864
 
   @SLER-343 @PageVerificationOtherHealthInsurancePage

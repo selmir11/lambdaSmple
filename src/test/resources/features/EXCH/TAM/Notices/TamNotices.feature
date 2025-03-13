@@ -659,7 +659,7 @@ Feature: Elig101-01 - TAM Notices
     Then I click Save and Continue on Tax Status page
     Then I select "COBRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Ohc COBRA" page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the OHC Cobra page
@@ -745,7 +745,7 @@ Feature: Elig101-01 - TAM Notices
     Then I click Save and Continue on Tax Status page
     Then I select "COBRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo COBRA" page
+    And I validate I am on the "Ohc COBRA" page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
     Then I click continue on the OHC Cobra page
@@ -822,7 +822,7 @@ Feature: Elig101-01 - TAM Notices
     Then I click Save and Continue on Tax Status page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page
@@ -906,7 +906,7 @@ Feature: Elig101-01 - TAM Notices
     Then I click Save and Continue on Tax Status page
     Then I select "Other" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    And I validate I am on the "Ohc Individual Insurance" page
     Then I click "Yes" for currently enrolled in Individual Insurance question
     Then I click "No" for insurance ending in 60 days in Individual Insurance question
     Then I click continue on the OHC Individual Insurance page

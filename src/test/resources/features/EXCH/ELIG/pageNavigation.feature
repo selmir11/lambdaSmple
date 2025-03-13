@@ -59,7 +59,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
@@ -127,7 +127,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
@@ -222,10 +222,10 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Primary" for who will claim as dependent question
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
@@ -295,7 +295,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
@@ -366,7 +366,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
@@ -463,10 +463,10 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select "Yes" for will you be claimed as dependent question
     Then I select "Primary" for who will claim as dependent question
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
@@ -648,7 +648,7 @@ Feature: Verify Navigation to the ELIG Pages
     Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
