@@ -6,6 +6,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class AdditionalIncomeCoCoPageSteps {
     AdditionalIncomeCoCoPage additionalIncomeCoCoPage = new AdditionalIncomeCoCoPage(WebDriverManager.getDriver());
 
@@ -87,6 +89,11 @@ public class AdditionalIncomeCoCoPageSteps {
     @Then("I verify no error message gets displayed for pension additional income & amount gets converted to {string}")
     public void iVerifyTheAmountAndNoErrorMessageDisplaying(String amount){
         additionalIncomeCoCoPage.verifyTheAmountAndNoErrorMessageDisplaying(amount);
+    }
+
+    @Then("I validate that I am able to see the page in {string} so that I can review and update the income information")
+    public void i_validate_that_i_am_able_to_see_the_page_in_so_that_i_can_review_and_update_the_income_information(String language, List<String> expectedText) {
+      additionalIncomeCoCoPage.ValidateLanguageDisplayedInPage(language, expectedText);
     }
 
 }
