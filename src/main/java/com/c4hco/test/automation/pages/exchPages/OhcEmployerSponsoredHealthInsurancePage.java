@@ -185,6 +185,15 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(id = "Ohc-Esi-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
+    @FindBy(xpath = "//span[text()='Please select one of the options below']")
+    WebElement errHealtInsMeetEn;
+    @FindBy(xpath = "//span[text()='Amount is required']")
+    WebElement errHwMuchWdUPayEn;
+    @FindBy(xpath = "//span[text()='Date is required']")
+    WebElement errDateIsReqEn;
+    @FindBy(xpath = "//span[text()='Please select one of the options below']//following::span[15]")
+    WebElement errVolEndInsEn;
+
 
     public void clickGoBack() {
         basicActions.waitForElementToBeClickable(goBackButton, 20);
@@ -452,9 +461,9 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     }
 
 
-    public void verifyCurrentSelections(String question, String dataOffered){
+    public void verifyCurrentSelections(String question, String dataOffered) {
         basicActions.wait(500);
-        switch (question){
+        switch (question) {
 
             case "Min Value":
                 verifyMinValueOption(dataOffered);
@@ -1560,4 +1569,13 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(OhcEsiHeader.getText(), dataText.get(2), "Page Header 2 Not matching");
         softAssert.assertAll();
     }
+
+    public void verifyStdErrorTextInESIPage(List<String> dataText) {
+        softAssert.assertEquals(errHealtInsMeetEn.getText(), dataText.get(1), "Label Not matching");
+        softAssert.assertEquals(errHwMuchWdUPayEn.getText(), dataText.get(2), "Label Not matching");
+        softAssert.assertEquals(errDateIsReqEn.getText(), dataText.get(3), "Label Not matching");
+        softAssert.assertEquals(errVolEndInsEn.getText(), dataText.get(4), "Label Not matching");
+        softAssert.assertAll();
+    }
+
 }
