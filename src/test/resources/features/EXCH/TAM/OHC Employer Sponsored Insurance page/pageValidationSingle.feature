@@ -889,12 +889,30 @@ Feature: Page Text-Other Health Coverage Page
     And I verify the header for Primary Member on the ESI page in "English"
     Then I validate that I am able to see the page in the relevant language so that I can review and update the ESI information
       | Labels:                             |
-      | Other Health Coverage:               |
+      | Other Health Coverage:              |
       | Employer-sponsored Health Insurance |
     And I change the language from header to "Spanish"
     And I verify the header for Primary Member on the ESI page in "Spanish"
     Then I validate that I am able to see the page in the relevant language so that I can review and update the ESI information
-      | Labels:                             |
-      | Otra cobertura de salud:               |
+      | Labels:                                      |
+      | Otra cobertura de salud:                     |
       | Seguro de salud patrocinado por el empleador |
 
+  @SLER-2325
+  Scenario: As an ELMO Exchange user on the ESI page with family members,
+  I want to see standard errors on the page so that the errors are in accordance with the new standard for error UI handling[RT-2706]
+    And I verify the header for Primary Member on the ESI page in "English"
+    And I click continue on the ESI page
+    And I verify "Which Job" error in "English" on the ESI page
+    Then I select the "0" employer for "Primary" member on the ESI page
+    And I verify "Which Job" error does not show for ESI page
+    And I select the Are you currently enrolled "Yes" button on the ESI page
+    Then I select the Will Insurance End "Yes" button on the ESI page
+    And I click continue on the ESI page
+    Then I verify the standard errors reflected in the ESI page
+      | Labels:                                |
+      | Please select one of the options below |
+      | Amount is required                     |
+      | Date is required                       |
+      | Please select one of the options below |
+    
