@@ -200,7 +200,7 @@ public class FamilyOverviewPage {
         basicActions.waitForElementToBePresent(needMoreInfoErrorText, 10);
         basicActions.waitForElementListToBePresent(editUpdateLink, 10);
         basicActions.waitForElementListToBePresent(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation, 10);
-        softAssert.assertEquals(needMoreInfoErrorText.getText(),"Looks like we need a bit more information. Please click the “Edit/Update” link below to complete");
+        softAssert.assertEquals(needMoreInfoErrorText.getText(),"Looks like we need a bit more information. Please click the \u201CEdit/Update\u201D link below to complete");
         softAssert.assertTrue(editUpdateLink.get(0).isDisplayed(),"Edit/Update link is not visible");
         softAssert.assertTrue(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation.get(0).isDisplayed(),"Red circle exclamation mark for Basic Household Information is not visible");
         softAssert.assertTrue(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation.get(1).isDisplayed(),"Red circle exclamation mark for Annual Financial Information is not visible");
