@@ -30,7 +30,7 @@ Feature: Seed02 - Coco
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -53,7 +53,7 @@ Feature: Seed02 - Coco
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -103,12 +103,12 @@ Feature: Seed02 - Coco
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      |1:01012025|
-      |2:01012025|
-    And I update the Financial Start date of member
-      |1:01012025|
-      |2:01012025|
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 
-public class OtherHealthCoveragePage_Elmo {
+public class OtherHealthCoveragePage {
     BasicActions basicActions;
     Actions action;
 
@@ -24,7 +24,7 @@ public class OtherHealthCoveragePage_Elmo {
 
     SoftAssert softAssert = new SoftAssert();
     private WebDriver driver;
-    public OtherHealthCoveragePage_Elmo(WebDriver webDriver){
+    public OtherHealthCoveragePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -911,8 +911,8 @@ public class OtherHealthCoveragePage_Elmo {
             case "English":
                 softAssert.assertEquals(errorMessageTxt.getText(), "Please select one or more of the options below");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
@@ -920,8 +920,8 @@ public class OtherHealthCoveragePage_Elmo {
             case "Spanish":
                 softAssert.assertEquals(errorMessageTxt.getText(), "Seleccione una o m\u00E1s de las opciones siguientes");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "14px");
-                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(errorMessageTxt.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(errorMessageTxt.getCssValue("color"), "rgba(150, 0, 0, 1)");
                 softAssert.assertEquals(hdrError.get(0).getCssValue("margin"), "2px 0px 4px");
                 softAssert.assertAll();
@@ -1548,17 +1548,24 @@ public class OtherHealthCoveragePage_Elmo {
             existingHealthInsuranceHeader.click();
         }
     }
-
-    public void selectInsuranceOptions(DataTable insuranceOptionsTable) {
+    public void verifyInsuranceOptions(DataTable insuranceOptionsTable) {
         List<String> insuranceOptions = insuranceOptionsTable.asList();
         basicActions.waitForElementToDisappear(spinner, 10);
         basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 15);
-        for (int i = 0; i < insuranceOptionsCheckBox.size() && i < insuranceOptions.size(); i++) {
-            basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(i), 10);
-            softAssert.assertTrue(insuranceOptionsCheckBox.get(i).isSelected(), "Checkbox not selected for: " + insuranceOptions.get(i));
+
+        for (WebElement checkbox : insuranceOptionsCheckBox) {
+            String checkboxLabel = checkbox.getAttribute("value").trim();
+
+            if (insuranceOptions.contains(checkboxLabel)) {
+                if (!checkbox.isSelected()) {
+                    basicActions.clickElementWithRetries(checkbox, 10);
+                }
+                softAssert.assertTrue(checkbox.isSelected(), "Checkbox not selected for: " + checkboxLabel);
+            }
         }
         softAssert.assertAll();
     }
+
 
 
 

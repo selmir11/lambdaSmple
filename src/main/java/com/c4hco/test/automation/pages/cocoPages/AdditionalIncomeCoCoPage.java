@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdditionalIncomeCoCoPage {
     private BasicActions basicActions;
@@ -178,6 +180,17 @@ public class AdditionalIncomeCoCoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
+    @FindBy(css = ".input-error-message lib-fi svg")
+    WebElement ErrorIcon;
+
+    @FindBy(css = ".error-message")
+    WebElement ErrorMessage;
+
+    @FindBy(css = ".body-text-1")
+    WebElement DidURcvFolIncome;
+
+
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 60);
@@ -872,7 +885,61 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
 
+    public void validateErrorMessageAndItsProperties(DataTable dataTable){
+        basicActions.waitForElementToBePresent(ErrorIcon,10);
+        basicActions.waitForElementToBePresent(ErrorMessage,10);
 
+        List<Map<String,String>> data = dataTable.asMaps();
+        softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
+        softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
+        softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertAll();
+    }
 
+    public void verifyTheAmountAndNoErrorMessageDisplaying(String amount){
+        basicActions.waitForElementToBePresent(pensionAmount,10);
+        basicActions.waitForElementListToDisappear(addtlIncomeAmountError, 10);
+        basicActions.waitForElementListToDisappear(additlIncomeFrequencyError, 10);
+        softAssert.assertEquals(pensionAmount.getAttribute("value"), amount);
+        softAssert.assertAll();
+    }
 
+    public void selectAdditionalIncomeOptionAndIncome(String addtlIncomeOption, String amount) {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 10);
+        selectAddtlIncomeOptionOnly(addtlIncomeOption);
+        enterAmount(addtlIncomeOption, amount);
+    }
+
+    public void ValidateLanguageDisplayedInPage(String language,List<String> expectedText) {
+        softAssert.assertEquals(hdrAddInfoForYourself.getText(), expectedText.get(1) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        softAssert.assertEquals(hdr_AdditionalIncome.getText(), expectedText.get(2), "Label Not Matching");
+        softAssert.assertEquals(DidURcvFolIncome.getText(), expectedText.get(3), "Label Not Matching");
+        softAssert.assertEquals(selectIncomeSentence.getText(), expectedText.get(4), "Label Not Matching");
+        softAssert.assertEquals(alimonyText.getText(), expectedText.get(5), "Label Not Matching");
+        softAssert.assertEquals(capGainsText.getText(), expectedText.get(6), "Label Not Matching");
+        softAssert.assertEquals(rentalText.getText(), expectedText.get(7), "Label Not Matching");
+        softAssert.assertEquals(pensionText.getText(), expectedText.get(8), "Label Not Matching");
+        softAssert.assertEquals(pensionAmount.getAttribute("placeholder"), expectedText.get(18));
+        softAssert.assertEquals(retirementText.getText(), expectedText.get(9), "Label Not Matching");
+        softAssert.assertEquals(socialSecurityText.getText(), expectedText.get(10), "Label Not Matching");
+        softAssert.assertEquals(unemploymentText.getText(), expectedText.get(11), "Label Not Matching");
+        softAssert.assertEquals(investmentText.getText(), expectedText.get(12), "Label Not Matching");
+        softAssert.assertEquals(cashSupportText.getText(), expectedText.get(13), "Label Not Matching");
+        softAssert.assertEquals(untaxedForeignText.getText(), expectedText.get(14), "Label Not Matching");
+        softAssert.assertEquals(royaltyText.getText(), expectedText.get(15), "Label Not Matching");
+        softAssert.assertEquals(taxableText.getText(), expectedText.get(16), "Label Not Matching");
+        softAssert.assertEquals(noneOfTheseText.getText(), expectedText.get(17), "Label Not Matching");
+        pensionFrequency.click();
+        Select dropdown = new Select(pensionFrequency);
+        softAssert.assertEquals(dropdown.getOptions().get(1).getText(), expectedText.get(19), "Label Not Matching");
+        softAssert.assertEquals(dropdown.getOptions().get(2).getText(), expectedText.get(20), "Label Not Matching");
+        softAssert.assertEquals(dropdown.getOptions().get(3).getText(), expectedText.get(21), "Label Not Matching");
+        softAssert.assertEquals(dropdown.getOptions().get(4).getText(), expectedText.get(22), "Label Not Matching");
+        softAssert.assertEquals(dropdown.getOptions().get(5).getText(), expectedText.get(23), "Label Not Matching");
+        softAssert.assertAll();
+    }
 }

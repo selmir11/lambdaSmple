@@ -27,7 +27,7 @@ Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -79,7 +79,7 @@ Scenario:Seed 01 For COCO- Single Applicant with Income of $19k
     Then I validate I am on the "CoCo Welcome" page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
-    And I select year "2025" from My Current Plan container
+    And I select "Previous Year" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
     And I validate enrolled medical plans details on my policies page coco

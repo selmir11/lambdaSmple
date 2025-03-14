@@ -74,14 +74,14 @@ Feature: Secondary User-OHC Retiree Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
 
   @SLER-615 @SecondaryUserOhcRetireeElmo
   Scenario: SLER-615 I can see Retiree's dynamic data for Primary and Secondary user - English
@@ -92,11 +92,11 @@ Feature: Secondary User-OHC Retiree Elmo Page
     And I verify the "Third Section" Retiree page data in "English"
     Then I enter the end date as "Current Month" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
 
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
     And I verify the "First Section Secondary" Retiree page data in "English"
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section Secondary" Retiree page data in "English"
@@ -118,11 +118,11 @@ Feature: Secondary User-OHC Retiree Elmo Page
     And I verify the "Third Section" Retiree page data in "Spanish"
     Then I enter the end date as "Current Month" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
 
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
     And I verify the "First Section Secondary" Retiree page data in "Spanish"
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section Secondary" Retiree page data in "Spanish"

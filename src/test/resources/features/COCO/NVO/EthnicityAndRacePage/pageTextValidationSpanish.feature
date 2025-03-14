@@ -22,7 +22,7 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I select "Not listed" for race and ethnicity option for "Primary"
     Then I verify text on the Ethnicity And Race page in "Spanish"
@@ -34,13 +34,13 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I click Go back on the Employment income page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I click Go Back on the Race and Ethnicity page
     Then I validate I am on the "CoCo Additional information for yourself" page
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I click save and continue on the Race and Ethnicity page
@@ -66,20 +66,20 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I change the language from header to "Spanish"
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I verify text on the "CoCo" "Footer" in "Spanish"
     And I click Go Back on the Race and Ethnicity page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select Not listed for race and ethnicity option and enter "Mixed race" in the text box
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And  I click Go back on the Employment income page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I change the language from header to "English"
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

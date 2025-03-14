@@ -11,11 +11,11 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class OhcCobraPage_Elmo {
+public class OhcCobraPage {
     BasicActions basicActions;
     Actions action;
     SoftAssert softAssert = new SoftAssert();
-    public OhcCobraPage_Elmo(WebDriver webDriver){
+    public OhcCobraPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);

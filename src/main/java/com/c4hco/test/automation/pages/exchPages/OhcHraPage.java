@@ -16,12 +16,12 @@ import java.util.List;
 
 
 
-public class OhcHraPage_Elmo {
+public class OhcHraPage {
     BasicActions basicActions;
     Actions action;
     SoftAssert softAssert = new SoftAssert();
 
-    public OhcHraPage_Elmo(WebDriver webDriver) {
+    public OhcHraPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);

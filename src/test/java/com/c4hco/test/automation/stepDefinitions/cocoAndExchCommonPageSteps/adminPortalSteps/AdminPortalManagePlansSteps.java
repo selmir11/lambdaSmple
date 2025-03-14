@@ -94,6 +94,14 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDate(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDate(memberFinancialStrtDtList);
     }
+    @And("I update the Coverage Start date of member on manage plan page")
+    public void coverageStartDateCOCO(List<String> memberCoverageStrtDtList) {
+        adminPortalManagePlansPage.memberCoverageStrtDateNew(memberCoverageStrtDtList);
+    }
+    @And("I update the Financial Start date of member on manage plan page")
+    public void financialStartDateCOCO(List<String> memberFinancialStrtDtList) {
+        adminPortalManagePlansPage.memberFinancialStrtDateNew(memberFinancialStrtDtList);
+    }
     @And ("I select the reason to confirm the changes")
     public void iselectTheReason (){
         adminPortalManagePlansPage.selectReasonForTheChange();
@@ -344,6 +352,10 @@ public class AdminPortalManagePlansSteps {
     @And("I validate SES entered exceeds EHB amount error is displaying for")
     public void iValidateSESEnteredExceedsEHBAmountErrorIsDisplayingFor() {
         adminPortalManagePlansPage.validateEHBErrorsCoCo();
+    }
+    @Then("I validate the expected {string} message is displayed")
+    public void iValidateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage) {
+        adminPortalManagePlansPage.validateTheExpectedEHBErrorMessageIsDisplayed(expectedErrorMessage);
     }
 }
 

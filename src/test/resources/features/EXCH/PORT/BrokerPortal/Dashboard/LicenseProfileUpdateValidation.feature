@@ -13,6 +13,7 @@ Feature: Agency owner/associated broker license and profile update verification
     And I delete the open notice
     Then I sign out of Outlook
     Then I enter the MFA code and click Verify
+    And I wait for 2000 milliseconds
     Then I click Agency Dashboard
 
     Then I click Edit in Account Summary

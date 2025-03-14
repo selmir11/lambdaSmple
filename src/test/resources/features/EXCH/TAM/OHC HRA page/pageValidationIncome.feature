@@ -55,17 +55,17 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "50.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -124,16 +124,16 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "5.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "5.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -194,16 +194,16 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "200.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "200.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -262,17 +262,17 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "50.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "No" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "No" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -331,17 +331,17 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Head of household" tax filing option on the Tax Status Elmo page
+    Then I select the "Head of household" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "50.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "No" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "No" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -400,17 +400,17 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Head of household" tax filing option on the Tax Status Elmo page
+    Then I select the "Head of household" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "50.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -470,17 +470,17 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "50.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "No" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "No" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -539,16 +539,16 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "1000.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "1000.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -607,16 +607,16 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "50.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "50.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB
@@ -678,17 +678,17 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "50.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
-    Then I select "Yes" for opt out on the Elmo OHC HRA page
-    Then I click continue on the Elmo OHC HRA page
+    Then I select "Yes" for opt out on the OHC HRA page
+    Then I click continue on the OHC HRA page
     Then I validate I am on the "Family Overview" page
     Then I wait for 5000 milliseconds
     And I verify the HRA options selected in the DB

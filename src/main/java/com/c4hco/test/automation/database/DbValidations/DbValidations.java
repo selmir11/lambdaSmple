@@ -924,6 +924,7 @@ public class DbValidations {
     }
 
     public void validateMemberRowCount(int expectedRowCount) {
+        basicActions.wait(5000);
         int actualRowCount = Integer.parseInt(exchDbDataProvider.getEmployerIncomeRowCount());
         softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
         softAssert.assertAll();

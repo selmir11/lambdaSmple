@@ -285,8 +285,7 @@ public class AdminLceToolPage {
     }
 
     public void enterDate(String endDate) {
-        String formattedDate = basicActions.getDateBasedOnRequirement(endDate);
-        dateInputField.sendKeys(formattedDate);
+        dateInputField.sendKeys(endDate);
     }
 
     public void clickConfirmButton(){

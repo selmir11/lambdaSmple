@@ -107,7 +107,7 @@ Feature: Tests related to the Life Change Event page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-69 @PageLifeChangeEventPage @TAMSmoke
+  @SLCR-69 @PageLifeChangeEventPage @TAMSmokeCoCo
   Scenario: SLCR-69 I can see Life Change Event Page's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the CoCo LCE page in "Spanish"

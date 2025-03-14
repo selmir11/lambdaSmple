@@ -20,7 +20,7 @@ Feature: Navigation-Additional information for additional member page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -43,7 +43,7 @@ Feature: Navigation-Additional information for additional member page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click Go Back on the Race and Ethnicity page
     Then I validate I am on the "CoCo Additional info for additional member" page
     Then I click Go Back on the Additional information for additional member page
@@ -68,7 +68,7 @@ Feature: Navigation-Additional information for additional member page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -93,7 +93,7 @@ Feature: Navigation-Additional information for additional member page
     And I click continue on the Additional information for additional member page
 
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -131,7 +131,7 @@ Feature: Navigation-Additional information for additional member page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -155,7 +155,7 @@ Feature: Navigation-Additional information for additional member page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -178,13 +178,13 @@ Feature: Navigation-Additional information for additional member page
     And I enter complete residential address details for additional member addressLine1 "1234 Road",addressLine2 "1234 Road",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     Then I click Go Back on the Race and Ethnicity page
     And I validate complete residential address details for additional member addressLine1 "1234 Road",addressLine2 "1234 Road",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I am validating that the 'Yes' option was selected for living in Colorado for the additional member.
     And I update the AddressLine1 and AddressLine2 to "12345 testRoad" and "12345 testarea" for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     Then I click Go Back on the Race and Ethnicity page
     And I validate complete residential address details for additional member addressLine1 "12345 testRoad",addressLine2 "12345 testarea",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I validate complete residential address details for "Son" member in DB addressLine1 "12345 testRoad",addressLine2 "12345 testarea",city "Denver",state "CO",zipcode "80205",county "DENVER"

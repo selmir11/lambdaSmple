@@ -10,10 +10,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class OhcRetireeHealthPlanPage_Elmo {
+public class OhcIndividualInsurancePage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    public OhcRetireeHealthPlanPage_Elmo(WebDriver webDriver){
+    public OhcIndividualInsurancePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
@@ -22,7 +22,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
     WebElement OhcHeader;
 
     @FindBy(css = ".container .header-2")
-    WebElement OhcRetireeHeader;
+    WebElement OhcIndividualInsuranceHeader;
 
     @FindBy(css = ".header-3 .clickable")
     WebElement helpMeLink;
@@ -31,7 +31,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
     WebElement pleaseEnterTxt;
 
     @FindBy(css = "div > label")
-    List<WebElement> retireeQuestionTxt;
+    List<WebElement> IndividualInsuranceQuestionTxt;
 
     @FindBy(css = "lib-error-msg > div")
     List<WebElement> hdrError;
@@ -69,11 +69,11 @@ public class OhcRetireeHealthPlanPage_Elmo {
     @FindBy(id = "Ohc-Endable-endVoluntary-NoButton")
     WebElement endVoluntaryNo;
 
+    @FindBy(id = "Ohc-Endable-GoBack")
+    WebElement goBackButton;
+
     @FindBy(id = "Ohc-Endable-SaveAndContinue")
     WebElement saveAndContinueBtn;
-
-    @FindBy(id = "Ohc-Endable-GoBack")
-    WebElement goBackBtn;
 
     @FindBy(css = ".header-3.content-center > a")
     WebElement helpLnk;
@@ -85,7 +85,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
     WebElement helpDrawerHeaderHelp;
 
     @FindBy(css = ".drawer-heading .drawer-title")
-    WebElement helpDrawerHeaderRetiree;
+    WebElement helpDrawerHeaderIndividualInsurance;
 
     @FindBy(css = "div > strong")
     List<WebElement> helpDrawerMainHeaders;
@@ -101,14 +101,14 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
 
 
-    public void clickGoBack() {
-        basicActions.waitForElementToBePresent(goBackBtn,50);
-        basicActions.click(goBackBtn);
-    }
-
     public void clickSaveAndContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
         saveAndContinueBtn.click();
+    }
+
+    public void clickGoBack(){
+        basicActions.waitForElementToBeClickable(goBackButton, 20);
+        goBackButton.click();
     }
 
     public void clickCurrentlyEnrolledOption(String currentlyEnrolled) {
@@ -214,34 +214,36 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
 
 
+
+
     // ############################## VALIDATION STEPS #########################
-    // Add only validation methods below this line
-    public void verifyHeadersRetireeOhcPage(String language){
+// Add only validation methods below this line
+    public void verifyHeadersIndividualInsuranceOhcPage(String language){
         switch (language){
             case "English":
-                verifyHeadersRetireeOhcPageEnglish();
+                verifyHeadersIndividualInsuranceOhcPageEnglish();
                 break;
             case "Spanish":
-                verifyHeadersRetireeOhcPageSpanish();
+                verifyHeadersIndividualInsuranceOhcPageSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyHeadersRetireeOhcPageEnglish(){
+    public void verifyHeadersIndividualInsuranceOhcPageEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
+        basicActions.waitForElementToBePresent(OhcIndividualInsuranceHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
+        softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Individual Insurance");
         softAssert.assertAll();
     }
 
-    public void verifyHeadersRetireeOhcPageSpanish(){
+    public void verifyHeadersIndividualInsuranceOhcPageSpanish(){
         basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
-        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcIndividualInsuranceHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
+        softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Seguro individual");
         softAssert.assertAll();
     }
 
@@ -306,197 +308,6 @@ public class OhcRetireeHealthPlanPage_Elmo {
             default:
                 throw new IllegalArgumentException("Invalid option: " + voluntaryEnding);
         }
-    }
-
-    public void verifyRetireePageData(String dataToVerify, String language){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        switch (language){
-            case "English":
-                verifyRetireePageDataEnglish(dataToVerify);
-                break;
-            case "Spanish":
-                verifyRetireePageDataSpanish(dataToVerify);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
-
-    public void verifyRetireePageDataEnglish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        switch (dataToVerify){
-            case "First Section":
-                verifyRetireePageFirstSectionDataEnglish();
-                break;
-            case "Second Section":
-                verifyRetireePageFirstSectionDataEnglish();
-                verifyRetireePageSecondSectionDataEnglish();
-                break;
-            case "Third Section":
-                verifyRetireePageFirstSectionDataEnglish();
-                verifyRetireePageSecondSectionDataEnglish();
-                verifyRetireePageThirdSectionDataEnglish();
-                break;
-            case "First Section Secondary":
-                verifyRetireePageFirstSectionSecondaryDataEnglish();
-                break;
-            case "Second Section Secondary":
-                verifyRetireePageFirstSectionSecondaryDataEnglish();
-                verifyRetireePageSecondSectionDataEnglish();
-                break;
-            case "Third Section Secondary":
-                verifyRetireePageFirstSectionSecondaryDataEnglish();
-                verifyRetireePageSecondSectionDataEnglish();
-                verifyRetireePageThirdSectionSecondaryDataEnglish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
-        }
-        softAssert.assertEquals(goBackBtn.getText(),"Go back");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageFirstSectionDataEnglish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
-        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
-        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in a retiree health plan.");
-        softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"Are you currently enrolled in a retiree health plan?");
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
-        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageSecondSectionDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(retireeQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
-        softAssert.assertEquals(insuranceEndingYes.getText(),"Yes");
-        softAssert.assertEquals(insuranceEndingNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageThirdSectionDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(retireeQuestionTxt.get(2).getText(),"What day will your coverage end?");
-        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(retireeQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance?");
-        softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
-        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageFirstSectionSecondaryDataEnglish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
-        softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
-        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
-        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about " + SharedData.getMembers().get(0).getFullName() + "'s eligibility or current enrollment in a retiree health plan."));
-        softAssert.assertTrue(retireeQuestionTxt.get(0).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " currently enrolled in a retiree health plan?"));
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
-        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageThirdSectionSecondaryDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertTrue(retireeQuestionTxt.get(2).getText().equalsIgnoreCase("What day will " + SharedData.getMembers().get(0).getFullName() + "'s coverage end?"));
-        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertTrue(retireeQuestionTxt.get(3).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " voluntarily ending this health insurance?"));
-        softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
-        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageDataSpanish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        switch (dataToVerify){
-            case "First Section":
-                verifyRetireePageFirstSectionDataSpanish();
-                break;
-            case "Second Section":
-                verifyRetireePageFirstSectionDataSpanish();
-                verifyRetireePageSecondSectionDataSpanish();
-                break;
-            case "Third Section":
-                verifyRetireePageFirstSectionDataSpanish();
-                verifyRetireePageSecondSectionDataSpanish();
-                verifyRetireePageThirdSectionDataSpanish();
-                break;
-            case "First Section Secondary":
-                verifyRetireePageFirstSectionSecondaryDataSpanish();
-                break;
-            case "Second Section Secondary":
-                verifyRetireePageFirstSectionSecondaryDataSpanish();
-                verifyRetireePageSecondSectionDataSpanish();
-                break;
-            case "Third Section Secondary":
-                verifyRetireePageFirstSectionSecondaryDataSpanish();
-                verifyRetireePageSecondSectionDataSpanish();
-                verifyRetireePageThirdSectionSecondaryDataSpanish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
-        }
-        softAssert.assertEquals(goBackBtn.getText(),"Volver");
-        softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageFirstSectionDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
-        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en un plan de salud para jubilados.");
-        softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en un plan de salud para jubilados?");
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
-        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageSecondSectionDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(retireeQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
-        softAssert.assertEquals(insuranceEndingYes.getText(),"S\u00ED");
-        softAssert.assertEquals(insuranceEndingNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageThirdSectionDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(retireeQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
-        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(retireeQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
-        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
-        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageFirstSectionSecondaryDataSpanish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
-        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
-        softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
-        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
-        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en un plan de salud para jubilados."));
-        softAssert.assertTrue(retireeQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en un plan de salud para jubilados?"));
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
-        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyRetireePageThirdSectionSecondaryDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertTrue(retireeQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
-        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertTrue(retireeQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
-        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
-        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
-        softAssert.assertAll();
     }
 
     public void verifyErrorMessage(String errorType, String language) {
@@ -682,9 +493,201 @@ public class OhcRetireeHealthPlanPage_Elmo {
         }
     }
 
+    public void verifyIndividualInsurancePageData(String dataToVerify, String language){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        switch (language){
+            case "English":
+                verifyIndividualInsurancePageDataEnglish(dataToVerify);
+                break;
+            case "Spanish":
+                verifyIndividualInsurancePageDataSpanish(dataToVerify);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void verifyIndividualInsurancePageDataEnglish(String dataToVerify){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        switch (dataToVerify){
+            case "First Section":
+                verifyIndividualInsurancePageFirstSectionDataEnglish();
+                break;
+            case "Second Section":
+                verifyIndividualInsurancePageFirstSectionDataEnglish();
+                verifyIndividualInsurancePageSecondSectionDataEnglish();
+                break;
+            case "Third Section":
+                verifyIndividualInsurancePageFirstSectionDataEnglish();
+                verifyIndividualInsurancePageSecondSectionDataEnglish();
+                verifyIndividualInsurancePageThirdSectionDataEnglish();
+                break;
+            case "First Section Secondary":
+                verifyIndividualInsurancePageFirstSectionSecondaryDataEnglish();
+                break;
+            case "Second Section Secondary":
+                verifyIndividualInsurancePageFirstSectionSecondaryDataEnglish();
+                verifyIndividualInsurancePageSecondSectionDataEnglish();
+                break;
+            case "Third Section Secondary":
+                verifyIndividualInsurancePageFirstSectionSecondaryDataEnglish();
+                verifyIndividualInsurancePageSecondSectionDataEnglish();
+                verifyIndividualInsurancePageThirdSectionSecondaryDataEnglish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
+        }
+        softAssert.assertEquals(goBackButton.getText(),"Go back");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Save and continue");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageFirstSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcIndividualInsuranceHeader,15);
+        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Individual Insurance");
+        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in health insurance purchased directly through an insurance company, through HealthCare.gov, or another state\u2019s Marketplace.");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(0).getText(),"Are you currently enrolled in individual insurance?");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageSecondSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcIndividualInsuranceHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(insuranceEndingYes.getText(),"Yes");
+        softAssert.assertEquals(insuranceEndingNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageThirdSectionDataEnglish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(2).getText(),"What day will your coverage end?");
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance?");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageFirstSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcIndividualInsuranceHeader,15);
+        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Individual Insurance");
+        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about " + SharedData.getMembers().get(0).getFullName() + "'s eligibility or current enrollment in health insurance purchased directly through an insurance company, through HealthCare.gov, or another state\u2019s Marketplace."));
+        softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(0).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " currently enrolled in individual insurance?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageThirdSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(2).getText().equalsIgnoreCase("What day will " + SharedData.getMembers().get(0).getFullName() + "\u0027s coverage end?"));
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(3).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " voluntarily ending this health insurance?"));
+        softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageDataSpanish(String dataToVerify){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        switch (dataToVerify){
+            case "First Section":
+                verifyIndividualInsurancePageFirstSectionDataSpanish();
+                break;
+            case "Second Section":
+                verifyIndividualInsurancePageFirstSectionDataSpanish();
+                verifyIndividualInsurancePageSecondSectionDataSpanish();
+                break;
+            case "Third Section":
+                verifyIndividualInsurancePageFirstSectionDataSpanish();
+                verifyIndividualInsurancePageSecondSectionDataSpanish();
+                verifyIndividualInsurancePageThirdSectionDataSpanish();
+                break;
+            case "First Section Secondary":
+                verifyIndividualInsurancePageFirstSectionSecondaryDataSpanish();
+                break;
+            case "Second Section Secondary":
+                verifyIndividualInsurancePageFirstSectionSecondaryDataSpanish();
+                verifyIndividualInsurancePageSecondSectionDataSpanish();
+                break;
+            case "Third Section Secondary":
+                verifyIndividualInsurancePageFirstSectionSecondaryDataSpanish();
+                verifyIndividualInsurancePageSecondSectionDataSpanish();
+                verifyIndividualInsurancePageThirdSectionSecondaryDataSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + dataToVerify);
+        }
+        softAssert.assertEquals(goBackButton.getText(),"Volver");
+        softAssert.assertEquals(saveAndContinueBtn.getText(),"Guardar y continuar");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageFirstSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Seguro individual");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en el seguro de salud adquirido directamente a trav\u00E9s de una compa\u00F1\u00Eda de seguros, por medio de HealthCare.gov o a trav\u00E9s de otro Mercado del estado.");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en un seguro individual?");
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageSecondSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
+        softAssert.assertEquals(insuranceEndingYes.getText(),"S\u00ED");
+        softAssert.assertEquals(insuranceEndingNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageThirdSectionDataSpanish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertEquals(IndividualInsuranceQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageFirstSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcIndividualInsuranceHeader,60);
+        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(OhcIndividualInsuranceHeader.getText(),"Seguro individual");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en el seguro de salud adquirido directamente a trav\u00E9s de una compa\u00F1\u00Eda de seguros, por medio de HealthCare.gov o a trav\u00E9s de otro Mercado del estado."));
+        softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en un seguro individual?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyIndividualInsurancePageThirdSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
+        softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
+        softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
+        softAssert.assertTrue(IndividualInsuranceQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
+        softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
+        softAssert.assertEquals(endVoluntaryNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
     public void validateHelpVerbiage(String helpData,String language) {
         basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 30);
-        basicActions.waitForElementToBePresent(helpDrawerHeaderRetiree, 30);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderIndividualInsurance, 30);
         switch (language) {
             case "English":
                 switch (helpData){
@@ -729,7 +732,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validateGeneralHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Individual Insurance");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
         softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Enrollment");
         softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "End in the next 60 days");
@@ -744,7 +747,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validateGeneralHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Seguro individual");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Resumen");
         softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Inscripci\u00F3n");
         softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
@@ -759,7 +762,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validateCurrentlyEnrolledHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Individual Insurance");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Enrollment");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this person currently has this health insurance, select \"Yes\". If they are able to get this health insurance, but have chosen not to, select \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -768,7 +771,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validateCurrentlyEnrolledHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Seguro individual");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Inscripci\u00F3n");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si actualmente esta persona tiene este seguro de salud, seleccione \"S\u00ED\". Si esta persona puede obtener este seguro de salud, pero ha decidido no tenerlo, seleccione \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
@@ -777,7 +780,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validate60DaysHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Individual Insurance");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "End in the next 60 days");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this insurance is ending in the next 60 days, this person is eligible for a Special Enrollment Period which allows you and your family to shop for health insurance outside of the Open Enrollment Period.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -786,7 +789,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validate60DaysHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Seguro individual");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si este seguro va a terminar en los pr\u00F3ximos 60 d\u00EDas, esta persona es elegible para un Per\u00EDodo de inscripci\u00F3n especial que le permite tanto a usted como a su familia adquirir un seguro de salud fuera del Per\u00EDodo de inscripci\u00F3n abierta.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
@@ -795,7 +798,7 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validateVoluntaryEndingHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Individual Insurance");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Voluntarily Ending");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this person chooses to end this health insurance, they will not be eligible for a Special Enrollment Period to shop for other health insurance. They must wait until the next Open Enrollment Period to shop unless they have another qualifying life change event.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -804,12 +807,22 @@ public class OhcRetireeHealthPlanPage_Elmo {
 
     public void validateVoluntaryEndingHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
+        softAssert.assertEquals(helpDrawerHeaderIndividualInsurance.getText(), "Seguro individual");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Cancelaci\u00F3n voluntaria");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si esta persona decide cancelar este seguro de salud, no podr\u00E1 ser elegible para un Per\u00EDodo de inscripci\u00F3n especial para adquirir otro seguro de salud. Deber\u00E1 esperar hasta el siguiente Per\u00EDodo de inscripci\u00F3n abierta para adquirirlo a menos que tenga otro evento de vida calificado.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
+
+
+
+
+
+
+
+
+
+
 
 
 

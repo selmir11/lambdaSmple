@@ -13,11 +13,11 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class OhcMedicarePage_Elmo {
+public class OhcMedicarePage {
     private BasicActions basicActions;
     Actions actions = new Actions(WebDriverManager.getDriver());
     SoftAssert softAssert = new SoftAssert();
-    public OhcMedicarePage_Elmo(WebDriver webDriver){
+    public OhcMedicarePage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
