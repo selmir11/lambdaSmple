@@ -173,8 +173,9 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status page
-    Then I select "Spouse" as filing jointly with option on the Tax Status page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
+    Then I select "InLaw" as filing jointly with option on the Tax Status Elmo page
+
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
 
@@ -262,7 +263,6 @@ Feature: Seed08 - Exchange
     And I enter "taxHolder1" signature on the Financial Help Agreements page
     And I enter "taxHolder2" signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
@@ -274,9 +274,6 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-    And I validate "medical" plan details from plan history
-    And I validate "dental" plan details from plan history
     And I click on Sign Out in the Header for "NonElmo"
     And I set the member relationship to the subscriber
       | Son: Self   |

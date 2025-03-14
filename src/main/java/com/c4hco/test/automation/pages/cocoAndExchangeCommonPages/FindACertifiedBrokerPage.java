@@ -620,6 +620,7 @@ public class FindACertifiedBrokerPage {
     public void clickChangeBrokerOption(String changeBrokerOption) {
         basicActions.waitForElementToBePresent(changeBrokerContainer,10);
         basicActions.waitForElementToBePresent(changeBrokerContainerWarningText,60);
+        basicActions.waitForElementToBeClickable(authorizeBrokerTermsCheckbox,30);
         authorizeBrokerTermsCheckbox.click();
         
         switch (changeBrokerOption){
