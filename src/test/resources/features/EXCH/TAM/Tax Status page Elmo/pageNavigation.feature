@@ -39,7 +39,7 @@ Feature: Page Navigation-Tax Status Elmo Page
     And I get the Primary Member ID
     And I click continue on the Citizenship page
 
-  @SLER-1775 @PageNavigationTaxStatusElmoPage @TAMSmoke
+  @SLER-1775 @PageNavigationTaxStatusElmoPage @TAMSmokeExch
   Scenario: SLER-1775 My session is invalidated when I log out in Tax Return Portal, Exchange
     Then I click continue on family overview page
     And I Apply for financial help
@@ -48,18 +48,18 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     #step1
     Then I open current page in new tab
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I switch to the tab number 0
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I click on Sign Out in the Header for "Elmo"
     And I validate I am on the "Login" page
     #step2
     And I switch to the tab number 1
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I refresh the page
     And I validate I am on the "Login" page
     And I close current tab and switch back to previous tab
@@ -84,23 +84,23 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
 
-    Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     Then I open current page in new tab
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I switch to the tab number 0
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I click on Sign Out in the Header for "Elmo"
     And I validate I am on the "Login" page
     #step4
     And I switch to the tab number 1
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I validate I am on the "Login" page
 
-  @SLER-1776 @PageNavigationTaxStatusElmoPage @TAMSmoke
+  @SLER-1776 @PageNavigationTaxStatusElmoPage @TAMSmokeExch
   Scenario: SLER-1776 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Tax Return Portal, Exchange
     Then I click continue on family overview page
     And I Apply for financial help
@@ -109,8 +109,8 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     #Step1
     And I change the C4 url to "Tax Return portal Error Exch"
     Then I validate I am on the "Error" page
@@ -140,7 +140,7 @@ Feature: Page Navigation-Tax Status Elmo Page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
 
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
     And I change the C4 url to "Tax Return portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I click Go Back button from chrome browser
@@ -152,7 +152,7 @@ Feature: Page Navigation-Tax Status Elmo Page
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
     Then I validate I am on the "Login" page
 
-    @SLER-2236 @PageNavigationTaxStatusElmoPage @TAMSmoke
+    @SLER-2236 @PageNavigationTaxStatusElmoPage @TAMSmokeExch
     Scenario: SLER-2236 Navigation works as expected when tax filing status is changed from a filer to a dependent in Tax Return Portal, Exchange
       #step2 - add a family member
       Then I click Add Another Family Member
@@ -188,20 +188,20 @@ Feature: Page Navigation-Tax Status Elmo Page
       Then I click None of these as additional income option and continue
       Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       #step4 - provide filer tax information for account holder
-      And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+      And I verify the header for "Primary" Member on the Tax Status page in "English"
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Head of household" tax filing option on the Tax Status Elmo page
+      Then I select the "Head of household" tax filing option on the Tax Status page
       Then I select "Yes" for will claim dependents question
-      Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-      Then I click Save and Continue on Tax Status Elmo page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+      Then I click Save and Continue on Tax Status page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
       And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
       #step5 - navigate back to ELMO Tax Status page
       And I validate I am on the "Family Overview" page
       And I click plus icon next to member on household page for "Primary"
@@ -211,15 +211,15 @@ Feature: Page Navigation-Tax Status Elmo Page
       Then I click continue on the Additional Income page
       Then I click continue on the Deductions page
       Then I click the save and continue button on the Income Summary Detail page
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       #step6 - change from filer to dependent
       Then I select "Yes" for will you be claimed as dependent question
       Then I select "Spouse" for who will claim as dependent question
-      Then I click Save and Continue on Tax Status Elmo page
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I click continue on the ELMO health coverage page
+      Then I click Save and Continue on Tax Status page
+      And I validate I am on the "Other Health Coverage" page
+      Then I click continue on the health coverage page
       And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-      Then I click continue on the ELMO health coverage page
+      Then I click continue on the health coverage page
       And I validate I am on the "Family Overview" page
 
       And I click on Sign Out in the Header for "NonElmo"

@@ -245,7 +245,7 @@ Feature: Page Text-Additional Income Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-246 @PageTextAdditionalIncome @TAMSmoke
+  @SLER-246 @PageTextAdditionalIncome @TAMSmokeExch
   Scenario: SLER-246 I can see Additional Income's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the Additional Income page in "Spanish"

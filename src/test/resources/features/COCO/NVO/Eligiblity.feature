@@ -26,7 +26,7 @@ Feature: Coco user Validate the eligibility
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -57,7 +57,7 @@ Feature: Coco user Validate the eligibility
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -98,7 +98,7 @@ Feature: Coco user Validate the eligibility
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "<isCoResident>" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -139,7 +139,7 @@ Feature: Coco user Validate the eligibility
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -169,7 +169,7 @@ Feature: Coco user Validate the eligibility
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -200,7 +200,7 @@ Feature: Coco user Validate the eligibility
     And I enter residential address details for additional member "1234 Road", "<city>", "<state>", "<zipcode>", "<county>"
     And I select "<isCoResident>" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -239,7 +239,7 @@ Feature: Coco user Validate the eligibility
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -269,7 +269,7 @@ Feature: Coco user Validate the eligibility
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option

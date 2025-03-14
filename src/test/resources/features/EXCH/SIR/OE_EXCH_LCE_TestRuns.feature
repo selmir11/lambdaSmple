@@ -76,7 +76,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
 
@@ -191,7 +191,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
@@ -306,7 +306,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
@@ -423,7 +423,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
@@ -540,7 +540,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
@@ -655,7 +655,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
@@ -772,7 +772,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 
@@ -888,7 +888,7 @@ Feature: LCE Test Runs
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
 

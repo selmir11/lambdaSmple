@@ -47,7 +47,7 @@ Feature: Programme Manager
     Then I validate the list is sorted in order by "Account ID" and "desc"
     Then I refresh the page
     And I select "Program Manager" checkbox on Admin Portal Dashboard
-    Then I enter an "FirstName" in any env "a" "a" to search user
+    Then I enter an "FirstName" in any env "ad" "ad" to search user
     Then I click on Search button in AP dashboard page
     Then I wait for 1000 milliseconds
     Then I validate message for over hundred records

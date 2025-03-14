@@ -28,7 +28,7 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
 
-  @SLCR-375 @TAMSmoke
+  @SLCR-375 @TAMSmokeCoCo
   Scenario: SLCR-375 I want amount and frequency errors cleared on the Additional income sources page so that I don't see errors when I select an option - English
     #Step3
     Then I select "Income from rental property" as additional income option CoCO page
@@ -238,3 +238,41 @@ Feature: Tests related to the Additional Income page
     And I verify no error message gets displayed for pension additional income & amount gets converted to "640,078.00"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+    @SLCR-823
+    Scenario: ELIG-As a user on the Additional Income Sources page,
+    I want the ability to see the page in Spanish so that I can review and update the income information [CCRT-421]
+      Then I validate I am on the "CoCo Additional Income" page
+      Then I select "Pension" as additional income option CoCO page
+      And I change the language from header to "Spanish"
+      Then I validate that I am able to see the page in 'Spanish' so that I can review and update the income information
+      |Text Label:|
+      |Ingresos:|
+      |Otras fuentes de ingreso|
+      |¿Recibió alguno de los ingresos siguientes?|
+      |Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.|
+      |Pensión alimenticia recibida|
+      |Ganancias de capital|
+      |Ingresos por renta de propiedades|
+      |Pensión|
+      |Ingresos privados por retiro|
+      |Ingresos por el Seguro Social|
+      |Beneficio del seguro de desempleo|
+      |Ingresos derivados de inversiones|
+      |Apoyo en efectivo|
+      |Ingresos extranjeros no gravados|
+      |Ingresos por regalías|
+      |Ingresos gravables de origen tribal|
+      |Ninguna de las anteriores|
+      |cantidad|
+      |Anualmente|
+      |Cada dos semanas|
+      |Mensualmente|
+      |Dos veces por mes |
+      |Semanalmente|
+
+
+
+
+
+

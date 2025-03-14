@@ -72,7 +72,7 @@ Feature: Page Text-Welcome Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-344 @PageTextCacScreenerPage @TAMSmoke
+  @SLCR-344 @PageTextCacScreenerPage @TAMSmokeCoCo
   Scenario: SLCR-344 I want to see my dynamic data so that I can see my enrollment options Spanish
     And I change the language from header to "Spanish"
     And I validate the "Main" text for CAC Screener page in "Spanish"

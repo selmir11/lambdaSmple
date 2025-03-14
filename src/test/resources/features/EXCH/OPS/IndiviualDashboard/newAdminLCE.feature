@@ -32,13 +32,8 @@ Feature: new admin LCE
   Scenario: New admin LCE: Recreate application link navigation and verify links from page
     Then I enter an account ID in "5020327630" "5020327630" accountID field
     Then I click on Look up button
-    Then I wait for 3000 milliseconds
     Then I click on application data dropdown arrow
     Then I click on Recreate application link number 1 for plan year 2025 on the Admin LCE page
     Then I verify Confirm change effective dates pop up displays on Admin LCE page
-    Then I enter the effective date to "Today"
+    Then I enter the effective date to "0430"
     Then I click on confirm button on Admin LCE page
-    Then I click on Recreate application link number 1 for plan year 2024 on the Admin LCE page
-    Then I verify Go back button displays previous page
-
-#

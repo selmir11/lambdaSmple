@@ -13,10 +13,10 @@ import org.testng.asserts.SoftAssert;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TaxStatusPage_Elmo {
+public class TaxStatusPage {
     private BasicActions basicActions;
     Actions action;
-    public TaxStatusPage_Elmo(WebDriver webDriver){
+    public TaxStatusPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
         action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);

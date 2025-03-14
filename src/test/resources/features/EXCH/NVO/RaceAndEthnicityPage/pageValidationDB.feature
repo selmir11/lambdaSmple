@@ -34,7 +34,7 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select Not listed for race and ethnicity and enter "MixedRace" in the text box
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
@@ -63,13 +63,13 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I wait for 1000 milliseconds
     And I validate "American_Indian_Alaskan_Native,Native_Hawaiian_Pacific_Islander,Other" race and "Multiracial" other text in the database
     Then I click Go back on the Citizenship page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click Go back on the Race and Ethnicity page
     Then I validate I am on the "Additional Information for Yourself" page
     And I validate "American_Indian_Alaskan_Native,Native_Hawaiian_Pacific_Islander,Other" race and "Multiracial" other text in the database
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page

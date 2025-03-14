@@ -161,4 +161,8 @@ public class DashboardPageSteps {
     public void iVerifyCompleteProfileButtonDisplays(){
         dashboardPage.verifyCompleteProfileButtonDisplays();
     }
+    @And("I click View Reports button")
+    public void iClickViewReports() {
+        dashboardPage.clickViewReports();
+    }
 }

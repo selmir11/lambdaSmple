@@ -1071,6 +1071,7 @@ public class MyProfilePage {
           signature = primaryName.get(0).getText() + " " +primaryName.get(1).getText()+" "+ primaryName.get(2).getText();
       }
         primaryMem.setSignature(signature);
+        SharedData.getPrimaryMember().setCompleteFullName(signature);
     }
 
     public void verifyPreferredLanguage(String expectedLanguage) {
