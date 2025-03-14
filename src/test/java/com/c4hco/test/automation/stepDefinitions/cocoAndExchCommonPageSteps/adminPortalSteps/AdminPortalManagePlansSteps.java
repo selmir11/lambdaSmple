@@ -353,6 +353,10 @@ public class AdminPortalManagePlansSteps {
     public void iValidateSESEnteredExceedsEHBAmountErrorIsDisplayingFor() {
         adminPortalManagePlansPage.validateEHBErrorsCoCo();
     }
+    @Then("I validate the expected {string} message is displayed")
+    public void iValidateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage) {
+        adminPortalManagePlansPage.validateTheExpectedEHBErrorMessageIsDisplayed(expectedErrorMessage);
+    }
 }
 
 

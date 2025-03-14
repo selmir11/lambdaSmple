@@ -33,8 +33,6 @@ public class MedicalDetailPage {
     public MedicalDetailPage(WebDriver webDriver) {
         basicActions = new BasicActions( webDriver );
         PageFactory.initElements( basicActions.getDriver(), this );
-
-
     }
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
