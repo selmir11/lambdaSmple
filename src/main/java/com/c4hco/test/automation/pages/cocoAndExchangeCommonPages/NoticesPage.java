@@ -605,7 +605,7 @@ public class NoticesPage {
                 VerifyTheNoticeTextAM01605();
                 break;
             case "AM-001-01":
-                VerifyTheNoticeTextAM00101();
+                VerifyTheNoticeTextAM00101(language);
                 break;
             case "EN-002-04":
                 VerifyTheNoticeTextEN00204();
@@ -912,11 +912,23 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-    private void VerifyTheNoticeTextAM00101() {
-        softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
-        softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Connect for Health Colorado\u00AE. An account was opened for you on"));
-        softAssert.assertEquals(body2TextAM00101.get(0).getText(), "You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
-        softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to "));
+    private void VerifyTheNoticeTextAM00101(String language) {
+        switch (language) {
+            case "English":
+                softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
+                softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Connect for Health Colorado\u00AE. An account was opened for you on"));
+                softAssert.assertEquals(body2TextAM00101.get(0).getText(), "You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
+                softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to "));
+                break;
+            case "Spanish":
+                softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Apreciable"));
+                softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Le damos la bienvenida a Connect for Health Colorado\u00AE. Se le cre\u00F3 una cuenta el"));
+                softAssert.assertTrue(body2TextAM00101.get(0).getText().contains("Ya puede elegir el plan de seguro de salud que mejor se ajuste a sus necesidades. Para empezar, haga clic en el enlace que aparece a continuaci\u00F3n"));
+                softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("Usted eligi\u00F3 el correo electr\u00F3nico como medio de comunicaci\u00F3n preferido. Todas las comunicaciones futuras se enviar\u00E1n por correo electr\u00F3nico"));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertAll();
     }
 
