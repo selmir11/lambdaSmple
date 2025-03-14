@@ -28,7 +28,7 @@ public class AdminPortalReportsPage {
     WebElement eventTime;
     @FindBy(css = "thead td:nth-child(7) span:nth-child(1)")
     WebElement detailKey;
-    @FindBy(css = ".report-title")
+    @FindBy(xpath = "//div[2]/h2")
     WebElement titleAccountActivity;
     @FindBy(xpath = "//tr[@class='sort-table-data-row']")
     List<WebElement> eventCodeList;
@@ -45,7 +45,7 @@ public class AdminPortalReportsPage {
     WebElement tooltipText;
 
     public void validateTitleAccountActivity() {
-        basicActions.waitForElementListToBePresentWithRetries(eventCodeList, 30);
+        basicActions.waitForElementListToBePresentWithRetries(eventCodeList, 50);
         softAssert.assertEquals("Account Activity", titleAccountActivity.getText());
         basicActions.waitForElementToBePresent(detailKey, 20);
         softAssert.assertEquals("Detail Key", detailKey.getText());

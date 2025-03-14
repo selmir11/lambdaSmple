@@ -129,7 +129,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-64 @PageTextDeductions @TAMSmoke
+  @SLCR-64 @PageTextDeductions @TAMSmokeCoCo
   Scenario: SLCR-64 I can see Deductions's Header and footer - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the CoCo Deductions page in "Spanish"
@@ -246,21 +246,21 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-369 @TAMSmoke
+  @SLCR-369 @TAMSmokeCoCo
   Scenario:  SLCR-369 I verify the text on the CoCo Deductions page - English
     And I change the language from Elmo header to "English" if it isn't already in that language
     Then I verify the header for Primary Member on the CoCo Deductions page in "English"
     Then I verify the text on the deductions coco page in "English"
     Then I verify the navigation buttons on the deductions coco page in "English"
 
-  @SLCR-393 @TAMSmoke
+  @SLCR-393 @TAMSmokeCoCo
   Scenario:  SLCR-393 I verify the text on the CoCo Deductions page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify the header for Primary Member on the CoCo Deductions page in "Spanish"
     Then I verify the text on the deductions coco page in "Spanish"
     Then I verify the navigation buttons on the deductions coco page in "Spanish"
 
-  @SLCR-396 @TAMSmoke
+  @SLCR-396 @TAMSmokeCoCo
   Scenario:  SLCR-396 I verify the text on the CoCo Additional Member Deductions page - English
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
@@ -285,7 +285,7 @@ Feature: Tests related to the Deductions page
     Then I verify the text on the deductions coco page in "English"
     Then I verify the navigation buttons on the deductions coco page in "English"
 
-  @SLCR-397 @TAMSmoke
+  @SLCR-397 @TAMSmokeCoCo
   Scenario:  SLCR-397 I verify the text on the CoCo Additional Member Deductions page - Spanish
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page

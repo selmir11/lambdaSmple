@@ -7,7 +7,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I validate I am on the "Login" page
 
   @SLER-100 @VerifyMedicalDentalPlanSummaryResults
-  Scenario: SLER-100 - VerifyMedicalDentalPlanSummaryResults - used to be RT-1693
+  Scenario: SLER-100 - VerifyMedicalDentalPlanSummaryResults
     When I click create a new account on login page
 
     Then I validate I am on the "Prescreen" page
@@ -133,7 +133,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
@@ -159,7 +159,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Mother"
     And I click continue on the Race and Ethnicity page
 
@@ -188,7 +188,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
 
@@ -216,7 +216,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
     And I click continue on the Race and Ethnicity page
 

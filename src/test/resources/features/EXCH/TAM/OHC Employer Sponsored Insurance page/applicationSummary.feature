@@ -56,12 +56,12 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
 #    Step 2
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -105,9 +105,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the "1" employer for "Primary" member on the ESI page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "300.00" for employee amount question on the ESI page
@@ -152,7 +152,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Employer Sponsored Insurance|     Plain    |    Yellow   |          No          |        Yellow         |                    300                      |       Yellow        |       Yes        |      Plain       |             Yes                |     Plain      |   Today    |    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          No          |                    300                      |       Yes        |             Yes                |   Today    |        No        |
@@ -176,9 +175,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "300.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
@@ -205,7 +204,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |          No          |         Plain         |                    300                      |       Plain         |       Yes        |      Plain       |             No                 |    Yellow      |    None    |      Red     |     None         |         Red         |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          No          |                    300                      |       Yes        |             No                 |            |                  |
@@ -228,9 +226,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
     Then I click continue on family overview page
@@ -254,7 +252,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |          No          |         Plain         |                    300                      |       Plain         |       No         |      Yellow      |               None             |      Red       |            |              |                  |                     |
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|  End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          No          |                    300                      |       No         |                                |            |                  |
@@ -351,16 +348,16 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Kid" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Son" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I select "Kid" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Son" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
 #    Step 3
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -376,18 +373,18 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |      Kid:TypeAccess     |
       |      Son:NoAccess       |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -416,24 +413,24 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I enter "200.00" for offer family amount question
     Then I click enrollment status for the members
       |      Spouse:TypeAccess    |
       |      Kid:NoAccess         |
       |      Son:Enrolled         |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -471,17 +468,17 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500                      |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |        Plain           |                   200                   |           Yellow           |
     Then I verify the OHC detail family enrollment details on Application Details
-      | Member3FullName:Enrolled:Yellow                        |
-      | Member1FullName:Offered a plan but not enrolled:Yellow |
-      | Member2FullName:No option to enroll:Yellow             |
+      | Son:Enrolled:Yellow                          |
+      | Spouse:Offered a plan but not enrolled:Yellow|
+      | Kid:No option to enroll:Yellow               |
     Then I click on Download as PDF on Application Details
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          Yes         |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "200"
-      | Member3FullName:Enrolled                        |
-      | Member1FullName:Offered a plan but not enrolled |
-      | Member2FullName:No option to enroll             |
+      | Son:Enrolled                           |
+      | Spouse:Offered a plan but not enrolled |
+      | Kid:No option to enroll                |
 #    Step 8
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -502,20 +499,20 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -567,9 +564,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I click "Yes" for offer family plans question
     Then I enter "300.00" for offer family amount question
     Then I click enrollment status for the members
@@ -577,15 +574,15 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |      Kid:TypeAccess     |
       |      Son:NoAccess       |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -607,17 +604,17 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500                      |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |        Yellow          |              300                        |           Green            |
     Then I verify the OHC detail family enrollment details on Application Details
-      | Member1FullName:Enrolled:Green                        |
-      | Member2FullName:Offered a plan but not enrolled:Green |
-      | Member3FullName:No option to enroll:Green             |
+      | Spouse:Enrolled:Green                     |
+      | Kid:Offered a plan but not enrolled:Green |
+      | Son:No option to enroll:Green             |
     Then I click on Download as PDF on Application Details
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          Yes         |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "300"
-      | Member1FullName:Enrolled                        |
-      | Member2FullName:Offered a plan but not enrolled |
-      | Member3FullName:No option to enroll             |
+      | Spouse:Enrolled                     |
+      | Kid:Offered a plan but not enrolled |
+      | Son:No option to enroll             |
 #    Step 12
     And I click on Apply for Coverage in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -639,9 +636,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I click "Yes" for offer family plans question
     Then I enter "300.00" for offer family amount question
     Then I click enrollment status for the members
@@ -649,15 +646,15 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |      Kid:Enrolled       |
       |      Son:Enrolled       |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -679,9 +676,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Type Highlight|Job Highlight|Minimum Value Standard|Minimum Value Highlight|Lowest-Cost Monthly Individual Premium Amount|Lowest-Cost Highlight|Currently enrolled|Enrolled Highlight|Insurance ending in next 60 days|Ending Highlight|   End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|Family plan offered|Family offered Highlight|Lowest-Cost Monthly Family Premium Amount|Lowest-Cost Family Highlight|
       |Employer Sponsored Insurance|     Plain    |    Plain    |         Yes          |         Plain         |                    500                      |       Plain         |       Yes        |      Plain       |             Yes                |     Plain      |Current Month|    Plain     |      Yes         |       Plain         |        Yes        |         Plain          |              300                        |           Plain            |
     Then I verify the OHC detail family enrollment details on Application Details
-      | Member1FullName:Enrolled:Yellow      |
-      | Member2FullName:Enrolled:Yellow      |
-      | Member3FullName:Enrolled:Yellow      |
+      | Spouse:Enrolled:Yellow               |
+      | Kid:Enrolled:Yellow                  |
+      | Son:Enrolled:Yellow                  |
       | :Offered a plan but not enrolled:Red |
       | :No option to enroll:Red             |
     Then I click on Download as PDF on Application Details
@@ -689,9 +686,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|          Yes         |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     Then I verify PDF OHC data for family with Family offered "Yes" and Premium "300"
-      | Member1FullName:Enrolled |
-      | Member2FullName:Enrolled |
-      | Member3FullName:Enrolled |
+      | Spouse:Enrolled |
+      | Kid:Enrolled    |
+      | Son:Enrolled    |
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal
@@ -714,12 +711,12 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "500.00" for employee amount question on the ESI page
@@ -743,12 +740,10 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -773,13 +768,11 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "English"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|         Yes          |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    And I wait for 3000 milliseconds
     Then I validate ESI PDF OHC data on Application Details in "Spanish"
       |          OHC Type          |Minimum Value Standard|Lowest-Cost Monthly Individual Premium Amount|Currently enrolled|Insurance ending in next 60 days|   End date  |Voluntarily ending|
       |Employer Sponsored Insurance|         Yes          |                    500                      |       Yes        |             Yes                |Current Month|       Yes        |
@@ -804,11 +797,11 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "No" on the Application Summary page in "English"
@@ -844,10 +837,10 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "300.00" for employee amount question on the ESI page
@@ -925,9 +918,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "No" on the Application Summary page in "English"
@@ -1005,14 +998,14 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "500.00" for employee amount question on the ESI page
@@ -1025,10 +1018,10 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click enrollment status for the members
       |      Spouse:Enrolled    |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -1061,11 +1054,11 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I click continue on the ESI page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
@@ -1128,12 +1121,12 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
 #    Step 2
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -1177,9 +1170,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the "1" employer for "Primary" member on the ESI page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "300.00" for employee amount question on the ESI page
@@ -1206,12 +1199,10 @@ Feature: Tests related to the Application Summary/Detail for ESI
     |          OHC Type          |Currently Enrolled|  End date  |
     |Employer Sponsored Insurance|       Yes        |   Today    |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |       Coverage Type    	  |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|       Yes       |    Today    |
     And I change the language from header to "Spanish NonElmo"
-    Then I wait for 50 milliseconds
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Other Health Coverage on Application Summary
@@ -1219,7 +1210,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       Sí         |   Today    |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|         Sí       |    Today    |
@@ -1244,9 +1234,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "300.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
@@ -1270,7 +1260,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       Yes        |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|        Yes       |             |
@@ -1282,7 +1271,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       Sí         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|        Sí        |             |
@@ -1307,9 +1295,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
     Then I click continue on family overview page
@@ -1330,7 +1318,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|       No         |             |
@@ -1342,7 +1329,6 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |          OHC Type          |Currently Enrolled|  End date  |
       |Employer Sponsored Insurance|       No         |            |
     Then I click on Download as PDF on Application Summary
-    And I wait for 3000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |       Coverage Type    	   |Currently Enrolled|   End date  |
       |Employer Sponsored Insurance|       No         |             |
@@ -1440,16 +1426,16 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Kid" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Son" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I select "Kid" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Son" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
 #    Step 3
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
@@ -1465,18 +1451,18 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |      Kid:TypeAccess     |
       |      Son:NoAccess       |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -1505,20 +1491,20 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -1572,9 +1558,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select "No" for meet the Minimum Value Standard on the ESI page
     Then I enter "300.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
@@ -1585,15 +1571,15 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |      Kid:NoAccess         |
       |      Son:Enrolled         |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -1648,9 +1634,9 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the Will Insurance End "Yes" button on the ESI page
     Then I enter the end date as "Today" on the ESI page
     Then I select the Are you voluntarily ending "No" button on the ESI page
@@ -1660,15 +1646,15 @@ Feature: Tests related to the Application Summary/Detail for ESI
       |      Kid:TypeAccess     |
       |      Son:NoAccess       |
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -1723,20 +1709,20 @@ Feature: Tests related to the Application Summary/Detail for ESI
     Then I validate I am on the "Deductions" page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     Then I select the Are you currently enrolled "No" button on the ESI page
     Then I click continue on the ESI page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Third" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Other Health Coverage" page
     And I verify the header for "Forth" Member on the Other Health Coverage page in "English"
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue

@@ -37,7 +37,7 @@ Feature: Navigation-Declarations and Signature Page
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
 
-  @SLCR-151 @PageNavigationD&SPage @TAMSmoke
+  @SLCR-151 @PageNavigationD&SPage @TAMSmokeCoCo
   Scenario: SLCR-151 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in D&S portal
     And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     #Step1
@@ -68,7 +68,7 @@ Feature: Navigation-Declarations and Signature Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-727 @PageNavigationD&SPage @TAMSmoke
+  @SLCR-727 @PageNavigationD&SPage @TAMSmokeCoCo
   Scenario: SLCR-727 Verify you see the warning banner
     #Step 4
     Then I validate I am on the "CoCo Declarations and Signature" page
@@ -76,7 +76,7 @@ Feature: Navigation-Declarations and Signature Page
     And I right click on Apply for Coverage to open in new tab in the ELMO Header
     #Step 5
     Then I validate I am on the "CoCo Declarations and Signature" page
-    And I wait for 250 milliseconds
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     #Step 6

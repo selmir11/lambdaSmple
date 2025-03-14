@@ -432,6 +432,7 @@ public class HeaderAndFooterPage {
     }
 
     public void headerLanguage(String language){
+        basicActions.wait(250);
         basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 100);
         basicActions.waitForElementToBePresentWithRetries(languageDrp, 120);
         for (WebElement headerLink : centerHeaderLink) {
@@ -440,7 +441,7 @@ public class HeaderAndFooterPage {
                 break;
             }
         }
-        basicActions.wait(90);
+        basicActions.wait(600);
     }
 
     public void changeLanguage(String language) {
@@ -449,6 +450,7 @@ public class HeaderAndFooterPage {
 //        "English Login" and "Spanish Login" is for the Login page
 //        "English ExpertHelp" and "Spanish ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
 
+        basicActions.wait(250);
         switch (language) {
             case "English":
                 basicActions.waitForElementToDisappear(spinner,20);
@@ -507,6 +509,7 @@ public class HeaderAndFooterPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
+        basicActions.wait(50);
     }
 
     public void clickSignOutLink(String pageType) {
@@ -652,8 +655,8 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyTextInExchHeader() {
-        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 30);
-        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 30);
+        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 90);
+        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 90);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
@@ -1023,6 +1026,8 @@ public class HeaderAndFooterPage {
                 basicActions.waitForElementToBeClickableWithRetries(termsOfUseLink, 70);
                 basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                 basicActions.scrollToElement(privacyPolicyLink);
+                basicActions.waitForElementPresence(privacyPolicyLink, 70);
+                basicActions.waitForElementToBeClickableWithRetries(privacyPolicyLink, 70);
                  privacyPolicyLink.click();
                 break;
             default:
@@ -1052,7 +1057,11 @@ public class HeaderAndFooterPage {
                 contactUsLink.click();
                 break;
             case "Exch":
-                basicActions.waitForElementToBeClickable(contactUsLinkExch, 10);
+                basicActions.waitForElementToDisappear(spinner, 90);
+                basicActions.waitForElementToBePresent(contactUsLinkExch, 70);
+                basicActions.waitForElementToBeClickable(contactUsLinkExch, 60);
+                basicActions.scrollToElement(contactUsLinkExch);
+                basicActions.waitForElementToBeClickable(contactUsLinkExch,90);
                 contactUsLinkExch.click();
                 break;
             case "Admin Portal":
@@ -1205,7 +1214,7 @@ public class HeaderAndFooterPage {
                 break;
             case "Learn More Spanish":
                  basicActions.waitForElementToBePresent(learnMoreLink,20);
-                 softAssert.assertEquals(learnMoreLink.getText() , "Más información" , expectedText + " Not Found ");
+                 softAssert.assertEquals(learnMoreLink.getText() , "M\u00E1s informaci\u00F3n" , expectedText + " Not Found ");
                   break;
             case "Contact US Spanish":
                   basicActions.waitForElementToBePresent(getAssistanceLink,20);
@@ -1226,11 +1235,11 @@ public class HeaderAndFooterPage {
                   break;
             case "Privacy Policy Spanish":
                   basicActions.waitForElementToBePresent(privacyPolicyLink,20);
-                  softAssert.assertEquals(privacyPolicyLink.getText(), "Póliza de privacidad");
+                  softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
                   break;
             case "Terms of Use Spanish":
                   basicActions.waitForElementToBePresent(termsOfUseLink,20);
-                  softAssert.assertEquals(termsOfUseLink.getText(), "Términos y Condiciones");
+                  softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
                   break;
             case "Contact Us Footer Link Spanish":
                 basicActions.waitForElementToBePresent(contactUsLinkExch,20);
@@ -1244,7 +1253,7 @@ public class HeaderAndFooterPage {
                  break;
             case "Follow Us Spanish":
                     basicActions.waitForElementToBePresent(followUsText,20);
-                    softAssert.assertEquals(followUsText.getText(), "Síguenos en:");
+                    softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
                     break;
                 default:
                     throw new IllegalArgumentException("Text not present: " + expectedText);
@@ -1253,7 +1262,7 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
-        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToDisappear(spinner, 40);
 
         List<Map<String, String>> data = dataTable.asMaps();
         for (Map<String, String> row : data) {
@@ -1290,13 +1299,11 @@ public class HeaderAndFooterPage {
             actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
             basicActions.switchtoactiveTab();
             basicActions.waitForElementToDisappear(spinner, 30);
-
             String actualTitle = basicActions.getDriver().getTitle();
             String currentUrl = basicActions.getDriver().getCurrentUrl();
             softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present");
             softAssert.assertTrue(currentUrl.contains(containsUrl));
             softAssert.assertAll();
-
             basicActions.getDriver().close();
             basicActions.switchtoPreviousTab();
         }

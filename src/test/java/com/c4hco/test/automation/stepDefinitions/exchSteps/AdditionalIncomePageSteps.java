@@ -68,4 +68,9 @@ public class AdditionalIncomePageSteps {
     @Then("I verify Additional Income checkbox in {string} state")
     public void iVerifyStateOfAddIncomeCheckbox(String state){
         additionalIncomePage.verifyAddtlIncomeOptionCheckbox(state);}
+
+    @Then("I click on the Back button on the Additionalincomepage")
+    public void iClickOnTheBackButton() {
+        additionalIncomePage.clickOnBackButton();
+    }
 }

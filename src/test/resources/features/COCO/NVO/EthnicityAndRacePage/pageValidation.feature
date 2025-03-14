@@ -21,10 +21,10 @@ Feature: Page Validation-Ethnicity And Race page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
     Then I validate the error messages on the Ethnicity and Race page in "English"
     Then I validate the text box input and checkbox selection behavior
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

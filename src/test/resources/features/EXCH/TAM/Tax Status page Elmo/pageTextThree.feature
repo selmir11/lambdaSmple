@@ -73,7 +73,7 @@ Feature: Page Text-Tax Status Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -107,211 +107,209 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 
   @SLER-1820 @PageTextTaxStatusElmoPage
   Scenario: SLER-1820 I need to see the updated page so that my Tax Status choices can be collected - English
 #    Step 3
-    And I verify Save and Back buttons on the Tax Status Elmo page in "English"
+    And I verify Save and Back buttons on the Tax Status page in "English"
 #    Step 4
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
 #    Step 5
-    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "English"
+    And I verify will you be claimed question on the Tax Status page for "Primary" in "English"
 #    Step 6
     Then I select "Yes" for will you be claimed as dependent question
-    And I verify who will claim you question on the Tax Status Elmo page for "Primary" in "English"
+    And I verify who will claim you question on the Tax Status page for "Primary" in "English"
     Then I select "Someone else" for who will claim as dependent question
-    And I verify enter the name question on the Tax Status Elmo page for "Primary" in "English"
+    And I verify enter the name question on the Tax Status page for "Primary" in "English"
 #    Step 7
     Then I select "No" for will you be claimed as dependent question
-    And I verify file tax return question on the Tax Status Elmo page for "Primary" in "English"
+    And I verify file tax return question on the Tax Status page for "Primary" in "English"
 #    Step 8
     Then I select "Yes" for will file tax return question
-    And I verify select tax filing status question on the Tax Status Elmo page in "English"
+    And I verify select tax filing status question on the Tax Status page in "English"
 #    Step 9
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with question on the Tax Status Elmo page for "Primary" in "English"
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    And I verify who will you be filing jointly with question on the Tax Status page for "Primary" in "English"
     |ExpectedMembers|
     |Spouse         |
-    And I verify who will you be filing jointly with "" selected on the Tax Status Elmo page in "English"
+    And I verify who will you be filing jointly with "" selected on the Tax Status page in "English"
       |ExpectedMembers|
       |Spouse         |
-    Then I select "Someone else" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Someone else" selected on the Tax Status Elmo page in "English"
+    Then I select "Someone else" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Someone else" selected on the Tax Status page in "English"
       |ExpectedMembers|
       |Spouse         |
-    And I verify filing jointly with enter the name question on the Tax Status Elmo page in "English"
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status Elmo page in "English"
+    And I verify filing jointly with enter the name question on the Tax Status page in "English"
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status page in "English"
       |ExpectedMembers|
       |Spouse         |
 #    Step 10
-    And I verify will you claim dependents question on the Tax Status Elmo page for "Primary" in "English"
-    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status Elmo page
+    And I verify will you claim dependents question on the Tax Status page for "Primary" in "English"
+    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status page
 #    Step 11
     Then I select "Yes" for will claim dependents question
-    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
-    And I verify who will be claimed question on the Tax Status Elmo page for "Primary" in "English"
-    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
-    And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "English"
-    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status page
+    And I verify who will be claimed question on the Tax Status page for "Primary" in "English"
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status page
+    And I verify who will be claimed with enter the name question on the Tax Status page in "English"
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status page
 #    Other Member (Son)
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
-    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status page
+    Then I validate I am on the "Tax status" page
 #    Step 4 - Other member
-    And I verify the header for "Son" Member on the Tax Status Elmo page in "English"
+    And I verify the header for "Son" Member on the Tax Status page in "English"
 #    Step 5 - Other member
-    And I verify will you be claimed question on the Tax Status Elmo page for "Son" in "English"
+    And I verify will you be claimed question on the Tax Status page for "Son" in "English"
 #    Step 6 - Other member
     Then I select "Yes" for will you be claimed as dependent question
-    And I verify who will claim you question on the Tax Status Elmo page for "Son" in "English"
+    And I verify who will claim you question on the Tax Status page for "Son" in "English"
     Then I select "Someone else" for who will claim as dependent question
-    And I verify enter the name question on the Tax Status Elmo page for "Son" in "English"
+    And I verify enter the name question on the Tax Status page for "Son" in "English"
 #    Step 7 - Other member
     Then I select "No" for will you be claimed as dependent question
-    And I verify file tax return question on the Tax Status Elmo page for "Son" in "English"
+    And I verify file tax return question on the Tax Status page for "Son" in "English"
 #    Step 8 - Other member
     Then I select "Yes" for will file tax return question
-    And I verify select tax filing status question on the Tax Status Elmo page in "English"
+    And I verify select tax filing status question on the Tax Status page in "English"
 #    Step 9 - Other member
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with question on the Tax Status Elmo page for "Son" in "English"
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    And I verify who will you be filing jointly with question on the Tax Status page for "Son" in "English"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
-    And I verify who will you be filing jointly with "" selected on the Tax Status Elmo page in "English"
+    And I verify who will you be filing jointly with "" selected on the Tax Status page in "English"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
-    Then I select "Someone else" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Someone else" selected on the Tax Status Elmo page in "English"
+    Then I select "Someone else" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Someone else" selected on the Tax Status page in "English"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
-    And I verify filing jointly with enter the name question on the Tax Status Elmo page in "English"
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status Elmo page in "English"
+    And I verify filing jointly with enter the name question on the Tax Status page in "English"
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status page in "English"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
 #    Step 10 - Other member
-    And I verify will you claim dependents question on the Tax Status Elmo page for "Son" in "English"
-    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status Elmo page
+    And I verify will you claim dependents question on the Tax Status page for "Son" in "English"
+    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status page
 #    Step 11 - Other member
     Then I select "Yes" for will claim dependents question
-    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
-    And I verify who will be claimed question on the Tax Status Elmo page for "Son" in "English"
-    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
-    And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "English"
-    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status page
+    And I verify who will be claimed question on the Tax Status page for "Son" in "English"
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status page
+    And I verify who will be claimed with enter the name question on the Tax Status page in "English"
+    Then I select "Someone else" for who will be claimed as dependent question on the Tax Status page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-1829 @PageTextTaxStatusElmoPage
+  @SLER-1829 @PageTextTaxStatusElmoPage @TAMSmokeExch
   Scenario: SLER-1829 I need to see the updated page so that my Tax Status choices can be collected - Spanish
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
 #    Step 3
-    And I verify Save and Back buttons on the Tax Status Elmo page in "Spanish"
+    And I verify Save and Back buttons on the Tax Status page in "Spanish"
 #    Step 4
-    And I verify the header for "Primary" Member on the Tax Status Elmo page in "Spanish"
+    And I verify the header for "Primary" Member on the Tax Status page in "Spanish"
 #    Step 5
-    And I verify will you be claimed question on the Tax Status Elmo page for "Primary" in "Spanish"
+    And I verify will you be claimed question on the Tax Status page for "Primary" in "Spanish"
 #    Step 6
     Then I select "Yes" for will you be claimed as dependent question
-    And I verify who will claim you question on the Tax Status Elmo page for "Primary" in "Spanish"
+    And I verify who will claim you question on the Tax Status page for "Primary" in "Spanish"
     Then I select "Otra persona" for who will claim as dependent question
-    And I verify enter the name question on the Tax Status Elmo page for "Primary" in "Spanish"
+    And I verify enter the name question on the Tax Status page for "Primary" in "Spanish"
 #    Step 7
     Then I select "No" for will you be claimed as dependent question
-    And I verify file tax return question on the Tax Status Elmo page for "Primary" in "Spanish"
+    And I verify file tax return question on the Tax Status page for "Primary" in "Spanish"
 #    Step 8
     Then I select "Yes" for will file tax return question
-    And I verify select tax filing status question on the Tax Status Elmo page in "Spanish"
+    And I verify select tax filing status question on the Tax Status page in "Spanish"
 #    Step 9
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with question on the Tax Status Elmo page for "Primary" in "Spanish"
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    And I verify who will you be filing jointly with question on the Tax Status page for "Primary" in "Spanish"
       |ExpectedMembers|
       |Spouse         |
-    And I verify who will you be filing jointly with "" selected on the Tax Status Elmo page in "Spanish"
+    And I verify who will you be filing jointly with "" selected on the Tax Status page in "Spanish"
       |ExpectedMembers|
       |Spouse         |
-    Then I select "Otra persona" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Otra persona" selected on the Tax Status Elmo page in "Spanish"
+    Then I select "Otra persona" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Otra persona" selected on the Tax Status page in "Spanish"
       |ExpectedMembers|
       |Spouse         |
-    And I verify filing jointly with enter the name question on the Tax Status Elmo page in "Spanish"
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status Elmo page in "Spanish"
+    And I verify filing jointly with enter the name question on the Tax Status page in "Spanish"
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status page in "Spanish"
       |ExpectedMembers|
       |Spouse         |
 #    Step 10
-    And I verify will you claim dependents question on the Tax Status Elmo page for "Primary" in "Spanish"
-    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status Elmo page
+    And I verify will you claim dependents question on the Tax Status page for "Primary" in "Spanish"
+    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status page
 #    Step 11
     Then I select "Yes" for will claim dependents question
-    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
-    And I verify who will be claimed question on the Tax Status Elmo page for "Primary" in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
-    And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status page
+    And I verify who will be claimed question on the Tax Status page for "Primary" in "Spanish"
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status page
+    And I verify who will be claimed with enter the name question on the Tax Status page in "Spanish"
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status page
 #    Other Member (Son)
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I wait for 500 milliseconds
-    Then I validate I am on the "Tax status Elmo" page
+    Then I click Save and Continue on Tax Status page
+    Then I validate I am on the "Tax status" page
 #    Step 4 - Other member
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Tax status Elmo" page
-    And I verify the header for "Son" Member on the Tax Status Elmo page in "Spanish"
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Son" Member on the Tax Status page in "Spanish"
 #    Step 5 - Other member
-    And I verify will you be claimed question on the Tax Status Elmo page for "Son" in "Spanish"
+    And I verify will you be claimed question on the Tax Status page for "Son" in "Spanish"
 #    Step 6 - Other member
     Then I select "Yes" for will you be claimed as dependent question
-    And I verify who will claim you question on the Tax Status Elmo page for "Son" in "Spanish"
+    And I verify who will claim you question on the Tax Status page for "Son" in "Spanish"
     Then I select "Otra persona" for who will claim as dependent question
-    And I verify enter the name question on the Tax Status Elmo page for "Son" in "Spanish"
+    And I verify enter the name question on the Tax Status page for "Son" in "Spanish"
 #    Step 7 - Other member
     Then I select "No" for will you be claimed as dependent question
-    And I verify file tax return question on the Tax Status Elmo page for "Son" in "Spanish"
+    And I verify file tax return question on the Tax Status page for "Son" in "Spanish"
 #    Step 8 - Other member
     Then I select "Yes" for will file tax return question
-    And I verify select tax filing status question on the Tax Status Elmo page in "Spanish"
+    And I verify select tax filing status question on the Tax Status page in "Spanish"
 #    Step 9 - Other member
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with question on the Tax Status Elmo page for "Son" in "Spanish"
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    And I verify who will you be filing jointly with question on the Tax Status page for "Son" in "Spanish"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
-    And I verify who will you be filing jointly with "" selected on the Tax Status Elmo page in "Spanish"
+    And I verify who will you be filing jointly with "" selected on the Tax Status page in "Spanish"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
-    Then I select "Otra persona" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Otra persona" selected on the Tax Status Elmo page in "Spanish"
+    Then I select "Otra persona" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Otra persona" selected on the Tax Status page in "Spanish"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
-    And I verify filing jointly with enter the name question on the Tax Status Elmo page in "Spanish"
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
-    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status Elmo page in "Spanish"
+    And I verify filing jointly with enter the name question on the Tax Status page in "Spanish"
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
+    And I verify who will you be filing jointly with "Spouse" selected on the Tax Status page in "Spanish"
       |ExpectedMembers|
       |Spouse         |
       |Primary        |
 #    Step 10 - Other member
-    And I verify will you claim dependents question on the Tax Status Elmo page for "Son" in "Spanish"
-    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status Elmo page
+    And I verify will you claim dependents question on the Tax Status page for "Son" in "Spanish"
+    And I verify will you claim dependents Yes "is not" and No "is not" selected on the Tax Status page
 #    Step 11 - Other member
     Then I select "Yes" for will claim dependents question
-    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status Elmo page
-    And I verify who will be claimed question on the Tax Status Elmo page for "Son" in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
-    And I verify who will be claimed with enter the name question on the Tax Status Elmo page in "Spanish"
-    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status Elmo page
+    And I verify will you claim dependents Yes "is" and No "is not" selected on the Tax Status page
+    And I verify who will be claimed question on the Tax Status page for "Son" in "Spanish"
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status page
+    And I verify who will be claimed with enter the name question on the Tax Status page in "Spanish"
+    Then I select "Otra persona" for who will be claimed as dependent question on the Tax Status page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

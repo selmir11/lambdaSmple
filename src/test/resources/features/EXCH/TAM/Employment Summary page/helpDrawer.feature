@@ -46,7 +46,8 @@ Feature: Page Text-Income Opt Out Page
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I validate I am on the "Employment Summary" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
+    And I verify the header for Primary Member on the Employment Summary page in "English"
 
   @SLER-920 @HelpDrawerEmploymentSummaryPage
   Scenario: SLER-920 Validate help drawer text on the Employment Summary page - English

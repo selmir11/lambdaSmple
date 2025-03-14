@@ -7,7 +7,7 @@ Feature: Medical Plan Compare page related tests
     And I validate I am on the "Login" page
 
    @SLER-46
-  Scenario: SLER-46 - Validate the Navigation and Functionality of Compare Plans Link (Medical) - formerly RT-1971 - 2 check boxes
+  Scenario: SLER-46 - Validate the Navigation and Functionality of Compare Plans Link (Medical) - 2 check boxes
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -226,7 +226,7 @@ Feature: Medical Plan Compare page related tests
 
 
    @SLER-726 @MedicalCompareDetailTextVerification
-  Scenario: SLER-726 - Validate the detail information of the Compare Plans page (Medical) - formerly RT-1977
+  Scenario: SLER-726 - Validate the detail information of the Compare Plans page (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -541,30 +541,30 @@ Feature: Medical Plan Compare page related tests
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Son" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Son" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
 
 # ohC
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page

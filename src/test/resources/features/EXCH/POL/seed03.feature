@@ -47,7 +47,7 @@ Feature: Seed03 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -69,7 +69,7 @@ Feature: Seed03 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -191,7 +191,7 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-94-WIP-@R4V @n1
+  @SLER-94-WIP-@R4V @n11
   Scenario: RT-2075 ENR-EXCH: APPS - REMOVE MEMBER (LCE: Divorce) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -292,7 +292,7 @@ Feature: Seed03 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -397,7 +397,7 @@ Feature: Seed03 - Exchange
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I click continue on the Immigration Status page

@@ -42,7 +42,7 @@ Feature: Page Text-Income Opt Out Page
 
     And I validate I am on the "Employment Income" page
 
-  @SLER-240 @PageTextEmploymentIncome @TAMSmoke
+  @SLER-240 @PageTextEmploymentIncome @TAMSmokeExch
   Scenario: SLER-240 I can see Employment Income's Header and footer - English
     Then I validate I am on the "Employment Income" page
     And I verify text on the "Exch" "Header" in "English"
@@ -516,7 +516,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2233
-  Scenario: ELIG-Self-Employment (MA Questions)-Page Text [RT-1023]
+  Scenario: SLER-2233 ELIG-Self-Employment (MA Questions)-Page Text [RT-1023]
     Then I click continue on the Employment Info Page
     And I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -524,11 +524,11 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Additional Income page
     Then I click None of these as deduction option and continue
     And I select the projected income option "No" and continue
-    And I select the option "No" to claim as dependent
-    And I select the option "No" to file federal income tax return next year
-    Then I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    And I click continue on the ELMO health coverage page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "No" for will file tax return question
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    And I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -559,3 +559,52 @@ Feature: Page Text-Income Opt Out Page
       | Ayuda para entender esta página                   |
       | Sí                                                |
       | No                                                |
+
+
+  @SLER-2303
+  Scenario: SLER-2303 As a Exch account user on the Employment Income details page, I want to see my dynamic data so that I can verify my employer income information
+    Then I Verify the page text on Employment Income page, which is in initial state
+      | Income:                                          |
+      | Employment Income                                |
+      | Do you have a job or are you currently employed? |
+      | Yes                                              |
+      | No                                               |
+      | Go back                                          |
+      | Save and continue                                |
+      | Help                                             |
+    Then I select the option "Yes" to employment
+    Then I Verify the page text on Employment Income page after clicking yes to employment
+      | Income:                                          |
+      | Employment Income                                |
+      | Do you have a job or are you currently employed? |
+      | Yes                                              |
+      | No                                               |
+      | Go back                                          |
+      | Save and continue                                |
+      | Help                                             |
+      | Is this job self-employment?                     |
+      | Yes                                              |
+      | No                                               |
+
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I validate I am on the "Additional income" page
+    Then I click on the Back button on the Additionalincomepage
+    Then I verify that the No Employment button is enabled
+
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "333 Some Road" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "1500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click Edit on Income Summary row 1
+    Then I validate that the employment status label is not present
+    And I select the option "Yes" to self employment
+    And I click continue on the Employment Info Page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    Then I validate that the employment status label is not present
+    And I click on Sign Out in the Header for "Elmo"
+
+
+

@@ -361,8 +361,13 @@ public class DbSteps {
         dbValidations.validateDeductionAmount(kind, amount, frequency);
     }
 
+    @Then("I validate the Overridden APTC amount is {string} in DB")
+    public void iValidateOverriddenAmount(String overriddenAmt) {dbValidations.validateOverriddenAmount(overriddenAmt);}
 
-
+    @Then("I validate {int} VLP calls have been made for the member")
+    public void iValidateVLPCallsHaveBeenMadeForTheMember(int number) {
+        dbValidations.verifyVLPCallsMadeForMember(number);
+    }
 }
 
 

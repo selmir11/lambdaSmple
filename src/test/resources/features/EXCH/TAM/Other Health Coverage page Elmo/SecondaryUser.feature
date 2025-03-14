@@ -74,18 +74,18 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
   @SLER-714 @PageTextOtherHealthInsurancePage
   Scenario: SLER-714 I Validate the page text is different for a secondary user on the Other Health Coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     Then I verify text on the Other Health Coverage page in "Spanish Secondary"

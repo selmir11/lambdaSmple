@@ -39,7 +39,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -162,7 +162,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -189,8 +189,8 @@ Feature: EXCH Seed Data ALL
     And I select "Single" tax filing status
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -310,7 +310,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -332,7 +332,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -436,7 +436,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -458,7 +458,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -498,12 +498,12 @@ Feature: EXCH Seed Data ALL
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -590,7 +590,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -611,7 +611,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -633,7 +633,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -656,7 +656,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -749,7 +749,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -770,7 +770,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -792,7 +792,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -815,7 +815,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -871,18 +871,18 @@ Feature: EXCH Seed Data ALL
     And I select the second dependent
     And I select the third dependent
     And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -972,7 +972,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -993,7 +993,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1019,7 +1019,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1044,7 +1044,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "InLaw"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1103,18 +1103,18 @@ Feature: EXCH Seed Data ALL
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -1209,7 +1209,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1231,7 +1231,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1255,7 +1255,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1280,7 +1280,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "InLaw"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1339,18 +1339,18 @@ Feature: EXCH Seed Data ALL
     And I select spouse to file taxes jointly
     And I select "No" to claim dependents
     And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -1458,7 +1458,7 @@ Feature: EXCH Seed Data ALL
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1480,7 +1480,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1518,12 +1518,12 @@ Feature: EXCH Seed Data ALL
     And I select "Yes" to claim dependents
     And I select the first dependent
     And I click save and continue on tax status page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -1603,7 +1603,7 @@ Feature: EXCH Seed Data ALL
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" for Citizen option
@@ -1621,7 +1621,7 @@ Feature: EXCH Seed Data ALL
     And I select "Yes" for CO Resident option
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" for Citizen option
@@ -1644,7 +1644,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Grandaughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -1669,7 +1669,7 @@ Feature: EXCH Seed Data ALL
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Grandson"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page

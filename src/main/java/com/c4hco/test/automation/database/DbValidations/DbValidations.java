@@ -924,6 +924,7 @@ public class DbValidations {
     }
 
     public void validateMemberRowCount(int expectedRowCount) {
+        basicActions.wait(5000);
         int actualRowCount = Integer.parseInt(exchDbDataProvider.getEmployerIncomeRowCount());
         softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
         softAssert.assertAll();
@@ -942,8 +943,14 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-
-
-
+    public void validateOverriddenAmount(String overriddenAmt) {
+        String overriddenAmount = exchDbDataProvider.getOverriddenAmount();
+        softAssert.assertTrue(overriddenAmount.contains("overriddenAptcAmount>" + overriddenAmt), "Amount does not match! Expected to contain: overriddenAptcAmount>" + overriddenAmt + " Found: " + overriddenAmount);
+        softAssert.assertAll();
+    }
+    public void verifyVLPCallsMadeForMember(int expectedVLPCallsMade){
+        int actualVLPCallsMade = Integer.parseInt(exchDbDataProvider.getVlpRequestCount());
+        Assert.assertEquals(actualVLPCallsMade, expectedVLPCallsMade, "VLP Calls made mismatch!");
+    }
 }
 

@@ -76,7 +76,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSeasonal-NoButton")
     WebElement btnIsSeasonalNo;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-YesButton")
+    @FindBy(id = "ELIG-summaryDetails-YesButton")
     WebElement btnIncomeSameYes;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-NoButton")
@@ -87,6 +87,9 @@ public class EmploymentInfoPage {
 
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcons;
+
+    @FindBy(xpath = "//*[@class='company-column-value']")
+    List<WebElement> Companynames;
 
     @FindBy(css = ".drawer-heading .body-text-1")
     WebElement helpDrawerHeaderHelp;
@@ -189,6 +192,8 @@ public class EmploymentInfoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinnerOverlay;
+    @FindBy(xpath = "//label[@for='ELIG-Exch-EmploymentIncomeJob-IsEmployed']")
+    WebElement employmentStatusLabel;
 
 
     public void clickEditUpdateLink(int employer) {
@@ -213,8 +218,8 @@ public class EmploymentInfoPage {
     }
 
     public void isUserSelfEmplyed(String selfEmploymentOption) {
-        basicActions.waitForElementToBeClickable(btnYesSelfEmployed, 20);
-        basicActions.waitForElementToBeClickable(btnNoSelfEmployed, 20);
+        basicActions.waitForElementToBeClickable(btnYesSelfEmployed, 60);
+        basicActions.waitForElementToBeClickable(btnNoSelfEmployed, 60);
         switch (selfEmploymentOption) {
             case "Yes":
                 btnYesSelfEmployed.click();
@@ -253,6 +258,12 @@ public class EmploymentInfoPage {
                 Assert.fail("No matching member found in the member list.");
             }
         }
+        List<String> employerNames = SharedData.getCompanyname();
+        if (employerNames == null) {
+            employerNames = new ArrayList<>();
+        }
+        employerNames.add(companyName);
+        SharedData.setCompanyname(employerNames);
         txtCompanyName.sendKeys(companyName);
 
         txtAddressOne.sendKeys("123 Test Address");
@@ -303,9 +314,14 @@ public class EmploymentInfoPage {
 
     public void genericEmploymentInfo(String addressline1, String city, String state, String zipcode, String Salary, String Frequency) {
 
-
         basicActions.waitForElementToBePresent(txtHeaderPart1, 20);
         String companyName = getUniqueString(8) + "Company";
+        List<String> employerNames = SharedData.getCompanyname();
+        if (employerNames == null) {
+            employerNames = new ArrayList<>();
+        }
+        employerNames.add(companyName);
+        SharedData.setCompanyname(employerNames);
         String name = txtHeaderPart1.getText();
 
         MemberDetails primaryMem = SharedData.getPrimaryMember();
@@ -337,6 +353,7 @@ public class EmploymentInfoPage {
 
         dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
+
     }
 
     public void enterEmploymentIncome(String Salary) {
@@ -375,8 +392,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToDisappear(spinner,60);
-        basicActions.waitForElementToDisappear(spinnerOverlay,60);
+        basicActions.waitForElementToDisappear(spinner,90);
+        basicActions.waitForElementToDisappear(spinnerOverlay,90);
         basicActions.waitForElementToBePresent(btnContinue, 90);
         basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(btnContinue);
@@ -921,6 +938,33 @@ public class EmploymentInfoPage {
             Assert.assertTrue(optionExists, "Option " + expectedOption + " was not found in the dropdown");
         }
     }
+
+
+
+    public void validateCompanyName() {
+        basicActions.wait(500);
+        basicActions.waitForElementListToBePresent(Companynames, 30);
+        List<String> actualList = new ArrayList<>();
+        for (WebElement element : Companynames) {
+            actualList.add(element.getText().trim());
+        }
+        List<String> expectedList = SharedData.getCompanyname();
+        softAssert.assertEquals(actualList, expectedList, "Company names do not match! expected: "+expectedList+ " actual: "+actualList );
+        softAssert.assertAll();
+    }
+
+
+    public void verifyNoEmployedButtonIsEnabled() {
+        basicActions.waitForElementToBePresent(btnNoEmployed, 10);
+        softAssert.assertTrue(btnNoEmployed.isEnabled(), "'No Employment' button should be enabled");
+        softAssert.assertAll();
+    }
+
+    public void validateEmploymentStatusLabelAbsence() {
+        softAssert.assertTrue(basicActions.waitForElementToDisappear(employmentStatusLabel,20), "Employment Status Label is present, but it should NOT be.");
+        softAssert.assertAll();
+    }
+
 }
 
 

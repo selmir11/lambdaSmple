@@ -26,7 +26,7 @@ Feature: Regression Tests that require COCO Seed 1
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -89,10 +89,10 @@ Feature: Regression Tests that require COCO Seed 1
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      | 1:01012025 |
-    And I update the Financial Start date of member
-      | 1:01012025 |
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
@@ -108,18 +108,6 @@ Feature: Regression Tests that require COCO Seed 1
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
 
-#UI Validation
-    Given I open the login page on the "login" portal
-    Then I validate I am on the "Login" page
-    And I enter valid credentials to login
-    Then I validate I am on the "CoCo Welcome" page
-    Then I click continue signing in on the CAC Screener page
-    Then I validate I am on the "CoCo Welcome" page
-    And I select year "2025" from My Current Plan container
-    And I Validate the correct enrolled plans are displayed on coco welcome page
-    And I click on "My Plans" link on welcome page
-    And I validate enrolled medical plans details on my policies page coco
-    And I click on Sign Out in the Header for "Elmo"
 
 # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
@@ -129,8 +117,20 @@ Feature: Regression Tests that require COCO Seed 1
     And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
     And I validate the coco ob834 medical file data
 
+    #UI Validation
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "CoCo Welcome" page
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on "My Plans" link on welcome page
+    And I validate enrolled medical plans details on my policies page coco
+    And I click on Sign Out in the Header for "Elmo"
+
   @SLCR-780 @pol_coco_passed
-  Scenario: CCRT-106:DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
+  Scenario: CCRT-106 - DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - NAME (FIRST. MIDDLE, LAST)
     Given I open the login page on the "login" portal
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -144,7 +144,7 @@ Feature: Regression Tests that require COCO Seed 1
     Then I update full name of member with prefix "Primary" in coco
     And I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
     And I select continue on the Additional Income CoCO page
@@ -162,11 +162,11 @@ Feature: Regression Tests that require COCO Seed 1
     And I click Continue on the Application Results Page CoCo
     And I click close on open enrollment ended pop up modal
 
-    #UI Validation  Blocked by POL-9532
-#    Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
-#    Then I validate I am on the "CoCo Welcome" page
-#    And I Validate the correct enrolled plans are displayed on coco welcome page
-#    And I click on Sign Out in the Header for "Elmo"
+    #UI Validation
+    Then I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I Validate the correct enrolled plans are displayed on coco welcome page
+    And I click on Sign Out in the Header for "Elmo"
 
   # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
@@ -199,7 +199,7 @@ Feature: Regression Tests that require COCO Seed 1
     And I enter residential address details for additional member "101 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Newborn"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option

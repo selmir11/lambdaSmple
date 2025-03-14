@@ -44,7 +44,7 @@ Feature: Help Drawer-Income Summary Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
-    And I set the browser resolution to 2000 x 800
+    And I set the browser resolution to 1536 x 864
 
   @SLER-956 @HelpDrawerIncomeSummaryPage
   Scenario: SLER-956 Validate help drawer text on the Income Summary page - English

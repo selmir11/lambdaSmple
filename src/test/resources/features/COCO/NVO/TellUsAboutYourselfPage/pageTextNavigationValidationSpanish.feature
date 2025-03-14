@@ -23,7 +23,7 @@ Feature: Spanish- Tell us about yourself page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -43,12 +43,11 @@ Feature: Spanish- Tell us about yourself page
     Then I select add another family member on the Family Overview page
     Then I enter details on tell us about additional members of your household page with "Wife", "03051989", "Male", and applying "Yes"
       | Primary:Spouse |
-    And I change the language from header to "Spanish"
     And I click continue on Tell us about additional members of your household page
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -59,6 +58,7 @@ Feature: Spanish- Tell us about yourself page
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
+    And I change the language from header to "Spanish"
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I validate I am on the "CoCo Tell us about yourself" page
     And I validate the page text on Tell us about Yourself "Spanish"

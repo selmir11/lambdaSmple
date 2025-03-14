@@ -18,6 +18,16 @@ public class ManageAuthorizedUsersSteps {
         manageAuthorizedUsersPage.clickAddAuthorizedUserLink();
     }
 
+    @Then("I click the Resend Invite link")
+    public void iClickResendInviteLink(){
+        manageAuthorizedUsersPage.clickResendInviteLink();
+    }
+
+    @And("I verify the Invite Sent confirmation message")
+    public void iVerifyInviteSentMessage(){
+        manageAuthorizedUsersPage.verifyInviteSentMessage();
+    }
+
     @And("I search for an authorized user {string}")
     public void iSearchForAuthorizedUserNamed(String authorizedUserName){
         manageAuthorizedUsersPage.searchForAuthorizedUserNamed(authorizedUserName);
@@ -31,5 +41,20 @@ public class ManageAuthorizedUsersSteps {
     @And("I clear the search box on the Manage Authorized Users page")
     public void iClearSearchBox(){
         manageAuthorizedUsersPage.clearSearchBox();
+    }
+
+    @And("I verify the admin staff details displayed")
+    public void iVerifyAdminStaffDetails(){
+        manageAuthorizedUsersPage.verifyAdminStaffDetails();
+    }
+
+    @Then("I click the Remove link for admin staff")
+    public void iClickRemoveLinkAdminStaff(){
+        manageAuthorizedUsersPage.clickRemoveLinkAdminStaff();
+    }
+
+    @And("I verify the admin staff invite is removed")
+    public void iVerifyAdminStaffRemoved(){
+        manageAuthorizedUsersPage.verifyAdminStaffRemoved();
     }
 }
