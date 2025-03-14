@@ -238,7 +238,7 @@ Feature: Seed02 - Coco
       And I click Continue on my own button from Manage who helps you page
       Then I validate I am on the "CoCo Family Overview" page
       Then I click EditUpdate on Family Overview page for "Spouse"
-      And I update member date of birth to "03121995"
+      And I update the date of birth to "03121995" for "Spouse"
       Then I click Save and Continue only on the tell us about yourself page
       And I click continue on the Add info for yourself page
       And I click save and continue on the Race and Ethnicity page

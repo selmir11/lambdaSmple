@@ -252,3 +252,33 @@ Feature: Seed03 - COCO
    And I click Continue on the Declarations And Signature Page CoCo
    Then I validate I am on the "Application Results CoCo" page
    And I click on Sign Out in the Header for "Elmo"
+
+   @SLCR-825-WIP
+  Scenario: CCRT-108 - ENR-COCO: AUTO PROCESS POLICY - REMOVE MEMBER (LCE: Death) DEATH OF DEPENDENT
+     Given I open the login page on the "login" portal
+     And I validate I am on the "Login" page
+     And I enter valid credentials to login
+     Then I click continue signing in on the CAC Screener page
+     Then I validate I am on the "CoCo Welcome" page
+     And I click Make changes button on Welcome Page
+     Then I validate I am on the "Find Expert Help" page
+     And I click Continue on my own button from Manage who helps you page
+     Then I validate I am on the "CoCo Family Overview" page
+     Then I click EditUpdate on Family Overview page for "Daughter"
+     And I update applying for coverage option to "No"
+     And I click continue on Tell us about additional members of your household page
+     And I click continue on the Additional information for additional member page
+     And I click save and continue on the Race and Ethnicity page
+     And I click continue on the Employment income page
+     And I select continue on the Additional Income CoCO page
+     And I select continue on the Deductions CoCo page
+     And I select continue on the income Summary CoCo page
+     And I select continue on the Family Overview page
+     Then I validate I am on the "CoCo life change event" page
+     And I select "Death:Daughter" life change event with event date of "Today"
+     And I select continue on the LCE page
+     Then I validate I am on the "CoCo Declarations and Signature" page
+     And I enter a valid signature
+     And I click Continue on the Declarations And Signature Page CoCo
+     Then I validate I am on the "Application Results CoCo" page
+     And I click on Sign Out in the Header for "Elmo"
