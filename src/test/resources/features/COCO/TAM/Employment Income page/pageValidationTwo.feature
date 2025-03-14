@@ -25,8 +25,8 @@ Feature: Tests related to the Employment Income page Validation
     Then I validate I am on the "CoCo Employment Income" page
     And I verify the header for additional member on the CoCo Employment income page in "English"
 
-  @SLCR-834
-  Scenario: SLCR-834 Page Validation-Additional Member Employment Income
+  @SLCR-834 @test
+  Scenario: SLCR-834 Page Validation-Additional Member Employment Income - English
     And I click continue on the Employment income page
     And I verify validation text on the CoCo Employment Income page
       | Text                                   | fontSize | fontFamily            | fontWeight | color   |
@@ -39,6 +39,26 @@ Feature: Tests related to the Employment Income page Validation
       | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
       | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
       | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-835 @test
+  Scenario: SLCR-835 Page Validation-Additional Member Employment Income - Spanish
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the header for additional member on the CoCo Employment income page in "Spanish"
+    And I click continue on the Employment income page
+    And I verify validation text on the CoCo Employment Income page
+      | Text                                    | fontSize | fontFamily            | fontWeight | color   |
+      |Seleccione una de las siguientes opciones| 14px     | "PT Sans", sans-serif | 400        | #960000 |
+    And I select "Yes" employment option
+    And I click continue on the Employment income page
+    And I verify validation text on the CoCo Employment Income page
+      | Text                                    | fontSize | fontFamily            | fontWeight | color   |
+      |Esta cantidad es obligatoria             | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      |Seleccione una de las siguientes opciones| 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      |Seleccione una de las siguientes opciones| 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      |Seleccione una de las siguientes opciones| 14px     | "PT Sans", sans-serif | 400        | #960000 |
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
