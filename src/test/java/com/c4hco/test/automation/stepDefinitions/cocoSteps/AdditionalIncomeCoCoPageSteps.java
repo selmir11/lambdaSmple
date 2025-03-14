@@ -75,25 +75,18 @@ public class AdditionalIncomeCoCoPageSteps {
     public void iVerifyAddtlIncomeEnteredData(String addtlIncomeOption, String Amount, String Frequency) {additionalIncomeCoCoPage.verifyAddtlIncomeEnteredData(addtlIncomeOption, Amount, Frequency);}
 
     @Then("I verify Additional Income checkbox COCO in {string} state")
-    public void iVerifyStateOfAddIncomeCheckboxCOCO(String state){
-        additionalIncomeCoCoPage.verifyAddtlIncomeOptionCheckboxCOCO(state);}
+    public void iVerifyStateOfAddIncomeCheckboxCOCO(String state){additionalIncomeCoCoPage.verifyAddtlIncomeOptionCheckboxCOCO(state);}
 
     @Then("I verify Additional Income CoCo error format for {string}")
     public void iVerifyErrorFormat(String incomeType){additionalIncomeCoCoPage.verifyErrorFormat(incomeType);}
 
     @Then("I validate the error text with its properties and the error icon on the CoCo Additional Income page")
-    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){
-        additionalIncomeCoCoPage.validateErrorMessageAndItsProperties(dataTable);
-    }
+    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){additionalIncomeCoCoPage.validateErrorMessageAndItsProperties(dataTable);}
 
-    @Then("I verify no error message gets displayed for pension additional income & amount gets converted to {string}")
-    public void iVerifyTheAmountAndNoErrorMessageDisplaying(String amount){
-        additionalIncomeCoCoPage.verifyTheAmountAndNoErrorMessageDisplaying(amount);
-    }
+    @Then("I verify no error message gets displayed for {string} CoCo Additional Income & amount gets converted to {string} on CoCo Additional Income page")
+    public void iVerifyTheAmountAndNoErrorMessageDisplaying(String addtlIncomeOption, String amount){additionalIncomeCoCoPage.verifyTheAmountAndNoErrorMessageDisplaying(addtlIncomeOption, amount);}
 
-    @Then("I validate that I am able to see the page in {string} so that I can review and update the income information")
-    public void i_validate_that_i_am_able_to_see_the_page_in_so_that_i_can_review_and_update_the_income_information(String language, List<String> expectedText) {
-      additionalIncomeCoCoPage.ValidateLanguageDisplayedInPage(language, expectedText);
-    }
+    @Then("I verify Additional Income CoCo amount Minimum and Maximum for {string} in {string}")
+    public void iVerifyMinMax(String addtlIncomeOption, String language){additionalIncomeCoCoPage.verifyMinMax(addtlIncomeOption, language);}
 
 }
