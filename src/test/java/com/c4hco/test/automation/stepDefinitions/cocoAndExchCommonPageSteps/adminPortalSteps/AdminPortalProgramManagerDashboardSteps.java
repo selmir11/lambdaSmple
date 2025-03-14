@@ -27,5 +27,14 @@ public class AdminPortalProgramManagerDashboardSteps {
         adminPortalProgramManagerPage.validateTheUpdateSuccessfulTextIsDisplayed();
     }
 
+    @Then("I validate the assistnet Data in Profile summary container")
+    public void iValidateTheAssistnetDataInProfileSummaryContainer() {
+        adminPortalProgramManagerPage.validateTheAssistnetDataInProfileSummaryContainer();
+    }
 
+
+    @And("I validate the assistNet Organization Details in admin portal")
+    public void iValidateTheAssistNetOrganizationDetailsInAdminPortal() {
+        adminPortalProgramManagerPage.validateTheAssistNetOrganizationDetailsInAdminPortal();
+    }
 }
