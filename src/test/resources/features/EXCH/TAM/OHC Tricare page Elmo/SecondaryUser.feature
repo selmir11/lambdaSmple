@@ -74,16 +74,16 @@ Feature: Secondary User-OHC TRICARE Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Tricare" page
 
-  @SLER-495 @SecondaryUserOhcTricareElmo @TAMSmoke
+  @SLER-495 @SecondaryUserOhcTricareElmo @TAMSmokeExch
   Scenario: SLER-495 I can see Tricare's dynamic data for Primary and Secondary user - English
     And I verify the "First Section" Tricare page data in "English"
     Then I click "Yes" for currently enrolled in Tricare question
@@ -92,11 +92,11 @@ Feature: Secondary User-OHC TRICARE Elmo Page
     And I verify the "Third Section" Tricare page data in "English"
     Then I enter the end date as "Current Month" on the Tricare page
     Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Tricare" page
     And I verify the "First Section Secondary" Tricare page data in "English"
     Then I click "Yes" for currently enrolled in Tricare question
     And I verify the "Second Section Secondary" Tricare page data in "English"
@@ -118,11 +118,11 @@ Feature: Secondary User-OHC TRICARE Elmo Page
     And I verify the "Third Section" Tricare page data in "Spanish"
     Then I enter the end date as "Current Month" on the Tricare page
     Then I click "No" for insurance ending voluntary for Tricare question
-    Then I click continue on the Elmo OHC Tricare page
+    Then I click continue on the OHC Tricare page
 
-    Then I select "TRICARE" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    Then I select "TRICARE" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Tricare" page
     And I verify the "First Section Secondary" Tricare page data in "Spanish"
     Then I click "Yes" for currently enrolled in Tricare question
     And I verify the "Second Section Secondary" Tricare page data in "Spanish"

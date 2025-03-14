@@ -41,4 +41,13 @@ public class EmploymentSummaryPageSteps {
 
     @Then("I validate Employment Summary help drawer verbiage in {string}")
     public void iValidateHelp(String language){employmentSummaryPage.validateHelpVerbiage(language);}
+
+    @Then("I validate Employment Summary text in {string}")
+    public void ivalidateTextEmploymentSummaryPage(String language){employmentSummaryPage.validateTextEmploymentSummaryPage(language);}
+
+    @Then("I validate Employment Summary bold text in Employment Summary Page")
+    public void ivalidateBoldTextEmploymentSummaryPage(){employmentSummaryPage.validateBoldTextEmploymentSummaryPage();}
+
+
+
 }

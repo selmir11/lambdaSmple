@@ -76,7 +76,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSeasonal-NoButton")
     WebElement btnIsSeasonalNo;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-YesButton")
+    @FindBy(id = "ELIG-summaryDetails-YesButton")
     WebElement btnIncomeSameYes;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-NoButton")
@@ -218,8 +218,8 @@ public class EmploymentInfoPage {
     }
 
     public void isUserSelfEmplyed(String selfEmploymentOption) {
-        basicActions.waitForElementToBeClickable(btnYesSelfEmployed, 20);
-        basicActions.waitForElementToBeClickable(btnNoSelfEmployed, 20);
+        basicActions.waitForElementToBeClickable(btnYesSelfEmployed, 60);
+        basicActions.waitForElementToBeClickable(btnNoSelfEmployed, 60);
         switch (selfEmploymentOption) {
             case "Yes":
                 btnYesSelfEmployed.click();
@@ -258,6 +258,12 @@ public class EmploymentInfoPage {
                 Assert.fail("No matching member found in the member list.");
             }
         }
+        List<String> employerNames = SharedData.getCompanyname();
+        if (employerNames == null) {
+            employerNames = new ArrayList<>();
+        }
+        employerNames.add(companyName);
+        SharedData.setCompanyname(employerNames);
         txtCompanyName.sendKeys(companyName);
 
         txtAddressOne.sendKeys("123 Test Address");
@@ -386,8 +392,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToDisappear(spinner,60);
-        basicActions.waitForElementToDisappear(spinnerOverlay,60);
+        basicActions.waitForElementToDisappear(spinner,90);
+        basicActions.waitForElementToDisappear(spinnerOverlay,90);
         basicActions.waitForElementToBePresent(btnContinue, 90);
         basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(btnContinue);

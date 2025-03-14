@@ -7,7 +7,7 @@ Feature: UI Page Validation - Plan Results (Dental)
     And I validate I am on the "Login" page
 
   @SLER-1098
-  Scenario: SLER-1098 - RT-1658 - This test case will verify the page content, navigation, and functionality of the Plan Results (Dental) page
+  Scenario: SLER-1098 - This test case will verify the page content, navigation, and functionality of the Plan Results (Dental) page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

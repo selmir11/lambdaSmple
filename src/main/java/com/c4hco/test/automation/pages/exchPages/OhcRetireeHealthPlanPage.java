@@ -4,20 +4,17 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class OhcPeaceCorpsPage_Elmo {
-    BasicActions basicActions;
-    Actions action;
+public class OhcRetireeHealthPlanPage {
+    private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
-    public OhcPeaceCorpsPage_Elmo(WebDriver webDriver){
+    public OhcRetireeHealthPlanPage(WebDriver webDriver){
         basicActions = new BasicActions(webDriver);
-        action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -25,7 +22,7 @@ public class OhcPeaceCorpsPage_Elmo {
     WebElement OhcHeader;
 
     @FindBy(css = ".container .header-2")
-    WebElement OhcPeaceCorpsHeader;
+    WebElement OhcRetireeHeader;
 
     @FindBy(css = ".header-3 .clickable")
     WebElement helpMeLink;
@@ -34,7 +31,7 @@ public class OhcPeaceCorpsPage_Elmo {
     WebElement pleaseEnterTxt;
 
     @FindBy(css = "div > label")
-    List<WebElement> PeaceCorpsQuestionTxt;
+    List<WebElement> retireeQuestionTxt;
 
     @FindBy(css = "lib-error-msg > div")
     List<WebElement> hdrError;
@@ -72,11 +69,11 @@ public class OhcPeaceCorpsPage_Elmo {
     @FindBy(id = "Ohc-Endable-endVoluntary-NoButton")
     WebElement endVoluntaryNo;
 
-    @FindBy(id = "Ohc-Endable-GoBack")
-    WebElement goBackBtn;
-
     @FindBy(id = "Ohc-Endable-SaveAndContinue")
     WebElement saveAndContinueBtn;
+
+    @FindBy(id = "Ohc-Endable-GoBack")
+    WebElement goBackBtn;
 
     @FindBy(css = ".header-3.content-center > a")
     WebElement helpLnk;
@@ -88,7 +85,7 @@ public class OhcPeaceCorpsPage_Elmo {
     WebElement helpDrawerHeaderHelp;
 
     @FindBy(css = ".drawer-heading .drawer-title")
-    WebElement helpDrawerHeaderPeaceCorps;
+    WebElement helpDrawerHeaderRetiree;
 
     @FindBy(css = "div > strong")
     List<WebElement> helpDrawerMainHeaders;
@@ -104,14 +101,14 @@ public class OhcPeaceCorpsPage_Elmo {
 
 
 
-    public void clickSaveAndContinue(){
-        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 50);
-        saveAndContinueBtn.click();
+    public void clickGoBack() {
+        basicActions.waitForElementToBePresent(goBackBtn,50);
+        basicActions.click(goBackBtn);
     }
 
-    public void clickGoBack(){
-        basicActions.waitForElementToBeClickable(goBackBtn, 20);
-        goBackBtn.click();
+    public void clickSaveAndContinue(){
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 20);
+        saveAndContinueBtn.click();
     }
 
     public void clickCurrentlyEnrolledOption(String currentlyEnrolled) {
@@ -219,32 +216,32 @@ public class OhcPeaceCorpsPage_Elmo {
 
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
-    public void verifyHeadersPeaceCorpsOhcPage(String language){
+    public void verifyHeadersRetireeOhcPage(String language){
         switch (language){
             case "English":
-                verifyHeadersPeaceCorpsOhcPageEnglish();
+                verifyHeadersRetireeOhcPageEnglish();
                 break;
             case "Spanish":
-                verifyHeadersPeaceCorpsOhcPageSpanish();
+                verifyHeadersRetireeOhcPageSpanish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyHeadersPeaceCorpsOhcPageEnglish(){
+    public void verifyHeadersRetireeOhcPageEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
+        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Peace Corps");
+        softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertAll();
     }
 
-    public void verifyHeadersPeaceCorpsOhcPageSpanish(){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
+    public void verifyHeadersRetireeOhcPageSpanish(){
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,60);
+        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,60);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Cuerpos de paz (Peace Corps)");
+        softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
         softAssert.assertAll();
     }
 
@@ -311,46 +308,46 @@ public class OhcPeaceCorpsPage_Elmo {
         }
     }
 
-    public void verifyPeaceCorpsPageData(String dataToVerify, String language){
+    public void verifyRetireePageData(String dataToVerify, String language){
         basicActions.waitForElementToBePresent(OhcHeader,15);
         switch (language){
             case "English":
-                verifyPeaceCorpsPageDataDataEnglish(dataToVerify);
+                verifyRetireePageDataEnglish(dataToVerify);
                 break;
             case "Spanish":
-                verifyPeaceCorpsPageDataDataSpanish(dataToVerify);
+                verifyRetireePageDataSpanish(dataToVerify);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
         }
     }
 
-    public void verifyPeaceCorpsPageDataDataEnglish(String dataToVerify){
-        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+    public void verifyRetireePageDataEnglish(String dataToVerify){
+        basicActions.waitForElementToBePresent(OhcHeader,15);
         switch (dataToVerify){
             case "First Section":
-                verifyPeaceCorpsPageDataFirstSectionDataEnglish();
+                verifyRetireePageFirstSectionDataEnglish();
                 break;
             case "Second Section":
-                verifyPeaceCorpsPageDataFirstSectionDataEnglish();
-                verifyPeaceCorpsPageDataSecondSectionDataEnglish();
+                verifyRetireePageFirstSectionDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
                 break;
             case "Third Section":
-                verifyPeaceCorpsPageDataFirstSectionDataEnglish();
-                verifyPeaceCorpsPageDataSecondSectionDataEnglish();
-                verifyPeaceCorpsPageDataThirdSectionDataEnglish();
+                verifyRetireePageFirstSectionDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
+                verifyRetireePageThirdSectionDataEnglish();
                 break;
             case "First Section Secondary":
-                verifyPeaceCorpsPageFirstSectionSecondaryDataEnglish();
+                verifyRetireePageFirstSectionSecondaryDataEnglish();
                 break;
             case "Second Section Secondary":
-                verifyPeaceCorpsPageFirstSectionSecondaryDataEnglish();
-                verifyPeaceCorpsPageDataSecondSectionDataEnglish();
+                verifyRetireePageFirstSectionSecondaryDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
                 break;
             case "Third Section Secondary":
-                verifyPeaceCorpsPageFirstSectionSecondaryDataEnglish();
-                verifyPeaceCorpsPageDataSecondSectionDataEnglish();
-                verifyPeaceCorpsPageThirdSectionSecondaryDataEnglish();
+                verifyRetireePageFirstSectionSecondaryDataEnglish();
+                verifyRetireePageSecondSectionDataEnglish();
+                verifyRetireePageThirdSectionSecondaryDataEnglish();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
@@ -360,88 +357,88 @@ public class OhcPeaceCorpsPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageDataFirstSectionDataEnglish(){
+    public void verifyRetireePageFirstSectionDataEnglish(){
         basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Peace Corps");
+        softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
         softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in Peace Corps coverage");
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"Are you currently enrolled in Peace Corps coverage?");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Please enter the following information about your eligibility or current enrollment in a retiree health plan.");
+        softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"Are you currently enrolled in a retiree health plan?");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageFirstSectionSecondaryDataEnglish(){
+    public void verifyRetireePageSecondSectionDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
-        softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Peace Corps");
-        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
-        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about " + SharedData.getMembers().get(0).getFullName() + "'s eligibility or current enrollment in Peace Corps coverage"));
-        softAssert.assertTrue(PeaceCorpsQuestionTxt.get(0).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " currently enrolled in Peace Corps coverage?"));
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
-        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyPeaceCorpsPageDataSecondSectionDataEnglish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
+        softAssert.assertEquals(retireeQuestionTxt.get(1).getText(),"Will this health insurance end in the next 60 days?");
         softAssert.assertEquals(insuranceEndingYes.getText(),"Yes");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageDataThirdSectionDataEnglish(){
+    public void verifyRetireePageThirdSectionDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(2).getText(),"What day will your coverage end?");
+        softAssert.assertEquals(retireeQuestionTxt.get(2).getText(),"What day will your coverage end?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance?");
+        softAssert.assertEquals(retireeQuestionTxt.get(3).getText(),"Are you voluntarily ending this health insurance?");
         softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageThirdSectionSecondaryDataEnglish(){
+    public void verifyRetireePageFirstSectionSecondaryDataEnglish(){
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresent(OhcRetireeHeader,15);
+        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Other Health Coverage: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(OhcRetireeHeader.getText(),"Retiree Health Plan");
+        softAssert.assertEquals(helpMeLink.getText(),"Help me understand this page");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Please enter the following information about " + SharedData.getMembers().get(0).getFullName() + "'s eligibility or current enrollment in a retiree health plan."));
+        softAssert.assertTrue(retireeQuestionTxt.get(0).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " currently enrolled in a retiree health plan?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"Yes");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyRetireePageThirdSectionSecondaryDataEnglish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertTrue(PeaceCorpsQuestionTxt.get(2).getText().equalsIgnoreCase("What day will " + SharedData.getMembers().get(0).getFullName() + "\u0027s coverage end?"));
+        softAssert.assertTrue(retireeQuestionTxt.get(2).getText().equalsIgnoreCase("What day will " + SharedData.getMembers().get(0).getFullName() + "'s coverage end?"));
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertTrue(PeaceCorpsQuestionTxt.get(3).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " voluntarily ending this health insurance?"));
+        softAssert.assertTrue(retireeQuestionTxt.get(3).getText().equalsIgnoreCase("Is " + SharedData.getMembers().get(0).getFullName() + " voluntarily ending this health insurance?"));
         softAssert.assertEquals(endVoluntaryYes.getText(),"Yes");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageDataDataSpanish(String dataToVerify){
+    public void verifyRetireePageDataSpanish(String dataToVerify){
         basicActions.waitForElementToBePresent(OhcHeader,15);
         switch (dataToVerify){
             case "First Section":
-                verifyPeaceCorpsPageDataFirstSectionDataSpanish();
+                verifyRetireePageFirstSectionDataSpanish();
                 break;
             case "Second Section":
-                verifyPeaceCorpsPageDataFirstSectionDataSpanish();
-                verifyPeaceCorpsPageDataSecondSectionDataSpanish();
+                verifyRetireePageFirstSectionDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
                 break;
             case "Third Section":
-                verifyPeaceCorpsPageDataFirstSectionDataSpanish();
-                verifyPeaceCorpsPageDataSecondSectionDataSpanish();
-                verifyPeaceCorpsPageDataThirdSectionDataSpanish();
+                verifyRetireePageFirstSectionDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
+                verifyRetireePageThirdSectionDataSpanish();
                 break;
             case "First Section Secondary":
-                verifyPeaceCorpsPageDataFirstSectionSecondaryDataSpanish();
+                verifyRetireePageFirstSectionSecondaryDataSpanish();
                 break;
             case "Second Section Secondary":
-                verifyPeaceCorpsPageDataFirstSectionSecondaryDataSpanish();
-                verifyPeaceCorpsPageDataSecondSectionDataSpanish();
+                verifyRetireePageFirstSectionSecondaryDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
                 break;
             case "Third Section Secondary":
-                verifyPeaceCorpsPageDataFirstSectionSecondaryDataSpanish();
-                verifyPeaceCorpsPageDataSecondSectionDataSpanish();
-                verifyPeaceCorpsPageDataThirdSectionSecondaryDataSpanish();
+                verifyRetireePageFirstSectionSecondaryDataSpanish();
+                verifyRetireePageSecondSectionDataSpanish();
+                verifyRetireePageThirdSectionSecondaryDataSpanish();
                 break;
-                default:
+            default:
                 throw new IllegalArgumentException("Invalid option: " + dataToVerify);
         }
         softAssert.assertEquals(goBackBtn.getText(),"Volver");
@@ -449,54 +446,54 @@ public class OhcPeaceCorpsPage_Elmo {
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageDataFirstSectionDataSpanish(){
+    public void verifyRetireePageFirstSectionDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getPrimaryMember().getFullName()));
-        softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Cuerpos de paz (Peace Corps)");
+        softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
-        softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en la cobertura del Cuerpo de Paz.");
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en la cobertura del Cuerpo de Paz?");
+        softAssert.assertEquals(pleaseEnterTxt.getText(), "Ingrese la siguiente informaci\u00F3n acerca de su elegibilidad o inscripci\u00F3n actual en un plan de salud para jubilados.");
+        softAssert.assertEquals(retireeQuestionTxt.get(0).getText(),"\u00BFActualmente est\u00E1 inscrito en un plan de salud para jubilados?");
         softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
         softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageDataFirstSectionSecondaryDataSpanish(){
+    public void verifyRetireePageSecondSectionDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcPeaceCorpsHeader,15);
-        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
-        softAssert.assertEquals(OhcPeaceCorpsHeader.getText(),"Cuerpos de paz (Peace Corps)");
-        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
-        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en la cobertura del Cuerpo de Paz."));
-        softAssert.assertTrue(PeaceCorpsQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en la cobertura del Cuerpo de Paz?"));
-        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
-        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
-        softAssert.assertAll();
-    }
-
-    public void verifyPeaceCorpsPageDataSecondSectionDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
+        softAssert.assertEquals(retireeQuestionTxt.get(1).getText(),"\u00BFEste seguro de salud terminar\u00E1 en los siguientes 60 d\u00EDas?");
         softAssert.assertEquals(insuranceEndingYes.getText(),"S\u00ED");
         softAssert.assertEquals(insuranceEndingNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageDataThirdSectionDataSpanish(){
+    public void verifyRetireePageThirdSectionDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
+        softAssert.assertEquals(retireeQuestionTxt.get(2).getText(),"\u00BFQu\u00E9 d\u00EDa termina su cobertura?");
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertEquals(PeaceCorpsQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
+        softAssert.assertEquals(retireeQuestionTxt.get(3).getText(),"\u00BFEst\u00E1 cancelando voluntariamente este seguro de salud?");
         softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
     }
 
-    public void verifyPeaceCorpsPageDataThirdSectionSecondaryDataSpanish(){
+    public void verifyRetireePageFirstSectionSecondaryDataSpanish(){
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcRetireeHeader,15);
+        softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
+        softAssert.assertEquals(OhcRetireeHeader.getText(),"Plan de salud de jubilado");
+        softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");
+        softAssert.assertTrue(pleaseEnterTxt.getText().equalsIgnoreCase( "Ingrese la siguiente informaci\u00F3n acerca de la elegibilidad o inscripci\u00F3n actual de " + SharedData.getMembers().get(0).getFullName() + " en un plan de salud para jubilados."));
+        softAssert.assertTrue(retireeQuestionTxt.get(0).getText().equalsIgnoreCase("\u00BFActualmente " + SharedData.getMembers().get(0).getFullName() + " est\u00E1 inscrito en un plan de salud para jubilados?"));
+        softAssert.assertEquals(currentlyEnrolledYes.getText(),"S\u00ED");
+        softAssert.assertEquals(currentlyEnrolledNo.getText(),"No");
+        softAssert.assertAll();
+    }
+
+    public void verifyRetireePageThirdSectionSecondaryDataSpanish(){
         basicActions.waitForElementToBePresent(OhcHeader,15);
-        softAssert.assertTrue(PeaceCorpsQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
+        softAssert.assertTrue(retireeQuestionTxt.get(2).getText().equalsIgnoreCase("\u00BFQu\u00E9 d\u00EDa termina la cobertura de " + SharedData.getMembers().get(0).getFullName() + "?"));
         softAssert.assertEquals(inputEndDate.getAttribute("placeholder"), "MM/DD/YYYY");
-        softAssert.assertTrue(PeaceCorpsQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
+        softAssert.assertTrue(retireeQuestionTxt.get(3).getText().equalsIgnoreCase("\u00BF" + SharedData.getMembers().get(0).getFullName() + " est\u00E1 cancelando voluntariamente este seguro de salud?"));
         softAssert.assertEquals(endVoluntaryYes.getText(),"S\u00ED");
         softAssert.assertEquals(endVoluntaryNo.getText(),"No");
         softAssert.assertAll();
@@ -508,13 +505,13 @@ public class OhcPeaceCorpsPage_Elmo {
                 verifyCurrentlyEnrolledError(language);
                 break;
             case "Insurance Ending":
-                verifyInsuranceEndingError(language);
+                verifyinsuranceEndingError(language);
                 break;
             case "Input Date":
-                verifyInputEndDateError(language);
+                verifyinputEndDateError(language);
                 break;
             case "Voluntary End":
-                verifyEndVoluntaryError(language);
+                verifyendVoluntaryError(language);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + errorType);
@@ -547,7 +544,7 @@ public class OhcPeaceCorpsPage_Elmo {
         }
     }
 
-    public void verifyInsuranceEndingError(String language) {
+    public void verifyinsuranceEndingError(String language) {
         basicActions.waitForElementToBePresent(insuranceEndingError, 20);
         switch (language) {
             case "English":
@@ -573,7 +570,7 @@ public class OhcPeaceCorpsPage_Elmo {
         }
     }
 
-    public void verifyInputEndDateError(String language) {
+    public void verifyinputEndDateError(String language) {
         basicActions.waitForElementToBePresent(inputEndDateError, 20);
         String todayDate = basicActions.getTodayDate();
         switch (language) {
@@ -636,7 +633,7 @@ public class OhcPeaceCorpsPage_Elmo {
         }
     }
 
-    public void verifyEndVoluntaryError(String language) {
+    public void verifyendVoluntaryError(String language) {
         basicActions.waitForElementToBePresent(endVoluntaryError, 20);
         switch (language) {
             case "English":
@@ -687,7 +684,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validateHelpVerbiage(String helpData,String language) {
         basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 30);
-        basicActions.waitForElementToBePresent(helpDrawerHeaderPeaceCorps, 30);
+        basicActions.waitForElementToBePresent(helpDrawerHeaderRetiree, 30);
         switch (language) {
             case "English":
                 switch (helpData){
@@ -732,7 +729,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validateGeneralHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
         softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Enrollment");
         softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "End in the next 60 days");
@@ -747,7 +744,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validateGeneralHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Resumen");
         softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Inscripci\u00F3n");
         softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
@@ -762,7 +759,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validateCurrentlyEnrolledHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Enrollment");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this person currently has this health insurance, select \"Yes\". If they are able to get this health insurance, but have chosen not to, select \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -771,7 +768,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validateCurrentlyEnrolledHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Inscripci\u00F3n");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si actualmente esta persona tiene este seguro de salud, seleccione \"S\u00ED\". Si esta persona puede obtener este seguro de salud, pero ha decidido no tenerlo, seleccione \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
@@ -780,7 +777,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validate60DaysHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "End in the next 60 days");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this insurance is ending in the next 60 days, this person is eligible for a Special Enrollment Period which allows you and your family to shop for health insurance outside of the Open Enrollment Period.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -789,7 +786,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validate60DaysHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si este seguro va a terminar en los pr\u00F3ximos 60 d\u00EDas, esta persona es elegible para un Per\u00EDodo de inscripci\u00F3n especial que le permite tanto a usted como a su familia adquirir un seguro de salud fuera del Per\u00EDodo de inscripci\u00F3n abierta.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
@@ -798,7 +795,7 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validateVoluntaryEndingHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Retiree Health Plan");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Voluntarily Ending");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this person chooses to end this health insurance, they will not be eligible for a Special Enrollment Period to shop for other health insurance. They must wait until the next Open Enrollment Period to shop unless they have another qualifying life change event.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
@@ -807,12 +804,13 @@ public class OhcPeaceCorpsPage_Elmo {
 
     public void validateVoluntaryEndingHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-        softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
+        softAssert.assertEquals(helpDrawerHeaderRetiree.getText(), "Plan de salud de jubilado");
         softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Cancelaci\u00F3n voluntaria");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si esta persona decide cancelar este seguro de salud, no podr\u00E1 ser elegible para un Per\u00EDodo de inscripci\u00F3n especial para adquirir otro seguro de salud. Deber\u00E1 esperar hasta el siguiente Per\u00EDodo de inscripci\u00F3n abierta para adquirirlo a menos que tenga otro evento de vida calificado.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
-    
+
+
 }

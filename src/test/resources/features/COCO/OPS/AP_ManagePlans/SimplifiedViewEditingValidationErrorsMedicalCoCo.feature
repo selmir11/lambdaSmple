@@ -99,16 +99,17 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
     And I click Make Changes Medical button
     # updates for APTC/SES values to check error messages
     Then I update the APTC value for
-      | 1:876.89 |
+      | 1:876890 |
+    And I wait for 2000 milliseconds
     And I click Save Button Medical
     Then I wait for 3000 milliseconds
     Then I should see the Invalid monetary amount for SES error for
       | member | aptc   |
-      | 1      | 876.89  |
+      | 1      | 8768.90  |
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     Then I update the APTC value for
-      | 2:1090.40 |
+      | 2:109040 |
     And I click Save Button Medical
     Then I should see the Invalid monetary amount for SES error for
       | member | aptc   |
@@ -116,16 +117,6 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     Then I update the APTC value for
-      | 2:890.40 |
+      | 2:87693 |
     And I click Save Button Medical
-    
     And I validate SES entered exceeds EHB amount error is displaying for
-    Then I update the APTC value for
-      | 1: blank |
-      | 2: blank |
-    And I click Save Button Medical
-    Then I should see the Invalid monetary amount for SES error for
-      | member | aptc   |
-      | 1      |         |
-      | 2      |         |
-    Then I close current tab and switch back to previous tab

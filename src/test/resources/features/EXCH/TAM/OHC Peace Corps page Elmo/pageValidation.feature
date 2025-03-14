@@ -47,37 +47,37 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Peace Corps" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Peace Corps" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Peace Corps" page
 
-  @SLER-338 @PageValidationOhcPeaceCorpsElmo @TAMSmoke
+  @SLER-338 @PageValidationOhcPeaceCorpsElmo @TAMSmokeExch
   Scenario: SLER-338 I can see Peace Corps' standard errors consistently - English
     And I verify the "First Section" Peace Corps page data in "English"
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Currently Enrolled" error in "English" on the Peace Corps page
     Then I click "No" for currently enrolled in Peace Corps question
     And I verify "Currently Enrolled" error does not show for Peace Corps page
 
     Then I click "Yes" for currently enrolled in Peace Corps question
     And I verify the "Second Section" Peace Corps page data in "English"
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Insurance Ending" error in "English" on the Peace Corps page
     Then I click "No" for insurance ending in 60 days in Peace Corps question
     And I verify "Insurance Ending" error does not show for Peace Corps page
 
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     And I verify the "Third Section" Peace Corps page data in "English"
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Input Date" error in "English" on the Peace Corps page
     Then I enter the end date as "Prior Month" on the Peace Corps page
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Input Date" error in "English Prior" on the Peace Corps page
     Then I enter the end date as "Future Month" on the Peace Corps page
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Input Date" error in "English Future" on the Peace Corps page
     Then I enter the end date as "Current Month" on the Peace Corps page
     And I verify "Input Date" error does not show for Peace Corps page
@@ -93,27 +93,27 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify the "First Section" Peace Corps page data in "Spanish"
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Currently Enrolled" error in "Spanish" on the Peace Corps page
     Then I click "No" for currently enrolled in Peace Corps question
     And I verify "Currently Enrolled" error does not show for Peace Corps page
 
     Then I click "Yes" for currently enrolled in Peace Corps question
     And I verify the "Second Section" Peace Corps page data in "Spanish"
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Insurance Ending" error in "Spanish" on the Peace Corps page
     Then I click "No" for insurance ending in 60 days in Peace Corps question
     And I verify "Insurance Ending" error does not show for Peace Corps page
 
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     And I verify the "Third Section" Peace Corps page data in "Spanish"
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Input Date" error in "Spanish" on the Peace Corps page
     Then I enter the end date as "Prior Month" on the Peace Corps page
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Input Date" error in "Spanish Prior" on the Peace Corps page
     Then I enter the end date as "Future Month" on the Peace Corps page
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify "Input Date" error in "Spanish Future" on the Peace Corps page
     Then I enter the end date as "Current Month" on the Peace Corps page
     And I verify "Input Date" error does not show for Peace Corps page
@@ -130,12 +130,12 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |                          |                              |                              |
     Then I click "Yes" for currently enrolled in Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |                          |                              |                              |
     Then I click "No" for currently enrolled in Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |             0            |                              |                              |
@@ -145,17 +145,17 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "Yes" for currently enrolled in Peace Corps question
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |             0            |                              |                              |
     Then I click "No" for insurance ending in 60 days in Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |           1              |              0               |                              |
@@ -165,13 +165,13 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "Yes" for insurance ending in 60 days in Peace Corps question
     Then I enter the end date as "Current Month" on the Peace Corps page
     Then I click "No" for insurance ending voluntary for Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |             1            |               1              |               0              |
@@ -181,11 +181,11 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "Yes" for insurance ending voluntary for Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |            1             |              1               |               1              |
@@ -195,11 +195,11 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "No" for insurance ending in 60 days in Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |             1            |               0              |                              |
@@ -209,11 +209,11 @@ Feature: Page Validation-OHC Peace Corps Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Peace Corps" page
     Then I click "No" for currently enrolled in Peace Corps question
-    Then I click continue on the Elmo OHC Peace Corps page
+    Then I click continue on the OHC Peace Corps page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|retiree_health_plan_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|peace_corps_ind|peace_corps_enrl_covg_ind3|peace_corps_covg_end_soon_ind3|peace_corps_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |          0            |        0           |             0            |            0           |   0   |       1       |            0             |                              |                              |

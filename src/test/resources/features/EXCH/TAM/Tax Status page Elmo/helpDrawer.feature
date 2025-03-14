@@ -69,78 +69,78 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    And I set the browser resolution to 2000 x 800
 
   @SLER-1902 @HelpDrawerTaxStatusElmoPage
   Scenario: SLER-1902 I want English and Spanish text added to the help drawer so that I can find more information about the questions on the page (desktop)
-    Then I click on the "Header" help link on Tax Status Elmo page
-    And I verify the help drawer "Full:English" text on Tax Status Elmo page
+    Then I click on the "Header" help link on Tax Status page
+    And I verify the help drawer "Full:English" text on Tax Status page
     And I set the browser resolution to 2000 x 800
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Header" help link on Tax Status Elmo page
+    Then I click on the "Header" help link on Tax Status page
 
-    Then I click on the "Side" help link on Tax Status Elmo page
-    And I verify the help drawer "Full:English" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Side" help link on Tax Status page
+    And I verify the help drawer "Full:English" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Side" help link on Tax Status Elmo page
+    Then I click on the "Side" help link on Tax Status page
 
-    Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim:English" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Claimed as Dependent" help link on Tax Status page
+    And I verify the help drawer "Claim:English" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
+    Then I click on the "Claimed as Dependent" help link on Tax Status page
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
-    And I verify the help drawer "Exceptional Circumstances:English" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Exceptional Circumstances" help link on Tax Status page
+    And I verify the help drawer "Exceptional Circumstances:English" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
+    Then I click on the "Exceptional Circumstances" help link on Tax Status page
 
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
-    Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim:English" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
+    Then I click on the "Claiming Dependent" help link on Tax Status page
+    And I verify the help drawer "Claim:English" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
+    Then I click on the "Claiming Dependent" help link on Tax Status page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I validate I am on the "Spanish" page
-    Then I click on the "Header" help link on Tax Status Elmo page
-    And I verify the help drawer "Full:Spanish" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Header" help link on Tax Status page
+    And I verify the help drawer "Full:Spanish" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Header" help link on Tax Status Elmo page
+    Then I click on the "Header" help link on Tax Status page
 
-    Then I click on the "Side" help link on Tax Status Elmo page
-    And I verify the help drawer "Full:Spanish" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Side" help link on Tax Status page
+    And I verify the help drawer "Full:Spanish" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Side" help link on Tax Status Elmo page
+    Then I click on the "Side" help link on Tax Status page
 
-    Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim:Spanish" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Claimed as Dependent" help link on Tax Status page
+    And I verify the help drawer "Claim:Spanish" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Claimed as Dependent" help link on Tax Status Elmo page
+    Then I click on the "Claimed as Dependent" help link on Tax Status page
 
-    Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
-    And I verify the help drawer "Exceptional Circumstances:Spanish" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Exceptional Circumstances" help link on Tax Status page
+    And I verify the help drawer "Exceptional Circumstances:Spanish" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Exceptional Circumstances" help link on Tax Status Elmo page
+    Then I click on the "Exceptional Circumstances" help link on Tax Status page
 
-    Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
-    And I verify the help drawer "Claim:Spanish" text on Tax Status Elmo page
-    Then I click on Contact Us link in Help Drawer on the Tax Status Elmo page
+    Then I click on the "Claiming Dependent" help link on Tax Status page
+    And I verify the help drawer "Claim:Spanish" text on Tax Status page
+    Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Claiming Dependent" help link on Tax Status Elmo page
+    Then I click on the "Claiming Dependent" help link on Tax Status page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

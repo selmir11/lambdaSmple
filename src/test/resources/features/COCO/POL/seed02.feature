@@ -30,7 +30,7 @@ Feature: Seed02 - Coco
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -53,7 +53,7 @@ Feature: Seed02 - Coco
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -103,12 +103,12 @@ Feature: Seed02 - Coco
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      |1:01012025|
-      |2:01012025|
-    And I update the Financial Start date of member
-      |1:01012025|
-      |2:01012025|
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
@@ -225,4 +225,90 @@ Feature: Seed02 - Coco
       And I click Continue on the Declarations And Signature Page CoCo
       Then I validate I am on the "Application Results CoCo" page
       And I click on Sign Out in the Header for "Elmo"
+
+    @SLCR-812-WIP
+  Scenario: CCRT-112 - ENR-COCO: DEMOGRAPHIC CHANGE (ADD'L MEMBER) - IDENTIFYING DETAILS - DOB (Without Financial Impact)
+      Given I open the login page on the "login" portal
+      And I validate I am on the "Login" page
+      And I enter valid credentials to login
+      Then I click continue signing in on the CAC Screener page
+      Then I validate I am on the "CoCo Welcome" page
+      And I click Make changes button on Welcome Page
+      Then I validate I am on the "Find Expert Help" page
+      And I click Continue on my own button from Manage who helps you page
+      Then I validate I am on the "CoCo Family Overview" page
+      Then I click EditUpdate on Family Overview page for "Spouse"
+      And I update the date of birth to "03121995" for "Spouse"
+      Then I click Save and Continue only on the tell us about yourself page
+      And I click continue on the Add info for yourself page
+      And I click save and continue on the Race and Ethnicity page
+      And I click continue on the Employment income page
+      And I select continue on the Additional Income CoCO page
+      And I select continue on the Deductions CoCo page
+      And I select continue on the income Summary CoCo page
+      And I select continue on the Family Overview page
+      Then I validate I am on the "CoCo life change event" page
+      And I check "None of these" life change event checkbox
+      And I select continue on the LCE page
+      Then I validate I am on the "CoCo Declarations and Signature" page
+      And I enter a valid signature
+      And I click Continue on the Declarations And Signature Page CoCo
+      Then I validate I am on the "Application Results CoCo" page
+      And I click on Sign Out in the Header for "Elmo"
+
+    @SLCR-813-WIP
+  Scenario: CCRT-127 - ENR-COCO: AUTO PROCESS POLICY - REMOVE MEMBER (LCE: Divorce) SAME PLAN
+      Given I open the login page on the "login" portal
+      And I validate I am on the "Login" page
+      And I enter valid credentials to login
+      Then I click continue signing in on the CAC Screener page
+      Then I validate I am on the "CoCo Welcome" page
+      And I click Make changes button on Welcome Page
+      Then I validate I am on the "Find Expert Help" page
+      And I click Continue on my own button from Manage who helps you page
+      Then I validate I am on the "CoCo Family Overview" page
+      Then I click EditUpdate on Family Overview page for "Spouse"
+      And I click continue on Tell us about additional members of your household page
+      And I click continue on the Additional information for additional member page
+      And I click save and continue on the Race and Ethnicity page
+      And I click continue on the Employment income page
+      And I select continue on the Additional Income CoCO page
+      And I select continue on the Deductions CoCo page
+      And I select continue on the income Summary CoCo page
+      And I select continue on the Family Overview page
+      Then I validate I am on the "CoCo life change event" page
+      And I select "Divorce:Spouse" life change event with event date of "Today"
+      And I select continue on the LCE page
+      Then I validate I am on the "CoCo Declarations and Signature" page
+      And I enter a valid signature
+      And I click Continue on the Declarations And Signature Page CoCo
+      Then I validate I am on the "Application Results CoCo" page
+      And I click on Sign Out in the Header for "Elmo"
+
+    @SLCR-814-WIP
+  Scenario: CCRT-447 - ENR-COCO: DEMOGRAPHIC CHANGE - AGENT BROKER INFO - CHANGE BROKER
+      Given I open the login page on the "login" portal
+      And I validate I am on the "Login" page
+      And I enter valid credentials to login
+      Then I click continue signing in on the CAC Screener page
+      Then I validate I am on the "CoCo Welcome" page
+      And I click Make changes button on Welcome Page
+      Then I validate I am on the "Find Expert Help" page
+      Then I click on change the existing broker
+      Then I Search authorized Broker "Top Dog Brokers"
+      And I click on Search button in find certified broker page
+      And I click more details from the first broker result container
+      Then I click Authorize button in container
+      Then I click on "Authorize New Broker" in the warning container to authorize new or keep the same broker
+      Then I click Continue on my own button from Manage who helps you page
+      And I select continue on the Family Overview page
+      Then I validate I am on the "CoCo life change event" page
+      And I check "None of these" life change event checkbox
+      And I select continue on the LCE page
+      Then I validate I am on the "CoCo Declarations and Signature" page
+      And I enter a valid signature
+      And I click Continue on the Declarations And Signature Page CoCo
+      Then I validate I am on the "Application Results CoCo" page
+      And I click on Sign Out in the Header for "Elmo"
+
 

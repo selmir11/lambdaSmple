@@ -350,7 +350,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "Login" page
 
   @SLCR-819 
-  Scenario: As COCO user, I want to see the ELMO Deductions page
+  Scenario: SLCR-819 As COCO user, I want to see the ELMO Deductions page
   so that I can enter my deduction information [CCRT-537]
     #Step1
     And I select continue on the Deductions CoCo page
