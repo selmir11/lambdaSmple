@@ -35,7 +35,7 @@ public class MyPoliciesCoCoPage {
     WebElement planStartDate;
     @FindBy(css = "span#SOL-CurrentPolicies-PolicyEndDateCoverage")
     WebElement planEndDate;
-    @FindBy(css = ".current-policy-container .header-3")
+    @FindBy(css = ".current-policy__container .header-3")
     List<WebElement> planNames; // Both medical and dental plan names for all members
 
     @FindBy(id = "viewPlanHistoryLink_0")
