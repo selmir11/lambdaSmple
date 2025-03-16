@@ -348,3 +348,9 @@ Feature: Page validation - Life Change Event page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-824
+  Scenario: ELIG-As a CoCo user,
+  I want to see the Tell us about life changes page in English or Spanish
+  so that I can review the life change events for my application
+  And I change the language from header to "Spanish"
