@@ -29,7 +29,6 @@ public class LifeChangeEventsCoCoPage {
 
     @FindBy(css = ".header-1")
     WebElement hdr_Lce;
-
     @FindBy(css = ".page-header")
     WebElement hdr_LceText;
     @FindBy(css = "lib-error-msg > div")
@@ -40,6 +39,8 @@ public class LifeChangeEventsCoCoPage {
     WebElement insuranceLossLCEContainer;
     @FindBy(id = "ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton")
     WebElement insuranceLossLCE;
+    @FindBy(xpath = "//div[@id='ELIG-LceOption-LOSS_OF_MEC_OTHER-checkBoxButton-container']//following::span")
+    WebElement lostHealthLbl;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-LOSS_OF_MEC_OTHER')]")
     List<WebElement> allMemberInsuranceLossCheckbox;
     @FindBy (xpath = "//input[contains(@id, 'ELIG-LceMember-LOSS_OF_MEC_OTHER')]")
@@ -48,6 +49,8 @@ public class LifeChangeEventsCoCoPage {
     WebElement birthLCEContainer;
     @FindBy(id = "ELIG-LceOption-BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION-checkBoxButton")
     WebElement birthLCE;
+    @FindBy(xpath = "//button[@id='ELIG-LceOption-BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION-checkBoxButton']//following-sibling::span")
+    WebElement birthAdoptnLbl;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-BIRTH')]")
     List<WebElement> allMembersBirthCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-BIRTH')]")
@@ -56,6 +59,8 @@ public class LifeChangeEventsCoCoPage {
     WebElement pregnancyLCEContainer;
     @FindBy(id = "ELIG-LceOption-PREGNANCY-checkBoxButton")
     WebElement pregnancyLCE;
+    @FindBy(xpath = "//button[@id='ELIG-LceOption-PREGNANCY-checkBoxButton']//following-sibling::span")
+    WebElement pregnancyLbl;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-PREGNANCY')]")
     List<WebElement> allMembersPregnancyCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-PREGNANCY')]")
@@ -64,6 +69,8 @@ public class LifeChangeEventsCoCoPage {
     WebElement marriageLCEContainer;
     @FindBy(id ="ELIG-LceOption-MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER-checkBoxButton")
     WebElement marriageLCE;
+    @FindBy(xpath ="//button[@id='ELIG-LceOption-MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER-checkBoxButton']//following-sibling::span")
+    WebElement marriageLbl;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-MARRIAGE')]")
     List<WebElement> allMembersMarriageCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-MARRIAGE')]")
@@ -72,6 +79,8 @@ public class LifeChangeEventsCoCoPage {
     WebElement divorceLCEContainer;
     @FindBy(id ="ELIG-LceOption-DIVORCE_ANNULMENT_OR_SEPARATION-checkBoxButton")
     WebElement divorceLCE;
+    @FindBy(xpath ="//button[@id='ELIG-LceOption-DIVORCE_ANNULMENT_OR_SEPARATION-checkBoxButton']//following-sibling::span")
+    WebElement divorceLbl;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-DIVORCE')]")
     List<WebElement> allMembersDivorceCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-DIVORCE')]")
@@ -80,6 +89,8 @@ public class LifeChangeEventsCoCoPage {
     WebElement deathLCEContainer;
     @FindBy(id ="ELIG-LceOption-DEATH-checkBoxButton")
     WebElement deathLCE;
+    @FindBy(xpath ="//button[@id='ELIG-LceOption-DEATH-checkBoxButton']//following-sibling::span")
+    WebElement deathLbl;
     @FindBy(xpath = "//button[contains(@id, 'ELIG-LceMember-DEATH')]")
     List<WebElement> allMembersDeathCheckbox;
     @FindBy(xpath = "//input[contains(@id, 'ELIG-LceMember-DEATH')]")
@@ -88,7 +99,9 @@ public class LifeChangeEventsCoCoPage {
     WebElement addressChangeLCEContainer;
     @FindBy(id="ELIG-LceOption-CHANGE_OF_RESIDENCE-checkBoxButton")
     WebElement addressChangeLCE; //Moved to Colorado
-    @FindBy(css=".c4-input [id^='ELIG-LceMember-CHANGE_OF_RESIDENCE-Member'][role='checkbox']")
+    @FindBy(xpath="//button[@id='ELIG-LceOption-CHANGE_OF_RESIDENCE-checkBoxButton']//following-sibling::span")
+    WebElement addressChangeLbl;
+        @FindBy(css=".c4-input [id^='ELIG-LceMember-CHANGE_OF_RESIDENCE-Member'][role='checkbox']")
     List<WebElement> qamemberChangeOfAddressCheckbox;
 
     @FindBy(css=".checkbox-description [id^='ELIG-LceMember-CHANGE']")
@@ -107,6 +120,8 @@ public class LifeChangeEventsCoCoPage {
     WebElement noneOfTheseLCEContainer;
     @FindBy(id ="ELIG-LceOption-noneOfThese-checkBoxButton")
     WebElement noneOfTheseLCE;
+    @FindBy(xpath ="//button[@id='ELIG-LceOption-noneOfThese-checkBoxButton']//following-sibling::span")
+    WebElement noneOfTheseLbl;
     @FindBy(id = "LceOverview-SaveAndContinue")
     WebElement saveAndContinueButton;
     @FindBy(id = "LceOverview-GoBack")
@@ -941,4 +956,28 @@ public class LifeChangeEventsCoCoPage {
         softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
+
+    public void verifyTextFormatInGivenLanguage(String language,List<String> expectedText){
+
+        basicActions.waitForElementToBePresent(saveAndContinueButton,5);
+        basicActions.click(saveAndContinueButton);
+        softAssert.assertEquals(selectLCEError.getText(), expectedText.get(3), "Label Not Matching");
+        softAssert.assertEquals(hdr_Lce.getText(), expectedText.get(1), "Label Not Matching");
+        softAssert.assertEquals(hdr_LceText.getText(), expectedText.get(2), "Label Not Matching");
+        softAssert.assertEquals(lostHealthLbl.getText(), expectedText.get(4), "Label Not Matching");
+        softAssert.assertEquals(birthAdoptnLbl.getText(), expectedText.get(5), "Label Not Matching");
+        basicActions.click(birthLCE);
+        basicActions.click(saveAndContinueButton);
+        softAssert.assertEquals(selectLCEError.getText(), expectedText.get(6), "Label Not Matching");
+        softAssert.assertEquals(pregnancyLbl.getText(), expectedText.get(7), "Label Not Matching");
+        softAssert.assertEquals(marriageLbl.getText(), expectedText.get(8), "Label Not Matching");
+        softAssert.assertEquals(divorceLbl.getText(), expectedText.get(9), "Label Not Matching");
+        softAssert.assertEquals(deathLbl.getText(), expectedText.get(10), "Label Not Matching");
+        softAssert.assertEquals(addressChangeLbl.getText(), expectedText.get(11), "Label Not Matching");
+        softAssert.assertEquals(noneOfTheseLbl.getText(), expectedText.get(12), "Label Not Matching");
+        softAssert.assertEquals(goBackButton.getText(), expectedText.get(13), "Label Not Matching");
+        softAssert.assertEquals(saveAndContinueButton.getText(), expectedText.get(14), "Label Not Matching");
+        softAssert.assertAll();
+    }
+
 }

@@ -72,7 +72,7 @@ Feature: Page validation - Life Change Event page
     And I select continue on the income Summary CoCo page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
-    
+
   @SLCR-271
   Scenario: SLCR-271 Verify initial state of LCE choices
     Then I verify "AllSingle" life change event "is not" selected
@@ -353,4 +353,37 @@ Feature: Page validation - Life Change Event page
   Scenario: ELIG-As a CoCo user,
   I want to see the Tell us about life changes page in English or Spanish
   so that I can review the life change events for my application
-  And I change the language from header to "Spanish"
+    And I change the language from header to "English"
+    Then I validate the text format is aligned with 'English' language
+      | English:                                                                                                                                                                                               |
+      | Tell us about life changes                                                                                                                                                                             |
+      | Select any Life Change Event you or someone in your household has experienced within the past 60 days. The loss of other health insurance can be reported up to 60 days before you lose the insurance. |
+      | Please select one or more of the options below:                                                                                                                                                        |
+      | Will lose/lost health insurance                                                                                                                                                                        |
+      | Birth/Adoption/Foster Care/Court Order                                                                                                                                                                 |
+      | Please select who this change applies to:                                                                                                                                                              |
+      | Pregnancy                                                                                                                                                                                              |
+      | Marriage                                                                                                                                                                                               |
+      | Divorce                                                                                                                                                                                                |
+      | Death                                                                                                                                                                                                  |
+      | Change of primary residence                                                                                                                                                                            |
+      | None of these                                                                                                                                                                                          |
+      | Go back                                                                                                                                                                                                |
+      | Save and continue                                                                                                                                                                                      |
+    Then I change the language from header to "Spanish"
+    And I validate the text format is aligned with 'Spanish' language
+      | Spanish:                                                                                                                                                                                                  |
+      | Infórmenos sobre los cambios importantes en su vida                                                                                                                                                       |
+      | Seleccione los cambios de vida que usted o alguien de su familia haya tenido en los últimos 60 días. La pérdida de seguro de salud se puede reportar hasta 60 días antes de que alguien pierda su seguro. |
+      | Seleccione la persona a quien aplica este cambio:                                                                                                                                                          |
+      | Perderá o ha perdido el seguro de salud                                                                                                                                                                   |
+      | Nacimiento/Adopción/Colocación familiar/Mandato judicial                                                                                                                                                  |
+      | Seleccione una o más de las siguientes opciones:                                                                                                                                                        |
+      | Embarazo                                                                                                                                                                                                  |
+      | Matrimonio                                                                                                                                                                                                |
+      | Divorcio                                                                                                                                                                                                  |
+      | Defunción                                                                                                                                                                                                 |
+      | Cambio de residencia principal                                                                                                                                                                            |
+      | Ninguna de las anteriores                                                                                                                                                                                 |
+      | Volver                                                                                                                                                                                                    |
+      | Guardar y continuar                                                                                                                                                                                       |
