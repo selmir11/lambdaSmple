@@ -123,8 +123,6 @@ Feature: Regression Tests that require Seed 4
      Then I click EditUpdate on Family Overview page for "Daughter"
      And I click continue on Tell us about additional members of your household page
      And I update my residential address "700 NEW DRIVE", "Englewood", "CO", "80113", "ARAPAHOE"
-#     And I update the AddressLine1 and AddressLine2 to {string} and {string} for additional member")
-#     And I update the state and zipcode to {string} and {string} for additional member"
      And I click continue on the Additional information for additional member page
      And I click save and continue on the Race and Ethnicity page
      And I click continue on the Employment income page
