@@ -69,15 +69,19 @@ Feature: My Document Home Page validations
     Then I validate I am on the "My Documents" page
     Then I validate I am on "Past Documents and Letters" container
     And I validate current year defaulted in plan Year
+    Then I select "Letters" from document and letter dropdown
     And  I select year "All" in plan year
     Then I validate all uploaded documents or notices loaded for my account start with "IND"
       | IND_Plan Selection and Payment Confirmation (EN-002-04)|
       | IND_Renewal Plan Still Available (EN-007-01)         |
       | IND_Eligibility Change with SEP (ELG-101-03)               |
       | IND_Welcome Message (AM-001-01)                            |
+      | IND_Welcome Message (AM-001-03)                            |
+      | IND_Initial Eligibility notice (ELG-101-01)                |
     And  I Click on double chevron in Past Documents and Letters Container
-    Then I validate Date Received, Time Received and Download button available
+    Then I validate Date Received, Time Received and Download button available in "English"
     And I select year "Previous Year" in plan year
+    Then I select "Documents and Letters" from document and letter dropdown
     And  I Click on double chevron in Past Documents and Letters Container
     Then I validate document date shows for selected year
     And I select year "Current Year" in plan year
@@ -86,6 +90,14 @@ Feature: My Document Home Page validations
     And I change the language from header to "Spanish"
     Then I validate no document message
       |No tiene documentos ni cartas en este momento |
+    Then I validate I am on "Documentos y Cartas Anteriores" container
+    And I verify plan year label "Año:"
+    And I validate current year defaulted in plan Year
+    And I validate default value in Documents and letters dropdown in "Spanish"
+    Then I validate no document message
+      |No tiene documentos ni cartas en este momento |
+    Then I verify Go back to welcome page button
+      | Volver a la Pagina de Bienvenida |
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
 
@@ -205,7 +217,7 @@ Feature: My Document Home Page validations
     Then I validate I am on the "Account Overview" page
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Documents" page
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "English"
       | My Documents and Letters |
       | We need more information to confirm or verify what you told us in your application. |
       | Help me understand this page                                                        |
@@ -215,7 +227,7 @@ Feature: My Document Home Page validations
     And I click on upload another document
     And I click on cancel button on upload document pop up
     And I change the language from header to "Spanish"
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "Spanish"
       | Mis Documentos y Cartas |
       | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
       | Ayuda para entender esta página                                                        |
@@ -414,7 +426,7 @@ Feature: My Document Home Page validations
     And I change the language from header to "Spanish NonElmo"
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Document Spanish" page
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "Spanish"
       | Mis Documentos y Cartas |
       | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
       | Ayuda para entender esta página                                                        |
@@ -480,7 +492,6 @@ Feature: My Document Home Page validations
 
   @SLER-2234
   Scenario: Verify Welcome letter downloaded with proper name format [RT-1996]
-
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -697,7 +708,7 @@ Feature: My Document Home Page validations
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     Then I click link my docs on accountOverview page
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "English"
       | My Documents and Letters |
       | We need more information to confirm or verify what you told us in your application. |
       | Help me understand this page                                                        |
@@ -845,7 +856,7 @@ Feature: My Document Home Page validations
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
-    Then I enter an "accountID" in any env "7724352002" "1909077514" to search user
+    Then I enter an "accountID" in any env "7724352002" "5990496490" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
@@ -868,7 +879,7 @@ Feature: My Document Home Page validations
       | Did your document request expire? If the upload button is still available, provide the documentation for review.                            |
       | If you are not able to upload your document(s), please contact our Service Center at 1-855-752-6749. |
     And I verify help drawer "footer" text on the My Document page
-      | Need more help? Contact us |
+      | Need more help?  Contact us |
     And I click on the help drawer icon to close on the document page
     Then I validate help drawer closed on the document page
     And I click on "Help me understand this page" link in Help Drawer
@@ -879,7 +890,7 @@ Feature: My Document Home Page validations
     And I validate I am on the "We Can Help" page and close tab
     And I click on the help drawer icon to close on the document page
     And I click upload MVR button for "Financial Help Eligibility"
-    Then I validate help drawer open in right side of the page
+    Then I validate help drawer open in right side of the page for "Income" mvr
     And I verify help drawer "Income header" text on the My Document page
       | Help |
     And I verify help drawer "Income sub header" text on the My Document page
@@ -892,7 +903,7 @@ Feature: My Document Home Page validations
       | (2) Confirming that you previously filed and reconciled APTC on your federal taxes, or were not required to. |
       | More information is available on our website. |
     And I verify help drawer "Income footer" text on the My Document page
-      | Need more help? Contact us |
+      | Need more help?  Contact us |
     And I click on "our website" link in Help Drawer
     And I validate I am on the "Submit Documents" page and close tab
     And I click on "Contact Us" link in Help Drawer
@@ -987,6 +998,8 @@ Feature: My Document Home Page validations
     # Member Names for an account 5990496490 in Staging Env
       | apelizfadst apindefurdst     |      staging  |
       | gsdertetr apindefurdst       |      staging  |
+      | michael lipsitz              |   staging  |
+      | nicolasa lipsitz              |  staging  |
     Then I verify Upload button on the right
     Then I verify mvr type with date, member name and upload button
     And I close current tab and switch back to previous tab
@@ -1153,6 +1166,54 @@ Feature: My Document Home Page validations
     Then I upload MVR doc for "Número de Seguro Social" on the My Documents page in "Spanish"
     And I click on upload another document in spanish
     Then I upload another doc "TestMyDocs.docx" for "Número de Seguro Social" on the My Documents page and verify success message in "Spanish"
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+
+  @SLER-2332 @OPSRegression
+  Scenario: Verify user can see their Documents and Notices in the Documents and Notices container [RT-2013]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "1903086579" "4006848148" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    Then I validate I am on "Documentos y Cartas Anteriores" container
+    And I validate current year defaulted in plan Year
+    Then I select "Cartas" from document and letter dropdown
+    And  I select year "Todos" in plan year
+    Then I validate all uploaded documents or notices loaded for my account start with "IND"
+      | IND_Plan Selection and Payment Confirmation (EN-002-04)|
+      | IND_Renewal Plan Still Available (EN-007-01)         |
+      | IND_Eligibility Change with SEP (ELG-101-03)               |
+      | IND_Welcome Message (AM-001-01)                            |
+      | IND_Welcome Message (AM-001-03)                            |
+      | IND_Initial Eligibility notice (ELG-101-01)                |
+    And  I Click on double chevron in Past Documents and Letters Container
+    Then I validate Date Received, Time Received and Download button available in "Spanish"
+    And I select year "Previous Year" in plan year
+    Then I select "Documentos y cartas" from document and letter dropdown
+    And  I Click on double chevron in Past Documents and Letters Container
+    Then I validate document date shows for selected year
+    And I select year "Current Year" in plan year
+    Then I validate no document message
+      |No tiene documentos ni cartas en este momento |
+    Then I validate I am on "Documentos y Cartas Anteriores" container
+    And I verify plan year label "Año:"
+    And I validate current year defaulted in plan Year
+    And I validate default value in Documents and letters dropdown in "Spanish"
+    Then I validate no document message
+      | No tiene documentos ni cartas en este momento |
+    Then I verify Go back to welcome page button
+      | Volver a la Pagina de Bienvenida |
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
 
