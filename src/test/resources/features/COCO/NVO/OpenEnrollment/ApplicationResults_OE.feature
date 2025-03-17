@@ -22,7 +22,7 @@ Feature: Coco user on the Application results page - Tests Run during Open Enrol
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page

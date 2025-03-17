@@ -6,6 +6,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class AdditionalIncomeCoCoPageSteps {
     AdditionalIncomeCoCoPage additionalIncomeCoCoPage = new AdditionalIncomeCoCoPage(WebDriverManager.getDriver());
 
@@ -73,20 +75,18 @@ public class AdditionalIncomeCoCoPageSteps {
     public void iVerifyAddtlIncomeEnteredData(String addtlIncomeOption, String Amount, String Frequency) {additionalIncomeCoCoPage.verifyAddtlIncomeEnteredData(addtlIncomeOption, Amount, Frequency);}
 
     @Then("I verify Additional Income checkbox COCO in {string} state")
-    public void iVerifyStateOfAddIncomeCheckboxCOCO(String state){
-        additionalIncomeCoCoPage.verifyAddtlIncomeOptionCheckboxCOCO(state);}
+    public void iVerifyStateOfAddIncomeCheckboxCOCO(String state){additionalIncomeCoCoPage.verifyAddtlIncomeOptionCheckboxCOCO(state);}
 
     @Then("I verify Additional Income CoCo error format for {string}")
     public void iVerifyErrorFormat(String incomeType){additionalIncomeCoCoPage.verifyErrorFormat(incomeType);}
 
     @Then("I validate the error text with its properties and the error icon on the CoCo Additional Income page")
-    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){
-        additionalIncomeCoCoPage.validateErrorMessageAndItsProperties(dataTable);
-    }
+    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){additionalIncomeCoCoPage.validateErrorMessageAndItsProperties(dataTable);}
 
-    @Then("I verify no error message gets displayed for pension additional income & amount gets converted to {string}")
-    public void iVerifyTheAmountAndNoErrorMessageDisplaying(String amount){
-        additionalIncomeCoCoPage.verifyTheAmountAndNoErrorMessageDisplaying(amount);
-    }
+    @Then("I verify no error message gets displayed for {string} CoCo Additional Income & amount gets converted to {string} on CoCo Additional Income page")
+    public void iVerifyTheAmountAndNoErrorMessageDisplaying(String addtlIncomeOption, String amount){additionalIncomeCoCoPage.verifyTheAmountAndNoErrorMessageDisplaying(addtlIncomeOption, amount);}
+
+    @Then("I verify Additional Income CoCo amount Minimum and Maximum for {string} in {string}")
+    public void iVerifyMinMax(String addtlIncomeOption, String language){additionalIncomeCoCoPage.verifyMinMax(addtlIncomeOption, language);}
 
 }

@@ -87,7 +87,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-90 @PageNavigationIncomeOptOutPage @TAMSmoke
+  @SLER-90 @PageNavigationIncomeOptOutPage @TAMSmokeExch
   Scenario: SLER-90 I Verify Nagivation for the header and footer in English
     Then I validate I am on the "Financial Help" page
     And I verify text on the "Exch" "Header" in "English"

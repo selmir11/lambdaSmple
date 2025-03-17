@@ -22,7 +22,7 @@ Feature: Tests related to the Employment Income page
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
 
-  @SLCR-58 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-58 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-58 I can see Employment Income's Header and footer - English
     And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I verify text on the "CoCo" "Header" in "English"
@@ -218,7 +218,7 @@ Feature: Tests related to the Employment Income page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-422 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-422 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-422 I verify Employment Income's page text - English
     And I select "Yes" employment option
     And I verify the header for Primary Member on the CoCo Employment income page in "English"
@@ -226,7 +226,7 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "English"
     Then I verify the navigation buttons on the CoCo Employment Income page in "English"
 
-  @SLCR-423 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-423 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-423 I verify Employment Income's page text - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I select "Yes" employment option
@@ -235,7 +235,7 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "Spanish"
     Then I verify the navigation buttons on the CoCo Employment Income page in "Spanish"
 
-  @SLCR-424 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-424 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-424 I verify Employment Income's page text for additional members - English
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -260,7 +260,7 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "English"
     Then I verify the navigation buttons on the CoCo Employment Income page in "English"
 
-  @SLCR-425 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-425 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-425 I verify Employment Income's page text for additional members - Spanish
     And I select "No" employment option
     And I click continue on the Employment income page

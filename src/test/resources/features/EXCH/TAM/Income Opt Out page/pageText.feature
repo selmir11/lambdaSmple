@@ -5,7 +5,7 @@ Feature: Page Text-Income Opt Out Page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-57 @PageTextIncomeOptOutPage @TAMSmoke
+  @SLER-57 @PageTextIncomeOptOutPage @TAMSmokeExch
   Scenario: SLER-57 I can see page in English and Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page

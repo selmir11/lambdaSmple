@@ -30,7 +30,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
@@ -107,7 +107,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
@@ -184,7 +184,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
@@ -254,7 +254,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
@@ -366,7 +366,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
@@ -400,7 +400,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
 
@@ -435,7 +435,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "UnrelatedOne"
     And I click save and continue on the Race and Ethnicity page
 
@@ -471,7 +471,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "UnrelatedTwo"
     And I click save and continue on the Race and Ethnicity page
 
@@ -508,7 +508,7 @@ Feature: Verify COCO Medical Plan results
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "UnrelatedThree"
     And I click save and continue on the Race and Ethnicity page
 

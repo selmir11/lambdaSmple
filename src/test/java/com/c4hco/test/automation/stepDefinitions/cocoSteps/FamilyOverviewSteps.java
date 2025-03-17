@@ -38,6 +38,11 @@ public class FamilyOverviewSteps {
     @Then("I validate the action link properties on the CoCo Family Overview page")
     public void iValidateActionLinksFamilyOverview() {familyOverviewPage.validateActionLinksFamilyOverview();}
 
+    @Then("I verify no error gets displayed and continue button is enabled")
+    public void iVerifyNoErrorIsPresentAndContinueButtonIsEnabled() {familyOverviewPage.verifyNoErrorIsPresentAndContinueButtonIsEnabled();}
+
+    @Then("I verify we need more information text along with the red exclamation marks and edit update link")
+    public void iVerifyWeNeedMoreInfoTextAndOtherDetails() { familyOverviewPage.verifyWeNeedMoreInfoTextAndOtherDetails(); }
 
 
 

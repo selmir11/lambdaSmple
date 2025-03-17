@@ -22,7 +22,7 @@ Feature: Navigation - Additional information for yourself page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click Go Back on the Race and Ethnicity page
     Then I validate I am on the "CoCo Additional information for yourself" page
     Then I click Go Back on the additional information for yourself page

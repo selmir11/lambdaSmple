@@ -187,6 +187,11 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = ".error-message")
     WebElement ErrorMessage;
 
+    @FindBy(css = ".body-text-1")
+    WebElement DidURcvFolIncome;
+
+
+
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 60);
         basicActions.waitForElementToBePresentWithRetries(hdrAddInfoForYourself, 60);
@@ -895,12 +900,44 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertAll();
     }
 
-    public void verifyTheAmountAndNoErrorMessageDisplaying(String amount){
-        basicActions.waitForElementToBePresent(pensionAmount,10);
+    public void verifyTheAmountAndNoErrorMessageDisplaying(String addtlIncomeOption, String amount){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        basicActions.waitForElementToBePresent(inputAmount,10);
         basicActions.waitForElementListToDisappear(addtlIncomeAmountError, 10);
         basicActions.waitForElementListToDisappear(additlIncomeFrequencyError, 10);
-        softAssert.assertEquals(pensionAmount.getAttribute("value"), amount);
+        softAssert.assertEquals(inputAmount.getAttribute("value"), amount);
         softAssert.assertAll();
+    }
+
+    private WebElement getIncomeInputField(String addtlIncomeOption) {
+        switch (addtlIncomeOption) {
+            case "Alimony Received":
+                return alimonyAmount;
+            case "Capital Gains":
+                return capGainsAmount;
+            case "Income from rental property":
+                return rentalAmount;
+            case "Pension":
+                return pensionAmount;
+            case "Private Retirement Income":
+                return retirementAmount;
+            case "Income from Social Security":
+                return socialSecurityAmount;
+            case "Unemployment Insurance Benefit":
+                return unemploymentAmount;
+            case "Investment Income":
+                return investmentAmount;
+            case "Cash Support":
+                return cashSupportAmount;
+            case "Untaxed Foreign Income":
+                return untaxedForeignAmount;
+            case "Royalty Income":
+                return royaltyAmount;
+            case "Taxable income from Tribal Sources":
+                return taxableAmount;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
     }
 
     public void selectAdditionalIncomeOptionAndIncome(String addtlIncomeOption, String amount) {
@@ -909,8 +946,13 @@ public void verifyHeadersAdditionalIncomePage(String language){
         enterAmount(addtlIncomeOption, amount);
     }
 
-
-
-
-
+    public void verifyMinMax(String addtlIncomeOption, String language){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        String amountPlaceholder = language.equalsIgnoreCase("Spanish") ? "cantidad" : "amount";
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        softAssert.assertEquals(inputAmount.getAttribute("min"), "0.01");
+        softAssert.assertEquals(inputAmount.getAttribute("max"), "999999999.99");
+        softAssert.assertEquals(inputAmount.getAttribute("placeholder"), amountPlaceholder);
+        softAssert.assertAll();
+    }
 }

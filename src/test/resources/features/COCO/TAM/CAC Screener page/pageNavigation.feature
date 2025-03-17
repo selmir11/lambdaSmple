@@ -12,7 +12,7 @@ Feature: Page Text-Welcome Page
     And  I enter valid credentials to login
     Then I validate I am on the "CAC Screener" page
 
-  @SLCR-350 @PageNavigationCacScreenerPage @TAMSmoke
+  @SLCR-350 @PageNavigationCacScreenerPage @TAMSmokeCoCo
   Scenario: SLCR-350 I need navigation functionality so I am navigated to the correct page English
     Then I click on "Yes" option for "under 19" on CAC Screener page
     Then I click on "Yes" option for "pregnant" on CAC Screener page

@@ -35,7 +35,7 @@ Feature:   ELIG-Dental-Button on Overview-Page Text
     Then I set the Date of Medicaid or CHP Denied field to the first date of the current month
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page

@@ -22,7 +22,7 @@ And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER
 And I select "Yes" for mailing address option
 And I select "Yes" for live in Colorado option
 And I click continue on the Add info for yourself page
-Then I validate I am on the "Elmo Race and Ethnicity" page
+Then I validate I am on the "Race and Ethnicity" page
 And I click Go Back on the Race and Ethnicity page
 Then I validate I am on the "CoCo Additional information for yourself" page
 And I click continue on the Add info for yourself page
@@ -49,7 +49,7 @@ And I click continue on Tell us about additional members of your household page
 And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
 And I select "Yes" for live in Colorado option for additional member
 And I click continue on the Additional information for additional member page
-Then I validate I am on the "Elmo Race and Ethnicity" page
+Then I validate I am on the "Race and Ethnicity" page
 And I click Go Back on the Race and Ethnicity page
 Then I validate I am on the "CoCo Additional info for additional member" page
 And I click continue on the Additional information for additional member page
@@ -57,7 +57,7 @@ And I select "White or European" for race and ethnicity option for "Spouse"
 And I click save and continue on the Race and Ethnicity page
 Then I validate I am on the "CoCo Employment Income" page
 And  I click Go back on the Employment income page
-Then I validate I am on the "Elmo Race and Ethnicity" page
+Then I validate I am on the "Race and Ethnicity" page
 And I click save and continue on the Race and Ethnicity page
 Then I validate I am on the "CoCo Employment Income" page
 And I click on Sign Out in the Header for "Elmo"

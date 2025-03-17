@@ -505,6 +505,12 @@ public class FindExpertHelpPage {
     public void clickRemoveBrokerButton(){
         basicActions.waitForElementToBePresent(removeCurrentBroker,20);
         removeCurrentBroker.click();
+        setBrokerDetails();
+    }
+    private void setBrokerDetails(){
+        SharedData.setHasBroker(false);
+        SharedData.setBroker(null);
+        SharedData.setAgencyOwner(null);
     }
 
     public void clickRemoveBrokerPopUp(String removalOption) {

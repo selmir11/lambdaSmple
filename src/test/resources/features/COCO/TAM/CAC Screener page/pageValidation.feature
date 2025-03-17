@@ -12,7 +12,7 @@ Feature: Page Text-Welcome Page
     And  I enter valid credentials to login
     Then I validate I am on the "CAC Screener" page
 
-  @SLCR-340 @PageValidationCacScreenerPage @TAMSmoke
+  @SLCR-340 @PageValidationCacScreenerPage @TAMSmokeCoCo
   Scenario: SLCR-340 I want to see an updated page and dynamic behavior when quiz results are displayed English
     Then I click on "Yes" option for "under 19" on CAC Screener page
     Then I click on "Yes" option for "pregnant" on CAC Screener page
