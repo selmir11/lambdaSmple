@@ -979,6 +979,13 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(passwordReset.getText(), "Account Status: Password Reset");
         softAssert.assertAll();
     }
+    public void validateCoCoDashboardContainerTitles(String PlansContainer, String summaryContainer, String reportsContainer) {
+        basicActions.waitForElementToBePresent(plansTitle, 30);
+        softAssert.assertEquals(plansTitle.getText(), PlansContainer);
+        softAssert.assertEquals(summaryTitle.getText(), summaryContainer);
+         softAssert.assertEquals(reportsTitle.getText(), reportsContainer);
+        softAssert.assertAll();
+    }
 }
 
 
