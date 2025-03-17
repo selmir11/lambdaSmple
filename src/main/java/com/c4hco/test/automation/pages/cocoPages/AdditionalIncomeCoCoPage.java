@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdditionalIncomeCoCoPage {
     private BasicActions basicActions;
@@ -178,6 +180,17 @@ public class AdditionalIncomeCoCoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
+    @FindBy(css = ".input-error-message lib-fi svg")
+    WebElement ErrorIcon;
+
+    @FindBy(css = ".error-message")
+    WebElement ErrorMessage;
+
+    @FindBy(css = ".body-text-1")
+    WebElement DidURcvFolIncome;
+
+
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 60);
@@ -872,7 +885,74 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
 
+    public void validateErrorMessageAndItsProperties(DataTable dataTable){
+        basicActions.waitForElementToBePresent(ErrorIcon,10);
+        basicActions.waitForElementToBePresent(ErrorMessage,10);
 
+        List<Map<String,String>> data = dataTable.asMaps();
+        softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
+        softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
+        softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertAll();
+    }
 
+    public void verifyTheAmountAndNoErrorMessageDisplaying(String addtlIncomeOption, String amount){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        basicActions.waitForElementListToDisappear(addtlIncomeAmountError, 10);
+        basicActions.waitForElementListToDisappear(additlIncomeFrequencyError, 10);
+        softAssert.assertEquals(inputAmount.getAttribute("value"), amount);
+        softAssert.assertAll();
+    }
 
+    private WebElement getIncomeInputField(String addtlIncomeOption) {
+        switch (addtlIncomeOption) {
+            case "Alimony Received":
+                return alimonyAmount;
+            case "Capital Gains":
+                return capGainsAmount;
+            case "Income from rental property":
+                return rentalAmount;
+            case "Pension":
+                return pensionAmount;
+            case "Private Retirement Income":
+                return retirementAmount;
+            case "Income from Social Security":
+                return socialSecurityAmount;
+            case "Unemployment Insurance Benefit":
+                return unemploymentAmount;
+            case "Investment Income":
+                return investmentAmount;
+            case "Cash Support":
+                return cashSupportAmount;
+            case "Untaxed Foreign Income":
+                return untaxedForeignAmount;
+            case "Royalty Income":
+                return royaltyAmount;
+            case "Taxable income from Tribal Sources":
+                return taxableAmount;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
+    }
+
+    public void selectAdditionalIncomeOptionAndIncome(String addtlIncomeOption, String amount) {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 10);
+        selectAddtlIncomeOptionOnly(addtlIncomeOption);
+        enterAmount(addtlIncomeOption, amount);
+    }
+
+    public void verifyMinMax(String addtlIncomeOption, String language){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        String amountPlaceholder = language.equalsIgnoreCase("Spanish") ? "cantidad" : "amount";
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        softAssert.assertEquals(inputAmount.getAttribute("min"), "0.01");
+        softAssert.assertEquals(inputAmount.getAttribute("max"), "999999999.99");
+        softAssert.assertEquals(inputAmount.getAttribute("placeholder"), amountPlaceholder);
+        softAssert.assertAll();
+    }
 }

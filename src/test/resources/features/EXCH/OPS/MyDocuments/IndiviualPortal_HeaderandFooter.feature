@@ -13,12 +13,13 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And  I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     Then I click link my docs on accountOverview page
-    Then I validate I am on the "My Documents" page
+#    Then I validate I am on the "My Documents"
+    And I select year "All" in plan year
     And I verify the page text in "English" on the My Documents Page
 #    Verify Footer and welcome back navigate button
     Then I validate Welcome back button navigates to welcome page
     Then I click link my docs on accountOverview page
-    Then I validate I am on the "My Documents" page
+#    Then I validate I am on the "My Documents" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer

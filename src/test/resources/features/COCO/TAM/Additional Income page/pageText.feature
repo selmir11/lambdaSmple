@@ -24,7 +24,7 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
 
-  @SLCR-61 @PageTextAdditionalIncome @TAMSmoke
+  @SLCR-61 @PageTextAdditionalIncome @TAMSmokeCoCo
   Scenario: SLCR-61 I can see Additional Income's Header and footer - English
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"

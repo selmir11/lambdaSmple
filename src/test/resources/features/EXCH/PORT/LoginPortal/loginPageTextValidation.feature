@@ -37,7 +37,7 @@ Feature:RT-2452 - Update Legal Notice language on Individual Login Portal page
     And I validate I am on the "Login" page
     Then I click on sign in on login page
     And I validate the error msg username and password required in "English"
-    Then I change the language from header to "Spanish"
+    Then I change the language from header to "Spanish Login"
     And I validate the error msg username and password required in "Spanish"
 
 

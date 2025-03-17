@@ -53,12 +53,12 @@ Feature: Page Navigation-OHC ESI Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc ESI" page
 
 
   @SLER-687 @PageNavigationESI
@@ -92,10 +92,10 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I click the save and continue button on the Income Summary Detail page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     And I click on Apply for Coverage in the "Elmo" Header
@@ -111,7 +111,7 @@ Feature: Page Navigation-OHC ESI Page
   @SLER-958 @PageTextESI
   Scenario: SLER-958 Delete employer from Employer Summary and ESI is removed from DB
     Then I select the Go Back button on the ESI page
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I click on "Primary" to edit information from household page
     Then I select the Edit Income link
     And I validate I am on the "Employment Summary" page
@@ -126,11 +126,11 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Health First Colorado" as ELMO health coverage option
-    Then I select "CHP+" as ELMO health coverage option
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Health First Colorado" as health coverage option
+    Then I select "CHP+" as health coverage option
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "250.00" for employee amount question on the ESI page
@@ -139,7 +139,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the ESI page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     And I click on "Primary" to edit information from household page
     Then I select the Edit Income link
 
@@ -155,7 +155,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     And I validate Other Health Coverage options load "Medicaid, CHP+, COBRA"
 
@@ -164,7 +164,7 @@ Feature: Page Navigation-OHC ESI Page
   @SLER-963 @PageTextESI
   Scenario: SLER-963 Delete employer from Employer Summary and ESI is not removed from DB
     Then I select the Go Back button on the ESI page
-    Then I click Go back on the ELMO health coverage page
+    Then I click Go back on the health coverage page
     And I click on "Primary" to edit information from household page
     Then I select the Edit Income link
     And I validate I am on the "Employment Summary" page
@@ -179,11 +179,11 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Health First Colorado" as ELMO health coverage option
-    Then I select "CHP+" as ELMO health coverage option
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Health First Colorado" as health coverage option
+    Then I select "CHP+" as health coverage option
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "250.00" for employee amount question on the ESI page
@@ -192,7 +192,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the ESI page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "No" for insurance ending in 60 days in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     And I click on "Primary" to edit information from household page
     Then I select the Edit Income link
 
@@ -209,7 +209,7 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     And I validate Other Health Coverage options load "Medicaid, CHP+, ESI, COBRA"
 
@@ -220,38 +220,38 @@ Feature: Page Navigation-OHC ESI Page
   @SLER-964 @PageVerificationEsiPage
   Scenario: SLER-964 I need navigation functionality to enter and exit the ELMO OHC application to the ELMO Exch ESI page
     Then I select the Go Back button on the ESI page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc ESI" page
     Then I select the Go Back button on the ESI page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc ESI" page
     Then I select the "0" employer for "Primary" member on the ESI page
     Then I select "Yes" for meet the Minimum Value Standard on the ESI page
     Then I enter "250.00" for employee amount question on the ESI page
     Then I select the Are you currently enrolled "Yes" button on the ESI page
     Then I select the Will Insurance End "No" button on the ESI page
     Then I click continue on the ESI page
-    And I validate I am on the "Elmo HRA" page
-    Then I click Go Back on the Elmo OHC HRA page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "HRA" page
+    Then I click Go Back on the OHC HRA page
+    And I validate I am on the "Ohc ESI" page
     Then I select the Go Back button on the ESI page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "HRA" as ELMO health coverage option
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "HRA" as health coverage option
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Medicare" page
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
     Then I enter Part A amount of "150.00"
     Then I click "No" for Part "A" insurance ending in 60 days in Medicare question
-    Then I click continue on the Elmo OHC Medicare page
-    And I validate I am on the "ESI" page
+    Then I click continue on the OHC Medicare page
+    And I validate I am on the "Ohc ESI" page
     Then I select the Go Back button on the ESI page
-    And I validate I am on the "Elmo Ohc Medicare" page
-    Then I click continue on the Elmo OHC Medicare page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc Medicare" page
+    Then I click continue on the OHC Medicare page
+    And I validate I am on the "Ohc ESI" page
     Then I click continue on the ESI page
     And I validate I am on the "Family Overview" page
 
@@ -280,18 +280,18 @@ Feature: Page Navigation-OHC ESI Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Medicare" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Medicare" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc ESI" page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click Go back on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click Go back on the health coverage page
+    And I validate I am on the "Ohc ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
@@ -299,7 +299,7 @@ Feature: Page Navigation-OHC ESI Page
   @SLER-2064
   Scenario: SLER-2064 I want to be directed to the unauthorized page so that I know I have tried to access a page I am not authorized to access
 #    check in English and change to Spanish
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Ohc ESI" page
     And I verify the header for Primary Member on the ESI page in "English"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"
     Then I validate I am on the "Unauthorized" page
@@ -331,9 +331,9 @@ Feature: Page Navigation-OHC ESI Page
     Then I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc ESI" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I verify the header for Primary Member on the ESI page in "Spanish"
     And I change the C4 url to "Other Health Coverage portal Unauthorized Exch"

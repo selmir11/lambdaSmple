@@ -97,6 +97,7 @@ Feature: Acct created as broker and broker selects yes to agency owner question 
     And I validate I am on the "Agency Dashboard" page
     Then I validate the Your Clients page title
     And I search for clients
+    And I wait for 2000 milliseconds
     And I click on first client search result
     Then I verify that my client's current status is "NO ELIGIBILITY"
     And I click "manage" the client

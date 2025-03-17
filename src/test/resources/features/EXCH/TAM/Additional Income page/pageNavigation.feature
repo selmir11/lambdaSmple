@@ -44,7 +44,7 @@ Feature: Page Navigation-Additional Income Page
     Then I validate I am on the "Additional income" page
     And I verify the header for Primary Member on the Additional Income page in "English"
 
-  @SLER-686 @PageNavigationAdditionalIncomePage @TAMSmoke
+  @SLER-686 @PageNavigationAdditionalIncomePage @TAMSmokeExch
   Scenario: SLER-686 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Income Portal, Exchange
     #Step1
     And I change the C4 url to "Income portal Error Exch"
@@ -84,7 +84,7 @@ Feature: Page Navigation-Additional Income Page
     And I click on Sign Out in the Header for "WhoHelpsYouPage"
     Then I validate I am on the "Login" page
 
-  @SLER-1302 @PageNavigationAdditionalIncomePage @TAMSmoke
+  @SLER-1302 @PageNavigationAdditionalIncomePage @TAMSmokeExch
   Scenario: SLER-1302 My session is invalidated when I log out in Income Portal, Exchange
     #step1
     Then I open current page in new tab

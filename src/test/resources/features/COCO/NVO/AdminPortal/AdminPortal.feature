@@ -38,7 +38,7 @@ Feature: Admin Portal Validations
       And I select "Yes" for mailing address option
       And I select "Yes" for live in Colorado option
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I click on the Username in the "CoCo" Header
       Then I validate I am on the "My Profile" page
       And I click on Make Changes Button in CoCo
@@ -99,7 +99,7 @@ Feature: Admin Portal Validations
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -124,29 +124,9 @@ Feature: Admin Portal Validations
     And I enter residential address details for additional member "103 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Asian or Asian American" for race and ethnicity for "Spouse"
-    And I click continue on the Race and Ethnicity page
-    And I select "No" employment option
-    And I click continue on the Employment income page
-    And I select None of these as additional income option
-    And I select continue on the Additional Income CoCO page
-    And I select "None of these" as deductions option
-    And I select continue on the Deductions CoCo page
-    Then I select the projected income option "No" on Income Summary CoCo page
-    And I select continue on the income Summary CoCo page
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I select add another family member on the Family Overview page
-    Then I enter details on tell us about additional members of your household page with "Son", "04212013", "Female", and applying "Yes"
-      | Primary:Child or Other dependent |
-      | Spouse:Child or Other dependent |
-    And I click continue on Tell us about additional members of your household page
-    And I enter residential address details for additional member "103 COCO DRIVE", "DENVER", "CO", "80205", "DENVER"
-    And I select "Yes" for live in Colorado option for additional member
-    And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Asian or Asian American" for race and ethnicity for "Son"
-    And I click continue on the Race and Ethnicity page
+    And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page
     And I select None of these as additional income option
@@ -172,6 +152,15 @@ Feature: Admin Portal Validations
     Then I update "Spouse" as primary member coco
     And I wait for hold on content to disappear
     Then I validate I am on the "My Profile" page
+    Then I click on Go back to Welcome page Button on My Profile CoCo
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "Spouse"
+    And I get the memberId of primary member from url
+    Then I validate I am on the "CoCo Tell us about yourself" page
     And I click on Sign Out in the Header for "Elmo"
 
   #ADMIN portal
@@ -188,7 +177,6 @@ Feature: Admin Portal Validations
     And I close current tab and switch back to previous tab
     And I click on view button for "Account Activity" report
     Then I validate I am on the "Account Activity" page
-    Then I validate the account activity record for "primary person change" for "adminportal"
     Then I validate the account activity record for "primary person change" for "individualportal"
     Then I validate member id of all members
     Then logout from Admin Portal

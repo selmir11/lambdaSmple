@@ -6,8 +6,6 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java8.Da;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -366,6 +364,56 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I verify no document on new account")
     public void iVerifyNoDocumentOnNewAccount(String data) {
         myDocumentsPage.verifyNoDocumentMessage(data);
+    }
+
+    @Then("I validate file required error message on modal popup")
+    public void iValidateFileRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateFileRequiredErrorMessage(data);
+    }
+
+    @Then("I validate selection required error message on modal popup")
+    public void iValidateSelectionRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage(data);
+    }
+
+    @When("I click on upload documents button in modal popup")
+    public void iClickOnUploadDocumentsButtonInModalPopup() {
+        myDocumentsPage.clickUploadButton();
+    }
+
+    @Then("I validate border colour of category dropdown")
+    public void iValidateBorderColourOfCategoryDropdown() {
+        myDocumentsPage.validateBorderColorofErrorCategory();
+    }
+
+    @Then("I validate selection required error message for only document category on modal popup")
+    public void iValidateSelectionRequiredErrorMessageForOnlyDocumentCategoryOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(data);
+    }
+
+    @Then("I verify unsupported document error message with red in color")
+    public void iVerifyUnsupportedDocumentErrorMessageWithRedInColor(String data) {
+        myDocumentsPage.validateDocUnsupportedErrorAndTextColour(data);
+    }
+
+    @When("I select any category of document from dropdown in spanish")
+    public void iSelectAnyCategoryOfDocumentFromDropdownInSpanish() {
+        myDocumentsPage.select1stOptionFromDocTypeSpanish();
+    }
+
+    @Then("I verify doc file size large error message in red in Spanish")
+    public void iVerifyDocFileSizeLargeErrorMessageInRedOnModelPopup() {
+        myDocumentsPage.validateDocSizeLargeErrMsgAndTextColourSpanish();
+    }
+
+    @Then("I upload MVR doc for {string} on the My Documents page in {string}")
+    public void iUploadMVRDocForOnTheMyDocumentsPageIn(String mvrType, String language) {
+        myDocumentsPage.uploadMvrDocAndSuccesMessage(mvrType,language);
+    }
+
+    @Then("I upload another doc {string} for {string} on the My Documents page and verify success message in {string}")
+    public void iUploadAnotherDocForOnTheMyDocumentsPageAndVerifySuccessMessageIn(String fileName, String mvrType, String language) {
+        myDocumentsPage.uploadAnotherDocAndSuccessMessage(fileName,mvrType,language);
     }
 }
 
