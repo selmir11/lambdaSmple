@@ -352,7 +352,7 @@ Feature: Page validation - Life Change Event page
   @SLCR-824
   Scenario: ELIG-As a CoCo user,
   I want to see the Tell us about life changes page in English or Spanish
-  so that I can review the life change events for my application
+  so that I can review the life change events for my application [CCRT-395]
     And I change the language from header to "English"
     Then I validate the text format is aligned with 'English' language
       | English:                                                                                                                                                                                               |
