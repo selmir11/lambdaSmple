@@ -234,6 +234,9 @@ public class AccountOverviewPage {
         String coverageEndDate;
         String financialStartDate;
         String financialEndDate;
+        String memFinancialStartDate = null;
+        String memFinancialEndDate = null;
+
 
         if(SharedData.getIsOpenEnrollment().equals("yes")){
             policyStartDate = SharedData.getPlanYear()+"-01-01";
@@ -242,6 +245,8 @@ public class AccountOverviewPage {
             coverageEndDate = SharedData.getPlanYear()+"-12-31";
             financialStartDate = SharedData.getPlanYear()+"-01-01";
             financialEndDate = SharedData.getPlanYear()+"-12-31";
+            memFinancialStartDate = SharedData.getPlanYear()+"-01-01";
+            memFinancialEndDate =SharedData.getPlanYear()+"-12-31";
         } else {
              policyStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyStartDate"));
              policyEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("PolicyEndDate"));
@@ -249,6 +254,10 @@ public class AccountOverviewPage {
              coverageEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("CoverageEndDate"));
              financialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialStartDate"));
              financialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("FinancialEndDate"));
+             if(expectedResult.get(0).get("MemFinancialStartDate") != null) {
+                 memFinancialStartDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("MemFinancialStartDate"));
+                 memFinancialEndDate = basicActions.getDateBasedOnRequirement(expectedResult.get(0).get("MemFinancialEndDate"));
+             }
         }
        String planStartDate =  basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
        String planEndDate = basicActions.changeDateFormat(policyEndDate, "yyyy-MM-dd", "MM/dd/yyyy");
@@ -263,7 +272,8 @@ public class AccountOverviewPage {
                 expectedCalculatedDates_medical.setCoverageEndDate(coverageEndDate);
                 expectedCalculatedDates_medical.setFinancialStartDate(financialStartDate);
                 expectedCalculatedDates_medical.setFinancialEndDate(financialEndDate);
-
+                expectedCalculatedDates_medical.setMemberFinancialStartDate(memFinancialStartDate);
+                expectedCalculatedDates_medical.setMemberFinancialEndDate(memFinancialEndDate);
                 SharedData.setExpectedCalculatedDates_medicalPlan(expectedCalculatedDates_medical);
                 subscriber.setMedicalPlanStartDate(planStartDate);
                 subscriber.setMedicalPlanEndDate(planEndDate);
@@ -277,7 +287,8 @@ public class AccountOverviewPage {
                 expectedCalculatedDates_dental.setCoverageEndDate(coverageEndDate);
                 expectedCalculatedDates_dental.setFinancialStartDate(financialStartDate);
                 expectedCalculatedDates_dental.setFinancialEndDate(financialEndDate);
-
+                expectedCalculatedDates_dental.setMemberFinancialStartDate(memFinancialStartDate);
+                expectedCalculatedDates_dental.setMemberFinancialEndDate(memFinancialEndDate);
                 SharedData.setExpectedCalculatedDates_dentalPlan(expectedCalculatedDates_dental);
                 subscriber.setDentalPlanStartDate(planStartDate);
                 subscriber.setDentalPlanEndDate(planEndDate);

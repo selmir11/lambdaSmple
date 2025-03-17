@@ -223,10 +223,11 @@ Feature: Tests related to the Additional Income page
       | Amount is required | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
     Then I select "Pension" as additional income option CoCO page
     And I select "Pension" as additional income option with "60" amount at "Weekly" frequency
-    And I verify no error message gets displayed for pension additional income & amount gets converted to "0.60"
+    And I verify no error message gets displayed for "Pension" CoCo Additional Income & amount gets converted to "0.60" on CoCo Additional Income page
     And I refresh the page
     And I select "Pension" as additional income option with "-999,999,9.9@ A" amount at "Weekly" frequency
-    And I verify no error message gets displayed for pension additional income & amount gets converted to "999,999.99"
+    And I verify no error message gets displayed for "Pension" CoCo Additional Income & amount gets converted to "999,999.99" on CoCo Additional Income page
+    Then I verify Additional Income CoCo amount Minimum and Maximum for "Pension" in "English"
     And I refresh the page
     And I select "Pension" as additional income option with "64.00" amount
     And I select continue on the Additional Income CoCO page
@@ -235,41 +236,9 @@ Feature: Tests related to the Additional Income page
       | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
     Then I select "Pension" as additional income option CoCO page
     And I select "Pension" as additional income option with "78.00" amount at "Weekly" frequency
-    And I verify no error message gets displayed for pension additional income & amount gets converted to "640,078.00"
+    And I verify no error message gets displayed for "Pension" CoCo Additional Income & amount gets converted to "640,078.00" on CoCo Additional Income page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
-
-    @SLCR-823
-    Scenario: ELIG-As a user on the Additional Income Sources page,
-    I want the ability to see the page in Spanish so that I can review and update the income information [CCRT-421]
-      Then I validate I am on the "CoCo Additional Income" page
-      Then I select "Pension" as additional income option CoCO page
-      And I change the language from header to "Spanish"
-      Then I validate that I am able to see the page in 'Spanish' so that I can review and update the income information
-      |Text Label:|
-      |Ingresos:|
-      |Otras fuentes de ingreso|
-      |¿Recibió alguno de los ingresos siguientes?|
-      |Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.|
-      |Pensión alimenticia recibida|
-      |Ganancias de capital|
-      |Ingresos por renta de propiedades|
-      |Pensión|
-      |Ingresos privados por retiro|
-      |Ingresos por el Seguro Social|
-      |Beneficio del seguro de desempleo|
-      |Ingresos derivados de inversiones|
-      |Apoyo en efectivo|
-      |Ingresos extranjeros no gravados|
-      |Ingresos por regalías|
-      |Ingresos gravables de origen tribal|
-      |Ninguna de las anteriores|
-      |cantidad|
-      |Anualmente|
-      |Cada dos semanas|
-      |Mensualmente|
-      |Dos veces por mes |
-      |Semanalmente|
 
 
 
