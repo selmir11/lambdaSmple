@@ -458,6 +458,7 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
 
+                // at the step above the cursor is found on the downloaded document - next step would be to copy the file title and verify it
 
                 //getLocalPathToDownloadFile = "/ThisPC/Downloads";
                 //fileInput = document.getElementById("Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01");
