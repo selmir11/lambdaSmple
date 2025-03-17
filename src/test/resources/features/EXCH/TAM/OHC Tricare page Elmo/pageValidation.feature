@@ -52,7 +52,7 @@ Feature: Page Validation-OHC Tricare Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "TRICARE" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
 
   @SLER-335 @PageValidationOhcTricareElmo
   Scenario: SLER-335 I can see Tricare's standard errors consistently - English
@@ -147,7 +147,7 @@ Feature: Page Validation-OHC Tricare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     Then I click "Yes" for currently enrolled in Tricare question
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I click continue on the OHC Tricare page
@@ -167,7 +167,7 @@ Feature: Page Validation-OHC Tricare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     Then I click "Yes" for insurance ending in 60 days in Tricare question
     Then I enter the end date as "Current Month" on the Tricare page
     Then I click "No" for insurance ending voluntary for Tricare question
@@ -183,7 +183,7 @@ Feature: Page Validation-OHC Tricare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     Then I click "Yes" for insurance ending voluntary for Tricare question
     Then I click continue on the OHC Tricare page
     And I verify the OHC options selected in the DB for "Primary"
@@ -197,7 +197,7 @@ Feature: Page Validation-OHC Tricare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     Then I click "No" for insurance ending in 60 days in Tricare question
     Then I click continue on the OHC Tricare page
     And I verify the OHC options selected in the DB for "Primary"
@@ -211,7 +211,7 @@ Feature: Page Validation-OHC Tricare Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Tricare" page
+    And I validate I am on the "Ohc Tricare" page
     Then I click "No" for currently enrolled in Tricare question
     Then I click continue on the OHC Tricare page
     And I verify the OHC options selected in the DB for "Primary"

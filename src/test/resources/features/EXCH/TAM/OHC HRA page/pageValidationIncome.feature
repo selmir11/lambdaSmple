@@ -60,7 +60,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -129,7 +129,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "5.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
@@ -199,7 +199,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "200.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -267,7 +267,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -336,7 +336,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -405,7 +405,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -475,7 +475,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -544,7 +544,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "1000.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
@@ -612,7 +612,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
@@ -683,7 +683,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "HRA" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo HRA" page
+    And I validate I am on the "HRA" page
     Then I select Current Year year dropdown on the OHC HRA page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type

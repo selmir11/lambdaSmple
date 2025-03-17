@@ -81,7 +81,7 @@ Feature: Secondary User-OHC VA Healthcare Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
 
   @SLER-624 @SecondaryUserOhcVAHealthcareElmo
   Scenario: SLER-624 I can see VA Healthcare's dynamic data for Primary and Secondary user - English
@@ -96,7 +96,7 @@ Feature: Secondary User-OHC VA Healthcare Elmo Page
 
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     And I verify the "First Section Secondary" VA Healthcare page data in "English"
     Then I click "Yes" for currently enrolled in VA Healthcare question
     And I verify the "Second Section Secondary" VA Healthcare page data in "English"
@@ -122,7 +122,7 @@ Feature: Secondary User-OHC VA Healthcare Elmo Page
 
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    And I validate I am on the "Ohc VA Healthcare" page
     And I verify the "First Section Secondary" VA Healthcare page data in "Spanish"
     Then I click "Yes" for currently enrolled in VA Healthcare question
     And I verify the "Second Section Secondary" VA Healthcare page data in "Spanish"

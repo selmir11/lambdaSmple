@@ -81,7 +81,7 @@ Feature: Secondary User-OHC Medicare Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
 
   @SLER-617 @SecondaryUserOhcMedicareElmo
   Scenario: SLER-617 I can see Medicare's dynamic data for Primary and Secondary user - English
@@ -99,10 +99,10 @@ Feature: Secondary User-OHC Medicare Elmo Page
     Then I check checkbox for Part "B"
     Then I click continue on the OHC Medicare page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I verify the "First Section Secondary" Medicare page data in "English"
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"
@@ -133,10 +133,10 @@ Feature: Secondary User-OHC Medicare Elmo Page
     Then I check checkbox for Part "B"
     Then I click continue on the OHC Medicare page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I verify the "First Section Secondary" Medicare page data in "Spanish"
     Then I click "Yes" for currently eligible in Medicare question
     Then I check checkbox for Part "A"

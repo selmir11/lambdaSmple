@@ -83,7 +83,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     And I verify the header for "Primary" Member on the Other Health Coverage page in "English"
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I set the browser resolution to 1536 x 864
 
   @SLER-898
@@ -114,7 +114,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I click continue on the OHC Medicare page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I verify the header for "Secondary" Member on the Medicare page in "English"
     And I select "Help me understand" icon on the Medicare Page
     Then I validate Medicare help drawer verbiage in "English"
@@ -171,7 +171,7 @@ Feature: Help Drawer-OHC Medicare Elmo Page
     Then I click continue on the OHC Medicare page
     Then I select "Medicare" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Medicare" page
+    And I validate I am on the "Ohc Medicare" page
     And I verify the header for "Secondary" Member on the Medicare page in "Spanish"
     And I select "Help me understand" icon on the Medicare Page
     Then I validate Medicare help drawer verbiage in "Spanish"

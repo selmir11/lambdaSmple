@@ -24,7 +24,7 @@ Feature: Coco user on the Application results page
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -86,7 +86,7 @@ Feature: Coco user on the Application results page
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -130,7 +130,7 @@ Feature: Coco user on the Application results page
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -195,7 +195,7 @@ Feature: Coco user on the Application results page
     And I enter my mailing address "101 Coco Drive", "Los Angeles", "CA", "90005", "LOS ANGELES"
     And I select "No" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -247,7 +247,7 @@ Feature: Coco user on the Application results page
       And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
       And I select "No" for live in Colorado option
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity option for "Primary"
       And I click save and continue on the Race and Ethnicity page
       Then I validate I am on the "Employment Income" page
@@ -291,7 +291,7 @@ Feature: Coco user on the Application results page
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page
@@ -334,7 +334,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
   And I select "Yes" for mailing address option
   And I select "Yes" for live in Colorado option
   And I click continue on the Add info for yourself page
-  Then I validate I am on the "Elmo Race and Ethnicity" page
+  Then I validate I am on the "Race and Ethnicity" page
   And I select "Prefer not to answer" for race and ethnicity option for "Primary"
   And I click save and continue on the Race and Ethnicity page
   And I select "Yes" employment option
@@ -362,7 +362,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
   And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
   And I select "Yes" for live in Colorado option for additional member
   And I click continue on the Additional information for additional member page
-  Then I validate I am on the "Elmo Race and Ethnicity" page
+  Then I validate I am on the "Race and Ethnicity" page
   And I select "Prefer not to answer" for race and ethnicity option for "Wife"
   And I click save and continue on the Race and Ethnicity page
   And I select "No" employment option
@@ -399,7 +399,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -442,7 +442,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
       And I select "Yes" for mailing address option
       And I select "Yes" for live in Colorado option
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity option for "Primary"
       And I click save and continue on the Race and Ethnicity page
       And I select "Yes" employment option
@@ -487,7 +487,7 @@ Scenario: scenario 1 ELIG-Verify the Spanish text on the Application Results pag
     And I select "Yes" for mailing address option
     And I select "<isCoResident>" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "Employment Income" page

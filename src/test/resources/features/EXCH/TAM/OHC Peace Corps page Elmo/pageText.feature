@@ -52,7 +52,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I select "Peace Corps" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
 
   @SLER-282 @PageTextOhcPeaceCorpsElmo
   Scenario: SLER-282 I can see Peace Corps's Header and footer - English
@@ -80,7 +80,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -102,7 +102,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
     And I click on Apply for Coverage in the "NonElmo" Header
@@ -125,7 +125,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
     Then I apply for the current year
@@ -145,19 +145,19 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     And I click continue on the Deductions page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Elmo Other Health Coverage" page
+    Then I validate I am on the "Other Health Coverage" page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
     Then I validate I am on the "Find Expert Help" page
@@ -181,7 +181,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "English"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -205,36 +205,36 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "English"
 #    And I set the browser resolution to 1200 x 800
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
 
 
     And I click on Sign Out in the Header for "Elmo"
@@ -269,7 +269,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -293,7 +293,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application History" page
@@ -318,7 +318,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Account Overview" page
@@ -342,18 +342,18 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Learn More in the Header
     And I validate I am on the "Faqs" page and close tab
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
     And I validate I am on the "Customer Service" page and close tab
 
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Get Assistance in the "Exch" Header
     And I click on Find Expert Assistance in the "Exch" Header
@@ -379,7 +379,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on the Username in the "Exch" Header
     Then I validate I am on the "My Profile" page
@@ -404,44 +404,44 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I click continue on the health coverage page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
 #    And I set the browser resolution to 1200 x 800
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on Contact Us in the "Exch" Footer
     And I validate I am on the "Contact Us" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on "Facebook" Icon in the Footer
     And I validate I am on the "Facebook" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on "X" Icon in the Footer
     And I validate I am on the "X" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on "YouTube" Icon in the Footer
     And I validate I am on the "YouTube" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on "Instagram" Icon in the Footer
     And I validate I am on the "Instagram" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on "LinkedIn" Icon in the Footer
     And I validate I am on the "LinkedIn" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
-    Then I validate I am on the "Elmo Ohc Peace Corps" page
+    Then I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "Spanish"
 
 
@@ -473,7 +473,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify the header for Primary Member on the Peace Corps page in "English"
 #Step 5
     Then I click "No" for currently enrolled in Peace Corps question
@@ -487,7 +487,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify Currently Enrolled is "No" on the Peace Corps page
 
     Then I click "Yes" for currently enrolled in Peace Corps question
@@ -502,7 +502,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify Currently Enrolled is "Yes" on the Peace Corps page
     And I verify Insurance Ending in 60 days is "No" on the Peace Corps page
 
@@ -519,7 +519,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify Currently Enrolled is "Yes" on the Peace Corps page
     And I verify Insurance Ending in 60 days is "Yes" on the Peace Corps page
     And I verify end date is the last day of the month on the Peace Corps page
@@ -536,7 +536,7 @@ Feature: Page Text-OHC Peace Corps Elmo Page
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Ohc Peace Corps" page
+    And I validate I am on the "Ohc Peace Corps" page
     And I verify Currently Enrolled is "Yes" on the Peace Corps page
     And I verify Insurance Ending in 60 days is "Yes" on the Peace Corps page
     And I verify end date is the last day of the month on the Peace Corps page

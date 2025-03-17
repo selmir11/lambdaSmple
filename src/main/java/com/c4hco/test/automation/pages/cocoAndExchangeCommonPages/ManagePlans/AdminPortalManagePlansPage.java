@@ -412,6 +412,8 @@ public class AdminPortalManagePlansPage {
     List<WebElement> DentalPlanMembersDetailsContainer;
     @FindBy(xpath = "//app-current-plan//div[@class='plan-member-info']")
     WebElement CurrentPlanInfo;
+    @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[2]")
+    WebElement aptcEHBError;
     List<WebElement> PlanContainer;
 
     public void validateBluBar() {
@@ -1446,6 +1448,10 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         if (value1 + value2 > value3) {
             Assert.assertTrue(SESEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
         }
+    }
+    public void validateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage){
+        softAssert.assertEquals(aptcEHBError.getText(), expectedErrorMessage, "APTC entered exceeds EHB amount");
+        softAssert.assertAll();
     }
 }
 

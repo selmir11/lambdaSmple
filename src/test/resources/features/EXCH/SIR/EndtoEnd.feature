@@ -585,7 +585,7 @@ Then I select the projected income option "No" and continue
   Then I select the projected income option "No" and continue
 
 # move to Tax Status
-  Then I validate I am on the "Tax status Elmo" page
+  Then I validate I am on the "Tax status" page
   Then I select "No" for will you be claimed as dependent question
   Then I select "Yes" for will file tax return question
   Then I select the "Married filing jointly" tax filing option on the Tax Status page
@@ -605,51 +605,51 @@ Then I select the projected income option "No" and continue
   Then I click Save and Continue on Tax Status page
 
   #primary
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 1 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 2 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 3 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 4 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 5 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 6 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 7 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 8 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 9 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 10 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
   #secondary member 11 below
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
 
@@ -724,7 +724,7 @@ Scenario: SLER-1288 - Test out Smoker/Non-smoker divergence to the Medical Plan 
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
@@ -791,7 +791,7 @@ Scenario: SLER-1288 - Test out Smoker/Non-smoker divergence to the Medical Plan 
   Then I validate I am on the "Income Summary" page
   Then I select the projected income option "No" and continue
   
-  Then I validate I am on the "Tax status Elmo" page
+  Then I validate I am on the "Tax status" page
   Then I select "No" for will you be claimed as dependent question
   Then I select "Yes" for will file tax return question
   Then I select the "Married filing jointly" tax filing option on the Tax Status page
@@ -800,11 +800,11 @@ Scenario: SLER-1288 - Test out Smoker/Non-smoker divergence to the Medical Plan 
   Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
   Then I click Save and Continue on Tax Status page
 
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
 
-  And I validate I am on the "Elmo Other Health Coverage" page
+  And I validate I am on the "Other Health Coverage" page
   Then I select "None of these" as health coverage option
   Then I click continue on the health coverage page
 

@@ -69,7 +69,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    And I set the browser resolution to 2000 x 800
 
   @SLER-1902 @HelpDrawerTaxStatusElmoPage
@@ -110,7 +110,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click on the "Claiming Dependent" help link on Tax Status page
 
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I validate I am on the "Spanish" page
     Then I click on the "Header" help link on Tax Status page
     And I verify the help drawer "Full:Spanish" text on Tax Status page

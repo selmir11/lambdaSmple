@@ -73,7 +73,7 @@ Feature: Page Text-Tax Status Elmo Page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -107,7 +107,7 @@ Feature: Page Text-Tax Status Elmo Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 
   @SLER-1820 @PageTextTaxStatusElmoPage
   Scenario: SLER-1820 I need to see the updated page so that my Tax Status choices can be collected - English
@@ -158,7 +158,7 @@ Feature: Page Text-Tax Status Elmo Page
 #    Other Member (Son)
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 4 - Other member
     And I verify the header for "Son" Member on the Tax Status page in "English"
 #    Step 5 - Other member
@@ -211,7 +211,7 @@ Feature: Page Text-Tax Status Elmo Page
 
   @SLER-1829 @PageTextTaxStatusElmoPage @TAMSmokeExch
   Scenario: SLER-1829 I need to see the updated page so that my Tax Status choices can be collected - Spanish
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page
 #    Step 3
@@ -261,10 +261,10 @@ Feature: Page Text-Tax Status Elmo Page
 #    Other Member (Son)
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
 #    Step 4 - Other member
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     And I verify the header for "Son" Member on the Tax Status page in "Spanish"
 #    Step 5 - Other member
     And I verify will you be claimed question on the Tax Status page for "Son" in "Spanish"

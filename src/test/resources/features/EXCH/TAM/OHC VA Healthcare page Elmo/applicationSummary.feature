@@ -142,7 +142,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I click Save and Continue on Tax Status page
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
 #    Step 2
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
@@ -179,7 +179,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
     Then I click "No" for insurance ending in 60 days in VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
     Then I click continue on family overview page
@@ -237,7 +237,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
     Then I enter the end date as "Current Month" on the VA Healthcare page
     Then I click "Yes" for insurance ending voluntary for VA Healthcare question
@@ -296,7 +296,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
     Then I click "No" for currently enrolled in VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
     Then I click continue on family overview page
@@ -356,7 +356,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I click Save and Continue on Tax Status page
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
 #    Step 2
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
@@ -393,7 +393,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
     Then I enter the end date as "Future Day:3" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
@@ -458,7 +458,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I select the projected income option "No" and continue
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
     Then I click "No" for currently enrolled in VA Healthcare question
     Then I click continue on the OHC VA Healthcare page
     Then I click continue on family overview page
@@ -549,7 +549,7 @@ Feature: Tests related to the Application Summary/Detail for VA Healthcare
     Then I click Save and Continue on Tax Status page
     Then I select "VA Health Care" as health coverage option
     Then I click continue on the health coverage page
-    Then I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I validate I am on the "Ohc VA Healthcare" page
     Then I click "Yes" for currently enrolled in VA Healthcare question
     Then I click "Yes" for insurance ending in 60 days in VA Healthcare question
     Then I enter the end date as "Current Month" on the VA Healthcare page

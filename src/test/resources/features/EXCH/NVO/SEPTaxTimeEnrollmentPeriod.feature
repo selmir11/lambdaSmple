@@ -66,7 +66,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
       | PASSED_EMAIL_ADDRESS_VALIDATION  |
       | INITIAL_EE_11_NOTICE_SENT        |
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -89,7 +89,7 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -125,10 +125,10 @@ Feature: Easy Enrollment: 2 members - SEP Tax Time Enrollment Period/ Birth LCE,
     Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
     Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page

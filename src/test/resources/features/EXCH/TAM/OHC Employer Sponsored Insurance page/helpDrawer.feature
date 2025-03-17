@@ -60,7 +60,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I click continue on the health coverage page
 
     And I set the browser resolution to 1536 x 864
-    Then I validate I am on the "ESI" page
+    Then I validate I am on the "Ohc ESI" page
 
   @SLER-156
     #fails when run on small screens (Let's chat widget covers up help drawer footer)

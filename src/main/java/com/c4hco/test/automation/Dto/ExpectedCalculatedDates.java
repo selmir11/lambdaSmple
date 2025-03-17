@@ -10,6 +10,8 @@ public class ExpectedCalculatedDates {
     String coverageEndDate;
     String financialStartDate;
     String financialEndDate;
+    String memberFinancialStartDate;
+    String memberFinancialEndDate;
 }
 
 

@@ -158,13 +158,13 @@ Feature: Tests related to the Employment Income page
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
     #Navigate to Back Page
     And I click Go back on the Employment income page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     #Navigate to Next Page
@@ -201,7 +201,7 @@ Feature: Tests related to the Employment Income page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     #Navigate to Sign In Page
@@ -220,7 +220,7 @@ Feature: Tests related to the Employment Income page
     And I enter my mailing address "P. O. Box 1454", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
@@ -257,7 +257,7 @@ Feature: Tests related to the Employment Income page
     #Navigate to Back Page
     Then I validate I am on the "CoCo Employment Income" page
     And I click Go back on the Employment income page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     Then I validate I am on the "CoCo Employment Income" page
@@ -284,7 +284,7 @@ Feature: Tests related to the Employment Income page
     Then I click EditUpdate on Family Overview page for "Spouse"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
 
     #Navigate to Sign In Page
