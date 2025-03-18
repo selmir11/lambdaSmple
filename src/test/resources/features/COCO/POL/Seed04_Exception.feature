@@ -1,7 +1,7 @@
-Feature: Regression Tests that require Seed 4
+Feature: Regression Tests that require Seed 4 with exception
 # verification WIP
 
-  Scenario: Seed 04 For COCO- Minor only Applicant with Responsible Person Income of $35k
+  Background: Seed 04 With Exception For COCO- Minor only Applicant with Responsible Person Income of $35k
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -82,3 +82,21 @@ Feature: Regression Tests that require Seed 4
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
+
+   @SLCR-841-WIP
+  Scenario: CCRT-371 - ENR-COCO: EDIT POLICY - PREMIUM & SES AMOUNT UPDATES
+     Given I open the login page on the "admin" portal
+     And I validate I am on the "Login" page
+     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+     And I validate I am on the "Admin dashboard" page
+     And I select "coco" checkbox on Admin Portal Dashboard
+     And I search for user and click email from search results
+     Then I click on manage plan button on admin portal Individual dashboard
+     Then I click Make Changes Medical button
+     Then I update the premium value for
+       | 1:250.55 |
+     Then I update the APTC value for
+       | 1:150.55 |
+     And I click Save Button Medical
+     And I select the reason to confirm the changes
+     Then logout from Admin Portal

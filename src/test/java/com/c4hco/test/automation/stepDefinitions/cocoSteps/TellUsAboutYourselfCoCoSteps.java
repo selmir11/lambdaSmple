@@ -74,4 +74,7 @@ public class TellUsAboutYourselfCoCoSteps {
         tellUsAboutYourselfCoCoPage.updateFullName(namePrefix);
     }
 
+    @And("I update applying for coverage to {string} in coco")
+    public void applyingForCoverage(String applying) {tellUsAboutYourselfCoCoPage.applyingForCoverage(applying);}
+
 }

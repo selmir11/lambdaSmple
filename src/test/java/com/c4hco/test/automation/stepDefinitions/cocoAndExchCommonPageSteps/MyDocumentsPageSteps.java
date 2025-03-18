@@ -111,11 +111,6 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.clickDoubleChevron();
     }
 
-    @Then("I validate Date Received, Time Received and Download button available")
-    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
-        myDocumentsPage.iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable();
-    }
-
     @Then("I validate no document message")
     public void iValidateNoDocumentMessage(String data) {
         myDocumentsPage.validateNoDocumentMessage(data);
@@ -182,9 +177,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate border colour of type and category dropdown")
     public void I_validate_border_colour_of_type_and_category_dropdown() {myDocumentsPage.validateBorderColourOfTypeAndCategoryDropdown_errorMsg();}
 
-    @And("I verify the page text on the My Documents Page")
-    public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
-        myDocumentsPage.verifyTextonDocumentPage(data);
+    @And("I verify the page text on the My Documents Page in {string}")
+    public void iVerifyThePageTextOnTheMyDocumentsPage(String language, List<String> data) {
+        myDocumentsPage.verifyTextonDocumentPage(language,data);
     }
     @Then("I validate selection required error message for only document category")
     public void I_validate_selection_required_error_message_for_only_document_category() {myDocumentsPage.validateSelectionRequiredErrMsg_ForOnlyCategoryDoc();}
@@ -270,7 +265,7 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyDocumentTypeIsSelectedOnModalPopup(String DocTpe) {
         myDocumentsPage.verifyDocumentTypeSelected(DocTpe);
     }
-  
+
     @Then("I see the username in Exch that I am currently logged into")
     public void iSeeTheUsernameInExchThatIAmCurrentlyLoggedInto() {
         myDocumentsPage.verifyUserName();
@@ -414,6 +409,36 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I upload another doc {string} for {string} on the My Documents page and verify success message in {string}")
     public void iUploadAnotherDocForOnTheMyDocumentsPageAndVerifySuccessMessageIn(String fileName, String mvrType, String language) {
         myDocumentsPage.uploadAnotherDocAndSuccessMessage(fileName,mvrType,language);
+    }
+
+    @Then("I validate help drawer open in right side of the page for {string} mvr")
+    public void iValidateHelpDrawerOpenInRightSideOfThePageForMvr(String mvrType) {
+        myDocumentsPage.validateHelpDrawerOpenedForMvr(mvrType);
+    }
+
+    @Then("I select {string} from document and letter dropdown")
+    public void iSelectFromDocumentAndLetterDropdown(String data) {
+        myDocumentsPage.selectDocumentAndLetter(data);
+    }
+
+    @And("I verify plan year label {string}")
+    public void iVerifyPlanYearLabel(String planYearLabel) {
+        myDocumentsPage.verifyPlanYearLabel(planYearLabel);
+    }
+
+    @And("I validate default value in Documents and letters dropdown in {string}")
+    public void iValidateDefaultValueInDocumentsAndLettersDropdownIn(String language) {
+        myDocumentsPage.defaultDocumentLetterValue(language);
+    }
+
+    @Then("I verify Go back to welcome page button")
+    public void iVerifyGoBackToWelcomePageButtonIn(String data) {
+        myDocumentsPage.verifyGoBackToWelcomePageButton(data);
+    }
+
+    @Then("I validate Date Received, Time Received and Download button available in {string}")
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailableIn(String language) {
+        myDocumentsPage.verifyDateTimeDownloadButton(language);
     }
 }
 
