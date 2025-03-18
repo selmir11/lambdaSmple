@@ -202,10 +202,13 @@ public class LifeChangeEventsCoCoPage {
 
         String[] parts = LCEType.split(":");
         String type = parts[0];
-        String member = parts.length > 1 ? parts[1] : null;
+        String members = parts.length > 1 ? parts[1] : null;
 
-        if (member != null) {
-            clickOneMemberLCE(type, member);
+        if (members != null) {
+            String[] memberList = members.split(",");
+            for (String member : memberList) {
+                clickOneMemberLCE(type, member.trim());
+            }
         } else {
             clickAllMembersLCE(type);
         }

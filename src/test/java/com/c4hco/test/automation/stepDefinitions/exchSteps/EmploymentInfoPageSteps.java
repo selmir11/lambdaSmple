@@ -77,6 +77,21 @@ public class EmploymentInfoPageSteps {
         employmentInfoPage.goBackButton();
     }
 
+    @Then("I click on company Name input field and click out of it")
+    public void iClickOnCompanyNameInputFieldAndClickOutOfIt() {
+        employmentInfoPage.clickOnCompanyNameInputFieldAndClickOutOfIt();
+    }
+
+    @Then("I enter the value {string} in company name input field")
+    public void iEnterValueInCompanyNameInputField(String value) {
+        employmentInfoPage.enterValueInCompanyNameInputField(value);
+    }
+
+    @Then("I click on enter profit input field and click out of it")
+    public void iClickOnEnterProfitInputFieldAndClickOutOfIt() {
+        employmentInfoPage.clickOnEnterProfitInputFieldAndClickOutOfIt();
+    }
+
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
     @Then("I validate Employment Info Page header in {string}")
@@ -190,10 +205,48 @@ public class EmploymentInfoPageSteps {
     public void verifyNoEmploymentButton() {
         employmentInfoPage.verifyNoEmployedButtonIsEnabled();
     }
+
     @Then("I validate that the employment status label is not present")
     public void validateEmploymentStatusLabelAbsence() {
         employmentInfoPage.validateEmploymentStatusLabelAbsence();
     }
+
+    @Then("I verify the company name error message {string}")
+    public void iValidateCompanyNameErrorMessage(String expectedErrorMessage) {
+        employmentInfoPage.validateCompanyNameErrorMessage(expectedErrorMessage);
+    }
+
+    @Then("I enter the value of 110 characters in Company Name Input field and validate that it does not accept the characters more than 100")
+    public void iValidateFieldDoesNotAcceptMoreThan100Characters(){employmentInfoPage.validateFieldDoesNotAcceptMoreThan100Characters();}
+
+    @Then("I verify no errors show for company name field")
+    public void iVerifyCompanyNameFieldNoError()  { employmentInfoPage.verifyCompanyNameFieldNoError(); }
+
+    @Then("I verify the Enter profit amount error message {string}")
+    public void iValidateEnterProfitAmountErrorMessage(String expectedErrorMessage) {
+        employmentInfoPage.validateEnterProfitAmountErrorMessage(expectedErrorMessage);
+    }
+
+    @Then("I verify the income gets converted to {string}")
+    public void iValidateEnterProfitAmount(String expectedAmount) {
+        employmentInfoPage.validateEnterProfitAmount(expectedAmount);
+    }
+
+    @Then("I verify no errors show for Enter profit Income field")
+    public void iVerifyEnterProfitIncomeFieldNoError()  { employmentInfoPage.verifyEnterProfitIncomeFieldNoError(); }
+
+    @Then("I verify the income frequency type error message {string}")
+    public void iValidateIncomeFrequencyErrorMessage(String expectedErrorMessage) {
+        employmentInfoPage.validateIncomeFrequencyErrorMessage(expectedErrorMessage);
+    }
+
+    @Then("I verify the Income same or Lower question error message {string}")
+    public void iValidateIncomeSameOrLowerErrorMessage(String expectedErrorMessage) {
+        employmentInfoPage.validateIncomeSameOrLowerErrorMessage(expectedErrorMessage);
+    }
+
+    @Then("I verify no errors show for Income frequency field and Income same or lower question field")
+    public void iVerifyNoErrorsShowForFrequencyAndIncomeSameLowerField()  { employmentInfoPage.verifyNoErrorsShowForFrequencyAndIncomeSameLowerField(); }
 
 
 

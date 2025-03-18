@@ -1,4 +1,4 @@
-@Practice @Notices @PDF
+@Practice
 Feature: Notices Practice
 
     Background:
