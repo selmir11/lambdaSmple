@@ -952,5 +952,11 @@ public class DbValidations {
         int actualVLPCallsMade = Integer.parseInt(exchDbDataProvider.getVlpRequestCount());
         Assert.assertEquals(actualVLPCallsMade, expectedVLPCallsMade, "VLP Calls made mismatch!");
     }
+
+    public void verifyPrimaryEligibilityType(String reasonCode) {
+        String eligibilityType = exchDbDataProvider.getEligibilityType();
+        softAssert.assertEquals(eligibilityType, reasonCode, "Amount does not match! Expected to contain: " + reasonCode + " Found: " + eligibilityType);
+        softAssert.assertAll();
+    }
 }
 

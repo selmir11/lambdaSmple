@@ -659,4 +659,7 @@ public class DbDataProvider_Exch {
 
     public String getVlpRequestCount(){
         return postgresHandler.getResultFor("count", exchDbQueries.getVlpRequestCountQuery());}
+
+    public String getEligibilityType(){
+        return postgresHandler.getResultFor("eligibility_type", exchDbQueries.getEligibilityTypeQuery());}
 }
