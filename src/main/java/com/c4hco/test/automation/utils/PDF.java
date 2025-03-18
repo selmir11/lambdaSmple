@@ -36,8 +36,6 @@ public class PDF {
         // Validate static and dynamic PDFs
         boolean isStaticValid = validateStaticPDF(pdfExpected);
         boolean isDynamicValid = validateDynamicPDFText();
-        System.out.println("Static Text: " + isStaticValid);
-        System.out.println("Dynamic Text: " + isDynamicValid);
 
         // Use soft assertions for validation
         softAssert.assertTrue(isStaticValid, "Static PDF validation failed.");
