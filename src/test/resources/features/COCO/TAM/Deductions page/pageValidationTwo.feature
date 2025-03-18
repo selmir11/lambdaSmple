@@ -1,4 +1,4 @@
-@TAM @pageValidation @TamCoCo @test
+@TAM @pageValidation @TamCoCo
 Feature: Tests related to the Deductions page
 
   Background: I go to the login portal
@@ -28,7 +28,7 @@ Feature: Tests related to the Deductions page
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
 
-  @SLCR-839 @SLCR-840 @test
+  @SLCR-839 @SLCR-840
   Scenario Outline: <TestNumber>  ELIG-Page Validation-Additional Member Deductions - <Language>
     And I change the language from header to "<Language>"
     And I verify the header for additional member on the CoCo Deductions page in "<Language>"
