@@ -22,13 +22,14 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class MedicalDetailPage {
-    PDF pdf = new PDF(WebDriverManager.getDriver());
+    PDF pdf = new PDF( WebDriverManager.getDriver() );
     private BasicActions basicActions;
 
     SoftAssert softAssert = new SoftAssert();
     private Optional<Integer> optionalInt;
     private Object fileInput;
     private DOMCryptoContext document;
+
 
     public MedicalDetailPage(WebDriver webDriver) {
         basicActions = new BasicActions( webDriver );
@@ -452,7 +453,7 @@ public class MedicalDetailPage {
             case "Anthem":
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
                 lnkDocument0.isDisplayed();
-                String actualString0 = ( linkDoc0Anthem.getText());
+                String actualString0 = (linkDoc0Anthem.getText());
                 softAssert.assertTrue( actualString0.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
 
                 lnkDocument0.click();
@@ -465,10 +466,9 @@ public class MedicalDetailPage {
                 //fileInput.value = getLocalPathToDownloadFile;
 
 
-
-               //String localPathDownload1 = (SharedData.getLocalPathToDownloadFile());
-               //softAssert.assertTrue( localPathDownload1.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
-               //softAssert.assertAll();
+                //String localPathDownload1 = (SharedData.getLocalPathToDownloadFile());
+                //softAssert.assertTrue( localPathDownload1.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
+                //softAssert.assertAll();
 
             case "Rocky":
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
@@ -521,46 +521,103 @@ public class MedicalDetailPage {
     }
 
 
+    public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
+        File dir = new File( localPath );
+        File[] filesBefore = dir.listFiles();
+        long startTime = System.currentTimeMillis();
 
-        public static String waitForDownloadToComplete (String localPath,int timeoutInSeconds){
-            File dir = new File( localPath );
-            File[] filesBefore = dir.listFiles();
-            long startTime = System.currentTimeMillis();
-
-            // Loop until the timeout or until a new file is found
-            while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
-                File[] filesAfter = dir.listFiles();
-                if (filesAfter != null) {
-                    for (File file : filesAfter) {
-                        if (!file.isDirectory() && (filesBefore == null || !fileExists( filesBefore, file ))) {
-                            if (file.length() > 0) {
-                                SharedData.setNoticeFileName( file.getName() );
-                                return file.getName();
-                            }
+        // Loop until the timeout or until a new file is found
+        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
+            File[] filesAfter = dir.listFiles();
+            if (filesAfter != null) {
+                for (File file : filesAfter) {
+                    if (!file.isDirectory() && (filesBefore == null || !fileExists( filesBefore, file ))) {
+                        if (file.length() > 0) {
+                            SharedData.setNoticeFileName( file.getName() );
+                            return file.getName();
                         }
                     }
                 }
-                try {
-                    TimeUnit.SECONDS.sleep( 3 );
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException( e );
-                }
             }
-            return null;
+            try {
+                TimeUnit.SECONDS.sleep( 3 );
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException( e );
+            }
         }
+        return null;
+    }
 
-        private static boolean fileExists (File[]files, File file){
-            if (files == null) {
-                return false;
-            }
-            for (File f : files) {
-                if (f.getName().equals( file.getName() )) {
-                    return true;
-                }
-            }
+    private static boolean fileExists(File[] files, File file) {
+        if (files == null) {
             return false;
         }
+        for (File f : files) {
+            if (f.getName().equals( file.getName() )) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public void validateDocumentsUpload2(String carrier) {
+        basicActions.waitForElementToBePresent( spinner, 100 );
+        basicActions.waitForElementToBePresentWithRetries( headerDocEnglish, 60 );
+        softAssert.assertEquals( headerDocEnglish.getText(), "Plan Documents" );
+
+        // test for different carrier docs
+        switch (carrier) {
+            case "Anthem":
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
+                lnkDocument0.isDisplayed();
+                String actualString0 = (linkDoc0Anthem.getText());
+                softAssert.assertTrue( actualString0.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
+
+                lnkDocument0.click();
+                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
+
+
+                // at the step above the cursor is found on the downloaded document - next step would be to copy the file title and verify it
+
+                // Define the path where the PDF is downloaded
+                String downloadDirectory = System.getProperty("user.home") + "/Downloads/";
+                String pdfFileName = "expectedFilename.pdf";  // Adjust with the expected PDF filename
+
+                // Get the downloaded file
+                File downloadedFile = new File(downloadDirectory + pdfFileName);
+
+                // Validate if file exists
+                if (downloadedFile.exists()) {
+                    // Extract the title of the PDF document
+                    String pdfTitle = getPdfTitle(downloadedFile);
+
+                    // Expected title to validate against
+                    String expectedTitle = "Expected PDF Title";
+
+                    // Compare and print result
+                    if (pdfTitle.equals(expectedTitle)) {
+                        System.out.println("PDF Title matches the expected title.");
+                    } else {
+                        System.out.println("PDF Title does NOT match the expected title.");
+                    }
+                } else {
+                    System.out.println("PDF file not found.");
+                }
+
+                // Close the WebDriver
+                driver.quit();
+        }
+
+        // Method to extract the title from a PDF file
+        private static String getPdfTitle(File pdfFile) throws IOException {
+            PDDocument document = PDDocument.load(pdfFile);
+            String title = document.getDocumentInformation().getTitle();
+            document.close();
+            return title;
+        }
+    }
 
 
 }
