@@ -69,6 +69,8 @@ public class HouseholdPage {
     WebElement removeMemberLnk;
     @FindBy(xpath = "//td[normalize-space()='Not Applicable']")
     WebElement nfaInfo;
+    @FindBy(id = "totalIncome")
+    WebElement faInfo;
 
     @FindBy(xpath = "//*[@class = 'c4PageHeader']")
     WebElement getFamilyOverviewHeader;
@@ -217,7 +219,11 @@ public class HouseholdPage {
             case "NFA":
                 softAssert.assertEquals(nfaInfo.getText(), "Not Applicable");
                 break;
-//                ////Need to add case for FA
+
+            case "FA":
+                softAssert.assertEquals(faInfo.getText().replaceAll("[^0-9]", ""),SharedData.getFinancialIncome());
+                System.out.println(SharedData.getFinancialIncome()+"shared data"+faInfo.getText().replaceAll("[^0-9]", "")+"web");
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + financialInfo);
         }

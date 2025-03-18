@@ -276,6 +276,7 @@ public class EmploymentInfoPage {
         txtZip.sendKeys("80205");
         txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys(Salary);
+        SharedData.setFinancialIncome(Salary);
 
         dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
