@@ -666,4 +666,7 @@ public class DbDataProvider_Exch {
     public String[] getDeterminationEffectiveDate(){
         return postgresHandler.getResultForTwoColumnValues("determination", "effective_date", exchDbQueries.getgetDeterminationEffectiveDateDetails());
     }
+
+    public String getOutcomeInd(){
+        return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getOutcomeIndQuery());}
 }
