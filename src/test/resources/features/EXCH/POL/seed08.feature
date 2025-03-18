@@ -289,6 +289,10 @@ Feature: Seed08 - Exchange
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
 
   @SLER-2195-WIP-@R4V
   Scenario: RT-2113 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - DIFFERENT CARRIER / DIFFERENT PLANS
