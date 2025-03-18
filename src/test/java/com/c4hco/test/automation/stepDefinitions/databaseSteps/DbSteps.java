@@ -368,6 +368,10 @@ public class DbSteps {
     public void iValidateVLPCallsHaveBeenMadeForTheMember(int number) {
         dbValidations.verifyVLPCallsMadeForMember(number);
     }
+
+    @And("I verify the primary's eligibility type is {string}")
+    public void iVerifyPrimaryEligibilityType(String reasonCode) {dbValidations.verifyPrimaryEligibilityType(reasonCode);}
+
 }
 
 
