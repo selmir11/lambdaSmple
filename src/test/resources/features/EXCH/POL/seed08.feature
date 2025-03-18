@@ -1,6 +1,6 @@
 Feature: Seed08 - Exchange
-@UR
-  Scenario: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
+
+  Background: Seed 08 For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
     Given I set the test scenario details
       | totalGroups | totalDentalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 2           | 2                 | 4            | 1                 | 1                | 2               |
