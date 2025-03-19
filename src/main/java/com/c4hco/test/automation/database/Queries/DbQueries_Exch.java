@@ -177,6 +177,13 @@ public class DbQueries_Exch {
     }
 
     public String csrLevel() {
+        return "SELECT csr_level FROM " + dbName + ".en_member_coverage_financial_ah\n" +
+                "where application_id='" + applicationId + "' \n" +
+                "and current_ind = 1 " +
+                "limit 1";
+    }
+
+    public String csrLevelAiAn() {
         return "select esm.first_name, esm.last_name, esh.household_id, err.* \n" +
                 "From "+dbName+".ES_MEMBER esm, "+dbName+".ES_MEMBER_RULES_RESULT err, "+dbName+".es_household esh \n" +
                 "Where esm.member_id = err.member_id \n" +

@@ -3,7 +3,6 @@ package com.c4hco.test.automation.database.dbDataProvider;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
-import com.c4hco.test.automation.database.Queries.DBQueries_qa_coco;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -117,7 +116,7 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId(memId));
     }
     public String getCSRLevel(){
-        return postgresHandler.getResultFor("csr_level", exchDbQueries.csrLevel());
+        return postgresHandler.getResultFor("csr_level", SharedData.getIsAiAn()? exchDbQueries.csrLevelAiAn(): exchDbQueries.csrLevel());
     }
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("commission_tin", exchDbQueries.commissionTin());
