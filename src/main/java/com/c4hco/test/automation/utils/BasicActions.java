@@ -659,6 +659,13 @@ public class BasicActions {
         return Integer.toString(today.getYear() + 1);
     }
 
+    public String getFirstOfJanNextYr() { // January 1st of next year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear() + 1, 1, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+    }
+
     public String getFirstOfJanCurrYr() { // January 1st of current year
         LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.of(today.getYear(), 1, 1);
@@ -797,6 +804,9 @@ public class BasicActions {
                     break;
                 case "Previous Previous Year":
                     date = getPastYear(2);
+                    break;
+                case "First Day Of Next Year":
+                    date = getFirstOfJanNextYr();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
