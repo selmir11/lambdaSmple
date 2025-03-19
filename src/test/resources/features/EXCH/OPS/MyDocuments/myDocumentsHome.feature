@@ -1217,4 +1217,67 @@ Feature: My Document Home Page validations
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
 
+  @SLER-2340 @OPSRegression
+  Scenario: Verify Help drawer text on the document page in Spanish [RT-2021]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "7724352002" "5990496490" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    Then I validate I am on the "My Document Spanish" page
+    And I click on the help drawer icon on the document page
+    Then I validate help drawer open in right side of the page in Spanish
+    And I verify help drawer "header Spanish" text on the My Document page
+      | Ayuda |
+    And I verify help drawer "sub header Spanish" text on the My Document page
+      |Explicación de Mis documentos y cartas |
+    And I verify help drawer "body title Spanish" text on the My Document page
+      | Resumen |
+    And I verify help drawer "body content Spanish" text on the My Document page
+      | ¿Tiene preguntas sobre los documentos que debe proporcionar? Haga clic aquí para obtener más información |
+      | Tiene 90 días para entregar los documentos que le pedimos. El color de la fecha límite indica el tiempo que le queda para entregar el documento.   |
+      | Si la fecha límite está en verde, tiene entre 60 y 90 días para entregar sus documentos.                                                           |
+      | Si la fecha límite está en amarillo, tiene entre 30 y 59 días para entregar sus documentos.                         |
+      | Si la fecha límite está en rojo, tiene menos de 30 días para entregar sus documentos.                               |
+      | ¿Se venció su solicitud de documentos? Si el botón de carga está activo, proporcione los documentos para revisión.  |
+      | Si no puede cargar sus documentos, comuníquese con nuestro Centro de servicio al 1-855-752-6749. |
+    And I verify help drawer "footer" text on the My Document page
+      |¿Necesitas más ayuda?  Contáctenos |
+    And I click on the help drawer icon to close on the document page
+    Then I validate help drawer closed on the document page
+    And I click on "Help me understand this page Spanish" link in Help Drawer
+    Then I validate help drawer open in right side of the page in Spanish
+    And I click on "here Spanish" link in Help Drawer
+    And I validate I am on the "Submit Documents" page and close tab
+    And I click on "Contact Us Spanish" link in Help Drawer
+    And I validate I am on the "Podemos ayudar" page and close tab
+    And I click on the help drawer icon to close on the document page
+    And I click upload MVR button for "elegibilidad para ayuda financiera" in "Spanish"
+    And I verify help drawer "Income header Spanish" text on the My Document page
+      | Ayuda |
+    And I verify help drawer "Income sub header Spanish" text on the My Document page
+      | Comprobante de elegibilidad para ayuda financiera |
+    And I verify help drawer "Income body title Spanish" text on the My Document page
+      | Resumen |
+    And I verify help drawer "Income body content Spanish" text on the My Document page
+      | Para verificar sus ingresos, usted debe enviar dos documentos: |
+      | (1) Uno de que conforme sus ingresos y                              |
+      | (2) otro que confirme que previamente presentó y concilió su APTC en sus impuestos federales, o que no se requiere que lo haga |
+      | Hay más información en nuestro sitio web.  |
+    And I verify help drawer "Income footer" text on the My Document page
+      | ¿Necesitas más ayuda?  Contáctenos |
+    And I click on "our website Spanish" link in Help Drawer
+    And I validate I am on the "Submit Documents" page and close tab
+    And I click on "Contact Us Spanish" link in Help Drawer
+    And I validate I am on the "Podemos ayudar" page and close tab
+    And I close button to close modal
+    Then  I click on Sign Out in the Header for "Elmo"
 
