@@ -977,5 +977,18 @@ public class DbValidations {
         softAssert.assertEquals(removedEffectiveDate, basicActions.getDateBasedOnRequirement("First Day Of Next Year") + " 00:00:00");
         softAssert.assertAll();
     }
+
+    public void validateApplyingForCoverageIndDB(String FName, String applying){
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                String FirstName = actualMember.getFirstName();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(5), applying);
+                softAssert.assertAll();
+                break;
+            }
+        }
+    }
 }
 
