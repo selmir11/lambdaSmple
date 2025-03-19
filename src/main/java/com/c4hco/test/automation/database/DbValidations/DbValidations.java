@@ -852,15 +852,15 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateVLPResponseCode(String expectedResponseCode) {
-        String actualResponseCode = exchDbDataProvider.getVLPResponseCode();
+    public void validateVLPResponseCode(String expectedResponseCode, String requestType) {
+        String actualResponseCode = exchDbDataProvider.getVLPResponseCode(requestType);
         softAssert.assertEquals(actualResponseCode.trim(), expectedResponseCode);
         softAssert.assertAll();
     }
 
-    public void validateVLPRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
-        String actualRetryType = exchDbDataProvider.getVLPRetryType();
-        String actualRetryStatus = exchDbDataProvider.getVLPRetryStatus();
+    public void validateFDSHRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
+        String actualRetryType = exchDbDataProvider.getFDSHRetryType();
+        String actualRetryStatus = exchDbDataProvider.getFDSHRetryStatus();
         softAssert.assertEquals(actualRetryType.trim(), expectedRetryType);
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
