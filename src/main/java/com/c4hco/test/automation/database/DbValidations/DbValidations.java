@@ -958,5 +958,12 @@ public class DbValidations {
         softAssert.assertEquals(eligibilityType, reasonCode, "Amount does not match! Expected to contain: " + reasonCode + " Found: " + eligibilityType);
         softAssert.assertAll();
     }
+
+    public void verifyDeterminationEffectiveDate(String qlceType, String dateType){
+        String dbValues[] = exchDbDataProvider.getDeterminationEffectiveDate();
+        softAssert.assertEquals(dbValues[0], qlceType, "QLCE Type was " + dbValues[0] + " instead of " + qlceType);
+        softAssert.assertEquals(dbValues[1], basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00", "QLCE Type was " + dbValues[1] + " instead of " + basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00");
+        softAssert.assertAll();
+    }
 }
 
