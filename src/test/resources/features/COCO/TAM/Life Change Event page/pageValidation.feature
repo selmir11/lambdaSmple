@@ -354,7 +354,7 @@ Feature: Page validation - Life Change Event page
   I want to see the Tell us about life changes page in English or Spanish
   so that I can review the life change events for my application [CCRT-395]
     And I change the language from header to "English"
-    Then I validate the text format is aligned with 'English' language
+    Then I verify that the text format follows either the English or Spanish format listed below
       | English:                                                                                                                                                                                               |
       | Tell us about life changes                                                                                                                                                                             |
       | Select any Life Change Event you or someone in your household has experienced within the past 60 days. The loss of other health insurance can be reported up to 60 days before you lose the insurance. |
@@ -371,7 +371,7 @@ Feature: Page validation - Life Change Event page
       | Go back                                                                                                                                                                                                |
       | Save and continue                                                                                                                                                                                      |
     Then I change the language from header to "Spanish"
-    And I validate the text format is aligned with 'Spanish' language
+    And I verify that the text format follows either the English or Spanish format listed below
       | Spanish:                                                                                                                                                                                                  |
       | Infórmenos sobre los cambios importantes en su vida                                                                                                                                                       |
       | Seleccione los cambios de vida que usted o alguien de su familia haya tenido en los últimos 60 días. La pérdida de seguro de salud se puede reportar hasta 60 días antes de que alguien pierda su seguro. |

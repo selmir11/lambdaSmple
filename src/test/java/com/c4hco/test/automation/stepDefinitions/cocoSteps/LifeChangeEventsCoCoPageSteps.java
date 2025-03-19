@@ -53,7 +53,7 @@ public class LifeChangeEventsCoCoPageSteps {
     @Then("I verify LCE CoCo error format for {string}")
     public void iVerifyErrorFormat(String incomeType){lifeChangeEventsCoCoPage.verifyErrorFormat(incomeType);}
 
-    @Then("I validate the text format is aligned with {string} language")
+    @Then("I verify that the text format follows either the English or Spanish format listed below")
     public void i_validate_the_text_format_is_aligned_with_language(List<String> expectedText) {
     lifeChangeEventsCoCoPage.verifyTextFormatInGivenLanguage(expectedText);
     }
