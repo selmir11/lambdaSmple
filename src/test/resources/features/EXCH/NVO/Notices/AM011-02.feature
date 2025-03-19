@@ -6,7 +6,7 @@ Feature: AM 011-02 Notices
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
-    And I enter general mandatory data for "exchange" account creation with email "mf_test_"@outlook.com
+    And I enter general mandatory data for "exchange" account creation with email "pdfNotices"@outlook.com
     Then I validate I am on the "Login" page
     And  I enter valid credentials to login
     And I validate I am on the "Account Overview" page

@@ -362,6 +362,12 @@ Feature: Seed03 - Exchange
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     And I validate "medical" entities for "Spouse" from policy tables
     And I validate "dental" entities for "Spouse" from policy tables
+    And I validate "medical" entities for "Spouse" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 001                   | 001                | AI                    | NO CHANGE         |            |
+    And I validate "dental" entities for "Spouse" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 001                   | 001                | AI                    | NO CHANGE         |            |
 #Son
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
@@ -372,16 +378,15 @@ Feature: Seed03 - Exchange
       | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     And I validate "medical" entities for "Son" from policy tables
     And I validate "dental" entities for "Son" from policy tables
+    And I validate "medical" entities for "Son" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                  |
+      | 021                   | 021                | EC                    |                   | RELEASED_FROM_INCARCERATION |
+    And I validate "dental" entities for "Son" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                  |
+      | 021                   | 021                | EC                    |                   | RELEASED_FROM_INCARCERATION |
 
 #    And I verify the policy data quality check with Policy Ah keyset size 2
 #    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-#    RELEASED_FROM_INCARCERATION
-    And I validate "medical" entities for "Primary" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
-    And I validate "dental" entities for "Primary" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
