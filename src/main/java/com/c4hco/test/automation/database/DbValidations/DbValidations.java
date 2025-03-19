@@ -965,5 +965,11 @@ public class DbValidations {
         softAssert.assertEquals(dbValues[1], basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00", "QLCE Type was " + dbValues[1] + " instead of " + basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00");
         softAssert.assertAll();
     }
+
+    public void validateOutcomeInd(String outcome) {
+        String outcomeIndDb = exchDbDataProvider.getOutcomeInd();
+        softAssert.assertEquals(outcomeIndDb, outcome);
+        softAssert.assertAll();
+    }
 }
 

@@ -375,6 +375,9 @@ public class DbSteps {
     @And("I verify the most recent determination is {string} with an effective date of {string}")
     public void iVerifyDeterminationEffectiveDate(String qlceType, String dateType) {dbValidations.verifyDeterminationEffectiveDate(qlceType, dateType);}
 
+    @And("I verify outcome_ind is {string}")
+    public void iValidateOutcomeInd(String outcome) {dbValidations.validateOutcomeInd(outcome);}
+
 }
 
 

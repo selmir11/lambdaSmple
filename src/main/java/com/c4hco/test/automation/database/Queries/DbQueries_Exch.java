@@ -861,4 +861,17 @@ public class DbQueries_Exch {
         System.out.println("Executing Query: " + query);
         return query;
     }
+
+    public String getOutcomeIndQuery() {
+        String query = "Select d.outcome_ind\n" +
+                "From " + dbName + ".es_household a\n" +
+                "join " + dbName + ".es_member b on a.household_id = b.household_id\n" +
+                "join " + dbName + ".es_application c on b.household_id = c.household_id\n" +
+                "join " + dbName + ".es_member_rules_result d on d.member_id = b.member_id and d.evaluation_id =c.evaluation_id\n" +
+                "Where account_id = " + acctId + "\n" +
+                "And household_contact = 1\n" +
+                "And d.ref_obj_id is not null order by d.evaluation_id asc limit 1";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
 }
