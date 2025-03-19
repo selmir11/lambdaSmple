@@ -971,5 +971,11 @@ public class DbValidations {
         softAssert.assertEquals(outcomeIndDb, outcome);
         softAssert.assertAll();
     }
+
+    public void validateRemovedEffectiveDate() {
+        String removedEffectiveDate = exchDbDataProvider.getRemovedEffectiveDate();
+        softAssert.assertEquals(removedEffectiveDate, basicActions.getDateBasedOnRequirement("First Day Of Next Year") + " 00:00:00");
+        softAssert.assertAll();
+    }
 }
 

@@ -378,6 +378,9 @@ public class DbSteps {
     @And("I verify outcome_ind is {string}")
     public void iValidateOutcomeInd(String outcome) {dbValidations.validateOutcomeInd(outcome);}
 
+    @And("I verify removed_effective_date is first of next year")
+    public void iValidateRemovedEffectiveDate() {dbValidations.validateRemovedEffectiveDate();}
+
 }
 
 

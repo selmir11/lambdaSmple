@@ -857,7 +857,7 @@ public class DbQueries_Exch {
                 "join " + dbName + ".es_member_rules_result d on c.evaluation_id = d.evaluation_id\n" +
                 "where a.account_id = " + acctId + "\n" +
                 "and b.household_contact = 1\n" +
-                "and d.ref_obj_id is not null order by d.evaluation_id asc limit 1";
+                "and d.ref_obj_id is not null order by d.created_ts desc limit 1";
         System.out.println("Executing Query: " + query);
         return query;
     }
@@ -871,6 +871,16 @@ public class DbQueries_Exch {
                 "Where account_id = " + acctId + "\n" +
                 "And household_contact = 1\n" +
                 "And d.ref_obj_id is not null order by d.evaluation_id asc limit 1";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getRemovedEffectiveDateQuery() {
+        String query = "Select b.removed_effective_date \n" +
+                "From " + dbName + ".es_household a\n" +
+                "join " + dbName + ".es_member b on a.household_id = b.household_id\n" +
+                "where a.account_id = " + acctId + "\n" +
+                "and b.household_contact = 0";
         System.out.println("Executing Query: " + query);
         return query;
     }

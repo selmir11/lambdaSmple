@@ -669,4 +669,7 @@ public class DbDataProvider_Exch {
 
     public String getOutcomeInd(){
         return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getOutcomeIndQuery());}
+
+    public String getRemovedEffectiveDate(){
+        return postgresHandler.getResultFor("removed_effective_date", exchDbQueries.getRemovedEffectiveDateQuery());}
 }
