@@ -173,9 +173,8 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "InLaw" as filing jointly with option on the Tax Status Elmo page
-
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "InLaw" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
 
@@ -218,7 +217,7 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
+
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -274,23 +273,26 @@ Feature: Seed08 - Exchange
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click on Sign Out in the Header for "NonElmo"
     And I set the member relationship to the subscriber
       | Son: Self   |
       | InLaw: WIFE |
-    And I validate "medical" entities from policy tables for groups
-    And I validate "dental" entities from policy tables for groups
-
-    And I validate "medical" entities from pre edi db tables for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | OEP        |
-    And I validate "dental" entities from pre edi db tables for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | OEP        |
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
 
     #DbVerification
     And I verify the policy data quality check with Policy Ah keyset size 4
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
 
   @SLER-2195-WIP-@R4V
   Scenario: RT-2113 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - DIFFERENT CARRIER / DIFFERENT PLANS

@@ -440,5 +440,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailableIn(String language) {
         myDocumentsPage.verifyDateTimeDownloadButton(language);
     }
+
+    @Then("I validate help drawer open in right side of the page in Spanish")
+    public void iValidateHelpDrawerOpenInRightSideOfThePageInSpanish() {
+        myDocumentsPage.validateHelpDrawerOpenedSpanish();
+    }
+
+    @And("I click upload MVR button for {string} in {string}")
+    public void iClickUploadMVRButtonForInSpanish(String mvrType, String language) {
+        myDocumentsPage.clickUploadMvr(mvrType,language);
+    }
 }
 
