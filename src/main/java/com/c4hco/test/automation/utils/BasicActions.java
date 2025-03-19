@@ -1332,6 +1332,13 @@ public class BasicActions {
         } while (previousSize != currentSize);
         return true;
     }
+
+    public void changeMemberIdInUrlWithRandom() {
+        String currentUrl = driver.getCurrentUrl();
+        String randomMemberId = String.format("%08d", new Random().nextInt(100000000));
+        String newUrl = currentUrl.replaceAll("/\\d+$", "/" + randomMemberId);
+        driver.navigate().to(newUrl);
+    }
 }
 
 
